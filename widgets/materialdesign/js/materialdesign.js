@@ -14,13 +14,13 @@ $.get( "adapter/vis-materialdesign/words.js", function(script) {
     $.extend(systemDictionary, JSON.parse(translation));
 });
 
-// this code can be placed directly in vis-materialdesign.html
-vis.binds["vis-materialdesign"] = {
+// this code can be placed directly in materialdesign.html
+vis.binds["materialdesign"] = {
     version: "0.0.1",
     showVersion: function () {
-        if (vis.binds["vis-materialdesign"].version) {
-            console.log('Version vis-materialdesign: ' + vis.binds["vis-materialdesign"].version);
-            vis.binds["vis-materialdesign"].version = null;
+        if (vis.binds["materialdesign"].version) {
+            console.log('Version materialdesign: ' + vis.binds["materialdesign"].version);
+            vis.binds["materialdesign"].version = null;
         }
     },
     createWidget: function (widgetID, view, data, style) {
@@ -28,7 +28,7 @@ vis.binds["vis-materialdesign"] = {
         // if nothing found => wait
         if (!$div.length) {
             return setTimeout(function () {
-                vis.binds["vis-materialdesign"].createWidget(widgetID, view, data, style);
+                vis.binds["materialdesign"].createWidget(widgetID, view, data, style);
             }, 100);
         }
 
@@ -45,10 +45,10 @@ vis.binds["vis-materialdesign"] = {
         // subscribe on updates of value
         if (data.oid) {
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                $div.find('.vis-materialdesign-value').html(newVal);
+                $div.find('.materialdesign-value').html(newVal);
             });
         }
     }
 };
 
-vis.binds["vis-materialdesign"].showVersion();
+vis.binds["materialdesign"].showVersion();

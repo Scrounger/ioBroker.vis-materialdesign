@@ -6,9 +6,9 @@
     Copyright 2019 Scrounger scrounger@gmx.net
 -->
 <!-- here you can include so many css as you want -->
-<link rel="stylesheet" href="widgets/vis-materialdesign/css/style.css" />
+<link rel="stylesheet" href="widgets/materialdesign/css/style.css" />
 <!-- here you can include so many js-files as you want -->
-<script type="text/javascript" src="widgets/vis-materialdesign/js/vis-materialdesign.js"></script>
+<script type="text/javascript" src="widgets/materialdesign/js/materialdesign.js"></script>
 
 <!-- the full description of format in data-vis-attrs can be found here:
     https://github.com/ioBroker/ioBroker.vis/blob/master/www/js/visEditInspect.js#L39
@@ -105,11 +105,11 @@
         data-vis-prev='<div id="prev_tplMysetShowInstance" style="position: relative; text-align: initial;padding: 4px "><div class="vis-widget_prev " style="width: 280px; height: 159px;" > <div class="myset-class vis-widget-prev-body " style="padding:2px"> OID: hm-rpc.0.EEQ0006629.1.STATE<br> OID value: true<br> Color: <span style="color: rgb(128, 0, 0);">#800000</span><br> htmlText: <textarea readonly="" style="width:100%">asda</textarea></div>'
         data-vis-attrs="oid/id;myColor/color;htmlText/text;"
         data-vis-attrs0="group.extraVis-materialdesign;extraAttr"
-        data-vis-set="vis-materialdesign"
+        data-vis-set="materialdesign"
         data-vis-type="helper"
         data-vis-name="Show instance">
     <div class="vis-widget <%== this.data.attr('class') %>" style="width:230px; height:210px;" id="<%= this.data.attr('wid') %>" >
-        <div class="vis-materialdesign-class vis-widget-body <%== this.data.attr('class') %>" style="padding:2px" >
+        <div class="materialdesign-class vis-widget-body <%== this.data.attr('class') %>" style="padding:2px" >
             OID: <%= this.data.attr('oid') %><br>
             OID value: <%== vis.states[this.data.attr('oid') + '.val'] %><br>
             Color: <span style="color: <%= this.data.attr('myColor') %>"><%= this.data.attr('myColor') %></span><br>
@@ -126,10 +126,10 @@
         data-vis-prev='<div id="prev_tplVis-materialdesignHelper" style="position: relative; text-align: initial;padding: 4px "><div class="vis-widget_prev " style="width: 280px; height: 159px;" > <div class="myset-class vis-widget-prev-body " style="padding:2px"> OID: hm-rpc.0.EEQ0006629.1.STATE<br> OID value: true<br> Color: <span style="color: rgb(128, 0, 0);">#800000</span><br> htmlText: <textarea readonly="" style="width:100%">asda</textarea></div>'
         data-vis-attrs="oid/id;myColor/color;htmlText/text;"
         data-vis-attrs0="group.extraVis-materialdesign;extraAttr"
-        data-vis-set="vis-materialdesign"
+        data-vis-set="materialdesign"
         data-vis-type="helper"
         data-vis-name="Helper">
     <div class="vis-widget <%== this.data.attr('class') %>" style="overflow:visible; width: 230px; height: 210px" id="<%= this.data.attr('wid') %>"><%
-        vis.binds.vis-materialdesign.createWidget(this.data.wid, this.view, this.data, this.style);
+        vis.binds.materialdesign.createWidget(this.data.wid, this.view, this.data, this.style);
     %></div>
 </script>

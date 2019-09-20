@@ -36,7 +36,7 @@ You are almost done, only a few steps left:
     ```bash
     git push origin master
     ```
-1. Head over to [widgets/vis-materialdesign.html](widgets/vis-materialdesign.html) and start programming!
+1. Head over to [widgets/materialdesign.html](widgets/materialdesign.html) and start programming!
 
 ### Scripts in `package.json`
 Several npm scripts are predefined for your convenience. You can run them using `npm run <scriptname>`
