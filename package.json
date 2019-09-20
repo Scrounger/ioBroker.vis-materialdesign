@@ -1,0 +1,36 @@
+{
+  "name": "iobroker.vis-materialdesign",
+  "version": "0.0.1",
+  "description": "Material Design Widgets based on Google material components web library",
+  "author": {
+    "name": "Scrounger",
+    "email": "scrounger@gmx.net"
+  },
+  "homepage": "https://github.com/Scrounger/ioBroker.vis-materialdesign",
+  "license": "MIT",
+  "keywords": [
+    "vis",
+    "material",
+    "GUI"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Scrounger/ioBroker.vis-materialdesign"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@iobroker/testing": "^1.2.5",
+    "@types/gulp": "^4.0.6",
+    "axios": "^0.19.0",
+    "gulp": "^4.0.2"
+  },
+  "main": "widgets/vis-materialdesign.html",
+  "scripts": {
+    "test:package": "mocha test/package --exit",
+    "test": "npm run test:package"
+  },
+  "bugs": {
+    "url": "https://github.com/Scrounger/ioBroker.vis-materialdesign/issues"
+  },
+  "readmeFilename": "README.md"
+}

@@ -1,0 +1,79 @@
+{
+    "common": {
+        "name": "vis-materialdesign",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "Material Design Widgets",
+        "titleLang": {
+            "en": "Material Design Widgets",
+            "de": "Material Design Widgets",
+            "ru": "Material Design Widgets",
+            "pt": "Material Design Widgets",
+            "nl": "Material Design Widgets",
+            "fr": "Material Design Widgets",
+            "it": "Material Design Widgets",
+            "es": "Material Design Widgets",
+            "pl": "Material Design Widgets",
+            "zh-cn": "Material Design Widgets"
+        },
+        "desc": {
+            "en": "Material Design Widgets based on Google material components web library",
+            "de": "Material Design Widgets based on Google material components web library",
+            "ru": "Material Design Widgets based on Google material components web library",
+            "pt": "Material Design Widgets based on Google material components web library",
+            "nl": "Material Design Widgets based on Google material components web library",
+            "fr": "Material Design Widgets based on Google material components web library",
+            "it": "Material Design Widgets based on Google material components web library",
+            "es": "Material Design Widgets based on Google material components web library",
+            "pl": "Material Design Widgets based on Google material components web library",
+            "zh-cn": "Material Design Widgets based on Google material components web library"
+        },
+        "authors": [
+            "Scrounger <scrounger@gmx.net>"
+        ],
+        "keywords": [
+            "vis",
+            "material",
+            "GUI"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "vis-materialdesign.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/Scrounger/ioBroker.vis-materialdesign/master/admin/vis-materialdesign.png",
+        "readme": "https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/master/README.md",
+        "loglevel": "info",
+        "restartAdapters": [
+            "vis"
+        ],
+        "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
+        "onlyWWW": true,
+        "noConfig": true,
+        "singleton": true,
+        "type": "visualization-widgets",
+        "mode": "once",
+        "dependencies": [
+            "vis"
+        ]
+    },
+    "native": {
+        "option1": true,
+        "option2": "42"
+    },
+    "objects": [],
+    "instanceObjects": []
+}
