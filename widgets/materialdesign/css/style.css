@@ -1,4 +1,4 @@
-/* Style your widget here */
-.vis-materialdesign-class {
-    font-style: italic;
+/* Default Button Theme */
+.mdc-button{
+    --mdc-theme-primary: #1e88e5;
 }

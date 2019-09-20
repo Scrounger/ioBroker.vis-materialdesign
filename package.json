@@ -17,7 +17,10 @@
     "type": "git",
     "url": "https://github.com/Scrounger/ioBroker.vis-materialdesign"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@material/ripple": "^3.2.0",
+    "material-components-web": "^3.2.0"
+  },
   "devDependencies": {
     "@iobroker/testing": "^1.2.5",
     "@types/gulp": "^4.0.6",

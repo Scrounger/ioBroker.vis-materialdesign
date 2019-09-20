@@ -31,16 +31,16 @@
         },
         "desc": {
             "en": "Material Design Widgets based on Google material components web library",
-            "de": "Material Design Widgets based on Google material components web library",
-            "ru": "Material Design Widgets based on Google material components web library",
-            "pt": "Material Design Widgets based on Google material components web library",
-            "nl": "Material Design Widgets based on Google material components web library",
-            "fr": "Material Design Widgets based on Google material components web library",
-            "it": "Material Design Widgets based on Google material components web library",
-            "es": "Material Design Widgets based on Google material components web library",
-            "pl": "Material Design Widgets based on Google material components web library",
-            "zh-cn": "Material Design Widgets based on Google material components web library"
-        },
+            "de": "Material Design Widgets basiert auf der Material Components Bibliothek von Google",
+            "ru": "Виджеты дизайна материалов на основе веб-библиотеки компонентов материалов Google",
+            "pt": "Widgets de design de materiais baseados na biblioteca da Web de componentes de materiais do Google",
+            "nl": "Widgets voor materiaalontwerp op basis van de webbibliotheek voor materiaalcomponenten van Google",
+            "fr": "Matériels de conception de matériaux basés sur la bibliothèque Web de Google sur les composants matériels",
+            "it": "Widget di progettazione dei materiali basati sulla libreria web dei componenti materiali di Google",
+            "es": "Widgets de diseño de materiales basados en la biblioteca web de componentes de material de Google",
+            "pl": "Widżety projektowania materiałów na podstawie biblioteki internetowej komponentów materiałów Google",
+            "zh-cn": "Material Design Widgets基于Google材料组件Web库"
+          },
         "authors": [
             "Scrounger <scrounger@gmx.net>"
         ],
