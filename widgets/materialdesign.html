@@ -149,8 +149,8 @@
         data-vis-attrs1="group.icon;imageFalse/image;invertImageFalse/checkbox;imageTrue/image;invertImageTrue/checkbox;iconHeight/slider,0,200,1;"
         data-vis-attrs2="group.backgrounds;colorBgFalse/color;colorBgTrue/color;labelColorBgFalse/color;labelColorBgTrue/color;">
         
-    <div class="vis-widget <%== this.data.attr('class') %> mdc-button mdc-button--raised — outlined" data-mdc-auto-init="MDCRipple" style="width:150px; height:100px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.toggle(el) %> <%= (el) -> vis.binds.materialdesign.addRippleEffect(el) %>>
-        <div class="iconLabel container" style="display: table; width: 100%; height: 100%; background: <%= this.data.attr('colorBgFalse')%>">
+    <div class="vis-widget <%== this.data.attr('class') %> mdc-button mdc-button--raised" style="width:150px; height:100px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.toggle(el); vis.binds.materialdesign.addRippleEffect(el) %>>
+        <div class="materialdesign vis-widget-body" style="display: table; width: 100%; height: 100%; background: <%= this.data.attr('colorBgFalse')%>">
             <%
                 var stylesInvertImageFalse = '';
                 if (this.data.invertImageFalse === 'true' || this.data.invertImageFalse === true) {
@@ -188,8 +188,8 @@
         data-vis-attrs1="group.icon;imageFalse/image;invertImageFalse/checkbox;imageTrue/image;invertImageTrue/checkbox;iconHeight/slider,0,200,1;"
         data-vis-attrs2="group.backgrounds;colorBgFalse/color;colorBgTrue/color;">
         
-    <div class="vis-widget <%== this.data.attr('class') %> mdc-button mdc-button--raised — outlined" data-mdc-auto-init="MDCRipple" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.toggle(el) %> <%= (el) -> vis.binds.materialdesign.addRippleEffect(el) %>>
-        <div class="iconLabel container" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%; background: <%= this.data.attr('colorBgFalse')%>">
+    <div class="vis-widget <%== this.data.attr('class') %> mdc-button mdc-button--raised" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.toggle(el); vis.binds.materialdesign.addRippleEffect(el) %>>
+        <div class="materialdesign vis-widget-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%; background: <%= this.data.attr('colorBgFalse')%>">
             <%
                 var stylesInvertImageFalse = '';
                 if (this.data.invertImageFalse === 'true' || this.data.invertImageFalse === true) {
