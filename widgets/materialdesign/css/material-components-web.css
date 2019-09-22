@@ -16,8 +16,8 @@
   text-decoration: none;
   text-transform: uppercase;
   padding: 0 8px 0 8px;
-  display: inline-flex;
-  position: relative;
+  /* display: inline-flex; */
+  /* position: relative;  --> caused position bug in vis editor */ 
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
