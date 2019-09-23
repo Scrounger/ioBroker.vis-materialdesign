@@ -53,10 +53,6 @@ vis.binds["materialdesign"] = {
         var $this = $(el).parent();
         mdc.ripple.MDCRipple.attachTo($this.context);
     },
-    addSwitch: function(el) {
-        var $this = $(el).parent();
-        mdc.switchControl.MDCSwitch.attachTo($this.context)
-    },
     itoggle: function (el, data) {
         var $this = $(el).parent();
         var oid = $this.parent().attr('data-oid');
@@ -163,6 +159,47 @@ vis.binds["materialdesign"] = {
                 .data('bound', [oid])
                 // remember bind handler
                 .data('bindHandler', onChange);
+        }
+    },
+    mdcSwitch: function (el) {
+        var $this = $(el);
+        var oid = $this.data('oid'); // Object ID
+        var wid = $this.data('oid-working'); // Work ID
+
+        // root element
+        let mdcSwitch = mdc.switchControl.MDCSwitch.attachTo($this.parents('.mdc-switch')[0]);
+
+        function onChange() {
+            mdcSwitch.checked = vis.states.attr(oid + '.val')
+        }
+
+        if (oid) {
+            var bound = [];
+            vis.states.bind(oid + '.val', onChange);
+            bound.push(oid + '.val');
+            if (wid) {
+                vis.states.bind(wid + '.val', onChange);
+                bound.push(wid + '.val');
+            }
+            // remember all ids, that bound
+            $this.closest('.vis-widget')
+                .data('bound', bound)
+                // remember bind handler
+                .data('bindHandler', onChange);
+
+            mdcSwitch.checked = vis.states.attr(oid + '.val')
+        }
+
+        vis.binds.basic._onChange(el, oid, wid);
+        if (!vis.editMode) {
+            $this.change(function () {
+                var $this_ = $(this);
+                if ($this_.prop('checked')) {
+                    vis.setValue($this_.data('oid'), true);
+                } else {
+                    vis.setValue($this_.data('oid'), false);
+                }
+            });
         }
     },
 };

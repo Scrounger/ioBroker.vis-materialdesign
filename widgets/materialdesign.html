@@ -220,5 +220,28 @@
         </div>
     </div>
 </script>
-     
+
+<script id="tplVis-materialdesign-Switch"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<div id="prev_tplVis-materialdesign-Switch" style=" position: relative; text-align: initial;padding: 4px "><div class="vis-widget_prev vis-widget-lock ui-selectee" style="left: 110px; top: 432px;" > <div class="metro vis-widget-prev-body"> <div class="input-control switch"> <label> <input type="checkbox" name="w00002_checkbox" data-o> <span class="check"></span> </label> </div> <div></div> </div> </div>'
+        data-vis-set="materialdesign"
+        data-vis-type="ctrl,bool"
+        data-vis-name="Switch"
+        data-vis-attrs="html_prepend;html_append;oid">
+        
+        <div class="vis-widget materialdesign-switch <%== this.data.attr('class') %>" style="width:150px; height:100px;" id="<%= this.data.attr('wid') %>">
+            <div class="materialdesign vis-widget-body">
+                <div class="mdc-switch" style="justify-self: center;">
+                    <div class="mdc-switch__track"></div>
+                    <div class="mdc-switch__thumb-underlay">
+                        <div class="mdc-switch__thumb">
+                            <input class="mdc-switch__native-control" id="<%= this.data.attr('wid') %>-basic-switch" type="checkbox" data-oid="<%= this.data.attr('oid') %>" role="switch" <%= (el) -> vis.binds.materialdesign.mdcSwitch(el) %>>
+                        </div>
+                    </div>
+                </div>
+                <label for="basic-switch">off/on</label>
+            </div>
+        </div>
+</script>        
 

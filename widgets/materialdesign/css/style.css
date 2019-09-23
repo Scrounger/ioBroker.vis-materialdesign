@@ -1,4 +1,4 @@
-/* Default Button Theme */
+/* Button style -> must defined here because of position bug in vis editor */
 .materialdesign-button {
   --mdc-theme-primary: #1e88e5;
 
@@ -384,4 +384,13 @@ svg.materialdesign-button__icon {
 .materialdesign-button--raised.mdc-ripple-upgraded,
 .materialdesign-button--unelevated.mdc-ripple-upgraded {
   --mdc-ripple-fg-opacity: 0.24;
+}
+
+/* Default switch color */
+.mdc-switch.mdc-switch--checked .mdc-switch__track {
+  --mdc-theme-secondary: #1e88e5;
+}
+
+.mdc-switch.mdc-switch--checked .mdc-switch__thumb {
+  --mdc-theme-secondary: #1e88e5;
 }
