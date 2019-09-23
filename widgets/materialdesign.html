@@ -166,7 +166,7 @@
         }        
     %>
         
-    <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %> " style="width:150px; height:100px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.toggle(el); vis.binds.materialdesign.addRippleEffect(el) %>>
+    <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.basic.toggle(el); vis.binds.materialdesign.addRippleEffect(el) %>>
         <div class="materialdesign vis-widget-body" style="display: table; width: 100%; height: 100%; background: <%= this.data.attr('colorBgFalse')%>">
             <div style="display: table-row;">                
                 <img class="imgToggleFalse" <%= this.data.attr('imageFalse') ? 'src="' +  this.data.attr('imageFalse') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; <%= stylesInvertImageFalse %>" />
@@ -210,7 +210,7 @@
         }        
     %>      
         
-    <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.toggle(el); vis.binds.materialdesign.addRippleEffect(el) %>>
+    <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.basic.toggle(el); vis.binds.materialdesign.addRippleEffect(el) %>>
         <div class="materialdesign vis-widget-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%; background: <%= this.data.attr('colorBgFalse')%>">
             <img class="imgToggleFalse" <%= this.data.attr('imageFalse') ? 'src="' +  this.data.attr('imageFalse') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; <%= stylesInvertImageFalse %>" />
             <img class="imgToggleTrue"  <%= this.data.attr('imageTrue')  ? 'src="' +  this.data.attr('imageTrue')  + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; display:none; <%= stylesInvertImageTrue %>" />
@@ -220,4 +220,5 @@
         </div>
     </div>
 </script>
+     
 
