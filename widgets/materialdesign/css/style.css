@@ -387,10 +387,6 @@ svg.materialdesign-button__icon {
 }
 
 /* Default switch color */
-.mdc-switch.mdc-switch--checked .mdc-switch__track {
-  --mdc-theme-secondary: #1e88e5;
-}
-
-.mdc-switch.mdc-switch--checked .mdc-switch__thumb {
+.mdc-switch{
   --mdc-theme-secondary: #1e88e5;
 }

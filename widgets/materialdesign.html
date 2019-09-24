@@ -155,12 +155,12 @@
             buttonStyle = 'materialdesign-button--' + this.data.buttonStyle;
         }
 
-        var stylesInvertImageFalse = '';
+        let stylesInvertImageFalse = '';
         if (this.data.invertImageFalse === 'true' || this.data.invertImageFalse === true) {
             stylesInvertImageFalse = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
         }
 
-        var stylesInvertImageTrue = '';
+        let stylesInvertImageTrue = '';
         if (this.data.invertImageTrue === 'true' || this.data.invertImageTrue === true) {
             stylesInvertImageTrue = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
         }        
@@ -199,12 +199,12 @@
             buttonStyle = 'materialdesign-button--' + this.data.buttonStyle;
         }
 
-        var stylesInvertImageFalse = '';
+        let stylesInvertImageFalse = '';
         if (this.data.invertImageFalse === 'true' || this.data.invertImageFalse === true) {
             stylesInvertImageFalse = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
         }
 
-        var stylesInvertImageTrue = '';
+        let stylesInvertImageTrue = '';
         if (this.data.invertImageTrue === 'true' || this.data.invertImageTrue === true) {
             stylesInvertImageTrue = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
         }        
@@ -228,11 +228,19 @@
         data-vis-set="materialdesign"
         data-vis-type="ctrl,bool"
         data-vis-name="Switch"
-        data-vis-attrs="html_prepend;html_append;oid">
+        data-vis-attrs="oid;html_prepend;html_append;colorSliderTrue/color">
         
+        <%
+            let colorSliderTrue = '';
+            if (this.data.colorSliderTrue !== '' && this.data.colorSliderTrue !== 'undefined'){
+                colorSliderTrue = '--mdc-theme-secondary: ' + this.data.colorSliderTrue + ';';
+            }
+        %>
+
         <div class="vis-widget materialdesign-switch <%== this.data.attr('class') %>" style="width:150px; height:100px;" id="<%= this.data.attr('wid') %>">
-            <div class="materialdesign vis-widget-body">
-                <div class="mdc-switch" style="justify-self: center;">
+            <div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
+                <label><%== this.data.attr('html_prepend') %></label>
+                <div class="mdc-switch" style="margin-left: 10px; margin-right: 10px; <%= colorSliderTrue %>">
                     <div class="mdc-switch__track"></div>
                     <div class="mdc-switch__thumb-underlay">
                         <div class="mdc-switch__thumb">
@@ -240,8 +248,8 @@
                         </div>
                     </div>
                 </div>
-                <label for="basic-switch">off/on</label>
+                <label><%== this.data.attr('html_append') %></label>
             </div>
         </div>
-</script>        
+</script>
 

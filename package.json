@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@material/ripple": "^3.2.0",
+    "@material/switch": "^3.2.0",
     "material-components-web": "^3.2.0"
   },
   "devDependencies": {
