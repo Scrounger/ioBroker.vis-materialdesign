@@ -224,22 +224,25 @@
 <script id="tplVis-materialdesign-Switch"
         type="text/ejs"
         class="vis-tpl"
-        data-vis-prev='<div id="prev_tplVis-materialdesign-Switch" style=" position: relative; text-align: initial;padding: 4px "><div class="vis-widget_prev vis-widget-lock ui-selectee" style="left: 110px; top: 432px;" > <div class="metro vis-widget-prev-body"> <div class="input-control switch"> <label> <input type="checkbox" name="w00002_checkbox" data-o> <span class="check"></span> </label> </div> <div></div> </div> </div>'
+        data-vis-prev='<div id="prev_tplVis-materialdesign-Switch" style="position: relative; text-align: initial; padding: 4px "><div class="vis-widget_prev materialdesign-switch vis-tpl-materialdesign-Switch " style="width: 80px; height: 50px; left: 52px; top: 567px; position: absolute; z-index: 700;" data-tmodified="true" data-zmodified="true"> <div class="materialdesign vis-widget-prev-body" style="display: flex; justify-content: center; align-items: center;"> <span class="labelSwitchPrepandFalse" style="display: none;"></span> <span class="labelSwitchPrepandTrue" style="display: inline;"></span> <div class="mdc-switch mdc-switch--checked" style="margin-left: 10px; margin-right: 10px; "> <div class="mdc-switch__track"></div> <div class="mdc-switch__thumb-underlay mdc-ripple-upgraded mdc-ripple-upgraded--unbounded" style="--mdc-ripple-fg-size:28px; --mdc-ripple-fg-scale:1.7142857142857142; --mdc-ripple-left:10px; --mdc-ripple-top:10px;"> <div class="mdc-switch__thumb"> <input class="mdc-switch__native-control" id="1dlho8qn0-basic-switch" type="checkbox" data-oid="virtualpowermeter.0.buttonTest" role="switch"> </div> </div> </div> <span class="labelSwitchAppendFalse" style=""></span> <span class="labelSwitchAppendTrue" style="display: none;"></span> </div> <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div></div>'
         data-vis-set="materialdesign"
         data-vis-type="ctrl,bool"
         data-vis-name="Switch"
-        data-vis-attrs="oid;html_prepend;html_append;colorSliderTrue/color">
+        data-vis-attrs="oid;colorSliderTrue/color;"
+        data-vis-attrs0="group.label;labelFalsePrepend;labelTruePrepend;labelFalseAppend;labelTrueAppend;labelColorFalse/color;labelColorTrue/color;">
         
         <%
             let colorSliderTrue = '';
-            if (this.data.colorSliderTrue !== '' && this.data.colorSliderTrue !== 'undefined'){
+            if (this.data.colorSliderTrue !== '' && this.data.colorSliderTrue !== undefined){
                 colorSliderTrue = '--mdc-theme-secondary: ' + this.data.colorSliderTrue + ';';
             }
         %>
 
-        <div class="vis-widget materialdesign-switch <%== this.data.attr('class') %>" style="width:150px; height:100px;" id="<%= this.data.attr('wid') %>">
+        <div class="vis-widget materialdesign-switch <%== this.data.attr('class') %>" style="width:80px; height:50px;" id="<%= this.data.attr('wid') %>">
             <div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
-                <label><%== this.data.attr('html_prepend') %></label>
+                <span class="labelSwitchPrepandFalse" style="color: <%== this.data.attr('labelColorFalse') %>"><%== this.data.attr('labelFalsePrepend') %></span>
+                <span class="labelSwitchPrepandTrue" style="color: <%== this.data.attr('labelColorTrue') %>; display:none"><%== this.data.attr('labelTruePrepend') %></span>
+
                 <div class="mdc-switch" style="margin-left: 10px; margin-right: 10px; <%= colorSliderTrue %>">
                     <div class="mdc-switch__track"></div>
                     <div class="mdc-switch__thumb-underlay">
@@ -248,7 +251,8 @@
                         </div>
                     </div>
                 </div>
-                <label><%== this.data.attr('html_append') %></label>
+                <span class="labelSwitchAppendFalse" style="color: <%== this.data.attr('labelColorFalse') %>"><%== this.data.attr('labelFalseAppend') %></span>
+                <span class="labelSwitchAppendTrue" style="color: <%== this.data.attr('labelColorTrue') %>; display:none"><%== this.data.attr('labelTrueAppend') %></span>
             </div>
         </div>
 </script>
