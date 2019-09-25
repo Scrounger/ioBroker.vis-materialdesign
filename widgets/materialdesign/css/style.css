@@ -390,3 +390,12 @@ svg.materialdesign-button__icon {
 .mdc-switch{
   --mdc-theme-secondary: #1e88e5;
 }
+
+/* Default slider color */
+.mdc-slider{
+  --mdc-theme-secondary: #1e88e5;
+}
+
+.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track-container{
+  background-color: rgba(161, 161, 161, 0.26)
+}

@@ -263,15 +263,36 @@
         data-vis-prev='<div id="prev_tplVis-materialdesign-Slider" style="position: relative; text-align: initial;padding: 4px;overflow:visible"><div class="vis-widget_prev " style="width: 80px; overflow: visible !important; left: 475px; top: 188px; position: absolute; height: 23px;"> <div class="vis-widget-prev-body " style="padding: 4px;"> <div class="sliderJQUI ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="19vlqppi9_slider" data-oid="nothing_selected" data-oid-working=""><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 0%;"></span></div></div> </div></div>'
         data-vis-set="materialdesign"
         data-vis-type="ctrl,slider,dimmer"
-        data-vis-name="Slider horizontal"
-        data-vis-attrs="oid;oid-working;min;max;step;">
-        <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width:180px; height:50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>">
-            <div class="materialdesign vis-widget-body" >
-                <div class="mdc-slider mdc-slider--discrete" tabindex="0" role="slider"
-                    aria-valuemin="<%== this.data.attr('min') %>" aria-valuemax="<%== this.data.attr('max') %>" aria-valuenow="0" data-step="<%== this.data.attr('step') %>" 
-                    aria-label="Select Value" data-oid="<%= this.data.attr('oid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" <%= (el) -> vis.binds.materialdesign.mdcSlider(el, {min: data.min, max: data.max, step: data.step}) %>>
-                    <div class="mdc-slider__track-container">
+        data-vis-name="Discrete Slider"
+        data-vis-update-style="true"
+        data-vis-attrs="oid;oid-working;min;max;step;colorSlider/color;colorSliderBg/color;showMarkers/checkbox">
+
+        <%
+            let colorSlider = '';
+            if (this.data.colorSlider !== '' && this.data.colorSlider !== undefined){
+                colorSlider = '--mdc-theme-secondary: ' + this.data.colorSlider + ';';
+            }
+
+            let colorSliderBg = '';
+            if (this.data.colorSliderBg !== '' && this.data.colorSliderBg !== undefined){
+                colorSliderBg = 'background-color: ' + this.data.colorSliderBg + ';';
+            }
+
+            let showMarker = '';
+            if (this.data.showMarkers === 'true' || this.data.showMarkers === true) {
+                showMarker = 'mdc-slider--display-markers';
+            }
+        %>
+
+        <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width:180px; height:50px; padding-left: 5px; padding-right: 5px; overflow:visible !important;" id="<%= this.data.attr('wid') %>">
+            <div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
+                <div class="mdc-slider mdc-slider--discrete <%= showMarker %>" tabindex="0" role="slider" style="<%= colorSlider %>"
+                    aria-valuemin="<%== this.data.attr('min') %>" aria-valuemax="<%== this.data.attr('max') %>" aria-valuenow="0" data-step="<%== this.data.attr('step') %>"                     
+                    aria-label="Select Value" data-oid="<%= this.data.attr('oid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" 
+                    <%= (el) -> vis.binds.materialdesign.mdcSlider(el, {min: data.min, max: data.max, step: data.step}) %>>
+                    <div class="mdc-slider__track-container" style="<%= colorSliderBg %>">
                         <div class="mdc-slider__track"></div>
+                        <div class="mdc-slider__track-marker-container"></div>
                     </div>
                     <div class="mdc-slider__thumb-container">
                         <div class="mdc-slider__pin">
