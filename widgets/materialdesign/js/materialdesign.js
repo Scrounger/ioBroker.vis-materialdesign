@@ -232,6 +232,83 @@ vis.binds["materialdesign"] = {
             });
         }
     },
+    mdcSlider: function (el, options) {
+        try {
+            setTimeout(function () {
+                // timeout damit slider funktioniert notwendig
+                let $this = $(el);
+                var oid = $this.attr('data-oid');
+                var wid = $this.attr('data-oid-working');
+
+                const mdcSlider = new mdc.slider.MDCSlider($this.context);
+
+                var min = (options.min === undefined || options.min === null || options.min === '') ? 0.00 : parseFloat(options.min);
+                var max = (options.max === undefined || options.min === null || options.max === '') ? 1.00 : parseFloat(options.max);
+
+                if (max < min) {
+                    var tmp = max;
+                    max = min;
+                    min = tmp;
+                }
+
+                var val = vis.states.attr(oid + '.val');
+                if (val === true || val === 'true') val = max;
+                if (val === false || val === 'false') val = min;
+                val = parseFloat(val);
+                if (isNaN(val)) val = min;
+
+                if (val < min) val = min;
+                if (val > max) val = max;
+
+                options.min = min;
+                options.max = max;
+                options.simRange = 100;
+                options.range    = options.max - options.min;
+                options.factor   = options.simRange / options.range;
+                val = Math.floor((val - options.min) * options.factor);
+
+                if (!vis.states.attr(wid + '.val')) {
+                    mdcSlider.value = val;
+                }
+
+                mdcSlider.listen('MDCSlider:change', function () {
+                    val = (parseFloat(val) / options.factor) + options.min;
+                    if (options.step) {
+                        val = Math.round(val / options.step) * options.step;
+                    }
+                    if (options.digits !== undefined && options.digits !== null && options.digits !== '') {
+                        vis.setValue(oid, mdcSlider.value.toFixed(options.digits));
+                        //vis.setValue(oid, parseFloat(val).toFixed(options.digits));
+                    } else {
+                        vis.setValue(oid, mdcSlider.value);
+                        //vis.setValue(oid, parseFloat(val));
+                    }
+                });
+
+                vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
+
+                    var val = vis.states.attr(oid + '.val');
+                    if (val === true  || val === 'true')  val = options.max;
+                    if (val === false || val === 'false') val = options.min;
+                    val = parseFloat(val);
+                    if (isNaN(val)) val = options.min;
+                    if (val < options.min) val = options.min;
+                    if (val > options.max) val = options.max;
+                    val = Math.floor((val - options.min) * options.factor);
+                    try {
+                        if (!vis.states.attr(wid + '.val')) {
+                            mdcSlider.value = val;
+                        }
+                    } catch (e) {
+                        console.error(e);
+                    }
+                });
+
+            }, 1);
+        } catch (err) {
+            console.log(`mdcSlider: ${err.message} ${err.stack}`);
+        }
+    },
 };
 
 vis.binds["materialdesign"].showVersion();

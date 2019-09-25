@@ -238,7 +238,7 @@
             }
         %>
 
-        <div class="vis-widget materialdesign-switch <%== this.data.attr('class') %>" style="width:80px; height:50px;" id="<%= this.data.attr('wid') %>">
+        <div class="vis-widget materialdesign-switch <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>">
             <div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
                 <span class="labelSwitchPrepandFalse" style="color: <%== this.data.attr('labelColorFalse') %>"><%== this.data.attr('labelFalsePrepend') %></span>
                 <span class="labelSwitchPrepandTrue" style="color: <%== this.data.attr('labelColorTrue') %>; display:none"><%== this.data.attr('labelTruePrepend') %></span>
@@ -256,4 +256,35 @@
             </div>
         </div>
 </script>
+
+<script id="tplVis-materialdesign-Slider"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<div id="prev_tplVis-materialdesign-Slider" style="position: relative; text-align: initial;padding: 4px;overflow:visible"><div class="vis-widget_prev " style="width: 80px; overflow: visible !important; left: 475px; top: 188px; position: absolute; height: 23px;"> <div class="vis-widget-prev-body " style="padding: 4px;"> <div class="sliderJQUI ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="19vlqppi9_slider" data-oid="nothing_selected" data-oid-working=""><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 0%;"></span></div></div> </div></div>'
+        data-vis-set="materialdesign"
+        data-vis-type="ctrl,slider,dimmer"
+        data-vis-name="Slider horizontal"
+        data-vis-attrs="oid;oid-working;min;max;step;">
+        <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width:180px; height:50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>">
+            <div class="materialdesign vis-widget-body" >
+                <div class="mdc-slider mdc-slider--discrete" tabindex="0" role="slider"
+                    aria-valuemin="<%== this.data.attr('min') %>" aria-valuemax="<%== this.data.attr('max') %>" aria-valuenow="0" data-step="<%== this.data.attr('step') %>" 
+                    aria-label="Select Value" data-oid="<%= this.data.attr('oid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" <%= (el) -> vis.binds.materialdesign.mdcSlider(el, {min: data.min, max: data.max, step: data.step}) %>>
+                    <div class="mdc-slider__track-container">
+                        <div class="mdc-slider__track"></div>
+                    </div>
+                    <div class="mdc-slider__thumb-container">
+                        <div class="mdc-slider__pin">
+                            <span class="mdc-slider__pin-value-marker"></span>
+                        </div>
+                        <svg class="mdc-slider__thumb" width="21" height="21">
+                            <circle cx="10.5" cy="10.5" r="7.875"></circle>
+                        </svg>
+                        <div class="mdc-slider__focus-ring"></div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+</script>
+       
 
