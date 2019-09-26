@@ -1,7 +1,9 @@
 ![Logo](admin/vis-materialdesign.png)
 # ioBroker.vis-materialdesign
 
+![stable version](http://iobroker.live/badges/vis-materialdesign.svg)
 [![NPM version](http://img.shields.io/npm/v/iobroker.vis-materialdesign.svg)](https://www.npmjs.com/package/iobroker.vis-materialdesign)
+[![Number of Installations](http://iobroker.live/badges/vis-materialdesign-installed.svg)](https://www.npmjs.com/package/iobroker.vis-materialdesign)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.vis-materialdesign.svg)](https://www.npmjs.com/package/iobroker.vis-materialdesign)
 [![Dependency Status](https://img.shields.io/david/Scrounger/iobroker.vis-materialdesign.svg)](https://david-dm.org/Scrounger/iobroker.vis-materialdesign)
 [![Known Vulnerabilities](https://snyk.io/test/github/Scrounger/ioBroker.vis-materialdesign/badge.svg)](https://snyk.io/test/github/Scrounger/ioBroker.vis-materialdesign)
@@ -10,62 +12,27 @@
 
 **Tests:**: [![Travis-CI](http://img.shields.io/travis/Scrounger/ioBroker.vis-materialdesign/master.svg)](https://travis-ci.org/Scrounger/ioBroker.vis-materialdesign)
 
-## vis-materialdesign adapter for ioBroker
+## Material Design Widgets for IoBroker VIS
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YHPPW474N5CKQ&source=url)
 
-Material Design Widgets based on Google material components web library
+Material Design Widgets based on [Google material components web library](https://github.com/material-components/material-components-web).
 
-## Developer manual
-This section is intended for the developer. It can be deleted later
+## Widgets
 
-### Getting started
+### Button Toggle
+![Logo](doc/media/buttons.gif)
 
-You are almost done, only a few steps left:
-1. Create a new repository on GitHub with the name `ioBroker.vis-materialdesign`
-1. Initialize the current folder as a new git repository:  
-    ```bash
-    git init
-    git add .
-    git commit -m "Initial commit"
-    ```
-1. Link your local repository with the one on GitHub:  
-    ```bash
-    git remote add origin https://github.com/Scrounger/ioBroker.vis-materialdesign
-    ```
+### Slider
 
-1. Push all files to the GitHub repo:  
-    ```bash
-    git push origin master
-    ```
-1. Head over to [widgets/materialdesign.html](widgets/materialdesign.html) and start programming!
+### Switch
 
-### Scripts in `package.json`
-Several npm scripts are predefined for your convenience. You can run them using `npm run <scriptname>`
-| Script name | Description                                              |
-|-------------|----------------------------------------------------------|
-| `test:package`    | Ensures your `package.json` and `io-package.json` are valid. |
-| `test` | Performs a minimal test run on package files. |
-
-### Publishing the widget
-See the documentation of [ioBroker.repositories](https://github.com/ioBroker/ioBroker.repositories#requirements-for-adapter-to-get-added-to-the-latest-repository).
-
-### Test the adapter manually on a local ioBroker installation
-In order to install the adapter locally without publishing, the following steps are recommended:
-1. Create a tarball from your dev directory:  
-    ```bash
-    npm pack
-    ```
-1. Upload the resulting file to your ioBroker host
-1. Install it locally (The paths are different on Windows):
-    ```bash
-    cd /opt/iobroker
-    npm i /path/to/tarball.tgz
-    ```
-
-For later updates, the above procedure is not necessary. Just do the following:
-1. Overwrite the changed files in the adapter directory (`/opt/iobroker/node_modules/iobroker.vis-materialdesign`)
-1. Execute `iobroker upload vis-materialdesign` on the ioBroker host
 
 ## Changelog
+
+### 0.0.2
+* (Scrounger): slider vertical added
+* (Scrounger): switch added
+* (Scrounger): button toggle added
 
 ### 0.0.1
 * (Scrounger) initial release
