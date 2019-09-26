@@ -284,7 +284,7 @@
             }
         %>
 
-        <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width:180px; height:50px; padding-left: 5px; padding-right: 5px; overflow:visible !important;" id="<%= this.data.attr('wid') %>">
+        <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; padding-left: 5px; padding-right: 5px; overflow:visible !important;" id="<%= this.data.attr('wid') %>">
             <div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
                 <div class="mdc-slider mdc-slider--discrete <%= showMarker %>" tabindex="0" role="slider" style="<%= colorSlider %>"
                     aria-valuemin="<%== this.data.attr('min') %>" aria-valuemax="<%== this.data.attr('max') %>" aria-valuenow="0" data-step="<%== this.data.attr('step') %>"                     
@@ -307,5 +307,53 @@
             </div>
         </div>
 </script>
-       
 
+<script id="tplVis-materialdesign-Slider"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<div id="prev_tplVis-materialdesign-Slider" style="position: relative; text-align: initial; padding: 4px "><div class="vis-widget_prev materialdesign-slider vis-tpl-materialdesign-Discrete Slider " style="width: 109px; height: 47px; padding-left: 5px; padding-right: 5px; overflow: visible !important; left: 57px; top: 514px; position: absolute; z-index: 700;" data-tmodified="true" data-zmodified="true"> <div class="materialdesign vis-widget-prev-body" style="display: flex; justify-content: center; align-items: center;"> <div class="mdc-slider mdc-slider--discrete mdc-slider--display-markers" tabindex="0" role="slider" style="" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" data-step="20" aria-label="Select Value" data-oid="virtualpowermeter.0.mitValue" data-oid-working="virtualpowermeter.0.buttonTest"> <div class="mdc-slider__track-container" style=""> <div class="mdc-slider__track" style="transform: scaleX(0.4);"></div> <div class="mdc-slider__track-marker-container"><div class="mdc-slider__track-marker"></div><div class="mdc-slider__track-marker"></div><div class="mdc-slider__track-marker"></div><div class="mdc-slider__track-marker"></div><div class="mdc-slider__track-marker"></div></div> </div> <div class="mdc-slider__thumb-container" style="transform: translateX(43.6px) translateX(-50%);"> <div class="mdc-slider__pin"> <span class="mdc-slider__pin-value-marker"></span> </div> <svg class="mdc-slider__thumb" width="21" height="21"> <circle cx="10.5" cy="10.5" r="7.875"></circle> </svg> <div class="mdc-slider__focus-ring"></div> </div> </div> </div> <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div></div>'
+        data-vis-set="materialdesign"
+        data-vis-type="ctrl,slider,dimmer"
+        data-vis-name="Slider"
+        data-vis-update-style="true"
+        data-vis-attrs="oid;oid-working;min;max;step;colorSlider/color;colorSliderBg/color;showValueLabel/checkbox">
+
+        <%
+            let colorSlider = '';
+            if (this.data.colorSlider !== '' && this.data.colorSlider !== undefined){
+                colorSlider = '--mdc-theme-secondary: ' + this.data.colorSlider + ';';
+            }
+
+            let colorSliderBg = '';
+            if (this.data.colorSliderBg !== '' && this.data.colorSliderBg !== undefined){
+                colorSliderBg = 'background-color: ' + this.data.colorSliderBg + ';';
+            }
+
+            let showValue = '';
+            if (this.data.showValueLabel === 'false' || this.data.showValueLabel === false) {
+                showValue = 'display:none;'
+            }
+        %>
+
+        <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; padding-left: 5px; padding-right: 5px; overflow:visible !important;" id="<%= this.data.attr('wid') %>">
+            <div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
+                <div class="mdc-slider" tabindex="0" role="slider" style="<%= colorSlider %>"
+                    aria-valuemin="<%== this.data.attr('min') %>" aria-valuemax="<%== this.data.attr('max') %>" aria-valuenow="0" data-step="<%== this.data.attr('step') %>"
+                    aria-label="Select Value" data-oid="<%= this.data.attr('oid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" 
+                    <%= (el) -> vis.binds.materialdesign.mdcSlider(el, {min: data.min, max: data.max, step: data.step}) %>>
+                    <div class="mdc-slider__track-container" style="<%= colorSliderBg %>">
+                        <div class="mdc-slider__track"></div>
+                    </div>
+                    <div class="mdc-slider__thumb-container">
+                        <svg class="mdc-slider__thumb" width="21" height="21">
+                            <circle cx="10.5" cy="10.5" r="7.875"></circle>
+                        </svg>
+                        <div class="mdc-slider__focus-ring"></div>
+                    </div>
+                </div>
+                <div style="white-space:nowrap;">
+                    <label class="labelValue" style="padding-left: 10px; <%= showValue %>">10 %</label>
+                </div>
+            </div>
+        </div>                
+</script>
