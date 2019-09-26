@@ -265,7 +265,7 @@
         data-vis-type="ctrl,slider,dimmer"
         data-vis-name="Discrete Slider"
         data-vis-update-style="true"
-        data-vis-attrs="oid;oid-working;min;max;step;colorSlider/color;colorSliderBg/color;showMarkers/checkbox">
+        data-vis-attrs="oid;oid-working;min;max;step[1];showMarkers/checkbox;colorSlider/color;colorSliderBg/color;showValueLabel[true]/checkbox;valueLabelUnit;valueLabelWidth[25]/slider,0,100,1;">
 
         <%
             let colorSlider = '';
@@ -282,6 +282,11 @@
             if (this.data.showMarkers === 'true' || this.data.showMarkers === true) {
                 showMarker = 'mdc-slider--display-markers';
             }
+
+            let showValue = '';
+            if (this.data.showValueLabel === 'false' || this.data.showValueLabel === false) {
+                showValue = 'display:none;'
+            }            
         %>
 
         <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; padding-left: 5px; padding-right: 5px; overflow:visible !important;" id="<%= this.data.attr('wid') %>">
@@ -289,7 +294,7 @@
                 <div class="mdc-slider mdc-slider--discrete <%= showMarker %>" tabindex="0" role="slider" style="<%= colorSlider %>"
                     aria-valuemin="<%== this.data.attr('min') %>" aria-valuemax="<%== this.data.attr('max') %>" aria-valuenow="0" data-step="<%== this.data.attr('step') %>"                     
                     aria-label="Select Value" data-oid="<%= this.data.attr('oid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" 
-                    <%= (el) -> vis.binds.materialdesign.mdcSlider(el, {min: data.min, max: data.max, step: data.step}) %>>
+                    <%= (el) -> vis.binds.materialdesign.mdcSlider(el, {min: data.min, max: data.max, step: data.step, unit: data.valueLabelUnit}) %>>
                     <div class="mdc-slider__track-container" style="<%= colorSliderBg %>">
                         <div class="mdc-slider__track"></div>
                         <div class="mdc-slider__track-marker-container"></div>
@@ -303,7 +308,8 @@
                         </svg>
                         <div class="mdc-slider__focus-ring"></div>
                     </div>
-                </div>                
+                </div>
+                <span class="labelValue" style="width: <%= this.data.attr('valueLabelWidth') + '%' || 10 %>; text-align: right; <%= showValue %>"></span>                
             </div>
         </div>
 </script>
@@ -316,7 +322,7 @@
         data-vis-type="ctrl,slider,dimmer"
         data-vis-name="Slider"
         data-vis-update-style="true"
-        data-vis-attrs="oid;oid-working;min;max;step;colorSlider/color;colorSliderBg/color;showValueLabel/checkbox">
+        data-vis-attrs="oid;oid-working;min;max;step[1];colorSlider/color;colorSliderBg/color;showValueLabel[true]/checkbox;valueLabelUnit;valueLabelWidth[25]/slider,0,100,1;">
 
         <%
             let colorSlider = '';
@@ -340,7 +346,7 @@
                 <div class="mdc-slider" tabindex="0" role="slider" style="<%= colorSlider %>"
                     aria-valuemin="<%== this.data.attr('min') %>" aria-valuemax="<%== this.data.attr('max') %>" aria-valuenow="0" data-step="<%== this.data.attr('step') %>"
                     aria-label="Select Value" data-oid="<%= this.data.attr('oid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" 
-                    <%= (el) -> vis.binds.materialdesign.mdcSlider(el, {min: data.min, max: data.max, step: data.step}) %>>
+                    <%= (el) -> vis.binds.materialdesign.mdcSlider(el, {min: data.min, max: data.max, step: data.step, unit: data.valueLabelUnit}) %>>
                     <div class="mdc-slider__track-container" style="<%= colorSliderBg %>">
                         <div class="mdc-slider__track"></div>
                     </div>
@@ -351,9 +357,7 @@
                         <div class="mdc-slider__focus-ring"></div>
                     </div>
                 </div>
-                <div style="white-space:nowrap;">
-                    <label class="labelValue" style="padding-left: 10px; <%= showValue %>">10 %</label>
-                </div>
+                <span class="labelValue" style="width: <%= this.data.attr('valueLabelWidth') + '%' || 10 %>; text-align: right; <%= showValue %>"></span>
             </div>
-        </div>                
+        </div>
 </script>

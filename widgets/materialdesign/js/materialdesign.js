@@ -244,6 +244,7 @@ vis.binds["materialdesign"] = {
 
                 var min = (options.min === undefined || options.min === null || options.min === '') ? 0.00 : parseFloat(options.min);
                 var max = (options.max === undefined || options.min === null || options.max === '') ? 1.00 : parseFloat(options.max);
+                var unit = (options.max === undefined || options.min === null || options.max === '') ? '' : '&nbsp;' + options.unit;
 
                 if (max < min) {
                     var tmp = max;
@@ -269,6 +270,7 @@ vis.binds["materialdesign"] = {
 
                 if (!vis.states.attr(wid + '.val')) {
                     mdcSlider.value = val;
+                    $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html(val + unit);
                 }
 
                 mdcSlider.listen('MDCSlider:change', function () {
@@ -278,10 +280,8 @@ vis.binds["materialdesign"] = {
                     }
                     if (options.digits !== undefined && options.digits !== null && options.digits !== '') {
                         vis.setValue(oid, mdcSlider.value.toFixed(options.digits));
-                        //vis.setValue(oid, parseFloat(val).toFixed(options.digits));
                     } else {
                         vis.setValue(oid, mdcSlider.value);
-                        //vis.setValue(oid, parseFloat(val));
                     }
                 });
 
@@ -298,6 +298,7 @@ vis.binds["materialdesign"] = {
                     try {
                         if (!vis.states.attr(wid + '.val')) {
                             mdcSlider.value = val;
+                            $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html(val + unit);
                         }
                     } catch (e) {
                         console.error(e);
