@@ -17,15 +17,14 @@
 
 Material Design Widgets based on [Google material components web library](https://github.com/material-components/material-components-web).
 
-## Widgets
-
-### Button Toggle
+## Button Toggle
 ![Logo](doc/media/buttons.gif)
 
-### Slider
+## Slider
+![Logo](doc/media/slider.gif)
 
-### Switch
-
+## Switch
+![Logo](doc/media/switch.gif)
 
 ## Changelog
 
