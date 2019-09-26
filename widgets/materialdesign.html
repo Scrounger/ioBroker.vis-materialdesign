@@ -144,14 +144,14 @@
         data-vis-set="materialdesign"
         data-vis-type="ctrl,state"
         data-vis-name="Button Toggle vertical"
-        data-vis-attrs="oid;buttonStyle[raised]/select,default,raised,unelevated,outlined,dense;"
+        data-vis-attrs="oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;"
         data-vis-attrs0="group.label;labelFalse/html;labelTrue/html;labelColorFalse/color;labelColorTrue/color;"
         data-vis-attrs1="group.icon;imageFalse/image;invertImageFalse/checkbox;imageTrue/image;invertImageTrue/checkbox;iconHeight/slider,0,200,1;"
         data-vis-attrs2="group.backgrounds;colorBgFalse/color;colorBgTrue/color;labelColorBgFalse/color;labelColorBgTrue/color;">
         
     <%
         let buttonStyle = '';
-        if (this.data.buttonStyle !== 'default'){
+        if (this.data.buttonStyle !== 'text'){
             buttonStyle = 'materialdesign-button--' + this.data.buttonStyle;
         }
 
@@ -188,14 +188,14 @@
         data-vis-set="materialdesign"
         data-vis-type="ctrl,state"
         data-vis-name="Button Toggle"
-        data-vis-attrs="oid;buttonStyle[raised]/select,default,raised,unelevated,outlined,dense;"
+        data-vis-attrs="oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;"
         data-vis-attrs0="group.label;labelFalse/html;labelTrue/html;labelColorFalse/color;labelColorTrue/color;"
         data-vis-attrs1="group.icon;imageFalse/image;invertImageFalse/checkbox;imageTrue/image;invertImageTrue/checkbox;iconHeight/slider,0,200,1;"
         data-vis-attrs2="group.backgrounds;colorBgFalse/color;colorBgTrue/color;">
 
     <%
         let buttonStyle = '';
-        if (this.data.buttonStyle !== 'default'){
+        if (this.data.buttonStyle !== 'text'){
             buttonStyle = 'materialdesign-button--' + this.data.buttonStyle;
         }
 
