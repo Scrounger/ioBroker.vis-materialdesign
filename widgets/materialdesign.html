@@ -365,3 +365,46 @@
             </div>
         </div>
 </script>
+
+<script id="tplVis-materialdesign-Progress"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<div id="prev_tplVis-materialdesign-Progress" style="position: relative; text-align: initial; padding: 4px "><div class="vis-widget_prev materialdesign-progress vis-tpl-materialdesign-Progress " style="width: 100px; height: 21px; left: 45px; top: 298px; color: rgb(0, 0, 0); text-align: center; font-size: small; position: absolute; z-index: 700;" data-tmodified="true" data-zmodified="true"> <div class="materialdesign vis-widget-prev-body" style="display: flex; justify-content: center; align-items: center;"> <div role="progressbar" class="mdc-linear-progress" style="text-align: left;" data-oid="info.0.sysinfo.cpu.currentLoad.currentload"> <div class="mdc-linear-progress__buffering-dots"></div> <div class="mdc-linear-progress__buffer"></div> <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar" style="transform: scaleX(0.15);"> <span class="mdc-linear-progress__bar-inner"></span> </div> <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar"> <span class="mdc-linear-progress__bar-inner"></span> </div> </div> <div style="min-width: 7%; position: absolute; width: 100%;"> <label class="labelValue" style=""> 15 % </label> </div> </div> <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div></div>'
+        data-vis-set="materialdesign"
+        data-vis-type="val,progress"
+        data-vis-name="Progress"
+        data-vis-update-style="true"
+        data-vis-attrs="oid;min;max;reverse/checkbox;"
+        data-vis-attrs0="group.color;colorProgress/color;colorProgressBg/color;"
+        data-vis-attrs1="group.valueLabel;showValueLabel[true]/checkbox;valueLabelUnit;valueMaxDecimals;valuePosition[inside]/select,inside,outside;valueLabelWidth[25]/slider,0,100,1;">
+
+        <%
+            let showValue = '';
+            if (this.data.showValueLabel === 'false' || this.data.showValueLabel === false) {
+                showValue = 'display:none;'
+            }
+
+            let valuePosition = 'position: relative;';
+            if (this.data.valuePosition === 'inside'){
+                valuePosition = 'position: absolute; width: 100%;';
+            }
+        %>
+
+        <div class="vis-widget materialdesign-progress <%== this.data.attr('class') %>" style="width: 180px; height: 50px;" id="<%= this.data.attr('wid') %>">
+            <div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
+                <div role="progressbar" class="mdc-linear-progress" style="text-align: left;" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcProgress(el, {min: data.min, max: data.max, unit: data.valueLabelUnit, maxDecimals: data.valueMaxDecimals, reverse: data.reverse}) %>>
+                    <div class="mdc-linear-progress__buffering-dots"></div>
+                    <div class="mdc-linear-progress__buffer"></div>
+                    <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+                        <span class="mdc-linear-progress__bar-inner"></span>
+                    </div>
+                    <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+                        <span class="mdc-linear-progress__bar-inner"></span>
+                    </div>
+                </div>
+                <div style="min-width: <%= this.data.attr('valueLabelWidth') + '%' || 10 %>; <%= valuePosition %>">
+                    <label class="labelValue" style="<%= showValue %>">100%</label>
+                </div>
+            </div>
+        </div>
+</script>

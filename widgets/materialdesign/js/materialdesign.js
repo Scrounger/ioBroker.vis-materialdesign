@@ -310,6 +310,64 @@ vis.binds["materialdesign"] = {
             console.log(`mdcSlider: ${err.message} ${err.stack}`);
         }
     },
+    mdcProgress: function (el, options) {
+        let $this = $(el);
+        var oid = $this.attr('data-oid');
+
+        const mdcProgress = new mdc.linearProgress.MDCLinearProgress($this.context);
+
+        var min = (options.min === undefined || options.min === null || options.min === '') ? 0.00 : parseFloat(options.min);
+        var max = (options.max === undefined || options.min === null || options.max === '') ? 1.00 : parseFloat(options.max);
+        var unit = (options.max === undefined || options.min === null || options.max === '') ? '' : '&nbsp;' + options.unit;
+        var decimals = (options.maxDecimals === undefined || options.maxDecimals === null || options.maxDecimals === '') ? 0 :  options.maxDecimals;
+        var reverse = (options.reverse === undefined || options.reverse === null || options.reverse === '') ? false :  options.reverse;
+
+        if (max < min) {
+            var tmp = max;
+            max = min;
+            min = tmp;
+        }
+
+        var val = vis.states.attr(oid + '.val');
+        if (val === true || val === 'true') val = max;
+        if (val === false || val === 'false') val = min;
+        val = parseFloat(val);
+        if (isNaN(val)) val = min;
+
+        if (val < min) val = min;
+        if (val > max) val = max;
+
+        options.min = min;
+        options.max = max;
+        options.simRange = 100;
+        options.range = options.max - options.min;
+        options.factor = options.simRange / options.range;
+        val = Math.floor((val - options.min) * options.factor);
+
+        mdcProgress.progress = val / 100;
+        mdcProgress.reverse = reverse;
+        
+        let valueLabel = Math.round(vis.states.attr(oid + '.val') * Math.pow(10, decimals)) / Math.pow(10, decimals)
+        $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html('&nbsp;' + valueLabel  + unit + '&nbsp;');
+
+        vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
+            var val = vis.states.attr(oid + '.val');
+            if (val === true || val === 'true') val = options.max;
+            if (val === false || val === 'false') val = options.min;
+            val = parseFloat(val);
+            if (isNaN(val)) val = options.min;
+            if (val < options.min) val = options.min;
+            if (val > options.max) val = options.max;
+            val = Math.floor((val - options.min) * options.factor);
+            try {
+                mdcProgress.progress = val / 100;
+                let valueLabel = Math.round(vis.states.attr(oid + '.val') * Math.pow(10, decimals)) / Math.pow(10, decimals)
+                $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html('&nbsp;' + valueLabel  + unit + '&nbsp;');
+            } catch (e) {
+                console.error(e);
+            }
+        });
+    },
 };
 
 vis.binds["materialdesign"].showVersion();

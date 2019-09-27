@@ -399,3 +399,9 @@ svg.materialdesign-button__icon {
 .mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track-container{
   background-color: rgba(161, 161, 161, 0.26)
 }
+
+/* Default progress settings */
+.mdc-linear-progress {
+  height: 100%;
+  --mdc-theme-primary: #1e88e5;
+}
