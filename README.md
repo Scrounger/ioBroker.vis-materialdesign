@@ -20,6 +20,9 @@ Material Design Widgets based on [Google material components web library](https:
 ## Button Toggle
 ![Logo](doc/media/buttons.gif)
 
+## Progress
+![Logo](doc/media/progress.gif)
+
 ## Slider
 ![Logo](doc/media/slider.gif)
 
@@ -28,6 +31,9 @@ Material Design Widgets based on [Google material components web library](https:
 
 ## Changelog
 
+### 0.0.3
+* (Scrounger): progress added
+ 
 ### 0.0.2
 * (Scrounger): slider vertical added
 * (Scrounger): switch added
