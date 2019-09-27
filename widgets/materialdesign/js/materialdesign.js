@@ -264,8 +264,8 @@ vis.binds["materialdesign"] = {
                 options.min = min;
                 options.max = max;
                 options.simRange = 100;
-                options.range    = options.max - options.min;
-                options.factor   = options.simRange / options.range;
+                options.range = options.max - options.min;
+                options.factor = options.simRange / options.range;
                 val = Math.floor((val - options.min) * options.factor);
 
                 if (!vis.states.attr(wid + '.val')) {
@@ -288,7 +288,7 @@ vis.binds["materialdesign"] = {
                 vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
 
                     var val = vis.states.attr(oid + '.val');
-                    if (val === true  || val === 'true')  val = options.max;
+                    if (val === true || val === 'true') val = options.max;
                     if (val === false || val === 'false') val = options.min;
                     val = parseFloat(val);
                     if (isNaN(val)) val = options.min;
@@ -318,15 +318,26 @@ vis.binds["materialdesign"] = {
 
         var min = (options.min === undefined || options.min === null || options.min === '') ? 0.00 : parseFloat(options.min);
         var max = (options.max === undefined || options.min === null || options.max === '') ? 1.00 : parseFloat(options.max);
-        var unit = (options.max === undefined || options.min === null || options.max === '') ? '' : '&nbsp;' + options.unit;
-        var decimals = (options.maxDecimals === undefined || options.maxDecimals === null || options.maxDecimals === '') ? 0 :  options.maxDecimals;
-        var reverse = (options.reverse === undefined || options.reverse === null || options.reverse === '') ? false :  options.reverse;
+        var unit = (options.unit === undefined || options.unit === null || options.unit === '') ? '' : '&nbsp;' + options.unit;
+        var decimals = (options.maxDecimals === undefined || options.maxDecimals === null || options.maxDecimals === '') ? 0 : options.maxDecimals;
+        var reverse = (options.reverse === undefined || options.reverse === null || options.reverse === '') ? false : options.reverse;
+
+        var color = (options.color === undefined || options.color === null || options.color === '') ? '' : options.color;
+        var colorOneCondition = (options.colorOneCondition === undefined || options.colorOneCondition === null || options.colorOneCondition === '') ? 0 : options.colorOneCondition;
+        var colorOne = (options.colorOne === undefined || options.colorOne === null || options.colorOne === '') ? '' : options.colorOne;
+        var colorTwoCondition = (options.colorTwoCondition === undefined || options.colorTwoCondition === null || options.colorTwoCondition === '') ? 0 : options.colorTwoCondition;
+        var colorTwo = (options.colorTwo === undefined || options.colorTwo === null || options.colorTwo === '') ? '' : options.colorTwo;
 
         if (max < min) {
             var tmp = max;
             max = min;
             min = tmp;
         }
+
+        if (colorOne === '') colorOne = color;
+        if (colorTwo === '') colorTwo = color;
+
+        console.log('col: ' + unit);
 
         var val = vis.states.attr(oid + '.val');
         if (val === true || val === 'true') val = max;
@@ -346,9 +357,17 @@ vis.binds["materialdesign"] = {
 
         mdcProgress.progress = val / 100;
         mdcProgress.reverse = reverse;
-        
+
         let valueLabel = Math.round(vis.states.attr(oid + '.val') * Math.pow(10, decimals)) / Math.pow(10, decimals)
-        $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html('&nbsp;' + valueLabel  + unit + '&nbsp;');
+        $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html('&nbsp;' + valueLabel + unit + '&nbsp;');
+
+        if (valueLabel > colorOneCondition && valueLabel <= colorTwoCondition) {
+            $this.find('.mdc-linear-progress__bar.mdc-linear-progress__primary-bar').find('.mdc-linear-progress__bar-inner').css('background-color', colorOne)
+        } else if (valueLabel > colorTwoCondition) {
+            $this.find('.mdc-linear-progress__bar.mdc-linear-progress__primary-bar').find('.mdc-linear-progress__bar-inner').css('background-color', colorTwo)
+        } else {
+            $this.find('.mdc-linear-progress__bar.mdc-linear-progress__primary-bar').find('.mdc-linear-progress__bar-inner').css('background-color', color)
+        }
 
         vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
             var val = vis.states.attr(oid + '.val');
@@ -362,7 +381,16 @@ vis.binds["materialdesign"] = {
             try {
                 mdcProgress.progress = val / 100;
                 let valueLabel = Math.round(vis.states.attr(oid + '.val') * Math.pow(10, decimals)) / Math.pow(10, decimals)
-                $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html('&nbsp;' + valueLabel  + unit + '&nbsp;');
+                $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html('&nbsp;' + valueLabel + unit + '&nbsp;');
+
+                if (valueLabel > colorOneCondition && valueLabel <= colorTwoCondition) {
+                    $this.find('.mdc-linear-progress__bar.mdc-linear-progress__primary-bar').find('.mdc-linear-progress__bar-inner').css('background-color', colorOne)
+                } else if (valueLabel > colorTwoCondition) {
+                    $this.find('.mdc-linear-progress__bar.mdc-linear-progress__primary-bar').find('.mdc-linear-progress__bar-inner').css('background-color', colorTwo)
+                } else {
+                    $this.find('.mdc-linear-progress__bar.mdc-linear-progress__primary-bar').find('.mdc-linear-progress__bar-inner').css('background-color', color)
+                }
+
             } catch (e) {
                 console.error(e);
             }
