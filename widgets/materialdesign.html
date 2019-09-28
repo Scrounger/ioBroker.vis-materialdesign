@@ -426,9 +426,20 @@
         data-vis-set="materialdesign"
         data-vis-type="static"
         data-vis-name="HTML Card"
-        data-vis-attrs="title;subtitle;html/text;refreshInterval[0]/slider,0,180000,100">
+        data-vis-attrs="title;subtitle;html/text;"
+        data-vis-attrs0="group.color;colorTitle/color;colorSubtitle/color;">
 
         <%
+            let colorTitle = '';
+            if (this.data.colorTitle !== undefined && this.data.colorTitle !== null && this.data.colorTitle !== ''){
+                colorTitle = 'color: ' + this.data.colorTitle + ';';
+            }
+
+            let colorSubtitle = '';
+            if (this.data.colorSubtitle !== undefined && this.data.colorSubtitle !== null && this.data.colorSubtitle !== ''){
+                colorSubtitle = 'color: ' + this.data.colorSubtitle + ';';
+            }
+            
             let showSubtitle = '';
             let paddingBottomTitle = '';
 
@@ -443,8 +454,8 @@
 
         <div class="vis-widget materialdesign-html-card mdc-card <%== this.data.attr('class') %>" style="width: 200px; height: 130px;" id="<%= this.data.attr('wid') %>">
             <div class="materialdesign-html-card card-title-section">
-                <div class="materialdesign-html-card card-title" style="<%= paddingBottomTitle %>"><%== this.data.attr('title') %></div>
-                <div class="materialdesign-html-card card-subtitle" style="<%= showSubtitle %>"><%== this.data.attr('subtitle') %></div>
+                <div class="materialdesign-html-card card-title" style="<%= paddingBottomTitle %> <%= colorTitle %>"><%== this.data.attr('title') %></div>
+                <div class="materialdesign-html-card card-subtitle" style="<%= showSubtitle %> <%= colorSubtitle %>"><%== this.data.attr('subtitle') %></div>
             </div>
             <div class="materialdesign-html-card card-text-section">
                 <div class=".materialdesign-html-card card-body"><%== this.data.attr('html') %></div>
