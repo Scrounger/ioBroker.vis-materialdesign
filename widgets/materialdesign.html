@@ -147,7 +147,7 @@
         data-vis-attrs="oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;"
         data-vis-attrs0="group.label;labelFalse/html;labelTrue/html;labelColorFalse/color;labelColorTrue/color;"
         data-vis-attrs1="group.icon;imageFalse/image;invertImageFalse/checkbox;imageTrue/image;invertImageTrue/checkbox;iconHeight/slider,0,200,1;"
-        data-vis-attrs2="group.backgrounds;colorBgFalse/color;colorBgTrue/color;labelColorBgFalse/color;labelColorBgTrue/color;">
+        data-vis-attrs2="group.color;colorBgFalse/color;colorBgTrue/color;labelColorBgFalse/color;labelColorBgTrue/color;colorOverlay/color">
         
     <%
         let buttonStyle = '';
@@ -166,7 +166,7 @@
         }        
     %>
         
-    <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.basic.toggle(el); vis.binds.materialdesign.addRippleEffect(el) %>>
+    <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.basic.toggle(el); vis.binds.materialdesign.addRippleEffect(el, data) %>>
         <div class="materialdesign vis-widget-body" style="display: table; width: 100%; height: 100%; background: <%= this.data.attr('colorBgFalse')%>">
             <div style="display: table-row;">                
                 <img class="imgToggleFalse" <%= this.data.attr('imageFalse') ? 'src="' +  this.data.attr('imageFalse') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; <%= stylesInvertImageFalse %>" />
@@ -191,7 +191,7 @@
         data-vis-attrs="oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;"
         data-vis-attrs0="group.label;labelFalse/html;labelTrue/html;labelColorFalse/color;labelColorTrue/color;"
         data-vis-attrs1="group.icon;imageFalse/image;invertImageFalse/checkbox;imageTrue/image;invertImageTrue/checkbox;iconHeight/slider,0,200,1;"
-        data-vis-attrs2="group.backgrounds;colorBgFalse/color;colorBgTrue/color;">
+        data-vis-attrs2="group.color;colorBgFalse/color;colorBgTrue/color;colorOverlay/color">
 
     <%
         let buttonStyle = '';
@@ -210,7 +210,7 @@
         }        
     %>      
         
-    <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.basic.toggle(el); vis.binds.materialdesign.addRippleEffect(el) %>>
+    <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.basic.toggle(el); vis.binds.materialdesign.addRippleEffect(el, data) %>>
         <div class="materialdesign vis-widget-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%; background: <%= this.data.attr('colorBgFalse')%>">
             <img class="imgToggleFalse" <%= this.data.attr('imageFalse') ? 'src="' +  this.data.attr('imageFalse') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; <%= stylesInvertImageFalse %>" />
             <img class="imgToggleTrue"  <%= this.data.attr('imageTrue')  ? 'src="' +  this.data.attr('imageTrue')  + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; display:none; <%= stylesInvertImageTrue %>" />
@@ -230,7 +230,7 @@
         data-vis-name="Icon Button Toggle"
         data-vis-attrs="oid;"
         data-vis-attrs0="group.icon;imageFalse/image;invertImageFalse/checkbox;imageTrue/image;invertImageTrue/checkbox;"
-        data-vis-attrs1="group.backgrounds;colorBgFalse/color;colorBgTrue/color;colorOverlay/color">
+        data-vis-attrs1="group.color;colorBgFalse/color;colorBgTrue/color;colorOverlay/color">
 
         <%
             let stylesInvertImageFalse = '';
@@ -243,7 +243,7 @@
                 stylesInvertImageTrue = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
             }
         %>
-        
+            
         <div class="vis-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" aria-hidden="true" aria-pressed="false" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcIconButton(el, this.data) %>>
             <img class="imgToggleFalse" style="width: 100%; height: 100%; <%= stylesInvertImageFalse %>" <%= this.data.attr('imageFalse') ? 'src="' +  this.data.attr('imageFalse') + '"' : '' %> />
             <img class="imgToggleTrue" style="width: 100%; height: 100%; <%= stylesInvertImageTrue %>" <%= this.data.attr('imageTrue')  ? 'src="' +  this.data.attr('imageTrue')  + '"' : '' %> />

@@ -49,9 +49,17 @@ vis.binds["materialdesign"] = {
             });
         }
     },
-    addRippleEffect: function (el) {
+    addRippleEffect: function (el, data) {
         var $this = $(el).parent();
         mdc.ripple.MDCRipple.attachTo($this.context);
+
+        var colorOverlay = (data.colorOverlay === undefined || data.colorOverlay === null || data.colorOverlay === '') ? '' : data.colorOverlay;
+
+        if (data.buttonStyle === 'text' || data.buttonStyle === 'outlined') {
+            $this.context.style.setProperty("--mdc-theme-primary", colorOverlay);
+        } else {
+            $this.context.style.setProperty("--mdc-theme-on-primary", colorOverlay);
+        }
     },
     itoggle: function (el, data) {
         var $this = $(el).parent();

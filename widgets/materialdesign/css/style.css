@@ -396,7 +396,7 @@ svg.materialdesign-button__icon {
   padding: 12px;
   font-size: 24px;
   display: inline-block;
-  position: relative;
+  /* position: relative;  --> caused position bug in vis editor */ 
   box-sizing: border-box;
   border: none;
   outline: none;
