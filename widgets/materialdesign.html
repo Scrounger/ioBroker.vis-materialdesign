@@ -418,3 +418,36 @@
             </div>
         </div>
 </script>
+
+<script id="tplVis-materialdesign-Card"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<div id="prev_tplVis-materialdesign-Card" style="position: relative; text-align: initial; padding: 4px "><div class="vis-widget_prev materialdesign-progress vis-tpl-materialdesign-Progress " style="width: 100px; height: 21px; left: 45px; top: 298px; color: rgb(0, 0, 0); text-align: center; font-size: small; position: absolute; z-index: 700;" data-tmodified="true" data-zmodified="true"> <div class="materialdesign vis-widget-prev-body" style="display: flex; justify-content: center; align-items: center;"> <div role="progressbar" class="mdc-linear-progress" style="text-align: left;" data-oid="info.0.sysinfo.cpu.currentLoad.currentload"> <div class="mdc-linear-progress__buffering-dots"></div> <div class="mdc-linear-progress__buffer"></div> <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar" style="transform: scaleX(0.15);"> <span class="mdc-linear-progress__bar-inner"></span> </div> <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar"> <span class="mdc-linear-progress__bar-inner"></span> </div> </div> <div style="min-width: 7%; position: absolute; width: 100%;"> <label class="labelValue" style=""> 15 % </label> </div> </div> <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div></div>'
+        data-vis-set="materialdesign"
+        data-vis-type="static"
+        data-vis-name="HTML Card"
+        data-vis-attrs="title;subtitle;html/text;refreshInterval[0]/slider,0,180000,100">
+
+        <%
+            let showSubtitle = '';
+            let paddingBottomTitle = '';
+
+            if (this.data.subtitle === undefined || this.data.subtitle === null || this.data.subtitle === ''){
+                showSubtitle = 'display:none;';
+
+                if (this.data.title !== undefined || this.data.title !== null || this.data.title !== ''){
+                    paddingBottomTitle = 'padding-bottom: 8px;';
+                }
+            }
+        %>
+
+        <div class="vis-widget materialdesign-html-card mdc-card <%== this.data.attr('class') %>" style="width: 200px; height: 130px;" id="<%= this.data.attr('wid') %>">
+            <div class="materialdesign-html-card card-title-section">
+                <div class="materialdesign-html-card card-title" style="<%= paddingBottomTitle %>"><%== this.data.attr('title') %></div>
+                <div class="materialdesign-html-card card-subtitle" style="<%= showSubtitle %>"><%== this.data.attr('subtitle') %></div>
+            </div>
+            <div class="materialdesign-html-card card-text-section">
+                <div class=".materialdesign-html-card card-body"><%== this.data.attr('html') %></div>
+            </div> 
+        </div>
+</script>

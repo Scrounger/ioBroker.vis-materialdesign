@@ -405,3 +405,68 @@ svg.materialdesign-button__icon {
   height: 100%;
   --mdc-theme-primary: #1e88e5;
 }
+
+/* Card Layout */
+.materialdesign-html-card.mdc-card{
+  border-radius: 4px;
+  background-color: #fff;
+  /* @alternate */
+  background-color: var(--mdc-theme-surface, #fff);
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  color: black;
+}
+
+.materialdesign-html-card.card-title-section{
+  visibility: visible;
+  box-sizing: border-box;
+}
+
+.materialdesign-html-card.card-text-section{
+  visibility: visible;
+  box-sizing: border-box;
+}
+
+.materialdesign-html-card.card-title {
+  font-family: Roboto, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 1.25rem;
+  line-height: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.0125em;
+  text-decoration: inherit;
+  text-transform: inherit;
+  color: #1e88e5;
+}
+
+.materialdesign-html-card.card-subtitle {
+  font-family: Roboto, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  font-weight: 500;
+  letter-spacing: 0.0071428571em;
+  text-decoration: inherit;
+  text-transform: inherit;
+  color: #a1a1a1;
+  padding-bottom: 8px;
+}
+
+.materialdesign-html-card.card-body {
+  font-family: Roboto, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.03125em;
+  text-decoration: inherit;
+  text-transform: inherit;
+}
