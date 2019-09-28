@@ -228,15 +228,25 @@
         data-vis-set="materialdesign"
         data-vis-type="ctrl,state"
         data-vis-name="Icon Button Toggle"
-        data-vis-update-style="true"
-        data-vis-attrs="oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;"
-        data-vis-attrs0="group.label;labelFalse/html;labelTrue/html;labelColorFalse/color;labelColorTrue/color;"
-        data-vis-attrs1="group.icon;imageFalse/image;invertImageFalse/checkbox;imageTrue/image;invertImageTrue/checkbox;iconHeight/slider,0,200,1;"
-        data-vis-attrs2="group.backgrounds;colorBgFalse/color;colorBgTrue/color;">
+        data-vis-attrs="oid;"
+        data-vis-attrs0="group.icon;imageFalse/image;invertImageFalse/checkbox;imageTrue/image;invertImageTrue/checkbox;"
+        data-vis-attrs1="group.backgrounds;colorBgFalse/color;colorBgTrue/color;colorOverlay/color">
 
-        <div class="vis-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" aria-hidden="true" aria-pressed="false" style="width: 50px; height: 50px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcIconButton(el) %>>
-            <img class="imgToggleFalse" style="width: 100%; height: 100%" <%= this.data.attr('imageFalse') ? 'src="' +  this.data.attr('imageFalse') + '"' : '' %>/>
-            <img class="imgToggleTrue" style="width: 100%; height: 100%" <%= this.data.attr('imageTrue')  ? 'src="' +  this.data.attr('imageTrue')  + '"' : '' %> />    
+        <%
+            let stylesInvertImageFalse = '';
+            if (this.data.invertImageFalse === 'true' || this.data.invertImageFalse === true) {
+                stylesInvertImageFalse = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
+            }
+
+            let stylesInvertImageTrue = '';
+            if (this.data.invertImageTrue === 'true' || this.data.invertImageTrue === true) {
+                stylesInvertImageTrue = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
+            }
+        %>
+        
+        <div class="vis-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" aria-hidden="true" aria-pressed="false" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcIconButton(el, this.data) %>>
+            <img class="imgToggleFalse" style="width: 100%; height: 100%; <%= stylesInvertImageFalse %>" <%= this.data.attr('imageFalse') ? 'src="' +  this.data.attr('imageFalse') + '"' : '' %> />
+            <img class="imgToggleTrue" style="width: 100%; height: 100%; <%= stylesInvertImageTrue %>" <%= this.data.attr('imageTrue')  ? 'src="' +  this.data.attr('imageTrue')  + '"' : '' %> />
         </div>
 </script>
 

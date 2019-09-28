@@ -394,9 +394,15 @@ vis.binds["materialdesign"] = {
             }
         });
     },
-    mdcIconButton: function (el) {
+    mdcIconButton: function (el, data) {
         let $this = $(el);
         var oid = $this.attr('data-oid');
+
+        var colorBgFalse = (data.colorBgFalse === undefined || data.colorBgFalse === null || data.colorBgFalse === '') ? '' : data.colorBgFalse;
+        var colorBgTrue = (data.colorBgTrue === undefined || data.colorBgTrue === null || data.colorBgTrue === '') ? '' : data.colorBgTrue;
+        
+        var colorOverlay = (data.colorOverlay === undefined || data.colorOverlay === null || data.colorOverlay === '') ? '' : data.colorOverlay;
+        $this.context.style.setProperty("--mdc-theme-primary", colorOverlay);
 
         const mdcIconButton = new mdc.iconButton.MDCIconButtonToggle($this.context);
 
@@ -406,9 +412,11 @@ vis.binds["materialdesign"] = {
         if (val) {
             $this.find('.imgToggleFalse').hide();
             $this.find('.imgToggleTrue').show();
+            $this.css('background', colorBgTrue);
         } else {
             $this.find('.imgToggleFalse').show();
             $this.find('.imgToggleTrue').hide();
+            $this.css('background', colorBgFalse);
         }
 
         mdcIconButton.listen('MDCIconButtonToggle:change', function () {
@@ -417,9 +425,11 @@ vis.binds["materialdesign"] = {
             if (val) {
                 $this.find('.imgToggleFalse').hide();
                 $this.find('.imgToggleTrue').show();
+                $this.css('background', colorBgTrue);
             } else {
                 $this.find('.imgToggleFalse').show();
                 $this.find('.imgToggleTrue').hide();
+                $this.css('background', colorBgFalse);
             }
             vis.setValue(oid, val);
         });
@@ -431,9 +441,11 @@ vis.binds["materialdesign"] = {
             if (val) {
                 $this.find('.imgToggleFalse').hide();
                 $this.find('.imgToggleTrue').show();
+                $this.css('background', colorBgTrue);
             } else {
                 $this.find('.imgToggleFalse').show();
                 $this.find('.imgToggleTrue').hide();
+                $this.css('background', colorBgFalse);
             }
         });
     },

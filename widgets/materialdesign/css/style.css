@@ -389,6 +389,8 @@ svg.materialdesign-button__icon {
 
 /* Icon Button */
 .materialdesign-icon-button {
+  --mdc-theme-primary: #1e88e5;
+  border-radius:  100%;
   width: 48px;
   height: 48px;
   padding: 12px;
@@ -502,7 +504,7 @@ svg.materialdesign-button__icon {
   height: var(--mdc-ripple-fg-size, 100%);
 }
 .materialdesign-icon-button::before, .materialdesign-icon-button::after {
-  background-color: #000;
+  background-color: var(--mdc-theme-primary, #000);
 }
 .materialdesign-icon-button:hover::before {
   opacity: 0.04;
