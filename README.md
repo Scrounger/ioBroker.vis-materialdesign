@@ -20,6 +20,9 @@ Material Design Widgets based on [Google material components web library](https:
 ## Button Toggle
 ![Logo](doc/media/buttons.gif)
 
+## Card
+![Logo](doc/media/cards.png)
+
 ## Progress
 ![Logo](doc/media/progress.gif)
 
@@ -30,6 +33,9 @@ Material Design Widgets based on [Google material components web library](https:
 ![Logo](doc/media/switch.gif)
 
 ## Changelog
+
+### 0.0.4
+* (Scrounger): cards added
 
 ### 0.0.3
 * (Scrounger): progress added
