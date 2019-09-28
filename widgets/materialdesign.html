@@ -426,10 +426,15 @@
         data-vis-set="materialdesign"
         data-vis-type="static"
         data-vis-name="HTML Card"
-        data-vis-attrs="title;subtitle;html/text;"
+        data-vis-attrs="title;subtitle;html/text;cardStyle[default]/select,default,outlined;"
         data-vis-attrs0="group.color;colorTitle/color;colorSubtitle/color;">
 
         <%
+            let cardStyle = '';
+            if (this.data.cardStyle !== 'default'){
+                cardStyle = 'mdc-card--outlined';
+            }
+
             let colorTitle = '';
             if (this.data.colorTitle !== undefined && this.data.colorTitle !== null && this.data.colorTitle !== ''){
                 colorTitle = 'color: ' + this.data.colorTitle + ';';
@@ -452,7 +457,7 @@
             }
         %>
 
-        <div class="vis-widget materialdesign-html-card mdc-card <%== this.data.attr('class') %>" style="width: 200px; height: 130px;" id="<%= this.data.attr('wid') %>">
+        <div class="vis-widget materialdesign-html-card mdc-card <%= cardStyle %> <%== this.data.attr('class') %>" style="width: 200px; height: 130px;" id="<%= this.data.attr('wid') %>">
             <div class="materialdesign-html-card card-title-section">
                 <div class="materialdesign-html-card card-title" style="<%= paddingBottomTitle %> <%= colorTitle %>"><%== this.data.attr('title') %></div>
                 <div class="materialdesign-html-card card-subtitle" style="<%= showSubtitle %> <%= colorSubtitle %>"><%== this.data.attr('subtitle') %></div>
