@@ -221,6 +221,25 @@
     </div>
 </script>
 
+<script id="tplVis-materialdesign-Icon-Button-Toggle"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<div id="prev_tplVis-materialdesign-Icon-Button-Toggle" style="position: relative; text-align: initial; padding: 4px "><div class="vis-widget_prev mdc-button mdc-button--raised — outlined vis-tpl-materialdesign-Button Toggle mdc-ripple-upgraded " data-mdc-auto-init="MDCRipple" style="width: 89px; height: 24px; padding: 0px; left: 265px; top: 213px; z-index: 700; text-align: right; font-size: 12px; position: absolute; --mdc-ripple-fg-size:53px; --mdc-ripple-fg-scale:1.9279089311843374; --mdc-ripple-fg-translate-start:34.5px, -4.100006103515625px; --mdc-ripple-fg-translate-end:18px, -14.5px;" data-oid="nothing_selected" data-tmodified="true" data-zmodified="true"> <div class="iconLabel container" style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;"> <img class="imgToggleFalse" src="/vis/icon/control.png" style="width: 16%; margin-right: 4px; filter: invert(1);"> <img class="imgToggleTrue" src="/vis/icon/control.png" style="width: 16%; margin-right: 4px; display: none;"> <span class="labelToggleFalse" style="text-transform: none; margin-left: 4px;">Toggle</span> <span class="labelToggleTrue" style="color: rgb(255, 255, 255); text-transform: none; display: none; margin-left: 2px;">hallo</span>  </div> <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div></div>'
+        data-vis-set="materialdesign"
+        data-vis-type="ctrl,state"
+        data-vis-name="Icon Button Toggle"
+        data-vis-update-style="true"
+        data-vis-attrs="oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;"
+        data-vis-attrs0="group.label;labelFalse/html;labelTrue/html;labelColorFalse/color;labelColorTrue/color;"
+        data-vis-attrs1="group.icon;imageFalse/image;invertImageFalse/checkbox;imageTrue/image;invertImageTrue/checkbox;iconHeight/slider,0,200,1;"
+        data-vis-attrs2="group.backgrounds;colorBgFalse/color;colorBgTrue/color;">
+
+        <div class="vis-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" aria-hidden="true" aria-pressed="false" style="width: 50px; height: 50px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcIconButton(el) %>>
+            <img class="imgToggleFalse" style="width: 100%; height: 100%" <%= this.data.attr('imageFalse') ? 'src="' +  this.data.attr('imageFalse') + '"' : '' %>/>
+            <img class="imgToggleTrue" style="width: 100%; height: 100%" <%= this.data.attr('imageTrue')  ? 'src="' +  this.data.attr('imageTrue')  + '"' : '' %> />    
+        </div>
+</script>
+
 <script id="tplVis-materialdesign-Switch"
         type="text/ejs"
         class="vis-tpl"

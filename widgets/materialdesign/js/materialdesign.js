@@ -337,8 +337,6 @@ vis.binds["materialdesign"] = {
         if (colorOne === '') colorOne = color;
         if (colorTwo === '') colorTwo = color;
 
-        console.log('col: ' + unit);
-
         var val = vis.states.attr(oid + '.val');
         if (val === true || val === 'true') val = max;
         if (val === false || val === 'false') val = min;
@@ -393,6 +391,49 @@ vis.binds["materialdesign"] = {
 
             } catch (e) {
                 console.error(e);
+            }
+        });
+    },
+    mdcIconButton: function (el) {
+        let $this = $(el);
+        var oid = $this.attr('data-oid');
+
+        const mdcIconButton = new mdc.iconButton.MDCIconButtonToggle($this.context);
+
+        var val = vis.states.attr(oid + '.val');
+        mdcIconButton.on = val;
+
+        if (val) {
+            $this.find('.imgToggleFalse').hide();
+            $this.find('.imgToggleTrue').show();
+        } else {
+            $this.find('.imgToggleFalse').show();
+            $this.find('.imgToggleTrue').hide();
+        }
+
+        mdcIconButton.listen('MDCIconButtonToggle:change', function () {
+            val = mdcIconButton.on;
+
+            if (val) {
+                $this.find('.imgToggleFalse').hide();
+                $this.find('.imgToggleTrue').show();
+            } else {
+                $this.find('.imgToggleFalse').show();
+                $this.find('.imgToggleTrue').hide();
+            }
+            vis.setValue(oid, val);
+        });
+
+        vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
+            val = newVal;
+            mdcIconButton.on = val;
+            
+            if (val) {
+                $this.find('.imgToggleFalse').hide();
+                $this.find('.imgToggleTrue').show();
+            } else {
+                $this.find('.imgToggleFalse').show();
+                $this.find('.imgToggleTrue').hide();
             }
         });
     },
