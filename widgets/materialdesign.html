@@ -426,7 +426,7 @@
         data-vis-set="materialdesign"
         data-vis-type="static"
         data-vis-name="HTML Card"
-        data-vis-attrs="title;subtitle;html/text;cardStyle[default]/select,default,outlined;"
+        data-vis-attrs="title;subtitle;html/text;image/image;cardLayout[Basic]/select,Basic,outlined;cardStyle[default]/select,default,outlined;"
         data-vis-attrs0="group.color;colorTitle/color;colorSubtitle/color;">
 
         <%
@@ -444,26 +444,40 @@
             if (this.data.colorSubtitle !== undefined && this.data.colorSubtitle !== null && this.data.colorSubtitle !== ''){
                 colorSubtitle = 'color: ' + this.data.colorSubtitle + ';';
             }
-            
-            let showSubtitle = '';
-            let paddingBottomTitle = '';
 
-            if (this.data.subtitle === undefined || this.data.subtitle === null || this.data.subtitle === ''){
-                showSubtitle = 'display:none;';
+            let showImage = 'display: none;';
+            if (this.data.image !== undefined && this.data.image !== null && this.data.image !== ''){
+                showImage = '';
+            }
 
-                if (this.data.title !== undefined || this.data.title !== null || this.data.title !== ''){
-                    paddingBottomTitle = 'padding-bottom: 8px;';
-                }
+            let showTitleSection = 'display: none;';
+            if ((this.data.title !== undefined && this.data.title !== null && this.data.title !== '') || (this.data.subtitle !== undefined && this.data.subtitle !== null && this.data.subtitle !== '')){
+                showTitleSection = '';
+            }
+
+            let cardLayout = '';
+            if (cardLayout === 'Basic'){
+                cardLayout = '
+                <div class="mdc-card__media mdc-card__media--16-9 demo-card__media" style="<%= showImage %> background-image: url(<%== this.data.attr('image') %>);"></div>
+                <div class="materialdesign-html-card card-title-section" style="<%= showTitleSection %>">
+                    <div class="materialdesign-html-card card-title" style="<%= colorTitle %>"><%== this.data.attr('title') %></div>
+                    <div class="materialdesign-html-card card-subtitle" style="<%= colorSubtitle %>"><%== this.data.attr('subtitle') %></div>
+                </div>
+                <div class="materialdesign-html-card card-text-section">
+                    <div class=".materialdesign-html-card card-body"><%== this.data.attr('html') %></div>
+                </div>
+                '
             }
         %>
 
         <div class="vis-widget materialdesign-html-card mdc-card <%= cardStyle %> <%== this.data.attr('class') %>" style="width: 200px; height: 130px;" id="<%= this.data.attr('wid') %>">
-            <div class="materialdesign-html-card card-title-section">
-                <div class="materialdesign-html-card card-title" style="<%= paddingBottomTitle %> <%= colorTitle %>"><%== this.data.attr('title') %></div>
-                <div class="materialdesign-html-card card-subtitle" style="<%= showSubtitle %> <%= colorSubtitle %>"><%== this.data.attr('subtitle') %></div>
+            <div class="mdc-card__media mdc-card__media--16-9 demo-card__media" style="<%= showImage %> background-image: url(<%== this.data.attr('image') %>);"></div>
+            <div class="materialdesign-html-card card-title-section" style="<%= showTitleSection %>">
+                <div class="materialdesign-html-card card-title" style="<%= colorTitle %>"><%== this.data.attr('title') %></div>
+                <div class="materialdesign-html-card card-subtitle" style="<%= colorSubtitle %>"><%== this.data.attr('subtitle') %></div>
             </div>
             <div class="materialdesign-html-card card-text-section">
                 <div class=".materialdesign-html-card card-body"><%== this.data.attr('html') %></div>
-            </div> 
+            </div>
         </div>
 </script>

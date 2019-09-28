@@ -416,20 +416,23 @@ svg.materialdesign-button__icon {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-top: 16px;
   color: black;
 }
 
 .materialdesign-html-card.card-title-section{
   visibility: visible;
   box-sizing: border-box;
+  padding-top: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .materialdesign-html-card.card-text-section{
   visibility: visible;
   box-sizing: border-box;
+  padding-top: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .materialdesign-html-card.card-title {
@@ -456,7 +459,6 @@ svg.materialdesign-button__icon {
   text-decoration: inherit;
   text-transform: inherit;
   color: #a1a1a1;
-  padding-bottom: 8px;
 }
 
 .materialdesign-html-card.card-body {
