@@ -422,11 +422,11 @@
 <script id="tplVis-materialdesign-Card"
         type="text/ejs"
         class="vis-tpl"
-        data-vis-prev='<div id="prev_tplVis-materialdesign-Card" style="position: relative; text-align: initial; padding: 4px "><div class="vis-widget_prev materialdesign-progress vis-tpl-materialdesign-Progress " style="width: 100px; height: 21px; left: 45px; top: 298px; color: rgb(0, 0, 0); text-align: center; font-size: small; position: absolute; z-index: 700;" data-tmodified="true" data-zmodified="true"> <div class="materialdesign vis-widget-prev-body" style="display: flex; justify-content: center; align-items: center;"> <div role="progressbar" class="mdc-linear-progress" style="text-align: left;" data-oid="info.0.sysinfo.cpu.currentLoad.currentload"> <div class="mdc-linear-progress__buffering-dots"></div> <div class="mdc-linear-progress__buffer"></div> <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar" style="transform: scaleX(0.15);"> <span class="mdc-linear-progress__bar-inner"></span> </div> <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar"> <span class="mdc-linear-progress__bar-inner"></span> </div> </div> <div style="min-width: 7%; position: absolute; width: 100%;"> <label class="labelValue" style=""> 15 % </label> </div> </div> <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div></div>'
+        data-vis-prev='<div id="prev_tplVis-materialdesign-Card" style="position: relative; text-align: initial; padding: 4px "><div class="vis-widget_prev materialdesign-html-card mdc-card vis-tpl-materialdesign-HTML Card " style="width: 100px; height: 131px; left: 562px; top: 439px; font-size: xx-large; position: absolute; z-index: 700;" data-tmodified="true" data-zmodified="true"> <div class="mdc-card__media mdc-card__media--16-9" style="background-image: url(/vis/widgets/materialdesign/img/preview.jpg);"></div><div class="materialdesign-html-card card-title-section" style=""><div class="materialdesign-html-card card-title mdc-typography mdc-typography--headline6" style="">Title</div><div class="materialdesign-html-card card-subtitle mdc-typography mdc-typography--subtitle2" style="">Subtitle</div></div><div class="materialdesign-html-card card-text-section"><div class=".materialdesign-html-card mdc-typography mdc-typography--body2"></div></div> <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div></div>'
         data-vis-set="materialdesign"
         data-vis-type="static"
         data-vis-name="HTML Card"
-        data-vis-attrs="title;subtitle;html/text;image/image;cardLayout[Basic]/select,Basic,outlined;cardStyle[default]/select,default,outlined;"
+        data-vis-attrs="title;titleLayout[headline6]/select,headline1,headline2,headline3,headline4,headline5,headline6;subtitle;subtitleLayout[subtitle2]/select,subtitle1,subtitle2;html/text;htmlLayout[body2]/select,custom,body1,body2;image/image;cardLayout[Basic]/select,Basic,BasicHeader,BasicHeaderOverlay;cardStyle[default]/select,default,outlined;"
         data-vis-attrs0="group.color;colorTitle/color;colorSubtitle/color;">
 
         <%
@@ -455,29 +455,57 @@
                 showTitleSection = '';
             }
 
-            let cardLayout = '';
-            if (cardLayout === 'Basic'){
-                cardLayout = '
-                <div class="mdc-card__media mdc-card__media--16-9 demo-card__media" style="<%= showImage %> background-image: url(<%== this.data.attr('image') %>);"></div>
-                <div class="materialdesign-html-card card-title-section" style="<%= showTitleSection %>">
-                    <div class="materialdesign-html-card card-title" style="<%= colorTitle %>"><%== this.data.attr('title') %></div>
-                    <div class="materialdesign-html-card card-subtitle" style="<%= colorSubtitle %>"><%== this.data.attr('subtitle') %></div>
-                </div>
-                <div class="materialdesign-html-card card-text-section">
-                    <div class=".materialdesign-html-card card-body"><%== this.data.attr('html') %></div>
-                </div>
-                '
+            let htmlLayout = '';
+            if (this.data.htmlLayout === 'custom'){
+                htmlLayout = 'card-custom-body';
+            } else {
+                htmlLayout = 'mdc-typography mdc-typography--' + this.data.htmlLayout;
             }
+            
+            let cardLayout = '';
+            if (this.data.cardLayout === 'Basic'){
+                cardLayout = 
+                    '<div class="mdc-card__media mdc-card__media--16-9" style="' + showImage + 'background-image: url(' + this.data.image + ');"></div>' +
+                    '<div class="materialdesign-html-card card-title-section" style="' + showTitleSection + '">' +
+                        '<div class="materialdesign-html-card card-title mdc-typography mdc-typography--' + this.data.titleLayout + '" style="' + colorTitle + '">' + this.data.title + '</div>' +
+                        '<div class="materialdesign-html-card card-subtitle mdc-typography mdc-typography--'+ this.data.subtitleLayout + '" style="' + colorSubtitle + '">'+ this.data.subtitle + '</div>' +
+                    '</div>' +
+                    '<div class="materialdesign-html-card card-text-section">' +
+                        '<div class=".materialdesign-html-card ' + htmlLayout + '">' + this.data.html + '</div>' +
+                    '</div>'
+            }
+
+            if (this.data.cardLayout === 'BasicHeader'){
+                cardLayout = 
+                    '<div class="materialdesign-html-card card-title-section" style="' + showTitleSection + '">' +
+                        '<div class="materialdesign-html-card card-title mdc-typography mdc-typography--' + this.data.titleLayout + '" style="' + colorTitle + '">' + this.data.title + '</div>' +
+                        '<div class="materialdesign-html-card card-subtitle mdc-typography mdc-typography--'+ this.data.subtitleLayout + '" style="' + colorSubtitle + '">'+ this.data.subtitle + '</div>' +
+                    '</div>' +
+                    '<div class="materialdesign-html-card mdc-card__media mdc-card__media--16-9 BasicHeader" style="' + showImage + 'background-image: url(' + this.data.image + ');"></div>' +
+                    '<div class="materialdesign-html-card card-text-section">' +
+                            '<div class=".materialdesign-html-card ' + htmlLayout + '">' + this.data.html + '</div>' +
+                    '</div>'
+            }
+
+            if (this.data.cardLayout === 'BasicHeaderOverlay'){
+                cardLayout = 
+                cardLayout = 
+                    '<div class="mdc-card__media mdc-card__media--16-9" style="' + showImage + 'background-image: url(' + this.data.image + ');">' +
+                        '<div class="materialdesign-html-card mdc-card__media-content">' +
+                            '<div class="materialdesign-html-card card-title-section" style="' + showTitleSection + '">' +
+                                '<div class="materialdesign-html-card card-title mdc-typography mdc-typography--' + this.data.titleLayout + '" style="' + colorTitle + '">' + this.data.title + '</div>' +
+                                '<div class="materialdesign-html-card card-subtitle mdc-typography mdc-typography--'+ this.data.subtitleLayout + '" style="' + colorSubtitle + '">'+ this.data.subtitle + '</div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="materialdesign-html-card card-text-section">' +
+                            '<div class=".materialdesign-html-card ' + htmlLayout + '">' + this.data.html + '</div>' +
+                    '</div>'
+            }
+
         %>
 
         <div class="vis-widget materialdesign-html-card mdc-card <%= cardStyle %> <%== this.data.attr('class') %>" style="width: 200px; height: 130px;" id="<%= this.data.attr('wid') %>">
-            <div class="mdc-card__media mdc-card__media--16-9 demo-card__media" style="<%= showImage %> background-image: url(<%== this.data.attr('image') %>);"></div>
-            <div class="materialdesign-html-card card-title-section" style="<%= showTitleSection %>">
-                <div class="materialdesign-html-card card-title" style="<%= colorTitle %>"><%== this.data.attr('title') %></div>
-                <div class="materialdesign-html-card card-subtitle" style="<%= colorSubtitle %>"><%== this.data.attr('subtitle') %></div>
-            </div>
-            <div class="materialdesign-html-card card-text-section">
-                <div class=".materialdesign-html-card card-body"><%== this.data.attr('html') %></div>
-            </div>
+            <%== cardLayout %>
         </div>
 </script>
