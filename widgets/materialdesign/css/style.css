@@ -464,3 +464,14 @@ svg.materialdesign-button__icon {
   align-items: flex-end;
   padding-bottom: 16px
 }
+
+.materialdesign-html-card.horizontal-container{
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;  
+}
+
+.materialdesign-html-card.mdc-card__media--square{
+  width: 100%;
+}
