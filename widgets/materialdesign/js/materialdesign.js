@@ -243,7 +243,7 @@ vis.binds["materialdesign"] = {
             });
         }
     },
-    mdcSlider: function (el, options) {
+    mdcSlider: function (el, data) {
         try {
             setTimeout(function () {
                 // timeout damit slider funktioniert notwendig
@@ -253,9 +253,9 @@ vis.binds["materialdesign"] = {
 
                 const mdcSlider = new mdc.slider.MDCSlider($this.context);
 
-                var min = (options.min === undefined || options.min === null || options.min === '') ? 0.00 : parseFloat(options.min);
-                var max = (options.max === undefined || options.min === null || options.max === '') ? 1.00 : parseFloat(options.max);
-                var unit = (options.max === undefined || options.min === null || options.max === '') ? '' : '&nbsp;' + options.unit;
+                var min = (data.min === undefined || data.min === null || data.min === '') ? 0.00 : parseFloat(data.min);
+                var max = (data.max === undefined || data.min === null || data.max === '') ? 1.00 : parseFloat(data.max);
+                var unit = (data.valueLabelUnit === undefined || data.valueLabelUnit === null || data.valueLabelUnit === '') ? '' : '&nbsp;' + data.valueLabelUnit;
 
                 if (max < min) {
                     var tmp = max;
@@ -272,12 +272,12 @@ vis.binds["materialdesign"] = {
                 if (val < min) val = min;
                 if (val > max) val = max;
 
-                options.min = min;
-                options.max = max;
-                options.simRange = 100;
-                options.range = options.max - options.min;
-                options.factor = options.simRange / options.range;
-                val = Math.floor((val - options.min) * options.factor);
+                data.min = min;
+                data.max = max;
+                data.simRange = 100;
+                data.range = data.max - data.min;
+                data.factor = data.simRange / data.range;
+                val = Math.floor((val - data.min) * data.factor);
 
                 if (!vis.states.attr(wid + '.val')) {
                     mdcSlider.value = val;
@@ -285,12 +285,12 @@ vis.binds["materialdesign"] = {
                 }
 
                 mdcSlider.listen('MDCSlider:change', function () {
-                    val = (parseFloat(val) / options.factor) + options.min;
-                    if (options.step) {
-                        val = Math.round(val / options.step) * options.step;
+                    val = (parseFloat(val) / data.factor) + data.min;
+                    if (data.step) {
+                        val = Math.round(val / data.step) * data.step;
                     }
-                    if (options.digits !== undefined && options.digits !== null && options.digits !== '') {
-                        vis.setValue(oid, mdcSlider.value.toFixed(options.digits));
+                    if (data.digits !== undefined && data.digits !== null && data.digits !== '') {
+                        vis.setValue(oid, mdcSlider.value.toFixed(data.digits));
                     } else {
                         vis.setValue(oid, mdcSlider.value);
                     }
@@ -299,13 +299,13 @@ vis.binds["materialdesign"] = {
                 vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
 
                     var val = vis.states.attr(oid + '.val');
-                    if (val === true || val === 'true') val = options.max;
-                    if (val === false || val === 'false') val = options.min;
+                    if (val === true || val === 'true') val = data.max;
+                    if (val === false || val === 'false') val = data.min;
                     val = parseFloat(val);
-                    if (isNaN(val)) val = options.min;
-                    if (val < options.min) val = options.min;
-                    if (val > options.max) val = options.max;
-                    val = Math.floor((val - options.min) * options.factor);
+                    if (isNaN(val)) val = data.min;
+                    if (val < data.min) val = data.min;
+                    if (val > data.max) val = data.max;
+                    val = Math.floor((val - data.min) * data.factor);
                     try {
                         if (!vis.states.attr(wid + '.val')) {
                             mdcSlider.value = val;
@@ -321,23 +321,23 @@ vis.binds["materialdesign"] = {
             console.log(`mdcSlider: ${err.message} ${err.stack}`);
         }
     },
-    mdcProgress: function (el, options) {
+    mdcProgress: function (el, data) {
         let $this = $(el);
         var oid = $this.attr('data-oid');
 
         const mdcProgress = new mdc.linearProgress.MDCLinearProgress($this.context);
 
-        var min = (options.min === undefined || options.min === null || options.min === '') ? 0.00 : parseFloat(options.min);
-        var max = (options.max === undefined || options.min === null || options.max === '') ? 1.00 : parseFloat(options.max);
-        var unit = (options.unit === undefined || options.unit === null || options.unit === '') ? '' : '&nbsp;' + options.unit;
-        var decimals = (options.maxDecimals === undefined || options.maxDecimals === null || options.maxDecimals === '') ? 0 : options.maxDecimals;
-        var reverse = (options.reverse === undefined || options.reverse === null || options.reverse === '') ? false : options.reverse;
+        var min = (data.min === undefined || data.min === null || data.min === '') ? 0.00 : parseFloat(data.min);
+        var max = (data.max === undefined || data.min === null || data.max === '') ? 1.00 : parseFloat(data.max);
+        var unit = (data.valueLabelUnit === undefined || data.valueLabelUnit === null || data.valueLabelUnit === '') ? '' : '&nbsp;' + data.valueLabelUnit;
+        var decimals = (data.valueMaxDecimals === undefined || data.valueMaxDecimals === null || data.valueMaxDecimals === '') ? 0 : data.valueMaxDecimals;
+        var reverse = (data.reverse === undefined || data.reverse === null || data.reverse === '') ? false : data.reverse;
 
-        var color = (options.color === undefined || options.color === null || options.color === '') ? '' : options.color;
-        var colorOneCondition = (options.colorOneCondition === undefined || options.colorOneCondition === null || options.colorOneCondition === '') ? 0 : options.colorOneCondition;
-        var colorOne = (options.colorOne === undefined || options.colorOne === null || options.colorOne === '') ? '' : options.colorOne;
-        var colorTwoCondition = (options.colorTwoCondition === undefined || options.colorTwoCondition === null || options.colorTwoCondition === '') ? 0 : options.colorTwoCondition;
-        var colorTwo = (options.colorTwo === undefined || options.colorTwo === null || options.colorTwo === '') ? '' : options.colorTwo;
+        var color = (data.color === undefined || data.color === null || data.color === '') ? '' : data.color;
+        var colorOneCondition = (data.colorOneCondition === undefined || data.colorOneCondition === null || data.colorOneCondition === '') ? 0 : data.colorOneCondition;
+        var colorOne = (data.colorOne === undefined || data.colorOne === null || data.colorOne === '') ? '' : data.colorOne;
+        var colorTwoCondition = (data.colorTwoCondition === undefined || data.colorTwoCondition === null || data.colorTwoCondition === '') ? 0 : data.colorTwoCondition;
+        var colorTwo = (data.colorTwo === undefined || data.colorTwo === null || data.colorTwo === '') ? '' : data.colorTwo;
 
         if (max < min) {
             var tmp = max;
@@ -357,12 +357,12 @@ vis.binds["materialdesign"] = {
         if (val < min) val = min;
         if (val > max) val = max;
 
-        options.min = min;
-        options.max = max;
-        options.simRange = 100;
-        options.range = options.max - options.min;
-        options.factor = options.simRange / options.range;
-        val = Math.floor((val - options.min) * options.factor);
+        data.min = min;
+        data.max = max;
+        data.simRange = 100;
+        data.range = data.max - data.min;
+        data.factor = data.simRange / data.range;
+        val = Math.floor((val - data.min) * data.factor);
 
         mdcProgress.progress = val / 100;
         mdcProgress.reverse = reverse;
@@ -380,13 +380,13 @@ vis.binds["materialdesign"] = {
 
         vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
             var val = vis.states.attr(oid + '.val');
-            if (val === true || val === 'true') val = options.max;
-            if (val === false || val === 'false') val = options.min;
+            if (val === true || val === 'true') val = data.max;
+            if (val === false || val === 'false') val = data.min;
             val = parseFloat(val);
-            if (isNaN(val)) val = options.min;
-            if (val < options.min) val = options.min;
-            if (val > options.max) val = options.max;
-            val = Math.floor((val - options.min) * options.factor);
+            if (isNaN(val)) val = data.min;
+            if (val < data.min) val = data.min;
+            if (val > data.max) val = data.max;
+            val = Math.floor((val - data.min) * data.factor);
             try {
                 mdcProgress.progress = val / 100;
                 let valueLabel = Math.round(vis.states.attr(oid + '.val') * Math.pow(10, decimals)) / Math.pow(10, decimals)

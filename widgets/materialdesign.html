@@ -328,7 +328,7 @@
                 <div class="mdc-slider mdc-slider--discrete <%= showMarker %>" tabindex="0" role="slider" style="<%= colorSlider %>"
                     aria-valuemin="<%== this.data.attr('min') %>" aria-valuemax="<%== this.data.attr('max') %>" aria-valuenow="0" data-step="<%== this.data.attr('step') %>"                     
                     aria-label="Select Value" data-oid="<%= this.data.attr('oid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" 
-                    <%= (el) -> vis.binds.materialdesign.mdcSlider(el, {min: data.min, max: data.max, step: data.step, unit: data.valueLabelUnit}) %>>
+                    <%= (el) -> vis.binds.materialdesign.mdcSlider(el, data) %>>
                     <div class="mdc-slider__track-container" style="<%= colorSliderBg %>">
                         <div class="mdc-slider__track"></div>
                         <div class="mdc-slider__track-marker-container"></div>
@@ -382,7 +382,7 @@
                 <div class="mdc-slider" tabindex="0" role="slider" style="<%= colorSlider %>"
                     aria-valuemin="<%== this.data.attr('min') %>" aria-valuemax="<%== this.data.attr('max') %>" aria-valuenow="0" data-step="<%== this.data.attr('step') %>"
                     aria-label="Select Value" data-oid="<%= this.data.attr('oid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" 
-                    <%= (el) -> vis.binds.materialdesign.mdcSlider(el, {min: data.min, max: data.max, step: data.step, unit: data.valueLabelUnit}) %>>
+                    <%= (el) -> vis.binds.materialdesign.mdcSlider(el, data) %>>
                     <div class="mdc-slider__track-container" style="<%= colorSliderBg %>">
                         <div class="mdc-slider__track"></div>
                     </div>
@@ -410,6 +410,7 @@
         data-vis-attrs0="group.color;colorBgFalse/color;colorProgress/color;colorOneCondition;colorOne/color;colorTwoCondition;colorTwo/color;"
         data-vis-attrs1="group.label;showValueLabel[true]/checkbox;valueLabelUnit;valueMaxDecimals;valuePosition[inside]/select,inside,outside;valueLabelWidth[25]/slider,0,100,1;">
 
+        
         <%
             let colorProgress = '';
             if (this.data.colorProgress !== '' && this.data.colorProgress !== undefined){
@@ -434,7 +435,7 @@
 
         <div class="vis-widget materialdesign-progress <%== this.data.attr('class') %>" style="width: 180px; height: 50px;" id="<%= this.data.attr('wid') %>">
             <div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
-                <div role="progressbar" class="mdc-linear-progress" style="text-align: left;" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcProgress(el, {min: data.min, max: data.max, unit: data.valueLabelUnit, maxDecimals: data.valueMaxDecimals, reverse: data.reverse, color: data.colorProgress, colorOneCondition: data.colorOneCondition, colorOne: data.colorOne, colorTwoCondition: data.colorTwoCondition, colorTwo: data.colorTwo}) %>>
+                <div role="progressbar" class="mdc-linear-progress" style="text-align: left;" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcProgress(el, data) %>>
                     <div class="mdc-linear-progress__buffering-dots"></div>
                     <div class="mdc-linear-progress__buffer" style="<%= colorBgFalse %>"></div>
                     <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
