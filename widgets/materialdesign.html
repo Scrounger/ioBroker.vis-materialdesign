@@ -566,3 +566,35 @@
             <%== cardLayout %>
         </div>
 </script>
+
+<script id="tplVis-materialdesign-CheckBox"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/basic/img/Prev_ValueInput.png"></img>'
+        data-vis-set="materialdesign"
+        data-vis-type="ctrl,bool"
+        data-vis-name="Checkbox"
+        data-vis-update-style="true"
+        data-vis-attrs="oid;html_prepend;html_append;numeric/checkbox;min;max;autoSet/checkbox;readOnly/checkbox">
+
+        <div class="vis-widget materialdesign-checkbox <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>">
+            <div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
+                <div class="mdc-form-field" <%= (el) -> vis.binds.materialdesign.mdcCheckbox(el, data) %>>
+                    <label for="materialdesign-checkbox-<%= this.data.attr('wid') %>">Checkbox 1</label>
+                    <div class="mdc-checkbox">
+                        <input type="checkbox" class="mdc-checkbox__native-control" id="materialdesign-checkbox-<%= this.data.attr('wid') %>"/>
+                        <div class="mdc-checkbox__background">
+                        <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                            <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                        </svg>
+                        <div class="mdc-checkbox__mixedmark"></div>
+                        </div>
+                    </div>
+                    <label for="materialdesign-checkbox-<%= this.data.attr('wid') %>">Checkbox 1</label>
+                </div>
+            </div>
+        </div>
+</script>
+
+
+

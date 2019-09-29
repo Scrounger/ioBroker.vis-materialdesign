@@ -613,3 +613,8 @@ svg.materialdesign-button__icon {
 .materialdesign-html-card.mdc-card__media--square{
   width: 100%;
 }
+
+/* Default checkbox color */
+.mdc-checkbox {
+  --mdc-theme-secondary: #1e88e5;
+}

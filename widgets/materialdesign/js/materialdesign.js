@@ -428,6 +428,18 @@ vis.binds["materialdesign"] = {
             console.exception(`mdcIconButton: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
+    mdcCheckbox: function (el, data) {
+        try {
+            let $this = $(el);
+
+            const mdcFormField = new mdc.formField.MDCFormField($this.context);
+            const mdcCheckbox = new mdc.checkbox.MDCCheckbox($this.find('.mdc-checkbox').get(0));
+            mdcFormField.input = mdcCheckbox;
+
+        } catch (ex) {
+            console.exception(`mdcCheckbox: error: ${ex.message}, stack: ${ex.stack}`);
+        }
+    }
 };
 
 function getValueFromData(dataValue, nullValue) {
