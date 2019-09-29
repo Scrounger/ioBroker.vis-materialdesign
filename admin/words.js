@@ -290,6 +290,30 @@ systemDictionary = {
         "pl": "pokaż Markery",
         "zh-cn": "显示标记"
     },
+    "valueLabelMin": {
+        "en": "label for value less than min",
+        "de": "Beschriftung für Wert kleiner als min",
+        "ru": "метка для значения меньше мин",
+        "pt": "rótulo para valor menor que min",
+        "nl": "label voor waarde minder dan min",
+        "fr": "étiquette pour valeur inférieure à min",
+        "it": "etichetta per valore inferiore a min",
+        "es": "etiqueta para valor menor que min",
+        "pl": "etykieta dla wartości mniejszej niż min",
+        "zh-cn": "标签值小于min"
+    },
+    "valueLabelMax": {
+        "en": "label for value greater than max",
+        "de": "Beschriftung für Wert größer als max",
+        "ru": "метка для значения больше, чем max",
+        "pt": "rótulo para valor maior que max",
+        "nl": "label voor waarde groter dan max",
+        "fr": "étiquette pour valeur supérieure à max",
+        "it": "etichetta per valore maggiore di max",
+        "es": "etiqueta para valor mayor que max",
+        "pl": "etykieta dla wartości większej niż maks",
+        "zh-cn": "标签值大于最大值"
+      },
     "group_icon": {
         "en": "icon",
         "de": "Symbol",

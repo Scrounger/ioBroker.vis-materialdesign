@@ -254,15 +254,13 @@ vis.binds["materialdesign"] = {
                 const mdcSlider = new mdc.slider.MDCSlider($this.context);
 
                 let min = getValueFromData(data.min, 0);
+                let labelMin = getValueFromData(data.valueLabelMin, null);
                 let max = getValueFromData(data.max, 1);
+                let labelMax = getValueFromData(data.valueLabelMax, null);
                 let unit = getValueFromData(data.valueLabelUnit, '');
 
                 // Wert beim intialisieren setzen, sofern nicht working aktiv
-                if (!vis.states.attr(wid + '.val')) {
-                    let val = vis.states.attr(oid + '.val');
-                    mdcSlider.value = val;
-                    $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html(val + unit);
-                }
+                setSliderLabel();
 
                 // Slider user input -> Wert übergeben
                 mdcSlider.listen('MDCSlider:change', function () {
@@ -270,13 +268,23 @@ vis.binds["materialdesign"] = {
                 });
 
                 vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
-                    if (!vis.states.attr(wid + '.val')) {
-                        var val = vis.states.attr(oid + '.val');
-
-                        mdcSlider.value = val;
-                        $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html(val + unit);
-                    }
+                    setSliderLabel();
                 });
+
+                function setSliderLabel() {
+                    if (!vis.states.attr(wid + '.val')) {
+                        let val = vis.states.attr(oid + '.val');
+                        mdcSlider.value = val;
+
+                        if (val <= min && labelMin != null) {
+                            $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html(labelMin);
+                        } else if (val >= max && labelMax != null) {
+                            $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html(labelMax);
+                        } else {
+                            $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html(val + unit);
+                        }
+                    }
+                }
             }, 1);
         } catch (err) {
             console.log(`mdcSlider: ${err.message} ${err.stack}`);
