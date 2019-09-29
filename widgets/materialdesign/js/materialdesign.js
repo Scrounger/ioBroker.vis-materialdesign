@@ -271,6 +271,12 @@ vis.binds["materialdesign"] = {
                     setSliderLabel();
                 });
 
+                vis.states.bind(wid + '.val', function (e, newVal, oldVal) {
+                    if (!newVal){
+                        setSliderLabel();
+                    }
+                });
+
                 function setSliderLabel() {
                     if (!vis.states.attr(wid + '.val')) {
                         let val = vis.states.attr(oid + '.val');
