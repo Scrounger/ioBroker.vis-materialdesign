@@ -53,12 +53,12 @@ vis.binds["materialdesign"] = {
         var $this = $(el).parent();
         mdc.ripple.MDCRipple.attachTo($this.context);
 
-        var colorOverlay = (data.colorOverlay === undefined || data.colorOverlay === null || data.colorOverlay === '') ? '' : data.colorOverlay;
+        var colorPress = (data.colorPress === undefined || data.colorPress === null || data.colorPress === '') ? '' : data.colorPress;
 
         if (data.buttonStyle === 'text' || data.buttonStyle === 'outlined') {
-            $this.context.style.setProperty("--mdc-theme-primary", colorOverlay);
+            $this.context.style.setProperty("--mdc-theme-primary", colorPress);
         } else {
-            $this.context.style.setProperty("--mdc-theme-on-primary", colorOverlay);
+            $this.context.style.setProperty("--mdc-theme-on-primary", colorPress);
         }
     },
     itoggle: function (el, data) {
@@ -409,8 +409,8 @@ vis.binds["materialdesign"] = {
         var colorBgFalse = (data.colorBgFalse === undefined || data.colorBgFalse === null || data.colorBgFalse === '') ? '' : data.colorBgFalse;
         var colorBgTrue = (data.colorBgTrue === undefined || data.colorBgTrue === null || data.colorBgTrue === '') ? '' : data.colorBgTrue;
         
-        var colorOverlay = (data.colorOverlay === undefined || data.colorOverlay === null || data.colorOverlay === '') ? '' : data.colorOverlay;
-        $this.context.style.setProperty("--mdc-theme-primary", colorOverlay);
+        var colorPress = (data.colorPress === undefined || data.colorPress === null || data.colorPress === '') ? '' : data.colorPress;
+        $this.context.style.setProperty("--mdc-theme-primary", colorPress);
 
         const mdcIconButton = new mdc.iconButton.MDCIconButtonToggle($this.context);
 
