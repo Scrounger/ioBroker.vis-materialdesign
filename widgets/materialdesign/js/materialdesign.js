@@ -253,9 +253,9 @@ vis.binds["materialdesign"] = {
 
                 const mdcSlider = new mdc.slider.MDCSlider($this.context);
 
-                var min = (data.min === undefined || data.min === null || data.min === '') ? 0.00 : parseFloat(data.min);
-                var max = (data.max === undefined || data.min === null || data.max === '') ? 1.00 : parseFloat(data.max);
-                var unit = (data.valueLabelUnit === undefined || data.valueLabelUnit === null || data.valueLabelUnit === '') ? '' : '&nbsp;' + data.valueLabelUnit;
+                var min = getValueFromData(data.min, 0);
+                var max = getValueFromData(data.max, 1);
+                var unit = getValueFromData(data.valueLabelUnit, '');
 
                 if (max < min) {
                     var tmp = max;
@@ -461,5 +461,14 @@ vis.binds["materialdesign"] = {
         });
     },
 };
+
+function getValueFromData(dataValue, nullValue) {
+    try {
+        return (dataValue === undefined || dataValue === null || dataValue === '') ? nullValue : dataValue;
+    } catch (err) {
+        console.error(err.message);
+        return 'Error';
+    }
+}
 
 vis.binds["materialdesign"].showVersion();
