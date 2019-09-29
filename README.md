@@ -37,6 +37,12 @@ Material Design Widgets based on [Google material components web library](https:
 
 ## Changelog
 
+### 0.0.5
+* (Scrounger): icon button Toggle added
+* (Scrounger): color pressed for buttons added
+* (Scrounger): Slider bug fix & label for value <= min / >= max added
+* (Scrounger): translation added
+
 ### 0.0.4
 * (Scrounger): cards added
 
