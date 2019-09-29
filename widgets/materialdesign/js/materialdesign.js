@@ -65,56 +65,19 @@ vis.binds["materialdesign"] = {
         }
     },
     itoggle: function (el, data) {
-        var $this = $(el).parent();
-        var oid = $this.parent().attr('data-oid');
-        if (oid) {
-            oid += '.val';
-        }
-        var val = vis.states.attr(oid);
-        var activeVal = $this.parent().data('val');
-        if (activeVal === '' || activeVal === undefined) activeVal = null;
-        if (activeVal !== null) {
-            if (val === null || val === undefined) val = '';
-            if (activeVal.toString() === val.toString()) {
-
-                $this.find('.imgToggleFalse').hide();
-                $this.find('.imgToggleTrue').show();
-
-                $this.find('.labelToggleFalse').hide();
-                $this.find('.labelToggleTrue').show();
-
-                // True -> colorBgTrue color nehmen
-                (data.colorBgTrue !== '') ? $this.css('background', data.colorBgTrue) : (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
-
-                (data.labelColorBgTrue !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgTrue) : (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
+        try {
+            var $this = $(el).parent();
+            var oid = $this.parent().attr('data-oid');
+            if (oid) {
+                oid += '.val';
             }
-        } else {
-            if (val === 'false') val = false;
-            if (val === 'true') val = true;
-            if (typeof val === 'string') {
-                var f = parseFloat(val);
-                if (f == val) {
-                    val = f;
-                } else {
-                    val = val !== '';
-                }
-            }
-            if (val > 0) {
-                $this.find('.imgToggleFalse').hide();
-                $this.find('.imgToggleTrue').show();
-
-                $this.find('.labelToggleFalse').hide();
-                $this.find('.labelToggleTrue').show();
-
-                // True -> colorBgTrue color nehmen
-                (data.colorBgTrue !== '') ? $this.css('background', data.colorBgTrue) : (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
-
-                (data.labelColorBgTrue !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgTrue) : (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
-            }
-        }
-        function onChange(e, val) {
+            var val = vis.states.attr(oid);
+            var activeVal = $this.parent().data('val');
+            if (activeVal === '' || activeVal === undefined) activeVal = null;
             if (activeVal !== null) {
+                if (val === null || val === undefined) val = '';
                 if (activeVal.toString() === val.toString()) {
+
                     $this.find('.imgToggleFalse').hide();
                     $this.find('.imgToggleTrue').show();
 
@@ -125,20 +88,19 @@ vis.binds["materialdesign"] = {
                     (data.colorBgTrue !== '') ? $this.css('background', data.colorBgTrue) : (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
 
                     (data.labelColorBgTrue !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgTrue) : (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
-                } else {
-                    $this.find('.imgToggleTrue').hide();
-                    $this.find('.imgToggleFalse').show();
-
-                    $this.find('.labelToggleTrue').hide();
-                    $this.find('.labelToggleFalse').show();
-
-                    // False -> css color nehmen
-                    (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
-
-                    (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
                 }
             } else {
-                if (val === true || val === 'true' || parseFloat(val) > 0) {
+                if (val === 'false') val = false;
+                if (val === 'true') val = true;
+                if (typeof val === 'string') {
+                    var f = parseFloat(val);
+                    if (f == val) {
+                        val = f;
+                    } else {
+                        val = val !== '';
+                    }
+                }
+                if (val > 0) {
                     $this.find('.imgToggleFalse').hide();
                     $this.find('.imgToggleTrue').show();
 
@@ -149,98 +111,144 @@ vis.binds["materialdesign"] = {
                     (data.colorBgTrue !== '') ? $this.css('background', data.colorBgTrue) : (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
 
                     (data.labelColorBgTrue !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgTrue) : (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
-                } else {
-                    $this.find('.imgToggleTrue').hide();
-                    $this.find('.imgToggleFalse').show();
-
-                    $this.find('.labelToggleTrue').hide();
-                    $this.find('.labelToggleFalse').show();
-
-                    // False -> css color nehmen
-                    (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
-
-                    (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
                 }
             }
-        }
-        if (oid) {
-            vis.states.bind(oid, onChange);
-            // remember all ids, that bound
-            $this.parent()
-                .data('bound', [oid])
-                // remember bind handler
-                .data('bindHandler', onChange);
+            function onChange(e, val) {
+                if (activeVal !== null) {
+                    if (activeVal.toString() === val.toString()) {
+                        $this.find('.imgToggleFalse').hide();
+                        $this.find('.imgToggleTrue').show();
+
+                        $this.find('.labelToggleFalse').hide();
+                        $this.find('.labelToggleTrue').show();
+
+                        // True -> colorBgTrue color nehmen
+                        (data.colorBgTrue !== '') ? $this.css('background', data.colorBgTrue) : (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
+
+                        (data.labelColorBgTrue !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgTrue) : (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
+                    } else {
+                        $this.find('.imgToggleTrue').hide();
+                        $this.find('.imgToggleFalse').show();
+
+                        $this.find('.labelToggleTrue').hide();
+                        $this.find('.labelToggleFalse').show();
+
+                        // False -> css color nehmen
+                        (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
+
+                        (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
+                    }
+                } else {
+                    if (val === true || val === 'true' || parseFloat(val) > 0) {
+                        $this.find('.imgToggleFalse').hide();
+                        $this.find('.imgToggleTrue').show();
+
+                        $this.find('.labelToggleFalse').hide();
+                        $this.find('.labelToggleTrue').show();
+
+                        // True -> colorBgTrue color nehmen
+                        (data.colorBgTrue !== '') ? $this.css('background', data.colorBgTrue) : (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
+
+                        (data.labelColorBgTrue !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgTrue) : (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
+                    } else {
+                        $this.find('.imgToggleTrue').hide();
+                        $this.find('.imgToggleFalse').show();
+
+                        $this.find('.labelToggleTrue').hide();
+                        $this.find('.labelToggleFalse').show();
+
+                        // False -> css color nehmen
+                        (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
+
+                        (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
+                    }
+                }
+            }
+            if (oid) {
+                vis.states.bind(oid, onChange);
+                // remember all ids, that bound
+                $this.parent()
+                    .data('bound', [oid])
+                    // remember bind handler
+                    .data('bindHandler', onChange);
+            }
+        } catch (ex) {
+            console.exception(`itoggle: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     mdcSwitch: function (el) {
-        var $this = $(el);
-        var oid = $this.data('oid'); // Object ID
-        var wid = $this.data('oid-working'); // Work ID
+        try {
+            var $this = $(el);
+            var oid = $this.data('oid'); // Object ID
+            var wid = $this.data('oid-working'); // Work ID
 
-        // root element
-        let mdcSwitch = mdc.switchControl.MDCSwitch.attachTo($this.parents('.mdc-switch')[0]);
+            // root element
+            let mdcSwitch = mdc.switchControl.MDCSwitch.attachTo($this.parents('.mdc-switch')[0]);
 
-        function onChange() {
-            let val = vis.states.attr(oid + '.val');
-            mdcSwitch.checked = val;
+            function onChange() {
+                let val = vis.states.attr(oid + '.val');
+                mdcSwitch.checked = val;
 
-            if (val === true) {
-                $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandFalse').hide();
-                $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandTrue').show();
+                if (val === true) {
+                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandFalse').hide();
+                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandTrue').show();
 
-                $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendFalse').hide();
-                $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendTrue').show();
-            } else {
-                $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandTrue').hide();
-                $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandFalse').show();
-
-                $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendTrue').hide();
-                $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendFalse').show();
-            }
-        }
-
-        if (oid) {
-            var bound = [];
-            vis.states.bind(oid + '.val', onChange);
-            bound.push(oid + '.val');
-            if (wid) {
-                vis.states.bind(wid + '.val', onChange);
-                bound.push(wid + '.val');
-            }
-            // remember all ids, that bound
-            $this.closest('.vis-widget')
-                .data('bound', bound)
-                // remember bind handler
-                .data('bindHandler', onChange);
-
-
-            let val = vis.states.attr(oid + '.val');
-            mdcSwitch.checked = val;
-
-            if (val === true || val === 'true') {
-                $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandFalse').hide();
-                $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandTrue').show();
-
-                $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendFalse').hide();
-                $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendTrue').show();
-            } else {
-                $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandTrue').hide();
-                $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandFalse').show();
-
-                $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendTrue').hide();
-                $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendFalse').show();
-            }
-        }
-
-        if (!vis.editMode) {
-            $this.change(function () {
-                var $this_ = $(this);
-                if ($this_.prop('checked')) {
-                    vis.setValue($this_.data('oid'), true);
+                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendFalse').hide();
+                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendTrue').show();
                 } else {
-                    vis.setValue($this_.data('oid'), false);
+                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandTrue').hide();
+                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandFalse').show();
+
+                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendTrue').hide();
+                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendFalse').show();
                 }
-            });
+            }
+
+            if (oid) {
+                var bound = [];
+                vis.states.bind(oid + '.val', onChange);
+                bound.push(oid + '.val');
+                if (wid) {
+                    vis.states.bind(wid + '.val', onChange);
+                    bound.push(wid + '.val');
+                }
+                // remember all ids, that bound
+                $this.closest('.vis-widget')
+                    .data('bound', bound)
+                    // remember bind handler
+                    .data('bindHandler', onChange);
+
+
+                let val = vis.states.attr(oid + '.val');
+                mdcSwitch.checked = val;
+
+                if (val === true || val === 'true') {
+                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandFalse').hide();
+                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandTrue').show();
+
+                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendFalse').hide();
+                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendTrue').show();
+                } else {
+                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandTrue').hide();
+                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandFalse').show();
+
+                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendTrue').hide();
+                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendFalse').show();
+                }
+            }
+
+            if (!vis.editMode) {
+                $this.change(function () {
+                    var $this_ = $(this);
+                    if ($this_.prop('checked')) {
+                        vis.setValue($this_.data('oid'), true);
+                    } else {
+                        vis.setValue($this_.data('oid'), false);
+                    }
+                });
+            }
+        } catch (ex) {
+            console.exception(`mdcSwitch: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     mdcSlider: function (el, data) {
@@ -292,8 +300,8 @@ vis.binds["materialdesign"] = {
                     }
                 }
             }, 1);
-        } catch (err) {
-            console.log(`mdcSlider: ${err.message} ${err.stack}`);
+        } catch (ex) {
+            console.exception(`mdcSlider: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     mdcProgress: function (el, data) {
@@ -362,47 +370,19 @@ vis.binds["materialdesign"] = {
         }
     },
     mdcIconButton: function (el, data) {
-        let $this = $(el);
-        var oid = $this.attr('data-oid');
+        try {
+            let $this = $(el);
+            var oid = $this.attr('data-oid');
 
-        var colorBgFalse = (data.colorBgFalse === undefined || data.colorBgFalse === null || data.colorBgFalse === '') ? '' : data.colorBgFalse;
-        var colorBgTrue = (data.colorBgTrue === undefined || data.colorBgTrue === null || data.colorBgTrue === '') ? '' : data.colorBgTrue;
+            var colorBgFalse = (data.colorBgFalse === undefined || data.colorBgFalse === null || data.colorBgFalse === '') ? '' : data.colorBgFalse;
+            var colorBgTrue = (data.colorBgTrue === undefined || data.colorBgTrue === null || data.colorBgTrue === '') ? '' : data.colorBgTrue;
 
-        var colorPress = (data.colorPress === undefined || data.colorPress === null || data.colorPress === '') ? '' : data.colorPress;
-        $this.context.style.setProperty("--mdc-theme-primary", colorPress);
+            var colorPress = (data.colorPress === undefined || data.colorPress === null || data.colorPress === '') ? '' : data.colorPress;
+            $this.context.style.setProperty("--mdc-theme-primary", colorPress);
 
-        const mdcIconButton = new mdc.iconButton.MDCIconButtonToggle($this.context);
+            const mdcIconButton = new mdc.iconButton.MDCIconButtonToggle($this.context);
 
-        var val = vis.states.attr(oid + '.val');
-        mdcIconButton.on = val;
-
-        if (val) {
-            $this.find('.imgToggleFalse').hide();
-            $this.find('.imgToggleTrue').show();
-            $this.css('background', colorBgTrue);
-        } else {
-            $this.find('.imgToggleFalse').show();
-            $this.find('.imgToggleTrue').hide();
-            $this.css('background', colorBgFalse);
-        }
-
-        mdcIconButton.listen('MDCIconButtonToggle:change', function () {
-            val = mdcIconButton.on;
-
-            if (val) {
-                $this.find('.imgToggleFalse').hide();
-                $this.find('.imgToggleTrue').show();
-                $this.css('background', colorBgTrue);
-            } else {
-                $this.find('.imgToggleFalse').show();
-                $this.find('.imgToggleTrue').hide();
-                $this.css('background', colorBgFalse);
-            }
-            vis.setValue(oid, val);
-        });
-
-        vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
-            val = newVal;
+            var val = vis.states.attr(oid + '.val');
             mdcIconButton.on = val;
 
             if (val) {
@@ -414,7 +394,39 @@ vis.binds["materialdesign"] = {
                 $this.find('.imgToggleTrue').hide();
                 $this.css('background', colorBgFalse);
             }
-        });
+
+            mdcIconButton.listen('MDCIconButtonToggle:change', function () {
+                val = mdcIconButton.on;
+
+                if (val) {
+                    $this.find('.imgToggleFalse').hide();
+                    $this.find('.imgToggleTrue').show();
+                    $this.css('background', colorBgTrue);
+                } else {
+                    $this.find('.imgToggleFalse').show();
+                    $this.find('.imgToggleTrue').hide();
+                    $this.css('background', colorBgFalse);
+                }
+                vis.setValue(oid, val);
+            });
+
+            vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
+                val = newVal;
+                mdcIconButton.on = val;
+
+                if (val) {
+                    $this.find('.imgToggleFalse').hide();
+                    $this.find('.imgToggleTrue').show();
+                    $this.css('background', colorBgTrue);
+                } else {
+                    $this.find('.imgToggleFalse').show();
+                    $this.find('.imgToggleTrue').hide();
+                    $this.css('background', colorBgFalse);
+                }
+            });
+        } catch (ex) {
+            console.exception(`mdcIconButton: error: ${ex.message}, stack: ${ex.stack}`);
+        }
     },
 };
 
