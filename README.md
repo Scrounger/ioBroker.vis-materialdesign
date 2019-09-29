@@ -23,6 +23,9 @@ Material Design Widgets based on [Google material components web library](https:
 ## Card
 ![Logo](doc/media/cards.png)
 
+## Icon Button
+![Logo](doc/media/icon-button.gif)
+
 ## Progress
 ![Logo](doc/media/progress.gif)
 
