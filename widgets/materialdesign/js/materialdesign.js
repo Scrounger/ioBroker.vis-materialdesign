@@ -173,7 +173,7 @@ vis.binds["materialdesign"] = {
                     .data('bindHandler', onChange);
             }
         } catch (ex) {
-            console.exception(`itoggle: error: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`itoggle [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     mdcSwitch: function (el) {
@@ -301,7 +301,7 @@ vis.binds["materialdesign"] = {
                 }
             }, 1);
         } catch (ex) {
-            console.exception(`mdcSlider: error: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`mdcSlider [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     mdcProgress: function (el, data) {
@@ -366,7 +366,7 @@ vis.binds["materialdesign"] = {
                 }
             }
         } catch (ex) {
-            console.exception(`mdcProgress: error: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`mdcProgress [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     mdcIconButton: function (el, data) {
@@ -425,7 +425,7 @@ vis.binds["materialdesign"] = {
                 }
             });
         } catch (ex) {
-            console.exception(`mdcIconButton: error: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`mdcIconButton [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     mdcCheckbox: function (el, data) {
@@ -437,7 +437,7 @@ vis.binds["materialdesign"] = {
             mdcFormField.input = mdcCheckbox;
 
         } catch (ex) {
-            console.exception(`mdcCheckbox: error: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`mdcCheckbox [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };
