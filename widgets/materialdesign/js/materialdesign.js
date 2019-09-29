@@ -7,12 +7,15 @@
 */
 "use strict";
 
-// add translations for edit mode
-$.get("adapter/vis-materialdesign/words.js", function (script) {
-    let translation = script.substring(script.indexOf('{'), script.length);
-    translation = translation.substring(0, translation.lastIndexOf(';'));
-    $.extend(systemDictionary, JSON.parse(translation));
-});
+if (vis.editMode) {
+    let iobSystemDic = systemDictionary;
+    $.get("../vis-materialdesign.admin/words.js", function (script) {
+        let translation = script.substring(script.indexOf('{'), script.length);
+        translation = translation.substring(0, translation.lastIndexOf(';'));
+        $.extend(systemDictionary, JSON.parse(translation));
+        $.extend(systemDictionary, iobSystemDic);
+    });
+}
 
 // this code can be placed directly in materialdesign.html
 vis.binds["materialdesign"] = {
@@ -408,7 +411,7 @@ vis.binds["materialdesign"] = {
 
         var colorBgFalse = (data.colorBgFalse === undefined || data.colorBgFalse === null || data.colorBgFalse === '') ? '' : data.colorBgFalse;
         var colorBgTrue = (data.colorBgTrue === undefined || data.colorBgTrue === null || data.colorBgTrue === '') ? '' : data.colorBgTrue;
-        
+
         var colorPress = (data.colorPress === undefined || data.colorPress === null || data.colorPress === '') ? '' : data.colorPress;
         $this.context.style.setProperty("--mdc-theme-primary", colorPress);
 
@@ -445,7 +448,7 @@ vis.binds["materialdesign"] = {
         vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
             val = newVal;
             mdcIconButton.on = val;
-            
+
             if (val) {
                 $this.find('.imgToggleFalse').hide();
                 $this.find('.imgToggleTrue').show();

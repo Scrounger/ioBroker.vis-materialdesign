@@ -121,6 +121,8 @@
             htmlText: <textarea readonly style="width: calc(100% - 10px)"><%== this.data.attr('htmlText') %></textarea><br>
         </div>
     </div>
+
+
 </script>
 
 <script id="tplVis-materialdesignHelper"
@@ -148,7 +150,7 @@
         data-vis-attrs0="group.label;labelFalse/html;labelTrue/html;labelColorFalse/color;labelColorTrue/color;"
         data-vis-attrs1="group.icon;imageFalse/image;invertImageFalse/checkbox;imageTrue/image;invertImageTrue/checkbox;iconHeight/slider,0,200,1;"
         data-vis-attrs2="group.color;colorBgFalse/color;colorBgTrue/color;labelColorBgFalse/color;labelColorBgTrue/color;colorPress/color">
-        
+
     <%
         let buttonStyle = '';
         if (this.data.buttonStyle !== 'text'){
@@ -165,7 +167,7 @@
             stylesInvertImageTrue = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
         }        
     %>
-        
+
     <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.basic.toggle(el); vis.binds.materialdesign.addRippleEffect(el, data) %>>
         <div class="materialdesign vis-widget-body" style="display: table; width: 100%; height: 100%; background: <%= this.data.attr('colorBgFalse')%>">
             <div style="display: table-row;">                
@@ -243,7 +245,7 @@
                 stylesInvertImageTrue = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
             }
         %>
-            
+
         <div class="vis-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" aria-hidden="true" aria-pressed="false" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcIconButton(el, this.data) %>>
             <img class="imgToggleFalse" style="width: 100%; height: 100%; <%= stylesInvertImageFalse %>" <%= this.data.attr('imageFalse') ? 'src="' +  this.data.attr('imageFalse') + '"' : '' %> />
             <img class="imgToggleTrue" style="width: 100%; height: 100%; <%= stylesInvertImageTrue %>" <%= this.data.attr('imageTrue')  ? 'src="' +  this.data.attr('imageTrue')  + '"' : '' %> />
@@ -257,13 +259,14 @@
         data-vis-set="materialdesign"
         data-vis-type="ctrl,bool"
         data-vis-name="Switch"
-        data-vis-attrs="oid;colorSliderTrue/color;"
-        data-vis-attrs0="group.label;labelFalsePrepend;labelTruePrepend;labelFalseAppend;labelTrueAppend;labelColorFalse/color;labelColorTrue/color;">
+        data-vis-attrs="oid;"
+        data-vis-attrs0="group.label;labelFalsePrepend;labelTruePrepend;labelFalseAppend;labelTrueAppend;"
+        data-vis-attrs1="group.color;colorSwitchTrue/color;labelColorFalse/color;labelColorTrue/color;">
         
         <%
-            let colorSliderTrue = '';
-            if (this.data.colorSliderTrue !== '' && this.data.colorSliderTrue !== undefined){
-                colorSliderTrue = '--mdc-theme-secondary: ' + this.data.colorSliderTrue + ';';
+            let colorSwitchTrue = '';
+            if (this.data.colorSwitchTrue !== '' && this.data.colorSwitchTrue !== undefined){
+                colorSwitchTrue = '--mdc-theme-secondary: ' + this.data.colorSwitchTrue + ';';
             }
         %>
 
@@ -272,7 +275,7 @@
                 <span class="labelSwitchPrepandFalse" style="color: <%== this.data.attr('labelColorFalse') %>"><%== this.data.attr('labelFalsePrepend') %></span>
                 <span class="labelSwitchPrepandTrue" style="color: <%== this.data.attr('labelColorTrue') %>; display:none"><%== this.data.attr('labelTruePrepend') %></span>
 
-                <div class="mdc-switch" style="margin-left: 10px; margin-right: 10px; <%= colorSliderTrue %>">
+                <div class="mdc-switch" style="margin-left: 10px; margin-right: 10px; <%= colorSwitchTrue %>">
                     <div class="mdc-switch__track"></div>
                     <div class="mdc-switch__thumb-underlay">
                         <div class="mdc-switch__thumb">
@@ -294,9 +297,9 @@
         data-vis-type="ctrl,slider,dimmer"
         data-vis-name="Discrete Slider"
         data-vis-update-style="true"
-        data-vis-attrs="oid;oid-working;min;max;step[1];showMarkers/checkbox;"
-        data-vis-attrs0="group.color;colorSlider/color;colorSliderBg/color;"
-        data-vis-attrs1="group.valueLabel;showValueLabel[true]/checkbox;valueLabelUnit;valueLabelWidth[25]/slider,0,100,1;">
+        data-vis-attrs="oid;oid-working;min;max;step[1];"
+        data-vis-attrs0="group.color;colorSliderBg/color;colorSlider/color;"
+        data-vis-attrs1="group.label;showValueLabel[true]/checkbox;showMarkers/checkbox;valueLabelUnit;valueLabelWidth[25]/slider,0,100,1;">
 
         <%
             let colorSlider = '';
@@ -354,8 +357,8 @@
         data-vis-name="Slider"
         data-vis-update-style="true"
         data-vis-attrs="oid;oid-working;min;max;step[1];"
-        data-vis-attrs0="group.color;colorSlider/color;colorSliderBg/color;"
-        data-vis-attrs1="group.valueLabel;showValueLabel[true]/checkbox;valueLabelUnit;valueLabelWidth[25]/slider,0,100,1;">
+        data-vis-attrs0="group.color;colorSliderBg/color;colorSlider/color;"
+        data-vis-attrs1="group.label;showValueLabel[true]/checkbox;valueLabelUnit;valueLabelWidth[25]/slider,0,100,1;">
 
         <%
             let colorSlider = '';
@@ -404,18 +407,18 @@
         data-vis-name="Progress"
         data-vis-update-style="true"
         data-vis-attrs="oid;min;max;reverse/checkbox;"
-        data-vis-attrs0="group.color;colorProgressBg/color;colorProgress/color;colorOneCondition;colorOne/color;colorTwoCondition;colorTwo/color;"
-        data-vis-attrs1="group.valueLabel;showValueLabel[true]/checkbox;valueLabelUnit;valueMaxDecimals;valuePosition[inside]/select,inside,outside;valueLabelWidth[25]/slider,0,100,1;">
-        
+        data-vis-attrs0="group.color;colorBgFalse/color;colorProgress/color;colorOneCondition;colorOne/color;colorTwoCondition;colorTwo/color;"
+        data-vis-attrs1="group.label;showValueLabel[true]/checkbox;valueLabelUnit;valueMaxDecimals;valuePosition[inside]/select,inside,outside;valueLabelWidth[25]/slider,0,100,1;">
+
         <%
             let colorProgress = '';
             if (this.data.colorProgress !== '' && this.data.colorProgress !== undefined){
                 colorProgress = 'background-color: ' + this.data.colorProgress + ';';
             }
 
-            let colorProgressBg = '';
-            if (this.data.colorProgressBg !== '' && this.data.colorProgressBg !== undefined){
-                colorProgressBg = 'background-color: ' + this.data.colorProgressBg + ';';
+            let colorBgFalse = '';
+            if (this.data.colorBgFalse !== '' && this.data.colorBgFalse !== undefined){
+                colorBgFalse = 'background-color: ' + this.data.colorBgFalse + ';';
             }
 
             let showValue = '';
@@ -433,7 +436,7 @@
             <div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
                 <div role="progressbar" class="mdc-linear-progress" style="text-align: left;" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcProgress(el, {min: data.min, max: data.max, unit: data.valueLabelUnit, maxDecimals: data.valueMaxDecimals, reverse: data.reverse, color: data.colorProgress, colorOneCondition: data.colorOneCondition, colorOne: data.colorOne, colorTwoCondition: data.colorTwoCondition, colorTwo: data.colorTwo}) %>>
                     <div class="mdc-linear-progress__buffering-dots"></div>
-                    <div class="mdc-linear-progress__buffer" style="<%= colorProgressBg %>"></div>
+                    <div class="mdc-linear-progress__buffer" style="<%= colorBgFalse %>"></div>
                     <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
                         <span class="mdc-linear-progress__bar-inner" style="<%= colorProgress %>"></span>
                     </div>
@@ -490,7 +493,7 @@
             } else {
                 htmlLayout = 'mdc-typography mdc-typography--' + this.data.htmlLayout;
             }
-            
+
             let cardLayout = '';
             if (this.data.cardLayout === 'Basic'){
                 cardLayout = 
