@@ -219,16 +219,16 @@ systemDictionary = {
         "zh-cn": "外"
     },
     "valueLabelWidth": {
-        "en": "label size",
-        "de": "Größe Beschriftung",
-        "ru": "размер этикетки",
-        "pt": "tamanho da etiqueta",
-        "nl": "etiketgrootte",
-        "fr": "taille de l'étiquette",
-        "it": "dimensione dell'etichetta",
-        "es": "Tamaño de la etiqueta",
-        "pl": "rozmiar etykiety",
-        "zh-cn": "标签尺寸"
+        "en": "distance label",
+        "de": "Abstand Beschriftung",
+        "ru": "метка расстояния",
+        "pt": "etiqueta de distância",
+        "nl": "afstandslabel",
+        "fr": "étiquette de distance",
+        "it": "etichetta della distanza",
+        "es": "etiqueta de distancia",
+        "pl": "etykieta odległości",
+        "zh-cn": "距离标签"
     },
     "labelFalsePrepend": {
         "en": "prepend label",

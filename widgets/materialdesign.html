@@ -320,7 +320,12 @@
             let showValue = '';
             if (this.data.showValueLabel === 'false' || this.data.showValueLabel === false) {
                 showValue = 'display:none;'
-            }            
+            }  
+            
+            let valueLabelWidth = '0%';
+            if (this.data.valueLabelWidth !== undefined && this.data.valueLabelWidth !== null && this.data.valueLabelWidth !== ''){
+                valueLabelWidth = this.data.valueLabelWidth + '%';
+            }
         %>
 
         <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; padding-left: 5px; padding-right: 5px; overflow:visible !important;" id="<%= this.data.attr('wid') %>">
@@ -343,7 +348,7 @@
                         <div class="mdc-slider__focus-ring"></div>
                     </div>
                 </div>
-                <span class="labelValue" style="width: <%= this.data.attr('valueLabelWidth') + '%' || 10 %>; text-align: right; <%= showValue %>"></span>                
+                <span class="labelValue" style="width: <%= valueLabelWidth %>; text-align: right; <%= showValue %>"></span>                
             </div>
         </div>
 </script>
@@ -375,6 +380,11 @@
             if (this.data.showValueLabel === 'false' || this.data.showValueLabel === false) {
                 showValue = 'display:none;'
             }
+
+            let valueLabelWidth = '0%';
+            if (this.data.valueLabelWidth !== undefined && this.data.valueLabelWidth !== null && this.data.valueLabelWidth !== ''){
+                valueLabelWidth = this.data.valueLabelWidth + '%';
+            }
         %>
 
         <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; padding-left: 5px; padding-right: 5px; overflow:visible !important;" id="<%= this.data.attr('wid') %>">
@@ -393,7 +403,7 @@
                         <div class="mdc-slider__focus-ring"></div>
                     </div>
                 </div>
-                <span class="labelValue" style="width: <%= this.data.attr('valueLabelWidth') + '%' || 10 %>; text-align: right; <%= showValue %>"></span>
+                <span class="labelValue" style="width: <%= valueLabelWidth %>; text-align: right; <%= showValue %>"></span>
             </div>
         </div>
 </script>
@@ -431,6 +441,11 @@
             if (this.data.valuePosition === 'inside'){
                 valuePosition = 'position: absolute; width: 100%;';
             }
+
+            let valueLabelWidth = '0%';
+            if (this.data.valueLabelWidth !== undefined && this.data.valueLabelWidth !== null && this.data.valueLabelWidth !== ''){
+                valueLabelWidth = this.data.valueLabelWidth + '%';
+            }
         %>
 
         <div class="vis-widget materialdesign-progress <%== this.data.attr('class') %>" style="width: 180px; height: 50px;" id="<%= this.data.attr('wid') %>">
@@ -445,7 +460,7 @@
                         <span class="mdc-linear-progress__bar-inner"></span>
                     </div>
                 </div>
-                <div style="min-width: <%= this.data.attr('valueLabelWidth') + '%' || 10 %>; <%= valuePosition %>">
+                <div style="min-width: <%= valueLabelWidth %>; <%= valuePosition %>">
                     <label class="labelValue" style="<%= showValue %>">100%</label>
                 </div>
             </div>
