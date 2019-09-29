@@ -248,74 +248,35 @@ vis.binds["materialdesign"] = {
             setTimeout(function () {
                 // timeout damit slider funktioniert notwendig
                 let $this = $(el);
-                var oid = $this.attr('data-oid');
-                var wid = $this.attr('data-oid-working');
+                let oid = $this.attr('data-oid');
+                let wid = $this.attr('data-oid-working');
 
                 const mdcSlider = new mdc.slider.MDCSlider($this.context);
 
-                var min = getValueFromData(data.min, 0);
-                var max = getValueFromData(data.max, 1);
-                var unit = getValueFromData(data.valueLabelUnit, '');
+                let min = getValueFromData(data.min, 0);
+                let max = getValueFromData(data.max, 1);
+                let unit = getValueFromData(data.valueLabelUnit, '');
 
-                if (max < min) {
-                    var tmp = max;
-                    max = min;
-                    min = tmp;
-                }
-
-                var val = vis.states.attr(oid + '.val');
-                if (val === true || val === 'true') val = max;
-                if (val === false || val === 'false') val = min;
-                val = parseFloat(val);
-                if (isNaN(val)) val = min;
-
-                if (val < min) val = min;
-                if (val > max) val = max;
-
-                data.min = min;
-                data.max = max;
-                data.simRange = 100;
-                data.range = data.max - data.min;
-                data.factor = data.simRange / data.range;
-                val = Math.floor((val - data.min) * data.factor);
-
+                // Wert beim intialisieren setzen, sofern nicht working aktiv
                 if (!vis.states.attr(wid + '.val')) {
+                    let val = vis.states.attr(oid + '.val');
                     mdcSlider.value = val;
                     $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html(val + unit);
                 }
 
+                // Slider user input -> Wert übergeben
                 mdcSlider.listen('MDCSlider:change', function () {
-                    val = (parseFloat(val) / data.factor) + data.min;
-                    if (data.step) {
-                        val = Math.round(val / data.step) * data.step;
-                    }
-                    if (data.digits !== undefined && data.digits !== null && data.digits !== '') {
-                        vis.setValue(oid, mdcSlider.value.toFixed(data.digits));
-                    } else {
-                        vis.setValue(oid, mdcSlider.value);
-                    }
+                    vis.setValue(oid, mdcSlider.value);
                 });
 
                 vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
+                    if (!vis.states.attr(wid + '.val')) {
+                        var val = vis.states.attr(oid + '.val');
 
-                    var val = vis.states.attr(oid + '.val');
-                    if (val === true || val === 'true') val = data.max;
-                    if (val === false || val === 'false') val = data.min;
-                    val = parseFloat(val);
-                    if (isNaN(val)) val = data.min;
-                    if (val < data.min) val = data.min;
-                    if (val > data.max) val = data.max;
-                    val = Math.floor((val - data.min) * data.factor);
-                    try {
-                        if (!vis.states.attr(wid + '.val')) {
-                            mdcSlider.value = val;
-                            $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html(val + unit);
-                        }
-                    } catch (e) {
-                        console.error(e);
+                        mdcSlider.value = val;
+                        $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html(val + unit);
                     }
                 });
-
             }, 1);
         } catch (err) {
             console.log(`mdcSlider: ${err.message} ${err.stack}`);
