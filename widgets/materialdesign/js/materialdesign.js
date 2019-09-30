@@ -431,11 +431,24 @@ vis.binds["materialdesign"] = {
     mdcCheckbox: function (el, data) {
         try {
             let $this = $(el);
+            var oid = $this.attr('data-oid');
 
             const mdcFormField = new mdc.formField.MDCFormField($this.context);
             const mdcCheckbox = new mdc.checkbox.MDCCheckbox($this.find('.mdc-checkbox').get(0));
             mdcFormField.input = mdcCheckbox;
 
+            var val = vis.states.attr(oid + '.val');
+            mdcCheckbox.checked = val;
+
+            $this.find('.mdc-checkbox').click(function() {
+                val = mdcCheckbox.checked;
+                vis.setValue(oid, val);
+            });
+
+            vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
+                val = newVal;
+                mdcCheckbox.checked = val;
+            });
         } catch (ex) {
             console.exception(`mdcCheckbox [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }

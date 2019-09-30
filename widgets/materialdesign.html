@@ -575,11 +575,13 @@
         data-vis-type="ctrl,bool"
         data-vis-name="Checkbox"
         data-vis-update-style="true"
-        data-vis-attrs="oid;html_prepend;html_append;numeric/checkbox;min;max;autoSet/checkbox;readOnly/checkbox">
+        data-vis-attrs="oid;readOnly/checkbox;"
+        data-vis-attrs0="group.label;labelFalsePrepend;labelTruePrepend;labelFalseAppend;labelTrueAppend;"
+        data-vis-attrs1="group.color;colorSwitchTrue/color;labelColorFalse/color;labelColorTrue/color;">
 
-        <div class="vis-widget materialdesign-checkbox <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>">
+        <div class="vis-widget materialdesign-checkbox <%== this.data.attr('class') %>" style="width:80px; height:50px;" id="<%= this.data.attr('wid') %>">
             <div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
-                <div class="mdc-form-field" <%= (el) -> vis.binds.materialdesign.mdcCheckbox(el, data) %>>
+                <div class="mdc-form-field" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcCheckbox(el, data) %>>
                     <label for="materialdesign-checkbox-<%= this.data.attr('wid') %>">Checkbox 1</label>
                     <div class="mdc-checkbox">
                         <input type="checkbox" class="mdc-checkbox__native-control" id="materialdesign-checkbox-<%= this.data.attr('wid') %>"/>
