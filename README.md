@@ -17,7 +17,7 @@
 
 Material Design Widgets based on [Google material components web library](https://github.com/material-components/material-components-web).
 
-## Supported Browser
+### Supported Browser
 https://github.com/material-components/material-components-web/blob/master/docs/supported-browsers.md
 
 ## Button Toggle
