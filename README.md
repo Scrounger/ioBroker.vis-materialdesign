@@ -2,9 +2,9 @@
 # ioBroker.vis-materialdesign
 
 ![stable version](http://iobroker.live/badges/vis-materialdesign.svg)
-[![NPM version](http://img.shields.io/npm/v/ioBroker.vis-materialdesign.svg)](https://www.npmjs.com/package/ioBroker.vis-materialdesign)
+[![NPM version](http://img.shields.io/npm/v/iobroker.vis-materialdesign.svg)](https://www.npmjs.com/package/ioBroker.vis-materialdesign)
 [![Number of Installations](http://iobroker.live/badges/vis-materialdesign-installed.svg)](https://www.npmjs.com/package/ioBroker.vis-materialdesign)
-[![Downloads](https://img.shields.io/npm/dm/ioBroker.vis-materialdesign.svg)](https://www.npmjs.com/package/ioBroker.vis-materialdesign)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.vis-materialdesign.svg)](https://www.npmjs.com/package/ioBroker.vis-materialdesign)
 [![Dependency Status](https://img.shields.io/david/Scrounger/ioBroker.vis-materialdesign.svg)](https://david-dm.org/Scrounger/ioBroker.vis-materialdesign)
 [![Known Vulnerabilities](https://snyk.io/test/github/Scrounger/ioBroker.vis-materialdesign/badge.svg)](https://snyk.io/test/github/Scrounger/ioBroker.vis-materialdesign)
 
