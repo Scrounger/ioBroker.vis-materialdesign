@@ -382,36 +382,19 @@ vis.binds["materialdesign"] = {
 
             const mdcIconButton = new mdc.iconButton.MDCIconButtonToggle($this.context);
 
-            var val = vis.states.attr(oid + '.val');
-            mdcIconButton.on = val;
-
-            if (val) {
-                $this.find('.imgToggleFalse').hide();
-                $this.find('.imgToggleTrue').show();
-                $this.css('background', colorBgTrue);
-            } else {
-                $this.find('.imgToggleFalse').show();
-                $this.find('.imgToggleTrue').hide();
-                $this.css('background', colorBgFalse);
-            }
+            setIconButtonState();
 
             mdcIconButton.listen('MDCIconButtonToggle:change', function () {
-                val = mdcIconButton.on;
-
-                if (val) {
-                    $this.find('.imgToggleFalse').hide();
-                    $this.find('.imgToggleTrue').show();
-                    $this.css('background', colorBgTrue);
-                } else {
-                    $this.find('.imgToggleFalse').show();
-                    $this.find('.imgToggleTrue').hide();
-                    $this.css('background', colorBgFalse);
-                }
-                vis.setValue(oid, val);
+                vis.setValue(oid, mdcIconButton.on);
+                setIconButtonState();
             });
 
             vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
-                val = newVal;
+                setIconButtonState();
+            });
+
+            function setIconButtonState() {
+                var val = vis.states.attr(oid + '.val');
                 mdcIconButton.on = val;
 
                 if (val) {
@@ -423,7 +406,7 @@ vis.binds["materialdesign"] = {
                     $this.find('.imgToggleTrue').hide();
                     $this.css('background', colorBgFalse);
                 }
-            });
+            };
         } catch (ex) {
             console.exception(`mdcIconButton [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
