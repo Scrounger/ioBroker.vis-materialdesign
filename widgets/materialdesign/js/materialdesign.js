@@ -251,6 +251,52 @@ vis.binds["materialdesign"] = {
             console.exception(`mdcSwitch: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
+    mdcCheckbox: function (el, data) {
+        try {
+            let $this = $(el);
+            var oid = $this.attr('data-oid');
+
+            const mdcFormField = new mdc.formField.MDCFormField($this.context);
+            const mdcCheckbox = new mdc.checkbox.MDCCheckbox($this.find('.mdc-checkbox').get(0));
+            mdcFormField.input = mdcCheckbox;
+
+            mdcCheckbox.disabled = getValueFromData(data.readOnly, false);
+
+            setCheckboxState();
+
+            $this.find('.mdc-checkbox').click(function () {
+                vis.setValue(oid, mdcCheckbox.checked);
+                setCheckboxState();
+            });
+
+            vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
+                setCheckboxState();
+            });
+
+            function setCheckboxState() {
+                var val = vis.states.attr(oid + '.val');
+                mdcCheckbox.checked = val;
+
+                let prepandLabel = $this.find('label[id="prepandLabel"]');
+                let appendLabel = $this.find('label[id="appendLabel"]');
+                if (val) {
+                    prepandLabel.css('color', getValueFromData(data.labelColorTrue, ''));
+                    prepandLabel.text(getValueFromData(data.labelTruePrepend, ''));
+
+                    appendLabel.css('color', getValueFromData(data.labelColorTrue, ''));
+                    appendLabel.text(getValueFromData(data.labelTrueAppend, ''));
+                } else {
+                    prepandLabel.css('color', getValueFromData(data.labelColorFalse, ''));
+                    prepandLabel.text(getValueFromData(data.labelFalsePrepend, ''));
+
+                    appendLabel.css('color', getValueFromData(data.labelColorFalse, ''));
+                    appendLabel.text(getValueFromData(data.labelFalseAppend, ''));
+                }
+            }
+        } catch (ex) {
+            console.exception(`mdcCheckbox [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
     mdcSlider: function (el, data) {
         try {
             setTimeout(function () {
@@ -411,52 +457,6 @@ vis.binds["materialdesign"] = {
             console.exception(`mdcIconButton [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    mdcCheckbox: function (el, data) {
-        try {
-            let $this = $(el);
-            var oid = $this.attr('data-oid');
-
-            const mdcFormField = new mdc.formField.MDCFormField($this.context);
-            const mdcCheckbox = new mdc.checkbox.MDCCheckbox($this.find('.mdc-checkbox').get(0));
-            mdcFormField.input = mdcCheckbox;
-
-            mdcCheckbox.disabled = getValueFromData(data.readOnly, false);
-
-            setCheckboxState();
-
-            $this.find('.mdc-checkbox').click(function () {
-                vis.setValue(oid, mdcCheckbox.checked);
-                setCheckboxState();
-            });
-
-            vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
-                setCheckboxState();
-            });
-
-            function setCheckboxState() {
-                var val = vis.states.attr(oid + '.val');
-                mdcCheckbox.checked = val;
-
-                let prepandLabel = $this.find('label[id="prepandLabel"]');
-                let appendLabel = $this.find('label[id="appendLabel"]');
-                if (val) {
-                    prepandLabel.css('color', getValueFromData(data.labelColorTrue, ''));
-                    prepandLabel.text(getValueFromData(data.labelTruePrepend, ''));
-
-                    appendLabel.css('color', getValueFromData(data.labelColorTrue, ''));
-                    appendLabel.text(getValueFromData(data.labelTrueAppend, ''));
-                } else {
-                    prepandLabel.css('color', getValueFromData(data.labelColorFalse, ''));
-                    prepandLabel.text(getValueFromData(data.labelFalsePrepend, ''));
-
-                    appendLabel.css('color', getValueFromData(data.labelColorFalse, ''));
-                    appendLabel.text(getValueFromData(data.labelFalseAppend, ''));
-                }
-            }
-        } catch (ex) {
-            console.exception(`mdcCheckbox [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
-        }
-    }
 };
 
 function getValueFromData(dataValue, nullValue) {
