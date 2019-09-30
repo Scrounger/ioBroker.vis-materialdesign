@@ -420,18 +420,39 @@ vis.binds["materialdesign"] = {
             const mdcCheckbox = new mdc.checkbox.MDCCheckbox($this.find('.mdc-checkbox').get(0));
             mdcFormField.input = mdcCheckbox;
 
-            var val = vis.states.attr(oid + '.val');
-            mdcCheckbox.checked = val;
+            mdcCheckbox.disabled = getValueFromData(data.readOnly, false);
 
-            $this.find('.mdc-checkbox').click(function() {
-                val = mdcCheckbox.checked;
-                vis.setValue(oid, val);
+            setCheckboxState();
+
+            $this.find('.mdc-checkbox').click(function () {
+                vis.setValue(oid, mdcCheckbox.checked);
+                setCheckboxState();
             });
 
             vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
-                val = newVal;
-                mdcCheckbox.checked = val;
+                setCheckboxState();
             });
+
+            function setCheckboxState() {
+                var val = vis.states.attr(oid + '.val');
+                mdcCheckbox.checked = val;
+
+                let prepandLabel = $this.find('label[id="prepandLabel"]');
+                let appendLabel = $this.find('label[id="appendLabel"]');
+                if (val) {
+                    prepandLabel.css('color', getValueFromData(data.labelColorTrue, ''));
+                    prepandLabel.text(getValueFromData(data.labelTruePrepend, ''));
+
+                    appendLabel.css('color', getValueFromData(data.labelColorTrue, ''));
+                    appendLabel.text(getValueFromData(data.labelTrueAppend, ''));
+                } else {
+                    prepandLabel.css('color', getValueFromData(data.labelColorFalse, ''));
+                    prepandLabel.text(getValueFromData(data.labelFalsePrepend, ''));
+
+                    appendLabel.css('color', getValueFromData(data.labelColorFalse, ''));
+                    appendLabel.text(getValueFromData(data.labelFalseAppend, ''));
+                }
+            }
         } catch (ex) {
             console.exception(`mdcCheckbox [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }

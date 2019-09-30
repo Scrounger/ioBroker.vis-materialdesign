@@ -313,7 +313,7 @@ systemDictionary = {
         "es": "etiqueta para valor mayor que max",
         "pl": "etykieta dla wartości większej niż maks",
         "zh-cn": "标签值大于最大值"
-      },
+    },
     "group_icon": {
         "en": "icon",
         "de": "Symbol",
@@ -553,5 +553,17 @@ systemDictionary = {
         "es": "antecedentes",
         "pl": "tło",
         "zh-cn": "背景"
+    },
+    "colorCheckBox": {
+        "en": "active checkbox color",
+        "de": "Farbe des aktiven Kontrollkästchens",
+        "ru": "активный флажок цвет",
+        "pt": "cor da caixa de seleção ativa",
+        "nl": "actieve selectievakje kleur",
+        "fr": "couleur de la case à cocher active",
+        "it": "colore della casella di controllo attivo",
+        "es": "color de casilla activa",
+        "pl": "aktywny kolor pola wyboru",
+        "zh-cn": "活动复选框颜色"
     }
 };
