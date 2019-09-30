@@ -2,13 +2,13 @@
 # ioBroker.vis-materialdesign
 
 ![stable version](http://iobroker.live/badges/vis-materialdesign.svg)
-[![NPM version](http://img.shields.io/npm/v/iobroker.vis-materialdesign.svg)](https://www.npmjs.com/package/iobroker.vis-materialdesign)
-[![Number of Installations](http://iobroker.live/badges/vis-materialdesign-installed.svg)](https://www.npmjs.com/package/iobroker.vis-materialdesign)
-[![Downloads](https://img.shields.io/npm/dm/iobroker.vis-materialdesign.svg)](https://www.npmjs.com/package/iobroker.vis-materialdesign)
-[![Dependency Status](https://img.shields.io/david/Scrounger/iobroker.vis-materialdesign.svg)](https://david-dm.org/Scrounger/iobroker.vis-materialdesign)
+[![NPM version](http://img.shields.io/npm/v/ioBroker.vis-materialdesign.svg)](https://www.npmjs.com/package/ioBroker.vis-materialdesign)
+[![Number of Installations](http://iobroker.live/badges/vis-materialdesign-installed.svg)](https://www.npmjs.com/package/ioBroker.vis-materialdesign)
+[![Downloads](https://img.shields.io/npm/dm/ioBroker.vis-materialdesign.svg)](https://www.npmjs.com/package/ioBroker.vis-materialdesign)
+[![Dependency Status](https://img.shields.io/david/Scrounger/ioBroker.vis-materialdesign.svg)](https://david-dm.org/Scrounger/ioBroker.vis-materialdesign)
 [![Known Vulnerabilities](https://snyk.io/test/github/Scrounger/ioBroker.vis-materialdesign/badge.svg)](https://snyk.io/test/github/Scrounger/ioBroker.vis-materialdesign)
 
-[![NPM](https://nodei.co/npm/iobroker.vis-materialdesign.png?downloads=true)](https://nodei.co/npm/iobroker.vis-materialdesign/)
+[![NPM](https://nodei.co/npm/ioBroker.vis-materialdesign.png?downloads=true)](https://nodei.co/npm/ioBroker.vis-materialdesign/)
 
 **Tests:**: [![Travis-CI](http://img.shields.io/travis/Scrounger/ioBroker.vis-materialdesign/master.svg)](https://travis-ci.org/Scrounger/ioBroker.vis-materialdesign)
 
@@ -16,6 +16,9 @@
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YHPPW474N5CKQ&source=url)
 
 Material Design Widgets based on [Google material components web library](https://github.com/material-components/material-components-web).
+
+## Supported Browser
+https://github.com/material-components/material-components-web/blob/master/docs/supported-browsers.md
 
 ## Button Toggle
 ![Logo](doc/media/buttons.gif)
