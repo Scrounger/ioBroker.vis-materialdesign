@@ -176,76 +176,47 @@ vis.binds["materialdesign"] = {
             console.exception(`itoggle [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    mdcSwitch: function (el) {
+    mdcSwitch: function (el, data) {
         try {
             var $this = $(el);
-            var oid = $this.data('oid'); // Object ID
-            var wid = $this.data('oid-working'); // Work ID
+            var oid = $this.data('oid');
 
-            // root element
-            let mdcSwitch = mdc.switchControl.MDCSwitch.attachTo($this.parents('.mdc-switch')[0]);
+            const mdcFormField = new mdc.formField.MDCFormField($this.context);
+            const mdcSwitch = new mdc.switchControl.MDCSwitch($this.find('.mdc-switch').get(0));
+            mdcFormField.input = mdcSwitch;
 
-            function onChange() {
-                let val = vis.states.attr(oid + '.val');
+            mdcSwitch.disabled = getValueFromData(data.readOnly, false);
+
+            setSwitchState();
+
+            $this.find('.mdc-switch').click(function () {
+                vis.setValue(oid, mdcSwitch.checked);
+                setSwitchState();
+            });
+
+            vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
+                setSwitchState();
+            });
+
+            function setSwitchState() {
+                var val = vis.states.attr(oid + '.val');
                 mdcSwitch.checked = val;
 
-                if (val === true) {
-                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandFalse').hide();
-                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandTrue').show();
+                let prepandLabel = $this.find('label[id="prepandLabel"]');
+                let appendLabel = $this.find('label[id="appendLabel"]');
+                if (val) {
+                    prepandLabel.css('color', getValueFromData(data.labelColorTrue, ''));
+                    prepandLabel.text(getValueFromData(data.labelTruePrepend, ''));
 
-                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendFalse').hide();
-                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendTrue').show();
+                    appendLabel.css('color', getValueFromData(data.labelColorTrue, ''));
+                    appendLabel.text(getValueFromData(data.labelTrueAppend, ''));
                 } else {
-                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandTrue').hide();
-                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandFalse').show();
+                    prepandLabel.css('color', getValueFromData(data.labelColorFalse, ''));
+                    prepandLabel.text(getValueFromData(data.labelFalsePrepend, ''));
 
-                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendTrue').hide();
-                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendFalse').show();
+                    appendLabel.css('color', getValueFromData(data.labelColorFalse, ''));
+                    appendLabel.text(getValueFromData(data.labelFalseAppend, ''));
                 }
-            }
-
-            if (oid) {
-                var bound = [];
-                vis.states.bind(oid + '.val', onChange);
-                bound.push(oid + '.val');
-                if (wid) {
-                    vis.states.bind(wid + '.val', onChange);
-                    bound.push(wid + '.val');
-                }
-                // remember all ids, that bound
-                $this.closest('.vis-widget')
-                    .data('bound', bound)
-                    // remember bind handler
-                    .data('bindHandler', onChange);
-
-
-                let val = vis.states.attr(oid + '.val');
-                mdcSwitch.checked = val;
-
-                if (val === true || val === 'true') {
-                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandFalse').hide();
-                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandTrue').show();
-
-                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendFalse').hide();
-                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendTrue').show();
-                } else {
-                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandTrue').hide();
-                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchPrepandFalse').show();
-
-                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendTrue').hide();
-                    $this.parents('.materialdesign.vis-widget-body').find('.labelSwitchAppendFalse').show();
-                }
-            }
-
-            if (!vis.editMode) {
-                $this.change(function () {
-                    var $this_ = $(this);
-                    if ($this_.prop('checked')) {
-                        vis.setValue($this_.data('oid'), true);
-                    } else {
-                        vis.setValue($this_.data('oid'), false);
-                    }
-                });
             }
         } catch (ex) {
             console.exception(`mdcSwitch: error: ${ex.message}, stack: ${ex.stack}`);

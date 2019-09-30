@@ -257,7 +257,8 @@
         data-vis-set="materialdesign"
         data-vis-type="ctrl,bool"
         data-vis-name="Switch"
-        data-vis-attrs="oid;"
+        data-vis-update-style="true"
+        data-vis-attrs="oid;readOnly/checkbox;"
         data-vis-attrs0="group.label;labelFalsePrepend;labelTruePrepend;labelFalseAppend;labelTrueAppend;"
         data-vis-attrs1="group.color;colorSwitchTrue/color;labelColorFalse/color;labelColorTrue/color;">
         
@@ -268,22 +269,17 @@
             }
         %>
 
-        <div class="vis-widget materialdesign-switch <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>">
-            <div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
-                <span class="labelSwitchPrepandFalse" style="color: <%== this.data.attr('labelColorFalse') %>"><%== this.data.attr('labelFalsePrepend') %></span>
-                <span class="labelSwitchPrepandTrue" style="color: <%== this.data.attr('labelColorTrue') %>; display:none"><%== this.data.attr('labelTruePrepend') %></span>
-
-                <div class="mdc-switch" style="margin-left: 10px; margin-right: 10px; <%= colorSwitchTrue %>">
-                    <div class="mdc-switch__track"></div>
-                    <div class="mdc-switch__thumb-underlay">
-                        <div class="mdc-switch__thumb">
-                            <input class="mdc-switch__native-control" id="<%= this.data.attr('wid') %>-basic-switch" type="checkbox" data-oid="<%= this.data.attr('oid') %>" role="switch" <%= (el) -> vis.binds.materialdesign.mdcSwitch(el) %>>
-                        </div>
+        <div class="vis-widget mdc-form-field materialdesign-switch <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcSwitch(el, data) %>>
+            <label id="prepandLabel" for="materialdesign-checkbox-switch<%= this.data.attr('wid') %>" style="cursor: pointer; pointer-events:none;">Checkbox 1</label>
+            <div class="mdc-switch" style="margin-left: 10px; margin-right: 10px; <%= colorSwitchTrue %>">
+                <div class="mdc-switch__track"></div>
+                <div class="mdc-switch__thumb-underlay">
+                    <div class="mdc-switch__thumb">
+                        <input class="mdc-switch__native-control" id="materialdesign-checkbox-switch<%= this.data.attr('wid') %>" type="checkbox" data-oid="<%= this.data.attr('oid') %>" role="switch">
                     </div>
                 </div>
-                <span class="labelSwitchAppendFalse" style="color: <%== this.data.attr('labelColorFalse') %>"><%== this.data.attr('labelFalseAppend') %></span>
-                <span class="labelSwitchAppendTrue" style="color: <%== this.data.attr('labelColorTrue') %>; display:none"><%== this.data.attr('labelTrueAppend') %></span>
             </div>
+            <label id="appendLabel" for="materialdesign-checkbox-switch<%= this.data.attr('wid') %>" style="cursor: pointer">Checkbox 1</label>
         </div>
 </script>
 
@@ -307,7 +303,7 @@
         %>
 
         <div class="vis-widget mdc-form-field materialdesign-checkbox <%== this.data.attr('class') %>" style="width:80px; height:50px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcCheckbox(el, data) %>>
-            <label id="prepandLabel" for="materialdesign-checkbox-<%= this.data.attr('wid') %>">Checkbox 1</label>
+            <label id="prepandLabel" for="materialdesign-checkbox-<%= this.data.attr('wid') %>" style="cursor: pointer">Checkbox 1</label>
             <div class="mdc-checkbox" style="<%= colorCheckBox %>">
                 <input type="checkbox" class="mdc-checkbox__native-control" id="materialdesign-checkbox-<%= this.data.attr('wid') %>"/>
                 <div class="mdc-checkbox__background">
@@ -317,7 +313,7 @@
                 <div class="mdc-checkbox__mixedmark"></div>
                 </div>
             </div>
-            <label id="appendLabel" for="materialdesign-checkbox-<%= this.data.attr('wid') %>">Checkbox 1</label>
+            <label id="appendLabel" for="materialdesign-checkbox-<%= this.data.attr('wid') %>" style="cursor: pointer">Checkbox 1</label>
         </div>
 </script>
 
