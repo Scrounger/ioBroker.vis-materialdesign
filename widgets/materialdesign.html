@@ -512,13 +512,23 @@
         data-vis-set="materialdesign"
         data-vis-type="static"
         data-vis-name="HTML Card"
-        data-vis-attrs="title;titleLayout[headline6]/select,headline1,headline2,headline3,headline4,headline5,headline6;subtitle;subtitleLayout[subtitle2]/select,subtitle1,subtitle2;html/text;htmlLayout[body2]/select,custom,body1,body2;image/image;cardLayout[Basic]/select,Basic,BasicHeader,BasicHeaderOverlay,Horizontal;cardStyle[default]/select,default,outlined;"
+        data-vis-attrs="title;titleLayout[headline6]/auto,headline1,headline2,headline3,headline4,headline5,headline6,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;subtitle;subtitleLayout[subtitle2]/select,subtitle1,subtitle2;html/text;htmlLayout[body2]/select,custom,body1,body2;image/image;cardLayout[Basic]/select,Basic,BasicHeader,BasicHeaderOverlay,Horizontal;cardStyle[default]/select,default,outlined;"
         data-vis-attrs0="group.color;colorTitle/color;colorSubtitle/color;">
-
+        
         <%
             let cardStyle = '';
             if (this.data.cardStyle !== 'default'){
                 cardStyle = 'mdc-card--outlined';
+            }
+
+            let titleLayout ='';
+            let titleFontSize ='';
+            if (this.data.titleLayout !== undefined && this.data.titleLayout !== null && this.data.titleLayout !== ''){
+                if (this.data.titleLayout.includes('headline')){
+                    titleLayout = 'mdc-typography--' + this.data.titleLayout;
+                } else{
+                    titleFontSize = 'font-size: ' + this.data.titleLayout + ';';
+                }
             }
 
             let colorTitle = '';
@@ -553,7 +563,7 @@
                 cardLayout = 
                     '<div class="mdc-card__media mdc-card__media--16-9" style="' + showImage + 'background-image: url(' + this.data.image + ');"></div>' +
                     '<div class="materialdesign-html-card card-title-section" style="' + showTitleSection + '">' +
-                        '<div class="materialdesign-html-card card-title mdc-typography mdc-typography--' + this.data.titleLayout + '" style="' + colorTitle + '">' + this.data.title + '</div>' +
+                        '<div class="materialdesign-html-card card-title mdc-typography ' + titleLayout + '" style="' + colorTitle + titleFontSize + '">' + this.data.title + '</div>' +
                         '<div class="materialdesign-html-card card-subtitle mdc-typography mdc-typography--'+ this.data.subtitleLayout + '" style="' + colorSubtitle + '">'+ this.data.subtitle + '</div>' +
                     '</div>' +
                     '<div class="materialdesign-html-card card-text-section">' +
@@ -564,7 +574,7 @@
             if (this.data.cardLayout === 'BasicHeader'){
                 cardLayout = 
                     '<div class="materialdesign-html-card card-title-section" style="' + showTitleSection + '">' +
-                        '<div class="materialdesign-html-card card-title mdc-typography mdc-typography--' + this.data.titleLayout + '" style="' + colorTitle + '">' + this.data.title + '</div>' +
+                        '<div class="materialdesign-html-card card-title mdc-typography ' + titleLayout + '" style="' + colorTitle + titleFontSize + '">' + this.data.title + '</div>' +
                         '<div class="materialdesign-html-card card-subtitle mdc-typography mdc-typography--'+ this.data.subtitleLayout + '" style="' + colorSubtitle + '">'+ this.data.subtitle + '</div>' +
                     '</div>' +
                     '<div class="materialdesign-html-card mdc-card__media mdc-card__media--16-9 BasicHeader" style="' + showImage + 'background-image: url(' + this.data.image + ');"></div>' +
@@ -579,7 +589,7 @@
                     '<div class="mdc-card__media mdc-card__media--16-9" style="' + showImage + 'background-image: url(' + this.data.image + ');">' +
                         '<div class="materialdesign-html-card mdc-card__media-content">' +
                             '<div class="materialdesign-html-card card-title-section" style="' + showTitleSection + '">' +
-                                '<div class="materialdesign-html-card card-title mdc-typography mdc-typography--' + this.data.titleLayout + '" style="' + colorTitle + '">' + this.data.title + '</div>' +
+                                '<div class="materialdesign-html-card card-title mdc-typography ' + titleLayout + '" style="' + colorTitle + titleFontSize + '">' + this.data.title + '</div>' +
                                 '<div class="materialdesign-html-card card-subtitle mdc-typography mdc-typography--'+ this.data.subtitleLayout + '" style="' + colorSubtitle + '">'+ this.data.subtitle + '</div>' +
                             '</div>' +
                         '</div>' +
@@ -594,7 +604,7 @@
                     '<div class="materialdesign-html-card horizontal-container">' +
                         '<div class="materialdesign-html-card mdc-card__media mdc-card__media--square" style="' + showImage + 'background-image: url(' + this.data.image + ');"></div>' +
                         '<div class="materialdesign-html-card card-title-section">' +
-                            '<div class="materialdesign-html-card card-title mdc-typography mdc-typography--' + this.data.titleLayout + '" style="' + showTitleSection + colorTitle + '">' + this.data.title + '</div>' +
+                            '<div class="materialdesign-html-card card-title mdc-typography ' + titleLayout + '" style="' + showTitleSection + colorTitle + titleFontSize + '">' + this.data.title + '</div>' +
                             '<div class="materialdesign-html-card card-subtitle mdc-typography mdc-typography--'+ this.data.subtitleLayout + '" style="' + colorSubtitle + '">'+ this.data.subtitle + '</div>' +
                             '<div class=".materialdesign-html-card ' + htmlLayout + '">' + this.data.html + '</div>' +
                         '</div>' +
