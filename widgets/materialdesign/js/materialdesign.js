@@ -428,24 +428,35 @@ vis.binds["materialdesign"] = {
             console.exception(`mdcIconButton [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    mdcDrawer: function (el, data) {
+    mdcTopAppBarWithDrawer: function (el, data) {
         try {
             let $this = $(el);
-            
+
             const mdcDrawer = new mdc.drawer.MDCDrawer($this.context);
             const mdcTopAppBar = new mdc.topAppBar.MDCTopAppBar($this.parent().find('.mdc-top-app-bar').get(0));
+            const mdcList = new mdc.list.MDCList($this.parent().find('.mdc-list').get(0));
 
             mdcTopAppBar.setScrollTarget($this.parent().find('.drawer-main-content').get(0));
-            
+
             mdcTopAppBar.listen('MDCTopAppBar:nav', () => {
                 mdcDrawer.open = !mdcDrawer.open;
-              });
+            });
 
+            mdcList.selectedIndex = vis.states.attr(data.oid + '.val');
+
+            mdcList.listen('MDCList:action', (event) => {
+                var val = vis.states.attr(data.oid + '.val');
+
+                if (val != mdcList.selectedIndex) {
+                    vis.setValue(data.oid, mdcList.selectedIndex);
+                }
+
+                mdcDrawer.open = false;
+            });
         } catch (ex) {
             console.exception(`mdcDrawer [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-
 };
 
 function getValueFromData(dataValue, nullValue) {

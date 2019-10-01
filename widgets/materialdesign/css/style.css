@@ -629,3 +629,23 @@ svg.materialdesign-button__icon {
 .mdc-drawer--modal {
   position: absolute; /* position bug fix */
 }
+
+/* Default list color */
+.mdc-list {
+  --mdc-theme-primary: #1e88e5;
+}
+
+/* Default list item icon selected color */
+.mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic {
+  color: #1e88e5;
+}
+
+/* Default list item text selected color */
+.mdc-drawer .mdc-list-item--activated {
+  color: #1e88e5;
+}
+
+/* bug fix für vis view -> sonst wird view abgeschnitten */
+.vis-view-container{
+  position: absolute;
+}

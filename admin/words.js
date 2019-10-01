@@ -661,5 +661,5 @@ systemDictionary = {
         "es": "icono",
         "pl": "Ikona",
         "zh-cn": "图标"
-    },
+    }
 };
