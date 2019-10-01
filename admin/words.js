@@ -86,6 +86,42 @@ systemDictionary = {
         "pl": "styl przycisku",
         "zh-cn": "按钮样式"
     },
+    "titleLayout": {
+        "en": "title font size",
+        "de": "Schriftgröße des Titels",
+        "ru": "размер шрифта заголовка",
+        "pt": "tamanho da fonte do título",
+        "nl": "titel lettergrootte",
+        "fr": "titre police taille",
+        "it": "dimensione del carattere del titolo",
+        "es": "tamaño de fuente del título",
+        "pl": "rozmiar czcionki tytułu",
+        "zh-cn": "标题字体大小"
+    },
+    "subtitleLayout": {
+        "en": "subtitle font size",
+        "de": "Schriftgröße für Untertitel",
+        "ru": "размер шрифта субтитров",
+        "pt": "tamanho da fonte da legenda",
+        "nl": "ondertitel lettergrootte",
+        "fr": "taille de la police des sous-titres",
+        "it": "dimensione del carattere dei sottotitoli",
+        "es": "tamaño de fuente de subtítulos",
+        "pl": "rozmiar czcionki napisów",
+        "zh-cn": "字幕字体大小"
+    },
+    "htmlLayout": {
+        "en": "text style",
+        "de": "Textstil",
+        "ru": "стиль текста",
+        "pt": "estilo de texto",
+        "nl": "tekststijl",
+        "fr": "style de texte",
+        "it": "stile del testo",
+        "es": "estilo de texto",
+        "pl": "styl tekstu",
+        "zh-cn": "文字样式"
+    },
     "group_label": {
         "en": "labeling",
         "de": "Beschriftung",
@@ -325,7 +361,7 @@ systemDictionary = {
         "es": "activar clic de etiqueta",
         "pl": "aktywuj kliknięcie etykiety",
         "zh-cn": "激活标签点击"
-      },
+    },
     "group_icon": {
         "en": "icon",
         "de": "Symbol",
