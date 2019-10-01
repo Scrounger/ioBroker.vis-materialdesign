@@ -314,6 +314,18 @@ systemDictionary = {
         "pl": "etykieta dla wartości większej niż maks",
         "zh-cn": "标签值大于最大值"
     },
+    "labelClickActive": {
+        "en": "activate label click",
+        "de": "Beschriftungs-Klick aktivieren",
+        "ru": "активировать ярлык нажмите",
+        "pt": "ativar clique de etiqueta",
+        "nl": "activeer label klik",
+        "fr": "activer l'étiquette cliquer",
+        "it": "attiva il clic sull'etichetta",
+        "es": "activar clic de etiqueta",
+        "pl": "aktywuj kliknięcie etykiety",
+        "zh-cn": "激活标签点击"
+      },
     "group_icon": {
         "en": "icon",
         "de": "Symbol",

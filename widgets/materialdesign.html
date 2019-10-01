@@ -259,7 +259,7 @@
         data-vis-name="Switch"
         data-vis-update-style="true"
         data-vis-attrs="oid;readOnly/checkbox;"
-        data-vis-attrs0="group.label;labelFalsePrepend;labelTruePrepend;labelFalseAppend;labelTrueAppend;"
+        data-vis-attrs0="group.label;labelFalsePrepend;labelTruePrepend;labelFalseAppend;labelTrueAppend;labelClickActive/checkbox;"
         data-vis-attrs1="group.color;colorSwitchTrue/color;labelColorFalse/color;labelColorTrue/color;">
         
         <%
@@ -267,10 +267,15 @@
             if (this.data.colorSwitchTrue !== '' && this.data.colorSwitchTrue !== undefined){
                 colorSwitchTrue = '--mdc-theme-secondary: ' + this.data.colorSwitchTrue + ';';
             }
+
+            let labelClickActive = '';
+            if (this.data.labelClickActive === 'false' || this.data.labelClickActive === false) {
+                labelClickActive = 'pointer-events:none;'
+            }
         %>
 
         <div class="vis-widget mdc-form-field materialdesign-switch <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcSwitch(el, data) %>>
-            <label id="prepandLabel" for="materialdesign-checkbox-switch<%= this.data.attr('wid') %>" style="cursor: pointer; pointer-events:none;">Checkbox 1</label>
+            <label id="prepandLabel" for="materialdesign-checkbox-switch<%= this.data.attr('wid') %>" style="cursor: pointer; <%= labelClickActive %>">Checkbox 1</label>
             <div class="mdc-switch" style="margin-left: 10px; margin-right: 10px; <%= colorSwitchTrue %>">
                 <div class="mdc-switch__track"></div>
                 <div class="mdc-switch__thumb-underlay">
@@ -279,7 +284,7 @@
                     </div>
                 </div>
             </div>
-            <label id="appendLabel" for="materialdesign-checkbox-switch<%= this.data.attr('wid') %>" style="cursor: pointer">Checkbox 1</label>
+            <label id="appendLabel" for="materialdesign-checkbox-switch<%= this.data.attr('wid') %>" style="cursor: pointer; <%= labelClickActive %>">Checkbox 1</label>
         </div>
 </script>
 
