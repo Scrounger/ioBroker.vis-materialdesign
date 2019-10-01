@@ -7,11 +7,13 @@
 -->
 <!-- here you can include so many css as you want -->
 <link rel="stylesheet" href="widgets/materialdesign/css/material-components-web.css" />
+<link rel="stylesheet" href="widgets/materialdesign/css/material-icons.css" />
 <link rel="stylesheet" href="widgets/materialdesign/css/style.css" />
 
 <!-- here you can include so many js-files as you want -->
 <script type="text/javascript" src="widgets/materialdesign/js/material-components-web.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.js"></script>
+
 
 <!-- the full description of format in data-vis-attrs can be found here:
     https://github.com/ioBroker/ioBroker.vis/blob/master/www/js/visEditInspect.js#L39
@@ -627,7 +629,59 @@
         </div>
 </script>
 
+<script id="tplVis-materialdesign-Drawer"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<div id="prev_tplVis-materialdesign-Drawer" style="position: relative; text-align: initial; padding: 4px "><div class="vis-widget_prev materialdesign-progress vis-tpl-materialdesign-Progress " style="width: 100px; height: 21px; left: 45px; top: 298px; color: rgb(0, 0, 0); text-align: center; font-size: small; position: absolute; z-index: 700;" data-tmodified="true" data-zmodified="true"> <div class="materialdesign vis-widget-prev-body" style="display: flex; justify-content: center; align-items: center;"> <div role="progressbar" class="mdc-linear-progress" style="text-align: left;" data-oid="info.0.sysinfo.cpu.currentLoad.currentload"> <div class="mdc-linear-progress__buffering-dots"></div> <div class="mdc-linear-progress__buffer"></div> <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar" style="transform: scaleX(0.15);"> <span class="mdc-linear-progress__bar-inner"></span> </div> <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar"> <span class="mdc-linear-progress__bar-inner"></span> </div> </div> <div style="min-width: 7%; position: absolute; width: 100%;"> <label class="labelValue" style=""> 15 % </label> </div> </div> <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div></div>'
+        data-vis-set="materialdesign"
+        data-vis-type="statefuls"
+        data-vis-name="Top App Bar with Drawer"
+        data-vis-update-style="true"
+        data-vis-attrs="oid;refreshInterval[0]/slider,0,180000,100;count[1]/number;noSandbox/checkbox;group.frames;src_(0-count);group.drawerLabels;label(0-count);group.drawerIcons;iconDrawer(0-count)/image;">
 
-
-
+        <div class="vis-widget materialdesign-topAppBar-with-Drawer <%== this.data.attr('class') %>" style="width: 200px; height: 130px;" id="<%= this.data.attr('wid') %>">
+                <aside class="mdc-drawer mdc-drawer--modal" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcDrawer(el, data) %>>
+                <div class="mdc-drawer__header">
+                    <h3 class="mdc-drawer__title">Mail</h3>
+                    <h6 class="mdc-drawer__subtitle">email@material.io</h6>
+                </div>
+                <div class="mdc-drawer__content">
+                    <nav class="mdc-list">
+                        <a class="mdc-list-item mdc-list-item--activated" href="#" tabindex="0" aria-selected="true"><i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>Inbox</a>
+                        <a class="mdc-list-item" href="#" tabindex="-1"><i class="material-icons mdc-list-item__graphic" aria-hidden="true">star</i>Star</a>
+                        <a class="mdc-list-item" href="#" tabindex="-1"><i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>Sent Mail</a>
+                        <a class="mdc-list-item" href="#" tabindex="-1"><i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>Drafts</a>
+                        <hr class="mdc-list-divider">
+                        <h6 class="mdc-list-group__subheader">Labels</h6>
+                        <a class="mdc-list-item" href="#" tabindex="-1"><i class="material-icons mdc-list-item__graphic" aria-hidden="true">bookmark</i>Family</a>
+                        <a class="mdc-list-item" href="#" tabindex="-1"><i class="material-icons mdc-list-item__graphic" aria-hidden="true">bookmark</i>Friends</a>
+                        <a class="mdc-list-item" href="#" tabindex="-1"><i class="material-icons mdc-list-item__graphic" aria-hidden="true">bookmark</i>Work</a>
+                        <hr class="mdc-list-divider">
+                        <a class="mdc-list-item" href="#" tabindex="-1"><i class="material-icons mdc-list-item__graphic" aria-hidden="true">settings</i>Settings</a>
+                        <a class="mdc-list-item" href="#" tabindex="-1"><i class="material-icons mdc-list-item__graphic" aria-hidden="true">announcement</i>Help &amp; feedback</a>
+                    </nav>
+                </div>
+                </aside>
+                <div class="mdc-drawer-scrim"></div>
+                <div class="drawer-frame-app-content">
+                <header class="mdc-top-app-bar drawer-top-app-bar">
+                    <div class="mdc-top-app-bar__row">
+                        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                            <button class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon mdc-ripple-upgraded--unbounded mdc-ripple-upgraded" style="--mdc-ripple-fg-size:28px; --mdc-ripple-fg-scale:1.7142857142857142; --mdc-ripple-left:10px; --mdc-ripple-top:10px;">menu</button>
+                            <span class="mdc-top-app-bar__title">Modal Drawer</span></section>
+                    </div>
+                </header>
+                <div class="drawer-main-content">
+                    <div class="mdc-top-app-bar--fixed-adjust"></div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                        enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                        anim id est laborum.
+                    </p>
+                </div>
+        </div>
+</script>        
 

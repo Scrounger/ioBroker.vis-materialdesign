@@ -74,6 +74,18 @@ systemDictionary = {
         "pl": "Instancja",
         "zh-cn": "例"
     },
+    "label": {
+        "en": "label",
+        "de": "Beschriftung",
+        "ru": "этикетка",
+        "pt": "rótulo",
+        "nl": "label",
+        "fr": "étiquette",
+        "it": "etichetta",
+        "es": "etiqueta",
+        "pl": "etykieta",
+        "zh-cn": "标签"
+    },
     "buttonStyle": {
         "en": "button style",
         "de": "Schaltflächenstil",
@@ -613,5 +625,41 @@ systemDictionary = {
         "es": "color de casilla activa",
         "pl": "aktywny kolor pola wyboru",
         "zh-cn": "活动复选框颜色"
-    }
+    },
+    "group_drawerLabels": {
+        "en": "label for navigation bar",
+        "de": "Navigationsleiste: Beschriftungen",
+        "ru": "ярлык для панели навигации",
+        "pt": "etiqueta para barra de navegação",
+        "nl": "label voor navigatiebalk",
+        "fr": "étiquette pour la barre de navigation",
+        "it": "etichetta per barra di navigazione",
+        "es": "etiqueta para barra de navegación",
+        "pl": "etykieta dla paska nawigacji",
+        "zh-cn": "导航栏标签"
+    },
+    "group_drawerIcons": {
+        "en": "icons for navigation bar",
+        "de": "Navigationsleiste: Symbole",
+        "ru": "иконки для панели навигации",
+        "pt": "ícones para barra de navegação",
+        "nl": "pictogrammen voor navigatiebalk",
+        "fr": "icônes pour la barre de navigation",
+        "it": "icone per la barra di navigazione",
+        "es": "iconos para barra de navegación",
+        "pl": "ikony paska nawigacji",
+        "zh-cn": "导航栏图标"
+    },
+    "iconDrawer": {
+        "en": "icon",
+        "de": "Symbol",
+        "ru": "икона",
+        "pt": "ícone",
+        "nl": "icoon",
+        "fr": "icône",
+        "it": "icona",
+        "es": "icono",
+        "pl": "Ikona",
+        "zh-cn": "图标"
+    },
 };

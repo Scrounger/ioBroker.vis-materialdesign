@@ -618,3 +618,14 @@ svg.materialdesign-button__icon {
 .mdc-checkbox {
   --mdc-theme-secondary: #1e88e5;
 }
+
+/* Default top app bar color */
+.mdc-top-app-bar {
+  --mdc-theme-primary: #1e88e5;
+  position: relative; /* position bug fix */
+}
+
+/* modal drawer */
+.mdc-drawer--modal {
+  position: absolute; /* position bug fix */
+}
