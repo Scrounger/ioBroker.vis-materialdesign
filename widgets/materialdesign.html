@@ -259,7 +259,7 @@
         data-vis-name="Switch"
         data-vis-update-style="true"
         data-vis-attrs="oid;readOnly/checkbox;"
-        data-vis-attrs0="group.label;labelFalsePrepend;labelTruePrepend;labelFalseAppend;labelTrueAppend;labelClickActive/checkbox;"
+        data-vis-attrs0="group.label;labelFalsePrepend;labelTruePrepend;labelFalseAppend;labelTrueAppend;labelClickActive[true]/checkbox;"
         data-vis-attrs1="group.color;colorSwitchTrue/color;labelColorFalse/color;labelColorTrue/color;">
         
         <%
@@ -297,7 +297,7 @@
         data-vis-name="Checkbox"
         data-vis-update-style="true"
         data-vis-attrs="oid;readOnly/checkbox;"
-        data-vis-attrs0="group.label;labelFalsePrepend;labelTruePrepend;labelFalseAppend;labelTrueAppend;"
+        data-vis-attrs0="group.label;labelFalsePrepend;labelTruePrepend;labelFalseAppend;labelTrueAppend;labelClickActive[true]/checkbox;"
         data-vis-attrs1="group.color;colorCheckBox/color;labelColorFalse/color;labelColorTrue/color;">
 
         <%
@@ -305,10 +305,15 @@
             if (this.data.colorCheckBox !== '' && this.data.colorCheckBox !== undefined){
                 colorCheckBox = '--mdc-theme-secondary: ' + this.data.colorCheckBox + ';';
             }
+            
+            let labelClickActive = '';
+            if (this.data.labelClickActive === 'false' || this.data.labelClickActive === false) {
+                labelClickActive = 'pointer-events:none;'
+            }
         %>
 
         <div class="vis-widget mdc-form-field materialdesign-checkbox <%== this.data.attr('class') %>" style="width:80px; height:50px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcCheckbox(el, data) %>>
-            <label id="prepandLabel" for="materialdesign-checkbox-<%= this.data.attr('wid') %>" style="cursor: pointer">Checkbox 1</label>
+            <label id="prepandLabel" for="materialdesign-checkbox-<%= this.data.attr('wid') %>" style="cursor: pointer; <%= labelClickActive %>">Checkbox 1</label>
             <div class="mdc-checkbox" style="<%= colorCheckBox %>">
                 <input type="checkbox" class="mdc-checkbox__native-control" id="materialdesign-checkbox-<%= this.data.attr('wid') %>"/>
                 <div class="mdc-checkbox__background">
@@ -318,7 +323,7 @@
                 <div class="mdc-checkbox__mixedmark"></div>
                 </div>
             </div>
-            <label id="appendLabel" for="materialdesign-checkbox-<%= this.data.attr('wid') %>" style="cursor: pointer">Checkbox 1</label>
+            <label id="appendLabel" for="materialdesign-checkbox-<%= this.data.attr('wid') %>" style="cursor: pointer; <%= labelClickActive %>">Checkbox 1</label>
         </div>
 </script>
 
