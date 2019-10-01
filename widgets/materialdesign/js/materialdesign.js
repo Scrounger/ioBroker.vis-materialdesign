@@ -316,7 +316,7 @@ vis.binds["materialdesign"] = {
                         }
                     }
                 }
-            }, 1);
+            }, 250);
         } catch (ex) {
             console.exception(`mdcSlider [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
