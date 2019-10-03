@@ -1,3 +1,9 @@
+:root{
+  --color-drawer-list-item-hover: #000;
+  --color-drawer-list-item-text: #000;
+  --color-drawer-list-item-text-activated: #1e88e5;
+}
+
 /* Button style -> must defined here because of position bug in vis editor */
 .materialdesign-button {
   --mdc-theme-primary: #1e88e5;
@@ -630,20 +636,36 @@ svg.materialdesign-button__icon {
   position: absolute; /* position bug fix */
 }
 
+/* Drawer Header default Color */
+.mdc-drawer__header {
+  background: #1e88e5;
+}
+
 /* Default list color */
 .mdc-list {
   --mdc-theme-primary: #1e88e5;
 }
 
-/* Default list item icon selected color */
-.mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic {
-  color: #1e88e5;
+
+/* hover item -> use var*/
+:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item:hover::before {
+  background-color: var(--color-drawer-list-item-hover);
+  opacity: 0.1;
 }
 
-/* Default list item text selected color */
-.mdc-drawer .mdc-list-item--activated {
-  color: #1e88e5;
+/* hover item -> use var*/
+:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item:hover::after {
+  background-color: var(--color-drawer-list-item-hover);
 }
+
+:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item{
+  color: var(--color-drawer-list-item-text);
+}
+
+:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated {
+  color: var(--color-drawer-list-item-text-activated);
+}
+
 
 /* bug fix für vis view -> sonst wird view abgeschnitten */
 .vis-view-container{

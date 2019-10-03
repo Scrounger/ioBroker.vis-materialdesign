@@ -432,29 +432,59 @@ vis.binds["materialdesign"] = {
         try {
             let $this = $(el);
 
-            const mdcDrawer = new mdc.drawer.MDCDrawer($this.context);
-            const mdcTopAppBar = new mdc.topAppBar.MDCTopAppBar($this.parent().find('.mdc-top-app-bar').get(0));
-            const mdcList = new mdc.list.MDCList($this.parent().find('.mdc-list').get(0));
+            let mdcDrawer = $this.context;
+            let mdcTopAppBar = $this.parent().find('.mdc-top-app-bar').get(0);
+            let mdcList = $this.parent().find('.mdc-list').get(0);
 
-            mdcTopAppBar.setScrollTarget($this.parent().find('.drawer-main-content').get(0));
+            let colorDrawerSelected = (data.colorDrawerSelected === undefined || data.colorDrawerSelected === null || data.colorDrawerSelected === '') ? '' : data.colorDrawerSelected;
+            mdcList.style.setProperty("--mdc-theme-primary", colorDrawerSelected);
 
-            mdcTopAppBar.listen('MDCTopAppBar:nav', () => {
-                mdcDrawer.open = !mdcDrawer.open;
+            let colorDrawerHover = (data.colorDrawerHover === undefined || data.colorDrawerHover === null || data.colorDrawerHover === '') ? '' : data.colorDrawerHover;
+            mdcList.style.setProperty("--color-drawer-list-item-hover", colorDrawerHover);
+
+            let colorDrawerText = (data.colorDrawerText === undefined || data.colorDrawerText === null || data.colorDrawerText === '') ? '' : data.colorDrawerText;
+            mdcList.style.setProperty("--color-drawer-list-item-text", colorDrawerText);
+
+            let colorDrawerTextSelected = (data.colorDrawerTextSelected === undefined || data.colorDrawerTextSelected === null || data.colorDrawerTextSelected === '') ? '' : data.colorDrawerTextSelected;
+            mdcList.style.setProperty("--color-drawer-list-item-text-activated", colorDrawerTextSelected);
+
+            let colorTopAppBarBackground = (data.colorTopAppBarBackground === undefined || data.colorTopAppBarBackground === null || data.colorTopAppBarBackground === '') ? '' : data.colorTopAppBarBackground;
+            mdcTopAppBar.style.setProperty("--mdc-theme-primary", colorTopAppBarBackground);
+
+            const drawer = new mdc.drawer.MDCDrawer(mdcDrawer);
+            const topAppBar = new mdc.topAppBar.MDCTopAppBar(mdcTopAppBar);
+            const navList = new mdc.list.MDCList(mdcList);
+
+            topAppBar.setScrollTarget($this.parent().find('.drawer-main-content').get(0));
+
+            topAppBar.listen('MDCTopAppBar:nav', () => {
+                drawer.open = !drawer.open;
             });
 
-            mdcList.selectedIndex = vis.states.attr(data.oid + '.val');
+            var val = vis.states.attr(data.oid + '.val');
+            navList.selectedIndex = val;
+            setTopAppBarWithDrawerLayout();
 
-            mdcList.listen('MDCList:action', (event) => {
-                var val = vis.states.attr(data.oid + '.val');
+            navList.listen('MDCList:action', (event) => {
+                val = vis.states.attr(data.oid + '.val');
 
-                if (val != mdcList.selectedIndex) {
-                    vis.setValue(data.oid, mdcList.selectedIndex);
+                if (val != navList.selectedIndex) {
+                    vis.setValue(data.oid, navList.selectedIndex);
+
+                    setTopAppBarWithDrawerLayout();
                 }
 
-                mdcDrawer.open = false;
+                drawer.open = false;
             });
+
+            function setTopAppBarWithDrawerLayout() {
+                if (data.showSelectedItemAsTitle) {
+                    let selectedName = $this.parent().find(`label[id="drawerItem_${navList.selectedIndex}"]`).text();
+                    $this.parent().find('.mdc-top-app-bar__title').text(selectedName)
+                }
+            }
         } catch (ex) {
-            console.exception(`mdcDrawer [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`mdcTopAppBarWithDrawer [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
 };

@@ -638,6 +638,66 @@ systemDictionary = {
         "pl": "etykieta dla paska nawigacji",
         "zh-cn": "导航栏标签"
     },
+    "labels": {
+        "en": "label",
+        "de": "Beschriftung",
+        "ru": "этикетка",
+        "pt": "rótulo",
+        "nl": "label",
+        "fr": "étiquette",
+        "it": "etichetta",
+        "es": "etiqueta",
+        "pl": "etykieta",
+        "zh-cn": "标签"
+    },
+    "group_drawerHeaders": {
+        "en": "headers for navigation bar",
+        "de": "Navigationsleiste: Überschriften",
+        "ru": "заголовки для панели навигации",
+        "pt": "cabeçalhos da barra de navegação",
+        "nl": "headers voor navigatiebalk",
+        "fr": "en-têtes pour la barre de navigation",
+        "it": "intestazioni per la barra di navigazione",
+        "es": "encabezados para barra de navegación",
+        "pl": "nagłówki paska nawigacji",
+        "zh-cn": "导航栏标题"
+    },
+    "headers": {
+        "en": "header",
+        "de": "Überschrift",
+        "ru": "заголовок",
+        "pt": "cabeçalho",
+        "nl": "hoofd",
+        "fr": "entête",
+        "it": "intestazione",
+        "es": "encabezamiento",
+        "pl": "nagłówek",
+        "zh-cn": "头"
+    },
+    "group_drawerDivider": {
+        "en": "dividers for navigation bar",
+        "de": "Navigationsleiste: Trennlinie",
+        "ru": "разделители для панели навигации",
+        "pt": "divisores para barra de navegação",
+        "nl": "scheidingslijnen voor navigatiebalk",
+        "fr": "séparateurs pour barre de navigation",
+        "it": "divisori per barra di navigazione",
+        "es": "divisores para barra de navegación",
+        "pl": "przekładki do paska nawigacji",
+        "zh-cn": "导航栏分隔线"
+    },
+    "dividers": {
+        "en": "divider",
+        "de": "Trennlinie",
+        "ru": "делитель",
+        "pt": "divisor",
+        "nl": "verdeler",
+        "fr": "diviseur",
+        "it": "divisore",
+        "es": "divisor",
+        "pl": "rozdzielacz",
+        "zh-cn": "分频器"
+    },
     "group_drawerIcons": {
         "en": "icons for navigation bar",
         "de": "Navigationsleiste: Symbole",
