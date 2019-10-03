@@ -438,11 +438,22 @@ vis.binds["materialdesign"] = {
 
             setTimeout(function () {
                 // Bug fix für TopAppBar, da position: fixed sein muss, deshlab zur Laufzeit width anpassen -> wird von widget genommen
-                var width = window.getComputedStyle($this.parent().parent()[0], null).width;
-                $this.parent().find('.mdc-top-app-bar').css('width', width);
-
                 $this.parent().parent().css('left', '0px');
                 $this.parent().parent().css('top', '0px');
+
+
+                if (data.drawerLayout === 'modal') {
+                    let width = window.getComputedStyle($this.parent().parent()[0], null).width;
+                    $this.parent().find('.mdc-top-app-bar').css('width', width);
+                } else {
+                    let width = window.getComputedStyle($this.parent().parent()[0], null).width;
+                    let widthDrawer = window.getComputedStyle($this.context, null).width;
+                    let barWidth = width.replace('px', '') - widthDrawer.replace('px', '');
+
+                    $this.parent().find('.mdc-top-app-bar').css('width', barWidth);
+                    $this.parent().find('.drawer-frame-app-content').css('left', widthDrawer);
+                }
+
             }, 1);
 
             let colorDrawerSelected = (data.colorDrawerSelected === undefined || data.colorDrawerSelected === null || data.colorDrawerSelected === '') ? '' : data.colorDrawerSelected;
@@ -460,7 +471,7 @@ vis.binds["materialdesign"] = {
             let colorTopAppBarBackground = (data.colorTopAppBarBackground === undefined || data.colorTopAppBarBackground === null || data.colorTopAppBarBackground === '') ? '' : data.colorTopAppBarBackground;
             mdcTopAppBar.style.setProperty("--mdc-theme-primary", colorTopAppBarBackground);
 
-            
+
             const drawer = new mdc.drawer.MDCDrawer(mdcDrawer);
             const topAppBar = new mdc.topAppBar.MDCTopAppBar(mdcTopAppBar);
             const navList = new mdc.list.MDCList(mdcList);
@@ -468,7 +479,30 @@ vis.binds["materialdesign"] = {
             topAppBar.setScrollTarget($this.parent().find('.drawer-main-content').get(0));
 
             topAppBar.listen('MDCTopAppBar:nav', () => {
-                drawer.open = !drawer.open;
+
+                if (data.drawerLayout === 'dismissible') {
+                    if (drawer.open) {
+                        let width = window.getComputedStyle($this.parent().parent()[0], null).width;
+
+                        $this.parent().find('.mdc-top-app-bar').css('width', width);
+                        $this.parent().find('.drawer-frame-app-content').css('left', '0px');
+
+                        drawer.open = !drawer.open;
+                    } else {
+                        let width = window.getComputedStyle($this.parent().parent()[0], null).width;
+                        let widthDrawer = window.getComputedStyle($this.context, null).width;
+                        let barWidth = width.replace('px', '') - widthDrawer.replace('px', '');
+
+                        drawer.open = !drawer.open;
+
+                        setTimeout(function () {
+                            $this.parent().find('.mdc-top-app-bar').css('width', barWidth);
+                            $this.parent().find('.drawer-frame-app-content').css('left', widthDrawer);
+                        }, 250);
+                    }
+                } else {
+                    drawer.open = !drawer.open;
+                }
             });
 
             var val = vis.states.attr(data.oid + '.val');
@@ -484,7 +518,9 @@ vis.binds["materialdesign"] = {
                     setTopAppBarWithDrawerLayout();
                 }
 
-                drawer.open = false;
+                if (data.drawerLayout === 'modal') {
+                    drawer.open = false;
+                }
             });
 
             function setTopAppBarWithDrawerLayout() {
