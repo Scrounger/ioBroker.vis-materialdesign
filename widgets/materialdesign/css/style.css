@@ -631,11 +631,6 @@ svg.materialdesign-button__icon {
   --mdc-theme-primary: #1e88e5;
 }
 
-/* modal drawer */
-.mdc-drawer--modal {
-  position: absolute; /* position bug fix */
-}
-
 /* Drawer container */
 .drawer-frame-root {
     display: -ms-flexbox;
@@ -657,13 +652,13 @@ svg.materialdesign-button__icon {
 }
 
 /* Drawer container */
-.vis-view-container{
-  position: absolute;
+.drawer-frame-app-content {
+  position: relative;
 }
 
 /* Drawer container */
-.drawer-frame-app-content {
-    position: relative;
+.vis-view-container{
+  position: absolute;
 }
 
 /* Drawer Header default Color */
@@ -695,5 +690,3 @@ svg.materialdesign-button__icon {
 :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated {
   color: var(--color-drawer-list-item-text-activated);
 }
-
-

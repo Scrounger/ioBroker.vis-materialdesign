@@ -440,6 +440,9 @@ vis.binds["materialdesign"] = {
                 // Bug fix für TopAppBar, da position: fixed sein muss, deshlab zur Laufzeit width anpassen -> wird von widget genommen
                 var width = window.getComputedStyle($this.parent().parent()[0], null).width;
                 $this.parent().find('.mdc-top-app-bar').css('width', width);
+
+                $this.parent().parent().css('left', '0px');
+                $this.parent().parent().css('top', '0px');
             }, 1);
 
             let colorDrawerSelected = (data.colorDrawerSelected === undefined || data.colorDrawerSelected === null || data.colorDrawerSelected === '') ? '' : data.colorDrawerSelected;
