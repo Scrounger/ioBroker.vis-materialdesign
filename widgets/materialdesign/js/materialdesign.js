@@ -436,6 +436,12 @@ vis.binds["materialdesign"] = {
             let mdcTopAppBar = $this.parent().find('.mdc-top-app-bar').get(0);
             let mdcList = $this.parent().find('.mdc-list').get(0);
 
+            setTimeout(function () {
+                // Bug fix für TopAppBar, da position: fixed sein muss, deshlab zur Laufzeit width anpassen -> wird von widget genommen
+                var width = window.getComputedStyle($this.parent().parent()[0], null).width;
+                $this.parent().find('.mdc-top-app-bar').css('width', width);
+            }, 1);
+
             let colorDrawerSelected = (data.colorDrawerSelected === undefined || data.colorDrawerSelected === null || data.colorDrawerSelected === '') ? '' : data.colorDrawerSelected;
             mdcList.style.setProperty("--mdc-theme-primary", colorDrawerSelected);
 
@@ -451,6 +457,7 @@ vis.binds["materialdesign"] = {
             let colorTopAppBarBackground = (data.colorTopAppBarBackground === undefined || data.colorTopAppBarBackground === null || data.colorTopAppBarBackground === '') ? '' : data.colorTopAppBarBackground;
             mdcTopAppBar.style.setProperty("--mdc-theme-primary", colorTopAppBarBackground);
 
+            
             const drawer = new mdc.drawer.MDCDrawer(mdcDrawer);
             const topAppBar = new mdc.topAppBar.MDCTopAppBar(mdcTopAppBar);
             const navList = new mdc.list.MDCList(mdcList);

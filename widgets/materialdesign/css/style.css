@@ -625,15 +625,45 @@ svg.materialdesign-button__icon {
   --mdc-theme-secondary: #1e88e5;
 }
 
+
 /* Default top app bar color */
 .mdc-top-app-bar {
   --mdc-theme-primary: #1e88e5;
-  position: relative; /* position bug fix */
 }
 
 /* modal drawer */
 .mdc-drawer--modal {
   position: absolute; /* position bug fix */
+}
+
+/* Drawer container */
+.drawer-frame-root {
+    display: -ms-flexbox;
+    display: flex;
+    height: 100vh;
+}
+
+/* Drawer container */
+.drawer-app-content {
+    -ms-flex: auto;
+    flex: auto;
+    overflow: auto
+}
+
+/* Drawer container */
+.drawer-main-content {
+    overflow: auto;
+    height: 100%;
+}
+
+/* Drawer container */
+.vis-view-container{
+  position: absolute;
+}
+
+/* Drawer container */
+.drawer-frame-app-content {
+    position: relative;
 }
 
 /* Drawer Header default Color */
@@ -667,7 +697,3 @@ svg.materialdesign-button__icon {
 }
 
 
-/* bug fix für vis view -> sonst wird view abgeschnitten */
-.vis-view-container{
-  position: absolute;
-}

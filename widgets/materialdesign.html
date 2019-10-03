@@ -741,30 +741,37 @@
         %>
 
         <div class="vis-widget materialdesign-topAppBar-with-Drawer <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
-            <aside class="mdc-drawer mdc-drawer--modal" style="<%= drawerStyle %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcTopAppBarWithDrawer(el, data) %>>
-                <%== navHeader %>
-                <div class="mdc-drawer__content">
-                    <nav class="mdc-list">
-                        <%== navItemList.join('') %>
-                    </nav>
-                </div>
-            </aside>
-            <div class="mdc-drawer-scrim"></div>
-            <div class="drawer-frame-app-content">
-                <header class="mdc-top-app-bar drawer-top-app-bar">
-                    <div class="mdc-top-app-bar__row" style="color: <%= this.data.colorTopAppBarTitle %>">
-                        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-                            <button class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon mdc-ripple-upgraded--unbounded mdc-ripple-upgraded" style="--mdc-ripple-fg-size:28px; --mdc-ripple-fg-scale:1.7142857142857142; --mdc-ripple-left:10px; --mdc-ripple-top:10px; color: <%= this.data.colorTopAppBarTitle %>">menu</button>
-                            <span class="mdc-top-app-bar__title"><%= this.data.titleTopAppBar %></span></section>
+            <div class="drawer-frame-root">
+                <aside class="mdc-drawer mdc-drawer--modal" style="<%= drawerStyle %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcTopAppBarWithDrawer(el, data) %>>
+                    <%== navHeader %>
+                    <div class="mdc-drawer__content">
+                        <nav class="mdc-list">
+                            <%== navItemList.join('') %>
+                        </nav>
                     </div>
-                </header>
-                <div class="drawer-main-content">
-                    <% if (vis.editMode) { %>
-                        <div class="editmode-helper"/>
-                    <% } %>
-                    <div class="vis-view-container" data-oid="<%= data.attr('oid') %>" data-vis-contains="<%= vis.binds.stateful.value(viewArr, data.attr('oid')) %>" <%= (el) -> vis.binds.stateful.view(el, viewArr, data.attr('persistent'), data.attr('notIfInvisible')) %> />
+                </aside>
+                <div class="mdc-drawer-scrim"></div>
+                <div class="drawer-frame-app-content">
+                    <header class="mdc-top-app-bar drawer-top-app-bar">
+                        <div class="mdc-top-app-bar__row" style="color: <%= this.data.colorTopAppBarTitle %>">
+                            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                                <button class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon mdc-ripple-upgraded--unbounded mdc-ripple-upgraded" style="--mdc-ripple-fg-size:28px; --mdc-ripple-fg-scale:1.7142857142857142; --mdc-ripple-left:10px; --mdc-ripple-top:10px; color: <%= this.data.colorTopAppBarTitle %>">menu</button>
+                                <span class="mdc-top-app-bar__title"><%= this.data.titleTopAppBar %></span></section>
+                        </div>
+                    </header>
+                    <div class="drawer-main-content">
+                        <div class="mdc-top-app-bar--fixed-adjust">
+                            <div>
+                                <% if (vis.editMode) { %>
+                                    <div class="editmode-helper"/>
+                                <% } %>
+                                <div class="vis-view-container" data-oid="<%= data.attr('oid') %>" data-vis-contains="<%= vis.binds.stateful.value(viewArr, data.attr('oid')) %>" <%= (el) -> vis.binds.stateful.view(el, viewArr, data.attr('persistent'), data.attr('notIfInvisible')) %> />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        
 </script>        
 
