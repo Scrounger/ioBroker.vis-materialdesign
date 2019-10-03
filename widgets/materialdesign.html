@@ -748,9 +748,9 @@
                         <%== navItemList.join('') %>
                     </nav>
                 </div>
-                </aside>
-                <div class="mdc-drawer-scrim"></div>
-                <div class="drawer-frame-app-content">
+            </aside>
+            <div class="mdc-drawer-scrim"></div>
+            <div class="drawer-frame-app-content">
                 <header class="mdc-top-app-bar drawer-top-app-bar">
                     <div class="mdc-top-app-bar__row" style="color: <%= this.data.colorTopAppBarTitle %>">
                         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
@@ -758,12 +758,13 @@
                             <span class="mdc-top-app-bar__title"><%= this.data.titleTopAppBar %></span></section>
                     </div>
                 </header>
-                <div class="drawer-main-content" >
+                <div class="drawer-main-content">
                     <% if (vis.editMode) { %>
                         <div class="editmode-helper"/>
                     <% } %>
                     <div class="vis-view-container" data-oid="<%= data.attr('oid') %>" data-vis-contains="<%= vis.binds.stateful.value(viewArr, data.attr('oid')) %>" <%= (el) -> vis.binds.stateful.view(el, viewArr, data.attr('persistent'), data.attr('notIfInvisible')) %> />
                 </div>
+            </div>
         </div>
 </script>        
 
