@@ -643,13 +643,12 @@
         data-vis-update-style="true"
         data-vis-attrs="oid;persistent/checkbox;notIfInvisible/checkbox;count[1]/number;group.views;contains_view_(0-count)/views;"
         data-vis-attrs0="group.topAppBarLayout;titleTopAppBar[Material Design Widgets];colorTopAppBarTitle/color;colorTopAppBarBackground/color;showSelectedItemAsTitle/checkbox;"
-        data-vis-attrs1="group.drawerLayout;drawerLayout[modal]/select,modal,dismissible,permanent;drawerWidth/number;showHeader[true]/checkbox;headerLabel[<h3 class='mdc-drawer__title'>Title</h3><h6 class='mdc-drawer__subtitle'>subtitle</h6>]/html;showLabels[true]/checkbox;drawerIconHeight/number;drawerLabelSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;"
-        data-vis-attrs2="group.drawerColors;colorDrawerBackground/color;colorDrawerSelected/color;colorDrawerHover/color;colorDrawerText/color;colorDrawerTextSelected/color;"
+        data-vis-attrs1="group.drawerLayout;drawerLayout[modal]/select,modal,dismissible,permanent;drawerWidth/number;showHeader[true]/checkbox;headerLabel[<h4 class='mdc-drawer__title'>Material Design Widgets</h4><h6 class='mdc-drawer__subtitle'>by Scrounger</h6>]/html;showLabels[true]/checkbox;drawerIconHeight/number;drawerLabelSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;"
+        data-vis-attrs2="group.drawerColors;colorDrawerBackground/color;colorDrawerHover/color;colorDrawerSelected/color;colorDrawerText/color;colorDrawerTextSelected/color;"
         data-vis-attrs3="group.drawerLabels;labels(0-count);group.drawerHeaders;headers(0-count);group.drawerDivider;dividers(0-count)/checkbox;group.drawerIcons;iconDrawer(0-count)[/vis/widgets/materialdesign/img/IoBroker_Logo.png]/image;">
         
         <%
             let viewArr = [];
-            let i = 0;
 
             let navItemList = [];
             let navHeader = '';
@@ -688,7 +687,7 @@
                 }
             }
 
-            while (data.attr('contains_view_' + i) !== undefined) {
+            for (var i=0; i <= this.data.count; i++){
                 viewArr.push(data.attr('contains_view_' + i));
 
                 // Navigation Items
@@ -730,8 +729,6 @@
                     let divider = '<hr class="mdc-list-divider">'
                     navItemList.push(divider);
                 }
-
-                i++;
             }
 
             let tmp = 
@@ -762,9 +759,9 @@
 
             let topAppBarPosition = '';
             if (vis.editMode) {
-                topAppBarPosition = 'style="position: absolute;"';
+                topAppBarPosition = 'position: absolute;';
             } else {
-                topAppBarPosition = 'style="position: fixed;"';
+                topAppBarPosition = 'position: fixed;';
             }
 
             let showButton ='';
@@ -787,7 +784,7 @@
                 </aside>
                 <%== modalScrim %>
                 <div class="drawer-frame-app-content">
-                    <header class="mdc-top-app-bar drawer-top-app-bar" <%= topAppBarPosition %>>
+                    <header class="mdc-top-app-bar drawer-top-app-bar" style="<%= topAppBarPosition %>">
                         <div class="mdc-top-app-bar__row" style="color: <%= this.data.colorTopAppBarTitle %>">
                             <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
                                 <%== showButton %>

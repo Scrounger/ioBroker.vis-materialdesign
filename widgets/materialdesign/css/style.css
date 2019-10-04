@@ -666,11 +666,18 @@ svg.materialdesign-button__icon {
   background: #1e88e5;
 }
 
+.mdc-drawer .mdc-drawer__title {
+  color: white;
+}
+
+.mdc-drawer .mdc-drawer__subtitle {
+  color: white;
+}
+
 /* Default list color */
 .mdc-list {
   --mdc-theme-primary: #1e88e5;
 }
-
 
 /* hover item -> use var*/
 :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item:hover::before {
