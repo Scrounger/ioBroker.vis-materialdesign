@@ -399,52 +399,40 @@ systemDictionary = {
         "zh-cn": "图标"
     },
     "imageTrue": {
-        "en": "active icon",
-        "de": "aktives Symbol",
-        "ru": "активный значок",
-        "pt": "ícone ativo",
-        "nl": "actief pictogram",
-        "fr": "icône active",
-        "it": "icona attiva",
-        "es": "icono activo",
-        "pl": "aktywna ikona",
-        "zh-cn": "活动图标"
-    },
-    "invertImageFalse": {
-        "en": "invert icon color",
-        "de": "Symbolfarbe umkehren",
-        "ru": "инвертировать цвет значка",
-        "pt": "inverter cor do ícone",
-        "nl": "kleur van het pictogram omkeren",
-        "fr": "inverser la couleur de l'icône",
-        "it": "inverti il colore dell'icona",
-        "es": "invertir el color del icono",
-        "pl": "odwróć kolor ikony",
-        "zh-cn": "反转图标颜色"
+        "en": "active image",
+        "de": "aktives Bild",
+        "ru": "активное изображение",
+        "pt": "imagem ativa",
+        "nl": "actieve afbeelding",
+        "fr": "image active",
+        "it": "immagine attiva",
+        "es": "imagen activa",
+        "pl": "aktywny obraz",
+        "zh-cn": "活动图像"
     },
     "invertImageTrue": {
-        "en": "invert active icon color",
-        "de": "Aktive Symbolfarbe invertieren",
-        "ru": "инвертировать активный цвет значка",
-        "pt": "inverter cor do ícone ativo",
-        "nl": "actieve pictogramkleur omkeren",
-        "fr": "inverser la couleur de l'icône active",
-        "it": "inverti il colore dell'icona attiva",
-        "es": "invertir el color del icono activo",
-        "pl": "odwróć aktywny kolor ikony",
-        "zh-cn": "反转活动图标颜色"
+        "en": "invert active image",
+        "de": "Aktives Bild invertieren",
+        "ru": "инвертировать активное изображение",
+        "pt": "inverter imagem ativa",
+        "nl": "actieve afbeelding omkeren",
+        "fr": "inverser l'image active",
+        "it": "inverti immagine attiva",
+        "es": "invertir imagen activa",
+        "pl": "odwróć aktywny obraz",
+        "zh-cn": "反转活动图像"
     },
     "iconHeight": {
-        "en": "icon size",
-        "de": "Symbolgröße",
-        "ru": "размер значка",
-        "pt": "tamanho do ícone",
-        "nl": "pictogramgrootte",
-        "fr": "taille de l'icône",
-        "it": "dimensione dell'icona",
-        "es": "tamaño de ícono",
-        "pl": "rozmiar ikony",
-        "zh-cn": "图标大小"
+        "en": "image height",
+        "de": "Bildhöhe",
+        "ru": "высота изображения",
+        "pt": "Altura da imagem",
+        "nl": "afbeeldingshoogte",
+        "fr": "hauteur de l'image",
+        "it": "altezza dell'immagine",
+        "es": "Altura de imagen",
+        "pl": "Wysokość obrazu",
+        "zh-cn": "影像高度"
     },
     "group_color": {
         "en": "colors",
@@ -700,7 +688,7 @@ systemDictionary = {
     },
     "group_drawerIcons": {
         "en": "icons for navigation bar",
-        "de": "Navigationsleiste: Symbole",
+        "de": "Navigationsleiste: Bilder",
         "ru": "иконки для панели навигации",
         "pt": "ícones para barra de navegação",
         "nl": "pictogrammen voor navigatiebalk",
@@ -712,7 +700,7 @@ systemDictionary = {
     },
     "iconDrawer": {
         "en": "icon",
-        "de": "Symbol",
+        "de": "Bild",
         "ru": "икона",
         "pt": "ícone",
         "nl": "icoon",
@@ -949,5 +937,17 @@ systemDictionary = {
         "es": "muestra el título del elemento de barra de navegación seleccionado",
         "pl": "pokaż tytuł wybranego elementu paska nawigacji",
         "zh-cn": "显示所选导航栏项目的标题"
+    },
+    "invertImage": {
+        "en": "invert image color",
+        "de": "Bildfarbe umkehren",
+        "ru": "инвертировать цвет изображения",
+        "pt": "inverter cor da imagem",
+        "nl": "beeldkleur omkeren",
+        "fr": "inverser la couleur de l'image",
+        "it": "inverti il colore dell'immagine",
+        "es": "invertir el color de la imagen",
+        "pl": "odwróć kolor obrazu",
+        "zh-cn": "反转图像颜色"
     }
 };
