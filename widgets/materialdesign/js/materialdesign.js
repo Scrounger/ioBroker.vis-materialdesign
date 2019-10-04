@@ -516,6 +516,10 @@ vis.binds["materialdesign"] = {
                     vis.setValue(data.oid, navList.selectedIndex);
 
                     setTopAppBarWithDrawerLayout();
+
+                    setTimeout(function() {
+                        window.scrollTo({ top: 0, left: 0,});
+                    }, 50);
                 }
 
                 if (data.drawerLayout === 'modal') {
