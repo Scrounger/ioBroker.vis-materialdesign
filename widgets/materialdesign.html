@@ -774,7 +774,7 @@
 
         <div class="vis-widget materialdesign-topAppBar-with-Drawer <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
             <div class="drawer-frame-root">
-                <aside class="mdc-drawer <%= layout %>" style="<%= drawerStyle %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcTopAppBarWithDrawer(el, data) %>>
+                <aside class="mdc-drawer <%= layout %>" style="<%= drawerStyle %>" <%= (el) -> vis.binds.materialdesign.mdcTopAppBarWithDrawer(el, data) %>>
                     <%== navHeader %>
                     <div class="mdc-drawer__content">
                         <nav class="mdc-list">
