@@ -64,6 +64,17 @@ vis.binds["materialdesign"] = {
             $this.context.style.setProperty("--mdc-theme-on-primary", colorPress);
         }
     },
+    buttonLink: function (el, data) {
+        $(el).click(function () {
+            if (!vis.editMode && data.href) {
+                if (data.openNewWindow) {
+                    window.open(data.href);
+                } else {
+                    window.location.href = data.href;
+                }
+            }
+        });
+    },
     itoggle: function (el, data) {
         try {
             var $this = $(el).parent();
@@ -517,8 +528,8 @@ vis.binds["materialdesign"] = {
 
                     setTopAppBarWithDrawerLayout();
 
-                    setTimeout(function() {
-                        window.scrollTo({ top: 0, left: 0,});
+                    setTimeout(function () {
+                        window.scrollTo({ top: 0, left: 0, });
                     }, 50);
                 }
 

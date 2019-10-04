@@ -104,41 +104,6 @@
     You can do "if" conditions and "for" cycles.
 
 -->
-<script id="tplVis-materialdesignShowInstance"
-        type="text/ejs"
-        class="vis-tpl"
-        data-vis-prev='<div id="prev_tplMysetShowInstance" style="position: relative; text-align: initial;padding: 4px "><div class="vis-widget_prev " style="width: 280px; height: 159px;" > <div class="myset-class vis-widget-prev-body " style="padding:2px"> OID: hm-rpc.0.EEQ0006629.1.STATE<br> OID value: true<br> Color: <span style="color: rgb(128, 0, 0);">#800000</span><br> htmlText: <textarea readonly="" style="width:100%">asda</textarea></div>'
-        data-vis-attrs="oid/id;myColor/color;htmlText/text;"
-        data-vis-attrs0="group.extraVis-materialdesign;extraAttr"
-        data-vis-set="materialdesign"
-        data-vis-type="helper"
-        data-vis-name="Show instance">
-    <div class="vis-widget <%== this.data.attr('class') %>" style="width:230px; height:210px;" id="<%= this.data.attr('wid') %>" >
-        <div class="materialdesign-class vis-widget-body <%== this.data.attr('class') %>" style="padding:2px" >
-            OID: <%= this.data.attr('oid') %><br>
-            OID value: <%== vis.states[this.data.attr('oid') + '.val'] %><br>
-            Color: <span style="color: <%= this.data.attr('myColor') %>"><%= this.data.attr('myColor') %></span><br>
-            extraAttr: <%== this.data.attr('extraAttr') %><br>
-            Browser instance: <%= vis.instance %><br>
-            htmlText: <textarea readonly style="width: calc(100% - 10px)"><%== this.data.attr('htmlText') %></textarea><br>
-        </div>
-    </div>
-</script>
-
-<script id="tplVis-materialdesignHelper"
-        type="text/ejs"
-        class="vis-tpl"
-        data-vis-prev='<div id="prev_tplVis-materialdesignHelper" style="position: relative; text-align: initial;padding: 4px "><div class="vis-widget_prev " style="width: 280px; height: 159px;" > <div class="myset-class vis-widget-prev-body " style="padding:2px"> OID: hm-rpc.0.EEQ0006629.1.STATE<br> OID value: true<br> Color: <span style="color: rgb(128, 0, 0);">#800000</span><br> htmlText: <textarea readonly="" style="width:100%">asda</textarea></div>'
-        data-vis-attrs="oid/id;myColor/color;htmlText/text;"
-        data-vis-attrs0="group.extraVis-materialdesign;extraAttr"
-        data-vis-set="materialdesign"
-        data-vis-type="helper"
-        data-vis-name="Helper">
-    <div class="vis-widget <%== this.data.attr('class') %>" style="overflow:visible; width: 230px; height: 210px" id="<%= this.data.attr('wid') %>"><%
-        vis.binds.materialdesign.createWidget(this.data.wid, this.view, this.data, this.style);
-    %></div>
-</script>
-
 <script id="tplVis-materialdesign-Button-Toggle-vertical"
         type="text/ejs"
         class="vis-tpl"
@@ -183,6 +148,40 @@
     </div>
 </script>
 
+
+<script id="tplVis-materialdesign-Button-Link"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<div id="prev_tplVis-materialdesign-Button-Link" style="position: relative; text-align: initial; padding: 4px "><div class="vis-widget_prev materialdesign-button materialdesign-button--raised vis-tpl-materialdesign-Button State mdc-ripple-upgraded " style="width: 90px; height: 24px; padding: 0px; left: 235px; top: 265px; position: absolute; --mdc-ripple-fg-size:54px; --mdc-ripple-fg-scale:1.9100934847696323; --mdc-ripple-fg-translate-start:34px, -18.600006103515625px; --mdc-ripple-fg-translate-end:18px, -15px; z-index: 700;" data-oid="virtualpowermeter.0.buttonTest" data-val="20" data-ctrl-oid="virtualpowermeter.0.buttonTest" data-tmodified="true" data-zmodified="true"> <div class="materialdesign vis-widget-prev-body" style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;"> <img class="imgButton" src="/vis/icon/control.png" style="width: 16%; margin-right: 4px; filter: invert(1);"> <span class="materialdesign-button__label">  State</span>  </div> <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div></div>'
+        data-vis-set="materialdesign"
+        data-vis-type="static"
+        data-vis-name="Button Link"
+        data-vis-attrs="oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;href/url;openNewWindow/checkbox;buttontext/html;colorPress/color;"
+        data-vis-attrs0="group.icon;image/image;invertImage/checkbox;iconHeight/slider,0,200,1;">
+
+        <%
+            let buttonStyle = '';
+            if (this.data.buttonStyle !== 'text'){
+                buttonStyle = 'materialdesign-button--' + this.data.buttonStyle;
+            }
+
+            let stylesInvertImage = '';
+            if (this.data.invertImage === 'true' || this.data.invertImage === true) {
+                stylesInvertImage = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
+            }
+        %>
+
+        <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-vis-link="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.buttonLink(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+            <div class="materialdesign vis-widget-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%; background: <%= this.data.attr('colorBgFalse')%>">
+                <img class="imgButton" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; <%= stylesInvertImage %>" />
+                <span class="materialdesign-button__label"><%== this.data.attr('buttontext') %></span>
+                <div <%= (el) -> vis.binds.materialdesign.itoggle(el, this.data) %>></div>    
+            </div>
+        </div>        
+
+</script>
+
+
 <script id="tplVis-materialdesign-Button-State"
         type="text/ejs"
         class="vis-tpl"
@@ -192,6 +191,7 @@
         data-vis-name="Button State"
         data-vis-attrs="oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;value;buttontext/html;colorPress/color;"
         data-vis-attrs0="group.icon;image/image;invertImage/checkbox;iconHeight/slider,0,200,1;">
+        
         <%
             let buttonStyle = '';
             if (this.data.buttonStyle !== 'text'){
