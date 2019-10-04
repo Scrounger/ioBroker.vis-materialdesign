@@ -183,6 +183,36 @@
     </div>
 </script>
 
+<script id="tplVis-materialdesign-Button-State"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<div id="prev_tplVis-materialdesign-Button-State" style="position: relative; text-align: initial; padding: 4px "><div class="vis-widget_prev materialdesign-button materialdesign-button--raised vis-tpl-materialdesign-Button State mdc-ripple-upgraded " style="width: 90px; height: 24px; padding: 0px; left: 235px; top: 265px; position: absolute; --mdc-ripple-fg-size:54px; --mdc-ripple-fg-scale:1.9100934847696323; --mdc-ripple-fg-translate-start:34px, -18.600006103515625px; --mdc-ripple-fg-translate-end:18px, -15px; z-index: 700;" data-oid="virtualpowermeter.0.buttonTest" data-val="20" data-ctrl-oid="virtualpowermeter.0.buttonTest" data-tmodified="true" data-zmodified="true"> <div class="materialdesign vis-widget-prev-body" style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;"> <img class="imgButton" src="/vis/icon/control.png" style="width: 16%; margin-right: 4px; filter: invert(1);"> <span class="materialdesign-button__label">  State</span>  </div> <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div></div>'
+        data-vis-set="materialdesign"
+        data-vis-type="ctrl"
+        data-vis-name="Button State"
+        data-vis-attrs="oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;value;buttontext/html;colorPress/color;"
+        data-vis-attrs1="group.icon;image/image;invertImage/checkbox;iconHeight/slider,0,200,1;">
+        <%
+            let buttonStyle = '';
+            if (this.data.buttonStyle !== 'text'){
+                buttonStyle = 'materialdesign-button--' + this.data.buttonStyle;
+            }
+
+            let stylesInvertImage = '';
+            if (this.data.invertImage === 'true' || this.data.invertImage === true) {
+                stylesInvertImage = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
+            }
+        %>
+
+        <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.basic.state(el); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+            <div class="materialdesign vis-widget-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%; background: <%= this.data.attr('colorBgFalse')%>">
+                <img class="imgButton" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; <%= stylesInvertImage %>" />
+                <span class="materialdesign-button__label"><%== this.data.attr('buttontext') %></span>
+                <div <%= (el) -> vis.binds.materialdesign.itoggle(el, this.data) %>></div>    
+            </div>
+        </div>
+</script>
+
 <script id="tplVis-materialdesign-Button-Toggle"
         type="text/ejs"
         class="vis-tpl"
