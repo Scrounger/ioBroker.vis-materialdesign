@@ -13,3 +13,5 @@ admin/i18n/flat.txt
 admin/i18n/*/flat.txt
 *.code-workspace
 jsconfig.json
+widgets/materialdesign/img/preview_2.jpg
+widgets/materialdesign/img/preview_3.jpg

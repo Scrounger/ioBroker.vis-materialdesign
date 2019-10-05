@@ -673,7 +673,7 @@
         data-vis-update-style="true"
         data-vis-attrs="oid;persistent/checkbox;notIfInvisible/checkbox;count[1]/number;group.views;contains_view_(0-count)/views;"
         data-vis-attrs0="group.topAppBarLayout;topAppBarLayout[standard]/select,standard,dense,short;titleTopAppBar[Material Design Widgets];colorTopAppBarTitle/color;colorTopAppBarBackground/color;showSelectedItemAsTitle/checkbox;"
-        data-vis-attrs1="group.drawerLayout;drawerLayout[modal]/select,modal,dismissible,permanent;drawerWidth/number;showHeader[true]/checkbox;headerLabel[<h4 class='mdc-drawer__title'>Material Design Widgets</h4><h6 class='mdc-drawer__subtitle'>by Scrounger</h6>]/html;showLabels[true]/checkbox;drawerIconHeight/number;drawerLabelSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;"
+        data-vis-attrs1="group.drawerLayout;drawerLayout[modal]/select,modal,dismissible,permanent;drawerItemLayout[standard]/select,standard,backdrop;drawerWidth/number;showHeader[true]/checkbox;headerLabel[<h4 class='mdc-drawer__title'>Material Design Widgets</h4><h6 class='mdc-drawer__subtitle'>by Scrounger</h6>]/html;showLabels[true]/checkbox;drawerIconHeight/number;drawerLabelSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;"
         data-vis-attrs2="group.drawerColors;colorDrawerBackground/color;colorDrawerHeaderBackground/color;colorDrawerHover/color;colorDrawerSelected/color;colorDrawerText/color;colorDrawerHeaders/color;colorDrawerTextSelected/color;colorDrawerDivider/color;"
         data-vis-attrs3="group.drawerLabels;labels(0-count);group.drawerHeaders;headers(0-count);group.drawerDivider;dividers(0-count)/checkbox;group.drawerIcons;iconDrawer(0-count)[/vis/widgets/materialdesign/img/IoBroker_Logo.png]/image;">
         
@@ -727,29 +727,55 @@
                 }
 
                 let navItem = '';
-                if (i === 0){
-                    // erstes Item muss tabindex & activated haben
-                    navItem = '<div class="mdc-list-item mdc-list-item--activated" tabindex="0" id="drawerItem_' + i +'" style="min-height: 40px; height: auto">'
+                if (this.data.drawerItemLayout === 'standard'){
+                    if (i === 0){
+                        // erstes Item muss tabindex & activated haben
+                        navItem = '<div class="mdc-list-item mdc-list-item--activated" tabindex="0" id="drawerItem_' + i +'" style="min-height: 40px; height: auto">'
+                    } else {
+                        navItem = '<div class="mdc-list-item" tabindex="-1" id="drawerItem_' + i +'" style="min-height: 40px; height: auto">'                
+                    }
                 } else {
-                    navItem = '<div class="mdc-list-item" tabindex="-1" id="drawerItem_' + i +'" style="min-height: 40px; height: auto">'                
+                    // backdrop layout
+                    if (i === 0){
+                        navItem = '<div class="mdc-list-item mdc-list-item--activated mdc-card__media" tabindex="0" style="height: ' + this.data.drawerIconHeight + 'px; background-image: url(' + data.attr('iconDrawer' + i) + '); align-items: flex-end; padding: 0px">'
+                    } else {
+                        navItem = '<div class="mdc-list-item mdc-card__media" tabindex="-1" style="height: ' + this.data.drawerIconHeight + 'px; background-image: url(' + data.attr('iconDrawer' + i) + '); align-items: flex-end; padding: 0px">'
+                    }
                 }
 
                 let navItemImg = ''
-                if (data.attr('iconDrawer' + i) !== undefined && data.attr('iconDrawer' + i) !== null && data.attr('iconDrawer' + i) !== ''){
+                if (this.data.drawerItemLayout === 'standard'){
+                    if (data.attr('iconDrawer' + i) !== undefined && data.attr('iconDrawer' + i) !== null && data.attr('iconDrawer' + i) !== ''){
 
-                    let imagesize = '';
-                    if (this.data.drawerIconHeight !== undefined && this.data.drawerIconHeight !== null && this.data.drawerIconHeight !== ''){
-                        imagesize = 'style="width: auto; height: ' + this.data.drawerIconHeight + 'px; padding-top: 8px; padding-bottom: 8px"';
+                        let imagesize = '';
+                        if (this.data.drawerIconHeight !== undefined && this.data.drawerIconHeight !== null && this.data.drawerIconHeight !== ''){
+                            imagesize = 'style="width: auto; height: ' + this.data.drawerIconHeight + 'px; padding-top: 8px; padding-bottom: 8px"';
+                        }
+
+                        navItemImg = '<img class="mdc-list-item__graphic" src="' + data.attr('iconDrawer' + i) + '"' + imagesize + ' >'
                     }
-
-                    navItemImg = '<img class="mdc-list-item__graphic" src="' + data.attr('iconDrawer' + i) + '"' + imagesize + ' >'
                 }
 
-                // Label wird als rückfall der View name verwendet
-                let navItemLabel = '<label class="mdc-list-item__text ' + navItemLabelLayout + '" id="drawerItem_' + i +'" style="' + navItemShowLabel + navItemLabelSize + '">' + data.attr('contains_view_' + i) + '</label>';
+                let navItemLabel = '';
+                if (this.data.drawerItemLayout === 'standard'){
+                    // Label wird als rückfall der View name verwendet
+                    navItemLabel = '<label class="mdc-list-item__text ' + navItemLabelLayout + '" id="drawerItem_' + i +'" style="' + navItemShowLabel + navItemLabelSize + '">' + data.attr('contains_view_' + i) + '</label>';
 
-                if (data.attr('labels' + i) !== undefined && data.attr('labels' + i) !== null && data.attr('labels' + i) !== ''){
-                    navItemLabel = '<label class="mdc-list-item__text ' + navItemLabelLayout + '" id="drawerItem_' + i +'" style="' + navItemShowLabel + navItemLabelSize + '">' + data.attr('labels' + i) + '</label>';
+                    if (data.attr('labels' + i) !== undefined && data.attr('labels' + i) !== null && data.attr('labels' + i) !== ''){
+                        navItemLabel = '<label class="mdc-list-item__text ' + navItemLabelLayout + '" id="drawerItem_' + i +'" style="' + navItemShowLabel + navItemLabelSize + '">' + data.attr('labels' + i) + '</label>';
+                    }
+                } else {
+                    // Label wird als rückfall der View name verwendet
+                    let navItemLabelBackdrop = '<label class="mdc-list-item__text ' + navItemLabelLayout + '" id="drawerItem_' + i +'" style="' + navItemShowLabel + navItemLabelSize + '">' + data.attr('contains_view_' + i) + '</label>';
+
+                    if (data.attr('labels' + i) !== undefined && data.attr('labels' + i) !== null && data.attr('labels' + i) !== ''){
+                        navItemLabelBackdrop = '<label class="mdc-list-item__text ' + navItemLabelLayout + '" id="drawerItem_' + i +'" style="' + navItemShowLabel + navItemLabelSize + '">' + data.attr('labels' + i) + '</label>';
+                    }
+                    
+                    navItemLabel = 
+                        '<div class="materialdesign-topAppBar-with-Drawer-backdrop-label-container">' +
+                            navItemLabelBackdrop +
+                        '</div>'
                 }
 
                 navItem = navItem + navItemImg + navItemLabel + '</div>'

@@ -661,6 +661,15 @@ svg.materialdesign-button__icon {
   padding-top: 0px;
 }
 
+.materialdesign-topAppBar-with-Drawer-backdrop-label-container {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  width: 100%; 
+  height: auto; 
+  background: rgba(0,0,0,0.8)
+}
+
 /* Drawer container */
 .vis-view-container{
   position: absolute;
