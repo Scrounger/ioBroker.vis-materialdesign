@@ -656,6 +656,11 @@ svg.materialdesign-button__icon {
   position: relative;
 }
 
+/* App Top Bar Short */
+.mdc-top-app-bar--short-fixed-adjust {
+  padding-top: 0px;
+}
+
 /* Drawer container */
 .vis-view-container{
   position: absolute;
