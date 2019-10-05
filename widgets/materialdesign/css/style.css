@@ -652,11 +652,6 @@ svg.materialdesign-button__icon {
 }
 
 /* Drawer container */
-.drawer-frame-app-content {
-  position: relative;
-}
-
-/* Drawer container */
 .vis-view-container{
   position: absolute;
 }
@@ -664,6 +659,11 @@ svg.materialdesign-button__icon {
 /* Drawer Header default Color */
 .mdc-drawer__header {
   background: #1e88e5;
+}
+
+/* App Top Bar Short */
+.mdc-top-app-bar--short-fixed-adjust {
+  padding-top: 0px;
 }
 
 .mdc-drawer .mdc-drawer__title {

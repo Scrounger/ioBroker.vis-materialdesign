@@ -455,13 +455,21 @@ vis.binds["materialdesign"] = {
 
                 if (data.drawerLayout === 'modal') {
                     let width = window.getComputedStyle($this.parent().parent()[0], null).width;
-                    $this.parent().find('.mdc-top-app-bar').css('width', width);
+
+                    if (data.topAppBarLayout !== 'short') {
+                        $this.parent().find('.mdc-top-app-bar').css('width', width);
+                    }
                 } else {
                     let width = window.getComputedStyle($this.parent().parent()[0], null).width;
                     let widthDrawer = window.getComputedStyle($this.context, null).width;
                     let barWidth = width.replace('px', '') - widthDrawer.replace('px', '');
 
-                    $this.parent().find('.mdc-top-app-bar').css('width', barWidth);
+                    if (data.topAppBarLayout !== 'short') {
+                        $this.parent().find('.mdc-top-app-bar').css('width', barWidth);
+                    } else {
+                        $this.parent().find('.mdc-top-app-bar').css('left', widthDrawer);
+                    }
+
                     $this.parent().find('.drawer-frame-app-content').css('left', widthDrawer);
                 }
 
@@ -495,7 +503,11 @@ vis.binds["materialdesign"] = {
                     if (drawer.open) {
                         let width = window.getComputedStyle($this.parent().parent()[0], null).width;
 
-                        $this.parent().find('.mdc-top-app-bar').css('width', width);
+                        if (data.topAppBarLayout !== 'short') {
+                            $this.parent().find('.mdc-top-app-bar').css('width', width);
+                        } else {
+                            $this.parent().find('.mdc-top-app-bar').css('left', '0px');
+                        }
                         $this.parent().find('.drawer-frame-app-content').css('left', '0px');
 
                         drawer.open = !drawer.open;
@@ -507,7 +519,11 @@ vis.binds["materialdesign"] = {
                         drawer.open = !drawer.open;
 
                         setTimeout(function () {
-                            $this.parent().find('.mdc-top-app-bar').css('width', barWidth);
+                            if (data.topAppBarLayout !== 'short') {
+                                $this.parent().find('.mdc-top-app-bar').css('width', barWidth);
+                            } else {
+                                $this.parent().find('.mdc-top-app-bar').css('left', widthDrawer);
+                            }
                             $this.parent().find('.drawer-frame-app-content').css('left', widthDrawer);
                         }, 250);
                     }
