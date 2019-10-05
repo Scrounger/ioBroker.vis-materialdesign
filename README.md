@@ -56,11 +56,18 @@ Information:
 
 ## Changelog
 
+### 0.0.7
+* (Scrounger): Top App Bar Layouts added
+* (Scrounger): Top App Bar customizing options added
+* (Scrounger): Top App Bar Navigation Drawer backdrop layout added
+* (Scrounger): Button State added
+* (Scrounger): Button Link added
+
 ### 0.0.6
 * (Scrounger): Top App Bar with Navigation Drawer added
 * (Scrounger): Checkbox added
 * (Scrounger): bug fixes
-* 
+ 
 ### 0.0.5
 * (Scrounger): icon button Toggle added
 * (Scrounger): color pressed for buttons added
