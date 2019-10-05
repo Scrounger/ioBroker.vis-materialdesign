@@ -554,6 +554,11 @@ vis.binds["materialdesign"] = {
                     setTimeout(function () {
                         window.scrollTo({ top: 0, left: 0, });
                     }, 50);
+                } else {
+                    if (data.drawerItemLayout === 'backdrop') {
+                        let backdropItemContainer = $this.parent().find(`div[id="drawerItemBackdropLabelContainer_${navList.selectedIndex}"]`);
+                        backdropItemContainer.css('background', getValueFromData(data.colorDrawerbackdropLabelBackground, ''));
+                    }
                 }
 
                 if (data.drawerLayout === 'modal') {
@@ -565,6 +570,11 @@ vis.binds["materialdesign"] = {
                 if (data.showSelectedItemAsTitle) {
                     let selectedName = $this.parent().find(`label[id="drawerItem_${navList.selectedIndex}"]`).text();
                     $this.parent().find('.mdc-top-app-bar__title').text(selectedName)
+                }
+
+                if (data.drawerItemLayout === 'backdrop') {
+                    let backdropItemContainer = $this.parent().find(`div[id="drawerItemBackdropLabelContainer_${navList.selectedIndex}"]`);
+                    backdropItemContainer.css('background', getValueFromData(data.colorDrawerbackdropLabelBackgroundActive, ''));
                 }
             }
         } catch (ex) {
