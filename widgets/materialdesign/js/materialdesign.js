@@ -487,7 +487,7 @@ vis.binds["materialdesign"] = {
             const topAppBar = new mdc.topAppBar.MDCTopAppBar(mdcTopAppBar);
             const navList = new mdc.list.MDCList(mdcList);
 
-            topAppBar.setScrollTarget($this.parent().find('.drawer-main-content').get(0));
+            topAppBar.setScrollTarget($this.parent().find('.mdc-top-app-bar-content').get(0));
 
             topAppBar.listen('MDCTopAppBar:nav', () => {
 

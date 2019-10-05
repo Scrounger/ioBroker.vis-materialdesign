@@ -672,7 +672,7 @@
         data-vis-name="Top App Bar Navigation Drawer"
         data-vis-update-style="true"
         data-vis-attrs="oid;persistent/checkbox;notIfInvisible/checkbox;count[1]/number;group.views;contains_view_(0-count)/views;"
-        data-vis-attrs0="group.topAppBarLayout;titleTopAppBar[Material Design Widgets];colorTopAppBarTitle/color;colorTopAppBarBackground/color;showSelectedItemAsTitle/checkbox;"
+        data-vis-attrs0="group.topAppBarLayout;topAppBarLayout[standard]/select,standard,dense;titleTopAppBar[Material Design Widgets];colorTopAppBarTitle/color;colorTopAppBarBackground/color;showSelectedItemAsTitle/checkbox;"
         data-vis-attrs1="group.drawerLayout;drawerLayout[modal]/select,modal,dismissible,permanent;drawerWidth/number;showHeader[true]/checkbox;headerLabel[<h4 class='mdc-drawer__title'>Material Design Widgets</h4><h6 class='mdc-drawer__subtitle'>by Scrounger</h6>]/html;showLabels[true]/checkbox;drawerIconHeight/number;drawerLabelSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;"
         data-vis-attrs2="group.drawerColors;colorDrawerBackground/color;colorDrawerHover/color;colorDrawerSelected/color;colorDrawerText/color;colorDrawerTextSelected/color;"
         data-vis-attrs3="group.drawerLabels;labels(0-count);group.drawerHeaders;headers(0-count);group.drawerDivider;dividers(0-count)/checkbox;group.drawerIcons;iconDrawer(0-count)[/vis/widgets/materialdesign/img/IoBroker_Logo.png]/image;">
@@ -759,6 +759,9 @@
                     let divider = '<hr class="mdc-list-divider">'
                     navItemList.push(divider);
                 }
+
+
+
             }
 
             let tmp = 
@@ -785,6 +788,13 @@
                     layout = 'mdc-drawer--dismissible mdc-drawer--open';
                     drawerStyle = drawerStyle + 'position: absolute;'
                 }
+            }
+
+            let topAppBarHeaderLayout = '';
+            let topAppBarContentLayout = 'mdc-top-app-bar--fixed-adjust';
+            if (this.data.topAppBarLayout === 'dense'){
+                topAppBarHeaderLayout = 'mdc-top-app-bar--dense';
+                topAppBarContentLayout = 'mdc-top-app-bar--dense-fixed-adjust';
             }
 
             let topAppBarPosition = '';
@@ -814,15 +824,14 @@
                 </aside>
                 <%== modalScrim %>
                 <div class="drawer-frame-app-content">
-                    <header class="mdc-top-app-bar drawer-top-app-bar" style="<%= topAppBarPosition %>">
+                    <header class="mdc-top-app-bar drawer-top-app-bar <%= topAppBarHeaderLayout %>" style="<%= topAppBarPosition %>">
                         <div class="mdc-top-app-bar__row" style="color: <%= this.data.colorTopAppBarTitle %>">
                             <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
                                 <%== showButton %>
                                 <span class="mdc-top-app-bar__title"><%= this.data.titleTopAppBar %></span></section>
                         </div>
                     </header>
-                    <div class="drawer-main-content">
-                        <div class="mdc-top-app-bar--fixed-adjust">
+                        <div class="mdc-top-app-bar-content <%= topAppBarContentLayout %>">
                             <div>
                                 <% if (vis.editMode) { %>
                                     <div class="editmode-helper"/>
@@ -830,7 +839,6 @@
                                 <div class="vis-view-container" data-oid="<%= data.attr('oid') %>" data-vis-contains="<%= vis.binds.stateful.value(viewArr, data.attr('oid')) %>" <%= (el) -> vis.binds.stateful.view(el, viewArr, data.attr('persistent'), data.attr('notIfInvisible')) %> />
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
