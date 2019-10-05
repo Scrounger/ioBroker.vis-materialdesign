@@ -830,6 +830,18 @@ systemDictionary = {
         "pl": "tło",
         "zh-cn": "背景"
     },
+    "colorDrawerHeaderBackground": {
+        "en": "header background color",
+        "de": "Kopfzeile Hintergrund",
+        "ru": "цвет фона заголовка",
+        "pt": "cor de fundo do cabeçalho",
+        "nl": "koptekst achtergrondkleur",
+        "fr": "couleur de fond de l'en-tête",
+        "it": "colore di sfondo dell'intestazione",
+        "es": "color de fondo del encabezado",
+        "pl": "kolor tła nagłówka",
+        "zh-cn": "标头背景色"
+    },
     "colorDrawerSelected": {
         "en": "active element",
         "de": "aktives Element",
@@ -866,6 +878,18 @@ systemDictionary = {
         "pl": "etykieta",
         "zh-cn": "标签"
     },
+    "colorDrawerHeaders": {
+        "en": "headers color",
+        "de": "Überschriften",
+        "ru": "цвет заголовков",
+        "pt": "cor dos cabeçalhos",
+        "nl": "headers kleur",
+        "fr": "couleur des en-têtes",
+        "it": "colore delle intestazioni",
+        "es": "color de encabezados",
+        "pl": "kolor nagłówków",
+        "zh-cn": "标头颜色"
+    },
     "colorDrawerTextSelected": {
         "en": "active label",
         "de": "aktive Beschriftungen",
@@ -877,6 +901,18 @@ systemDictionary = {
         "es": "etiqueta activa",
         "pl": "aktywna etykieta",
         "zh-cn": "活动标签"
+    },
+    "colorDrawerDivider": {
+        "en": "divider color",
+        "de": "Trennlinie",
+        "ru": "цвет делителя",
+        "pt": "cor do divisor",
+        "nl": "scheidingskleur",
+        "fr": "couleur du séparateur",
+        "it": "colore del divisore",
+        "es": "color divisor",
+        "pl": "kolor dzielnika",
+        "zh-cn": "分隔线颜色"
     },
     "group_topAppBarLayout": {
         "en": "top app bar layout",
