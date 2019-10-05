@@ -792,11 +792,6 @@
                 }
             }
 
-            let tmp = 
-                '<div style="display: flex; justify-content: center; align-items: center;">' +
-                    '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YHPPW474N5CKQ&source=url" target="_blank" style="font-size: xx-small"><i>donate</i></a>' +
-                '</div>'
-
             let layout = '';
             let modalScrim = '';
             if (this.data.drawerLayout === 'modal'){
@@ -839,8 +834,6 @@
             if (this.data.drawerLayout === 'modal' || this.data.drawerLayout === 'dismissible'){
                 showButton = '<button class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon mdc-ripple-upgraded--unbounded mdc-ripple-upgraded" style="--mdc-ripple-fg-size:28px; --mdc-ripple-fg-scale:1.7142857142857142; --mdc-ripple-left:10px; --mdc-ripple-top:10px; color: ' + this.data.colorTopAppBarTitle  + '">menu</button>'
             }
-
-            navItemList.push(tmp);
         %>
 
         <div class="vis-widget materialdesign-topAppBar-with-Drawer <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
