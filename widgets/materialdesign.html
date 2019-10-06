@@ -1094,7 +1094,76 @@
                 </div>
             </div>
         </div>
-        
-
 </script>        
 
+<script id="tplVis-materialdesign-List"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/basic/img/Prev_ValueListHtml.png"></img>'
+        data-vis-set="materialdesign"
+        data-vis-type="val"
+        data-vis-name="List"
+        data-vis-update-style="true"
+        data-vis-attrs="count[1]/number;"
+        data-vis-attrs0="group.listLayout;dividerStyle[standard]/select,standard,padded,inset;"
+        data-vis-attrs1="group.oids;oid(0-count);group.listTypes;types(0-count)/select,switch,checkbox,text;group.listGroupHeaders;groupHeader(0-count);group.listLabels;label(0-count);group.listSubLabels;subLabel(0-count);group.listDividers;dividers(0-count)/checkbox;">
+        
+        <%
+            let itemList = [];
+
+            for (var i=0; i <= this.data.count; i++){
+                let itemClass = 'mdc-list-item';
+
+                let header = '';
+                if (data.attr('groupHeader' + i) !== undefined && data.attr('groupHeader' + i) !== null && data.attr('groupHeader' + i) !== ''){
+                    header = '<h3 class="mdc-list-group__subheader">' + data.attr('groupHeader' + i) + '</h3>'
+                }
+
+                let labelText = (data.attr('label' + i) !== undefined && data.attr('label' + i) !== null && data.attr('label' + i) !== '') ? data.attr('label' + i) : 'Item ' + i;
+                let subLabelText = (data.attr('subLabel' + i) !== undefined && data.attr('subLabel' + i) !== null && data.attr('subLabel' + i) !== '') ? data.attr('subLabel' + i) :'';
+
+                let labelElement = '';
+                if (subLabelText !== ''){
+                    labelElement = 
+                        '<span class="mdc-list-item__text">' +
+                            '<span class="mdc-list-item__primary-text">' + labelText + '</span>' +
+                            '<span class="mdc-list-item__secondary-text">' + subLabelText + '</span>' +
+                        '</span>';
+                    itemClass.concat(' mdc-list--two-line')
+                } else {
+                    labelElement = '<span class="mdc-list-item__text">' + labelText + '</span>';
+                }
+                
+                let divider = '';
+                if (data.attr('dividers' + i) === true || data.attr('dividers' + i) === 'true'){
+
+                    if (this.data.dividerStyle === 'standard'){
+                        divider = '<hr class="mdc-list-divider">'
+                    } else {
+                        divider = '<hr class="mdc-list-divider mdc-list-divider--' + this.data.dividerStyle + '">'
+                    }
+                }
+
+                let tabIndex = '';
+                if (i === 0){
+                    tabIndex = 'tabindex="0"';
+                }
+
+                let item = 
+                    header + 
+                    '<li class="' + itemClass + '" ' + tabIndex + ' >' + 
+                        labelElement + 
+                    '</li>' + 
+                    divider;
+
+                itemList.push(item);
+            }
+        %>
+
+
+        <div class="vis-widget materialdesign-list <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
+            <ul class="mdc-list" <%= (el) -> vis.binds.materialdesign.mdcList(el, data) %>>   
+                <%== itemList.join('') %>
+            </ul>
+        </div>
+</script> 

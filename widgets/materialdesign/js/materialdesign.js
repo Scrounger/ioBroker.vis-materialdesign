@@ -66,7 +66,7 @@ vis.binds["materialdesign"] = {
         } else {
             var colorPress = (data.colorPress === undefined || data.colorPress === null || data.colorPress === '') ? '' : data.colorPress;
             $this.context.style.setProperty("--mdc-theme-primary", colorPress);
-    
+
             const mdcIconButton = new mdc.iconButton.MDCIconButtonToggle($this.context);
         }
     },
@@ -589,6 +589,14 @@ vis.binds["materialdesign"] = {
             }
         } catch (ex) {
             console.exception(`mdcTopAppBarWithDrawer [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
+    mdcList: function (el, data) {
+        try {
+            let $this = $(el);
+
+        } catch (ex) {
+            console.exception(`mdcList [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
 };
