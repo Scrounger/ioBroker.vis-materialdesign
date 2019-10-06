@@ -52,16 +52,22 @@ vis.binds["materialdesign"] = {
             });
         }
     },
-    addRippleEffect: function (el, data) {
+    addRippleEffect: function (el, data, isIconButton = false) {
         var $this = $(el).parent();
-        mdc.ripple.MDCRipple.attachTo($this.context);
+        if (!isIconButton) {
+            mdc.ripple.MDCRipple.attachTo($this.context);
+            var colorPress = (data.colorPress === undefined || data.colorPress === null || data.colorPress === '') ? '' : data.colorPress;
 
-        var colorPress = (data.colorPress === undefined || data.colorPress === null || data.colorPress === '') ? '' : data.colorPress;
-
-        if (data.buttonStyle === 'text' || data.buttonStyle === 'outlined') {
-            $this.context.style.setProperty("--mdc-theme-primary", colorPress);
+            if (data.buttonStyle === 'text' || data.buttonStyle === 'outlined') {
+                $this.context.style.setProperty("--mdc-theme-primary", colorPress);
+            } else {
+                $this.context.style.setProperty("--mdc-theme-on-primary", colorPress);
+            }
         } else {
-            $this.context.style.setProperty("--mdc-theme-on-primary", colorPress);
+            var colorPress = (data.colorPress === undefined || data.colorPress === null || data.colorPress === '') ? '' : data.colorPress;
+            $this.context.style.setProperty("--mdc-theme-primary", colorPress);
+    
+            const mdcIconButton = new mdc.iconButton.MDCIconButtonToggle($this.context);
         }
     },
     buttonLink: function (el, data) {
@@ -395,46 +401,6 @@ vis.binds["materialdesign"] = {
             }
         } catch (ex) {
             console.exception(`mdcProgress [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
-        }
-    },
-    mdcIconButtonState: function (el, data) {
-        var $this = $(el);
-        oid = data.oid ? data.oid : $this.attr('data-oid');
-        var val = $this.attr('data-val');
-
-        var colorPress = (data.colorPress === undefined || data.colorPress === null || data.colorPress === '') ? '' : data.colorPress;
-        $this.context.style.setProperty("--mdc-theme-primary", colorPress);
-
-        const mdcIconButton = new mdc.iconButton.MDCIconButtonToggle($this.context);
-
-        if (oid) {
-            $this.attr('data-ctrl-oid', oid);
-        }
-        if (val === 'true')  val = true;
-        if (val === 'false') val = false;
-        if (!vis.editMode) {
-            var moved = false;
-            $this.on('click touchend', function (e) {
-                // Protect against two events
-                if (vis.detectBounce(this)) return;
-                if (moved) return;
-                var oid = $(this).attr('data-ctrl-oid');
-                if ($(this).attr('url-value')) {
-                    vis.conn.httpGet($(this).attr('url-value'));
-                }
-                if (oid) {
-                    var val = $(this).attr('data-val');
-                    if (val === undefined || val === null) val = false;
-                    if (val === 'true')  val = true;
-                    if (val === 'false') val = false;
-                    if (parseFloat(val).toString() == val) val = parseFloat(val);
-                    if (oid) vis.setValue(oid, val);
-                }
-            }).on('touchmove', function () {
-                moved = true;
-            }).on('touchstart', function () {
-                moved = false;
-            });
         }
     },
     mdcIconButtonToggle: function (el, data) {
