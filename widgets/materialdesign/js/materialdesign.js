@@ -576,6 +576,10 @@ vis.binds["materialdesign"] = {
                 }
             });
 
+            vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                navList.selectedIndex = newVal;
+            });
+
             function setTopAppBarWithDrawerLayout() {
                 if (data.showSelectedItemAsTitle) {
                     let selectedName = $this.parent().find(`label[id="drawerItem_${navList.selectedIndex}"]`).text();
