@@ -25,7 +25,9 @@
     "@iobroker/testing": "^1.2.5",
     "@types/gulp": "^4.0.6",
     "axios": "^0.19.0",
-    "gulp": "^4.0.2"
+    "gulp": "^4.0.2",
+    "mocha": "^6.1.4",
+    "chai": "^4.2.0"
   },
   "main": "widgets/materialdesign.html",
   "scripts": {
