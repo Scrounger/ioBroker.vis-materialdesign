@@ -269,8 +269,6 @@
             if (this.data.invertImage === 'true' || this.data.invertImage === true) {
                 stylesInvertImageFalse = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
             }
-
-            console.log(this.data.attr('image'));
         %>
 
         <div class="vis-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.buttonLink(el, data); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
@@ -294,8 +292,6 @@
             if (this.data.invertImage === 'true' || this.data.invertImage === true) {
                 stylesInvertImageFalse = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
             }
-
-            console.log(this.data.attr('image'));
         %>
 
         <div class="vis-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.basic.state(el); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
