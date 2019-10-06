@@ -156,7 +156,7 @@
         data-vis-set="materialdesign"
         data-vis-type="static"
         data-vis-name="Button Link"
-        data-vis-attrs="oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;href/url;openNewWindow/checkbox;buttontext/html;colorPress/color;"
+        data-vis-attrs="buttonStyle[raised]/select,text,raised,unelevated,outlined;href/url;openNewWindow/checkbox;buttontext/html;colorPress/color;"
         data-vis-attrs0="group.icon;image/image;invertImage/checkbox;iconHeight/slider,0,200,1;">
 
         <%
@@ -251,6 +251,31 @@
             <div <%= (el) -> vis.binds.materialdesign.itoggle(el, this.data) %>></div>    
         </div>
     </div>
+</script>
+
+<script id="tplVis-materialdesign-Icon-Button-Link"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/materialdesign/img/prev_icon-button-toggle.png"></img>'
+        data-vis-set="materialdesign"
+        data-vis-type="ctrl"
+        data-vis-name="Icon Button Link"
+        data-vis-attrs="href/url;openNewWindow/checkbox;"
+        data-vis-attrs0="group.icon;image/image;invertImage/checkbox;"
+        data-vis-attrs1="group.color;colorPress/color">
+
+        <%
+            let stylesInvertImageFalse = '';
+            if (this.data.invertImage === 'true' || this.data.invertImage === true) {
+                stylesInvertImageFalse = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
+            }
+
+            console.log(this.data.attr('image'));
+        %>
+
+        <div class="vis-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.buttonLink(el, data); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
+            <img class="imgToggleFalse" style="width: 100%; height: 100%; <%= stylesInvertImageFalse %>" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> />
+        </div>        
 </script>
 
 <script id="tplVis-materialdesign-Icon-Button-State"
