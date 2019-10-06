@@ -522,7 +522,7 @@
             }
         %>
 
-        <div class="vis-widget mdc-form-field <%= labelPosition %> materialdesign-switch <%== this.data.attr('class') %>" style="width:80px; height:50px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcSwitch(el, data) %>>
+        <div class="vis-widget mdc-form-field <%= labelPosition %> materialdesign-switch <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcSwitch(el, data) %>>
             <div class="mdc-switch" style="margin-left: 10px; margin-right: 10px; <%= colorSwitchTrue %>">
                 <div class="mdc-switch__track"></div>
                 <div class="mdc-switch__thumb-underlay">
@@ -531,7 +531,7 @@
                     </div>
                 </div>
             </div>
-            <label id="label" for="materialdesign-checkbox-switch<%= this.data.attr('wid') %>" style="cursor: pointer; <%= labelClickActive %>">Checkbox 1</label>
+            <label id="label" for="materialdesign-checkbox-switch<%= this.data.attr('wid') %>" style="width: 100%; cursor: pointer; <%= labelClickActive %>">Checkbox 1</label>
         </div>
 </script>
 
@@ -564,7 +564,7 @@
             }
         %>
 
-        <div class="vis-widget mdc-form-field <%= labelPosition %> materialdesign-checkbox <%== this.data.attr('class') %>" style="width:80px; height:50px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcCheckbox(el, data) %>>
+        <div class="vis-widget mdc-form-field <%= labelPosition %> materialdesign-checkbox <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcCheckbox(el, data) %>>
             <div class="mdc-checkbox" style="<%= colorCheckBox %>">
                 <input type="checkbox" class="mdc-checkbox__native-control" id="materialdesign-checkbox-<%= this.data.attr('wid') %>"/>
                 <div class="mdc-checkbox__background">
@@ -574,7 +574,7 @@
                 <div class="mdc-checkbox__mixedmark"></div>
                 </div>
             </div>
-            <label id="label" for="materialdesign-checkbox-<%= this.data.attr('wid') %>" style="cursor: pointer; <%= labelClickActive %>">Checkbox 1</label>
+            <label id="label" for="materialdesign-checkbox-<%= this.data.attr('wid') %>" style="width: 100%; cursor: pointer; <%= labelClickActive %>">Checkbox 1</label>
         </div>
 </script>
 
