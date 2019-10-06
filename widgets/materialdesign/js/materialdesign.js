@@ -237,20 +237,13 @@ vis.binds["materialdesign"] = {
                 var val = vis.states.attr(oid + '.val');
                 mdcSwitch.checked = val;
 
-                let prepandLabel = $this.find('label[id="prepandLabel"]');
-                let appendLabel = $this.find('label[id="appendLabel"]');
+                let label = $this.find('label[id="label"]');
                 if (val) {
-                    prepandLabel.css('color', getValueFromData(data.labelColorTrue, ''));
-                    prepandLabel.text(getValueFromData(data.labelTruePrepend, ''));
-
-                    appendLabel.css('color', getValueFromData(data.labelColorTrue, ''));
-                    appendLabel.text(getValueFromData(data.labelTrueAppend, ''));
+                    label.css('color', getValueFromData(data.labelColorTrue, ''));
+                    label.text(getValueFromData(data.labelTrue, ''));
                 } else {
-                    prepandLabel.css('color', getValueFromData(data.labelColorFalse, ''));
-                    prepandLabel.text(getValueFromData(data.labelFalsePrepend, ''));
-
-                    appendLabel.css('color', getValueFromData(data.labelColorFalse, ''));
-                    appendLabel.text(getValueFromData(data.labelFalseAppend, ''));
+                    label.css('color', getValueFromData(data.labelColorFalse, ''));
+                    label.text(getValueFromData(data.labelFalse, ''));
                 }
             }
         } catch (ex) {
