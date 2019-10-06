@@ -229,7 +229,7 @@
         data-vis-set="materialdesign"
         data-vis-type="navigation"
         data-vis-name="Button Navigation"
-        data-vis-attrs="buttonStyle[raised]/select,text,raised,unelevated,outlined;nav_view;openNewWindow/checkbox;buttontext/html;colorPress/color;"
+        data-vis-attrs="buttonStyle[raised]/select,text,raised,unelevated,outlined;nav_view;buttontext/html;colorPress/color;"
         data-vis-attrs0="group.icon;image/image;invertImage/checkbox;iconHeight/slider,0,200,1;">
 
         <%
@@ -244,7 +244,7 @@
             }
         %>
 
-        <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-vis-link="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.buttonNavigation(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+        <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.buttonNavigation(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
             <div class="materialdesign vis-widget-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%; background: <%= this.data.attr('colorBgFalse')%>">
                 <img class="imgButton" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; <%= stylesInvertImage %>" />
                 <span class="materialdesign-button__label"><%== this.data.attr('buttontext') %></span>
@@ -358,12 +358,36 @@
     </div>
 </script>
 
+<script id="tplVis-materialdesign-Icon-Button-Navigation"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/materialdesign/img/prev_icon-button-toggle.png"></img>'
+        data-vis-set="materialdesign"
+        data-vis-type="navigation"
+        data-vis-name="Icon Button Navigation"
+        data-vis-attrs="nav_view;"
+        data-vis-attrs0="group.icon;image/image;invertImage/checkbox;"
+        data-vis-attrs1="group.color;colorPress/color">
+
+        <%
+            let stylesInvertImageFalse = '';
+            if (this.data.invertImage === 'true' || this.data.invertImage === true) {
+                stylesInvertImageFalse = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
+            }
+        %>
+
+        <div class="vis-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.buttonNavigation(el, data); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
+            <img class="imgToggleFalse" style="width: 100%; height: 100%; <%= stylesInvertImageFalse %>" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> />
+        </div>
+</script>
+
+
 <script id="tplVis-materialdesign-Icon-Button-Link"
         type="text/ejs"
         class="vis-tpl"
         data-vis-prev='<img src="widgets/materialdesign/img/prev_icon-button-toggle.png"></img>'
         data-vis-set="materialdesign"
-        data-vis-type="ctrl"
+        data-vis-type="static"
         data-vis-name="Icon Button Link"
         data-vis-attrs="href/url;openNewWindow/checkbox;"
         data-vis-attrs0="group.icon;image/image;invertImage/checkbox;"
