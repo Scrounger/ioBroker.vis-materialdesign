@@ -1134,13 +1134,20 @@
         data-vis-name="List"
         data-vis-update-style="true"
         data-vis-beta="true"
-        data-vis-attrs="count[1]/number;listType/select,switch,checkbox,text;"
-        data-vis-attrs0="group.listLayout;dividerStyle[standard]/select,standard,padded,inset;"
-        data-vis-attrs1="group.oids;oid(0-count);group.listTypes;group.listGroupHeaders;groupHeader(0-count);group.listLabels;label(0-count);group.listSubLabels;subLabel(0-count);group.listDividers;dividers(0-count)/checkbox;">
+        data-vis-attrs="listType[text]/select,text,button,buttonToggle,switch,checkbox;count[1]/number;"
+        data-vis-attrs0="group.listItemLayout;listItemHeight/number;listImageLeftHeight/number;"
+        data-vis-attrs1="group.listLayout;dividerStyle[standard]/select,standard,padded,inset;"
+        data-vis-attrs2="group.oids;oid(0-count);group.listTypes;group.listGroupHeaders;groupHeader(0-count);group.listImagesLeft;listImageLeft(0-count)/image;group.listLabels;label(0-count);group.listSubLabels;subLabel(0-count);group.listDividers;dividers(0-count)/checkbox;">
         
         <%
             let itemList = [];
             let itemRole = '';
+            let listNoneInteractive = '';
+
+            let itemHeight = '';
+            if (this.data.listItemHeight !== undefined && this.data.listItemHeight !== null && this.data.listItemHeight !== ''){
+                itemHeight = 'height: ' + this.data.listItemHeight + 'px;';
+            }
 
             for (var i=0; i <= this.data.count; i++){
                 let itemClass = 'mdc-list-item';
@@ -1152,6 +1159,17 @@
 
                 let labelText = (data.attr('label' + i) !== undefined && data.attr('label' + i) !== null && data.attr('label' + i) !== '') ? data.attr('label' + i) : 'Item ' + i;
                 let subLabelText = (data.attr('subLabel' + i) !== undefined && data.attr('subLabel' + i) !== null && data.attr('subLabel' + i) !== '') ? data.attr('subLabel' + i) :'';
+
+
+                let imageLeftStyle = '';
+                if (this.data.listImageLeftHeight !== undefined && this.data.listImageLeftHeight !== null && this.data.listImageLeftHeight !== ''){
+                    imageLeftStyle = 'style="width: auto; height: ' + this.data.listImageLeftHeight + 'px;"';
+                }
+
+                let imageLeftElement = '';
+                if (data.attr('listImageLeft' + i) !== undefined && data.attr('listImageLeft' + i) !== null && data.attr('listImageLeft' + i) !== ''){
+                    imageLeftElement = '<img class="mdc-list-item__graphic" src="' + data.attr('listImageLeft' + i) + '"' + imageLeftStyle + ' >'
+                }
 
                 let labelElement = '';
                 if (subLabelText !== ''){
@@ -1177,7 +1195,10 @@
                 }
 
                 let typeElement = '';
-                if (this.data.listType === 'checkbox'){
+                if (this.data.listType === 'text'){
+                    listNoneInteractive = 'mdc-list--non-interactive';
+
+                } else if (this.data.listType === 'checkbox'){
                     itemRole = 'role="checkbox"';
 
                     typeElement =
@@ -1189,6 +1210,7 @@
                                 '</svg>' +
                             '</div>' +
                         '</div>';
+
                 } else if (this.data.listType === 'switch'){
                     itemRole = 'role="switch"';
                     
@@ -1211,7 +1233,8 @@
 
                 let item = 
                     header + 
-                    '<li class="' + itemClass + '" ' + tabIndex + ' ' + itemRole +' >' + 
+                    '<li class="' + itemClass + '" ' + tabIndex + ' ' + itemRole +' style="' + itemHeight + '">' + 
+                        imageLeftElement +
                         labelElement + 
                         typeElement +
                     '</li>' + 
@@ -1221,9 +1244,8 @@
             }
         %>
 
-
         <div class="vis-widget materialdesign-list <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
-            <ul class="mdc-list" <%= (el) -> vis.binds.materialdesign.mdcList(el, data) %>>   
+            <ul class="mdc-list <%== listNoneInteractive %>" <%= (el) -> vis.binds.materialdesign.mdcList(el, data) %>>   
                 <%== itemList.join('') %>
             </ul>
         </div>
