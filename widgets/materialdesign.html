@@ -1134,12 +1134,13 @@
         data-vis-name="List"
         data-vis-update-style="true"
         data-vis-beta="true"
-        data-vis-attrs="count[1]/number;"
+        data-vis-attrs="count[1]/number;listType/select,switch,checkbox,text;"
         data-vis-attrs0="group.listLayout;dividerStyle[standard]/select,standard,padded,inset;"
-        data-vis-attrs1="group.oids;oid(0-count);group.listTypes;types(0-count)/select,switch,checkbox,text;group.listGroupHeaders;groupHeader(0-count);group.listLabels;label(0-count);group.listSubLabels;subLabel(0-count);group.listDividers;dividers(0-count)/checkbox;">
+        data-vis-attrs1="group.oids;oid(0-count);group.listTypes;group.listGroupHeaders;groupHeader(0-count);group.listLabels;label(0-count);group.listSubLabels;subLabel(0-count);group.listDividers;dividers(0-count)/checkbox;">
         
         <%
             let itemList = [];
+            let itemRole = '';
 
             for (var i=0; i <= this.data.count; i++){
                 let itemClass = 'mdc-list-item';
@@ -1155,10 +1156,11 @@
                 let labelElement = '';
                 if (subLabelText !== ''){
                     labelElement = 
-                        '<span class="mdc-list-item__text">' +
+                        '<span class="mdc-list-item__text">' +      //TODO: evtl. muss flex wieder raus
                             '<span class="mdc-list-item__primary-text">' + labelText + '</span>' +
                             '<span class="mdc-list-item__secondary-text">' + subLabelText + '</span>' +
                         '</span>';
+
                     itemClass.concat(' mdc-list--two-line')
                 } else {
                     labelElement = '<span class="mdc-list-item__text">' + labelText + '</span>';
@@ -1174,6 +1176,34 @@
                     }
                 }
 
+                let typeElement = '';
+                if (this.data.listType === 'checkbox'){
+                    itemRole = 'role="checkbox"';
+
+                    typeElement =
+                        '<div class="mdc-checkbox mdc-list-item__meta">' +
+                            '<input type="checkbox" class="mdc-checkbox__native-control" tabindex="-1">' +
+                            '<div class="mdc-checkbox__background">' +
+                                '<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">' +
+                                    '<path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>' +
+                                '</svg>' +
+                            '</div>' +
+                        '</div>';
+                } else if (this.data.listType === 'switch'){
+                    itemRole = 'role="switch"';
+                    
+                    typeElement =
+                        '<div class="mdc-switch mdc-list-item__meta">' +
+                            '<div class="mdc-switch__track"></div>' +
+                            '<div class="mdc-switch__thumb-underlay">' +
+                                '<div class="mdc-switch__thumb">' +
+                                    '<input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch">' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>'
+                }
+
+
                 let tabIndex = '';
                 if (i === 0){
                     tabIndex = 'tabindex="0"';
@@ -1181,8 +1211,9 @@
 
                 let item = 
                     header + 
-                    '<li class="' + itemClass + '" ' + tabIndex + ' >' + 
+                    '<li class="' + itemClass + '" ' + tabIndex + ' ' + itemRole +' >' + 
                         labelElement + 
+                        typeElement +
                     '</li>' + 
                     divider;
 
@@ -1197,3 +1228,4 @@
             </ul>
         </div>
 </script> 
+

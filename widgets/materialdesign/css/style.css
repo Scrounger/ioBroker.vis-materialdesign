@@ -711,3 +711,12 @@ svg.materialdesign-button__icon {
 :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated {
   color: var(--color-drawer-list-item-text-activated);
 }
+
+/* Defaults for list */
+.mdc-list {
+  padding: 0;
+}
+
+.mdc-list-item__primary-text {
+  display: flex;
+}

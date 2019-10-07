@@ -599,6 +599,17 @@ vis.binds["materialdesign"] = {
         try {
             let $this = $(el);
 
+            let mdcList = $this.context;
+
+            const list = new mdc.list.MDCList(mdcList);
+            const listItemRipples = list.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
+
+            if (data.listType === 'switch') {
+                for (var i = 0; i <= $this.find('.mdc-switch').length - 1; i++) {
+                    new mdc.switchControl.MDCSwitch($this.find('.mdc-switch').get(i));
+                }
+            }
+
         } catch (ex) {
             console.exception(`mdcList [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
