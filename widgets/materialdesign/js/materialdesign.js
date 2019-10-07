@@ -253,7 +253,6 @@ vis.binds["materialdesign"] = {
     mdcCheckbox: function (el, data) {
         try {
             let $this = $(el);
-            var oid = $this.attr('data-oid');
 
             const mdcFormField = new mdc.formField.MDCFormField($this.context);
             const mdcCheckbox = new mdc.checkbox.MDCCheckbox($this.find('.mdc-checkbox').get(0));
@@ -264,16 +263,16 @@ vis.binds["materialdesign"] = {
             setCheckboxState();
 
             $this.find('.mdc-checkbox').click(function () {
-                vis.setValue(oid, mdcCheckbox.checked);
+                vis.setValue(data.oid, mdcCheckbox.checked);
                 setCheckboxState();
             });
 
-            vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
+            vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 setCheckboxState();
             });
 
             function setCheckboxState() {
-                var val = vis.states.attr(oid + '.val');
+                var val = vis.states.attr(data.oid + '.val');
                 mdcCheckbox.checked = val;
 
                 let label = $this.find('label[id="label"]');
