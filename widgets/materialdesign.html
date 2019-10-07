@@ -636,7 +636,7 @@
                     </div>
                     <div class="mdc-slider__thumb-container">
                         <svg class="mdc-slider__thumb" <%== thumbSize %> >
-                            <circle <%== circleParameter %>></circle>
+                            <circle <%== circleParameter %> ></circle>
                         </svg>
                         <div class="mdc-slider__focus-ring"></div>
                     </div>
@@ -654,7 +654,7 @@
         data-vis-type="ctrl,slider,dimmer"
         data-vis-name="Discrete Slider"
         data-vis-update-style="true"
-        data-vis-attrs="oid;oid-working;min;max;step[1];"
+        data-vis-attrs="oid;oid-working;min;max;step[1];knobSize[knobSmall]/select,knobSmall,knobMedium,knobBig;"
         data-vis-attrs0="group.color;colorSliderBg/color;colorSlider/color;"
         data-vis-attrs1="group.label;showValueLabel[true]/checkbox;showMarkers/checkbox;valueLabelUnit;valueLabelMin;valueLabelMax;valueLabelWidth[25]/slider,0,100,1;">
 
@@ -683,6 +683,22 @@
             if (this.data.valueLabelWidth !== undefined && this.data.valueLabelWidth !== null && this.data.valueLabelWidth !== ''){
                 valueLabelWidth = this.data.valueLabelWidth + '%';
             }
+
+            let thumbSize = '';
+            let circleParameter = '';
+            let pinCorrection = '';
+            if (this.data.knobSize === 'knobSmall'){
+                thumbSize = 'width="21" height="21"';
+                circleParameter = 'cx="10.5" cy="10.5" r="7.875"';
+            } else if (this.data.knobSize === 'knobMedium'){
+                thumbSize = 'width="31" height="31" style="margin-left: -5px; margin-top: -5px"';
+                circleParameter = 'cx="15.5" cy="15.5" r="11.8125"';
+                pinCorrection = 'style="margin-top: -5px"'
+            } else if (this.data.knobSize === 'knobBig'){
+                thumbSize = 'width="42" height="42" style="margin-left: -10px; margin-top: -10px"';
+                circleParameter = 'cx="21" cy="21" r="15.75"';
+                pinCorrection = 'style="margin-top: -7px"'
+            }
         %>
 
         <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; padding-left: 5px; padding-right: 5px; overflow:visible !important;" id="<%= this.data.attr('wid') %>">
@@ -696,11 +712,11 @@
                         <div class="mdc-slider__track-marker-container"></div>
                     </div>
                     <div class="mdc-slider__thumb-container">
-                        <div class="mdc-slider__pin">
+                        <div class="mdc-slider__pin" <%== pinCorrection %> >
                             <span class="mdc-slider__pin-value-marker"></span>
                         </div>
-                        <svg class="mdc-slider__thumb" width="21" height="21">
-                            <circle cx="10.5" cy="10.5" r="7.875"></circle>
+                        <svg class="mdc-slider__thumb" <%== thumbSize %> >
+                            <circle <%== circleParameter %> ></circle>
                         </svg>
                         <div class="mdc-slider__focus-ring"></div>
                     </div>
