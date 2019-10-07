@@ -578,6 +578,10 @@ vis.binds["materialdesign"] = {
 
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 navList.selectedIndex = newVal;
+                setTopAppBarWithDrawerLayout();
+
+                let backdropItemContainer = $this.parent().find(`div[id="drawerItemBackdropLabelContainer_${oldVal}"]`);
+                        backdropItemContainer.css('background', getValueFromData(data.colorDrawerbackdropLabelBackground, ''));
             });
 
             function setTopAppBarWithDrawerLayout() {
