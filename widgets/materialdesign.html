@@ -578,6 +578,74 @@
         </div>
 </script>
 
+<script id="tplVis-materialdesign-Slider"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<div id="prev_tplVis-materialdesign-Slider" style="position: relative; text-align: initial; padding: 4px "><div class="vis-widget_prev materialdesign-slider vis-tpl-materialdesign-Slider " style="width: 110px; height: 50px; padding-left: 5px; padding-right: 5px; overflow: visible !important; left: 244px; top: 582px; position: absolute; z-index: 700;" data-tmodified="true" data-zmodified="true"> <div class="materialdesign vis-widget-prev-body" style="display: flex; justify-content: center; align-items: center;"> <div class="mdc-slider" tabindex="0" role="slider" style="" aria-valuemin="0" aria-valuemax="100" aria-valuenow="39" data-step="1" aria-label="Select Value" data-oid="virtualpowermeter.0.mitValue" data-oid-working=""> <div class="mdc-slider__track-container" style=""> <div class="mdc-slider__track" style="transform: scaleX(0.39);"></div> </div> <div class="mdc-slider__thumb-container" style="transform: translateX(30.641px) translateX(-50%);"> <svg class="mdc-slider__thumb" width="21" height="21"> <circle cx="10.5" cy="10.5" r="7.875"></circle> </svg> <div class="mdc-slider__focus-ring"></div> </div> </div> <span class="labelValue" style="width: 40%; text-align: right;">39 %</span> </div> <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div></div>'
+        data-vis-set="materialdesign"
+        data-vis-type="ctrl,slider,dimmer"
+        data-vis-name="Slider"
+        data-vis-update-style="true"
+        data-vis-attrs="oid;oid-working;min;max;step[1];knobSize[knobSmall]/select,knobSmall,knobMedium,knobBig;"
+        data-vis-attrs0="group.color;colorSliderBg/color;colorSlider/color;"
+        data-vis-attrs1="group.label;showValueLabel[true]/checkbox;valueLabelUnit;valueLabelMin;valueLabelMax;valueLabelWidth[25]/slider,0,100,1;">
+
+        <%
+            let colorSlider = '';
+            if (this.data.colorSlider !== '' && this.data.colorSlider !== undefined){
+                colorSlider = '--mdc-theme-secondary: ' + this.data.colorSlider + ';';
+            }
+
+            let colorSliderBg = '';
+            if (this.data.colorSliderBg !== '' && this.data.colorSliderBg !== undefined){
+                colorSliderBg = 'background-color: ' + this.data.colorSliderBg + ';';
+            }
+
+            let showValue = '';
+            if (this.data.showValueLabel === 'false' || this.data.showValueLabel === false) {
+                showValue = 'display:none;'
+            }
+
+            let valueLabelWidth = '0%';
+            if (this.data.valueLabelWidth !== undefined && this.data.valueLabelWidth !== null && this.data.valueLabelWidth !== ''){
+                valueLabelWidth = this.data.valueLabelWidth + '%';
+            }
+
+            let thumbSize = '';
+            let circleParameter = '';
+            if (this.data.knobSize === 'knobSmall'){
+                thumbSize = 'width="21" height="21"';
+                circleParameter = 'cx="10.5" cy="10.5" r="7.875"';
+            } else if (this.data.knobSize === 'knobMedium'){
+                thumbSize = 'width="31" height="31" style="margin-left: -5px; margin-top: -5px"';
+                circleParameter = 'cx="15.5" cy="15.5" r="11.8125"';
+            } else if (this.data.knobSize === 'knobBig'){
+                thumbSize = 'width="42" height="42" style="margin-left: -10px; margin-top: -10px"';
+                circleParameter = 'cx="21" cy="21" r="15.75"';
+            }
+        %>
+
+        <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; padding-left: 5px; padding-right: 5px; overflow:visible !important;" id="<%= this.data.attr('wid') %>">
+            <div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
+                <div class="mdc-slider" tabindex="0" role="slider" style="<%= colorSlider %>"
+                    aria-valuemin="<%== this.data.attr('min') %>" aria-valuemax="<%== this.data.attr('max') %>" aria-valuenow="0" data-step="<%== this.data.attr('step') %>"
+                    aria-label="Select Value" data-oid="<%= this.data.attr('oid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" 
+                    <%= (el) -> vis.binds.materialdesign.mdcSlider(el, data) %>>
+                    <div class="mdc-slider__track-container" style="<%= colorSliderBg %>">
+                        <div class="mdc-slider__track"></div>
+                    </div>
+                    <div class="mdc-slider__thumb-container">
+                        <svg class="mdc-slider__thumb" <%== thumbSize %> >
+                            <circle <%== circleParameter %>></circle>
+                        </svg>
+                        <div class="mdc-slider__focus-ring"></div>
+                    </div>
+                </div>
+                <span class="labelValue" style="width: <%= valueLabelWidth %>; text-align: right; <%= showValue %>"></span>
+            </div>
+        </div>
+</script>
+
 <script id="tplVis-materialdesign-Slider-Discrete"
         type="text/ejs"
         class="vis-tpl"
@@ -638,61 +706,6 @@
                     </div>
                 </div>
                 <span class="labelValue" style="width: <%= valueLabelWidth %>; text-align: right; <%= showValue %>"></span>                
-            </div>
-        </div>
-</script>
-
-<script id="tplVis-materialdesign-Slider"
-        type="text/ejs"
-        class="vis-tpl"
-        data-vis-prev='<div id="prev_tplVis-materialdesign-Slider" style="position: relative; text-align: initial; padding: 4px "><div class="vis-widget_prev materialdesign-slider vis-tpl-materialdesign-Slider " style="width: 110px; height: 50px; padding-left: 5px; padding-right: 5px; overflow: visible !important; left: 244px; top: 582px; position: absolute; z-index: 700;" data-tmodified="true" data-zmodified="true"> <div class="materialdesign vis-widget-prev-body" style="display: flex; justify-content: center; align-items: center;"> <div class="mdc-slider" tabindex="0" role="slider" style="" aria-valuemin="0" aria-valuemax="100" aria-valuenow="39" data-step="1" aria-label="Select Value" data-oid="virtualpowermeter.0.mitValue" data-oid-working=""> <div class="mdc-slider__track-container" style=""> <div class="mdc-slider__track" style="transform: scaleX(0.39);"></div> </div> <div class="mdc-slider__thumb-container" style="transform: translateX(30.641px) translateX(-50%);"> <svg class="mdc-slider__thumb" width="21" height="21"> <circle cx="10.5" cy="10.5" r="7.875"></circle> </svg> <div class="mdc-slider__focus-ring"></div> </div> </div> <span class="labelValue" style="width: 40%; text-align: right;">39 %</span> </div> <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div></div>'
-        data-vis-set="materialdesign"
-        data-vis-type="ctrl,slider,dimmer"
-        data-vis-name="Slider"
-        data-vis-update-style="true"
-        data-vis-attrs="oid;oid-working;min;max;step[1];"
-        data-vis-attrs0="group.color;colorSliderBg/color;colorSlider/color;"
-        data-vis-attrs1="group.label;showValueLabel[true]/checkbox;valueLabelUnit;valueLabelMin;valueLabelMax;valueLabelWidth[25]/slider,0,100,1;">
-
-        <%
-            let colorSlider = '';
-            if (this.data.colorSlider !== '' && this.data.colorSlider !== undefined){
-                colorSlider = '--mdc-theme-secondary: ' + this.data.colorSlider + ';';
-            }
-
-            let colorSliderBg = '';
-            if (this.data.colorSliderBg !== '' && this.data.colorSliderBg !== undefined){
-                colorSliderBg = 'background-color: ' + this.data.colorSliderBg + ';';
-            }
-
-            let showValue = '';
-            if (this.data.showValueLabel === 'false' || this.data.showValueLabel === false) {
-                showValue = 'display:none;'
-            }
-
-            let valueLabelWidth = '0%';
-            if (this.data.valueLabelWidth !== undefined && this.data.valueLabelWidth !== null && this.data.valueLabelWidth !== ''){
-                valueLabelWidth = this.data.valueLabelWidth + '%';
-            }
-        %>
-
-        <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; padding-left: 5px; padding-right: 5px; overflow:visible !important;" id="<%= this.data.attr('wid') %>">
-            <div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
-                <div class="mdc-slider" tabindex="0" role="slider" style="<%= colorSlider %>"
-                    aria-valuemin="<%== this.data.attr('min') %>" aria-valuemax="<%== this.data.attr('max') %>" aria-valuenow="0" data-step="<%== this.data.attr('step') %>"
-                    aria-label="Select Value" data-oid="<%= this.data.attr('oid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" 
-                    <%= (el) -> vis.binds.materialdesign.mdcSlider(el, data) %>>
-                    <div class="mdc-slider__track-container" style="<%= colorSliderBg %>">
-                        <div class="mdc-slider__track"></div>
-                    </div>
-                    <div class="mdc-slider__thumb-container">
-                        <svg class="mdc-slider__thumb" width="21" height="21">
-                            <circle cx="10.5" cy="10.5" r="7.875"></circle>
-                        </svg>
-                        <div class="mdc-slider__focus-ring"></div>
-                    </div>
-                </div>
-                <span class="labelValue" style="width: <%= valueLabelWidth %>; text-align: right; <%= showValue %>"></span>
             </div>
         </div>
 </script>

@@ -985,5 +985,53 @@ systemDictionary = {
         "es": "invertir el color de la imagen",
         "pl": "odwróć kolor obrazu",
         "zh-cn": "反转图像颜色"
+    },
+    "knobSize": {
+        "en": "knob size",
+        "de": "Knopfgröße",
+        "ru": "размер ручки",
+        "pt": "tamanho do botão",
+        "nl": "knop maat",
+        "fr": "taille du bouton",
+        "it": "dimensione della manopola",
+        "es": "tamaño de la perilla",
+        "pl": "rozmiar pokrętła",
+        "zh-cn": "旋钮大小"
+    },
+    "knobSmall": {
+        "en": "small",
+        "de": "normal",
+        "ru": "небольшой",
+        "pt": "pequeno",
+        "nl": "klein",
+        "fr": "petit",
+        "it": "piccolo",
+        "es": "pequeña",
+        "pl": "mały",
+        "zh-cn": "小"
+    },
+    "knobMedium": {
+        "en": "medium",
+        "de": "Wurschtfinger",
+        "ru": "Средняя",
+        "pt": "médio",
+        "nl": "medium",
+        "fr": "moyen",
+        "it": "medio",
+        "es": "medio",
+        "pl": "średni",
+        "zh-cn": "介质"
+    },
+    "knobBig": {
+        "en": "big",
+        "de": "große Wurschtfinger",
+        "ru": "большой",
+        "pt": "grande",
+        "nl": "groot",
+        "fr": "gros",
+        "it": "grande",
+        "es": "grande",
+        "pl": "duży",
+        "zh-cn": "大"
     }
 };
