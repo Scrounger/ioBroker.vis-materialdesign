@@ -1,8 +1,8 @@
 :root{
-  --color-drawer-list-item-hover: #000;
-  --color-drawer-list-item-text: #000;
-  --color-drawer-list-item-text-activated: #1e88e5;
+  --color-list-item-hover: #000;
   --color-list-item-selected: #000;
+  --color-list-item-text: #000;
+  --color-list-item-text-activated: #1e88e5;
 }
 
 /* Button style -> must defined here because of position bug in vis editor */
@@ -697,21 +697,21 @@ svg.materialdesign-button__icon {
 
 /* hover item -> use var*/
 :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item:hover::before {
-  background-color: var(--color-drawer-list-item-hover);
+  background-color: var(--color-list-item-hover);
   opacity: 0.1;
 }
 
 /* hover item -> use var*/
 :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item:hover::after {
-  background-color: var(--color-drawer-list-item-hover);
+  background-color: var(--color-list-item-hover);
 }
 
 :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item{
-  color: var(--color-drawer-list-item-text);
+  color: var(--color-list-item-text);
 }
 
 :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated {
-  color: var(--color-drawer-list-item-text-activated);
+  color: var(--color-list-item-text-activated);
 }
 
 :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::before, :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::after{

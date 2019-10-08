@@ -487,16 +487,16 @@ vis.binds["materialdesign"] = {
             }, 1);
 
             let colorDrawerSelected = (data.colorDrawerSelected === undefined || data.colorDrawerSelected === null || data.colorDrawerSelected === '') ? '' : data.colorDrawerSelected;
-            mdcList.style.setProperty("--mdc-theme-primary", colorDrawerSelected);
+            mdcList.style.setProperty("--color-list-item-selected", colorDrawerSelected);
 
             let colorDrawerHover = (data.colorDrawerHover === undefined || data.colorDrawerHover === null || data.colorDrawerHover === '') ? '' : data.colorDrawerHover;
-            mdcList.style.setProperty("--color-drawer-list-item-hover", colorDrawerHover);
+            mdcList.style.setProperty("--color-list-item-hover", colorDrawerHover);
 
             let colorDrawerText = (data.colorDrawerText === undefined || data.colorDrawerText === null || data.colorDrawerText === '') ? '' : data.colorDrawerText;
-            mdcList.style.setProperty("--color-drawer-list-item-text", colorDrawerText);
+            mdcList.style.setProperty("--color-list-item-text", colorDrawerText);
 
             let colorDrawerTextSelected = (data.colorDrawerTextSelected === undefined || data.colorDrawerTextSelected === null || data.colorDrawerTextSelected === '') ? '' : data.colorDrawerTextSelected;
-            mdcList.style.setProperty("--color-drawer-list-item-text-activated", colorDrawerTextSelected);
+            mdcList.style.setProperty("--color-list-item-text-activated", colorDrawerTextSelected);
 
             let colorTopAppBarBackground = (data.colorTopAppBarBackground === undefined || data.colorTopAppBarBackground === null || data.colorTopAppBarBackground === '') ? '' : data.colorTopAppBarBackground;
             mdcTopAppBar.style.setProperty("--mdc-theme-primary", colorTopAppBarBackground);
@@ -609,8 +609,8 @@ vis.binds["materialdesign"] = {
             const listItemRipples = mdcList.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
 
 
-            let colorItemSelected = (data.colorItemSelected === undefined || data.colorItemSelected === null || data.colorItemSelected === '') ? '' : data.colorItemSelected;
-            list.style.setProperty("--color-list-item-selected", getValueFromData(colorItemSelected, ''));
+            list.style.setProperty("--color-list-item-selected", getValueFromData(data.colorItemSelected, ''));
+            list.style.setProperty("--color-list-item-hover", getValueFromData(data.colorItemHover, ''));
 
             mdcList.listen('MDCList:action', function (item) {
                 if (data.listType === 'checkbox' || data.listType === 'switch') {
