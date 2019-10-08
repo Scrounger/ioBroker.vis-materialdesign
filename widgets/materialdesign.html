@@ -1134,9 +1134,9 @@
         data-vis-name="List"
         data-vis-update-style="true"
         data-vis-beta="true"
-        data-vis-attrs="listType[text]/select,text,button,buttonToggle,switch,checkbox;count[1]/number;"
-        data-vis-attrs0="group.listItemLayout;listItemHeight/number;listImageLeftHeight/number;"
-        data-vis-attrs1="group.listLayout;dividerStyle[standard]/select,standard,padded,inset;"
+        data-vis-attrs="count[1]/number;"
+        data-vis-attrs0="group.listLayout;listType[text]/select,text,button,buttonToggle,switch,checkbox;dividerStyle[standard]/select,standard,padded,inset;"
+        data-vis-attrs1="group.listItemLayout;listItemHeight/number;listImageLeftHeight/number;distanceBetweenTextAndImage/number;listItemBackground/color;listItemBackgroundActive/color;colorCheckBox/color;colorItemSelected/color;"
         data-vis-attrs2="group.oids;oid(0-count);group.listTypes;group.listGroupHeaders;groupHeader(0-count);group.listImagesLeft;listImageLeft(0-count)/image;group.listLabels;label(0-count);group.listSubLabels;subLabel(0-count);group.listDividers;dividers(0-count)/checkbox;">
         
         <%
@@ -1147,6 +1147,26 @@
             let itemHeight = '';
             if (this.data.listItemHeight !== undefined && this.data.listItemHeight !== null && this.data.listItemHeight !== ''){
                 itemHeight = 'height: ' + this.data.listItemHeight + 'px;';
+            }
+
+            let listItemBackground = '';
+            if (this.data.listItemBackground !== undefined && this.data.listItemBackground !== null && this.data.listItemBackground !== ''){
+                listItemBackground = 'background: ' + this.data.listItemBackground + ';';
+            }
+
+            let imageLeftStyle = '';
+            if (this.data.listImageLeftHeight !== undefined && this.data.listImageLeftHeight !== null && this.data.listImageLeftHeight !== ''){
+                imageLeftStyle = 'width: auto; height: ' + this.data.listImageLeftHeight + 'px;';
+            }
+
+            let distanceBetweenTextAndImage = '';
+            if (this.data.distanceBetweenTextAndImage !== undefined && this.data.distanceBetweenTextAndImage !== null && this.data.distanceBetweenTextAndImage !== ''){
+                distanceBetweenTextAndImage = 'margin-right: ' + this.data.distanceBetweenTextAndImage + 'px;'
+            }
+
+            let colorCheckBox = '';
+            if (this.data.colorCheckBox !== undefined && this.data.colorCheckBox !== null && this.data.colorCheckBox !== ''){
+                colorCheckBox = '--mdc-theme-secondary: ' + this.data.colorCheckBox + ';';
             }
 
             for (var i=0; i <= this.data.count; i++){
@@ -1160,15 +1180,9 @@
                 let labelText = (data.attr('label' + i) !== undefined && data.attr('label' + i) !== null && data.attr('label' + i) !== '') ? data.attr('label' + i) : 'Item ' + i;
                 let subLabelText = (data.attr('subLabel' + i) !== undefined && data.attr('subLabel' + i) !== null && data.attr('subLabel' + i) !== '') ? data.attr('subLabel' + i) :'';
 
-
-                let imageLeftStyle = '';
-                if (this.data.listImageLeftHeight !== undefined && this.data.listImageLeftHeight !== null && this.data.listImageLeftHeight !== ''){
-                    imageLeftStyle = 'style="width: auto; height: ' + this.data.listImageLeftHeight + 'px;"';
-                }
-
                 let imageLeftElement = '';
                 if (data.attr('listImageLeft' + i) !== undefined && data.attr('listImageLeft' + i) !== null && data.attr('listImageLeft' + i) !== ''){
-                    imageLeftElement = '<img class="mdc-list-item__graphic" src="' + data.attr('listImageLeft' + i) + '"' + imageLeftStyle + ' >'
+                    imageLeftElement = '<img class="mdc-list-item__graphic" src="' + data.attr('listImageLeft' + i) + '" style="' + imageLeftStyle + distanceBetweenTextAndImage + '" >'
                 }
 
                 let labelElement = '';
@@ -1202,7 +1216,7 @@
                     itemRole = 'role="checkbox"';
 
                     typeElement =
-                        '<div class="mdc-checkbox mdc-list-item__meta"> ' +
+                        '<div class="mdc-checkbox mdc-list-item__meta" style="' + colorCheckBox + '"> ' +
                             '<input type="checkbox" class="mdc-checkbox__native-control" tabindex="-1" data-oid="' + data.attr('oid' + i) + '" itemindex="' + i + '">' +
                             '<div class="mdc-checkbox__background">' +
                                 '<svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">' +
@@ -1215,7 +1229,7 @@
                     itemRole = 'role="switch"';
                     
                     typeElement =
-                        '<div class="mdc-switch mdc-list-item__meta">' +
+                        '<div class="mdc-switch mdc-list-item__meta" style="' + colorCheckBox + '">' +
                             '<div class="mdc-switch__track"></div>' +
                             '<div class="mdc-switch__thumb-underlay">' +
                                 '<div class="mdc-switch__thumb">' +
@@ -1233,7 +1247,7 @@
 
                 let item = 
                     header + 
-                    '<li class="' + itemClass + '" ' + tabIndex + ' ' + itemRole +' id="listItem_' + i + '" style="' + itemHeight + '">' + 
+                    '<li class="' + itemClass + '" ' + tabIndex + ' ' + itemRole +' id="listItem_' + i + '" style="' + itemHeight + listItemBackground + '">' + 
                         imageLeftElement +
                         labelElement + 
                         typeElement +
@@ -1249,6 +1263,6 @@
                 <%== itemList.join('') %>
             </ul>
         </div>
-        
+               
 </script> 
 

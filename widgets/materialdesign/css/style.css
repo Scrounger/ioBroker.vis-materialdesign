@@ -2,6 +2,7 @@
   --color-drawer-list-item-hover: #000;
   --color-drawer-list-item-text: #000;
   --color-drawer-list-item-text-activated: #1e88e5;
+  --color-list-item-selected: #000;
 }
 
 /* Button style -> must defined here because of position bug in vis editor */
@@ -690,6 +691,7 @@ svg.materialdesign-button__icon {
 
 /* Default list color */
 .mdc-list {
+  padding: 0;
   --mdc-theme-primary: #1e88e5;
 }
 
@@ -712,9 +714,8 @@ svg.materialdesign-button__icon {
   color: var(--color-drawer-list-item-text-activated);
 }
 
-/* Defaults for list */
-.mdc-list {
-  padding: 0;
+:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::before, :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::after{
+  background-color: var(--color-list-item-selected);
 }
 
 .mdc-list-item__primary-text {

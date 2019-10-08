@@ -580,7 +580,7 @@ vis.binds["materialdesign"] = {
                 setTopAppBarWithDrawerLayout();
 
                 let backdropItemContainer = $this.parent().find(`div[id="drawerItemBackdropLabelContainer_${oldVal}"]`);
-                        backdropItemContainer.css('background', getValueFromData(data.colorDrawerbackdropLabelBackground, ''));
+                backdropItemContainer.css('background', getValueFromData(data.colorDrawerbackdropLabelBackground, ''));
             });
 
             function setTopAppBarWithDrawerLayout() {
@@ -609,12 +609,19 @@ vis.binds["materialdesign"] = {
             const listItemRipples = mdcList.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
 
 
+            let colorItemSelected = (data.colorItemSelected === undefined || data.colorItemSelected === null || data.colorItemSelected === '') ? '' : data.colorItemSelected;
+            list.style.setProperty("--color-list-item-selected", getValueFromData(colorItemSelected, ''));
+
             mdcList.listen('MDCList:action', function (item) {
                 if (data.listType === 'checkbox' || data.listType === 'switch') {
                     let index = item.detail.index;
                     let selectedValue = mdcListAdapter.isCheckboxCheckedAtIndex(index);
 
                     vis.setValue(data.attr('oid' + index), selectedValue);
+
+                    setLayout(index, selectedValue);
+
+                    console.log('hier');
                 }
             });
 
@@ -626,6 +633,7 @@ vis.binds["materialdesign"] = {
 
                     let valOnLoading = vis.states.attr(data.attr('oid' + i) + '.val');
                     mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(i, valOnLoading);
+                    setLayout(i, valOnLoading);
 
                     vis.states.bind(data.attr('oid' + i) + '.val', function (e, newVal, oldVal) {
                         // i wird nicht gespeichert -> umweg über oid gehen
@@ -635,10 +643,22 @@ vis.binds["materialdesign"] = {
                             // kann mit mehreren oid verknüpft sein
                             let index = input.eq(d).attr('itemindex');
                             mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(index, newVal);
+                            setLayout(index, newVal);
                         });
                     });
                 }
             }
+
+            function setLayout(index, val) {
+
+                let curListItem = $this.find(`li[id="listItem_${index}"]`);
+                if (val === true) {
+                    curListItem.css('background', getValueFromData(data.listItemBackgroundActive, ''));
+                } else {
+                    curListItem.css('background', getValueFromData(data.listItemBackground, ''));
+                }
+            }
+
         } catch (ex) {
             console.exception(`mdcList [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
