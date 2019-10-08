@@ -671,7 +671,7 @@ svg.materialdesign-button__icon {
 }
 
 /* Drawer container */
-.vis-view-container{
+.materialdesign-topAppBar-vis-view-container{
   position: absolute;
 }
 
