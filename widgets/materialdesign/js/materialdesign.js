@@ -602,17 +602,43 @@ vis.binds["materialdesign"] = {
         try {
             let $this = $(el);
 
-            let mdcList = $this.context;
+            let list = $this.context;
 
-            const list = new mdc.list.MDCList(mdcList);
-            const listItemRipples = list.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
+            const mdcList = new mdc.list.MDCList(list);
+            const mdcListAdapter = mdcList.getDefaultFoundation().adapter_;
+            const listItemRipples = mdcList.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
 
-            if (data.listType === 'switch') {
-                for (var i = 0; i <= $this.find('.mdc-switch').length - 1; i++) {
+
+            mdcList.listen('MDCList:action', function (item) {
+                if (data.listType === 'checkbox') {
+                    let index = item.detail.index;
+                    let selectedValue = mdcListAdapter.isCheckboxCheckedAtIndex(index);
+
+                    vis.setValue(data.attr('oid' + index), selectedValue);
+                }
+            });
+
+            if (data.listType === 'checkbox') {
+                for (var i = 0; i <= mdcList.listElements.length - 1; i++) {
+                    let valOnLoading = vis.states.attr(data.attr('oid' + i) + '.val');
+                    mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(i, valOnLoading);
+
+                    vis.states.bind(data.attr('oid' + i) + '.val', function (e, newVal, oldVal) {
+                        // i wird nicht gespeichert -> umweg über oid gehen
+                        let input = $this.find('input[data-oid="' + e.type.replace('.val','') + '"]');
+                        
+                        input.each(function(d) {
+                            // kann mit mehreren oid verknüpft sein
+                            let index = input.eq(d).attr('itemindex');
+                            mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(index, newVal);
+                        });
+                    });
+                }
+            } else if (data.listType === 'switch') {
+                for (var i = 0; i <= list.listElements.length - 1; i++) {
                     new mdc.switchControl.MDCSwitch($this.find('.mdc-switch').get(i));
                 }
             }
-
         } catch (ex) {
             console.exception(`mdcList [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
