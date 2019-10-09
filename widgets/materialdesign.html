@@ -1141,7 +1141,7 @@
         data-vis-beta="true"
         data-vis-attrs="count[1]/number;"
         data-vis-attrs0="group.listLayout;listType[text]/select,text,buttonState,buttonToggle,buttonNav,buttonLink,switch,checkbox;listItemDividerStyle[standard]/select,standard,padded,inset;listLayout[standard]/select,standard,card,cardOutlined;"
-        data-vis-attrs1="group.listItemLayout;listItemHeight/number;listImageHeight/number;distanceBetweenTextAndImage/number;listItemBackground/color;listItemBackgroundActive/color;colorCheckBox/color;colorListItemHover/color;colorListItemSelected/color;colorListItemText/color;colorListItemHeaders/color;colorListItemDivider/color;listItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;listItemSubTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;"
+        data-vis-attrs1="group.listItemLayout;listItemHeight/number;listImageHeight/number;distanceBetweenTextAndImage/number;listItemBackground/color;listItemBackgroundActive/color;colorCheckBox/color;colorListItemHover/color;colorListItemSelected/color;colorListItemText/color;colorListItemHeaders/color;colorListItemDivider/color;listItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;listItemSubTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;listItemHeaderTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;"
         data-vis-attrs2="group.oids;oid(0-count);group.listTypes;group.listGroupHeaders;groupHeader(0-count);group.listImages;listImage(0-count)/image;group.listImagesActive;listImageActive(0-count)/image;group.listLabels;label(0-count);group.listSubLabels;subLabel(0-count);group.listDividers;dividers(0-count)/checkbox;group.listTypeButtonStateValues;listTypeButtonStateValue(0-count);group.listTypeButtonNavs;listTypeButtonNav(0-count)/views;group.listTypeButtonLinks;listTypeButtonLink(0-count)/url;">
 
         <%
@@ -1194,12 +1194,36 @@
                 }
             }
 
+            let listItemSubTextLayout ='';
+            let listItemSubTextSize ='';
+            if (this.data.listItemSubTextSize !== undefined && this.data.listItemSubTextSize !== null && this.data.listItemSubTextSize !== ''){
+                if (this.data.listItemSubTextSize.includes('headline') || this.data.listItemSubTextSize.includes('subtitle')){
+                    listItemSubTextLayout = 'mdc-typography--' + this.data.listItemSubTextSize;
+                } else if(!isNaN(this.data.listItemSubTextSize)){
+                    listItemSubTextSize = 'font-size: ' + this.data.listItemSubTextSize + 'px;';
+                } else {
+                    listItemSubTextSize = 'font-size: ' + this.data.listItemSubTextSize + ';';
+                }
+            }
+
+            let listItemHeaderTextLayout ='';
+            let listItemHeaderTextSize ='';
+            if (this.data.listItemHeaderTextSize !== undefined && this.data.listItemHeaderTextSize !== null && this.data.listItemHeaderTextSize !== ''){
+                if (this.data.listItemHeaderTextSize.includes('headline') || this.data.listItemHeaderTextSize.includes('subtitle')){
+                    listItemHeaderTextLayout = 'mdc-typography--' + this.data.listItemHeaderTextSize;
+                } else if(!isNaN(this.data.listItemHeaderTextSize)){
+                    listItemHeaderTextSize = 'font-size: ' + this.data.listItemHeaderTextSize + 'px;';
+                } else {
+                    listItemHeaderTextSize = 'font-size: ' + this.data.listItemHeaderTextSize + ';';
+                }
+            }
+
             for (var i=0; i <= this.data.count; i++){
                 let itemClass = 'mdc-list-item';
 
                 let header = '';
                 if (data.attr('groupHeader' + i) !== undefined && data.attr('groupHeader' + i) !== null && data.attr('groupHeader' + i) !== ''){
-                    header = '<h3 class="mdc-list-group__subheader">' + data.attr('groupHeader' + i) + '</h3>'
+                    header = '<h3 class="mdc-list-group__subheader ' + listItemHeaderTextLayout + '" style="' + listItemHeaderTextSize + '">' + data.attr('groupHeader' + i) + '</h3>'
                 }
 
                 let labelText = (data.attr('label' + i) !== undefined && data.attr('label' + i) !== null && data.attr('label' + i) !== '') ? data.attr('label' + i) : 'Item ' + i;
@@ -1215,7 +1239,7 @@
                     labelElement = 
                         '<span class="mdc-list-item__text">' +      //TODO: evtl. muss flex wieder raus
                             '<span class="mdc-list-item__primary-text ' + listItemTextLayout + '" style="' + listItemTextSize + '">' + labelText + '</span>' +
-                            '<span class="mdc-list-item__secondary-text">' + subLabelText + '</span>' +
+                            '<span class="mdc-list-item__secondary-text ' + listItemSubTextLayout + '" style="' + listItemSubTextSize + '">' + subLabelText + '</span>' +
                         '</span>';
 
                     itemClass.concat(' mdc-list--two-line')
