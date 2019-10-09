@@ -1141,8 +1141,8 @@
         data-vis-beta="true"
         data-vis-attrs="count[1]/number;"
         data-vis-attrs0="group.listLayout;listType[text]/select,text,button,buttonToggle,switch,checkbox;listItemDividerStyle[standard]/select,standard,padded,inset;listLayout[standard]/select,standard,card,cardOutlined;"
-        data-vis-attrs1="group.listItemLayout;listItemHeight/number;listImageLeftHeight/number;distanceBetweenTextAndImage/number;listItemBackground/color;listItemBackgroundActive/color;colorCheckBox/color;colorListItemHover/color;colorListItemSelected/color;colorListItemText/color;colorListItemHeaders/color;colorListItemDivider/color;"
-        data-vis-attrs2="group.oids;oid(0-count);group.listTypes;group.listGroupHeaders;groupHeader(0-count);group.listImagesLeft;listImageLeft(0-count)/image;group.listLabels;label(0-count);group.listSubLabels;subLabel(0-count);group.listDividers;dividers(0-count)/checkbox;">
+        data-vis-attrs1="group.listItemLayout;listItemHeight/number;listImageHeight/number;distanceBetweenTextAndImage/number;listItemBackground/color;listItemBackgroundActive/color;colorCheckBox/color;colorListItemHover/color;colorListItemSelected/color;colorListItemText/color;colorListItemHeaders/color;colorListItemDivider/color;"
+        data-vis-attrs2="group.oids;oid(0-count);group.listTypes;group.listGroupHeaders;groupHeader(0-count);group.listImages;listImage(0-count)/image;group.listImagesActive;listImageActive(0-count)/image;group.listLabels;label(0-count);group.listSubLabels;subLabel(0-count);group.listDividers;dividers(0-count)/checkbox;">
 
         <%
             let itemList = [];
@@ -1167,8 +1167,8 @@
             }
 
             let imageLeftStyle = '';
-            if (this.data.listImageLeftHeight !== undefined && this.data.listImageLeftHeight !== null && this.data.listImageLeftHeight !== ''){
-                imageLeftStyle = 'width: auto; height: ' + this.data.listImageLeftHeight + 'px;';
+            if (this.data.listImageHeight !== undefined && this.data.listImageHeight !== null && this.data.listImageHeight !== ''){
+                imageLeftStyle = 'width: auto; height: ' + this.data.listImageHeight + 'px;';
             }
 
             let distanceBetweenTextAndImage = '';
@@ -1193,8 +1193,8 @@
                 let subLabelText = (data.attr('subLabel' + i) !== undefined && data.attr('subLabel' + i) !== null && data.attr('subLabel' + i) !== '') ? data.attr('subLabel' + i) :'';
 
                 let imageLeftElement = '';
-                if (data.attr('listImageLeft' + i) !== undefined && data.attr('listImageLeft' + i) !== null && data.attr('listImageLeft' + i) !== ''){
-                    imageLeftElement = '<img class="mdc-list-item__graphic" src="' + data.attr('listImageLeft' + i) + '" style="' + imageLeftStyle + distanceBetweenTextAndImage + '" >'
+                if (data.attr('listImage' + i) !== undefined && data.attr('listImage' + i) !== null && data.attr('listImage' + i) !== ''){
+                    imageLeftElement = '<img class="mdc-list-item__graphic" id="itemImage_' + i + '" src="' + data.attr('listImage' + i) + '" style="' + imageLeftStyle + distanceBetweenTextAndImage + '" >'
                 }
 
                 let labelElement = '';
@@ -1275,5 +1275,7 @@
                 <%== itemList.join('') %>
             </ul>
         </div>
+
+
 </script> 
 

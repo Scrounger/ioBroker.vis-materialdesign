@@ -670,10 +670,13 @@ vis.binds["materialdesign"] = {
             function setLayout(index, val) {
 
                 let curListItem = $this.find(`li[id="listItem_${index}"]`);
+                let curListItemImage = $this.find(`img[id="itemImage_${index}"]`);
                 if (val === true) {
                     curListItem.css('background', getValueFromData(data.listItemBackgroundActive, ''));
+                    curListItemImage.attr('src', getValueFromData(data.attr('listImageActive' + index), getValueFromData(data.attr('listImage' + index), '')))
                 } else {
                     curListItem.css('background', getValueFromData(data.listItemBackground, ''));
+                    curListItemImage.attr('src', getValueFromData(data.attr('listImage' + index), ''))
                 }
             }
 
