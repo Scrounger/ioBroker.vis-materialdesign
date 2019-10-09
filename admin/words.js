@@ -878,7 +878,7 @@ systemDictionary = {
         "pl": "etykieta",
         "zh-cn": "标签"
     },
-    "colorDrawerHeaders": {
+    "colorListItemHeaders": {
         "en": "headers color",
         "de": "Überschriften",
         "ru": "цвет заголовков",

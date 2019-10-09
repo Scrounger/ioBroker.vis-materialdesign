@@ -490,6 +490,8 @@ vis.binds["materialdesign"] = {
             mdcList.style.setProperty("--materialdesign-color-list-item-hover", getValueFromData(data.colorListItemHover, ''));
             mdcList.style.setProperty("--materialdesign-color-list-item-text", getValueFromData(data.colorListItemText, ''));
             mdcList.style.setProperty("--materialdesign-color-list-item-text-activated", getValueFromData(data.colorListItemTextSelected, ''));
+            mdcList.style.setProperty("--materialdesign-color-list-item-header", getValueFromData(data.colorListItemHeaders, ''));
+
             mdcTopAppBar.style.setProperty("--mdc-theme-primary", getValueFromData(data.colorTopAppBarBackground, ''));
 
             const drawer = new mdc.drawer.MDCDrawer(mdcDrawer);
@@ -602,6 +604,7 @@ vis.binds["materialdesign"] = {
             list.style.setProperty("--materialdesign-color-list-item-selected", getValueFromData(data.colorListItemSelected, ''));
             list.style.setProperty("--materialdesign-color-list-item-hover", getValueFromData(data.colorListItemHover, ''));
             list.style.setProperty("--materialdesign-color-list-item-text", getValueFromData(data.colorListItemText, ''));
+            list.style.setProperty("--materialdesign-color-list-item-header", getValueFromData(data.colorListItemHeaders, ''));
 
             mdcList.listen('MDCList:action', function (item) {
                 if (data.listType === 'checkbox' || data.listType === 'switch') {

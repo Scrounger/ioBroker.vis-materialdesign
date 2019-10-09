@@ -3,6 +3,7 @@
   --materialdesign-color-list-item-selected: #000;
   --materialdesign-color-list-item-text: #000;
   --materialdesign-color-list-item-text-activated: #1e88e5;
+  --materialdesign-color-list-item-header: #000;
 }
 
 /* Button style -> must defined here because of position bug in vis editor */
@@ -716,6 +717,14 @@ svg.materialdesign-button__icon {
 
 :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::before, :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::after{
   background-color: var(--materialdesign-color-list-item-selected);
+}
+
+.mdc-list-group__subheader {
+  color: var(--materialdesign-color-list-item-header);
+}
+
+.mdc-drawer .mdc-list-group__subheader {
+  color: var(--materialdesign-color-list-item-header);
 }
 
 .mdc-list-item__primary-text {
