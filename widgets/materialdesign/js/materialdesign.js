@@ -609,8 +609,9 @@ vis.binds["materialdesign"] = {
             list.style.setProperty("--materialdesign-color-list-item-divider", getValueFromData(data.colorListItemDivider, ''));
 
             mdcList.listen('MDCList:action', function (item) {
+                let index = item.detail.index;
+
                 if (data.listType === 'checkbox' || data.listType === 'switch') {
-                    let index = item.detail.index;
                     let selectedValue = mdcListAdapter.isCheckboxCheckedAtIndex(index);
 
                     vis.setValue(data.attr('oid' + index), selectedValue);
@@ -618,13 +619,19 @@ vis.binds["materialdesign"] = {
                     setLayout(index, selectedValue);
 
                     console.log('hier');
+                } else if (data.listType === 'buttonToggle') {
+                    let selectedValue = vis.states.attr(data.attr('oid' + index) + '.val');
+
+                    vis.setValue(data.attr('oid' + index), !selectedValue);
+
+                    setLayout(index, !selectedValue);
                 }
             });
 
-            if (data.listType === 'checkbox' || data.listType === 'switch') {
-                let itemCount = (data.listType === 'switch') ? $this.find('.mdc-switch').length : mdcList.listElements.length;
-
-                for (var i = 0; i <= itemCount - 1; i++) {
+            let itemCount = (data.listType === 'switch') ? $this.find('.mdc-switch').length : mdcList.listElements.length;
+            
+            for (var i = 0; i <= itemCount - 1; i++) {
+                if (data.listType === 'checkbox' || data.listType === 'switch') {
                     if (data.listType === 'switch') new mdc.switchControl.MDCSwitch($this.find('.mdc-switch').get(i));
 
                     let valOnLoading = vis.states.attr(data.attr('oid' + i) + '.val');
@@ -639,6 +646,21 @@ vis.binds["materialdesign"] = {
                             // kann mit mehreren oid verknüpft sein
                             let index = input.eq(d).attr('itemindex');
                             mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(index, newVal);
+                            setLayout(index, newVal);
+                        });
+                    });
+
+                } else if (data.listType === 'buttonToggle') {
+                    let valOnLoading = vis.states.attr(data.attr('oid' + i) + '.val');
+                    setLayout(i, valOnLoading);
+
+                    vis.states.bind(data.attr('oid' + i) + '.val', function (e, newVal, oldVal) {
+                        // i wird nicht gespeichert -> umweg über oid gehen
+                        let input = $this.parent().find('li[data-oid="' + e.type.replace('.val', '') + '"]');
+                        
+                        input.each(function (d) {
+                            // kann mit mehreren oid verknüpft sein
+                            let index = input.eq(d).attr('listitemindex');
                             setLayout(index, newVal);
                         });
                     });
