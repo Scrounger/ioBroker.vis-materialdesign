@@ -30,6 +30,9 @@ https://github.com/material-components/material-components-web/blob/master/docs/
 ![Logo](doc/media/icon-button.gif)
 
 ## Progress
+![Logo](doc/media/list.gif)
+
+## Progress
 ![Logo](doc/media/progress.gif)
 
 ## Slider
