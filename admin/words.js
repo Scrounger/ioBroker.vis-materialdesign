@@ -842,7 +842,7 @@ systemDictionary = {
         "pl": "kolor tła nagłówka",
         "zh-cn": "标头背景色"
     },
-    "colorDrawerSelected": {
+    "colorListItemSelected": {
         "en": "active element",
         "de": "aktives Element",
         "ru": "активный элемент",
@@ -854,7 +854,7 @@ systemDictionary = {
         "pl": "aktywny element",
         "zh-cn": "活性元素"
     },
-    "colorDrawerHover": {
+    "colorListItemHover": {
         "en": "select element",
         "de": "Element auswählen",
         "ru": "выбрать элемент",
@@ -866,7 +866,7 @@ systemDictionary = {
         "pl": "wybierz element",
         "zh-cn": "选择元素"
     },
-    "colorDrawerText": {
+    "colorListItemText": {
         "en": "label",
         "de": "Beschriftung",
         "ru": "этикетка",
@@ -890,7 +890,7 @@ systemDictionary = {
         "pl": "kolor nagłówków",
         "zh-cn": "标头颜色"
     },
-    "colorDrawerTextSelected": {
+    "colorListItemTextSelected": {
         "en": "active label",
         "de": "aktive Beschriftungen",
         "ru": "активная метка",

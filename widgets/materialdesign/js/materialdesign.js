@@ -486,21 +486,11 @@ vis.binds["materialdesign"] = {
 
             }, 1);
 
-            let colorDrawerSelected = (data.colorDrawerSelected === undefined || data.colorDrawerSelected === null || data.colorDrawerSelected === '') ? '' : data.colorDrawerSelected;
-            mdcList.style.setProperty("--color-list-item-selected", colorDrawerSelected);
-
-            let colorDrawerHover = (data.colorDrawerHover === undefined || data.colorDrawerHover === null || data.colorDrawerHover === '') ? '' : data.colorDrawerHover;
-            mdcList.style.setProperty("--color-list-item-hover", colorDrawerHover);
-
-            let colorDrawerText = (data.colorDrawerText === undefined || data.colorDrawerText === null || data.colorDrawerText === '') ? '' : data.colorDrawerText;
-            mdcList.style.setProperty("--color-list-item-text", colorDrawerText);
-
-            let colorDrawerTextSelected = (data.colorDrawerTextSelected === undefined || data.colorDrawerTextSelected === null || data.colorDrawerTextSelected === '') ? '' : data.colorDrawerTextSelected;
-            mdcList.style.setProperty("--color-list-item-text-activated", colorDrawerTextSelected);
-
-            let colorTopAppBarBackground = (data.colorTopAppBarBackground === undefined || data.colorTopAppBarBackground === null || data.colorTopAppBarBackground === '') ? '' : data.colorTopAppBarBackground;
-            mdcTopAppBar.style.setProperty("--mdc-theme-primary", colorTopAppBarBackground);
-
+            mdcList.style.setProperty("--materialdesign-color-list-item-selected", getValueFromData(data.colorListItemSelected, ''));
+            mdcList.style.setProperty("--materialdesign-color-list-item-hover", getValueFromData(data.colorListItemHover, ''));
+            mdcList.style.setProperty("--materialdesign-color-list-item-text", getValueFromData(data.colorListItemText, ''));
+            mdcList.style.setProperty("--materialdesign-color-list-item-text-activated", getValueFromData(data.colorListItemTextSelected, ''));
+            mdcTopAppBar.style.setProperty("--mdc-theme-primary", getValueFromData(data.colorTopAppBarBackground, ''));
 
             const drawer = new mdc.drawer.MDCDrawer(mdcDrawer);
             const topAppBar = new mdc.topAppBar.MDCTopAppBar(mdcTopAppBar);
@@ -609,8 +599,9 @@ vis.binds["materialdesign"] = {
             const listItemRipples = mdcList.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
 
 
-            list.style.setProperty("--color-list-item-selected", getValueFromData(data.colorItemSelected, ''));
-            list.style.setProperty("--color-list-item-hover", getValueFromData(data.colorItemHover, ''));
+            list.style.setProperty("--materialdesign-color-list-item-selected", getValueFromData(data.colorListItemSelected, ''));
+            list.style.setProperty("--materialdesign-color-list-item-hover", getValueFromData(data.colorListItemHover, ''));
+            list.style.setProperty("--materialdesign-color-list-item-text", getValueFromData(data.colorListItemText, ''));
 
             mdcList.listen('MDCList:action', function (item) {
                 if (data.listType === 'checkbox' || data.listType === 'switch') {
