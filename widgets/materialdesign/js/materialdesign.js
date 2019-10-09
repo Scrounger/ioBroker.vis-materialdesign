@@ -628,11 +628,15 @@ vis.binds["materialdesign"] = {
                     let valueToSet = data.attr('listTypeButtonStateValue' + index);
 
                     vis.setValue(data.attr('oid' + index), valueToSet);
+                } else if (data.listType === 'buttonNav') {
+                    vis.changeView(data.attr('listTypeButtonNav' + index));
+                } else if (data.listType === 'buttonLink') {
+                    window.open(data.attr('listTypeButtonLink' + index));
                 }
             });
 
             let itemCount = (data.listType === 'switch') ? $this.find('.mdc-switch').length : mdcList.listElements.length;
-            
+
             for (var i = 0; i <= itemCount - 1; i++) {
                 if (data.listType === 'checkbox' || data.listType === 'switch') {
                     if (data.listType === 'switch') new mdc.switchControl.MDCSwitch($this.find('.mdc-switch').get(i));
@@ -660,7 +664,7 @@ vis.binds["materialdesign"] = {
                     vis.states.bind(data.attr('oid' + i) + '.val', function (e, newVal, oldVal) {
                         // i wird nicht gespeichert -> umweg über oid gehen
                         let input = $this.parent().find('li[data-oid="' + e.type.replace('.val', '') + '"]');
-                        
+
                         input.each(function (d) {
                             // kann mit mehreren oid verknüpft sein
                             let index = input.eq(d).attr('listitemindex');
