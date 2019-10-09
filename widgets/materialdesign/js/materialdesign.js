@@ -336,7 +336,7 @@ vis.binds["materialdesign"] = {
                         }
                     }
                 }
-            }, 250);
+            }, data.initDelay);
         } catch (ex) {
             console.exception(`mdcSlider [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
