@@ -902,7 +902,7 @@ systemDictionary = {
         "pl": "aktywna etykieta",
         "zh-cn": "活动标签"
     },
-    "colorDrawerDivider": {
+    "colorListItemDivider": {
         "en": "divider color",
         "de": "Trennlinie",
         "ru": "цвет делителя",
