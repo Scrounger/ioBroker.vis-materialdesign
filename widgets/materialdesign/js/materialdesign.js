@@ -601,7 +601,6 @@ vis.binds["materialdesign"] = {
             const mdcListAdapter = mdcList.getDefaultFoundation().adapter_;
             const listItemRipples = mdcList.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
 
-
             list.style.setProperty("--materialdesign-color-list-item-selected", getValueFromData(data.colorListItemSelected, ''));
             list.style.setProperty("--materialdesign-color-list-item-hover", getValueFromData(data.colorListItemHover, ''));
             list.style.setProperty("--materialdesign-color-list-item-text", getValueFromData(data.colorListItemText, ''));
@@ -625,6 +624,10 @@ vis.binds["materialdesign"] = {
                     vis.setValue(data.attr('oid' + index), !selectedValue);
 
                     setLayout(index, !selectedValue);
+                } else if (data.listType === 'buttonState') {
+                    let valueToSet = data.attr('listTypeButtonStateValue' + index);
+
+                    vis.setValue(data.attr('oid' + index), valueToSet);
                 }
             });
 
