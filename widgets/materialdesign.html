@@ -1140,7 +1140,7 @@
         data-vis-update-style="true"
         data-vis-beta="true"
         data-vis-attrs="count[1]/number;"
-        data-vis-attrs0="group.listLayout;listType[text]/select,text,button,buttonToggle,switch,checkbox;listItemDividerStyle[standard]/select,standard,padded,inset;"
+        data-vis-attrs0="group.listLayout;listType[text]/select,text,button,buttonToggle,switch,checkbox;listItemDividerStyle[standard]/select,standard,padded,inset;listLayout[standard]/select,standard,card,cardOutlined;"
         data-vis-attrs1="group.listItemLayout;listItemHeight/number;listImageLeftHeight/number;distanceBetweenTextAndImage/number;listItemBackground/color;listItemBackgroundActive/color;colorCheckBox/color;colorListItemHover/color;colorListItemSelected/color;colorListItemText/color;colorListItemHeaders/color;colorListItemDivider/color;"
         data-vis-attrs2="group.oids;oid(0-count);group.listTypes;group.listGroupHeaders;groupHeader(0-count);group.listImagesLeft;listImageLeft(0-count)/image;group.listLabels;label(0-count);group.listSubLabels;subLabel(0-count);group.listDividers;dividers(0-count)/checkbox;">
 
@@ -1148,6 +1148,13 @@
             let itemList = [];
             let itemRole = '';
             let listNoneInteractive = '';
+
+            let listLayout = '';
+            if (this.data.listLayout === 'card'){
+                listLayout = 'materialdesign-list-card';
+            } else if (this.data.listLayout === 'cardOutlined'){
+                listLayout = 'materialdesign-list-card materialdesign-list-card--outlined';
+            }
 
             let itemHeight = '';
             if (this.data.listItemHeight !== undefined && this.data.listItemHeight !== null && this.data.listItemHeight !== ''){
@@ -1263,7 +1270,7 @@
             }
         %>
 
-        <div class="vis-widget materialdesign-list <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
+        <div class="vis-widget materialdesign-list <%== listLayout %> <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
             <ul class="mdc-list <%== listNoneInteractive %>" <%= (el) -> vis.binds.materialdesign.mdcList(el, data) %>>   
                 <%== itemList.join('') %>
             </ul>
