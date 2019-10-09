@@ -921,7 +921,7 @@
         data-vis-update-style="true"
         data-vis-attrs="oid;persistent/checkbox;notIfInvisible/checkbox;count[1]/number;group.views;contains_view_(0-count)/views;"
         data-vis-attrs0="group.topAppBarLayout;topAppBarLayout[standard]/select,standard,dense,short;titleTopAppBar[Material Design Widgets];colorTopAppBarTitle/color;colorTopAppBarBackground/color;showSelectedItemAsTitle/checkbox;"
-        data-vis-attrs1="group.drawerLayout;drawerLayout[modal]/select,modal,dismissible,permanent;drawerItemLayout[standard]/select,standard,backdrop;listItemDividerStyle[standard]/select,standard,padded,inset;drawerWidth/number;z_index/number;showHeader[true]/checkbox;headerLabel[<h4 class='mdc-drawer__title'>Material Design Widgets</h4><h6 class='mdc-drawer__subtitle'>by Scrounger</h6>]/html;showLabels[true]/checkbox;drawerIconHeight/number;drawerLabelSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;backdropLabelBackgroundHeight/slider,0,100,1;"
+        data-vis-attrs1="group.drawerLayout;drawerLayout[modal]/select,modal,dismissible,permanent;drawerItemLayout[standard]/select,standard,backdrop;listItemDividerStyle[standard]/select,standard,padded,inset;drawerWidth/number;z_index/number;showHeader[true]/checkbox;headerLabel[<h4 class='mdc-drawer__title'>Material Design Widgets</h4><h6 class='mdc-drawer__subtitle'>by Scrounger</h6>]/html;showLabels[true]/checkbox;drawerIconHeight/number;listItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;backdropLabelBackgroundHeight/slider,0,100,1;"
         data-vis-attrs2="group.drawerColors;colorDrawerBackground/color;colorDrawerHeaderBackground/color;colorListItemHover/color;colorListItemSelected/color;colorListItemText/color;colorListItemTextSelected/color;colorListItemHeaders/color;colorListItemDivider/color;colorDrawerbackdropLabelBackground/color;colorDrawerbackdropLabelBackgroundActive/color;"
         data-vis-attrs3="group.drawerLabels;labels(0-count);group.drawerHeaders;headers(0-count);group.drawerDivider;dividers(0-count)/checkbox;group.drawerIcons;iconDrawer(0-count)[/vis/widgets/materialdesign/img/IoBroker_Logo.png]/image;">
         
@@ -953,15 +953,15 @@
             }
             
             // Navigation: Item Label font size
-            let navItemLabelLayout ='';
-            let navItemLabelSize ='';
-            if (this.data.drawerLabelSize !== undefined && this.data.drawerLabelSize !== null && this.data.drawerLabelSize !== ''){
-                if (this.data.drawerLabelSize.includes('headline') || this.data.drawerLabelSize.includes('subtitle')){
-                    navItemLabelLayout = 'mdc-typography--' + this.data.drawerLabelSize;
-                } else if(!isNaN(this.data.drawerLabelSize)){
-                    navItemLabelSize = 'font-size: ' + this.data.drawerLabelSize + 'px;';
+            let listItemTextLayout ='';
+            let listItemTextSize ='';
+            if (this.data.listItemTextSize !== undefined && this.data.listItemTextSize !== null && this.data.listItemTextSize !== ''){
+                if (this.data.listItemTextSize.includes('headline') || this.data.listItemTextSize.includes('subtitle')){
+                    listItemTextLayout = 'mdc-typography--' + this.data.listItemTextSize;
+                } else if(!isNaN(this.data.listItemTextSize)){
+                    listItemTextSize = 'font-size: ' + this.data.listItemTextSize + 'px;';
                 } else {
-                    navItemLabelSize = 'font-size: ' + this.data.drawerLabelSize + ';';
+                    listItemTextSize = 'font-size: ' + this.data.listItemTextSize + ';';
                 }
             }
 
@@ -1012,17 +1012,17 @@
                 let navItemLabel = '';
                 if (this.data.drawerItemLayout === 'standard'){
                     // Label wird als rückfall der View name verwendet
-                    navItemLabel = '<label class="mdc-list-item__text ' + navItemLabelLayout + '" id="drawerItem_' + i +'" style="' + navItemShowLabel + navItemLabelSize + '">' + data.attr('contains_view_' + i) + '</label>';
+                    navItemLabel = '<label class="mdc-list-item__text ' + listItemTextLayout + '" id="drawerItem_' + i +'" style="' + navItemShowLabel + listItemTextSize + '">' + data.attr('contains_view_' + i) + '</label>';
 
                     if (data.attr('labels' + i) !== undefined && data.attr('labels' + i) !== null && data.attr('labels' + i) !== ''){
-                        navItemLabel = '<label class="mdc-list-item__text ' + navItemLabelLayout + '" id="drawerItem_' + i +'" style="' + navItemShowLabel + navItemLabelSize + '">' + data.attr('labels' + i) + '</label>';
+                        navItemLabel = '<label class="mdc-list-item__text ' + listItemTextLayout + '" id="drawerItem_' + i +'" style="' + navItemShowLabel + listItemTextSize + '">' + data.attr('labels' + i) + '</label>';
                     }
                 } else {
                     // Label wird als rückfall der View name verwendet
-                    let navItemLabelBackdrop = '<label class="mdc-list-item__text ' + navItemLabelLayout + '" id="drawerItem_' + i +'" style="' + navItemShowLabel + navItemLabelSize + '">' + data.attr('contains_view_' + i) + '</label>';
+                    let navItemLabelBackdrop = '<label class="mdc-list-item__text ' + listItemTextLayout + '" id="drawerItem_' + i +'" style="' + navItemShowLabel + listItemTextSize + '">' + data.attr('contains_view_' + i) + '</label>';
 
                     if (data.attr('labels' + i) !== undefined && data.attr('labels' + i) !== null && data.attr('labels' + i) !== ''){
-                        navItemLabelBackdrop = '<label class="mdc-list-item__text ' + navItemLabelLayout + '" id="drawerItem_' + i +'" style="' + navItemShowLabel + navItemLabelSize + '">' + data.attr('labels' + i) + '</label>';
+                        navItemLabelBackdrop = '<label class="mdc-list-item__text ' + listItemTextLayout + '" id="drawerItem_' + i +'" style="' + navItemShowLabel + listItemTextSize + '">' + data.attr('labels' + i) + '</label>';
                     }
                     
                     navItemLabel = 
@@ -1141,7 +1141,7 @@
         data-vis-beta="true"
         data-vis-attrs="count[1]/number;"
         data-vis-attrs0="group.listLayout;listType[text]/select,text,buttonState,buttonToggle,buttonNav,buttonLink,switch,checkbox;listItemDividerStyle[standard]/select,standard,padded,inset;listLayout[standard]/select,standard,card,cardOutlined;"
-        data-vis-attrs1="group.listItemLayout;listItemHeight/number;listImageHeight/number;distanceBetweenTextAndImage/number;listItemBackground/color;listItemBackgroundActive/color;colorCheckBox/color;colorListItemHover/color;colorListItemSelected/color;colorListItemText/color;colorListItemHeaders/color;colorListItemDivider/color;"
+        data-vis-attrs1="group.listItemLayout;listItemHeight/number;listImageHeight/number;distanceBetweenTextAndImage/number;listItemBackground/color;listItemBackgroundActive/color;colorCheckBox/color;colorListItemHover/color;colorListItemSelected/color;colorListItemText/color;colorListItemHeaders/color;colorListItemDivider/color;listItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;listItemSubTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;"
         data-vis-attrs2="group.oids;oid(0-count);group.listTypes;group.listGroupHeaders;groupHeader(0-count);group.listImages;listImage(0-count)/image;group.listImagesActive;listImageActive(0-count)/image;group.listLabels;label(0-count);group.listSubLabels;subLabel(0-count);group.listDividers;dividers(0-count)/checkbox;group.listTypeButtonStateValues;listTypeButtonStateValue(0-count);group.listTypeButtonNavs;listTypeButtonNav(0-count)/views;group.listTypeButtonLinks;listTypeButtonLink(0-count)/url;">
 
         <%
@@ -1181,6 +1181,19 @@
                 colorCheckBox = '--mdc-theme-secondary: ' + this.data.colorCheckBox + ';';
             }
 
+            // Navigation: Item Label font size
+            let listItemTextLayout ='';
+            let listItemTextSize ='';
+            if (this.data.listItemTextSize !== undefined && this.data.listItemTextSize !== null && this.data.listItemTextSize !== ''){
+                if (this.data.listItemTextSize.includes('headline') || this.data.listItemTextSize.includes('subtitle')){
+                    listItemTextLayout = 'mdc-typography--' + this.data.listItemTextSize;
+                } else if(!isNaN(this.data.listItemTextSize)){
+                    listItemTextSize = 'font-size: ' + this.data.listItemTextSize + 'px;';
+                } else {
+                    listItemTextSize = 'font-size: ' + this.data.listItemTextSize + ';';
+                }
+            }
+
             for (var i=0; i <= this.data.count; i++){
                 let itemClass = 'mdc-list-item';
 
@@ -1201,13 +1214,13 @@
                 if (subLabelText !== ''){
                     labelElement = 
                         '<span class="mdc-list-item__text">' +      //TODO: evtl. muss flex wieder raus
-                            '<span class="mdc-list-item__primary-text">' + labelText + '</span>' +
+                            '<span class="mdc-list-item__primary-text ' + listItemTextLayout + '" style="' + listItemTextSize + '">' + labelText + '</span>' +
                             '<span class="mdc-list-item__secondary-text">' + subLabelText + '</span>' +
                         '</span>';
 
                     itemClass.concat(' mdc-list--two-line')
                 } else {
-                    labelElement = '<span class="mdc-list-item__text">' + labelText + '</span>';
+                    labelElement = '<span class="mdc-list-item__text ' + listItemTextLayout + '" style="' + listItemTextSize + '">' + labelText + '</span>';
                 }
                 
                 let divider = '';

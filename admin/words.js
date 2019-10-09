@@ -794,7 +794,7 @@ systemDictionary = {
         "pl": "wysokość ikony elementów listy",
         "zh-cn": "列出项目图标的高度"
     },
-    "drawerLabelSize": {
+    "listItemTextSize": {
         "en": "list items font size",
         "de": "Listenelemente Schriftgröße",
         "ru": "размер шрифта списка элементов",
