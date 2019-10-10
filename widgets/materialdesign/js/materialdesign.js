@@ -288,51 +288,129 @@ vis.binds["materialdesign"] = {
             console.exception(`mdcCheckbox [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    mdcSlider: function (el, data) {
+    mdcSlider: function (el, data, discrete = false) {
         try {
+            let $this = $(el);
+
+            let min = getValueFromData(data.min, 0);
+            let labelMin = getValueFromData(data.valueLabelMin, null);
+            let max = getValueFromData(data.max, 1);
+            let labelMax = getValueFromData(data.valueLabelMax, null);
+            let unit = getValueFromData(data.valueLabelUnit, '');
+
+            let showMarker = '';
+            if (data.showMarkers === 'true' || data.showMarkers === true) {
+                showMarker = 'mdc-slider--display-markers';
+            }
+
             setTimeout(function () {
-                // timeout damit slider funktioniert notwendig
-                let $this = $(el);
-                let oid = $this.attr('data-oid');
-                let wid = $this.attr('data-oid-working');
+                let valueOnLoading = vis.states.attr(data.oid + '.val');
 
-                const mdcSlider = new mdc.slider.MDCSlider($this.context);
+                // Slider Attributes für Initialisierung ermitteln
+                let pctComplete = (valueOnLoading - data.min) / (data.max - data.min);
+                let sliderWidth = window.getComputedStyle($this.context, null).width.replace('px', '');
 
-                let min = getValueFromData(data.min, 0);
-                let labelMin = getValueFromData(data.valueLabelMin, null);
-                let max = getValueFromData(data.max, 1);
-                let labelMax = getValueFromData(data.valueLabelMax, null);
-                let unit = getValueFromData(data.valueLabelUnit, '');
+                let labelWitdh = 0;
+                if (data.showValueLabel === true || data.showValueLabel === 'true') {
+                    labelWitdh = data.valueLabelWidth;
+                }
 
-                // Wert beim intialisieren setzen, sofern nicht working aktiv
-                setSliderState();
+                let translatePx = (sliderWidth - labelWitdh) * pctComplete;
 
-                // Slider user input -> Wert übergeben
-                mdcSlider.listen('MDCSlider:change', function () {
-                    vis.setValue(oid, mdcSlider.value);
-                });
+                // Slider Element dynamisch erzeugen
+                let sliderConstructor = '';
+                if (!discrete) {
+                    sliderConstructor =
+                        `<div class="mdc-slider" tabindex="0" role="slider" style="<%= colorSlider %>" aria-valuemin="${data.min}" aria-valuemax="${data.max}" aria-valuenow="${valueOnLoading}" data-step="${data.step}">
+                            <div class="mdc-slider__track-container">
+                                <div class="mdc-slider__track" style="transform: scaleX(${pctComplete});"></div>
+                            </div>
+                            <div class="mdc-slider__thumb-container" style="transform: translateX(${translatePx}px) translateX(-50%);">
+                                <svg class="mdc-slider__thumb" width="21" height="21">
+                                    <circle cx="10.5" cy="10.5" r="7.875"></circle>
+                                </svg>
+                                <div class="mdc-slider__focus-ring"></div>
+                            </div>
+                        </div>`;
+                } else {
+                    sliderConstructor =
+                        `<div class="mdc-slider mdc-slider--discrete ${showMarker}" tabindex="0" role="slider" aria-valuemin="${data.min}" aria-valuemax="${data.max}" aria-valuenow="${valueOnLoading}" data-step="${data.step}">
+                        <div class="mdc-slider__track-container">
+                            <div class="mdc-slider__track" style="transform: scaleX(${pctComplete});"></div>
+                            <div class="mdc-slider__track-marker-container"></div>
+                        </div>
+                        <div class="mdc-slider__thumb-container" style="transform: translateX(${translatePx}px) translateX(-50%);">
+                            <div class="mdc-slider__pin">
+                                <span class="mdc-slider__pin-value-marker"></span>
+                            </div>
+                            <svg class="mdc-slider__thumb" width="21" height="21">
+                                <circle cx="10.5" cy="10.5" r="7.875"></circle>
+                            </svg>
+                            <div class="mdc-slider__focus-ring"></div>
+                        </div>
+                    </div>`;
+                }
 
-                vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
+                if (labelWitdh > 0) {
+                    sliderConstructor = sliderConstructor +
+                        `<span class="labelValue" style="width: ${labelWitdh}px; text-align: right;">${valueOnLoading} ${unit}</span>`;
+                }
+
+                // Slider hinzufügen
+                $this.html(`<div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
+                                ${sliderConstructor}
+                            </div>`);
+
+                // Slider Control
+                let sliderElement = $this.find('.mdc-slider').get(0);
+
+                // Colors
+                sliderElement.style.setProperty("--mdc-theme-secondary", getValueFromData(data.colorSlider, ''));
+                $this.find('.mdc-slider__track-container').css('background-color', getValueFromData(data.colorSliderBg, ''));
+
+                if (data.knobSize === 'knobMedium') {
+                    $this.find('.mdc-slider__thumb').attr('width', '31').attr('height', '31').css('margin-left', '-5px').css('margin-top', '-5px');
+                    $this.find('.mdc-slider__pin').css('margin-top', '-5px');
+                    $this.find('circle').attr('cx', '15.5').attr('cy', '15.5').attr('r', '11.8125');
+                } else if (data.knobSize === 'knobBig') {
+                    $this.find('.mdc-slider__thumb').attr('width', '42').attr('height', '42').css('margin-left', '-10px').css('margin-top', '-10px');
+                    $this.find('.mdc-slider__pin').css('margin-top', '-7px');
+                    $this.find('circle').attr('cx', '21').attr('cy', '21').attr('r', '15.75');
+                }
+
+                if (!vis.editMode) {
+                    const mdcSlider = new mdc.slider.MDCSlider(sliderElement);
+
+                    // Slider Initialiserung setzen
                     setSliderState();
-                });
 
-                vis.states.bind(wid + '.val', function (e, newVal, oldVal) {
-                    if (!newVal) {
+                    // Slider user input -> Wert übergeben
+                    mdcSlider.listen('MDCSlider:change', function () {
+                        vis.setValue(data.oid, mdcSlider.value);
+                    });
+
+                    vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                         setSliderState();
-                    }
-                });
+                    });
 
-                function setSliderState() {
-                    if (!vis.states.attr(wid + '.val')) {
-                        let val = vis.states.attr(oid + '.val');
-                        mdcSlider.value = val;
+                    vis.states.bind(data.wid + '.val', function (e, newVal, oldVal) {
+                        if (!newVal) {
+                            setSliderState();
+                        }
+                    });
 
-                        if (val <= min && labelMin != null) {
-                            $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html(labelMin);
-                        } else if (val >= max && labelMax != null) {
-                            $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html(labelMax);
-                        } else {
-                            $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html(val + unit);
+                    function setSliderState() {
+                        if (!vis.states.attr(data.wid + '.val')) {
+                            let val = vis.states.attr(data.oid + '.val');
+                            mdcSlider.value = val;
+
+                            if (val <= min && labelMin != null) {
+                                $this.find('.labelValue').html(labelMin);
+                            } else if (val >= max && labelMax != null) {
+                                $this.find('.labelValue').html(labelMax);
+                            } else {
+                                $this.find('.labelValue').html(`${val} ${unit}`);
+                            }
                         }
                     }
                 }
