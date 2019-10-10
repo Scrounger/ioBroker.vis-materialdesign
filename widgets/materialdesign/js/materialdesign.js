@@ -389,6 +389,11 @@ vis.binds["materialdesign"] = {
                         vis.setValue(data.oid, mdcSlider.value);
                     });
 
+                    mdcSlider.listen('MDCSlider:input', function () {
+                        console.log(mdcSlider.value);
+                        setSliderState(false, mdcSlider.value);
+                    });
+
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                         setSliderState();
                     });
@@ -399,10 +404,12 @@ vis.binds["materialdesign"] = {
                         }
                     });
 
-                    function setSliderState() {
+                    function setSliderState(setVisValue = true, val=0) {
                         if (!vis.states.attr(data.wid + '.val')) {
-                            let val = vis.states.attr(data.oid + '.val');
-                            mdcSlider.value = val;
+                            if (setVisValue) {
+                                val = vis.states.attr(data.oid + '.val');
+                                mdcSlider.value = val;
+                            }
 
                             if (val <= min && labelMin != null) {
                                 $this.find('.labelValue').html(labelMin);
