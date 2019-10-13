@@ -404,7 +404,7 @@ vis.binds["materialdesign"] = {
                         }
                     });
 
-                    function setSliderState(setVisValue = true, val=0) {
+                    function setSliderState(setVisValue = true, val = 0) {
                         if (!vis.states.attr(data.wid + '.val')) {
                             if (setVisValue) {
                                 val = vis.states.attr(data.oid + '.val');
@@ -676,6 +676,157 @@ vis.binds["materialdesign"] = {
             console.exception(`mdcTopAppBarWithDrawer [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
+    initializeDrawer: function (data) {
+        try {
+            let viewsList = [];
+            let navItemList = [];
+            let drawerHeader = '';
+            let drawerLayout = '';
+            let drawerStyle = '';
+            let drawerModalScrim = '';
+
+            initLayoutAndStyle();
+            initHeader();
+            initistItems();
+
+            return { viewsList: viewsList, drawerItemList: navItemList.join(''), drawerHeader: drawerHeader, drawerLayout: drawerLayout, drawerStyle: drawerStyle, drawerModalScrim: drawerModalScrim };
+
+            function initLayoutAndStyle() {
+                let width = getValueFromData(data.drawerWidth, '', 'width: ', 'px;');
+                let backgroundColor = getValueFromData(data.colorDrawerBackground, '', 'background', ';');
+
+                let drawerZIndex = '';
+                let drawerScrimZIndex = '';
+                if (data.z_index !== undefined && data.z_index !== null && data.z_index !== '') {
+                    drawerZIndex = `z-index: ${data.z_index};`;
+                    drawerScrimZIndex = `z-index: ${data.z_index - 1};`;
+                }
+
+                let position = '';
+                if (data.drawerLayout === 'modal') {
+                    drawerLayout = 'mdc-drawer--modal';
+
+                    if (vis.editMode) {
+                        position = 'position: absolute;'
+                    } else {
+                        drawerModalScrim = `<div class="mdc-drawer-scrim" style="${drawerScrimZIndex}"></div>`;
+                    }
+                } else {
+                    // Layout dismissible & permanent
+                    if (!vis.editMode) {
+                        drawerLayout = 'mdc-drawer--dismissible mdc-drawer--open';
+                        position = 'position: fixed;'
+                    } else {
+                        drawerLayout = 'mdc-drawer--dismissible mdc-drawer--open';
+                        position = 'position: absolute;'
+                    }
+                }
+
+                drawerStyle = `style="${width}${backgroundColor}${drawerZIndex}${position}"`;
+            }
+
+            function initHeader() {
+                if (data.attr('showHeader') === true || data.attr('showHeader') === 'true') {
+                    drawerHeader = `<div 
+                                        class="mdc-drawer__header" 
+                                        ${getValueFromData(data.colorDrawerHeaderBackground, '', 'style="background: ', '"')}>
+                                            ${data.headerLabel}
+                                    </div>`;
+                }
+            }
+
+            function initistItems() {
+                let drawerIconHeight = getValueFromData(data.drawerIconHeight, '', 'height: ', 'px;');
+
+                let dawerLabelFontSize = getFontSize(data.listItemTextSize);
+                let dawerLabelShow = (data.showLabels) ? '' : 'display: none;';
+
+                // only for Layout Backdrop
+                let backdropLabelBackgroundHeight = getValueFromData(data.backdropLabelBackgroundHeight, 'height: auto;', 'height: ', '%;');
+                let backdropLabelBackgroundColor = getValueFromData(data.colorDrawerbackdropLabelBackground, '', 'background: ');
+
+                for (var i = 0; i <= data.count; i++) {
+                    viewsList.push(data.attr('contains_view_' + i));
+
+                    // generate Header
+                    if (getValueFromData(data.attr('headers' + i), null) !== null) {
+                        navItemList.push(`<h6 class="mdc-list-group__subheader">${data.attr('headers' + i)}</h6>`);
+                    }
+
+                    // generate Item -> mdc-list-item
+                    let navItem = '';
+                    if (data.drawerItemLayout === 'standard') {
+                        // Layout: Standard
+                        navItem = `<div 
+                                    class="mdc-list-item${(i === 0) ? ' mdc-list-item--activated' : ''}" 
+                                    tabindex="${(i === 0) ? '0' : '-1'}" 
+                                    id="drawerItem_${i}" 
+                                    style="min-height: 40px; height: auto">`
+                    } else {
+                        // Layout: Backdrop
+                        navItem = `<div 
+                                    class="mdc-list-item${(i === 0) ? ' mdc-list-item--activated' : ''} mdc-card__media" 
+                                    tabindex="${(i === 0) ? '0' : '-1'}" 
+                                    style="background-image: url(${data.attr('iconDrawer' + i)}); align-items: flex-end; padding: 0px;${drawerIconHeight}"
+                                    >`
+                    }
+
+                    // generate Item Image for Layout Standard
+                    let navItemImage = ''
+                    if (data.drawerItemLayout === 'standard') {
+                        if (getValueFromData(data.attr('iconDrawer' + i), null) !== null) {
+                            navItemImage = `<img 
+                                                class="mdc-list-item__graphic" src="${data.attr('iconDrawer' + i)}" 
+                                                style="width: auto; padding-top: 8px; padding-bottom: 8px;${drawerIconHeight}"
+                                            >`
+                        }
+                    }
+
+                    // generate Item Label
+                    let navItemLabel = '';
+                    let labelText = getValueFromData(data.attr('labels' + i), data.attr('contains_view_' + i));  // Fallback is View Name
+                    if (data.drawerItemLayout === 'standard') {
+                        // Layout: Standard
+                        navItemLabel = `<label 
+                                            class="mdc-list-item__text ${dawerLabelFontSize.class}"
+                                            id="drawerItem_${i}"
+                                            style="${dawerLabelFontSize.style}${dawerLabelShow}">
+                                                ${labelText}
+                                        </label>`;
+                    } else {
+                        // Layout: Backdrop
+                        navItemLabel =
+                            `<div 
+                                class="materialdesign-topAppBar-with-Drawer-backdrop-label-container" 
+                                id="drawerItemBackdropLabelContainer_${i}" 
+                                style="${backdropLabelBackgroundHeight}${backdropLabelBackgroundColor}">
+                                    <label 
+                                        class="mdc-list-item__text ${dawerLabelFontSize.class}"
+                                        id="drawerItem_${i}"
+                                        style="${dawerLabelFontSize.style}${dawerLabelShow}">
+                                            ${labelText}
+                                    </label>
+                            </div>`;
+                    }
+
+                    navItemList.push(`${navItem}${navItemImage}${navItemLabel}</div>`);
+
+                    // generate Divider
+                    if (data.attr('dividers' + i) === true || data.attr('dividers' + i) === 'true') {
+                        let divider = '';
+                        if (data.listItemDividerStyle === 'standard') {
+                            divider = '<hr class="mdc-list-divider">'
+                        } else {
+                            divider = '<hr class="mdc-list-divider mdc-list-divider--' + data.listItemDividerStyle + '">'
+                        }
+                        navItemList.push(divider);
+                    }
+                }
+            }
+        } catch (ex) {
+            console.exception(`generateDrawerList [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
     mdcList: function (el, data) {
         try {
             let $this = $(el);
@@ -778,12 +929,30 @@ vis.binds["materialdesign"] = {
     },
 };
 
-function getValueFromData(dataValue, nullValue) {
+function getValueFromData(dataValue, nullValue, prepand = '', append = '') {
     try {
-        return (dataValue === undefined || dataValue === null || dataValue === '') ? nullValue : dataValue;
+        return (dataValue === undefined || dataValue === null || dataValue === '') ? nullValue : prepand + dataValue + append;
     } catch (err) {
         console.error(err.message);
         return 'Error';
+    }
+}
+
+function getFontSize(fontSizeValue) {
+    let fontSize = getValueFromData(fontSizeValue, null);
+
+    if (fontSize !== null) {
+        if (fontSize.includes('headline') || fontSize.includes('subtitle')) {
+            // font size is a mdc-typography style
+            return { class: `mdc-typography--${fontSize}`, style: '' };
+        } else if (!isNaN(fontSize)) {
+            // number only
+            return { class: ``, style: `font-size: ${fontSize}px;` };
+        } else {
+            return { class: ``, style: `font-size: ${fontSize};` };
+        }
+    } else {
+        return { class: '', style: '' };
     }
 }
 
