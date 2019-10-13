@@ -705,7 +705,8 @@ vis.binds["materialdesign"] = {
                         // Layout: Backdrop
                         navItem = `<div 
                                         class="mdc-list-item${(i === 0) ? ' mdc-list-item--activated' : ''} mdc-card__media ${(hasSubItems) ? 'hasSubItems' : ''}" 
-                                        tabindex="${(i === 0) ? '0' : '-1'}" 
+                                        tabindex="${(i === 0) ? '0' : '-1'}"
+                                        id="itemIndex_${itemIndex}"
                                         style="background-image: url(${data.attr('iconDrawer' + i)}); align-items: flex-end; padding: 0px;${drawerIconHeight}"
                                     >`
                     }
@@ -784,7 +785,8 @@ vis.binds["materialdesign"] = {
                             }
 
                             navItemList.push(
-                                `<div class="mdc-list-item"
+                                `<div class="mdc-list-item isSubItem"
+                                    tabindex="-1"
                                     id="itemIndex_${itemIndex}">
                                     ${navSubItemImage}
                                     ${navSubItemLabel}
@@ -908,38 +910,59 @@ vis.binds["materialdesign"] = {
             });
 
             var val = vis.states.attr(data.oid + '.val');
+
+            toggleSubItemByIndex(val);
+
             navList.selectedIndex = val;
             setTopAppBarWithDrawerLayout();
-
-            navList.listen('MDCList:action', (event) => {
-                val = vis.states.attr(data.oid + '.val');
-
-                if (val != navList.selectedIndex) {
-                    vis.setValue(data.oid, navList.selectedIndex);
-
-                    setTopAppBarWithDrawerLayout();
-
-                    setTimeout(function () {
-                        window.scrollTo({ top: 0, left: 0, });
-                    }, 50);
-                } else {
-                    if (data.drawerItemLayout === 'backdrop') {
-                        let backdropItemContainer = $this.parent().find(`div[id="drawerItemBackdropLabelContainer_${navList.selectedIndex}"]`);
-                        backdropItemContainer.css('background', getValueFromData(data.colorDrawerbackdropLabelBackground, ''));
-                    }
-                }
-
-                if (data.drawerLayout === 'modal') {
-                    drawer.open = false;
-                }
-            });
+            setBackdropLabelColor(val, 0);
 
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                toggleSubItemByIndex(newVal);
+
                 navList.selectedIndex = newVal;
                 setTopAppBarWithDrawerLayout();
+                setBackdropLabelColor(newVal, oldVal);
+            });
 
-                let backdropItemContainer = $this.parent().find(`div[id="drawerItemBackdropLabelContainer_${oldVal}"]`);
-                backdropItemContainer.css('background', getValueFromData(data.colorDrawerbackdropLabelBackground, ''));
+            $this.find('.mdc-list-item').click(function () {
+                let oldIndex = navList.selectedIndex;
+                let selctedIndex = parseInt($(this).eq(0).attr('id').replace('itemIndex_', ''));
+
+                if ($(this).hasClass('hasSubItems')) {
+                    // listItem has subItems ->Toggle SubItems
+                    if ($(this).hasClass('toggled')) {
+                        $(this).removeClass("toggled");
+                        $(this).find(".toggleIcon").html("keyboard_arrow_down");
+                    } else {
+                        $(this).addClass("toggled");
+                        $(this).find(".toggleIcon").html("keyboard_arrow_up");
+                    }
+
+                    $(this).next("nav.mdc-sub-list").toggle();
+
+                    navList.selectedIndex = selctedIndex;
+                    setBackdropLabelColor(selctedIndex, oldIndex);
+                } else {
+                    // listItem
+
+                    val = vis.states.attr(data.oid + '.val');
+
+                    if (val != selctedIndex) {
+                        vis.setValue(data.oid, selctedIndex);
+
+                        setTopAppBarWithDrawerLayout();
+                        setBackdropLabelColor(selctedIndex, oldIndex);
+
+                        setTimeout(function () {
+                            window.scrollTo({ top: 0, left: 0, });
+                        }, 50);
+                    }
+
+                    if (data.drawerLayout === 'modal') {
+                        drawer.open = false;
+                    }
+                }
             });
 
             function setTopAppBarWithDrawerLayout() {
@@ -947,25 +970,31 @@ vis.binds["materialdesign"] = {
                     let selectedName = $this.parent().find(`label[id="itemIndex_${navList.selectedIndex}"]`).text();
                     $this.parent().find('.mdc-top-app-bar__title').text(selectedName)
                 }
+            }
 
+            function setBackdropLabelColor(selctedIndex, oldIndex) {
                 if (data.drawerItemLayout === 'backdrop') {
-                    let backdropItemContainer = $this.parent().find(`div[id="drawerItemBackdropLabelContainer_${navList.selectedIndex}"]`);
-                    backdropItemContainer.css('background', getValueFromData(data.colorDrawerbackdropLabelBackgroundActive, ''));
+                    let backdropItemContainer = $this.parent().find(`div[id="drawerItemBackdropLabelContainer_${oldIndex}"]`);
+                    backdropItemContainer.css('background', getValueFromData(data.colorDrawerbackdropLabelBackground, ''));
+
+                    let backdropItemContainerActive = $this.parent().find(`div[id="drawerItemBackdropLabelContainer_${selctedIndex}"]`);
+                    backdropItemContainerActive.css('background', getValueFromData(data.colorDrawerbackdropLabelBackgroundActive, ''));
                 }
             }
 
-            $this.find('.mdc-list-item.hasSubItems').click(function () {
-                if ($(this).hasClass('toggled')) {
-                    $(this).removeClass("toggled");
-                    $(this).find(".toggleIcon").html("keyboard_arrow_down");
-                } else {
-                    $(this).addClass("toggled");
-                    $(this).find(".toggleIcon").html("keyboard_arrow_up");
-                }
-        
-                $(this).next("nav.mdc-sub-list").toggle();
-            });
+            function toggleSubItemByIndex(index) {
+                let selectedListItem = $this.find(`.mdc-list-item[id="itemIndex_${index}"]`);
+                if (selectedListItem.hasClass('isSubItem')) {
+                    // toggle Subitem if selected
+                    let parentListItem = selectedListItem.parent().prev('.hasSubItems');
 
+                    if (!parentListItem.hasClass("toggled")) {
+                        parentListItem.addClass("toggled");
+                        parentListItem.find(".toggleIcon").html("keyboard_arrow_up");
+                        parentListItem.next("nav.mdc-sub-list").toggle();
+                    }
+                }
+            }
 
         } catch (ex) {
             console.exception(`mdcTopAppBarWithDrawer [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
