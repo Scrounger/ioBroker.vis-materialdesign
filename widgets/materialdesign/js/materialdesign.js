@@ -580,7 +580,7 @@ vis.binds["materialdesign"] = {
 
             initLayoutAndStyle();
             initHeader();
-            initistItems();
+            initListItems();
 
             return { viewsList: viewsList, drawerItemList: navItemList.join(''), drawerHeader: drawerHeader, drawerLayout: drawerLayout, drawerStyle: drawerStyle, drawerModalScrim: drawerModalScrim };
 
@@ -628,11 +628,15 @@ vis.binds["materialdesign"] = {
                 }
             }
 
-            function initistItems() {
+            function initListItems() {
                 let drawerIconHeight = getValueFromData(data.drawerIconHeight, '', 'height: ', 'px;');
+                let drawerSubItemIconHeight = getValueFromData(data.drawerSubItemIconHeight, '', 'height: ', 'px;');
 
                 let dawerLabelFontSize = getFontSize(data.listItemTextSize);
+                let dawerSubItemLabelFontSize = getFontSize(data.listSubItemTextSize);
                 let dawerLabelShow = (data.showLabels) ? '' : 'display: none;';
+                let dawerSubItemsLabelShow = (data.showSubItemsLabels) ? '' : 'display: none;';
+
 
                 // only for Layout Backdrop
                 let backdropLabelBackgroundHeight = getValueFromData(data.backdropLabelBackgroundHeight, 'height: auto;', 'height: ', '%;');
@@ -698,7 +702,6 @@ vis.binds["materialdesign"] = {
                                         class="mdc-list-item${(i === 0) ? ' mdc-list-item--activated' : ''} ${(hasSubItems) ? 'hasSubItems' : ''}" 
                                         tabindex="${(i === 0) ? '0' : '-1'}" 
                                         id="itemIndex_${itemIndex}"
-                                        style="min-height: 40px; height: auto"
                                     >`
                     } else {
                         // Layout: Backdrop
@@ -729,7 +732,7 @@ vis.binds["materialdesign"] = {
                         if (hasSubItems) {
                             navItemLabel = navItemLabel +
                                 `<span 
-                                    class="mdc-list-item__meta material-icons toggleIcon" aria-hidden="true">
+                                    class="mdc-list-item__meta material-icons toggleIcon" aria-hidden="true" ${getValueFromData(data.colorSubItemToggleIcon, '', 'style="color: ', ';"')}>
                                         keyboard_arrow_down
                                 </span>`;
                         }
@@ -740,7 +743,7 @@ vis.binds["materialdesign"] = {
                         let navSubItemToggleIcon = '';
                         if (hasSubItems) {
                             navSubItemToggleIcon = `<span 
-                                                        class="mdc-list-item__meta material-icons toggleIcon" aria-hidden="true">
+                                                        class="mdc-list-item__meta material-icons toggleIcon" aria-hidden="true" ${getValueFromData(data.colorSubItemToggleIcon, '', 'style="color: ', ';"')}>
                                                             keyboard_arrow_down
                                                     </span>`;
                         }
@@ -764,7 +767,7 @@ vis.binds["materialdesign"] = {
 
                     // generate SubItems
                     if (hasSubItems) {
-                        navItemList.push(`<nav class="mdc-list mdc-sub-list">`);
+                        navItemList.push(`<nav class="mdc-list mdc-sub-list" style="${getValueFromData(data.colorDrawerSubItemsBackground,'', 'background: ', ';')} ">`);
 
                         for (var d = 0; d <= subItemsArray.length - 1; d++) {
                             viewsList.push(subItemsArray[d]);
@@ -773,20 +776,21 @@ vis.binds["materialdesign"] = {
 
                             let navSubItemImage = '';
                             if (subItemsImageJson && subItemsImageJson.subItems && subItemsImageJson.subItems.length > 0) {
-                                navSubItemImage = getListItemImage(getValueFromData(subItemsImageJson.subItems[d], ''), drawerIconHeight);
+                                navSubItemImage = getListItemImage(getValueFromData(subItemsImageJson.subItems[d], ''), drawerSubItemIconHeight);
                             }
 
                             let navSubItemLabel = '';
                             if (subItemsTextJson && subItemsTextJson.subItems && subItemsTextJson.subItems.length > 0) {
-                                navSubItemLabel = getListItemText(getValueFromData(subItemsTextJson.subItems[d], subItemsArray[d]), `itemIndex_${itemIndex}`, dawerLabelFontSize.class, dawerLabelFontSize.style, dawerLabelShow);
+                                navSubItemLabel = getListItemText(getValueFromData(subItemsTextJson.subItems[d], subItemsArray[d]), `itemIndex_${itemIndex}`, dawerSubItemLabelFontSize.class, dawerSubItemLabelFontSize.style, dawerSubItemsLabelShow);
                             } else {
-                                navSubItemLabel = getListItemText(subItemsArray[d], `itemIndex_${itemIndex}`, dawerLabelFontSize.class, dawerLabelFontSize.style, dawerLabelShow);
+                                navSubItemLabel = getListItemText(subItemsArray[d], `itemIndex_${itemIndex}`, dawerSubItemLabelFontSize.class, dawerSubItemLabelFontSize.style, dawerSubItemsLabelShow);
                             }
 
                             navItemList.push(
-                                `<div class="mdc-list-item isSubItem"
+                                `<div class="mdc-list-item mdc-sub-list-item isSubItem"
                                     tabindex="-1"
-                                    id="itemIndex_${itemIndex}">
+                                    id="itemIndex_${itemIndex}"
+                                    >
                                     ${navSubItemImage}
                                     ${navSubItemLabel}
                                 </div>`
@@ -805,8 +809,6 @@ vis.binds["materialdesign"] = {
                         }
                         navItemList.push(divider);
                     }
-
-
 
                     itemIndex++;
                 }
@@ -853,10 +855,22 @@ vis.binds["materialdesign"] = {
 
             }, 1);
 
-            mdcList.style.setProperty("--materialdesign-color-list-item-selected", getValueFromData(data.colorListItemSelected, ''));
-            mdcList.style.setProperty("--materialdesign-color-list-item-hover", getValueFromData(data.colorListItemHover, ''));
-            mdcList.style.setProperty("--materialdesign-color-list-item-text", getValueFromData(data.colorListItemText, ''));
-            mdcList.style.setProperty("--materialdesign-color-list-item-text-activated", getValueFromData(data.colorListItemTextSelected, ''));
+            let colorListItemSelected = getValueFromData(data.colorListItemSelected, '');
+            mdcList.style.setProperty("--materialdesign-color-list-item-selected", colorListItemSelected);
+            mdcList.style.setProperty("--materialdesign-color-sub-list-item-selected", getValueFromData(data.colorListSubItemSelected, colorListItemSelected));
+
+            let colorListItemHover = getValueFromData(data.colorListItemHover, '');
+            mdcList.style.setProperty("--materialdesign-color-list-item-hover", colorListItemHover);
+            mdcList.style.setProperty("--materialdesign-color-sub-list-item-hover", getValueFromData(data.colorListSubItemHover, colorListItemHover));
+
+            let colorListItemText = getValueFromData(data.colorListItemText, '');
+            mdcList.style.setProperty("--materialdesign-color-list-item-text", colorListItemText);
+            mdcList.style.setProperty("--materialdesign-color-sub-list-item-text", getValueFromData(data.colorListSubItemText, colorListItemText));
+
+            let colorListItemTextSelected = getValueFromData(data.colorListItemTextSelected, '');
+            mdcList.style.setProperty("--materialdesign-color-list-item-text-activated", colorListItemTextSelected);
+            mdcList.style.setProperty("--materialdesign-color-sub-list-item-text-activated", getValueFromData(data.colorListSubItemTextSelected, colorListItemTextSelected));
+            
             mdcList.style.setProperty("--materialdesign-color-list-item-header", getValueFromData(data.colorListItemHeaders, ''));
             mdcList.style.setProperty("--materialdesign-color-list-item-divider", getValueFromData(data.colorListItemDivider, ''));
 
