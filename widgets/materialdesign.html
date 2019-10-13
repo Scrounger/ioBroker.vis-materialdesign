@@ -812,56 +812,35 @@
         data-vis-attrs3="group.drawerLabels;labels(0-count);group.drawerHeaders;headers(0-count);group.drawerDivider;dividers(0-count)/checkbox;group.drawerIcons;iconDrawer(0-count)[/vis/widgets/materialdesign/img/IoBroker_Logo.png]/image;">
         
         <%
-            let initialize = vis.binds.materialdesign.initializeDrawer(data);
-
-            let topAppBarHeaderLayout = '';
-            let topAppBarContentLayout = 'mdc-top-app-bar--fixed-adjust';
-            if (this.data.topAppBarLayout === 'dense'){
-                topAppBarHeaderLayout = 'mdc-top-app-bar--dense';
-                topAppBarContentLayout = 'mdc-top-app-bar--dense-fixed-adjust';
-            } else if(this.data.topAppBarLayout === 'short'){
-                topAppBarHeaderLayout = 'mdc-top-app-bar--short mdc-top-app-bar--short-collapsed';
-                topAppBarContentLayout = 'mdc-top-app-bar--short-fixed-adjust';
-            }
-
-            let topAppBarPosition = '';
-            if (vis.editMode) {
-                topAppBarPosition = 'position: absolute;';
-            } else {
-                topAppBarPosition = 'position: fixed;';
-            }
-
-            let showButton ='';
-            if (this.data.drawerLayout === 'modal' || this.data.drawerLayout === 'dismissible'){
-                showButton = '<button class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon mdc-ripple-upgraded--unbounded mdc-ripple-upgraded" style="--mdc-ripple-fg-size:28px; --mdc-ripple-fg-scale:1.7142857142857142; --mdc-ripple-left:10px; --mdc-ripple-top:10px; color: ' + this.data.colorTopAppBarTitle  + '">menu</button>'
-            }
+            let initDrawer = vis.binds.materialdesign.initializeDrawer(data);
+            let initTopAppBar = vis.binds.materialdesign.initializeTopAppBar(data);
         %>
 
         <div class="vis-widget materialdesign-topAppBar-with-Drawer <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
             <div class="drawer-frame-root">
-                <aside class="mdc-drawer <%= initialize.drawerLayout %>" <%== initialize.drawerStyle %> <%= (el) -> vis.binds.materialdesign.mdcTopAppBarWithDrawer(el, data) %>>
-                    <%== initialize.drawerHeader %>
+                <aside class="mdc-drawer <%= initDrawer.drawerLayout %>" <%== initDrawer.drawerStyle %> <%= (el) -> vis.binds.materialdesign.mdcTopAppBarWithDrawer(el, data) %>>
+                    <%== initDrawer.drawerHeader %>
                     <div class="mdc-drawer__content">
                         <nav class="mdc-list">
-                            <%== initialize.drawerItemList %>
+                            <%== initDrawer.drawerItemList %>
                         </nav>
                     </div>
                 </aside>
-                <%== initialize.drawerModalScrim %>
+                <%== initDrawer.drawerModalScrim %>
                 <div class="drawer-frame-app-content">
-                    <header class="mdc-top-app-bar drawer-top-app-bar <%= topAppBarHeaderLayout %>" style="<%= topAppBarPosition %>">
+                    <header class="mdc-top-app-bar drawer-top-app-bar <%== initTopAppBar.headerLayout %>" <%== initTopAppBar.headerStyle %>>
                         <div class="mdc-top-app-bar__row" style="color: <%= this.data.colorTopAppBarTitle %>">
                             <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-                                <%== showButton %>
+                                <%== initTopAppBar.headerButtonShow %>
                                 <span class="mdc-top-app-bar__title"><%= this.data.titleTopAppBar %></span></section>
                         </div>
                     </header>
-                    <div class="mdc-top-app-bar-content <%= topAppBarContentLayout %>">
+                    <div class="mdc-top-app-bar-content <%= initTopAppBar.contentLayout %>">
                         <div>
                             <% if (vis.editMode) { %>
                                 <div class="editmode-helper"/>
                             <% } %>
-                            <div class="vis-view-container materialdesign-topAppBar-vis-view-container" data-oid="<%= data.attr('oid') %>" data-vis-contains="<%= vis.binds.stateful.value(initialize.viewsList, data.attr('oid')) %>" <%= (el) -> vis.binds.stateful.view(el, initialize.viewsList, data.attr('persistent'), data.attr('notIfInvisible')) %> />
+                            <div class="vis-view-container materialdesign-topAppBar-vis-view-container" data-oid="<%= data.attr('oid') %>" data-vis-contains="<%= vis.binds.stateful.value(initDrawer.viewsList, data.attr('oid')) %>" <%= (el) -> vis.binds.stateful.view(el, initDrawer.viewsList, data.attr('persistent'), data.attr('notIfInvisible')) %> />
                         </div>
                     </div>
                 </div>
