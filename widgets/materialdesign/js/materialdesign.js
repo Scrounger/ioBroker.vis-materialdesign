@@ -438,8 +438,7 @@ vis.binds["materialdesign"] = {
             var unit = getValueFromData(data.valueLabelUnit, '');
             var decimals = getValueFromData(data.valueMaxDecimals, 0);
 
-            var reverse = getValueFromData(data.reverse, false);
-            mdcProgress.reverse = reverse;
+            mdcProgress.reverse = data.reverse;
 
             var color = getValueFromData(data.color, '');
             var colorOneCondition = getValueFromData(data.colorOneCondition, 0);
