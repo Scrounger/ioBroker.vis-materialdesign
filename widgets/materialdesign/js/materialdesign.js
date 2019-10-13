@@ -639,8 +639,52 @@ vis.binds["materialdesign"] = {
                 let backdropLabelBackgroundHeight = getValueFromData(data.backdropLabelBackgroundHeight, 'height: auto;', 'height: ', '%;');
                 let backdropLabelBackgroundColor = getValueFromData(data.colorDrawerbackdropLabelBackground, '', 'background: ');
 
+                let itemIndex = 0;
                 for (var i = 0; i <= data.count; i++) {
-                    viewsList.push(data.attr('contains_view_' + i));
+                    let itemLabelText = getValueFromData(data.attr('labels' + i), data.attr('contains_view_' + i));  // Fallback is View Name
+                    let itemImage = getValueFromData(data.attr('iconDrawer' + i), '');
+
+                    let subItemsArray = '';
+                    let hasSubItems = false;
+                    let subItemsTextJson = '';
+                    let subItemsImageJson = '';
+
+                    if (data.attr('contains_view_' + i).includes('|')) {
+                        viewsList.push('');
+
+                        subItemsArray = data.attr('contains_view_' + i).split('|');
+
+                        if (subItemsArray.length > 0) {
+                            hasSubItems = true;
+
+                            // parse Label Text for SubItems
+                            let labelJsonString = getValueFromData(data.attr('labels' + i), null);
+                            if (labelJsonString === null) {
+                                itemLabelText = data.attr('contains_view_' + i);
+                            } else {
+                                try {
+                                    subItemsTextJson = JSON.parse(labelJsonString);
+                                    itemLabelText = subItemsTextJson.itemText;
+                                } catch {
+                                    subItemsTextJson = '';
+                                    itemLabelText = 'Error: wrong format!';
+                                }
+                            }
+
+                            // parse Image for SubItems
+                            let imageJsonString = getValueFromData(data.attr('iconDrawer' + i), null);
+                            if (imageJsonString !== null) {
+                                try {
+                                    subItemsImageJson = JSON.parse(imageJsonString);
+                                    itemImage = subItemsImageJson.itemImage;
+                                } catch {
+                                    subItemsImageJson = '';
+                                }
+                            }
+                        }
+                    } else {
+                        viewsList.push(data.attr('contains_view_' + i));
+                    }
 
                     // generate Header
                     if (getValueFromData(data.attr('headers' + i), null) !== null) {
@@ -652,16 +696,17 @@ vis.binds["materialdesign"] = {
                     if (data.drawerItemLayout === 'standard') {
                         // Layout: Standard
                         navItem = `<div 
-                                    class="mdc-list-item${(i === 0) ? ' mdc-list-item--activated' : ''}" 
-                                    tabindex="${(i === 0) ? '0' : '-1'}" 
-                                    id="drawerItem_${i}" 
-                                    style="min-height: 40px; height: auto">`
+                                        class="mdc-list-item${(i === 0) ? ' mdc-list-item--activated' : ''} ${(hasSubItems) ? 'hasSubItems' : ''}" 
+                                        tabindex="${(i === 0) ? '0' : '-1'}" 
+                                        id="itemIndex_${itemIndex}"
+                                        style="min-height: 40px; height: auto"
+                                    >`
                     } else {
                         // Layout: Backdrop
                         navItem = `<div 
-                                    class="mdc-list-item${(i === 0) ? ' mdc-list-item--activated' : ''} mdc-card__media" 
-                                    tabindex="${(i === 0) ? '0' : '-1'}" 
-                                    style="background-image: url(${data.attr('iconDrawer' + i)}); align-items: flex-end; padding: 0px;${drawerIconHeight}"
+                                        class="mdc-list-item${(i === 0) ? ' mdc-list-item--activated' : ''} mdc-card__media ${(hasSubItems) ? 'hasSubItems' : ''}" 
+                                        tabindex="${(i === 0) ? '0' : '-1'}" 
+                                        style="background-image: url(${data.attr('iconDrawer' + i)}); align-items: flex-end; padding: 0px;${drawerIconHeight}"
                                     >`
                     }
 
@@ -669,41 +714,85 @@ vis.binds["materialdesign"] = {
                     let navItemImage = ''
                     if (data.drawerItemLayout === 'standard') {
                         if (getValueFromData(data.attr('iconDrawer' + i), null) !== null) {
-                            navItemImage = `<img 
-                                                class="mdc-list-item__graphic" src="${data.attr('iconDrawer' + i)}" 
-                                                style="width: auto; padding-top: 8px; padding-bottom: 8px;${drawerIconHeight}"
-                                            >`
+                            navItemImage = getListItemImage(itemImage, drawerIconHeight);
                         }
                     }
 
                     // generate Item Label
                     let navItemLabel = '';
-                    let labelText = getValueFromData(data.attr('labels' + i), data.attr('contains_view_' + i));  // Fallback is View Name
+
                     if (data.drawerItemLayout === 'standard') {
                         // Layout: Standard
-                        navItemLabel = `<label 
-                                            class="mdc-list-item__text ${dawerLabelFontSize.class}"
-                                            id="drawerItem_${i}"
-                                            style="${dawerLabelFontSize.style}${dawerLabelShow}">
-                                                ${labelText}
-                                        </label>`;
+                        navItemLabel = getListItemText(itemLabelText, `itemIndex_${itemIndex}`, dawerLabelFontSize.class, dawerLabelFontSize.style, dawerLabelShow);
+
+                        // generate SubItems toggle Icon
+                        if (hasSubItems) {
+                            navItemLabel = navItemLabel +
+                                `<span 
+                                    class="mdc-list-item__meta material-icons toggleIcon" aria-hidden="true">
+                                        keyboard_arrow_down
+                                </span>`;
+                        }
                     } else {
                         // Layout: Backdrop
+
+                        // generate SubItems toggle Icon
+                        let navSubItemToggleIcon = '';
+                        if (hasSubItems) {
+                            navSubItemToggleIcon = `<span 
+                                                        class="mdc-list-item__meta material-icons toggleIcon" aria-hidden="true">
+                                                            keyboard_arrow_down
+                                                    </span>`;
+                        }
+
                         navItemLabel =
                             `<div 
                                 class="materialdesign-topAppBar-with-Drawer-backdrop-label-container" 
-                                id="drawerItemBackdropLabelContainer_${i}" 
+                                id="drawerItemBackdropLabelContainer_${itemIndex}" 
                                 style="${backdropLabelBackgroundHeight}${backdropLabelBackgroundColor}">
                                     <label 
                                         class="mdc-list-item__text ${dawerLabelFontSize.class}"
-                                        id="drawerItem_${i}"
-                                        style="${dawerLabelFontSize.style}${dawerLabelShow}">
-                                            ${labelText}
+                                        id="itemIndex_${itemIndex}"
+                                        style="position: absolute; ${dawerLabelFontSize.style}${dawerLabelShow}">
+                                            ${itemLabelText}
                                     </label>
+                                    ${navSubItemToggleIcon}
                             </div>`;
                     }
 
                     navItemList.push(`${navItem}${navItemImage}${navItemLabel}</div>`);
+
+                    // generate SubItems
+                    if (hasSubItems) {
+                        navItemList.push(`<nav class="mdc-list mdc-sub-list">`);
+
+                        for (var d = 0; d <= subItemsArray.length - 1; d++) {
+                            viewsList.push(subItemsArray[d]);
+
+                            itemIndex++;
+
+                            let navSubItemImage = '';
+                            if (subItemsImageJson && subItemsImageJson.subItems && subItemsImageJson.subItems.length > 0) {
+                                navSubItemImage = getListItemImage(getValueFromData(subItemsImageJson.subItems[d], ''), drawerIconHeight);
+                            }
+
+                            let navSubItemLabel = '';
+                            if (subItemsTextJson && subItemsTextJson.subItems && subItemsTextJson.subItems.length > 0) {
+                                navSubItemLabel = getListItemText(getValueFromData(subItemsTextJson.subItems[d], subItemsArray[d]), `itemIndex_${itemIndex}`, dawerLabelFontSize.class, dawerLabelFontSize.style, dawerLabelShow);
+                            } else {
+                                navSubItemLabel = getListItemText(subItemsArray[d], `itemIndex_${itemIndex}`, dawerLabelFontSize.class, dawerLabelFontSize.style, dawerLabelShow);
+                            }
+
+                            navItemList.push(
+                                `<div class="mdc-list-item"
+                                    id="itemIndex_${itemIndex}">
+                                    ${navSubItemImage}
+                                    ${navSubItemLabel}
+                                </div>`
+                            );
+                        }
+                        navItemList.push(`</nav>`);
+                    }
 
                     // generate Divider
                     if (data.attr('dividers' + i) === true || data.attr('dividers' + i) === 'true') {
@@ -715,6 +804,10 @@ vis.binds["materialdesign"] = {
                         }
                         navItemList.push(divider);
                     }
+
+
+
+                    itemIndex++;
                 }
             }
         } catch (ex) {
@@ -851,7 +944,7 @@ vis.binds["materialdesign"] = {
 
             function setTopAppBarWithDrawerLayout() {
                 if (data.showSelectedItemAsTitle) {
-                    let selectedName = $this.parent().find(`label[id="drawerItem_${navList.selectedIndex}"]`).text();
+                    let selectedName = $this.parent().find(`label[id="itemIndex_${navList.selectedIndex}"]`).text();
                     $this.parent().find('.mdc-top-app-bar__title').text(selectedName)
                 }
 
@@ -860,6 +953,20 @@ vis.binds["materialdesign"] = {
                     backdropItemContainer.css('background', getValueFromData(data.colorDrawerbackdropLabelBackgroundActive, ''));
                 }
             }
+
+            $this.find('.mdc-list-item.hasSubItems').click(function () {
+                if ($(this).hasClass('toggled')) {
+                    $(this).removeClass("toggled");
+                    $(this).find(".toggleIcon").html("keyboard_arrow_down");
+                } else {
+                    $(this).addClass("toggled");
+                    $(this).find(".toggleIcon").html("keyboard_arrow_up");
+                }
+        
+                $(this).next("nav.mdc-sub-list").toggle();
+            });
+
+
         } catch (ex) {
             console.exception(`mdcTopAppBarWithDrawer [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
@@ -991,6 +1098,22 @@ function getFontSize(fontSizeValue) {
     } else {
         return { class: '', style: '' };
     }
+}
+
+function getListItemText(text, id, fontSizeClass, fontSizeStyle, show = true) {
+    return `<label 
+                class="mdc-list-item__text ${fontSizeClass}"
+                id="${id}"
+                style="${fontSizeStyle}${show}">
+                    ${text}
+            </label>`;
+}
+
+function getListItemImage(image, height) {
+    return `<img 
+                class="mdc-list-item__graphic" src="${image}" 
+                style="width: auto; padding-top: 8px; padding-bottom: 8px;${height}"
+            >`
 }
 
 vis.binds["materialdesign"].showVersion();

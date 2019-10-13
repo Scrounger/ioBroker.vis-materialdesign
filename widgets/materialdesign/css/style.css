@@ -697,6 +697,14 @@ svg.materialdesign-button__icon {
   --mdc-theme-primary: #1e88e5;
 }
 
+.mdc-sub-list {
+  display: none;
+}
+
+.mdc-sub-list .mdc-list-item {
+  padding: 0 16px;
+}
+
 /* hover item -> use var*/
 :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item:hover::before {
   background-color: var(--materialdesign-color-list-item-hover);
