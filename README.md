@@ -57,6 +57,20 @@ Information:
 ##### Layout permanent:
 ![Logo](doc/media/topappbar_permanent.gif)
 
+##### Submenu 
+![Logo](doc/media/drawer_subMenu.png)
+
+To activate submenu, you have to add multiple views seperated with '|' into the view field, example:
+![Logo](doc/media/drawer_subMenu_views.png)
+
+To change the text of the items, you have to put a json object into the label field with the index of the view field, example:
+
+`{"itemText": "Item with Subitems", "subItems": ["subItem1", "subItem2"]}`
+
+To change the image of the items, you have to a json object into the image filed with the index of the view field, example:
+
+`{"itemImage": "/icons-material-svg/hardware/ic_computer_48px.svg", "subItems": ["/vis/widgets/materialdesign/img/IoBroker_Logo.png", "/icons-material-svg/action/ic_android_48px.svg"]}`
+
 ## Changelog
 
 ### 0.0.7
