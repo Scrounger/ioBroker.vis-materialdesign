@@ -390,7 +390,6 @@ vis.binds["materialdesign"] = {
                     });
 
                     mdcSlider.listen('MDCSlider:input', function () {
-                        console.log(mdcSlider.value);
                         setSliderState(false, mdcSlider.value);
                     });
 
@@ -586,7 +585,6 @@ vis.binds["materialdesign"] = {
 
             function initLayoutAndStyle() {
                 let width = getValueFromData(data.drawerWidth, '', 'width: ', 'px;');
-                let backgroundColor = getValueFromData(data.colorDrawerBackground, '', 'background: ', ';');
 
                 let drawerZIndex = '';
                 let drawerScrimZIndex = '';
@@ -615,7 +613,7 @@ vis.binds["materialdesign"] = {
                     }
                 }
 
-                drawerStyle = `style="${width}${backgroundColor}${drawerZIndex}${position}"`;
+                drawerStyle = `style="${width}${drawerZIndex}${position}"`;
             }
 
             function initHeader() {
@@ -636,7 +634,6 @@ vis.binds["materialdesign"] = {
                 let dawerSubItemLabelFontSize = getFontSize(data.listSubItemTextSize);
                 let dawerLabelShow = (data.showLabels) ? '' : 'display: none;';
                 let dawerSubItemsLabelShow = (data.showSubItemsLabels) ? '' : 'display: none;';
-
 
                 // only for Layout Backdrop
                 let backdropLabelBackgroundHeight = getValueFromData(data.backdropLabelBackgroundHeight, 'height: auto;', 'height: ', '%;');
@@ -711,7 +708,7 @@ vis.binds["materialdesign"] = {
 
                     // generate SubItems
                     if (hasSubItems) {
-                        navItemList.push(`<nav class="mdc-list mdc-sub-list" style="${getValueFromData(data.colorDrawerSubItemsBackground, '', 'background: ', ';')} ">`);
+                        navItemList.push(`<nav class="mdc-list mdc-sub-list">`);
 
                         for (var d = 0; d <= subItemsArray.length - 1; d++) {
                             viewsList.push(subItemsArray[d]);
@@ -803,6 +800,10 @@ vis.binds["materialdesign"] = {
                 }
 
             }, 1);
+
+            let colorDrawerBackground = getValueFromData(data.colorDrawerBackground, '');
+            mdcDrawer.style.setProperty("--materialdesign-color-drawer-background", colorDrawerBackground);
+            mdcList.style.setProperty("--materialdesign-color-sub-list-item-background", getValueFromData(data.colorDrawerSubItemsBackground, colorDrawerBackground));
 
             let colorListItemSelected = getValueFromData(data.colorListItemSelected, '');
             mdcList.style.setProperty("--materialdesign-color-list-item-selected", colorListItemSelected);

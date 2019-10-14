@@ -1,12 +1,18 @@
 :root{
+  --materialdesign-color-drawer-background: #fff;
+  --materialdesign-color-list-item-background: #fff;
+  --materialdesign-color-sub-list-item-background: #fff;
+
   --materialdesign-color-list-item-hover: #000;
   --materialdesign-color-sub-list-item-hover: #000;
   --materialdesign-color-list-item-selected: #000;
   --materialdesign-color-sub-list-item-selected: #000;
+  
   --materialdesign-color-list-item-text: #000;
   --materialdesign-color-sub-list-item-text: #000;
   --materialdesign-color-list-item-text-activated: #1e88e5;
   --materialdesign-color-sub-list-item-text-activated: #1e88e5;
+
   --materialdesign-color-list-item-header: #000;
   --materialdesign-color-list-item-divider: rgba(0, 0, 0, 0.12);
 
@@ -693,6 +699,11 @@ svg.materialdesign-button__icon {
   position: absolute;
 }
 
+.mdc-drawer {
+  background: var(--materialdesign-color-drawer-background);
+}
+
+
 /* Drawer Header default Color */
 .mdc-drawer__header {
   background: #1e88e5;
@@ -706,6 +717,7 @@ svg.materialdesign-button__icon {
   color: white;
 }
 
+
 /* Default list color */
 .mdc-list {
   padding: 0;  
@@ -714,6 +726,7 @@ svg.materialdesign-button__icon {
 
 .mdc-sub-list {
   display: none;
+  background: var(--materialdesign-color-sub-list-item-background);
 }
 
 .mdc-list-item {
