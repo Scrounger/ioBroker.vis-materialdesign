@@ -629,7 +629,7 @@ vis.binds["materialdesign"] = {
             }
 
             function initListItems() {
-                let drawerIconHeight = getValueFromData(data.drawerIconHeight, '', 'height: ', 'px;');
+                let drawerIconHeight = getValueFromData(data.drawerIconHeight, '', 'height: ', 'px !important;');
                 let drawerSubItemIconHeight = getValueFromData(data.drawerSubItemIconHeight, '', 'height: ', 'px;');
 
                 let dawerLabelFontSize = getFontSize(data.listItemTextSize);
@@ -767,7 +767,7 @@ vis.binds["materialdesign"] = {
 
                     // generate SubItems
                     if (hasSubItems) {
-                        navItemList.push(`<nav class="mdc-list mdc-sub-list" style="${getValueFromData(data.colorDrawerSubItemsBackground,'', 'background: ', ';')} ">`);
+                        navItemList.push(`<nav class="mdc-list mdc-sub-list" style="${getValueFromData(data.colorDrawerSubItemsBackground, '', 'background: ', ';')} ">`);
 
                         for (var d = 0; d <= subItemsArray.length - 1; d++) {
                             viewsList.push(subItemsArray[d]);
@@ -775,8 +775,10 @@ vis.binds["materialdesign"] = {
                             itemIndex++;
 
                             let navSubItemImage = '';
-                            if (subItemsImageJson && subItemsImageJson.subItems && subItemsImageJson.subItems.length > 0) {
-                                navSubItemImage = getListItemImage(getValueFromData(subItemsImageJson.subItems[d], ''), drawerSubItemIconHeight);
+                            if (data.drawerSubItemLayout === 'standard') {
+                                if (subItemsImageJson && subItemsImageJson.subItems && subItemsImageJson.subItems.length > 0) {
+                                    navSubItemImage = getListItemImage(getValueFromData(subItemsImageJson.subItems[d], ''), drawerSubItemIconHeight);
+                                }
                             }
 
                             let navSubItemLabel = '';
@@ -870,7 +872,7 @@ vis.binds["materialdesign"] = {
             let colorListItemTextSelected = getValueFromData(data.colorListItemTextSelected, '');
             mdcList.style.setProperty("--materialdesign-color-list-item-text-activated", colorListItemTextSelected);
             mdcList.style.setProperty("--materialdesign-color-sub-list-item-text-activated", getValueFromData(data.colorListSubItemTextSelected, colorListItemTextSelected));
-            
+
             mdcList.style.setProperty("--materialdesign-color-list-item-header", getValueFromData(data.colorListItemHeaders, ''));
             mdcList.style.setProperty("--materialdesign-color-list-item-divider", getValueFromData(data.colorListItemDivider, ''));
 
@@ -1156,6 +1158,10 @@ function getListItemImage(image, height) {
                 class="mdc-list-item__graphic" src="${image}" 
                 style="width: auto; padding-top: 8px; padding-bottom: 8px;${height}"
             >`
+}
+
+function getListItemBackdropImage(image, height){
+    
 }
 
 vis.binds["materialdesign"].showVersion();
