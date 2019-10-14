@@ -695,75 +695,19 @@ vis.binds["materialdesign"] = {
                     }
 
                     // generate Item -> mdc-list-item
-                    let navItem = '';
-                    if (data.drawerItemLayout === 'standard') {
-                        // Layout: Standard
-                        navItem = `<div 
-                                        class="mdc-list-item${(i === 0) ? ' mdc-list-item--activated' : ''} ${(hasSubItems) ? 'hasSubItems' : ''}" 
-                                        tabindex="${(i === 0) ? '0' : '-1'}" 
-                                        id="itemIndex_${itemIndex}"
-                                    >`
-                    } else {
-                        // Layout: Backdrop
-                        navItem = `<div 
-                                        class="mdc-list-item${(i === 0) ? ' mdc-list-item--activated' : ''} mdc-card__media ${(hasSubItems) ? 'hasSubItems' : ''}" 
-                                        tabindex="${(i === 0) ? '0' : '-1'}"
-                                        id="itemIndex_${itemIndex}"
-                                        style="background-image: url(${data.attr('iconDrawer' + i)}); align-items: flex-end; padding: 0px;${drawerIconHeight}"
-                                    >`
-                    }
+                    let listItem = getListItem(data.drawerItemLayout, itemIndex, itemImage, drawerIconHeight, hasSubItems);
 
                     // generate Item Image for Layout Standard
-                    let navItemImage = ''
+                    let listItemImage = ''
                     if (data.drawerItemLayout === 'standard') {
-                        if (getValueFromData(data.attr('iconDrawer' + i), null) !== null) {
-                            navItemImage = getListItemImage(itemImage, drawerIconHeight);
-                        }
+                        listItemImage = getListItemImage(itemImage, drawerIconHeight);
                     }
 
                     // generate Item Label
-                    let navItemLabel = '';
+                    let listItemLabel = getListItemLabel(data.drawerItemLayout, itemIndex, itemLabelText, hasSubItems, dawerLabelFontSize.class, dawerLabelFontSize.style, dawerLabelShow, data.colorSubItemToggleIcon, backdropLabelBackgroundColor, backdropLabelBackgroundHeight)
 
-                    if (data.drawerItemLayout === 'standard') {
-                        // Layout: Standard
-                        navItemLabel = getListItemText(itemLabelText, `itemIndex_${itemIndex}`, dawerLabelFontSize.class, dawerLabelFontSize.style, dawerLabelShow);
-
-                        // generate SubItems toggle Icon
-                        if (hasSubItems) {
-                            navItemLabel = navItemLabel +
-                                `<span 
-                                    class="mdc-list-item__meta material-icons toggleIcon" aria-hidden="true" ${getValueFromData(data.colorSubItemToggleIcon, '', 'style="color: ', ';"')}>
-                                        keyboard_arrow_down
-                                </span>`;
-                        }
-                    } else {
-                        // Layout: Backdrop
-
-                        // generate SubItems toggle Icon
-                        let navSubItemToggleIcon = '';
-                        if (hasSubItems) {
-                            navSubItemToggleIcon = `<span 
-                                                        class="mdc-list-item__meta material-icons toggleIcon" aria-hidden="true" ${getValueFromData(data.colorSubItemToggleIcon, '', 'style="color: ', ';"')}>
-                                                            keyboard_arrow_down
-                                                    </span>`;
-                        }
-
-                        navItemLabel =
-                            `<div 
-                                class="materialdesign-topAppBar-with-Drawer-backdrop-label-container" 
-                                id="drawerItemBackdropLabelContainer_${itemIndex}" 
-                                style="${backdropLabelBackgroundHeight}${backdropLabelBackgroundColor}">
-                                    <label 
-                                        class="mdc-list-item__text ${dawerLabelFontSize.class}"
-                                        id="itemIndex_${itemIndex}"
-                                        style="position: absolute; ${dawerLabelFontSize.style}${dawerLabelShow}">
-                                            ${itemLabelText}
-                                    </label>
-                                    ${navSubItemToggleIcon}
-                            </div>`;
-                    }
-
-                    navItemList.push(`${navItem}${navItemImage}${navItemLabel}</div>`);
+                    // generate Item
+                    navItemList.push(`${listItem}${listItemImage}${listItemLabel}</div>`);
 
                     // generate SubItems
                     if (hasSubItems) {
@@ -774,29 +718,32 @@ vis.binds["materialdesign"] = {
 
                             itemIndex++;
 
-                            let navSubItemImage = '';
-                            if (data.drawerSubItemLayout === 'standard') {
-                                if (subItemsImageJson && subItemsImageJson.subItems && subItemsImageJson.subItems.length > 0) {
-                                    navSubItemImage = getListItemImage(getValueFromData(subItemsImageJson.subItems[d], ''), drawerSubItemIconHeight);
-                                }
+                            let subItemImage = '';
+                            if (subItemsImageJson && subItemsImageJson.subItems && subItemsImageJson.subItems.length > 0) {
+                                subItemImage = getValueFromData(subItemsImageJson.subItems[d], '');
                             }
 
-                            let navSubItemLabel = '';
+                            let subItemText = '';
                             if (subItemsTextJson && subItemsTextJson.subItems && subItemsTextJson.subItems.length > 0) {
-                                navSubItemLabel = getListItemText(getValueFromData(subItemsTextJson.subItems[d], subItemsArray[d]), `itemIndex_${itemIndex}`, dawerSubItemLabelFontSize.class, dawerSubItemLabelFontSize.style, dawerSubItemsLabelShow);
+                                subItemText = getValueFromData(subItemsTextJson.subItems[d], subItemsArray[d]);
                             } else {
-                                navSubItemLabel = getListItemText(subItemsArray[d], `itemIndex_${itemIndex}`, dawerSubItemLabelFontSize.class, dawerSubItemLabelFontSize.style, dawerSubItemsLabelShow);
+                                subItemText = subItemsArray[d];
                             }
 
-                            navItemList.push(
-                                `<div class="mdc-list-item mdc-sub-list-item isSubItem"
-                                    tabindex="-1"
-                                    id="itemIndex_${itemIndex}"
-                                    >
-                                    ${navSubItemImage}
-                                    ${navSubItemLabel}
-                                </div>`
-                            );
+                            // generate SubItem -> mdc-list-item
+                            let listSubItem = getListItem(data.drawerSubItemLayout, itemIndex, subItemImage, drawerSubItemIconHeight, false, true);
+
+                            // generate Item Image for Layout Standard
+                            let listSubItemImage = ''
+                            if (data.drawerSubItemLayout === 'standard') {
+                                listSubItemImage = getListItemImage(subItemImage, drawerSubItemIconHeight);
+                            }
+
+                            // generate Item Label
+                            let listSubItemLabel = getListItemLabel(data.drawerSubItemLayout, itemIndex, subItemText, false, dawerSubItemLabelFontSize.class, dawerSubItemLabelFontSize.style, dawerSubItemsLabelShow, '', backdropLabelBackgroundColor, backdropLabelBackgroundHeight)
+
+                            // generate SubItem
+                            navItemList.push(`${listSubItem}${listSubItemImage}${listSubItemLabel}</div>`);
                         }
                         navItemList.push(`</nav>`);
                     }
@@ -881,6 +828,8 @@ vis.binds["materialdesign"] = {
             const drawer = new mdc.drawer.MDCDrawer(mdcDrawer);
             const topAppBar = new mdc.topAppBar.MDCTopAppBar(mdcTopAppBar);
             const navList = new mdc.list.MDCList(mdcList);
+
+            const listItemRipples = navList.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
 
             topAppBar.setScrollTarget($this.parent().find('.mdc-top-app-bar-content').get(0));
 
@@ -1160,8 +1109,64 @@ function getListItemImage(image, height) {
             >`
 }
 
-function getListItemBackdropImage(image, height){
-    
+function getListItem(layout, itemIndex, backdropImage, backdropImageHeight, hasSubItems, isSubItem = false) {
+
+    if (layout === 'standard') {
+        // Layout: Standard
+        return `<div 
+                    class="mdc-list-item${(isSubItem) ? ' mdc-sub-list-item isSubItem' : ''}${(itemIndex === 0) ? ' mdc-list-item--activated' : ''} ${(hasSubItems) ? 'hasSubItems' : ''}" 
+                    tabindex="${(itemIndex === 0) ? '0' : '-1'}" 
+                    id="itemIndex_${itemIndex}"
+                >`
+    } else {
+        // Layout: Backdrop
+        return `<div 
+                    class="mdc-list-item${(isSubItem) ? ' mdc-sub-list-item isSubItem' : ''}${(itemIndex === 0) ? ' mdc-list-item--activated' : ''} mdc-card__media ${(hasSubItems) ? 'hasSubItems' : ''}" 
+                    tabindex="${(itemIndex === 0) ? '0' : '-1'}"
+                    id="itemIndex_${itemIndex}"
+                    style="background-image: url(${backdropImage}); align-items: flex-end; padding: 0px;${backdropImageHeight}"
+                >`
+    }
+}
+
+function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSizeClass, fontSizeStyle, showLabel, toggleIconColor, backdropLabelColor, backdropLabelHeight) {
+
+    let subItemToggleIcon = '';
+    if (hasSubItems) {
+        subItemToggleIcon = `<span 
+                                class="mdc-list-item__meta material-icons toggleIcon" aria-hidden="true" ${getValueFromData(toggleIconColor, '', 'style="color: ', ';"')}>
+                                    keyboard_arrow_down
+                            </span>`;
+    }
+
+    if (layout === 'standard') {
+        // Layout: Standard
+        let listItemLabel = `<label 
+                            class="mdc-list-item__text ${fontSizeClass}"
+                            id="itemIndex_${itemIndex}"
+                            style="${fontSizeStyle}${showLabel}">
+                                ${text}
+                        </label>`;
+
+        return listItemLabel + subItemToggleIcon;
+
+    } else {
+        // Layout: Backdrop
+
+        // generate SubItems toggle Icon
+        return `<div 
+                    class="materialdesign-topAppBar-with-Drawer-backdrop-label-container" 
+                    id="drawerItemBackdropLabelContainer_${itemIndex}" 
+                    style="${backdropLabelHeight}${backdropLabelColor}">
+                        <label 
+                            class="mdc-list-item__text ${fontSizeClass}"
+                            id="itemIndex_${itemIndex}"
+                            style="position: absolute; ${fontSizeStyle}${showLabel}">
+                                ${text}
+                        </label>
+                        ${subItemToggleIcon}
+                </div>`;
+    }
 }
 
 vis.binds["materialdesign"].showVersion();
