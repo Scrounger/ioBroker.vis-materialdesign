@@ -167,7 +167,7 @@ vis.binds.materialdesign.drawer = {
 
                     // generate Header
                     if (getValueFromData(data.attr('headers' + i), null) !== null) {
-                        navItemList.push(`<h6 class="mdc-list-group__subheader">${data.attr('headers' + i)}</h6>`);
+                        navItemList.push(`<h3 class="mdc-list-group__subheader">${data.attr('headers' + i)}</h3>`);
                     }
 
                     // generate Item -> mdc-list-item
@@ -180,7 +180,7 @@ vis.binds.materialdesign.drawer = {
                     }
 
                     // generate Item Label
-                    let listItemLabel = getListItemLabel(data.drawerItemLayout, itemIndex, itemLabelText, hasSubItems, dawerLabelFontSize.class, dawerLabelFontSize.style, dawerLabelShow, data.colorSubItemToggleIcon, backdropLabelBackgroundHeight)
+                    let listItemLabel = getListItemLabel(data.drawerItemLayout, itemIndex, itemLabelText, hasSubItems, dawerLabelFontSize, dawerLabelShow, data.colorSubItemToggleIcon, backdropLabelBackgroundHeight)
 
                     // generate Item
                     navItemList.push(`${listItem}${listItemImage}${listItemLabel}</div>`);
@@ -216,7 +216,7 @@ vis.binds.materialdesign.drawer = {
                             }
 
                             // generate Item Label
-                            let listSubItemLabel = getListItemLabel(data.drawerSubItemLayout, itemIndex, subItemText, false, dawerSubItemLabelFontSize.class, dawerSubItemLabelFontSize.style, dawerSubItemsLabelShow, '', backdropSubLabelBackgroundHeight, true)
+                            let listSubItemLabel = getListItemLabel(data.drawerSubItemLayout, itemIndex, subItemText, false, dawerSubItemLabelFontSize, dawerSubItemsLabelShow, '', backdropSubLabelBackgroundHeight, true)
 
                             // generate SubItem
                             navItemList.push(`${listSubItem}${listSubItemImage}${listSubItemLabel}</div>`);

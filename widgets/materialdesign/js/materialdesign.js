@@ -660,13 +660,21 @@ function getFontSize(fontSizeValue) {
     }
 }
 
-function getListItemText(text, id, fontSizeClass, fontSizeStyle, show = true) {
-    return `<label 
-                class="mdc-list-item__text ${fontSizeClass}"
-                id="${id}"
-                style="${fontSizeStyle}${show}">
-                    ${text}
-            </label>`;
+function getListItemHeader(text, fontSize) {
+    if (text !== null) {
+        return `<h3 class="mdc-list-group__subheader ${fontSize.class}" 
+                    style="${fontSize.style}">
+                        ${text}
+                </h3>`;
+    }
+    return '';
+}
+
+function getListItemTextElement(text, subText, fontSize, subFontSize) {
+    return `<span class="mdc-list-item__text">     
+                <span class="mdc-list-item__primary-text ${fontSize.class}" style="${fontSize.style}">${text}</span>
+                <span class="mdc-list-item__secondary-text ${subFontSize.class}" style="${subFontSize.style}">${subText}</span>
+            </span>`;
 }
 
 function getListItemImage(image, height) {
@@ -696,7 +704,7 @@ function getListItem(layout, itemIndex, backdropImage, backdropImageHeight, hasS
     }
 }
 
-function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSizeClass, fontSizeStyle, showLabel, toggleIconColor, backdropLabelHeight, isSubItem = false) {
+function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSize, showLabel, toggleIconColor, backdropLabelHeight, isSubItem = false) {
 
     let subItemToggleIcon = '';
     if (hasSubItems) {
@@ -709,9 +717,9 @@ function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSizeClass, f
     if (layout === 'standard') {
         // Layout: Standard
         let listItemLabel = `<label 
-                            class="mdc-list-item__text ${fontSizeClass}"
+                            class="mdc-list-item__text ${fontSize.class}"
                             id="itemIndex_${itemIndex}"
-                            style="${fontSizeStyle}${showLabel}">
+                            style="${fontSize.style}${showLabel}">
                                 ${text}
                         </label>`;
 
@@ -726,9 +734,9 @@ function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSizeClass, f
                     id="backdropContainer_${itemIndex}" 
                     style="${backdropLabelHeight}">
                         <label 
-                            class="mdc-list-item__text ${fontSizeClass}"
+                            class="mdc-list-item__text ${fontSize.class}"
                             id="itemIndex_${itemIndex}"
-                            style="position: absolute; ${fontSizeStyle}${showLabel}">
+                            style="position: absolute; ${fontSize.style}${showLabel}">
                                 ${text}
                         </label>
                         ${subItemToggleIcon}
