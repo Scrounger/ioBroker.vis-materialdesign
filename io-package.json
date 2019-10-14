@@ -71,8 +71,9 @@
         ]
     },
     "native": {
-        "option1": true,
-        "option2": "42"
+        "dependencies": [
+            "basic"
+        ]
     },
     "objects": [],
     "instanceObjects": []

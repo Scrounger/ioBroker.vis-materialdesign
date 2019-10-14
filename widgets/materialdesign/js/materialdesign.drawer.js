@@ -1,0 +1,439 @@
+/*
+    ioBroker.vis vis-materialdesign Widget-Set
+
+    version: "0.0.1"
+
+    Copyright 2019 Scrounger scrounger@gmx.net
+*/
+"use strict";
+
+
+// this code can be placed directly in materialdesign.html
+vis.binds.materialdesign.drawer = {
+    initializeTopAppBar: function (data) {
+        try {
+            let headerLayout = '';
+            let headerStyle = '';
+            let headerButtonShow = '';
+            let contentLayout = '';
+
+            if (data.topAppBarLayout === 'standard') {
+                contentLayout = 'mdc-top-app-bar--fixed-adjust';
+            } else if (data.topAppBarLayout === 'dense') {
+                headerLayout = 'mdc-top-app-bar--dense';
+                contentLayout = 'mdc-top-app-bar--dense-fixed-adjust';
+            } else if (data.topAppBarLayout === 'short') {
+                headerLayout = 'mdc-top-app-bar--short mdc-top-app-bar--short-collapsed';
+                contentLayout = 'mdc-top-app-bar--short-fixed-adjust';
+            }
+
+            if (vis.editMode) {
+                headerStyle = 'style="position: absolute;"';
+            } else {
+                headerStyle = 'style="position: fixed;"';
+            }
+
+            if (data.drawerLayout === 'modal' || data.drawerLayout === 'dismissible') {
+                headerButtonShow = `<button 
+                                        class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon mdc-ripple-upgraded--unbounded mdc-ripple-upgraded" 
+                                        style="--mdc-ripple-fg-size:28px; --mdc-ripple-fg-scale:1.7142857142857142; --mdc-ripple-left:10px; --mdc-ripple-top:10px;${getValueFromData(data.colorTopAppBarTitle, '', 'color: ', ';')}">
+                                            menu
+                                        </button>`;
+            }
+
+            return { headerLayout: headerLayout, headerStyle: headerStyle, contentLayout: contentLayout, headerButtonShow: headerButtonShow }
+
+        } catch (ex) {
+            console.exception(`initializeTopAppBar [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
+    initializeDrawer: function (data) {
+        try {
+            let viewsList = [];
+            let navItemList = [];
+            let drawerHeader = '';
+            let drawerLayout = '';
+            let drawerStyle = '';
+            let drawerModalScrim = '';
+
+            initLayoutAndStyle();
+            initHeader();
+            initListItems();
+
+            return { viewsList: viewsList, drawerItemList: navItemList.join(''), drawerHeader: drawerHeader, drawerLayout: drawerLayout, drawerStyle: drawerStyle, drawerModalScrim: drawerModalScrim };
+
+            function initLayoutAndStyle() {
+                let width = getValueFromData(data.drawerWidth, '', 'width: ', 'px;');
+
+                let drawerZIndex = '';
+                let drawerScrimZIndex = '';
+                if (data.z_index !== undefined && data.z_index !== null && data.z_index !== '') {
+                    drawerZIndex = `z-index: ${data.z_index};`;
+                    drawerScrimZIndex = `z-index: ${data.z_index - 1};`;
+                }
+
+                let position = '';
+                if (data.drawerLayout === 'modal') {
+                    drawerLayout = 'mdc-drawer--modal';
+
+                    if (vis.editMode) {
+                        position = 'position: absolute;'
+                    } else {
+                        drawerModalScrim = `<div class="mdc-drawer-scrim" style="${drawerScrimZIndex}"></div>`;
+                    }
+                } else {
+                    // Layout dismissible & permanent
+                    if (!vis.editMode) {
+                        drawerLayout = 'mdc-drawer--dismissible mdc-drawer--open';
+                        position = 'position: fixed;'
+                    } else {
+                        drawerLayout = 'mdc-drawer--dismissible mdc-drawer--open';
+                        position = 'position: absolute;'
+                    }
+                }
+
+                drawerStyle = `style="${width}${drawerZIndex}${position}"`;
+            }
+
+            function initHeader() {
+                if (data.attr('showHeader') === true || data.attr('showHeader') === 'true') {
+                    drawerHeader = `<div 
+                                        class="mdc-drawer__header" 
+                                        ${getValueFromData(data.colorDrawerHeaderBackground, '', 'style="background: ', '"')}>
+                                            ${data.headerLabel}
+                                    </div>`;
+                }
+            }
+
+            function initListItems() {
+                let drawerIconHeight = getValueFromData(data.drawerIconHeight, '', 'height: ', 'px !important;');
+                let drawerSubItemIconHeight = getValueFromData(data.drawerSubItemIconHeight, drawerIconHeight, 'height: ', 'px !important;');
+
+                let dawerLabelFontSize = getFontSize(data.listItemTextSize);
+                let dawerSubItemLabelFontSize = getFontSize(data.listSubItemTextSize);
+                let dawerLabelShow = (data.showLabels) ? '' : 'display: none;';
+                let dawerSubItemsLabelShow = (data.showSubItemsLabels) ? '' : 'display: none;';
+
+                // only for Layout Backdrop
+                let backdropLabelBackgroundHeight = getValueFromData(data.backdropLabelBackgroundHeight, 'height: auto;', 'height: ', '%;');
+                let backdropSubLabelBackgroundHeight = getValueFromData(data.backdropSubLabelBackgroundHeight, backdropLabelBackgroundHeight, 'height: ', '%;');
+
+                let itemIndex = 0;
+                for (var i = 0; i <= data.count; i++) {
+                    let itemLabelText = getValueFromData(data.attr('labels' + i), data.attr('contains_view_' + i));  // Fallback is View Name
+                    let itemImage = getValueFromData(data.attr('iconDrawer' + i), '');
+
+                    let subItemsArray = '';
+                    let hasSubItems = false;
+                    let subItemsTextJson = '';
+                    let subItemsImageJson = '';
+
+                    if (data.attr('contains_view_' + i).includes('|')) {
+                        viewsList.push('');
+
+                        subItemsArray = data.attr('contains_view_' + i).split('|');
+
+                        if (subItemsArray.length > 0) {
+                            hasSubItems = true;
+
+                            // parse Label Text for SubItems
+                            let labelJsonString = getValueFromData(data.attr('labels' + i), null);
+                            if (labelJsonString === null) {
+                                itemLabelText = data.attr('contains_view_' + i);
+                            } else {
+                                try {
+                                    subItemsTextJson = JSON.parse(labelJsonString);
+                                    itemLabelText = subItemsTextJson.itemText;
+                                } catch {
+                                    subItemsTextJson = '';
+                                    itemLabelText = 'Error: wrong format!';
+                                }
+                            }
+
+                            // parse Image for SubItems
+                            let imageJsonString = getValueFromData(data.attr('iconDrawer' + i), null);
+                            if (imageJsonString !== null) {
+                                try {
+                                    subItemsImageJson = JSON.parse(imageJsonString);
+                                    itemImage = subItemsImageJson.itemImage;
+                                } catch {
+                                    subItemsImageJson = '';
+                                }
+                            }
+                        }
+                    } else {
+                        viewsList.push(data.attr('contains_view_' + i));
+                    }
+
+                    // generate Header
+                    if (getValueFromData(data.attr('headers' + i), null) !== null) {
+                        navItemList.push(`<h6 class="mdc-list-group__subheader">${data.attr('headers' + i)}</h6>`);
+                    }
+
+                    // generate Item -> mdc-list-item
+                    let listItem = getListItem(data.drawerItemLayout, itemIndex, itemImage, drawerIconHeight, hasSubItems);
+
+                    // generate Item Image for Layout Standard
+                    let listItemImage = ''
+                    if (data.drawerItemLayout === 'standard') {
+                        listItemImage = getListItemImage(itemImage, drawerIconHeight);
+                    }
+
+                    // generate Item Label
+                    let listItemLabel = getListItemLabel(data.drawerItemLayout, itemIndex, itemLabelText, hasSubItems, dawerLabelFontSize.class, dawerLabelFontSize.style, dawerLabelShow, data.colorSubItemToggleIcon, backdropLabelBackgroundHeight)
+
+                    // generate Item
+                    navItemList.push(`${listItem}${listItemImage}${listItemLabel}</div>`);
+
+                    // generate SubItems
+                    if (hasSubItems) {
+                        navItemList.push(`<nav class="mdc-list mdc-sub-list">`);
+
+                        for (var d = 0; d <= subItemsArray.length - 1; d++) {
+                            viewsList.push(subItemsArray[d]);
+
+                            itemIndex++;
+
+                            let subItemImage = '';
+                            if (subItemsImageJson && subItemsImageJson.subItems && subItemsImageJson.subItems.length > 0) {
+                                subItemImage = getValueFromData(subItemsImageJson.subItems[d], '');
+                            }
+
+                            let subItemText = '';
+                            if (subItemsTextJson && subItemsTextJson.subItems && subItemsTextJson.subItems.length > 0) {
+                                subItemText = getValueFromData(subItemsTextJson.subItems[d], subItemsArray[d]);
+                            } else {
+                                subItemText = subItemsArray[d];
+                            }
+
+                            // generate SubItem -> mdc-list-item
+                            let listSubItem = getListItem(data.drawerSubItemLayout, itemIndex, subItemImage, drawerSubItemIconHeight, false, true);
+
+                            // generate Item Image for Layout Standard
+                            let listSubItemImage = ''
+                            if (data.drawerSubItemLayout === 'standard') {
+                                listSubItemImage = getListItemImage(subItemImage, drawerSubItemIconHeight);
+                            }
+
+                            // generate Item Label
+                            let listSubItemLabel = getListItemLabel(data.drawerSubItemLayout, itemIndex, subItemText, false, dawerSubItemLabelFontSize.class, dawerSubItemLabelFontSize.style, dawerSubItemsLabelShow, '', backdropSubLabelBackgroundHeight, true)
+
+                            // generate SubItem
+                            navItemList.push(`${listSubItem}${listSubItemImage}${listSubItemLabel}</div>`);
+                        }
+                        navItemList.push(`</nav>`);
+                    }
+
+                    // generate Divider
+                    if (data.attr('dividers' + i) === true || data.attr('dividers' + i) === 'true') {
+                        let divider = '';
+                        if (data.listItemDividerStyle === 'standard') {
+                            divider = '<hr class="mdc-list-divider">'
+                        } else {
+                            divider = '<hr class="mdc-list-divider mdc-list-divider--' + data.listItemDividerStyle + '">'
+                        }
+                        navItemList.push(divider);
+                    }
+
+                    itemIndex++;
+                }
+            }
+        } catch (ex) {
+            console.exception(`initializeDrawer [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
+    handler: function (el, data) {
+        try {
+            let $this = $(el);
+
+            let widget = $this.parent().parent().get(0);
+            let mdcDrawer = $this.context;
+            let mdcTopAppBar = $this.parent().find('.mdc-top-app-bar').get(0);
+            let mdcList = $this.parent().find('.mdc-list').get(0);
+
+            setTimeout(function () {
+                // Bug fix für TopAppBar, da position: fixed sein muss, deshlab zur Laufzeit width anpassen -> wird von widget genommen
+                $this.parent().parent().css('left', '0px');
+                $this.parent().parent().css('top', '0px');
+
+
+                if (data.drawerLayout === 'modal') {
+                    let width = window.getComputedStyle(widget, null).width;
+
+                    if (data.topAppBarLayout !== 'short') {
+                        $this.parent().find('.mdc-top-app-bar').css('width', width);
+                    }
+                } else {
+                    let width = window.getComputedStyle(widget, null).width;
+                    let widthDrawer = window.getComputedStyle(mdcDrawer, null).width;
+                    let barWidth = width.replace('px', '') - widthDrawer.replace('px', '');
+
+                    if (data.topAppBarLayout !== 'short') {
+                        $this.parent().find('.mdc-top-app-bar').css('width', barWidth);
+                    } else {
+                        if (!vis.editMode) {
+                            $this.parent().find('.mdc-top-app-bar').css('left', widthDrawer);
+                        }
+                    }
+                    $this.parent().find('.drawer-frame-app-content').css('left', widthDrawer);
+                }
+
+            }, 1);
+
+            let colorDrawerBackground = getValueFromData(data.colorDrawerBackground, '');
+            mdcDrawer.style.setProperty("--materialdesign-color-drawer-background", colorDrawerBackground);
+            mdcList.style.setProperty("--materialdesign-color-sub-list-item-background", getValueFromData(data.colorDrawerSubItemsBackground, colorDrawerBackground));
+
+            let colorListItemSelected = getValueFromData(data.colorListItemSelected, '');
+            mdcList.style.setProperty("--materialdesign-color-list-item-selected", colorListItemSelected);
+            mdcList.style.setProperty("--materialdesign-color-sub-list-item-selected", getValueFromData(data.colorListSubItemSelected, colorListItemSelected));
+
+            let colorListItemHover = getValueFromData(data.colorListItemHover, '');
+            mdcList.style.setProperty("--materialdesign-color-list-item-hover", colorListItemHover);
+            mdcList.style.setProperty("--materialdesign-color-sub-list-item-hover", getValueFromData(data.colorListSubItemHover, colorListItemHover));
+
+            let colorListItemText = getValueFromData(data.colorListItemText, '');
+            mdcList.style.setProperty("--materialdesign-color-list-item-text", colorListItemText);
+            mdcList.style.setProperty("--materialdesign-color-sub-list-item-text", getValueFromData(data.colorListSubItemText, colorListItemText));
+
+            let colorListItemTextSelected = getValueFromData(data.colorListItemTextSelected, '');
+            mdcList.style.setProperty("--materialdesign-color-list-item-text-activated", colorListItemTextSelected);
+            mdcList.style.setProperty("--materialdesign-color-sub-list-item-text-activated", getValueFromData(data.colorListSubItemTextSelected, colorListItemTextSelected));
+
+            mdcList.style.setProperty("--materialdesign-color-list-item-header", getValueFromData(data.colorListItemHeaders, ''));
+            mdcList.style.setProperty("--materialdesign-color-list-item-divider", getValueFromData(data.colorListItemDivider, ''));
+
+            let colorDrawerbackdropLabelBackground = getValueFromData(data.colorDrawerbackdropLabelBackground, '');
+            mdcList.style.setProperty("--materialdesign-color-list-item-backdrop", colorDrawerbackdropLabelBackground);
+            mdcList.style.setProperty("--materialdesign-color-sub-list-item-backdrop", getValueFromData(data.colorDrawerbackdropSubLabelBackground, colorDrawerbackdropLabelBackground));
+
+            let colorDrawerbackdropLabelBackgroundActive = getValueFromData(data.colorDrawerbackdropLabelBackgroundActive, '');
+            mdcList.style.setProperty("--materialdesign-color-list-item-backdrop-activated", colorDrawerbackdropLabelBackgroundActive);
+            mdcList.style.setProperty("--materialdesign-color-sub-list-item-backdrop-activated", getValueFromData(data.colorDrawerbackdropSubLabelBackgroundActive, colorDrawerbackdropLabelBackgroundActive));
+
+            mdcTopAppBar.style.setProperty("--mdc-theme-primary", getValueFromData(data.colorTopAppBarBackground, ''));
+
+            const drawer = new mdc.drawer.MDCDrawer(mdcDrawer);
+            const topAppBar = new mdc.topAppBar.MDCTopAppBar(mdcTopAppBar);
+            const navList = new mdc.list.MDCList(mdcList);
+
+            const listItemRipples = navList.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
+
+            topAppBar.setScrollTarget($this.parent().find('.mdc-top-app-bar-content').get(0));
+
+            topAppBar.listen('MDCTopAppBar:nav', () => {
+
+                if (data.drawerLayout === 'dismissible') {
+                    if (drawer.open) {
+                        let width = window.getComputedStyle(widget, null).width;
+                        let widthDrawer = window.getComputedStyle(mdcDrawer, null).width;
+
+                        if (data.topAppBarLayout !== 'short') {
+                            $this.parent().find('.mdc-top-app-bar').css('width', width);
+                        } else {
+                            if (!vis.editMode) {
+                                $this.parent().find('.mdc-top-app-bar').css('left', '0px');
+                            }
+                        }
+                        $this.parent().find('.drawer-frame-app-content').css('left', '0px');
+
+                        drawer.open = !drawer.open;
+                    } else {
+                        let width = window.getComputedStyle(widget, null).width;
+                        let widthDrawer = window.getComputedStyle(mdcDrawer, null).width;
+                        let barWidth = width.replace('px', '') - widthDrawer.replace('px', '');
+
+                        drawer.open = !drawer.open;
+
+                        setTimeout(function () {
+                            if (data.topAppBarLayout !== 'short') {
+                                $this.parent().find('.mdc-top-app-bar').css('width', barWidth);
+                            } else {
+                                if (!vis.editMode) {
+                                    $this.parent().find('.mdc-top-app-bar').css('left', widthDrawer);
+                                }
+                            }
+                            $this.parent().find('.drawer-frame-app-content').css('left', widthDrawer);
+                        }, 250);
+                    }
+                } else {
+                    drawer.open = !drawer.open;
+                }
+            });
+
+            var val = vis.states.attr(data.oid + '.val');
+
+            toggleSubItemByIndex(val);
+
+            navList.selectedIndex = val;
+            setTopAppBarWithDrawerLayout();
+
+            vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                toggleSubItemByIndex(newVal);
+
+                navList.selectedIndex = newVal;
+                setTopAppBarWithDrawerLayout();
+            });
+
+            $this.find('.mdc-list-item').click(function () {
+                let selctedIndex = parseInt($(this).eq(0).attr('id').replace('itemIndex_', ''));
+
+                if ($(this).hasClass('hasSubItems')) {
+                    // listItem has subItems ->Toggle SubItems
+                    if ($(this).hasClass('toggled')) {
+                        $(this).removeClass("toggled");
+                        $(this).find(".toggleIcon").html("keyboard_arrow_down");
+                    } else {
+                        $(this).addClass("toggled");
+                        $(this).find(".toggleIcon").html("keyboard_arrow_up");
+                    }
+
+                    $(this).next("nav.mdc-sub-list").toggle();
+
+                    navList.selectedIndex = selctedIndex;
+                } else {
+                    // listItem
+                    val = vis.states.attr(data.oid + '.val');
+
+                    if (val != selctedIndex) {
+                        vis.setValue(data.oid, selctedIndex);
+
+                        setTopAppBarWithDrawerLayout();
+
+                        setTimeout(function () {
+                            window.scrollTo({ top: 0, left: 0, });
+                        }, 50);
+                    }
+
+                    if (data.drawerLayout === 'modal') {
+                        drawer.open = false;
+                    }
+                }
+            });
+
+            function setTopAppBarWithDrawerLayout() {
+                if (data.showSelectedItemAsTitle) {
+                    let selectedName = $this.parent().find(`label[id="itemIndex_${navList.selectedIndex}"]`).text();
+                    $this.parent().find('.mdc-top-app-bar__title').text(selectedName)
+                }
+            }
+
+            function toggleSubItemByIndex(index) {
+                let selectedListItem = $this.find(`.mdc-list-item[id="itemIndex_${index}"]`);
+                if (selectedListItem.hasClass('isSubItem')) {
+                    // toggle Subitem if selected
+                    let parentListItem = selectedListItem.parent().prev('.hasSubItems');
+
+                    if (!parentListItem.hasClass("toggled")) {
+                        parentListItem.addClass("toggled");
+                        parentListItem.find(".toggleIcon").html("keyboard_arrow_up");
+                        parentListItem.next("nav.mdc-sub-list").toggle();
+                    }
+                }
+            }
+
+        } catch (ex) {
+            console.exception(`mdcTopAppBarWithDrawer [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+        }
+    }
+};

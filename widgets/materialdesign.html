@@ -13,6 +13,7 @@
 <!-- here you can include so many js-files as you want -->
 <script type="text/javascript" src="widgets/materialdesign/js/material-components-web.min.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.js"></script>
+<script type="text/javascript" src="widgets/materialdesign/js/materialdesign.drawer.js"></script>
 
 
 <!-- the full description of format in data-vis-attrs can be found here:
@@ -813,13 +814,13 @@
         data-vis-attrs5="group.drawerLabels;labels(0-count);group.drawerHeaders;headers(0-count);group.drawerDivider;dividers(0-count)/checkbox;group.drawerIcons;iconDrawer(0-count)[/vis/widgets/materialdesign/img/IoBroker_Logo.png]/image;">
         
         <%
-            let initDrawer = vis.binds.materialdesign.initializeDrawer(data);
-            let initTopAppBar = vis.binds.materialdesign.initializeTopAppBar(data);
+            let initDrawer = vis.binds.materialdesign.drawer.initializeDrawer(data);
+            let initTopAppBar = vis.binds.materialdesign.drawer.initializeTopAppBar(data);
         %>
 
         <div class="vis-widget materialdesign-topAppBar-with-Drawer <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
             <div class="drawer-frame-root">
-                <aside class="mdc-drawer <%= initDrawer.drawerLayout %>" <%== initDrawer.drawerStyle %> <%= (el) -> vis.binds.materialdesign.mdcTopAppBarWithDrawer(el, data) %>>
+                <aside class="mdc-drawer <%= initDrawer.drawerLayout %>" <%== initDrawer.drawerStyle %> <%= (el) -> vis.binds.materialdesign.drawer.handler(el, data) %>>
                     <%== initDrawer.drawerHeader %>
                     <div class="mdc-drawer__content">
                         <nav class="mdc-list">
