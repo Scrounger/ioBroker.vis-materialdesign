@@ -630,7 +630,7 @@ vis.binds["materialdesign"] = {
 
             function initListItems() {
                 let drawerIconHeight = getValueFromData(data.drawerIconHeight, '', 'height: ', 'px !important;');
-                let drawerSubItemIconHeight = getValueFromData(data.drawerSubItemIconHeight, '', 'height: ', 'px;');
+                let drawerSubItemIconHeight = getValueFromData(data.drawerSubItemIconHeight, drawerIconHeight, 'height: ', 'px !important;');
 
                 let dawerLabelFontSize = getFontSize(data.listItemTextSize);
                 let dawerSubItemLabelFontSize = getFontSize(data.listSubItemTextSize);
@@ -640,7 +640,10 @@ vis.binds["materialdesign"] = {
 
                 // only for Layout Backdrop
                 let backdropLabelBackgroundHeight = getValueFromData(data.backdropLabelBackgroundHeight, 'height: auto;', 'height: ', '%;');
+                let backdropSubLabelBackgroundHeight = getValueFromData(data.backdropSubLabelBackgroundHeight, backdropLabelBackgroundHeight, 'height: ', '%;');
+
                 let backdropLabelBackgroundColor = getValueFromData(data.colorDrawerbackdropLabelBackground, '', 'background: ');
+                let backdropSubLabelBackgroundColor = getValueFromData(data.colorDrawerbackdropSubLabelBackground, backdropLabelBackgroundColor, 'background: ');
 
                 let itemIndex = 0;
                 for (var i = 0; i <= data.count; i++) {
@@ -740,7 +743,7 @@ vis.binds["materialdesign"] = {
                             }
 
                             // generate Item Label
-                            let listSubItemLabel = getListItemLabel(data.drawerSubItemLayout, itemIndex, subItemText, false, dawerSubItemLabelFontSize.class, dawerSubItemLabelFontSize.style, dawerSubItemsLabelShow, '', backdropLabelBackgroundColor, backdropLabelBackgroundHeight)
+                            let listSubItemLabel = getListItemLabel(data.drawerSubItemLayout, itemIndex, subItemText, false, dawerSubItemLabelFontSize.class, dawerSubItemLabelFontSize.style, dawerSubItemsLabelShow, '', backdropSubLabelBackgroundColor, backdropSubLabelBackgroundHeight)
 
                             // generate SubItem
                             navItemList.push(`${listSubItem}${listSubItemImage}${listSubItemLabel}</div>`);
@@ -938,10 +941,10 @@ vis.binds["materialdesign"] = {
 
             function setBackdropLabelColor(selctedIndex, oldIndex) {
                 if (data.drawerItemLayout === 'backdrop') {
-                    let backdropItemContainer = $this.parent().find(`div[id="drawerItemBackdropLabelContainer_${oldIndex}"]`);
+                    let backdropItemContainer = $this.parent().find(`div[id="backdropContainer_${oldIndex}"]`);
                     backdropItemContainer.css('background', getValueFromData(data.colorDrawerbackdropLabelBackground, ''));
 
-                    let backdropItemContainerActive = $this.parent().find(`div[id="drawerItemBackdropLabelContainer_${selctedIndex}"]`);
+                    let backdropItemContainerActive = $this.parent().find(`div[id="backdropContainer_${selctedIndex}"]`);
                     backdropItemContainerActive.css('background', getValueFromData(data.colorDrawerbackdropLabelBackgroundActive, ''));
                 }
             }
@@ -1155,8 +1158,8 @@ function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSizeClass, f
 
         // generate SubItems toggle Icon
         return `<div 
-                    class="materialdesign-topAppBar-with-Drawer-backdrop-label-container" 
-                    id="drawerItemBackdropLabelContainer_${itemIndex}" 
+                    class="materialdesign-list-item-backdrop-container" 
+                    id="backdropContainer_${itemIndex}" 
                     style="${backdropLabelHeight}${backdropLabelColor}">
                         <label 
                             class="mdc-list-item__text ${fontSizeClass}"

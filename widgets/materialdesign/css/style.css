@@ -668,7 +668,7 @@ svg.materialdesign-button__icon {
   padding-top: 0px;
 }
 
-.materialdesign-topAppBar-with-Drawer-backdrop-label-container {
+.materialdesign-list-item-backdrop-container {
   display: flex; 
   justify-content: center; 
   align-items: center; 
