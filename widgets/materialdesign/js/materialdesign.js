@@ -642,9 +642,6 @@ vis.binds["materialdesign"] = {
                 let backdropLabelBackgroundHeight = getValueFromData(data.backdropLabelBackgroundHeight, 'height: auto;', 'height: ', '%;');
                 let backdropSubLabelBackgroundHeight = getValueFromData(data.backdropSubLabelBackgroundHeight, backdropLabelBackgroundHeight, 'height: ', '%;');
 
-                let backdropLabelBackgroundColor = getValueFromData(data.colorDrawerbackdropLabelBackground, '', 'background: ');
-                let backdropSubLabelBackgroundColor = getValueFromData(data.colorDrawerbackdropSubLabelBackground, backdropLabelBackgroundColor, 'background: ');
-
                 let itemIndex = 0;
                 for (var i = 0; i <= data.count; i++) {
                     let itemLabelText = getValueFromData(data.attr('labels' + i), data.attr('contains_view_' + i));  // Fallback is View Name
@@ -707,7 +704,7 @@ vis.binds["materialdesign"] = {
                     }
 
                     // generate Item Label
-                    let listItemLabel = getListItemLabel(data.drawerItemLayout, itemIndex, itemLabelText, hasSubItems, dawerLabelFontSize.class, dawerLabelFontSize.style, dawerLabelShow, data.colorSubItemToggleIcon, backdropLabelBackgroundColor, backdropLabelBackgroundHeight)
+                    let listItemLabel = getListItemLabel(data.drawerItemLayout, itemIndex, itemLabelText, hasSubItems, dawerLabelFontSize.class, dawerLabelFontSize.style, dawerLabelShow, data.colorSubItemToggleIcon, backdropLabelBackgroundHeight)
 
                     // generate Item
                     navItemList.push(`${listItem}${listItemImage}${listItemLabel}</div>`);
@@ -743,7 +740,7 @@ vis.binds["materialdesign"] = {
                             }
 
                             // generate Item Label
-                            let listSubItemLabel = getListItemLabel(data.drawerSubItemLayout, itemIndex, subItemText, false, dawerSubItemLabelFontSize.class, dawerSubItemLabelFontSize.style, dawerSubItemsLabelShow, '', backdropSubLabelBackgroundColor, backdropSubLabelBackgroundHeight)
+                            let listSubItemLabel = getListItemLabel(data.drawerSubItemLayout, itemIndex, subItemText, false, dawerSubItemLabelFontSize.class, dawerSubItemLabelFontSize.style, dawerSubItemsLabelShow, '', backdropSubLabelBackgroundHeight, true)
 
                             // generate SubItem
                             navItemList.push(`${listSubItem}${listSubItemImage}${listSubItemLabel}</div>`);
@@ -826,6 +823,14 @@ vis.binds["materialdesign"] = {
             mdcList.style.setProperty("--materialdesign-color-list-item-header", getValueFromData(data.colorListItemHeaders, ''));
             mdcList.style.setProperty("--materialdesign-color-list-item-divider", getValueFromData(data.colorListItemDivider, ''));
 
+            let colorDrawerbackdropLabelBackground = getValueFromData(data.colorDrawerbackdropLabelBackground, '');
+            mdcList.style.setProperty("--materialdesign-color-list-item-backdrop", colorDrawerbackdropLabelBackground);
+            mdcList.style.setProperty("--materialdesign-color-sub-list-item-backdrop", getValueFromData(data.colorDrawerbackdropSubLabelBackground, colorDrawerbackdropLabelBackground));
+
+            let colorDrawerbackdropLabelBackgroundActive = getValueFromData(data.colorDrawerbackdropLabelBackgroundActive, '');
+            mdcList.style.setProperty("--materialdesign-color-list-item-backdrop-activated", colorDrawerbackdropLabelBackgroundActive);
+            mdcList.style.setProperty("--materialdesign-color-sub-list-item-backdrop-activated", getValueFromData(data.colorDrawerbackdropSubLabelBackgroundActive, colorDrawerbackdropLabelBackgroundActive));
+
             mdcTopAppBar.style.setProperty("--mdc-theme-primary", getValueFromData(data.colorTopAppBarBackground, ''));
 
             const drawer = new mdc.drawer.MDCDrawer(mdcDrawer);
@@ -882,18 +887,15 @@ vis.binds["materialdesign"] = {
 
             navList.selectedIndex = val;
             setTopAppBarWithDrawerLayout();
-            setBackdropLabelColor(val, 0);
 
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 toggleSubItemByIndex(newVal);
 
                 navList.selectedIndex = newVal;
                 setTopAppBarWithDrawerLayout();
-                setBackdropLabelColor(newVal, oldVal);
             });
 
             $this.find('.mdc-list-item').click(function () {
-                let oldIndex = navList.selectedIndex;
                 let selctedIndex = parseInt($(this).eq(0).attr('id').replace('itemIndex_', ''));
 
                 if ($(this).hasClass('hasSubItems')) {
@@ -909,17 +911,14 @@ vis.binds["materialdesign"] = {
                     $(this).next("nav.mdc-sub-list").toggle();
 
                     navList.selectedIndex = selctedIndex;
-                    setBackdropLabelColor(selctedIndex, oldIndex);
                 } else {
                     // listItem
-
                     val = vis.states.attr(data.oid + '.val');
 
                     if (val != selctedIndex) {
                         vis.setValue(data.oid, selctedIndex);
 
                         setTopAppBarWithDrawerLayout();
-                        setBackdropLabelColor(selctedIndex, oldIndex);
 
                         setTimeout(function () {
                             window.scrollTo({ top: 0, left: 0, });
@@ -936,16 +935,6 @@ vis.binds["materialdesign"] = {
                 if (data.showSelectedItemAsTitle) {
                     let selectedName = $this.parent().find(`label[id="itemIndex_${navList.selectedIndex}"]`).text();
                     $this.parent().find('.mdc-top-app-bar__title').text(selectedName)
-                }
-            }
-
-            function setBackdropLabelColor(selctedIndex, oldIndex) {
-                if (data.drawerItemLayout === 'backdrop') {
-                    let backdropItemContainer = $this.parent().find(`div[id="backdropContainer_${oldIndex}"]`);
-                    backdropItemContainer.css('background', getValueFromData(data.colorDrawerbackdropLabelBackground, ''));
-
-                    let backdropItemContainerActive = $this.parent().find(`div[id="backdropContainer_${selctedIndex}"]`);
-                    backdropItemContainerActive.css('background', getValueFromData(data.colorDrawerbackdropLabelBackgroundActive, ''));
                 }
             }
 
@@ -1132,7 +1121,7 @@ function getListItem(layout, itemIndex, backdropImage, backdropImageHeight, hasS
     }
 }
 
-function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSizeClass, fontSizeStyle, showLabel, toggleIconColor, backdropLabelColor, backdropLabelHeight) {
+function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSizeClass, fontSizeStyle, showLabel, toggleIconColor, backdropLabelHeight, isSubItem = false) {
 
     let subItemToggleIcon = '';
     if (hasSubItems) {
@@ -1158,9 +1147,9 @@ function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSizeClass, f
 
         // generate SubItems toggle Icon
         return `<div 
-                    class="materialdesign-list-item-backdrop-container" 
+                    class="materialdesign-list-item-backdrop-container${(isSubItem) ? ' isSubItem' : ''}" 
                     id="backdropContainer_${itemIndex}" 
-                    style="${backdropLabelHeight}${backdropLabelColor}">
+                    style="${backdropLabelHeight}">
                         <label 
                             class="mdc-list-item__text ${fontSizeClass}"
                             id="itemIndex_${itemIndex}"
