@@ -29,7 +29,7 @@ https://github.com/material-components/material-components-web/blob/master/docs/
 ## Icon Button
 ![Logo](doc/media/icon-button.gif)
 
-## Progress
+## List
 ![Logo](doc/media/list.gif)
 
 ## Progress
@@ -72,6 +72,16 @@ To change the image of the items, you have to a json object into the image filed
 `{"itemImage": "/icons-material-svg/hardware/ic_computer_48px.svg", "subItems": ["/vis/widgets/materialdesign/img/IoBroker_Logo.png", "/icons-material-svg/action/ic_android_48px.svg"]}`
 
 ## Changelog
+
+### 0.1.0
+* (Scrounger): Top App Bar Submenu added
+* (Scrounger): List added
+* (Scrounger): Button vertical State, Link, Nav added
+* (Scrounger): Icon Button State, Link, Nav added
+* (Scrounger): initialize slider bug fixes
+* (Scrounger): moved hard coded styling options to css
+* (Scrounger): styling options extended
+* (Scrounger): bug fixes
 
 ### 0.0.7
 * (Scrounger): Top App Bar Layouts added

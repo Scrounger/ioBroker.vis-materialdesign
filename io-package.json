@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.0.7",
+        "version": "0.1.0",
         "news": {
+            "0.1.0": {
+                "en": "first official release for latest repository",
+                "de": "erste offizielle Veröffentlichung für das latest Repository",
+                "ru": "первый официальный релиз для последнего репозитория",
+                "pt": "primeiro lançamento oficial do repositório mais recente",
+                "nl": "eerste officiële release voor de nieuwste repository",
+                "fr": "première version officielle pour le dernier référentiel",
+                "it": "prima versione ufficiale per l'ultimo repository",
+                "es": "primer lanzamiento oficial para el último repositorio",
+                "pl": "pierwsze oficjalne wydanie najnowszego repozytorium",
+                "zh-cn": "最新版本库的第一个正式版本"
+            },
             "0.0.1": {
                 "en": "initial release",
                 "de": "Erstveröffentlichung",
@@ -40,7 +52,7 @@
             "es": "Widgets de diseño de materiales basados en la biblioteca web de componentes de material de Google",
             "pl": "Widżety projektowania materiałów na podstawie biblioteki internetowej komponentów materiałów Google",
             "zh-cn": "Material Design Widgets基于Google材料组件Web库"
-          },
+        },
         "authors": [
             "Scrounger <scrounger@gmx.net>"
         ],
