@@ -571,7 +571,7 @@ function getListItemHeader(text, fontSize) {
 }
 
 function getListItemTextElement(text, subText, fontSize, subFontSize) {
-    return `<span class="mdc-list-item__text">     
+    return `<span class="mdc-list-item__text" style="width: 100%">     
                 <span class="mdc-list-item__primary-text ${fontSize.class}" style="${fontSize.style}">${text}</span>
                 <span class="mdc-list-item__secondary-text ${subFontSize.class}" style="${subFontSize.style}">${subText}</span>
             </span>`;
