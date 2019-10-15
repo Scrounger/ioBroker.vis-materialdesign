@@ -686,13 +686,13 @@ svg.materialdesign-button__icon {
   align-items: center; 
   width: 100%; 
   height: auto; 
-  background: var(--materialdesign-color-list-item-backdrop);
+  background-color: var(--materialdesign-color-list-item-backdrop);
   padding-left: 8px;
   padding-right: 8px;
 }
 
 .materialdesign-list-item-backdrop-container.isSubItem {
-  background: var(--materialdesign-color-sub-list-item-backdrop);
+  background-color: var(--materialdesign-color-sub-list-item-backdrop);
 }
 
 /* Drawer container */
@@ -701,13 +701,13 @@ svg.materialdesign-button__icon {
 }
 
 .mdc-drawer {
-  background: var(--materialdesign-color-drawer-background);
+  background-color: var(--materialdesign-color-drawer-background);
 }
 
 
 /* Drawer Header default Color */
 .mdc-drawer__header {
-  background: #1e88e5;
+  background-color: #1e88e5;
 }
 
 .mdc-drawer .mdc-drawer__title {
@@ -727,17 +727,17 @@ svg.materialdesign-button__icon {
 
 .mdc-sub-list {
   display: none;
-  background: var(--materialdesign-color-drawer-sub-background);
+  background-color: var(--materialdesign-color-drawer-sub-background);
 }
 
 .mdc-list-item {
   min-height: 40px !important; 
   height: auto !important;
-  background: var(--materialdesign-color-list-item-background);
+  background-color: var(--materialdesign-color-list-item-background);
 }
 
 .mdc-sub-list-item {
-  background: var(--materialdesign-color-sub-list-item-background);
+  background-color: var(--materialdesign-color-sub-list-item-background);
 }
 
 
@@ -787,10 +787,10 @@ svg.materialdesign-button__icon {
 
 /* backdrop container */
 :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated .materialdesign-list-item-backdrop-container {
-  background: var( --materialdesign-color-list-item-backdrop-activated);
+  background-color: var( --materialdesign-color-list-item-backdrop-activated);
 }
 :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated .materialdesign-list-item-backdrop-container.isSubItem {
-  background: var( --materialdesign-color-sub-list-item-backdrop-activated);
+  background-color: var( --materialdesign-color-sub-list-item-backdrop-activated);
 }
 
 
