@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "news": {
+            "0.1.1": {
+                "en": "bug fixes",
+                "de": "Fehlerbehebung",
+                "ru": "исправление ошибок",
+                "pt": "correções de bugs",
+                "nl": "bugfixes",
+                "fr": "corrections de bugs",
+                "it": "correzioni di bug",
+                "es": "corrección de errores",
+                "pl": "poprawki błędów",
+                "zh-cn": "bug修复"
+            },
             "0.1.0": {
                 "en": "first official release for latest repository",
                 "de": "erste offizielle Veröffentlichung für das latest Repository",

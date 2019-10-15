@@ -73,6 +73,9 @@ To change the image of the items, you have to a json object into the image filed
 
 ## Changelog
 
+### 0.1.1
+* (Scrounger): bug fixes
+
 ### 0.1.0
 * (Scrounger): Top App Bar Submenu added
 * (Scrounger): List added
