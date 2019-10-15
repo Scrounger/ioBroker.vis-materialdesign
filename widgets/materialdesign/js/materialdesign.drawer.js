@@ -226,15 +226,7 @@ vis.binds.materialdesign.drawer = {
                     }
 
                     // generate Divider
-                    if (data.attr('dividers' + i) === true || data.attr('dividers' + i) === 'true') {
-                        let divider = '';
-                        if (data.listItemDividerStyle === 'standard') {
-                            divider = '<hr class="mdc-list-divider">'
-                        } else {
-                            divider = '<hr class="mdc-list-divider mdc-list-divider--' + data.listItemDividerStyle + '">'
-                        }
-                        navItemList.push(divider);
-                    }
+                    navItemList.push(getListItemDivider(data.attr('dividers' + i), data.listItemDividerStyle));
 
                     itemIndex++;
                 }

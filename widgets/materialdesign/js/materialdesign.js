@@ -747,4 +747,15 @@ function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSize, showLa
     }
 }
 
+function getListItemDivider(showDivider, dividerLayout) {
+    if (showDivider === true || showDivider === 'true') {
+        if (dividerLayout === 'standard') {
+            return '<hr class="mdc-list-divider">'
+        } else {
+            return `<hr class="mdc-list-divider mdc-list-divider--${dividerLayout}">`
+        }
+    }
+    return '';
+}
+
 vis.binds["materialdesign"].showVersion();
