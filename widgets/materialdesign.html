@@ -1029,7 +1029,7 @@
         %>
 
         <div class="vis-widget materialdesign-list <%== listLayout %> <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
-            <ul class="mdc-list <%== listNoneInteractive %>" <%= (el) -> vis.binds.materialdesign.mdcList(el, data) %>>   
+            <ul class="mdc-list<%== init.nonInteractive %>" <%= (el) -> vis.binds.materialdesign.mdcList(el, data) %>>   
                 <%== init.itemList %>
             </ul>
         </div>

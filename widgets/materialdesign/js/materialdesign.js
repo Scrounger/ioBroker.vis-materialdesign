@@ -687,20 +687,21 @@ function getListItemImage(image, style) {
     return '';
 }
 
-function getListItem(layout, itemIndex, backdropImage, hasSubItems, isSubItem = false, style='') {
+function getListItem(layout, itemIndex, backdropImage, hasSubItems, isSubItem = false, style='', role='') {
 
     if (layout === 'standard') {
         // Layout: Standard
         return `<div 
-                    class="mdc-list-item${(isSubItem) ? ' mdc-sub-list-item isSubItem' : ''}${(itemIndex === 0) ? ' mdc-list-item--activated' : ''} ${(hasSubItems) ? 'hasSubItems' : ''}" 
+                    class="mdc-list-item${(isSubItem) ? ' mdc-sub-list-item isSubItem' : ''}${(itemIndex === 0) ? ' mdc-list-item--activated' : ''}${(hasSubItems) ? ' hasSubItems' : ''}" 
                     tabindex="${(itemIndex === 0) ? '0' : '-1'}" 
                     id="itemIndex_${itemIndex}" 
-                    style="${style}"
+                    style="${style}" 
+                    ${role}
                 >`
     } else {
         // Layout: Backdrop
         return `<div 
-                    class="mdc-list-item${(isSubItem) ? ' mdc-sub-list-item isSubItem' : ''}${(itemIndex === 0) ? ' mdc-list-item--activated' : ''} mdc-card__media ${(hasSubItems) ? 'hasSubItems' : ''}" 
+                    class="mdc-list-item${(isSubItem) ? ' mdc-sub-list-item isSubItem' : ''}${(itemIndex === 0) ? ' mdc-list-item--activated' : ''} mdc-card__media${(hasSubItems) ? ' hasSubItems' : ''}" 
                     tabindex="${(itemIndex === 0) ? '0' : '-1'}"
                     id="itemIndex_${itemIndex}"
                     style="background-image: url(${backdropImage}); align-items: flex-end; padding: 0px;${style}"
