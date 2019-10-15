@@ -1,5 +1,6 @@
 :root{
   --materialdesign-color-drawer-background: #fff;
+  --materialdesign-color-drawer-sub-background: #fff;
   --materialdesign-color-list-item-background: #fff;
   --materialdesign-color-sub-list-item-background: #fff;
 
@@ -726,13 +727,19 @@ svg.materialdesign-button__icon {
 
 .mdc-sub-list {
   display: none;
-  background: var(--materialdesign-color-sub-list-item-background);
+  background: var(--materialdesign-color-drawer-sub-background);
 }
 
 .mdc-list-item {
   min-height: 40px !important; 
   height: auto !important;
+  background: var(--materialdesign-color-list-item-background);
 }
+
+.mdc-sub-list-item {
+  background: var(--materialdesign-color-sub-list-item-background);
+}
+
 
 .mdc-sub-list .mdc-list-item {
   padding: 0 16px;

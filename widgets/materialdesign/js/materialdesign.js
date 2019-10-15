@@ -530,107 +530,7 @@ vis.binds.materialdesign = {
         } catch (ex) {
             console.exception(`mdcIconButton [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
-    },
-    mdcList: function (el, data) {
-        try {
-            let $this = $(el);
-
-            let list = $this.context;
-
-            const mdcList = new mdc.list.MDCList(list);
-            const mdcListAdapter = mdcList.getDefaultFoundation().adapter_;
-            const listItemRipples = mdcList.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
-
-            list.style.setProperty("--materialdesign-color-list-item-selected", getValueFromData(data.colorListItemSelected, ''));
-            list.style.setProperty("--materialdesign-color-list-item-hover", getValueFromData(data.colorListItemHover, ''));
-            list.style.setProperty("--materialdesign-color-list-item-text", getValueFromData(data.colorListItemText, ''));
-            list.style.setProperty("--materialdesign-color-list-item-header", getValueFromData(data.colorListItemHeaders, ''));
-            list.style.setProperty("--materialdesign-color-list-item-divider", getValueFromData(data.colorListItemDivider, ''));
-
-            mdcList.listen('MDCList:action', function (item) {
-                let index = item.detail.index;
-
-                if (data.listType === 'checkbox' || data.listType === 'switch') {
-                    let selectedValue = mdcListAdapter.isCheckboxCheckedAtIndex(index);
-
-                    vis.setValue(data.attr('oid' + index), selectedValue);
-
-                    setLayout(index, selectedValue);
-
-                    console.log('hier');
-                } else if (data.listType === 'buttonToggle') {
-                    let selectedValue = vis.states.attr(data.attr('oid' + index) + '.val');
-
-                    vis.setValue(data.attr('oid' + index), !selectedValue);
-
-                    setLayout(index, !selectedValue);
-                } else if (data.listType === 'buttonState') {
-                    let valueToSet = data.attr('listTypeButtonStateValue' + index);
-
-                    vis.setValue(data.attr('oid' + index), valueToSet);
-                } else if (data.listType === 'buttonNav') {
-                    vis.changeView(data.attr('listTypeButtonNav' + index));
-                } else if (data.listType === 'buttonLink') {
-                    window.open(data.attr('listTypeButtonLink' + index));
-                }
-            });
-
-            let itemCount = (data.listType === 'switch') ? $this.find('.mdc-switch').length : mdcList.listElements.length;
-
-            for (var i = 0; i <= itemCount - 1; i++) {
-                if (data.listType === 'checkbox' || data.listType === 'switch') {
-                    if (data.listType === 'switch') new mdc.switchControl.MDCSwitch($this.find('.mdc-switch').get(i));
-
-                    let valOnLoading = vis.states.attr(data.attr('oid' + i) + '.val');
-                    mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(i, valOnLoading);
-                    setLayout(i, valOnLoading);
-
-                    vis.states.bind(data.attr('oid' + i) + '.val', function (e, newVal, oldVal) {
-                        // i wird nicht gespeichert -> umweg über oid gehen
-                        let input = $this.find('input[data-oid="' + e.type.replace('.val', '') + '"]');
-
-                        input.each(function (d) {
-                            // kann mit mehreren oid verknüpft sein
-                            let index = input.eq(d).attr('itemindex');
-                            mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(index, newVal);
-                            setLayout(index, newVal);
-                        });
-                    });
-
-                } else if (data.listType === 'buttonToggle') {
-                    let valOnLoading = vis.states.attr(data.attr('oid' + i) + '.val');
-                    setLayout(i, valOnLoading);
-
-                    vis.states.bind(data.attr('oid' + i) + '.val', function (e, newVal, oldVal) {
-                        // i wird nicht gespeichert -> umweg über oid gehen
-                        let input = $this.parent().find('li[data-oid="' + e.type.replace('.val', '') + '"]');
-
-                        input.each(function (d) {
-                            // kann mit mehreren oid verknüpft sein
-                            let index = input.eq(d).attr('listitemindex');
-                            setLayout(index, newVal);
-                        });
-                    });
-                }
-            }
-
-            function setLayout(index, val) {
-
-                let curListItem = $this.find(`li[id="listItem_${index}"]`);
-                let curListItemImage = $this.find(`img[id="itemImage_${index}"]`);
-                if (val === true) {
-                    curListItem.css('background', getValueFromData(data.listItemBackgroundActive, ''));
-                    curListItemImage.attr('src', getValueFromData(data.attr('listImageActive' + index), getValueFromData(data.attr('listImage' + index), '')))
-                } else {
-                    curListItem.css('background', getValueFromData(data.listItemBackground, ''));
-                    curListItemImage.attr('src', getValueFromData(data.attr('listImage' + index), ''))
-                }
-            }
-
-        } catch (ex) {
-            console.exception(`mdcList [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
-        }
-    },
+    },    
 };
 
 function getValueFromData(dataValue, nullValue, prepand = '', append = '') {
@@ -694,7 +594,7 @@ function getListItem(layout, itemIndex, backdropImage, hasSubItems, isSubItem = 
         return `<div 
                     class="mdc-list-item${(isSubItem) ? ' mdc-sub-list-item isSubItem' : ''}${(itemIndex === 0) ? ' mdc-list-item--activated' : ''}${(hasSubItems) ? ' hasSubItems' : ''}" 
                     tabindex="${(itemIndex === 0) ? '0' : '-1'}" 
-                    id="itemIndex_${itemIndex}" 
+                    id="listItem_${itemIndex}" 
                     style="${style}" 
                     ${role}
                 >`
@@ -703,7 +603,7 @@ function getListItem(layout, itemIndex, backdropImage, hasSubItems, isSubItem = 
         return `<div 
                     class="mdc-list-item${(isSubItem) ? ' mdc-sub-list-item isSubItem' : ''}${(itemIndex === 0) ? ' mdc-list-item--activated' : ''} mdc-card__media${(hasSubItems) ? ' hasSubItems' : ''}" 
                     tabindex="${(itemIndex === 0) ? '0' : '-1'}"
-                    id="itemIndex_${itemIndex}"
+                    id="listItem_${itemIndex}"
                     style="background-image: url(${backdropImage}); align-items: flex-end; padding: 0px;${style}"
                 >`
     }
@@ -723,7 +623,7 @@ function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSize, showLa
         // Layout: Standard
         let listItemLabel = `<span 
                                 class="mdc-list-item__text ${fontSize.class}"
-                                id="itemIndex_${itemIndex}"
+                                id="listItem_${itemIndex}"
                                 style="${fontSize.style}${showLabel}">
                                     ${text}
                             </span>`;
@@ -740,7 +640,7 @@ function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSize, showLa
                     style="${backdropLabelHeight}">
                         <span 
                             class="mdc-list-item__text ${fontSize.class}"
-                            id="itemIndex_${itemIndex}"
+                            id="listItem_${itemIndex}"
                             style="position: absolute; ${fontSize.style}${showLabel}">
                                 ${text}
                         </span>

@@ -275,7 +275,11 @@ vis.binds.materialdesign.drawer = {
 
             let colorDrawerBackground = getValueFromData(data.colorDrawerBackground, '');
             mdcDrawer.style.setProperty("--materialdesign-color-drawer-background", colorDrawerBackground);
-            mdcList.style.setProperty("--materialdesign-color-sub-list-item-background", getValueFromData(data.colorDrawerSubItemsBackground, colorDrawerBackground));
+            mdcList.style.setProperty("--materialdesign-color-drawer-sub-background", getValueFromData(data.colorDrawerSubBackground, colorDrawerBackground));
+
+            let colorDrawerItemBackground = getValueFromData(data.colorDrawerItemBackground, colorDrawerBackground);
+            mdcList.style.setProperty("--materialdesign-color-list-item-background", colorDrawerItemBackground);
+            mdcList.style.setProperty("--materialdesign-color-sub-list-item-background", getValueFromData(data.colorDrawerSubItemBackground, colorDrawerItemBackground));
 
             let colorListItemSelected = getValueFromData(data.colorListItemSelected, '');
             mdcList.style.setProperty("--materialdesign-color-list-item-selected", colorListItemSelected);
@@ -369,7 +373,7 @@ vis.binds.materialdesign.drawer = {
             });
 
             $this.find('.mdc-list-item').click(function () {
-                let selctedIndex = parseInt($(this).eq(0).attr('id').replace('itemIndex_', ''));
+                let selctedIndex = parseInt($(this).eq(0).attr('id').replace('listItem_', ''));
 
                 if ($(this).hasClass('hasSubItems')) {
                     // listItem has subItems ->Toggle SubItems
@@ -406,13 +410,13 @@ vis.binds.materialdesign.drawer = {
 
             function setTopAppBarWithDrawerLayout() {
                 if (data.showSelectedItemAsTitle) {
-                    let selectedName = $this.parent().find(`span[id="itemIndex_${navList.selectedIndex}"]`).text();
+                    let selectedName = $this.parent().find(`span[id="listItem_${navList.selectedIndex}"]`).text();
                     $this.parent().find('.mdc-top-app-bar__title').text(selectedName)
                 }
             }
 
             function toggleSubItemByIndex(index) {
-                let selectedListItem = $this.find(`.mdc-list-item[id="itemIndex_${index}"]`);
+                let selectedListItem = $this.find(`.mdc-list-item[id="listItem_${index}"]`);
                 if (selectedListItem.hasClass('isSubItem')) {
                     // toggle Subitem if selected
                     let parentListItem = selectedListItem.parent().prev('.hasSubItems');
