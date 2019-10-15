@@ -20,14 +20,14 @@ vis.binds.materialdesign.list = {
             let imageHeight = getValueFromData(data.listImageHeight, '', 'height: ', 'px !important;');
             let spaceBetweenImageAndLabel = getValueFromData(data.distanceBetweenTextAndImage, '', 'margin-right: ', 'px;');
 
+            let colorCheckBox =  getValueFromData(data.colorCheckBox, '', 'style=" --mdc-theme-secondary: ', ';"');
+
             let nonInteractive = '';
             let itemRole = '';
             if (data.listType === 'text') {
                 nonInteractive = ' mdc-list--non-interactive';
-            } else if (data.listType === 'checkbox') {
+            } else if (data.listType === 'checkbox' || data.listType === 'switch') {
                 itemRole = 'role="checkbox"';
-            } else if (data.listType === 'switch') {
-                itemRole = 'role="switch"';
             }
 
             let itemList = [];
@@ -65,7 +65,7 @@ vis.binds.materialdesign.list = {
                 // generate Item Control Element
                 let itemControl = '';
                 if (data.listType === 'checkbox') {
-                    itemControl = `<div class="mdc-checkbox mdc-list-item__meta">
+                    itemControl = `<div class="mdc-checkbox mdc-list-item__meta" ${colorCheckBox}>
                                         <input type="checkbox" class="mdc-checkbox__native-control" tabindex="-1" data-oid="${data.attr('oid' + i)}" itemindex="${i}">
                                         <div class="mdc-checkbox__background">
                                             <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
@@ -74,7 +74,7 @@ vis.binds.materialdesign.list = {
                                         </div>
                                     </div>`;
                 } else if (data.listType === 'switch') {
-                    itemControl = `<div class="mdc-switch mdc-list-item__meta">
+                    itemControl = `<div class="mdc-switch mdc-list-item__meta" ${colorCheckBox}>
                                         <div class="mdc-switch__track"></div>
                                         <div class="mdc-switch__thumb-underlay">
                                             <div class="mdc-switch__thumb">
@@ -93,7 +93,7 @@ vis.binds.materialdesign.list = {
 
             return { itemList: itemList.join(''), nonInteractive: nonInteractive }
         } catch (ex) {
-            console.exception(`initialize [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`initialize: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handler: function (el, data) {
@@ -197,7 +197,7 @@ vis.binds.materialdesign.list = {
             }
 
         } catch (ex) {
-            console.exception(`mdcList [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`handler: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };
