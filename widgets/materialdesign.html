@@ -13,8 +13,8 @@
 <!-- here you can include so many js-files as you want -->
 <script type="text/javascript" src="widgets/materialdesign/js/material-components-web.min.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.js"></script>
+<script type="text/javascript" src="widgets/materialdesign/js/materialdesign.list.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.drawer.js"></script>
-
 
 <!-- the full description of format in data-vis-attrs can be found here:
     https://github.com/ioBroker/ioBroker.vis/blob/master/www/js/visEditInspect.js#L39
@@ -807,7 +807,7 @@
         data-vis-update-style="true"
         data-vis-attrs="oid;persistent/checkbox;notIfInvisible/checkbox;count[1]/number;group.views;contains_view_(0-count)/views;"
         data-vis-attrs0="group.topAppBarLayout;topAppBarLayout[standard]/select,standard,dense,short;titleTopAppBar[Material Design Widgets];colorTopAppBarTitle/color;colorTopAppBarBackground/color;showSelectedItemAsTitle/checkbox;"
-        data-vis-attrs1="group.drawerLayout;drawerLayout[modal]/select,modal,dismissible,permanent;drawerItemLayout[standard]/select,standard,backdrop;listItemDividerStyle[standard]/select,standard,padded,inset;drawerWidth/number;z_index/number;showHeader[true]/checkbox;headerLabel[<h4 class='mdc-drawer__title'>Material Design Widgets</h4><h6 class='mdc-drawer__subtitle'>by Scrounger</h6>]/html;showLabels[true]/checkbox;drawerIconHeight/number;listItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;backdropLabelBackgroundHeight/slider,0,100,1;"
+        data-vis-attrs1="group.drawerLayout;drawerLayout[modal]/select,modal,dismissible,permanent;drawerItemLayout[standard]/select,standard,backdrop;listItemDividerStyle[standard]/select,standard,padded,inset;drawerWidth/number;z_index/number;showHeader[true]/checkbox;headerLabel[<h4 class='mdc-drawer__title'>Material Design Widgets</h4><h6 class='mdc-drawer__subtitle'>by Scrounger</h6>]/html;showLabels[true]/checkbox;drawerIconHeight/number;listItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;listItemHeaderTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;backdropLabelBackgroundHeight/slider,0,100,1;"
         data-vis-attrs2="group.drawerColors;colorDrawerBackground/color;colorDrawerHeaderBackground/color;colorListItemHover/color;colorListItemSelected/color;colorListItemText/color;colorListItemTextSelected/color;colorListItemHeaders/color;colorListItemDivider/color;colorSubItemToggleIcon/color;colorDrawerbackdropLabelBackground/color;colorDrawerbackdropLabelBackgroundActive/color;"
         data-vis-attrs3="group.drawerSubItemsLayout;drawerSubItemLayout[standard]/select,standard,backdrop;drawerSubItemIconHeight/number;listSubItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;showSubItemsLabels[true]/checkbox;backdropSubLabelBackgroundHeight/slider,0,100,1;"
         data-vis-attrs4="group.drawerSubItemsColors;colorDrawerSubItemsBackground/color;colorListSubItemHover/color;colorListSubItemSelected/color;colorListSubItemText/color;colorListSubItemTextSelected/color;colorDrawerbackdropSubLabelBackground/color;colorDrawerbackdropSubLabelBackgroundActive/color;"
@@ -864,6 +864,8 @@
         data-vis-attrs2="group.oids;oid(0-count);group.listTypes;group.listGroupHeaders;groupHeader(0-count);group.listImages;listImage(0-count)/image;group.listImagesActive;listImageActive(0-count)/image;group.listLabels;label(0-count);group.listSubLabels;subLabel(0-count);group.listDividers;dividers(0-count)/checkbox;group.listTypeButtonStateValues;listTypeButtonStateValue(0-count);group.listTypeButtonNavs;listTypeButtonNav(0-count)/views;group.listTypeButtonLinks;listTypeButtonLink(0-count)/url;">
 
         <%
+            let init = vis.binds.materialdesign.list.initialize(data);
+
             let itemList = [];
             let itemRole = '';
             let listNoneInteractive = '';
@@ -1028,7 +1030,7 @@
 
         <div class="vis-widget materialdesign-list <%== listLayout %> <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
             <ul class="mdc-list <%== listNoneInteractive %>" <%= (el) -> vis.binds.materialdesign.mdcList(el, data) %>>   
-                <%== itemList.join('') %>
+                <%== init.itemList %>
             </ul>
         </div>
 </script> 

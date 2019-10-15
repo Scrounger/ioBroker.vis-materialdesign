@@ -106,6 +106,7 @@ vis.binds.materialdesign.drawer = {
             }
 
             function initListItems() {
+                let headerFontSize = getFontSize(data.listItemHeaderTextSize);
                 let drawerIconHeight = getValueFromData(data.drawerIconHeight, '', 'height: ', 'px !important;');
                 let drawerSubItemIconHeight = getValueFromData(data.drawerSubItemIconHeight, drawerIconHeight, 'height: ', 'px !important;');
 
@@ -120,6 +121,7 @@ vis.binds.materialdesign.drawer = {
 
                 let itemIndex = 0;
                 for (var i = 0; i <= data.count; i++) {
+                    let itemHeaderText = getValueFromData(data.attr('headers' + i), null);
                     let itemLabelText = getValueFromData(data.attr('labels' + i), data.attr('contains_view_' + i));  // Fallback is View Name
                     let itemImage = getValueFromData(data.attr('iconDrawer' + i), '');
 
@@ -166,9 +168,8 @@ vis.binds.materialdesign.drawer = {
                     }
 
                     // generate Header
-                    if (getValueFromData(data.attr('headers' + i), null) !== null) {
-                        navItemList.push(`<h3 class="mdc-list-group__subheader">${data.attr('headers' + i)}</h3>`);
-                    }
+                    let header = getListItemHeader(itemHeaderText, headerFontSize);
+                    navItemList.push(header);
 
                     // generate Item -> mdc-list-item
                     let listItem = getListItem(data.drawerItemLayout, itemIndex, itemImage, drawerIconHeight, hasSubItems);
