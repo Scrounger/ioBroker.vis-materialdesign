@@ -530,7 +530,7 @@ vis.binds.materialdesign = {
         } catch (ex) {
             console.exception(`mdcIconButton [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
-    },    
+    },
 };
 
 function getValueFromData(dataValue, nullValue, prepand = '', append = '') {
@@ -587,7 +587,7 @@ function getListItemImage(image, style) {
     return '';
 }
 
-function getListItem(layout, itemIndex, backdropImage, hasSubItems, isSubItem = false, style='', role='') {
+function getListItem(layout, itemIndex, backdropImage, hasSubItems, isSubItem = false, style = '', dataOid = '', role = '') {
 
     if (layout === 'standard') {
         // Layout: Standard
@@ -596,6 +596,7 @@ function getListItem(layout, itemIndex, backdropImage, hasSubItems, isSubItem = 
                     tabindex="${(itemIndex === 0) ? '0' : '-1'}" 
                     id="listItem_${itemIndex}" 
                     style="${style}" 
+                    ${dataOid} 
                     ${role}
                 >`
     } else {

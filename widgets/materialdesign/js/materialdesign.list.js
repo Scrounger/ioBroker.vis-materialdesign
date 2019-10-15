@@ -49,7 +49,7 @@ vis.binds.materialdesign.list = {
                 itemList.push(getListItemHeader(itemHeaderText, headerFontSize));
 
                 // generate Item -> mdc-list-item
-                let listItem = getListItem('standard', i, '', '', false, false, itemHeight, itemRole);
+                let listItem = getListItem('standard', i, '', '', false, false, itemHeight, `data-oid="${data.attr('oid' + i)}"`, itemRole);
 
                 // generate Item Label
                 let itemLabel = '';
@@ -110,6 +110,7 @@ vis.binds.materialdesign.list = {
             list.style.setProperty("--materialdesign-color-list-item-hover", getValueFromData(data.colorListItemHover, ''));
             list.style.setProperty("--materialdesign-color-list-item-selected", getValueFromData(data.colorListItemSelected, ''));
             list.style.setProperty("--materialdesign-color-list-item-text", getValueFromData(data.colorListItemText, ''));
+            list.style.setProperty("--materialdesign-color-list-item-text-activated", getValueFromData(data.colorListItemText, ''));
             list.style.setProperty("--materialdesign-color-list-item-header", getValueFromData(data.colorListItemHeaders, ''));
             list.style.setProperty("--materialdesign-color-list-item-divider", getValueFromData(data.colorListItemDivider, ''));
 
@@ -169,11 +170,11 @@ vis.binds.materialdesign.list = {
 
                     vis.states.bind(data.attr('oid' + i) + '.val', function (e, newVal, oldVal) {
                         // i wird nicht gespeichert -> umweg über oid gehen
-                        let input = $this.parent().find('li[data-oid="' + e.type.replace('.val', '') + '"]');
+                        let input = $this.parent().find('div[data-oid="' + e.type.replace('.val', '') + '"]');
 
                         input.each(function (d) {
                             // kann mit mehreren oid verknüpft sein
-                            let index = input.eq(d).attr('listitemindex');
+                            let index = parseInt(input.eq(d).attr('id').replace('listItem_', ''));
                             setLayout(index, newVal);
                         });
                     });

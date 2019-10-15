@@ -771,7 +771,7 @@ svg.materialdesign-button__icon {
   background-color: var(--materialdesign-color-sub-list-item-selected);
 }
 
-:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item{
+:not(.mdc-list-item--disabled).mdc-list-item{
   color: var(--materialdesign-color-list-item-text);
 }
 :not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item{
@@ -781,7 +781,7 @@ svg.materialdesign-button__icon {
 :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated {
   color: var(--materialdesign-color-list-item-text-activated);
 }
-:not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-list-item--activated {
+:not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item.mdc-list-item--activated {
   color: var(--materialdesign-color-sub-list-item-text-activated);
 }
 
