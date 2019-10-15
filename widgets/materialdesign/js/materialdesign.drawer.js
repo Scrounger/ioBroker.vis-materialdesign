@@ -172,7 +172,7 @@ vis.binds.materialdesign.drawer = {
                     navItemList.push(header);
 
                     // generate Item -> mdc-list-item
-                    let listItem = getListItem(data.drawerItemLayout, itemIndex, itemImage, drawerIconHeight, hasSubItems);
+                    let listItem = getListItem(data.drawerItemLayout, itemIndex, itemImage, hasSubItems, false, drawerIconHeight);
 
                     // generate Item Image for Layout Standard
                     let listItemImage = ''
@@ -208,7 +208,7 @@ vis.binds.materialdesign.drawer = {
                             }
 
                             // generate SubItem -> mdc-list-item
-                            let listSubItem = getListItem(data.drawerSubItemLayout, itemIndex, subItemImage, drawerSubItemIconHeight, false, true);
+                            let listSubItem = getListItem(data.drawerSubItemLayout, itemIndex, subItemImage, false, true, drawerSubItemIconHeight);
 
                             // generate Item Image for Layout Standard
                             let listSubItemImage = ''
