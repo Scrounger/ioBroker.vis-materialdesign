@@ -49,7 +49,8 @@ vis.binds.materialdesign.list = {
                 itemList.push(getListItemHeader(itemHeaderText, headerFontSize));
 
                 // generate Item -> mdc-list-item
-                let listItem = getListItem('standard', i, '', false, false, itemHeight, `data-oid="${data.attr('oid' + i)}"`, itemRole);
+                let listItem = getListItem('standard', i, '', false, false, itemHeight, `data-oid="${data.attr('oid' + i)}"`, itemRole)
+                                .replace(' mdc-list-item--activated','');   // selected object not needed in list
 
                 // generate Item Label
                 let itemLabel = '';
@@ -121,7 +122,7 @@ vis.binds.materialdesign.list = {
                     let selectedValue = mdcListAdapter.isCheckboxCheckedAtIndex(index);
 
                     vis.setValue(data.attr('oid' + index), selectedValue);
-
+                    
                     setLayout(index, selectedValue);
 
                 } else if (data.listType === 'buttonToggle') {
