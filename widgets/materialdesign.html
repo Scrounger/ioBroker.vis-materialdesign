@@ -15,6 +15,7 @@
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.list.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.drawer.js"></script>
+<script type="text/javascript" src="widgets/materialdesign/js/materialdesign.card.js"></script>
 
 <!-- the full description of format in data-vis-attrs can be found here:
     https://github.com/ioBroker/ioBroker.vis/blob/master/www/js/visEditInspect.js#L39
@@ -678,122 +679,15 @@
         data-vis-set="materialdesign"
         data-vis-type="static"
         data-vis-name="HTML Card"
-        data-vis-attrs="title;titleLayout[headline6]/auto,headline1,headline2,headline3,headline4,headline5,headline6,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;subtitle;subtitleLayout[subtitle2]/auto,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;html/text;htmlLayout[body2]/select,custom,body1,body2;image/image;cardLayout[Basic]/select,Basic,BasicHeader,BasicHeaderOverlay,Horizontal;cardStyle[default]/select,default,outlined;"
-        data-vis-attrs0="group.color;colorTitle/color;colorSubtitle/color;">
+        data-vis-attrs="title;titleLayout[headline6]/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;subtitle;subtitleLayout[subtitle2]/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;html/text;textFontSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;image/image;cardLayout[Basic]/select,Basic,BasicHeader,BasicHeaderOverlay,Horizontal;cardStyle[default]/select,default,outlined;labelTextHeight/number;labelSubTextHeight/number;"
+        data-vis-attrs0="group.color;colorBackground/color;colorTitleSectionBackground/color;colorTextSectionBackground/color;colorTitle/color;colorSubtitle/color;">
         
         <%
-            let cardStyle = '';
-            if (this.data.cardStyle !== 'default'){
-                cardStyle = 'mdc-card--outlined';
-            }
-
-            let titleLayout ='';
-            let titleFontSize ='';
-            if (this.data.titleLayout !== undefined && this.data.titleLayout !== null && this.data.titleLayout !== ''){
-                if (this.data.titleLayout.includes('headline')){
-                    titleLayout = 'mdc-typography--' + this.data.titleLayout;
-                } else if(!isNaN(this.data.titleLayout)){
-                    titleFontSize = 'font-size: ' + this.data.titleLayout + 'px;';
-                } else{
-                    titleFontSize = 'font-size: ' + this.data.titleLayout + ';';
-                }
-            }
-
-            let colorTitle = '';
-            if (this.data.colorTitle !== undefined && this.data.colorTitle !== null && this.data.colorTitle !== ''){
-                colorTitle = 'color: ' + this.data.colorTitle + ';';
-            }
-
-            let subtitleLayout ='';
-            let subtitleFontSize ='';
-            if (this.data.subtitleLayout !== undefined && this.data.subtitleLayout !== null && this.data.subtitleLayout !== ''){
-                if (this.data.subtitleLayout.includes('subtitle')){
-                    subtitleLayout = 'mdc-typography--' + this.data.subtitleLayout;
-                } else if(!isNaN(this.data.subtitleLayout)){
-                    subtitleFontSize = 'font-size: ' + this.data.subtitleLayout + 'px;';                    
-                } else{
-                    subtitleFontSize = 'font-size: ' + this.data.subtitleLayout + ';';
-                }
-            }
-
-            let colorSubtitle = '';
-            if (this.data.colorSubtitle !== undefined && this.data.colorSubtitle !== null && this.data.colorSubtitle !== ''){
-                colorSubtitle = 'color: ' + this.data.colorSubtitle + ';';
-            }
-
-            let showImage = 'display: none;';
-            if (this.data.image !== undefined && this.data.image !== null && this.data.image !== ''){
-                showImage = '';
-            }
-
-            let showTitleSection = 'display: none;';
-            if ((this.data.title !== undefined && this.data.title !== null && this.data.title !== '') || (this.data.subtitle !== undefined && this.data.subtitle !== null && this.data.subtitle !== '')){
-                showTitleSection = '';
-            }
-
-            let htmlLayout = '';
-            if (this.data.htmlLayout === 'custom'){
-                htmlLayout = 'card-custom-body';
-            } else {
-                htmlLayout = 'mdc-typography mdc-typography--' + this.data.htmlLayout;
-            }
-
-            let cardLayout = '';
-            if (this.data.cardLayout === 'Basic'){
-                cardLayout = 
-                    '<div class="mdc-card__media mdc-card__media--16-9" style="' + showImage + 'background-image: url(' + this.data.image + ');"></div>' +
-                    '<div class="materialdesign-html-card card-title-section" style="' + showTitleSection + '">' +
-                        '<div class="materialdesign-html-card card-title mdc-typography ' + titleLayout + '" style="' + colorTitle + titleFontSize + '">' + this.data.title + '</div>' +
-                        '<div class="materialdesign-html-card card-subtitle mdc-typography ' + subtitleLayout + '" style="' + colorSubtitle + subtitleFontSize + '">'+ this.data.subtitle + '</div>' +
-                    '</div>' +
-                    '<div class="materialdesign-html-card card-text-section">' +
-                        '<div class=".materialdesign-html-card ' + htmlLayout + '">' + this.data.html + '</div>' +
-                    '</div>'
-            }
-
-            if (this.data.cardLayout === 'BasicHeader'){
-                cardLayout = 
-                    '<div class="materialdesign-html-card card-title-section" style="' + showTitleSection + '">' +
-                        '<div class="materialdesign-html-card card-title mdc-typography ' + titleLayout + '" style="' + colorTitle + titleFontSize + '">' + this.data.title + '</div>' +
-                        '<div class="materialdesign-html-card card-subtitle mdc-typography ' + subtitleLayout + '" style="' + colorSubtitle + subtitleFontSize + '">'+ this.data.subtitle + '</div>' +
-                    '</div>' +
-                    '<div class="materialdesign-html-card mdc-card__media mdc-card__media--16-9 BasicHeader" style="' + showImage + 'background-image: url(' + this.data.image + ');"></div>' +
-                    '<div class="materialdesign-html-card card-text-section">' +
-                            '<div class=".materialdesign-html-card ' + htmlLayout + '">' + this.data.html + '</div>' +
-                    '</div>'
-            }
-
-            if (this.data.cardLayout === 'BasicHeaderOverlay'){
-                cardLayout = 
-                cardLayout = 
-                    '<div class="mdc-card__media mdc-card__media--16-9" style="' + showImage + 'background-image: url(' + this.data.image + ');">' +
-                        '<div class="materialdesign-html-card mdc-card__media-content">' +
-                            '<div class="materialdesign-html-card card-title-section" style="' + showTitleSection + '">' +
-                                '<div class="materialdesign-html-card card-title mdc-typography ' + titleLayout + '" style="' + colorTitle + titleFontSize + '">' + this.data.title + '</div>' +
-                                '<div class="materialdesign-html-card card-subtitle mdc-typography ' + subtitleLayout + '" style="' + colorSubtitle + subtitleFontSize + '">'+ this.data.subtitle + '</div>' +
-                            '</div>' +
-                        '</div>' +
-                    '</div>' +
-                    '<div class="materialdesign-html-card card-text-section">' +
-                            '<div class=".materialdesign-html-card ' + htmlLayout + '">' + this.data.html + '</div>' +
-                    '</div>'
-            }
-            
-            if (this.data.cardLayout === 'Horizontal'){
-                cardLayout = 
-                    '<div class="materialdesign-html-card horizontal-container">' +
-                        '<div class="materialdesign-html-card mdc-card__media mdc-card__media--square" style="' + showImage + 'background-image: url(' + this.data.image + ');"></div>' +
-                        '<div class="materialdesign-html-card card-title-section">' +
-                            '<div class="materialdesign-html-card card-title mdc-typography ' + titleLayout + '" style="' + showTitleSection + colorTitle + titleFontSize + '">' + this.data.title + '</div>' +
-                            '<div class="materialdesign-html-card card-subtitle mdc-typography ' + subtitleLayout + '" style="' + colorSubtitle + subtitleFontSize + '">'+ this.data.subtitle + '</div>' +
-                            '<div class=".materialdesign-html-card ' + htmlLayout + '">' + this.data.html + '</div>' +
-                        '</div>' +
-                    '</div>'
-            }
+            let initCard = vis.binds.materialdesign.card.initialize(data);
         %>
 
-        <div class="vis-widget materialdesign-html-card mdc-card <%= cardStyle %> <%== this.data.attr('class') %>" style="width: 200px; height: 130px;" id="<%= this.data.attr('wid') %>">
-            <%== cardLayout %>
+        <div class="vis-widget materialdesign-html-card mdc-card <%= initCard.style %> <%== this.data.attr('class') %>" style="width: 200px; height: 130px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.card.handler(el, data) %>>
+            <%== initCard.card %>
         </div>
 </script>
 
@@ -807,9 +701,9 @@
         data-vis-update-style="true"
         data-vis-attrs="oid;persistent/checkbox;notIfInvisible/checkbox;count[1]/number;group.views;contains_view_(0-count)/views;"
         data-vis-attrs0="group.topAppBarLayout;topAppBarLayout[standard]/select,standard,dense,short;titleTopAppBar[Material Design Widgets];colorTopAppBarTitle/color;colorTopAppBarBackground/color;showSelectedItemAsTitle/checkbox;"
-        data-vis-attrs1="group.drawerLayout;drawerLayout[modal]/select,modal,dismissible,permanent;drawerItemLayout[standard]/select,standard,backdrop;listItemDividerStyle[standard]/select,standard,padded,inset;drawerWidth/number;z_index/number;showHeader[true]/checkbox;headerLabel[<h4 class='mdc-drawer__title'>Material Design Widgets</h4><h6 class='mdc-drawer__subtitle'>by Scrounger</h6>]/html;showLabels[true]/checkbox;drawerIconHeight/number;listItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;listItemHeaderTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;backdropLabelBackgroundHeight[30]/slider,0,100,1;"
+        data-vis-attrs1="group.drawerLayout;drawerLayout[modal]/select,modal,dismissible,permanent;drawerItemLayout[standard]/select,standard,backdrop;listItemDividerStyle[standard]/select,standard,padded,inset;drawerWidth/number;z_index/number;showHeader[true]/checkbox;headerLabel[<h4 class='mdc-drawer__title'>Material Design Widgets</h4><h6 class='mdc-drawer__subtitle'>by Scrounger</h6>]/html;showLabels[true]/checkbox;drawerIconHeight/number;listItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;listItemHeaderTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;backdropLabelBackgroundHeight[30]/slider,0,100,1;"
         data-vis-attrs2="group.drawerColors;colorDrawerBackground/color;colorDrawerItemBackground/color;colorDrawerHeaderBackground/color;colorListItemHover/color;colorListItemSelected/color;colorListItemText/color;colorListItemTextSelected/color;colorListItemHeaders/color;colorListItemDivider/color;colorSubItemToggleIcon/color;colorDrawerbackdropLabelBackground/color;colorDrawerbackdropLabelBackgroundActive/color;"
-        data-vis-attrs3="group.drawerSubItemsLayout;drawerSubItemLayout[standard]/select,standard,backdrop;drawerSubItemIconHeight/number;listSubItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;showSubItemsLabels[true]/checkbox;backdropSubLabelBackgroundHeight/slider,0,100,1;"
+        data-vis-attrs3="group.drawerSubItemsLayout;drawerSubItemLayout[standard]/select,standard,backdrop;drawerSubItemIconHeight/number;listSubItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;showSubItemsLabels[true]/checkbox;backdropSubLabelBackgroundHeight/slider,0,100,1;"
         data-vis-attrs4="group.drawerSubItemsColors;colorDrawerSubBackground/color;colorDrawerSubItemBackground/color;colorListSubItemHover/color;colorListSubItemSelected/color;colorListSubItemText/color;colorListSubItemTextSelected/color;colorDrawerbackdropSubLabelBackground/color;colorDrawerbackdropSubLabelBackgroundActive/color;"
         data-vis-attrs5="group.drawerLabels;labels(0-count);group.drawerHeaders;headers(0-count);group.drawerDivider;dividers(0-count)/checkbox;group.drawerIcons;iconDrawer(0-count)[/vis/widgets/materialdesign/img/IoBroker_Logo.png]/image;">
         
@@ -860,7 +754,7 @@
         data-vis-update-style="true"
         data-vis-attrs="count[1]/number;"
         data-vis-attrs0="group.listLayout;listType[text]/select,text,buttonState,buttonToggle,buttonNav,buttonLink,switch,checkbox;listItemDividerStyle[standard]/select,standard,padded,inset;listLayout[standard]/select,standard,card,cardOutlined;"
-        data-vis-attrs1="group.listItemLayout;listItemHeight/number;listImageHeight/number;distanceBetweenTextAndImage/number;listItemBackground/color;listItemBackgroundActive/color;colorCheckBox/color;colorListItemHover/color;colorListItemSelected/color;colorListItemText/color;colorListItemHeaders/color;colorListItemDivider/color;listItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;listItemSubTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;listItemHeaderTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;"
+        data-vis-attrs1="group.listItemLayout;listItemHeight/number;listImageHeight/number;distanceBetweenTextAndImage/number;listItemBackground/color;listItemBackgroundActive/color;colorCheckBox/color;colorListItemHover/color;colorListItemSelected/color;colorListItemText/color;colorListItemHeaders/color;colorListItemDivider/color;listItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;listItemSubTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;listItemHeaderTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;"
         data-vis-attrs2="group.oids;oid(0-count);group.listTypes;group.listGroupHeaders;groupHeader(0-count);group.listImages;listImage(0-count)/image;group.listImagesActive;listImageActive(0-count)/image;group.listLabels;label(0-count);group.listSubLabels;subLabel(0-count);group.listDividers;dividers(0-count)/checkbox;group.listTypeButtonStateValues;listTypeButtonStateValue(0-count);group.listTypeButtonNavs;listTypeButtonNav(0-count)/views;group.listTypeButtonLinks;listTypeButtonLink(0-count)/url;">
 
         <%

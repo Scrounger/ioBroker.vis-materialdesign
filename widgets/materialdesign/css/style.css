@@ -21,6 +21,13 @@
   --materialdesign-color-sub-list-item-backdrop: rgba(0,0,0,0.5);
   --materialdesign-color-list-item-backdrop-activated: #1e88e566;
   --materialdesign-color-sub-list-item-backdrop-activated: #1e88e566;
+
+  --materialdesign-color-card-background: #fff;
+  --materialdesign-color-card-title-section-background: transparent;
+  --materialdesign-color-card-text-section-background: transparent;
+  --materialdesign-color-card-title: #1e88e5;
+  --materialdesign-color-card-sub-title: #a1a1a1;
+
 }
 
 /* Button style -> must defined here because of position bug in vis editor */
@@ -572,9 +579,7 @@ svg.materialdesign-button__icon {
 /* Card Layout */
 .materialdesign-html-card.mdc-card{
   border-radius: 4px;
-  background-color: #fff;
-  /* @alternate */
-  background-color: var(--mdc-theme-surface, #fff);
+  background-color: var(--materialdesign-color-card-background);
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
@@ -585,25 +590,26 @@ svg.materialdesign-button__icon {
 .materialdesign-html-card.card-title-section{
   visibility: visible;
   box-sizing: border-box;
+  width: 100%;
   padding-top: 16px;
   padding-left: 16px;
   padding-right: 16px;
+  background-color: var(--materialdesign-color-card-title-section-background);
 }
 
 .materialdesign-html-card.card-text-section{
   visibility: visible;
   box-sizing: border-box;
-  padding-top: 16px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding: 16px;
+  background-color: var(--materialdesign-color-card-text-section-background);
 }
 
 .materialdesign-html-card.card-title {
-  color: #1e88e5;
+  color: var(--materialdesign-color-card-title);
 }
 
 .materialdesign-html-card.card-subtitle {
-  color: #a1a1a1;
+  color: var(--materialdesign-color-card-sub-title);
 }
 
 .materialdesign-html-card.card-custom-body {
@@ -616,10 +622,6 @@ svg.materialdesign-button__icon {
   letter-spacing: 0.03125em;
   text-decoration: inherit;
   text-transform: inherit;
-}
-
-.materialdesign-html-card.mdc-card__media.mdc-card__media--16-9.BasicHeader{
-  margin-top: 16px;
 }
 
 .materialdesign-html-card.mdc-card__media-content{
