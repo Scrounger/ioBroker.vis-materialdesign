@@ -91,7 +91,7 @@ vis.binds.materialdesign.list = {
                 itemList.push(getListItemDivider(data.attr('dividers' + i), data.listItemDividerStyle));
             }
 
-            return { itemList: itemList.join(''), nonInteractive: nonInteractive }
+            return { itemList: itemList.join(''), listLayout: listLayout, nonInteractive: nonInteractive }
         } catch (ex) {
             console.exception(`initialize: error:: ${ex.message}, stack: ${ex.stack}`);
         }

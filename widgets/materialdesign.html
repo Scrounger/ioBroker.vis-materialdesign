@@ -867,7 +867,7 @@
             let init = vis.binds.materialdesign.list.initialize(data);
         %>
 
-        <div class="vis-widget materialdesign-list <%== listLayout %> <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
+        <div class="vis-widget materialdesign-list <%== init.listLayout %> <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
             <ul class="mdc-list<%== init.nonInteractive %>" <%= (el) -> vis.binds.materialdesign.list.handler(el, data) %>>   
                 <%== init.itemList %>
             </ul>
