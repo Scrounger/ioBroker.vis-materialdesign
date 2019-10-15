@@ -130,7 +130,7 @@ vis.binds.materialdesign.drawer = {
                     let subItemsTextJson = '';
                     let subItemsImageJson = '';
 
-                    if (data & data.attr && data.attr('contains_view_' + i) && data.attr('contains_view_' + i).includes('|')) {
+                    if (data.attr('contains_view_' + i) && data.attr('contains_view_' + i).includes('|')) {
                         viewsList.push('');
 
                         subItemsArray = data.attr('contains_view_' + i).split('|');
