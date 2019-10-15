@@ -49,7 +49,7 @@ vis.binds.materialdesign.list = {
                 itemList.push(getListItemHeader(itemHeaderText, headerFontSize));
 
                 // generate Item -> mdc-list-item
-                let listItem = getListItem('standard', i, '', '', false, false, itemHeight, `data-oid="${data.attr('oid' + i)}"`, itemRole);
+                let listItem = getListItem('standard', i, '', false, false, itemHeight, `data-oid="${data.attr('oid' + i)}"`, itemRole);
 
                 // generate Item Label
                 let itemLabel = '';
@@ -65,7 +65,7 @@ vis.binds.materialdesign.list = {
                 // generate Item Control Element
                 let itemControl = '';
                 if (data.listType === 'checkbox') {
-                    itemControl = `<div class="mdc-checkbox mdc-list-item__meta" style="'>
+                    itemControl = `<div class="mdc-checkbox mdc-list-item__meta">
                                         <input type="checkbox" class="mdc-checkbox__native-control" tabindex="-1" data-oid="${data.attr('oid' + i)}" itemindex="${i}">
                                         <div class="mdc-checkbox__background">
                                             <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
@@ -124,19 +124,21 @@ vis.binds.materialdesign.list = {
 
                     setLayout(index, selectedValue);
 
-                    console.log('hier');
                 } else if (data.listType === 'buttonToggle') {
                     let selectedValue = vis.states.attr(data.attr('oid' + index) + '.val');
 
                     vis.setValue(data.attr('oid' + index), !selectedValue);
 
                     setLayout(index, !selectedValue);
+
                 } else if (data.listType === 'buttonState') {
                     let valueToSet = data.attr('listTypeButtonStateValue' + index);
 
                     vis.setValue(data.attr('oid' + index), valueToSet);
+
                 } else if (data.listType === 'buttonNav') {
                     vis.changeView(data.attr('listTypeButtonNav' + index));
+
                 } else if (data.listType === 'buttonLink') {
                     window.open(data.attr('listTypeButtonLink' + index));
                 }
