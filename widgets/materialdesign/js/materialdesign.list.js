@@ -54,7 +54,7 @@ vis.binds.materialdesign.list = {
                 // generate Item Label
                 let itemLabel = '';
                 if (itemSubLabelText === '') {
-                    itemLabel = getListItemLabel('standard', i, itemLabelText, false, labelFontSize, true, '', '');
+                    itemLabel = getListItemLabel('standard', i, itemLabelText, false, labelFontSize, '', '', '');
                 } else {
                     itemLabel = getListItemTextElement(itemLabelText, itemSubLabelText, labelFontSize, subLabelFontSize);
                 }

@@ -625,7 +625,7 @@ function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSize, showLa
         let listItemLabel = `<span 
                                 class="mdc-list-item__text ${fontSize.class}"
                                 id="listItem_${itemIndex}"
-                                style="${fontSize.style}${showLabel}">
+                                style="width: 100%;${fontSize.style}${showLabel}">
                                     ${text}
                             </span>`;
 
