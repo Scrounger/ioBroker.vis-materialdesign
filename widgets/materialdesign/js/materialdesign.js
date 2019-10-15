@@ -677,11 +677,14 @@ function getListItemTextElement(text, subText, fontSize, subFontSize) {
             </span>`;
 }
 
-function getListItemImage(image, height) {
-    return `<img 
+function getListItemImage(image, style) {
+    if (image != '') {
+        return `<img 
                 class="mdc-list-item__graphic" src="${image}" 
-                style="width: auto; padding-top: 8px; padding-bottom: 8px;${height}"
+                style="width: auto; padding-top: 8px; padding-bottom: 8px;${style}"
             >`
+    }
+    return '';
 }
 
 function getListItem(layout, itemIndex, backdropImage, backdropImageHeight, hasSubItems, isSubItem = false) {
@@ -716,12 +719,12 @@ function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSize, showLa
 
     if (layout === 'standard') {
         // Layout: Standard
-        let listItemLabel = `<label 
-                            class="mdc-list-item__text ${fontSize.class}"
-                            id="itemIndex_${itemIndex}"
-                            style="${fontSize.style}${showLabel}">
-                                ${text}
-                        </label>`;
+        let listItemLabel = `<span 
+                                class="mdc-list-item__text ${fontSize.class}"
+                                id="itemIndex_${itemIndex}"
+                                style="${fontSize.style}${showLabel}">
+                                    ${text}
+                            </span>`;
 
         return listItemLabel + subItemToggleIcon;
 
@@ -733,12 +736,12 @@ function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSize, showLa
                     class="materialdesign-list-item-backdrop-container${(isSubItem) ? ' isSubItem' : ''}" 
                     id="backdropContainer_${itemIndex}" 
                     style="${backdropLabelHeight}">
-                        <label 
+                        <span 
                             class="mdc-list-item__text ${fontSize.class}"
                             id="itemIndex_${itemIndex}"
                             style="position: absolute; ${fontSize.style}${showLabel}">
                                 ${text}
-                        </label>
+                        </span>
                         ${subItemToggleIcon}
                 </div>`;
     }

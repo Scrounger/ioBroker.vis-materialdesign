@@ -414,7 +414,7 @@ vis.binds.materialdesign.drawer = {
 
             function setTopAppBarWithDrawerLayout() {
                 if (data.showSelectedItemAsTitle) {
-                    let selectedName = $this.parent().find(`label[id="itemIndex_${navList.selectedIndex}"]`).text();
+                    let selectedName = $this.parent().find(`span[id="itemIndex_${navList.selectedIndex}"]`).text();
                     $this.parent().find('.mdc-top-app-bar__title').text(selectedName)
                 }
             }
