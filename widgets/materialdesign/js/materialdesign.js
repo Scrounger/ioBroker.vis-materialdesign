@@ -230,6 +230,7 @@ vis.binds.materialdesign = {
 
             $this.find('.mdc-switch').click(function () {
                 vis.setValue(oid, mdcSwitch.checked);
+                window.navigator.vibrate(data.vibrateOnMobilDevices);
                 setSwitchState();
             });
 
@@ -269,6 +270,7 @@ vis.binds.materialdesign = {
 
             $this.find('.mdc-checkbox').click(function () {
                 vis.setValue(data.oid, mdcCheckbox.checked);
+                window.navigator.vibrate(data.vibrateOnMobilDevices);
                 setCheckboxState();
             });
 
@@ -396,6 +398,11 @@ vis.binds.materialdesign = {
 
                     mdcSlider.listen('MDCSlider:input', function () {
                         setSliderState(false, mdcSlider.value);
+                    });
+
+                    $this.on('touchstart mousedown', function(e){
+                        e.preventDefault();
+                        window.navigator.vibrate(data.vibrateOnMobilDevices);
                     });
 
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {

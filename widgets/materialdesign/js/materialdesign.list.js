@@ -20,7 +20,7 @@ vis.binds.materialdesign.list = {
             let imageHeight = getValueFromData(data.listImageHeight, '', 'height: ', 'px !important;');
             let spaceBetweenImageAndLabel = getValueFromData(data.distanceBetweenTextAndImage, '', 'margin-right: ', 'px;');
 
-            let colorCheckBox =  getValueFromData(data.colorCheckBox, '', 'style=" --mdc-theme-secondary: ', ';"');
+            let colorCheckBox = getValueFromData(data.colorCheckBox, '', 'style=" --mdc-theme-secondary: ', ';"');
 
             let nonInteractive = '';
             let itemRole = '';
@@ -50,7 +50,7 @@ vis.binds.materialdesign.list = {
 
                 // generate Item -> mdc-list-item
                 let listItem = getListItem('standard', i, '', false, false, itemHeight, `data-oid="${data.attr('oid' + i)}"`, itemRole)
-                                .replace(' mdc-list-item--activated','');   // selected object not needed in list
+                    .replace(' mdc-list-item--activated', '');   // selected object not needed in list
 
                 // generate Item Label
                 let itemLabel = '';
@@ -118,11 +118,15 @@ vis.binds.materialdesign.list = {
             mdcList.listen('MDCList:action', function (item) {
                 let index = item.detail.index;
 
+                if (data.listType !== 'text') {
+                    window.navigator.vibrate(data.vibrateOnMobilDevices);
+                }
+
                 if (data.listType === 'checkbox' || data.listType === 'switch') {
                     let selectedValue = mdcListAdapter.isCheckboxCheckedAtIndex(index);
 
                     vis.setValue(data.attr('oid' + index), selectedValue);
-                    
+
                     setLayout(index, selectedValue);
 
                 } else if (data.listType === 'buttonToggle') {
