@@ -69,6 +69,10 @@ vis.binds.materialdesign = {
 
             const mdcIconButton = new mdc.iconButton.MDCIconButtonToggle($this.context);
         }
+
+        $(el).click(function () {
+            window.navigator.vibrate(data.vibrateOnMobilDevices);
+        });
     },
     buttonLink: function (el, data) {
         $(el).click(function () {
@@ -506,6 +510,7 @@ vis.binds.materialdesign = {
 
             mdcIconButton.listen('MDCIconButtonToggle:change', function () {
                 vis.setValue(oid, mdcIconButton.on);
+                window.navigator.vibrate(data.vibrateOnMobilDevices);
                 setIconButtonState();
             });
 
