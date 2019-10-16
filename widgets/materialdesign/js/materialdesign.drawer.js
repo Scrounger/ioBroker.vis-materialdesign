@@ -320,6 +320,8 @@ vis.binds.materialdesign.drawer = {
 
             topAppBar.listen('MDCTopAppBar:nav', () => {
 
+                window.navigator.vibrate(data.vibrateTopAppBarOnMobilDevices);
+
                 if (data.drawerLayout === 'dismissible') {
                     if (drawer.open) {
                         let width = window.getComputedStyle(widget, null).width;
@@ -374,6 +376,8 @@ vis.binds.materialdesign.drawer = {
 
             $this.find('.mdc-list-item').click(function () {
                 let selctedIndex = parseInt($(this).eq(0).attr('id').replace('listItem_', ''));
+
+                window.navigator.vibrate(data.vibrateDrawerOnMobilDevices);
 
                 if ($(this).hasClass('hasSubItems')) {
                     // listItem has subItems ->Toggle SubItems
