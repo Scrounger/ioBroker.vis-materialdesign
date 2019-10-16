@@ -536,7 +536,7 @@ function getFontSize(fontSizeValue) {
     let fontSize = getValueFromData(fontSizeValue, null);
 
     if (fontSize !== null) {
-        if (fontSize.includes('headline') || fontSize.includes('subtitle') || fontSize.includes('body')) {
+        if (fontSize.includes('headline') || fontSize.includes('subtitle') || fontSize.includes('body') || fontSize.includes('caption') || fontSize.includes('button') || fontSize.includes('overline')) {
             // font size is a mdc-typography style
             return { class: `mdc-typography--${fontSize}`, style: '' };
         } else if (!isNaN(fontSize)) {
