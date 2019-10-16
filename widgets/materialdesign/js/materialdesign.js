@@ -224,7 +224,7 @@ vis.binds.materialdesign = {
             const mdcSwitch = new mdc.switchControl.MDCSwitch($this.find('.mdc-switch').get(0));
             mdcFormField.input = mdcSwitch;
 
-            mdcSwitch.disabled = getValueFromData(data.readOnly, false);
+            mdcSwitch.disabled = data.readOnly, false;
 
             setSwitchState();
 
@@ -262,7 +262,8 @@ vis.binds.materialdesign = {
             const mdcCheckbox = new mdc.checkbox.MDCCheckbox($this.find('.mdc-checkbox').get(0));
             mdcFormField.input = mdcCheckbox;
 
-            mdcCheckbox.disabled = getValueFromData(data.readOnly, false);
+            console.log()
+            mdcCheckbox.disabled = data.readOnly, false;
 
             setCheckboxState();
 
