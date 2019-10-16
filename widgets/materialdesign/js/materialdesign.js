@@ -158,7 +158,7 @@ vis.binds.materialdesign = {
                         $this.find('.labelToggleTrue').show();
 
                         // True -> colorBgTrue color nehmen
-                        (data.colorBgTrue !== '') ? $this.css('background', data.colorBgTrue) : (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
+                        (data.colorBgTrue !== '') ? $this.parent().css('background', data.colorBgTrue) : (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
 
                         (data.labelColorBgTrue !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgTrue) : (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
                     } else {
@@ -169,7 +169,7 @@ vis.binds.materialdesign = {
                         $this.find('.labelToggleFalse').show();
 
                         // False -> css color nehmen
-                        (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
+                        (data.colorBgFalse !== '') ? $this.parent().css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
 
                         (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
                     }
@@ -182,7 +182,7 @@ vis.binds.materialdesign = {
                         $this.find('.labelToggleTrue').show();
 
                         // True -> colorBgTrue color nehmen
-                        (data.colorBgTrue !== '') ? $this.css('background', data.colorBgTrue) : (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
+                        (data.colorBgTrue !== '') ? $this.parent().css('background', data.colorBgTrue) : (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
 
                         (data.labelColorBgTrue !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgTrue) : (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
                     } else {
@@ -193,7 +193,7 @@ vis.binds.materialdesign = {
                         $this.find('.labelToggleFalse').show();
 
                         // False -> css color nehmen
-                        (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
+                        (data.colorBgFalse !== '') ? $this.parent().css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
 
                         (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
                     }
