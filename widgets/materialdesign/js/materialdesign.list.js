@@ -22,6 +22,8 @@ vis.binds.materialdesign.list = {
 
             let colorCheckBox = getValueFromData(data.colorCheckBox, '', 'style=" --mdc-theme-secondary: ', ';"');
 
+            let rightTextWidth = getValueFromData(data.rightTextWidth, '', '', 'px');
+
             let nonInteractive = '';
             let itemRole = '';
             if (data.listType === 'text') {
@@ -45,6 +47,10 @@ vis.binds.materialdesign.list = {
                 let itemSubLabelText = getValueFromData(data.attr('subLabel' + i), '');
                 let itemImage = getValueFromData(data.attr('listImage' + i), '');
 
+                let itemRightLabelText = getValueFromData(data.attr('rightLabel' + i), '');
+                let itemRightSubLabelText = getValueFromData(data.attr('rightSubLabel' + i), '');
+
+
                 // generate Header
                 itemList.push(getListItemHeader(itemHeaderText, headerFontSize));
 
@@ -59,6 +65,19 @@ vis.binds.materialdesign.list = {
                 } else {
                     itemLabel = getListItemTextElement(itemLabelText, itemSubLabelText, labelFontSize, subLabelFontSize);
                 }
+
+                // generate right Item Label
+                let rightItemLabel = '';
+                if (itemRightSubLabelText === '') {
+                    rightItemLabel = getListItemLabel('standard', i, itemRightLabelText, false, labelFontSize, '', '', '');
+                } else {
+                    rightItemLabel = getListItemTextElement(itemRightLabelText, itemRightSubLabelText, labelFontSize, subLabelFontSize);
+                }
+
+                // add needed styles to right label
+                rightItemLabel = $($.parseHTML(rightItemLabel));
+                rightItemLabel.find('.mdc-list-item__primary-text').css('justify-content', 'flex-end').css('width', 'auto').addClass('mdc-list-item__meta');
+                rightItemLabel.css('text-align', 'right').css('width', rightTextWidth);
 
                 // generate Item Image for Layout Standard
                 let listItemImage = getListItemImage(itemImage, `${imageHeight}${spaceBetweenImageAndLabel}`);
@@ -86,7 +105,7 @@ vis.binds.materialdesign.list = {
                 }
 
                 // generate Item
-                itemList.push(`${listItem}${listItemImage}${itemLabel}${itemControl}</div>`);
+                itemList.push(`${listItem}${listItemImage}${itemLabel}${itemControl}${rightItemLabel.get(0).outerHTML}</div>`);
 
                 // generate Divider
                 itemList.push(getListItemDivider(data.attr('dividers' + i), data.listItemDividerStyle));
