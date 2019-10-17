@@ -115,6 +115,10 @@ vis.binds.materialdesign = {
 
             setButtonState();
 
+            if (data.readOnly && !vis.editMode) {
+                $this.parent().css('pointer-events', 'none');
+            }
+
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 setButtonState();
             });
@@ -474,6 +478,10 @@ vis.binds.materialdesign = {
             $this.context.style.setProperty("--mdc-theme-primary", colorPress);
 
             const mdcIconButton = new mdc.iconButton.MDCIconButtonToggle($this.context);
+
+            if (data.readOnly && !vis.editMode) {
+                $this.css('pointer-events', 'none');
+            }
 
             setIconButtonState();
 
