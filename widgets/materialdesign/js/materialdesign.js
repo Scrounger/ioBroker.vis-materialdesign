@@ -466,7 +466,6 @@ vis.binds.materialdesign = {
     mdcIconButtonToggle: function (el, data) {
         try {
             let $this = $(el);
-            var oid = $this.attr('data-oid');
 
             var colorBgFalse = (data.colorBgFalse === undefined || data.colorBgFalse === null || data.colorBgFalse === '') ? '' : data.colorBgFalse;
             var colorBgTrue = (data.colorBgTrue === undefined || data.colorBgTrue === null || data.colorBgTrue === '') ? '' : data.colorBgTrue;
@@ -478,25 +477,51 @@ vis.binds.materialdesign = {
 
             setIconButtonState();
 
-            mdcIconButton.listen('MDCIconButtonToggle:change', function () {
-                vis.setValue(oid, mdcIconButton.on);
-                window.navigator.vibrate(data.vibrateOnMobilDevices);
-                setIconButtonState();
-            });
+            if (!vis.editMode) {
+                mdcIconButton.listen('MDCIconButtonToggle:change', function () {
+                    window.navigator.vibrate(data.vibrateOnMobilDevices);
 
-            vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
+                    if (data.toggleType === 'boolean') {
+                        vis.setValue(data.oid, mdcIconButton.on);
+                    } else {
+                        if (!mdcIconButton.on) {
+                            vis.setValue(data.oid, data.valueOff);
+                        } else {
+                            vis.setValue(data.oid, data.valueOn);
+                        }
+                    }
+                    
+                    setIconButtonState();
+                });
+            }
+
+            vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 setIconButtonState();
             });
 
             function setIconButtonState() {
-                var val = vis.states.attr(oid + '.val');
-                mdcIconButton.on = val;
+                var val = vis.states.attr(data.oid + '.val');
+                let buttonState = false;
 
-                if (val) {
+                if (data.toggleType === 'boolean') {
+                    buttonState = val;
+                } else {
+                    if (val === parseInt(data.valueOn) || val === data.valueOn) {
+                        buttonState = true;
+                    } else if (val !== parseInt(data.valueOn) && val !== data.valueOn && val !== parseInt(data.valueOff) && val !== data.valueOff && data.stateIfNotTrueValue === 'on') {
+                        buttonState = true;
+                    }
+                }
+
+                if (buttonState) {
+                    mdcIconButton.on = true;
+
                     $this.find('.imgToggleFalse').hide();
                     $this.find('.imgToggleTrue').show();
                     $this.css('background', colorBgTrue);
                 } else {
+                    mdcIconButton.on = false;
+
                     $this.find('.imgToggleFalse').show();
                     $this.find('.imgToggleTrue').hide();
                     $this.css('background', colorBgFalse);
