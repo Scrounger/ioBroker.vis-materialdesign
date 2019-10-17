@@ -371,7 +371,7 @@ vis.binds.materialdesign = {
                         setSliderState(false, mdcSlider.value);
                     });
 
-                    $this.on('touchstart mousedown', function (e) {
+                    $this.find('.mdc-slider').on('touchstart mousedown', function (e) {
                         e.preventDefault();
                         window.navigator.vibrate(data.vibrateOnMobilDevices);
                     });
