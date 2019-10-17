@@ -103,116 +103,52 @@ vis.binds.materialdesign = {
             });
         }
     },
-    itoggle: function (el, data) {
+    buttonToggle: function (el,data){
         try {
             var $this = $(el).parent();
-            var oid = $this.parent().attr('data-oid');
-            if (oid) {
-                oid += '.val';
-            }
-            var val = vis.states.attr(oid);
-            var activeVal = $this.parent().data('val');
-            if (activeVal === '' || activeVal === undefined) activeVal = null;
-            if (activeVal !== null) {
-                if (val === null || val === undefined) val = '';
-                if (activeVal.toString() === val.toString()) {
 
-                    $this.find('.imgToggleFalse').hide();
+            let bgColor = getValueFromData(data.colorBgFalse, '');
+            let bgColorTrue = getValueFromData(data.colorBgTrue, bgColor);
+
+            let labelBgColor = getValueFromData(data.labelColorBgFalse, '');
+            let labelBgColorTrue = getValueFromData(data.labelColorBgTrue, labelBgColor);
+
+            setButtonState();
+
+            vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                setButtonState();
+            });
+
+            $this.click(function () {
+                vis.setValue(data.oid, !vis.states.attr(data.oid + '.val'));
+            })
+
+            function setButtonState() {
+                var val = vis.states.attr(data.oid + '.val');
+
+                if (val) {
                     $this.find('.imgToggleTrue').show();
-
-                    $this.find('.labelToggleFalse').hide();
-                    $this.find('.labelToggleTrue').show();
-
-                    // True -> colorBgTrue color nehmen
-                    (data.colorBgTrue !== '') ? $this.parent().css('background', data.colorBgTrue) : (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
-
-                    (data.labelColorBgTrue !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgTrue) : (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
-                }
-            } else {
-                if (val === 'false') val = false;
-                if (val === 'true') val = true;
-                if (typeof val === 'string') {
-                    var f = parseFloat(val);
-                    if (f == val) {
-                        val = f;
-                    } else {
-                        val = val !== '';
-                    }
-                }
-                if (val > 0) {
                     $this.find('.imgToggleFalse').hide();
-                    $this.find('.imgToggleTrue').show();
 
-                    $this.find('.labelToggleFalse').hide();
                     $this.find('.labelToggleTrue').show();
+                    $this.find('.labelToggleFalse').hide();
 
-                    // True -> colorBgTrue color nehmen
-                    (data.colorBgTrue !== '') ? $this.parent().css('background', data.colorBgTrue) : (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
-
-                    (data.labelColorBgTrue !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgTrue) : (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
-                }
-            }
-            function onChange(e, val) {
-                if (activeVal !== null) {
-                    if (activeVal.toString() === val.toString()) {
-                        $this.find('.imgToggleFalse').hide();
-                        $this.find('.imgToggleTrue').show();
-
-                        $this.find('.labelToggleFalse').hide();
-                        $this.find('.labelToggleTrue').show();
-
-                        // True -> colorBgTrue color nehmen
-                        (data.colorBgTrue !== '') ? $this.parent().css('background', data.colorBgTrue) : (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
-
-                        (data.labelColorBgTrue !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgTrue) : (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
-                    } else {
-                        $this.find('.imgToggleTrue').hide();
-                        $this.find('.imgToggleFalse').show();
-
-                        $this.find('.labelToggleTrue').hide();
-                        $this.find('.labelToggleFalse').show();
-
-                        // False -> css color nehmen
-                        (data.colorBgFalse !== '') ? $this.parent().css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
-
-                        (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
-                    }
+                    $this.parent().css('background', bgColorTrue);
+                    $this.find('.labelRowContainer').css('background', labelBgColorTrue);
                 } else {
-                    if (val === true || val === 'true' || parseFloat(val) > 0) {
-                        $this.find('.imgToggleFalse').hide();
-                        $this.find('.imgToggleTrue').show();
+                    $this.find('.imgToggleTrue').hide();
+                    $this.find('.imgToggleFalse').show();
 
-                        $this.find('.labelToggleFalse').hide();
-                        $this.find('.labelToggleTrue').show();
+                    $this.find('.labelToggleTrue').hide();
+                    $this.find('.labelToggleFalse').show();
 
-                        // True -> colorBgTrue color nehmen
-                        (data.colorBgTrue !== '') ? $this.parent().css('background', data.colorBgTrue) : (data.colorBgFalse !== '') ? $this.css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
-
-                        (data.labelColorBgTrue !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgTrue) : (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
-                    } else {
-                        $this.find('.imgToggleTrue').hide();
-                        $this.find('.imgToggleFalse').show();
-
-                        $this.find('.labelToggleTrue').hide();
-                        $this.find('.labelToggleFalse').show();
-
-                        // False -> css color nehmen
-                        (data.colorBgFalse !== '') ? $this.parent().css('background', data.colorBgFalse) : $this.css('background', $this.parent().css("background"));
-
-                        (data.labelColorBgFalse !== '') ? $this.find('.labelRowContainer').css('background', data.labelColorBgFalse) : $this.find('.labelRowContainer').css('background', $this.parent().css("background"));
-                    }
+                    $this.parent().css('background', bgColor);
+                    $this.find('.labelRowContainer').css('background', labelBgColor);
                 }
             }
-            if (oid) {
-                vis.states.bind(oid, onChange);
-                // remember all ids, that bound
-                $this.parent()
-                    .data('bound', [oid])
-                    // remember bind handler
-                    .data('bindHandler', onChange);
-            }
+
         } catch (ex) {
-            console.exception(`itoggle [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`toggle [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     mdcSwitch: function (el, data) {
