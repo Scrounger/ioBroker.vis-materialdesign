@@ -222,7 +222,7 @@
         data-vis-set="materialdesign"
         data-vis-type="ctrl,state"
         data-vis-name="Button Toggle vertical"
-        data-vis-attrs="oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;vibrateOnMobilDevices[50]/number;"
+        data-vis-attrs="oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;toggleType[boolean]/select,boolean,value;valueOff;valueOn;stateIfNotTrueValue[on]/select,on,off;vibrateOnMobilDevices[50]/number;"
         data-vis-attrs0="group.label;labelFalse/html;labelTrue/html;labelColorFalse/color;labelColorTrue/color;"
         data-vis-attrs1="group.icon;image/image;invertImage/checkbox;imageTrue/image;invertImageTrue/checkbox;iconHeight/slider,0,200,1;"
         data-vis-attrs2="group.color;colorBgFalse/color;colorBgTrue/color;labelColorBgFalse/color;labelColorBgTrue/color;colorPress/color">
@@ -245,7 +245,7 @@
     %>
 
     <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.addRippleEffect(el, data) %>>
-        <div class="materialdesign vis-widget-body" style="display: table; width: 100%; height: 100%;">
+        <div class="materialdesign vis-widget-body" style="display: table; width: 100%; height: 100%;" toggled="false">
             <div style="display: table-row;">                
                 <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; <%= stylesInvertImageFalse %>" />
                 <img class="imgToggleTrue"  <%= this.data.attr('imageTrue')  ? 'src="' +  this.data.attr('imageTrue')  + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; display:none; <%= stylesInvertImageTrue %>" />
@@ -360,7 +360,7 @@
         data-vis-set="materialdesign"
         data-vis-type="ctrl,state"
         data-vis-name="Button Toggle"
-        data-vis-attrs="oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;vibrateOnMobilDevices[50]/number;"
+        data-vis-attrs="oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;toggleType[boolean]/select,boolean,value;valueOff;valueOn;stateIfNotTrueValue[on]/select,on,off;vibrateOnMobilDevices[50]/number;"
         data-vis-attrs0="group.label;labelFalse/html;labelTrue/html;labelColorFalse/color;labelColorTrue/color;"
         data-vis-attrs1="group.icon;image/image;invertImage/checkbox;imageTrue/image;invertImageTrue/checkbox;iconHeight/slider,0,200,1;"
         data-vis-attrs2="group.color;colorBgFalse/color;colorBgTrue/color;colorPress/color">
@@ -383,7 +383,7 @@
     %>      
         
     <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.addRippleEffect(el, data) %>>
-        <div class="materialdesign vis-widget-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+        <div class="materialdesign vis-widget-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;" toggled="false">
             <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; <%= stylesInvertImageFalse %>" />
             <img class="imgToggleTrue"  <%= this.data.attr('imageTrue')  ? 'src="' +  this.data.attr('imageTrue')  + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; display:none; <%= stylesInvertImageTrue %>" />
             <span class="labelToggleFalse materialdesign-button__label" style="color: <%== this.data.attr('labelColorFalse') %>"><%== this.data.attr('labelFalse') %></span>

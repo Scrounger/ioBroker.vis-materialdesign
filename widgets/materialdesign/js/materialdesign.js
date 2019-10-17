@@ -119,14 +119,38 @@ vis.binds.materialdesign = {
                 setButtonState();
             });
 
-            $this.click(function () {
-                vis.setValue(data.oid, !vis.states.attr(data.oid + '.val'));
-            })
+            if (!vis.editMode) {
+                $this.click(function () {
+                    if (data.toggleType === 'boolean') {
+                        vis.setValue(data.oid, !vis.states.attr(data.oid + '.val'));
+                    } else {
+                        if ($this.attr('toggled') === true || $this.attr('toggled') === 'true') {
+                            vis.setValue(data.oid, data.valueOff);
+                        } else {
+                            vis.setValue(data.oid, data.valueOn);
+                        }
+                    }
+                });
+            }
 
             function setButtonState() {
                 var val = vis.states.attr(data.oid + '.val');
 
-                if (val) {
+                let buttonState = false;
+
+                if (data.toggleType === 'boolean') {
+                    buttonState = val;
+                } else {
+                    if (val === parseInt(data.valueOn) || val === data.valueOn) {
+                        buttonState = true;
+                    } else if (val !== parseInt(data.valueOn) && val !== data.valueOn && val !== parseInt(data.valueOff) && val !== data.valueOff && data.stateIfNotTrueValue === 'on') {
+                        buttonState = true;
+                    }
+                }
+
+                if (buttonState) {
+                    $this.attr('toggled', true);
+
                     $this.find('.imgToggleTrue').show();
                     $this.find('.imgToggleFalse').hide();
 
@@ -136,6 +160,8 @@ vis.binds.materialdesign = {
                     $this.parent().css('background', bgColorTrue);
                     $this.find('.labelRowContainer').css('background', labelBgColorTrue);
                 } else {
+                    $this.attr('toggled', false);
+
                     $this.find('.imgToggleTrue').hide();
                     $this.find('.imgToggleFalse').show();
 
