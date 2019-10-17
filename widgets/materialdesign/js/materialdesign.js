@@ -103,7 +103,7 @@ vis.binds.materialdesign = {
             });
         }
     },
-    buttonToggle: function (el,data){
+    buttonToggle: function (el, data) {
         try {
             var $this = $(el).parent();
 
@@ -271,6 +271,11 @@ vis.binds.materialdesign = {
             let labelMax = getValueFromData(data.valueLabelMax, null);
             let unit = getValueFromData(data.valueLabelUnit, '');
 
+            let valueLessThan = getValueFromData(data.valueLessThan, min);
+            let textForValueLessThan = getValueFromData(data.textForValueLessThan, null);
+            let valueGreaterThan = getValueFromData(data.valueGreaterThan, max);
+            let textForValueGreaterThan = getValueFromData(data.textForValueGreaterThan, null);
+
             let showMarker = '';
             if (data.showMarkers === 'true' || data.showMarkers === true) {
                 showMarker = 'mdc-slider--display-markers';
@@ -366,7 +371,7 @@ vis.binds.materialdesign = {
                         setSliderState(false, mdcSlider.value);
                     });
 
-                    $this.on('touchstart mousedown', function(e){
+                    $this.on('touchstart mousedown', function (e) {
                         e.preventDefault();
                         window.navigator.vibrate(data.vibrateOnMobilDevices);
                     });
@@ -381,6 +386,9 @@ vis.binds.materialdesign = {
                         }
                     });
 
+
+
+
                     function setSliderState(setVisValue = true, val = 0) {
                         if (!vis.states.attr(data.wid + '.val')) {
                             if (setVisValue) {
@@ -390,6 +398,10 @@ vis.binds.materialdesign = {
 
                             if (val <= min && labelMin != null) {
                                 $this.find('.labelValue').html(labelMin);
+                            } else if (val > min && val <= valueLessThan && textForValueLessThan != null) {
+                                $this.find('.labelValue').html(textForValueLessThan);
+                            } else if (val >= valueGreaterThan && val < max && textForValueGreaterThan != null) {
+                                $this.find('.labelValue').html(textForValueGreaterThan);
                             } else if (val >= max && labelMax != null) {
                                 $this.find('.labelValue').html(labelMax);
                             } else {
@@ -498,7 +510,7 @@ vis.binds.materialdesign = {
                             vis.setValue(data.oid, data.valueOn);
                         }
                     }
-                    
+
                     setIconButtonState();
                 });
             }

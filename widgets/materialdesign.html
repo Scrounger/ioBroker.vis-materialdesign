@@ -587,7 +587,7 @@
         data-vis-update-style="true"
         data-vis-attrs="oid;oid-working;min;max;step[1];knobSize[knobSmall]/select,knobSmall,knobMedium,knobBig;initDelay[250]/number;vibrateOnMobilDevices[50]/number;"
         data-vis-attrs0="group.color;colorSliderBg/color;colorSlider/color;"
-        data-vis-attrs1="group.label;showValueLabel[true]/checkbox;valueLabelUnit;valueLabelMin/html;valueLabelMax/html;valueLabelWidth[25]/slider,0,100,1;">
+        data-vis-attrs1="group.label;showValueLabel[true]/checkbox;valueLabelUnit;valueLabelMin/html;valueLabelMax/html;valueLessThan/number;textForValueLessThan/html;valueGreaterThan/number;textForValueGreaterThan/html;valueLabelWidth[25]/slider,0,100,1;">
 
         <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.mdcSlider(el, data) %>>
 
@@ -604,7 +604,7 @@
         data-vis-update-style="true"
         data-vis-attrs="oid;oid-working;min;max;step[1];knobSize[knobSmall]/select,knobSmall,knobMedium,knobBig;initDelay[250]/number;vibrateOnMobilDevices[50]/number;"
         data-vis-attrs0="group.color;colorSliderBg/color;colorSlider/color;"
-        data-vis-attrs1="group.label;showValueLabel[true]/checkbox;showMarkers/checkbox;valueLabelUnit;valueLabelMin/html;valueLabelMax/html;valueLabelWidth[25]/slider,0,100,1;">
+        data-vis-attrs1="group.label;showValueLabel[true]/checkbox;showMarkers/checkbox;valueLabelUnit;valueLabelMin/html;valueLabelMax/html;valueLessThan/number;textForValueLessThan/html;valueGreaterThan/number;textForValueGreaterThan/html;valueLabelWidth[25]/slider,0,100,1;">
 
         <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.mdcSlider(el, data, true) %>>
 
