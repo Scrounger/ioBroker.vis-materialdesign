@@ -17,6 +17,7 @@ vis.binds.materialdesign.drawer = {
             let headerButtonShow = '';
             let contentLayout = '';
 
+
             if (data.topAppBarLayout === 'standard') {
                 contentLayout = 'mdc-top-app-bar--fixed-adjust';
             } else if (data.topAppBarLayout === 'dense') {
@@ -27,10 +28,12 @@ vis.binds.materialdesign.drawer = {
                 contentLayout = 'mdc-top-app-bar--short-fixed-adjust';
             }
 
+            let topBarZIndex = getValueFromData(data.topAppBarZ_index,'', 'z-index: ', ';');
+            
             if (vis.editMode) {
-                headerStyle = 'style="position: absolute;"';
+                headerStyle = `style="position: absolute;${topBarZIndex}"`;
             } else {
-                headerStyle = 'style="position: fixed;"';
+                headerStyle = `style="position: fixed;${topBarZIndex}"`;
             }
 
             if (data.drawerLayout === 'modal' || data.drawerLayout === 'dismissible') {
@@ -70,7 +73,7 @@ vis.binds.materialdesign.drawer = {
                 if (data.z_index !== undefined && data.z_index !== null && data.z_index !== '') {
                     drawerZIndex = `z-index: ${data.z_index};`;
                     drawerScrimZIndex = `z-index: ${data.z_index - 1};`;
-                }
+                }                
 
                 let position = '';
                 if (data.drawerLayout === 'modal') {
