@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.1.1",
+        "version": "0.1.2",
         "news": {
+            "0.1.2": {
+                "en": "support for non boolean values added for buttons, checkboxes and switches. haptic feedback (vibration) option for mobil browser added. right label option for list added. slider value text option for lees or greather than added. bug fixes.",
+                "de": "Unterstützung für nicht-boolesche Werte für Schaltflächen, Kontrollkästchen und Schalter. Option für haptisches Feedback (Vibration) für mobilen Browser hinzugefügt. Rechte Beschriftungsoption für Liste hinzugefügt. Textoption mit Schieberegler für kleiner oder größer als hinzugefügt. Fehlerbehebung.",
+                "ru": "добавлена поддержка не булевых значений для кнопок, флажков и переключателей. Добавлена опция тактильной обратной связи (вибрация) для мобильного браузера. добавлена правая метка для списка. текстовая опция значения ползунка для ли или больше, чем добавлено. исправление ошибок.",
+                "pt": "suporte para valores não booleanos adicionados a botões, caixas de seleção e opções. opção de retorno háptico (vibração) para o navegador mobil adicionado. opção de etiqueta à direita para a lista adicionada. opção de texto do valor do controle deslizante para borras ou maior que a adicionada. correções de bugs.",
+                "nl": "ondersteuning voor niet-booleaanse waarden toegevoegd voor knoppen, selectievakjes en schakelaars. haptische feedback (vibratie) optie voor mobil browser toegevoegd. juiste labeloptie voor lijst toegevoegd. schuif waarde optie voor lees of groter dan toegevoegd. bugfixes.",
+                "fr": "prise en charge des valeurs non booléennes ajoutées pour les boutons, les cases à cocher et les commutateurs. retour haptique option (vibration) pour le navigateur mobil ajouté. option bonne étiquette pour la liste ajoutée. option de texte de valeur de curseur pour les lies ou plus grand que ajouté. corrections de bugs.",
+                "it": "supporto per valori non booleani aggiunto per pulsanti, caselle di controllo e interruttori. aggiunta dell'opzione feedback tattile (vibrazione) per il browser mobil. opzione etichetta destra per elenco aggiunto. opzione di testo del valore del dispositivo di scorrimento per le fecce o maggiore di quella aggiunta. correzioni di bug.",
+                "es": "soporte para valores no booleanos agregados para botones, casillas de verificación e interruptores. Opción de retroalimentación háptica (vibración) para el navegador mobil agregado. opción de etiqueta derecha para la lista agregada. opción de texto del valor del control deslizante para lías o más grande que el agregado. corrección de errores.",
+                "pl": "dodano obsługę wartości innych niż logiczne dla przycisków, pól wyboru i przełączników. dodano opcję dotykowego sprzężenia zwrotnego (wibracji) dla przeglądarki mobilnej. dodano opcję prawej etykiety dla listy. suwakowa wartość opcji tekstowej dla osadów lub większa niż dodana. poprawki błędów.",
+                "zh-cn": "支持为按钮，复选框和开关添加的非布尔值。为Mobil浏览器添加了触觉反馈（振动）选项。列表的右侧标签选项已添加。滑块值文本选项，用于添加或添加的内容。 bug修复。"
+            },
             "0.1.1": {
                 "en": "bug fixes",
                 "de": "Fehlerbehebung",

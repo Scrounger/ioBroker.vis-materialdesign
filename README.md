@@ -73,6 +73,19 @@ To change the image of the items, you have to a json object into the image filed
 
 ## Changelog
 
+### 0.1.2
+* (Scrounger): list: right label option added
+* (Scrounger): slider: value text option for lees or greather than added
+* (Scrounger): switch: support for non boolean values added
+* (Scrounger): checkbox: support for non boolean values added
+* (Scrounger): buttons: image position option added
+* (Scrounger): toggle buttons: support for non boolean values added
+* (Scrounger): topAppBar: z-Index added
+* (Scrounger): haptic feedback (vibration) option for mobil browser added
+* (Scrounger): editor text fields changed to html
+* (Scrounger): mdc-typography font styles added
+* (Scrounger): bug fixes
+
 ### 0.1.1
 * (Scrounger): bug fixes
 
