@@ -17,6 +17,9 @@ vis.binds.materialdesign.list = {
             let labelFontSize = getFontSize(data.listItemTextSize);
             let subLabelFontSize = getFontSize(data.listItemSubTextSize);
 
+            let rightLabelFontSize = getFontSize(data.listItemTextRightSize);
+            let rightSubLabelFontSize = getFontSize(data.listItemSubTextRightSize);
+
             let imageHeight = getValueFromData(data.listImageHeight, '', 'height: ', 'px !important;');
             let spaceBetweenImageAndLabel = getValueFromData(data.distanceBetweenTextAndImage, '', 'margin-right: ', 'px;');
 
@@ -69,15 +72,24 @@ vis.binds.materialdesign.list = {
                 // generate right Item Label
                 let rightItemLabel = '';
                 if (itemRightSubLabelText === '') {
-                    rightItemLabel = getListItemLabel('standard', i, itemRightLabelText, false, labelFontSize, '', '', '');
+                    rightItemLabel = getListItemLabel('standard', i, itemRightLabelText, false, rightLabelFontSize, '', '', '');
+
+                    rightItemLabel = $($.parseHTML(rightItemLabel));
+                    rightItemLabel.addClass('materialdesign-list-item-text-right').addClass('mdc-list-item__meta');
                 } else {
-                    rightItemLabel = getListItemTextElement(itemRightLabelText, itemRightSubLabelText, labelFontSize, subLabelFontSize);
+                    rightItemLabel = getListItemTextElement(itemRightLabelText, itemRightSubLabelText, rightLabelFontSize, rightSubLabelFontSize);
+
+                    rightItemLabel = $($.parseHTML(rightItemLabel));
+                    rightItemLabel.addClass('mdc-list-item__meta');
+                    rightItemLabel.find('.mdc-list-item__primary-text').css('justify-content', 'flex-end').css('width', 'auto').addClass('materialdesign-list-item-text-right');
+                    rightItemLabel.find('.mdc-list-item__secondary-text').addClass('materialdesign-list-item-text-right');
                 }
 
                 // add needed styles to right label
-                rightItemLabel = $($.parseHTML(rightItemLabel));
-                rightItemLabel.find('.mdc-list-item__primary-text').css('justify-content', 'flex-end').css('width', 'auto').addClass('mdc-list-item__meta');
                 rightItemLabel.css('text-align', 'right').css('width', rightTextWidth);
+
+
+
 
                 // generate Item Image for Layout Standard
                 let listItemImage = getListItemImage(itemImage, `${imageHeight}${spaceBetweenImageAndLabel}`);
@@ -131,42 +143,49 @@ vis.binds.materialdesign.list = {
             list.style.setProperty("--materialdesign-color-list-item-selected", getValueFromData(data.colorListItemSelected, ''));
             list.style.setProperty("--materialdesign-color-list-item-text", getValueFromData(data.colorListItemText, ''));
             list.style.setProperty("--materialdesign-color-list-item-text-activated", getValueFromData(data.colorListItemText, ''));
+            list.style.setProperty("--materialdesign-color-list-item-text-secondary", getValueFromData(data.colorListItemTextSecondary, ''));
+
+            list.style.setProperty("--materialdesign-color-list-item-text-right", getValueFromData(data.colorListItemTextRight, ''));
+            list.style.setProperty("--materialdesign-color-list-item-text-secondary-right", getValueFromData(data.colorListItemTextSecondaryRight, ''));
+
             list.style.setProperty("--materialdesign-color-list-item-header", getValueFromData(data.colorListItemHeaders, ''));
             list.style.setProperty("--materialdesign-color-list-item-divider", getValueFromData(data.colorListItemDivider, ''));
 
-            mdcList.listen('MDCList:action', function (item) {
-                let index = item.detail.index;
+            if (!vis.editMode) {
+                mdcList.listen('MDCList:action', function (item) {                    
+                    let index = item.detail.index;
 
-                if (data.listType !== 'text') {
-                    window.navigator.vibrate(data.vibrateOnMobilDevices);
-                }
+                    if (data.listType !== 'text') {
+                        window.navigator.vibrate(data.vibrateOnMobilDevices);
+                    }
 
-                if (data.listType === 'checkbox' || data.listType === 'switch') {
-                    let selectedValue = mdcListAdapter.isCheckboxCheckedAtIndex(index);
+                    if (data.listType === 'checkbox' || data.listType === 'switch') {
+                        let selectedValue = mdcListAdapter.isCheckboxCheckedAtIndex(index);
 
-                    vis.setValue(data.attr('oid' + index), selectedValue);
+                        vis.setValue(data.attr('oid' + index), selectedValue);
 
-                    setLayout(index, selectedValue);
+                        setLayout(index, selectedValue);
 
-                } else if (data.listType === 'buttonToggle') {
-                    let selectedValue = vis.states.attr(data.attr('oid' + index) + '.val');
+                    } else if (data.listType === 'buttonToggle') {
+                        let selectedValue = vis.states.attr(data.attr('oid' + index) + '.val');
 
-                    vis.setValue(data.attr('oid' + index), !selectedValue);
+                        vis.setValue(data.attr('oid' + index), !selectedValue);
 
-                    setLayout(index, !selectedValue);
+                        setLayout(index, !selectedValue);
 
-                } else if (data.listType === 'buttonState') {
-                    let valueToSet = data.attr('listTypeButtonStateValue' + index);
+                    } else if (data.listType === 'buttonState') {
+                        let valueToSet = data.attr('listTypeButtonStateValue' + index);
 
-                    vis.setValue(data.attr('oid' + index), valueToSet);
+                        vis.setValue(data.attr('oid' + index), valueToSet);
 
-                } else if (data.listType === 'buttonNav') {
-                    vis.changeView(data.attr('listTypeButtonNav' + index));
+                    } else if (data.listType === 'buttonNav') {
+                        vis.changeView(data.attr('listTypeButtonNav' + index));
 
-                } else if (data.listType === 'buttonLink') {
-                    window.open(data.attr('listTypeButtonLink' + index));
-                }
-            });
+                    } else if (data.listType === 'buttonLink') {
+                        window.open(data.attr('listTypeButtonLink' + index));
+                    }
+                });
+            }
 
             let itemCount = (data.listType === 'switch') ? $this.find('.mdc-switch').length : mdcList.listElements.length;
 

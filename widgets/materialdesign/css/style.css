@@ -14,6 +14,11 @@
   --materialdesign-color-list-item-text-activated: #1e88e5;
   --materialdesign-color-sub-list-item-text-activated: #1e88e5;
 
+  --materialdesign-color-list-item-text-secondary: rgba(0, 0, 0, 0.54);
+
+  --materialdesign-color-list-item-text-right: #000;
+  --materialdesign-color-list-item-text-secondary-right: rgba(0, 0, 0, 0.54);
+
   --materialdesign-color-list-item-header: #000;
   --materialdesign-color-list-item-divider: rgba(0, 0, 0, 0.12);
 
@@ -27,7 +32,6 @@
   --materialdesign-color-card-text-section-background: transparent;
   --materialdesign-color-card-title: #1e88e5;
   --materialdesign-color-card-sub-title: #a1a1a1;
-
 }
 
 /* Button style -> must defined here because of position bug in vis editor */
@@ -795,6 +799,21 @@ svg.materialdesign-button__icon {
   background-color: var( --materialdesign-color-sub-list-item-backdrop-activated);
 }
 
+.mdc-list-item__secondary-text {
+  color: var(--materialdesign-color-list-item-text-secondary);
+}
+
+.mdc-list-item__text.materialdesign-list-item-text-right {
+  color: var(--materialdesign-color-list-item-text-right);
+}
+
+.mdc-list-item__primary-text.materialdesign-list-item-text-right {
+  color: var(--materialdesign-color-list-item-text-right);
+}
+
+.mdc-list-item__secondary-text.materialdesign-list-item-text-right {
+  color: var(--materialdesign-color-list-item-text-secondary-right);
+}
 
 .mdc-list-group__subheader {
   color: var(--materialdesign-color-list-item-header);
