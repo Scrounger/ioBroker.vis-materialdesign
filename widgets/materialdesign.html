@@ -276,7 +276,7 @@
             let init = vis.binds.materialdesign.button.initializeButton(data);
         %>
 
-        <div class="vis-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.handleNavigation(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+        <div class="vis-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.handleNavigation(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
             <%== init.button %>
         </div>
 </script>
@@ -295,7 +295,7 @@
             let init = vis.binds.materialdesign.button.initializeButton(data);
         %>
 
-        <div class="vis-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-vis-link="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleLink(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+        <div class="vis-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-vis-link="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleLink(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
             <%== init.button %>
         </div>
 </script>
@@ -314,11 +314,10 @@
             let init = vis.binds.materialdesign.button.initializeButton(data);
         %>
 
-        <div class="vis-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.basic.state(el); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+        <div class="vis-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.basic.state(el); vis.binds.materialdesign.addRippleEffect(el, data) %>>
             <%== init.button %>
         </div>
 </script>
-
 
 <script id="tplVis-materialdesign-Button-Toggle"
         type="text/ejs"
@@ -328,41 +327,18 @@
         data-vis-type="ctrl,state,val,bool"
         data-vis-name="Button Toggle"
         data-vis-attrs="oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;readOnly/checkbox;toggleType[boolean]/select,boolean,value;valueOff;valueOn;stateIfNotTrueValue[on]/select,on,off;vibrateOnMobilDevices[50]/number;"
-        data-vis-attrs0="group.label;labelFalse/html;labelTrue/html;labelColorFalse/color;labelColorTrue/color;labelWidth/slider,0,100,1;"
-        data-vis-attrs1="group.icon;image/image;invertImage/checkbox;imageTrue/image;invertImageTrue/checkbox;iconHeight/slider,0,200,1;"
+        data-vis-attrs0="group.label;buttontext/html;labelTrue/html;labelColorFalse/color;labelColorTrue/color;labelWidth/slider,0,100,1;"
+        data-vis-attrs1="group.icon;image/image;invertImage/checkbox;imageTrue/image;invertImageTrue/checkbox;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;"
         data-vis-attrs2="group.color;colorBgFalse/color;colorBgTrue/color;colorPress/color">
 
-    <%
-        let buttonStyle = '';
-        if (this.data.buttonStyle !== 'text'){
-            buttonStyle = 'materialdesign-button--' + this.data.buttonStyle;
-        }
-
-        let stylesInvertImageFalse = '';
-        if (this.data.invertImage === 'true' || this.data.invertImage === true) {
-            stylesInvertImageFalse = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
-        }
-
-        let stylesInvertImageTrue = '';
-        if (this.data.invertImageTrue === 'true' || this.data.invertImageTrue === true) {
-            stylesInvertImageTrue = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
-        }
-    
-        let labelWidth = '';
-        if (this.data.labelWidth !== undefined || this.data.labelWidth !== null || this.data.labelWidth !== '') {
-            labelWidth = 'width: ' + this.data.labelWidth + '%'
-        }
-    %>      
+        <%
+            let init = vis.binds.materialdesign.button.initializeButton(data,true);
+        %> 
         
-    <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.addRippleEffect(el, data) %>>
-        <div class="materialdesign vis-widget-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;" toggled="false">
-            <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; <%= stylesInvertImageFalse %>" />
-            <img class="imgToggleTrue"  <%= this.data.attr('imageTrue')  ? 'src="' +  this.data.attr('imageTrue')  + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; display:none; <%= stylesInvertImageTrue %>" />
-            <span class="labelToggleFalse materialdesign-button__label" style="color: <%== this.data.attr('labelColorFalse') %>; <%== labelWidth %>"><%== this.data.attr('labelFalse') %></span>
-            <span class="labelToggleTrue materialdesign-button__label" style="color: <%== this.data.attr('labelColorTrue') %>; <%== labelWidth %>;display:none"><%== this.data.attr('labelTrue') %></span>
-            <div <%= (el) -> vis.binds.materialdesign.buttonToggle(el, this.data) %>></div>
+        <div class="vis-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.addRippleEffect(el, data) %>>
+            <%== init.button %>
+            <div <%= (el) -> vis.binds.materialdesign.button.handleToggle(el, this.data) %>></div>
         </div>
-    </div>
 </script>
 
 <script id="tplVis-materialdesign-Icon-Button-Navigation"

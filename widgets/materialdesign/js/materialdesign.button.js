@@ -95,5 +95,103 @@ vis.binds.materialdesign.button = {
             });
         }
     },
+    handleToggle: function (el, data) {
+        try {
+            var $this = $(el);
 
+            let bgColor = getValueFromData(data.colorBgFalse, '');
+            let bgColorTrue = getValueFromData(data.colorBgTrue, bgColor);
+
+            let labelBgColor = getValueFromData(data.labelColorBgFalse, '');
+            let labelBgColorTrue = getValueFromData(data.labelColorBgTrue, labelBgColor);
+
+            let imageFalse = getValueFromData(data.image, '');
+            let imageTrue = getValueFromData(data.imageTrue, imageFalse);
+
+            let invertImageFalse = { 'filter': '', '-webkit-filter': '', '-moz-filter': '', '-o-filter': '', '-ms-filter': '' };
+            if (data.invertImage === 'true' || data.invertImage === true) {
+                invertImageFalse = { 'filter': 'invert(1)', '-webkit-filter': 'invert(1)', '-moz-filter': 'invert(1)', '-o-filter': 'invert(1)', '-ms-filter': 'invert(1)' };
+            }
+
+            let invertImageTrue = { 'filter': '', '-webkit-filter': '', '-moz-filter': '', '-o-filter': '', '-ms-filter': '' };
+            if (data.invertImageTrue === 'true' || data.invertImageTrue === true) {
+                invertImageTrue = { 'filter': 'invert(1)', '-webkit-filter': 'invert(1)', '-moz-filter': 'invert(1)', '-o-filter': 'invert(1)', '-ms-filter': 'invert(1)' };
+            }
+
+            let textFalse = getValueFromData(data.buttontext, '');
+            let textTrue = getValueFromData(data.labelTrue, textFalse);
+
+            let textColorFalse = getValueFromData(data.labelColorFalse, '');
+            let textColorTrue = getValueFromData(data.labelColorTrue, textColorFalse);
+
+            setButtonState();
+
+            if (data.readOnly && !vis.editMode) {
+                $this.parent().css('pointer-events', 'none');
+            }
+
+            vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                setButtonState();
+            });
+
+            if (!vis.editMode) {
+                $this.parent().click(function () {
+                    if (data.toggleType === 'boolean') {
+                        vis.setValue(data.oid, !vis.states.attr(data.oid + '.val'));
+                    } else {
+                        if ($this.parent().attr('toggled') === true || $this.parent().attr('toggled') === 'true') {
+                            vis.setValue(data.oid, data.valueOff);
+                        } else {
+                            vis.setValue(data.oid, data.valueOn);
+                        }
+                    }
+                });
+            }
+
+            function setButtonState() {
+                var val = vis.states.attr(data.oid + '.val');
+
+                let buttonState = false;
+
+                if (data.toggleType === 'boolean') {
+                    buttonState = val;
+                } else {
+                    if (val === parseInt(data.valueOn) || val === data.valueOn) {
+                        buttonState = true;
+                    } else if (val !== parseInt(data.valueOn) && val !== data.valueOn && val !== parseInt(data.valueOff) && val !== data.valueOff && data.stateIfNotTrueValue === 'on') {
+                        buttonState = true;
+                    }
+                }
+
+                if (buttonState) {
+                    $this.parent().attr('toggled', true);
+
+                    console.log('true:' + invertImageTrue);
+
+                    $this.parent().css('background', bgColorTrue);
+                    $this.parent().find('.imgButton').attr('src', imageTrue).css(invertImageTrue);
+                    $this.parent().find('.materialdesign-button__label').html(textTrue).css('color', textColorTrue);
+
+
+
+                    $this.find('.labelRowContainer').css('background', labelBgColorTrue);
+                } else {
+                    $this.parent().attr('toggled', false);
+
+                    console.log('false:' + invertImageFalse);
+
+                    $this.parent().css('background', bgColor);
+                    $this.parent().find('.imgButton').attr('src', imageFalse).css(invertImageFalse);
+                    $this.parent().find('.materialdesign-button__label').html(textFalse).css('color', textColorFalse);
+
+
+
+                    $this.find('.labelRowContainer').css('background', labelBgColor);
+                }
+            }
+
+        } catch (ex) {
+            console.exception(`toggle [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+        }
+    }
 };
