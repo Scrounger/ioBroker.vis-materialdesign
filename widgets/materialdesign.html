@@ -17,6 +17,7 @@
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.drawer.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.card.js"></script>
 
+
 <!-- the full description of format in data-vis-attrs can be found here:
     https://github.com/ioBroker/ioBroker.vis/blob/master/www/js/visEditInspect.js#L39
 
@@ -497,10 +498,10 @@
         class="vis-tpl"
         data-vis-prev='<img src="widgets/materialdesign/img/prev_switch.png"></img>'
         data-vis-set="materialdesign"
-        data-vis-type="ctrl,bool"
+        data-vis-type="ctrl,bool,val"
         data-vis-name="Switch"
         data-vis-update-style="true"
-        data-vis-attrs="oid;readOnly/checkbox;vibrateOnMobilDevices[50]/number;"
+        data-vis-attrs="oid;readOnly/checkbox;toggleType[boolean]/select,boolean,value;valueOff;valueOn;stateIfNotTrueValue[on]/select,on,off;vibrateOnMobilDevices[50]/number;"
         data-vis-attrs0="group.label;labelFalse/html;labelTrue/html;labelPosition[left]/select,left,right;labelClickActive[true]/checkbox;"
         data-vis-attrs1="group.color;colorSwitchTrue/color;labelColorFalse/color;labelColorTrue/color;">
         
@@ -539,10 +540,10 @@
         class="vis-tpl"
         data-vis-prev='<img src="widgets/materialdesign/img/prev_checkbox.png"></img>'
         data-vis-set="materialdesign"
-        data-vis-type="ctrl,bool"
+        data-vis-type="ctrl,bool,val"
         data-vis-name="Checkbox"
         data-vis-update-style="true"
-        data-vis-attrs="oid;readOnly/checkbox;vibrateOnMobilDevices[50]/number;"
+        data-vis-attrs="oid;readOnly/checkbox;toggleType[boolean]/select,boolean,value;valueOff;valueOn;stateIfNotTrueValue[on]/select,on,off;vibrateOnMobilDevices[50]/number;"
         data-vis-attrs0="group.label;labelFalse/html;labelTrue/html;labelPosition[left]/select,left,right;labelClickActive[true]/checkbox;"
         data-vis-attrs1="group.color;colorCheckBox/color;labelColorFalse/color;labelColorTrue/color;">
 

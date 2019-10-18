@@ -194,11 +194,23 @@ vis.binds.materialdesign = {
 
             setSwitchState();
 
-            $this.find('.mdc-switch').click(function () {
-                vis.setValue(oid, mdcSwitch.checked);
-                window.navigator.vibrate(data.vibrateOnMobilDevices);
-                setSwitchState();
-            });
+            if (!vis.editMode) {
+                $this.find('.mdc-switch').click(function () {
+                    window.navigator.vibrate(data.vibrateOnMobilDevices);
+
+                    if (data.toggleType === 'boolean') {
+                        vis.setValue(data.oid, mdcSwitch.checked);
+                    } else {
+                        if (!mdcSwitch.checked === true) {
+                            vis.setValue(data.oid, data.valueOff);
+                        } else {
+                            vis.setValue(data.oid, data.valueOn);
+                        }
+                    }
+
+                    setSwitchState();
+                });
+            }
 
             vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
                 setSwitchState();
@@ -206,10 +218,23 @@ vis.binds.materialdesign = {
 
             function setSwitchState() {
                 var val = vis.states.attr(oid + '.val');
-                mdcSwitch.checked = val;
+
+                let buttonState = false;
+
+                if (data.toggleType === 'boolean') {
+                    buttonState = val;
+                } else {
+                    if (val === parseInt(data.valueOn) || val === data.valueOn) {
+                        buttonState = true;
+                    } else if (val !== parseInt(data.valueOn) && val !== data.valueOn && val !== parseInt(data.valueOff) && val !== data.valueOff && data.stateIfNotTrueValue === 'on') {
+                        buttonState = true;
+                    }
+                }
+
+                mdcSwitch.checked = buttonState;
 
                 let label = $this.find('label[id="label"]');
-                if (val) {
+                if (buttonState) {
                     label.css('color', getValueFromData(data.labelColorTrue, ''));
                     label.text(getValueFromData(data.labelTrue, ''));
                 } else {
@@ -234,11 +259,23 @@ vis.binds.materialdesign = {
 
             setCheckboxState();
 
-            $this.find('.mdc-checkbox').click(function () {
-                vis.setValue(data.oid, mdcCheckbox.checked);
-                window.navigator.vibrate(data.vibrateOnMobilDevices);
-                setCheckboxState();
-            });
+            if (!vis.editMode) {
+                $this.find('.mdc-checkbox').click(function () {
+                    window.navigator.vibrate(data.vibrateOnMobilDevices);
+
+                    if (data.toggleType === 'boolean') {
+                        vis.setValue(data.oid, mdcCheckbox.checked);
+                    } else {
+                        if (!mdcCheckbox.checked === true) {
+                            vis.setValue(data.oid, data.valueOff);
+                        } else {
+                            vis.setValue(data.oid, data.valueOn);
+                        }
+                    }
+
+                    setCheckboxState();
+                });
+            }
 
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 setCheckboxState();
@@ -246,10 +283,23 @@ vis.binds.materialdesign = {
 
             function setCheckboxState() {
                 var val = vis.states.attr(data.oid + '.val');
-                mdcCheckbox.checked = val;
+
+                let buttonState = false;
+
+                if (data.toggleType === 'boolean') {
+                    buttonState = val;
+                } else {
+                    if (val === parseInt(data.valueOn) || val === data.valueOn) {
+                        buttonState = true;
+                    } else if (val !== parseInt(data.valueOn) && val !== data.valueOn && val !== parseInt(data.valueOff) && val !== data.valueOff && data.stateIfNotTrueValue === 'on') {
+                        buttonState = true;
+                    }
+                }
+
+                mdcCheckbox.checked = buttonState;
 
                 let label = $this.find('label[id="label"]');
-                if (val) {
+                if (buttonState) {
                     label.css('color', getValueFromData(data.labelColorTrue, ''));
                     label.text(getValueFromData(data.labelTrue, ''));
                 } else {
