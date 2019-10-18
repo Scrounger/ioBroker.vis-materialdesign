@@ -74,35 +74,6 @@ vis.binds.materialdesign = {
             window.navigator.vibrate(data.vibrateOnMobilDevices);
         });
     },
-    buttonLink: function (el, data) {
-        $(el).click(function () {
-            if (!vis.editMode && data.href) {
-                if (data.openNewWindow) {
-                    window.open(data.href);
-                } else {
-                    window.location.href = data.href;
-                }
-            }
-        });
-    },
-    buttonNavigation: function (el, data) {
-        if (!vis.editMode && data.nav_view) {
-            var $this = $(el);
-            var moved = false;
-            $this.on('click touchend', function (e) {
-                // Protect against two events
-                if (vis.detectBounce(this)) return;
-                if (moved) return;
-                vis.changeView(data.nav_view, data.nav_view);
-                //e.preventDefault();
-                //return false;
-            }).on('touchmove', function () {
-                moved = true;
-            }).on('touchstart', function () {
-                moved = false;
-            });
-        }
-    },
     buttonToggle: function (el, data) {
         try {
             var $this = $(el).parent();
