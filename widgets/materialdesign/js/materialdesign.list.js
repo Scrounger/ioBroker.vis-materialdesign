@@ -23,8 +23,6 @@ vis.binds.materialdesign.list = {
             let imageHeight = getValueFromData(data.listImageHeight, '', 'height: ', 'px !important;');
             let spaceBetweenImageAndLabel = getValueFromData(data.distanceBetweenTextAndImage, '', 'margin-right: ', 'px;');
 
-            let colorCheckBox = getValueFromData(data.colorCheckBox, '', 'style=" --mdc-theme-secondary: ', ';"');
-
             let rightTextWidth = getValueFromData(data.rightTextWidth, '', '', 'px');
 
             let nonInteractive = '';
@@ -97,7 +95,7 @@ vis.binds.materialdesign.list = {
                 // generate Item Control Element
                 let itemControl = '';
                 if (data.listType === 'checkbox') {
-                    itemControl = `<div class="mdc-checkbox mdc-list-item__meta" ${colorCheckBox}>
+                    itemControl = `<div class="mdc-checkbox mdc-list-item__meta">
                                         <input type="checkbox" class="mdc-checkbox__native-control" tabindex="-1" data-oid="${data.attr('oid' + i)}" itemindex="${i}">
                                         <div class="mdc-checkbox__background">
                                             <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
@@ -106,7 +104,7 @@ vis.binds.materialdesign.list = {
                                         </div>
                                     </div>`;
                 } else if (data.listType === 'switch') {
-                    itemControl = `<div class="mdc-switch mdc-list-item__meta" ${colorCheckBox}>
+                    itemControl = `<div class="mdc-switch mdc-list-item__meta">
                                         <div class="mdc-switch__track"></div>
                                         <div class="mdc-switch__thumb-underlay">
                                             <div class="mdc-switch__thumb">
@@ -150,6 +148,8 @@ vis.binds.materialdesign.list = {
 
             list.style.setProperty("--materialdesign-color-list-item-header", getValueFromData(data.colorListItemHeaders, ''));
             list.style.setProperty("--materialdesign-color-list-item-divider", getValueFromData(data.colorListItemDivider, ''));
+
+            list.style.setProperty("--mdc-theme-secondary", getValueFromData(data.colorCheckBox, ''));
 
             if (!vis.editMode) {
                 mdcList.listen('MDCList:action', function (item) {                    

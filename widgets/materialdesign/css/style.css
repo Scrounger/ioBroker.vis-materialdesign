@@ -1,4 +1,7 @@
 :root{
+  --mdc-theme-primary: #1e88e5;
+  --mdc-theme-secondary: #1e88e5;
+
   --materialdesign-color-drawer-background: #fff;
   --materialdesign-color-drawer-sub-background: #fff;
   --materialdesign-color-list-item-background: #fff;
@@ -36,8 +39,6 @@
 
 /* Button style -> must defined here because of position bug in vis editor */
 .materialdesign-button {
-  --mdc-theme-primary: #1e88e5;
-
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -425,7 +426,6 @@ svg.materialdesign-button__icon {
 
 /* Icon Button */
 .materialdesign-icon-button {
-  --mdc-theme-primary: #1e88e5;
   border-radius:  100%;
   width: 48px;
   height: 48px;
@@ -560,16 +560,6 @@ svg.materialdesign-button__icon {
   --mdc-ripple-fg-opacity: 0.12;
 }
 
-/* Default switch color */
-.mdc-switch{
-  --mdc-theme-secondary: #1e88e5;
-}
-
-/* Default slider color */
-.mdc-slider{
-  --mdc-theme-secondary: #1e88e5;
-}
-
 .mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track-container{
   background-color: rgba(161, 161, 161, 0.26)
 }
@@ -577,7 +567,6 @@ svg.materialdesign-button__icon {
 /* Default progress settings */
 .mdc-linear-progress {
   height: 100%;
-  --mdc-theme-primary: #1e88e5;
 }
 
 /* Card Layout */
@@ -648,12 +637,6 @@ svg.materialdesign-button__icon {
 /* Default checkbox color */
 .mdc-checkbox {
   --mdc-theme-secondary: #1e88e5;
-}
-
-
-/* Default top app bar color */
-.mdc-top-app-bar {
-  --mdc-theme-primary: #1e88e5;
 }
 
 /* Drawer container */
@@ -728,7 +711,6 @@ svg.materialdesign-button__icon {
 /* Default list color */
 .mdc-list {
   padding: 0;  
-  --mdc-theme-primary: #1e88e5;
 }
 
 .mdc-sub-list {

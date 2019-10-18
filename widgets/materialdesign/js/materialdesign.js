@@ -186,11 +186,15 @@ vis.binds.materialdesign = {
             var $this = $(el);
             var oid = $this.data('oid');
 
+            let switchElement = $this.find('.mdc-switch').get(0);
+
             const mdcFormField = new mdc.formField.MDCFormField($this.context);
-            const mdcSwitch = new mdc.switchControl.MDCSwitch($this.find('.mdc-switch').get(0));
+            const mdcSwitch = new mdc.switchControl.MDCSwitch(switchElement);
             mdcFormField.input = mdcSwitch;
 
             mdcSwitch.disabled = data.readOnly, false;
+
+            switchElement.style.setProperty("--mdc-theme-secondary", getValueFromData(data.colorSwitchTrue, ''));
 
             setSwitchState();
 
@@ -250,12 +254,15 @@ vis.binds.materialdesign = {
         try {
             let $this = $(el);
 
+            let checkboxElement = $this.find('.mdc-checkbox').get(0);
+
             const mdcFormField = new mdc.formField.MDCFormField($this.context);
-            const mdcCheckbox = new mdc.checkbox.MDCCheckbox($this.find('.mdc-checkbox').get(0));
+            const mdcCheckbox = new mdc.checkbox.MDCCheckbox(checkboxElement);
             mdcFormField.input = mdcCheckbox;
 
-            console.log()
             mdcCheckbox.disabled = data.readOnly, false;
+
+            checkboxElement.style.setProperty("--mdc-theme-secondary", getValueFromData(data.colorCheckBox, ''));
 
             setCheckboxState();
 
@@ -468,9 +475,10 @@ vis.binds.materialdesign = {
     mdcProgress: function (el, data) {
         try {
             let $this = $(el);
+            let progressElement = $this.context;
             var oid = $this.attr('data-oid');
 
-            const mdcProgress = new mdc.linearProgress.MDCLinearProgress($this.context);
+            const mdcProgress = new mdc.linearProgress.MDCLinearProgress(progressElement);
 
             var min = getValueFromData(data.min, 0);
             var max = getValueFromData(data.max, 1);
@@ -479,11 +487,12 @@ vis.binds.materialdesign = {
 
             mdcProgress.reverse = data.reverse;
 
-            var color = getValueFromData(data.color, '');
+            var color = getValueFromData(data.colorProgress, '');
             var colorOneCondition = getValueFromData(data.colorOneCondition, 0);
             var colorOne = getValueFromData(data.colorOne, '');
             var colorTwoCondition = getValueFromData(data.colorTwoCondition, 0);
             var colorTwo = getValueFromData(data.colorTwo, '');
+
 
             if (colorOne === '') colorOne = color;
             if (colorTwo === '') colorTwo = color;
@@ -518,11 +527,11 @@ vis.binds.materialdesign = {
                 $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html('&nbsp;' + valueLabel + unit + '&nbsp;');
 
                 if (valueLabel > colorOneCondition && valueLabel <= colorTwoCondition) {
-                    $this.find('.mdc-linear-progress__bar.mdc-linear-progress__primary-bar').find('.mdc-linear-progress__bar-inner').css('background-color', colorOne)
+                    $this.find('.mdc-linear-progress__bar-inner').css('background-color', colorOne)
                 } else if (valueLabel > colorTwoCondition) {
-                    $this.find('.mdc-linear-progress__bar.mdc-linear-progress__primary-bar').find('.mdc-linear-progress__bar-inner').css('background-color', colorTwo)
+                    $this.find('.mdc-linear-progress__bar-inner').css('background-color', colorTwo)
                 } else {
-                    $this.find('.mdc-linear-progress__bar.mdc-linear-progress__primary-bar').find('.mdc-linear-progress__bar-inner').css('background-color', color)
+                    $this.find('.mdc-linear-progress__bar-inner').css('background-color', color)
                 }
             }
         } catch (ex) {

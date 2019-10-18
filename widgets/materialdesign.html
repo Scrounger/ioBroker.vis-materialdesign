@@ -506,11 +506,6 @@
         data-vis-attrs1="group.color;colorSwitchTrue/color;labelColorFalse/color;labelColorTrue/color;">
         
         <%
-            let colorSwitchTrue = '';
-            if (this.data.colorSwitchTrue !== '' && this.data.colorSwitchTrue !== undefined){
-                colorSwitchTrue = '--mdc-theme-secondary: ' + this.data.colorSwitchTrue + ';';
-            }
-
             let labelClickActive = '';
             if (this.data.labelClickActive === 'false' || this.data.labelClickActive === false) {
                 labelClickActive = 'pointer-events:none;'
@@ -523,7 +518,7 @@
         %>
 
         <div class="vis-widget mdc-form-field <%= labelPosition %> materialdesign-switch <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcSwitch(el, data) %>>
-            <div class="mdc-switch" style="margin-left: 10px; margin-right: 10px; <%= colorSwitchTrue %>">
+            <div class="mdc-switch" style="margin-left: 10px; margin-right: 10px;">
                 <div class="mdc-switch__track"></div>
                 <div class="mdc-switch__thumb-underlay">
                     <div class="mdc-switch__thumb">
@@ -548,11 +543,6 @@
         data-vis-attrs1="group.color;colorCheckBox/color;labelColorFalse/color;labelColorTrue/color;">
 
         <%
-            let colorCheckBox = '';
-            if (this.data.colorCheckBox !== '' && this.data.colorCheckBox !== undefined){
-                colorCheckBox = '--mdc-theme-secondary: ' + this.data.colorCheckBox + ';';
-            }
-            
             let labelClickActive = '';
             if (this.data.labelClickActive === 'false' || this.data.labelClickActive === false) {
                 labelClickActive = 'pointer-events:none;'
@@ -565,7 +555,7 @@
         %>
 
         <div class="vis-widget mdc-form-field <%= labelPosition %> materialdesign-checkbox <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcCheckbox(el, data) %>>
-            <div class="mdc-checkbox" style="<%= colorCheckBox %>">
+            <div class="mdc-checkbox">
                 <input type="checkbox" class="mdc-checkbox__native-control" id="materialdesign-checkbox-<%= this.data.attr('wid') %>"/>
                 <div class="mdc-checkbox__background">
                 <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
@@ -625,11 +615,6 @@
         data-vis-attrs1="group.label;showValueLabel[true]/checkbox;valueLabelUnit;valueMaxDecimals;valuePosition[inside]/select,inside,outside;valueLabelWidth[25]/slider,0,100,1;">
 
         <%
-            let colorProgress = '';
-            if (this.data.colorProgress !== '' && this.data.colorProgress !== undefined){
-                colorProgress = 'background-color: ' + this.data.colorProgress + ';';
-            }
-
             let colorBgFalse = '';
             if (this.data.colorBgFalse !== '' && this.data.colorBgFalse !== undefined){
                 colorBgFalse = 'background-color: ' + this.data.colorBgFalse + ';';
@@ -657,7 +642,7 @@
                     <div class="mdc-linear-progress__buffering-dots"></div>
                     <div class="mdc-linear-progress__buffer" style="<%= colorBgFalse %>"></div>
                     <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
-                        <span class="mdc-linear-progress__bar-inner" style="<%= colorProgress %>"></span>
+                        <span class="mdc-linear-progress__bar-inner"></span>
                     </div>
                     <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
                         <span class="mdc-linear-progress__bar-inner"></span>
