@@ -199,7 +199,7 @@ vis.binds.materialdesign.list = {
 
                     vis.states.bind(data.attr('oid' + i) + '.val', function (e, newVal, oldVal) {
                         // i wird nicht gespeichert -> umweg über oid gehen
-                        let input = $this.find('input[data-oid="' + e.type.replace('.val', '') + '"]');
+                        let input = $this.find('input[data-oid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
 
                         input.each(function (d) {
                             // kann mit mehreren oid verknüpft sein
@@ -215,7 +215,7 @@ vis.binds.materialdesign.list = {
 
                     vis.states.bind(data.attr('oid' + i) + '.val', function (e, newVal, oldVal) {
                         // i wird nicht gespeichert -> umweg über oid gehen
-                        let input = $this.parent().find('div[data-oid="' + e.type.replace('.val', '') + '"]');
+                        let input = $this.parent().find('div[data-oid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
 
                         input.each(function (d) {
                             // kann mit mehreren oid verknüpft sein
