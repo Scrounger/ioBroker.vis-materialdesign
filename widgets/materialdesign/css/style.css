@@ -37,6 +37,31 @@
   --materialdesign-color-card-sub-title: #a1a1a1;
 }
 
+@font-face {
+  font-family: RobotoCondensed-Bold;
+	src: url(widgets/materialdesign/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf);
+}
+@font-face {
+	font-family: RobotoCondensed-BoldItalic;
+	src: url(widgets/materialdesign/fonts/Roboto_Condensed/RobotoCondensed-BoldItalic.ttf);
+}
+@font-face {
+	font-family: RobotoCondensed-Italic;
+	src: url(widgets/materialdesign/fonts/Roboto_Condensed/RobotoCondensed-Italic.ttf);
+}
+@font-face {
+	font-family: RobotoCondensed-Light;
+	src: url(widgets/materialdesign/fonts/Roboto_Condensed/RobotoCondensed-Light.ttf);
+}
+@font-face {
+	font-family: RobotoCondensed-LightItalic;
+	src: url(widgets/materialdesign/fonts/Roboto_Condensed/RobotoCondensed-LightItalic.ttf);
+}
+@font-face {
+	font-family: RobotoCondensed-Regular;
+	src: url(widgets/materialdesign/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf);
+}
+
 /* Button style -> must defined here because of position bug in vis editor */
 .materialdesign-button {
   font-family: Roboto, sans-serif;
@@ -829,4 +854,13 @@ svg.materialdesign-button__icon {
   border-width: 1px;
   border-style: solid;
   border-color: #e0e0e0;
+}
+
+/* .materialdesign-chart-container svg>g>g>g>g>rect {
+  fill: #a3a3a33b;
+} */
+
+.materialdesign-chart-container svg>g>g>g>g>rect[stroke="#ffffff"][stroke-width="1"] {
+  stroke: black !important;
+  stroke-width: 0px !important;
 }
