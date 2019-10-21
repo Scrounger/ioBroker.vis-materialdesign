@@ -592,6 +592,15 @@ function getValueFromData(dataValue, nullValue, prepand = '', append = '') {
     }
 }
 
+function getNumberFromData(dataValue, nullValue) {
+    try {
+        return (dataValue === undefined || dataValue === null || dataValue === '' || isNaN(dataValue)) ? nullValue : parseFloat(dataValue);
+    } catch (err) {
+        console.error(err.message);
+        return 'Error';
+    }
+}
+
 function getFontSize(fontSizeValue) {
     let fontSize = getValueFromData(fontSizeValue, null);
 
