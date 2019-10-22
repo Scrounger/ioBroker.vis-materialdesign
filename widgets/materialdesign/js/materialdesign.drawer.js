@@ -194,7 +194,7 @@ vis.binds.materialdesign.drawer = {
                         navItemList.push(`<nav class="mdc-list mdc-sub-list">`);
 
                         for (var d = 0; d <= subItemsArray.length - 1; d++) {
-                            viewsList.push(subItemsArray[d]);
+                            viewsList.push(subItemsArray[d].trim());
 
                             itemIndex++;
 
