@@ -256,9 +256,6 @@ vis.binds.materialdesign.chart = {
                 ]
             };
 
-            
-
-
             // Notice how nested the beginAtZero is
             var options = {
                 responsive: true,
@@ -270,21 +267,73 @@ vis.binds.materialdesign.chart = {
                 },
                 scales: {
                     yAxes: [{
-                        scaleLabel: {
+                        scaleLabel: {       // y-Axis title
                             display: (getValueFromData(data.yAxisTitle, null) !== null),
                             labelString: getValueFromData(data.yAxisTitle, ''),
                             fontColor: getValueFromData(data.yAxisTitleColor, ''),
-                            fontSize: getNumberFromData(data.yAxisTitleFontSize, undefined),
-                            fontFamily: "'Roboto Condensed', arial"
+                            fontFamily: getValueFromData(data.yAxisTitleFontFamily, 'RobotoCondensed-Regular'),
+                            fontSize: getNumberFromData(data.yAxisTitleFontSize, undefined)
                         },
-                        ticks: {
-                            min: getNumberFromData(data.yAxisValueMin, undefined),
-                            max: getNumberFromData(data.yAxisValueMax, undefined),
-                            callback: function(value, index, values) {
-                                return `${value}${getValueFromData(data.yAxisValueAppend, '')}`;
-                            }
+                        ticks: {        // y-Axis values
+                            display: data.yAxisShowAxisLabels,
+                            min: getNumberFromData(data.axisValueMin, undefined),                       // only for barType: vertical
+                            max: getNumberFromData(data.axisValueMax, undefined),                       // only for barType: vertical
+                            stepSize: getNumberFromData(data.axisValueStepSize, undefined),             // only for barType: vertical
+                            callback: function (value, index, values) {
+                                if (data.barType === 'vertical') {                                      // only for barType: vertical
+                                    return `${value}${getValueFromData(data.axisValueAppendText, '')}`;
+                                }
+                                return value;
+                            },
+                            fontColor: getValueFromData(data.yAxisValueLabelColor, ''),
+                            fontFamily: getValueFromData(data.yAxisValueFontFamily, 'RobotoCondensed-Light'),
+                            fontSize: getNumberFromData(data.yAxisValueFontSize, undefined),
+                            padding: getNumberFromData(data.yAxisValueDistanceToAxis, 0),
+                        },
+                        gridLines: {
+                            display: true,
+                            color: getValueFromData(data.yAxisGridLinesColor, 'black'),
+                            lineWidth: getNumberFromData(data.yAxisGridLinesWitdh, 0.1),
+                            drawBorder: data.yAxisShowAxis,
+                            drawOnChartArea: data.yAxisShowGridLines,
+                            drawTicks: data.yAxisShowTicks,
+                            tickMarkLength: getNumberFromData(data.yAxisTickLength, 5),
                         }
-                    }]
+                    }],
+                    xAxes: [{
+                        scaleLabel: {       // x-Axis title
+                            display: (getValueFromData(data.xAxisTitle, null) !== null),
+                            labelString: getValueFromData(data.xAxisTitle, ''),
+                            fontColor: getValueFromData(data.xAxisTitleColor, ''),
+                            fontFamily: getValueFromData(data.xAxisTitleFontFamily, 'RobotoCondensed-Regular'),
+                            fontSize: getNumberFromData(data.xAxisTitleFontSize, undefined)
+                        },
+                        ticks: {        // x-Axis values
+                            display: data.xAxisShowAxisLabels,
+                            min: getNumberFromData(data.axisValueMin, undefined),                       // only for barType: horizontal
+                            max: getNumberFromData(data.axisValueMax, undefined),                       // only for barType: horizontal
+                            stepSize: getNumberFromData(data.axisValueStepSize, undefined),             // only for barType: vertical
+                            callback: function (value, index, values) {                                 // only for barType: horizontal
+                                if (data.barType === 'horizontal') {
+                                    return `${value}${getValueFromData(data.axisValueAppendText, '')}`;
+                                }
+                                return value;
+                            },
+                            fontColor: getValueFromData(data.xAxisValueLabelColor, ''),
+                            fontFamily: getValueFromData(data.xAxisValueFontFamily, 'RobotoCondensed-Light'),
+                            fontSize: getNumberFromData(data.xAxisValueFontSize, undefined),
+                            padding: getNumberFromData(data.xAxisValueDistanceToAxis, 0),
+                        },
+                        gridLines: {
+                            display: true,
+                            color: getValueFromData(data.xAxisGridLinesColor, 'black'),
+                            lineWidth: getNumberFromData(data.xAxisGridLinesWitdh, 0.1),
+                            drawBorder: data.xAxisShowAxis,
+                            drawOnChartArea: data.xAxisShowGridLines,
+                            drawTicks: data.xAxisShowTicks,
+                            tickMarkLength: getNumberFromData(data.xAxisTickLength, 5),
+                        }
+                    }],
                 },
                 plugins: {
                     datalabels: {
@@ -302,14 +351,16 @@ vis.binds.materialdesign.chart = {
             };
 
 
-
             // Chart declaration:
-            var myBarChart = new Chart(ctx, {
-                type: 'bar',
-                data: chartData,
-                options: options,
-                plugins: [ChartDataLabels]     // show value labels
-            });
+            var myBarChart = null;
+            setTimeout(function () {
+                myBarChart = new Chart(ctx, {
+                    type: (data.barType === 'vertical') ? 'bar' : 'horizontalBar',
+                    data: chartData,
+                    options: options,
+                    plugins: [ChartDataLabels]     // show value labels
+                });
+            }, 1)
 
             function onChange(e, newVal, oldVal) {
                 // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
