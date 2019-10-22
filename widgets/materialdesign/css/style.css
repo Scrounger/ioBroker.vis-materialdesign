@@ -37,31 +37,6 @@
   --materialdesign-color-card-sub-title: #a1a1a1;
 }
 
-@font-face {
-  font-family: RobotoCondensed-Bold;
-	src: url(widgets/materialdesign/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf);
-}
-@font-face {
-	font-family: RobotoCondensed-BoldItalic;
-	src: url(widgets/materialdesign/fonts/Roboto_Condensed/RobotoCondensed-BoldItalic.ttf);
-}
-@font-face {
-	font-family: RobotoCondensed-Italic;
-	src: url(widgets/materialdesign/fonts/Roboto_Condensed/RobotoCondensed-Italic.ttf);
-}
-@font-face {
-	font-family: RobotoCondensed-Light;
-	src: url(widgets/materialdesign/fonts/Roboto_Condensed/RobotoCondensed-Light.ttf);
-}
-@font-face {
-	font-family: RobotoCondensed-LightItalic;
-	src: url(widgets/materialdesign/fonts/Roboto_Condensed/RobotoCondensed-LightItalic.ttf);
-}
-@font-face {
-	font-family: RobotoCondensed-Regular;
-	src: url(widgets/materialdesign/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf);
-}
-
 /* Button style -> must defined here because of position bug in vis editor */
 .materialdesign-button {
   font-family: Roboto, sans-serif;
