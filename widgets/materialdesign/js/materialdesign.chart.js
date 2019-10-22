@@ -265,13 +265,24 @@ vis.binds.materialdesign.chart = {
                     text: 'Ice Cream Truck Report',
                     position: 'bottom'
                 },
+                legend: {
+                    display: data.showLegend,
+                    position: data.legendPosition,
+                    labels: {
+                        fontColor: getValueFromData(data.legendFontColor, ''),
+                        fontFamily: getValueFromData(data.legendFontFamily, undefined),
+                        fontSize: getNumberFromData(data.legendFontSize, undefined),
+                        boxWidth: getNumberFromData(data.legendBoxWidth, 10),
+                        usePointStyle: data.legendPointStyle
+                    }
+                },
                 scales: {
                     yAxes: [{
                         scaleLabel: {       // y-Axis title
                             display: (getValueFromData(data.yAxisTitle, null) !== null),
                             labelString: getValueFromData(data.yAxisTitle, ''),
                             fontColor: getValueFromData(data.yAxisTitleColor, ''),
-                            fontFamily: getValueFromData(data.yAxisTitleFontFamily, 'RobotoCondensed-Regular'),
+                            fontFamily: getValueFromData(data.yAxisTitleFontFamily, undefined),
                             fontSize: getNumberFromData(data.yAxisTitleFontSize, undefined)
                         },
                         ticks: {        // y-Axis values
@@ -286,7 +297,7 @@ vis.binds.materialdesign.chart = {
                                 return value;
                             },
                             fontColor: getValueFromData(data.yAxisValueLabelColor, ''),
-                            fontFamily: getValueFromData(data.yAxisValueFontFamily, 'RobotoCondensed-Light'),
+                            fontFamily: getValueFromData(data.yAxisValueFontFamily, undefined),
                             fontSize: getNumberFromData(data.yAxisValueFontSize, undefined),
                             padding: getNumberFromData(data.yAxisValueDistanceToAxis, 0),
                         },
@@ -305,7 +316,7 @@ vis.binds.materialdesign.chart = {
                             display: (getValueFromData(data.xAxisTitle, null) !== null),
                             labelString: getValueFromData(data.xAxisTitle, ''),
                             fontColor: getValueFromData(data.xAxisTitleColor, ''),
-                            fontFamily: getValueFromData(data.xAxisTitleFontFamily, 'RobotoCondensed-Regular'),
+                            fontFamily: getValueFromData(data.xAxisTitleFontFamily, undefined),
                             fontSize: getNumberFromData(data.xAxisTitleFontSize, undefined)
                         },
                         ticks: {        // x-Axis values
@@ -320,7 +331,7 @@ vis.binds.materialdesign.chart = {
                                 return value;
                             },
                             fontColor: getValueFromData(data.xAxisValueLabelColor, ''),
-                            fontFamily: getValueFromData(data.xAxisValueFontFamily, 'RobotoCondensed-Light'),
+                            fontFamily: getValueFromData(data.xAxisValueFontFamily, undefined),
                             fontSize: getNumberFromData(data.xAxisValueFontSize, undefined),
                             padding: getNumberFromData(data.xAxisValueDistanceToAxis, 0),
                         },
