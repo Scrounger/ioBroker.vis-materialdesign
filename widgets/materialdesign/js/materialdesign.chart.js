@@ -82,6 +82,8 @@ vis.binds.materialdesign.chart = {
                             min: getNumberFromData(data.axisValueMin, undefined),                       // only for barType: vertical
                             max: getNumberFromData(data.axisValueMax, undefined),                       // only for barType: vertical
                             stepSize: getNumberFromData(data.axisValueStepSize, undefined),             // only for barType: vertical
+                            autoSkip: (data.barType === 'horizontal' && (getNumberFromData(data.axisMaxLabel, undefined) > 0 || data.axisLabelAutoSkip)),
+                            maxTicksLimit: (data.barType === 'horizontal') ? getNumberFromData(data.axisMaxLabel, undefined) : undefined,
                             callback: function (value, index, values) {
                                 if (data.barType === 'vertical') {                                      // only for barType: vertical
                                     return `${value}${getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
@@ -118,6 +120,8 @@ vis.binds.materialdesign.chart = {
                             min: getNumberFromData(data.axisValueMin, undefined),                       // only for barType: horizontal
                             max: getNumberFromData(data.axisValueMax, undefined),                       // only for barType: horizontal
                             stepSize: getNumberFromData(data.axisValueStepSize, undefined),             // only for barType: vertical
+                            autoSkip: (data.barType === 'vertical' && (getNumberFromData(data.axisMaxLabel, undefined) > 0 || data.axisLabelAutoSkip)),
+                            maxTicksLimit: (data.barType === 'vertical') ? getNumberFromData(data.axisMaxLabel, undefined) : undefined,
                             callback: function (value, index, values) {                                 // only for barType: horizontal
                                 if (data.barType === 'horizontal') {
                                     return `${value}${getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
@@ -128,6 +132,7 @@ vis.binds.materialdesign.chart = {
                             fontFamily: getValueFromData(data.xAxisValueFontFamily, undefined),
                             fontSize: getNumberFromData(data.xAxisValueFontSize, undefined),
                             padding: getNumberFromData(data.xAxisValueDistanceToAxis, 0),
+
                         },
                         gridLines: {
                             display: true,
