@@ -23,7 +23,7 @@ vis.binds.materialdesign.chart = {
             Chart.defaults.global.defaultFontColor = '#1e88e5';
             Chart.defaults.global.defaultFontSize = 15;
             Chart.defaults.global.animation.duration = getNumberFromData(data.animationDuration, 1000);
-            
+
             Chart.plugins.unregister(ChartDataLabels);
 
             let dataArray = []
@@ -150,7 +150,7 @@ vis.binds.materialdesign.chart = {
                         clamp: true,
                         rotation: getNumberFromData(data.barValueRotation, undefined),
                         formatter: function (value, context) {
-                            return `${value}${getValueFromData(data.barValueAppendText, '')}`.split('\\n');
+                            return `${value.round(getNumberFromData(data.barMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.barValueAppendText, '')}`.split('\\n');
                         },
                         font: {
                             family: getValueFromData(data.barValueFontFamily, undefined),
@@ -312,4 +312,8 @@ function convertHex(hex, opacity) {
     let b = parseInt(hex.substring(4, 6), 16);
 
     return 'rgba(' + r + ',' + g + ',' + b + ',' + opacity / 100 + ')';
+}
+
+Number.prototype.round = function (places) {
+    return +(Math.round(this + "e+" + places) + "e-" + places);
 }
