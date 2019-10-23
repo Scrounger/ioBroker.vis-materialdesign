@@ -32,7 +32,7 @@ vis.binds.materialdesign.chart = {
             for (var i = 0; i <= data.barCount; i++) {
                 // row data
                 dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
-                labelArray.push(getValueFromData(data.attr('label' + i), ''));
+                labelArray.push(getValueFromData(data.attr('label' + i), '').split('\\n'));
                 barColorArray.push(getValueFromData(data.attr('barColor' + i), globalBarColor));
 
                 vis.states.bind(data.attr('oid' + i) + '.val', onChange);
