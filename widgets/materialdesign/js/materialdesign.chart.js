@@ -146,7 +146,28 @@ vis.binds.materialdesign.chart = {
                     }],
                 },
                 tooltips: {
-                    enabled: data.showTooltip
+                    enabled: data.showTooltip,
+                    backgroundColor: getValueFromData(data.tooltipBackgroundColor, 'black'),
+                    caretSize: getNumberFromData(data.tooltipArrowSize, 5),
+                    caretPadding: getNumberFromData(data.tooltipDistanceToBar, 2),
+                    cornerRadius: getNumberFromData(data.tooltipBoxRadius, 4),
+                    displayColors: data.tooltipShowColorBox,
+                    xPadding: getNumberFromData(data.tooltipXpadding, 10),
+                    yPadding: getNumberFromData(data.tooltipYpadding, 10),
+                    titleFontColor: getValueFromData(data.tooltipTitleFontColor, 'white'),
+                    titleFontFamily: getValueFromData(data.tooltipTitleFontFamily, undefined),
+                    titleFontSize: getNumberFromData(data.tooltipTitleFontSize, undefined),
+                    titleMarginBottom: getNumberFromData(data.tooltipTitleMarginBottom, 6),
+                    bodyFontColor: getValueFromData(data.tooltipBodyFontColor, 'white'),
+                    bodyFontFamily: getValueFromData(data.tooltipBodyFontFamily, undefined),
+                    bodyFontSize: getNumberFromData(data.tooltipBodyFontSize, undefined),
+                    callbacks: {
+                        label: function (tooltipItem, chart) {
+                            console.log(chart.datasets[0].label);
+                            return `${chart.datasets[0].label}: ${parseFloat(tooltipItem.value).round(getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${data.tooltipBodyAppend}`
+                                    .split('\\n');
+                        }
+                    }
                 },
                 plugins: {
                     datalabels: {
@@ -156,7 +177,7 @@ vis.binds.materialdesign.chart = {
                         rotation: getNumberFromData(data.barValueRotation, undefined),
                         formatter: function (value, context) {
                             return `${value.round(getNumberFromData(data.barMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.barValueAppendText, '')}${getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
-                                    .split('\\n');
+                                .split('\\n');
                         },
                         font: {
                             family: getValueFromData(data.barValueFontFamily, undefined),
