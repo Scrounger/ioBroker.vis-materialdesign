@@ -155,7 +155,8 @@ vis.binds.materialdesign.chart = {
                         clamp: true,
                         rotation: getNumberFromData(data.barValueRotation, undefined),
                         formatter: function (value, context) {
-                            return `${value.round(getNumberFromData(data.barMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.barValueAppendText, '')}`.split('\\n');
+                            return `${value.round(getNumberFromData(data.barMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.barValueAppendText, '')}${getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
+                                    .split('\\n');
                         },
                         font: {
                             family: getValueFromData(data.barValueFontFamily, undefined),
