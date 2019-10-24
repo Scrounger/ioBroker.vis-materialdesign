@@ -67,25 +67,8 @@ vis.binds.materialdesign.chart = {
             var options = {
                 responsive: true,
                 maintainAspectRatio: false,
-                layout: {
-                    padding: {
-                        top: getValueFromData(data.chartPaddingTop, 0),
-                        left: getValueFromData(data.chartPaddingLeft, 0),
-                        right: getValueFromData(data.chartPaddingRight, 0),
-                        bottom: getValueFromData(data.chartPaddingBottom, 0)
-                    }
-                },
-                legend: {
-                    display: data.showLegend,
-                    position: data.legendPosition,
-                    labels: {
-                        fontColor: getValueFromData(data.legendFontColor, undefined),
-                        fontFamily: getValueFromData(data.legendFontFamily, undefined),
-                        fontSize: getNumberFromData(data.legendFontSize, undefined),
-                        boxWidth: getNumberFromData(data.legendBoxWidth, 10),
-                        usePointStyle: data.legendPointStyle
-                    }
-                },
+                layout: myHelper.getLayout(data),
+                legend: myHelper.getLegend(data),
                 scales: {
                     yAxes: [
                         myHelper.get_Y_AxisObject(data.chartType, data.barWidth, data.yAxisTitle, data.yAxisTitleColor, data.yAxisTitleFontFamily, data.yAxisTitleFontSize,
@@ -232,25 +215,8 @@ vis.binds.materialdesign.chart = {
             var options = {
                 responsive: true,
                 maintainAspectRatio: false,
-                layout: {
-                    padding: {
-                        top: getValueFromData(data.chartPaddingTop, 0),
-                        left: getValueFromData(data.chartPaddingLeft, 0),
-                        right: getValueFromData(data.chartPaddingRight, 0),
-                        bottom: getValueFromData(data.chartPaddingBottom, 0)
-                    }
-                },
-                legend: {
-                    display: data.showLegend,
-                    position: data.legendPosition,
-                    labels: {
-                        fontColor: getValueFromData(data.legendFontColor, undefined),
-                        fontFamily: getValueFromData(data.legendFontFamily, undefined),
-                        fontSize: getNumberFromData(data.legendFontSize, undefined),
-                        boxWidth: getNumberFromData(data.legendBoxWidth, 10),
-                        usePointStyle: data.legendPointStyle
-                    }
-                },
+                layout: myHelper.getLayout(data),
+                legend: myHelper.getLegend(data),
                 tooltips: {
                     enabled: data.showTooltip,
                     backgroundColor: getValueFromData(data.tooltipBackgroundColor, 'black'),
@@ -553,6 +519,29 @@ vis.binds.materialdesign.chart.helper = {
 
             borderWidth: getNumberFromData(borderWidth, undefined),
             hoverBorderWidth: getNumberFromData(hoverBorderWidth, undefined),
+        }
+    },
+    getLegend: function (data) {
+        return {
+            display: data.showLegend,
+            position: data.legendPosition,
+            labels: {
+                fontColor: getValueFromData(data.legendFontColor, undefined),
+                fontFamily: getValueFromData(data.legendFontFamily, undefined),
+                fontSize: getNumberFromData(data.legendFontSize, undefined),
+                boxWidth: getNumberFromData(data.legendBoxWidth, 10),
+                usePointStyle: data.legendPointStyle
+            }
+        }
+    },
+    getLayout: function (data) {
+        return {
+            padding: {
+                top: getValueFromData(data.chartPaddingTop, 0),
+                left: getValueFromData(data.chartPaddingLeft, 0),
+                right: getValueFromData(data.chartPaddingRight, 0),
+                bottom: getValueFromData(data.chartPaddingBottom, 0)
+            }
         }
     }
 }
