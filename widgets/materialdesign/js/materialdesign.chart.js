@@ -102,7 +102,7 @@ vis.binds.materialdesign.chart = {
                     callbacks: {
                         label: function (tooltipItem, chart) {
                             if (tooltipItem && tooltipItem.value) {
-                                return `${chart.datasets[0].label}: ${parseFloat(tooltipItem.value).round(getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${data.tooltipBodyAppend}`
+                                return `${chart.datasets[0].label}: ${myHelper.roundNumber(parseFloat(tooltipItem.value), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${data.tooltipBodyAppend}`
                                     .split('\\n');
                             }
                             return '';
@@ -117,7 +117,7 @@ vis.binds.materialdesign.chart = {
                         rotation: getNumberFromData(data.valuesRotation, undefined),
                         formatter: function (value, context) {
                             if (value) {
-                                return `${value.round(getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.valuesAppendText, '')}${getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
+                                return `${myHelper.roundNumber(value, getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.valuesAppendText, '')}${getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
                                     .split('\\n');
                             }
                             return '';
@@ -236,7 +236,7 @@ vis.binds.materialdesign.chart = {
                     callbacks: {
                         label: function (tooltipItem, chart) {
                             if (tooltipItem && tooltipItem.value) {
-                                return `${chart.datasets[0].label}: ${parseFloat(tooltipItem.value).round(getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${data.tooltipBodyAppend}`
+                                return `${chart.datasets[0].label}: ${myHelper.roundNumber(parseFloat(tooltipItem.value), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${data.tooltipBodyAppend}`
                                     .split('\\n');
                             }
                             return '';
@@ -251,7 +251,7 @@ vis.binds.materialdesign.chart = {
                         rotation: getNumberFromData(data.valuesRotation, undefined),
                         formatter: function (value, context) {
                             if (value) {
-                                return `${value.round(getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.valuesAppendText, '')}${getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
+                                return `${myHelper.roundNumber(value, getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.valuesAppendText, '')}${getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
                                     .split('\\n');
                             }
                             return '';
@@ -417,10 +417,6 @@ function convertHex(hex, opacity) {
     return 'rgba(' + r + ',' + g + ',' + b + ',' + opacity / 100 + ')';
 }
 
-Number.prototype.round = function (places) {
-    return +(Math.round(this + "e+" + places) + "e-" + places);
-}
-
 vis.binds.materialdesign.chart.helper = {
     get_Y_AxisObject: function (chartType, yAxisPosition, barWidth, yAxisTitle, yAxisTitleColor, yAxisTitleFontFamily, yAxisTitleFontSize, yAxisShowAxisLabels, axisValueMin,
         axisValueMax, axisValueStepSize, axisMaxLabel, axisLabelAutoSkip, axisValueAppendText, yAxisValueLabelColor, yAxisValueFontFamily, yAxisValueFontSize,
@@ -545,5 +541,8 @@ vis.binds.materialdesign.chart.helper = {
                 bottom: getValueFromData(data.chartPaddingBottom, 0)
             }
         }
+    },
+    roundNumber(value, maxDecimals) {
+        return +(Math.round(value + "e+" + maxDecimals) + "e-" + maxDecimals);
     }
 }
