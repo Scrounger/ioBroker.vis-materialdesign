@@ -71,13 +71,13 @@ vis.binds.materialdesign.chart = {
                 legend: myHelper.getLegend(data),
                 scales: {
                     yAxes: [
-                        myHelper.get_Y_AxisObject(data.chartType, data.barWidth, data.yAxisTitle, data.yAxisTitleColor, data.yAxisTitleFontFamily, data.yAxisTitleFontSize,
+                        myHelper.get_Y_AxisObject(data.chartType, data.yAxisPosition, data.barWidth, data.yAxisTitle, data.yAxisTitleColor, data.yAxisTitleFontFamily, data.yAxisTitleFontSize,
                             data.yAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
                             data.yAxisValueLabelColor, data.yAxisValueFontFamily, data.yAxisValueFontSize, data.yAxisValueDistanceToAxis, data.yAxisGridLinesColor,
                             data.yAxisGridLinesWitdh, data.yAxisShowAxis, data.yAxisShowGridLines, data.yAxisShowTicks, data.yAxisTickLength)
                     ],
                     xAxes: [
-                        myHelper.get_X_AxisObject(data.chartType, data.barWidth, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
+                        myHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.barWidth, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
                             data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
                             data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
                             data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength)
@@ -422,12 +422,13 @@ Number.prototype.round = function (places) {
 }
 
 vis.binds.materialdesign.chart.helper = {
-    get_Y_AxisObject: function (chartType, barWidth, yAxisTitle, yAxisTitleColor, yAxisTitleFontFamily, yAxisTitleFontSize, yAxisShowAxisLabels, axisValueMin,
+    get_Y_AxisObject: function (chartType, yAxisPosition, barWidth, yAxisTitle, yAxisTitleColor, yAxisTitleFontFamily, yAxisTitleFontSize, yAxisShowAxisLabels, axisValueMin,
         axisValueMax, axisValueStepSize, axisMaxLabel, axisLabelAutoSkip, axisValueAppendText, yAxisValueLabelColor, yAxisValueFontFamily, yAxisValueFontSize,
         yAxisValueDistanceToAxis, yAxisGridLinesColor, yAxisGridLinesWitdh, yAxisShowAxis, yAxisShowGridLines, yAxisShowTicks, yAxisTickLength) {
         return {
             categoryPercentage: getNumberFromData(barWidth, 80) / 100,
             barPercentage: getNumberFromData(barWidth, 80) / 100,
+            position: yAxisPosition,
             scaleLabel: {       // y-Axis title
                 display: (getValueFromData(yAxisTitle, null) !== null),
                 labelString: getValueFromData(yAxisTitle, ''),
@@ -464,12 +465,13 @@ vis.binds.materialdesign.chart.helper = {
             }
         }
     },
-    get_X_AxisObject: function (chartType, barWidth, xAxisTitle, xAxisTitleColor, xAxisTitleFontFamily, xAxisTitleFontSize, xAxisShowAxisLabels, axisValueMin, axisValueMax, axisValueStepSize,
+    get_X_AxisObject: function (chartType, xAxisPosition, barWidth, xAxisTitle, xAxisTitleColor, xAxisTitleFontFamily, xAxisTitleFontSize, xAxisShowAxisLabels, axisValueMin, axisValueMax, axisValueStepSize,
         axisMaxLabel, axisLabelAutoSkip, axisValueAppendText, xAxisValueLabelColor, xAxisValueFontFamily, xAxisValueFontSize, xAxisValueDistanceToAxis, xAxisGridLinesColor, xAxisGridLinesWitdh,
         xAxisShowAxis, xAxisShowGridLines, xAxisShowTicks, xAxisTickLength) {
         return {
             categoryPercentage: getNumberFromData(barWidth, 80) / 100,
             barPercentage: getNumberFromData(barWidth, 80) / 100,
+            position: xAxisPosition,
             scaleLabel: {       // x-Axis title
                 display: (getValueFromData(xAxisTitle, null) !== null),
                 labelString: getValueFromData(xAxisTitle, ''),
