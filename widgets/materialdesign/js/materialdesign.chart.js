@@ -7,10 +7,14 @@
 */
 "use strict";
 
+
+
 // this code can be placed directly in materialdesign.html
 vis.binds.materialdesign.chart = {
     bar: function (el, data) {
         try {
+            let myHelper = vis.binds.materialdesign.chart.helper;
+
             let $this = $(el);
             var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
 
@@ -75,83 +79,18 @@ vis.binds.materialdesign.chart = {
                     }
                 },
                 scales: {
-                    yAxes: [{
-                        categoryPercentage: getNumberFromData(data.barWidth, 80) / 100,
-                        barPercentage: getNumberFromData(data.barWidth, 80) / 100,
-                        scaleLabel: {       // y-Axis title
-                            display: (getValueFromData(data.yAxisTitle, null) !== null),
-                            labelString: getValueFromData(data.yAxisTitle, ''),
-                            fontColor: getValueFromData(data.yAxisTitleColor, undefined),
-                            fontFamily: getValueFromData(data.yAxisTitleFontFamily, undefined),
-                            fontSize: getNumberFromData(data.yAxisTitleFontSize, undefined)
-                        },
-                        ticks: {        // y-Axis values
-                            display: data.yAxisShowAxisLabels,
-                            min: getNumberFromData(data.axisValueMin, undefined),                       // only for chartType: vertical
-                            max: getNumberFromData(data.axisValueMax, undefined),                       // only for chartType: vertical
-                            stepSize: getNumberFromData(data.axisValueStepSize, undefined),             // only for chartType: vertical
-                            autoSkip: (data.chartType === 'horizontal' && (getNumberFromData(data.axisMaxLabel, undefined) > 0 || data.axisLabelAutoSkip)),
-                            maxTicksLimit: (data.chartType === 'horizontal') ? getNumberFromData(data.axisMaxLabel, undefined) : undefined,
-                            callback: function (value, index, values) {
-                                if (data.chartType === 'vertical') {                                      // only for chartType: vertical
-                                    return `${value}${getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
-                                }
-                                return value;
-                            },
-                            fontColor: getValueFromData(data.yAxisValueLabelColor, undefined),
-                            fontFamily: getValueFromData(data.yAxisValueFontFamily, undefined),
-                            fontSize: getNumberFromData(data.yAxisValueFontSize, undefined),
-                            padding: getNumberFromData(data.yAxisValueDistanceToAxis, 0),
-                        },
-                        gridLines: {
-                            display: true,
-                            color: getValueFromData(data.yAxisGridLinesColor, 'black'),
-                            lineWidth: getNumberFromData(data.yAxisGridLinesWitdh, 0.1),
-                            drawBorder: data.yAxisShowAxis,
-                            drawOnChartArea: data.yAxisShowGridLines,
-                            drawTicks: data.yAxisShowTicks,
-                            tickMarkLength: getNumberFromData(data.yAxisTickLength, 5),
-                        }
-                    }],
-                    xAxes: [{
-                        categoryPercentage: getNumberFromData(data.barWidth, 80) / 100,
-                        barPercentage: getNumberFromData(data.barWidth, 80) / 100,
-                        scaleLabel: {       // x-Axis title
-                            display: (getValueFromData(data.xAxisTitle, null) !== null),
-                            labelString: getValueFromData(data.xAxisTitle, ''),
-                            fontColor: getValueFromData(data.xAxisTitleColor, undefined),
-                            fontFamily: getValueFromData(data.xAxisTitleFontFamily, undefined),
-                            fontSize: getNumberFromData(data.xAxisTitleFontSize, undefined)
-                        },
-                        ticks: {        // x-Axis values
-                            display: data.xAxisShowAxisLabels,
-                            min: getNumberFromData(data.axisValueMin, undefined),                       // only for chartType: horizontal
-                            max: getNumberFromData(data.axisValueMax, undefined),                       // only for chartType: horizontal
-                            stepSize: getNumberFromData(data.axisValueStepSize, undefined),             // only for chartType: vertical
-                            autoSkip: (data.chartType === 'vertical' && (getNumberFromData(data.axisMaxLabel, undefined) > 0 || data.axisLabelAutoSkip)),
-                            maxTicksLimit: (data.chartType === 'vertical') ? getNumberFromData(data.axisMaxLabel, undefined) : undefined,
-                            callback: function (value, index, values) {                                 // only for chartType: horizontal
-                                if (data.chartType === 'horizontal') {
-                                    return `${value}${getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
-                                }
-                                return value;
-                            },
-                            fontColor: getValueFromData(data.xAxisValueLabelColor, undefined),
-                            fontFamily: getValueFromData(data.xAxisValueFontFamily, undefined),
-                            fontSize: getNumberFromData(data.xAxisValueFontSize, undefined),
-                            padding: getNumberFromData(data.xAxisValueDistanceToAxis, 0),
-
-                        },
-                        gridLines: {
-                            display: true,
-                            color: getValueFromData(data.xAxisGridLinesColor, 'black'),
-                            lineWidth: getNumberFromData(data.xAxisGridLinesWitdh, 0.1),
-                            drawBorder: data.xAxisShowAxis,
-                            drawOnChartArea: data.xAxisShowGridLines,
-                            drawTicks: data.xAxisShowTicks,
-                            tickMarkLength: getNumberFromData(data.xAxisTickLength, 5),
-                        }
-                    }],
+                    yAxes: [
+                        myHelper.get_Y_AxisObject(data.chartType, data.barWidth, data.yAxisTitle, data.yAxisTitleColor, data.yAxisTitleFontFamily, data.yAxisTitleFontSize,
+                            data.yAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
+                            data.yAxisValueLabelColor, data.yAxisValueFontFamily, data.yAxisValueFontSize, data.yAxisValueDistanceToAxis, data.yAxisGridLinesColor,
+                            data.yAxisGridLinesWitdh, data.yAxisShowAxis, data.yAxisShowGridLines, data.yAxisShowTicks, data.yAxisTickLength)
+                    ],
+                    xAxes: [
+                        myHelper.get_X_AxisObject(data.chartType, data.barWidth, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
+                            data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
+                            data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
+                            data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength)
+                    ],
                 },
                 tooltips: {
                     enabled: data.showTooltip,
@@ -232,6 +171,8 @@ vis.binds.materialdesign.chart = {
     },
     pie: function (el, data) {
         try {
+            let myHelper = vis.binds.materialdesign.chart.helper;
+            
             let $this = $(el);
             var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
 
@@ -296,44 +237,11 @@ vis.binds.materialdesign.chart = {
                     }
                 },
                 scales: {
-                    yAxes: [{
-                        categoryPercentage: getNumberFromData(data.barWidth, 80) / 100,
-                        barPercentage: getNumberFromData(data.barWidth, 80) / 100,
-                        scaleLabel: {       // y-Axis title
-                            display: (getValueFromData(data.yAxisTitle, null) !== null),
-                            labelString: getValueFromData(data.yAxisTitle, ''),
-                            fontColor: getValueFromData(data.yAxisTitleColor, undefined),
-                            fontFamily: getValueFromData(data.yAxisTitleFontFamily, undefined),
-                            fontSize: getNumberFromData(data.yAxisTitleFontSize, undefined)
-                        },
-                        ticks: {        // y-Axis values
-                            display: data.yAxisShowAxisLabels,
-                            min: getNumberFromData(data.axisValueMin, undefined),                       // only for chartType: vertical
-                            max: getNumberFromData(data.axisValueMax, undefined),                       // only for chartType: vertical
-                            stepSize: getNumberFromData(data.axisValueStepSize, undefined),             // only for chartType: vertical
-                            autoSkip: (data.chartType === 'horizontal' && (getNumberFromData(data.axisMaxLabel, undefined) > 0 || data.axisLabelAutoSkip)),
-                            maxTicksLimit: (data.chartType === 'horizontal') ? getNumberFromData(data.axisMaxLabel, undefined) : undefined,
-                            callback: function (value, index, values) {
-                                if (data.chartType === 'vertical') {                                      // only for chartType: vertical
-                                    return `${value}${getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
-                                }
-                                return value;
-                            },
-                            fontColor: getValueFromData(data.yAxisValueLabelColor, undefined),
-                            fontFamily: getValueFromData(data.yAxisValueFontFamily, undefined),
-                            fontSize: getNumberFromData(data.yAxisValueFontSize, undefined),
-                            padding: getNumberFromData(data.yAxisValueDistanceToAxis, 0),
-                        },
-                        gridLines: {
-                            display: true,
-                            color: getValueFromData(data.yAxisGridLinesColor, 'black'),
-                            lineWidth: getNumberFromData(data.yAxisGridLinesWitdh, 0.1),
-                            drawBorder: data.yAxisShowAxis,
-                            drawOnChartArea: data.yAxisShowGridLines,
-                            drawTicks: data.yAxisShowTicks,
-                            tickMarkLength: getNumberFromData(data.yAxisTickLength, 5),
-                        }
-                    }],
+                    yAxes: [myHelper.get_Y_AxisObject(data.chartType, data.barWidth, data.yAxisTitle, data.yAxisTitleColor, data.yAxisTitleFontFamily, data.yAxisTitleFontSize, data.yAxisShowAxisLabels,
+                        data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
+                        data.yAxisValueLabelColor, data.yAxisValueFontFamily, data.yAxisValueFontSize, data.yAxisValueDistanceToAxis, data.yAxisGridLinesColor,
+                        data.yAxisGridLinesWitdh, data.yAxisShowAxis, data.yAxisShowGridLines, data.yAxisShowTicks, data.yAxisTickLength)
+                    ],
                     xAxes: [{
                         categoryPercentage: getNumberFromData(data.barWidth, 80) / 100,
                         barPercentage: getNumberFromData(data.barWidth, 80) / 100,
@@ -421,6 +329,7 @@ vis.binds.materialdesign.chart = {
                     }
                 }
             };
+
 
 
             // Chart declaration:
@@ -577,4 +486,92 @@ function convertHex(hex, opacity) {
 
 Number.prototype.round = function (places) {
     return +(Math.round(this + "e+" + places) + "e-" + places);
+}
+
+vis.binds.materialdesign.chart.helper = {
+    get_Y_AxisObject: function (chartType, barWidth, yAxisTitle, yAxisTitleColor, yAxisTitleFontFamily, yAxisTitleFontSize, yAxisShowAxisLabels, axisValueMin,
+        axisValueMax, axisValueStepSize, axisMaxLabel, axisLabelAutoSkip, axisValueAppendText, yAxisValueLabelColor, yAxisValueFontFamily, yAxisValueFontSize,
+        yAxisValueDistanceToAxis, yAxisGridLinesColor, yAxisGridLinesWitdh, yAxisShowAxis, yAxisShowGridLines, yAxisShowTicks, yAxisTickLength) {
+        return {
+            categoryPercentage: getNumberFromData(barWidth, 80) / 100,
+            barPercentage: getNumberFromData(barWidth, 80) / 100,
+            scaleLabel: {       // y-Axis title
+                display: (getValueFromData(yAxisTitle, null) !== null),
+                labelString: getValueFromData(yAxisTitle, ''),
+                fontColor: getValueFromData(yAxisTitleColor, undefined),
+                fontFamily: getValueFromData(yAxisTitleFontFamily, undefined),
+                fontSize: getNumberFromData(yAxisTitleFontSize, undefined)
+            },
+            ticks: {        // y-Axis values
+                display: yAxisShowAxisLabels,
+                min: getNumberFromData(axisValueMin, undefined),                       // only for chartType: vertical
+                max: getNumberFromData(axisValueMax, undefined),                       // only for chartType: vertical
+                stepSize: getNumberFromData(axisValueStepSize, undefined),             // only for chartType: vertical
+                autoSkip: (chartType === 'horizontal' && (getNumberFromData(axisMaxLabel, undefined) > 0 || axisLabelAutoSkip)),
+                maxTicksLimit: (chartType === 'horizontal') ? getNumberFromData(axisMaxLabel, undefined) : undefined,
+                callback: function (value, index, values) {
+                    if (chartType === 'vertical') {                                      // only for chartType: vertical
+                        return `${value}${getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                    }
+                    return value;
+                },
+                fontColor: getValueFromData(yAxisValueLabelColor, undefined),
+                fontFamily: getValueFromData(yAxisValueFontFamily, undefined),
+                fontSize: getNumberFromData(yAxisValueFontSize, undefined),
+                padding: getNumberFromData(yAxisValueDistanceToAxis, 0),
+            },
+            gridLines: {
+                display: true,
+                color: getValueFromData(yAxisGridLinesColor, 'black'),
+                lineWidth: getNumberFromData(yAxisGridLinesWitdh, 0.1),
+                drawBorder: yAxisShowAxis,
+                drawOnChartArea: yAxisShowGridLines,
+                drawTicks: yAxisShowTicks,
+                tickMarkLength: getNumberFromData(yAxisTickLength, 5),
+            }
+        }
+    },
+    get_X_AxisObject: function (chartType, barWidth, xAxisTitle, xAxisTitleColor, xAxisTitleFontFamily, xAxisTitleFontSize, xAxisShowAxisLabels, axisValueMin, axisValueMax, axisValueStepSize,
+        axisMaxLabel, axisLabelAutoSkip, axisValueAppendText, xAxisValueLabelColor, xAxisValueFontFamily, xAxisValueFontSize, xAxisValueDistanceToAxis, xAxisGridLinesColor, xAxisGridLinesWitdh,
+        xAxisShowAxis, xAxisShowGridLines, xAxisShowTicks, xAxisTickLength) {
+        return {
+            categoryPercentage: getNumberFromData(barWidth, 80) / 100,
+            barPercentage: getNumberFromData(barWidth, 80) / 100,
+            scaleLabel: {       // x-Axis title
+                display: (getValueFromData(xAxisTitle, null) !== null),
+                labelString: getValueFromData(xAxisTitle, ''),
+                fontColor: getValueFromData(xAxisTitleColor, undefined),
+                fontFamily: getValueFromData(xAxisTitleFontFamily, undefined),
+                fontSize: getNumberFromData(xAxisTitleFontSize, undefined)
+            },
+            ticks: {        // x-Axis values
+                display: xAxisShowAxisLabels,
+                min: getNumberFromData(axisValueMin, undefined),                       // only for chartType: horizontal
+                max: getNumberFromData(axisValueMax, undefined),                       // only for chartType: horizontal
+                stepSize: getNumberFromData(axisValueStepSize, undefined),             // only for chartType: vertical
+                autoSkip: (chartType === 'vertical' && (getNumberFromData(axisMaxLabel, undefined) > 0 || axisLabelAutoSkip)),
+                maxTicksLimit: (chartType === 'vertical') ? getNumberFromData(axisMaxLabel, undefined) : undefined,
+                callback: function (value, index, values) {                                 // only for chartType: horizontal
+                    if (chartType === 'horizontal') {
+                        return `${value}${getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                    }
+                    return value;
+                },
+                fontColor: getValueFromData(xAxisValueLabelColor, undefined),
+                fontFamily: getValueFromData(xAxisValueFontFamily, undefined),
+                fontSize: getNumberFromData(xAxisValueFontSize, undefined),
+                padding: getNumberFromData(xAxisValueDistanceToAxis, 0),
+
+            },
+            gridLines: {
+                display: true,
+                color: getValueFromData(xAxisGridLinesColor, 'black'),
+                lineWidth: getNumberFromData(xAxisGridLinesWitdh, 0.1),
+                drawBorder: xAxisShowAxis,
+                drawOnChartArea: xAxisShowGridLines,
+                drawTicks: xAxisShowTicks,
+                tickMarkLength: getNumberFromData(xAxisTickLength, 5),
+            }
+        }
+    }
 }
