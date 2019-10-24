@@ -50,14 +50,12 @@ vis.binds.materialdesign.chart = {
             var chartData = {
                 labels: labelArray,
                 datasets: [
-                    {
-                        label: getValueFromData(data.barLabelText, ''),
-                        data: dataArray,
-                        backgroundColor: dataColorArray,
-                        hoverBackgroundColor: hoverDataColorArray,
-                        hoverBorderColor: getValueFromData(data.hoverBorderColor, undefined),
-                        hoverBorderWidth: getNumberFromData(data.hoverBorderWidth, undefined),
-                    }
+                    Object.assign(myHelper.getDataset(dataArray, dataColorArray, hoverDataColorArray, undefined, data.hoverBorderColor, undefined, data.hoverBorderWidth),
+                        {
+                            // chart specific properties
+                            label: getValueFromData(data.barLabelText, ''),
+                        }
+                    )
                 ]
             };
 
@@ -214,18 +212,12 @@ vis.binds.materialdesign.chart = {
             var chartData = {
                 labels: labelArray,
                 datasets: [
-                    {
-                        data: dataArray,
-                        backgroundColor: dataColorArray,
-                        hoverBackgroundColor: hoverDataColorArray,
-                        borderColor: getValueFromData(data.borderColor, 'white'),
-                        hoverBorderColor: getValueFromData(data.hoverBorderColor, undefined),
-                        
-                        borderWidth: getNumberFromData(data.borderWidth, undefined),
-                        hoverBorderWidth: getNumberFromData(data.hoverBorderWidth, undefined),
-                        
-                        borderAlign: 'inner',
-                    }
+                    Object.assign(myHelper.getDataset(dataArray, dataColorArray, hoverDataColorArray, data.borderColor, data.hoverBorderColor, data.borderWidth, data.hoverBorderWidth),
+                        {
+                            // chart specific properties
+                            borderAlign: 'inner',
+                        }
+                    )
                 ]
             };
 
@@ -542,6 +534,20 @@ vis.binds.materialdesign.chart.helper = {
                 drawTicks: xAxisShowTicks,
                 tickMarkLength: getNumberFromData(xAxisTickLength, 5),
             }
+        }
+    },
+    getDataset: function (dataArray, dataColorArray, hoverDataColorArray, borderColor, hoverBorderColor, borderWidth, hoverBorderWidth) {
+        return {
+            data: dataArray,
+
+            backgroundColor: dataColorArray,
+            hoverBackgroundColor: hoverDataColorArray,
+
+            borderColor: getValueFromData(borderColor, 'white'),
+            hoverBorderColor: getValueFromData(hoverBorderColor, undefined),
+
+            borderWidth: getNumberFromData(borderWidth, undefined),
+            hoverBorderWidth: getNumberFromData(hoverBorderWidth, undefined),
         }
     }
 }
