@@ -34,6 +34,8 @@ vis.binds.materialdesign.chart = {
             let labelArray = [];
             let dataColorArray = [];
             let hoverDataColorArray = [];
+            let globalValueTextColor = getValueFromData(data.valuesFontColor, 'black')
+            let valueTextColorArray = [];
             for (var i = 0; i <= data.barCount; i++) {
                 // row data
                 dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
@@ -42,6 +44,8 @@ vis.binds.materialdesign.chart = {
                 let bgColor = getValueFromData(data.attr('dataColor' + i), globalColor)
                 dataColorArray.push(bgColor);
                 hoverDataColorArray.push(convertHex(bgColor, 80))
+
+                valueTextColorArray.push(getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor))
 
                 vis.states.bind(data.attr('oid' + i) + '.val', onChange);
             }
@@ -139,11 +143,10 @@ vis.binds.materialdesign.chart = {
                             family: getValueFromData(data.valuesFontFamily, undefined),
                             size: getNumberFromData(data.valuesFontSize, undefined),
                         },
-                        color: getValueFromData(data.valuesFontColor, 'black'),
+                        color: valueTextColorArray,
                     }
                 }
             };
-
 
             // Chart declaration:
             var myBarChart = null;
@@ -196,6 +199,8 @@ vis.binds.materialdesign.chart = {
             let labelArray = [];
             let dataColorArray = [];
             let hoverDataColorArray = [];
+            let globalValueTextColor = getValueFromData(data.valuesFontColor, 'black')
+            let valueTextColorArray = [];
             for (var i = 0; i <= data.barCount; i++) {
                 // row data
                 dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
@@ -204,6 +209,8 @@ vis.binds.materialdesign.chart = {
                 let bgColor = getValueFromData(data.attr('dataColor' + i), globalColor)
                 dataColorArray.push(bgColor);
                 hoverDataColorArray.push(convertHex(bgColor, 80))
+
+                valueTextColorArray.push(getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor))
 
                 vis.states.bind(data.attr('oid' + i) + '.val', onChange);
             }
@@ -287,12 +294,10 @@ vis.binds.materialdesign.chart = {
                             family: getValueFromData(data.valuesFontFamily, undefined),
                             size: getNumberFromData(data.valuesFontSize, undefined),
                         },
-                        color: getValueFromData(data.valuesFontColor, 'black'),
+                        color: valueTextColorArray,
                     }
                 }
             };
-
-
 
             // Chart declaration:
             var myBarChart = null;
