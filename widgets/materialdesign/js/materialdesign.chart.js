@@ -55,6 +55,14 @@ vis.binds.materialdesign.chart = {
             var options = {
                 responsive: true,
                 maintainAspectRatio: false,
+                layout: {
+                    padding: {
+                        top: getValueFromData(data.chartPaddingTop, 0),
+                        left: getValueFromData(data.chartPaddingLeft, 0),
+                        right: getValueFromData(data.chartPaddingRight, 0),
+                        bottom: getValueFromData(data.chartPaddingBottom, 0)
+                    }
+                },
                 legend: {
                     display: data.showLegend,
                     position: data.legendPosition,
@@ -79,13 +87,13 @@ vis.binds.materialdesign.chart = {
                         },
                         ticks: {        // y-Axis values
                             display: data.yAxisShowAxisLabels,
-                            min: getNumberFromData(data.axisValueMin, undefined),                       // only for barType: vertical
-                            max: getNumberFromData(data.axisValueMax, undefined),                       // only for barType: vertical
-                            stepSize: getNumberFromData(data.axisValueStepSize, undefined),             // only for barType: vertical
-                            autoSkip: (data.barType === 'horizontal' && (getNumberFromData(data.axisMaxLabel, undefined) > 0 || data.axisLabelAutoSkip)),
-                            maxTicksLimit: (data.barType === 'horizontal') ? getNumberFromData(data.axisMaxLabel, undefined) : undefined,
+                            min: getNumberFromData(data.axisValueMin, undefined),                       // only for chartType: vertical
+                            max: getNumberFromData(data.axisValueMax, undefined),                       // only for chartType: vertical
+                            stepSize: getNumberFromData(data.axisValueStepSize, undefined),             // only for chartType: vertical
+                            autoSkip: (data.chartType === 'horizontal' && (getNumberFromData(data.axisMaxLabel, undefined) > 0 || data.axisLabelAutoSkip)),
+                            maxTicksLimit: (data.chartType === 'horizontal') ? getNumberFromData(data.axisMaxLabel, undefined) : undefined,
                             callback: function (value, index, values) {
-                                if (data.barType === 'vertical') {                                      // only for barType: vertical
+                                if (data.chartType === 'vertical') {                                      // only for chartType: vertical
                                     return `${value}${getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
                                 }
                                 return value;
@@ -117,13 +125,13 @@ vis.binds.materialdesign.chart = {
                         },
                         ticks: {        // x-Axis values
                             display: data.xAxisShowAxisLabels,
-                            min: getNumberFromData(data.axisValueMin, undefined),                       // only for barType: horizontal
-                            max: getNumberFromData(data.axisValueMax, undefined),                       // only for barType: horizontal
-                            stepSize: getNumberFromData(data.axisValueStepSize, undefined),             // only for barType: vertical
-                            autoSkip: (data.barType === 'vertical' && (getNumberFromData(data.axisMaxLabel, undefined) > 0 || data.axisLabelAutoSkip)),
-                            maxTicksLimit: (data.barType === 'vertical') ? getNumberFromData(data.axisMaxLabel, undefined) : undefined,
-                            callback: function (value, index, values) {                                 // only for barType: horizontal
-                                if (data.barType === 'horizontal') {
+                            min: getNumberFromData(data.axisValueMin, undefined),                       // only for chartType: horizontal
+                            max: getNumberFromData(data.axisValueMax, undefined),                       // only for chartType: horizontal
+                            stepSize: getNumberFromData(data.axisValueStepSize, undefined),             // only for chartType: vertical
+                            autoSkip: (data.chartType === 'vertical' && (getNumberFromData(data.axisMaxLabel, undefined) > 0 || data.axisLabelAutoSkip)),
+                            maxTicksLimit: (data.chartType === 'vertical') ? getNumberFromData(data.axisMaxLabel, undefined) : undefined,
+                            callback: function (value, index, values) {                                 // only for chartType: horizontal
+                                if (data.chartType === 'horizontal') {
                                     return `${value}${getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
                                 }
                                 return value;
@@ -163,9 +171,11 @@ vis.binds.materialdesign.chart = {
                     bodyFontSize: getNumberFromData(data.tooltipBodyFontSize, undefined),
                     callbacks: {
                         label: function (tooltipItem, chart) {
-                            console.log(chart.datasets[0].label);
-                            return `${chart.datasets[0].label}: ${parseFloat(tooltipItem.value).round(getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${data.tooltipBodyAppend}`
+                            if (tooltipItem && tooltipItem.value) {
+                                return `${chart.datasets[0].label}: ${parseFloat(tooltipItem.value).round(getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${data.tooltipBodyAppend}`
                                     .split('\\n');
+                            }
+                            return '';
                         }
                     }
                 },
@@ -176,8 +186,11 @@ vis.binds.materialdesign.chart = {
                         clamp: true,
                         rotation: getNumberFromData(data.barValueRotation, undefined),
                         formatter: function (value, context) {
-                            return `${value.round(getNumberFromData(data.barMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.barValueAppendText, '')}${getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
-                                .split('\\n');
+                            if (value) {
+                                return `${value.round(getNumberFromData(data.barMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.barValueAppendText, '')}${getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
+                                    .split('\\n');
+                            }
+                            return '';
                         },
                         font: {
                             family: getValueFromData(data.barValueFontFamily, undefined),
@@ -193,7 +206,7 @@ vis.binds.materialdesign.chart = {
             var myBarChart = null;
             setTimeout(function () {
                 myBarChart = new Chart(ctx, {
-                    type: (data.barType === 'vertical') ? 'bar' : 'horizontalBar',
+                    type: (data.chartType === 'vertical') ? 'bar' : 'horizontalBar',
                     data: chartData,
                     options: options,
                     plugins: (data.barValueShow) ? [ChartDataLabels] : undefined     // show value labels
