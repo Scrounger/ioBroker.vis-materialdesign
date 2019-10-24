@@ -230,6 +230,227 @@ vis.binds.materialdesign.chart = {
             console.exception(`bar: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
+    pie: function (el, data) {
+        try {
+            let $this = $(el);
+            var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
+
+            $(el).find('.materialdesign-chart-container').css('background-color', getValueFromData(data.backgroundColor, ''));
+            let globalBarColor = getValueFromData(data.globalBarColor, '#1e88e5');
+
+            var ctx = chartContainer.getContext('2d');
+
+            // Global Options:
+            Chart.defaults.global.defaultFontColor = '#1e88e5';
+            Chart.defaults.global.defaultFontSize = 15;
+            Chart.defaults.global.animation.duration = getNumberFromData(data.animationDuration, 1000);
+
+            Chart.plugins.unregister(ChartDataLabels);
+
+            let dataArray = []
+            let labelArray = [];
+            let barColorArray = [];
+            for (var i = 0; i <= data.barCount; i++) {
+                // row data
+                dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
+                labelArray.push(getValueFromData(data.attr('label' + i), '').split('\\n'));
+                barColorArray.push(getValueFromData(data.attr('barColor' + i), globalBarColor));
+
+                vis.states.bind(data.attr('oid' + i) + '.val', onChange);
+            }
+
+            // Data with datasets options
+            var chartData = {
+                labels: labelArray,
+                datasets: [
+                    {
+                        label: getValueFromData(data.barLabelText, ''),
+                        backgroundColor: barColorArray,
+                        data: dataArray,
+                        hoverBackgroundColor: getValueFromData(data.hoverBarColor, convertHex(globalBarColor, 80))
+                    }
+                ]
+            };
+
+            // Notice how nested the beginAtZero is
+            var options = {
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: {
+                    padding: {
+                        top: getValueFromData(data.chartPaddingTop, 0),
+                        left: getValueFromData(data.chartPaddingLeft, 0),
+                        right: getValueFromData(data.chartPaddingRight, 0),
+                        bottom: getValueFromData(data.chartPaddingBottom, 0)
+                    }
+                },
+                legend: {
+                    display: data.showLegend,
+                    position: data.legendPosition,
+                    labels: {
+                        fontColor: getValueFromData(data.legendFontColor, undefined),
+                        fontFamily: getValueFromData(data.legendFontFamily, undefined),
+                        fontSize: getNumberFromData(data.legendFontSize, undefined),
+                        boxWidth: getNumberFromData(data.legendBoxWidth, 10),
+                        usePointStyle: data.legendPointStyle
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        categoryPercentage: getNumberFromData(data.barWidth, 80) / 100,
+                        barPercentage: getNumberFromData(data.barWidth, 80) / 100,
+                        scaleLabel: {       // y-Axis title
+                            display: (getValueFromData(data.yAxisTitle, null) !== null),
+                            labelString: getValueFromData(data.yAxisTitle, ''),
+                            fontColor: getValueFromData(data.yAxisTitleColor, undefined),
+                            fontFamily: getValueFromData(data.yAxisTitleFontFamily, undefined),
+                            fontSize: getNumberFromData(data.yAxisTitleFontSize, undefined)
+                        },
+                        ticks: {        // y-Axis values
+                            display: data.yAxisShowAxisLabels,
+                            min: getNumberFromData(data.axisValueMin, undefined),                       // only for chartType: vertical
+                            max: getNumberFromData(data.axisValueMax, undefined),                       // only for chartType: vertical
+                            stepSize: getNumberFromData(data.axisValueStepSize, undefined),             // only for chartType: vertical
+                            autoSkip: (data.chartType === 'horizontal' && (getNumberFromData(data.axisMaxLabel, undefined) > 0 || data.axisLabelAutoSkip)),
+                            maxTicksLimit: (data.chartType === 'horizontal') ? getNumberFromData(data.axisMaxLabel, undefined) : undefined,
+                            callback: function (value, index, values) {
+                                if (data.chartType === 'vertical') {                                      // only for chartType: vertical
+                                    return `${value}${getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
+                                }
+                                return value;
+                            },
+                            fontColor: getValueFromData(data.yAxisValueLabelColor, undefined),
+                            fontFamily: getValueFromData(data.yAxisValueFontFamily, undefined),
+                            fontSize: getNumberFromData(data.yAxisValueFontSize, undefined),
+                            padding: getNumberFromData(data.yAxisValueDistanceToAxis, 0),
+                        },
+                        gridLines: {
+                            display: true,
+                            color: getValueFromData(data.yAxisGridLinesColor, 'black'),
+                            lineWidth: getNumberFromData(data.yAxisGridLinesWitdh, 0.1),
+                            drawBorder: data.yAxisShowAxis,
+                            drawOnChartArea: data.yAxisShowGridLines,
+                            drawTicks: data.yAxisShowTicks,
+                            tickMarkLength: getNumberFromData(data.yAxisTickLength, 5),
+                        }
+                    }],
+                    xAxes: [{
+                        categoryPercentage: getNumberFromData(data.barWidth, 80) / 100,
+                        barPercentage: getNumberFromData(data.barWidth, 80) / 100,
+                        scaleLabel: {       // x-Axis title
+                            display: (getValueFromData(data.xAxisTitle, null) !== null),
+                            labelString: getValueFromData(data.xAxisTitle, ''),
+                            fontColor: getValueFromData(data.xAxisTitleColor, undefined),
+                            fontFamily: getValueFromData(data.xAxisTitleFontFamily, undefined),
+                            fontSize: getNumberFromData(data.xAxisTitleFontSize, undefined)
+                        },
+                        ticks: {        // x-Axis values
+                            display: data.xAxisShowAxisLabels,
+                            min: getNumberFromData(data.axisValueMin, undefined),                       // only for chartType: horizontal
+                            max: getNumberFromData(data.axisValueMax, undefined),                       // only for chartType: horizontal
+                            stepSize: getNumberFromData(data.axisValueStepSize, undefined),             // only for chartType: vertical
+                            autoSkip: (data.chartType === 'vertical' && (getNumberFromData(data.axisMaxLabel, undefined) > 0 || data.axisLabelAutoSkip)),
+                            maxTicksLimit: (data.chartType === 'vertical') ? getNumberFromData(data.axisMaxLabel, undefined) : undefined,
+                            callback: function (value, index, values) {                                 // only for chartType: horizontal
+                                if (data.chartType === 'horizontal') {
+                                    return `${value}${getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
+                                }
+                                return value;
+                            },
+                            fontColor: getValueFromData(data.xAxisValueLabelColor, undefined),
+                            fontFamily: getValueFromData(data.xAxisValueFontFamily, undefined),
+                            fontSize: getNumberFromData(data.xAxisValueFontSize, undefined),
+                            padding: getNumberFromData(data.xAxisValueDistanceToAxis, 0),
+
+                        },
+                        gridLines: {
+                            display: true,
+                            color: getValueFromData(data.xAxisGridLinesColor, 'black'),
+                            lineWidth: getNumberFromData(data.xAxisGridLinesWitdh, 0.1),
+                            drawBorder: data.xAxisShowAxis,
+                            drawOnChartArea: data.xAxisShowGridLines,
+                            drawTicks: data.xAxisShowTicks,
+                            tickMarkLength: getNumberFromData(data.xAxisTickLength, 5),
+                        }
+                    }],
+                },
+                tooltips: {
+                    enabled: data.showTooltip,
+                    backgroundColor: getValueFromData(data.tooltipBackgroundColor, 'black'),
+                    caretSize: getNumberFromData(data.tooltipArrowSize, 5),
+                    caretPadding: getNumberFromData(data.tooltipDistanceToBar, 2),
+                    cornerRadius: getNumberFromData(data.tooltipBoxRadius, 4),
+                    displayColors: data.tooltipShowColorBox,
+                    xPadding: getNumberFromData(data.tooltipXpadding, 10),
+                    yPadding: getNumberFromData(data.tooltipYpadding, 10),
+                    titleFontColor: getValueFromData(data.tooltipTitleFontColor, 'white'),
+                    titleFontFamily: getValueFromData(data.tooltipTitleFontFamily, undefined),
+                    titleFontSize: getNumberFromData(data.tooltipTitleFontSize, undefined),
+                    titleMarginBottom: getNumberFromData(data.tooltipTitleMarginBottom, 6),
+                    bodyFontColor: getValueFromData(data.tooltipBodyFontColor, 'white'),
+                    bodyFontFamily: getValueFromData(data.tooltipBodyFontFamily, undefined),
+                    bodyFontSize: getNumberFromData(data.tooltipBodyFontSize, undefined),
+                    callbacks: {
+                        label: function (tooltipItem, chart) {
+                            if (tooltipItem && tooltipItem.value) {
+                                return `${chart.datasets[0].label}: ${parseFloat(tooltipItem.value).round(getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${data.tooltipBodyAppend}`
+                                    .split('\\n');
+                            }
+                            return '';
+                        }
+                    }
+                },
+                plugins: {
+                    datalabels: {
+                        anchor: data.barValuePositionAnchor,
+                        align: data.barValuePositionAlign,
+                        clamp: true,
+                        rotation: getNumberFromData(data.barValueRotation, undefined),
+                        formatter: function (value, context) {
+                            if (value) {
+                                return `${value.round(getNumberFromData(data.barMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.barValueAppendText, '')}${getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
+                                    .split('\\n');
+                            }
+                            return '';
+                        },
+                        font: {
+                            family: getValueFromData(data.barValueFontFamily, undefined),
+                            size: getNumberFromData(data.barValueFontSize, undefined),
+                        },
+                        color: getValueFromData(data.barValueFontColor, 'black'),
+                    }
+                }
+            };
+
+
+            // Chart declaration:
+            var myBarChart = null;
+            setTimeout(function () {
+                myBarChart = new Chart(ctx, {
+                    type: (data.chartType === 'pie') ? 'pie' : 'doughnut',
+                    data: chartData,
+                    options: options,
+                    plugins: (data.barValueShow) ? [ChartDataLabels] : undefined     // show value labels
+                });
+            }, 1)
+
+            function onChange(e, newVal, oldVal) {
+                // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
+                let oidId = e.type.substr(0, e.type.lastIndexOf("."));
+
+                for (var d = 0; d <= data.barCount; d++) {
+                    if (oidId === data.attr('oid' + d)) {
+                        let index = d;
+                        myBarChart.data.datasets[0].data[index] = newVal;
+                        myBarChart.update();
+                    }
+                }
+            };
+
+        } catch (ex) {
+            console.exception(`bar: error:: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
     googleBar: function (el, data) {
         try {
             let $this = $(el);
