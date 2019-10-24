@@ -33,11 +33,15 @@ vis.binds.materialdesign.chart = {
             let dataArray = []
             let labelArray = [];
             let barColorArray = [];
+            let hoverColorArray = [];
             for (var i = 0; i <= data.barCount; i++) {
                 // row data
                 dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
                 labelArray.push(getValueFromData(data.attr('label' + i), '').split('\\n'));
-                barColorArray.push(getValueFromData(data.attr('barColor' + i), globalColor));
+
+                let bgColor = getValueFromData(data.attr('barColor' + i), globalColor)
+                barColorArray.push(bgColor);
+                hoverColorArray.push(convertHex(bgColor, 80))
 
                 vis.states.bind(data.attr('oid' + i) + '.val', onChange);
             }
@@ -48,9 +52,11 @@ vis.binds.materialdesign.chart = {
                 datasets: [
                     {
                         label: getValueFromData(data.barLabelText, ''),
-                        backgroundColor: barColorArray,
                         data: dataArray,
-                        hoverBackgroundColor: getValueFromData(data.hoverColor, convertHex(globalColor, 80))
+                        backgroundColor: barColorArray,
+                        hoverBackgroundColor: hoverColorArray,
+                        hoverBorderColor: getValueFromData(data.hoverBorderColor, undefined),
+                        hoverBorderWidth: getNumberFromData(data.hoverBorderWidth, undefined),
                     }
                 ]
             };
@@ -191,11 +197,15 @@ vis.binds.materialdesign.chart = {
             let dataArray = []
             let labelArray = [];
             let barColorArray = [];
+            let hoverColorArray = [];
             for (var i = 0; i <= data.barCount; i++) {
                 // row data
                 dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
                 labelArray.push(getValueFromData(data.attr('label' + i), '').split('\\n'));
-                barColorArray.push(getValueFromData(data.attr('barColor' + i), globalColor));
+
+                let bgColor = getValueFromData(data.attr('barColor' + i), globalColor)
+                barColorArray.push(bgColor);
+                hoverColorArray.push(convertHex(bgColor, 80))
 
                 vis.states.bind(data.attr('oid' + i) + '.val', onChange);
             }
@@ -205,10 +215,16 @@ vis.binds.materialdesign.chart = {
                 labels: labelArray,
                 datasets: [
                     {
-                        label: getValueFromData(data.barLabelText, ''),
-                        backgroundColor: barColorArray,
                         data: dataArray,
-                        hoverBackgroundColor: getValueFromData(data.hoverColor, convertHex(globalColor, 80))
+                        backgroundColor: barColorArray,
+                        hoverBackgroundColor: hoverColorArray,
+                        borderColor: getValueFromData(data.borderColor, 'white'),
+                        hoverBorderColor: getValueFromData(data.hoverBorderColor, undefined),
+                        
+                        borderWidth: getNumberFromData(data.borderWidth, undefined),
+                        hoverBorderWidth: getNumberFromData(data.hoverBorderWidth, undefined),
+                        
+                        borderAlign: 'inner',
                     }
                 ]
             };
