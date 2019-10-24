@@ -43,7 +43,12 @@ vis.binds.materialdesign.chart = {
 
                 let bgColor = getValueFromData(data.attr('dataColor' + i), globalColor)
                 dataColorArray.push(bgColor);
-                hoverDataColorArray.push(convertHex(bgColor, 80))
+
+                if (getValueFromData(data.hoverColor, null) === null) {
+                    hoverDataColorArray.push(convertHex(bgColor, 80))
+                } else {
+                    hoverDataColorArray.push(data.hoverColor)
+                }
 
                 valueTextColorArray.push(getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor))
 
@@ -192,7 +197,12 @@ vis.binds.materialdesign.chart = {
 
                 let bgColor = getValueFromData(data.attr('dataColor' + i), globalColor)
                 dataColorArray.push(bgColor);
-                hoverDataColorArray.push(convertHex(bgColor, 80))
+                
+                if (getValueFromData(data.hoverColor, null) === null) {
+                    hoverDataColorArray.push(convertHex(bgColor, 80))
+                } else {
+                    hoverDataColorArray.push(data.hoverColor)
+                }
 
                 valueTextColorArray.push(getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor))
 
