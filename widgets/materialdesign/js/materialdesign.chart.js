@@ -127,6 +127,7 @@ vis.binds.materialdesign.chart = {
                             size: getNumberFromData(data.valuesFontSize, undefined),
                         },
                         color: valueTextColorArray,
+                        textAlign: data.valuesTextAlign
                     }
                 }
             };
@@ -261,6 +262,7 @@ vis.binds.materialdesign.chart = {
                             size: getNumberFromData(data.valuesFontSize, undefined),
                         },
                         color: valueTextColorArray,
+                        textAlign: data.valuesTextAlign
                     }
                 }
             };
