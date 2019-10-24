@@ -19,7 +19,7 @@ vis.binds.materialdesign.chart = {
             var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
 
             $(el).find('.materialdesign-chart-container').css('background-color', getValueFromData(data.backgroundColor, ''));
-            let globalBarColor = getValueFromData(data.globalBarColor, '#1e88e5');
+            let globalColor = getValueFromData(data.globalColor, '#1e88e5');
 
             var ctx = chartContainer.getContext('2d');
 
@@ -37,7 +37,7 @@ vis.binds.materialdesign.chart = {
                 // row data
                 dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
                 labelArray.push(getValueFromData(data.attr('label' + i), '').split('\\n'));
-                barColorArray.push(getValueFromData(data.attr('barColor' + i), globalBarColor));
+                barColorArray.push(getValueFromData(data.attr('barColor' + i), globalColor));
 
                 vis.states.bind(data.attr('oid' + i) + '.val', onChange);
             }
@@ -50,7 +50,7 @@ vis.binds.materialdesign.chart = {
                         label: getValueFromData(data.barLabelText, ''),
                         backgroundColor: barColorArray,
                         data: dataArray,
-                        hoverBackgroundColor: getValueFromData(data.hoverBarColor, convertHex(globalBarColor, 80))
+                        hoverBackgroundColor: getValueFromData(data.hoverColor, convertHex(globalColor, 80))
                     }
                 ]
             };
@@ -120,22 +120,22 @@ vis.binds.materialdesign.chart = {
                 },
                 plugins: {
                     datalabels: {
-                        anchor: data.barValuePositionAnchor,
-                        align: data.barValuePositionAlign,
+                        anchor: data.valuesPositionAnchor,
+                        align: data.valuesPositionAlign,
                         clamp: true,
-                        rotation: getNumberFromData(data.barValueRotation, undefined),
+                        rotation: getNumberFromData(data.valuesRotation, undefined),
                         formatter: function (value, context) {
                             if (value) {
-                                return `${value.round(getNumberFromData(data.barMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.barValueAppendText, '')}${getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
+                                return `${value.round(getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.valuesAppendText, '')}${getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
                                     .split('\\n');
                             }
                             return '';
                         },
                         font: {
-                            family: getValueFromData(data.barValueFontFamily, undefined),
-                            size: getNumberFromData(data.barValueFontSize, undefined),
+                            family: getValueFromData(data.valuesFontFamily, undefined),
+                            size: getNumberFromData(data.valuesFontSize, undefined),
                         },
-                        color: getValueFromData(data.barValueFontColor, 'black'),
+                        color: getValueFromData(data.valuesFontColor, 'black'),
                     }
                 }
             };
@@ -148,7 +148,7 @@ vis.binds.materialdesign.chart = {
                     type: (data.chartType === 'vertical') ? 'bar' : 'horizontalBar',
                     data: chartData,
                     options: options,
-                    plugins: (data.barValueShow) ? [ChartDataLabels] : undefined     // show value labels
+                    plugins: (data.showValues) ? [ChartDataLabels] : undefined     // show value labels
                 });
             }, 1)
 
@@ -172,12 +172,12 @@ vis.binds.materialdesign.chart = {
     pie: function (el, data) {
         try {
             let myHelper = vis.binds.materialdesign.chart.helper;
-            
+
             let $this = $(el);
             var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
 
             $(el).find('.materialdesign-chart-container').css('background-color', getValueFromData(data.backgroundColor, ''));
-            let globalBarColor = getValueFromData(data.globalBarColor, '#1e88e5');
+            let globalColor = getValueFromData(data.globalColor, '#1e88e5');
 
             var ctx = chartContainer.getContext('2d');
 
@@ -195,7 +195,7 @@ vis.binds.materialdesign.chart = {
                 // row data
                 dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
                 labelArray.push(getValueFromData(data.attr('label' + i), '').split('\\n'));
-                barColorArray.push(getValueFromData(data.attr('barColor' + i), globalBarColor));
+                barColorArray.push(getValueFromData(data.attr('barColor' + i), globalColor));
 
                 vis.states.bind(data.attr('oid' + i) + '.val', onChange);
             }
@@ -208,7 +208,7 @@ vis.binds.materialdesign.chart = {
                         label: getValueFromData(data.barLabelText, ''),
                         backgroundColor: barColorArray,
                         data: dataArray,
-                        hoverBackgroundColor: getValueFromData(data.hoverBarColor, convertHex(globalBarColor, 80))
+                        hoverBackgroundColor: getValueFromData(data.hoverColor, convertHex(globalColor, 80))
                     }
                 ]
             };
@@ -235,52 +235,6 @@ vis.binds.materialdesign.chart = {
                         boxWidth: getNumberFromData(data.legendBoxWidth, 10),
                         usePointStyle: data.legendPointStyle
                     }
-                },
-                scales: {
-                    yAxes: [myHelper.get_Y_AxisObject(data.chartType, data.barWidth, data.yAxisTitle, data.yAxisTitleColor, data.yAxisTitleFontFamily, data.yAxisTitleFontSize, data.yAxisShowAxisLabels,
-                        data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
-                        data.yAxisValueLabelColor, data.yAxisValueFontFamily, data.yAxisValueFontSize, data.yAxisValueDistanceToAxis, data.yAxisGridLinesColor,
-                        data.yAxisGridLinesWitdh, data.yAxisShowAxis, data.yAxisShowGridLines, data.yAxisShowTicks, data.yAxisTickLength)
-                    ],
-                    xAxes: [{
-                        categoryPercentage: getNumberFromData(data.barWidth, 80) / 100,
-                        barPercentage: getNumberFromData(data.barWidth, 80) / 100,
-                        scaleLabel: {       // x-Axis title
-                            display: (getValueFromData(data.xAxisTitle, null) !== null),
-                            labelString: getValueFromData(data.xAxisTitle, ''),
-                            fontColor: getValueFromData(data.xAxisTitleColor, undefined),
-                            fontFamily: getValueFromData(data.xAxisTitleFontFamily, undefined),
-                            fontSize: getNumberFromData(data.xAxisTitleFontSize, undefined)
-                        },
-                        ticks: {        // x-Axis values
-                            display: data.xAxisShowAxisLabels,
-                            min: getNumberFromData(data.axisValueMin, undefined),                       // only for chartType: horizontal
-                            max: getNumberFromData(data.axisValueMax, undefined),                       // only for chartType: horizontal
-                            stepSize: getNumberFromData(data.axisValueStepSize, undefined),             // only for chartType: vertical
-                            autoSkip: (data.chartType === 'vertical' && (getNumberFromData(data.axisMaxLabel, undefined) > 0 || data.axisLabelAutoSkip)),
-                            maxTicksLimit: (data.chartType === 'vertical') ? getNumberFromData(data.axisMaxLabel, undefined) : undefined,
-                            callback: function (value, index, values) {                                 // only for chartType: horizontal
-                                if (data.chartType === 'horizontal') {
-                                    return `${value}${getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
-                                }
-                                return value;
-                            },
-                            fontColor: getValueFromData(data.xAxisValueLabelColor, undefined),
-                            fontFamily: getValueFromData(data.xAxisValueFontFamily, undefined),
-                            fontSize: getNumberFromData(data.xAxisValueFontSize, undefined),
-                            padding: getNumberFromData(data.xAxisValueDistanceToAxis, 0),
-
-                        },
-                        gridLines: {
-                            display: true,
-                            color: getValueFromData(data.xAxisGridLinesColor, 'black'),
-                            lineWidth: getNumberFromData(data.xAxisGridLinesWitdh, 0.1),
-                            drawBorder: data.xAxisShowAxis,
-                            drawOnChartArea: data.xAxisShowGridLines,
-                            drawTicks: data.xAxisShowTicks,
-                            tickMarkLength: getNumberFromData(data.xAxisTickLength, 5),
-                        }
-                    }],
                 },
                 tooltips: {
                     enabled: data.showTooltip,
@@ -310,22 +264,22 @@ vis.binds.materialdesign.chart = {
                 },
                 plugins: {
                     datalabels: {
-                        anchor: data.barValuePositionAnchor,
-                        align: data.barValuePositionAlign,
+                        anchor: data.valuesPositionAnchor,
+                        align: data.valuesPositionAlign,
                         clamp: true,
-                        rotation: getNumberFromData(data.barValueRotation, undefined),
+                        rotation: getNumberFromData(data.valuesRotation, undefined),
                         formatter: function (value, context) {
                             if (value) {
-                                return `${value.round(getNumberFromData(data.barMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.barValueAppendText, '')}${getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
+                                return `${value.round(getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.valuesAppendText, '')}${getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
                                     .split('\\n');
                             }
                             return '';
                         },
                         font: {
-                            family: getValueFromData(data.barValueFontFamily, undefined),
-                            size: getNumberFromData(data.barValueFontSize, undefined),
+                            family: getValueFromData(data.valuesFontFamily, undefined),
+                            size: getNumberFromData(data.valuesFontSize, undefined),
                         },
-                        color: getValueFromData(data.barValueFontColor, 'black'),
+                        color: getValueFromData(data.valuesFontColor, 'black'),
                     }
                 }
             };
@@ -339,7 +293,7 @@ vis.binds.materialdesign.chart = {
                     type: (data.chartType === 'pie') ? 'pie' : 'doughnut',
                     data: chartData,
                     options: options,
-                    plugins: (data.barValueShow) ? [ChartDataLabels] : undefined     // show value labels
+                    plugins: (data.showValues) ? [ChartDataLabels] : undefined     // show value labels
                 });
             }, 1)
 
@@ -364,7 +318,7 @@ vis.binds.materialdesign.chart = {
         try {
             let $this = $(el);
             var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
-            let globalColor = getValueFromData(data.globalBarColor, '#1e88e5');
+            let globalColor = getValueFromData(data.globalColor, '#1e88e5');
 
             setTimeout(function () {
                 let chartWidth = window.getComputedStyle($this.context, null).width.replace('px', '');
