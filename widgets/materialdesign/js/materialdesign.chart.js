@@ -36,7 +36,7 @@ vis.binds.materialdesign.chart = {
             let hoverDataColorArray = [];
             let globalValueTextColor = getValueFromData(data.valuesFontColor, 'black')
             let valueTextColorArray = [];
-            for (var i = 0; i <= data.barCount; i++) {
+            for (var i = 0; i <= data.dataCount; i++) {
                 // row data
                 dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
                 labelArray.push(getValueFromData(data.attr('label' + i), '').split('\\n'));
@@ -152,7 +152,7 @@ vis.binds.materialdesign.chart = {
                 // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
                 let oidId = e.type.substr(0, e.type.lastIndexOf("."));
 
-                for (var d = 0; d <= data.barCount; d++) {
+                for (var d = 0; d <= data.dataCount; d++) {
                     if (oidId === data.attr('oid' + d)) {
                         let index = d;
                         myBarChart.data.datasets[0].data[index] = newVal;
@@ -190,7 +190,7 @@ vis.binds.materialdesign.chart = {
             let hoverDataColorArray = [];
             let globalValueTextColor = getValueFromData(data.valuesFontColor, 'black')
             let valueTextColorArray = [];
-            for (var i = 0; i <= data.barCount; i++) {
+            for (var i = 0; i <= data.dataCount; i++) {
                 // row data
                 dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
                 labelArray.push(getValueFromData(data.attr('label' + i), '').split('\\n'));
@@ -292,7 +292,7 @@ vis.binds.materialdesign.chart = {
                 // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
                 let oidId = e.type.substr(0, e.type.lastIndexOf("."));
 
-                for (var d = 0; d <= data.barCount; d++) {
+                for (var d = 0; d <= data.dataCount; d++) {
                     if (oidId === data.attr('oid' + d)) {
                         let index = d;
                         myBarChart.data.datasets[0].data[index] = newVal;
@@ -325,7 +325,7 @@ vis.binds.materialdesign.chart = {
                     // Cols added
                     myDataArray.push(["label", "value", { role: "style" }, { role: 'annotation' }]);
 
-                    for (var i = 0; i <= data.barCount; i++) {
+                    for (var i = 0; i <= data.dataCount; i++) {
                         // row data
                         let value = vis.states.attr(data.attr('oid' + i) + '.val');
                         let label = getValueFromData(data.attr('label' + i), '');
@@ -390,7 +390,7 @@ vis.binds.materialdesign.chart = {
                         // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
                         let oidId = e.type.substr(0, e.type.lastIndexOf("."));
 
-                        for (var d = 0; d <= data.barCount; d++) {
+                        for (var d = 0; d <= data.dataCount; d++) {
                             if (oidId === data.attr('oid' + d)) {
                                 let index = d;
 
