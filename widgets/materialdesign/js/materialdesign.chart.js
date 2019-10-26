@@ -228,6 +228,7 @@ vis.binds.materialdesign.chart = {
                 maintainAspectRatio: false,
                 layout: myHelper.getLayout(data),
                 legend: myHelper.getLegend(data),
+                cutoutPercentage: (data.chartType === 'doughnut') ? getNumberFromData(data.doughnutCutOut, 50) : 0,
                 tooltips: {
                     enabled: data.showTooltip,
                     backgroundColor: getValueFromData(data.tooltipBackgroundColor, 'black'),
