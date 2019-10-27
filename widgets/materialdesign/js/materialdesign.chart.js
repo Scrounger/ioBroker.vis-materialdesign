@@ -249,8 +249,8 @@ vis.binds.materialdesign.chart = {
                     bodyFontSize: getNumberFromData(data.tooltipBodyFontSize, undefined),
                     callbacks: {
                         label: function (tooltipItem, chart) {
-                            if (tooltipItem && tooltipItem.value) {
-                                return `${chart.datasets[0].label}: ${myHelper.roundNumber(parseFloat(tooltipItem.value), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.tooltipBodyAppend,'')}`
+                            if (tooltipItem) {
+                                return `${labelArray[tooltipItem.index]}: ${myHelper.roundNumber(parseFloat(chart.datasets[0].data[tooltipItem.index]), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.tooltipBodyAppend,'')}`
                                     .split('\\n');
                             }
                             return '';
