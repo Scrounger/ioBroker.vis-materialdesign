@@ -21,6 +21,11 @@ vis.binds.materialdesign.chart = {
             $(el).find('.materialdesign-chart-container').css('background-color', getValueFromData(data.backgroundColor, ''));
             let globalColor = getValueFromData(data.globalColor, '#1e88e5');
 
+            let colorScheme = getValueFromData(data.colorScheme, null);
+            if (colorScheme != null) {
+                colorScheme = vis.binds.materialdesign.colorScheme.get(data.colorScheme, data.dataCount);
+            }
+
             var ctx = chartContainer.getContext('2d');
 
             // Global Options:
@@ -29,6 +34,8 @@ vis.binds.materialdesign.chart = {
             Chart.defaults.global.animation.duration = getNumberFromData(data.animationDuration, 1000);
 
             Chart.plugins.unregister(ChartDataLabels);
+
+            console.log(data.colorScheme);
 
             let dataArray = []
             let labelArray = [];
@@ -40,6 +47,10 @@ vis.binds.materialdesign.chart = {
                 // row data
                 dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
                 labelArray.push(getValueFromData(data.attr('label' + i), '').split('\\n'));
+
+                if (colorScheme != null) {
+                    globalColor = colorScheme[i];
+                }
 
                 let bgColor = getValueFromData(data.attr('dataColor' + i), globalColor)
                 dataColorArray.push(bgColor);
@@ -107,7 +118,7 @@ vis.binds.materialdesign.chart = {
                     callbacks: {
                         label: function (tooltipItem, chart) {
                             if (tooltipItem && tooltipItem.value) {
-                                return `${chart.datasets[0].label}: ${myHelper.roundNumber(parseFloat(tooltipItem.value), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.tooltipBodyAppend,'')}`
+                                return `${chart.datasets[0].label}: ${myHelper.roundNumber(parseFloat(tooltipItem.value), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.tooltipBodyAppend, '')}`
                                     .split('\\n');
                             }
                             return '';
@@ -177,6 +188,11 @@ vis.binds.materialdesign.chart = {
             $(el).find('.materialdesign-chart-container').css('background-color', getValueFromData(data.backgroundColor, ''));
             let globalColor = getValueFromData(data.globalColor, '#1e88e5');
 
+            let colorScheme = getValueFromData(data.colorScheme, null);
+            if (colorScheme != null) {
+                colorScheme = vis.binds.materialdesign.colorScheme.get(data.colorScheme, data.dataCount);
+            }
+
             var ctx = chartContainer.getContext('2d');
 
             // Global Options:
@@ -196,6 +212,10 @@ vis.binds.materialdesign.chart = {
                 // row data
                 dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
                 labelArray.push(getValueFromData(data.attr('label' + i), '').split('\\n'));
+
+                if (colorScheme != null) {
+                    globalColor = colorScheme[i];
+                }
 
                 let bgColor = getValueFromData(data.attr('dataColor' + i), globalColor)
                 dataColorArray.push(bgColor);
@@ -250,7 +270,7 @@ vis.binds.materialdesign.chart = {
                     callbacks: {
                         label: function (tooltipItem, chart) {
                             if (tooltipItem) {
-                                return `${labelArray[tooltipItem.index]}: ${myHelper.roundNumber(parseFloat(chart.datasets[0].data[tooltipItem.index]), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.tooltipBodyAppend,'')}`
+                                return `${labelArray[tooltipItem.index]}: ${myHelper.roundNumber(parseFloat(chart.datasets[0].data[tooltipItem.index]), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.tooltipBodyAppend, '')}`
                                     .split('\\n');
                             }
                             return '';
