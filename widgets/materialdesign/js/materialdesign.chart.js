@@ -107,7 +107,7 @@ vis.binds.materialdesign.chart = {
                     callbacks: {
                         label: function (tooltipItem, chart) {
                             if (tooltipItem && tooltipItem.value) {
-                                return `${chart.datasets[0].label}: ${myHelper.roundNumber(parseFloat(tooltipItem.value), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${data.tooltipBodyAppend}`
+                                return `${chart.datasets[0].label}: ${myHelper.roundNumber(parseFloat(tooltipItem.value), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.tooltipBodyAppend,'')}`
                                     .split('\\n');
                             }
                             return '';
@@ -250,7 +250,7 @@ vis.binds.materialdesign.chart = {
                     callbacks: {
                         label: function (tooltipItem, chart) {
                             if (tooltipItem && tooltipItem.value) {
-                                return `${chart.datasets[0].label}: ${myHelper.roundNumber(parseFloat(tooltipItem.value), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${data.tooltipBodyAppend}`
+                                return `${chart.datasets[0].label}: ${myHelper.roundNumber(parseFloat(tooltipItem.value), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.tooltipBodyAppend,'')}`
                                     .split('\\n');
                             }
                             return '';
