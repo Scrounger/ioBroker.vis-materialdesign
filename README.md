@@ -73,6 +73,11 @@ To change the image of the items, you have to a json object into the image filed
 
 ## Changelog
 
+### 0.1.5
+* (Scrounger): bar chart added
+* (Scrounger): pie chart added
+* (Scrounger): bug fixes
+
 ### 0.1.2
 * (Scrounger): list: right label option added
 * (Scrounger): slider: value text option for lees or greather than added

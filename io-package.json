@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.1.2",
+        "version": "0.1.5",
         "news": {
+            "0.1.5": {
+                "en": "bar and pie chart added",
+                "de": "Balken- und Kreisdiagramm hinzugefügt",
+                "ru": "добавлена гистограмма и круговая диаграмма",
+                "pt": "barra e gráfico de pizza adicionados",
+                "nl": "bar en cirkeldiagram toegevoegd",
+                "fr": "diagramme à barres et à secteurs ajouté",
+                "it": "barra e grafico a torta aggiunti",
+                "es": "barra y gráfico agregado",
+                "pl": "dodano wykres słupkowy i kołowy",
+                "zh-cn": "添加了条形图和饼图"
+            },
             "0.1.2": {
                 "en": "support for non boolean values added for buttons, checkboxes and switches. haptic feedback (vibration) option for mobil browser added. right label option for list added. slider value text option for lees or greather than added. bug fixes.",
                 "de": "Unterstützung für nicht-boolesche Werte für Schaltflächen, Kontrollkästchen und Schalter. Option für haptisches Feedback (Vibration) für mobilen Browser hinzugefügt. Rechte Beschriftungsoption für Liste hinzugefügt. Textoption mit Schieberegler für kleiner oder größer als hinzugefügt. Fehlerbehebung.",
