@@ -137,6 +137,8 @@ vis.binds.materialdesign.chart = {
                 }
             };
 
+            if (data.disableHoverEffects) options.hover = { mode: null };
+
             // Chart declaration:
             var myBarChart = null;
             setTimeout(function () {
@@ -197,7 +199,7 @@ vis.binds.materialdesign.chart = {
 
                 let bgColor = getValueFromData(data.attr('dataColor' + i), globalColor)
                 dataColorArray.push(bgColor);
-                
+
                 if (getValueFromData(data.hoverColor, null) === null) {
                     hoverDataColorArray.push(convertHex(bgColor, 80))
                 } else {
@@ -277,6 +279,8 @@ vis.binds.materialdesign.chart = {
                     }
                 }
             };
+
+            if (data.disableHoverEffects) options.hover = { mode: null };
 
             // Chart declaration:
             var myBarChart = null;
