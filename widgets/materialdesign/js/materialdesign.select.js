@@ -55,7 +55,7 @@ vis.binds.materialdesign.select = {
             selectElementList.push(`${selectElement}
                                         ${imageElement}
                                         <input type="hidden" name="enhanced-select">
-                                        <i class="mdc-select__dropdown-icon"></i>
+                                        <i class="mdc-select__dropdown-icon" ${getValueFromData(data.selectToggleIconColor, '', 'style="color: ', ';"')}></i>
                                         <div id="filled_enhanced" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="${labelledbyAttribute}"></div>
                                         <div class="mdc-select__menu mdc-menu mdc-menu-surface">
                                             ${listElements}
@@ -86,6 +86,15 @@ vis.binds.materialdesign.select = {
                 select.style.setProperty("--materialdesign-color-select-hint_selected", getValueFromData(data.selectHintTextColorSelected, ''));
                 select.style.setProperty("--materialdesign-color-select-border", getValueFromData(data.selectBorderColor, ''));
                 select.style.setProperty("--materialdesign-color-select-border-selected", getValueFromData(data.selectBorderColorSelected, ''));
+
+                let colorDrawerBackground = getValueFromData(data.colorDrawerBackground, '');
+                list.style.setProperty("--materialdesign-color-drawer-background", colorDrawerBackground);
+                list.style.setProperty("--materialdesign-color-list-item-background", getValueFromData(data.colorDrawerItemBackground, colorDrawerBackground));
+                list.style.setProperty("--materialdesign-color-list-item-selected", getValueFromData(data.colorListItemSelected, ''));
+                list.style.setProperty("--materialdesign-color-list-item-hover", getValueFromData(data.colorListItemHover, ''));
+                list.style.setProperty("--materialdesign-color-list-item-text", getValueFromData(data.colorListItemText, ''));
+                list.style.setProperty("--materialdesign-color-list-item-text-activated", getValueFromData(data.colorListItemTextSelected, ''));
+
 
                 setSelectState(vis.states.attr(data.oid + '.val'));
 
