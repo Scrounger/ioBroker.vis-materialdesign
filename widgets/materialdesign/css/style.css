@@ -890,6 +890,15 @@ svg.materialdesign-button__icon {
   border-color: var(--materialdesign-color-select-border-selected);
 }
 
+.mdc-select--with-leading-icon.mdc-select__menu .mdc-list-item__text {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.mdc-list-item__graphic {
+  margin-right: 0px;
+}
+
 /* hint */
 .mdc-select:not(.mdc-select--disabled) .mdc-floating-label {
   color: var(--materialdesign-color-select-hint);

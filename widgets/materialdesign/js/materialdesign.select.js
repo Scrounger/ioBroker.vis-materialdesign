@@ -9,12 +9,11 @@
 
 // this code can be placed directly in materialdesign.html
 vis.binds.materialdesign.select = {
-    initialize: function (data) {
+    initialize: function (data, isBooleanSelect = false) {
         try {
             let selectElementList = [];
 
-            let image = getValueFromData(data.image, null);
-            let imageTrue = getValueFromData(data.imageTrue, null);
+
             let iconHeight = getValueFromData(data.drawerIconHeight, '', 'height: ', 'px !important;');
             let menuItemFontSize = getFontSize(data.listItemTextSize);
             let spaceBetweenImageAndLabel = getValueFromData(data.distanceBetweenTextAndImage, 'margin-right: -10px;', 'margin-right: ', 'px;');
@@ -44,20 +43,49 @@ vis.binds.materialdesign.select = {
             }
 
             let imageElement = '';
-            if (image != null || imageTrue != null) {
-                selectElement = $($.parseHTML(selectElement)).addClass('mdc-select--with-leading-icon').get(0).outerHTML.replace('</div>', '');
-                imageElement = `<img class="material-icons mdc-select__icon" tabindex="0" role="button" src="${image}" />`;
-            }
-
             let listElements = [];
 
-            listElements.push(`${getListItem('standard', 0, '', false, false, iconHeight,'','', false)}
+            if (isBooleanSelect) {
+                // Bool Select
+                let image = getValueFromData(data.image, null);
+                let imageTrue = getValueFromData(data.imageTrue, null);
+
+                if (image != null || imageTrue != null) {
+                    selectElement = $($.parseHTML(selectElement)).addClass('mdc-select--with-leading-icon').get(0).outerHTML.replace('</div>', '');
+                    imageElement = `<img class="material-icons mdc-select__icon" tabindex="0" role="button" src="${image}" />`;
+                }
+
+                listElements.push(`${getListItem('standard', 0, '', false, false, iconHeight, '', '', false)}
                                                 ${(image != null) ? getListItemImage(image, `${iconHeight}${spaceBetweenImageAndLabel}`) : ''}
                                                 ${getListItemLabel('standard', 0, getValueFromData(data.text_false, 'Item false'), false, menuItemFontSize, '', 0)}</div>`)
 
-            listElements.push(`${getListItem('standard', 1, '', false, false, iconHeight,'','', true)}
-                                                ${(imageTrue != null) ? getListItemImage(imageTrue, `${iconHeight}${spaceBetweenImageAndLabel}`): ''}
+                listElements.push(`${getListItem('standard', 1, '', false, false, iconHeight, '', '', true)}
+                                                ${(imageTrue != null) ? getListItemImage(imageTrue, `${iconHeight}${spaceBetweenImageAndLabel}`) : ''}
                                                 ${getListItemLabel('standard', 1, getValueFromData(data.text_true, 'Item true'), false, menuItemFontSize, '', 0)}</div>`)
+
+            } else {
+                // Value Select
+                let imageExists = false;
+                let initialeImage = '';
+
+                for (var i = 0; i <= data.values; i++) {
+                    let menuIcon = getValueFromData(data.attr('menuIcon' + i), null);
+
+                    listElements.push(`${getListItem('standard', i, '', false, false, iconHeight, '', '', getValueFromData(data.attr('value' + i), ''))}
+                                                ${(menuIcon != null) ? getListItemImage(menuIcon, `${iconHeight}${spaceBetweenImageAndLabel}`) : ''}
+                                                ${getListItemLabel('standard', 0, getValueFromData(data.attr('label' + i), getValueFromData(data.attr('value' + i), `no value for Item ${i}`)), false, menuItemFontSize, '', 0)}</div>`)
+
+                    if (menuIcon !== null) {
+                        imageExists = true;
+                        initialeImage = menuIcon;
+                    }
+                }
+
+                if (imageExists) {
+                    selectElement = $($.parseHTML(selectElement)).addClass('mdc-select--with-leading-icon').get(0).outerHTML.replace('</div>', '');
+                    imageElement = `<img class="material-icons mdc-select__icon" tabindex="0" role="button" src="${initialeImage}" />`;
+                }
+            }
 
             selectElementList.push(`${selectElement}
                                         ${imageElement}
@@ -78,7 +106,7 @@ vis.binds.materialdesign.select = {
             console.exception(`initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    handleBoolean: function (el, data) {
+    handleBoolean: function (el, data, isBooleanSelect) {
         try {
             setTimeout(function () {
                 var $this = $(el);
