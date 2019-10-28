@@ -52,17 +52,12 @@ vis.binds.materialdesign.select = {
             let listElements = [];
 
             listElements.push(`${getListItem('standard', 0, '', false, false, iconHeight,'','', false)}
-                                                ${getListItemImage(image, `${iconHeight}${spaceBetweenImageAndLabel}`)}
-                                                ${getListItemLabel('standard', 0, data.text_false, false, menuItemFontSize, '', 0)}</div>`)
+                                                ${(image != null) ? getListItemImage(image, `${iconHeight}${spaceBetweenImageAndLabel}`) : ''}
+                                                ${getListItemLabel('standard', 0, getValueFromData(data.text_false, 'Item false'), false, menuItemFontSize, '', 0)}</div>`)
 
             listElements.push(`${getListItem('standard', 1, '', false, false, iconHeight,'','', true)}
-                                                ${getListItemImage(image, `${iconHeight}${spaceBetweenImageAndLabel}`)}
-                                                ${getListItemLabel('standard', 1, data.text_true, false, menuItemFontSize, '', 0)}</div>`)
-
-
-            // `<li class="mdc-list-item" data-value="false" aria-selected="true">${data.text_false}</li>
-            //                     <li class="mdc-list-item" data-value="true">${data.text_true}</li>`
-
+                                                ${(imageTrue != null) ? getListItemImage(imageTrue, `${iconHeight}${spaceBetweenImageAndLabel}`): ''}
+                                                ${getListItemLabel('standard', 1, getValueFromData(data.text_true, 'Item true'), false, menuItemFontSize, '', 0)}</div>`)
 
             selectElementList.push(`${selectElement}
                                         ${imageElement}
