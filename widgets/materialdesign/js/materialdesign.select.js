@@ -13,42 +13,55 @@ vis.binds.materialdesign.select = {
         try {
             let selectElementList = [];
 
+            let image = getValueFromData(data.image, null);
+            let imageTrue = getValueFromData(data.imageTrue, null);
+
+
+            let selectElement = '';
+            let labelledbyAttribute = '';
+            let labelElement = '';
 
             if (data.layout === 'standard') {
-                selectElementList.push(`<div class="mdc-select" style="width: 100%;">
-                                        <input type="hidden" name="enhanced-select">
-                                        <i class="mdc-select__dropdown-icon"></i>
-                                        <div id="filled_enhanced" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="filled_enhanced filled_enhanced-label"></div>
-                                        <div class="mdc-select__menu mdc-menu mdc-menu-surface">
-                                            <ul class="mdc-list">
-                                                <li class="mdc-list-item" data-value="false">${data.text_false}</li>
-                                                <li class="mdc-list-item" data-value="true">${data.text_true}</li>
-                                            </ul>
-                                        </div>
-                                        <span class="mdc-floating-label mdc-floating-label--float-above">${getValueFromData(data.hintText, '')}</span>
-                                        <div class="mdc-line-ripple"></div>
-                                        `)
+                selectElement = '<div class="mdc-select" style="width: 100%;">'
+                labelledbyAttribute = 'filled_enhanced filled_enhanced-label';
+
+                labelElement = `<span class="mdc-floating-label mdc-floating-label--float-above">${getValueFromData(data.hintText, '')}</span>
+                                <div class="mdc-line-ripple"></div>`
             } else {
-                selectElementList.push(`<div class="mdc-select mdc-select--outlined" style="width: 100%;">
+                selectElement = '<div class="mdc-select mdc-select--outlined" style="width: 100%;">'
+                labelledbyAttribute = 'shaped_filled_enhanced shaped_filled_enhanced-label';
+
+                labelElement = `<div class="mdc-line-ripple"></div>
+                                <div class="mdc-notched-outline">
+                                    <div class="mdc-notched-outline__leading"></div>
+                                    <div class="mdc-notched-outline__notch">
+                                        <label class="mdc-floating-label">${getValueFromData(data.hintText, '')}</label>
+                                    </div>
+                                    <div class="mdc-notched-outline__trailing"></div>
+                                </div>`
+            }
+
+            let imageElement = '';
+            if (image != null || imageTrue != null) {
+                selectElement = $($.parseHTML(selectElement)).addClass('mdc-select--with-leading-icon').get(0).outerHTML.replace('</div>', '');
+                imageElement = `<img class="material-icons mdc-select__icon" tabindex="0" role="button" src="${image}" />`;
+            }
+
+            let listElements = `<ul class="mdc-list">
+                                    <li class="mdc-list-item" data-value="false" aria-selected="true">${data.text_false}</li>
+                                    <li class="mdc-list-item" data-value="true">${data.text_true}</li>
+                                </ul>`
+
+            selectElementList.push(`${selectElement}
+                                        ${imageElement}
                                         <input type="hidden" name="enhanced-select">
                                         <i class="mdc-select__dropdown-icon"></i>
-                                        <div id="filled_enhanced" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="shaped_filled_enhanced shaped_filled_enhanced-label"></div>
+                                        <div id="filled_enhanced" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="${labelledbyAttribute}"></div>
                                         <div class="mdc-select__menu mdc-menu mdc-menu-surface">
-                                            <ul class="mdc-list">
-                                                <li class="mdc-list-item" data-value="false">${data.text_false}</li>
-                                                <li class="mdc-list-item" data-value="true">${data.text_true}</li>
-                                            </ul>
+                                            ${listElements}
                                         </div>
-                                        <div class="mdc-line-ripple"></div>
-                                        <div class="mdc-notched-outline">
-                                            <div class="mdc-notched-outline__leading"></div>
-                                            <div class="mdc-notched-outline__notch">
-                                                <label class="mdc-floating-label">${getValueFromData(data.hintText, '')}</label>
-                                            </div>
-                                            <div class="mdc-notched-outline__trailing"></div>
-                                        </div>
-                                        `)
-            }
+                                        ${labelElement}
+                                    </div>`);
 
             return selectElementList.join('');
 
@@ -58,15 +71,35 @@ vis.binds.materialdesign.select = {
     },
     handleBoolean: function (el, data) {
         try {
-            var $this = $(el);
-            let select = $this.find('.mdc-select').get(0);
-            let list = $this.find('.mdc-list').get(0);
+            setTimeout(function () {
+                var $this = $(el);
+                let select = $this.find('.mdc-select').get(0);
+                let list = $this.find('.mdc-list').get(0);
 
-            console.log(select);
-            const mdcSelect = new mdc.select.MDCSelect(select);
-            const mdcList = new mdc.list.MDCList(list);
-            const listItemRipples = mdcList.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
+                const mdcSelect = new mdc.select.MDCSelect(select);
+                const mdcList = new mdc.list.MDCList(list);
+                const listItemRipples = mdcList.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
 
+                setSelectState(vis.states.attr(data.oid + '.val'));
+
+                vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                    setSelectState(newVal);
+                });
+
+                mdcSelect.listen('MDCSelect:change', function () {
+                    vis.setValue(data.oid, (mdcSelect.value === 'true') ? true : false);
+                });
+
+                function setSelectState(val) {
+                    if (val) {
+                        mdcSelect.selectedIndex = 1;
+                        $this.find('.material-icons').attr('src', getValueFromData(data.imageTrue, ''))
+                    } else {
+                        mdcSelect.selectedIndex = 0;
+                        $this.find('.material-icons').attr('src', getValueFromData(data.image, ''))
+                    }
+                };
+            }, 1);
 
         } catch (ex) {
             console.exception(`handleBoolean: error: ${ex.message}, stack: ${ex.stack}`);
