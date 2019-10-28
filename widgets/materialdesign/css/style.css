@@ -35,6 +35,13 @@
   --materialdesign-color-card-text-section-background: transparent;
   --materialdesign-color-card-title: #1e88e5;
   --materialdesign-color-card-sub-title: #a1a1a1;
+
+  --materialdesign-color-select-background: transparent;
+  --materialdesign-color-select-background-hover: rgba(0, 0, 0, 0.87);
+  --materialdesign-color-select-hint: rgba(0, 0, 0, 0.6);
+  --materialdesign-color-select-hint_selected: #1e88e5;
+  --materialdesign-color-select-border: rgba(0,0,0,.38);
+  --materialdesign-color-select-border-selected: #1e88e5;
 }
 
 /* Button style -> must defined here because of position bug in vis editor */
@@ -838,4 +845,56 @@ svg.materialdesign-button__icon {
 .materialdesign-chart-container svg>g>g>g>g>rect[stroke="#ffffff"][stroke-width="1"] {
   stroke: black !important;
   stroke-width: 0px !important;
+}
+
+/* mdc-Select */
+.mdc-select__menu.mdc-menu{
+  max-height: 100% !important;
+}
+
+.mdc-select:not(.mdc-select--disabled){
+  background-color: var(--materialdesign-color-select-background);
+}
+
+.mdc-select::before, .mdc-select::after{
+  background-color: var(--materialdesign-color-select-background-hover);
+}
+
+.mdc-select:not(.mdc-select--disabled) .mdc-select__native-control, 
+.mdc-select:not(.mdc-select--disabled) .mdc-select__selected-text {
+  border-color: var(--materialdesign-color-select-border);
+}
+
+.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-line-ripple {
+  background-color: var(--materialdesign-color-select-border-selected);
+}
+
+.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__leading, 
+.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__notch, 
+.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__trailing {
+  border-color: var(--materialdesign-color-select-border);
+}
+
+.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__native-control:hover ~ .mdc-notched-outline .mdc-notched-outline__leading,
+.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__native-control:hover ~ .mdc-notched-outline .mdc-notched-outline__notch,
+.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__native-control:hover ~ .mdc-notched-outline .mdc-notched-outline__trailing, .mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__selected-text:hover ~ .mdc-notched-outline .mdc-notched-outline__leading,
+.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__selected-text:hover ~ .mdc-notched-outline .mdc-notched-outline__notch,
+.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__selected-text:hover ~ .mdc-notched-outline .mdc-notched-outline__trailing {
+  border-color: var(--materialdesign-color-select-background-hover);
+}
+
+.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__leading, 
+.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__notch, 
+.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__trailing {
+  border-color: var(--materialdesign-color-select-border-selected);
+}
+
+/* hint */
+.mdc-select:not(.mdc-select--disabled) .mdc-floating-label {
+  color: var(--materialdesign-color-select-hint);
+}
+
+/* hint selected */
+.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label {
+  color: var(--materialdesign-color-select-hint_selected);
 }

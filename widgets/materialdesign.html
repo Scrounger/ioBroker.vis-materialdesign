@@ -24,6 +24,7 @@
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.list.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.drawer.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.card.js"></script>
+<script type="text/javascript" src="widgets/materialdesign/js/materialdesign.select.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.chart.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.colorScheme.js"></script>
 
@@ -608,6 +609,25 @@
                     <label class="labelValue" style="<%= showValue %>">100%</label>
                 </div>
             </div>
+        </div>
+</script>
+
+<script id="tplVis-materialdesign-Select"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/basic/img/Prev_ValueBoolSelect.png"></img>'
+        data-vis-set="materialdesign"
+        data-vis-type="ctrl"
+        data-vis-name="Bool Select"
+        data-vis-beta="true"
+        data-vis-attrs="oid;text_true;text_false;hintText;layout[standard]/select,standard,outlined;">
+
+        <%
+            let init = vis.binds.materialdesign.select.initialize(data);
+        %>
+
+        <div class="vis-widget materialdesign-select mdc-form-field <%== this.data.attr('class') %>" style="width: 200px; height: 130px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.select.handleBoolean(el, data) %>>
+            <%== init %>
         </div>
 </script>
 
