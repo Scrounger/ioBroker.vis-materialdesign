@@ -620,16 +620,16 @@
         data-vis-type="ctrl"
         data-vis-name="Bool Select"
         data-vis-beta="true"
-        data-vis-attrs="oid;text_true;text_false;hintText;layout[standard]/select,standard,outlined;"
-        data-vis-attrs0="group.icon;image/image;invertImage/checkbox;imageTrue/image;invertImageTrue/checkbox;"
-        data-vis-attrs1="group.selectColor;selectBackground/color;selectBackgroundHover/color;selectHintTextColor/color;selectHintTextColorSelected/color;selectBorderColor/color;selectBorderColorSelected/color;selectToggleIconColor/color;"
+        data-vis-attrs="oid;text_true;text_false;hintText;layout[standard]/select,standard,outlined;listItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;distanceBetweenTextAndImage/number;"
+        data-vis-attrs0="group.icon;image/image;invertImage/checkbox;imageTrue/image;invertImageTrue/checkbox;drawerIconHeight/number;"
+        data-vis-attrs1="group.selectColor;selectBackground/color;selectBackgroundHover/color;selectHintTextColor/color;selectHintTextColorSelected/color;selectBorderColor/color;selectBorderColorSelected/color;"
         data-vis-attrs2="group.menuColors;colorDrawerBackground/color;colorDrawerItemBackground/color;colorListItemHover/color;colorListItemSelected/color;colorListItemText/color;colorListItemTextSelected/color;">
 
         <%
             let init = vis.binds.materialdesign.select.initialize(data);
         %>
 
-        <div class="vis-widget materialdesign-select mdc-form-field <%== this.data.attr('class') %>" style="width: 200px; height: 130px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.select.handleBoolean(el, data) %>>
+        <div class="vis-widget materialdesign-select <%== this.data.attr('class') %>" style="width: 200px; height: 130px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.select.handleBoolean(el, data) %>>
             <%== init %>
         </div>
 </script>

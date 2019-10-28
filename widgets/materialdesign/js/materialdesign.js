@@ -646,7 +646,7 @@ function getListItemImage(image, style) {
     return '';
 }
 
-function getListItem(layout, itemIndex, backdropImage, hasSubItems, isSubItem = false, style = '', dataOid = '', role = '') {
+function getListItem(layout, itemIndex, backdropImage, hasSubItems, isSubItem = false, style = '', dataOid = '', role = '', dataValue='') {
 
     if (layout === 'standard') {
         // Layout: Standard
@@ -654,7 +654,8 @@ function getListItem(layout, itemIndex, backdropImage, hasSubItems, isSubItem = 
                     class="mdc-list-item${(isSubItem) ? ' mdc-sub-list-item isSubItem' : ''}${(itemIndex === 0) ? ' mdc-list-item--activated' : ''}${(hasSubItems) ? ' hasSubItems' : ''}" 
                     tabindex="${(itemIndex === 0) ? '0' : '-1'}" 
                     id="listItem_${itemIndex}" 
-                    style="${style}" 
+                    style="${style}"
+                    data-value="${dataValue}" 
                     ${dataOid} 
                     ${role}
                 >`

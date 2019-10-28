@@ -15,7 +15,9 @@ vis.binds.materialdesign.select = {
 
             let image = getValueFromData(data.image, null);
             let imageTrue = getValueFromData(data.imageTrue, null);
-
+            let iconHeight = getValueFromData(data.drawerIconHeight, '', 'height: ', 'px !important;');
+            let menuItemFontSize = getFontSize(data.listItemTextSize);
+            let spaceBetweenImageAndLabel = getValueFromData(data.distanceBetweenTextAndImage, 'margin-right: -10px;', 'margin-right: ', 'px;');
 
             let selectElement = '';
             let labelledbyAttribute = '';
@@ -47,18 +49,30 @@ vis.binds.materialdesign.select = {
                 imageElement = `<img class="material-icons mdc-select__icon" tabindex="0" role="button" src="${image}" />`;
             }
 
-            let listElements = `<ul class="mdc-list">
-                                    <li class="mdc-list-item" data-value="false" aria-selected="true">${data.text_false}</li>
-                                    <li class="mdc-list-item" data-value="true">${data.text_true}</li>
-                                </ul>`
+            let listElements = [];
+
+            listElements.push(`${getListItem('standard', 0, '', false, false, iconHeight,'','', false)}
+                                                ${getListItemImage(image, `${iconHeight}${spaceBetweenImageAndLabel}`)}
+                                                ${getListItemLabel('standard', 0, data.text_false, false, menuItemFontSize, '', 0)}</div>`)
+
+            listElements.push(`${getListItem('standard', 1, '', false, false, iconHeight,'','', true)}
+                                                ${getListItemImage(image, `${iconHeight}${spaceBetweenImageAndLabel}`)}
+                                                ${getListItemLabel('standard', 1, data.text_true, false, menuItemFontSize, '', 0)}</div>`)
+
+
+            // `<li class="mdc-list-item" data-value="false" aria-selected="true">${data.text_false}</li>
+            //                     <li class="mdc-list-item" data-value="true">${data.text_true}</li>`
+
 
             selectElementList.push(`${selectElement}
                                         ${imageElement}
                                         <input type="hidden" name="enhanced-select">
-                                        <i class="mdc-select__dropdown-icon" ${getValueFromData(data.selectToggleIconColor, '', 'style="color: ', ';"')}></i>
+                                        <i class="mdc-select__dropdown-icon"></i>
                                         <div id="filled_enhanced" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="${labelledbyAttribute}"></div>
                                         <div class="mdc-select__menu mdc-menu mdc-menu-surface">
-                                            ${listElements}
+                                            <ul class="mdc-list">
+                                                ${listElements.join('')}
+                                            </ul>
                                         </div>
                                         ${labelElement}
                                     </div>`);
@@ -109,9 +123,11 @@ vis.binds.materialdesign.select = {
                 function setSelectState(val) {
                     if (val) {
                         mdcSelect.selectedIndex = 1;
+                        mdcList.selectedIndex = 1;
                         $this.find('.material-icons').attr('src', getValueFromData(data.imageTrue, ''))
                     } else {
                         mdcSelect.selectedIndex = 0;
+                        mdcList.selectedIndex = 0;
                         $this.find('.material-icons').attr('src', getValueFromData(data.image, ''))
                     }
                 };
