@@ -80,6 +80,13 @@ vis.binds.materialdesign.select = {
                 const mdcList = new mdc.list.MDCList(list);
                 const listItemRipples = mdcList.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
 
+                select.style.setProperty("--materialdesign-color-select-background", getValueFromData(data.selectBackground, ''));
+                select.style.setProperty("--materialdesign-color-select-background-hover", getValueFromData(data.selectBackgroundHover, ''));
+                select.style.setProperty("--materialdesign-color-select-hint", getValueFromData(data.selectHintTextColor, ''));
+                select.style.setProperty("--materialdesign-color-select-hint_selected", getValueFromData(data.selectHintTextColorSelected, ''));
+                select.style.setProperty("--materialdesign-color-select-border", getValueFromData(data.selectBorderColor, ''));
+                select.style.setProperty("--materialdesign-color-select-border-selected", getValueFromData(data.selectBorderColorSelected, ''));
+
                 setSelectState(vis.states.attr(data.oid + '.val'));
 
                 vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
