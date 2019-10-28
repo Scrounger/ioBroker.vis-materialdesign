@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.1.6"
+    version: "0.1.7"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -16,7 +16,7 @@ vis.binds.materialdesign.select = {
 
             let iconHeight = getValueFromData(data.drawerIconHeight, '', 'height: ', 'px !important;');
             let menuItemFontSize = getFontSize(data.listItemTextSize);
-            let spaceBetweenImageAndLabel = getValueFromData(data.distanceBetweenTextAndImage, 'margin-right: -10px;', 'margin-right: ', 'px;');
+            let spaceBetweenImageAndLabel = getValueFromData(data.distanceBetweenTextAndImage, '', 'margin-right: ', 'px;');
 
             let selectElement = '';
             let labelledbyAttribute = '';
