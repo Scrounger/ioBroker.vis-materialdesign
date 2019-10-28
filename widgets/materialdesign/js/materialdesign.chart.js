@@ -13,319 +13,317 @@
 vis.binds.materialdesign.chart = {
     bar: function (el, data) {
         try {
-            let myHelper = vis.binds.materialdesign.chart.helper;
-
-            let $this = $(el);
-            var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
-
-            $(el).find('.materialdesign-chart-container').css('background-color', getValueFromData(data.backgroundColor, ''));
-            let globalColor = getValueFromData(data.globalColor, '#1e88e5');
-
-            let colorScheme = getValueFromData(data.colorScheme, null);
-            if (colorScheme != null) {
-                colorScheme = vis.binds.materialdesign.colorScheme.get(data.colorScheme, data.dataCount);
-            }
-
-            var ctx = chartContainer.getContext('2d');
-
-            // Global Options:
-            Chart.defaults.global.defaultFontColor = '#1e88e5';
-            Chart.defaults.global.defaultFontSize = 15;
-            Chart.defaults.global.animation.duration = getNumberFromData(data.animationDuration, 1000);
-
-            Chart.plugins.unregister(ChartDataLabels);
-
-            console.log(data.colorScheme);
-
-            let dataArray = []
-            let labelArray = [];
-            let dataColorArray = [];
-            let hoverDataColorArray = [];
-            let globalValueTextColor = getValueFromData(data.valuesFontColor, 'black')
-            let valueTextColorArray = [];
-            for (var i = 0; i <= data.dataCount; i++) {
-                // row data
-                dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
-                labelArray.push(getValueFromData(data.attr('label' + i), '').split('\\n'));
-
-                if (colorScheme != null) {
-                    globalColor = colorScheme[i];
-                }
-
-                let bgColor = getValueFromData(data.attr('dataColor' + i), globalColor)
-                dataColorArray.push(bgColor);
-
-                if (getValueFromData(data.hoverColor, null) === null) {
-                    hoverDataColorArray.push(convertHex(bgColor, 80))
-                } else {
-                    hoverDataColorArray.push(data.hoverColor)
-                }
-
-                valueTextColorArray.push(getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor))
-
-                vis.states.bind(data.attr('oid' + i) + '.val', onChange);
-            }
-
-            // Data with datasets options
-            var chartData = {
-                labels: labelArray,
-                datasets: [
-                    Object.assign(myHelper.getDataset(dataArray, dataColorArray, hoverDataColorArray, undefined, data.hoverBorderColor, undefined, data.hoverBorderWidth),
-                        {
-                            // chart specific properties
-                            label: getValueFromData(data.barLabelText, ''),
-                        }
-                    )
-                ]
-            };
-
-            // Notice how nested the beginAtZero is
-            var options = {
-                responsive: true,
-                maintainAspectRatio: false,
-                layout: myHelper.getLayout(data),
-                legend: myHelper.getLegend(data),
-                scales: {
-                    yAxes: [
-                        myHelper.get_Y_AxisObject(data.chartType, data.yAxisPosition, data.barWidth, data.yAxisTitle, data.yAxisTitleColor, data.yAxisTitleFontFamily, data.yAxisTitleFontSize,
-                            data.yAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
-                            data.yAxisValueLabelColor, data.yAxisValueFontFamily, data.yAxisValueFontSize, data.yAxisValueDistanceToAxis, data.yAxisGridLinesColor,
-                            data.yAxisGridLinesWitdh, data.yAxisShowAxis, data.yAxisShowGridLines, data.yAxisShowTicks, data.yAxisTickLength)
-                    ],
-                    xAxes: [
-                        myHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.barWidth, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
-                            data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
-                            data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
-                            data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength)
-                    ],
-                },
-                tooltips: {
-                    enabled: data.showTooltip,
-                    backgroundColor: getValueFromData(data.tooltipBackgroundColor, 'black'),
-                    caretSize: getNumberFromData(data.tooltipArrowSize, 5),
-                    caretPadding: getNumberFromData(data.tooltipDistanceToBar, 2),
-                    cornerRadius: getNumberFromData(data.tooltipBoxRadius, 4),
-                    displayColors: data.tooltipShowColorBox,
-                    xPadding: getNumberFromData(data.tooltipXpadding, 10),
-                    yPadding: getNumberFromData(data.tooltipYpadding, 10),
-                    titleFontColor: getValueFromData(data.tooltipTitleFontColor, 'white'),
-                    titleFontFamily: getValueFromData(data.tooltipTitleFontFamily, undefined),
-                    titleFontSize: getNumberFromData(data.tooltipTitleFontSize, undefined),
-                    titleMarginBottom: getNumberFromData(data.tooltipTitleMarginBottom, 6),
-                    bodyFontColor: getValueFromData(data.tooltipBodyFontColor, 'white'),
-                    bodyFontFamily: getValueFromData(data.tooltipBodyFontFamily, undefined),
-                    bodyFontSize: getNumberFromData(data.tooltipBodyFontSize, undefined),
-                    callbacks: {
-                        label: function (tooltipItem, chart) {
-                            if (tooltipItem && tooltipItem.value) {
-                                return `${chart.datasets[0].label}: ${myHelper.roundNumber(parseFloat(tooltipItem.value), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.tooltipBodyAppend, '')}`
-                                    .split('\\n');
-                            }
-                            return '';
-                        }
-                    }
-                },
-                plugins: {
-                    datalabels: {
-                        anchor: data.valuesPositionAnchor,
-                        align: data.valuesPositionAlign,
-                        clamp: true,
-                        rotation: getNumberFromData(data.valuesRotation, undefined),
-                        formatter: function (value, context) {
-                            if (value) {
-                                return `${myHelper.roundNumber(value, getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.valuesAppendText, '')}${getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
-                                    .split('\\n');
-                            }
-                            return '';
-                        },
-                        font: {
-                            family: getValueFromData(data.valuesFontFamily, undefined),
-                            size: getNumberFromData(data.valuesFontSize, undefined),
-                        },
-                        color: valueTextColorArray,
-                        textAlign: data.valuesTextAlign
-                    }
-                }
-            };
-
-            if (data.disableHoverEffects) options.hover = { mode: null };
-
-            // Chart declaration:
-            var myBarChart = null;
             setTimeout(function () {
-                myBarChart = new Chart(ctx, {
-                    type: (data.chartType === 'vertical') ? 'bar' : 'horizontalBar',
-                    data: chartData,
-                    options: options,
-                    plugins: (data.showValues) ? [ChartDataLabels] : undefined     // show value labels
-                });
-            }, 1)
+                let myHelper = vis.binds.materialdesign.chart.helper;
 
-            function onChange(e, newVal, oldVal) {
-                // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
-                let oidId = e.type.substr(0, e.type.lastIndexOf("."));
+                let $this = $(el);
+                var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
 
-                for (var d = 0; d <= data.dataCount; d++) {
-                    if (oidId === data.attr('oid' + d)) {
-                        let index = d;
-                        myBarChart.data.datasets[0].data[index] = newVal;
-                        myBarChart.update();
-                    }
+                $(el).find('.materialdesign-chart-container').css('background-color', getValueFromData(data.backgroundColor, ''));
+                let globalColor = getValueFromData(data.globalColor, '#1e88e5');
+
+                let colorScheme = getValueFromData(data.colorScheme, null);
+                if (colorScheme != null) {
+                    colorScheme = vis.binds.materialdesign.colorScheme.get(data.colorScheme, data.dataCount);
                 }
-            };
 
+                if (chartContainer !== undefined && chartContainer !== null && chartContainer !== '') {
+                    var ctx = chartContainer.getContext('2d');
+
+                    // Global Options:
+                    Chart.defaults.global.defaultFontColor = '#1e88e5';
+                    Chart.defaults.global.defaultFontSize = 15;
+                    Chart.defaults.global.animation.duration = getNumberFromData(data.animationDuration, 1000);
+
+                    Chart.plugins.unregister(ChartDataLabels);
+
+                    let dataArray = []
+                    let labelArray = [];
+                    let dataColorArray = [];
+                    let hoverDataColorArray = [];
+                    let globalValueTextColor = getValueFromData(data.valuesFontColor, 'black')
+                    let valueTextColorArray = [];
+                    for (var i = 0; i <= data.dataCount; i++) {
+                        // row data
+                        dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
+                        labelArray.push(getValueFromData(data.attr('label' + i), '').split('\\n'));
+
+                        if (colorScheme != null) {
+                            globalColor = colorScheme[i];
+                        }
+
+                        let bgColor = getValueFromData(data.attr('dataColor' + i), globalColor)
+                        dataColorArray.push(bgColor);
+
+                        if (getValueFromData(data.hoverColor, null) === null) {
+                            hoverDataColorArray.push(convertHex(bgColor, 80))
+                        } else {
+                            hoverDataColorArray.push(data.hoverColor)
+                        }
+
+                        valueTextColorArray.push(getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor))
+
+                        vis.states.bind(data.attr('oid' + i) + '.val', onChange);
+                    }
+
+                    // Data with datasets options
+                    var chartData = {
+                        labels: labelArray,
+                        datasets: [
+                            Object.assign(myHelper.getDataset(dataArray, dataColorArray, hoverDataColorArray, undefined, data.hoverBorderColor, undefined, data.hoverBorderWidth),
+                                {
+                                    // chart specific properties
+                                    label: getValueFromData(data.barLabelText, ''),
+                                }
+                            )
+                        ]
+                    };
+
+                    // Notice how nested the beginAtZero is
+                    var options = {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        layout: myHelper.getLayout(data),
+                        legend: myHelper.getLegend(data),
+                        scales: {
+                            yAxes: [
+                                myHelper.get_Y_AxisObject(data.chartType, data.yAxisPosition, data.barWidth, data.yAxisTitle, data.yAxisTitleColor, data.yAxisTitleFontFamily, data.yAxisTitleFontSize,
+                                    data.yAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
+                                    data.yAxisValueLabelColor, data.yAxisValueFontFamily, data.yAxisValueFontSize, data.yAxisValueDistanceToAxis, data.yAxisGridLinesColor,
+                                    data.yAxisGridLinesWitdh, data.yAxisShowAxis, data.yAxisShowGridLines, data.yAxisShowTicks, data.yAxisTickLength)
+                            ],
+                            xAxes: [
+                                myHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.barWidth, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
+                                    data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
+                                    data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
+                                    data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength)
+                            ],
+                        },
+                        tooltips: {
+                            enabled: data.showTooltip,
+                            backgroundColor: getValueFromData(data.tooltipBackgroundColor, 'black'),
+                            caretSize: getNumberFromData(data.tooltipArrowSize, 5),
+                            caretPadding: getNumberFromData(data.tooltipDistanceToBar, 2),
+                            cornerRadius: getNumberFromData(data.tooltipBoxRadius, 4),
+                            displayColors: data.tooltipShowColorBox,
+                            xPadding: getNumberFromData(data.tooltipXpadding, 10),
+                            yPadding: getNumberFromData(data.tooltipYpadding, 10),
+                            titleFontColor: getValueFromData(data.tooltipTitleFontColor, 'white'),
+                            titleFontFamily: getValueFromData(data.tooltipTitleFontFamily, undefined),
+                            titleFontSize: getNumberFromData(data.tooltipTitleFontSize, undefined),
+                            titleMarginBottom: getNumberFromData(data.tooltipTitleMarginBottom, 6),
+                            bodyFontColor: getValueFromData(data.tooltipBodyFontColor, 'white'),
+                            bodyFontFamily: getValueFromData(data.tooltipBodyFontFamily, undefined),
+                            bodyFontSize: getNumberFromData(data.tooltipBodyFontSize, undefined),
+                            callbacks: {
+                                label: function (tooltipItem, chart) {
+                                    if (tooltipItem && tooltipItem.value) {
+                                        return `${chart.datasets[0].label}: ${myHelper.roundNumber(parseFloat(tooltipItem.value), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.tooltipBodyAppend, '')}`
+                                            .split('\\n');
+                                    }
+                                    return '';
+                                }
+                            }
+                        },
+                        plugins: {
+                            datalabels: {
+                                anchor: data.valuesPositionAnchor,
+                                align: data.valuesPositionAlign,
+                                clamp: true,
+                                rotation: getNumberFromData(data.valuesRotation, undefined),
+                                formatter: function (value, context) {
+                                    if (value) {
+                                        return `${myHelper.roundNumber(value, getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.valuesAppendText, '')}${getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
+                                            .split('\\n');
+                                    }
+                                    return '';
+                                },
+                                font: {
+                                    family: getValueFromData(data.valuesFontFamily, undefined),
+                                    size: getNumberFromData(data.valuesFontSize, undefined),
+                                },
+                                color: valueTextColorArray,
+                                textAlign: data.valuesTextAlign
+                            }
+                        }
+                    };
+
+                    if (data.disableHoverEffects) options.hover = { mode: null };
+
+                    // Chart declaration:
+                    var myBarChart = new Chart(ctx, {
+                        type: (data.chartType === 'vertical') ? 'bar' : 'horizontalBar',
+                        data: chartData,
+                        options: options,
+                        plugins: (data.showValues) ? [ChartDataLabels] : undefined     // show value labels
+                    });
+
+                    function onChange(e, newVal, oldVal) {
+                        // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
+                        let oidId = e.type.substr(0, e.type.lastIndexOf("."));
+
+                        for (var d = 0; d <= data.dataCount; d++) {
+                            if (oidId === data.attr('oid' + d)) {
+                                let index = d;
+                                myBarChart.data.datasets[0].data[index] = newVal;
+                                myBarChart.update();
+                            }
+                        }
+                    };
+                }
+            }, 1)
         } catch (ex) {
             console.exception(`bar: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     pie: function (el, data) {
         try {
-            let myHelper = vis.binds.materialdesign.chart.helper;
-
-            let $this = $(el);
-            var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
-
-            $(el).find('.materialdesign-chart-container').css('background-color', getValueFromData(data.backgroundColor, ''));
-            let globalColor = getValueFromData(data.globalColor, '#1e88e5');
-
-            let colorScheme = getValueFromData(data.colorScheme, null);
-            if (colorScheme != null) {
-                colorScheme = vis.binds.materialdesign.colorScheme.get(data.colorScheme, data.dataCount);
-            }
-
-            var ctx = chartContainer.getContext('2d');
-
-            // Global Options:
-            Chart.defaults.global.defaultFontColor = '#1e88e5';
-            Chart.defaults.global.defaultFontSize = 15;
-            Chart.defaults.global.animation.duration = getNumberFromData(data.animationDuration, 1000);
-
-            Chart.plugins.unregister(ChartDataLabels);
-
-            let dataArray = []
-            let labelArray = [];
-            let dataColorArray = [];
-            let hoverDataColorArray = [];
-            let globalValueTextColor = getValueFromData(data.valuesFontColor, 'black')
-            let valueTextColorArray = [];
-            for (var i = 0; i <= data.dataCount; i++) {
-                // row data
-                dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
-                labelArray.push(getValueFromData(data.attr('label' + i), '').split('\\n'));
-
-                if (colorScheme != null) {
-                    globalColor = colorScheme[i];
-                }
-
-                let bgColor = getValueFromData(data.attr('dataColor' + i), globalColor)
-                dataColorArray.push(bgColor);
-
-                if (getValueFromData(data.hoverColor, null) === null) {
-                    hoverDataColorArray.push(convertHex(bgColor, 80))
-                } else {
-                    hoverDataColorArray.push(data.hoverColor)
-                }
-
-                valueTextColorArray.push(getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor))
-
-                vis.states.bind(data.attr('oid' + i) + '.val', onChange);
-            }
-
-            // Data with datasets options
-            var chartData = {
-                labels: labelArray,
-                datasets: [
-                    Object.assign(myHelper.getDataset(dataArray, dataColorArray, hoverDataColorArray, data.borderColor, data.hoverBorderColor, data.borderWidth, data.hoverBorderWidth),
-                        {
-                            // chart specific properties
-                            borderAlign: 'inner',
-                        }
-                    )
-                ]
-            };
-
-            // Notice how nested the beginAtZero is
-            var options = {
-                responsive: true,
-                maintainAspectRatio: false,
-                layout: myHelper.getLayout(data),
-                legend: myHelper.getLegend(data),
-                cutoutPercentage: (data.chartType === 'doughnut') ? getNumberFromData(data.doughnutCutOut, 50) : 0,
-                tooltips: {
-                    enabled: data.showTooltip,
-                    backgroundColor: getValueFromData(data.tooltipBackgroundColor, 'black'),
-                    caretSize: getNumberFromData(data.tooltipArrowSize, 5),
-                    caretPadding: getNumberFromData(data.tooltipDistanceToBar, 2),
-                    cornerRadius: getNumberFromData(data.tooltipBoxRadius, 4),
-                    displayColors: data.tooltipShowColorBox,
-                    xPadding: getNumberFromData(data.tooltipXpadding, 10),
-                    yPadding: getNumberFromData(data.tooltipYpadding, 10),
-                    titleFontColor: getValueFromData(data.tooltipTitleFontColor, 'white'),
-                    titleFontFamily: getValueFromData(data.tooltipTitleFontFamily, undefined),
-                    titleFontSize: getNumberFromData(data.tooltipTitleFontSize, undefined),
-                    titleMarginBottom: getNumberFromData(data.tooltipTitleMarginBottom, 6),
-                    bodyFontColor: getValueFromData(data.tooltipBodyFontColor, 'white'),
-                    bodyFontFamily: getValueFromData(data.tooltipBodyFontFamily, undefined),
-                    bodyFontSize: getNumberFromData(data.tooltipBodyFontSize, undefined),
-                    callbacks: {
-                        label: function (tooltipItem, chart) {
-                            if (tooltipItem) {
-                                return `${labelArray[tooltipItem.index]}: ${myHelper.roundNumber(parseFloat(chart.datasets[0].data[tooltipItem.index]), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.tooltipBodyAppend, '')}`
-                                    .split('\\n');
-                            }
-                            return '';
-                        }
-                    }
-                },
-                plugins: {
-                    datalabels: {
-                        anchor: data.valuesPositionAnchor,
-                        align: data.valuesPositionAlign,
-                        clamp: true,
-                        rotation: getNumberFromData(data.valuesRotation, undefined),
-                        formatter: function (value, context) {
-                            if (value) {
-                                return `${myHelper.roundNumber(value, getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.valuesAppendText, '')}${getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
-                                    .split('\\n');
-                            }
-                            return '';
-                        },
-                        font: {
-                            family: getValueFromData(data.valuesFontFamily, undefined),
-                            size: getNumberFromData(data.valuesFontSize, undefined),
-                        },
-                        color: valueTextColorArray,
-                        textAlign: data.valuesTextAlign
-                    }
-                }
-            };
-
-            if (data.disableHoverEffects) options.hover = { mode: null };
-
-            // Chart declaration:
-            var myBarChart = null;
             setTimeout(function () {
-                myBarChart = new Chart(ctx, {
-                    type: (data.chartType === 'pie') ? 'pie' : 'doughnut',
-                    data: chartData,
-                    options: options,
-                    plugins: (data.showValues) ? [ChartDataLabels] : undefined     // show value labels
-                });
-            }, 1)
+                let myHelper = vis.binds.materialdesign.chart.helper;
 
-            function onChange(e, newVal, oldVal) {
-                // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
-                let oidId = e.type.substr(0, e.type.lastIndexOf("."));
+                let $this = $(el);
+                var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
 
-                for (var d = 0; d <= data.dataCount; d++) {
-                    if (oidId === data.attr('oid' + d)) {
-                        let index = d;
-                        myBarChart.data.datasets[0].data[index] = newVal;
-                        myBarChart.update();
-                    }
+                $(el).find('.materialdesign-chart-container').css('background-color', getValueFromData(data.backgroundColor, ''));
+                let globalColor = getValueFromData(data.globalColor, '#1e88e5');
+
+                let colorScheme = getValueFromData(data.colorScheme, null);
+                if (colorScheme != null) {
+                    colorScheme = vis.binds.materialdesign.colorScheme.get(data.colorScheme, data.dataCount);
                 }
-            };
 
+                if (chartContainer !== undefined && chartContainer !== null && chartContainer !== '') {
+                    var ctx = chartContainer.getContext('2d');
+
+                    // Global Options:
+                    Chart.defaults.global.defaultFontColor = '#1e88e5';
+                    Chart.defaults.global.defaultFontSize = 15;
+                    Chart.defaults.global.animation.duration = getNumberFromData(data.animationDuration, 1000);
+
+                    Chart.plugins.unregister(ChartDataLabels);
+
+                    let dataArray = []
+                    let labelArray = [];
+                    let dataColorArray = [];
+                    let hoverDataColorArray = [];
+                    let globalValueTextColor = getValueFromData(data.valuesFontColor, 'black')
+                    let valueTextColorArray = [];
+                    for (var i = 0; i <= data.dataCount; i++) {
+                        // row data
+                        dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
+                        labelArray.push(getValueFromData(data.attr('label' + i), '').split('\\n'));
+
+                        if (colorScheme != null) {
+                            globalColor = colorScheme[i];
+                        }
+
+                        let bgColor = getValueFromData(data.attr('dataColor' + i), globalColor)
+                        dataColorArray.push(bgColor);
+
+                        if (getValueFromData(data.hoverColor, null) === null) {
+                            hoverDataColorArray.push(convertHex(bgColor, 80))
+                        } else {
+                            hoverDataColorArray.push(data.hoverColor)
+                        }
+
+                        valueTextColorArray.push(getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor))
+
+                        vis.states.bind(data.attr('oid' + i) + '.val', onChange);
+                    }
+
+                    // Data with datasets options
+                    var chartData = {
+                        labels: labelArray,
+                        datasets: [
+                            Object.assign(myHelper.getDataset(dataArray, dataColorArray, hoverDataColorArray, data.borderColor, data.hoverBorderColor, data.borderWidth, data.hoverBorderWidth),
+                                {
+                                    // chart specific properties
+                                    borderAlign: 'inner',
+                                }
+                            )
+                        ]
+                    };
+
+                    // Notice how nested the beginAtZero is
+                    var options = {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        layout: myHelper.getLayout(data),
+                        legend: myHelper.getLegend(data),
+                        cutoutPercentage: (data.chartType === 'doughnut') ? getNumberFromData(data.doughnutCutOut, 50) : 0,
+                        tooltips: {
+                            enabled: data.showTooltip,
+                            backgroundColor: getValueFromData(data.tooltipBackgroundColor, 'black'),
+                            caretSize: getNumberFromData(data.tooltipArrowSize, 5),
+                            caretPadding: getNumberFromData(data.tooltipDistanceToBar, 2),
+                            cornerRadius: getNumberFromData(data.tooltipBoxRadius, 4),
+                            displayColors: data.tooltipShowColorBox,
+                            xPadding: getNumberFromData(data.tooltipXpadding, 10),
+                            yPadding: getNumberFromData(data.tooltipYpadding, 10),
+                            titleFontColor: getValueFromData(data.tooltipTitleFontColor, 'white'),
+                            titleFontFamily: getValueFromData(data.tooltipTitleFontFamily, undefined),
+                            titleFontSize: getNumberFromData(data.tooltipTitleFontSize, undefined),
+                            titleMarginBottom: getNumberFromData(data.tooltipTitleMarginBottom, 6),
+                            bodyFontColor: getValueFromData(data.tooltipBodyFontColor, 'white'),
+                            bodyFontFamily: getValueFromData(data.tooltipBodyFontFamily, undefined),
+                            bodyFontSize: getNumberFromData(data.tooltipBodyFontSize, undefined),
+                            callbacks: {
+                                label: function (tooltipItem, chart) {
+                                    if (tooltipItem) {
+                                        return `${labelArray[tooltipItem.index]}: ${myHelper.roundNumber(parseFloat(chart.datasets[0].data[tooltipItem.index]), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.tooltipBodyAppend, '')}`
+                                            .split('\\n');
+                                    }
+                                    return '';
+                                }
+                            }
+                        },
+                        plugins: {
+                            datalabels: {
+                                anchor: data.valuesPositionAnchor,
+                                align: data.valuesPositionAlign,
+                                clamp: true,
+                                rotation: getNumberFromData(data.valuesRotation, undefined),
+                                formatter: function (value, context) {
+                                    if (value) {
+                                        return `${myHelper.roundNumber(value, getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.valuesAppendText, '')}${getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
+                                            .split('\\n');
+                                    }
+                                    return '';
+                                },
+                                font: {
+                                    family: getValueFromData(data.valuesFontFamily, undefined),
+                                    size: getNumberFromData(data.valuesFontSize, undefined),
+                                },
+                                color: valueTextColorArray,
+                                textAlign: data.valuesTextAlign
+                            }
+                        }
+                    };
+
+                    if (data.disableHoverEffects) options.hover = { mode: null };
+
+                    // Chart declaration:
+                    var myBarChart = new Chart(ctx, {
+                        type: (data.chartType === 'pie') ? 'pie' : 'doughnut',
+                        data: chartData,
+                        options: options,
+                        plugins: (data.showValues) ? [ChartDataLabels] : undefined     // show value labels
+                    });
+
+                    function onChange(e, newVal, oldVal) {
+                        // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
+                        let oidId = e.type.substr(0, e.type.lastIndexOf("."));
+
+                        for (var d = 0; d <= data.dataCount; d++) {
+                            if (oidId === data.attr('oid' + d)) {
+                                let index = d;
+                                myBarChart.data.datasets[0].data[index] = newVal;
+                                myBarChart.update();
+                            }
+                        }
+                    };
+                }
+            }, 1)
         } catch (ex) {
             console.exception(`bar: error:: ${ex.message}, stack: ${ex.stack}`);
         }
