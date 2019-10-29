@@ -44,6 +44,7 @@ vis.binds.materialdesign.select = {
 
             let imageElement = '';
             let listElements = [];
+            let rightItemLabel = '';
 
             if (isBooleanSelect) {
                 // Bool Select
@@ -73,12 +74,19 @@ vis.binds.materialdesign.select = {
 
                     listElements.push(`${getListItem('standard', i, '', false, false, iconHeight, '', '', getValueFromData(data.attr('value' + i), ''))}
                                                 ${(menuIcon != null) ? getListItemImage(menuIcon, `${iconHeight}${spaceBetweenImageAndLabel}`) : ''}
-                                                ${getListItemLabel('standard', 0, getValueFromData(data.attr('label' + i), getValueFromData(data.attr('value' + i), `no value for Item ${i}`)), false, menuItemFontSize, '', 0)}</div>`)
+                                                ${getListItemLabel('standard', 0, getValueFromData(data.attr('label' + i), getValueFromData(data.attr('value' + i), `no value for Item ${i}`)), false, menuItemFontSize, '', 0)}`)
 
                     if (menuIcon !== null) {
                         imageExists = true;
                         initialeImage = menuIcon;
                     }
+
+                    rightItemLabel = getListItemLabel('standard', i, getValueFromData(data.attr('value' + i)), false, menuItemFontSize, '', '', '');
+                    rightItemLabel = $($.parseHTML(rightItemLabel)).css('width', 'auto');
+                    rightItemLabel = rightItemLabel.addClass('materialdesign-list-item-text-right').addClass('mdc-list-item__meta').get(0).outerHTML;
+                    
+                    listElements.push(rightItemLabel);
+                    listElements.push('</div>')
                 }
 
                 if (imageExists) {
@@ -139,19 +147,39 @@ vis.binds.materialdesign.select = {
                     setSelectState(newVal);
                 });
 
-                mdcSelect.listen('MDCSelect:change', function () {
-                    vis.setValue(data.oid, (mdcSelect.value === 'true') ? true : false);
-                });
+                if (!vis.editMode) {
+                    mdcSelect.listen('MDCSelect:change', function () {
+                        console.log(mdcSelect.value);
+                        if (isBooleanSelect) {
+                            vis.setValue(data.oid, (mdcSelect.value === 'true') ? true : false);
+                        } else {
+                            vis.setValue(data.oid, mdcSelect.value);
+                        }
+                    });
+                }
 
                 function setSelectState(val) {
-                    if (val) {
-                        mdcSelect.selectedIndex = 1;
-                        mdcList.selectedIndex = 1;
-                        $this.find('.material-icons').attr('src', getValueFromData(data.imageTrue, ''))
+
+                    if (isBooleanSelect) {
+                        if (val) {
+                            mdcSelect.selectedIndex = 1;
+                            mdcList.selectedIndex = 1;
+                            $this.find('.material-icons').attr('src', getValueFromData(data.imageTrue, ''))
+                        } else {
+                            mdcSelect.selectedIndex = 0;
+                            mdcList.selectedIndex = 0;
+                            $this.find('.material-icons').attr('src', getValueFromData(data.image, ''))
+                        }
                     } else {
-                        mdcSelect.selectedIndex = 0;
-                        mdcList.selectedIndex = 0;
-                        $this.find('.material-icons').attr('src', getValueFromData(data.image, ''))
+                        for (var i = 0; i <= data.values; i++) {
+                            if (val.toString() === getValueFromData(data.attr('value' + i), '').toString()) {
+                                mdcSelect.selectedIndex = i;
+                                mdcList.selectedIndex = i;
+                                $this.find('.material-icons').attr('src', getValueFromData(data.attr('menuIcon' + i), ''))
+                                
+                                break;
+                            }
+                        }
                     }
                 };
             }, 1);
