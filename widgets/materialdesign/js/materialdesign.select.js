@@ -17,6 +17,7 @@ vis.binds.materialdesign.select = {
             let iconHeight = getValueFromData(data.drawerIconHeight, '', 'height: ', 'px !important;');
             let menuItemFontSize = getFontSize(data.listItemTextSize);
             let spaceBetweenImageAndLabel = getValueFromData(data.distanceBetweenTextAndImage, '', 'margin-right: ', 'px;');
+            let menuWidth = getValueFromData(data.menuWidth, '', 'width: ', 'px;');
 
             let selectElement = '';
             let labelledbyAttribute = '';
@@ -74,18 +75,24 @@ vis.binds.materialdesign.select = {
 
                     listElements.push(`${getListItem('standard', i, '', false, false, iconHeight, '', '', getValueFromData(data.attr('value' + i), ''))}
                                                 ${(menuIcon != null) ? getListItemImage(menuIcon, `${iconHeight}${spaceBetweenImageAndLabel}`) : ''}
-                                                ${getListItemLabel('standard', 0, getValueFromData(data.attr('label' + i), getValueFromData(data.attr('value' + i), `no value for Item ${i}`)), false, menuItemFontSize, '', 0)}`)
+                                                ${$($.parseHTML(getListItemLabel('standard', 0, getValueFromData(data.attr('label' + i), getValueFromData(data.attr('value' + i), `no value for Item ${i}`)), false, menuItemFontSize, '', 0))).css('width','').get(0).outerHTML}`)
 
                     if (menuIcon !== null) {
                         imageExists = true;
                         initialeImage = menuIcon;
                     }
 
-                    rightItemLabel = getListItemLabel('standard', i, getValueFromData(data.attr('value' + i)), false, menuItemFontSize, '', '', '');
-                    rightItemLabel = $($.parseHTML(rightItemLabel)).css('width', 'auto');
-                    rightItemLabel = rightItemLabel.addClass('materialdesign-list-item-text-right').addClass('mdc-list-item__meta').get(0).outerHTML;
-                    
-                    listElements.push(rightItemLabel);
+                    if (data.showValueOnRight) {
+                        let rightLabelFontSize = getFontSize(data.valueRightFontsize);
+
+                        rightItemLabel = getListItemLabel('standard', i, getValueFromData(data.attr('value' + i)) + getValueFromData(data.valueRightAppendix, ''), false, rightLabelFontSize, '', '', '');
+                        rightItemLabel = $($.parseHTML(rightItemLabel)).css('width', 'auto');
+                        rightItemLabel = rightItemLabel.addClass('materialdesign-list-item-text-right').addClass('mdc-list-item__meta').get(0).outerHTML;
+
+                        listElements.push(rightItemLabel);
+                    }
+
+
                     listElements.push('</div>')
                 }
 
@@ -100,7 +107,7 @@ vis.binds.materialdesign.select = {
                                         <input type="hidden" name="enhanced-select">
                                         <i class="mdc-select__dropdown-icon"></i>
                                         <div id="filled_enhanced" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="${labelledbyAttribute}"></div>
-                                        <div class="mdc-select__menu mdc-menu mdc-menu-surface">
+                                        <div class="mdc-select__menu mdc-menu mdc-menu-surface" style="${menuWidth}">
                                             <ul class="mdc-list">
                                                 ${listElements.join('')}
                                             </ul>
@@ -139,6 +146,7 @@ vis.binds.materialdesign.select = {
                 list.style.setProperty("--materialdesign-color-list-item-hover", getValueFromData(data.colorListItemHover, ''));
                 list.style.setProperty("--materialdesign-color-list-item-text", getValueFromData(data.colorListItemText, ''));
                 list.style.setProperty("--materialdesign-color-list-item-text-activated", getValueFromData(data.colorListItemTextSelected, ''));
+                list.style.setProperty("--materialdesign-color-list-item-text-right", getValueFromData(data.colorListItemTextRight, ''));
 
 
                 setSelectState(vis.states.attr(data.oid + '.val'));
@@ -176,7 +184,7 @@ vis.binds.materialdesign.select = {
                                 mdcSelect.selectedIndex = i;
                                 mdcList.selectedIndex = i;
                                 $this.find('.material-icons').attr('src', getValueFromData(data.attr('menuIcon' + i), ''))
-                                
+
                                 break;
                             }
                         }
