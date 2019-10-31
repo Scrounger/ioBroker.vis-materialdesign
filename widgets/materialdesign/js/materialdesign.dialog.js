@@ -1,0 +1,89 @@
+/*
+    ioBroker.vis vis-materialdesign Widget-Set
+
+    version: "0.1.8"
+
+    Copyright 2019 Scrounger scrounger@gmx.net
+*/
+"use strict";
+
+// this code can be placed directly in materialdesign.html
+vis.binds.materialdesign.dialog = {
+    initialize: function (data) {
+        try {
+
+            return `<div class="mdc-dialog"
+                        role="alertdialog"
+                        aria-modal="true"
+                        aria-labelledby="my-dialog-title"
+                        aria-describedby="my-dialog-content"
+                        style="z-index: ${getNumberFromData(data.z_index, 1000)}">
+                        <div class="mdc-dialog__container">
+                        <div class="mdc-dialog__surface">
+                            <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+                            <h2 class="mdc-dialog__title" id="my-dialog-title">title</h2>
+                            <div class="mdc-dialog__content" id="my-dialog-content">
+                            <div data-vis-contains="${data.contains_view}" class="vis-widget-body vis-view-container" style="position: relative"></div>
+                            </div>
+                            <footer class="mdc-dialog__actions">
+                            <button type="button" class="mdc-button mdc-dialog__button" ${(!vis.editMode) ? 'data-mdc-dialog-action="close"' : ''} >
+                            <span class="mdc-button__label">Close</span>
+                            </button>
+                        </footer>
+                        </div>
+                        </div>
+                        <div class="mdc-dialog__scrim"></div>
+                    </div>`;
+        } catch (ex) {
+            console.exception(`initialize: error: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
+    handle: function (el, data) {
+        try {
+            setTimeout(function () {
+                var $this = $(el);
+                let dialog = $this.find('.mdc-dialog');
+
+                let widgetWidth = window.getComputedStyle($this.context, null).width;
+                let widgetHeight = window.getComputedStyle($this.context, null).height;
+
+                const mdcDialog = new mdc.dialog.MDCDialog(dialog.get(0));
+                const button = mdc.ripple.MDCRipple.attachTo(dialog.find('.mdc-button').get(0));
+
+                if (vis.editMode && data.showInEditor) {
+                    dialog.find('.mdc-dialog__container').css('width', '100%').css('height', '100%');
+                    dialog.find('.mdc-dialog__surface').css('width', '100%').css('height', '100%');
+                    dialog.css('position', 'relative');
+                    dialog.find('.mdc-dialog__scrim').hide();
+
+                    mdcDialog.open();
+
+                } else if (!vis.editMode) {
+                    dialog.find('.mdc-dialog__container').css('width', widgetWidth.replace('px', '')).css('height', widgetHeight.replace('px', ''));
+                    dialog.find('.mdc-dialog__surface').css('width', '100%').css('height', '100%');
+
+                    if (!data.showInCenterOfScreen) {
+                        dialog.css('position', 'absolute');
+                    }
+
+                    vis.states.bind(data.showDialogOid + '.ts', function (e, newVal, oldVal) {
+                        let val = vis.states.attr(data.showDialogOid + '.val');
+
+                        if (!mdcDialog.isOpen && (val === true || val === 'true')) {
+                            mdcDialog.open();
+                        }
+                    });
+
+                    if (!vis.editMode) {
+                        mdcDialog.listen('MDCDialog:closing', function () {
+                            vis.setValue(data.showDialogOid, false);
+                        });
+                    }
+                }
+            }, 1);
+
+        } catch (ex) {
+            console.exception(`handle: error: ${ex.message}, stack: ${ex.stack}`);
+        }
+    }
+};

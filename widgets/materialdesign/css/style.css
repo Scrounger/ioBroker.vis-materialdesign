@@ -42,6 +42,14 @@
   --materialdesign-color-select-hint_selected: #1e88e5;
   --materialdesign-color-select-border: rgba(0,0,0,.38);
   --materialdesign-color-select-border-selected: #1e88e5;
+  
+  --materialdesign-color-dialog-background: #fff;
+  --materialdesign-color-dialog-button-background: transparent;
+  --materialdesign-color-dialog-button-text: #1e88e5;
+  --materialdesign-color-dialog-button-hover: #1e88e5;
+  --materialdesign-color-dialog-title-background: transparent;
+  --materialdesign-color-dialog-title: #1e88e5;
+
 }
 
 /* Button style -> must defined here because of position bug in vis editor */
@@ -839,15 +847,6 @@ svg.materialdesign-button__icon {
   border-color: #e0e0e0;
 }
 
-/* .materialdesign-chart-container svg>g>g>g>g>rect {
-  fill: #a3a3a33b;
-} */
-
-.materialdesign-chart-container svg>g>g>g>g>rect[stroke="#ffffff"][stroke-width="1"] {
-  stroke: black !important;
-  stroke-width: 0px !important;
-}
-
 /* mdc-Select */
 .mdc-select__menu.mdc-menu{
   max-height: 100% !important;
@@ -907,4 +906,31 @@ svg.materialdesign-button__icon {
 /* hint selected */
 .mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label {
   color: var(--materialdesign-color-select-hint_selected);
+}
+
+/* Dialog */
+.mdc-dialog .mdc-dialog__surface {
+  min-width: none !important;
+  max-width: none !important;
+  min-height: none !important;
+  max-height: none !important;
+  background-color: var(--materialdesign-color-card-background);
+}
+
+.mdc-dialog__content {
+  padding: 0 24px;
+}
+
+.mdc-button:not(:disabled) {
+  background-color: var(--materialdesign-color-dialog-button-background);
+  color: var(--materialdesign-color-dialog-button-text);
+}
+
+.mdc-dialog .mdc-button {
+  --mdc-theme-primary: var(--materialdesign-color-dialog-button-hover);
+}
+
+.mdc-dialog__title {
+  background-color: var(--materialdesign-color-dialog-title-background);
+  color: var(--materialdesign-color-dialog-title) !important;
 }

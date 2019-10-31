@@ -25,6 +25,7 @@
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.drawer.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.card.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.select.js"></script>
+<script type="text/javascript" src="widgets/materialdesign/js/materialdesign.dialog.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.chart.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.colorscheme.js"></script>
 
@@ -816,3 +817,23 @@
             </div>
         </div>
 </script> 
+
+<script id="tplVis-materialdesign-Dialog"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/materialdesign/img/prev_select_bool.png"></img>'
+        data-vis-set="materialdesign"
+        data-vis-type="dialog,stateful,container,view"
+        data-vis-name="Dialog"
+        data-vis-update-style="true"
+        data-vis-beta="true"
+        data-vis-attrs="showDialogOid/id;showInEditor[true]/checkbox;contains_view/views;showInCenterOfScreen[true]/checkbox;z_index[1000]/number">
+
+        <%
+            let init = vis.binds.materialdesign.dialog.initialize(data);
+        %>
+
+        <div class="vis-widget materialdesign-dialog <%== this.data.attr('class') %>" style="width: 150px; height: 56px; overflow: visible" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.dialog.handle(el, data) %>>
+            <%== init %>
+        </div>
+</script>
