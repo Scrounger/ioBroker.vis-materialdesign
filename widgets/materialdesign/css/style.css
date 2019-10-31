@@ -914,7 +914,7 @@ svg.materialdesign-button__icon {
   max-width: none !important;
   min-height: none !important;
   max-height: none !important;
-  background-color: var(--materialdesign-color-card-background);
+  background-color: var(--materialdesign-color-dialog-background);
 }
 
 .mdc-dialog__content {

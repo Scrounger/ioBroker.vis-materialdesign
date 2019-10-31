@@ -11,7 +11,10 @@
 vis.binds.materialdesign.dialog = {
     initialize: function (data) {
         try {
-
+            let title = getValueFromData(data.title, '');
+            let titleTextSize = getFontSize(data.titleTextSize);
+            let buttonText = getValueFromData(data.buttonText, '');
+            
             return `<div class="mdc-dialog"
                         role="alertdialog"
                         aria-modal="true"
@@ -21,13 +24,13 @@ vis.binds.materialdesign.dialog = {
                         <div class="mdc-dialog__container">
                         <div class="mdc-dialog__surface">
                             <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
-                            <h2 class="mdc-dialog__title" id="my-dialog-title">title</h2>
+                            <h2 class="mdc-dialog__title ${titleTextSize.class}" id="my-dialog-title" style="${(title === '') ? 'display: none;' : ''}${titleTextSize.style}" >${getValueFromData(data.title, '')}</h2>
                             <div class="mdc-dialog__content" id="my-dialog-content">
                             <div data-vis-contains="${data.contains_view}" class="vis-widget-body vis-view-container" style="position: relative"></div>
                             </div>
-                            <footer class="mdc-dialog__actions">
+                            <footer class="mdc-dialog__actions" ${(buttonText === '') ? 'style="display: none"' : ''}>
                             <button type="button" class="mdc-button mdc-dialog__button" ${(!vis.editMode) ? 'data-mdc-dialog-action="close"' : ''} >
-                            <span class="mdc-button__label">Close</span>
+                            <span class="mdc-button__label">${buttonText}</span>
                             </button>
                         </footer>
                         </div>
@@ -46,6 +49,14 @@ vis.binds.materialdesign.dialog = {
 
                 let widgetWidth = window.getComputedStyle($this.context, null).width;
                 let widgetHeight = window.getComputedStyle($this.context, null).height;
+
+                dialog.get(0).style.setProperty("--materialdesign-color-dialog-background", getValueFromData(data.colorBackground, ''));
+                dialog.get(0).style.setProperty("--materialdesign-color-dialog-title-background", getValueFromData(data.colorTitleBackground, ''));
+                dialog.get(0).style.setProperty("--materialdesign-color-dialog-title", getValueFromData(data.colorTitle, ''));
+
+                dialog.get(0).style.setProperty("--materialdesign-color-dialog-button-background", getValueFromData(data.colorButtonBackground, ''));
+                dialog.get(0).style.setProperty("--materialdesign-color-dialog-button-text", getValueFromData(data.colorButtonText, ''));
+                dialog.get(0).style.setProperty("--materialdesign-color-dialog-button-hover", getValueFromData(data.colorButtonHover, ''));
 
                 const mdcDialog = new mdc.dialog.MDCDialog(dialog.get(0));
                 const button = mdc.ripple.MDCRipple.attachTo(dialog.find('.mdc-button').get(0));
