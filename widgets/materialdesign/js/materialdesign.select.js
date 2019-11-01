@@ -24,7 +24,7 @@ vis.binds.materialdesign.select = {
             let labelElement = '';
 
             if (data.layout === 'standard') {
-                selectElement = '<div class="mdc-select" style="width: 100%;">'
+                selectElement = `<div class="mdc-select" style="width: 100%; z-index: ${getNumberFromData(data.z_index, 0)}">`
                 labelledbyAttribute = 'filled_enhanced filled_enhanced-label';
 
                 labelElement = `<span class="mdc-floating-label mdc-floating-label--float-above">${getValueFromData(data.hintText, '')}</span>
@@ -107,7 +107,7 @@ vis.binds.materialdesign.select = {
                                         <input type="hidden" name="enhanced-select">
                                         <i class="mdc-select__dropdown-icon"></i>
                                         <div id="filled_enhanced" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="${labelledbyAttribute}"></div>
-                                        <div class="mdc-select__menu mdc-menu mdc-menu-surface" style="${menuWidth}">
+                                        <div class="mdc-select__menu mdc-menu mdc-menu-surface" style="${menuWidth}; z-index: ${getNumberFromData(data.z_index, 0)}">
                                             <ul class="mdc-list">
                                                 ${listElements.join('')}
                                             </ul>
