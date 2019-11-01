@@ -14,7 +14,7 @@ vis.binds.materialdesign.dialog = {
             let title = getValueFromData(data.title, '');
             let titleTextSize = getFontSize(data.titleTextSize);
             let buttonText = getValueFromData(data.buttonText, '');
-            
+
             return `<div class="mdc-dialog"
                         role="alertdialog"
                         aria-modal="true"
@@ -26,7 +26,8 @@ vis.binds.materialdesign.dialog = {
                             <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
                             <h2 class="mdc-dialog__title ${titleTextSize.class}" id="my-dialog-title" style="${(title === '') ? 'display: none;' : ''}${titleTextSize.style}" >${getValueFromData(data.title, '')}</h2>
                             <div class="mdc-dialog__content" id="my-dialog-content">
-                            <div data-vis-contains="${data.contains_view}" class="vis-widget-body vis-view-container" style="position: relative"></div>
+                                ${(vis.editMode) ? `<div data-vis-contains="${data.contains_view}" class="vis-widget-body vis-view-container" style="position: relative"></div>` : ''}
+                                <!-- vis container for view generated at runtime --!>
                             </div>
                             <footer class="mdc-dialog__actions" ${(buttonText === '') ? 'style="display: none"' : ''}>
                             <button type="button" class="mdc-button mdc-dialog__button" ${(!vis.editMode) ? 'data-mdc-dialog-action="close"' : ''} >
@@ -90,6 +91,16 @@ vis.binds.materialdesign.dialog = {
                             vis.setValue(data.showDialogOid, false);
                         });
                     }
+
+                    mdcDialog.listen('MDCDialog:opened', () => {
+                        // generate vis view
+                        let view = data.contains_view;
+                        if (vis.views[view]) {
+                            vis.renderView(view, view, true, function (_view) {
+                                $('#visview_' + _view).css('position', 'relative').appendTo(dialog.find('.mdc-dialog__content')).show().data('persistent', true);
+                            });
+                        }                            
+                    });
                 }
             }, 1);
 
