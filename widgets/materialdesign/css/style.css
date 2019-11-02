@@ -50,6 +50,12 @@
   --materialdesign-color-dialog-title-background: transparent;
   --materialdesign-color-dialog-title: #1e88e5;
 
+  --materialdesign-color-table-background: #fff;
+  --materialdesign-color-table-header-row-background: inherit;
+  --materialdesign-color-table-header-row-text-color: #1e88e5;
+  --materialdesign-color-table-row-background: inherit;
+  --materialdesign-color-table-row-text-color: rgba(0, 0, 0, 0.87);
+
 }
 
 /* Button style -> must defined here because of position bug in vis editor */
@@ -933,4 +939,25 @@ svg.materialdesign-button__icon {
 .mdc-dialog__title {
   background-color: var(--materialdesign-color-dialog-title-background);
   color: var(--materialdesign-color-dialog-title) !important;
+}
+
+/* Table */
+.mdc-data-table {
+  background-color: var(--materialdesign-color-table-background);
+}
+
+.mdc-data-table__header-row {
+  background-color: var(--materialdesign-color-table-header-row-background);
+}
+
+.mdc-data-table__header-cell {
+  color: var(--materialdesign-color-table-header-row-text-color)
+}
+
+.mdc-data-table__row {
+  background-color: var(--materialdesign-color-table-row-background);
+}
+
+.mdc-data-table__cell {
+  color: var(--materialdesign-color-table-row-text-color);
 }
