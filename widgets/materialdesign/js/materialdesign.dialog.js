@@ -9,7 +9,7 @@
 
 // this code can be placed directly in materialdesign.html
 vis.binds.materialdesign.dialog = {
-    initialize: function (data) {
+    initialize: function (data, isIFrame = false) {
         try {
             let title = getValueFromData(data.title, '');
             let titleTextSize = getFontSize(data.titleTextSize);
@@ -26,8 +26,10 @@ vis.binds.materialdesign.dialog = {
                             <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
                             <h2 class="mdc-dialog__title ${titleTextSize.class}" id="my-dialog-title" style="${(title === '') ? 'display: none;' : ''}${titleTextSize.style}" >${getValueFromData(data.title, '')}</h2>
                             <div class="mdc-dialog__content" id="my-dialog-content">
-                                ${(vis.editMode) ? `<div data-vis-contains="${data.contains_view}" class="vis-widget-body vis-view-container" style="position: relative"></div>` : ''}
+                                ${(vis.editMode && !isIFrame) ? `<div data-vis-contains="${data.contains_view}" class="vis-widget-body vis-view-container" style="position: relative"></div>` : ''}
                                 <!-- vis container for view generated at runtime --!>
+                                
+                                ${(isIFrame) ? `<iframe src="${data.src}" ${(data.noSandbox) ? '' : 'sandbox="allow-modals allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts"'} style="position: relative; border: 0; padding: 0; margin: 0; width: 100%; height: 100%; ${(data.scrollX) ? 'overflow-x: scroll;' : 'overflow-x: hidden;'} ${(data.scrollY) ? 'overflow-y: scroll;' : 'overflow-y: hidden;'}" ${(data.seamless) ? 'seamless' : ''}></iframe>` : ''}
                             </div>
                             <footer class="mdc-dialog__actions" ${(buttonText === '') ? 'style="display: none"' : ''}>
                             <button type="button" class="mdc-button mdc-dialog__button" ${(!vis.editMode) ? 'data-mdc-dialog-action="close"' : ''} >
@@ -42,7 +44,7 @@ vis.binds.materialdesign.dialog = {
             console.exception(`initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    handle: function (el, data) {
+    handle: function (el, data, isIFrame = false) {
         try {
             setTimeout(function () {
                 var $this = $(el);
@@ -94,12 +96,16 @@ vis.binds.materialdesign.dialog = {
 
                     mdcDialog.listen('MDCDialog:opened', () => {
                         // generate vis view
-                        let view = data.contains_view;
-                        if (vis.views[view]) {
-                            vis.renderView(view, view, true, function (_view) {
-                                $('#visview_' + _view).css('position', 'relative').appendTo(dialog.find('.mdc-dialog__content')).show().data('persistent', true);
-                            });
-                        }                            
+                        if (!isIFrame) {
+                            let view = data.contains_view;
+                            if (vis.views[view]) {
+                                vis.renderView(view, view, true, function (_view) {
+                                    $('#visview_' + _view).css('position', 'relative').appendTo(dialog.find('.mdc-dialog__content')).show().data('persistent', true);
+                                });
+                            }
+                        } else {
+                            vis.binds.basic.iframeRefresh(dialog, data, this.view)
+                        }
                     });
                 }
             }, 1);
