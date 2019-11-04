@@ -85,6 +85,8 @@ vis.binds.materialdesign.dialog = {
 
                         if (!mdcDialog.isOpen && (val === true || val === 'true')) {
                             mdcDialog.open();
+                        } else if (mdcDialog.isOpen && (val === false || val === 'false')) {
+                            mdcDialog.close();
                         }
                     });
 
