@@ -293,6 +293,8 @@ vis.binds.materialdesign.chart = {
                                             display: data.xAxisShowAxisLabels,
                                             autoSkip: (getNumberFromData(data.xAxisMaxLabel, undefined) > 0),
                                             maxTicksLimit: getNumberFromData(data.xAxisMaxLabel, undefined),
+                                            maxRotation: 0,
+                                            minRotation: 0,
                                             callback: function (value, index, values) {                                 // only for chartType: horizontal
                                                 return `${value}${getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
                                             },
