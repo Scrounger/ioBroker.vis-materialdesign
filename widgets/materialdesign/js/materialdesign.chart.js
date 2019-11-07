@@ -1,3 +1,4 @@
+
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
@@ -56,7 +57,7 @@ vis.binds.materialdesign.chart = {
                         dataColorArray.push(bgColor);
 
                         if (getValueFromData(data.hoverColor, null) === null) {
-                            hoverDataColorArray.push(convertHex(bgColor, 80))
+                            hoverDataColorArray.push(myHelper.convertHex(bgColor, 80))
                         } else {
                             hoverDataColorArray.push(data.hoverColor)
                         }
@@ -180,12 +181,23 @@ vis.binds.materialdesign.chart = {
         try {
             setTimeout(function () {
                 let myHelper = vis.binds.materialdesign.chart.helper;
+                var myChart;
 
                 let $this = $(el);
                 var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
 
                 let dataRangeStartTime = myHelper.intervals[data.time_interval] ? new Date().getTime() - myHelper.intervals[data.time_interval] : undefined;
-                let dataRangeEndTime = new Date().getTime();
+                if (getValueFromData(data.time_interval_oid, null) !== null) {
+                    let timeIntervalOid = vis.states.attr(data.time_interval_oid + '.val');
+
+                    if (getValueFromData(timeIntervalOid, null) !== null && myHelper.intervals[timeIntervalOid] !== undefined) {
+                        dataRangeStartTime = myHelper.intervals[timeIntervalOid] ? new Date().getTime() - myHelper.intervals[timeIntervalOid] : undefined;
+
+                        vis.states.bind(data.time_interval_oid + '.val', onTimeIntervalChanged);
+                    } else {
+                        console.warn(`data.time_interval_oid '${timeIntervalOid}' is not a valid time interval! Check documentation!`)
+                    }
+                }
 
                 $(el).find('.materialdesign-chart-container').css('background-color', getValueFromData(data.backgroundColor, ''));
                 let globalColor = getValueFromData(data.globalColor, '#1e88e5');
@@ -219,25 +231,7 @@ vis.binds.materialdesign.chart = {
                         let operations = [];
                         for (var i = 0; i <= data.dataCount; i++) {
                             if (getValueFromData(data.attr('oid' + i), null) !== null) {
-
-                                // put all db queries into a array list for executeing later
-                                operations.push(new Promise((resolve, reject) => {
-                                    vis.getHistory(data.attr('oid' + i), {
-                                        instance: data.instance,
-                                        count: parseInt(getNumberFromData(data.points, 0)),
-                                        step: parseInt(getNumberFromData(data.minTimeInterval, 0)) * 1000,
-                                        aggregate: data.aggregate || 'average',
-                                        start: dataRangeStartTime,
-                                        end: dataRangeEndTime,
-                                        timeout: 2000
-                                    }, function (err, result) {
-                                        if (!err && result) {
-                                            resolve(result);
-                                        } else {
-                                            resolve(null);
-                                        }
-                                    });
-                                }));
+                                operations.push(myHelper.getTaskForHistoryData(data.attr('oid' + i), data, dataRangeStartTime))
                             }
                         }
 
@@ -246,16 +240,10 @@ vis.binds.materialdesign.chart = {
                             // console.log(result);
 
                             let myDatasets = [];
-                            let dataLabels = [];
-                            let dataPointsMax = 0;
                             for (var i = 0; i <= result.length - 1; i++) {
 
                                 let dataArray = result[i].map(elm => ({ t: elm.ts, y: elm.val }));
                                 console.log(dataArray);
-
-                                if (dataArray.length > dataPointsMax) {
-                                    dataPointsMax = dataArray.length;
-                                }
 
                                 myDatasets.push(
                                     {
@@ -263,8 +251,10 @@ vis.binds.materialdesign.chart = {
                                         label: getValueFromData(data.attr('label' + i), ''),
                                         borderColor: getValueFromData(data.attr('dataColor' + i), globalColor),     // Line Color
                                         pointBackgroundColor: getValueFromData(data.attr('dataColor' + i), globalColor),
-                                        backgroundColor: convertHex(getValueFromData(data.attr('dataColor' + i), globalColor), 10),
-
+                                        backgroundColor: myHelper.convertHex(getValueFromData(data.attr('dataColor' + i), globalColor), 10),
+                                        fill: false,
+                                        pointRadius: 4,
+                                        pointStyle: 'triangle'
                                     }
                                 );
                             }
@@ -272,28 +262,22 @@ vis.binds.materialdesign.chart = {
                             // Data with datasets options
                             var chartData = {
                                 datasets: myDatasets,
-
                             };
-
-
 
                             // Notice how nested the beginAtZero is
                             var options = {
                                 responsive: true,
                                 maintainAspectRatio: false,
-                                // layout: myHelper.getLayout(data),
-                                // legend: myHelper.getLegend(data),
+                                layout: myHelper.getLayout(data),
+                                legend: myHelper.getLegend(data),
                                 scales: {
                                     xAxes: [{
+                                        
                                         type: 'time',
                                         distribution: 'linear',
                                         time:
                                         {
-                                            // minUnit: 'second',
-                                            // displayFormats: { second: 'LLL' },      // muss entsprechend konfigurietr werden siehe 
-                                            // max: dataRangeEndTime,
-                                            // min: dataRangeStartTime,
-                                            // stepSize: 10,
+                                            displayFormats: (getValueFromData(data.xAxisTimeFormats, null) !== null) ? JSON.parse(data.xAxisTimeFormats) : myHelper.defaultTimeFormats(),      // muss entsprechend konfigurietr werden siehe 
                                         },
                                         position: data.xAxisPosition,
                                         scaleLabel: {       // x-Axis title
@@ -315,6 +299,15 @@ vis.binds.materialdesign.chart = {
                                             fontSize: getNumberFromData(data.xAxisValueFontSize, undefined),
                                             padding: getNumberFromData(data.xAxisValueDistanceToAxis, 0),
                                         },
+                                        gridLines: {
+                                            display: true,
+                                            color: getValueFromData(data.xAxisGridLinesColor, 'black'),
+                                            lineWidth: getNumberFromData(data.xAxisGridLinesWitdh, 0.1),
+                                            drawBorder: data.xAxisShowAxis,
+                                            drawOnChartArea: data.xAxisShowGridLines,
+                                            drawTicks: data.xAxisShowTicks,
+                                            tickMarkLength: getNumberFromData(data.xAxisTickLength, 5),
+                                        }
                                     }]
                                 },
                                 // scales: {
@@ -383,7 +376,7 @@ vis.binds.materialdesign.chart = {
                             if (data.disableHoverEffects) options.hover = { mode: null };
 
                             // Chart declaration:
-                            var myBarChart = new Chart(ctx, {
+                            myChart = new Chart(ctx, {
                                 type: 'line',
                                 data: chartData,
                                 options: options,
@@ -397,14 +390,46 @@ vis.binds.materialdesign.chart = {
                                 for (var d = 0; d <= data.dataCount; d++) {
                                     if (oidId === data.attr('oid' + d)) {
                                         let index = d;
-                                        myBarChart.data.datasets[0].data[index] = newVal;
-                                        myBarChart.update();
+                                        myChart.data.datasets[0].data[index] = newVal;
+                                        myChart.update();
+
+
                                     }
                                 }
                             };
+
+
+
                         });
                     }
                 }
+
+                function onTimeIntervalChanged(e, newVal, oldVal) {
+                    let timeIntervalOid = newVal;
+
+                    if (getValueFromData(timeIntervalOid, null) !== null && myHelper.intervals[timeIntervalOid] !== undefined) {
+                        dataRangeStartTime = myHelper.intervals[timeIntervalOid] ? new Date().getTime() - myHelper.intervals[timeIntervalOid] : undefined;
+
+                        let operations = [];
+                        for (var i = 0; i <= data.dataCount; i++) {
+                            if (getValueFromData(data.attr('oid' + i), null) !== null) {
+                                operations.push(myHelper.getTaskForHistoryData(data.attr('oid' + i), data, dataRangeStartTime))
+                            }
+                        }
+
+                        Promise.all(operations).then((result) => {
+                            // execute all db queries -> getting all needed data at same time
+
+                            let myDatasets = [];
+                            for (var i = 0; i <= result.length - 1; i++) {
+                                let dataArray = result[i].map(elm => ({ t: elm.ts, y: elm.val }));
+                                myChart.data.datasets[i].data = dataArray;
+                            }
+
+                            myChart.update();
+                        });
+                    }
+                };
             }, 1)
         } catch (ex) {
             console.exception(`lineHistory: error: ${ex.message}, stack: ${ex.stack}`);
@@ -455,7 +480,7 @@ vis.binds.materialdesign.chart = {
                         dataColorArray.push(bgColor);
 
                         if (getValueFromData(data.hoverColor, null) === null) {
-                            hoverDataColorArray.push(convertHex(bgColor, 80))
+                            hoverDataColorArray.push(myHelper.convertHex(bgColor, 80))
                         } else {
                             hoverDataColorArray.push(data.hoverColor)
                         }
@@ -564,16 +589,16 @@ vis.binds.materialdesign.chart = {
     }
 };
 
-function convertHex(hex, opacity) {
-    hex = hex.replace('#', '');
-    let r = parseInt(hex.substring(0, 2), 16);
-    let g = parseInt(hex.substring(2, 4), 16);
-    let b = parseInt(hex.substring(4, 6), 16);
-
-    return 'rgba(' + r + ',' + g + ',' + b + ',' + opacity / 100 + ')';
-}
 
 vis.binds.materialdesign.chart.helper = {
+    convertHex: function (hex, opacity) {
+        hex = hex.replace('#', '');
+        let r = parseInt(hex.substring(0, 2), 16);
+        let g = parseInt(hex.substring(2, 4), 16);
+        let b = parseInt(hex.substring(4, 6), 16);
+
+        return 'rgba(' + r + ',' + g + ',' + b + ',' + opacity / 100 + ')';
+    },
     get_Y_AxisObject: function (chartType, yAxisPosition, barWidth, yAxisTitle, yAxisTitleColor, yAxisTitleFontFamily, yAxisTitleFontSize, yAxisShowAxisLabels, axisValueMin,
         axisValueMax, axisValueStepSize, axisMaxLabel, axisLabelAutoSkip, axisValueAppendText, yAxisValueLabelColor, yAxisValueFontFamily, yAxisValueFontSize,
         yAxisValueDistanceToAxis, yAxisGridLinesColor, yAxisGridLinesWitdh, yAxisShowAxis, yAxisShowGridLines, yAxisShowTicks, yAxisTickLength) {
@@ -714,5 +739,39 @@ vis.binds.materialdesign.chart.helper = {
         '8 hours': 28800000,
         '12 hours': 43200000,
         '24 hours': 86400000
+    },
+    defaultTimeFormats: function () {
+        return JSON.parse(`
+            {
+                "millisecond":    "h:mm:ss.SSS",
+                "second":         "h:mm:ss",
+                "minute":         "h:mm",
+                "hour":           "h",
+                "day":            "MMM D",
+                "week":           "ll",
+                "month":          "MMM YYYY",
+                "quarter":        "[Q]Q - YYYY",
+                "year":           "YYYY"
+            }
+            `);
+    },
+    getTaskForHistoryData: function (id, data, dataRangeStartTime) {
+        return new Promise((resolve, reject) => {
+            vis.getHistory(id, {
+                instance: data.instance,
+                count: parseInt(getNumberFromData(data.points, 0)),
+                step: parseInt(getNumberFromData(data.minTimeInterval, 0)) * 1000,
+                aggregate: data.aggregate || 'average',
+                start: dataRangeStartTime,
+                end: new Date().getTime(),
+                timeout: 2000
+            }, function (err, result) {
+                if (!err && result) {
+                    resolve(result);
+                } else {
+                    resolve(null);
+                }
+            });
+        });
     }
 }
