@@ -276,7 +276,7 @@ vis.binds.materialdesign.chart = {
                                 scales: {
                                     xAxes: [{
                                         type: 'time',
-                                        distribution: 'linear',
+                                        distribution: 'series',
                                         time:
                                         {
                                             displayFormats: (getValueFromData(data.xAxisTimeFormats, null) !== null) ? JSON.parse(data.xAxisTimeFormats) : myHelper.defaultTimeFormats(),      // muss entsprechend konfigurietr werden siehe 
@@ -291,7 +291,8 @@ vis.binds.materialdesign.chart = {
                                         },
                                         ticks: {        // x-Axis values
                                             display: data.xAxisShowAxisLabels,
-                                            autoSkip: (getNumberFromData(data.xAxisMaxLabel, undefined) > 0),
+                                            autoSkip: true,
+                                            autoSkipPadding: 10,
                                             maxTicksLimit: getNumberFromData(data.xAxisMaxLabel, undefined),
                                             maxRotation: 0,
                                             minRotation: 0,
@@ -747,10 +748,10 @@ vis.binds.materialdesign.chart.helper = {
     defaultTimeFormats: function () {
         return JSON.parse(`
             {
-                "millisecond":    "h:mm:ss.SSS",
-                "second":         "h:mm:ss",
-                "minute":         "h:mm",
-                "hour":           "h",
+                "millisecond":    "H:mm:ss.SSS",
+                "second":         "H:mm:ss",
+                "minute":         "H:mm",
+                "hour":           "H",
                 "day":            "MMM D",
                 "week":           "ll",
                 "month":          "MMM YYYY",
