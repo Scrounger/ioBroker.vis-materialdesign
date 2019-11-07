@@ -202,12 +202,10 @@ vis.binds.materialdesign.chart = {
                 $(el).find('.materialdesign-chart-container').css('background-color', getValueFromData(data.backgroundColor, ''));
                 let globalColor = getValueFromData(data.globalColor, '#1e88e5');
 
-                // let colorScheme = getValueFromData(data.colorScheme, null);
-                // if (colorScheme != null) {
-                //     colorScheme = vis.binds.materialdesign.colorScheme.get(data.colorScheme, data.dataCount);
-                // }
-
-                // console.log(data.instance);
+                let colorScheme = getValueFromData(data.colorScheme, null);
+                if (colorScheme != null) {
+                    colorScheme = vis.binds.materialdesign.colorScheme.get(data.colorScheme, data.dataCount);
+                }
 
                 if (chartContainer !== undefined && chartContainer !== null && chartContainer !== '') {
                     var ctx = chartContainer.getContext('2d');
@@ -248,13 +246,18 @@ vis.binds.materialdesign.chart = {
                                 myDatasets.push(
                                     {
                                         data: dataArray,
+                                        lineTension: getNumberFromData(data.attr('lineTension' + i), 0.4),
+                                        borderWidth: getNumberFromData(data.attr('lineThikness' + i), 3),
                                         label: getValueFromData(data.attr('label' + i), ''),
-                                        borderColor: getValueFromData(data.attr('dataColor' + i), globalColor),     // Line Color
-                                        pointBackgroundColor: getValueFromData(data.attr('dataColor' + i), globalColor),
-                                        backgroundColor: myHelper.convertHex(getValueFromData(data.attr('dataColor' + i), globalColor), 10),
-                                        fill: false,
-                                        pointRadius: 4,
-                                        pointStyle: 'triangle'
+                                        borderColor: getValueFromData(data.attr('dataColor' + i), (colorScheme) ? getValueFromData(colorScheme[i], globalColor) : globalColor),     // Line Color
+                                        pointBackgroundColor: getValueFromData(data.attr('dataColor' + i), (colorScheme) ? getValueFromData(colorScheme[i], globalColor) : globalColor),
+                                        fill: data.attr('useFillColor' + i),
+                                        backgroundColor: getValueFromData(data.attr('fillColor' + i), myHelper.convertHex(getValueFromData(data.attr('dataColor' + i), (colorScheme) ? getValueFromData(colorScheme[i], globalColor) : globalColor), 10)),  //Fill Background color
+                                        pointRadius: getNumberFromData(data.pointSize, 3),
+                                        pointHoverRadius: getNumberFromData(data.pointSizeHover, 4),
+                                        pointStyle: getValueFromData(data.pointStyle, 'circle'),
+                                        pointHoverBorderColor: getValueFromData(data.attr('pointHoverColor' + i), getValueFromData(data.attr('dataColor' + i), (colorScheme) ? getValueFromData(colorScheme[i], globalColor) : globalColor)),
+                                        pointHoverBackgroundColor: getValueFromData(data.attr('pointHoverColor' + i), getValueFromData(data.attr('dataColor' + i), (colorScheme) ? getValueFromData(colorScheme[i], globalColor) : globalColor)),
                                     }
                                 );
                             }
@@ -272,7 +275,6 @@ vis.binds.materialdesign.chart = {
                                 legend: myHelper.getLegend(data),
                                 scales: {
                                     xAxes: [{
-                                        
                                         type: 'time',
                                         distribution: 'linear',
                                         time:
