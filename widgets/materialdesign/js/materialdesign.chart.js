@@ -226,13 +226,6 @@ vis.binds.materialdesign.chart = {
 
                     Chart.plugins.unregister(ChartDataLabels);
 
-                    // let dataArray = []
-                    // let labelArray = [];
-                    // let dataColorArray = [];
-                    // let hoverDataColorArray = [];
-                    // let globalValueTextColor = getValueFromData(data.valuesFontColor, 'black')
-                    // let valueTextColorArray = [];
-
                     if (getValueFromData(data.instance, null) !== null) {
 
                         let operations = [];
@@ -326,6 +319,9 @@ vis.binds.materialdesign.chart = {
                                 responsive: true,
                                 maintainAspectRatio: false,
                                 layout: myHelper.getLayout(data),
+                                hover: {
+                                    mode: 'nearest'
+                                },
                                 legend: Object.assign(myHelper.getLegend(data),
                                     {
                                         // custom to hide / show also yAxis if data de-/selected
@@ -389,32 +385,33 @@ vis.binds.materialdesign.chart = {
                                     }],
                                     yAxes: myYAxis,
                                 },
-                                // tooltips: {
-                                //     enabled: data.showTooltip,
-                                //     backgroundColor: getValueFromData(data.tooltipBackgroundColor, 'black'),
-                                //     caretSize: getNumberFromData(data.tooltipArrowSize, 5),
-                                //     caretPadding: getNumberFromData(data.tooltipDistanceToBar, 2),
-                                //     cornerRadius: getNumberFromData(data.tooltipBoxRadius, 4),
-                                //     displayColors: data.tooltipShowColorBox,
-                                //     xPadding: getNumberFromData(data.tooltipXpadding, 10),
-                                //     yPadding: getNumberFromData(data.tooltipYpadding, 10),
-                                //     titleFontColor: getValueFromData(data.tooltipTitleFontColor, 'white'),
-                                //     titleFontFamily: getValueFromData(data.tooltipTitleFontFamily, undefined),
-                                //     titleFontSize: getNumberFromData(data.tooltipTitleFontSize, undefined),
-                                //     titleMarginBottom: getNumberFromData(data.tooltipTitleMarginBottom, 6),
-                                //     bodyFontColor: getValueFromData(data.tooltipBodyFontColor, 'white'),
-                                //     bodyFontFamily: getValueFromData(data.tooltipBodyFontFamily, undefined),
-                                //     bodyFontSize: getNumberFromData(data.tooltipBodyFontSize, undefined),
-                                //     callbacks: {
-                                //         label: function (tooltipItem, chart) {
-                                //             if (tooltipItem && tooltipItem.value) {
-                                //                 return `${chart.datasets[0].label}: ${myHelper.roundNumber(parseFloat(tooltipItem.value), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.tooltipBodyAppend, '')}`
-                                //                     .split('\\n');
-                                //             }
-                                //             return '';
-                                //         }
-                                //     }
-                                // },
+                                tooltips: {
+                                    mode: 'nearest',
+                                    //     enabled: data.showTooltip,
+                                    //     backgroundColor: getValueFromData(data.tooltipBackgroundColor, 'black'),
+                                    //     caretSize: getNumberFromData(data.tooltipArrowSize, 5),
+                                    //     caretPadding: getNumberFromData(data.tooltipDistanceToBar, 2),
+                                    //     cornerRadius: getNumberFromData(data.tooltipBoxRadius, 4),
+                                    //     displayColors: data.tooltipShowColorBox,
+                                    //     xPadding: getNumberFromData(data.tooltipXpadding, 10),
+                                    //     yPadding: getNumberFromData(data.tooltipYpadding, 10),
+                                    //     titleFontColor: getValueFromData(data.tooltipTitleFontColor, 'white'),
+                                    //     titleFontFamily: getValueFromData(data.tooltipTitleFontFamily, undefined),
+                                    //     titleFontSize: getNumberFromData(data.tooltipTitleFontSize, undefined),
+                                    //     titleMarginBottom: getNumberFromData(data.tooltipTitleMarginBottom, 6),
+                                    //     bodyFontColor: getValueFromData(data.tooltipBodyFontColor, 'white'),
+                                    //     bodyFontFamily: getValueFromData(data.tooltipBodyFontFamily, undefined),
+                                    //     bodyFontSize: getNumberFromData(data.tooltipBodyFontSize, undefined),
+                                    //     callbacks: {
+                                    //         label: function (tooltipItem, chart) {
+                                    //             if (tooltipItem && tooltipItem.value) {
+                                    //                 return `${chart.datasets[0].label}: ${myHelper.roundNumber(parseFloat(tooltipItem.value), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.tooltipBodyAppend, '')}`
+                                    //                     .split('\\n');
+                                    //             }
+                                    //             return '';
+                                    //         }
+                                    //     }
+                                },
                                 // plugins: {
                                 //     datalabels: {
                                 //         anchor: data.valuesPositionAnchor,
@@ -800,7 +797,17 @@ vis.binds.materialdesign.chart.helper = {
         '4 hours': 14400000,
         '8 hours': 28800000,
         '12 hours': 43200000,
-        '24 hours': 86400000
+        '1 day': 86400000,
+        '2 days': 172800000,
+        '3 days': 259200000,
+        '7 days': 604800000,
+        '14 days': 1209600000,
+        '1 month': 2628000000,
+        '2 months': 5256000000,
+        '3 months': 7884000000,
+        '6 months': 15768000000,
+        '1 year': 31536000000,
+        '2 years': 63072000000
     },
     defaultTimeFormats: function () {
         return JSON.parse(`
