@@ -193,7 +193,7 @@ vis.binds.materialdesign.chart = {
                     if (getValueFromData(timeIntervalOid, null) !== null && myHelper.intervals[timeIntervalOid] !== undefined) {
                         dataRangeStartTime = myHelper.intervals[timeIntervalOid] ? new Date().getTime() - myHelper.intervals[timeIntervalOid] : undefined;
 
-                        vis.states.bind(data.time_interval_oid + '.val', onTimeIntervalChanged);
+                        vis.states.bind(data.time_interval_oid + '.val', onChange);
                     } else {
                         console.warn(`data.time_interval_oid '${timeIntervalOid}' is not a valid time interval! Check documentation!`)
                     }
@@ -205,6 +205,15 @@ vis.binds.materialdesign.chart = {
                 let colorScheme = getValueFromData(data.colorScheme, null);
                 if (colorScheme != null) {
                     colorScheme = vis.binds.materialdesign.colorScheme.get(data.colorScheme, data.dataCount);
+                }
+
+                // manual refresh through dp
+                vis.states.bind(data.manualRefreshTrigger + '.ts', onChange);
+
+                if (data.refreshMethod === 'timeInterval') {
+                    setInterval(function () {
+                        onChange();
+                    }, myHelper.intervals[data.refreshTimeInterval]);
                 }
 
                 if (chartContainer !== undefined && chartContainer !== null && chartContainer !== '') {
@@ -230,6 +239,10 @@ vis.binds.materialdesign.chart = {
                         for (var i = 0; i <= data.dataCount; i++) {
                             if (getValueFromData(data.attr('oid' + i), null) !== null) {
                                 operations.push(myHelper.getTaskForHistoryData(data.attr('oid' + i), data, dataRangeStartTime))
+
+                                if (data.refreshMethod === 'realtime') {
+                                    vis.states.bind(data.attr('oid' + i) + '.val', onChange);
+                                }
                             }
                         }
 
@@ -416,47 +429,49 @@ vis.binds.materialdesign.chart = {
                                 // plugins: (data.showValues) ? [ChartDataLabels] : undefined     // show value labels
                             });
 
-                            function onChange(e, newVal, oldVal) {
-                                // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
-                                let oidId = e.type.substr(0, e.type.lastIndexOf("."));
+                            // function onChange(e, newVal, oldVal) {
+                            //     // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
+                            //     let oidId = e.type.substr(0, e.type.lastIndexOf("."));
 
-                                for (var d = 0; d <= data.dataCount; d++) {
-                                    if (oidId === data.attr('oid' + d)) {
-                                        let index = d;
-                                        myChart.data.datasets[0].data[index] = newVal;
-                                        myChart.update();
-                                    }
-                                }
-                            };
+                            //     for (var d = 0; d <= data.dataCount; d++) {
+                            //         if (oidId === data.attr('oid' + d)) {
+                            //             let index = d;
+                            //             myChart.data.datasets[0].data[index] = newVal;
+                            //             myChart.update();
+                            //         }
+                            //     }
+                            // };
                         });
                     }
                 }
 
-                function onTimeIntervalChanged(e, newVal, oldVal) {
-                    let timeIntervalOid = newVal;
+                function onChange(e, newVal, oldVal) {
+                    // value or timeinterval changed
 
-                    if (getValueFromData(timeIntervalOid, null) !== null && myHelper.intervals[timeIntervalOid] !== undefined) {
-                        dataRangeStartTime = myHelper.intervals[timeIntervalOid] ? new Date().getTime() - myHelper.intervals[timeIntervalOid] : undefined;
+                    let timeIntervalOid = vis.states.attr(data.time_interval_oid + '.val');
+                    if (getValueFromData(newVal, null) !== null && myHelper.intervals[newVal] !== undefined) {
+                        // timeinterval changed
+                        let timeIntervalOid = newVal;
+                    }
+                    dataRangeStartTime = myHelper.intervals[timeIntervalOid] ? new Date().getTime() - myHelper.intervals[timeIntervalOid] : undefined;
 
-                        let operations = [];
-                        for (var i = 0; i <= data.dataCount; i++) {
-                            if (getValueFromData(data.attr('oid' + i), null) !== null) {
-                                operations.push(myHelper.getTaskForHistoryData(data.attr('oid' + i), data, dataRangeStartTime))
-                            }
+                    let operations = [];
+                    for (var i = 0; i <= data.dataCount; i++) {
+                        if (getValueFromData(data.attr('oid' + i), null) !== null) {
+                            operations.push(myHelper.getTaskForHistoryData(data.attr('oid' + i), data, dataRangeStartTime))
+                        }
+                    }
+
+                    Promise.all(operations).then((result) => {
+                        // execute all db queries -> getting all needed data at same time
+
+                        for (var i = 0; i <= result.length - 1; i++) {
+                            let dataArray = result[i].map(elm => ({ t: elm.ts, y: elm.val }));
+                            myChart.data.datasets[i].data = dataArray;
                         }
 
-                        Promise.all(operations).then((result) => {
-                            // execute all db queries -> getting all needed data at same time
-
-                            let myDatasets = [];
-                            for (var i = 0; i <= result.length - 1; i++) {
-                                let dataArray = result[i].map(elm => ({ t: elm.ts, y: elm.val }));
-                                myChart.data.datasets[i].data = dataArray;
-                            }
-
-                            myChart.update();
-                        });
-                    }
+                        myChart.update();
+                    });
                 };
             }, 1)
         } catch (ex) {
