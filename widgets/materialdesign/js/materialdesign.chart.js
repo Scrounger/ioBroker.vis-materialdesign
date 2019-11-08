@@ -238,6 +238,7 @@ vis.binds.materialdesign.chart = {
                             // console.log(result);
 
                             let myDatasets = [];
+                            let myYAxis = [];
                             for (var i = 0; i <= result.length - 1; i++) {
 
                                 let dataArray = result[i].map(elm => ({ t: elm.ts, y: elm.val }));
@@ -258,8 +259,36 @@ vis.binds.materialdesign.chart = {
                                         pointStyle: getValueFromData(data.pointStyle, 'circle'),
                                         pointHoverBorderColor: getValueFromData(data.attr('pointHoverColor' + i), getValueFromData(data.attr('dataColor' + i), (colorScheme) ? getValueFromData(colorScheme[i], globalColor) : globalColor)),
                                         pointHoverBackgroundColor: getValueFromData(data.attr('pointHoverColor' + i), getValueFromData(data.attr('dataColor' + i), (colorScheme) ? getValueFromData(colorScheme[i], globalColor) : globalColor)),
+                                        yAxisID: 'yAxis_id_' + i,
                                     }
                                 );
+
+                                myYAxis.push(
+                                    {
+                                        id: 'yAxis_id_' + i,
+                                        type: 'linear',
+                                        position: data.attr('yAxisPosition' + i),
+                                        display: data.attr('showYAxis' + i),
+                                        scaleLabel: {       // y-Axis title
+                                            display: (getValueFromData(data.attr('yAxisTitle' + i), null) !== null),
+                                            labelString: getValueFromData(data.attr('yAxisTitle' + i), ''),
+                                            fontColor: getValueFromData(data.yAxisTitleColor, undefined),
+                                            fontFamily: getValueFromData(data.yAxisTitleFontFamily, undefined),
+                                            fontSize: getNumberFromData(data.yAxisTitleFontSize, undefined)
+                                        },
+                                        ticks: { 
+                                            min: getNumberFromData(data.attr('yAxisMinValue' + i), undefined),
+                                            max: getNumberFromData(data.attr('yAxisMaxValue' + i), undefined),
+                                            stepSize: getNumberFromData(data.attr('yAxisStep' + i), undefined),
+                                            autoSkip: true,
+                                            maxTicksLimit: getNumberFromData(data.attr('yAxisMaxLabel' + i), undefined),
+                                            fontColor: getValueFromData(data.yAxisValueLabelColor, undefined),
+                                            fontFamily: getValueFromData(data.yAxisValueFontFamily, undefined),
+                                            fontSize: getNumberFromData(data.yAxisValueFontSize, undefined),
+                                            padding: getNumberFromData(data.yAxisValueDistanceToAxis, 0),
+                                        }
+                                    }
+                                )
                             }
 
                             // Data with datasets options
@@ -313,7 +342,8 @@ vis.binds.materialdesign.chart = {
                                             drawTicks: data.xAxisShowTicks,
                                             tickMarkLength: getNumberFromData(data.xAxisTickLength, 5),
                                         }
-                                    }]
+                                    }],
+                                    yAxes: myYAxis,
                                 },
                                 // scales: {
                                 //     yAxes: [
