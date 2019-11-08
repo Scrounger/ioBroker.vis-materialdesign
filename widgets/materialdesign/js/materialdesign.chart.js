@@ -241,8 +241,11 @@ vis.binds.materialdesign.chart = {
                             let myYAxis = [];
                             for (var i = 0; i <= result.length - 1; i++) {
 
-                                let dataArray = result[i].map(elm => ({ t: elm.ts, y: elm.val }));
-                                console.log(dataArray);
+                                let dataArray = [];
+
+                                if (result[i]) {
+                                    dataArray = result[i].map(elm => ({ t: elm.ts, y: elm.val }));
+                                }
 
                                 myDatasets.push(
                                     {
@@ -276,7 +279,7 @@ vis.binds.materialdesign.chart = {
                                             fontFamily: getValueFromData(data.yAxisTitleFontFamily, undefined),
                                             fontSize: getNumberFromData(data.yAxisTitleFontSize, undefined)
                                         },
-                                        ticks: { 
+                                        ticks: {
                                             min: getNumberFromData(data.attr('yAxisMinValue' + i), undefined),
                                             max: getNumberFromData(data.attr('yAxisMaxValue' + i), undefined),
                                             stepSize: getNumberFromData(data.attr('yAxisStep' + i), undefined),
@@ -286,6 +289,15 @@ vis.binds.materialdesign.chart = {
                                             fontFamily: getValueFromData(data.yAxisValueFontFamily, undefined),
                                             fontSize: getNumberFromData(data.yAxisValueFontSize, undefined),
                                             padding: getNumberFromData(data.yAxisValueDistanceToAxis, 0),
+                                        },
+                                        gridLines: {
+                                            display: true,
+                                            color: getValueFromData(data.attr('yAxisGridLinesColor' + i), 'black'),
+                                            lineWidth: getNumberFromData(data.attr('yAxisGridLinesWitdh' + i), 0.1),
+                                            drawBorder: data.attr('yAxisShowAxisBorder' + i),
+                                            drawOnChartArea: data.attr('yAxisShowGridLines' + i),
+                                            drawTicks: data.attr('yAxisShowTicks' + i),
+                                            tickMarkLength: getNumberFromData(data.attr('yAxisTickLength' + i), 5),
                                         }
                                     }
                                 )
@@ -345,20 +357,6 @@ vis.binds.materialdesign.chart = {
                                     }],
                                     yAxes: myYAxis,
                                 },
-                                // scales: {
-                                //     yAxes: [
-                                //         myHelper.get_Y_AxisObject(data.chartType, data.yAxisPosition, data.barWidth, data.yAxisTitle, data.yAxisTitleColor, data.yAxisTitleFontFamily, data.yAxisTitleFontSize,
-                                //             data.yAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
-                                //             data.yAxisValueLabelColor, data.yAxisValueFontFamily, data.yAxisValueFontSize, data.yAxisValueDistanceToAxis, data.yAxisGridLinesColor,
-                                //             data.yAxisGridLinesWitdh, data.yAxisShowAxis, data.yAxisShowGridLines, data.yAxisShowTicks, data.yAxisTickLength)
-                                //     ],
-                                //     xAxes: [
-                                //         myHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.barWidth, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
-                                //             data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
-                                //             data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
-                                //             data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength)
-                                //     ],
-                                // },
                                 // tooltips: {
                                 //     enabled: data.showTooltip,
                                 //     backgroundColor: getValueFromData(data.tooltipBackgroundColor, 'black'),
@@ -427,14 +425,9 @@ vis.binds.materialdesign.chart = {
                                         let index = d;
                                         myChart.data.datasets[0].data[index] = newVal;
                                         myChart.update();
-
-
                                     }
                                 }
                             };
-
-
-
                         });
                     }
                 }
