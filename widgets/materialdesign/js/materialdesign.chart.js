@@ -326,7 +326,26 @@ vis.binds.materialdesign.chart = {
                                 responsive: true,
                                 maintainAspectRatio: false,
                                 layout: myHelper.getLayout(data),
-                                legend: myHelper.getLegend(data),
+                                legend: Object.assign(myHelper.getLegend(data),
+                                    {
+                                        // custom to hide / show also yAxis if data de-/selected
+                                        onClick: function (event, legendItem) {
+                                            var index = legendItem.datasetIndex;
+
+                                            var ci = this.chart;
+                                            var meta = ci.getDatasetMeta(index);
+
+                                            // hide / show yAxis 
+                                            myChart.options.scales.yAxes[index].display = !myChart.options.scales.yAxes[index].display;
+
+                                            // See controller.isDatasetVisible comment
+                                            meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
+
+                                            // We hid a dataset ... rerender the chart
+                                            ci.update();
+                                        }
+                                    }
+                                ),
                                 scales: {
                                     xAxes: [{
                                         type: 'time',
