@@ -465,20 +465,7 @@ vis.binds.materialdesign.chart = {
 
 
                             progressBar.hide();
-
-                            // function onChange(e, newVal, oldVal) {
-                            //     // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
-                            //     let oidId = e.type.substr(0, e.type.lastIndexOf("."));
-
-                            //     for (var d = 0; d <= data.dataCount; d++) {
-                            //         if (oidId === data.attr('oid' + d)) {
-                            //             let index = d;
-                            //             myChart.data.datasets[0].data[index] = newVal;
-                            //             myChart.update();
-                            //         }
-                            //     }
-                            // };
-
+                            console.log(`current time unit: ${myChart.scales['x-axis-0']._unit}`);
                         });
                     }
                 }
@@ -513,6 +500,7 @@ vis.binds.materialdesign.chart = {
                         myChart.update();
 
                         progressBar.hide();
+                        console.log(`current time unit: ${myChart.scales['x-axis-0']._unit}`);
                     });
                 };
             }, 1)

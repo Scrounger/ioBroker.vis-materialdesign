@@ -157,7 +157,6 @@ vis.binds.materialdesign.select = {
 
                 if (!vis.editMode) {
                     mdcSelect.listen('MDCSelect:change', function () {
-                        console.log(mdcSelect.value);
                         if (isBooleanSelect) {
                             vis.setValue(data.oid, (mdcSelect.value === 'true') ? true : false);
                         } else {
