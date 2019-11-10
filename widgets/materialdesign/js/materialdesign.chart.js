@@ -353,6 +353,7 @@ vis.binds.materialdesign.chart = {
                                         time:
                                         {
                                             displayFormats: (getValueFromData(data.xAxisTimeFormats, null) !== null) ? JSON.parse(data.xAxisTimeFormats) : myHelper.defaultTimeFormats(),      // muss entsprechend konfigurietr werden siehe 
+                                            tooltipFormat: 'll'
                                         },
                                         position: data.xAxisPosition,
                                         scaleLabel: {       // x-Axis title
@@ -391,30 +392,42 @@ vis.binds.materialdesign.chart = {
                                 },
                                 tooltips: {
                                     mode: 'nearest',
-                                        enabled: data.showTooltip,
-                                        backgroundColor: getValueFromData(data.tooltipBackgroundColor, 'black'),
-                                        caretSize: getNumberFromData(data.tooltipArrowSize, 5),
-                                        caretPadding: getNumberFromData(data.tooltipDistanceToBar, 2),
-                                        cornerRadius: getNumberFromData(data.tooltipBoxRadius, 4),
-                                        displayColors: data.tooltipShowColorBox,
-                                        xPadding: getNumberFromData(data.tooltipXpadding, 10),
-                                        yPadding: getNumberFromData(data.tooltipYpadding, 10),
-                                        titleFontColor: getValueFromData(data.tooltipTitleFontColor, 'white'),
-                                        titleFontFamily: getValueFromData(data.tooltipTitleFontFamily, undefined),
-                                        titleFontSize: getNumberFromData(data.tooltipTitleFontSize, undefined),
-                                        titleMarginBottom: getNumberFromData(data.tooltipTitleMarginBottom, 6),
-                                        bodyFontColor: getValueFromData(data.tooltipBodyFontColor, 'white'),
-                                        bodyFontFamily: getValueFromData(data.tooltipBodyFontFamily, undefined),
-                                        bodyFontSize: getNumberFromData(data.tooltipBodyFontSize, undefined),
-                                        callbacks: {
-                                            label: function (tooltipItem, chart) {
-                                                if (tooltipItem && tooltipItem.value) {
-                                                    return `${chart.datasets[tooltipItem.datasetIndex].label}: ${myHelper.roundNumber(parseFloat(tooltipItem.value), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.tooltipBodyAppend, '')}`
-                                                        .split('\\n');
-                                                }
-                                                return '';
+                                    enabled: data.showTooltip,
+                                    backgroundColor: getValueFromData(data.tooltipBackgroundColor, 'black'),
+                                    caretSize: getNumberFromData(data.tooltipArrowSize, 5),
+                                    caretPadding: getNumberFromData(data.tooltipDistanceToBar, 2),
+                                    cornerRadius: getNumberFromData(data.tooltipBoxRadius, 4),
+                                    displayColors: data.tooltipShowColorBox,
+                                    xPadding: getNumberFromData(data.tooltipXpadding, 10),
+                                    yPadding: getNumberFromData(data.tooltipYpadding, 10),
+                                    titleFontColor: getValueFromData(data.tooltipTitleFontColor, 'white'),
+                                    titleFontFamily: getValueFromData(data.tooltipTitleFontFamily, undefined),
+                                    titleFontSize: getNumberFromData(data.tooltipTitleFontSize, undefined),
+                                    titleMarginBottom: getNumberFromData(data.tooltipTitleMarginBottom, 6),
+                                    bodyFontColor: getValueFromData(data.tooltipBodyFontColor, 'white'),
+                                    bodyFontFamily: getValueFromData(data.tooltipBodyFontFamily, undefined),
+                                    bodyFontSize: getNumberFromData(data.tooltipBodyFontSize, undefined),
+                                    callbacks: {
+                                        title: function (tooltipItem, chart) {
+                                            let datasetIndex = tooltipItem[0].datasetIndex;
+                                            let index = tooltipItem[0].index;
+                                            let currentUnit = chart.datasets[datasetIndex]._meta[0].controller._xScale._unit;
+                                            let timestamp = moment(chart.datasets[datasetIndex].data[index].t);
+
+                                            let timeFormats = (getValueFromData(data.tooltipTimeFormats, null) !== null) ? JSON.parse(data.tooltipTimeFormats) : myHelper.defaultToolTipTimeFormats();
+
+                                            return timestamp.format(timeFormats[currentUnit]);
+                                        },
+                                        label: function (tooltipItem, chart) {
+
+
+                                            if (tooltipItem && tooltipItem.value) {
+                                                return `${chart.datasets[tooltipItem.datasetIndex].label}: ${myHelper.roundNumber(parseFloat(tooltipItem.value), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.tooltipBodyAppend, '')}`
+                                                    .split('\\n');
                                             }
+                                            return '';
                                         }
+                                    }
                                 },
                                 // plugins: {
                                 //     datalabels: {
@@ -834,6 +847,21 @@ vis.binds.materialdesign.chart.helper = {
                 "month":          "MMM YYYY",
                 "quarter":        "[Q]Q - YYYY",
                 "year":           "YYYY"
+            }
+            `);
+    },
+    defaultToolTipTimeFormats: function () {
+        return JSON.parse(`
+            {
+                "millisecond":    "lll:ss",
+                "second":         "lll:ss",
+                "minute":         "lll",
+                "hour":           "lll",
+                "day":            "lll",
+                "week":           "lll",
+                "month":          "lll",
+                "quarter":        "lll",
+                "year":           "lll"
             }
             `);
     },
