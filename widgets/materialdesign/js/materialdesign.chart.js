@@ -493,7 +493,12 @@ vis.binds.materialdesign.chart = {
                         // execute all db queries -> getting all needed data at same time
 
                         for (var i = 0; i <= result.length - 1; i++) {
-                            let dataArray = result[i].map(elm => ({ t: elm.ts, y: elm.val }));
+                            let dataArray = [];
+
+                            if (result[i]) {
+                                dataArray = result[i].map(elm => ({ t: elm.ts, y: elm.val }));
+                            }
+                            
                             myChart.data.datasets[i].data = dataArray;
                         }
 
