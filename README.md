@@ -77,7 +77,7 @@ To change the image of the items, you have to a json object into the image filed
 
 > Required Adapter: [SQL](https://github.com/ioBroker/ioBroker.sql) or [History](https://github.com/ioBroker/ioBroker.history) !
 
-![Logo](doc/media/line_history_charts.gif)
+![Logo](doc/media/line_history_chart.gif)
 
 Settings that are not listed in the table below are self-explanatory.
 
