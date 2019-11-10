@@ -17,6 +17,8 @@
 
 Material Design Widgets based on [Google material components web library](https://github.com/material-components/material-components-web).
 
+Charts based on [chartjs library](https://www.chartjs.org/).
+
 ### Supported Browser
 https://github.com/material-components/material-components-web/blob/master/docs/supported-browsers.md
 
@@ -38,6 +40,25 @@ https://github.com/material-components/material-components-web/blob/master/docs/
 ## Slider
 ![Logo](doc/media/slider.gif)
 
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=6><img src="doc/media/slider.png"></td>
+            <td>initDelay</td>
+            <td>If the slider is not visible or operable after loading the runtime, then this value must be increased. Entry is made in milliseconds.<br>For example, increase by 250 steps until the slider works.</td>
+        </tr>
+    </tbody>
+</table>
+
 ## Switch
 ![Logo](doc/media/switch.gif)
 
@@ -57,19 +78,47 @@ Information:
 ##### Layout permanent:
 ![Logo](doc/media/topappbar_permanent.gif)
 
-##### Submenu 
+### Submenu 
 ![Logo](doc/media/drawer_subMenu.png)
 
-To activate submenu, you have to add multiple views seperated with '|' into the view field, example:
-![Logo](doc/media/drawer_subMenu_views.png)
+Settings that are not listed in the table below are self-explanatory.
 
-To change the text of the items, you have to put a json object into the label field with the index of the view field, example:
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=1><img src="doc/media/drawer_subMenu_views.png"></td>
+            <td>views[x]</td>
+            <td>To activate submenu, you have to add multiple views seperated with '|' into the view field, see screenshots</td>
+        </tr>
+        <tr>
+            <td rowspan=1><img src="doc/media/drawer_subMenu_labels.png"></td>
+            <td>label[x]</td>
+            <td>To change the text of the items, you have to put a json object into the label field with the index of the view field.<br>
+                Example:<br>
 
 `{"itemText": "Item with Subitems", "subItems": ["subItem1", "subItem2"]}`
 
-To change the image of the items, you have to a json object into the image filed with the index of the view field, example:
+Result: see screenshot</td>
+        </tr>
+        <tr>
+            <td rowspan=1><img src="doc/media/drawer_subMenu_icons.png"></td>
+            <td>icon[x]</td>
+            <td>To change the icons of the items, you have to put a json object into the icons field with the index of the view field.<br>
+                Example:<br>
 
 `{"itemImage": "/icons-material-svg/hardware/ic_computer_48px.svg", "subItems": ["/vis/widgets/materialdesign/img/IoBroker_Logo.png", "/icons-material-svg/action/ic_android_48px.svg"]}`
+
+Result: see screenshot</td>
+        </tr>
+    </tbody>
+</table>
 
 ## Charts
 

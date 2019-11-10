@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.1.11"
+    version: "0.1.10"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -19,7 +19,7 @@ if (vis.editMode) {
 
 // this code can be placed directly in materialdesign.html
 vis.binds.materialdesign = {
-    version: "0.1.11",
+    version: "0.1.10",
     showVersion: function () {
         if (vis.binds["materialdesign"].version) {
             console.log('Version vis-materialdesign: ' + vis.binds["materialdesign"].version);
@@ -581,6 +581,52 @@ vis.binds.materialdesign = {
             console.exception(`mdcIconButton [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
+    editorManualLink: function (widAttr, data) {
+        let url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#iobrokervis-materialdesign';
+
+        if (data) {
+
+            if (data[1] === 'card') {
+                url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#card'
+            }
+
+            if (data[1] === 'drawer') {
+                url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#top-app-bar-with-navigation-drawer'
+            }
+
+            if (data[1] === 'drawerSubMenuViews') {
+                url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#submenu'
+            }
+            
+            if (data[1] === 'lineHistoryChart') {
+                url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#line-history-chart'
+            }
+
+            if (data[1] === 'list') {
+                url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#list'
+            }
+
+            if (data[1] === 'progress') {
+                url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#progress'
+            }
+
+            if (data[1] === 'slider') {
+                url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#slider'
+            }
+
+            if (data[1] === 'switch') {
+                url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#switch'
+            }
+
+
+
+        }
+
+        return { input: `<a target="_blank" href="${url}">readme</a>` }
+    },
+    editorBmc: function (widAttr) {
+        return { input: `<a target="_blank" href="https://www.paypal.com/donate/?token=_JdzB9A08NegvPSIiKWnkAfAaUc7aT_Rd0VmKrd4q3F-jWgYg1wBmyl5HMJj2MEcGSDpvG&country.x=DE&locale.x=DE">buy me (scrounger) a coffee</a>` }
+    }
 };
 
 function getValueFromData(dataValue, nullValue, prepand = '', append = '') {
@@ -646,7 +692,7 @@ function getListItemImage(image, style) {
     return '';
 }
 
-function getListItem(layout, itemIndex, backdropImage, hasSubItems, isSubItem = false, style = '', dataOid = '', role = '', dataValue='') {
+function getListItem(layout, itemIndex, backdropImage, hasSubItems, isSubItem = false, style = '', dataOid = '', role = '', dataValue = '') {
 
     if (layout === 'standard') {
         // Layout: Standard
