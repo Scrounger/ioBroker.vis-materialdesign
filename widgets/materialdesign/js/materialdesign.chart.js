@@ -391,30 +391,30 @@ vis.binds.materialdesign.chart = {
                                 },
                                 tooltips: {
                                     mode: 'nearest',
-                                    //     enabled: data.showTooltip,
-                                    //     backgroundColor: getValueFromData(data.tooltipBackgroundColor, 'black'),
-                                    //     caretSize: getNumberFromData(data.tooltipArrowSize, 5),
-                                    //     caretPadding: getNumberFromData(data.tooltipDistanceToBar, 2),
-                                    //     cornerRadius: getNumberFromData(data.tooltipBoxRadius, 4),
-                                    //     displayColors: data.tooltipShowColorBox,
-                                    //     xPadding: getNumberFromData(data.tooltipXpadding, 10),
-                                    //     yPadding: getNumberFromData(data.tooltipYpadding, 10),
-                                    //     titleFontColor: getValueFromData(data.tooltipTitleFontColor, 'white'),
-                                    //     titleFontFamily: getValueFromData(data.tooltipTitleFontFamily, undefined),
-                                    //     titleFontSize: getNumberFromData(data.tooltipTitleFontSize, undefined),
-                                    //     titleMarginBottom: getNumberFromData(data.tooltipTitleMarginBottom, 6),
-                                    //     bodyFontColor: getValueFromData(data.tooltipBodyFontColor, 'white'),
-                                    //     bodyFontFamily: getValueFromData(data.tooltipBodyFontFamily, undefined),
-                                    //     bodyFontSize: getNumberFromData(data.tooltipBodyFontSize, undefined),
-                                    //     callbacks: {
-                                    //         label: function (tooltipItem, chart) {
-                                    //             if (tooltipItem && tooltipItem.value) {
-                                    //                 return `${chart.datasets[0].label}: ${myHelper.roundNumber(parseFloat(tooltipItem.value), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.tooltipBodyAppend, '')}`
-                                    //                     .split('\\n');
-                                    //             }
-                                    //             return '';
-                                    //         }
-                                    //     }
+                                        enabled: data.showTooltip,
+                                        backgroundColor: getValueFromData(data.tooltipBackgroundColor, 'black'),
+                                        caretSize: getNumberFromData(data.tooltipArrowSize, 5),
+                                        caretPadding: getNumberFromData(data.tooltipDistanceToBar, 2),
+                                        cornerRadius: getNumberFromData(data.tooltipBoxRadius, 4),
+                                        displayColors: data.tooltipShowColorBox,
+                                        xPadding: getNumberFromData(data.tooltipXpadding, 10),
+                                        yPadding: getNumberFromData(data.tooltipYpadding, 10),
+                                        titleFontColor: getValueFromData(data.tooltipTitleFontColor, 'white'),
+                                        titleFontFamily: getValueFromData(data.tooltipTitleFontFamily, undefined),
+                                        titleFontSize: getNumberFromData(data.tooltipTitleFontSize, undefined),
+                                        titleMarginBottom: getNumberFromData(data.tooltipTitleMarginBottom, 6),
+                                        bodyFontColor: getValueFromData(data.tooltipBodyFontColor, 'white'),
+                                        bodyFontFamily: getValueFromData(data.tooltipBodyFontFamily, undefined),
+                                        bodyFontSize: getNumberFromData(data.tooltipBodyFontSize, undefined),
+                                        callbacks: {
+                                            label: function (tooltipItem, chart) {
+                                                if (tooltipItem && tooltipItem.value) {
+                                                    return `${chart.datasets[tooltipItem.datasetIndex].label}: ${myHelper.roundNumber(parseFloat(tooltipItem.value), getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.tooltipBodyAppend, '')}`
+                                                        .split('\\n');
+                                                }
+                                                return '';
+                                            }
+                                        }
                                 },
                                 // plugins: {
                                 //     datalabels: {
