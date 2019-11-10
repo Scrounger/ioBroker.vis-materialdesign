@@ -105,11 +105,11 @@ Settings that are not listed in the table below are self-explanatory.
         </tr>
         <tr>
             <td>minTimeInterval</td>
-            <td>Optional setting overrides the 'count setting.<br>Distance between the individual data points in seconds.<br>For example, if you want to display data points every minute, you have to enter 60 here</td>
+            <td>Optional setting, overrides the 'count' setting.<br>Distance between the individual data points in seconds.<br>For example, if you want to display data points every minute, you have to enter 60 here</td>
         </tr>
         <tr>
             <td>timeIntervalOid</td>
-            <td>Id of a datapoint to change the time interval of the chart. The data point must be a string and may contain <a href="https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/c677220868961b3cf0b153fb8bf04e13b4475c09/widgets/materialdesign/js/materialdesign.chart.js#L791">the linked values</a><br>For example, you can use a button here to change the display of the chart during runtime</td>
+            <td>Id of a datapoint to change the time interval of the chart. The data point must be a string and may contain <a href="https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/235530e4e54346b5527333ca06ce596519954c67/widgets/materialdesign/js/materialdesign.chart.js#L802">the linked values</a><br>For example, you can use a button here to change the display of the chart during runtime</td>
         </tr>
         <tr>
             <td>manualRefreshTrigger</td>

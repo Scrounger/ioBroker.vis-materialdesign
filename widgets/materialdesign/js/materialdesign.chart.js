@@ -2,7 +2,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.1.11"
+    version: "0.1.10"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -272,7 +272,7 @@ vis.binds.materialdesign.chart = {
                                         pointStyle: getValueFromData(data.pointStyle, 'circle'),
                                         pointHoverBorderColor: getValueFromData(data.attr('pointHoverColor' + i), getValueFromData(data.attr('dataColor' + i), (colorScheme) ? getValueFromData(colorScheme[i], globalColor) : globalColor)),
                                         pointHoverBackgroundColor: getValueFromData(data.attr('pointHoverColor' + i), getValueFromData(data.attr('dataColor' + i), (colorScheme) ? getValueFromData(colorScheme[i], globalColor) : globalColor)),
-                                        yAxisID: 'yAxis_id_' + getNumberFromData(data.attr('assignYAxis' + i), i),
+                                        yAxisID: 'yAxis_id_' + getNumberFromData(data.attr('commonYAxis' + i), i),
                                     }
                                 );
 
@@ -281,7 +281,7 @@ vis.binds.materialdesign.chart = {
                                         id: 'yAxis_id_' + i,
                                         type: 'linear',
                                         position: data.attr('yAxisPosition' + i),
-                                        display: (getNumberFromData(data.attr('assignYAxis' + i), i) === i) ? data.attr('showYAxis' + i) : false,
+                                        display: (getNumberFromData(data.attr('commonYAxis' + i), i) === i) ? data.attr('showYAxis' + i) : false,
                                         scaleLabel: {       // y-Axis title
                                             display: (getValueFromData(data.attr('yAxisTitle' + i), null) !== null),
                                             labelString: getValueFromData(data.attr('yAxisTitle' + i), ''),
