@@ -186,6 +186,10 @@ vis.binds.materialdesign.chart = {
                 let $this = $(el);
                 var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
 
+                var progressBar = $(el).find('.material-progress-circular-container');
+
+                progressBar.show();
+
                 let dataRangeStartTime = myHelper.intervals[data.time_interval] ? new Date().getTime() - myHelper.intervals[data.time_interval] : undefined;
                 if (getValueFromData(data.time_interval_oid, null) !== null) {
                     let timeIntervalOid = vis.states.attr(data.time_interval_oid + '.val');
@@ -433,6 +437,7 @@ vis.binds.materialdesign.chart = {
                                 //         textAlign: data.valuesTextAlign
                                 //     }
                                 // }
+                                
                             };
 
                             if (data.disableHoverEffects) options.hover = { mode: null };
@@ -444,6 +449,9 @@ vis.binds.materialdesign.chart = {
                                 options: options,
                                 // plugins: (data.showValues) ? [ChartDataLabels] : undefined     // show value labels
                             });
+
+
+                            progressBar.hide();
 
                             // function onChange(e, newVal, oldVal) {
                             //     // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
@@ -457,12 +465,15 @@ vis.binds.materialdesign.chart = {
                             //         }
                             //     }
                             // };
+
                         });
                     }
                 }
 
                 function onChange(e, newVal, oldVal) {
                     // value or timeinterval changed
+
+                    progressBar.show();
 
                     let timeIntervalOid = vis.states.attr(data.time_interval_oid + '.val');
                     if (getValueFromData(newVal, null) !== null && myHelper.intervals[newVal] !== undefined) {
@@ -487,6 +498,8 @@ vis.binds.materialdesign.chart = {
                         }
 
                         myChart.update();
+
+                        progressBar.hide();
                     });
                 };
             }, 1)

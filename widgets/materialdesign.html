@@ -798,6 +798,9 @@
         data-vis-attrs8="group.showYAxis;showYAxis(0-dataCount)[true]/checkbox;group.yAxisPositions;yAxisPosition(0-dataCount)[left]/select,left,right;group.yAxisMinValues;yAxisMinValue(0-dataCount)/number;group.yAxisMaxValues;yAxisMaxValue(0-dataCount)/number;group.yAxisSteps;yAxisStep(0-dataCount)/number;group.yAxisMaxLabels;yAxisMaxLabel(0-dataCount)/number;group.yAxisTitles;yAxisTitle(0-dataCount);group.yAxisShowGridLines;yAxisShowGridLines(0-dataCount)[true]/checkbox;group.yAxisShowTicks;yAxisShowTicks(0-dataCount)[true]/checkbox;group.yAxisShowAxisBorder;yAxisShowAxisBorder(0-dataCount)[true]/checkbox;group.yAxisGridLinesColor;yAxisGridLinesColor(0-dataCount)/color;group.yAxisGridLinesWitdh;yAxisGridLinesWitdh(0-dataCount);group.yAxisTickLength;yAxisTickLength(0-dataCount)/slider,0,100,1;">
 
         <div class="vis-widget materialdesign-chart <%== this.data.attr('class') %>" style="width:400px; height: 270px; background-color: <%= this.data.attr('backgroundColor')%>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.chart.lineHistory(el, data) %>>
+            <div class="material-progress-circular-container">
+                <progress class="material-progress-circular"/>
+            </div>
             <canvas class="materialdesign-chart-container"></canvas>
         </div>
 </script>
