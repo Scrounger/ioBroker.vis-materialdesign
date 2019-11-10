@@ -124,7 +124,7 @@ Result: see screenshot</td>
 
 ### Line History Chart:
 
-> Required Adapter: [SQL](https://github.com/ioBroker/ioBroker.sql) or [History](https://github.com/ioBroker/ioBroker.history) !
+> Required Adapter: [SQL](https://github.com/ioBroker/ioBroker.sql), [History](https://github.com/ioBroker/ioBroker.history) or [InfluxDb](https://github.com/ioBroker/ioBroker.influxdb)!
 
 ![Logo](doc/media/line_history_chart.gif)
 
