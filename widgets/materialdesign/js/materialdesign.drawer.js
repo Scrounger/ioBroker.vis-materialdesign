@@ -322,8 +322,8 @@ vis.binds.materialdesign.drawer = {
             topAppBar.setScrollTarget($this.parent().find('.mdc-top-app-bar-content').get(0));
 
             topAppBar.listen('MDCTopAppBar:nav', () => {
-
-                window.navigator.vibrate(data.vibrateTopAppBarOnMobilDevices);
+            
+                vis.binds.materialdesign.helper.vibrate(data.vibrateTopAppBarOnMobilDevices);
 
                 if (data.drawerLayout === 'dismissible') {
                     if (drawer.open) {
@@ -380,7 +380,7 @@ vis.binds.materialdesign.drawer = {
             $this.find('.mdc-list-item').click(function () {
                 let selctedIndex = parseInt($(this).eq(0).attr('id').replace('listItem_', ''));
 
-                window.navigator.vibrate(data.vibrateDrawerOnMobilDevices);
+                vis.binds.materialdesign.helper.vibrate(data.vibrateDrawerOnMobilDevices);
 
                 if ($(this).hasClass('hasSubItems')) {
                     // listItem has subItems ->Toggle SubItems

@@ -71,7 +71,7 @@ vis.binds.materialdesign = {
         }
 
         $(el).click(function () {
-            window.navigator.vibrate(data.vibrateOnMobilDevices);
+            vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
         });
     },
     buttonToggle: function (el, data) {
@@ -171,7 +171,7 @@ vis.binds.materialdesign = {
 
             if (!vis.editMode) {
                 $this.find('.mdc-switch').click(function () {
-                    window.navigator.vibrate(data.vibrateOnMobilDevices);
+                    vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
 
                     if (data.toggleType === 'boolean') {
                         vis.setValue(data.oid, mdcSwitch.checked);
@@ -239,7 +239,7 @@ vis.binds.materialdesign = {
 
             if (!vis.editMode) {
                 $this.find('.mdc-checkbox').click(function () {
-                    window.navigator.vibrate(data.vibrateOnMobilDevices);
+                    vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
 
                     if (data.toggleType === 'boolean') {
                         vis.setValue(data.oid, mdcCheckbox.checked);
@@ -401,7 +401,7 @@ vis.binds.materialdesign = {
 
                     $this.find('.mdc-slider').on('touchstart mousedown', function (e) {
                         e.preventDefault();
-                        window.navigator.vibrate(data.vibrateOnMobilDevices);
+                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                     });
 
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
@@ -529,7 +529,7 @@ vis.binds.materialdesign = {
 
             if (!vis.editMode) {
                 mdcIconButton.listen('MDCIconButtonToggle:change', function () {
-                    window.navigator.vibrate(data.vibrateOnMobilDevices);
+                    vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
 
                     if (data.toggleType === 'boolean') {
                         vis.setValue(data.oid, mdcIconButton.on);

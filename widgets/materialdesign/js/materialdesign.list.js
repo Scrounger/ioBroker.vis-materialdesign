@@ -156,7 +156,7 @@ vis.binds.materialdesign.list = {
                     let index = item.detail.index;
 
                     if (data.listType !== 'text') {
-                        window.navigator.vibrate(data.vibrateOnMobilDevices);
+                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                     }
 
                     if (data.listType === 'checkbox' || data.listType === 'switch') {
