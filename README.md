@@ -71,6 +71,63 @@ To change the image of the items, you have to a json object into the image filed
 
 `{"itemImage": "/icons-material-svg/hardware/ic_computer_48px.svg", "subItems": ["/vis/widgets/materialdesign/img/IoBroker_Logo.png", "/icons-material-svg/action/ic_android_48px.svg"]}`
 
+## Charts
+
+### Line History Chart:
+
+> Required Adapter: [SQL](https://github.com/ioBroker/ioBroker.sql) or [History](https://github.com/ioBroker/ioBroker.history) !
+
+![Logo](doc/media/line_history_charts.gif)
+
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=6><img src="doc/media/line_hostory_chart_general.png"></td>
+            <td>Instance</td>
+            <td>Instance for the sql or history adapter</td>
+        </tr>
+        <tr>
+            <td>aggregation</td>
+            <td><a href="https://www.iobroker.net/docu/index-195.htm?page_id=198&lang=en#Aggregation">link</a></td>
+        </tr>
+        <tr>
+            <td>count</td>
+            <td>Number of maximum data points to display</td>
+        </tr>
+        <tr>
+            <td>minTimeInterval</td>
+            <td>Optional setting overrides the 'count setting.<br>Distance between the individual data points in seconds.<br>For example, if you want to display data points every minute, you have to enter 60 here</td>
+        </tr>
+        <tr>
+            <td>timeIntervalOid</td>
+            <td>Id of a datapoint to change the time interval of the chart. The data point must be a string and may contain <a href="https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/c677220868961b3cf0b153fb8bf04e13b4475c09/widgets/materialdesign/js/materialdesign.chart.js#L791">the linked values</a><br>For example, you can use a button here to change the display of the chart during runtime</td>
+        </tr>
+        <tr>
+            <td>manualRefreshTrigger</td>
+            <td>Id of adatapoint to trigger a manual refresh of the chart.<br>For example, you can use a button here to refresh the chart during runtime</td>
+        </tr>
+        <tr>
+            <td><img src="doc/media/line_hostory_chart_xAxis_layout.png"></td>
+            <td>xAxisTimeFormat</td>
+            <td>Change the time format of the X-axis. Time formats must be entered for all time units, <a href="https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/c677220868961b3cf0b153fb8bf04e13b4475c09/widgets/materialdesign/js/materialdesign.chart.js#L805">the following time units are permitted.</a><br>Approved time formats must be entered according to the moment.js library, <a href="https://momentjs.com/docs/#/displaying/">see link</a></td>
+        </tr>
+        <tr>
+            <td><img src="doc/media/line_hostory_chart_tooltip_layout.png"></td>
+            <td>tooltipTimeFormat</td>
+            <td>Change the time format of the tooltip. Time formats must be entered for all time units, <a href="https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/c677220868961b3cf0b153fb8bf04e13b4475c09/widgets/materialdesign/js/materialdesign.chart.js#L805">the following time units are permitted.</a><br>Approved time formats must be entered according to the moment.js library, <a href="https://momentjs.com/docs/#/displaying/">see link</a></td>
+        </tr>
+    </tbody>
+</table>
+
 ## Changelog
 
 ### 0.1.5
