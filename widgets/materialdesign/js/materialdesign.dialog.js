@@ -94,8 +94,9 @@ vis.binds.materialdesign.dialog = {
                     });
 
                     if (!vis.editMode) {
-                        mdcDialog.listen('MDCDialog:closing', function () {
+                        mdcDialog.listen('MDCDialog:closing', function () {                            
                             vis.setValue(data.showDialogOid, false);
+                            vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                         });
                     }
 
