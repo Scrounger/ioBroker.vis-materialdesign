@@ -162,6 +162,8 @@ vis.binds.materialdesign.select = {
                         } else {
                             vis.setValue(data.oid, mdcSelect.value);
                         }
+
+                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                     });
                 }
 
@@ -189,6 +191,11 @@ vis.binds.materialdesign.select = {
                         }
                     }
                 };
+
+                $this.find('.mdc-select').click(function() {
+                    vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                });
+                
             }, 1);
 
         } catch (ex) {
