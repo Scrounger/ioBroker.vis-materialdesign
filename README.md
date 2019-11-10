@@ -68,6 +68,7 @@ Information:
 * App Bar position is hardcoded and always appears in the upper left corner. Only width and height are adjustable. In the editor you can move the widget, but these settings will not be applied!
 * In the editor, effects such as scrolling, etc. are not displayed correctly or behave differently!
 * Checkbox "persistent" must be activated!
+* oid must be set to a datapoint from typ number (like the `view in widget 8` of VIS Adapter)
 
 ##### Layout modal:
 ![Logo](doc/media/topappbar_modal.gif)
