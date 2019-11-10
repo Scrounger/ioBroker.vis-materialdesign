@@ -272,7 +272,7 @@ vis.binds.materialdesign.chart = {
                                         pointStyle: getValueFromData(data.pointStyle, 'circle'),
                                         pointHoverBorderColor: getValueFromData(data.attr('pointHoverColor' + i), getValueFromData(data.attr('dataColor' + i), (colorScheme) ? getValueFromData(colorScheme[i], globalColor) : globalColor)),
                                         pointHoverBackgroundColor: getValueFromData(data.attr('pointHoverColor' + i), getValueFromData(data.attr('dataColor' + i), (colorScheme) ? getValueFromData(colorScheme[i], globalColor) : globalColor)),
-                                        yAxisID: 'yAxis_id_' + i,
+                                        yAxisID: 'yAxis_id_' + getNumberFromData(data.attr('assignYAxis' + i), i),
                                     }
                                 );
 
@@ -281,7 +281,7 @@ vis.binds.materialdesign.chart = {
                                         id: 'yAxis_id_' + i,
                                         type: 'linear',
                                         position: data.attr('yAxisPosition' + i),
-                                        display: data.attr('showYAxis' + i),
+                                        display: (getNumberFromData(data.attr('assignYAxis' + i), i) === i) ? data.attr('showYAxis' + i) : false,
                                         scaleLabel: {       // y-Axis title
                                             display: (getValueFromData(data.attr('yAxisTitle' + i), null) !== null),
                                             labelString: getValueFromData(data.attr('yAxisTitle' + i), ''),
@@ -437,7 +437,7 @@ vis.binds.materialdesign.chart = {
                                 //         textAlign: data.valuesTextAlign
                                 //     }
                                 // }
-                                
+
                             };
 
                             if (data.disableHoverEffects) options.hover = { mode: null };
