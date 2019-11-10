@@ -64,6 +64,9 @@ vis.binds.materialdesign.dialog = {
                 const mdcDialog = new mdc.dialog.MDCDialog(dialog.get(0));
                 const button = mdc.ripple.MDCRipple.attachTo(dialog.find('.mdc-button').get(0));
 
+                mdcDialog.escapeKeyAction = '';
+                mdcDialog.scrimClickAction = '';
+
                 if (vis.editMode && data.showInEditor) {
                     dialog.find('.mdc-dialog__container').css('width', '100%').css('height', '100%');
                     dialog.find('.mdc-dialog__surface').css('width', '100%').css('height', '100%');
