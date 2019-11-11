@@ -38,38 +38,11 @@ vis.binds.materialdesign.table = {
 
             tableElement.push(`<tbody class="mdc-data-table__content">`);
 
-            let jsonData = null;
-            try {
-                jsonData = JSON.parse(data.dataJson)
-            } catch (err) { 
-                console.error(err.message);
-            }
-
-
-            if (jsonData != null) {
-
-                for (var row = 0; row <= jsonData.length - 1; row++) {
-                    tableElement.push(`<tr class="mdc-data-table__row">`);
-
-                    if (jsonData[row]) {
-                        if (Array.isArray(jsonData[row])) {
-                            // col items is array
-                            for (var col = 0; col <= jsonData[row].length - 1; col++) {
-                                let textSize = getFontSize(data.attr('textSize' + col));
-
-                                tableElement.push(`<td class="mdc-data-table__cell ${textSize.class}" style="text-align: ${data.attr('textAlign' + col)};${textSize.style}">${jsonData[row][col]}</td>`);
-                            }
-                        } else {
-                            // col items is object
-                            for (var col = 0; col <= Object.keys(jsonData[row]).length - 1; col++) {
-                                let textSize = getFontSize(data.attr('textSize' + col));
-
-                                tableElement.push(`<td class="mdc-data-table__cell ${textSize.class}" style="text-align: ${data.attr('textAlign' + col)};${textSize.style}">${Object.values(jsonData[row])[col]}</td>`);
-                            }
-                        }
-                    }
-                    tableElement.push(`</tr>`);
-                }
+            // adding Content
+            if (getValueFromData(data.dataObject, null) !== null) {
+                tableElement.push(vis.binds.materialdesign.table.getContentElements(vis.states.attr(data.dataObject + '.val') , data));
+            } else {
+                tableElement.push(vis.binds.materialdesign.table.getContentElements(data.dataJson, data));
             }
 
             tableElement.push(`</tbody>`);
@@ -86,6 +59,7 @@ vis.binds.materialdesign.table = {
     handle: function (el, data) {
         try {
             setTimeout(function () {
+                
                 let $this = $(el);
                 let table = $this.find('.mdc-data-table').get(0);
 
@@ -97,12 +71,52 @@ vis.binds.materialdesign.table = {
 
                 const mdcTable = new mdc.dataTable.MDCDataTable(table);
 
-                // $this.find('.mdc-data-table__content').empty();
+                vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                    $this.find('.mdc-data-table__content').empty();
+                    $this.find('.mdc-data-table__content').append(vis.binds.materialdesign.table.getContentElements(newVal, data).join(''));
+                });
 
             }, 1);
-
         } catch (ex) {
             console.exception(`handle: error: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
+    getContentElements: function (input, data) {
+        let contentElements = [];
+
+        let jsonData = null;
+        try {
+            jsonData = JSON.parse(input)
+        } catch (err) {
+            console.error(`input: ${input}, error: ${err.message}`);
+        }
+
+        if (jsonData != null) {
+
+            for (var row = 0; row <= jsonData.length - 1; row++) {
+                contentElements.push(`<tr class="mdc-data-table__row">`);
+
+                if (jsonData[row]) {
+                    if (Array.isArray(jsonData[row])) {
+                        // col items is array
+                        for (var col = 0; col <= jsonData[row].length - 1; col++) {
+                            let textSize = getFontSize(data.attr('textSize' + col));
+
+                            contentElements.push(`<td class="mdc-data-table__cell ${textSize.class}" style="text-align: ${data.attr('textAlign' + col)};${textSize.style}">${jsonData[row][col]}</td>`);
+                        }
+                    } else {
+                        // col items is object
+                        for (var col = 0; col <= Object.keys(jsonData[row]).length - 1; col++) {
+                            let textSize = getFontSize(data.attr('textSize' + col));
+
+                            contentElements.push(`<td class="mdc-data-table__cell ${textSize.class}" style="text-align: ${data.attr('textAlign' + col)};${textSize.style}">${Object.values(jsonData[row])[col]}</td>`);
+                        }
+                    }
+                }
+                contentElements.push(`</tr>`);
+            }
+
+            return contentElements;
         }
     }
 };
