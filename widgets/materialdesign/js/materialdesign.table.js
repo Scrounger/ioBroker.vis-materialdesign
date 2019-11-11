@@ -39,8 +39,8 @@ vis.binds.materialdesign.table = {
             tableElement.push(`<tbody class="mdc-data-table__content">`);
 
             // adding Content
-            if (getValueFromData(data.dataObject, null) !== null) {
-                tableElement.push(vis.binds.materialdesign.table.getContentElements(vis.states.attr(data.dataObject + '.val'), data));
+            if (getValueFromData(data.oid, null) !== null) {
+                tableElement.push(vis.binds.materialdesign.table.getContentElements(vis.states.attr(data.oid + '.val'), data));
             } else {
                 tableElement.push(vis.binds.materialdesign.table.getContentElements(data.dataJson, data));
             }
