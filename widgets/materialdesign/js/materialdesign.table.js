@@ -41,7 +41,10 @@ vis.binds.materialdesign.table = {
             let jsonData = null;
             try {
                 jsonData = JSON.parse(data.dataJson)
-            } catch{ }
+            } catch (err) { 
+                console.error(err.message);
+            }
+
 
             if (jsonData != null) {
 
@@ -49,10 +52,20 @@ vis.binds.materialdesign.table = {
                     tableElement.push(`<tr class="mdc-data-table__row">`);
 
                     if (jsonData[row]) {
-                        for (var col = 0; col <= jsonData[row].length - 1; col++) {
-                            let textSize = getFontSize(data.attr('textSize' + col));
+                        if (Array.isArray(jsonData[row])) {
+                            // col items is array
+                            for (var col = 0; col <= jsonData[row].length - 1; col++) {
+                                let textSize = getFontSize(data.attr('textSize' + col));
 
-                            tableElement.push(`<td class="mdc-data-table__cell ${textSize.class}" style="text-align: ${data.attr('textAlign' + col)};${textSize.style}">${jsonData[row][col]}</td>`);
+                                tableElement.push(`<td class="mdc-data-table__cell ${textSize.class}" style="text-align: ${data.attr('textAlign' + col)};${textSize.style}">${jsonData[row][col]}</td>`);
+                            }
+                        } else {
+                            // col items is object
+                            for (var col = 0; col <= Object.keys(jsonData[row]).length - 1; col++) {
+                                let textSize = getFontSize(data.attr('textSize' + col));
+
+                                tableElement.push(`<td class="mdc-data-table__cell ${textSize.class}" style="text-align: ${data.attr('textAlign' + col)};${textSize.style}">${Object.values(jsonData[row])[col]}</td>`);
+                            }
                         }
                     }
                     tableElement.push(`</tr>`);
@@ -83,6 +96,9 @@ vis.binds.materialdesign.table = {
                 table.style.setProperty("--materialdesign-color-table-row-text-color", getValueFromData(data.colorRowText, ''));
 
                 const mdcTable = new mdc.dataTable.MDCDataTable(table);
+
+                // $this.find('.mdc-data-table__content').empty();
+
             }, 1);
 
         } catch (ex) {
