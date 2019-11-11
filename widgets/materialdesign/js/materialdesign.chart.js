@@ -472,41 +472,42 @@ vis.binds.materialdesign.chart = {
 
                 function onChange(e, newVal, oldVal) {
                     // value or timeinterval changed
+                    if (myChart) {
+                        progressBar.show();
 
-                    progressBar.show();
-
-                    let timeIntervalOid = vis.states.attr(data.time_interval_oid + '.val');
-                    if (getValueFromData(newVal, null) !== null && myHelper.intervals[newVal] !== undefined) {
-                        // timeinterval changed
-                        let timeIntervalOid = newVal;
-                    }
-                    dataRangeStartTime = myHelper.intervals[timeIntervalOid] ? new Date().getTime() - myHelper.intervals[timeIntervalOid] : undefined;
-
-                    let operations = [];
-                    for (var i = 0; i <= data.dataCount; i++) {
-                        if (getValueFromData(data.attr('oid' + i), null) !== null) {
-                            operations.push(myHelper.getTaskForHistoryData(data.attr('oid' + i), data, dataRangeStartTime))
+                        let timeIntervalOid = vis.states.attr(data.time_interval_oid + '.val');
+                        if (getValueFromData(newVal, null) !== null && myHelper.intervals[newVal] !== undefined) {
+                            // timeinterval changed
+                            let timeIntervalOid = newVal;
                         }
-                    }
+                        dataRangeStartTime = myHelper.intervals[timeIntervalOid] ? new Date().getTime() - myHelper.intervals[timeIntervalOid] : undefined;
 
-                    Promise.all(operations).then((result) => {
-                        // execute all db queries -> getting all needed data at same time
-
-                        for (var i = 0; i <= result.length - 1; i++) {
-                            let dataArray = [];
-
-                            if (result[i]) {
-                                dataArray = result[i].map(elm => ({ t: elm.ts, y: elm.val }));
+                        let operations = [];
+                        for (var i = 0; i <= data.dataCount; i++) {
+                            if (getValueFromData(data.attr('oid' + i), null) !== null) {
+                                operations.push(myHelper.getTaskForHistoryData(data.attr('oid' + i), data, dataRangeStartTime))
                             }
-                            
-                            myChart.data.datasets[i].data = dataArray;
                         }
 
-                        myChart.update();
+                        Promise.all(operations).then((result) => {
+                            // execute all db queries -> getting all needed data at same time
 
-                        progressBar.hide();
-                        console.log(`current time unit: ${myChart.scales['x-axis-0']._unit}`);
-                    });
+                            for (var i = 0; i <= result.length - 1; i++) {
+                                let dataArray = [];
+
+                                if (result[i]) {
+                                    dataArray = result[i].map(elm => ({ t: elm.ts, y: elm.val }));
+                                }
+
+                                myChart.data.datasets[i].data = dataArray;
+                            }
+
+                            myChart.update();
+
+                            progressBar.hide();
+                            console.log(`current time unit: ${myChart.scales['x-axis-0']._unit}`);
+                        });
+                    }
                 };
             }, 1)
         } catch (ex) {
