@@ -40,7 +40,7 @@ vis.binds.materialdesign.table = {
 
             // adding Content
             if (getValueFromData(data.dataObject, null) !== null) {
-                tableElement.push(vis.binds.materialdesign.table.getContentElements(vis.states.attr(data.dataObject + '.val') , data));
+                tableElement.push(vis.binds.materialdesign.table.getContentElements(vis.states.attr(data.dataObject + '.val'), data));
             } else {
                 tableElement.push(vis.binds.materialdesign.table.getContentElements(data.dataJson, data));
             }
@@ -59,7 +59,7 @@ vis.binds.materialdesign.table = {
     handle: function (el, data) {
         try {
             setTimeout(function () {
-                
+
                 let $this = $(el);
                 let table = $this.find('.mdc-data-table').get(0);
 
@@ -94,7 +94,7 @@ vis.binds.materialdesign.table = {
         if (jsonData != null) {
 
             for (var row = 0; row <= jsonData.length - 1; row++) {
-                contentElements.push(`<tr class="mdc-data-table__row">`);
+                contentElements.push(`<tr class="mdc-data-table__row" style="height: ${(getNumberFromData(data.rowHeight, null) !== null) ? data.rowHeight + 'px' : '1px'};" >`);
 
                 if (jsonData[row]) {
                     if (Array.isArray(jsonData[row])) {
