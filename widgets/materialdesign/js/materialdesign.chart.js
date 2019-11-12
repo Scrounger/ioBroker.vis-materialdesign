@@ -254,7 +254,7 @@ vis.binds.materialdesign.chart = {
                                 let dataArray = [];
 
                                 if (result[i]) {
-                                    dataArray = result[i].map(elm => ({ t: elm.ts, y: elm.val }));
+                                    dataArray = result[i].map(elm => ({ t: elm.ts, y: elm.val * getNumberFromData(data.attr('multiply' + i), 1) }));
                                 }
 
                                 myDatasets.push(
