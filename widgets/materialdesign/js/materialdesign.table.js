@@ -68,6 +68,7 @@ vis.binds.materialdesign.table = {
                 table.style.setProperty("--materialdesign-color-table-header-row-text-color", getValueFromData(data.colorHeaderRowText, ''));
                 table.style.setProperty("--materialdesign-color-table-row-background", getValueFromData(data.colorRowBackground, ''));
                 table.style.setProperty("--materialdesign-color-table-row-text-color", getValueFromData(data.colorRowText, ''));
+                table.style.setProperty("--materialdesign-color-table-row-divider", getValueFromData(data.dividers, ''));
 
                 const mdcTable = new mdc.dataTable.MDCDataTable(table);
 
