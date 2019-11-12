@@ -27,7 +27,7 @@ vis.binds.materialdesign.table = {
 
             if (data.showHeader) {
                 tableElement.push(`<thead>
-                                    <tr class="mdc-data-table__header-row">`)
+                                    <tr class="mdc-data-table__header-row" style="height: ${(getNumberFromData(data.headerRowHeight, null) !== null) ? data.headerRowHeight + 'px' : '1px'};">`)
                 for (var i = 0; i <= data.countCols; i++) {
                     tableElement.push(`<th class="mdc-data-table__header-cell ${headerFontSize.class}" role="columnheader" scope="col" style="text-align: ${data.attr('textAlign' + i)};${headerFontSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + i), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + i), 8)}px;">${getValueFromData(data.attr('label' + i), 'col ' + i)}</th>`)
                 }
@@ -95,7 +95,7 @@ vis.binds.materialdesign.table = {
         if (jsonData != null) {
 
             for (var row = 0; row <= jsonData.length - 1; row++) {
-                contentElements.push(`<tr class="mdc-data-table__row" style="height: ${(getNumberFromData(data.rowHeight, null) !== null) ? data.rowHeight + 'px' : '1px'};" >`);
+                contentElements.push(`<tr class="mdc-data-table__row" style="height: ${(getNumberFromData(data.rowHeight, null) !== null) ? data.rowHeight + 'px' : '1px'};">`);
 
                 if (jsonData[row]) {
                     if (Array.isArray(jsonData[row])) {
