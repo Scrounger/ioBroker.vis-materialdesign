@@ -73,7 +73,7 @@ vis.binds.materialdesign.table = {
 
                 vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                     $this.find('.mdc-data-table__content').empty();
-                    $this.find('.mdc-data-table__content').append(vis.binds.materialdesign.table.getContentElements(newVal, data).join(''));
+                    $this.find('.mdc-data-table__content').append(vis.binds.materialdesign.table.getContentElements(newVal, data));
                 });
 
             }, 1);
@@ -116,7 +116,7 @@ vis.binds.materialdesign.table = {
                 contentElements.push(`</tr>`);
             }
 
-            return contentElements;
+            return contentElements.join('');
         }
     }
 };
