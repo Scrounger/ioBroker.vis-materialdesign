@@ -29,7 +29,9 @@ vis.binds.materialdesign.table = {
                 tableElement.push(`<thead>
                                     <tr class="mdc-data-table__header-row" style="height: ${(getNumberFromData(data.headerRowHeight, null) !== null) ? data.headerRowHeight + 'px' : '1px'};">`)
                 for (var i = 0; i <= data.countCols; i++) {
-                    tableElement.push(`<th class="mdc-data-table__header-cell ${headerFontSize.class}" role="columnheader" scope="col" style="text-align: ${data.attr('textAlign' + i)};${headerFontSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + i), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + i), 8)}px;">${getValueFromData(data.attr('label' + i), 'col ' + i)}</th>`)
+                    if (data.attr('showColumn' + i)) {
+                        tableElement.push(`<th class="mdc-data-table__header-cell ${headerFontSize.class}" role="columnheader" scope="col" style="text-align: ${data.attr('textAlign' + i)};${headerFontSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + i), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + i), 8)}px;">${getValueFromData(data.attr('label' + i), 'col ' + i)}</th>`)
+                    }
                 }
                 tableElement.push(`</tr>
                             </thead>`);
@@ -101,16 +103,20 @@ vis.binds.materialdesign.table = {
                     if (Array.isArray(jsonData[row])) {
                         // col items is array
                         for (var col = 0; col <= jsonData[row].length - 1; col++) {
-                            let textSize = getFontSize(data.attr('textSize' + col));
+                            if (data.attr('showColumn' + col)) {
+                                let textSize = getFontSize(data.attr('textSize' + col));
 
-                            contentElements.push(`<td class="mdc-data-table__cell ${textSize.class}" style="text-align: ${data.attr('textAlign' + col)};${textSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + col), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; font-family: ${getValueFromData(data.attr('fontFamily' + col),'')}">${jsonData[row][col]}</td>`);
+                                contentElements.push(`<td class="mdc-data-table__cell ${textSize.class}" style="text-align: ${data.attr('textAlign' + col)};${textSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + col), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; font-family: ${getValueFromData(data.attr('fontFamily' + col), '')}">${jsonData[row][col]}</td>`);
+                            }
                         }
                     } else {
                         // col items is object
                         for (var col = 0; col <= Object.keys(jsonData[row]).length - 1; col++) {
-                            let textSize = getFontSize(data.attr('textSize' + col));
+                            if (data.attr('showColumn' + col)) {
+                                let textSize = getFontSize(data.attr('textSize' + col));
 
-                            contentElements.push(`<td class="mdc-data-table__cell ${textSize.class}" style="text-align: ${data.attr('textAlign' + col)};${textSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + col), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; font-family: ${getValueFromData(data.attr('fontFamily' + col),'')}">${Object.values(jsonData[row])[col]}</td>`);
+                                contentElements.push(`<td class="mdc-data-table__cell ${textSize.class}" style="text-align: ${data.attr('textAlign' + col)};${textSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + col), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; font-family: ${getValueFromData(data.attr('fontFamily' + col), '')}">${Object.values(jsonData[row])[col]}</td>`);
+                            }
                         }
                     }
                 }
