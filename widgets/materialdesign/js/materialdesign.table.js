@@ -30,7 +30,7 @@ vis.binds.materialdesign.table = {
                                     <tr class="mdc-data-table__header-row" style="height: ${(getNumberFromData(data.headerRowHeight, null) !== null) ? data.headerRowHeight + 'px' : '1px'};">`)
                 for (var i = 0; i <= data.countCols; i++) {
                     if (data.attr('showColumn' + i)) {
-                        tableElement.push(`<th class="mdc-data-table__header-cell ${headerFontSize.class}" role="columnheader" scope="col" style="text-align: ${data.attr('textAlign' + i)};${headerFontSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + i), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + i), 8)}px;">${getValueFromData(data.attr('label' + i), 'col ' + i)}</th>`)
+                        tableElement.push(`<th class="mdc-data-table__header-cell ${headerFontSize.class}" role="columnheader" scope="col" style="text-align: ${data.attr('textAlign' + i)};${headerFontSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + i), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + i), 8)}px; font-family: ${getValueFromData(data.headerFontFamily, '')}">${getValueFromData(data.attr('label' + i), 'col ' + i)}</th>`)
                     }
                 }
                 tableElement.push(`</tr>
@@ -106,7 +106,7 @@ vis.binds.materialdesign.table = {
                             if (data.attr('showColumn' + col)) {
                                 let textSize = getFontSize(data.attr('textSize' + col));
 
-                                contentElements.push(`<td class="mdc-data-table__cell ${textSize.class}" style="text-align: ${data.attr('textAlign' + col)};${textSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + col), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; font-family: ${getValueFromData(data.attr('fontFamily' + col), '')}">${jsonData[row][col]}</td>`);
+                                contentElements.push(`<td class="mdc-data-table__cell ${textSize.class}" style="text-align: ${data.attr('textAlign' + col)};${textSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + col), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; color: ${getValueFromData(data.attr('textColor' + col), '')}; font-family: ${getValueFromData(data.attr('fontFamily' + col), '')}">${jsonData[row][col]}</td>`);
                             }
                         }
                     } else {
@@ -115,7 +115,7 @@ vis.binds.materialdesign.table = {
                             if (data.attr('showColumn' + col)) {
                                 let textSize = getFontSize(data.attr('textSize' + col));
 
-                                contentElements.push(`<td class="mdc-data-table__cell ${textSize.class}" style="text-align: ${data.attr('textAlign' + col)};${textSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + col), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; font-family: ${getValueFromData(data.attr('fontFamily' + col), '')}">${Object.values(jsonData[row])[col]}</td>`);
+                                contentElements.push(`<td class="mdc-data-table__cell ${textSize.class}" style="text-align: ${data.attr('textAlign' + col)};${textSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + col), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; color: ${getValueFromData(data.attr('textColor' + col), '')}; font-family: ${getValueFromData(data.attr('fontFamily' + col), '')}">${Object.values(jsonData[row])[col]}</td>`);
                             }
                         }
                     }
