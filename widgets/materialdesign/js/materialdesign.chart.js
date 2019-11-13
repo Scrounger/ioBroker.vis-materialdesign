@@ -262,7 +262,7 @@ vis.binds.materialdesign.chart = {
                                         data: dataArray,
                                         lineTension: getNumberFromData(data.attr('lineTension' + i), 0.4),
                                         borderWidth: getNumberFromData(data.attr('lineThikness' + i), 3),
-                                        label: getValueFromData(data.attr('label' + i), ''),
+                                        label: getValueFromData(data.attr('legendText' + i), ''),
                                         borderColor: getValueFromData(data.attr('dataColor' + i), (colorScheme) ? getValueFromData(colorScheme[i], globalColor) : globalColor),     // Line Color
                                         pointBackgroundColor: getValueFromData(data.attr('dataColor' + i), (colorScheme) ? getValueFromData(colorScheme[i], globalColor) : globalColor),
                                         fill: data.attr('useFillColor' + i),
