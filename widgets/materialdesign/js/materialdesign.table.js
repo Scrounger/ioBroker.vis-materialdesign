@@ -106,7 +106,16 @@ vis.binds.materialdesign.table = {
                             if (data.attr('showColumn' + col)) {
                                 let textSize = getFontSize(data.attr('textSize' + col));
 
-                                contentElements.push(`<td class="mdc-data-table__cell ${textSize.class}" style="text-align: ${data.attr('textAlign' + col)};${textSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + col), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; color: ${getValueFromData(data.attr('textColor' + col), '')}; font-family: ${getValueFromData(data.attr('fontFamily' + col), '')}">${jsonData[row][col]}</td>`);
+                                contentElements.push(`<td class="mdc-data-table__cell ${textSize.class}" 
+                                                        style="
+                                                        text-align: ${data.attr('textAlign' + col)};${textSize.style}; 
+                                                        padding-left: ${getNumberFromData(data.attr('padding_left' + col), 8)}px; 
+                                                        padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; 
+                                                        color: ${getValueFromData(data.attr('textColor' + col), '')}; 
+                                                        font-family: ${getValueFromData(data.attr('fontFamily' + col), '')}
+                                                        ">
+                                                            ${getValueFromData(data.attr('prefix' + col), '')}${jsonData[row][col]}${getValueFromData(data.attr('suffix' + col), '')}
+                                                    </td>`);
                             }
                         }
                     } else {
@@ -115,7 +124,16 @@ vis.binds.materialdesign.table = {
                             if (data.attr('showColumn' + col)) {
                                 let textSize = getFontSize(data.attr('textSize' + col));
 
-                                contentElements.push(`<td class="mdc-data-table__cell ${textSize.class}" style="text-align: ${data.attr('textAlign' + col)};${textSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + col), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; color: ${getValueFromData(data.attr('textColor' + col), '')}; font-family: ${getValueFromData(data.attr('fontFamily' + col), '')}">${Object.values(jsonData[row])[col]}</td>`);
+                                contentElements.push(`<td class="mdc-data-table__cell ${textSize.class}" 
+                                                        style="
+                                                        text-align: ${data.attr('textAlign' + col)};${textSize.style}; 
+                                                        padding-left: ${getNumberFromData(data.attr('padding_left' + col), 8)}px; 
+                                                        padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; 
+                                                        color: ${getValueFromData(data.attr('textColor' + col), '')}; 
+                                                        font-family: ${getValueFromData(data.attr('fontFamily' + col), '')}
+                                                        ">
+                                                            ${getValueFromData(data.attr('prefix' + col), '')}${Object.values(jsonData[row])[col]}${getValueFromData(data.attr('suffix' + col), '')}
+                                                    </td>`);
                             }
                         }
                     }
