@@ -129,6 +129,31 @@ vis.binds.materialdesign.table = {
                 let prefix = getValueFromData(data.attr('prefix' + col), '');
                 let suffix = getValueFromData(data.attr('suffix' + col), '');
 
+                if (rowData != null) {
+                    if (prefix !== '') {
+                        prefix = getInternalTableBinding(prefix, rowData);
+                    }
+
+                    if (suffix !== '') {
+                        suffix = getInternalTableBinding(suffix, rowData);
+                    }
+
+                    function getInternalTableBinding(str, rowData) {
+                        let regex = str.match(/(#\[obj\..*?\])/g);
+
+                        if (regex && regex.length > 0) {
+                            for (var i = 0; i <= regex.length - 1; i++) {
+                                let objName = regex[i].replace('#[obj.', '').replace(']', '');
+
+                                str = str.replace(regex[i], rowData[objName]);
+
+                            }
+                        }
+
+                        return str;
+                    }
+                }
+
                 if (data.attr('colType' + col) === 'image') {
                     objValue = `<img src="${objValue}" style="height: auto; width: ${getValueFromData(data.attr('imageHeight' + col), '', '', '%;')}">`;
                 }
