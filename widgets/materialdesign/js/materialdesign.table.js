@@ -106,16 +106,9 @@ vis.binds.materialdesign.table = {
                             if (data.attr('showColumn' + col)) {
                                 let textSize = getFontSize(data.attr('textSize' + col));
 
-                                contentElements.push(`<td class="mdc-data-table__cell ${textSize.class}" 
-                                                        style="
-                                                        text-align: ${data.attr('textAlign' + col)};${textSize.style}; 
-                                                        padding-left: ${getNumberFromData(data.attr('padding_left' + col), 8)}px; 
-                                                        padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; 
-                                                        color: ${getValueFromData(data.attr('textColor' + col), '')}; 
-                                                        font-family: ${getValueFromData(data.attr('fontFamily' + col), '')}
-                                                        ">
-                                                            ${getValueFromData(data.attr('prefix' + col), '')}${jsonData[row][col]}${getValueFromData(data.attr('suffix' + col), '')}
-                                                    </td>`);
+                                let objValue = jsonData[row][col];
+
+                                contentElements.push(getContentElement(objValue, textSize));
                             }
                         }
                     } else {
@@ -124,22 +117,28 @@ vis.binds.materialdesign.table = {
                             if (data.attr('showColumn' + col)) {
                                 let textSize = getFontSize(data.attr('textSize' + col));
 
-                                contentElements.push(`<td class="mdc-data-table__cell ${textSize.class}" 
-                                                        style="
-                                                        text-align: ${data.attr('textAlign' + col)};${textSize.style}; 
-                                                        padding-left: ${getNumberFromData(data.attr('padding_left' + col), 8)}px; 
-                                                        padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; 
-                                                        color: ${getValueFromData(data.attr('textColor' + col), '')}; 
-                                                        font-family: ${getValueFromData(data.attr('fontFamily' + col), '')}
-                                                        ">
-                                                            ${getValueFromData(data.attr('prefix' + col), '')}${Object.values(jsonData[row])[col]}${getValueFromData(data.attr('suffix' + col), '')}
-                                                    </td>`);
+                                let objValue = Object.values(jsonData[row])[col];
+
+                                contentElements.push(getContentElement(objValue, textSize));
                             }
                         }
                     }
                 }
                 contentElements.push(`</tr>`);
             }
+
+            function getContentElement(objValue, textSize) {
+                return `<td class="mdc-data-table__cell ${textSize.class}" 
+                            style="
+                            text-align: ${data.attr('textAlign' + col)};${textSize.style}; 
+                            padding-left: ${getNumberFromData(data.attr('padding_left' + col), 8)}px; 
+                            padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; 
+                            color: ${getValueFromData(data.attr('textColor' + col), '')}; 
+                            font-family: ${getValueFromData(data.attr('fontFamily' + col), '')}
+                            ">
+                                ${getValueFromData(data.attr('prefix' + col), '')}${objValue}${getValueFromData(data.attr('suffix' + col), '')}
+                        </td>`
+            };
 
             return contentElements.join('');
         }
