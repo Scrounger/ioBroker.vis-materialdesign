@@ -155,7 +155,7 @@ vis.binds.materialdesign.table = {
                 }
 
                 if (data.attr('colType' + col) === 'image') {
-                    objValue = `<img src="${objValue}" style="height: auto; width: ${getValueFromData(data.attr('imageHeight' + col), '', '', '%;')}">`;
+                    objValue = `<img src="${objValue}" style="height: auto; vertical-align: middle; width: ${getValueFromData(data.attr('imageHeight' + col), '', '', '%;')}">`;
                 }
 
                 return `<td class="mdc-data-table__cell ${textSize.class}" 
