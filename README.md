@@ -181,6 +181,8 @@ Settings that are not listed in the table below are self-explanatory.
 ## Table
 ![Logo](doc/media/table.gif)
 
+
+##### Input Data
 Input data must be a json array of objects, example:
 ```
 [
@@ -211,17 +213,17 @@ Input data must be a json array of objects, example:
             <td>Optional, input data as shown above if no oid datapoint is set</td>
         </tr>
         <tr>
-            <td rowspan=2><img src="doc/media/table_column.png"></td>
+            <td rowspan=3><img src="doc/media/table_column.png"></td>
             <td>colType[x]</td>
-            <td>If image is selected, object property must have the path to the image (see example above)</td>
+            <td>If image is selected, object property must have the path to the image (<a href="https://github.com/Scrounger/ioBroker.vis-materialdesign#input-data">see above</a>)</td>
         </tr>
         <tr>
             <td>prefix[x]</td>
-            <td>Prefix for object property, internal object binding (see above) and html can be used</td>
+            <td>Prefix for object property, internal object binding (<a href="https://github.com/Scrounger/ioBroker.vis-materialdesign#internal-object-binding">see below</a>) and html can be used</td>
         </tr>
         <tr>
             <td>suffix[x]</td>
-            <td>Suffix for object property, internal object binding (see above) and html can be used</td>
+            <td>Suffix for object property, internal object binding (<a href="https://github.com/Scrounger/ioBroker.vis-materialdesign#internal-object-binding">see below</a>) and html can be used</td>
         </tr>
     </tbody>
 </table>
