@@ -106,7 +106,7 @@ vis.binds.materialdesign.table = {
                             if (data.attr('showColumn' + col)) {
                                 let textSize = getFontSize(data.attr('textSize' + col));
 
-                                contentElements.push(getContentElement(jsonData[row][col], textSize));
+                                contentElements.push(getContentElement(col, jsonData[row][col], textSize));
                             }
                         }
                     } else {
@@ -115,7 +115,7 @@ vis.binds.materialdesign.table = {
                             if (data.attr('showColumn' + col)) {
                                 let textSize = getFontSize(data.attr('textSize' + col));
 
-                                contentElements.push(getContentElement(Object.values(jsonData[row])[col], textSize));
+                                contentElements.push(getContentElement(col, Object.values(jsonData[row])[col], textSize, jsonData[row]));
                             }
                         }
                     }
@@ -123,9 +123,14 @@ vis.binds.materialdesign.table = {
                 contentElements.push(`</tr>`);
             }
 
-            function getContentElement(objValue, textSize) {
+            function getContentElement(col, objValue, textSize, rowData = null) {
+                console.log(rowData);
+
+                let prefix = getValueFromData(data.attr('prefix' + col), '');
+                let suffix = getValueFromData(data.attr('suffix' + col), '');
+
                 if (data.attr('colType' + col) === 'image') {
-                    objValue = `<img src="${objValue}" style="height: auto; width: ${getValueFromData(data.attr('imageHeight' + col), '','','%;')}">`;
+                    objValue = `<img src="${objValue}" style="height: auto; width: ${getValueFromData(data.attr('imageHeight' + col), '', '', '%;')}">`;
                 }
 
                 return `<td class="mdc-data-table__cell ${textSize.class}" 
@@ -136,7 +141,7 @@ vis.binds.materialdesign.table = {
                             color: ${getValueFromData(data.attr('textColor' + col), '')}; 
                             font-family: ${getValueFromData(data.attr('fontFamily' + col), '')}
                             ">
-                                ${getValueFromData(data.attr('prefix' + col), '')}${objValue}${getValueFromData(data.attr('suffix' + col), '')}
+                                ${prefix}${objValue}${suffix}
                         </td>`
             };
 
