@@ -178,6 +178,63 @@ Settings that are not listed in the table below are self-explanatory.
     </tbody>
 </table>
 
+## Table
+![Logo](doc/media/table.gif)
+
+Input data must be a json array of objects, example:
+```
+[
+{"img":"/vis.0/myImages/erlebnis_50.png","name":"Empire","betriebszeit":"4h 06m","funk":"5G","ip":"10.0.0.1"},
+{"img":"/vis.0/myImages/erlebnis_100.png","name":"Handy","betriebszeit":"13m","funk":"5G","ip":"10.0.0.2"},
+{"img":"/vis.0/myImages/erlebnis_100.png","name":"Harmony Hub - Wohnzimmer","betriebszeit":"18T 07h 21m","funk":"2G","ip":"10.0.0.3"},
+{"img":"/vis.0/myImages/erlebnis_25.png","name":"MusicCast - Esszimmer (WX-030)","betriebszeit":"1h 57m","funk":"2G","ip":"10.0.0.4"},
+{"img":"/vis.0/myImages/erlebnis_75.png","name":"MusicCast - Küche (ISX-18D)","betriebszeit":"4h 10m","funk":"2G","ip":"10.0.0.5"}
+]
+```
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=2><img src="doc/media/table_general.png"></td>
+            <td>oid</td>
+            <td>Datapoint from type string with input data as shown above</td>
+        </tr>
+        <tr>
+            <td>dataJson</td>
+            <td>Optional, input data as shown above if no oid datapoint is set</td>
+        </tr>
+        <tr>
+            <td rowspan=2><img src="doc/media/table_column.png"></td>
+            <td>colType[x]</td>
+            <td>If image is selected, object property must have the path to the image (see example above)</td>
+        </tr>
+        <tr>
+            <td>prefix[x]</td>
+            <td>Prefix for object property, internal object binding (see above) and html can be used</td>
+        </tr>
+        <tr>
+            <td>suffix[x]</td>
+            <td>Suffix for object property, internal object binding (see above) and html can be used</td>
+        </tr>
+    </tbody>
+</table>
+
+##### internal object binding
+prefix & suffix supports table internal object binding -> you can access other properties of object by using
+```
+#[obj.'propertyName']
+```
+
+Example see above.
+
+
 ## Changelog
 
 ### 0.1.5
