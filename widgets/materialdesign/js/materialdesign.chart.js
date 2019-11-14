@@ -190,18 +190,14 @@ vis.binds.materialdesign.chart = {
 
                 progressBar.show();
 
-                let dataRangeStartTime = myHelper.intervals[data.time_interval] ? new Date().getTime() - myHelper.intervals[data.time_interval] : undefined;
-                if (getValueFromData(data.time_interval_oid, null) !== null) {
-                    let timeIntervalOid = vis.states.attr(data.time_interval_oid + '.val');
 
-                    if (getValueFromData(timeIntervalOid, null) !== null && myHelper.intervals[timeIntervalOid] !== undefined) {
-                        dataRangeStartTime = myHelper.intervals[timeIntervalOid] ? new Date().getTime() - myHelper.intervals[timeIntervalOid] : undefined;
-
-                        vis.states.bind(data.time_interval_oid + '.val', onChange);
-                    } else {
-                        console.warn(`data.time_interval_oid '${timeIntervalOid}' is not a valid time interval! Check documentation!`)
-                    }
+                let timeInterval = data.time_interval;
+                if (getValueFromData(data.time_interval_oid, null) !== null && myHelper.intervals[vis.states.attr(data.time_interval_oid + '.val')] !== undefined) {
+                    timeInterval = vis.states.attr(data.time_interval_oid + '.val');
+                    vis.states.bind(data.time_interval_oid + '.val', onChange);
                 }
+                let dataRangeStartTime = myHelper.intervals[timeInterval] ? new Date().getTime() - myHelper.intervals[timeInterval] : undefined;
+
 
                 $(el).find('.materialdesign-chart-container').css('background-color', getValueFromData(data.backgroundColor, ''));
                 let globalColor = getValueFromData(data.globalColor, '#1e88e5');
@@ -475,13 +471,17 @@ vis.binds.materialdesign.chart = {
                     if (myChart) {
                         progressBar.show();
 
-                        let timeIntervalOid = vis.states.attr(data.time_interval_oid + '.val');
-                        if (getValueFromData(newVal, null) !== null && myHelper.intervals[newVal] !== undefined) {
-                            // timeinterval changed
-                            let timeIntervalOid = newVal;
-                        }
-                        dataRangeStartTime = myHelper.intervals[timeIntervalOid] ? new Date().getTime() - myHelper.intervals[timeIntervalOid] : undefined;
+                        let timeInterval = data.time_interval;
+                        if (getValueFromData(data.time_interval_oid, null) !== null && myHelper.intervals[vis.states.attr(data.time_interval_oid + '.val')] !== undefined) {
+                            timeInterval = vis.states.attr(data.time_interval_oid + '.val');
 
+                            if (getValueFromData(newVal, null) !== null && myHelper.intervals[newVal] !== undefined) {
+                                // timeinterval changed
+                                timeInterval = newVal;
+                            }
+                        }
+                        dataRangeStartTime = myHelper.intervals[timeInterval] ? new Date().getTime() - myHelper.intervals[timeInterval] : undefined;
+                        
                         let operations = [];
                         for (var i = 0; i <= data.dataCount; i++) {
                             if (getValueFromData(data.attr('oid' + i), null) !== null) {
