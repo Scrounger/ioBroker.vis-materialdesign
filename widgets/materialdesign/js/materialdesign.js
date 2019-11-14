@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.1.19"
+    version: "0.1.20"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -19,7 +19,7 @@ if (vis.editMode) {
 
 // this code can be placed directly in materialdesign.html
 vis.binds.materialdesign = {
-    version: "0.1.19",
+    version: "0.1.20",
     showVersion: function () {
         if (vis.binds["materialdesign"].version) {
             console.log('Version vis-materialdesign: ' + vis.binds["materialdesign"].version);
@@ -582,6 +582,7 @@ vis.binds.materialdesign = {
         }
     },
     editorManualLink: function (widAttr, data) {
+        console.log(data);
         let url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#iobrokervis-materialdesign';
 
         if (data) {
@@ -626,7 +627,7 @@ vis.binds.materialdesign = {
         return { input: `<a target="_blank" href="${url}">readme</a>` }
     },
     editorBmc: function (widAttr) {
-        return { input: `<a target="_blank" href="https://www.paypal.com/donate/?token=_JdzB9A08NegvPSIiKWnkAfAaUc7aT_Rd0VmKrd4q3F-jWgYg1wBmyl5HMJj2MEcGSDpvG&country.x=DE&locale.x=DE">buy me (scrounger) a coffee</a>` }
+        return { input: `<a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YHPPW474N5CKQ&source=url">buy me (scrounger) a coffee</a>` }
     }
 };
 
