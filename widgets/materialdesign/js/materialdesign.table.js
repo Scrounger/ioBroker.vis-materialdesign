@@ -106,9 +106,7 @@ vis.binds.materialdesign.table = {
                             if (data.attr('showColumn' + col)) {
                                 let textSize = getFontSize(data.attr('textSize' + col));
 
-                                let objValue = jsonData[row][col];
-
-                                contentElements.push(getContentElement(objValue, textSize));
+                                contentElements.push(getContentElement(jsonData[row][col], textSize));
                             }
                         }
                     } else {
@@ -117,9 +115,7 @@ vis.binds.materialdesign.table = {
                             if (data.attr('showColumn' + col)) {
                                 let textSize = getFontSize(data.attr('textSize' + col));
 
-                                let objValue = Object.values(jsonData[row])[col];
-
-                                contentElements.push(getContentElement(objValue, textSize));
+                                contentElements.push(getContentElement(Object.values(jsonData[row])[col], textSize));
                             }
                         }
                     }
@@ -128,6 +124,10 @@ vis.binds.materialdesign.table = {
             }
 
             function getContentElement(objValue, textSize) {
+                if (data.attr('colType' + col) === 'image') {
+                    objValue = `<img src="${objValue}" style="height: auto; width: ${getValueFromData(data.attr('imageHeight' + col), '','','%;')}">`;
+                }
+
                 return `<td class="mdc-data-table__cell ${textSize.class}" 
                             style="
                             text-align: ${data.attr('textAlign' + col)};${textSize.style}; 
