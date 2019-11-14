@@ -234,7 +234,7 @@ prefix & suffix supports table internal object binding -> you can access other p
 #[obj.'propertyName']
 ```
 
-Example see above.
+Example see <a href="https://github.com/Scrounger/ioBroker.vis-materialdesign#input-data">see above</a>.
 
 
 ## Changelog
