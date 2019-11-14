@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.1.19"
+    version: "0.1.18"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -100,23 +100,12 @@ vis.binds.materialdesign.table = {
                 contentElements.push(`<tr class="mdc-data-table__row" style="height: ${(getNumberFromData(data.rowHeight, null) !== null) ? data.rowHeight + 'px' : '1px'};">`);
 
                 if (jsonData[row]) {
-                    if (Array.isArray(jsonData[row])) {
-                        // col items is array
-                        for (var col = 0; col <= jsonData[row].length - 1; col++) {
-                            if (data.attr('showColumn' + col)) {
-                                let textSize = getFontSize(data.attr('textSize' + col));
+                    // col items is object
+                    for (var col = 0; col <= Object.keys(jsonData[row]).length - 1; col++) {
+                        if (data.attr('showColumn' + col)) {
+                            let textSize = getFontSize(data.attr('textSize' + col));
 
-                                contentElements.push(getContentElement(col, jsonData[row][col], textSize));
-                            }
-                        }
-                    } else {
-                        // col items is object
-                        for (var col = 0; col <= Object.keys(jsonData[row]).length - 1; col++) {
-                            if (data.attr('showColumn' + col)) {
-                                let textSize = getFontSize(data.attr('textSize' + col));
-
-                                contentElements.push(getContentElement(col, Object.values(jsonData[row])[col], textSize, jsonData[row]));
-                            }
+                            contentElements.push(getContentElement(col, Object.values(jsonData[row])[col], textSize, jsonData[row]));
                         }
                     }
                 }
@@ -124,8 +113,6 @@ vis.binds.materialdesign.table = {
             }
 
             function getContentElement(col, objValue, textSize, rowData = null) {
-                console.log(rowData);
-
                 let prefix = getValueFromData(data.attr('prefix' + col), '');
                 let suffix = getValueFromData(data.attr('suffix' + col), '');
 

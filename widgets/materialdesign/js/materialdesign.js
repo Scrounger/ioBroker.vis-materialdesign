@@ -597,7 +597,7 @@ vis.binds.materialdesign = {
             if (data[1] === 'drawerSubMenuViews') {
                 url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#submenu'
             }
-            
+
             if (data[1] === 'lineHistoryChart') {
                 url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#line-history-chart'
             }
@@ -618,8 +618,9 @@ vis.binds.materialdesign = {
                 url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#switch'
             }
 
-
-
+            if (data[1] === 'table') {
+                url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#table'
+            }
         }
 
         return { input: `<a target="_blank" href="${url}">readme</a>` }
