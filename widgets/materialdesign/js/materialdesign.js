@@ -677,10 +677,18 @@ function getListItemHeader(text, fontSize) {
     return '';
 }
 
-function getListItemTextElement(text, subText, fontSize, subFontSize) {
+function getListItemTextElement(text, subText, fontSize, subFontSize, align = 'left') {
+
+    let alignFlex = 'flex-start';
+    if (align === 'center') {
+        alignFlex = 'center';
+    } else if (align === 'right') {
+        alignFlex = 'flex-end';
+    }
+
     return `<span class="mdc-list-item__text" style="width: 100%">     
-                <span class="mdc-list-item__primary-text ${fontSize.class}" style="${fontSize.style}">${text}</span>
-                <span class="mdc-list-item__secondary-text ${subFontSize.class}" style="${subFontSize.style}">${subText}</span>
+                <span class="mdc-list-item__primary-text ${fontSize.class}" style="justify-content: ${alignFlex};${fontSize.style}">${text}</span>
+                <span class="mdc-list-item__secondary-text ${subFontSize.class}" style="text-align: ${align}; ${subFontSize.style}">${subText}</span>
             </span>`;
 }
 
@@ -718,7 +726,7 @@ function getListItem(layout, itemIndex, backdropImage, hasSubItems, isSubItem = 
     }
 }
 
-function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSize, showLabel, toggleIconColor, backdropLabelHeight, isSubItem = false, align='left') {
+function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSize, showLabel, toggleIconColor, backdropLabelHeight, isSubItem = false, align = 'left') {
 
     let subItemToggleIcon = '';
     if (hasSubItems) {
