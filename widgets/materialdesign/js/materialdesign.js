@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.1.21"
+    version: "0.1.20"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -19,7 +19,7 @@ if (vis.editMode) {
 
 // this code can be placed directly in materialdesign.html
 vis.binds.materialdesign = {
-    version: "0.1.21",
+    version: "0.1.20",
     showVersion: function () {
         if (vis.binds["materialdesign"].version) {
             console.log('Version vis-materialdesign: ' + vis.binds["materialdesign"].version);
@@ -718,7 +718,7 @@ function getListItem(layout, itemIndex, backdropImage, hasSubItems, isSubItem = 
     }
 }
 
-function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSize, showLabel, toggleIconColor, backdropLabelHeight, isSubItem = false) {
+function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSize, showLabel, toggleIconColor, backdropLabelHeight, isSubItem = false, align='left') {
 
     let subItemToggleIcon = '';
     if (hasSubItems) {
@@ -733,7 +733,7 @@ function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSize, showLa
         let listItemLabel = `<span 
                                 class="mdc-list-item__text ${fontSize.class}"
                                 id="listItem_${itemIndex}"
-                                style="width: 100%;${fontSize.style}${showLabel}">
+                                style="width: 100%; text-align: ${align}; ${fontSize.style}${showLabel}">
                                     ${text}
                             </span>`;
 

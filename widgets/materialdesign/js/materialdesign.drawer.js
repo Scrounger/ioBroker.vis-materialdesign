@@ -184,7 +184,7 @@ vis.binds.materialdesign.drawer = {
                     }
 
                     // generate Item Label
-                    let listItemLabel = getListItemLabel(data.drawerItemLayout, itemIndex, itemLabelText, hasSubItems, dawerLabelFontSize, dawerLabelShow, data.colorSubItemToggleIcon, backdropLabelBackgroundHeight)
+                    let listItemLabel = getListItemLabel(data.drawerItemLayout, itemIndex, itemLabelText, hasSubItems, dawerLabelFontSize, dawerLabelShow, data.colorSubItemToggleIcon, backdropLabelBackgroundHeight, false, data.listItemAlignment);
 
                     // generate Item
                     navItemList.push(`${listItem}${listItemImage}${listItemLabel}</div>`);
@@ -220,7 +220,7 @@ vis.binds.materialdesign.drawer = {
                             }
 
                             // generate Item Label
-                            let listSubItemLabel = getListItemLabel(data.drawerSubItemLayout, itemIndex, subItemText, false, dawerSubItemLabelFontSize, dawerSubItemsLabelShow, '', backdropSubLabelBackgroundHeight, true)
+                            let listSubItemLabel = getListItemLabel(data.drawerSubItemLayout, itemIndex, subItemText, false, dawerSubItemLabelFontSize, dawerSubItemsLabelShow, '', backdropSubLabelBackgroundHeight, true, data.listSubItemAlignment);
 
                             // generate SubItem
                             navItemList.push(`${listSubItem}${listSubItemImage}${listSubItemLabel}</div>`);
