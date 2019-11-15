@@ -240,7 +240,7 @@ prefix & suffix supports table internal object binding -> you can access other p
 
 Example see <a href="https://github.com/Scrounger/ioBroker.vis-materialdesign#input-data">see above</a>.
 
-Working Widget Example can be found [here](https://forum.iobroker.net/topic/26199/test-adapter-material-design-widgets-v0-1-x/106)
+Working Widget Example can be found [here](https://forum.iobroker.net/topic/26199/test-adapter-material-design-widgets-v0-1-x/113)
 
 
 ## Changelog
