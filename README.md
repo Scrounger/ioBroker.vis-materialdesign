@@ -213,7 +213,7 @@ Input data must be a json array of objects, example:
             <td>Optional, input data as shown above if no oid datapoint is set</td>
         </tr>
         <tr>
-            <td rowspan=3><img src="doc/media/table_column.png"></td>
+            <td rowspan=4><img src="doc/media/table_column.png"></td>
             <td>colType[x]</td>
             <td>If image is selected, object property must have the path to the image (<a href="https://github.com/Scrounger/ioBroker.vis-materialdesign#input-data">see above</a>)</td>
         </tr>
@@ -224,6 +224,10 @@ Input data must be a json array of objects, example:
         <tr>
             <td>suffix[x]</td>
             <td>Suffix for object property, internal object binding (<a href="https://github.com/Scrounger/ioBroker.vis-materialdesign#internal-object-binding">see below</a>) and html can be used</td>
+        </tr>
+        <tr>
+            <td>sortKey[x]</td>
+            <td>Here you can define an other object property that should be used for sorting.</td>
         </tr>
     </tbody>
 </table>
