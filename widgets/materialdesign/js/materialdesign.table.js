@@ -30,7 +30,7 @@ vis.binds.materialdesign.table = {
                                     <tr class="mdc-data-table__header-row" style="height: ${(getNumberFromData(data.headerRowHeight, null) !== null) ? data.headerRowHeight + 'px' : '1px'};">`)
                 for (var i = 0; i <= data.countCols; i++) {
                     if (data.attr('showColumn' + i)) {
-                        tableElement.push(`<th class="mdc-data-table__header-cell ${headerFontSize.class}" role="columnheader" scope="col" style="text-align: ${data.attr('textAlign' + i)};${headerFontSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + i), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + i), 8)}px; font-family: ${getValueFromData(data.headerFontFamily, '')}">${getValueFromData(data.attr('label' + i), 'col ' + i)}</th>`)
+                        tableElement.push(`<th class="mdc-data-table__header-cell ${headerFontSize.class}" colIndex="${i}" role="columnheader" scope="col" style="text-align: ${data.attr('textAlign' + i)};${headerFontSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + i), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + i), 8)}px; font-family: ${getValueFromData(data.headerFontFamily, '')}">${getValueFromData(data.attr('label' + i), 'col ' + i)}</th>`)
                     }
                 }
                 tableElement.push(`</tr>
@@ -79,19 +79,81 @@ vis.binds.materialdesign.table = {
                     $this.find('.mdc-data-table__content').append(vis.binds.materialdesign.table.getContentElements(newVal, data));
                 });
 
+                $this.find('.mdc-data-table__header-cell').click(function (obj) {
+                    let colIndex = $(this).attr('colIndex');
+                    let sortASC = true;
+
+                    let jsonString = '';
+                    if (getValueFromData(data.oid, null) !== null) {
+                        jsonString = vis.states.attr(data.oid + '.val');
+                    } else {
+                        jsonString = data.dataJson
+                    }
+
+                    try {
+                        let jsonData = JSON.parse(jsonString)
+                        let key = (getValueFromData(data.attr('sortKey' + colIndex), null) !== null) ? data.attr('sortKey' + colIndex) : Object.keys(jsonData[0])[colIndex];
+
+                        if ($(this).attr('sort')) {
+                            if ($(this).attr('sort') === 'ASC') {
+                                sortASC = false;
+                                $(this).attr('sort', 'DESC');
+                                ($(this).text().includes('▾') || $(this).text().includes('▴')) ?
+                                    $(this).text($(this).text().replace('▾', '▴')) : $(this).text($(this).text() + '▴');
+                            } else {
+                                sortASC = true;
+                                $(this).attr('sort', 'ASC');
+                                ($(this).text().includes('▾') || $(this).text().includes('▴')) ?
+                                    $(this).text($(this).text().replace('▴', '▾')) : $(this).text($(this).text() + '▾');
+                            }
+                        } else {
+                            // sort order is not defined -> sortASC
+                            sortASC = true;
+                            $(this).attr('sort', 'ASC');
+                            $(this).text($(this).text() + '▾');
+                        }
+
+                        $('.mdc-data-table__header-cell').each(function () {
+                            if ($(this).attr('colIndex') !== colIndex) {
+                                $(this).text($(this).text().replace('▴', '').replace('▾', ''));
+                            }
+                        });
+
+                        $this.find('.mdc-data-table__content').empty();
+                        $this.find('.mdc-data-table__content').append(vis.binds.materialdesign.table.getContentElements(null, data, sortByKey(jsonData, key, sortASC)));      //TODO: sort key by user defined
+
+                    } catch (err) {
+                        console.error(`handle: ${jsonString}, error: ${err.message}`);
+                    }
+
+                    function sortByKey(array, key, sortASC) {
+                        return array.sort(function (a, b) {
+                            var x = a[key];
+                            var y = b[key];
+
+                            if (sortASC) {
+                                return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+                            } else {
+                                return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+                            }
+                        });
+                    }
+                });
+
             }, 1);
         } catch (ex) {
             console.exception(`handle: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    getContentElements: function (input, data) {
+    getContentElements: function (input, data, jsonData = null) {
         let contentElements = [];
 
-        let jsonData = null;
-        try {
-            jsonData = JSON.parse(input)
-        } catch (err) {
-            console.error(`input: ${input}, error: ${err.message}`);
+        if (jsonData === null) {
+            try {
+                jsonData = JSON.parse(input)
+            } catch (err) {
+                console.error(`input: ${input}, error: ${err.message}`);
+            }
         }
 
         if (jsonData != null) {
@@ -142,7 +204,7 @@ vis.binds.materialdesign.table = {
                 }
 
                 if (data.attr('colType' + col) === 'image') {
-                    objValue = `<img src="${objValue}" style="height: auto; vertical-align: middle; width: ${getValueFromData(data.attr('imageHeight' + col), '', '', '%;')}">`;
+                    objValue = `<img src="${objValue}" style="height: auto; vertical-align: middle; width: ${getValueFromData(data.attr('imageSize' + col), '', '', 'px;')}">`;
                 }
 
                 return `<td class="mdc-data-table__cell ${textSize.class}" 
