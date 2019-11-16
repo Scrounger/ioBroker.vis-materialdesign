@@ -121,7 +121,7 @@ vis.binds.materialdesign.select = {
             console.exception(`initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    handleBoolean: function (el, data, isBooleanSelect) {
+    handle: function (el, data, isBooleanSelect) {
         try {
             setTimeout(function () {
                 var $this = $(el);

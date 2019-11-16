@@ -631,7 +631,7 @@
             let init = vis.binds.materialdesign.select.initialize(data, true);
         %>
 
-        <div class="vis-widget materialdesign-select <%== this.data.attr('class') %>" style="width: 150px; height: 56px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.select.handleBoolean(el, data, true) %>>
+        <div class="vis-widget materialdesign-select <%== this.data.attr('class') %>" style="width: 150px; height: 56px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.select.handle(el, data, true) %>>
             <%== init %>
         </div>
 </script>
@@ -643,18 +643,17 @@
         data-vis-set="materialdesign"
         data-vis-type="ctrl,val,list"
         data-vis-name="Value Select"
-        data-vis-beta="true"
-        data-vis-attrs="manual/custom,materialdesign.editorManualLink,selectValue;donate/custom,materialdesign.editorBmc;oid;values[1]/number;text_true;text_false;hintText;layout[standard]/select,standard,outlined;z_index/number;listItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;distanceBetweenTextAndImage/number;showValueOnRight[true]/checkbox;valueRightFontsize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;valueRightAppendix;menuWidth/number;vibrateOnMobilDevices[50]/number;"
+        data-vis-attrs="manual/custom,materialdesign.editorManualLink,selectValue;donate/custom,materialdesign.editorBmc;oid;values[1]/number;hintText;layout[standard]/select,standard,outlined;z_index/number;listItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;distanceBetweenTextAndImage/number;showValueOnRight[true]/checkbox;valueRightFontsize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;valueRightAppendix;menuWidth/number;vibrateOnMobilDevices[50]/number;"
         data-vis-attrs0="group.icon;image/image;imageTrue/image;drawerIconHeight/number;"
         data-vis-attrs1="group.selectColor;selectBackground/color;selectBackgroundHover/color;selectHintTextColor/color;selectHintTextColorSelected/color;selectBorderColor/color;selectBorderColorSelected/color;"
         data-vis-attrs2="group.menuColors;colorDrawerBackground/color;colorDrawerItemBackground/color;colorListItemHover/color;colorListItemSelected/color;colorListItemText/color;colorListItemTextSelected/color;colorListItemTextRight/color;"
-        data-vis-attrs3="group.values;value(0-values);group.labels;label(0-values);group.menuIcons;menuIcon(0-values)/image;">
+        data-vis-attrs3="group.items/byindex;value(0-values);label(0-values);menuIcon(0-values)/image;">
         
         <%
             let init = vis.binds.materialdesign.select.initialize(data);
         %>
 
-        <div class="vis-widget materialdesign-select <%== this.data.attr('class') %>" style="width: 150px; height: 56px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.select.handleBoolean(el, data) %>>
+        <div class="vis-widget materialdesign-select <%== this.data.attr('class') %>" style="width: 150px; height: 56px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.select.handle(el, data) %>>
             <%== init %>
         </div>
 </script>
