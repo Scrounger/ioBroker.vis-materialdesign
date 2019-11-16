@@ -25,17 +25,18 @@ vis.binds.materialdesign.table = {
             tableElement.push(`<div class="mdc-data-table ${tableLayout}" style="width: 100%;">
                                     <table class="mdc-data-table__table" aria-label="Material Design Widgets Table">`)
 
-            if (data.showHeader) {
-                tableElement.push(`<thead>
+            tableElement.push(`<thead>
                                     <tr class="mdc-data-table__header-row" style="height: ${(getNumberFromData(data.headerRowHeight, null) !== null) ? data.headerRowHeight + 'px' : '1px'};">`)
+
+            if (data.showHeader) {
                 for (var i = 0; i <= data.countCols; i++) {
                     if (data.attr('showColumn' + i)) {
                         tableElement.push(`<th class="mdc-data-table__header-cell ${headerFontSize.class}" colIndex="${i}" role="columnheader" scope="col" style="text-align: ${data.attr('textAlign' + i)};${headerFontSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + i), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + i), 8)}px; font-family: ${getValueFromData(data.headerFontFamily, '')}">${getValueFromData(data.attr('label' + i), 'col ' + i)}</th>`)
                     }
                 }
-                tableElement.push(`</tr>
-                            </thead>`);
             }
+            tableElement.push(`</tr>
+                            </thead>`);
 
 
             tableElement.push(`<tbody class="mdc-data-table__content">`);
