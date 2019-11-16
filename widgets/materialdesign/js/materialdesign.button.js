@@ -63,7 +63,7 @@ vis.binds.materialdesign.button = {
             return { button: buttonElementsList.join(''), style: buttonStyle }
 
         } catch (ex) {
-            console.exception(`handler: error: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`initializeButton: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handleLink: function (el, data) {
@@ -93,6 +93,18 @@ vis.binds.materialdesign.button = {
             }).on('touchstart', function () {
                 moved = false;
             });
+        }
+    },
+    handleAdition: function (el, data) {
+        try {
+            let $this = $(el);
+
+            $this.on('click touchend', function (e) {
+                let val = vis.states.attr(data.oid + '.val');
+                vis.setValue(data.oid, parseFloat(val) + parseFloat(data.value));
+            });
+        } catch (ex) {
+            console.exception(`handleAdition [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handleToggle: function (el, data) {
@@ -191,7 +203,7 @@ vis.binds.materialdesign.button = {
             }
 
         } catch (ex) {
-            console.exception(`toggle [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`handleToggle [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };
