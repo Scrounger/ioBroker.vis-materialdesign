@@ -17,6 +17,7 @@
 <!-- chartjs lib & plugins -->
 <script type="text/javascript" src="widgets/materialdesign/js/Chart.bundle.min.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/chartjs-plugin-datalabels.min.js"></script>
+<script type="text/javascript" src="widgets/materialdesign/js/thomasloven_round-slider.js"></script>
 
 <!-- materialdesign files -->
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.js"></script>
@@ -30,6 +31,8 @@
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.table.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.chart.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.colorschemes.js"></script>
+<script type="text/javascript" src="widgets/materialdesign/js/materialdesign.roundslider.js"></script>
+
 
 
 <!-- the full description of format in data-vis-attrs can be found here:
@@ -600,6 +603,24 @@
         data-vis-attrs1="group.label;showValueLabel[true]/checkbox;showMarkers/checkbox;valueLabelUnit;valueLabelMin/html;valueLabelMax/html;valueLessThan/number;textForValueLessThan/html;valueGreaterThan/number;textForValueGreaterThan/html;valueLabelWidth[25]/slider,0,100,1;">
 
         <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.mdcSlider(el, data, true) %>>
+
+        </div>
+</script>
+
+<script id="tplVis-materialdesign-Slider-Round"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/materialdesign/img/prev_table.png"></img>'
+        data-vis-set="materialdesign"
+        data-vis-type="ctrl,slider,dimmer"
+        data-vis-name="Slider Round"
+        data-vis-update-style="true"
+        data-vis-beta="true"
+        data-vis-attrs="manual/custom,materialdesign.editorManualLink,slider;donate/custom,materialdesign.editorBmc;oid;oid-working;min;max;step[1];knobSize[knobSmall]/select,knobSmall,knobMedium,knobBig;initDelay[500]/number;vibrateOnMobilDevices[50]/number;"
+        data-vis-attrs0="group.color;colorSliderBg/color;colorSlider/color;"
+        data-vis-attrs1="group.label;showValueLabel[true]/checkbox;showMarkers/checkbox;valueLabelUnit;valueLabelMin/html;valueLabelMax/html;valueLessThan/number;textForValueLessThan/html;valueGreaterThan/number;textForValueGreaterThan/html;valueLabelWidth[25]/slider,0,100,1;">
+
+        <div class="vis-widget materialdesign-slider-round <%== this.data.attr('class') %>" style="width: 400px; height: 250px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.roundslider.handle(el, data) %>>
 
         </div>
 </script>
