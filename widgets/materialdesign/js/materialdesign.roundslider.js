@@ -27,6 +27,13 @@ vis.binds.materialdesign.roundslider = {
 
             let slider = $this.find('.materialdesign-round-slider-element');
 
+            slider.get(0).style.setProperty('--round-slider-path-width', getNumberFromData(data.sliderWidth, 3));
+
+            slider.get(0).style.setProperty('background', getValueFromData(data.colorSliderBg, ''));
+            slider.get(0).style.setProperty('--round-slider-path-color', getValueFromData(data.pathColor, ''));
+            slider.get(0).style.setProperty('--round-slider-bar-color', getValueFromData(data.barColor, '#1e88e5'));
+            slider.get(0).style.setProperty('--round-slider-handle-color', getValueFromData(data.handleColor, ''));
+
 
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 setSliderState()
