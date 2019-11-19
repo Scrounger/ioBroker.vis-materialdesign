@@ -59,12 +59,18 @@ Settings that are not listed in the table below are self-explanatory.
     </tbody>
 </table>
 
+## Round Slider
+![Logo](doc/media/round_slider.gif)
+
+Based on [round-slider from thomasloven](https://github.com/thomasloven/round-slider)
+
 ## Switch
 ![Logo](doc/media/switch.gif)
 
 ## Top App Bar with Navigation Drawer
 
 Information:
+* Top App Bar use the [view in widget 8](https://www.iobroker.net/#en/documentation/viz/basic.md) of VIS Adapter - configuration is the same, search the forum for working examples.
 * App Bar position is hardcoded and always appears in the upper left corner. Only width and height are adjustable. In the editor you can move the widget, but these settings will not be applied!
 * In the editor, effects such as scrolling, etc. are not displayed correctly or behave differently!
 * Checkbox "persistent" must be activated!
@@ -244,6 +250,18 @@ Working Widget Example can be found [here](https://forum.iobroker.net/topic/2619
 
 
 ## Changelog
+
+### 0.2.0
+* (Scrounger): Round Slider Widget added
+* (Scrounger): Icon Button Adition Widget added
+* (Scrounger): Button Adition Widget added
+* (Scrounger): Line History Chart Widget added
+* (Scrounger): Table Widget added
+* (Scrounger): Dialog iFrame Widget added
+* (Scrounger): Dialog View Widget added
+* (Scrounger): Select Widget added
+* (Scrounger): colorSchemes for Charts added
+* (Scrounger): bug fixes
 
 ### 0.1.5
 * (Scrounger): bar chart added
