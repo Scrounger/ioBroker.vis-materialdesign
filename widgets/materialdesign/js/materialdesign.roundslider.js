@@ -14,14 +14,29 @@ vis.binds.materialdesign.roundslider = {
             let $this = $(el);
 
             $this.append(`<round-slider class="materialdesign-round-slider-element"
-                            value=${vis.states.attr(data.oid + '.val')}
+                            value=${vis.states.attr(data.oid + '.val')} 
+                            max="${getNumberFromData(data.max, 100)}" 
+                            min="${getNumberFromData(data.min, 0)}"
+                            step="${getNumberFromData(data.step, 1)}"
+                            startAngle="${getNumberFromData(data.startAngle, 135)}"
+                            arcLength="${getNumberFromData(data.arcLength, 270)}"
+                            handleSize="${getNumberFromData(data.handleSize, 6)}"
+                            handleZoom="${getNumberFromData(data.handleZoom, 1.5)}"
+                            ${(data.rtl === true) ? 'rtl = "true"' : ''}
                             ></round-slider>`)
 
             let slider = $this.find('.materialdesign-round-slider-element');
 
 
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                slider.attr('value', newVal);
+                setSliderState()
+
+            });
+
+            vis.states.bind(data.wid + '.val', function (e, newVal, oldVal) {
+                if (!newVal) {
+                    setSliderState();
+                }
             });
 
             slider.bind('value-changing', function () {
@@ -33,9 +48,15 @@ vis.binds.materialdesign.roundslider = {
                 vis.setValue(data.oid, changedVal);
             });
 
+            function setSliderState() {
+                let val = vis.states.attr(data.oid + '.val');
+
+                if (!vis.states.attr(data.wid + '.val')) {
+                    slider.attr('value', val);
+                }
+            }
         } catch (ex) {
             console.exception(`handle: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
-
 };

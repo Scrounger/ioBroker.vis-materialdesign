@@ -616,10 +616,10 @@
         data-vis-name="Slider Round"
         data-vis-update-style="true"
         data-vis-beta="true"
-        data-vis-attrs="manual/custom,materialdesign.editorManualLink,slider;donate/custom,materialdesign.editorBmc;oid;oid-working;min;max;step[1];knobSize[knobSmall]/select,knobSmall,knobMedium,knobBig;initDelay[500]/number;vibrateOnMobilDevices[50]/number;"
+        data-vis-attrs="manual/custom,materialdesign.editorManualLink,slider;donate/custom,materialdesign.editorBmc;oid;oid-working;min;max;step[1];startAngle[135]/slider,0,360,1;arcLength[270]/slider,0,360,1;vibrateOnMobilDevices[50]/number;handleSize/number;handleZoom[1.5]/slider,0,10,0.1;rtl/checkbox;"
         data-vis-attrs0="group.color;colorSliderBg/color;colorSlider/color;"
         data-vis-attrs1="group.label;showValueLabel[true]/checkbox;showMarkers/checkbox;valueLabelUnit;valueLabelMin/html;valueLabelMax/html;valueLessThan/number;textForValueLessThan/html;valueGreaterThan/number;textForValueGreaterThan/html;valueLabelWidth[25]/slider,0,100,1;">
-
+        
         <div class="vis-widget materialdesign-slider-round <%== this.data.attr('class') %>" style="width: 400px; height: 250px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.roundslider.handle(el, data) %>>
 
         </div>
