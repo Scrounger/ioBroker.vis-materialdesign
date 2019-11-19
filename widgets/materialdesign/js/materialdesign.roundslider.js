@@ -69,9 +69,10 @@ vis.binds.materialdesign.roundslider = {
             slider.get(0).style.setProperty('--round-slider-handle-color', getValueFromData(data.handleColor, ''));
 
 
+            setSliderState();
+
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 setSliderState()
-
             });
 
             vis.states.bind(data.wid + '.val', function (e, newVal, oldVal) {
