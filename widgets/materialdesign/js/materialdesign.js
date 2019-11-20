@@ -582,7 +582,6 @@ vis.binds.materialdesign = {
         }
     },
     editorManualLink: function (widAttr, data) {
-        console.log(data);
         let url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#iobrokervis-materialdesign';
 
         if (data) {

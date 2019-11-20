@@ -178,19 +178,13 @@ vis.binds.materialdesign.button = {
                 if (buttonState) {
                     $this.parent().attr('toggled', true);
 
-                    console.log('true:' + invertImageTrue);
-
                     $this.parent().css('background', bgColorTrue);
                     $this.parent().find('.imgButton').attr('src', imageTrue).css(invertImageTrue);
                     $this.parent().find('.materialdesign-button__label').html(textTrue).css('color', textColorTrue);
 
-
-
                     $this.find('.labelRowContainer').css('background', labelBgColorTrue);
                 } else {
                     $this.parent().attr('toggled', false);
-
-                    console.log('false:' + invertImageFalse);
 
                     $this.parent().css('background', bgColor);
                     $this.parent().find('.imgButton').attr('src', imageFalse).css(invertImageFalse);
