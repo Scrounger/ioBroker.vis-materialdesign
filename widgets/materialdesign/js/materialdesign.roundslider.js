@@ -54,7 +54,7 @@ vis.binds.materialdesign.roundslider = {
                                     justify-content: center;
                                     pointer-events: none;
                                     top: ${getNumberFromData(data.valueLabelVerticalPosition, 45)}%; 
-                                    color: ${getValueFromData(data.valueLabelColor, '#1e88e5')};">
+                                    color: ${getValueFromData(data.valueLabelColor, '#44739e')};">
                                         ${valueOnLoading} ${unit}
                                 </label>`: ''}
                             `)
@@ -65,7 +65,7 @@ vis.binds.materialdesign.roundslider = {
 
             slider.get(0).style.setProperty('background', getValueFromData(data.colorSliderBg, ''));
             slider.get(0).style.setProperty('--round-slider-path-color', getValueFromData(data.pathColor, ''));
-            slider.get(0).style.setProperty('--round-slider-bar-color', getValueFromData(data.barColor, '#1e88e5'));
+            slider.get(0).style.setProperty('--round-slider-bar-color', getValueFromData(data.barColor, '#44739e'));
             slider.get(0).style.setProperty('--round-slider-handle-color', getValueFromData(data.handleColor, ''));
 
 

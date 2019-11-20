@@ -21,7 +21,7 @@ vis.binds.materialdesign.chart = {
                 var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
 
                 $(el).find('.materialdesign-chart-container').css('background-color', getValueFromData(data.backgroundColor, ''));
-                let globalColor = getValueFromData(data.globalColor, '#1e88e5');
+                let globalColor = getValueFromData(data.globalColor, '#44739e');
 
                 let colorScheme = getValueFromData(data.colorScheme, null);
                 if (colorScheme != null) {
@@ -32,7 +32,7 @@ vis.binds.materialdesign.chart = {
                     var ctx = chartContainer.getContext('2d');
 
                     // Global Options:
-                    Chart.defaults.global.defaultFontColor = '#1e88e5';
+                    Chart.defaults.global.defaultFontColor = '#44739e';
                     Chart.defaults.global.defaultFontSize = 15;
                     Chart.defaults.global.animation.duration = getNumberFromData(data.animationDuration, 1000);
 
@@ -202,7 +202,7 @@ vis.binds.materialdesign.chart = {
 
 
                 $(el).find('.materialdesign-chart-container').css('background-color', getValueFromData(data.backgroundColor, ''));
-                let globalColor = getValueFromData(data.globalColor, '#1e88e5');
+                let globalColor = getValueFromData(data.globalColor, '#44739e');
 
                 let colorScheme = getValueFromData(data.colorScheme, null);
                 if (colorScheme != null) {
@@ -222,7 +222,7 @@ vis.binds.materialdesign.chart = {
                     var ctx = chartContainer.getContext('2d');
 
                     // Global Options:
-                    Chart.defaults.global.defaultFontColor = '#1e88e5';
+                    Chart.defaults.global.defaultFontColor = '#44739e';
                     Chart.defaults.global.defaultFontSize = 15;
                     Chart.defaults.global.animation.duration = getNumberFromData(data.animationDuration, 1000);
 
@@ -526,7 +526,7 @@ vis.binds.materialdesign.chart = {
                 var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
 
                 $(el).find('.materialdesign-chart-container').css('background-color', getValueFromData(data.backgroundColor, ''));
-                let globalColor = getValueFromData(data.globalColor, '#1e88e5');
+                let globalColor = getValueFromData(data.globalColor, '#44739e');
 
                 let colorScheme = getValueFromData(data.colorScheme, null);
                 if (colorScheme != null) {
@@ -537,7 +537,7 @@ vis.binds.materialdesign.chart = {
                     var ctx = chartContainer.getContext('2d');
 
                     // Global Options:
-                    Chart.defaults.global.defaultFontColor = '#1e88e5';
+                    Chart.defaults.global.defaultFontColor = '#44739e';
                     Chart.defaults.global.defaultFontSize = 15;
                     Chart.defaults.global.animation.duration = getNumberFromData(data.animationDuration, 1000);
 

@@ -1,8 +1,8 @@
 :root{
-  --mdc-theme-primary: #1e88e5;
-  --mdc-theme-secondary: #1e88e5;
+  --mdc-theme-primary: #44739e;
+  --mdc-theme-secondary: #44739e;
 
-  --material-progress-circular-color: #1e88e5;
+  --material-progress-circular-color: #44739e;
 
   --materialdesign-color-drawer-background: #fff;
   --materialdesign-color-drawer-sub-background: #fff;
@@ -16,8 +16,8 @@
   
   --materialdesign-color-list-item-text: #000;
   --materialdesign-color-sub-list-item-text: #000;
-  --materialdesign-color-list-item-text-activated: #1e88e5;
-  --materialdesign-color-sub-list-item-text-activated: #1e88e5;
+  --materialdesign-color-list-item-text-activated: #44739e;
+  --materialdesign-color-sub-list-item-text-activated: #44739e;
 
   --materialdesign-color-list-item-text-secondary: rgba(0, 0, 0, 0.54);
 
@@ -35,26 +35,26 @@
   --materialdesign-color-card-background: #fff;
   --materialdesign-color-card-title-section-background: transparent;
   --materialdesign-color-card-text-section-background: transparent;
-  --materialdesign-color-card-title: #1e88e5;
+  --materialdesign-color-card-title: #44739e;
   --materialdesign-color-card-sub-title: #a1a1a1;
 
   --materialdesign-color-select-background: transparent;
   --materialdesign-color-select-background-hover: rgba(0, 0, 0, 0.87);
   --materialdesign-color-select-hint: rgba(0, 0, 0, 0.6);
-  --materialdesign-color-select-hint_selected: #1e88e5;
+  --materialdesign-color-select-hint_selected: #44739e;
   --materialdesign-color-select-border: rgba(0,0,0,.38);
-  --materialdesign-color-select-border-selected: #1e88e5;
+  --materialdesign-color-select-border-selected: #44739e;
   
   --materialdesign-color-dialog-background: #fff;
   --materialdesign-color-dialog-button-background: transparent;
-  --materialdesign-color-dialog-button-text: #1e88e5;
-  --materialdesign-color-dialog-button-hover: #1e88e5;
+  --materialdesign-color-dialog-button-text: #44739e;
+  --materialdesign-color-dialog-button-hover: #44739e;
   --materialdesign-color-dialog-title-background: transparent;
-  --materialdesign-color-dialog-title: #1e88e5;
+  --materialdesign-color-dialog-title: #44739e;
 
   --materialdesign-color-table-background: #fff;
   --materialdesign-color-table-header-row-background: inherit;
-  --materialdesign-color-table-header-row-text-color: #1e88e5;
+  --materialdesign-color-table-header-row-text-color: #44739e;
   --materialdesign-color-table-row-background: inherit;
   --materialdesign-color-table-row-text-color: rgba(0, 0, 0, 0.87);
   --materialdesign-color-table-row-divider: rgba(0, 0, 0, 0.12);
@@ -660,7 +660,7 @@ svg.materialdesign-button__icon {
 
 /* Default checkbox color */
 .mdc-checkbox {
-  --mdc-theme-secondary: #1e88e5;
+  --mdc-theme-secondary: #44739e;
 }
 
 /* Drawer container */
@@ -720,7 +720,7 @@ svg.materialdesign-button__icon {
 
 /* Drawer Header default Color */
 .mdc-drawer__header {
-  background-color: #1e88e5;
+  background-color: #44739e;
 }
 
 .mdc-drawer .mdc-drawer__title {
