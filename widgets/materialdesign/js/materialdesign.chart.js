@@ -407,9 +407,12 @@ vis.binds.materialdesign.chart = {
                                     bodyFontSize: getNumberFromData(data.tooltipBodyFontSize, undefined),
                                     callbacks: {
                                         title: function (tooltipItem, chart) {
+
                                             let datasetIndex = tooltipItem[0].datasetIndex;
+
                                             let index = tooltipItem[0].index;
-                                            let currentUnit = chart.datasets[datasetIndex]._meta[0].controller._xScale._unit;
+                                            let metaIndex = Object.keys(chart.datasets[datasetIndex]._meta)[0];
+                                            let currentUnit = chart.datasets[datasetIndex]._meta[metaIndex].controller._xScale._unit;
                                             let timestamp = moment(chart.datasets[datasetIndex].data[index].t);
 
                                             let timeFormats = (getValueFromData(data.tooltipTimeFormats, null) !== null) ? JSON.parse(data.tooltipTimeFormats) : myHelper.defaultToolTipTimeFormats();
@@ -463,7 +466,6 @@ vis.binds.materialdesign.chart = {
 
 
                             progressBar.hide();
-                            console.log(`current time unit: ${myChart.scales['x-axis-0']._unit}`);
                         });
                     }
                 }
@@ -507,7 +509,6 @@ vis.binds.materialdesign.chart = {
                             myChart.update();
 
                             progressBar.hide();
-                            console.log(`current time unit: ${myChart.scales['x-axis-0']._unit}`);
                         });
                     }
                 };
