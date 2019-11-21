@@ -251,6 +251,12 @@ Working Widget Example can be found [here](https://forum.iobroker.net/topic/2619
 
 ## Changelog
 
+### 0.2.4
+* (Scrounger): Round Slider Widget bug fixes
+* (Scrounger): Line History Chart Widget: null value bug fix
+* (Scrounger): Line History Chart Widget: tooltip bug fix
+* (Scrounger): Line History Chart Widget: editor translation improved
+ 
 ### 0.2.0
 * (Scrounger): Round Slider Widget added
 * (Scrounger): Icon Button Adition Widget added
