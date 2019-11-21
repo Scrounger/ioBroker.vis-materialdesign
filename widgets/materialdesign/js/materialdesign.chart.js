@@ -2,7 +2,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.2"
+    version: "0.2.3"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -472,6 +472,8 @@ vis.binds.materialdesign.chart = {
 
                 function onChange(e, newVal, oldVal) {
                     // value or timeinterval changed
+
+                    console.log(`${logPrefix} onChange: newVal: ${newVal}`)
 
                     if (myChart) {
                         progressBar.show();
