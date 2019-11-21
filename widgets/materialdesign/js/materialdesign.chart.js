@@ -880,8 +880,8 @@ vis.binds.materialdesign.chart.helper = {
 
         if (result) {
             dataArray = result.map(elm => ({
-                t: elm.ts,
-                y: (elm.val !== null) ? elm.val * getNumberFromData(data.attr('multiply' + index), 1) : null
+                t: (elm.ts !== null && elm.ts !== undefined) ? elm.ts : null,
+                y: (elm.val !== null && elm.val !== undefined) ? elm.val * getNumberFromData(data.attr('multiply' + index), 1) : null
             }));
         }
 
