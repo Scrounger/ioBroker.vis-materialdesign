@@ -473,8 +473,6 @@ vis.binds.materialdesign.chart = {
                 function onChange(e, newVal, oldVal) {
                     // value or timeinterval changed
 
-                    console.log(`${logPrefix} onChange: newVal: ${newVal}`)
-
                     if (myChart) {
                         progressBar.show();
 
