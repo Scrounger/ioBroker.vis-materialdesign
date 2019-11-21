@@ -23,22 +23,22 @@ Charts based on [chartjs library](https://www.chartjs.org/).
 https://github.com/material-components/material-components-web/blob/master/docs/supported-browsers.md
 
 ## Button Toggle
-![Logo](doc/media/buttons.gif)
+![Logo](doc/en/media/buttons.gif)
 
 ## Card
-![Logo](doc/media/cards.png)
+![Logo](doc/en/media/cards.png)
 
 ## Icon Button
-![Logo](doc/media/icon-button.gif)
+![Logo](doc/en/media/icon-button.gif)
 
 ## List
-![Logo](doc/media/list.gif)
+![Logo](doc/en/media/list.gif)
 
 ## Progress
-![Logo](doc/media/progress.gif)
+![Logo](doc/en/media/progress.gif)
 
 ## Slider
-![Logo](doc/media/slider.gif)
+![Logo](doc/en/media/slider.gif)
 
 Settings that are not listed in the table below are self-explanatory.
 
@@ -52,7 +52,7 @@ Settings that are not listed in the table below are self-explanatory.
     </thead>
     <tbody>
         <tr>
-            <td rowspan=6><img src="doc/media/slider.png"></td>
+            <td rowspan=6><img src="doc/en/media/slider.png"></td>
             <td>initDelay</td>
             <td>If the slider is not visible or operable after loading the runtime, then this value must be increased. Entry is made in milliseconds.<br>For example, increase by 250 steps until the slider works.</td>
         </tr>
@@ -60,12 +60,12 @@ Settings that are not listed in the table below are self-explanatory.
 </table>
 
 ## Round Slider
-![Logo](doc/media/round_slider.gif)
+![Logo](doc/en/media/round_slider.gif)
 
 Based on [round-slider from thomasloven](https://github.com/thomasloven/round-slider)
 
 ## Switch
-![Logo](doc/media/switch.gif)
+![Logo](doc/en/media/switch.gif)
 
 ## Top App Bar with Navigation Drawer
 
@@ -77,16 +77,16 @@ Information:
 * oid must be set to a datapoint from typ number (like the [view in widget 8](https://www.iobroker.net/#en/documentation/viz/basic.md) of VIS Adapter)
 
 ##### Layout modal:
-![Logo](doc/media/topappbar_modal.gif)
+![Logo](doc/en/media/topappbar_modal.gif)
 
 ##### Layout dismissible:
-![Logo](doc/media/topappbar_dismissible.gif)
+![Logo](doc/en/media/topappbar_dismissible.gif)
 
 ##### Layout permanent:
-![Logo](doc/media/topappbar_permanent.gif)
+![Logo](doc/en/media/topappbar_permanent.gif)
 
 ### Submenu 
-![Logo](doc/media/drawer_subMenu.png)
+![Logo](doc/en/media/drawer_subMenu.png)
 
 Settings that are not listed in the table below are self-explanatory.
 
@@ -100,12 +100,12 @@ Settings that are not listed in the table below are self-explanatory.
     </thead>
     <tbody>
         <tr>
-            <td rowspan=1><img src="doc/media/drawer_subMenu_views.png"></td>
+            <td rowspan=1><img src="doc/en/media/drawer_subMenu_views.png"></td>
             <td>views[x]</td>
             <td>To activate submenu, you have to add multiple views seperated with '|' into the view field, see screenshots</td>
         </tr>
         <tr>
-            <td rowspan=1><img src="doc/media/drawer_subMenu_labels.png"></td>
+            <td rowspan=1><img src="doc/en/media/drawer_subMenu_labels.png"></td>
             <td>label[x]</td>
             <td>To change the text of the items, you have to put a json object into the label field with the index of the view field.<br>
                 Example:<br>
@@ -115,7 +115,7 @@ Settings that are not listed in the table below are self-explanatory.
 Result: see screenshot</td>
         </tr>
         <tr>
-            <td rowspan=1><img src="doc/media/drawer_subMenu_icons.png"></td>
+            <td rowspan=1><img src="doc/en/media/drawer_subMenu_icons.png"></td>
             <td>icon[x]</td>
             <td>To change the icons of the items, you have to put a json object into the icons field with the index of the view field.<br>
                 Example:<br>
@@ -133,7 +133,7 @@ Result: see screenshot</td>
 
 > Required Adapter: [SQL](https://github.com/ioBroker/ioBroker.sql), [History](https://github.com/ioBroker/ioBroker.history) or [InfluxDb](https://github.com/ioBroker/ioBroker.influxdb)!
 
-![Logo](doc/media/line_history_chart.gif)
+![Logo](doc/en/media/line_history_chart.gif)
 
 Settings that are not listed in the table below are self-explanatory.
 
@@ -147,7 +147,7 @@ Settings that are not listed in the table below are self-explanatory.
     </thead>
     <tbody>
         <tr>
-            <td rowspan=6><img src="doc/media/line_hostory_chart_general.png"></td>
+            <td rowspan=6><img src="doc/en/media/line_hostory_chart_general.png"></td>
             <td>adapter instance</td>
             <td>Instance for the sql or history adapter</td>
         </tr>
@@ -172,12 +172,12 @@ Settings that are not listed in the table below are self-explanatory.
             <td>Id of adatapoint to trigger a manual refresh of the chart.<br>For example, you can use a button here to refresh the chart during runtime</td>
         </tr>
         <tr>
-            <td><img src="doc/media/line_hostory_chart_xAxis_layout.png"></td>
+            <td><img src="doc/en/media/line_hostory_chart_xAxis_layout.png"></td>
             <td>time formats of x-axis</td>
             <td>Change the time format of the X-axis. Time formats must be entered for all time units, <a href="https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/c677220868961b3cf0b153fb8bf04e13b4475c09/widgets/materialdesign/js/materialdesign.chart.js#L805">the following time units are permitted.</a><br>Approved time formats must be entered according to the moment.js library, <a href="https://momentjs.com/docs/#/displaying/">see link</a></td>
         </tr>
         <tr>
-            <td><img src="doc/media/line_hostory_chart_tooltip_layout.png"></td>
+            <td><img src="doc/en/media/line_hostory_chart_tooltip_layout.png"></td>
             <td>tooltip time formats</td>
             <td>Change the time format of the tooltip. Time formats must be entered for all time units, <a href="https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/c677220868961b3cf0b153fb8bf04e13b4475c09/widgets/materialdesign/js/materialdesign.chart.js#L805">the following time units are permitted.</a><br>Approved time formats must be entered according to the moment.js library, <a href="https://momentjs.com/docs/#/displaying/">see link</a></td>
         </tr>
@@ -185,7 +185,7 @@ Settings that are not listed in the table below are self-explanatory.
 </table>
 
 ## Table
-![Logo](doc/media/table.gif)
+![Logo](doc/en/media/table.gif)
 
 
 ##### Input Data
@@ -210,7 +210,7 @@ Input data must be a json array of objects, example:
     </thead>
     <tbody>
         <tr>
-            <td rowspan=2><img src="doc/media/table_general.png"></td>
+            <td rowspan=2><img src="doc/en/media/table_general.png"></td>
             <td>switch</td>
             <td>Datapoint from type string with input data as shown above</td>
         </tr>
@@ -219,7 +219,7 @@ Input data must be a json array of objects, example:
             <td>Optional, input data as shown above if no oid datapoint is set</td>
         </tr>
         <tr>
-            <td rowspan=4><img src="doc/media/table_column.png"></td>
+            <td rowspan=4><img src="doc/en/media/table_column.png"></td>
             <td>colType[x]</td>
             <td>If image is selected, object property must have the path to the image (<a href="https://github.com/Scrounger/ioBroker.vis-materialdesign#input-data">see above</a>)</td>
         </tr>
