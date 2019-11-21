@@ -148,7 +148,7 @@ Settings that are not listed in the table below are self-explanatory.
     <tbody>
         <tr>
             <td rowspan=6><img src="doc/media/line_hostory_chart_general.png"></td>
-            <td>Instance</td>
+            <td>adapter instance</td>
             <td>Instance for the sql or history adapter</td>
         </tr>
         <tr>
@@ -156,29 +156,29 @@ Settings that are not listed in the table below are self-explanatory.
             <td><a href="https://www.iobroker.net/docu/index-195.htm?page_id=198&lang=en#Aggregation">link</a></td>
         </tr>
         <tr>
-            <td>count</td>
+            <td>max. number of data points to be displayed</td>
             <td>Number of maximum data points to display</td>
         </tr>
         <tr>
-            <td>minTimeInterval</td>
+            <td>time interval between the data points in [s]</td>
             <td>Optional setting, overrides the 'count' setting.<br>Distance between the individual data points in seconds.<br>For example, if you want to display data points every minute, you have to enter 60 here</td>
         </tr>
         <tr>
-            <td>timeIntervalOid</td>
+            <td>controlling time interval using object</td>
             <td>Id of a datapoint to change the time interval of the chart. The data point must be a string and may contain <a href="https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/235530e4e54346b5527333ca06ce596519954c67/widgets/materialdesign/js/materialdesign.chart.js#L802">the linked values</a><br>For example, you can use a button here to change the display of the chart during runtime</td>
         </tr>
         <tr>
-            <td>manualRefreshTrigger</td>
+            <td>boolean object for update</td>
             <td>Id of adatapoint to trigger a manual refresh of the chart.<br>For example, you can use a button here to refresh the chart during runtime</td>
         </tr>
         <tr>
             <td><img src="doc/media/line_hostory_chart_xAxis_layout.png"></td>
-            <td>xAxisTimeFormat</td>
+            <td>time formats of x-axis</td>
             <td>Change the time format of the X-axis. Time formats must be entered for all time units, <a href="https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/c677220868961b3cf0b153fb8bf04e13b4475c09/widgets/materialdesign/js/materialdesign.chart.js#L805">the following time units are permitted.</a><br>Approved time formats must be entered according to the moment.js library, <a href="https://momentjs.com/docs/#/displaying/">see link</a></td>
         </tr>
         <tr>
             <td><img src="doc/media/line_hostory_chart_tooltip_layout.png"></td>
-            <td>tooltipTimeFormat</td>
+            <td>tooltip time formats</td>
             <td>Change the time format of the tooltip. Time formats must be entered for all time units, <a href="https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/c677220868961b3cf0b153fb8bf04e13b4475c09/widgets/materialdesign/js/materialdesign.chart.js#L805">the following time units are permitted.</a><br>Approved time formats must be entered according to the moment.js library, <a href="https://momentjs.com/docs/#/displaying/">see link</a></td>
         </tr>
     </tbody>
@@ -211,11 +211,11 @@ Input data must be a json array of objects, example:
     <tbody>
         <tr>
             <td rowspan=2><img src="doc/media/table_general.png"></td>
-            <td>oid</td>
+            <td>switch</td>
             <td>Datapoint from type string with input data as shown above</td>
         </tr>
         <tr>
-            <td>dataJson</td>
+            <td>data as JSON</td>
             <td>Optional, input data as shown above if no oid datapoint is set</td>
         </tr>
         <tr>
@@ -232,7 +232,7 @@ Input data must be a json array of objects, example:
             <td>Suffix for object property, internal object binding (<a href="https://github.com/Scrounger/ioBroker.vis-materialdesign#internal-object-binding">see below</a>) and html can be used</td>
         </tr>
         <tr>
-            <td>sortKey[x]</td>
+            <td>object name for sorting[x]</td>
             <td>Here you can define an other object property that should be used for sorting.</td>
         </tr>
     </tbody>
