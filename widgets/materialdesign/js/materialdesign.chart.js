@@ -186,14 +186,14 @@ vis.binds.materialdesign.chart = {
                 var myChart;
 
                 let $this = $(el);
-                var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
+                var chartContainer = $this.find('.materialdesign-chart-container').get(0);
 
-                var progressBar = $(el).find('.material-progress-circular-container');
+                var progressBar = $this.find('.material-progress-circular-container');
 
                 progressBar.show();
 
 
-                let timeInterval = data.time_interval;
+                let timeInterval = data.timeIntervalToShow;
                 if (getValueFromData(data.time_interval_oid, null) !== null && myHelper.intervals[vis.states.attr(data.time_interval_oid + '.val')] !== undefined) {
                     timeInterval = vis.states.attr(data.time_interval_oid + '.val');
                     vis.states.bind(data.time_interval_oid + '.val', onChange);
@@ -201,7 +201,7 @@ vis.binds.materialdesign.chart = {
                 let dataRangeStartTime = myHelper.intervals[timeInterval] ? new Date().getTime() - myHelper.intervals[timeInterval] : undefined;
 
 
-                $(el).find('.materialdesign-chart-container').css('background-color', getValueFromData(data.backgroundColor, ''));
+                $this.find('.materialdesign-chart-container').css('background-color', getValueFromData(data.backgroundColor, ''));
                 let globalColor = getValueFromData(data.globalColor, '#44739e');
 
                 let colorScheme = getValueFromData(data.colorScheme, null);
@@ -228,7 +228,7 @@ vis.binds.materialdesign.chart = {
 
                     Chart.plugins.unregister(ChartDataLabels);
 
-                    if (getValueFromData(data.instance, null) !== null) {
+                    if (getValueFromData(data.historyAdapterInstance, null) !== null) {
 
                         let operations = [];
                         for (var i = 0; i <= data.dataCount; i++) {
@@ -475,7 +475,7 @@ vis.binds.materialdesign.chart = {
                     if (myChart) {
                         progressBar.show();
 
-                        let timeInterval = data.time_interval;
+                        let timeInterval = data.timeIntervalToShow;
                         if (getValueFromData(data.time_interval_oid, null) !== null && myHelper.intervals[vis.states.attr(data.time_interval_oid + '.val')] !== undefined) {
                             timeInterval = vis.states.attr(data.time_interval_oid + '.val');
 
@@ -514,7 +514,7 @@ vis.binds.materialdesign.chart = {
                 };
             }, 1)
         } catch (ex) {
-            console.exception(`lineHistory: error: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`lineHistory[${data.wid}]: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     pie: function (el, data) {
@@ -861,8 +861,8 @@ vis.binds.materialdesign.chart.helper = {
     getTaskForHistoryData: function (id, data, dataRangeStartTime) {
         return new Promise((resolve, reject) => {
             vis.getHistory(id, {
-                instance: data.instance,
-                count: parseInt(getNumberFromData(data.points, 0)),
+                instance: data.historyAdapterInstance,
+                count: parseInt(getNumberFromData(data.maxDataPoints, 100)),
                 step: parseInt(getNumberFromData(data.minTimeInterval, 0)) * 1000,
                 aggregate: data.aggregate || 'average',
                 start: dataRangeStartTime,

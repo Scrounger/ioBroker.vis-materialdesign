@@ -62,17 +62,17 @@ systemDictionary = {
         "pl": "extraAttr",
         "zh-cn": "extraAttr"
     },
-    "Instance": {
-        "en": "Instance",
-        "de": "Instanz",
-        "ru": "Инстанция",
-        "pt": "Instância",
-        "nl": "Instantie",
-        "fr": "Instance",
-        "it": "Esempio",
-        "es": "Instancia",
-        "pl": "Instancja",
-        "zh-cn": "例"
+    "historyAdapterInstance": {
+        "en": "adapter instance",
+        "de": "Adapterinstanz",
+        "ru": "экземпляр адаптера",
+        "pt": "instância do adaptador",
+        "nl": "adapter exemplaar",
+        "fr": "instance d'adaptateur",
+        "it": "istanza dell'adattatore",
+        "es": "instancia de adaptador",
+        "pl": "instancja adaptera",
+        "zh-cn": "适配器实例"
     },
     "label": {
         "en": "label",
@@ -3185,8 +3185,8 @@ systemDictionary = {
         "es": "diseño del elemento de la lista",
         "pl": "układ elementu listy",
         "zh-cn": "清单项目的布局"
-      },
-      "listItemHeight": {
+    },
+    "listItemHeight": {
         "en": "list item height",
         "de": "Listenelementhöhe",
         "ru": "высота элемента списка",
@@ -3197,8 +3197,8 @@ systemDictionary = {
         "es": "altura del elemento de la lista",
         "pl": "wysokość elementu listy",
         "zh-cn": "清单项目高度"
-      },
-      "listImageHeight": {
+    },
+    "listImageHeight": {
         "en": "list item image height",
         "de": "Listenelement Bildhöhe",
         "ru": "высота изображения элемента списка",
@@ -3209,8 +3209,8 @@ systemDictionary = {
         "es": "altura de la imagen del elemento de lista",
         "pl": "wysokość obrazu elementu listy",
         "zh-cn": "列表项目图像高度"
-      },
-      "listItemAlignment": {
+    },
+    "listItemAlignment": {
         "en": "list item alignment",
         "de": "Listenelementausrichtung",
         "ru": "выравнивание элементов списка",
@@ -3221,8 +3221,8 @@ systemDictionary = {
         "es": "lista de alineación de elementos",
         "pl": "wyrównanie elementu listy",
         "zh-cn": "列表项对齐"
-      },
-      "distanceBetweenTextAndImage": {
+    },
+    "distanceBetweenTextAndImage": {
         "en": "distance between text and image",
         "de": "Abstand zwischen Text und Bild",
         "ru": "расстояние между текстом и изображением",
@@ -3233,8 +3233,8 @@ systemDictionary = {
         "es": "distancia entre texto e imagen",
         "pl": "odległość między tekstem a obrazem",
         "zh-cn": "文字和图片之间的距离"
-      },
-      "rightTextWidth": {
+    },
+    "rightTextWidth": {
         "en": "width of right text",
         "de": "Breite des rechten Textes",
         "ru": "ширина правого текста",
@@ -3245,8 +3245,8 @@ systemDictionary = {
         "es": "ancho del texto derecho",
         "pl": "szerokość prawego tekstu",
         "zh-cn": "正确文字的宽度"
-      },
-      "listItemBackground": {
+    },
+    "listItemBackground": {
         "en": "list item background color",
         "de": "Hintergrundfarbe des Listenelements",
         "ru": "цвет фона элемента списка",
@@ -3257,8 +3257,8 @@ systemDictionary = {
         "es": "color de fondo del elemento de lista",
         "pl": "kolor tła elementu listy",
         "zh-cn": "列表项背景色"
-      },
-      "listItemBackgroundActive": {
+    },
+    "listItemBackgroundActive": {
         "en": "list item background color active ",
         "de": "Listenelement Hintergrundfarbe aktiv",
         "ru": "цвет фона элемента списка активен",
@@ -3269,8 +3269,8 @@ systemDictionary = {
         "es": "elemento de lista color de fondo activo",
         "pl": "aktywny kolor tła elementu listy",
         "zh-cn": "列表项背景色有效"
-      },
-      "colorCheckBox": {
+    },
+    "colorCheckBox": {
         "en": "checkbox color",
         "de": "Kontrollkästchen Farbe",
         "ru": "цвет флажка",
@@ -3281,8 +3281,8 @@ systemDictionary = {
         "es": "color de casilla de verificación",
         "pl": "kolor pola wyboru",
         "zh-cn": "复选框颜色"
-      },
-      "colorListItemHover": {
+    },
+    "colorListItemHover": {
         "en": "list item hover color",
         "de": "Listenelement hover Farbe",
         "ru": "цвет наведения на элемент списка",
@@ -3293,8 +3293,8 @@ systemDictionary = {
         "es": "color de desplazamiento del elemento de lista",
         "pl": "kolor wskaźnika elementu listy",
         "zh-cn": "列表项的悬停颜色"
-      },
-      "colorListItemSelected": {
+    },
+    "colorListItemSelected": {
         "en": "list item selected color",
         "de": "Listenelement selektiert Farbe",
         "ru": "выбранный цвет элемента списка",
@@ -3305,8 +3305,8 @@ systemDictionary = {
         "es": "color de elemento de lista seleccionado",
         "pl": "wybrany element listy z listy",
         "zh-cn": "列表项选择的颜色"
-      },
-      "colorListItemText":  {
+    },
+    "colorListItemText": {
         "en": "list item text color",
         "de": "Listenelement-Textfarbe",
         "ru": "цвет текста элемента списка",
@@ -3317,8 +3317,8 @@ systemDictionary = {
         "es": "color del texto del elemento de la lista",
         "pl": "kolor tekstu elementu listy",
         "zh-cn": "清单项目文字颜色"
-      },
-      "colorListItemTextSecondary": {
+    },
+    "colorListItemTextSecondary": {
         "en": "list item secondary text color",
         "de": "Listenelement sekundäre Textfarbe",
         "ru": "вторичный цвет текста элемента списка",
@@ -3329,8 +3329,8 @@ systemDictionary = {
         "es": "color de texto secundario del elemento de lista",
         "pl": "element listy dodatkowy kolor tekstu",
         "zh-cn": "列表项目辅助文字颜色"
-      },
-      "colorListItemTextRight": {
+    },
+    "colorListItemTextRight": {
         "en": "text color of right text element",
         "de": "Textfarbe des rechten Textelements",
         "ru": "цвет текста правого текстового элемента",
@@ -3341,8 +3341,8 @@ systemDictionary = {
         "es": "color de texto del elemento de texto derecho",
         "pl": "kolor tekstu prawego elementu tekstowego",
         "zh-cn": "右侧文字元素的文字颜色"
-      },
-      "colorListItemTextSecondaryRight": {
+    },
+    "colorListItemTextSecondaryRight": {
         "en": "text color of secondary right text element",
         "de": "Textfarbe des sekundären rechten Textelements",
         "ru": "цвет текста вторичного правого текстового элемента",
@@ -3353,8 +3353,8 @@ systemDictionary = {
         "es": "color de texto del elemento de texto derecho secundario",
         "pl": "kolor tekstu wtórnego prawego elementu tekstowego",
         "zh-cn": "次要权利文字元素的文字颜色"
-      },
-      "colorListItemHeaders": {
+    },
+    "colorListItemHeaders": {
         "en": "header text color",
         "de": "Header-Textfarbe",
         "ru": "цвет текста заголовка",
@@ -3365,8 +3365,8 @@ systemDictionary = {
         "es": "color del texto del encabezado",
         "pl": "kolor tekstu nagłówka",
         "zh-cn": "标题文字颜色"
-      },
-      "colorListItemDivider": {
+    },
+    "colorListItemDivider": {
         "en": "divider color",
         "de": "Trennlinie Farbe",
         "ru": "цвет делителя",
@@ -3377,8 +3377,8 @@ systemDictionary = {
         "es": "color divisor",
         "pl": "kolor dzielnika",
         "zh-cn": "分隔线颜色"
-      },
-      "listItemTextSize": {
+    },
+    "listItemTextSize": {
         "en": "textsize of list item",
         "de": "Textgröße des Listenelements",
         "ru": "текстовый размер элемента списка",
@@ -3389,8 +3389,8 @@ systemDictionary = {
         "es": "tamaño del texto del elemento de la lista",
         "pl": "rozmiar tekstu pozycji na liście",
         "zh-cn": "列表项的文本大小"
-      },
-      "listItemSubTextSize": {
+    },
+    "listItemSubTextSize": {
         "en": "textsize of secondary list item",
         "de": "Textgröße des sekundären Listenelements",
         "ru": "тексты вторичного элемента списка",
@@ -3401,8 +3401,8 @@ systemDictionary = {
         "es": "tamaño del texto del elemento secundario de la lista",
         "pl": "rozmiar tekstu drugiego elementu listy",
         "zh-cn": "次要清单项目的文字大小"
-      },
-      "listItemTextRightSize": {
+    },
+    "listItemTextRightSize": {
         "en": "textsize of right list item text",
         "de": "Textgröße des rechten Listenelementtextes",
         "ru": "тексты правильного текста элемента списка",
@@ -3413,8 +3413,8 @@ systemDictionary = {
         "es": "tamaño de texto del texto de elemento de lista correcto",
         "pl": "rozmiar tekstu prawego elementu listy",
         "zh-cn": "右列表项文本的textsize"
-      },
-      "listItemSubTextRightSize": {
+    },
+    "listItemSubTextRightSize": {
         "en": "textsize of right secondary list item text",
         "de": "Textgröße des rechten sekundären Listenelementtexts",
         "ru": "тексты правого вторичного текста элемента списка",
@@ -3425,8 +3425,8 @@ systemDictionary = {
         "es": "tamaño de texto del texto de elemento de lista secundaria derecho",
         "pl": "rozmiar tekstu prawego elementu listy wtórnej",
         "zh-cn": "右侧辅助列表项文本的textsize"
-      },
-      "listItemHeaderTextSize":  {
+    },
+    "listItemHeaderTextSize": {
         "en": "textsize of header",
         "de": "Textgröße des Headers",
         "ru": "текст заголовка",
@@ -3437,8 +3437,8 @@ systemDictionary = {
         "es": "tamaño del texto del encabezado",
         "pl": "rozmiar tekstu nagłówka",
         "zh-cn": "标头的textsize"
-      },
-      "group_rows": {
+    },
+    "group_rows": {
         "en": "layout of list item",
         "de": "Layout des Listenelements",
         "ru": "макет элемента списка",
@@ -3449,5 +3449,125 @@ systemDictionary = {
         "es": "diseño del elemento de la lista",
         "pl": "układ elementu listy",
         "zh-cn": "清单项目的布局"
-      }
+    },
+    "maxDataPoints": {
+        "en": "max. number of data points to be displayed",
+        "de": "max. Anzahl der anzuzeigenden Datenpunkte",
+        "ru": "Максимум. количество отображаемых точек данных",
+        "pt": "máx. número de pontos de dados a serem exibidos",
+        "nl": "max. aantal weer te geven gegevenspunten",
+        "fr": "max. nombre de points de données à afficher",
+        "it": "max. numero di punti dati da visualizzare",
+        "es": "max. cantidad de puntos de datos que se mostrarán",
+        "pl": "max. liczba punktów danych do wyświetlenia",
+        "zh-cn": "最高要显示的数据点数"
+    },
+    "minTimeInterval": {
+        "en": "time interval between the data points in [s]",
+        "de": "zeitlicher Abstand zwischen den Datenpunkten in [s]",
+        "ru": "интервал времени между точками данных в [с]",
+        "pt": "intervalo de tempo entre os pontos de dados em [s]",
+        "nl": "tijdsinterval tussen de gegevenspunten in [s]",
+        "fr": "intervalle de temps entre les points de données dans [s]",
+        "it": "intervallo di tempo tra i punti dati in [s]",
+        "es": "intervalo de tiempo entre los puntos de datos en [s]",
+        "pl": "odstęp czasu między punktami danych w [s]",
+        "zh-cn": "数据点之间的时间间隔[s]"
+    },
+    "timeIntervalToShow": {
+        "en": "time interval (show data for)",
+        "de": "Zeitintervall (Daten anzeigen für)",
+        "ru": "интервал времени (показать данные для)",
+        "pt": "intervalo de tempo (mostrar dados para)",
+        "nl": "tijdsinterval (gegevens weergeven voor)",
+        "fr": "intervalle de temps (afficher les données pour)",
+        "it": "intervallo di tempo (mostra i dati per)",
+        "es": "intervalo de tiempo (mostrar datos para)",
+        "pl": "przedział czasu (pokaż dane dla)",
+        "zh-cn": "时间间隔（显示数据）"
+    },
+    "time_interval_oid": {
+        "en": "controlling time interval using object",
+        "de": "Zeitintervall über Objekt steuern",
+        "ru": "управление временным интервалом с использованием объекта",
+        "pt": "controlando o intervalo de tempo usando o objeto",
+        "nl": "tijdinterval regelen met behulp van object",
+        "fr": "contrôler l'intervalle de temps à l'aide d'objet",
+        "it": "controllo dell'intervallo di tempo mediante l'oggetto",
+        "es": "controlar el intervalo de tiempo usando un objeto",
+        "pl": "kontrolowanie przedziału czasu za pomocą obiektu",
+        "zh-cn": "使用对象控制时间间隔"
+    },
+    "refreshMethod": {
+        "en": "update method of diagram ",
+        "de": "Aktualisierungsmethode des Diagramms",
+        "ru": "обновить метод диаграммы",
+        "pt": "atualizar método do diagrama",
+        "nl": "update methode van diagram",
+        "fr": "méthode de mise à jour du diagramme",
+        "it": "metodo di aggiornamento del diagramma",
+        "es": "método de actualización del diagrama",
+        "pl": "aktualizacja metody diagramu",
+        "zh-cn": "图的更新方法"
+    },
+    "realtime": {
+        "en": "realtime (automatic)",
+        "de": "Echtzeit (automatisch)",
+        "ru": "в режиме реального времени (автоматический)",
+        "pt": "em tempo real (automático)",
+        "nl": "realtime (automatisch)",
+        "fr": "temps réel (automatique)",
+        "it": "in tempo reale (automatico)",
+        "es": "en tiempo real (automático)",
+        "pl": "w czasie rzeczywistym (automatyczny)",
+        "zh-cn": "实时（自动）"
+    },
+    "timeInterval": {
+        "en": "time interval (user-defined)",
+        "de": "Zeitintervall (benutzerdefiniert)",
+        "ru": "интервал времени (определяется пользователем)",
+        "pt": "intervalo de tempo (definido pelo usuário)",
+        "nl": "tijdsinterval (door gebruiker gedefinieerd)",
+        "fr": "intervalle de temps (défini par l'utilisateur)",
+        "it": "intervallo di tempo (definito dall'utente)",
+        "es": "intervalo de tiempo (definido por el usuario)",
+        "pl": "przedział czasu (zdefiniowany przez użytkownika)",
+        "zh-cn": "时间间隔（用户定义）"
+    },
+    "byObject": {
+        "en": "use object",
+        "de": "Objekt verwenden",
+        "ru": "использовать объект",
+        "pt": "usar objeto",
+        "nl": "gebruik object",
+        "fr": "utiliser un objet",
+        "it": "usa l'oggetto",
+        "es": "usar objeto",
+        "pl": "użyj obiektu",
+        "zh-cn": "使用对象"
+    },
+    "refreshTimeInterval": {
+        "en": "time interval for updating (user-defined)",
+        "de": "Zeitintervall für die Aktualisierung (benutzerdefiniert)",
+        "ru": "интервал времени для обновления (определяется пользователем)",
+        "pt": "intervalo de tempo para atualização (definido pelo usuário)",
+        "nl": "tijdsinterval voor bijwerken (door gebruiker gedefinieerd)",
+        "fr": "intervalle de temps pour la mise à jour (défini par l'utilisateur)",
+        "it": "intervallo di tempo per l'aggiornamento (definito dall'utente)",
+        "es": "intervalo de tiempo para la actualización (definido por el usuario)",
+        "pl": "przedział czasu na aktualizację (zdefiniowany przez użytkownika)",
+        "zh-cn": "更新时间间隔（用户定义）"
+    },
+    "manualRefreshTrigger": {
+        "en": "boolean object for update",
+        "de": "Boolesches Objekt für die Aktualisierung",
+        "ru": "логический объект для обновления",
+        "pt": "objeto booleano para atualização",
+        "nl": "boolean object voor update",
+        "fr": "objet booléen pour la mise à jour",
+        "it": "oggetto booleano per l'aggiornamento",
+        "es": "objeto booleano para actualización",
+        "pl": "obiekt boolowski do aktualizacji",
+        "zh-cn": "用于更新的布尔对象"
+    }
 };
