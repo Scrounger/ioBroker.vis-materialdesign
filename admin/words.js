@@ -3569,5 +3569,17 @@ systemDictionary = {
         "es": "objeto booleano para actualización",
         "pl": "obiekt boolowski do aktualizacji",
         "zh-cn": "用于更新的布尔对象"
+    },
+    "lineSpanGaps": {
+        "en": "draw lines  between points with no data",
+        "de": "Linien zwischen Punkten ohne Daten zeichnen",
+        "ru": "рисовать линии между точками без данных",
+        "pt": "desenha linhas entre pontos sem dados",
+        "nl": "lijnen trekken tussen punten zonder gegevens",
+        "fr": "tracer des lignes entre les points sans données",
+        "it": "traccia linee tra punti senza dati",
+        "es": "dibujar líneas entre puntos sin datos",
+        "pl": "rysuj linie między punktami bez danych",
+        "zh-cn": "在没有数据的点之间画线"
     }
 };

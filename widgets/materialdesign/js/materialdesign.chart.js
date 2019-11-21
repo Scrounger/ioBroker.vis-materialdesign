@@ -271,6 +271,7 @@ vis.binds.materialdesign.chart = {
                                         pointHoverBorderColor: getValueFromData(data.attr('pointHoverColor' + i), getValueFromData(data.attr('dataColor' + i), (colorScheme) ? getValueFromData(colorScheme[i], globalColor) : globalColor)),
                                         pointHoverBackgroundColor: getValueFromData(data.attr('pointHoverColor' + i), getValueFromData(data.attr('dataColor' + i), (colorScheme) ? getValueFromData(colorScheme[i], globalColor) : globalColor)),
                                         yAxisID: 'yAxis_id_' + getNumberFromData(data.attr('commonYAxis' + i), i),
+                                        spanGaps: data.attr('lineSpanGaps' + i),
                                     }
                                 );
 
