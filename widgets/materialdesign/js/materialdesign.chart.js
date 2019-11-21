@@ -180,6 +180,8 @@ vis.binds.materialdesign.chart = {
         }
     },
     lineHistory: function (el, data) {
+        let logPrefix = `lineHistory[${data.wid}]:`;
+
         try {
             setTimeout(function () {
                 let myHelper = vis.binds.materialdesign.chart.helper;
@@ -210,7 +212,9 @@ vis.binds.materialdesign.chart = {
                 }
 
                 // manual refresh through dp
-                vis.states.bind(data.manualRefreshTrigger + '.ts', onChange);
+                if (getValueFromData(data.manualRefreshTrigger, null) !== null) {
+                    vis.states.bind(data.manualRefreshTrigger + '.ts', onChange);
+                }
 
                 if (data.refreshMethod === 'timeInterval') {
                     setInterval(function () {
@@ -249,11 +253,7 @@ vis.binds.materialdesign.chart = {
                             let myYAxis = [];
                             for (var i = 0; i <= result.length - 1; i++) {
 
-                                let dataArray = [];
-
-                                if (result[i]) {
-                                    dataArray = result[i].map(elm => ({ t: elm.ts, y: elm.val * getNumberFromData(data.attr('multiply' + i), 1) }));
-                                }
+                                let dataArray = myHelper.getPreparedData(result[i], data, i);
 
                                 myDatasets.push(
                                     {
@@ -472,6 +472,7 @@ vis.binds.materialdesign.chart = {
 
                 function onChange(e, newVal, oldVal) {
                     // value or timeinterval changed
+
                     if (myChart) {
                         progressBar.show();
 
@@ -485,7 +486,7 @@ vis.binds.materialdesign.chart = {
                             }
                         }
                         dataRangeStartTime = myHelper.intervals[timeInterval] ? new Date().getTime() - myHelper.intervals[timeInterval] : undefined;
-                        
+
                         let operations = [];
                         for (var i = 0; i <= data.dataCount; i++) {
                             if (getValueFromData(data.attr('oid' + i), null) !== null) {
@@ -497,11 +498,7 @@ vis.binds.materialdesign.chart = {
                             // execute all db queries -> getting all needed data at same time
 
                             for (var i = 0; i <= result.length - 1; i++) {
-                                let dataArray = [];
-
-                                if (result[i]) {
-                                    dataArray = result[i].map(elm => ({ t: elm.ts, y: elm.val * getNumberFromData(data.attr('multiply' + i), 1) }));
-                                }
+                                let dataArray = myHelper.getPreparedData(result[i], data, i);
 
                                 myChart.data.datasets[i].data = dataArray;
                             }
@@ -514,7 +511,7 @@ vis.binds.materialdesign.chart = {
                 };
             }, 1)
         } catch (ex) {
-            console.exception(`lineHistory[${data.wid}]: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`${logPrefix} ${ex.message}, stack: ${ex.stack}`);
         }
     },
     pie: function (el, data) {
@@ -876,5 +873,17 @@ vis.binds.materialdesign.chart.helper = {
                 }
             });
         });
+    },
+    getPreparedData: function (result, data, index) {
+        let dataArray = [];
+
+        if (result) {
+            dataArray = result.map(elm => ({
+                t: elm.ts,
+                y: (elm.val !== null) ? elm.val * getNumberFromData(data.attr('multiply' + index), 1) : null
+            }));
+        }
+
+        return dataArray;
     }
 }
