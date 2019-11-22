@@ -335,7 +335,9 @@ vis.binds.materialdesign.chart = {
                                             var meta = ci.getDatasetMeta(index);
 
                                             // hide / show yAxis 
-                                            myChart.options.scales.yAxes[index].display = !myChart.options.scales.yAxes[index].display;
+                                            if (getNumberFromData(data.attr('commonYAxis' + index), index) === index) {
+                                                myChart.options.scales.yAxes[index].display = !myChart.options.scales.yAxes[index].display;
+                                            }
 
                                             // See controller.isDatasetVisible comment
                                             meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
