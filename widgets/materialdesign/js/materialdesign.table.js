@@ -164,7 +164,9 @@ vis.binds.materialdesign.table = {
 
                 if (jsonData[row]) {
                     // col items is object
-                    for (var col = 0; col <= Object.keys(jsonData[row]).length - 1; col++) {
+                    let until = (Object.keys(jsonData[row]).length - 1 > data.countCols) ? data.countCols : Object.keys(jsonData[row]).length - 1;
+
+                    for (var col = 0; col <= until; col++) {
                         if (data.attr('showColumn' + col)) {
                             let textSize = getFontSize(data.attr('textSize' + col));
 
