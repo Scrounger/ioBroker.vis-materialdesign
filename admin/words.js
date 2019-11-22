@@ -3581,5 +3581,41 @@ systemDictionary = {
         "es": "dibujar líneas entre puntos sin datos",
         "pl": "rysuj linie między punktami bez danych",
         "zh-cn": "在没有数据的点之间画线"
-    }
+    },
+    "colorSwitchThumb": {
+        "en": "thumb color of switch",
+        "de": "Knopffarbe des Schalters",
+        "ru": "цвет большого пальца переключателя",
+        "pt": "polegar cor do interruptor",
+        "nl": "duim kleur van schakelaar",
+        "fr": "couleur du pouce de l'interrupteur",
+        "it": "colore del pollice dell'interruttore",
+        "es": "color del pulgar del interruptor",
+        "pl": "kolor kciuka przełącznika",
+        "zh-cn": "开关的拇指颜色"
+      },
+      "colorSwitchTrack": {
+        "en": "track color of switch",
+        "de": "Schieberfarbe des Schalters",
+        "ru": "отслеживать цвет переключателя",
+        "pt": "controlar a cor do interruptor",
+        "nl": "kleur van schakelaar bijhouden",
+        "fr": "suivre la couleur de l'interrupteur",
+        "it": "traccia il colore dell'interruttore",
+        "es": "seguimiento del color del interruptor",
+        "pl": "śledzić kolor przełącznika",
+        "zh-cn": "跟踪开关的颜色"
+      },
+      "colorSwitchHover": {
+        "en": "hover color of switch",
+        "de": "Schalterfarbe selektiert / hover",
+        "ru": "зависать цвет переключателя",
+        "pt": "pairar cor do interruptor",
+        "nl": "beweeg de kleur van de schakelaar",
+        "fr": "vol stationnaire de couleur",
+        "it": "passa il mouse sull'interruttore",
+        "es": "coloque el cursor sobre el interruptor",
+        "pl": "kolor wskaźnika przełącznika",
+        "zh-cn": "悬停开关颜色"
+      }
 };

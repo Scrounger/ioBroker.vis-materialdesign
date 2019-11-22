@@ -59,6 +59,11 @@
   --materialdesign-color-table-row-text-color: rgba(0, 0, 0, 0.87);
   --materialdesign-color-table-row-divider: rgba(0, 0, 0, 0.12);
 
+
+  --materialdesign-color-switch-on: #44739e;
+  --materialdesign-color-switch-off: #fff;
+  --materialdesign-color-switch-track: #000;
+  --materialdesign-color-switch-off-hover: #44739e;
 }
 
 /* Button style -> must defined here because of position bug in vis editor */
@@ -1097,4 +1102,37 @@ svg.materialdesign-button__icon {
       border-bottom-color: currentColor;
       transform: rotate(225deg);
   }
+}
+
+/* switch */
+
+.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay::before, .mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay::after {
+  /* hover */
+  background-color: var(--materialdesign-color-switch-off-hover);
+}
+
+.mdc-switch.mdc-switch--checked .mdc-switch__track {
+  background-color: var(--materialdesign-color-switch-on);
+  border-color: var(--materialdesign-color-switch-on);
+}
+.mdc-switch.mdc-switch--checked .mdc-switch__thumb {
+  background-color: var(--materialdesign-color-switch-on);
+  border-color: var(--materialdesign-color-switch-on);
+}
+
+@supports not (-ms-ime-align: auto) {
+  .mdc-switch__thumb-underlay::before, .mdc-switch__thumb-underlay::after {
+    /* @alternate */
+    background-color: var(--materialdesign-color-switch-on);
+  }
+}
+
+.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb {
+  background-color: var(--materialdesign-color-switch-off);
+  border-color: var(--materialdesign-color-switch-off);
+}
+
+.mdc-switch:not(.mdc-switch--checked) .mdc-switch__track {
+  background-color: var(--materialdesign-color-switch-track);
+  border-color: var(--materialdesign-color-switch-track);
 }

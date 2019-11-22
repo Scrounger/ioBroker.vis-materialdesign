@@ -165,7 +165,10 @@ vis.binds.materialdesign = {
 
             mdcSwitch.disabled = data.readOnly, false;
 
-            switchElement.style.setProperty("--mdc-theme-secondary", getValueFromData(data.colorSwitchTrue, ''));
+            switchElement.style.setProperty("--materialdesign-color-switch-on", getValueFromData(data.colorSwitchTrue, ''));
+            switchElement.style.setProperty("--materialdesign-color-switch-off", getValueFromData(data.colorSwitchThumb, ''));
+            switchElement.style.setProperty("--materialdesign-color-switch-track", getValueFromData(data.colorSwitchTrack, ''));
+            switchElement.style.setProperty("--materialdesign-color-switch-off-hover", getValueFromData(data.colorSwitchHover, ''));
 
             setSwitchState();
 
