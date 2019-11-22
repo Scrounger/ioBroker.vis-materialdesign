@@ -168,7 +168,7 @@ vis.binds.materialdesign.table = {
 
                     for (var col = 0; col <= until; col++) {
                         if (data.attr('showColumn' + col)) {
-                            let textSize = getFontSize(data.attr('textSize' + col));
+                            let textSize = getFontSize(data.attr('colTextSize' + col));
 
                             contentElements.push(getContentElement(col, Object.values(jsonData[row])[col], textSize, jsonData[row]));
                         }
@@ -215,7 +215,7 @@ vis.binds.materialdesign.table = {
                             text-align: ${data.attr('textAlign' + col)};${textSize.style}; 
                             padding-left: ${getNumberFromData(data.attr('padding_left' + col), 8)}px; 
                             padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; 
-                            color: ${getValueFromData(data.attr('textColor' + col), '')}; 
+                            color: ${getValueFromData(data.attr('colTextColor' + col), '')}; 
                             font-family: ${getValueFromData(data.attr('fontFamily' + col), '')}
                             ">
                                 ${prefix}${objValue}${suffix}

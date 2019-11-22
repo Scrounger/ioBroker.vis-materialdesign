@@ -2298,7 +2298,7 @@ systemDictionary = {
         "pl": "textAlign",
         "zh-cn": "textAlign"
     },
-    "textSize": {
+    "colTextSize": {
         "en": "textsize",
         "de": "Textgröße",
         "ru": "размер текста",
@@ -2346,7 +2346,7 @@ systemDictionary = {
         "pl": "rodzina czcionek",
         "zh-cn": "字体系列"
     },
-    "textColor": {
+    "colTextColor": {
         "en": "text color",
         "de": "Textfarbe",
         "ru": "цвет текста",
