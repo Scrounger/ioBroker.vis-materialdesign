@@ -3593,8 +3593,8 @@ systemDictionary = {
         "es": "color del pulgar del interruptor",
         "pl": "kolor kciuka przełącznika",
         "zh-cn": "开关的拇指颜色"
-      },
-      "colorSwitchTrack": {
+    },
+    "colorSwitchTrack": {
         "en": "track color of switch",
         "de": "Schieberfarbe des Schalters",
         "ru": "отслеживать цвет переключателя",
@@ -3605,8 +3605,8 @@ systemDictionary = {
         "es": "seguimiento del color del interruptor",
         "pl": "śledzić kolor przełącznika",
         "zh-cn": "跟踪开关的颜色"
-      },
-      "colorSwitchHover": {
+    },
+    "colorSwitchHover": {
         "en": "hover color of switch",
         "de": "Schalterfarbe selektiert / hover",
         "ru": "зависать цвет переключателя",
@@ -3617,5 +3617,29 @@ systemDictionary = {
         "es": "coloque el cursor sobre el interruptor",
         "pl": "kolor wskaźnika przełącznika",
         "zh-cn": "悬停开关颜色"
-      }
+    },
+    "columnWidth": {
+        "en": "column width (wordwrap must be active)",
+        "de": "Spaltenbreite (Zeilenumbruch muss aktiv sein)",
+        "ru": "ширина столбца (должен быть активен перенос слов)",
+        "pt": "largura da coluna (o wordwrap deve estar ativo)",
+        "nl": "kolombreedte (wordwrap moet actief zijn)",
+        "fr": "largeur de la colonne (le retour à la ligne doit être actif)",
+        "it": "larghezza colonna (wordwrap deve essere attivo)",
+        "es": "ancho de columna (el ajuste de texto debe estar activo)",
+        "pl": "szerokość kolumny (zawijanie słów musi być aktywne)",
+        "zh-cn": "列宽（自动换行必须激活）"
+    },
+    "colNoWrap": {
+        "en": "no wordwrap",
+        "de": "kein Zeilenumbruch",
+        "ru": "без переноса слов",
+        "pt": "nenhuma palavra",
+        "nl": "geen woordomloop",
+        "fr": "pas de word wrap",
+        "it": "nessun avvolgimento di parole",
+        "es": "sin wordwrap",
+        "pl": "bez zawijania tekstu",
+        "zh-cn": "没有自动换行"
+    }
 };

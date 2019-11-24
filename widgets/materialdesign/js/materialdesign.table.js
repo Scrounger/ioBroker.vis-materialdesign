@@ -31,7 +31,18 @@ vis.binds.materialdesign.table = {
             if (data.showHeader) {
                 for (var i = 0; i <= data.countCols; i++) {
                     if (data.attr('showColumn' + i)) {
-                        tableElement.push(`<th class="mdc-data-table__header-cell ${headerFontSize.class}" colIndex="${i}" role="columnheader" scope="col" style="text-align: ${data.attr('textAlign' + i)};${headerFontSize.style}; padding-left: ${getNumberFromData(data.attr('padding_left' + i), 8)}px; padding-right: ${getNumberFromData(data.attr('padding_right' + i), 8)}px; font-family: ${getValueFromData(data.headerFontFamily, '')}">${getValueFromData(data.attr('label' + i), 'col ' + i)}</th>`)
+                        tableElement.push(`<th class="mdc-data-table__header-cell ${headerFontSize.class}" 
+                                            colIndex="${i}" 
+                                            role="columnheader" 
+                                            scope="col" 
+                                            style="text-align: ${data.attr('textAlign' + i)};
+                                                ${headerFontSize.style}; 
+                                                padding-left: ${getNumberFromData(data.attr('padding_left' + i), 8)}px; 
+                                                padding-right: ${getNumberFromData(data.attr('padding_right' + i), 8)}px; 
+                                                font-family: ${getValueFromData(data.headerFontFamily, '')};
+                                                ${(getNumberFromData(data.attr('columnWidth' + i), null) !== null) ? `width: ${data.attr('columnWidth' + i)}px;` : ''};">
+                                                    ${getValueFromData(data.attr('label' + i), 'col ' + i)}
+                                            </th>`)
                     }
                 }
             }
@@ -216,7 +227,8 @@ vis.binds.materialdesign.table = {
                             padding-left: ${getNumberFromData(data.attr('padding_left' + col), 8)}px; 
                             padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; 
                             color: ${getValueFromData(data.attr('colTextColor' + col), '')}; 
-                            font-family: ${getValueFromData(data.attr('fontFamily' + col), '')}
+                            font-family: ${getValueFromData(data.attr('fontFamily' + col), '')};
+                            white-space: ${(data.attr('colNoWrap' + col)? 'nowrap': 'unset')};
                             ">
                                 ${prefix}${objValue}${suffix}
                         </td>`

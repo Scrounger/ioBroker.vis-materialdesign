@@ -954,6 +954,10 @@ svg.materialdesign-button__icon {
   background-color: var(--materialdesign-color-table-background);
 }
 
+.mdc-data-table__table {
+  white-space: unset;
+}
+
 .mdc-data-table__header-row {
   background-color: var(--materialdesign-color-table-header-row-background);
 }
