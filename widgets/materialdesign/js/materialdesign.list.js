@@ -11,7 +11,13 @@
 vis.binds.materialdesign.list = {
     initialize: function (data) {
         try {
-            let itemHeight = getValueFromData(data.listItemHeight, '', 'height: ', 'px !important;');
+
+            let listItemStyle = getValueFromData(data.listItemHeight, '', 'height: ', 'px !important;');
+
+            if (data.listType === 'buttonToggle_readonly') {
+                // remove pointer und clickable 
+                listItemStyle = listItemStyle + 'cursor: default; pointer-events: none;';
+            }
 
             let headerFontSize = getFontSize(data.listItemHeaderTextSize);
             let labelFontSize = getFontSize(data.listItemTextSize);
@@ -56,7 +62,7 @@ vis.binds.materialdesign.list = {
                 itemList.push(getListItemHeader(itemHeaderText, headerFontSize));
 
                 // generate Item -> mdc-list-item
-                let listItem = getListItem('standard', i, '', false, false, itemHeight, `data-oid="${data.attr('oid' + i)}"`, itemRole)
+                let listItem = getListItem('standard', i, '', false, false, listItemStyle, `data-oid="${data.attr('oid' + i)}"`, itemRole)
                     .replace(' mdc-list-item--activated', '');   // selected object not needed in list
 
                 // generate Item Label
@@ -152,7 +158,7 @@ vis.binds.materialdesign.list = {
             list.style.setProperty("--mdc-theme-secondary", getValueFromData(data.colorCheckBox, ''));
 
             if (!vis.editMode) {
-                mdcList.listen('MDCList:action', function (item) {                    
+                mdcList.listen('MDCList:action', function (item) {
                     let index = item.detail.index;
 
                     if (data.listType !== 'text') {
@@ -209,7 +215,7 @@ vis.binds.materialdesign.list = {
                         });
                     });
 
-                } else if (data.listType === 'buttonToggle') {
+                } else if (data.listType === 'buttonToggle' || data.listType === 'buttonToggle_readonly') {
                     let valOnLoading = vis.states.attr(data.attr('oid' + i) + '.val');
                     setLayout(i, valOnLoading);
 
