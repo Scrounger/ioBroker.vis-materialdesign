@@ -16,6 +16,7 @@ vis.binds.materialdesign.chart = {
         try {
             setTimeout(function () {
                 let myHelper = vis.binds.materialdesign.chart.helper;
+                myHelper.registerChartAreaPlugin();
 
                 let $this = $(el);
                 var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
@@ -88,6 +89,9 @@ vis.binds.materialdesign.chart = {
                         maintainAspectRatio: false,
                         layout: myHelper.getLayout(data),
                         legend: myHelper.getLegend(data),
+                        chartArea: {
+                            backgroundColor: getValueFromData(data.chartAreaBackgroundColor,''),
+                        },
                         scales: {
                             yAxes: [
                                 myHelper.get_Y_AxisObject(data.chartType, data.yAxisPosition, data.yAxisTitle, data.yAxisTitleColor, data.yAxisTitleFontFamily, data.yAxisTitleFontSize,
@@ -185,6 +189,8 @@ vis.binds.materialdesign.chart = {
         try {
             setTimeout(function () {
                 let myHelper = vis.binds.materialdesign.chart.helper;
+                myHelper.registerChartAreaPlugin();
+
                 var myChart;
 
                 let $this = $(el);
@@ -322,6 +328,9 @@ vis.binds.materialdesign.chart = {
                                 responsive: true,
                                 maintainAspectRatio: false,
                                 layout: myHelper.getLayout(data),
+                                chartArea: {
+                                    backgroundColor: getValueFromData(data.chartAreaBackgroundColor,''),
+                                },
                                 hover: {
                                     mode: 'nearest'
                                 },
@@ -521,6 +530,7 @@ vis.binds.materialdesign.chart = {
         try {
             setTimeout(function () {
                 let myHelper = vis.binds.materialdesign.chart.helper;
+                myHelper.registerChartAreaPlugin();
 
                 let $this = $(el);
                 var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
@@ -592,6 +602,9 @@ vis.binds.materialdesign.chart = {
                         layout: myHelper.getLayout(data),
                         legend: myHelper.getLegend(data),
                         cutoutPercentage: (data.chartType === 'doughnut') ? getNumberFromData(data.doughnutCutOut, 50) : 0,
+                        chartArea: {
+                            backgroundColor: getValueFromData(data.chartAreaBackgroundColor,''),
+                        },
                         tooltips: {
                             enabled: data.showTooltip,
                             backgroundColor: getValueFromData(data.tooltipBackgroundColor, 'black'),
@@ -888,5 +901,21 @@ vis.binds.materialdesign.chart.helper = {
         }
 
         return dataArray;
+    },
+    registerChartAreaPlugin: function () {
+        Chart.pluginService.register({
+            beforeDraw: function (chart, easing) {
+                if (chart.config.options.chartArea && chart.config.options.chartArea.backgroundColor) {
+                    var helpers = Chart.helpers;
+                    var ctx = chart.chart.ctx;
+                    var chartArea = chart.chartArea;
+
+                    ctx.save();
+                    ctx.fillStyle = chart.config.options.chartArea.backgroundColor;
+                    ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
+                    ctx.restore();
+                }
+            }
+        });
     }
 }

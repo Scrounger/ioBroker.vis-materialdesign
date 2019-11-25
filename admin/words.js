@@ -3641,5 +3641,17 @@ systemDictionary = {
         "es": "sin wordwrap",
         "pl": "bez zawijania tekstu",
         "zh-cn": "没有自动换行"
+    },
+    "chartAreaBackgroundColor": {
+        "en": "background color of diagram area",
+        "de": "Hintergrundfarbe des Diagrammbereichs",
+        "ru": "цвет фона области диаграммы",
+        "pt": "cor de fundo da área do diagrama",
+        "nl": "achtergrondkleur van diagramgebied",
+        "fr": "couleur de fond de la zone du diagramme",
+        "it": "colore di sfondo dell'area del diagramma",
+        "es": "color de fondo del área del diagrama",
+        "pl": "kolor tła obszaru diagramu",
+        "zh-cn": "图区域的背景色"
     }
 };
