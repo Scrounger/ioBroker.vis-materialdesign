@@ -14,7 +14,7 @@ vis.binds.materialdesign.list = {
 
             let listItemStyle = getValueFromData(data.listItemHeight, '', 'height: ', 'px !important;');
 
-            if (data.listType === 'buttonToggle_readonly' || data.listType === 'switch_readonly') {
+            if (data.listType === 'buttonToggle_readonly' || data.listType === 'checkbox_readonly' || data.listType === 'switch_readonly') {
                 // remove pointer und clickable 
                 listItemStyle = listItemStyle + 'cursor: default; pointer-events: none;';
             }
@@ -35,7 +35,7 @@ vis.binds.materialdesign.list = {
             let itemRole = '';
             if (data.listType === 'text') {
                 nonInteractive = ' mdc-list--non-interactive';
-            } else if (data.listType === 'checkbox' || data.listType === 'switch' || data.listType === 'switch_readonly') {
+            } else if (data.listType === 'checkbox' || data.listType === 'checkbox_readonly' || data.listType === 'switch' || data.listType === 'switch_readonly') {
                 itemRole = 'role="checkbox"';
             }
 
@@ -100,9 +100,9 @@ vis.binds.materialdesign.list = {
 
                 // generate Item Control Element
                 let itemControl = '';
-                if (data.listType === 'checkbox') {
-                    itemControl = `<div class="mdc-checkbox mdc-list-item__meta">
-                                        <input type="checkbox" class="mdc-checkbox__native-control" tabindex="-1" data-oid="${data.attr('oid' + i)}" itemindex="${i}">
+                if (data.listType === 'checkbox' || data.listType === 'checkbox_readonly') {
+                    itemControl = `<div class="mdc-checkbox ${(data.listType === 'checkbox_readonly') ? 'mdc-checkbox--disabled' : ''} mdc-list-item__meta">
+                                        <input type="checkbox" class="mdc-checkbox__native-control" tabindex="-1" data-oid="${data.attr('oid' + i)}" itemindex="${i}" />
                                         <div class="mdc-checkbox__background">
                                             <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
                                                 <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
@@ -196,8 +196,16 @@ vis.binds.materialdesign.list = {
             let itemCount = (data.listType === 'switch' || data.listType === 'switch_readonly') ? $this.find('.mdc-switch').length : mdcList.listElements.length;
 
             for (var i = 0; i <= itemCount - 1; i++) {
-                if (data.listType === 'checkbox' || data.listType === 'switch' || data.listType === 'switch_readonly') {
+                if (data.listType === 'checkbox' || data.listType === 'checkbox_readonly' || data.listType === 'switch' || data.listType === 'switch_readonly') {
                     if (data.listType === 'switch' || data.listType === 'switch_readonly') new mdc.switchControl.MDCSwitch($this.find('.mdc-switch').get(i));
+                    if (data.listType === 'checkbox' || data.listType === 'checkbox_readonly') {
+                        let mdcCheckBox = new mdc.checkbox.MDCCheckbox($this.find('.mdc-checkbox').get(i));
+
+                        if (data.listType === 'checkbox_readonly') {
+                            // TODO: Bug -> fixed in mdc 4.0.0  
+                            // mdcCheckBox.disabled = true;
+                        }
+                    }
 
                     let valOnLoading = vis.states.attr(data.attr('oid' + i) + '.val');
                     mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(i, valOnLoading);
