@@ -3030,6 +3030,18 @@ systemDictionary = {
         "pl": "dołącz tekst do wartości osi",
         "zh-cn": "将文本附加到轴值"
     },
+    "yAxisValueAppendText": {
+        "en": "append text to axis values",
+        "de": "Text an Achsenwerte anhängen",
+        "ru": "добавить текст к значениям оси",
+        "pt": "anexar texto aos valores do eixo",
+        "nl": "tekst toevoegen aan aswaarden",
+        "fr": "ajouter du texte aux valeurs des axes",
+        "it": "accoda il testo ai valori degli assi",
+        "es": "agregar texto a los valores del eje",
+        "pl": "dołącz tekst do wartości osi",
+        "zh-cn": "将文本附加到轴值"
+    },
     "group_yAxisLayoutForData": {
         "en": "y-axis layout for data",
         "de": "y-Achsen-Layout für Datensatz",

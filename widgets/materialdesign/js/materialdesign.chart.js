@@ -90,7 +90,7 @@ vis.binds.materialdesign.chart = {
                         layout: myHelper.getLayout(data),
                         legend: myHelper.getLegend(data),
                         chartArea: {
-                            backgroundColor: getValueFromData(data.chartAreaBackgroundColor,''),
+                            backgroundColor: getValueFromData(data.chartAreaBackgroundColor, ''),
                         },
                         scales: {
                             yAxes: [
@@ -304,6 +304,10 @@ vis.binds.materialdesign.chart = {
                                             fontFamily: getValueFromData(data.yAxisValueFontFamily, undefined),
                                             fontSize: getNumberFromData(data.yAxisValueFontSize, undefined),
                                             padding: getNumberFromData(data.yAxisValueDistanceToAxis, 0),
+                                            callback: function (value, index, values) {
+                                                let axisId = this.id.replace('yAxis_id_','');
+                                                return `${value}${getValueFromData(data.attr('yAxisValueAppendText' + axisId), '')}`.split('\\n');
+                                            }
                                         },
                                         gridLines: {
                                             display: true,
@@ -329,7 +333,7 @@ vis.binds.materialdesign.chart = {
                                 maintainAspectRatio: false,
                                 layout: myHelper.getLayout(data),
                                 chartArea: {
-                                    backgroundColor: getValueFromData(data.chartAreaBackgroundColor,''),
+                                    backgroundColor: getValueFromData(data.chartAreaBackgroundColor, ''),
                                 },
                                 hover: {
                                     mode: 'nearest'
@@ -603,7 +607,7 @@ vis.binds.materialdesign.chart = {
                         legend: myHelper.getLegend(data),
                         cutoutPercentage: (data.chartType === 'doughnut') ? getNumberFromData(data.doughnutCutOut, 50) : 0,
                         chartArea: {
-                            backgroundColor: getValueFromData(data.chartAreaBackgroundColor,''),
+                            backgroundColor: getValueFromData(data.chartAreaBackgroundColor, ''),
                         },
                         tooltips: {
                             enabled: data.showTooltip,
