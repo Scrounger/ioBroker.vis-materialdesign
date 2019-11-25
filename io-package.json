@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.2.4",
+        "version": "0.2.7",
         "news": {
+            "0.2.7": {
+                "en": "see changelog",
+                "de": "siehe Changelog",
+                "ru": "см. список изменений",
+                "pt": "veja changelog",
+                "nl": "zie changelog",
+                "fr": "voir changelog",
+                "it": "vedi il log delle modifiche",
+                "es": "ver registro de cambios",
+                "pl": "patrz dziennik zmian",
+                "zh-cn": "看到变更日志"
+            },
             "0.2.4": {
                 "en": "Round Slider Widget bug fixes. Line History Chart Widget null value bug fixes, tooltip  and translation improved",
                 "de": "Round Slider Widget Fehlerbehebung. Line History Chart Widget Fehlerbehebung (null Werte, Tooltip) und Übersetzung verbessert",
@@ -14,7 +26,7 @@
                 "es": "Corrección de errores del widget Slider redondo. Gráfico de historial de línea Widget valor nulo correcciones de errores, información sobre herramientas y traducción mejorada",
                 "pl": "Poprawki błędów w Round Slider Widget. Poprawki błędów wartości wykresu historii linii, poprawione podpowiedzi i tłumaczenie",
                 "zh-cn": "Round Slider Widget错误修复。线历史记录图表小部件的空值错误修复，工具提示和翻译得到改进"
-              },            
+            },
             "0.2.0": {
                 "en": "Round-Slider, Icon Button Adition, Button Adition, Line History Chart, Table, Dialog iFrame, Dialog View and Select Widgets added",
                 "de": "Round-Slider, Icon Button Adition, Button Adition, Line History Chart, Table, Dialog iFrame, Dialog View and Select Widgets hinzugefügt",
