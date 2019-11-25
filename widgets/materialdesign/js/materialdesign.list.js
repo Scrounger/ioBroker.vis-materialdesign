@@ -14,7 +14,7 @@ vis.binds.materialdesign.list = {
 
             let listItemStyle = getValueFromData(data.listItemHeight, '', 'height: ', 'px !important;');
 
-            if (data.listType === 'buttonToggle_readonly') {
+            if (data.listType === 'buttonToggle_readonly' || data.listType === 'switch_readonly') {
                 // remove pointer und clickable 
                 listItemStyle = listItemStyle + 'cursor: default; pointer-events: none;';
             }
@@ -35,7 +35,7 @@ vis.binds.materialdesign.list = {
             let itemRole = '';
             if (data.listType === 'text') {
                 nonInteractive = ' mdc-list--non-interactive';
-            } else if (data.listType === 'checkbox' || data.listType === 'switch') {
+            } else if (data.listType === 'checkbox' || data.listType === 'switch' || data.listType === 'switch_readonly') {
                 itemRole = 'role="checkbox"';
             }
 
@@ -109,8 +109,8 @@ vis.binds.materialdesign.list = {
                                             </svg>
                                         </div>
                                     </div>`;
-                } else if (data.listType === 'switch') {
-                    itemControl = `<div class="mdc-switch mdc-list-item__meta">
+                } else if (data.listType === 'switch' || data.listType === 'switch_readonly') {
+                    itemControl = `<div class="mdc-switch ${(data.listType === 'switch_readonly') ? 'mdc-switch--disabled' : ''} mdc-list-item__meta">
                                         <div class="mdc-switch__track"></div>
                                         <div class="mdc-switch__thumb-underlay">
                                             <div class="mdc-switch__thumb">
@@ -193,11 +193,11 @@ vis.binds.materialdesign.list = {
                 });
             }
 
-            let itemCount = (data.listType === 'switch') ? $this.find('.mdc-switch').length : mdcList.listElements.length;
+            let itemCount = (data.listType === 'switch' || data.listType === 'switch_readonly') ? $this.find('.mdc-switch').length : mdcList.listElements.length;
 
             for (var i = 0; i <= itemCount - 1; i++) {
-                if (data.listType === 'checkbox' || data.listType === 'switch') {
-                    if (data.listType === 'switch') new mdc.switchControl.MDCSwitch($this.find('.mdc-switch').get(i));
+                if (data.listType === 'checkbox' || data.listType === 'switch' || data.listType === 'switch_readonly') {
+                    if (data.listType === 'switch' || data.listType === 'switch_readonly') new mdc.switchControl.MDCSwitch($this.find('.mdc-switch').get(i));
 
                     let valOnLoading = vis.states.attr(data.attr('oid' + i) + '.val');
                     mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(i, valOnLoading);
