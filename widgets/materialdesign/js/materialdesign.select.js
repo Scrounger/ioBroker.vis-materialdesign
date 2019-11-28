@@ -102,11 +102,19 @@ vis.binds.materialdesign.select = {
                 }
             }
 
+            let textFontSize = getFontSize(data.selectTextSize);
+
             selectElementList.push(`${selectElement}
                                         ${imageElement}
                                         <input type="hidden" name="enhanced-select">
                                         <i class="mdc-select__dropdown-icon"></i>
-                                        <div id="filled_enhanced" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="${labelledbyAttribute}"></div>
+                                        <div id="filled_enhanced" 
+                                            class="mdc-select__selected-text ${textFontSize.class}" 
+                                            role="button" 
+                                            aria-haspopup="listbox" 
+                                            aria-labelledby="${labelledbyAttribute}"
+                                            style="${textFontSize.style}; font-family: ${getValueFromData(data.selectTextFont, '')};"
+                                        ></div>
                                         <div class="mdc-select__menu mdc-menu mdc-menu-surface" style="${menuWidth}; z-index: ${getNumberFromData(data.z_index, 0)}">
                                             <ul class="mdc-list">
                                                 ${listElements.join('')}
@@ -138,6 +146,7 @@ vis.binds.materialdesign.select = {
                 select.style.setProperty("--materialdesign-color-select-hint_selected", getValueFromData(data.selectHintTextColorSelected, ''));
                 select.style.setProperty("--materialdesign-color-select-border", getValueFromData(data.selectBorderColor, ''));
                 select.style.setProperty("--materialdesign-color-select-border-selected", getValueFromData(data.selectBorderColorSelected, ''));
+                select.style.setProperty("--materialdesign-color-select-text", getValueFromData(data.selectTextColor, ''));
 
                 let colorDrawerBackground = getValueFromData(data.colorDrawerBackground, '');
                 list.style.setProperty("--materialdesign-color-drawer-background", colorDrawerBackground);

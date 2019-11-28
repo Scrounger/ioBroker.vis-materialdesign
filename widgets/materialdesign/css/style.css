@@ -40,10 +40,11 @@
 
   --materialdesign-color-select-background: transparent;
   --materialdesign-color-select-background-hover: rgba(0, 0, 0, 0.87);
-  --materialdesign-color-select-hint: rgba(0, 0, 0, 0.6);
+  --materialdesign-color-select-hint: #44739e;
   --materialdesign-color-select-hint_selected: #44739e;
   --materialdesign-color-select-border: rgba(0,0,0,.38);
   --materialdesign-color-select-border-selected: #44739e;
+  --materialdesign-color-select-text: rgba(0, 0, 0, 0.87);;
   
   --materialdesign-color-dialog-background: #fff;
   --materialdesign-color-dialog-button-background: transparent;
@@ -920,6 +921,11 @@ svg.materialdesign-button__icon {
 /* hint selected */
 .mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label {
   color: var(--materialdesign-color-select-hint_selected);
+}
+
+.mdc-select:not(.mdc-select--disabled) .mdc-select__native-control,
+.mdc-select:not(.mdc-select--disabled) .mdc-select__selected-text {
+  color: var(--materialdesign-color-select-text);
 }
 
 /* Dialog */
