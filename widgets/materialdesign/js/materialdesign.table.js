@@ -208,8 +208,11 @@ vis.binds.materialdesign.table = {
                             for (var i = 0; i <= regex.length - 1; i++) {
                                 let objName = regex[i].replace('#[obj.', '').replace(']', '');
 
-                                str = str.replace(regex[i], rowData[objName]);
-
+                                if (objName && rowData[objName]) {
+                                    str = str.replace(regex[i], rowData[objName]);
+                                } else {
+                                    str = str.replace(regex[i],'');
+                                }
                             }
                         }
 
@@ -228,7 +231,7 @@ vis.binds.materialdesign.table = {
                             padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; 
                             color: ${getValueFromData(data.attr('colTextColor' + col), '')}; 
                             font-family: ${getValueFromData(data.attr('fontFamily' + col), '')};
-                            white-space: ${(data.attr('colNoWrap' + col)? 'nowrap': 'unset')};
+                            white-space: ${(data.attr('colNoWrap' + col) ? 'nowrap' : 'unset')};
                             ">
                                 ${prefix}${objValue}${suffix}
                         </td>`
