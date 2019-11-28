@@ -64,9 +64,9 @@ vis.binds.materialdesign.roundslider = {
             slider.get(0).style.setProperty('--round-slider-path-width', getNumberFromData(data.sliderWidth, 3));
 
             slider.get(0).style.setProperty('background', getValueFromData(data.colorSliderBg, ''));
-            slider.get(0).style.setProperty('--round-slider-path-color', getValueFromData(data.pathColor, ''));
-            slider.get(0).style.setProperty('--round-slider-bar-color', getValueFromData(data.barColor, '#44739e'));
-            slider.get(0).style.setProperty('--round-slider-handle-color', getValueFromData(data.handleColor, ''));
+            slider.get(0).style.setProperty('--round-slider-path-color', getValueFromData(data.colorAfterThumb, ''));
+            slider.get(0).style.setProperty('--round-slider-bar-color', getValueFromData(data.colorBeforeThumb, '#44739e'));
+            slider.get(0).style.setProperty('--round-slider-handle-color', getValueFromData(data.colorThumb, ''));
 
 
             setSliderState();
