@@ -602,6 +602,54 @@ systemDictionary = {
         "pl": "tło",
         "zh-cn": "背景"
     },
+    "colorBeforeThumb": {
+        "en": "color before regulator",
+        "de": "Farbe vor dem Regler",
+        "ru": "цвет перед регулятором",
+        "pt": "cor antes do regulador",
+        "nl": "kleur voor regulator",
+        "fr": "couleur avant régulateur",
+        "it": "colore prima del regolatore",
+        "es": "color antes del regulador",
+        "pl": "kolor przed regulatorem",
+        "zh-cn": "调节器前的颜色"
+    },
+    "colorThumb": {
+        "en": "color of regulator",
+        "de": "Farbe des Reglers",
+        "ru": "цвет регулятора",
+        "pt": "cor do regulador",
+        "nl": "kleur van de regelaar",
+        "fr": "couleur du régulateur",
+        "it": "colore del regolatore",
+        "es": "color del regulador",
+        "pl": "kolor regulatora",
+        "zh-cn": "调节器的颜色"
+    },
+    "colorAfterThumb": {
+        "en": "color after regulator",
+        "de": "Farbe nach Regler",
+        "ru": "цвет после регулятора",
+        "pt": "cor após regulador",
+        "nl": "kleur na regulator",
+        "fr": "couleur après régulateur",
+        "it": "colore dopo il regolatore",
+        "es": "color después del regulador",
+        "pl": "kolor po regulatorze",
+        "zh-cn": "调节剂后颜色"
+    },
+    "colorTrackMarker": {
+        "en": "color of markings",
+        "de": "Farbe der Markierungen",
+        "ru": "цвет маркировки",
+        "pt": "cor das marcações",
+        "nl": "kleur van markeringen",
+        "fr": "couleur des marques",
+        "it": "colore delle marcature",
+        "es": "color de las marcas",
+        "pl": "kolor oznaczeń",
+        "zh-cn": "标记颜色"
+    },
     "colorCheckBox": {
         "en": "active checkbox color",
         "de": "Farbe des aktiven Kontrollkästchens",

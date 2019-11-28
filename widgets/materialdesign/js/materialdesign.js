@@ -374,8 +374,10 @@ vis.binds.materialdesign = {
                 let sliderElement = $this.find('.mdc-slider').get(0);
 
                 // Colors
-                sliderElement.style.setProperty("--mdc-theme-secondary", getValueFromData(data.colorSlider, ''));
-                $this.find('.mdc-slider__track-container').css('background-color', getValueFromData(data.colorSliderBg, ''));
+                sliderElement.style.setProperty("--materialdesign-color-slider-before-thumb", getValueFromData(data.colorBeforeThumb, ''));
+                sliderElement.style.setProperty("--materialdesign-color-slider-thumb", getValueFromData(data.colorThumb, ''));
+                sliderElement.style.setProperty("--materialdesign-color-slider-after-thumb", getValueFromData(data.colorAfterThumb, ''));
+                sliderElement.style.setProperty("--materialdesign-color-slider-track-marker", getValueFromData(data.colorTrackMarker, ''));
 
                 if (data.knobSize === 'knobMedium') {
                     $this.find('.mdc-slider__thumb').attr('width', '31').attr('height', '31').css('margin-left', '-5px').css('margin-top', '-5px');

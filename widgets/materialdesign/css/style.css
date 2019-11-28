@@ -59,11 +59,15 @@
   --materialdesign-color-table-row-text-color: rgba(0, 0, 0, 0.87);
   --materialdesign-color-table-row-divider: rgba(0, 0, 0, 0.12);
 
-
   --materialdesign-color-switch-on: #44739e;
   --materialdesign-color-switch-off: #fff;
   --materialdesign-color-switch-track: #000;
   --materialdesign-color-switch-off-hover: #44739e;
+
+  --materialdesign-color-slider-before-thumb: #44739e;
+  --materialdesign-color-slider-thumb: #44739e;
+  --materialdesign-color-slider-after-thumb: rgba(161, 161, 161, 0.26);
+  --materialdesign-color-slider-track-marker: #44739e;
 }
 
 /* Button style -> must defined here because of position bug in vis editor */
@@ -587,10 +591,6 @@ svg.materialdesign-button__icon {
 }
 .materialdesign-icon-button.mdc-ripple-upgraded {
   --mdc-ripple-fg-opacity: 0.12;
-}
-
-.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track-container{
-  background-color: rgba(161, 161, 161, 0.26)
 }
 
 /* Default progress settings */
@@ -1139,4 +1139,31 @@ svg.materialdesign-button__icon {
 .mdc-switch:not(.mdc-switch--checked) .mdc-switch__track {
   background-color: var(--materialdesign-color-switch-track);
   border-color: var(--materialdesign-color-switch-track);
+}
+
+/* slider */
+
+.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track {
+  background-color: var(--materialdesign-color-slider-before-thumb);
+}
+
+.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track-container {
+  background-color: var(--materialdesign-color-slider-after-thumb);
+}
+
+.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track-marker::after,
+.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track-marker-container::after {
+  background-color: var(--materialdesign-color-slider-track-marker);
+}
+
+.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__thumb {
+  fill: var(--materialdesign-color-slider-thumb);
+  stroke: var(--materialdesign-color-slider-thumb);
+}
+
+.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__focus-ring {
+  fill: var(--materialdesign-color-slider-thumb);
+}
+.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__pin {
+  fill: var(--materialdesign-color-slider-thumb);
 }
