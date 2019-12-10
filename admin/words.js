@@ -4337,5 +4337,113 @@ systemDictionary = {
         "es": "color de fondo del elemento de lista",
         "pl": "kolor tła elementu listy",
         "zh-cn": "列表项背景色"
+    },
+    "labelSubTextHeight": {
+        "en": "sub title height",
+        "de": "Höhe des Untertitels",
+        "ru": "высота подзаголовка",
+        "pt": "altura do subtítulo",
+        "nl": "hoogte ondertitel",
+        "fr": "hauteur du sous-titre",
+        "it": "altezza sottotitolo",
+        "es": "altura del subtítulo",
+        "pl": "wysokość podtytułu",
+        "zh-cn": "字幕高度"
+    },
+    "labelTextHeight": {
+        "en": "text height",
+        "de": "Texthöhe",
+        "ru": "высота текста",
+        "pt": "altura do texto",
+        "nl": "tekst hoogte",
+        "fr": "hauteur du texte",
+        "it": "altezza del testo",
+        "es": "Altura del texto",
+        "pl": "wysokość tekstu",
+        "zh-cn": "文字高度"
+    },
+    "cardStyle": {
+        "en": "style",
+        "de": "Stil",
+        "ru": "стиль",
+        "pt": "estilo",
+        "nl": "stijl",
+        "fr": "style",
+        "it": "stile",
+        "es": "estilo",
+        "pl": "styl",
+        "zh-cn": "样式"
+    },
+    "cardLayout": {
+        "en": "layout",
+        "de": "Layout",
+        "ru": "расположение",
+        "pt": "disposição",
+        "nl": "lay-out",
+        "fr": "disposition",
+        "it": "disposizione",
+        "es": "diseño",
+        "pl": "układ",
+        "zh-cn": "布局"
+    },
+    "textFontSize": {
+        "en": "text size",
+        "de": "Textgröße",
+        "ru": "размер текста",
+        "pt": "Tamanho do texto",
+        "nl": "lettergrootte",
+        "fr": "taille du texte",
+        "it": "dimensione del testo",
+        "es": "tamano del texto",
+        "pl": "rozmiar czcionki",
+        "zh-cn": "字体大小"
+    },
+    "colorTitleSectionBackground": {
+        "en": "title background color",
+        "de": "Titel Hintergrundfarbe",
+        "ru": "цвет фона заголовка",
+        "pt": "cor de fundo do título",
+        "nl": "titel achtergrondkleur",
+        "fr": "couleur d'arrière-plan du titre",
+        "it": "colore di sfondo del titolo",
+        "es": "color de fondo del título",
+        "pl": "kolor tła tytułu",
+        "zh-cn": "标题背景色"
+    },
+    "colorTextSectionBackground": {
+        "en": "text background color",
+        "de": "Texthintergrundfarbe",
+        "ru": "цвет фона текста",
+        "pt": "cor de fundo do texto",
+        "nl": "tekst achtergrondkleur",
+        "fr": "couleur d'arrière-plan du texte",
+        "it": "colore di sfondo del testo",
+        "es": "color de fondo del texto",
+        "pl": "kolor tła tekstu",
+        "zh-cn": "文字背景颜色"
+    },
+    "colorTitle": {
+        "en": "title color",
+        "de": "Titelfarbe",
+        "ru": "цвет заголовка",
+        "pt": "cor do título",
+        "nl": "titel kleur",
+        "fr": "couleur du titre",
+        "it": "colore del titolo",
+        "es": "color del título",
+        "pl": "kolor tytułu",
+        "zh-cn": "标题颜色"
+    },
+    "colorSubtitle": {
+        "en": "subtitle color",
+        "de": "Untertitelfarbe",
+        "ru": "цвет субтитров",
+        "pt": "cor da legenda",
+        "nl": "ondertitel kleur",
+        "fr": "couleur des sous-titres",
+        "it": "colore dei sottotitoli",
+        "es": "color de subtítulos",
+        "pl": "kolor napisów",
+        "zh-cn": "字幕颜色"
     }
 };
