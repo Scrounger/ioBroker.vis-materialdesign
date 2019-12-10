@@ -78,6 +78,7 @@ vis.binds.materialdesign.table = {
                 let table = $this.find('.mdc-data-table').get(0);
 
                 table.style.setProperty("--materialdesign-color-table-background", getValueFromData(data.colorBackground, ''));
+                table.style.setProperty("--materialdesign-color-table-border", getValueFromData(data.borderColor, ''));
                 table.style.setProperty("--materialdesign-color-table-header-row-background", getValueFromData(data.colorHeaderRowBackground, ''));
                 table.style.setProperty("--materialdesign-color-table-header-row-text-color", getValueFromData(data.colorHeaderRowText, ''));
                 table.style.setProperty("--materialdesign-color-table-row-background", getValueFromData(data.colorRowBackground, ''));

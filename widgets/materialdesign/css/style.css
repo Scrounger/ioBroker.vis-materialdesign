@@ -54,6 +54,7 @@
   --materialdesign-color-dialog-title: #44739e;
 
   --materialdesign-color-table-background: #fff;
+  --materialdesign-color-table-border: rgba(0,0,0,.12);
   --materialdesign-color-table-header-row-background: inherit;
   --materialdesign-color-table-header-row-text-color: #44739e;
   --materialdesign-color-table-row-background: inherit;
@@ -958,6 +959,7 @@ svg.materialdesign-button__icon {
 /* Table */
 .mdc-data-table {
   background-color: var(--materialdesign-color-table-background);
+  border-color: var(--materialdesign-color-table-border)
 }
 
 .mdc-data-table__table {
