@@ -4145,5 +4145,77 @@ systemDictionary = {
         "es": "Diseño de fondo: color activo del fondo del texto",
         "pl": "Układ tła: aktywny kolor tła tekstu",
         "zh-cn": "背景布局：文本背景的活动颜色"
+    },
+    "openNewWindow": {
+        "en": "open in new window",
+        "de": "in neuem Fenster öffnen",
+        "ru": "открыть в новом окне",
+        "pt": "abrir em uma nova janela",
+        "nl": "openen in een nieuw venster",
+        "fr": "ouvrir dans une nouvelle fenetre",
+        "it": "apri in una nuova finestra",
+        "es": "abrir en Nueva ventana",
+        "pl": "otworzyć w nowym oknie",
+        "zh-cn": "在新窗口中打开"
+    },
+    "labelWidth": {
+        "en": "text width",
+        "de": "Textbreite",
+        "ru": "ширина текста",
+        "pt": "largura do texto",
+        "nl": "tekst breedte",
+        "fr": "largeur du texte",
+        "it": "larghezza del testo",
+        "es": "ancho de texto",
+        "pl": "szerokość tekstu",
+        "zh-cn": "文字宽度"
+    },
+    "toggleType": {
+        "en": "type of toggle",
+        "de": "Art der Umschaltung",
+        "ru": "тип переключения",
+        "pt": "tipo de alternância",
+        "nl": "type schakelaar",
+        "fr": "type de bascule",
+        "it": "tipo di interruttore",
+        "es": "tipo de alternar",
+        "pl": "rodzaj przełączania",
+        "zh-cn": "切换类型"
+    },
+    "valueOff": {
+        "en": "value for off",
+        "de": "Wert für aus",
+        "ru": "значение для выкл",
+        "pt": "valor para off",
+        "nl": "waarde voor uit",
+        "fr": "valeur pour off",
+        "it": "valore per spento",
+        "es": "valor para off",
+        "pl": "wartość wyłączona",
+        "zh-cn": "折价"
+    },
+    "valueOn": {
+        "en": "value for on",
+        "de": "Wert für ein",
+        "ru": "значение для на",
+        "pt": "valor para on",
+        "nl": "waarde voor aan",
+        "fr": "valeur pour le",
+        "it": "valore per on",
+        "es": "valor para el",
+        "pl": "wartość dla włączenia",
+        "zh-cn": "的价值"
+    },
+    "stateIfNotTrueValue": {
+        "en": "state if value unequal to 'on' condition",
+        "de": "Zustand, wenn der Wert nicht der Bedingung 'Ein' entspricht",
+        "ru": "укажите, если значение не равно условию 'on'",
+        "pt": "declare se o valor for desigual para a condição 'on'",
+        "nl": "staat als waarde ongelijk aan 'aan' voorwaarde",
+        "fr": "indiquer si la valeur est différente de la condition «on»",
+        "it": "indica se il valore non è uguale alla condizione \"on\"",
+        "es": "indicar si el valor es desigual a la condición 'on'",
+        "pl": "podaj, jeśli wartość jest nierówna do warunku „on”",
+        "zh-cn": "说明值是否等于“ on”条件"
     }
 };
