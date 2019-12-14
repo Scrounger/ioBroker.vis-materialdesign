@@ -33,8 +33,7 @@ vis.binds.materialdesign.select = {
                 selectElement = '<div class="mdc-select mdc-select--outlined" style="width: 100%;">'
                 labelledbyAttribute = 'shaped_filled_enhanced shaped_filled_enhanced-label';
 
-                labelElement = `<div class="mdc-line-ripple"></div>
-                                <div class="mdc-notched-outline">
+                labelElement = `<div class="mdc-notched-outline">
                                     <div class="mdc-notched-outline__leading"></div>
                                     <div class="mdc-notched-outline__notch">
                                         <label class="mdc-floating-label">${getValueFromData(data.hintText, '')}</label>
@@ -105,22 +104,24 @@ vis.binds.materialdesign.select = {
             let textFontSize = getFontSize(data.selectTextSize);
 
             selectElementList.push(`${selectElement}
-                                        ${imageElement}
-                                        <input type="hidden" name="enhanced-select">
-                                        <i class="mdc-select__dropdown-icon"></i>
-                                        <div id="filled_enhanced" 
-                                            class="mdc-select__selected-text ${textFontSize.class}" 
-                                            role="button" 
-                                            aria-haspopup="listbox" 
-                                            aria-labelledby="${labelledbyAttribute}"
-                                            style="${textFontSize.style}; font-family: ${getValueFromData(data.selectTextFont, '')};"
-                                        ></div>
+                                        <div class="mdc-select__anchor">
+                                            ${imageElement}
+                                            <i class="mdc-select__dropdown-icon"></i>
+                                            <div id="filled_enhanced" 
+                                                class="mdc-select__selected-text ${textFontSize.class}" 
+                                                role="button" 
+                                                aria-haspopup="listbox" 
+                                                aria-labelledby="${labelledbyAttribute}"
+                                                style="${textFontSize.style}; font-family: ${getValueFromData(data.selectTextFont, '')};">
+                                            </div>
+                                            ${labelElement}
+                                        </div>
                                         <div class="mdc-select__menu mdc-menu mdc-menu-surface" style="${menuWidth}; z-index: ${getNumberFromData(data.z_index, 0)}">
                                             <ul class="mdc-list">
                                                 ${listElements.join('')}
                                             </ul>
                                         </div>
-                                        ${labelElement}
+                                        
                                     </div>`);
 
             return selectElementList.join('');

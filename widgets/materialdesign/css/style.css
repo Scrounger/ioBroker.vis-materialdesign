@@ -864,8 +864,8 @@ svg.materialdesign-button__icon {
 }
 
 /* mdc-Select */
-.mdc-select__menu.mdc-menu{
-  max-height: 100% !important;
+.mdc-select__anchor {
+  width: 100%;
 }
 
 .mdc-select:not(.mdc-select--disabled){
