@@ -54,7 +54,7 @@ vis.binds.materialdesign.select = {
 
                 if (image != null || imageTrue != null) {
                     selectElement = $($.parseHTML(selectElement)).addClass('mdc-select--with-leading-icon').get(0).outerHTML.replace('</div>', '');
-                    imageElement = `<img class="material-icons mdc-select__icon" tabindex="0" role="button" src="${image}" />`;
+                    imageElement = `<img class="mdc-select__icon" tabindex="0" role="button" src="${image}" />`;
                 }
 
                 listElements.push(`${getListItem('standard', 0, '', false, false, iconHeight, '', '', false)}
@@ -98,7 +98,7 @@ vis.binds.materialdesign.select = {
 
                 if (imageExists) {
                     selectElement = $($.parseHTML(selectElement)).addClass('mdc-select--with-leading-icon').get(0).outerHTML.replace('</div>', '');
-                    imageElement = `<img class="material-icons mdc-select__icon" tabindex="0" role="button" src="${initialeImage}" />`;
+                    imageElement = `<img class="mdc-select__icon" tabindex="0" role="button" src="${initialeImage}" />`;
                 }
             }
 
@@ -182,18 +182,18 @@ vis.binds.materialdesign.select = {
                         if (val) {
                             mdcSelect.selectedIndex = 1;
                             mdcList.selectedIndex = 1;
-                            $this.find('.material-icons').attr('src', getValueFromData(data.imageTrue, ''))
+                            $this.find('.mdc-select__icon').attr('src', getValueFromData(data.imageTrue, ''))
                         } else {
                             mdcSelect.selectedIndex = 0;
                             mdcList.selectedIndex = 0;
-                            $this.find('.material-icons').attr('src', getValueFromData(data.image, ''))
+                            $this.find('.mdc-select__icon').attr('src', getValueFromData(data.image, ''))
                         }
                     } else {
                         for (var i = 0; i <= data.values; i++) {
                             if (val.toString() === getValueFromData(data.attr('value' + i), '').toString()) {
                                 mdcSelect.selectedIndex = i;
                                 mdcList.selectedIndex = i;
-                                $this.find('.material-icons').attr('src', getValueFromData(data.attr('menuIcon' + i), ''))
+                                $this.find('.mdc-select__icon').attr('src', getValueFromData(data.attr('menuIcon' + i), ''))
 
                                 break;
                             }
