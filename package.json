@@ -25,7 +25,9 @@
     "gulp": "^4.0.2",
     "mocha": "^6.1.4",
     "chai": "^4.2.0",
-    "material-components-web": "^3.2.0"
+    "material-components-web": "^3.2.0",
+    "chart.js": "^2.9.0",
+    "@thomasloven/round-slider": "0.3.7"
   },
   "main": "widgets/materialdesign.html",
   "scripts": {
