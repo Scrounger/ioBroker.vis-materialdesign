@@ -25,7 +25,7 @@
     "gulp": "^4.0.2",
     "mocha": "^6.1.4",
     "chai": "^4.2.0",
-    "material-components-web": "^3.2.0",
+    "material-components-web": "^4.0.0",
     "chart.js": "^2.9.3",
     "@thomasloven/round-slider": "0.3.7"
   },
