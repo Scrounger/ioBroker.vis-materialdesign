@@ -202,8 +202,7 @@ vis.binds.materialdesign.list = {
                         let mdcCheckBox = new mdc.checkbox.MDCCheckbox($this.find('.mdc-checkbox').get(i));
 
                         if (data.listType === 'checkbox_readonly') {
-                            // TODO: Bug -> fixed in mdc 4.0.0  
-                            // mdcCheckBox.disabled = true;
+                            mdcCheckBox.disabled = true;
                         }
                     }
 
