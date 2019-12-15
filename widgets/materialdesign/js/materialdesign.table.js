@@ -53,8 +53,9 @@ vis.binds.materialdesign.table = {
             tableElement.push(`<tbody class="mdc-data-table__content">`);
 
             // adding Content
+            console.log(JSON.stringify(vis.states.attr(data.table_oid + '.val')))
             if (getValueFromData(data.oid, null) !== null) {
-                tableElement.push(vis.binds.materialdesign.table.getContentElements(vis.states.attr(data.oid + '.val'), data));
+                tableElement.push(vis.binds.materialdesign.table.getContentElements(vis.states.attr(data.table_oid + '.val'), data));
             } else {
                 tableElement.push(vis.binds.materialdesign.table.getContentElements(data.dataJson, data));
             }
@@ -96,48 +97,42 @@ vis.binds.materialdesign.table = {
                     let colIndex = $(this).attr('colIndex');
                     let sortASC = true;
 
-                    let jsonString = '';
+                    let jsonData = [];
                     if (getValueFromData(data.oid, null) !== null) {
-                        jsonString = vis.states.attr(data.oid + '.val');
+                        jsonData = vis.binds.materialdesign.table.getJsonData(vis.states.attr(data.oid + '.val'));
                     } else {
-                        jsonString = data.dataJson
+                        jsonData = JSON.parse(data.dataJson)
                     }
 
-                    try {
-                        let jsonData = JSON.parse(jsonString)
-                        let key = (getValueFromData(data.attr('sortKey' + colIndex), null) !== null) ? data.attr('sortKey' + colIndex) : Object.keys(jsonData[0])[colIndex];
+                    let key = (getValueFromData(data.attr('sortKey' + colIndex), null) !== null) ? data.attr('sortKey' + colIndex) : Object.keys(jsonData[0])[colIndex];
 
-                        if ($(this).attr('sort')) {
-                            if ($(this).attr('sort') === 'ASC') {
-                                sortASC = false;
-                                $(this).attr('sort', 'DESC');
-                                ($(this).text().includes('▾') || $(this).text().includes('▴')) ?
-                                    $(this).text($(this).text().replace('▾', '▴')) : $(this).text($(this).text() + '▴');
-                            } else {
-                                sortASC = true;
-                                $(this).attr('sort', 'ASC');
-                                ($(this).text().includes('▾') || $(this).text().includes('▴')) ?
-                                    $(this).text($(this).text().replace('▴', '▾')) : $(this).text($(this).text() + '▾');
-                            }
+                    if ($(this).attr('sort')) {
+                        if ($(this).attr('sort') === 'ASC') {
+                            sortASC = false;
+                            $(this).attr('sort', 'DESC');
+                            ($(this).text().includes('▾') || $(this).text().includes('▴')) ?
+                                $(this).text($(this).text().replace('▾', '▴')) : $(this).text($(this).text() + '▴');
                         } else {
-                            // sort order is not defined -> sortASC
                             sortASC = true;
                             $(this).attr('sort', 'ASC');
-                            $(this).text($(this).text() + '▾');
+                            ($(this).text().includes('▾') || $(this).text().includes('▴')) ?
+                                $(this).text($(this).text().replace('▴', '▾')) : $(this).text($(this).text() + '▾');
                         }
-
-                        $('.mdc-data-table__header-cell').each(function () {
-                            if ($(this).attr('colIndex') !== colIndex) {
-                                $(this).text($(this).text().replace('▴', '').replace('▾', ''));
-                            }
-                        });
-
-                        $this.find('.mdc-data-table__content').empty();
-                        $this.find('.mdc-data-table__content').append(vis.binds.materialdesign.table.getContentElements(null, data, sortByKey(jsonData, key, sortASC)));      //TODO: sort key by user defined
-
-                    } catch (err) {
-                        console.error(`handle: ${jsonString}, error: ${err.message}`);
+                    } else {
+                        // sort order is not defined -> sortASC
+                        sortASC = true;
+                        $(this).attr('sort', 'ASC');
+                        $(this).text($(this).text() + '▾');
                     }
+
+                    $('.mdc-data-table__header-cell').each(function () {
+                        if ($(this).attr('colIndex') !== colIndex) {
+                            $(this).text($(this).text().replace('▴', '').replace('▾', ''));
+                        }
+                    });
+
+                    $this.find('.mdc-data-table__content').empty();
+                    $this.find('.mdc-data-table__content').append(vis.binds.materialdesign.table.getContentElements(null, data, sortByKey(jsonData, key, sortASC)));      //TODO: sort key by user defined
 
                     function sortByKey(array, key, sortASC) {
                         return array.sort(function (a, b) {
@@ -162,11 +157,7 @@ vis.binds.materialdesign.table = {
         let contentElements = [];
 
         if (jsonData === null) {
-            try {
-                jsonData = JSON.parse(input)
-            } catch (err) {
-                console.error(`input: ${input}, error: ${err.message}`);
-            }
+            jsonData = vis.binds.materialdesign.table.getJsonData(input);
         }
 
         if (jsonData != null) {
@@ -212,7 +203,7 @@ vis.binds.materialdesign.table = {
                                 if (objName && rowData[objName]) {
                                     str = str.replace(regex[i], rowData[objName]);
                                 } else {
-                                    str = str.replace(regex[i],'');
+                                    str = str.replace(regex[i], '');
                                 }
                             }
                         }
@@ -240,5 +231,20 @@ vis.binds.materialdesign.table = {
 
             return contentElements.join('');
         }
+    },
+    getJsonData: function (input) {
+        let jsonData = [];
+
+        if (input && typeof input === 'string') {
+            try {
+                jsonData = JSON.parse(input)
+            } catch (err) {
+                console.error(`input: ${input}, error: ${err.message}`);
+            }
+        } else {
+            jsonData = input;
+        }
+
+        return jsonData;
     }
 };
