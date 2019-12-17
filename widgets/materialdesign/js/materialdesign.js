@@ -456,60 +456,68 @@ vis.binds.materialdesign = {
 
             const mdcProgress = new mdc.linearProgress.MDCLinearProgress(progressElement);
 
-            var min = getValueFromData(data.min, 0);
-            var max = getValueFromData(data.max, 1);
-            var unit = getValueFromData(data.valueLabelUnit, '');
-            var decimals = getValueFromData(data.valueMaxDecimals, 0);
+            setTimeout(function () {
 
-            mdcProgress.reverse = data.reverse;
+                // since mdc 4.0.0, current progress is styled over border-top property
+                let widgetHeight = window.getComputedStyle($this.context, null).height;
+                let currentProgressEl = $this.find('.mdc-linear-progress__bar-inner');
+                currentProgressEl.css('border-top', `${widgetHeight} solid`);
 
-            var color = getValueFromData(data.colorProgress, '');
-            var colorOneCondition = getValueFromData(data.colorOneCondition, 0);
-            var colorOne = getValueFromData(data.colorOne, '');
-            var colorTwoCondition = getValueFromData(data.colorTwoCondition, 0);
-            var colorTwo = getValueFromData(data.colorTwo, '');
+                var min = getValueFromData(data.min, 0);
+                var max = getValueFromData(data.max, 1);
+                var unit = getValueFromData(data.valueLabelUnit, '');
+                var decimals = getValueFromData(data.valueMaxDecimals, 0);
+
+                mdcProgress.reverse = data.reverse;
+
+                var color = getValueFromData(data.colorProgress, '');
+                var colorOneCondition = getValueFromData(data.colorOneCondition, 0);
+                var colorOne = getValueFromData(data.colorOne, '');
+                var colorTwoCondition = getValueFromData(data.colorTwoCondition, 0);
+                var colorTwo = getValueFromData(data.colorTwo, '');
 
 
-            if (colorOne === '') colorOne = color;
-            if (colorTwo === '') colorTwo = color;
+                if (colorOne === '') colorOne = color;
+                if (colorTwo === '') colorTwo = color;
 
-            setProgressState();
-
-            vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
                 setProgressState();
-            });
 
-            function setProgressState() {
-                var val = vis.states.attr(oid + '.val');
+                vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
+                    setProgressState();
+                });
 
-                // Falls quellen boolean ist
-                if (val === true || val === 'true') val = max;
-                if (val === false || val === 'false') val = min;
+                function setProgressState() {
+                    var val = vis.states.attr(oid + '.val');
 
-                val = parseFloat(val);
+                    // Falls quellen boolean ist
+                    if (val === true || val === 'true') val = max;
+                    if (val === false || val === 'false') val = min;
 
-                if (isNaN(val)) val = min;
-                if (val < min) val = min;
-                if (val > max) val = max;
+                    val = parseFloat(val);
 
-                let simRange = 100;
-                let range = max - min;
-                let factor = simRange / range;
-                val = Math.floor((val - min) * factor);
+                    if (isNaN(val)) val = min;
+                    if (val < min) val = min;
+                    if (val > max) val = max;
 
-                mdcProgress.progress = val / 100;
+                    let simRange = 100;
+                    let range = max - min;
+                    let factor = simRange / range;
+                    val = Math.floor((val - min) * factor);
 
-                let valueLabel = Math.round(vis.states.attr(oid + '.val') * Math.pow(10, decimals)) / Math.pow(10, decimals)
-                $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html('&nbsp;' + valueLabel + unit + '&nbsp;');
+                    mdcProgress.progress = val / 100;
 
-                if (valueLabel > colorOneCondition && valueLabel <= colorTwoCondition) {
-                    $this.find('.mdc-linear-progress__bar-inner').css('background-color', colorOne)
-                } else if (valueLabel > colorTwoCondition) {
-                    $this.find('.mdc-linear-progress__bar-inner').css('background-color', colorTwo)
-                } else {
-                    $this.find('.mdc-linear-progress__bar-inner').css('background-color', color)
+                    let valueLabel = Math.round(vis.states.attr(oid + '.val') * Math.pow(10, decimals)) / Math.pow(10, decimals)
+                    $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html('&nbsp;' + valueLabel + unit + '&nbsp;');
+
+                    if (valueLabel > colorOneCondition && valueLabel <= colorTwoCondition) {
+                        $this.find('.mdc-linear-progress__bar-inner').css('border-color', colorOne)
+                    } else if (valueLabel > colorTwoCondition) {
+                        $this.find('.mdc-linear-progress__bar-inner').css('border-color', colorTwo)
+                    } else {
+                        $this.find('.mdc-linear-progress__bar-inner').css('border-color', color)
+                    }
                 }
-            }
+            }, 1);
         } catch (ex) {
             console.exception(`mdcProgress [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
