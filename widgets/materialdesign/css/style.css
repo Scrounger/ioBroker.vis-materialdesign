@@ -973,6 +973,7 @@ svg.materialdesign-button__icon {
 .mdc-data-table__header-cell {
   color: var(--materialdesign-color-table-header-row-text-color);
   cursor: pointer;
+  height: auto;
 }
 
 .mdc-data-table__row {
@@ -982,6 +983,7 @@ svg.materialdesign-button__icon {
 
 .mdc-data-table__cell {
   color: var(--materialdesign-color-table-row-text-color);
+  height: auto;
 }
 
 .material-progress-circular-container {
