@@ -53,9 +53,8 @@ vis.binds.materialdesign.table = {
             tableElement.push(`<tbody class="mdc-data-table__content">`);
 
             // adding Content
-            console.log(JSON.stringify(vis.states.attr(data.table_oid + '.val')))
             if (getValueFromData(data.oid, null) !== null) {
-                tableElement.push(vis.binds.materialdesign.table.getContentElements(vis.states.attr(data.table_oid + '.val'), data));
+                tableElement.push(vis.binds.materialdesign.table.getContentElements(vis.states.attr(data.oid + '.val'), data));
             } else {
                 tableElement.push(vis.binds.materialdesign.table.getContentElements(data.dataJson, data));
             }
@@ -99,7 +98,7 @@ vis.binds.materialdesign.table = {
 
                     let jsonData = [];
                     if (getValueFromData(data.oid, null) !== null) {
-                        jsonData = vis.binds.materialdesign.table.getJsonData(vis.states.attr(data.oid + '.val'));
+                        jsonData = vis.binds.materialdesign.table.getJsonData(vis.states.attr(data.oid + '.val'), data);
                     } else {
                         jsonData = JSON.parse(data.dataJson)
                     }
@@ -157,7 +156,7 @@ vis.binds.materialdesign.table = {
         let contentElements = [];
 
         if (jsonData === null) {
-            jsonData = vis.binds.materialdesign.table.getJsonData(input);
+            jsonData = vis.binds.materialdesign.table.getJsonData(input, data);
         }
 
         if (jsonData != null) {
@@ -232,7 +231,7 @@ vis.binds.materialdesign.table = {
             return contentElements.join('');
         }
     },
-    getJsonData: function (input) {
+    getJsonData: function (input, data) {
         let jsonData = [];
 
         if (input && typeof input === 'string') {
@@ -243,6 +242,22 @@ vis.binds.materialdesign.table = {
             }
         } else {
             jsonData = input;
+
+            if (!Array.isArray(jsonData)) {
+                // convert to array
+                jsonData = Object.keys(jsonData).map(function (_) { return jsonData[_]; });
+
+                if (data.oid.includes('ical') && data.oid.includes('.table')) {
+                    // sepcial format for ical adapter
+                    let tmp = [];
+                    for (var i = 0; i <= Object.keys(jsonData).length - 1; i++) {
+                        if (jsonData[i]._data) {
+                            tmp.push(jsonData[i]._data);
+                        }
+                    }
+                    jsonData = tmp;
+                }
+            }
         }
 
         return jsonData;
