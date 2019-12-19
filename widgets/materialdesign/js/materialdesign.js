@@ -461,7 +461,7 @@ vis.binds.materialdesign = {
                 // since mdc 4.0.0, current progress is styled over border-top property
                 let widgetHeight = window.getComputedStyle($this.context, null).height;
                 let currentProgressEl = $this.find('.mdc-linear-progress__bar-inner');
-                currentProgressEl.css('border-top', `${widgetHeight} solid`);
+                currentProgressEl.css('border-top', `${widgetHeight} solid`).css('-webkit-border-top', `${widgetHeight} solid`);
 
                 var min = getValueFromData(data.min, 0);
                 var max = getValueFromData(data.max, 1);
