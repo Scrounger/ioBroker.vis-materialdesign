@@ -19,7 +19,7 @@ if (vis.editMode) {
 
 // this code can be placed directly in materialdesign.html
 vis.binds.materialdesign = {
-    version: "0.2.13",
+    version: "0.2.15",
     showVersion: function () {
         if (vis.binds["materialdesign"].version) {
             console.log('Version vis-materialdesign: ' + vis.binds["materialdesign"].version);
