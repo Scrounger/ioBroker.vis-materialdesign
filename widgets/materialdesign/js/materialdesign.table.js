@@ -247,16 +247,14 @@ vis.binds.materialdesign.table = {
                 // convert to array
                 jsonData = Object.keys(jsonData).map(function (_) { return jsonData[_]; });
 
-                if (data.oid.includes('ical') && data.oid.includes('.table')) {
-                    // sepcial format for ical adapter
-                    let tmp = [];
-                    for (var i = 0; i <= Object.keys(jsonData).length - 1; i++) {
-                        if (jsonData[i]._data) {
-                            tmp.push(jsonData[i]._data);
-                        }
+                // extract data (json is diffrent to vis)
+                let tmp = [];
+                for (var i = 0; i <= Object.keys(jsonData).length - 1; i++) {
+                    if (jsonData[i]._data) {
+                        tmp.push(jsonData[i]._data);
                     }
-                    jsonData = tmp;
                 }
+                jsonData = tmp;
             }
         }
 
