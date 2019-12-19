@@ -461,7 +461,8 @@ vis.binds.materialdesign = {
                 // since mdc 4.0.0, current progress is styled over border-top property
                 let widgetHeight = window.getComputedStyle($this.context, null).height;
                 let currentProgressEl = $this.find('.mdc-linear-progress__bar-inner');
-                currentProgressEl.css('border-top', `${widgetHeight} solid`).css('-webkit-border-top', `${widgetHeight} solid`);
+                $this.find('.mdc-linear-progress__bar-inner').css('border-top', `${widgetHeight} solid`).css('-webkit-border-top', `${widgetHeight} solid`);
+                console.log('Fuuu');
 
                 var min = getValueFromData(data.min, 0);
                 var max = getValueFromData(data.max, 1);
@@ -517,7 +518,7 @@ vis.binds.materialdesign = {
                         $this.find('.mdc-linear-progress__bar-inner').css('border-color', color)
                     }
                 }
-            }, 1);
+            }, 100);
         } catch (ex) {
             console.exception(`mdcProgress [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
