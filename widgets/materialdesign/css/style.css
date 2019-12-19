@@ -600,6 +600,12 @@ svg.materialdesign-button__icon {
   height: 100%;
 }
 
+.mdc-linear-progress__bar-inner {
+  border-top: 200px solid;
+  border-top-color: #44739e;
+}
+
+
 /* Card Layout */
 .materialdesign-html-card.mdc-card{
   border-radius: 4px;
