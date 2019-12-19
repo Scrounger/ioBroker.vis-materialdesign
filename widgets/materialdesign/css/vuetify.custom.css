@@ -1,4 +1,5 @@
-/* Slider */
+/** Ripples */
+/** Elements */
 .theme--light.v-slider .v-slider__track-background,
 .theme--light.v-slider .v-slider__track-fill,
 .theme--light.v-slider .v-slider__thumb {
@@ -190,7 +191,9 @@
 }
 
 .v-slider--vertical {
-  height: 100%;
+  /* min-height: 150px; */
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 .v-slider--vertical .v-slider__track-container {
   height: 100%;
@@ -278,14 +281,12 @@
 }
 .v-application--is-ltr .v-input__slider--vertical {
   flex-direction: column-reverse;
-  height: 100%;
 }
 .v-application--is-rtl .v-input__slider--vertical {
   flex-direction: column;
 }
 .v-input__slider--vertical .v-input__slot, .v-input__slider--vertical .v-input__prepend-outer, .v-input__slider--vertical .v-input__append-outer {
   margin: 0;
-  height: 100%
 }
 .v-input__slider--vertical .v-messages {
   display: none;
@@ -294,11 +295,3 @@
 .v-input--has-state .v-slider__track-background {
   opacity: 0.4;
 }
-
-.v-input__control{
-    height: 100%;
-}
-
-.v-application--wrap {
-    height: 100%;
-  }
