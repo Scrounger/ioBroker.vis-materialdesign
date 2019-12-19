@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.14"
+    version: "0.2.13"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -19,7 +19,7 @@ if (vis.editMode) {
 
 // this code can be placed directly in materialdesign.html
 vis.binds.materialdesign = {
-    version: "0.2.14",
+    version: "0.2.13",
     showVersion: function () {
         if (vis.binds["materialdesign"].version) {
             console.log('Version vis-materialdesign: ' + vis.binds["materialdesign"].version);
@@ -462,7 +462,6 @@ vis.binds.materialdesign = {
                 let widgetHeight = window.getComputedStyle($this.context, null).height;
                 let currentProgressEl = $this.find('.mdc-linear-progress__bar-inner');
                 $this.find('.mdc-linear-progress__bar-inner').css('border-top', `${widgetHeight} solid`).css('-webkit-border-top', `${widgetHeight} solid`);
-                console.log('Fuuu');
 
                 var min = getValueFromData(data.min, 0);
                 var max = getValueFromData(data.max, 1);
@@ -518,7 +517,7 @@ vis.binds.materialdesign = {
                         $this.find('.mdc-linear-progress__bar-inner').css('border-color', color)
                     }
                 }
-            }, 100);
+            }, 250);
         } catch (ex) {
             console.exception(`mdcProgress [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
