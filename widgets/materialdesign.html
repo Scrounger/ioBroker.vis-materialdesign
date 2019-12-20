@@ -619,10 +619,13 @@
         data-vis-name="Vuetify Slider"
         data-vis-update-style="true"
         data-vis-beta="true"
-        data-vis-attrs="manual/custom,materialdesign.editorManualLink,slider;donate/custom,materialdesign.editorBmc;oid;oid-working;orientation[horizontal]/select,horizontal,vertical;min;max;step[1];showTicks[no]/select,no,yes,always;tickSize/number;showThumbLabel[no]/select,no,yes,always;thumbSize/number;vibrateOnMobilDevices[50]/number;"
-        data-vis-attrs0="group.color;colorBeforeThumb/color;colorThumb/color;colorAfterThumb/color;">
+        data-vis-attrs="manual/custom,materialdesign.editorManualLink,slider;donate/custom,materialdesign.editorBmc;oid;oid-working;orientation[horizontal]/select,horizontal,vertical;min;max;step[1];vibrateOnMobilDevices[50]/number;"
+        data-vis-attrs0="group.tickLayout;showTicks[no]/select,no,yes,always;tickSize/number;tickColorBefore/color;tickColorAfter/color;"
+        data-vis-attrs1="group.color;colorBeforeThumb/color;colorThumb/color;colorAfterThumb/color;"
+        data-vis-attrs2="group.label;prepandText;showValueLabel[true]/checkbox;valueLabelUnit;valueLabelMin/html;valueLabelMax/html;valueLessThan/number;textForValueLessThan/html;valueGreaterThan/number;textForValueGreaterThan/html;valueLabelWidth[50]/slider,0,200,1;"
+        data-vis-attrs3="group.thumbLabelLayout;showThumbLabel[no]/select,no,yes,always;thumbSize/number;thumbBackgroundColor/color;thumbFontColor/color;thumbFontSize/number;thumbFontFamily/fontname;useLabelRules/checkbox;">
 
-        <div class="vis-widget materialdesign-slider-vertical <%== this.data.attr('class') %>" style="width: 50px; height: 180px; overflow:visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.slider.vertical(el, data) %>>
+        <div class="vis-widget materialdesign-slider-vertical <%== this.data.attr('class') %>" style="width: 50px; height: 180px; overflow:visible !important; display: flex; align-items: center;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.slider.vertical(el, data) %>>
 
         </div>
 </script>
