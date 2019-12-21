@@ -330,7 +330,8 @@ vis.binds.materialdesign = {
                 let sliderConstructor = '';
                 if (!discrete) {
                     sliderConstructor =
-                        `<div class="mdc-slider" tabindex="0" role="slider" style="<%= colorSlider %>" aria-valuemin="${data.min}" aria-valuemax="${data.max}" aria-valuenow="${valueOnLoading}" data-step="${data.step}">
+                        `<span style="color:red"><b>Will be removed in next Version! Please use the new slider!</b></span>
+                        <div class="mdc-slider" tabindex="0" role="slider" style="<%= colorSlider %>" aria-valuemin="${data.min}" aria-valuemax="${data.max}" aria-valuenow="${valueOnLoading}" data-step="${data.step}">
                             <div class="mdc-slider__track-container">
                                 <div class="mdc-slider__track" style="transform: scaleX(${pctComplete});"></div>
                             </div>
@@ -343,7 +344,8 @@ vis.binds.materialdesign = {
                         </div>`;
                 } else {
                     sliderConstructor =
-                        `<div class="mdc-slider mdc-slider--discrete ${showMarker}" tabindex="0" role="slider" aria-valuemin="${data.min}" aria-valuemax="${data.max}" aria-valuenow="${valueOnLoading}" data-step="${data.step}">
+                    `<span style="color:red"><b>Will be removed in next Version! Please use the new slider!</b></span>
+                        <div class="mdc-slider mdc-slider--discrete ${showMarker}" tabindex="0" role="slider" aria-valuemin="${data.min}" aria-valuemax="${data.max}" aria-valuenow="${valueOnLoading}" data-step="${data.step}">
                         <div class="mdc-slider__track-container">
                             <div class="mdc-slider__track" style="transform: scaleX(${pctComplete});"></div>
                             <div class="mdc-slider__track-marker-container"></div>
