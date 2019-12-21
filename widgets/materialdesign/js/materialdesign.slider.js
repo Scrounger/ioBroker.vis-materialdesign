@@ -38,6 +38,7 @@ vis.binds.materialdesign.slider = {
                                 :step="step"
                                 :ticks="ticks"
                                 :tick-size="tickSize"
+                                :tick-labels="tickLabels"
                                 :thumb-label="thumbLabel"
                                 :thumb-size="thumbSize"
                                 :loader-height="loaderHeight"
@@ -86,6 +87,7 @@ vis.binds.materialdesign.slider = {
                             step: getNumberFromData(data.step, 1),
                             ticks: showTicks,
                             tickSize: getNumberFromData(data.tickSize, 1),
+                            tickLabels: (getValueFromData(data.tickLabels, null) !== null) ? data.tickLabels.split(',') : [],
                             thumbLabel: showThumbLabel,
                             thumbSize: getNumberFromData(data.thumbSize, 32),
                             loaderHeight: '30px',
@@ -123,8 +125,8 @@ vis.binds.materialdesign.slider = {
                 $this.context.style.setProperty("--vue-slider-thumb-label-font-size", getValueFromData(data.thumbFontSize, '12', '', 'px'));
                 $this.find('.v-slider__thumb-label').css('background-color', getValueFromData(data.thumbBackgroundColor, getValueFromData(data.colorThumb, defaultColor)));
 
-                $this.context.style.setProperty("--vue-slider-tick-before-color", getValueFromData(data.tickColorBefore,''));
-                $this.context.style.setProperty("--vue-slider-tick-after-color", getValueFromData(data.tickColorAfter,''));
+                $this.context.style.setProperty("--vue-slider-tick-before-color", getValueFromData(data.tickColorBefore, ''));
+                $this.context.style.setProperty("--vue-slider-tick-after-color", getValueFromData(data.tickColorAfter, ''));
 
                 // Slider Initialiserung setzen
                 setSliderState();
