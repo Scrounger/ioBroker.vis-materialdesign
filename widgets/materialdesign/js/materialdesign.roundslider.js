@@ -12,6 +12,7 @@ vis.binds.materialdesign.roundslider = {
     handle: function (el, data) {
         try {
             let $this = $(el);
+            let workingId = $this.attr('data-oid-working');
 
             let valueOnLoading = vis.states.attr(data.oid + '.val');
 
@@ -75,10 +76,8 @@ vis.binds.materialdesign.roundslider = {
                 setSliderState()
             });
 
-            vis.states.bind(data.wid + '.val', function (e, newVal, oldVal) {
-                if (!newVal) {
-                    setSliderState();
-                }
+            vis.states.bind(workingId + '.val', function (e, newVal, oldVal) {
+                setSliderState();
             });
 
             slider.bind('value-changing', function (ev) {
@@ -87,11 +86,15 @@ vis.binds.materialdesign.roundslider = {
 
             slider.bind('value-changed', function (ev) {
                 let changedVal = parseFloat(ev.target.__value);
-                vis.setValue(data.oid, changedVal);
+
+                if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
+                    vis.setValue(data.oid, changedVal);
+                    setSliderState();
+                }
             });
 
             function setSliderState(setVisValue = true, val = 0) {
-                if (!vis.states.attr(data.wid + '.val')) {
+                if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
 
                     if (setVisValue) {
                         val = vis.states.attr(data.oid + '.val');
