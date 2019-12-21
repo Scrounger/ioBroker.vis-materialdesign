@@ -103,7 +103,7 @@ vis.binds.materialdesign.slider = {
                     },
                     methods: {
                         changeEvent() {
-                            if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false') {
+                            if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
                                 vis.setValue(data.oid, this.value);
                             }
                             setSliderState();
@@ -152,7 +152,7 @@ vis.binds.materialdesign.slider = {
                 });
 
                 function setSliderState(setVisValue = true, val = 0) {
-                    if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false') {
+                    if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
                         if (setVisValue) {
                             val = vis.states.attr(data.oid + '.val');
                             vueSlider.value = val;
@@ -176,7 +176,7 @@ vis.binds.materialdesign.slider = {
                         }
                     }
                 }
-            }, 1)
+            }, 10)
         } catch (ex) {
             console.exception(`vertical: error: ${ex.message}, stack: ${ex.stack}`);
         }

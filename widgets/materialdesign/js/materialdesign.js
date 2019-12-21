@@ -25,6 +25,13 @@ vis.binds.materialdesign = {
             console.log('Version vis-materialdesign: ' + vis.binds["materialdesign"].version);
             vis.binds["materialdesign"].version = null;
         }
+
+        setTimeout(function () {
+            if ($("#materialdesign-vuetify-container").length === 0) {
+                // intitialize Vuetify v-app application container
+                $("body").wrapInner('<v-app id="materialdesign-vuetify-container" data-app="true" />');
+            }
+        }, 1);
     },
     createWidget: function (widgetID, view, data, style) {
         var $div = $('#' + widgetID);
@@ -344,7 +351,7 @@ vis.binds.materialdesign = {
                         </div>`;
                 } else {
                     sliderConstructor =
-                    `<span style="color:red"><b>Will be removed in next Version! Please use the new slider!</b></span>
+                        `<span style="color:red"><b>Will be removed in next Version! Please use the new slider!</b></span>
                         <div class="mdc-slider mdc-slider--discrete ${showMarker}" tabindex="0" role="slider" aria-valuemin="${data.min}" aria-valuemax="${data.max}" aria-valuenow="${valueOnLoading}" data-step="${data.step}">
                         <div class="mdc-slider__track-container">
                             <div class="mdc-slider__track" style="transform: scaleX(${pctComplete});"></div>
