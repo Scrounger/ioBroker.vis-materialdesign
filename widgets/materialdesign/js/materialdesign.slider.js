@@ -48,6 +48,7 @@ vis.binds.materialdesign.slider = {
                                 always-dirty
                                 hide-details
                                 ${(getValueFromData(data.prepandText, null) !== null) ? `label="${data.prepandText}"` : ''}
+                                ${(data.readOnly) ? 'disabled' : ''}
                                 @change="changeEvent"
                                 @input="inputEvent"
                             >
