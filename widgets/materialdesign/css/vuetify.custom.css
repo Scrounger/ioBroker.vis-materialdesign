@@ -5092,9 +5092,10 @@
 }
 
 .v-slider--vertical {
-  min-height: 150px;
+  /* min-height: 150px; */
   margin-top: 12px;
   margin-bottom: 12px;
+  width: 100%;
 }
 .v-slider--vertical .v-slider__track-container {
   height: 100%;
