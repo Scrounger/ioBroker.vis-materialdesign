@@ -12,6 +12,7 @@ vis.binds.materialdesign.slider = {
     vertical: function (el, data) {
         try {
             let $this = $(el);
+            let workingId = $this.attr('data-oid-working');
             let defaultColor = '#44739e'
 
             let min = getValueFromData(data.min, 0);
@@ -102,8 +103,9 @@ vis.binds.materialdesign.slider = {
                     },
                     methods: {
                         changeEvent() {
-                            vis.setValue(data.oid, this.value);
-
+                            if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false') {
+                                vis.setValue(data.oid, this.value);
+                            }
                             setSliderState();
                         },
                         inputEvent() {
@@ -145,12 +147,12 @@ vis.binds.materialdesign.slider = {
                     setSliderState();
                 });
 
-                vis.states.bind(data.wid + '.val', function (e, newVal, oldVal) {
+                vis.states.bind(workingId + '.val', function (e, newVal, oldVal) {
                     setSliderState();
                 });
 
                 function setSliderState(setVisValue = true, val = 0) {
-                    if (!vis.states.attr(data.wid + '.val')) {
+                    if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false') {
                         if (setVisValue) {
                             val = vis.states.attr(data.oid + '.val');
                             vueSlider.value = val;
