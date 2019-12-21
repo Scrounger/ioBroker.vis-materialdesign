@@ -128,6 +128,15 @@ vis.binds.materialdesign.slider = {
                 $this.context.style.setProperty("--vue-slider-tick-before-color", getValueFromData(data.tickColorBefore, ''));
                 $this.context.style.setProperty("--vue-slider-tick-after-color", getValueFromData(data.tickColorAfter, ''));
 
+
+                if (data.knobSize === 'knobMedium') {
+                    $this.find('.v-slider__thumb').addClass('medium-size');
+                }
+
+                if (data.knobSize === 'knobBig') {
+                    $this.find('.v-slider__thumb').addClass('big-size');
+                }
+
                 // Slider Initialiserung setzen
                 setSliderState();
 

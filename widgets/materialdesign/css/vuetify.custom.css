@@ -4939,6 +4939,29 @@
       -ms-user-select: none;
           user-select: none;
 }
+
+.v-slider__thumb.medium-size {
+  width: 18px;
+  height: 18px;
+  left: -9px;
+}
+
+.v-slider__thumb.medium-size:before {
+  left: -9px;
+  top: -9px;
+}
+
+.v-slider__thumb.big-size {
+  width: 24px;
+  height: 24px;
+  left: -12px;
+}
+
+.v-slider__thumb.big-size:before {
+  left: -6px;
+  top: -6px;
+}
+
 .v-slider__thumb:before {
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   content: "";
