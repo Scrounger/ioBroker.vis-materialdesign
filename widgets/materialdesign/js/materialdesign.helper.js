@@ -24,7 +24,7 @@ vis.binds.materialdesign.helper = {
                 callBack(elementPath, $(elementPath));
             } else {
                 console.log('wait');
-                vis.binds.materialdesign.helper.waitForElement(elementPath, callBack);
+                vis.binds.materialdesign.helper.waitForElement(parent, elementPath, callBack);
             }
         }, 50)
     }
