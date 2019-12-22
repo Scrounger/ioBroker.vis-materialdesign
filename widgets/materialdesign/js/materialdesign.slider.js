@@ -28,36 +28,32 @@ vis.binds.materialdesign.slider =
 
             $this.append(`
             <div class="materialdesign-vuetifySlider" style="width: 100%">
-                <v-app id="vuetifyContainer">
-                    <v-container>
-                        <v-row class="v-row" style="align-items: center">
-                            <v-slider
-                                v-model="value"
-                                :vertical="vertical"
-                                :min="min"
-                                :max="max"
-                                :step="step"
-                                :ticks="ticks"
-                                :tick-size="tickSize"
-                                :tick-labels="tickLabels"
-                                :thumb-label="thumbLabel"
-                                :thumb-size="thumbSize"
-                                :loader-height="loaderHeight"
-                                :track-fill-color="trackFillColor"
-                                :thumb-color="thumbColor"
-                                :track-color="trackColor"                        
-                                always-dirty
-                                hide-details
-                                ${(getValueFromData(data.prepandText, null) !== null) ? `label="${data.prepandText}"` : ''}
-                                ${(data.readOnly) ? 'disabled' : ''}
-                                @change="changeEvent"
-                                @input="inputEvent"
-                            >
-                            </v-slider>
-                            ${(data.showValueLabel) ? `<span class="slider-value" style="width: ${getNumberFromData(data.valueLabelWidth, 0)}px; text-align:right; white-space: nowrap;">0</span>` : ''}
-                        </v-row>
-                    </v-container>
-                </v-app>
+                <div class="v-row" style="align-items: center">
+                    <v-slider
+                        v-model="value"
+                        :vertical="vertical"
+                        :min="min"
+                        :max="max"
+                        :step="step"
+                        :ticks="ticks"
+                        :tick-size="tickSize"
+                        :tick-labels="tickLabels"
+                        :thumb-label="thumbLabel"
+                        :thumb-size="thumbSize"
+                        :loader-height="loaderHeight"
+                        :track-fill-color="trackFillColor"
+                        :thumb-color="thumbColor"
+                        :track-color="trackColor"                        
+                        always-dirty
+                        hide-details
+                        ${(getValueFromData(data.prepandText, null) !== null) ? `label="${data.prepandText}"` : ''}
+                        ${(data.readOnly) ? 'disabled' : ''}
+                        @change="changeEvent"
+                        @input="inputEvent"
+                    >
+                    </v-slider>
+                    ${(data.showValueLabel) ? `<span class="slider-value" style="width: ${getNumberFromData(data.valueLabelWidth, 0)}px; text-align:right; white-space: nowrap;">0</span>` : ''}
+                </div>
             </div>`);
 
             let showTicks = false;
