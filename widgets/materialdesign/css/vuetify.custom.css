@@ -2976,6 +2976,7 @@
   letter-spacing: normal;
   max-width: 100%;
   text-align: left;
+  height: 100%;
 }
 .v-input .v-progress-linear {
   top: calc(100% - 1px);
@@ -3030,6 +3031,7 @@
   flex-wrap: wrap;
   min-width: 0;
   width: 100%;
+  height: 100%;
 }
 .v-input__icon {
   align-items: center;
@@ -3052,6 +3054,7 @@
   position: relative;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   width: 100%;
+  height: 100%;
 }
 .v-input--dense > .v-input__control > .v-input__slot {
   margin-bottom: 4px;
@@ -5045,6 +5048,7 @@
 
 .v-slider--horizontal {
   width: 100%;
+  height: 100%;
   min-height: 32px;
   margin-left: 8px;
   margin-right: 8px;
@@ -7394,13 +7398,14 @@
   width: 100%;
 }
 
-.row.v-row {
+.v-row {
   display: flex;
   flex-wrap: wrap;
   flex: 1 1 auto;
   margin-right: -12px;
   margin-left: -12px;
   width: 100%;
+  height: 100%;
 }
 
 .row--dense {

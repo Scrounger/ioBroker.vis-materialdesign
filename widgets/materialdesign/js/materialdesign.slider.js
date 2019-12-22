@@ -28,7 +28,7 @@ vis.binds.materialdesign.slider =
             let textForValueGreaterThan = getValueFromData(data.textForValueGreaterThan, null);
 
             $this.append(`
-            <div class="materialdesign-vuetifySlider" style="width: 100%">
+            <div class="materialdesign-vuetifySlider" style="width: 100%; height: 100%;">
                 <div class="v-row" style="align-items: center">
                     <v-slider
                         v-model="value"
