@@ -27,7 +27,7 @@ vis.binds.materialdesign.slider =
             let textForValueGreaterThan = getValueFromData(data.textForValueGreaterThan, null);
 
             $this.append(`
-            <div class="vuetifySlider" style="width: 100%">
+            <div class="materialdesign-vuetifySlider" style="width: 100%">
                 <v-app id="vuetifyContainer">
                     <v-container>
                         <v-row class="v-row" style="align-items: center">
@@ -76,107 +76,119 @@ vis.binds.materialdesign.slider =
                 showThumbLabel = 'always';
             }
 
-            setTimeout(function () {
-                let vueSlider = new Vue({
-                    el: $this.find('.vuetifySlider').get(0),
-                    vuetify: new Vuetify(),
-                    data() {
-                        return {
-                            value: vis.states.attr(data.oid + '.val'),
-                            vertical: (getValueFromData(data.orientation, 'horizontal') === 'horizontal') ? false : true,
-                            min: min,
-                            max: max,
-                            step: getNumberFromData(data.step, 1),
-                            ticks: showTicks,
-                            tickSize: getNumberFromData(data.tickSize, 1),
-                            tickLabels: (getValueFromData(data.tickLabels, null) !== null) ? data.tickLabels.split(',') : [],
-                            thumbLabel: showThumbLabel,
-                            thumbSize: getNumberFromData(data.thumbSize, 32),
-                            loaderHeight: '30px',
-                            trackFillColor: getValueFromData(data.colorBeforeThumb, defaultColor),
-                            thumbColor: getValueFromData(data.colorThumb, defaultColor),
-                            trackColor: getValueFromData(data.colorAfterThumb, 'rgba(161, 161, 161, 0.26)'),
-                        }
-                    },
-                    mounted: function () {
-                        //setSliderState();
-                    },
-                    methods: {
-                        changeEvent() {
-                            if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
-                                vis.setValue(data.oid, this.value);
+
+            vis.binds.materialdesign.helper.waitForElement($this, '.materialdesign-vuetifySlider', function () {
+                // Wait until element is loaded
+                if ($("#materialdesign-vuetify-container").length === 0) {
+                    // intitialize Vuetify v-app application container, if not exist
+                    $("#vis_container").wrapInner('<v-app id="materialdesign-vuetify-container" data-app="true" />');
+                    console.log('initialize vuetify v-app application container');
+                }
+
+                vis.binds.materialdesign.helper.waitForElement($("#vis_container"), '#materialdesign-vuetify-container', function () {
+                    // wait for Vuetify v-app application container is loaded
+
+                    let vueSlider = new Vue({
+                        el: $this.find('.materialdesign-vuetifySlider').get(0),
+                        vuetify: new Vuetify(),
+                        data() {
+                            return {
+                                value: vis.states.attr(data.oid + '.val'),
+                                vertical: (getValueFromData(data.orientation, 'horizontal') === 'horizontal') ? false : true,
+                                min: min,
+                                max: max,
+                                step: getNumberFromData(data.step, 1),
+                                ticks: showTicks,
+                                tickSize: getNumberFromData(data.tickSize, 1),
+                                tickLabels: (getValueFromData(data.tickLabels, null) !== null) ? data.tickLabels.split(',') : [],
+                                thumbLabel: showThumbLabel,
+                                thumbSize: getNumberFromData(data.thumbSize, 32),
+                                loaderHeight: '30px',
+                                trackFillColor: getValueFromData(data.colorBeforeThumb, defaultColor),
+                                thumbColor: getValueFromData(data.colorThumb, defaultColor),
+                                trackColor: getValueFromData(data.colorAfterThumb, 'rgba(161, 161, 161, 0.26)'),
                             }
-                            setSliderState();
                         },
-                        inputEvent() {
-                            setSliderState(false, this.value);
+                        mounted: function () {
+                            //setSliderState();
+                        },
+                        methods: {
+                            changeEvent() {
+                                if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
+                                    vis.setValue(data.oid, this.value);
+                                }
+                                setSliderState();
+                            },
+                            inputEvent() {
+                                setSliderState(false, this.value);
+                            }
+                        }
+                    })
+    
+                    // calculate width / height of Element
+                    if (getValueFromData(data.orientation, 'horizontal') === 'vertical') {
+                        let height = window.getComputedStyle($this.context, null).height.replace('px', '');
+    
+                        let sliderEl = $this.find('.v-slider--vertical');
+                        height = height - sliderEl.css('margin-top').replace('px', '') - sliderEl.css('margin-bottom').replace('px', '')
+                        sliderEl.css('height', height + 'px');
+                    }
+    
+                    $this.context.style.setProperty("--vue-slider-thumb-label-font-color", getValueFromData(data.thumbFontColor, ''));
+                    $this.context.style.setProperty("--vue-slider-thumb-label-font-family", getValueFromData(data.thumbFontFamily, ''));
+                    $this.context.style.setProperty("--vue-slider-thumb-label-font-size", getValueFromData(data.thumbFontSize, '12', '', 'px'));
+                    $this.find('.v-slider__thumb-label').css('background-color', getValueFromData(data.thumbBackgroundColor, getValueFromData(data.colorThumb, defaultColor)));
+    
+                    $this.context.style.setProperty("--vue-slider-tick-before-color", getValueFromData(data.tickColorBefore, ''));
+                    $this.context.style.setProperty("--vue-slider-tick-after-color", getValueFromData(data.tickColorAfter, ''));
+    
+    
+                    if (data.knobSize === 'knobMedium') {
+                        $this.find('.v-slider__thumb').addClass('medium-size');
+                    }
+    
+                    if (data.knobSize === 'knobBig') {
+                        $this.find('.v-slider__thumb').addClass('big-size');
+                    }
+    
+                    // Slider Initialiserung setzen
+                    setSliderState();
+    
+                    vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                        setSliderState();
+                    });
+    
+                    vis.states.bind(workingId + '.val', function (e, newVal, oldVal) {
+                        setSliderState();
+                    });
+    
+                    function setSliderState(setVisValue = true, val = 0) {
+                        if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
+                            if (setVisValue) {
+                                val = vis.states.attr(data.oid + '.val');
+                                vueSlider.value = val;
+                            }
+    
+                            if (val <= min && labelMin != null) {
+                                $this.find('.slider-value').html(labelMin);
+                                if (data.useLabelRules) $this.find('.v-slider__thumb-label').find('span').html(labelMin);
+                            } else if (val > min && val <= valueLessThan && textForValueLessThan != null) {
+                                $this.find('.slider-value').html(textForValueLessThan);
+                                if (data.useLabelRules) $this.find('.v-slider__thumb-label').find('span').html(textForValueLessThan);
+                            } else if (val >= valueGreaterThan && val < max && textForValueGreaterThan != null) {
+                                $this.find('.slider-value').html(textForValueGreaterThan);
+                                if (data.useLabelRules) $this.find('.v-slider__thumb-label').find('span').html(textForValueGreaterThan);
+                            } else if (val >= max && labelMax != null) {
+                                $this.find('.slider-value').html(labelMax);
+                                if (data.useLabelRules) $this.find('.v-slider__thumb-label').find('span').html(labelMax);
+                            } else {
+                                $this.find('.slider-value').html(`${val} ${unit}`);
+                                if (data.useLabelRules) $this.find('.v-slider__thumb-label').find('span').html(`${val} ${unit}`);
+                            }
                         }
                     }
-                })
-
-                // calculate width / height of Element
-                if (getValueFromData(data.orientation, 'horizontal') === 'vertical') {
-                    let height = window.getComputedStyle($this.context, null).height.replace('px', '');
-
-                    let sliderEl = $this.find('.v-slider--vertical');
-                    height = height - sliderEl.css('margin-top').replace('px', '') - sliderEl.css('margin-bottom').replace('px', '')
-                    sliderEl.css('height', height + 'px');
-                }
-
-                $this.context.style.setProperty("--vue-slider-thumb-label-font-color", getValueFromData(data.thumbFontColor, ''));
-                $this.context.style.setProperty("--vue-slider-thumb-label-font-family", getValueFromData(data.thumbFontFamily, ''));
-                $this.context.style.setProperty("--vue-slider-thumb-label-font-size", getValueFromData(data.thumbFontSize, '12', '', 'px'));
-                $this.find('.v-slider__thumb-label').css('background-color', getValueFromData(data.thumbBackgroundColor, getValueFromData(data.colorThumb, defaultColor)));
-
-                $this.context.style.setProperty("--vue-slider-tick-before-color", getValueFromData(data.tickColorBefore, ''));
-                $this.context.style.setProperty("--vue-slider-tick-after-color", getValueFromData(data.tickColorAfter, ''));
-
-
-                if (data.knobSize === 'knobMedium') {
-                    $this.find('.v-slider__thumb').addClass('medium-size');
-                }
-
-                if (data.knobSize === 'knobBig') {
-                    $this.find('.v-slider__thumb').addClass('big-size');
-                }
-
-                // Slider Initialiserung setzen
-                setSliderState();
-
-                vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                    setSliderState();
                 });
-
-                vis.states.bind(workingId + '.val', function (e, newVal, oldVal) {
-                    setSliderState();
-                });
-
-                function setSliderState(setVisValue = true, val = 0) {
-                    if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
-                        if (setVisValue) {
-                            val = vis.states.attr(data.oid + '.val');
-                            vueSlider.value = val;
-                        }
-
-                        if (val <= min && labelMin != null) {
-                            $this.find('.slider-value').html(labelMin);
-                            if (data.useLabelRules) $this.find('.v-slider__thumb-label').find('span').html(labelMin);
-                        } else if (val > min && val <= valueLessThan && textForValueLessThan != null) {
-                            $this.find('.slider-value').html(textForValueLessThan);
-                            if (data.useLabelRules) $this.find('.v-slider__thumb-label').find('span').html(textForValueLessThan);
-                        } else if (val >= valueGreaterThan && val < max && textForValueGreaterThan != null) {
-                            $this.find('.slider-value').html(textForValueGreaterThan);
-                            if (data.useLabelRules) $this.find('.v-slider__thumb-label').find('span').html(textForValueGreaterThan);
-                        } else if (val >= max && labelMax != null) {
-                            $this.find('.slider-value').html(labelMax);
-                            if (data.useLabelRules) $this.find('.v-slider__thumb-label').find('span').html(labelMax);
-                        } else {
-                            $this.find('.slider-value').html(`${val} ${unit}`);
-                            if (data.useLabelRules) $this.find('.v-slider__thumb-label').find('span').html(`${val} ${unit}`);
-                        }
-                    }
-                }
-            }, 10)
+            });
         } catch (ex) {
             console.exception(`vertical: error: ${ex.message}, stack: ${ex.stack}`);
         }

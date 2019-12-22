@@ -17,5 +17,15 @@ vis.binds.materialdesign.helper = {
         } catch (ex) {
             console.exception(`vibrate [${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
+    },
+    waitForElement: function (parent, elementPath, callBack) {
+        window.setTimeout(function () {
+            if (parent.find(elementPath).length) {
+                callBack(elementPath, $(elementPath));
+            } else {
+                console.log('wait');
+                waitForElement(elementPath, callBack);
+            }
+        }, 50)
     }
 };
