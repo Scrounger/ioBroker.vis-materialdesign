@@ -7392,6 +7392,16 @@
   margin-left: -12px;
   width: 100%;
 }
+
+.row.v-row {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+  margin-right: -12px;
+  margin-left: -12px;
+  width: 100%;
+}
+
 .row--dense {
   margin-right: -4px;
   margin-left: -4px;

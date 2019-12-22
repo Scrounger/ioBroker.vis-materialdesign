@@ -30,7 +30,7 @@ vis.binds.materialdesign.slider =
             <div class="vuetifySlider" style="width: 100%">
                 <v-app id="vuetifyContainer">
                     <v-container>
-                        <v-row style="align-items: center">
+                        <v-row class="v-row" style="align-items: center">
                             <v-slider
                                 v-model="value"
                                 :vertical="vertical"
