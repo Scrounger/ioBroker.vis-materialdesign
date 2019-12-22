@@ -13,6 +13,7 @@ vis.binds.materialdesign.slider =
         try {
             let $this = $(el);
             let workingId = $this.attr('data-oid-working');
+            let myHelper = vis.binds.materialdesign.helper;
             let defaultColor = '#44739e'
 
             let min = getValueFromData(data.min, 0);
@@ -72,8 +73,7 @@ vis.binds.materialdesign.slider =
                 showThumbLabel = 'always';
             }
 
-
-            vis.binds.materialdesign.helper.waitForElement($this, '.materialdesign-vuetifySlider', function () {
+            myHelper.waitForElement($this, '.materialdesign-vuetifySlider', function () {
                 // Wait until element is loaded
                 if ($("#materialdesign-vuetify-container").length === 0) {
                     // intitialize Vuetify v-app application container, if not exist
@@ -81,7 +81,7 @@ vis.binds.materialdesign.slider =
                     console.log('initialize vuetify v-app application container');
                 }
 
-                vis.binds.materialdesign.helper.waitForElement($("#vis_container"), '#materialdesign-vuetify-container', function () {
+                myHelper.waitForElement($("#vis_container"), '#materialdesign-vuetify-container', function () {
                     // wait for Vuetify v-app application container is loaded
 
                     let vueSlider = new Vue({
@@ -109,65 +109,69 @@ vis.binds.materialdesign.slider =
                             //setSliderState();
                         },
                         methods: {
-                            changeEvent() {
+                            changeEvent(value) {
                                 if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
-                                    vis.setValue(data.oid, this.value);
+                                    vis.setValue(data.oid, value);
                                 }
                                 setSliderState();
                             },
-                            inputEvent() {
-                                setSliderState(false, this.value);
-                            }
+                            inputEvent(value) {
+                                setSliderState(false, value);
+                            },
                         }
                     })
-    
+
+                    $this.find('.materialdesign-vuetifySlider').on('touchstart mousedown', function () {
+                        myHelper.vibrate(data.vibrateOnMobilDevices);
+                    });
+
                     // calculate width / height of Element
                     if (getValueFromData(data.orientation, 'horizontal') === 'vertical') {
                         let height = window.getComputedStyle($this.context, null).height.replace('px', '');
-    
+
                         let sliderEl = $this.find('.v-slider--vertical');
                         height = height - sliderEl.css('margin-top').replace('px', '') - sliderEl.css('margin-bottom').replace('px', '')
                         sliderEl.css('height', height + 'px');
                     }
-    
+
                     $this.context.style.setProperty("--vue-slider-thumb-label-font-color", getValueFromData(data.thumbFontColor, ''));
                     $this.context.style.setProperty("--vue-slider-thumb-label-font-family", getValueFromData(data.thumbFontFamily, ''));
                     $this.context.style.setProperty("--vue-slider-thumb-label-font-size", getValueFromData(data.thumbFontSize, '12', '', 'px'));
                     $this.find('.v-slider__thumb-label').css('background-color', getValueFromData(data.thumbBackgroundColor, getValueFromData(data.colorThumb, defaultColor)));
-    
+
                     $this.context.style.setProperty("--vue-slider-tick-before-color", getValueFromData(data.tickColorBefore, ''));
                     $this.context.style.setProperty("--vue-slider-tick-after-color", getValueFromData(data.tickColorAfter, ''));
-    
-    
+
+
                     //bug fix wegen 'div.row div'
                     $this.find('.v-slider__thumb-container').css('height', '0px')
 
                     if (data.knobSize === 'knobMedium') {
                         $this.find('.v-slider__thumb').addClass('medium-size');
                     }
-    
+
                     if (data.knobSize === 'knobBig') {
                         $this.find('.v-slider__thumb').addClass('big-size');
                     }
-    
+
                     // Slider Initialiserung setzen
                     setSliderState();
-    
+
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                         setSliderState();
                     });
-    
+
                     vis.states.bind(workingId + '.val', function (e, newVal, oldVal) {
                         setSliderState();
                     });
-    
+
                     function setSliderState(setVisValue = true, val = 0) {
                         if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
                             if (setVisValue) {
                                 val = vis.states.attr(data.oid + '.val');
                                 vueSlider.value = val;
                             }
-    
+
                             if (val <= min && labelMin != null) {
                                 $this.find('.slider-value').html(labelMin);
                                 if (data.useLabelRules) $this.find('.v-slider__thumb-label').find('span').html(labelMin);
