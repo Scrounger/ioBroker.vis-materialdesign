@@ -2,7 +2,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.18"
+    version: "0.2.19"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
