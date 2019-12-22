@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.18"
+    version: "0.2.17"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -24,7 +24,7 @@ vis.binds.materialdesign.helper = {
                 callBack(elementPath, $(elementPath));
             } else {
                 console.log('wait');
-                waitForElement(elementPath, callBack);
+                vis.binds.materialdesign.helper.waitForElement(elementPath, callBack);
             }
         }, 50)
     }
