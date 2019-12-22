@@ -25,13 +25,6 @@ vis.binds.materialdesign = {
             console.log('Version vis-materialdesign: ' + vis.binds["materialdesign"].version);
             vis.binds["materialdesign"].version = null;
         }
-
-        setTimeout(function () {
-            if ($("#materialdesign-vuetify-container").length === 0) {
-                // intitialize Vuetify v-app application container
-                $("body").wrapInner('<v-app id="materialdesign-vuetify-container" data-app="true" />');
-            }
-        }, 1);
     },
     createWidget: function (widgetID, view, data, style) {
         var $div = $('#' + widgetID);
