@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.19"
+    version: "0.2.18"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -143,6 +143,9 @@ vis.binds.materialdesign.slider =
                     $this.context.style.setProperty("--vue-slider-tick-after-color", getValueFromData(data.tickColorAfter, ''));
     
     
+                    //bug fix wegen 'div.row div'
+                    $this.find('.v-slider__thumb-container').css('height', '0px')
+
                     if (data.knobSize === 'knobMedium') {
                         $this.find('.v-slider__thumb').addClass('medium-size');
                     }
