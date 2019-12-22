@@ -8,8 +8,8 @@
 "use strict";
 
 // this code can be placed directly in materialdesign.html
-vis.binds.materialdesign.slider = {
-    vertical: function (el, data) {
+vis.binds.materialdesign.slider =
+    function (el, data) {
         try {
             let $this = $(el);
             let workingId = $this.attr('data-oid-working');
@@ -180,5 +180,4 @@ vis.binds.materialdesign.slider = {
         } catch (ex) {
             console.exception(`vertical: error: ${ex.message}, stack: ${ex.stack}`);
         }
-    }
-};
+    };
