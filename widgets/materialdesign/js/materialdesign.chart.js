@@ -363,7 +363,6 @@ vis.binds.materialdesign.chart = {
                                 scales: {
                                     xAxes: [{
                                         type: 'time',
-                                        distribution: 'series',
                                         time:
                                         {
                                             displayFormats: (getValueFromData(data.xAxisTimeFormats, null) !== null) ? JSON.parse(data.xAxisTimeFormats) : myHelper.defaultTimeFormats(),      // muss entsprechend konfigurietr werden siehe 
