@@ -305,7 +305,7 @@ vis.binds.materialdesign.chart = {
                                             fontSize: getNumberFromData(data.yAxisValueFontSize, undefined),
                                             padding: getNumberFromData(data.yAxisValueDistanceToAxis, 0),
                                             callback: function (value, index, values) {
-                                                let axisId = this.id.replace('yAxis_id_','');
+                                                let axisId = this.id.replace('yAxis_id_', '');
                                                 return `${value}${getValueFromData(data.attr('yAxisValueAppendText' + axisId), '')}`.split('\\n');
                                             }
                                         },
@@ -363,6 +363,7 @@ vis.binds.materialdesign.chart = {
                                 scales: {
                                     xAxes: [{
                                         type: 'time',
+                                        bounds: (getValueFromData(data.xAxisBounds, '') === 'axisTicks') ? 'ticks' : 'data',
                                         time:
                                         {
                                             displayFormats: (getValueFromData(data.xAxisTimeFormats, null) !== null) ? JSON.parse(data.xAxisTimeFormats) : myHelper.defaultTimeFormats(),      // muss entsprechend konfigurietr werden siehe 

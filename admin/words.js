@@ -4685,5 +4685,41 @@ systemDictionary = {
         "es": "usar reglas del texto",
         "pl": "stosować reguły tekstu",
         "zh-cn": "使用文字规则"
+    },
+    "xAxisBounds": {
+        "en": "scale bounds",
+        "de": "Skalengrenzen",
+        "ru": "границы шкалы",
+        "pt": "limites de escala",
+        "nl": "schaalgrenzen",
+        "fr": "limites de l'échelle",
+        "it": "limiti di scala",
+        "es": "límites de escala",
+        "pl": "granice skali",
+        "zh-cn": "比例界"
+    },
+    "dataSet": {
+        "en": "data set",
+        "de": "Datensatz",
+        "ru": "набор данных",
+        "pt": "conjunto de dados",
+        "nl": "gegevensset",
+        "fr": "base de données",
+        "it": "set di dati",
+        "es": "conjunto de datos",
+        "pl": "zbiór danych",
+        "zh-cn": "数据集"
+    },
+    "axisTicks": {
+        "en": "axis label",
+        "de": "Achsenbeschriftung",
+        "ru": "метка оси",
+        "pt": "etiqueta do eixo",
+        "nl": "aslabel",
+        "fr": "étiquette d'axe",
+        "it": "etichetta dell'asse",
+        "es": "etiqueta de eje",
+        "pl": "etykieta osi",
+        "zh-cn": "轴标签"
     }
 };
