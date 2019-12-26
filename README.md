@@ -15,9 +15,11 @@
 ## Material Design Widgets for IoBroker VIS
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VWAXSTS634G88&source=url)
 
-Material Design Widgets based on [Google material components web library](https://github.com/material-components/material-components-web).
-
-Charts based on [chartjs library](https://www.chartjs.org/).
+Material Design Widgets uses the following libraries:
+* [Google material components web library](https://github.com/material-components/material-components-web)
+* [Vuetify library](https://github.com/vuetifyjs/vuetify)
+* [chartjs library](https://www.chartjs.org/)
+* [round-slider from thomasloven](https://github.com/thomasloven/round-slider)
 
 ### Supported Browser
 https://github.com/material-components/material-components-web/blob/master/docs/supported-browsers.md
@@ -61,8 +63,6 @@ Settings that are not listed in the table below are self-explanatory.
 
 ## Round Slider
 ![Logo](doc/en/media/round_slider.gif)
-
-Based on [round-slider from thomasloven](https://github.com/thomasloven/round-slider)
 
 ## Switch
 ![Logo](doc/en/media/switch.gif)
