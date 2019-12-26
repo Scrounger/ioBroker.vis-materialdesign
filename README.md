@@ -16,13 +16,19 @@
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VWAXSTS634G88&source=url)
 
 Material Design Widgets uses the following libraries:
-* [Google material components web library](https://github.com/material-components/material-components-web)
-* [Vuetify library](https://github.com/vuetifyjs/vuetify)
-* [chartjs library](https://www.chartjs.org/)
+* [Google material components for the web](https://github.com/material-components/material-components-web)
+* [Vuetify](https://github.com/vuetifyjs/vuetify)
+* [chartjs](https://www.chartjs.org/)
 * [round-slider from thomasloven](https://github.com/thomasloven/round-slider)
 
 ### Supported Browser
 https://github.com/material-components/material-components-web/blob/master/docs/supported-browsers.md
+
+### Supported Browser for vibrate on mobil devices function
+https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate
+
+### ioBroker App
+not working, needs to be implemneted by app, see https://github.com/ioBroker/ioBroker.vis.cordova
 
 ## Button Toggle
 ![Logo](doc/en/media/buttons.gif)
