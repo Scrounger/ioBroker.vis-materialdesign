@@ -86,7 +86,7 @@ vis.binds.materialdesign.slider =
 
                     let vueSlider = new Vue({
                         el: $this.find('.materialdesign-vuetifySlider').get(0),
-                        vuetify: new Vuetify(),
+                        vuetify: new Vuetify({rtl: data.reverseSlider}),
                         data() {
                             return {
                                 value: vis.states.attr(data.oid + '.val'),
