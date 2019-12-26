@@ -641,7 +641,7 @@ vis.binds.materialdesign = {
         return { input: `<a target="_blank" href="${url}">${_('readme')}</a>` }
     },
     editorBmc: function (widAttr) {
-        return { input: `<a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YHPPW474N5CKQ&source=url">buy me (scrounger) a coffee</a>` }
+        return { input: `<a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VWAXSTS634G88&source=url">buy me (scrounger) a coffee</a>` }
     }
 };
 
