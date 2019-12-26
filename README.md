@@ -251,6 +251,14 @@ Working Widget Example can be found [here](https://forum.iobroker.net/topic/2619
 
 ## Changelog
 
+### 0.2.22
+* (Scrounger): library material-components-web updated to v4.0.0
+* (Scrounger): Table: support for objects added
+* (Scrounger): List: layout checkbox disabled added
+* (Scrounger): vuetify slider added -> old slider will be removed in version 0.3.x
+* (Scrounger): vuetify library v2.1.15 added
+* (Scrounger): bug fixes
+
 ### 0.2.9
 * (Scrounger): translations added
 * (Scrounger): select Widget: color options added
