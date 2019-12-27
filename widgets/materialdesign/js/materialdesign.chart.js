@@ -852,7 +852,7 @@ vis.binds.materialdesign.chart.helper = {
                 "second":         "H:mm:ss",
                 "minute":         "H:mm",
                 "hour":           "H",
-                "day":            "MMM D",
+                "day":            "ddd DD.",
                 "week":           "ll",
                 "month":          "MMM YYYY",
                 "quarter":        "[Q]Q - YYYY",
