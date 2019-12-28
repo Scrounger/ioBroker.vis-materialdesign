@@ -74,14 +74,7 @@ vis.binds.materialdesign.slider =
             }
 
             myHelper.waitForElement($this, '.materialdesign-vuetifySlider', function () {
-                // Wait until element is loaded
-                if ($("#materialdesign-vuetify-container").length === 0) {
-                    // intitialize Vuetify v-app application container, if not exist
-                    $("#vis_container").wrapInner('<v-app id="materialdesign-vuetify-container" data-app="true" />');
-                    console.log('initialize vuetify v-app application container');
-                }
-
-                myHelper.waitForElement($("#vis_container"), '#materialdesign-vuetify-container', function () {
+                myHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
                     // wait for Vuetify v-app application container is loaded
 
                     let vueSlider = new Vue({
