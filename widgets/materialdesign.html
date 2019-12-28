@@ -30,6 +30,7 @@
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.button.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.list.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.drawer.js"></script>
+<script type="text/javascript" src="widgets/materialdesign/js/materialdesign.topappbarnav.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.card.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.select.js"></script>
 <script type="text/javascript" src="widgets/materialdesign/js/materialdesign.dialog.js"></script>
@@ -769,7 +770,7 @@
         data-vis-prev='<img src="widgets/materialdesign/img/prev_top_app_bar_nav_drawer.png"></img>'
         data-vis-set="materialdesign"
         data-vis-type="stateful,container,view"
-        data-vis-name="Top App Bar Navigation Drawer"
+        data-vis-name="Decrepated !!! Top App Bar Navigation Drawer"
         data-vis-update-style="true"
         data-vis-attrs="manual/custom,materialdesign.editorManualLink,drawer;donate/custom,materialdesign.editorBmc;oid;persistent[true]/checkbox;notIfInvisible/checkbox;count[1]/number;group.views;manual_subMenus/custom,materialdesign.editorManualLink,drawerSubMenuViews;contains_view_(0-count)/views;"
         data-vis-attrs0="group.topAppBarLayout;topAppBarLayout[standard]/select,standard,dense,short;titleTopAppBar[Material Design Widgets]/html;colorTopAppBarTitle/color;colorTopAppBarBackground/color;showSelectedItemAsTitle/checkbox;topAppBarZ_index[998]/number;vibrateTopAppBarOnMobilDevices[50]/number;"
@@ -804,6 +805,7 @@
                         </div>
                     </header>
                     <div class="mdc-top-app-bar-content <%= initTopAppBar.contentLayout %>">
+                            <span style="color:red"><b>Will be removed in next Version! Please use the new Top App Bar Navigation Drawer!<br>View in Widget 8 was removed in the new Top App Bar Navigation Drawer - you have to add the widget by your own!</b></span>
                         <div>
                             <% if (vis.editMode) { %>
                                 <div class="editmode-helper"/>
@@ -814,7 +816,54 @@
                 </div>
             </div>
         </div>
-</script>        
+</script>
+
+<script id="tplVis-materialdesign-TopAppBar-Navigation"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/materialdesign/img/prev_top_app_bar_nav_drawer.png"></img>'
+        data-vis-set="materialdesign"
+        data-vis-type="stateful,container,view"
+        data-vis-name="Top App Bar Navigation Drawer"
+        data-vis-update-style="true"
+        data-vis-attrs="manual/custom,materialdesign.editorManualLink,drawer;donate/custom,materialdesign.editorBmc;oid;showIndexNum/checkbox;count[1]/number;group.submenus;manual_subMenus/custom,materialdesign.editorManualLink,drawerSubMenuViews;submenuCounts_(0-count)[0]/number;"
+        data-vis-attrs0="group.topAppBarLayout;topAppBarLayout[standard]/select,standard,dense,short;titleTopAppBar[Material Design Widgets]/html;colorTopAppBarTitle/color;colorTopAppBarBackground/color;showSelectedItemAsTitle/checkbox;topAppBarZ_index[998]/number;vibrateTopAppBarOnMobilDevices[50]/number;"
+        data-vis-attrs1="group.drawerLayout;drawerLayout[modal]/select,modal,permanent;drawerItemLayout[standard]/select,standard,backdrop;listItemDividerStyle[standard]/select,standard,padded,inset;drawerWidth/number;z_index[1000]/number;showHeader[true]/checkbox;headerLabel[<h4 class='mdc-drawer__title'>Material Design Widgets</h4><h6 class='mdc-drawer__subtitle'>by Scrounger</h6>]/html;showLabels[true]/checkbox;drawerIconHeight/number;listItemAlignment[left]/select,left,center,right;listItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;listItemHeaderTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;backdropLabelBackgroundHeight[30]/slider,0,100,1;vibrateDrawerOnMobilDevices[0]/number;"
+        data-vis-attrs2="group.drawerColors;colorDrawerBackground/color;colorDrawerItemBackground/color;colorDrawerHeaderBackground/color;colorListItemHover/color;colorListItemSelected/color;colorListItemText/color;colorListItemTextSelected/color;colorListItemHeaders/color;colorListItemDivider/color;colorSubItemToggleIcon/color;colorDrawerbackdropLabelBackground/color;colorDrawerbackdropLabelBackgroundActive/color;"
+        data-vis-attrs3="group.drawerSubItemsLayout;drawerSubItemLayout[standard]/select,standard,backdrop;drawerSubItemIconHeight/number;listSubItemAlignment[left]/select,left,center,right;listSubItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;showSubItemsLabels[true]/checkbox;backdropSubLabelBackgroundHeight/slider,0,100,1;"
+        data-vis-attrs4="group.drawerSubItemsColors;colorDrawerSubBackground/color;colorDrawerSubItemBackground/color;colorListSubItemHover/color;colorListSubItemSelected/color;colorListSubItemText/color;colorListSubItemTextSelected/color;colorDrawerbackdropSubLabelBackground/color;colorDrawerbackdropSubLabelBackgroundActive/color;"
+        data-vis-attrs5="group.drawerLabels;labels(0-count)/html;group.drawerHeaders;headers(0-count)/html;group.drawerDivider;dividers(0-count)/checkbox;group.drawerIcons;iconDrawer(0-count)[/vis/widgets/materialdesign/img/IoBroker_Logo.png]/image;">
+        
+        <%
+            let initDrawer = vis.binds.materialdesign.topappbarnav.initializeDrawer(data);
+            let initTopAppBar = vis.binds.materialdesign.topappbarnav.initializeTopAppBar(data);
+        %>
+
+        <div class="vis-widget materialdesign-topAppBar-with-Drawer <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
+            <div class="drawer-frame-root">
+                <aside class="mdc-drawer <%= initDrawer.drawerLayout %>" <%== initDrawer.drawerStyle %> <%= (el) -> vis.binds.materialdesign.topappbarnav.handler(el, data) %>>
+                    <%== initDrawer.drawerHeader %>
+                    <div class="mdc-drawer__content">
+                        <nav class="mdc-list">
+                            <%== initDrawer.drawerItemList %>
+                        </nav>
+                    </div>
+                </aside>
+                <%== initDrawer.drawerModalScrim %>
+                <div class="drawer-frame-app-content">
+                    <header class="mdc-top-app-bar drawer-top-app-bar <%== initTopAppBar.headerLayout %>" <%== initTopAppBar.headerStyle %>>
+                        <div class="mdc-top-app-bar__row" style="color: <%= this.data.colorTopAppBarTitle %>">
+                            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                                <%== initTopAppBar.headerButtonShow %>
+                                <span class="mdc-top-app-bar__title"><%= this.data.titleTopAppBar %></span></section>
+                        </div>
+                    </header>
+                    <div class="mdc-top-app-bar-content <%= initTopAppBar.contentLayout %>">
+                    </div>
+                </div>
+            </div>
+        </div>
+</script>
 
 <script id="tplVis-materialdesign-List"
         type="text/ejs"
