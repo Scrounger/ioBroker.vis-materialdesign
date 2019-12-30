@@ -17,7 +17,7 @@ vis.binds.materialdesign.button = {
 
             let iconHeight = 'width: auto;';
             if (getValueFromData(data.iconHeight, 0) > 0) {
-                iconHeight = `width: ${data.iconHeight}%;`
+                iconHeight = `width: ${data.iconHeight}px;`
             }
 
             let labelWidth = '';
