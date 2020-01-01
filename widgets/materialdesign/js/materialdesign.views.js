@@ -22,7 +22,7 @@ vis.binds.materialdesign.views = {
                     <div 
                         class="materialdesign-column-views-container-column" 
                         style="min-width: ${getNumberFromData(data.minWidth, 0)}px !important; width: calc(100% / ${columnsCount}) !important;">
-                        <div class="materialdesign-column-views-container">
+                        <div class="materialdesign-column-views-container-column-view">
                 `);
 
                 let viewsList = getValueFromData(data.attr('viewsInColumn' + i), '').split('|');
