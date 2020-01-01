@@ -4721,5 +4721,65 @@ systemDictionary = {
         "es": "etiqueta de eje",
         "pl": "etykieta osi",
         "zh-cn": "轴标签"
+    },
+    "countCols": {
+        "en": "number of columns",
+        "de": "Anzahl der Spalten",
+        "ru": "Число столбцов",
+        "pt": "numero de colunas",
+        "nl": "aantal columns",
+        "fr": "le nombre de colonnes",
+        "it": "numero di colonne",
+        "es": "número de columnas",
+        "pl": "Liczba kolumn",
+        "zh-cn": "列数"
+    },
+    "minWidth": {
+        "en": "minimal width",
+        "de": "minimale Breite",
+        "ru": "минимальная ширина",
+        "pt": "largura mínima",
+        "nl": "minimale breedte",
+        "fr": "largeur minimale",
+        "it": "larghezza minima",
+        "es": "ancho mínimo",
+        "pl": "minimalna szerokość",
+        "zh-cn": "最小宽度"
+    },
+    "group_viewsInColumn": {
+        "en": "views in column",
+        "de": "Ansichten in der Spalte",
+        "ru": "просмотров в столбце",
+        "pt": "visualizações na coluna",
+        "nl": "weergaven in kolom",
+        "fr": "vues en colonne",
+        "it": "visualizzazioni in colonna",
+        "es": "vistas en columna",
+        "pl": "widoki w kolumnie",
+        "zh-cn": "列中的视图"
+    },
+    "viewsInColumn": {
+        "en": "views in column",
+        "de": "Ansichten in der Spalte",
+        "ru": "просмотров в столбце",
+        "pt": "visualizações na coluna",
+        "nl": "weergaven in kolom",
+        "fr": "vues en colonne",
+        "it": "visualizzazioni in colonna",
+        "es": "vistas en columna",
+        "pl": "widoki w kolumnie",
+        "zh-cn": "列中的视图"
+    },
+    "viewsInColumnHeight": {
+        "en": "height of views in column",
+        "de": "Höhe der Ansichten in der Spalte",
+        "ru": "высота просмотров в столбце",
+        "pt": "altura das visualizações na coluna",
+        "nl": "hoogte van weergaven in kolom",
+        "fr": "hauteur des vues dans la colonne",
+        "it": "altezza delle viste nella colonna",
+        "es": "altura de vistas en columna",
+        "pl": "wysokość widoków w kolumnie",
+        "zh-cn": "列中视图的高度"
     }
 };
