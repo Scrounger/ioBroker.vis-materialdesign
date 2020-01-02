@@ -15,13 +15,17 @@
 ## Material Design Widgets for IoBroker VIS
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VWAXSTS634G88&source=url)
 
-### [Download Example Project](https://github.com/Scrounger/ioBroker.vis-materialdesign/raw/master/doc/examples/MaterialDesignWidgets_Examples.zip)
-
 Material Design Widgets uses the following libraries:
 * [Google material components for the web](https://github.com/material-components/material-components-web)
 * [Vuetify](https://github.com/vuetifyjs/vuetify)
 * [chartjs](https://www.chartjs.org/)
 * [round-slider from thomasloven](https://github.com/thomasloven/round-slider)
+
+## Online Example Project
+provided by [iobroker.click](https://iobroker.click/index.html), thanks to bluefox and iobroker.
+
+* [VIS Runtime](http://iobroker.click:8082/vis/index.html?Material%20Design%20Widgets)
+* [VIS Editor](http://iobroker.click:8082/vis/edit.html?Material%20Design%20Widgets)
 
 ### Supported Browser
 https://github.com/material-components/material-components-web/blob/master/docs/supported-browsers.md
