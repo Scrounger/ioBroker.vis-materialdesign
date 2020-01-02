@@ -24,8 +24,8 @@ Material Design Widgets uses the following libraries:
 ## Online Example Project
 provided by [iobroker.click](https://iobroker.click/index.html), thanks to bluefox and iobroker.
 
-* [VIS Runtime](http://iobroker.click:8082/vis/index.html?Material%20Design%20Widgets)
-* [VIS Editor](http://iobroker.click:8082/vis/edit.html?Material%20Design%20Widgets)
+* [VIS Runtime](http://iobroker.click:8082/vis/index.html?Material%20Design%20Widgets){:target="_blank"}
+* [VIS Editor](http://iobroker.click:8082/vis/edit.html?Material%20Design%20Widgets){:target="_blank"}
 
 ### Supported Browser
 https://github.com/material-components/material-components-web/blob/master/docs/supported-browsers.md
