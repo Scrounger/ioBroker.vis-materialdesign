@@ -881,7 +881,7 @@ svg.materialdesign-button__icon {
   width: 100%;
 }
 
-.mdc-select:not(.mdc-select--disabled){
+.mdc-select:not(.mdc-select--disabled) {
   background-color: var(--materialdesign-color-select-background);
 }
 
@@ -892,6 +892,7 @@ svg.materialdesign-button__icon {
 .mdc-select:not(.mdc-select--disabled) .mdc-select__native-control, 
 .mdc-select:not(.mdc-select--disabled) .mdc-select__selected-text {
   border-color: var(--materialdesign-color-select-border);
+  background-color: var(--materialdesign-color-select-background);
 }
 
 .mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-line-ripple {
