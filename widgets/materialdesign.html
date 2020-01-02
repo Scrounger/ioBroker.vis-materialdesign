@@ -1065,3 +1065,17 @@
         
         </div>
 </script>
+
+<script id="tplVis-materialdesign-Installed-Version"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/materialdesign/img/prev_version.png"></img>'
+        data-vis-set="materialdesign"
+        data-vis-type="tools"
+        data-vis-name="Installed Version"
+        data-vis-update-style="true">    
+
+        <div class="vis-widget materialdesign-installed-version <%== this.data.attr('class') %>" style="width: 120px; height: 21px; text-align: center;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.helper.installedVersion(el, data) %>> 
+            <img class="materialdesign-installed-version-badge" src="https://img.shields.io/badge/installed-0.3.2-%234ac51c" />
+        </div>
+</script>

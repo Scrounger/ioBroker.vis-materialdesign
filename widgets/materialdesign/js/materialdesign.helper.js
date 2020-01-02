@@ -27,5 +27,12 @@ vis.binds.materialdesign.helper = {
                 vis.binds.materialdesign.helper.waitForElement(parent, elementPath, callBack);
             }
         }, 50)
+    },
+    installedVersion: function (el, data) {
+        setTimeout(function () {
+            let version = 'version: "0.2.27"'
+            console.log(version);
+            $(el).find('.materialdesign-installed-version-badge').attr('src', `https://img.shields.io/badge/installed-${version.replace('version: "', '').replace('"', '')}-%234ac51c`);
+        }, 1)
     }
 };
