@@ -166,7 +166,8 @@
         "readme": "https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/master/README.md",
         "loglevel": "info",
         "restartAdapters": [
-            "vis"
+            "vis",
+            "web"
         ],
         "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
         "onlyWWW": true,
