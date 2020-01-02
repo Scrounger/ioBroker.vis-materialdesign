@@ -103,7 +103,7 @@ vis.binds.materialdesign.topappbarnav = {
                 let backdropSubLabelBackgroundHeight = getValueFromData(data.backdropSubLabelBackgroundHeight, backdropLabelBackgroundHeight, 'height: ', '%;');
 
                 let itemIndex = 0;
-                for (var i = 0; i <= data.count; i++) {
+                for (var i = 0; i <= data.navItemCount; i++) {
                     let itemHeaderText = getValueFromData(data.attr('headers' + i), null);
                     let itemLabelText = getValueFromData(data.attr('labels' + i), 'Menu Item');
                     let itemImage = getValueFromData(data.attr('iconDrawer' + i), '');

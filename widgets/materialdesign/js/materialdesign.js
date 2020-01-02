@@ -648,6 +648,10 @@ vis.binds.materialdesign = {
             if (data[1] === 'table') {
                 url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#table'
             }
+
+            if (data[1] === 'columnViews') {
+                url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#column-views'
+            }
         }
 
         return { input: `<a target="_blank" href="${url}">${_('readme')}</a>` }

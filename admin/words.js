@@ -4781,5 +4781,53 @@ systemDictionary = {
         "es": "altura de vistas en columna",
         "pl": "wysokość widoków w kolumnie",
         "zh-cn": "列中视图的高度"
+    },
+    "navItemCount": {
+        "en": "count of navigation items",
+        "de": "Anzahl der Navigationselemente",
+        "ru": "количество элементов навигации",
+        "pt": "contagem de itens de navegação",
+        "nl": "aantal navigatie-items",
+        "fr": "nombre d'éléments de navigation",
+        "it": "conteggio degli elementi di navigazione",
+        "es": "recuento de elementos de navegación",
+        "pl": "liczba elementów nawigacyjnych",
+        "zh-cn": "导航项目数"
+    },
+    "showIndexNum": {
+        "en": "show index of navigation items",
+        "de": "Index der Navigationselemente anzeigen",
+        "ru": "показать индекс элементов навигации",
+        "pt": "mostrar índice de itens de navegação",
+        "nl": "index van navigatie-items weergeven",
+        "fr": "afficher l'index des éléments de navigation",
+        "it": "mostra l'indice degli elementi di navigazione",
+        "es": "mostrar índice de elementos de navegación",
+        "pl": "pokaż indeks elementów nawigacyjnych",
+        "zh-cn": "显示导航项的索引"
+    },
+    "group_submenus": {
+        "en": "sub menus",
+        "de": "Untermenüs",
+        "ru": "подменю",
+        "pt": "submenus",
+        "nl": "submenu's",
+        "fr": "sous-menus",
+        "it": "sottomenu",
+        "es": "submenús",
+        "pl": "podmenu",
+        "zh-cn": "子菜单"
+    },
+    "submenuCounts_": {
+        "en": "count of sub menus",
+        "de": "Anzahl der Untermenüs",
+        "ru": "количество подменю",
+        "pt": "contagem de submenus",
+        "nl": "telling van submenu's",
+        "fr": "nombre de sous-menus",
+        "it": "conteggio dei sottomenu",
+        "es": "recuento de submenús",
+        "pl": "liczba podmenu",
+        "zh-cn": "子菜单数"
     }
 };
