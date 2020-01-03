@@ -4829,5 +4829,41 @@ systemDictionary = {
         "es": "recuento de submenús",
         "pl": "liczba podmenu",
         "zh-cn": "子菜单数"
+    },
+    "countViews": {
+        "en": "number of views",
+        "de": "Anzahl der Views",
+        "ru": "количество просмотров",
+        "pt": "número de visualizações",
+        "nl": "aantal keer bekeken",
+        "fr": "nombre de vues",
+        "it": "numero di visualizzazioni",
+        "es": "cantidad de vistas",
+        "pl": "liczba wyświetleń",
+        "zh-cn": "观看次数"
+    },
+    "viewsHeight": {
+        "en": "height of view",
+        "de": "Höhe der View",
+        "ru": "высота зрения",
+        "pt": "altura de visão",
+        "nl": "hoogte van het zicht",
+        "fr": "hauteur de vue",
+        "it": "altezza della vista",
+        "es": "altura de vista",
+        "pl": "wysokość widoku",
+        "zh-cn": "视线高度"
+    },
+    "group_View": {
+        "en": "View",
+        "de": "View",
+        "ru": "Посмотреть",
+        "pt": "Visão",
+        "nl": "Visie",
+        "fr": "Vue",
+        "it": "Visualizza",
+        "es": "Ver",
+        "pl": "Widok",
+        "zh-cn": "视图"
     }
 };

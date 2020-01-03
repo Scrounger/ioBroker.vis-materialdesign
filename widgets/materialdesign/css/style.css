@@ -1231,3 +1231,42 @@ svg.materialdesign-button__icon {
   top: 0 !important;
   flex-grow: 1 !important;
 }
+
+.materialdesign-masonry-container {
+  width: 100%;
+  column-gap: 0;
+}
+
+@media screen and (min-width: 992px) {
+  /* start of desktop styles */
+  .materialdesign-masonry-container {
+    column-count: var(--materialdesign-masonry-column-count);
+  }
+}
+
+@media screen and (max-width: 991px) {
+  /* start of large tablet styles */
+  .materialdesign-masonry-container {
+    column-count: calc(var(--materialdesign-masonry-column-count) - 1);
+  }
+}
+  
+@media screen and (max-width: 767px) {
+  /* start of medium tablet styles */
+  .materialdesign-masonry-container {
+    column-count: calc(var(--materialdesign-masonry-column-count) - 2);
+  }
+}
+  
+@media screen and (max-width: 479px) {
+  /* start of phone styles */
+  .materialdesign-masonry-container {
+    column-count: calc(var(--materialdesign-masonry-column-count) - 3);
+  }
+}
+
+.materialdesign-masonry-item {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}

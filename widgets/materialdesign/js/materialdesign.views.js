@@ -55,5 +55,32 @@ vis.binds.materialdesign.views = {
         } catch (ex) {
             console.exception(`column: error: ${ex.message}, stack: ${ex.stack}`);
         }
+    },
+    masonry: function (el, data) {
+        try {
+            let $this = $(el);
+            let viewsList = [];
+            let countCols = getNumberFromData(data.countCols, 3);
+
+            for (var i = 0; i <= data.countViews; i++) {
+                viewsList.push(`
+                <div 
+                    class="materialdesign-masonry-item" style="height: ${getNumberFromData(data.attr('viewsHeight' + i), 100)}px">
+                        ${(vis.editMode) ? '<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e;"></div>' : ''}
+                        <div data-vis-contains="${data.attr('View' + i)}" class="vis-widget-body vis-view-container">
+                        </div>
+                </div>
+                `)
+            }
+
+            $this.append(`
+                <div class="materialdesign-masonry-container" style="--materialdesign-masonry-column-count: ${countCols}">
+                    ${viewsList.join('')}
+                </div>
+            `);
+
+        } catch (ex) {
+            console.exception(`masonry: error: ${ex.message}, stack: ${ex.stack}`);
+        }
     }
 };
