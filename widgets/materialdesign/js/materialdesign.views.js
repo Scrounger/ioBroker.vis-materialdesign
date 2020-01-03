@@ -63,7 +63,15 @@ vis.binds.materialdesign.views = {
             let countCols = getNumberFromData(data.countCols, 3);
 
             for (var i = 0; i <= data.countViews; i++) {
-                let viewWidth = (getNumberFromData(data.attr('viewsWidth' + i), null) != null) ? `width: ${data.attr('viewsWidth' + i)}px;` : ''
+                let viewWidth = getValueFromData(data.attr('viewsWidth' + i), '');
+
+                if (viewWidth.endsWith('%') || viewWidth.endsWith('px')) {
+                    viewWidth = `width: ${getValueFromData(data.attr('viewsWidth' + i))};`
+                } else {
+                    if (!isNaN(viewWidth)) {
+                        viewWidth = `width: ${getValueFromData(data.attr('viewsWidth' + i))}px;`
+                    }
+                }
 
                 viewsList.push(`
                 <div 
