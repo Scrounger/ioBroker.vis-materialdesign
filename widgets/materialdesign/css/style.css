@@ -1268,5 +1268,6 @@ svg.materialdesign-button__icon {
 .materialdesign-masonry-item {
   display: inline-block;
   position: relative;
+  vertical-align: top;
   width: 100%;
 }

@@ -63,9 +63,11 @@ vis.binds.materialdesign.views = {
             let countCols = getNumberFromData(data.countCols, 3);
 
             for (var i = 0; i <= data.countViews; i++) {
+                let viewWidth = (getNumberFromData(data.attr('viewsWidth' + i), null) != null) ? `width: ${data.attr('viewsWidth' + i)}px;` : ''
+
                 viewsList.push(`
                 <div 
-                    class="materialdesign-masonry-item" style="height: ${getNumberFromData(data.attr('viewsHeight' + i), 100)}px">
+                    class="materialdesign-masonry-item" style="height: ${getNumberFromData(data.attr('viewsHeight' + i), 100)}px; ${viewWidth}">
                         ${(vis.editMode) ? '<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e;"></div>' : ''}
                         <div data-vis-contains="${data.attr('View' + i)}" class="vis-widget-body vis-view-container">
                         </div>

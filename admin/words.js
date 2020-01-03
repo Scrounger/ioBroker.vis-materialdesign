@@ -4842,6 +4842,18 @@ systemDictionary = {
         "pl": "liczba wyświetleń",
         "zh-cn": "观看次数"
     },
+    "viewsWidth": {
+        "en": "width of view",
+        "de": "Breite der View",
+        "ru": "ширина обзора",
+        "pt": "largura de visão",
+        "nl": "beeldbreedte",
+        "fr": "largeur de vue",
+        "it": "larghezza della vista",
+        "es": "ancho de vista",
+        "pl": "szerokość widoku",
+        "zh-cn": "视线宽度"
+    },
     "viewsHeight": {
         "en": "height of view",
         "de": "Höhe der View",
