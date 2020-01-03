@@ -26,18 +26,18 @@ vis.binds.materialdesign = {
             vis.binds["materialdesign"].version = null;
         }
     },
-    initVuetfiyApp: function () {
-        $(window).on('load', function () {
-            let myHelper = vis.binds.materialdesign.helper;
-            myHelper.waitForElement($("body"), '#vis_container', function () {
-                if ($("#materialdesign-vuetify-container").length === 0) {
-                    // intitialize Vuetify v-app application container, if not exist
-                    $('body').wrapInner('<v-app id="materialdesign-vuetify-container" data-app="true">');
-                    console.log('initialize vuetify v-app application container');
-                }
-            });
-        });
-    },
+    // initVuetfiyApp: function () {
+    //     $(window).on('load', function () {
+    //         let myHelper = vis.binds.materialdesign.helper;
+    //         myHelper.waitForElement($("body"), '#vis_container', function () {
+    //             if ($("#materialdesign-vuetify-container").length === 0) {
+    //                 // intitialize Vuetify v-app application container, if not exist
+    //                 $('body').wrapInner('<v-app id="materialdesign-vuetify-container" data-app="true">');
+    //                 console.log('initialize vuetify v-app application container');
+    //             }
+    //         });
+    //     });
+    // },
     createWidget: function (widgetID, view, data, style) {
         var $div = $('#' + widgetID);
         // if nothing found => wait
@@ -811,4 +811,4 @@ function getListItemDivider(showDivider, dividerLayout) {
 }
 
 vis.binds["materialdesign"].showVersion();
-vis.binds["materialdesign"].initVuetfiyApp();
+// vis.binds["materialdesign"].initVuetfiyApp();
