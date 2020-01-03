@@ -28,7 +28,7 @@
     "material-components-web": "^4.0.0",
     "chart.js": "^2.9.3",
     "@thomasloven/round-slider": "0.3.7",
-    "vuetify": "2.1.15"
+    "vuetify": "2.2.1"
   },
   "main": "widgets/materialdesign.html",
   "scripts": {
