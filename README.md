@@ -83,7 +83,7 @@ Settings that are not listed in the table below are self-explanatory.
 
 Top App Bar with Navigation Drawer can be combined with the <a href="https://www.iobroker.net/#en/documentation/viz/basic.md">view in widget 8</a>.
 
-<b>Take a look at the [Material Design Widgets example project](https://github.com/Scrounger/ioBroker.vis-materialdesign/raw/master/doc/examples/MaterialDesignWidgets_Examples.zip)</b> to understand how it works.
+<b>Take a look at the [Material Design Widgets example project](http://iobroker.click:8082/vis/index.html?Material%20Design%20Widgets)</b> to understand how it works.
 
 ##### Layout modal:
 ![Logo](doc/en/media/topappbar_modal.gif)
@@ -283,7 +283,7 @@ Working Widget Example can be found [here](https://forum.iobroker.net/topic/2619
 
 Column Views has multiple `view in widget` integrated, that will be ordered automatically depending of the width of the widget. With this widget it is possible to cereate a responsive layout (one layout for desktop, tablet and mobil)
 
-<b>Take a look at the [Material Design Widgets example project](https://github.com/Scrounger/ioBroker.vis-materialdesign/raw/master/doc/examples/MaterialDesignWidgets_Examples.zip)</b> to understand how it works.
+<b>Take a look at the [Material Design Widgets example project](http://iobroker.click:8082/vis/index.html?Material%20Design%20Widgets)</b> to understand how it works.
 
 ![Logo](doc/en/media/column_views.gif)
 
