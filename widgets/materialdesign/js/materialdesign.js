@@ -657,7 +657,10 @@ vis.binds.materialdesign = {
         return { input: `<a target="_blank" href="${url}">${_('readme')}</a>` }
     },
     editorBmc: function (widAttr) {
-        return { input: `<a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VWAXSTS634G88&source=url">buy me (scrounger) a coffee</a>` }
+        return { input: `<a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VWAXSTS634G88&source=url">${_('buymeacoffee')}</a>` }
+    },
+    editorOnlineExample: function (widAttr) {
+        return { input: `<a target="_blank" href="http://iobroker.click:8082/vis/index.html?Material%20Design%20Widgets">${_('linkOnlineExampleProject')}</a>` }
     }
 };
 

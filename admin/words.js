@@ -4877,5 +4877,41 @@ systemDictionary = {
         "es": "Ver",
         "pl": "Widok",
         "zh-cn": "视图"
+    },
+    "onlineExampleProject": {
+        "en": "example project",
+        "de": "Beispielprojekt",
+        "ru": "пример проекта",
+        "pt": "projeto de exemplo",
+        "nl": "voorbeeld project",
+        "fr": "exemple de projet",
+        "it": "progetto di esempio",
+        "es": "proyecto de ejemplo",
+        "pl": "przykładowy projekt",
+        "zh-cn": "示例项目"
+    },
+    "linkOnlineExampleProject": {
+        "en": "view me",
+        "de": "Schau mich an",
+        "ru": "посмотри на меня",
+        "pt": "Veja-me",
+        "nl": "Bekijk me",
+        "fr": "me voir",
+        "it": "guardami",
+        "es": "Mírame",
+        "pl": "Zobacz mnie",
+        "zh-cn": "看我"
+    },
+    "buymeacoffee": {
+        "en": "buy me (Scrounger) a coffee",
+        "de": "Gib mir (Scrounger) einen Kaffee aus",
+        "ru": "купи мне (Scrounger) кофе",
+        "pt": "compre-me (Scrounger) um café",
+        "nl": "koop me (Scrounger) een koffie",
+        "fr": "Achetez-moi (Scrounger) un café",
+        "it": "comprami un caffè (Scrounger)",
+        "es": "cómprame un café (Scrounger)",
+        "pl": "kup mi (Scrounger) kawę",
+        "zh-cn": "买我（Scrounger）咖啡"
     }
 };
