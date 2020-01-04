@@ -65,28 +65,37 @@ vis.binds.materialdesign.views = {
             for (var i = 0; i <= data.countViews; i++) {
                 let viewWidth = getValueFromData(data.attr('viewsWidth' + i), '');
 
-                if (viewWidth.endsWith('%') || viewWidth.endsWith('px')) {
+                if (viewWidth !== '' && (viewWidth.endsWith('%') || viewWidth.endsWith('px'))) {
+                    console.log('hier1')
                     viewWidth = `width: ${getValueFromData(data.attr('viewsWidth' + i))};`
                 } else {
-                    if (!isNaN(viewWidth)) {
+                    if (!isNaN(viewWidth) && viewWidth !== '') {
+                        console.log('hier2')
                         viewWidth = `width: ${getValueFromData(data.attr('viewsWidth' + i))}px;`
+                    } else {
+                        console.log('hier3')
+                        viewWidth = '';
                     }
                 }
 
                 viewsList.push(`
-                <div 
-                    class="materialdesign-masonry-item" style="height: ${getNumberFromData(data.attr('viewsHeight' + i), 100)}px; ${viewWidth}">
-                        ${(vis.editMode) ? '<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e;"></div>' : ''}
-                        <div data-vis-contains="${data.attr('View' + i)}" class="vis-widget-body vis-view-container">
-                        </div>
+                <div class="materialdesign-column-views-container-column-item-container">
+                    <div 
+                        class="materialdesign-masonry-item" style="height: ${getNumberFromData(data.attr('viewsHeight' + i), 100)}px; ${viewWidth}">
+                            ${(vis.editMode) ? '<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e;"></div>' : ''}
+                            <div data-vis-contains="${data.attr('View' + i)}" class="vis-widget-body vis-view-container">
+                            </div>
+                    </div>
                 </div>
                 `)
             }
 
             $this.append(`
+
                 <div class="materialdesign-masonry-container" style="--materialdesign-masonry-column-count: ${countCols}">
                     ${viewsList.join('')}
                 </div>
+                
             `);
 
         } catch (ex) {

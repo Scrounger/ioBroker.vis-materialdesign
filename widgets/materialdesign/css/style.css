@@ -1225,6 +1225,11 @@ svg.materialdesign-button__icon {
   flex-wrap: wrap !important;
 }
 
+.materialdesign-column-views-container-column-item-container {
+  display: flex;
+  justify-content: center;
+}
+
 .materialdesign-column-views-container-column-item {
   position: relative !important;
   left: 0 !important;
