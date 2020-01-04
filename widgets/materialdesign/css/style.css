@@ -1225,10 +1225,7 @@ svg.materialdesign-button__icon {
   flex-wrap: wrap !important;
 }
 
-.materialdesign-column-views-container-column-item-container {
-  display: flex;
-  justify-content: center;
-}
+
 
 .materialdesign-column-views-container-column-item {
   position: relative !important;
@@ -1268,6 +1265,11 @@ svg.materialdesign-button__icon {
   .materialdesign-masonry-container {
     column-count: calc(var(--materialdesign-masonry-column-count) - 3);
   }
+}
+
+.materialdesign-masonry-item-container {
+  display: flex;
+  justify-content: center;
 }
 
 .materialdesign-masonry-item {
