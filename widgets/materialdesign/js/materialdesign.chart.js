@@ -300,7 +300,7 @@ vis.binds.materialdesign.chart = {
                                             stepSize: getNumberFromData(data.attr('yAxisStep' + i), undefined),
                                             autoSkip: true,
                                             maxTicksLimit: getNumberFromData(data.attr('yAxisMaxLabel' + i), undefined),
-                                            fontColor: getValueFromData(data.yAxisValueLabelColor, undefined),
+                                            fontColor: getValueFromData(data.attr('yAxisValueColor' + i), getValueFromData(data.yAxisValueLabelColor, undefined)),
                                             fontFamily: getValueFromData(data.yAxisValueFontFamily, undefined),
                                             fontSize: getNumberFromData(data.yAxisValueFontSize, undefined),
                                             padding: getNumberFromData(data.yAxisValueDistanceToAxis, 0),
