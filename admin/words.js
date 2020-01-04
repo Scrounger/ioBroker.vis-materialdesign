@@ -2007,8 +2007,19 @@ systemDictionary = {
         "es": "color de etiqueta del eje",
         "pl": "kolor etykiety osi",
         "zh-cn": "轴标签颜色"
-    }
-    ,
+    },
+    "yAxisValueColor": {
+        "en": "color Axis labeling",
+        "de": "Farbe Achsenbeschriftung",
+        "ru": "цветная маркировка оси",
+        "pt": "rotulagem de eixo colorido",
+        "nl": "kleur Axis labeling",
+        "fr": "étiquetage de l'axe des couleurs",
+        "it": "etichettatura asse colore",
+        "es": "etiquetado de color del eje",
+        "pl": "kolorowe oznakowanie osi",
+        "zh-cn": "色轴标签"
+    },
     "xAxisValueLabelColor": {
         "en": "axis label color",
         "de": "Achsenbeschriftung Schriftfarbe",
@@ -4913,5 +4924,18 @@ systemDictionary = {
         "es": "cómprame un café (Scrounger)",
         "pl": "kup mi (Scrounger) kawę",
         "zh-cn": "买我（Scrounger）咖啡"
-    }
+    },
+    "viewAlignment": {
+        "en": "alignment",
+        "de": "Ausrichtung",
+        "ru": "выравнивание",
+        "pt": "alinhamento",
+        "nl": "opstelling",
+        "fr": "alignement",
+        "it": "allineamento",
+        "es": "alineación",
+        "pl": "wyrównanie",
+        "zh-cn": "对准"
+    },
+
 };
