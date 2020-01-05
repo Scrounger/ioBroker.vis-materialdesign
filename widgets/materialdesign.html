@@ -162,7 +162,7 @@
         <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.handleNavigation(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
             <div class="materialdesign vis-widget-body" style="display: table; width: 100%; height: 100%;">
                 <div style="display: table-row;">                
-                    <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; <%= stylesInvertImageFalse %>" />
+                    <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + 'px' || auto %>; <%= stylesInvertImageFalse %>" />
                 </div>
                 <div class="labelRowContainer" style="display: table-row; height: 100%; background: <%== this.data.attr('labelColorBgFalse') %>">
                     <span class="labelToggleFalse materialdesign-button__label" style="color: <%== this.data.attr('labelColorFalse') %>;"><%== this.data.attr('labelFalse') %></span>
@@ -198,7 +198,7 @@
         <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleLink(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
             <div class="materialdesign vis-widget-body" style="display: table; width: 100%; height: 100%;">
                 <div style="display: table-row;">                
-                    <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; <%= stylesInvertImageFalse %>" />
+                    <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + 'px' || auto %>; <%= stylesInvertImageFalse %>" />
                 </div>
                 <div class="labelRowContainer" style="display: table-row; height: 100%; background: <%== this.data.attr('labelColorBgFalse') %>">
                     <span class="labelToggleFalse materialdesign-button__label" style="color: <%== this.data.attr('labelColorFalse') %>;"><%== this.data.attr('labelFalse') %></span>
@@ -234,7 +234,7 @@
         <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.basic.state(el); vis.binds.materialdesign.addRippleEffect(el, data) %>>
             <div class="materialdesign vis-widget-body" style="display: table; width: 100%; height: 100%;">
                 <div style="display: table-row;">                
-                    <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; <%= stylesInvertImageFalse %>" />
+                    <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + 'px' || auto %>; <%= stylesInvertImageFalse %>" />
                 </div>
                 <div class="labelRowContainer" style="display: table-row; height: 100%; background: <%== this.data.attr('labelColorBgFalse') %>">
                     <span class="labelToggleFalse materialdesign-button__label" style="color: <%== this.data.attr('labelColorFalse') %>;"><%== this.data.attr('labelFalse') %></span>
@@ -275,8 +275,8 @@
     <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.addRippleEffect(el, data) %>>
         <div class="materialdesign vis-widget-body" style="display: table; width: 100%; height: 100%;" toggled="false">
             <div style="display: table-row;">                
-                <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; <%= stylesInvertImageFalse %>" />
-                <img class="imgToggleTrue"  <%= this.data.attr('imageTrue')  ? 'src="' +  this.data.attr('imageTrue')  + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + '%' || auto %>; display:none; <%= stylesInvertImageTrue %>" />
+                <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + 'px' || auto %>; <%= stylesInvertImageFalse %>" />
+                <img class="imgToggleTrue"  <%= this.data.attr('imageTrue')  ? 'src="' +  this.data.attr('imageTrue')  + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + 'px' || auto %>; display:none; <%= stylesInvertImageTrue %>" />
             </div>
             <div class="labelRowContainer" style="display: table-row; height: 100%; background: <%== this.data.attr('labelColorBgFalse') %>">
                 <span class="labelToggleFalse materialdesign-button__label" style="color: <%== this.data.attr('labelColorFalse') %>;"><%== this.data.attr('labelFalse') %></span>
