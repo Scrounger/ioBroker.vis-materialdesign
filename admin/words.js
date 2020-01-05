@@ -4936,6 +4936,5 @@ systemDictionary = {
         "es": "alineación",
         "pl": "wyrównanie",
         "zh-cn": "对准"
-    },
-
+    }
 };
