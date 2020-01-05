@@ -17,7 +17,7 @@ systemDictionary = {
     "myColor_tooltip": {
         "en": "Description of\nmyColor",
         "de": "Beschreibung von\nmyColor",
-        "ru": "Описание\nmyColor",
+        "ru": "Описание для\nmyColor",
         "pt": "Descrição de\nmyColor",
         "nl": "Beschrijving van\nmyColor",
         "fr": "Description de\nmyColor",
@@ -65,7 +65,7 @@ systemDictionary = {
     "historyAdapterInstance": {
         "en": "adapter instance",
         "de": "Adapterinstanz",
-        "ru": "экземпляр адаптера",
+        "ru": "Экземпляр драйвера",
         "pt": "instância do adaptador",
         "nl": "adapter exemplaar",
         "fr": "instance d'adaptateur",
@@ -77,7 +77,7 @@ systemDictionary = {
     "label": {
         "en": "label",
         "de": "Beschriftung",
-        "ru": "этикетка",
+        "ru": "Подпись",
         "pt": "rótulo",
         "nl": "label",
         "fr": "étiquette",
@@ -89,7 +89,7 @@ systemDictionary = {
     "buttonStyle": {
         "en": "button style",
         "de": "Schaltflächenstil",
-        "ru": "стиль кнопки",
+        "ru": "Стиль кнопки",
         "pt": "estilo de botão",
         "nl": "knopstijl",
         "fr": "style de bouton",
@@ -101,7 +101,7 @@ systemDictionary = {
     "titleLayout": {
         "en": "title font size",
         "de": "Schriftgröße des Titels",
-        "ru": "размер шрифта заголовка",
+        "ru": "Размер шрифта заголовка",
         "pt": "tamanho da fonte do título",
         "nl": "titel lettergrootte",
         "fr": "titre police taille",
@@ -113,7 +113,7 @@ systemDictionary = {
     "subtitleLayout": {
         "en": "subtitle font size",
         "de": "Schriftgröße für Untertitel",
-        "ru": "размер шрифта субтитров",
+        "ru": "Размер шрифта подписи",
         "pt": "tamanho da fonte da legenda",
         "nl": "ondertitel lettergrootte",
         "fr": "taille de la police des sous-titres",
@@ -125,7 +125,7 @@ systemDictionary = {
     "htmlLayout": {
         "en": "text style",
         "de": "Textstil",
-        "ru": "стиль текста",
+        "ru": "Стиль текста",
         "pt": "estilo de texto",
         "nl": "tekststijl",
         "fr": "style de texte",
@@ -137,7 +137,7 @@ systemDictionary = {
     "group_label": {
         "en": "labeling",
         "de": "Beschriftung",
-        "ru": "маркировка",
+        "ru": "Маркировка",
         "pt": "marcação",
         "nl": "labeling",
         "fr": "étiquetage",
@@ -147,9 +147,9 @@ systemDictionary = {
         "zh-cn": "标签"
     },
     "labelFalse": {
-        "en": "label",
-        "de": "Beschriftung",
-        "ru": "этикетка",
+        "en": "Label false",
+        "de": "Beschriftung False",
+        "ru": "Текст для false",
         "pt": "rótulo",
         "nl": "label",
         "fr": "étiquette",
@@ -159,9 +159,9 @@ systemDictionary = {
         "zh-cn": "标签"
     },
     "labelTrue": {
-        "en": "active label",
-        "de": "aktive Beschriftung",
-        "ru": "активная метка",
+        "en": "Label true",
+        "de": "Beschriftung True",
+        "ru": "Текст для true",
         "pt": "etiqueta ativa",
         "nl": "actief label",
         "fr": "étiquette active",
@@ -173,7 +173,7 @@ systemDictionary = {
     "labelColorFalse": {
         "en": "label color",
         "de": "Beschriftungsfarbe",
-        "ru": "цвет этикетки",
+        "ru": "Цвет подписи",
         "pt": "cor da etiqueta",
         "nl": "label kleur",
         "fr": "couleur de l'étiquette",
@@ -184,8 +184,8 @@ systemDictionary = {
     },
     "labelColorTrue": {
         "en": "active label color",
-        "de": "aktive Beschriftungsfarbe",
-        "ru": "активный цвет метки",
+        "de": "Beschriftungsfarbe für true",
+        "ru": "Цвет подписи true",
         "pt": "cor da etiqueta ativa",
         "nl": "actieve labelkleur",
         "fr": "couleur de l'étiquette active",
@@ -197,7 +197,7 @@ systemDictionary = {
     "showValueLabel": {
         "en": "show value",
         "de": "Wert anzeigen",
-        "ru": "показать значение",
+        "ru": "Показать значение",
         "pt": "mostrar valor",
         "nl": "toon waarde",
         "fr": "montrer la valeur",
@@ -209,7 +209,7 @@ systemDictionary = {
     "valueLabelUnit": {
         "en": "unit",
         "de": "Einheit",
-        "ru": "единица измерения",
+        "ru": "Единица измерения",
         "pt": "unidade",
         "nl": "eenheid",
         "fr": "unité",
@@ -221,7 +221,7 @@ systemDictionary = {
     "valueMaxDecimals": {
         "en": "decimal points",
         "de": "Kommastellen",
-        "ru": "десятичные точки",
+        "ru": "Десятичные знаки",
         "pt": "pontos decimais",
         "nl": "decimale punten",
         "fr": "points décimaux",
@@ -233,7 +233,7 @@ systemDictionary = {
     "valuePosition": {
         "en": "display position",
         "de": "Anzeigeposition",
-        "ru": "положение дисплея",
+        "ru": "Положение",
         "pt": "posição de exibição",
         "nl": "weergave positie",
         "fr": "position d'affichage",
@@ -269,7 +269,7 @@ systemDictionary = {
     "valueLabelWidth": {
         "en": "distance label",
         "de": "Abstand Beschriftung",
-        "ru": "метка расстояния",
+        "ru": "Ширина показаний значения",
         "pt": "etiqueta de distância",
         "nl": "afstandslabel",
         "fr": "étiquette de distance",
