@@ -62,6 +62,8 @@ vis.binds.materialdesign.views = {
             let viewsList = [];
             let countCols = getNumberFromData(data.countCols, 3);
 
+            $this.context.style.setProperty("--materialdesign-masonry-gaps", getNumberFromData(data.masnoryGaps, 0) + 'px');
+
             for (var i = 0; i <= data.countViews; i++) {
                 let viewWidth = getValueFromData(data.attr('viewsWidth' + i), '');
 

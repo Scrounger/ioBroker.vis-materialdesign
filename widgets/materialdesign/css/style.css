@@ -78,6 +78,8 @@
   --materialdesign-color-slider-thumb: #44739e;
   --materialdesign-color-slider-after-thumb: rgba(161, 161, 161, 0.26);
   --materialdesign-color-slider-track-marker: #44739e;
+
+  --materialdesign-masonry-gaps: 20px;
 }
 
 /* Button style -> must defined here because of position bug in vis editor */
@@ -1235,9 +1237,11 @@ svg.materialdesign-button__icon {
 }
 
 .materialdesign-masonry-container {
-  width: 100%;
-  column-gap: 0;
+  width: calc(100% - 2 * var(--materialdesign-masonry-gaps));
+  column-gap: var(--materialdesign-masonry-gaps);
   text-align: center;
+  padding-left: var(--materialdesign-masonry-gaps);
+  padding-bottom: var(--materialdesign-masonry-gaps);
 }
 
 .materialdesign-masonry-item {
@@ -1246,6 +1250,7 @@ svg.materialdesign-button__icon {
   vertical-align: top;
   width: 100%;
   text-align: initial;
+  margin-top: var(--materialdesign-masonry-gaps);
 }
 
 @media screen and (min-width: 992px) {

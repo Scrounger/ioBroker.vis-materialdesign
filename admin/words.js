@@ -4948,5 +4948,17 @@ systemDictionary = {
         "es": "diseño de los valores del gráfico de líneas",
         "pl": "układ wartości wykresu liniowego",
         "zh-cn": "折线图值的布局"
-    }
+    },
+    "masnoryGaps": {
+        "en": "distance between views",
+        "de": "Abstand zwischen Views",
+        "ru": "расстояние между взглядами",
+        "pt": "distância entre vistas",
+        "nl": "afstand tussen weergaven",
+        "fr": "distance entre les vues",
+        "it": "distanza tra le viste",
+        "es": "distancia entre vistas",
+        "pl": "odległość między widokami",
+        "zh-cn": "视图之间的距离"
+      }
 };
