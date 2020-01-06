@@ -319,7 +319,9 @@ Column Views has multiple `view in widget` integrated, that will be ordered auto
 
 ## Changelog
 
-### 0.x.x
+### 0.2.32
+* (Scrounger): Editor translation bug fix
+* (Scrounger): Masonry Views Widget: alignment bug fix for chrome
 * (Scrounger): Line History Chart Widget: layout option for line values added
 * (Bluefox): Russian translation revised
 

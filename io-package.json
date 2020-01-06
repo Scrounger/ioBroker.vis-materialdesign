@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.2.31",
+        "version": "0.2.32",
         "news": {
+            "0.2.32": {
+                "en": "see changelog",
+                "de": "siehe Changelog",
+                "ru": "см. список изменений",
+                "pt": "veja changelog",
+                "nl": "zie changelog",
+                "fr": "voir changelog",
+                "it": "vedi il log delle modifiche",
+                "es": "ver registro de cambios",
+                "pl": "patrz dziennik zmian",
+                "zh-cn": "看到变更日志"
+            },
             "0.2.30": {
                 "en": "see changelog",
                 "de": "siehe Changelog",
