@@ -319,6 +319,10 @@ Column Views has multiple `view in widget` integrated, that will be ordered auto
 
 ## Changelog
 
+### 0.x.x
+* (Scrounger): Line History Chart Widget: layout option for line values added
+* (Bluefox): Russian translation revised
+
 ### 0.2.30
 * (Scrounger): Masonry Views Widget added
 * (Scrounger): Select Widget: background color bug fix

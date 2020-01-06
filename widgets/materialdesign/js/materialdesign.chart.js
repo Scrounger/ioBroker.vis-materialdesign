@@ -257,9 +257,15 @@ vis.binds.materialdesign.chart = {
 
                             let myDatasets = [];
                             let myYAxis = [];
+                            let myDatalabels = [];
+
                             for (var i = 0; i <= result.length - 1; i++) {
 
                                 let dataArray = myHelper.getPreparedData(result[i], data, i);
+
+                                // Plugin datalabels: var for formatter
+                                let valuesMaxDecimals = getNumberFromData(data.attr('valuesMaxDecimals' + i), 10);
+                                let valuesAppendText = getValueFromData(data.attr('valuesAppendText' + i), '')
 
                                 myDatasets.push(
                                     {
@@ -278,6 +284,27 @@ vis.binds.materialdesign.chart = {
                                         pointHoverBackgroundColor: getValueFromData(data.attr('pointHoverColor' + i), getValueFromData(data.attr('dataColor' + i), (colorScheme) ? getValueFromData(colorScheme[i], globalColor) : globalColor)),
                                         yAxisID: 'yAxis_id_' + getNumberFromData(data.attr('commonYAxis' + i), i),
                                         spanGaps: data.attr('lineSpanGaps' + i),
+                                        datalabels: {
+                                            // Plugin datalabels
+                                            display: data.attr('showValues' + i),
+                                            anchor: data.attr('valuesPositionAnchor' + i),
+                                            align: data.attr('valuesPositionAlign' + i),
+                                            clamp: true,
+                                            rotation: getNumberFromData(data.attr('valuesRotation' + i), undefined),
+                                            formatter: function (value, context) {
+                                                if (value.y) {
+                                                    return `${myHelper.roundNumber(value.y, valuesMaxDecimals).toLocaleString()}${valuesAppendText}`
+                                                        .split('\\n');
+                                                }
+                                                return '';
+                                            },
+                                            font: {
+                                                family: getValueFromData(data.attr('valuesFontFamily' + i), undefined),
+                                                size: getNumberFromData(data.attr('valuesFontSize' + i), undefined),
+                                            },
+                                            color: getValueFromData(data.attr('valuesFontColor' + i), getValueFromData(data.attr('dataColor' + i), (colorScheme) ? getValueFromData(colorScheme[i], globalColor) : globalColor)),
+                                            textAlign: data.attr('valuesTextAlign' + i)
+                                        }
                                     }
                                 );
 
@@ -319,7 +346,7 @@ vis.binds.materialdesign.chart = {
                                             tickMarkLength: getNumberFromData(data.attr('yAxisTickLength' + i), 5),
                                         }
                                     }
-                                )
+                                );
                             }
 
                             // Data with datasets options
@@ -445,29 +472,7 @@ vis.binds.materialdesign.chart = {
                                             return '';
                                         }
                                     }
-                                },
-                                // plugins: {
-                                //     datalabels: {
-                                //         anchor: data.valuesPositionAnchor,
-                                //         align: data.valuesPositionAlign,
-                                //         clamp: true,
-                                //         rotation: getNumberFromData(data.valuesRotation, undefined),
-                                //         formatter: function (value, context) {
-                                //             if (value) {
-                                //                 return `${myHelper.roundNumber(value, getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${getValueFromData(data.valuesAppendText, '')}${getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
-                                //                     .split('\\n');
-                                //             }
-                                //             return '';
-                                //         },
-                                //         font: {
-                                //             family: getValueFromData(data.valuesFontFamily, undefined),
-                                //             size: getNumberFromData(data.valuesFontSize, undefined),
-                                //         },
-                                //         color: valueTextColorArray,
-                                //         textAlign: data.valuesTextAlign
-                                //     }
-                                // }
-
+                                }
                             };
 
                             if (data.disableHoverEffects) options.hover = { mode: null };
@@ -477,9 +482,8 @@ vis.binds.materialdesign.chart = {
                                 type: 'line',
                                 data: chartData,
                                 options: options,
-                                // plugins: (data.showValues) ? [ChartDataLabels] : undefined     // show value labels
+                                plugins: [ChartDataLabels]     // show value labels
                             });
-
 
                             progressBar.hide();
                         });

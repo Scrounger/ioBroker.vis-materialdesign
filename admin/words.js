@@ -4936,5 +4936,17 @@ systemDictionary = {
         "es": "alineación",
         "pl": "wyrównanie",
         "zh-cn": "对准"
+    },
+    "group_lineValuesLayout": {
+        "en": "layout of line chart values",
+        "de": "Layout der Liniendiagrammwerte",
+        "ru": "расположение значений линейного графика",
+        "pt": "layout dos valores do gráfico de linhas",
+        "nl": "indeling van lijngrafiekwaarden",
+        "fr": "disposition des valeurs du graphique en courbes",
+        "it": "layout dei valori del grafico a linee",
+        "es": "diseño de los valores del gráfico de líneas",
+        "pl": "układ wartości wykresu liniowego",
+        "zh-cn": "折线图值的布局"
     }
 };
