@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.33"
+    version: "0.2.32"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -1227,8 +1227,6 @@ svg.materialdesign-button__icon {
   flex-wrap: wrap !important;
 }
 
-
-
 .materialdesign-column-views-container-column-item {
   position: relative !important;
   left: 0 !important;
@@ -1240,8 +1238,7 @@ svg.materialdesign-button__icon {
   width: calc(100% - 2 * var(--materialdesign-masonry-gaps));
   column-gap: var(--materialdesign-masonry-gaps);
   text-align: center;
-  padding-left: var(--materialdesign-masonry-gaps);
-  padding-bottom: var(--materialdesign-masonry-gaps);
+  padding: var(--materialdesign-masonry-gaps);
 }
 
 .materialdesign-masonry-item {
@@ -1250,7 +1247,6 @@ svg.materialdesign-button__icon {
   vertical-align: top;
   width: 100%;
   text-align: initial;
-  margin-top: var(--materialdesign-masonry-gaps);
 }
 
 @media screen and (min-width: 992px) {

@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.33"
+    version: "0.2.32"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -86,8 +86,8 @@ vis.binds.materialdesign.views = {
 
                 viewsList.push(`
                     <div 
-                        class="materialdesign-masonry-item" style="height: ${getNumberFromData(data.attr('viewsHeight' + i), 100)}px; ${viewWidth}">
-                            ${(vis.editMode) ? '<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e;"></div>' : ''}
+                        class="materialdesign-masonry-item" style="height: ${getNumberFromData(data.attr('viewsHeight' + i), 100) + getNumberFromData(data.masnoryGaps, 0)}px; ${viewWidth}">
+                            ${(vis.editMode) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; height: ${getNumberFromData(data.attr('viewsHeight' + i), 100)}px;"></div>` : ''}                          
                             <div data-vis-contains="${data.attr('View' + i)}" class="vis-widget-body vis-view-container">
                             </div>
                     </div>
