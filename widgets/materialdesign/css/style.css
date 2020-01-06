@@ -1237,6 +1237,15 @@ svg.materialdesign-button__icon {
 .materialdesign-masonry-container {
   width: 100%;
   column-gap: 0;
+  text-align: center;
+}
+
+.materialdesign-masonry-item {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  width: 100%;
+  text-align: initial;
 }
 
 @media screen and (min-width: 992px) {
@@ -1265,16 +1274,4 @@ svg.materialdesign-button__icon {
   .materialdesign-masonry-container {
     column-count: calc(var(--materialdesign-masonry-column-count) - 3);
   }
-}
-
-.materialdesign-masonry-item-container {
-  display: flex;
-  justify-content: center;
-}
-
-.materialdesign-masonry-item {
-  display: inline-block;
-  position: relative;
-  vertical-align: top;
-  width: 100%;
 }

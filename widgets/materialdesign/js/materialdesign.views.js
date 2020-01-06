@@ -83,20 +83,18 @@ vis.binds.materialdesign.views = {
                 if (viewAlignment === 'right') viewAlignment = 'flex-end';
 
                 viewsList.push(`
-                <div class="materialdesign-masonry-item-container" style="justify-content: ${viewAlignment};">
                     <div 
                         class="materialdesign-masonry-item" style="height: ${getNumberFromData(data.attr('viewsHeight' + i), 100)}px; ${viewWidth}">
                             ${(vis.editMode) ? '<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e;"></div>' : ''}
                             <div data-vis-contains="${data.attr('View' + i)}" class="vis-widget-body vis-view-container">
                             </div>
                     </div>
-                </div>
                 `)
             }
 
             $this.append(`
 
-                <div class="materialdesign-masonry-container" style="--materialdesign-masonry-column-count: ${countCols}">
+                <div class="materialdesign-masonry-container" style="--materialdesign-masonry-column-count: ${countCols}; text-align: ${data.viewAlignment};">
                     ${viewsList.join('')}
                 </div>
                 
