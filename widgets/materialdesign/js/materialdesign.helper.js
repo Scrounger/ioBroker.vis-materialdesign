@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.33"
+    version: "0.2.34"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -30,7 +30,7 @@ vis.binds.materialdesign.helper = {
     },
     installedVersion: function (el, data) {
         setTimeout(function () {
-            let version = 'version: "0.2.33"'
+            let version = 'version: "0.2.34"'
             console.log(version);
             $(el).find('.materialdesign-installed-version-badge').attr('src', `https://img.shields.io/badge/installed-${version.replace('version: "', '').replace('"', '')}-%234ac51c`);
         }, 1)
