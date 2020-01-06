@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.32"
+    version: "0.2.31"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -13,6 +13,7 @@ vis.binds.materialdesign.roundslider = {
         try {
             let $this = $(el);
             let workingId = $this.attr('data-oid-working');
+            let myHelper = vis.binds.materialdesign.helper;
 
             let valueOnLoading = vis.states.attr(data.oid + '.val');
 
@@ -91,6 +92,28 @@ vis.binds.materialdesign.roundslider = {
                     vis.setValue(data.oid, changedVal);
                     setSliderState();
                 }
+            });
+
+            $this.find('.materialdesign-round-slider-element').on('touchstart mousedown', function (e) {
+                myHelper.vibrate(data.vibrateOnMobilDevices);
+
+                // let posX = e.offsetX;
+                // let posY = e.offsetY;
+                // let width = window.getComputedStyle($this.context, null).width.replace('px', '') / 2;
+                // let height = window.getComputedStyle($this.context, null).height.replace('px', '') / 2;
+                // let deltaY = height - posY;
+                // let deltaX = width - posX;
+                // let deg = (Math.atan2(deltaY, deltaX) * 180) / Math.PI;
+                // deg = deg + (360 - getNumberFromData(data.startAngle, 135));
+                // console.log(deg);
+                // // deg = deg + getNumberFromData(data.startAngle, 135);
+
+
+                // // if (deg < 0 && deg >= -270) {
+                // //     deg = deg + 360;
+                // // }
+                // // console.log(deg);
+                // // this.value = deg;
             });
 
             function setSliderState(setVisValue = true, val = 0) {

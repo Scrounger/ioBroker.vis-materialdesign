@@ -33,7 +33,7 @@ https://github.com/material-components/material-components-web/blob/master/docs/
 ### Supported Browser for vibrate on mobil devices function
 https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate
 
-### ioBroker App
+### ioBroker VIS App
 not working, needs to be implemneted by app, see https://github.com/ioBroker/ioBroker.vis.cordova
 
 ## Button Toggle
