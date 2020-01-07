@@ -13,15 +13,15 @@ vis.binds.materialdesign.button = {
         try {
             let buttonElementsList = [];
 
-            let image = getValueFromData(data.image, null);
+            let image = myMdwHelper.getValueFromData(data.image, null);
 
             let iconHeight = 'width: auto;';
-            if (getValueFromData(data.iconHeight, 0) > 0) {
+            if (myMdwHelper.getValueFromData(data.iconHeight, 0) > 0) {
                 iconHeight = `width: ${data.iconHeight}px;`
             }
 
             let labelWidth = '';
-            if (getValueFromData(data.labelWidth, 0) > 0) {
+            if (myMdwHelper.getValueFromData(data.labelWidth, 0) > 0) {
                 labelWidth = `style="width: ${data.labelWidth}%;"`
             }
 
@@ -47,7 +47,7 @@ vis.binds.materialdesign.button = {
             }
 
             let labelElement = '';
-            if (getValueFromData(data.buttontext, null) != null) {
+            if (myMdwHelper.getValueFromData(data.buttontext, null) != null) {
                 labelElement = `<span 
                                     class="materialdesign-button__label" ${labelWidth}>
                                     ${data.buttontext}
@@ -111,14 +111,14 @@ vis.binds.materialdesign.button = {
         try {
             var $this = $(el);
 
-            let bgColor = getValueFromData(data.colorBgFalse, '');
-            let bgColorTrue = getValueFromData(data.colorBgTrue, bgColor);
+            let bgColor = myMdwHelper.getValueFromData(data.colorBgFalse, '');
+            let bgColorTrue = myMdwHelper.getValueFromData(data.colorBgTrue, bgColor);
 
-            let labelBgColor = getValueFromData(data.labelColorBgFalse, '');
-            let labelBgColorTrue = getValueFromData(data.labelColorBgTrue, labelBgColor);
+            let labelBgColor = myMdwHelper.getValueFromData(data.labelColorBgFalse, '');
+            let labelBgColorTrue = myMdwHelper.getValueFromData(data.labelColorBgTrue, labelBgColor);
 
-            let imageFalse = getValueFromData(data.image, '');
-            let imageTrue = getValueFromData(data.imageTrue, imageFalse);
+            let imageFalse = myMdwHelper.getValueFromData(data.image, '');
+            let imageTrue = myMdwHelper.getValueFromData(data.imageTrue, imageFalse);
 
             let invertImageFalse = { 'filter': '', '-webkit-filter': '', '-moz-filter': '', '-o-filter': '', '-ms-filter': '' };
             if (data.invertImage === 'true' || data.invertImage === true) {
@@ -130,11 +130,11 @@ vis.binds.materialdesign.button = {
                 invertImageTrue = { 'filter': 'invert(1)', '-webkit-filter': 'invert(1)', '-moz-filter': 'invert(1)', '-o-filter': 'invert(1)', '-ms-filter': 'invert(1)' };
             }
 
-            let textFalse = getValueFromData(data.buttontext, '');
-            let textTrue = getValueFromData(data.labelTrue, textFalse);
+            let textFalse = myMdwHelper.getValueFromData(data.buttontext, '');
+            let textTrue = myMdwHelper.getValueFromData(data.labelTrue, textFalse);
 
-            let textColorFalse = getValueFromData(data.labelColorFalse, '');
-            let textColorTrue = getValueFromData(data.labelColorTrue, textColorFalse);
+            let textColorFalse = myMdwHelper.getValueFromData(data.labelColorFalse, '');
+            let textColorTrue = myMdwHelper.getValueFromData(data.labelColorTrue, textColorFalse);
 
             setButtonState();
 
