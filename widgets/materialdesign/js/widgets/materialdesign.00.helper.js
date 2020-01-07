@@ -173,4 +173,4 @@ vis.binds.materialdesign.helper = {
     }
 };
 
-let myHelper = vis.binds.materialdesign.helper;
+let myMdwHelper = vis.binds.materialdesign.helper;
