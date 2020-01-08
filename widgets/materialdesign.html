@@ -555,7 +555,7 @@
             }
         %>
 
-        <div class="vis-widget mdc-form-field <%= labelPosition %> materialdesign-checkbox <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.mdcCheckbox(el, data) %>>
+        <div class="vis-widget mdc-form-field <%= labelPosition %> materialdesign-checkbox <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.checkbox(el, data) %>>
             <div class="mdc-checkbox">
                 <input type="checkbox" class="mdc-checkbox__native-control" id="materialdesign-checkbox-<%= this.data.attr('wid') %>"/>
                 <div class="mdc-checkbox__background">
