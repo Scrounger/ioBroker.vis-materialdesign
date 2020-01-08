@@ -24,8 +24,8 @@ Material Design Widgets uses the following libraries:
 ## Online Example Project
 provided by [iobroker.click](https://iobroker.click/index.html), thanks to bluefox and iobroker.
 
-* <a href="https://iobroker.click/vis/index.html?Material%20Design%20Widgets" target="_blank">VIS Runtime</a>
-* <a href="https://iobroker.click/vis/edit.html?Material%20Design%20Widgets" target="_blank">VIS Editor</a>
+* <a href="https://iobroker.click/vis/index.html?Material%20Design%20Widgets" target="_blank">VIS Runtime</a> (<a href="http://iobroker.click:8082/vis/index.html?Material%20Design%20Widgets" target="_blank">alternativ</a>)
+* <a href="https://iobroker.click/vis/edit.html?Material%20Design%20Widgets" target="_blank">VIS Editor</a> (<a href="http://iobroker.click:8082/vis/edit.html?Material%20Design%20Widgets" target="_blank">alternativ</a>)
 
 ### Supported Browser
 https://github.com/material-components/material-components-web/blob/master/docs/supported-browsers.md
@@ -83,7 +83,7 @@ Settings that are not listed in the table below are self-explanatory.
 
 Top App Bar with Navigation Drawer can be combined with the <a href="https://www.iobroker.net/#en/documentation/viz/basic.md">view in widget 8</a>.
 
-<b>Take a look at the [Material Design Widgets example project](http://iobroker.click:8082/vis/index.html?Material%20Design%20Widgets)</b> to understand how it works.
+<b>Take a look at the [Material Design Widgets example project](https://github.com/Scrounger/ioBroker.vis-materialdesign#online-example-project)</b> to understand how it works.
 
 ##### Layout modal:
 ![Logo](doc/en/media/topappbar_modal.gif)
@@ -283,7 +283,7 @@ Working Widget Example can be found [here](https://forum.iobroker.net/topic/2619
 
 Column Views has multiple `view in widget` integrated, that will be ordered automatically depending of the width of the widget. With this widget it is possible to cereate a responsive layout (one layout for desktop, tablet and mobil)
 
-<b>Take a look at the [Material Design Widgets example project](http://iobroker.click:8082/vis/index.html?Material%20Design%20Widgets)</b> to understand how it works.
+<b>Take a look at the [Material Design Widgets example project](https://github.com/Scrounger/ioBroker.vis-materialdesign#online-example-project)</b> to understand how it works.
 
 ![Logo](doc/en/media/column_views.gif)
 
