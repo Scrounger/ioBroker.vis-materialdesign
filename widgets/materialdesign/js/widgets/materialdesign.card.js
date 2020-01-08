@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.35"
+    version: "0.2.36"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -91,7 +91,7 @@ vis.binds.materialdesign.card = {
             return { card: card, style: cardStyle }
 
         } catch (ex) {
-            console.exception(`initialize: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`[Card] initialize: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handler: function (el, data) {
@@ -111,7 +111,7 @@ vis.binds.materialdesign.card = {
 
 
         } catch (ex) {
-            console.exception(`handler: error: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`[Card] handler: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

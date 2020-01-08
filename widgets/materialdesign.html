@@ -1,7 +1,7 @@
 <!--
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.35"
+    version: "0.2.36"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 -->
@@ -633,7 +633,7 @@
         data-vis-attrs0="group.color;colorSliderBg/color;colorBeforeThumb/color;colorThumb/color;colorAfterThumb/color;valueLabelColor/color;"
         data-vis-attrs1="group.label;showValueLabel[true]/checkbox;valueLabelVerticalPosition/slider,0,100,1;valueLabelUnit;valueLabelMin/html;valueLabelMax/html;valueLessThan/number;textForValueLessThan/html;valueGreaterThan/number;textForValueGreaterThan/html;">
         
-        <div class="vis-widget materialdesign-slider-round <%== this.data.attr('class') %>" style="width: 400px; height: 250px;" id="<%= this.data.attr('wid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" <%= (el) -> vis.binds.materialdesign.roundslider.handle(el, data) %>>
+        <div class="vis-widget materialdesign-slider-round <%== this.data.attr('class') %>" style="width: 400px; height: 250px;" id="<%= this.data.attr('wid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" <%= (el) -> vis.binds.materialdesign.roundslider(el, data) %>>
 
         </div>
 </script>

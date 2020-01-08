@@ -2,7 +2,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.35"
+    version: "0.2.36"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -180,12 +180,10 @@ vis.binds.materialdesign.chart = {
                 }
             }, 1)
         } catch (ex) {
-            console.exception(`bar: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`[Bar Chart] error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     lineHistory: function (el, data) {
-        let logPrefix = `lineHistory[${data.wid}]:`;
-
         try {
             setTimeout(function () {
                 let myChartHelper = vis.binds.materialdesign.chart.helper;
@@ -531,7 +529,7 @@ vis.binds.materialdesign.chart = {
                 };
             }, 1)
         } catch (ex) {
-            console.exception(`${logPrefix} ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`[Line History Chart] error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     pie: function (el, data) {
@@ -687,7 +685,7 @@ vis.binds.materialdesign.chart = {
                 }
             }, 1)
         } catch (ex) {
-            console.exception(`bar: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`[Pie Chart] error:: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

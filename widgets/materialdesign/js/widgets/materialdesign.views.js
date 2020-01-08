@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.35"
+    version: "0.2.36"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -53,7 +53,7 @@ vis.binds.materialdesign.views = {
                 </div>
             `);
         } catch (ex) {
-            console.exception(`column: error: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`[Column Views]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     masonry: function (el, data) {
@@ -95,15 +95,13 @@ vis.binds.materialdesign.views = {
             }
 
             $this.append(`
-
                 <div class="materialdesign-masonry-container" style="--materialdesign-masonry-column-count: ${countCols}; text-align: ${data.viewAlignment};">
                     ${viewsList.join('')}
                 </div>
-                
             `);
 
         } catch (ex) {
-            console.exception(`masonry: error: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`[Masonry Views] error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

@@ -1,15 +1,15 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.35"
+    version: "0.2.36"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
 "use strict";
 
 // this code can be placed directly in materialdesign.html
-vis.binds.materialdesign.roundslider = {
-    handle: function (el, data) {
+vis.binds.materialdesign.roundslider =
+    function (el, data) {
         try {
             let $this = $(el);
             let workingId = $this.attr('data-oid-working');
@@ -138,7 +138,6 @@ vis.binds.materialdesign.roundslider = {
                 }
             }
         } catch (ex) {
-            console.exception(`handle: error: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`[Round Slider] error: ${ex.message}, stack: ${ex.stack}`);
         }
-    }
-};
+    };

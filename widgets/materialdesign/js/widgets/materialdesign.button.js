@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.35"
+    version: "0.2.36"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -63,7 +63,7 @@ vis.binds.materialdesign.button = {
             return { button: buttonElementsList.join(''), style: buttonStyle }
 
         } catch (ex) {
-            console.exception(`initializeButton: error: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`[Button] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handleLink: function (el, data) {
@@ -197,7 +197,7 @@ vis.binds.materialdesign.button = {
             }
 
         } catch (ex) {
-            console.exception(`handleToggle [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`[Button] handleToggle: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

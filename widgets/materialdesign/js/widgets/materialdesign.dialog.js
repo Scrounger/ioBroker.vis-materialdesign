@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.35"
+    version: "0.2.36"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -41,7 +41,7 @@ vis.binds.materialdesign.dialog = {
                         <div class="mdc-dialog__scrim"></div>
                     </div>`;
         } catch (ex) {
-            console.exception(`initialize: error: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`[Dialog] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handle: function (el, data, isIFrame = false) {
@@ -117,7 +117,7 @@ vis.binds.materialdesign.dialog = {
             }, 1);
 
         } catch (ex) {
-            console.exception(`handle: error: ${ex.message}, stack: ${ex.stack}`);
+            console.exception(`[Dialog] handle: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };
