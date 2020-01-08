@@ -581,7 +581,7 @@
         data-vis-attrs0="group.color;colorBeforeThumb/color;colorThumb/color;colorAfterThumb/color;"
         data-vis-attrs1="group.label;showValueLabel[true]/checkbox;valueLabelUnit;valueLabelMin/html;valueLabelMax/html;valueLessThan/number;textForValueLessThan/html;valueGreaterThan/number;textForValueGreaterThan/html;valueLabelWidth[25]/slider,0,100,1;">
 
-        <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.mdcSlider(el, data) %>>
+        <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.slider.mdcSlider(el, data) %>>
 
         </div>
 </script>
@@ -598,7 +598,7 @@
         data-vis-attrs0="group.color;colorBeforeThumb/color;colorThumb/color;colorAfterThumb/color;colorTrackMarker/color;"
         data-vis-attrs1="group.label;showValueLabel[true]/checkbox;showMarkers/checkbox;valueLabelUnit;valueLabelMin/html;valueLabelMax/html;valueLessThan/number;textForValueLessThan/html;valueGreaterThan/number;textForValueGreaterThan/html;valueLabelWidth[25]/slider,0,100,1;">
 
-        <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.mdcSlider(el, data, true) %>>
+        <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.slider.mdcSlider(el, data, true) %>>
 
         </div>
 </script>
@@ -617,7 +617,7 @@
         data-vis-attrs2="group.label;prepandText;showValueLabel[true]/checkbox;valueLabelUnit;valueLabelMin/html;valueLabelMax/html;valueLessThan/number;textForValueLessThan/html;valueGreaterThan/number;textForValueGreaterThan/html;valueLabelWidth[50]/slider,0,200,1;"
         data-vis-attrs3="group.thumbLabelLayout;showThumbLabel[no]/select,no,yes,always;thumbSize/number;thumbBackgroundColor/color;thumbFontColor/color;thumbFontSize/number;thumbFontFamily/fontname;useLabelRules/checkbox;">
 
-        <div class="vis-widget materialdesign-slider-vertical <%== this.data.attr('class') %>" style="width: 150px; height: 150px; overflow:visible !important; display: flex; align-items: center;" id="<%= this.data.attr('wid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" <%= (el) -> vis.binds.materialdesign.slider(el, data) %>>
+        <div class="vis-widget materialdesign-slider-vertical <%== this.data.attr('class') %>" style="width: 150px; height: 150px; overflow:visible !important; display: flex; align-items: center;" id="<%= this.data.attr('wid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" <%= (el) -> vis.binds.materialdesign.slider.vuetifySlider(el, data) %>>
 
         </div>        
 </script>
