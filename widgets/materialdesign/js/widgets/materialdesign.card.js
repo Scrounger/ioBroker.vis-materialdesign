@@ -19,20 +19,20 @@ vis.binds.materialdesign.card = {
                 cardStyle = 'mdc-card--outlined';
             }
 
-            let titleFontSize = getFontSize(data.titleLayout);
-            let subTitleFontSize = getFontSize(data.subtitleLayout);
-            let textFontSize = getFontSize(data.textFontSize);
+            let titleFontSize = myMdwHelper.getFontSize(data.titleLayout);
+            let subTitleFontSize = myMdwHelper.getFontSize(data.subtitleLayout);
+            let textFontSize = myMdwHelper.getFontSize(data.textFontSize);
 
-            let labelTextHeight = getValueFromData(data.labelTextHeight, '', 'height: ', 'px;');
-            let labelSubTextHeight = getValueFromData(data.labelSubTextHeight, '', 'height: ', 'px;');
+            let labelTextHeight = myMdwHelper.getValueFromData(data.labelTextHeight, '', 'height: ', 'px;');
+            let labelSubTextHeight = myMdwHelper.getValueFromData(data.labelSubTextHeight, '', 'height: ', 'px;');
 
             let showImage = 'display: none;';
-            if (getValueFromData(data.image, null) !== null) {
+            if (myMdwHelper.getValueFromData(data.image, null) !== null) {
                 showImage = '';
             }
 
             let showTitleSection = 'display: none;';
-            if (getValueFromData(data.title, null) != null || getValueFromData(data.subtitle, null) != null) {
+            if (myMdwHelper.getValueFromData(data.title, null) != null || myMdwHelper.getValueFromData(data.subtitle, null) != null) {
                 showTitleSection = '';
             }
 
@@ -100,13 +100,13 @@ vis.binds.materialdesign.card = {
 
             let card = $this.context;
 
-            let colorBackground = getValueFromData(data.colorBackground, '');
+            let colorBackground = myMdwHelper.getValueFromData(data.colorBackground, '');
             card.style.setProperty("--materialdesign-color-card-background", colorBackground);
-            card.style.setProperty("--materialdesign-color-card-title-section-background", getValueFromData(data.colorTitleSectionBackground, colorBackground));
-            card.style.setProperty("--materialdesign-color-card-text-section-background", getValueFromData(data.colorTextSectionBackground, colorBackground));
+            card.style.setProperty("--materialdesign-color-card-title-section-background", myMdwHelper.getValueFromData(data.colorTitleSectionBackground, colorBackground));
+            card.style.setProperty("--materialdesign-color-card-text-section-background", myMdwHelper.getValueFromData(data.colorTextSectionBackground, colorBackground));
 
-            card.style.setProperty("--materialdesign-color-card-title", getValueFromData(data.colorTitle, ''));
-            card.style.setProperty("--materialdesign-color-card-sub-title", getValueFromData(data.colorSubtitle, ''));
+            card.style.setProperty("--materialdesign-color-card-title", myMdwHelper.getValueFromData(data.colorTitle, ''));
+            card.style.setProperty("--materialdesign-color-card-sub-title", myMdwHelper.getValueFromData(data.colorSubtitle, ''));
 
 
 

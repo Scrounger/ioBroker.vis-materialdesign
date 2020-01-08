@@ -13,19 +13,18 @@ vis.binds.materialdesign.slider =
         try {
             let $this = $(el);
             let workingId = $this.attr('data-oid-working');
-            let myHelper = vis.binds.materialdesign.helper;
             let defaultColor = '#44739e'
 
-            let min = getValueFromData(data.min, 0);
-            let labelMin = getValueFromData(data.valueLabelMin, null);
-            let max = getValueFromData(data.max, 100);
-            let labelMax = getValueFromData(data.valueLabelMax, null);
-            let unit = getValueFromData(data.valueLabelUnit, '');
+            let min = myMdwHelper.getValueFromData(data.min, 0);
+            let labelMin = myMdwHelper.getValueFromData(data.valueLabelMin, null);
+            let max = myMdwHelper.getValueFromData(data.max, 100);
+            let labelMax = myMdwHelper.getValueFromData(data.valueLabelMax, null);
+            let unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
 
-            let valueLessThan = getValueFromData(data.valueLessThan, min);
-            let textForValueLessThan = getValueFromData(data.textForValueLessThan, null);
-            let valueGreaterThan = getValueFromData(data.valueGreaterThan, max);
-            let textForValueGreaterThan = getValueFromData(data.textForValueGreaterThan, null);
+            let valueLessThan = myMdwHelper.getValueFromData(data.valueLessThan, min);
+            let textForValueLessThan = myMdwHelper.getValueFromData(data.textForValueLessThan, null);
+            let valueGreaterThan = myMdwHelper.getValueFromData(data.valueGreaterThan, max);
+            let textForValueGreaterThan = myMdwHelper.getValueFromData(data.textForValueGreaterThan, null);
 
             $this.append(`
             <div class="materialdesign-vuetifySlider" style="width: 100%; height: 100%;">
@@ -47,34 +46,34 @@ vis.binds.materialdesign.slider =
                         :track-color="trackColor"                        
                         always-dirty
                         hide-details
-                        ${(getValueFromData(data.prepandText, null) !== null) ? `label="${data.prepandText}"` : ''}
+                        ${(myMdwHelper.getValueFromData(data.prepandText, null) !== null) ? `label="${data.prepandText}"` : ''}
                         ${(data.readOnly) ? 'disabled' : ''}
                         @change="changeEvent"
                         @input="inputEvent"
                     >
                     </v-slider>
-                    ${(data.showValueLabel) ? `<span class="slider-value" style="width: ${getNumberFromData(data.valueLabelWidth, 0)}px; text-align:right; white-space: nowrap;">0</span>` : ''}
+                    ${(data.showValueLabel) ? `<span class="slider-value" style="width: ${myMdwHelper.getNumberFromData(data.valueLabelWidth, 0)}px; text-align:right; white-space: nowrap;">0</span>` : ''}
                 </div>
             </div>`);
 
             let showTicks = false;
-            if (getValueFromData(data.showTicks, 'no') === 'yes') {
+            if (myMdwHelper.getValueFromData(data.showTicks, 'no') === 'yes') {
                 showTicks = true;
             }
-            if (getValueFromData(data.showTicks, 'no') === 'always') {
+            if (myMdwHelper.getValueFromData(data.showTicks, 'no') === 'always') {
                 showTicks = 'always';
             }
 
             let showThumbLabel = false;
-            if (getValueFromData(data.showThumbLabel, 'no') === 'yes') {
+            if (myMdwHelper.getValueFromData(data.showThumbLabel, 'no') === 'yes') {
                 showThumbLabel = true;
             }
-            if (getValueFromData(data.showThumbLabel, 'no') === 'always') {
+            if (myMdwHelper.getValueFromData(data.showThumbLabel, 'no') === 'always') {
                 showThumbLabel = 'always';
             }
 
-            myHelper.waitForElement($this, '.materialdesign-vuetifySlider', function () {
-                myHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
+            myMdwHelper.waitForElement($this, '.materialdesign-vuetifySlider', function () {
+                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
                     // wait for Vuetify v-app application container is loaded
 
                     let vueSlider = new Vue({
@@ -83,19 +82,19 @@ vis.binds.materialdesign.slider =
                         data() {
                             return {
                                 value: vis.states.attr(data.oid + '.val'),
-                                vertical: (getValueFromData(data.orientation, 'horizontal') === 'horizontal') ? false : true,
+                                vertical: (myMdwHelper.getValueFromData(data.orientation, 'horizontal') === 'horizontal') ? false : true,
                                 min: min,
                                 max: max,
-                                step: getNumberFromData(data.step, 1),
+                                step: myMdwHelper.getNumberFromData(data.step, 1),
                                 ticks: showTicks,
-                                tickSize: getNumberFromData(data.tickSize, 1),
-                                tickLabels: (getValueFromData(data.tickLabels, null) !== null) ? data.tickLabels.split(',') : [],
+                                tickSize: myMdwHelper.getNumberFromData(data.tickSize, 1),
+                                tickLabels: (myMdwHelper.getValueFromData(data.tickLabels, null) !== null) ? data.tickLabels.split(',') : [],
                                 thumbLabel: showThumbLabel,
-                                thumbSize: getNumberFromData(data.thumbSize, 32),
+                                thumbSize: myMdwHelper.getNumberFromData(data.thumbSize, 32),
                                 loaderHeight: '30px',
-                                trackFillColor: getValueFromData(data.colorBeforeThumb, defaultColor),
-                                thumbColor: getValueFromData(data.colorThumb, defaultColor),
-                                trackColor: getValueFromData(data.colorAfterThumb, 'rgba(161, 161, 161, 0.26)'),
+                                trackFillColor: myMdwHelper.getValueFromData(data.colorBeforeThumb, defaultColor),
+                                thumbColor: myMdwHelper.getValueFromData(data.colorThumb, defaultColor),
+                                trackColor: myMdwHelper.getValueFromData(data.colorAfterThumb, 'rgba(161, 161, 161, 0.26)'),
                             }
                         },
                         mounted: function () {
@@ -115,11 +114,11 @@ vis.binds.materialdesign.slider =
                     })
 
                     $this.find('.materialdesign-vuetifySlider').on('touchstart mousedown', function () {
-                        myHelper.vibrate(data.vibrateOnMobilDevices);
+                        myMdwHelper.vibrate(data.vibrateOnMobilDevices);
                     });
 
                     // calculate width / height of Element
-                    if (getValueFromData(data.orientation, 'horizontal') === 'vertical') {
+                    if (myMdwHelper.getValueFromData(data.orientation, 'horizontal') === 'vertical') {
                         let height = window.getComputedStyle($this.context, null).height.replace('px', '');
 
                         let sliderEl = $this.find('.v-slider--vertical');
@@ -127,13 +126,13 @@ vis.binds.materialdesign.slider =
                         sliderEl.css('height', height + 'px');
                     }
 
-                    $this.context.style.setProperty("--vue-slider-thumb-label-font-color", getValueFromData(data.thumbFontColor, ''));
-                    $this.context.style.setProperty("--vue-slider-thumb-label-font-family", getValueFromData(data.thumbFontFamily, ''));
-                    $this.context.style.setProperty("--vue-slider-thumb-label-font-size", getValueFromData(data.thumbFontSize, '12', '', 'px'));
-                    $this.find('.v-slider__thumb-label').css('background-color', getValueFromData(data.thumbBackgroundColor, getValueFromData(data.colorThumb, defaultColor)));
+                    $this.context.style.setProperty("--vue-slider-thumb-label-font-color", myMdwHelper.getValueFromData(data.thumbFontColor, ''));
+                    $this.context.style.setProperty("--vue-slider-thumb-label-font-family", myMdwHelper.getValueFromData(data.thumbFontFamily, ''));
+                    $this.context.style.setProperty("--vue-slider-thumb-label-font-size", myMdwHelper.getValueFromData(data.thumbFontSize, '12', '', 'px'));
+                    $this.find('.v-slider__thumb-label').css('background-color', myMdwHelper.getValueFromData(data.thumbBackgroundColor, myMdwHelper.getValueFromData(data.colorThumb, defaultColor)));
 
-                    $this.context.style.setProperty("--vue-slider-tick-before-color", getValueFromData(data.tickColorBefore, ''));
-                    $this.context.style.setProperty("--vue-slider-tick-after-color", getValueFromData(data.tickColorAfter, ''));
+                    $this.context.style.setProperty("--vue-slider-tick-before-color", myMdwHelper.getValueFromData(data.tickColorBefore, ''));
+                    $this.context.style.setProperty("--vue-slider-tick-after-color", myMdwHelper.getValueFromData(data.tickColorAfter, ''));
 
 
                     //bug fix wegen 'div.row div'

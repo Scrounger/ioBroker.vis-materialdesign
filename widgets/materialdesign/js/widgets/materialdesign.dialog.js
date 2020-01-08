@@ -11,20 +11,20 @@
 vis.binds.materialdesign.dialog = {
     initialize: function (data, isIFrame = false) {
         try {
-            let title = getValueFromData(data.title, '');
-            let titleTextSize = getFontSize(data.titleTextSize);
-            let buttonText = getValueFromData(data.buttonText, '');
+            let title = myMdwHelper.getValueFromData(data.title, '');
+            let titleTextSize = myMdwHelper.getFontSize(data.titleTextSize);
+            let buttonText = myMdwHelper.getValueFromData(data.buttonText, '');
 
             return `<div class="mdc-dialog"
                         role="alertdialog"
                         aria-modal="true"
                         aria-labelledby="my-dialog-title"
                         aria-describedby="my-dialog-content"
-                        style="z-index: ${getNumberFromData(data.z_index, 1000)}">
+                        style="z-index: ${myMdwHelper.getNumberFromData(data.z_index, 1000)}">
                         <div class="mdc-dialog__container">
                         <div class="mdc-dialog__surface">
                             <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
-                            <h2 class="mdc-dialog__title ${titleTextSize.class}" id="my-dialog-title" style="${(title === '') ? 'display: none;' : ''}${titleTextSize.style}" >${getValueFromData(data.title, '')}</h2>
+                            <h2 class="mdc-dialog__title ${titleTextSize.class}" id="my-dialog-title" style="${(title === '') ? 'display: none;' : ''}${titleTextSize.style}" >${myMdwHelper.getValueFromData(data.title, '')}</h2>
                             <div class="mdc-dialog__content" id="my-dialog-content">
                                 ${(vis.editMode && !isIFrame) ? `<div data-vis-contains="${data.contains_view}" class="vis-widget-body vis-view-container" style="position: relative"></div>` : ''}
                                 <!-- vis container for view generated at runtime --!>
@@ -53,13 +53,13 @@ vis.binds.materialdesign.dialog = {
                 let widgetWidth = window.getComputedStyle($this.context, null).width;
                 let widgetHeight = window.getComputedStyle($this.context, null).height;
 
-                dialog.get(0).style.setProperty("--materialdesign-color-dialog-background", getValueFromData(data.colorBackground, ''));
-                dialog.get(0).style.setProperty("--materialdesign-color-dialog-title-background", getValueFromData(data.colorTitleBackground, ''));
-                dialog.get(0).style.setProperty("--materialdesign-color-dialog-title", getValueFromData(data.colorTitle, ''));
+                dialog.get(0).style.setProperty("--materialdesign-color-dialog-background", myMdwHelper.getValueFromData(data.colorBackground, ''));
+                dialog.get(0).style.setProperty("--materialdesign-color-dialog-title-background", myMdwHelper.getValueFromData(data.colorTitleBackground, ''));
+                dialog.get(0).style.setProperty("--materialdesign-color-dialog-title", myMdwHelper.getValueFromData(data.colorTitle, ''));
 
-                dialog.get(0).style.setProperty("--materialdesign-color-dialog-button-background", getValueFromData(data.colorButtonBackground, ''));
-                dialog.get(0).style.setProperty("--materialdesign-color-dialog-button-text", getValueFromData(data.colorButtonText, ''));
-                dialog.get(0).style.setProperty("--materialdesign-color-dialog-button-hover", getValueFromData(data.colorButtonHover, ''));
+                dialog.get(0).style.setProperty("--materialdesign-color-dialog-button-background", myMdwHelper.getValueFromData(data.colorButtonBackground, ''));
+                dialog.get(0).style.setProperty("--materialdesign-color-dialog-button-text", myMdwHelper.getValueFromData(data.colorButtonText, ''));
+                dialog.get(0).style.setProperty("--materialdesign-color-dialog-button-hover", myMdwHelper.getValueFromData(data.colorButtonHover, ''));
 
                 const mdcDialog = new mdc.dialog.MDCDialog(dialog.get(0));
                 const button = mdc.ripple.MDCRipple.attachTo(dialog.find('.mdc-button').get(0));

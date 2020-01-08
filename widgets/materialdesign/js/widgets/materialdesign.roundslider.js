@@ -18,16 +18,16 @@ vis.binds.materialdesign.roundslider = {
             let valueOnLoading = vis.states.attr(data.oid + '.val');
 
 
-            let min = getNumberFromData(data.min, 0);
-            let labelMin = getValueFromData(data.valueLabelMin, null);
-            let max = getNumberFromData(data.max, 100);
-            let labelMax = getValueFromData(data.valueLabelMax, null);
-            let unit = getValueFromData(data.valueLabelUnit, '');
+            let min = myMdwHelper.getNumberFromData(data.min, 0);
+            let labelMin = myMdwHelper.getValueFromData(data.valueLabelMin, null);
+            let max = myMdwHelper.getNumberFromData(data.max, 100);
+            let labelMax = myMdwHelper.getValueFromData(data.valueLabelMax, null);
+            let unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
 
-            let valueLessThan = getNumberFromData(data.valueLessThan, min);
-            let textForValueLessThan = getValueFromData(data.textForValueLessThan, null);
-            let valueGreaterThan = getNumberFromData(data.valueGreaterThan, max);
-            let textForValueGreaterThan = getValueFromData(data.textForValueGreaterThan, null);
+            let valueLessThan = myMdwHelper.getNumberFromData(data.valueLessThan, min);
+            let textForValueLessThan = myMdwHelper.getValueFromData(data.textForValueLessThan, null);
+            let valueGreaterThan = myMdwHelper.getNumberFromData(data.valueGreaterThan, max);
+            let textForValueGreaterThan = myMdwHelper.getValueFromData(data.textForValueGreaterThan, null);
 
             let labelWitdh = 0;
             if (data.showValueLabel === true || data.showValueLabel === 'true') {
@@ -38,11 +38,11 @@ vis.binds.materialdesign.roundslider = {
                             value=${valueOnLoading} 
                             max="${max}" 
                             min="${min}"
-                            step="${getNumberFromData(data.step, 1)}"
-                            startAngle="${getNumberFromData(data.startAngle, 135)}"
-                            arcLength="${getNumberFromData(data.arcLength, 270)}"
-                            handleSize="${getNumberFromData(data.handleSize, 6)}"
-                            handleZoom="${getNumberFromData(data.handleZoom, 1.5)}"
+                            step="${myMdwHelper.getNumberFromData(data.step, 1)}"
+                            startAngle="${myMdwHelper.getNumberFromData(data.startAngle, 135)}"
+                            arcLength="${myMdwHelper.getNumberFromData(data.arcLength, 270)}"
+                            handleSize="${myMdwHelper.getNumberFromData(data.handleSize, 6)}"
+                            handleZoom="${myMdwHelper.getNumberFromData(data.handleZoom, 1.5)}"
                             ${(data.rtl === true) ? 'rtl = "true"' : ''}
                             style="position: absolute;"
                             >
@@ -55,20 +55,20 @@ vis.binds.materialdesign.roundslider = {
                                     display: flex;
                                     justify-content: center;
                                     pointer-events: none;
-                                    top: ${getNumberFromData(data.valueLabelVerticalPosition, 45)}%; 
-                                    color: ${getValueFromData(data.valueLabelColor, '#44739e')};">
+                                    top: ${myMdwHelper.getNumberFromData(data.valueLabelVerticalPosition, 45)}%; 
+                                    color: ${myMdwHelper.getValueFromData(data.valueLabelColor, '#44739e')};">
                                         ${valueOnLoading} ${unit}
                                 </label>`: ''}
                             `)
 
             let slider = $this.find('.materialdesign-round-slider-element');
 
-            slider.get(0).style.setProperty('--round-slider-path-width', getNumberFromData(data.sliderWidth, 3));
+            slider.get(0).style.setProperty('--round-slider-path-width', myMdwHelper.getNumberFromData(data.sliderWidth, 3));
 
-            slider.get(0).style.setProperty('background', getValueFromData(data.colorSliderBg, ''));
-            slider.get(0).style.setProperty('--round-slider-path-color', getValueFromData(data.colorAfterThumb, ''));
-            slider.get(0).style.setProperty('--round-slider-bar-color', getValueFromData(data.colorBeforeThumb, '#44739e'));
-            slider.get(0).style.setProperty('--round-slider-handle-color', getValueFromData(data.colorThumb, ''));
+            slider.get(0).style.setProperty('background', myMdwHelper.getValueFromData(data.colorSliderBg, ''));
+            slider.get(0).style.setProperty('--round-slider-path-color', myMdwHelper.getValueFromData(data.colorAfterThumb, ''));
+            slider.get(0).style.setProperty('--round-slider-bar-color', myMdwHelper.getValueFromData(data.colorBeforeThumb, '#44739e'));
+            slider.get(0).style.setProperty('--round-slider-handle-color', myMdwHelper.getValueFromData(data.colorThumb, ''));
 
 
             setSliderState();
@@ -104,9 +104,9 @@ vis.binds.materialdesign.roundslider = {
                 // let deltaY = height - posY;
                 // let deltaX = width - posX;
                 // let deg = (Math.atan2(deltaY, deltaX) * 180) / Math.PI;
-                // deg = deg + (360 - getNumberFromData(data.startAngle, 135));
+                // deg = deg + (360 - myMdwHelper.getNumberFromData(data.startAngle, 135));
                 // console.log(deg);
-                // // deg = deg + getNumberFromData(data.startAngle, 135);
+                // // deg = deg + myMdwHelper.getNumberFromData(data.startAngle, 135);
 
 
                 // // if (deg < 0 && deg >= -270) {

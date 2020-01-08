@@ -12,24 +12,24 @@ vis.binds.materialdesign.list = {
     initialize: function (data) {
         try {
 
-            let listItemStyle = getValueFromData(data.listItemHeight, '', 'height: ', 'px !important;');
+            let listItemStyle = myMdwHelper.getValueFromData(data.listItemHeight, '', 'height: ', 'px !important;');
 
             if (data.listType === 'buttonToggle_readonly' || data.listType === 'checkbox_readonly' || data.listType === 'switch_readonly') {
                 // remove pointer und clickable 
                 listItemStyle = listItemStyle + 'cursor: default; pointer-events: none;';
             }
 
-            let headerFontSize = getFontSize(data.listItemHeaderTextSize);
-            let labelFontSize = getFontSize(data.listItemTextSize);
-            let subLabelFontSize = getFontSize(data.listItemSubTextSize);
+            let headerFontSize = myMdwHelper.getFontSize(data.listItemHeaderTextSize);
+            let labelFontSize = myMdwHelper.getFontSize(data.listItemTextSize);
+            let subLabelFontSize = myMdwHelper.getFontSize(data.listItemSubTextSize);
 
-            let rightLabelFontSize = getFontSize(data.listItemTextRightSize);
-            let rightSubLabelFontSize = getFontSize(data.listItemSubTextRightSize);
+            let rightLabelFontSize = myMdwHelper.getFontSize(data.listItemTextRightSize);
+            let rightSubLabelFontSize = myMdwHelper.getFontSize(data.listItemSubTextRightSize);
 
-            let imageHeight = getValueFromData(data.listImageHeight, '', 'height: ', 'px !important;');
-            let spaceBetweenImageAndLabel = getValueFromData(data.distanceBetweenTextAndImage, '', 'margin-right: ', 'px;');
+            let imageHeight = myMdwHelper.getValueFromData(data.listImageHeight, '', 'height: ', 'px !important;');
+            let spaceBetweenImageAndLabel = myMdwHelper.getValueFromData(data.distanceBetweenTextAndImage, '', 'margin-right: ', 'px;');
 
-            let rightTextWidth = getValueFromData(data.rightTextWidth, '', '', 'px');
+            let rightTextWidth = myMdwHelper.getValueFromData(data.rightTextWidth, '', '', 'px');
 
             let nonInteractive = '';
             let itemRole = '';
@@ -49,39 +49,39 @@ vis.binds.materialdesign.list = {
             }
 
             for (var i = 0; i <= data.count; i++) {
-                let itemHeaderText = getValueFromData(data.attr('groupHeader' + i), null);
-                let itemLabelText = getValueFromData(data.attr('label' + i), `Item ${i}`);
-                let itemSubLabelText = getValueFromData(data.attr('subLabel' + i), '');
-                let itemImage = getValueFromData(data.attr('listImage' + i), '');
+                let itemHeaderText = myMdwHelper.getValueFromData(data.attr('groupHeader' + i), null);
+                let itemLabelText = myMdwHelper.getValueFromData(data.attr('label' + i), `Item ${i}`);
+                let itemSubLabelText = myMdwHelper.getValueFromData(data.attr('subLabel' + i), '');
+                let itemImage = myMdwHelper.getValueFromData(data.attr('listImage' + i), '');
 
-                let itemRightLabelText = getValueFromData(data.attr('rightLabel' + i), '');
-                let itemRightSubLabelText = getValueFromData(data.attr('rightSubLabel' + i), '');
+                let itemRightLabelText = myMdwHelper.getValueFromData(data.attr('rightLabel' + i), '');
+                let itemRightSubLabelText = myMdwHelper.getValueFromData(data.attr('rightSubLabel' + i), '');
 
 
                 // generate Header
-                itemList.push(getListItemHeader(itemHeaderText, headerFontSize));
+                itemList.push(myMdwHelper.getListItemHeader(itemHeaderText, headerFontSize));
 
                 // generate Item -> mdc-list-item
-                let listItem = getListItem('standard', i, '', false, false, listItemStyle, `data-oid="${data.attr('oid' + i)}"`, itemRole)
+                let listItem = myMdwHelper.getListItem('standard', i, '', false, false, listItemStyle, `data-oid="${data.attr('oid' + i)}"`, itemRole)
                     .replace(' mdc-list-item--activated', '');   // selected object not needed in list
 
                 // generate Item Label
                 let itemLabel = '';
                 if (itemSubLabelText === '') {
-                    itemLabel = getListItemLabel('standard', i, itemLabelText, false, labelFontSize, '', '', '', false, data.listItemAlignment);
+                    itemLabel = myMdwHelper.getListItemLabel('standard', i, itemLabelText, false, labelFontSize, '', '', '', false, data.listItemAlignment);
                 } else {
-                    itemLabel = getListItemTextElement(itemLabelText, itemSubLabelText, labelFontSize, subLabelFontSize, data.listItemAlignment);
+                    itemLabel = myMdwHelper.getListItemTextElement(itemLabelText, itemSubLabelText, labelFontSize, subLabelFontSize, data.listItemAlignment);
                 }
 
                 // generate right Item Label
                 let rightItemLabel = '';
                 if (itemRightSubLabelText === '') {
-                    rightItemLabel = getListItemLabel('standard', i, itemRightLabelText, false, rightLabelFontSize, '', '', '');
+                    rightItemLabel = myMdwHelper.getListItemLabel('standard', i, itemRightLabelText, false, rightLabelFontSize, '', '', '');
 
                     rightItemLabel = $($.parseHTML(rightItemLabel));
                     rightItemLabel.addClass('materialdesign-list-item-text-right').addClass('mdc-list-item__meta');
                 } else {
-                    rightItemLabel = getListItemTextElement(itemRightLabelText, itemRightSubLabelText, rightLabelFontSize, rightSubLabelFontSize);
+                    rightItemLabel = myMdwHelper.getListItemTextElement(itemRightLabelText, itemRightSubLabelText, rightLabelFontSize, rightSubLabelFontSize);
 
                     rightItemLabel = $($.parseHTML(rightItemLabel));
                     rightItemLabel.addClass('mdc-list-item__meta');
@@ -96,7 +96,7 @@ vis.binds.materialdesign.list = {
 
 
                 // generate Item Image for Layout Standard
-                let listItemImage = getListItemImage(itemImage, `${imageHeight}${spaceBetweenImageAndLabel}`);
+                let listItemImage = myMdwHelper.getListItemImage(itemImage, `${imageHeight}${spaceBetweenImageAndLabel}`);
 
                 // generate Item Control Element
                 let itemControl = '';
@@ -124,7 +124,7 @@ vis.binds.materialdesign.list = {
                 itemList.push(`${listItem}${listItemImage}${itemLabel}${itemControl}${rightItemLabel.get(0).outerHTML}</div>`);
 
                 // generate Divider
-                itemList.push(getListItemDivider(data.attr('dividers' + i), data.listItemDividerStyle));
+                itemList.push(myMdwHelper.getListItemDivider(data.attr('dividers' + i), data.listItemDividerStyle));
             }
 
             return { itemList: itemList.join(''), listLayout: listLayout, nonInteractive: nonInteractive }
@@ -142,20 +142,20 @@ vis.binds.materialdesign.list = {
             const mdcListAdapter = mdcList.getDefaultFoundation().adapter_;
             const listItemRipples = mdcList.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
 
-            list.style.setProperty("--materialdesign-color-list-item-background", getValueFromData(data.listItemBackground, ''));
-            list.style.setProperty("--materialdesign-color-list-item-hover", getValueFromData(data.colorListItemHover, ''));
-            list.style.setProperty("--materialdesign-color-list-item-selected", getValueFromData(data.colorListItemSelected, ''));
-            list.style.setProperty("--materialdesign-color-list-item-text", getValueFromData(data.colorListItemText, ''));
-            list.style.setProperty("--materialdesign-color-list-item-text-activated", getValueFromData(data.colorListItemText, ''));
-            list.style.setProperty("--materialdesign-color-list-item-text-secondary", getValueFromData(data.colorListItemTextSecondary, ''));
+            list.style.setProperty("--materialdesign-color-list-item-background", myMdwHelper.getValueFromData(data.listItemBackground, ''));
+            list.style.setProperty("--materialdesign-color-list-item-hover", myMdwHelper.getValueFromData(data.colorListItemHover, ''));
+            list.style.setProperty("--materialdesign-color-list-item-selected", myMdwHelper.getValueFromData(data.colorListItemSelected, ''));
+            list.style.setProperty("--materialdesign-color-list-item-text", myMdwHelper.getValueFromData(data.colorListItemText, ''));
+            list.style.setProperty("--materialdesign-color-list-item-text-activated", myMdwHelper.getValueFromData(data.colorListItemText, ''));
+            list.style.setProperty("--materialdesign-color-list-item-text-secondary", myMdwHelper.getValueFromData(data.colorListItemTextSecondary, ''));
 
-            list.style.setProperty("--materialdesign-color-list-item-text-right", getValueFromData(data.colorListItemTextRight, ''));
-            list.style.setProperty("--materialdesign-color-list-item-text-secondary-right", getValueFromData(data.colorListItemTextSecondaryRight, ''));
+            list.style.setProperty("--materialdesign-color-list-item-text-right", myMdwHelper.getValueFromData(data.colorListItemTextRight, ''));
+            list.style.setProperty("--materialdesign-color-list-item-text-secondary-right", myMdwHelper.getValueFromData(data.colorListItemTextSecondaryRight, ''));
 
-            list.style.setProperty("--materialdesign-color-list-item-header", getValueFromData(data.colorListItemHeaders, ''));
-            list.style.setProperty("--materialdesign-color-list-item-divider", getValueFromData(data.colorListItemDivider, ''));
+            list.style.setProperty("--materialdesign-color-list-item-header", myMdwHelper.getValueFromData(data.colorListItemHeaders, ''));
+            list.style.setProperty("--materialdesign-color-list-item-divider", myMdwHelper.getValueFromData(data.colorListItemDivider, ''));
 
-            list.style.setProperty("--mdc-theme-secondary", getValueFromData(data.colorCheckBox, ''));
+            list.style.setProperty("--mdc-theme-secondary", myMdwHelper.getValueFromData(data.colorCheckBox, ''));
 
             if (!vis.editMode) {
                 mdcList.listen('MDCList:action', function (item) {
@@ -244,11 +244,11 @@ vis.binds.materialdesign.list = {
                 let curListItemImage = curListItem.find(`.mdc-list-item__graphic`);
 
                 if (val === true) {
-                    curListItem.css('background', getValueFromData(data.listItemBackgroundActive, ''));
-                    curListItemImage.attr('src', getValueFromData(data.attr('listImageActive' + index), getValueFromData(data.attr('listImage' + index), '')))
+                    curListItem.css('background', myMdwHelper.getValueFromData(data.listItemBackgroundActive, ''));
+                    curListItemImage.attr('src', myMdwHelper.getValueFromData(data.attr('listImageActive' + index), myMdwHelper.getValueFromData(data.attr('listImage' + index), '')))
                 } else {
-                    curListItem.css('background', getValueFromData(data.listItemBackground, ''));
-                    curListItemImage.attr('src', getValueFromData(data.attr('listImage' + index), ''))
+                    curListItem.css('background', myMdwHelper.getValueFromData(data.listItemBackground, ''));
+                    curListItemImage.attr('src', myMdwHelper.getValueFromData(data.attr('listImage' + index), ''))
                 }
             }
 

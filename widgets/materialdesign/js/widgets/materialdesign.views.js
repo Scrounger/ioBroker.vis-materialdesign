@@ -13,7 +13,7 @@ vis.binds.materialdesign.views = {
         try {
             let $this = $(el);
             let myHelper = vis.binds.materialdesign.helper;
-            let columnsCount = getNumberFromData(data.countCols, 0) + 1;
+            let columnsCount = myMdwHelper.getNumberFromData(data.countCols, 0) + 1;
             let columunList = [];
             let idLastElement = '';
 
@@ -21,12 +21,12 @@ vis.binds.materialdesign.views = {
                 columunList.push(`
                     <div 
                         class="materialdesign-column-views-container-column" 
-                        style="min-width: ${getNumberFromData(data.minWidth, 0)}px !important; width: calc(100% / ${columnsCount}) !important;">
+                        style="min-width: ${myMdwHelper.getNumberFromData(data.minWidth, 0)}px !important; width: calc(100% / ${columnsCount}) !important;">
                         <div class="materialdesign-column-views-container-column-view">
                 `);
 
-                let viewsList = getValueFromData(data.attr('viewsInColumn' + i), '').split('|');
-                let viewsHeihgtList = getValueFromData(data.attr('viewsInColumnHeight' + i), '').split('|');
+                let viewsList = myMdwHelper.getValueFromData(data.attr('viewsInColumn' + i), '').split('|');
+                let viewsHeihgtList = myMdwHelper.getValueFromData(data.attr('viewsInColumnHeight' + i), '').split('|');
 
                 for (var view = 0; view <= viewsList.length - 1; view++) {
                     let viewId = `col_${i}_view_${view}`;
@@ -35,7 +35,7 @@ vis.binds.materialdesign.views = {
                     <div 
                         class="materialdesign-column-views-container-column-item" 
                         id="${viewId}" 
-                        style="min-width: ${getNumberFromData(data.minWidth, 0)}px !important; width: calc(100% / ${columnsCount}) !important; height: ${getNumberFromData(viewsHeihgtList[view], 100)}px">
+                        style="min-width: ${myMdwHelper.getNumberFromData(data.minWidth, 0)}px !important; width: calc(100% / ${columnsCount}) !important; height: ${myMdwHelper.getNumberFromData(viewsHeihgtList[view], 100)}px">
                             ${(vis.editMode) ? '<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e;"></div>' : ''}
                             <div data-vis-contains="${viewsList[view]}" class="vis-widget-body vis-view-container">
                             </div>
@@ -60,34 +60,34 @@ vis.binds.materialdesign.views = {
         try {
             let $this = $(el);
             let viewsList = [];
-            let countCols = getNumberFromData(data.countCols, 3);
+            let countCols = myMdwHelper.getNumberFromData(data.countCols, 3);
 
-            $this.context.style.setProperty("--materialdesign-masonry-gaps", getNumberFromData(data.masnoryGaps, 0) + 'px');
+            $this.context.style.setProperty("--materialdesign-masonry-gaps", myMdwHelper.getNumberFromData(data.masnoryGaps, 0) + 'px');
 
             for (var i = 0; i <= data.countViews; i++) {
-                let viewWidth = getValueFromData(data.attr('viewsWidth' + i), '');
+                let viewWidth = myMdwHelper.getValueFromData(data.attr('viewsWidth' + i), '');
 
                 if (viewWidth !== '' && (viewWidth.endsWith('%') || viewWidth.endsWith('px'))) {
                     console.log('hier1')
-                    viewWidth = `width: ${getValueFromData(data.attr('viewsWidth' + i))};`
+                    viewWidth = `width: ${myMdwHelper.getValueFromData(data.attr('viewsWidth' + i))};`
                 } else {
                     if (!isNaN(viewWidth) && viewWidth !== '') {
                         console.log('hier2')
-                        viewWidth = `width: ${getValueFromData(data.attr('viewsWidth' + i))}px;`
+                        viewWidth = `width: ${myMdwHelper.getValueFromData(data.attr('viewsWidth' + i))}px;`
                     } else {
                         console.log('hier3')
                         viewWidth = '';
                     }
                 }
 
-                let viewAlignment = getValueFromData(data.attr('viewAlignment' + i), 'center');
+                let viewAlignment = myMdwHelper.getValueFromData(data.attr('viewAlignment' + i), 'center');
                 if (viewAlignment === 'left') viewAlignment = 'flex-start';
                 if (viewAlignment === 'right') viewAlignment = 'flex-end';
 
                 viewsList.push(`
                     <div 
-                        class="materialdesign-masonry-item" style="height: ${getNumberFromData(data.attr('viewsHeight' + i), 100) + getNumberFromData(data.masnoryGaps, 0)}px; ${viewWidth}">
-                            ${(vis.editMode) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; height: ${getNumberFromData(data.attr('viewsHeight' + i), 100)}px;"></div>` : ''}                          
+                        class="materialdesign-masonry-item" style="height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100) + myMdwHelper.getNumberFromData(data.masnoryGaps, 0)}px; ${viewWidth}">
+                            ${(vis.editMode) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;"></div>` : ''}                          
                             <div data-vis-contains="${data.attr('View' + i)}" class="vis-widget-body vis-view-container">
                             </div>
                     </div>

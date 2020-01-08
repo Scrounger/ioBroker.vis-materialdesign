@@ -13,7 +13,7 @@ vis.binds.materialdesign.table = {
         try {
             let tableElement = []
 
-            let headerFontSize = getFontSize(data.headerTextSize);
+            let headerFontSize = myMdwHelper.getFontSize(data.headerTextSize);
 
             let tableLayout = '';
             if (data.tableLayout === 'card') {
@@ -26,7 +26,7 @@ vis.binds.materialdesign.table = {
                                     <table class="mdc-data-table__table" aria-label="Material Design Widgets Table">`)
 
             tableElement.push(`<thead>
-                                    <tr class="mdc-data-table__header-row" style="height: ${(getNumberFromData(data.headerRowHeight, null) !== null) ? data.headerRowHeight + 'px' : '1px'};">`)
+                                    <tr class="mdc-data-table__header-row" style="height: ${(myMdwHelper.getNumberFromData(data.headerRowHeight, null) !== null) ? data.headerRowHeight + 'px' : '1px'};">`)
 
             if (data.showHeader) {
                 for (var i = 0; i <= data.countCols; i++) {
@@ -37,11 +37,11 @@ vis.binds.materialdesign.table = {
                                             scope="col" 
                                             style="text-align: ${data.attr('textAlign' + i)};
                                                 ${headerFontSize.style}; 
-                                                padding-left: ${getNumberFromData(data.attr('padding_left' + i), 8)}px; 
-                                                padding-right: ${getNumberFromData(data.attr('padding_right' + i), 8)}px; 
-                                                font-family: ${getValueFromData(data.headerFontFamily, '')};
-                                                ${(getNumberFromData(data.attr('columnWidth' + i), null) !== null) ? `width: ${data.attr('columnWidth' + i)}px;` : ''};">
-                                                    ${getValueFromData(data.attr('label' + i), 'col ' + i)}
+                                                padding-left: ${myMdwHelper.getNumberFromData(data.attr('padding_left' + i), 8)}px; 
+                                                padding-right: ${myMdwHelper.getNumberFromData(data.attr('padding_right' + i), 8)}px; 
+                                                font-family: ${myMdwHelper.getValueFromData(data.headerFontFamily, '')};
+                                                ${(myMdwHelper.getNumberFromData(data.attr('columnWidth' + i), null) !== null) ? `width: ${data.attr('columnWidth' + i)}px;` : ''};">
+                                                    ${myMdwHelper.getValueFromData(data.attr('label' + i), 'col ' + i)}
                                             </th>`)
                     }
                 }
@@ -53,7 +53,7 @@ vis.binds.materialdesign.table = {
             tableElement.push(`<tbody class="mdc-data-table__content">`);
 
             // adding Content
-            if (getValueFromData(data.oid, null) !== null) {
+            if (myMdwHelper.getValueFromData(data.oid, null) !== null) {
                 tableElement.push(vis.binds.materialdesign.table.getContentElements(vis.states.attr(data.oid + '.val'), data));
             } else {
                 tableElement.push(vis.binds.materialdesign.table.getContentElements(data.dataJson, data));
@@ -73,17 +73,16 @@ vis.binds.materialdesign.table = {
     handle: function (el, data) {
         try {
             setTimeout(function () {
-
                 let $this = $(el);
                 let table = $this.find('.mdc-data-table').get(0);
 
-                table.style.setProperty("--materialdesign-color-table-background", getValueFromData(data.colorBackground, ''));
-                table.style.setProperty("--materialdesign-color-table-border", getValueFromData(data.borderColor, ''));
-                table.style.setProperty("--materialdesign-color-table-header-row-background", getValueFromData(data.colorHeaderRowBackground, ''));
-                table.style.setProperty("--materialdesign-color-table-header-row-text-color", getValueFromData(data.colorHeaderRowText, ''));
-                table.style.setProperty("--materialdesign-color-table-row-background", getValueFromData(data.colorRowBackground, ''));
-                table.style.setProperty("--materialdesign-color-table-row-text-color", getValueFromData(data.colorRowText, ''));
-                table.style.setProperty("--materialdesign-color-table-row-divider", getValueFromData(data.dividers, ''));
+                table.style.setProperty("--materialdesign-color-table-background", myMdwHelper.getValueFromData(data.colorBackground, ''));
+                table.style.setProperty("--materialdesign-color-table-border", myMdwHelper.getValueFromData(data.borderColor, ''));
+                table.style.setProperty("--materialdesign-color-table-header-row-background", myMdwHelper.getValueFromData(data.colorHeaderRowBackground, ''));
+                table.style.setProperty("--materialdesign-color-table-header-row-text-color", myMdwHelper.getValueFromData(data.colorHeaderRowText, ''));
+                table.style.setProperty("--materialdesign-color-table-row-background", myMdwHelper.getValueFromData(data.colorRowBackground, ''));
+                table.style.setProperty("--materialdesign-color-table-row-text-color", myMdwHelper.getValueFromData(data.colorRowText, ''));
+                table.style.setProperty("--materialdesign-color-table-row-divider", myMdwHelper.getValueFromData(data.dividers, ''));
 
                 const mdcTable = new mdc.dataTable.MDCDataTable(table);
 
@@ -97,13 +96,13 @@ vis.binds.materialdesign.table = {
                     let sortASC = true;
 
                     let jsonData = [];
-                    if (getValueFromData(data.oid, null) !== null) {
+                    if (myMdwHelper.getValueFromData(data.oid, null) !== null) {
                         jsonData = vis.binds.materialdesign.table.getJsonData(vis.states.attr(data.oid + '.val'), data);
                     } else {
                         jsonData = JSON.parse(data.dataJson)
                     }
 
-                    let key = (getValueFromData(data.attr('sortKey' + colIndex), null) !== null) ? data.attr('sortKey' + colIndex) : Object.keys(jsonData[0])[colIndex];
+                    let key = (myMdwHelper.getValueFromData(data.attr('sortKey' + colIndex), null) !== null) ? data.attr('sortKey' + colIndex) : Object.keys(jsonData[0])[colIndex];
 
                     if ($(this).attr('sort')) {
                         if ($(this).attr('sort') === 'ASC') {
@@ -162,7 +161,7 @@ vis.binds.materialdesign.table = {
         if (jsonData != null) {
 
             for (var row = 0; row <= jsonData.length - 1; row++) {
-                contentElements.push(`<tr class="mdc-data-table__row" style="height: ${(getNumberFromData(data.rowHeight, null) !== null) ? data.rowHeight + 'px' : '1px'};">`);
+                contentElements.push(`<tr class="mdc-data-table__row" style="height: ${(myMdwHelper.getNumberFromData(data.rowHeight, null) !== null) ? data.rowHeight + 'px' : '1px'};">`);
 
                 if (jsonData[row]) {
                     // col items is object
@@ -170,7 +169,7 @@ vis.binds.materialdesign.table = {
 
                     for (var col = 0; col <= until; col++) {
                         if (data.attr('showColumn' + col)) {
-                            let textSize = getFontSize(data.attr('colTextSize' + col));
+                            let textSize = myMdwHelper.getFontSize(data.attr('colTextSize' + col));
 
                             contentElements.push(getContentElement(col, Object.values(jsonData[row])[col], textSize, jsonData[row]));
                         }
@@ -180,8 +179,8 @@ vis.binds.materialdesign.table = {
             }
 
             function getContentElement(col, objValue, textSize, rowData = null) {
-                let prefix = getValueFromData(data.attr('prefix' + col), '');
-                let suffix = getValueFromData(data.attr('suffix' + col), '');
+                let prefix = myMdwHelper.getValueFromData(data.attr('prefix' + col), '');
+                let suffix = myMdwHelper.getValueFromData(data.attr('suffix' + col), '');
 
                 if (rowData != null) {
                     if (prefix !== '') {
@@ -212,16 +211,16 @@ vis.binds.materialdesign.table = {
                 }
 
                 if (data.attr('colType' + col) === 'image') {
-                    objValue = `<img src="${objValue}" style="height: auto; vertical-align: middle; width: ${getValueFromData(data.attr('imageSize' + col), '', '', 'px;')}">`;
+                    objValue = `<img src="${objValue}" style="height: auto; vertical-align: middle; width: ${myMdwHelper.getValueFromData(data.attr('imageSize' + col), '', '', 'px;')}">`;
                 }
 
                 return `<td class="mdc-data-table__cell ${textSize.class}" 
                             style="
                             text-align: ${data.attr('textAlign' + col)};${textSize.style}; 
-                            padding-left: ${getNumberFromData(data.attr('padding_left' + col), 8)}px; 
-                            padding-right: ${getNumberFromData(data.attr('padding_right' + col), 8)}px; 
-                            color: ${getValueFromData(data.attr('colTextColor' + col), '')}; 
-                            font-family: ${getValueFromData(data.attr('fontFamily' + col), '')};
+                            padding-left: ${myMdwHelper.getNumberFromData(data.attr('padding_left' + col), 8)}px; 
+                            padding-right: ${myMdwHelper.getNumberFromData(data.attr('padding_right' + col), 8)}px; 
+                            color: ${myMdwHelper.getValueFromData(data.attr('colTextColor' + col), '')}; 
+                            font-family: ${myMdwHelper.getValueFromData(data.attr('fontFamily' + col), '')};
                             white-space: ${(data.attr('colNoWrap' + col) ? 'nowrap' : 'unset')};
                             ">
                                 ${prefix}${objValue}${suffix}

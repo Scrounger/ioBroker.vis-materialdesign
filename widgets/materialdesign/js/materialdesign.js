@@ -90,11 +90,11 @@ vis.binds.materialdesign = {
         try {
             var $this = $(el).parent();
 
-            let bgColor = getValueFromData(data.colorBgFalse, '');
-            let bgColorTrue = getValueFromData(data.colorBgTrue, bgColor);
+            let bgColor = myMdwHelper.getValueFromData(data.colorBgFalse, '');
+            let bgColorTrue = myMdwHelper.getValueFromData(data.colorBgTrue, bgColor);
 
-            let labelBgColor = getValueFromData(data.labelColorBgFalse, '');
-            let labelBgColorTrue = getValueFromData(data.labelColorBgTrue, labelBgColor);
+            let labelBgColor = myMdwHelper.getValueFromData(data.labelColorBgFalse, '');
+            let labelBgColorTrue = myMdwHelper.getValueFromData(data.labelColorBgTrue, labelBgColor);
 
             setButtonState();
 
@@ -177,10 +177,10 @@ vis.binds.materialdesign = {
 
             mdcSwitch.disabled = data.readOnly, false;
 
-            switchElement.style.setProperty("--materialdesign-color-switch-on", getValueFromData(data.colorSwitchTrue, ''));
-            switchElement.style.setProperty("--materialdesign-color-switch-off", getValueFromData(data.colorSwitchThumb, ''));
-            switchElement.style.setProperty("--materialdesign-color-switch-track", getValueFromData(data.colorSwitchTrack, ''));
-            switchElement.style.setProperty("--materialdesign-color-switch-off-hover", getValueFromData(data.colorSwitchHover, ''));
+            switchElement.style.setProperty("--materialdesign-color-switch-on", myMdwHelper.getValueFromData(data.colorSwitchTrue, ''));
+            switchElement.style.setProperty("--materialdesign-color-switch-off", myMdwHelper.getValueFromData(data.colorSwitchThumb, ''));
+            switchElement.style.setProperty("--materialdesign-color-switch-track", myMdwHelper.getValueFromData(data.colorSwitchTrack, ''));
+            switchElement.style.setProperty("--materialdesign-color-switch-off-hover", myMdwHelper.getValueFromData(data.colorSwitchHover, ''));
 
             setSwitchState();
 
@@ -225,11 +225,11 @@ vis.binds.materialdesign = {
 
                 let label = $this.find('label[id="label"]');
                 if (buttonState) {
-                    label.css('color', getValueFromData(data.labelColorTrue, ''));
-                    label.text(getValueFromData(data.labelTrue, ''));
+                    label.css('color', myMdwHelper.getValueFromData(data.labelColorTrue, ''));
+                    label.text(myMdwHelper.getValueFromData(data.labelTrue, ''));
                 } else {
-                    label.css('color', getValueFromData(data.labelColorFalse, ''));
-                    label.text(getValueFromData(data.labelFalse, ''));
+                    label.css('color', myMdwHelper.getValueFromData(data.labelColorFalse, ''));
+                    label.text(myMdwHelper.getValueFromData(data.labelFalse, ''));
                 }
             }
         } catch (ex) {
@@ -248,7 +248,7 @@ vis.binds.materialdesign = {
 
             mdcCheckbox.disabled = data.readOnly, false;
 
-            checkboxElement.style.setProperty("--mdc-theme-secondary", getValueFromData(data.colorCheckBox, ''));
+            checkboxElement.style.setProperty("--mdc-theme-secondary", myMdwHelper.getValueFromData(data.colorCheckBox, ''));
 
             setCheckboxState();
 
@@ -293,11 +293,11 @@ vis.binds.materialdesign = {
 
                 let label = $this.find('label[id="label"]');
                 if (buttonState) {
-                    label.css('color', getValueFromData(data.labelColorTrue, ''));
-                    label.text(getValueFromData(data.labelTrue, ''));
+                    label.css('color', myMdwHelper.getValueFromData(data.labelColorTrue, ''));
+                    label.text(myMdwHelper.getValueFromData(data.labelTrue, ''));
                 } else {
-                    label.css('color', getValueFromData(data.labelColorFalse, ''));
-                    label.text(getValueFromData(data.labelFalse, ''));
+                    label.css('color', myMdwHelper.getValueFromData(data.labelColorFalse, ''));
+                    label.text(myMdwHelper.getValueFromData(data.labelFalse, ''));
                 }
             }
         } catch (ex) {
@@ -308,16 +308,16 @@ vis.binds.materialdesign = {
         try {
             let $this = $(el);
 
-            let min = getValueFromData(data.min, 0);
-            let labelMin = getValueFromData(data.valueLabelMin, null);
-            let max = getValueFromData(data.max, 1);
-            let labelMax = getValueFromData(data.valueLabelMax, null);
-            let unit = getValueFromData(data.valueLabelUnit, '');
+            let min = myMdwHelper.getValueFromData(data.min, 0);
+            let labelMin = myMdwHelper.getValueFromData(data.valueLabelMin, null);
+            let max = myMdwHelper.getValueFromData(data.max, 1);
+            let labelMax = myMdwHelper.getValueFromData(data.valueLabelMax, null);
+            let unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
 
-            let valueLessThan = getValueFromData(data.valueLessThan, min);
-            let textForValueLessThan = getValueFromData(data.textForValueLessThan, null);
-            let valueGreaterThan = getValueFromData(data.valueGreaterThan, max);
-            let textForValueGreaterThan = getValueFromData(data.textForValueGreaterThan, null);
+            let valueLessThan = myMdwHelper.getValueFromData(data.valueLessThan, min);
+            let textForValueLessThan = myMdwHelper.getValueFromData(data.textForValueLessThan, null);
+            let valueGreaterThan = myMdwHelper.getValueFromData(data.valueGreaterThan, max);
+            let textForValueGreaterThan = myMdwHelper.getValueFromData(data.textForValueGreaterThan, null);
 
             let showMarker = '';
             if (data.showMarkers === 'true' || data.showMarkers === true) {
@@ -388,10 +388,10 @@ vis.binds.materialdesign = {
                 let sliderElement = $this.find('.mdc-slider').get(0);
 
                 // Colors
-                sliderElement.style.setProperty("--materialdesign-color-slider-before-thumb", getValueFromData(data.colorBeforeThumb, ''));
-                sliderElement.style.setProperty("--materialdesign-color-slider-thumb", getValueFromData(data.colorThumb, ''));
-                sliderElement.style.setProperty("--materialdesign-color-slider-after-thumb", getValueFromData(data.colorAfterThumb, ''));
-                sliderElement.style.setProperty("--materialdesign-color-slider-track-marker", getValueFromData(data.colorTrackMarker, ''));
+                sliderElement.style.setProperty("--materialdesign-color-slider-before-thumb", myMdwHelper.getValueFromData(data.colorBeforeThumb, ''));
+                sliderElement.style.setProperty("--materialdesign-color-slider-thumb", myMdwHelper.getValueFromData(data.colorThumb, ''));
+                sliderElement.style.setProperty("--materialdesign-color-slider-after-thumb", myMdwHelper.getValueFromData(data.colorAfterThumb, ''));
+                sliderElement.style.setProperty("--materialdesign-color-slider-track-marker", myMdwHelper.getValueFromData(data.colorTrackMarker, ''));
 
                 if (data.knobSize === 'knobMedium') {
                     $this.find('.mdc-slider__thumb').attr('width', '31').attr('height', '31').css('margin-left', '-5px').css('margin-top', '-5px');
@@ -477,18 +477,18 @@ vis.binds.materialdesign = {
                 // let currentProgressEl = $this.find('.mdc-linear-progress__bar-inner');
                 // $this.find('.mdc-linear-progress__bar-inner').css('border-top', `${widgetHeight} solid`).css('-webkit-border-top', `${widgetHeight} solid`);
 
-                var min = getValueFromData(data.min, 0);
-                var max = getValueFromData(data.max, 1);
-                var unit = getValueFromData(data.valueLabelUnit, '');
-                var decimals = getValueFromData(data.valueMaxDecimals, 0);
+                var min = myMdwHelper.getValueFromData(data.min, 0);
+                var max = myMdwHelper.getValueFromData(data.max, 1);
+                var unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
+                var decimals = myMdwHelper.getValueFromData(data.valueMaxDecimals, 0);
 
                 mdcProgress.reverse = data.reverse;
 
-                var color = getValueFromData(data.colorProgress, '');
-                var colorOneCondition = getValueFromData(data.colorOneCondition, 0);
-                var colorOne = getValueFromData(data.colorOne, '');
-                var colorTwoCondition = getValueFromData(data.colorTwoCondition, 0);
-                var colorTwo = getValueFromData(data.colorTwo, '');
+                var color = myMdwHelper.getValueFromData(data.colorProgress, '');
+                var colorOneCondition = myMdwHelper.getValueFromData(data.colorOneCondition, 0);
+                var colorOne = myMdwHelper.getValueFromData(data.colorOne, '');
+                var colorTwoCondition = myMdwHelper.getValueFromData(data.colorTwoCondition, 0);
+                var colorTwo = myMdwHelper.getValueFromData(data.colorTwo, '');
 
 
                 if (colorOne === '') colorOne = color;
@@ -663,152 +663,6 @@ vis.binds.materialdesign = {
         return { input: `<a target="_blank" href="https://github.com/Scrounger/ioBroker.vis-materialdesign#online-example-project">${_('linkOnlineExampleProject')}</a>` }
     }
 };
-
-function getValueFromData(dataValue, nullValue, prepand = '', append = '') {
-    try {
-        return (dataValue === undefined || dataValue === null || dataValue === '') ? nullValue : prepand + dataValue + append;
-    } catch (err) {
-        console.error(err.message);
-        return 'Error';
-    }
-}
-
-function getNumberFromData(dataValue, nullValue) {
-    try {
-        return (dataValue === undefined || dataValue === null || dataValue === '' || isNaN(dataValue)) ? nullValue : parseFloat(dataValue);
-    } catch (err) {
-        console.error(err.message);
-        return 'Error';
-    }
-}
-
-function getFontSize(fontSizeValue) {
-    let fontSize = getValueFromData(fontSizeValue, null);
-
-    if (fontSize !== null) {
-        if (fontSize.includes('headline') || fontSize.includes('subtitle') || fontSize.includes('body') || fontSize.includes('caption') || fontSize.includes('button') || fontSize.includes('overline')) {
-            // font size is a mdc-typography style
-            return { class: `mdc-typography--${fontSize}`, style: '' };
-        } else if (!isNaN(fontSize)) {
-            // number only
-            return { class: ``, style: `font-size: ${fontSize}px;` };
-        } else {
-            return { class: ``, style: `font-size: ${fontSize};` };
-        }
-    } else {
-        return { class: '', style: '' };
-    }
-}
-
-function getListItemHeader(text, fontSize) {
-    if (text !== null) {
-        return `<h3 class="mdc-list-group__subheader ${fontSize.class}" 
-                    style="${fontSize.style}">
-                        ${text}
-                </h3>`;
-    }
-    return '';
-}
-
-function getListItemTextElement(text, subText, fontSize, subFontSize, align = 'left') {
-
-    let alignFlex = 'flex-start';
-    if (align === 'center') {
-        alignFlex = 'center';
-    } else if (align === 'right') {
-        alignFlex = 'flex-end';
-    }
-
-    return `<span class="mdc-list-item__text" style="width: 100%">     
-                <span class="mdc-list-item__primary-text ${fontSize.class}" style="justify-content: ${alignFlex};${fontSize.style}">${text}</span>
-                <span class="mdc-list-item__secondary-text ${subFontSize.class}" style="text-align: ${align}; ${subFontSize.style}">${subText}</span>
-            </span>`;
-}
-
-function getListItemImage(image, style) {
-    if (image != '') {
-        return `<img 
-                class="mdc-list-item__graphic" src="${image}" 
-                style="width: auto; padding-top: 8px; padding-bottom: 8px;${style}"
-            >`
-    }
-    return '';
-}
-
-function getListItem(layout, itemIndex, backdropImage, hasSubItems, isSubItem = false, style = '', dataOid = '', role = '', dataValue = '') {
-
-    if (layout === 'standard') {
-        // Layout: Standard
-        return `<div 
-                    class="mdc-list-item${(isSubItem) ? ' mdc-sub-list-item isSubItem' : ''}${(itemIndex === 0) ? ' mdc-list-item--activated' : ''}${(hasSubItems) ? ' hasSubItems' : ''}" 
-                    tabindex="${(itemIndex === 0) ? '0' : '-1'}" 
-                    id="listItem_${itemIndex}" 
-                    style="${style}"
-                    data-value="${dataValue}" 
-                    ${dataOid} 
-                    ${role}
-                >`
-    } else {
-        // Layout: Backdrop
-        return `<div 
-                    class="mdc-list-item${(isSubItem) ? ' mdc-sub-list-item isSubItem' : ''}${(itemIndex === 0) ? ' mdc-list-item--activated' : ''} mdc-card__media${(hasSubItems) ? ' hasSubItems' : ''}" 
-                    tabindex="${(itemIndex === 0) ? '0' : '-1'}"
-                    id="listItem_${itemIndex}"
-                    style="background-image: url(${backdropImage}); align-items: flex-end; padding: 0px;${style}"
-                >`
-    }
-}
-
-function getListItemLabel(layout, itemIndex, text, hasSubItems, fontSize, showLabel, toggleIconColor, backdropLabelHeight, isSubItem = false, align = 'left') {
-
-    let subItemToggleIcon = '';
-    if (hasSubItems) {
-        subItemToggleIcon = `<span 
-                                class="mdc-list-item__meta material-icons toggleIcon" aria-hidden="true" ${getValueFromData(toggleIconColor, '', 'style="color: ', ';"')}>
-                                    keyboard_arrow_down
-                            </span>`;
-    }
-
-    if (layout === 'standard') {
-        // Layout: Standard
-        let listItemLabel = `<span 
-                                class="mdc-list-item__text ${fontSize.class}"
-                                id="listItem_${itemIndex}"
-                                style="width: 100%; text-align: ${align}; ${fontSize.style}${showLabel}">
-                                    ${text}
-                            </span>`;
-
-        return listItemLabel + subItemToggleIcon;
-
-    } else {
-        // Layout: Backdrop
-
-        // generate SubItems toggle Icon
-        return `<div 
-                    class="materialdesign-list-item-backdrop-container${(isSubItem) ? ' isSubItem' : ''}" 
-                    id="backdropContainer_${itemIndex}" 
-                    style="${backdropLabelHeight}">
-                        <span 
-                            class="mdc-list-item__text ${fontSize.class}"
-                            id="listItem_${itemIndex}"
-                            style="position: absolute; ${fontSize.style}${showLabel}">
-                                ${text}
-                        </span>
-                        ${subItemToggleIcon}
-                </div>`;
-    }
-}
-
-function getListItemDivider(showDivider, dividerLayout) {
-    if (showDivider === true || showDivider === 'true') {
-        if (dividerLayout === 'standard') {
-            return '<hr class="mdc-list-divider">'
-        } else {
-            return `<hr class="mdc-list-divider mdc-list-divider--${dividerLayout}">`
-        }
-    }
-    return '';
-}
 
 vis.binds["materialdesign"].showVersion();
 // vis.binds["materialdesign"].initVuetfiyApp();
