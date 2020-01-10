@@ -15,12 +15,18 @@ vis.binds.materialdesign.input =
 
             console.log('Vuetify Input');
 
-            $this.append(`
-            <div class="mdc-text-field" style="width: 100%; height: 100%;">
-                <input type="text" id="my-text-field" class="mdc-text-field__input">
-                <label class="mdc-floating-label" for="my-text-field">Hint text</label>
-                <div class="mdc-line-ripple"></div>
-            </div>`);
+
+            if (myMdwHelper.getValueFromData(data.inputLayout, 'filled') === 'filled') {
+                $this.append(`
+                <div class="mdc-text-field ${(data.showInputLabel) ? 'mdc-text-field--no-label' : ''}" style="width: 100%; height: 100%; min-height: 36px;">
+                    <input type="text" id="my-text-field" class="mdc-text-field__input">
+                    ${(data.showInputLabel) ? '<label class="mdc-floating-label" for="my-text-field">Hint text</label>' : ''}
+                    <div class="mdc-line-ripple"></div>
+                </div>`);
+            } else {
+
+            }
+
 
             myMdwHelper.waitForElement($this, '.mdc-text-field', function () {
                 let textInput = $this.find('.mdc-text-field');
