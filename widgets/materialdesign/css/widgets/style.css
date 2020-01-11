@@ -1236,9 +1236,13 @@ svg.materialdesign-button__icon {
 
 .materialdesign-masonry-container {
   width: calc(100% - 2 * var(--materialdesign-masonry-gaps));
+  -moz-column-gap: var(--materialdesign-masonry-gaps);
+  -webkit-column-gap: var(--materialdesign-masonry-gaps);
   column-gap: var(--materialdesign-masonry-gaps);
   text-align: center;
   padding: var(--materialdesign-masonry-gaps);
+  orphans: 1 !important;
+  widows:1 !important;
 }
 
 .materialdesign-masonry-item {
@@ -1247,11 +1251,17 @@ svg.materialdesign-button__icon {
   vertical-align: top;
   width: 100%;
   text-align: initial;
+  overflow: hidden;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid-column;
 }
 
 @media screen and (min-width: 992px) {
   /* start of desktop styles */
   .materialdesign-masonry-container {
+    -webkit-column-count: var(--materialdesign-masonry-column-count);
+    -moz-column-count: var(--materialdesign-masonry-column-count);
     column-count: var(--materialdesign-masonry-column-count);
   }
 }
@@ -1259,6 +1269,8 @@ svg.materialdesign-button__icon {
 @media screen and (max-width: 991px) {
   /* start of large tablet styles */
   .materialdesign-masonry-container {
+    -webkit-column-count: calc(var(--materialdesign-masonry-column-count) - 1);
+    -moz-column-count: calc(var(--materialdesign-masonry-column-count) - 1);
     column-count: calc(var(--materialdesign-masonry-column-count) - 1);
   }
 }
@@ -1266,6 +1278,8 @@ svg.materialdesign-button__icon {
 @media screen and (max-width: 767px) {
   /* start of medium tablet styles */
   .materialdesign-masonry-container {
+    -webkit-column-count: calc(var(--materialdesign-masonry-column-count) - 2);
+    -moz-column-count: calc(var(--materialdesign-masonry-column-count) - 2);
     column-count: calc(var(--materialdesign-masonry-column-count) - 2);
   }
 }
@@ -1273,6 +1287,8 @@ svg.materialdesign-button__icon {
 @media screen and (max-width: 479px) {
   /* start of phone styles */
   .materialdesign-masonry-container {
+    -webkit-column-count: calc(var(--materialdesign-masonry-column-count) - 3);
+    -moz-column-count: calc(var(--materialdesign-masonry-column-count) - 3);
     column-count: calc(var(--materialdesign-masonry-column-count) - 3);
   }
 }
