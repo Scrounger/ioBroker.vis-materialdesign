@@ -1251,10 +1251,9 @@ svg.materialdesign-button__icon {
   vertical-align: top;
   width: 100%;
   text-align: initial;
-  overflow: hidden;
   -webkit-column-break-inside: avoid;
   page-break-inside: avoid;
-  break-inside: avoid-column;
+  break-inside: avoid-column;  
 }
 
 @media screen and (min-width: 992px) {
