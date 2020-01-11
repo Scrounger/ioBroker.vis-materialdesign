@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.36"
+    version: "0.2.37"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -99,7 +99,7 @@ vis.binds.materialdesign.views = {
                     ${viewsList.join('')}
                 </div>
             `);
-
+            
         } catch (ex) {
             console.exception(`[Masonry Views] error: ${ex.message}, stack: ${ex.stack}`);
         }

@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.36"
+    version: "0.2.37"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -22,7 +22,7 @@ if (vis.editMode) {
 // TODO: move widgets to own file -> using minify
 
 vis.binds.materialdesign = {
-    version: "0.2.36",
+    version: "0.2.37",
     showVersion: function () {
         if (vis.binds["materialdesign"].version) {
             console.log('Version vis-materialdesign: ' + vis.binds["materialdesign"].version);
