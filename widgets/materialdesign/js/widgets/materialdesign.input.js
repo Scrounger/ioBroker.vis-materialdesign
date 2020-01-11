@@ -16,43 +16,46 @@ vis.binds.materialdesign.input =
             console.log('Vuetify Input');
 
 
-            if (myMdwHelper.getValueFromData(data.inputLayout, 'filled') === 'filled') {
-                $this.append(`
-                <div class="mdc-text-field ${(data.showInputLabel) ? 'mdc-text-field--no-label' : ''}" style="width: 100%; height: 100%; min-height: 36px;">
-                    <input type="text" id="my-text-field" class="mdc-text-field__input">
-                    ${(data.showInputLabel) ? '<label class="mdc-floating-label" for="my-text-field">Hint text</label>' : ''}
-                    <div class="mdc-line-ripple"></div>
-                </div>`);
-            } else {
 
-            }
+            $this.append(`
+            <div class="materialdesign-vuetifyTextField" style="width: 100%; height: 100%;">
+                    <v-text-field
+                        label="Regular"
+                    >
+                    </v-text-field>
+            </div>`);
 
 
-            myMdwHelper.waitForElement($this, '.mdc-text-field', function () {
-                let textInput = $this.find('.mdc-text-field');
+            myMdwHelper.waitForElement($this, '.materialdesign-vuetifyTextField', function () {
+                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
 
-                const mdcTextField = new mdc.textField.MDCTextField(textInput.get(0));
+                    let vueTextField = new Vue({
+                        el: $this.find('.materialdesign-vuetifyTextField').get(0),
+                        vuetify: new Vuetify({ rtl: data.reverseSlider }),
+                    });
 
-                setTextInputState();
 
-                vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                    setTextInputState();
+                    // setTextInputState();
+
+                    // vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                    //     setTextInputState();
+                    // });
+
+                    // textInput.keypress(function (e) {
+                    //     if (e.which == 13) {
+                    //         vis.setValue(data.oid, mdcTextField.value);
+                    //     }
+                    // });
+
+                    // textInput.focusout(function () {
+                    //     vis.setValue(data.oid, mdcTextField.value);
+                    // });
+
+                    // function setTextInputState() {
+                    //     var val = vis.states.attr(data.oid + '.val');
+                    //     mdcTextField.value = val;
+                    // }
                 });
-
-                textInput.keypress(function (e) {
-                    if (e.which == 13) {
-                        vis.setValue(data.oid, mdcTextField.value);
-                    }
-                });
-
-                textInput.focusout(function () {
-                    vis.setValue(data.oid, mdcTextField.value);
-                });
-
-                function setTextInputState() {
-                    var val = vis.states.attr(data.oid + '.val');
-                    mdcTextField.value = val;
-                }
             });
 
         } catch (ex) {
