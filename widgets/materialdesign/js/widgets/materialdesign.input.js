@@ -21,7 +21,8 @@ vis.binds.materialdesign.input =
                         ${layout}
                         :value="value"
                         :height="height"
-                        label="Regular"
+                        label="${myMdwHelper.getValueFromData(data.inputLabelText, '')}"
+
                         prefix="$"
                         suffix="lbs"
                         @change="changeEvent"
@@ -38,9 +39,8 @@ vis.binds.materialdesign.input =
 
             myMdwHelper.waitForElement($this, '.materialdesign-vuetifyTextField', function () {
                 myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
-                    let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
 
-                    console.log(widgetHeight);
+                    let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
 
                     let vueTextField = new Vue({
                         el: $this.find('.materialdesign-vuetifyTextField').get(0),
@@ -61,6 +61,18 @@ vis.binds.materialdesign.input =
                             },
                         }
                     });
+
+                    if (layout !== 'filled') {
+                        //TODO: background color data hinzufügen
+                        $this.context.style.setProperty("--vue-text-field-background-color", 'transparent');
+                        $this.context.style.setProperty("--vue-text-field-background-hover-color", 'transparent');
+                    }
+
+                    // Input Label style
+                    $this.context.style.setProperty("--vue-text-field-label-before-color", myMdwHelper.getValueFromData(data.inputLabelColor, ''));
+                    $this.context.style.setProperty("--vue-text-field-label-after-color", myMdwHelper.getValueFromData(data.inputLabelColorSelected, ''));
+                    $this.context.style.setProperty("--vue-text-field-label-font-family", myMdwHelper.getValueFromData(data.inputLabelFontFamily, ''));
+                    $this.context.style.setProperty("--vue-text-field-label-font-size", myMdwHelper.getNumberFromData(data.inputLabelFontSize, '16') + 'px');
 
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                         vueTextField.value = newVal;

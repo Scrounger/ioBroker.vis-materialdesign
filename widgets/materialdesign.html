@@ -1077,8 +1077,10 @@
         data-vis-set="materialdesign"
         data-vis-type="ctrl"
         data-vis-name="Input"
-        data-vis-attrs="label[Input];oid;asString/checkbox;digits[0]/slider,0,10,1;size[10]/slider,10,100,1;showInputLabel[true]/checkbox;inputLayout[regular]/select,regular,solo,filled,outlined;">
-        
+        data-vis-update-style="true"
+        data-vis-attrs="label[Input];oid;asString/checkbox;digits[0]/slider,0,10,1;size[10]/slider,10,100,1;showInputLabel[true]/checkbox;inputLayout[regular]/select,regular,solo,filled,outlined;"
+        data-vis-attrs0="group.inputLabel;inputLabelText;inputLabelColor/color;inputLabelColorSelected/color;inputLabelFontFamily/fontname;inputLabelFontSize/number,0,24,1;">
+
         <div class="vis-widget materialdesign-inputws <%== this.data.attr('class') %>" style="width: 150px; height: 50px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.input(el, data) %>> 
         
         </div>

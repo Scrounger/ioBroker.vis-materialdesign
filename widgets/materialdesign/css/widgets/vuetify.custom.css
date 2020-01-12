@@ -19,8 +19,13 @@
 
   --vue-text-field-label-before-color: rgba(0, 0, 0, 0.6);
   --vue-text-field-label-after-color: #44739e;
+  --vue-text-field-label-font-family: ;
+  --vue-text-field-label-font-size: 16px;
 
   --vue-text-field-prefix-suffix-color: rgba(0, 0, 0, 0.6);
+  
+  --vue-text-field-background-color: rgba(0, 0, 0, 0.06);
+  --vue-text-field-background-hover-color:rgba(0, 0, 0, 0.12);
 }
 
 
@@ -405,17 +410,27 @@
 .theme--light.v-text-field--solo-inverted.v-text-field--solo.v-input--is-focused > .v-input__control > .v-input__slot input {
   color: #FFFFFF;
 }
-.theme--light.v-text-field--filled > .v-input__control > .v-input__slot {
-  background: rgba(0, 0, 0, 0.06);
+
+.theme--light.v-text-field > .v-input__control > .v-input__slot {
+  background: var(--vue-text-field-background-color);
 }
+.theme--light.v-text-field:not(.v-input--is-focused) > .v-input__control > .v-input__slot:hover {
+  background: var(--vue-text-field-background-hover-color);
+}
+
+.theme--light.v-text-field--filled > .v-input__control > .v-input__slot {
+  background: var(--vue-text-field-background-color);
+}
+
 .theme--light.v-text-field--filled .v-text-field__prefix,
 .theme--light.v-text-field--filled .v-text-field__suffix {
   max-height: 32px;
   margin-top: 20px;
 }
 .theme--light.v-text-field--filled:not(.v-input--is-focused) > .v-input__control > .v-input__slot:hover {
-  background: rgba(0, 0, 0, 0.12);
+  background: var(--vue-text-field-background-hover-color);
 }
+
 .theme--light.v-text-field--outlined fieldset {
   border-color: var(--vue-text-field-before-color);;
 }
@@ -518,6 +533,7 @@
 .v-text-field > .v-input__control > .v-input__slot {
   cursor: text;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+  
 }
 .v-text-field > .v-input__control > .v-input__slot:before, .v-text-field > .v-input__control > .v-input__slot:after {
   bottom: -1px;
@@ -600,6 +616,7 @@
   display: flex;
   flex: 1 1 auto;
   position: relative;
+  align-items: center;
 }
 .v-text-field:not(.v-text-field--is-booted) .v-label,
 .v-text-field:not(.v-text-field--is-booted) legend {
@@ -1096,11 +1113,12 @@
 }
 
 .v-label {
-  font-size: 16px;
+  font-size: var(--vue-text-field-label-font-size);
   line-height: 1;
   min-height: 8px;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
-  margin-left: 10px;
+  margin-left: 12px;
+  font-family: var(--vue-text-field-label-font-family);
 }
 
 .v-text-field .v-label--active {
