@@ -16,6 +16,11 @@
   --vue-text-field-before-color: rgba(0, 0, 0, 0.2);
   --vue-text-field-hover-color: #44739e;
   --vue-text-field-after-color: #44739e;  
+
+  --vue-text-field-label-before-color: rgba(0, 0, 0, 0.6);
+  --vue-text-field-label-after-color: #44739e;
+
+  --vue-text-field-prefix-suffix-color: rgba(0, 0, 0, 0.6);
 }
 
 
@@ -35,13 +40,6 @@
 .theme--light.v-slider .v-slider__thumb {
   background: rgba(0, 0, 0, 0.26);
 }
-
-.theme--dark.v-slider .v-slider__track-background,
-.theme--dark.v-slider .v-slider__track-fill,
-.theme--dark.v-slider .v-slider__thumb {
-  background: rgba(255, 255, 255, 0.2);
-}
-
 
 .v-slider {
   cursor: default;
@@ -373,8 +371,8 @@
   background-color: transparent;
   border-style: none;
   color: inherit;
-  padding-left: 16px !important;
-  padding-right: 16px !important;
+  margin-left: 6px;
+  margin-right: 6px;
 }
 
 .theme--light.v-text-field > .v-input__control > .v-input__slot:before {
@@ -419,52 +417,12 @@
   background: rgba(0, 0, 0, 0.12);
 }
 .theme--light.v-text-field--outlined fieldset {
-  border-color: rgba(0, 0, 0, 0.24);
+  border-color: var(--vue-text-field-before-color);;
 }
 .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state) > .v-input__control > .v-input__slot:hover fieldset {
-  border-color: rgba(0, 0, 0, 0.86);
+  border-color: var(--vue-text-field-hover-color);
 }
 
-.theme--dark.v-text-field > .v-input__control > .v-input__slot:before {
-  border-color: rgba(255, 255, 255, 0.7);
-}
-.theme--dark.v-text-field:not(.v-input--has-state) > .v-input__control > .v-input__slot:hover:before {
-  border-color: #FFFFFF;
-}
-.theme--dark.v-text-field.v-input--is-disabled > .v-input__control > .v-input__slot:before {
-  border-image: repeating-linear-gradient(to right, rgba(255, 255, 255, 0.5) 0px, rgba(255, 255, 255, 0.5) 2px, transparent 2px, transparent 4px) 1 repeat;
-}
-.theme--dark.v-text-field.v-input--is-disabled .v-text-field__prefix,
-.theme--dark.v-text-field.v-input--is-disabled .v-text-field__suffix {
-  color: rgba(255, 255, 255, 0.5);
-}
-.theme--dark.v-text-field__prefix, .theme--dark.v-text-field__suffix {
-  color: rgba(255, 255, 255, 0.7);
-}
-.theme--dark.v-text-field--solo > .v-input__control > .v-input__slot {
-  background: #424242;
-}
-.theme--dark.v-text-field--solo-inverted.v-text-field--solo > .v-input__control > .v-input__slot {
-  background: rgba(255, 255, 255, 0.16);
-}
-.theme--dark.v-text-field--solo-inverted.v-text-field--solo.v-input--is-focused > .v-input__control > .v-input__slot {
-  background: #FFFFFF;
-}
-.theme--dark.v-text-field--solo-inverted.v-text-field--solo.v-input--is-focused > .v-input__control > .v-input__slot .v-label,
-.theme--dark.v-text-field--solo-inverted.v-text-field--solo.v-input--is-focused > .v-input__control > .v-input__slot input {
-  color: rgba(0, 0, 0, 0.87);
-}
-.theme--dark.v-text-field--filled > .v-input__control > .v-input__slot {
-  background: rgba(0, 0, 0, 0.1);
-}
-.theme--dark.v-text-field--filled .v-text-field__prefix,
-.theme--dark.v-text-field--filled .v-text-field__suffix {
-  max-height: 32px;
-  margin-top: 20px;
-}
-.theme--dark.v-text-field--filled:not(.v-input--is-focused) > .v-input__control > .v-input__slot:hover {
-  background: rgba(0, 0, 0, 0.2);
-}
 .v-text-field {
   padding-top: 12px;
   margin-top: 4px;
@@ -518,6 +476,18 @@
   margin-right: auto;
   padding-right: 4px;
 }
+
+.theme--light.v-counter {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.v-counter {
+  flex: 0 1 auto;
+  font-size: 12px;
+  min-height: 12px;
+  line-height: 1;
+}
+
 .v-text-field .v-counter {
   white-space: nowrap;
 }
@@ -574,12 +544,23 @@
   min-height: 14px;
   overflow: hidden;
 }
-.v-text-field__prefix, .v-text-field__suffix {
+.v-text-field__prefix {
   align-self: center;
   cursor: default;
   transition: color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   white-space: nowrap;
+  color: var(--vue-text-field-prefix-suffix-color);
+  margin-left: 6px;
 }
+.v-text-field__suffix {
+  align-self: center;
+  cursor: default;
+  transition: color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+  white-space: nowrap;
+  color: var(--vue-text-field-prefix-suffix-color);
+  margin-right: 6px;
+}
+
 .v-application--is-ltr .v-text-field__prefix {
   text-align: right;
   padding-right: 4px;
@@ -797,7 +778,13 @@
   margin-top: 18px;
 }
 .v-text-field--outlined.v-input--is-focused fieldset, .v-text-field--outlined.v-input--has-state fieldset {
-  border: 2px solid currentColor;
+  border: 2px solid var(--vue-text-field-after-color);
+}
+.v-text-field--outlined:not(.v-input--is-focused) fieldset{
+  border: 1px solid var(--vue-text-field-before-color);
+}
+.v-text-field--outlined:not(.v-input--is-focused):hover fieldset{
+  border: 1px solid var(--vue-text-field-hover-color);
 }
 .v-text-field--rounded {
   border-radius: 28px;
@@ -838,7 +825,7 @@
   transform: scaleX(1);
 }
 .v-text-field.v-input--has-state > .v-input__control > .v-input__slot:before {
-  border-color: currentColor;
+  border-color: var(--vue-text-field-before-color);
 }
 
 .v-application--is-ltr .v-textarea.v-text-field--enclosed .v-text-field__slot {
@@ -884,36 +871,6 @@
 .theme--light.v-input--is-disabled input,
 .theme--light.v-input--is-disabled textarea {
   color: rgba(0, 0, 0, 0.38);
-}
-
-.theme--dark.v-input:not(.v-input--is-disabled) input,
-.theme--dark.v-input:not(.v-input--is-disabled) textarea {
-  color: #FFFFFF;
-}
-.theme--dark.v-input input::-webkit-input-placeholder,
-.theme--dark.v-input textarea::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-.theme--dark.v-input input::-moz-placeholder,
-.theme--dark.v-input textarea::-moz-placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-.theme--dark.v-input input:-ms-input-placeholder,
-.theme--dark.v-input textarea:-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-.theme--dark.v-input input::-ms-input-placeholder,
-.theme--dark.v-input textarea::-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-.theme--dark.v-input input::placeholder,
-.theme--dark.v-input textarea::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-.theme--dark.v-input--is-disabled .v-label,
-.theme--dark.v-input--is-disabled input,
-.theme--dark.v-input--is-disabled textarea {
-  color: rgba(255, 255, 255, 0.5);
 }
 
 .v-input {
@@ -1020,10 +977,6 @@
 
 .theme--light.v-input--selection-controls.v-input--is-disabled:not(.v-input--indeterminate) .v-icon {
   color: rgba(0, 0, 0, 0.26) !important;
-}
-
-.theme--dark.v-input--selection-controls.v-input--is-disabled:not(.v-input--indeterminate) .v-icon {
-  color: rgba(255, 255, 255, 0.3) !important;
 }
 
 .v-input--selection-controls {
@@ -1135,23 +1088,49 @@
 }
 
 .theme--light.v-label {
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--vue-text-field-label-before-color);
+
 }
 .theme--light.v-label--is-disabled {
   color: rgba(0, 0, 0, 0.38);
-}
-
-.theme--dark.v-label {
-  color: rgba(255, 255, 255, 0.7);
-}
-.theme--dark.v-label--is-disabled {
-  color: rgba(255, 255, 255, 0.5);
 }
 
 .v-label {
   font-size: 16px;
   line-height: 1;
   min-height: 8px;
-  padding-left: 16px;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+  margin-left: 10px;
+}
+
+.v-text-field .v-label--active {
+  color: var(--vue-text-field-label-after-color);
+}
+
+/* v-message */
+.theme--light.v-messages {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.v-messages {
+  flex: 1 1 auto;
+  font-size: 12px;
+  min-height: 14px;
+  min-width: 1px;
+  position: relative;
+}
+.v-application--is-ltr .v-messages {
+  text-align: left;
+}
+.v-application--is-rtl .v-messages {
+  text-align: right;
+}
+.v-messages__message {
+  line-height: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
 }
