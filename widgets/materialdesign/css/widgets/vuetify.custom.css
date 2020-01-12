@@ -31,6 +31,10 @@
   --vue-text-field-input-text-color: rgba(0, 0, 0, 0.87);
   --vue-text-field-input-text-font-size: inherit;
   --vue-text-field-input-text-font-family: inherit;
+
+  --vue-text-field-message-color: rgba(0, 0, 0, 0.6);
+  --vue-text-field-message-font-size: 12px;
+  --vue-text-field-message-font-family: inherit;
 }
 
 
@@ -1138,15 +1142,16 @@
 
 /* v-message */
 .theme--light.v-messages {
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--vue-text-field-message-color);
 }
 
 .v-messages {
   flex: 1 1 auto;
-  font-size: 12px;
+  font-size: var(--vue-text-field-message-font-size);
   min-height: 14px;
   min-width: 1px;
   position: relative;
+  font-family: var(--vue-text-field-message-font-family);
 }
 .v-application--is-ltr .v-messages {
   text-align: left;
