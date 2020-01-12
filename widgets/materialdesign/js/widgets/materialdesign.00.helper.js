@@ -32,7 +32,7 @@ vis.binds.materialdesign.helper = {
         setTimeout(function () {
             let version = 'version: "0.2.38"'
             console.log(version);
-            $(el).find('.materialdesign-installed-version-badge').attr('src', `https://img.shields.io/badge/installed-${version.replace('version: "', '').replace('"', '')}-%234ac51c`);
+            $(el).find('#versionNumber').text(version.replace('version: "', '').replace('"', ''));
         }, 1)
     },
     getValueFromData: function (dataValue, nullValue, prepand = '', append = '') {

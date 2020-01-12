@@ -1291,3 +1291,18 @@ svg.materialdesign-button__icon {
     column-count: calc(var(--materialdesign-masonry-column-count) - 3);
   }
 }
+
+.materialdesign-version-container {
+  display: flex;
+  justify-content: center;
+}
+
+.materialdesign-version-content{
+  padding-left: 6px;
+  padding-right: 6px;
+  color: white;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+  font-family: Arial;
+}
