@@ -138,7 +138,7 @@
             }      
         %>
 
-        <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.handleNavigation(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.handleNavigation(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
             <div class="materialdesign vis-widget-body" style="display: table; width: 100%; height: 100%;">
                 <div style="display: table-row;">                
                     <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + 'px' || auto %>; <%= stylesInvertImageFalse %>" />
@@ -174,7 +174,7 @@
             }      
         %>
 
-        <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleLink(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleLink(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
             <div class="materialdesign vis-widget-body" style="display: table; width: 100%; height: 100%;">
                 <div style="display: table-row;">                
                     <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + 'px' || auto %>; <%= stylesInvertImageFalse %>" />
@@ -210,7 +210,7 @@
             }      
         %>
 
-        <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.basic.state(el); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.basic.state(el); vis.binds.materialdesign.addRippleEffect(el, data) %>>
             <div class="materialdesign vis-widget-body" style="display: table; width: 100%; height: 100%;">
                 <div style="display: table-row;">                
                     <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + 'px' || auto %>; <%= stylesInvertImageFalse %>" />
@@ -251,7 +251,7 @@
         }
     %>
 
-    <div class="vis-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.addRippleEffect(el, data) %>>
+    <div class="vis-widget materialdesign-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.addRippleEffect(el, data) %>>
         <div class="materialdesign vis-widget-body" style="display: table; width: 100%; height: 100%;" toggled="false">
             <div style="display: table-row;">                
                 <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + 'px' || auto %>; <%= stylesInvertImageFalse %>" />
@@ -281,7 +281,7 @@
             let init = vis.binds.materialdesign.button.initializeButton(data);
         %>
 
-        <div class="vis-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.handleNavigation(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.handleNavigation(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
             <%== init.button %>
         </div>
 </script>
@@ -300,7 +300,7 @@
             let init = vis.binds.materialdesign.button.initializeButton(data);
         %>
 
-        <div class="vis-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-vis-link="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleLink(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-vis-link="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleLink(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
             <%== init.button %>
         </div>
 </script>
@@ -319,7 +319,7 @@
             let init = vis.binds.materialdesign.button.initializeButton(data);
         %>
 
-        <div class="vis-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.basic.state(el); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.basic.state(el); vis.binds.materialdesign.addRippleEffect(el, data) %>>
             <%== init.button %>
         </div>
 </script>
@@ -338,7 +338,7 @@
             let init = vis.binds.materialdesign.button.initializeButton(data);
         %>
 
-        <div class="vis-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleAdition(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleAdition(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
             <%== init.button %>
         </div>
 </script>
@@ -359,7 +359,7 @@
             let init = vis.binds.materialdesign.button.initializeButton(data,true);
         %> 
         
-        <div class="vis-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.addRippleEffect(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.addRippleEffect(el, data) %>>
             <%== init.button %>
             <div <%= (el) -> vis.binds.materialdesign.button.handleToggle(el, this.data) %>></div>
         </div>
@@ -383,7 +383,7 @@
             }
         %>
 
-        <div class="vis-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.handleNavigation(el, data); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.handleNavigation(el, data); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
             <img class="imgToggleFalse" style="width: 100%; height: 100%; <%= stylesInvertImageFalse %>" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> />
         </div>
 </script>
@@ -407,7 +407,7 @@
             }
         %>
 
-        <div class="vis-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleLink(el, data); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleLink(el, data); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
             <img class="imgToggleFalse" style="width: 100%; height: 100%; <%= stylesInvertImageFalse %>" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> />
         </div>
 </script>
@@ -430,7 +430,7 @@
             }
         %>
 
-        <div class="vis-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.basic.state(el); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.basic.state(el); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
             <img class="imgToggleFalse" style="width: 100%; height: 100%; <%= stylesInvertImageFalse %>" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> />
         </div>        
 </script>
@@ -453,7 +453,7 @@
             }
         %>
 
-        <div class="vis-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleAdition(el, data); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleAdition(el, data); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
             <img class="imgToggleFalse" style="width: 100%; height: 100%; <%= stylesInvertImageFalse %>" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> />
         </div>        
 </script>
@@ -481,7 +481,7 @@
             }
         %>
 
-        <div class="vis-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" aria-hidden="true" aria-pressed="false" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.mdcIconButtonToggle(el, this.data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" aria-label="Unstar this item" aria-hidden="true" aria-pressed="false" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.mdcIconButtonToggle(el, this.data) %>>
             <img class="imgToggleFalse" style="width: 100%; height: 100%; <%= stylesInvertImageFalse %>" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> />
             <img class="imgToggleTrue" style="width: 100%; height: 100%; <%= stylesInvertImageTrue %>" <%= this.data.attr('imageTrue')  ? 'src="' +  this.data.attr('imageTrue')  + '"' : '' %> />
         </div>        
@@ -511,7 +511,7 @@
             }
         %>
 
-        <div class="vis-widget mdc-form-field <%= labelPosition %> materialdesign-switch <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.switch(el, data) %>>
+        <div class="vis-widget materialdesign-widget mdc-form-field <%= labelPosition %> materialdesign-switch <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.switch(el, data) %>>
             <div class="mdc-switch" style="margin-left: 10px; margin-right: 10px;">
                 <div class="mdc-switch__track"></div>
                 <div class="mdc-switch__thumb-underlay">
@@ -548,7 +548,7 @@
             }
         %>
 
-        <div class="vis-widget mdc-form-field <%= labelPosition %> materialdesign-checkbox <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.checkbox(el, data) %>>
+        <div class="vis-widget materialdesign-widget mdc-form-field <%= labelPosition %> materialdesign-checkbox <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.checkbox(el, data) %>>
             <div class="mdc-checkbox">
                 <input type="checkbox" class="mdc-checkbox__native-control" id="materialdesign-checkbox-<%= this.data.attr('wid') %>"/>
                 <div class="mdc-checkbox__background">
@@ -574,7 +574,7 @@
         data-vis-attrs0="group.color;colorBeforeThumb/color;colorThumb/color;colorAfterThumb/color;"
         data-vis-attrs1="group.label;showValueLabel[true]/checkbox;valueLabelUnit;valueLabelMin/html;valueLabelMax/html;valueLessThan/number;textForValueLessThan/html;valueGreaterThan/number;textForValueGreaterThan/html;valueLabelWidth[25]/slider,0,100,1;">
 
-        <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.slider.mdcSlider(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.slider.mdcSlider(el, data) %>>
 
         </div>
 </script>
@@ -591,7 +591,7 @@
         data-vis-attrs0="group.color;colorBeforeThumb/color;colorThumb/color;colorAfterThumb/color;colorTrackMarker/color;"
         data-vis-attrs1="group.label;showValueLabel[true]/checkbox;showMarkers/checkbox;valueLabelUnit;valueLabelMin/html;valueLabelMax/html;valueLessThan/number;textForValueLessThan/html;valueGreaterThan/number;textForValueGreaterThan/html;valueLabelWidth[25]/slider,0,100,1;">
 
-        <div class="vis-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.slider.mdcSlider(el, data, true) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-slider <%== this.data.attr('class') %>" style="width: 180px; height: 50px; overflow:visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.slider.mdcSlider(el, data, true) %>>
 
         </div>
 </script>
@@ -610,7 +610,7 @@
         data-vis-attrs2="group.label;prepandText;showValueLabel[true]/checkbox;valueLabelUnit;valueLabelMin/html;valueLabelMax/html;valueLessThan/number;textForValueLessThan/html;valueGreaterThan/number;textForValueGreaterThan/html;valueLabelWidth[50]/slider,0,200,1;"
         data-vis-attrs3="group.thumbLabelLayout;showThumbLabel[no]/select,no,yes,always;thumbSize/number;thumbBackgroundColor/color;thumbFontColor/color;thumbFontSize/number;thumbFontFamily/fontname;useLabelRules/checkbox;">
 
-        <div class="vis-widget materialdesign-slider-vertical <%== this.data.attr('class') %>" style="width: 150px; height: 150px; overflow:visible !important; display: flex; align-items: center;" id="<%= this.data.attr('wid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" <%= (el) -> vis.binds.materialdesign.slider.vuetifySlider(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-slider-vertical <%== this.data.attr('class') %>" style="width: 150px; height: 150px; overflow:visible !important; display: flex; align-items: center;" id="<%= this.data.attr('wid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" <%= (el) -> vis.binds.materialdesign.slider.vuetifySlider(el, data) %>>
 
         </div>        
 </script>
@@ -627,7 +627,7 @@
         data-vis-attrs0="group.color;colorSliderBg/color;colorBeforeThumb/color;colorThumb/color;colorAfterThumb/color;valueLabelColor/color;"
         data-vis-attrs1="group.label;showValueLabel[true]/checkbox;valueLabelVerticalPosition/slider,0,100,1;valueLabelUnit;valueLabelMin/html;valueLabelMax/html;valueLessThan/number;textForValueLessThan/html;valueGreaterThan/number;textForValueGreaterThan/html;">
         
-        <div class="vis-widget materialdesign-slider-round <%== this.data.attr('class') %>" style="width: 400px; height: 250px;" id="<%= this.data.attr('wid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" <%= (el) -> vis.binds.materialdesign.roundslider(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-slider-round <%== this.data.attr('class') %>" style="width: 400px; height: 250px;" id="<%= this.data.attr('wid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" <%= (el) -> vis.binds.materialdesign.roundslider(el, data) %>>
 
         </div>
 </script>
@@ -666,7 +666,7 @@
             }
         %>
 
-        <div class="vis-widget materialdesign-progress <%== this.data.attr('class') %>" style="width: 180px; height: 50px;" id="<%= this.data.attr('wid') %>">
+        <div class="vis-widget materialdesign-widget materialdesign-progress <%== this.data.attr('class') %>" style="width: 180px; height: 50px;" id="<%= this.data.attr('wid') %>">
             <div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
                 <div role="progressbar" class="mdc-linear-progress" style="text-align: left;" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.progress(el, data) %>>
                     <div class="mdc-linear-progress__buffering-dots"></div>
@@ -701,7 +701,7 @@
             let init = vis.binds.materialdesign.select.initialize(data, true);
         %>
 
-        <div class="vis-widget materialdesign-select <%== this.data.attr('class') %>" style="width: 150px; height: 56px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.select.handle(el, data, true) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-select <%== this.data.attr('class') %>" style="width: 150px; height: 56px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.select.handle(el, data, true) %>>
             <%== init %>
         </div>
 </script>
@@ -723,7 +723,7 @@
             let init = vis.binds.materialdesign.select.initialize(data);
         %>
 
-        <div class="vis-widget materialdesign-select <%== this.data.attr('class') %>" style="width: 150px; height: 56px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.select.handle(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-select <%== this.data.attr('class') %>" style="width: 150px; height: 56px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.select.handle(el, data) %>>
             <%== init %>
         </div>
 </script>
@@ -742,7 +742,7 @@
             let initCard = vis.binds.materialdesign.card.initialize(data);
         %>
 
-        <div class="vis-widget materialdesign-html-card mdc-card <%= initCard.style %> <%== this.data.attr('class') %>" style="width: 200px; height: 130px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.card.handler(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-html-card mdc-card <%= initCard.style %> <%== this.data.attr('class') %>" style="width: 200px; height: 130px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.card.handler(el, data) %>>
             <%== initCard.card %>
         </div>
 </script>
@@ -768,7 +768,7 @@
             let initTopAppBar = vis.binds.materialdesign.drawer.initializeTopAppBar(data);
         %>
 
-        <div class="vis-widget materialdesign-topAppBar-with-Drawer <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
+        <div class="vis-widget materialdesign-widget materialdesign-topAppBar-with-Drawer <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
             <div class="drawer-frame-root">
                 <aside class="mdc-drawer <%= initDrawer.drawerLayout %>" <%== initDrawer.drawerStyle %> <%= (el) -> vis.binds.materialdesign.drawer.handler(el, data) %>>
                     <%== initDrawer.drawerHeader %>
@@ -822,7 +822,7 @@
             let initTopAppBar = vis.binds.materialdesign.topappbarnav.initializeTopAppBar(data);
         %>
 
-        <div class="vis-widget materialdesign-topAppBar-with-Drawer <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
+        <div class="vis-widget materialdesign-widget materialdesign-topAppBar-with-Drawer <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
             <div class="drawer-frame-root">
                 <aside class="mdc-drawer <%= initDrawer.drawerLayout %>" <%== initDrawer.drawerStyle %> <%= (el) -> vis.binds.materialdesign.topappbarnav.handler(el, data) %>>
                     <%== initDrawer.drawerHeader %>
@@ -865,7 +865,7 @@
             let init = vis.binds.materialdesign.list.initialize(data);
         %>
         
-        <div class="vis-widget materialdesign-list <%== init.listLayout %> <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
+        <div class="vis-widget materialdesign-widget materialdesign-list <%== init.listLayout %> <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
             <ul class="mdc-list<%== init.nonInteractive %>" <%= (el) -> vis.binds.materialdesign.list.handler(el, data) %>>   
                 <%== init.itemList %>
             </ul>
@@ -891,7 +891,7 @@
         data-vis-attrs7="group.legendLayout;showLegend/checkbox;legendPosition[right]/select,top,left,bottom,right;legendFontColor/color;legendFontFamily/fontname;legendFontSize/number;legendBoxWidth/slider,0,100,1;legendPointStyle[true]/checkbox;"
         data-vis-attrs8="group.tooltipLayout;showTooltip[true]/checkbox;tooltipBackgroundColor/color;tooltipArrowSize/number;tooltipDistanceToBar/number;tooltipBoxRadius/number;tooltipShowColorBox[true]/checkbox;tooltipXpadding/number;tooltipYpadding/number;tooltipTitleFontColor/color;tooltipTitleFontFamily/fontname;tooltipTitleFontSize/number;tooltipTitleMarginBottom/number;tooltipBodyFontColor/color;tooltipBodyFontFamily/fontname;tooltipBodyFontSize/number;tooltipBodyAppend;tooltipValueMaxDecimals/number;">        
 
-        <div class="vis-widget materialdesign-chart <%== this.data.attr('class') %>" style="width:400px; height: 270px; background-color: <%= this.data.attr('backgroundColor')%>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.chart.bar(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-chart <%== this.data.attr('class') %>" style="width:400px; height: 270px; background-color: <%= this.data.attr('backgroundColor')%>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.chart.bar(el, data) %>>
             <canvas class="materialdesign-chart-container"></canvas>
         </div>
 </script>
@@ -918,7 +918,7 @@
         data-vis-attrs10="group.lineValuesLayout/byindex;showValues(0-dataCount)[true]/checkbox;valuesMaxDecimals(0-dataCount)/number;valuesAppendText(0-dataCount);valuesFontColor(0-dataCount)/color;valuesFontFamily(0-dataCount)/fontname;valuesFontSize(0-dataCount)/number;valuesPositionAnchor(0-dataCount)[end]/select,center,start,end;valuesPositionAlign(0-dataCount)[top]/select,center,start,end,right,bottom,left,top;valuesTextAlign(0-dataCount)[center]/select,start,center,end,left,right;valuesRotation(0-dataCount)/slider,0,360,1;">
          <!-- TODO: data-vis-attrs11="group.valueTextColors;valueTextColor(0-dataCount)/color;group.labelValuesAppend;labelValueAppend(0-dataCount);"> -->
 
-        <div class="vis-widget materialdesign-chart <%== this.data.attr('class') %>" style="width:400px; height: 270px; background-color: <%= this.data.attr('backgroundColor')%>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.chart.lineHistory(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-chart <%== this.data.attr('class') %>" style="width:400px; height: 270px; background-color: <%= this.data.attr('backgroundColor')%>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.chart.lineHistory(el, data) %>>
             <div class="material-progress-circular-container">
                 <progress class="material-progress-circular"/>
             </div>
@@ -943,7 +943,7 @@
         data-vis-attrs5="group.legendLayout;showLegend/checkbox;legendPosition[right]/select,top,left,bottom,right;legendFontColor/color;legendFontFamily/fontname;legendFontSize/number;legendBoxWidth/slider,0,100,1;legendPointStyle[true]/checkbox;"
         data-vis-attrs6="group.tooltipLayout;showTooltip[true]/checkbox;tooltipBackgroundColor/color;tooltipArrowSize/number;tooltipDistanceToBar/number;tooltipBoxRadius/number;tooltipShowColorBox[true]/checkbox;tooltipXpadding/number;tooltipYpadding/number;tooltipTitleFontColor/color;tooltipTitleFontFamily/fontname;tooltipTitleFontSize/number;tooltipTitleMarginBottom/number;tooltipBodyFontColor/color;tooltipBodyFontFamily/fontname;tooltipBodyFontSize/number;tooltipBodyAppend;tooltipValueMaxDecimals/number;">
 
-        <div class="vis-widget materialdesign-chart <%== this.data.attr('class') %>" style="width:400px; height: 270px; background-color: <%= this.data.attr('backgroundColor')%>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.chart.pie(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-chart <%== this.data.attr('class') %>" style="width:400px; height: 270px; background-color: <%= this.data.attr('backgroundColor')%>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.chart.pie(el, data) %>>
             <canvas class="materialdesign-chart-container"></canvas>
         </div>
 </script>
@@ -961,7 +961,7 @@
             let preview = vis.binds.materialdesign.colorScheme.preview(data);
         %>
 
-        <div class="vis-widget materialdesign-colorscheme mdc-card <%== this.data.attr('class') %>" style="width: 620px; height: 300px; left: 333px; top: 497px; padding: 16px; overflow-y: auto; background: white" id="<%= this.data.attr('wid') %>">
+        <div class="vis-widget materialdesign-widget materialdesign-colorscheme mdc-card <%== this.data.attr('class') %>" style="width: 620px; height: 300px; left: 333px; top: 497px; padding: 16px; overflow-y: auto; background: white" id="<%= this.data.attr('wid') %>">
             <span class="mdc-typography--headline6" style="color: #44739e; margin-bottom: 16px;">Material Design Widgets Color Schemes Preview</span>
             <div>   
                 <%== preview %>
@@ -984,7 +984,7 @@
             let init = vis.binds.materialdesign.dialog.initialize(data);
         %>
 
-        <div class="vis-widget materialdesign-dialog <%== this.data.attr('class') %>" style="width: 350px; height: 180px; overflow: visible" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.dialog.handle(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-dialog <%== this.data.attr('class') %>" style="width: 350px; height: 180px; overflow: visible" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.dialog.handle(el, data) %>>
             <%== init %>
         </div>
 </script>
@@ -1005,7 +1005,7 @@
             let init = vis.binds.materialdesign.dialog.initialize(data, true);
         %>
 
-        <div class="vis-widget materialdesign-dialog <%== this.data.attr('class') %>" style="width: 350px; height: 180px; overflow: visible" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.dialog.handle(el, data, true) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-dialog <%== this.data.attr('class') %>" style="width: 350px; height: 180px; overflow: visible" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.dialog.handle(el, data, true) %>>
             <%== init %>
         </div>
 </script>
@@ -1026,7 +1026,7 @@
             let init = vis.binds.materialdesign.table.initialize(data);
         %>
 
-        <div class="vis-widget materialdesign-table <%== this.data.attr('class') %>" style="width: 400px; height: 250px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.table.handle(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-table <%== this.data.attr('class') %>" style="width: 400px; height: 250px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.table.handle(el, data) %>>
             <%== init %>
         </div>
 </script>
@@ -1042,7 +1042,7 @@
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,columnViews;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;countCols[1]/number;minWidth/number;"
         data-vis-attrs0="group.viewsInColumn/byindex;viewsInColumn(0-countCols)/views;viewsInColumnHeight(0-countCols)">    
 
-        <div class="vis-widget materialdesign-column-views <%== this.data.attr('class') %>" style="width: 400px; height: 250px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.views.column(el, data) %>> 
+        <div class="vis-widget materialdesign-widget materialdesign-column-views <%== this.data.attr('class') %>" style="width: 400px; height: 250px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.views.column(el, data) %>> 
         
         </div>
 </script>
@@ -1058,7 +1058,7 @@
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,columnViews;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;countCols[3]/number;countViews[3]/number;masnoryGaps[6]/number;viewAlignment[center]/select,left,center,right,justify;"
         data-vis-attrs0="group.View/byindex;View(0-countViews)/views;viewsWidth(0-countViews);viewsHeight(0-countViews)/number;"> 
 
-        <div class="vis-widget materialdesign-masonry-views <%== this.data.attr('class') %>" style="width: 100%; height: 100%;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.views.masonry(el, data) %>> 
+        <div class="vis-widget materialdesign-widget materialdesign-masonry-views <%== this.data.attr('class') %>" style="width: 100%; height: 100%;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.views.masonry(el, data) %>> 
 
         </div>
 </script>
@@ -1076,7 +1076,7 @@
         data-vis-attrs0="group.inputLayout;inputLayout[regular]/select,regular,solo,filled,outlined;inputLayoutBackgroundColor/color;inputLayoutBackgroundColorHover/color;inputLayoutBackgroundColorSelected/color;"
         data-vis-attrs1="group.inputLabel;inputLabelText;inputLabelColor/color;inputLabelColorSelected/color;inputLabelFontFamily/fontname;inputLabelFontSize/number,0,24,1;">
 
-        <div class="vis-widget materialdesign-inputws <%== this.data.attr('class') %>" style="width: 150px; height: 50px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.input(el, data) %>> 
+        <div class="vis-widget materialdesign-widget materialdesign-inputws <%== this.data.attr('class') %>" style="width: 150px; height: 50px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.input(el, data) %>> 
         
         </div>
 </script>
@@ -1091,7 +1091,7 @@
         data-vis-update-style="true"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,columnViews;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;">    
 
-        <div class="vis-widget materialdesign-installed-version <%== this.data.attr('class') %>" style="width: 120px; height: 20px; text-align: center;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.helper.installedVersion(el, data) %>> 
+        <div class="vis-widget materialdesign-widget materialdesign-installed-version <%== this.data.attr('class') %>" style="width: 120px; height: 20px; text-align: center;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.helper.installedVersion(el, data) %>> 
             <div class="materialdesign-version-container">
                 <div class="materialdesign-version-content" style="background: #5a5a5a; border-radius: 4px 0 0 4px;">installed</div>
                 <div id="versionNumber" class="materialdesign-version-content" style="background: #45b31b; border-radius: 0 4px 4px 0;">0.2.39</div>  
