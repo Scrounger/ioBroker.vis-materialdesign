@@ -22,8 +22,6 @@
   --vue-text-field-label-font-family: inherit;
   --vue-text-field-label-font-size: 16px;
 
-  --vue-text-field-prefix-suffix-color: rgba(0, 0, 0, 0.6);
-  
   --vue-text-field-background-color: rgba(0, 0, 0, 0.06);
   --vue-text-field-background-hover-color:rgba(0, 0, 0, 0.12);
   --vue-text-field-background-after-color: rgba(0, 0, 0, 0.06);
@@ -39,6 +37,10 @@
   --vue-text-field-counter-color: rgba(0,0,0,.6);
   --vue-text-field-counter-font-size: 12px;
   --vue-text-field-counter-font-family: inherit;
+
+  --vue-text-field-appendix-color: rgba(0,0,0,.6);
+  --vue-text-field-appendix-font-size: inherit;
+  --vue-text-field-appendix-font-family: inherit;
 }
 
 
@@ -587,16 +589,20 @@
   cursor: default;
   transition: color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   white-space: nowrap;
-  color: var(--vue-text-field-prefix-suffix-color);
+  color: var(--vue-text-field-appendix-color);
   margin-left: 6px;
+  font-size: var(--vue-text-field-appendix-font-size);
+  font-family: var(--vue-text-field-appendix-font-family);
 }
 .v-text-field__suffix {
   align-self: center;
   cursor: default;
   transition: color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   white-space: nowrap;
-  color: var(--vue-text-field-prefix-suffix-color);
+  color: var(--vue-text-field-appendix-color);
   margin-right: 6px;
+  font-size: var(--vue-text-field-appendix-font-size);
+  font-family: var(--vue-text-field-appendix-font-family);
 }
 
 .v-application--is-ltr .v-text-field__prefix {

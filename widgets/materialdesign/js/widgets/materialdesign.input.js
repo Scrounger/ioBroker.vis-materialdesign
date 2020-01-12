@@ -28,8 +28,8 @@ vis.binds.materialdesign.input =
                         :counter="counter"
                         hide-details="auto"
                         dense
-                        prefix="$"
-                        suffix="lbs"
+                        :prefix="prefix"
+                        :suffix="suffix"
                         
                         
                         :rules="[rules.required, rules.counter]"
@@ -57,6 +57,8 @@ vis.binds.materialdesign.input =
                                 maxlength: myMdwHelper.getNumberFromData(data.inputMaxLength, ''),
                                 messages: message,
                                 counter: data.showInputCounter,
+                                prefix: myMdwHelper.getValueFromData(data.inputPrefix, ''),
+                                suffix: myMdwHelper.getValueFromData(data.inputSuffix, ''),
                                 rules: {
                                     required(value) {
                                         // if (value === '') {
@@ -106,6 +108,11 @@ vis.binds.materialdesign.input =
                     $this.context.style.setProperty("--vue-text-field-input-text-color", myMdwHelper.getValueFromData(data.inputTextColor, ''));
                     $this.context.style.setProperty("--vue-text-field-input-text-font-size", myMdwHelper.getNumberFromData(data.inputTextFontSize, '16') + 'px');
                     $this.context.style.setProperty("--vue-text-field-input-text-font-family", myMdwHelper.getValueFromData(data.inputTextFontFamily, ''));
+
+                    // Appendix style
+                    $this.context.style.setProperty("--vue-text-field-appendix-color", myMdwHelper.getValueFromData(data.inputAppendixColor, myMdwHelper.getValueFromData(data.inputTextColor, '')));
+                    $this.context.style.setProperty("--vue-text-field-appendix-font-size", myMdwHelper.getNumberFromData(data.inputAppendixFontSize, myMdwHelper.getNumberFromData(data.inputTextFontSize, '16')) + 'px');
+                    $this.context.style.setProperty("--vue-text-field-appendix-font-family", myMdwHelper.getValueFromData(data.inputAppendixFontFamily, myMdwHelper.getValueFromData(data.inputTextFontFamily, '')));
 
                     // Message style
                     $this.context.style.setProperty("--vue-text-field-message-color", myMdwHelper.getValueFromData(data.inputMessageColor, ''));
