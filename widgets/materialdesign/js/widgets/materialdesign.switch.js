@@ -7,7 +7,6 @@
 */
 "use strict";
 
-// this code can be placed directly in materialdesign.html
 vis.binds.materialdesign.switch =
     function (el, data) {
         try {

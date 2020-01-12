@@ -7,7 +7,6 @@
 */
 "use strict";
 
-// this code can be placed directly in materialdesign.html
 vis.binds.materialdesign.progress =
     function (el, data) {
         try {

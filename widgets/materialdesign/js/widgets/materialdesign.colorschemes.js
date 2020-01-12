@@ -7,7 +7,6 @@
 */
 "use strict";
 
-// this code can be placed directly in materialdesign.html
 vis.binds.materialdesign.colorScheme = {
     get: function (schemeName, dataSize = 1) {
         try {

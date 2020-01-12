@@ -17,7 +17,7 @@ if (vis.editMode) {
     });
 }
 
-// this code can be placed directly in materialdesign.html
+
 
 // TODO: move widgets to own file -> using minify
 

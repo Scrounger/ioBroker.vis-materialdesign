@@ -7,8 +7,6 @@
 */
 "use strict";
 
-
-// this code can be placed directly in materialdesign.html
 vis.binds.materialdesign.topappbarnav = {
     initializeTopAppBar: function (data) {
         try {
