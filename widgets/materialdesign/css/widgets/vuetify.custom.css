@@ -19,7 +19,7 @@
 
   --vue-text-field-label-before-color: rgba(0, 0, 0, 0.6);
   --vue-text-field-label-after-color: #44739e;
-  --vue-text-field-label-font-family: ;
+  --vue-text-field-label-font-family: inherit;
   --vue-text-field-label-font-size: 16px;
 
   --vue-text-field-prefix-suffix-color: rgba(0, 0, 0, 0.6);
@@ -27,6 +27,10 @@
   --vue-text-field-background-color: rgba(0, 0, 0, 0.06);
   --vue-text-field-background-hover-color:rgba(0, 0, 0, 0.12);
   --vue-text-field-background-after-color: rgba(0, 0, 0, 0.06);
+
+  --vue-text-field-input-text-color: rgba(0, 0, 0, 0.87);
+  --vue-text-field-input-text-font-size: inherit;
+  --vue-text-field-input-text-font-family: inherit;
 }
 
 
@@ -454,6 +458,8 @@
   max-width: 100%;
   min-width: 0px;
   width: 100%;
+  font-size: var(--vue-text-field-input-text-font-size);
+  font-family: var(--vue-text-field-input-text-font-family);
 }
 .v-text-field fieldset,
 .v-text-field .v-input__control,
@@ -867,7 +873,7 @@
 /* v-input */
 .theme--light.v-input:not(.v-input--is-disabled) input,
 .theme--light.v-input:not(.v-input--is-disabled) textarea {
-  color: rgba(0, 0, 0, 0.87);
+  color: var(--vue-text-field-input-text-color);
 }
 .theme--light.v-input input::-webkit-input-placeholder,
 .theme--light.v-input textarea::-webkit-input-placeholder {
