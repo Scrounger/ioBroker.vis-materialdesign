@@ -14,26 +14,36 @@ vis.binds.materialdesign.input =
             let $this = $(el);
 
             let layout = (myMdwHelper.getValueFromData(data.inputLayout, 'regular') === 'regular') ? '' : data.inputLayout;
+            let inputType = myMdwHelper.getValueFromData(data.inputType, 'text');
+            let inputMask = '';
+            let placeholder = ''
+
+            if (inputType === 'mask') {
+                // mask needs text as input type
+                inputType = 'text';
+                inputMask = `v-mask="'${myMdwHelper.getValueFromData(data.inputMask, '')}'"`
+                placeholder = myMdwHelper.getValueFromData(data.inputMask, '');
+            }
 
             $this.append(`
             <div class="materialdesign-vuetifyTextField" style="width: 100%; height: 100%;">
                     <v-text-field
                         ${layout}
+                        ${inputMask}
                         :value="value"
                         :height="height"
                         :label="label"
                         :type="type"
                         :maxlength="maxlength"
-                        :messages="messages"
+                        :hint="messages"
                         :counter="counter"
                         hide-details="auto"
-                        dense
                         :prefix="prefix"
                         :suffix="suffix"
-                        
+                        :placeholder="placeholder"
+                        ${(data.showInputMessageAlways)?'persistent-hint':''}
                         
                         :rules="[rules.required, rules.counter]"
-                        
                         @change="changeEvent"
                     >
                     </v-text-field>
@@ -45,6 +55,8 @@ vis.binds.materialdesign.input =
                     let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
                     let message = myMdwHelper.getValueFromData(data.inputMessage, '');
 
+                    Vue.use(VueTheMask)
+
                     let vueTextField = new Vue({
                         el: $this.find('.materialdesign-vuetifyTextField').get(0),
                         vuetify: new Vuetify(),
@@ -53,12 +65,13 @@ vis.binds.materialdesign.input =
                                 value: vis.states.attr(data.oid + '.val'),
                                 height: widgetHeight,
                                 label: myMdwHelper.getValueFromData(data.inputLabelText, ''),
-                                type: myMdwHelper.getValueFromData(data.inputType, 'text'),
+                                type: inputType,
                                 maxlength: myMdwHelper.getNumberFromData(data.inputMaxLength, ''),
                                 messages: message,
                                 counter: data.showInputCounter,
                                 prefix: myMdwHelper.getValueFromData(data.inputPrefix, ''),
                                 suffix: myMdwHelper.getValueFromData(data.inputSuffix, ''),
+                                placeholder: placeholder,
                                 rules: {
                                     required(value) {
                                         // if (value === '') {
@@ -81,11 +94,6 @@ vis.binds.materialdesign.input =
                             },
                         }
                     });
-
-                    if (message === '') {
-                        // Hack: no message -> move to right
-                        $this.find('.v-counter').css("width", "100%").css("text-align", "right").css('margin-top', '5px');
-                    }
 
                     if (layout !== 'filled') {
                         //TODO: background color data hinzufügen

@@ -524,6 +524,7 @@
   line-height: 1;
   font-size: var(--vue-text-field-counter-font-size);
   font-family: var(--vue-text-field-counter-font-family);
+  margin-top: 5px; 
 }
 
 .v-text-field .v-counter {
@@ -583,6 +584,7 @@
   min-height: 14px;
   overflow: hidden;
   align-items: center;
+  justify-content: end;
 }
 .v-text-field__prefix {
   align-self: center;

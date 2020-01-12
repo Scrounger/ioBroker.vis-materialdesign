@@ -30,7 +30,8 @@
     "material-components-web": "^4.0.0",
     "@thomasloven/round-slider": "0.3.7",
     "vue": "^2.6.11",
-    "vuetify": "2.2.1"
+    "vuetify": "2.2.1",
+    "vue-the-mask": "0.11.1"
   },
   "main": "widgets/materialdesign.html",
   "scripts": {
