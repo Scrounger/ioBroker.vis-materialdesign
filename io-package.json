@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.2.37",
+        "version": "0.2.38",
         "news": {
             "0.2.32": {
                 "en": "see changelog",
@@ -162,16 +162,16 @@
             "zh-cn": "Material Design Widgets"
         },
         "desc": {
-            "en": "Material Design Widgets based on Google material components web library",
-            "de": "Material Design Widgets basiert auf der Material Components Bibliothek von Google",
-            "ru": "Виджеты дизайна материалов на основе веб-библиотеки компонентов материалов Google",
-            "pt": "Widgets de design de materiais baseados na biblioteca da Web de componentes de materiais do Google",
-            "nl": "Widgets voor materiaalontwerp op basis van de webbibliotheek voor materiaalcomponenten van Google",
-            "fr": "Matériels de conception de matériaux basés sur la bibliothèque Web de Google sur les composants matériels",
-            "it": "Widget di progettazione dei materiali basati sulla libreria web dei componenti materiali di Google",
-            "es": "Widgets de diseño de materiales basados en la biblioteca web de componentes de material de Google",
-            "pl": "Widżety projektowania materiałów na podstawie biblioteki internetowej komponentów materiałów Google",
-            "zh-cn": "Material Design Widgets基于Google材料组件Web库"
+            "en": "Material Design Widgets are based on Google's material design guidelines. The adapter uses different libraries (material components web library, vuetify, chartjs, etc.).",
+            "de": "Material Design Widgets basieren auf den Google-Richtlinien für das Material Design. Dabei verwendet der Adapter verschiedene Bibliothek (material components web library, vuetify, chartjs, etc.).",
+            "ru": "Виджеты для проектирования материалов основаны на руководстве Google по проектированию материалов. Адаптер использует различные библиотеки (material components web library, vuetify, chartjs, и т.д.).",
+            "pt": "Os Widgets de design de materiais são baseados nas diretrizes de design de materiais do Google. O adaptador usa bibliotecas diferentes (material components web library, vuetify, chartjs, etc.).",
+            "nl": "Material Design Widgets zijn gebaseerd op de materiaalontwerprichtlijnen van Google. De adapter maakt gebruik van verschillende bibliotheken (material components web library, vuetify, chartjs, etc.).",
+            "fr": "Les Widgets de conception de matériaux sont basés sur les directives de conception de matériaux de Google. L'adaptateur utilise différentes bibliothèques (material components web library, vuetify, chartjs, etc.).",
+            "it": "I widget per il design dei materiali si basano sulle linee guida per il design dei materiali di Google. L'adattatore utilizza diverse librerie (material components web library, vuetify, chartjs, ecc.)",
+            "es": "Los Widgets de diseño de materiales se basan en las directrices de diseño de materiales de Google. El adaptador utiliza diferentes librerías (material components web library, vuetify, chartjs, etc.).",
+            "pl": "Widgety do projektowania materiałów oparte są na wytycznych Google dotyczących projektowania materiałów. Adapter wykorzystuje różne biblioteki (material components web library, vuetify, chartjs, itp.)",
+            "zh-cn": "Material Design Widgets基于Google的Material Design准则。适配器使用不同的库（材料组件Web库，vuetify，chartjs等）。"
         },
         "authors": [
             "Scrounger <scrounger@gmx.net>"

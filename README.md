@@ -15,7 +15,7 @@
 ## Material Design Widgets for IoBroker VIS
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VWAXSTS634G88&source=url)
 
-Material Design Widgets uses the following libraries:
+ioBroker Material Design Widgets are based on [Google's material design guidelines](https://material.io/design/). The adapter uses the following libraries:
 * [Google material components for the web](https://github.com/material-components/material-components-web)
 * [Vuetify](https://github.com/vuetifyjs/vuetify)
 * [chartjs](https://www.chartjs.org/)
@@ -34,7 +34,7 @@ https://github.com/material-components/material-components-web/blob/master/docs/
 https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate
 
 ### ioBroker VIS App
-not working, needs to be implemneted by app, see https://github.com/ioBroker/ioBroker.vis.cordova
+not working at the moment, needs to be implemneted by app, see https://github.com/ioBroker/ioBroker.vis.cordova
 
 ## Button Toggle
 ![Logo](doc/en/media/buttons.gif)
@@ -318,6 +318,12 @@ Column Views has multiple `view in widget` integrated, that will be ordered auto
 </table>
 
 ## Changelog
+
+### 0.2.xx
+* (Scrounger): Perfomrance optimized
+* (Scrounger): Masonry Views Widget: another chrome bug fix, option for distance between views added
+* (Scrounger): Round Slider: vibrate on mobil devices added
+* (Scrounger): bug fixes
 
 ### 0.2.32
 * (Scrounger): Editor translation bug fix

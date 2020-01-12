@@ -1,6 +1,6 @@
 {
   "name": "iobroker.vis-materialdesign",
-  "version": "0.2.37",
+  "version": "0.2.38",
   "description": "Material Design Widgets based on Google material components web library",
   "author": {
     "name": "Scrounger",
@@ -25,9 +25,11 @@
     "gulp": "^4.0.2",
     "mocha": "^6.1.4",
     "chai": "^4.2.0",
-    "material-components-web": "^4.0.0",
     "chart.js": "^2.9.3",
+    "chartjs-plugin-datalabels": "^0.7.0",
+    "material-components-web": "^4.0.0",
     "@thomasloven/round-slider": "0.3.7",
+    "vue": "^2.6.11",
     "vuetify": "2.2.1"
   },
   "main": "widgets/materialdesign.html",
