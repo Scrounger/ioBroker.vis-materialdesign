@@ -125,7 +125,7 @@ vis.binds.materialdesign.select = {
             return selectElementList.join('');
 
         } catch (ex) {
-            console.exception(`[Select] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Select] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handle: function (el, data, isBooleanSelect) {
@@ -207,7 +207,7 @@ vis.binds.materialdesign.select = {
             }, 1);
 
         } catch (ex) {
-            console.exception(`[Select] handleBoolean: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Select] handleBoolean: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

@@ -62,7 +62,7 @@ vis.binds.materialdesign.button = {
             return { button: buttonElementsList.join(''), style: buttonStyle }
 
         } catch (ex) {
-            console.exception(`[Button] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Button] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handleLink: function (el, data) {
@@ -103,7 +103,7 @@ vis.binds.materialdesign.button = {
                 vis.setValue(data.oid, parseFloat(val) + parseFloat(data.value));
             });
         } catch (ex) {
-            console.exception(`handleAdition [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`handleAdition [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handleToggle: function (el, data) {
@@ -196,7 +196,7 @@ vis.binds.materialdesign.button = {
             }
 
         } catch (ex) {
-            console.exception(`[Button] handleToggle: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Button] handleToggle: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     buttonToggle: function (el, data) {
@@ -274,7 +274,7 @@ vis.binds.materialdesign.button = {
             }
 
         } catch (ex) {
-            console.exception(`[Button Toggle]: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Button Toggle]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     mdcIconButtonToggle: function (el, data) {
@@ -346,7 +346,7 @@ vis.binds.materialdesign.button = {
                 }
             };
         } catch (ex) {
-            console.exception(`[Icon Button Toggle]: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Icon Button Toggle]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

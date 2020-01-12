@@ -45,7 +45,7 @@ vis.binds.materialdesign.drawer = {
             return { headerLayout: headerLayout, headerStyle: headerStyle, contentLayout: contentLayout, headerButtonShow: headerButtonShow }
 
         } catch (ex) {
-            console.exception(`initializeTopAppBar [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`initializeTopAppBar [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     initializeDrawer: function (data) {
@@ -233,7 +233,7 @@ vis.binds.materialdesign.drawer = {
                 }
             }
         } catch (ex) {
-            console.exception(`initializeDrawer [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`initializeDrawer [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handler: function (el, data) {
@@ -435,7 +435,7 @@ vis.binds.materialdesign.drawer = {
             }
 
         } catch (ex) {
-            console.exception(`mdcTopAppBarWithDrawer [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`mdcTopAppBarWithDrawer [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

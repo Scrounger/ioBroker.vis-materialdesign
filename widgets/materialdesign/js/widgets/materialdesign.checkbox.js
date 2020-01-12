@@ -73,6 +73,6 @@ vis.binds.materialdesign.checkbox =
                 }
             }
         } catch (ex) {
-            console.exception(`[Checkbox]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Checkbox]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     };

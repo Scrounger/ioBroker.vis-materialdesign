@@ -37,7 +37,7 @@ vis.binds.materialdesign.topappbarnav = {
             return { headerLayout: headerLayout, headerStyle: headerStyle, contentLayout: contentLayout, headerButtonShow: headerButtonShow }
 
         } catch (ex) {
-            console.exception(`initializeTopAppBar [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`initializeTopAppBar [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     initializeDrawer: function (data) {
@@ -214,7 +214,7 @@ vis.binds.materialdesign.topappbarnav = {
                 }
             }
         } catch (ex) {
-            console.exception(`initializeDrawer [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`initializeDrawer [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handler: function (el, data) {
@@ -421,7 +421,7 @@ vis.binds.materialdesign.topappbarnav = {
             }
 
         } catch (ex) {
-            console.exception(`[Top App Bar Navigation Drawer]: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Top App Bar Navigation Drawer]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

@@ -177,7 +177,7 @@ vis.binds.materialdesign.chart = {
                 }
             }, 1)
         } catch (ex) {
-            console.exception(`[Bar Chart] error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Bar Chart] error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     lineHistory: function (el, data) {
@@ -526,7 +526,7 @@ vis.binds.materialdesign.chart = {
                 };
             }, 1)
         } catch (ex) {
-            console.exception(`[Line History Chart] error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Line History Chart] error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     pie: function (el, data) {
@@ -682,7 +682,7 @@ vis.binds.materialdesign.chart = {
                 }
             }, 1)
         } catch (ex) {
-            console.exception(`[Pie Chart] error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Pie Chart] error:: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

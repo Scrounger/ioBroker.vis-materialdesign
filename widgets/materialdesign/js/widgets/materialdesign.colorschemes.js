@@ -54,7 +54,7 @@ vis.binds.materialdesign.colorScheme = {
                 return schemes;
             }
         } catch (ex) {
-            console.exception(`get: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`get: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     preview: function (data) {
@@ -77,7 +77,7 @@ vis.binds.materialdesign.colorScheme = {
 
             return preview.join('');
         } catch (ex) {
-            console.exception(`preview: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`preview: error: ${ex.message}, stack: ${ex.stack}`);
         }
 
     },
@@ -122,7 +122,7 @@ vis.binds.materialdesign.colorScheme = {
                 }
             };
         } catch (ex) {
-            console.exception(`editorSelector: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`editorSelector: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

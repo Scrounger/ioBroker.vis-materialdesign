@@ -66,7 +66,7 @@ vis.binds.materialdesign.table = {
 
             return tableElement.join('');
         } catch (ex) {
-            console.exception(`[Table] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Table] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handle: function (el, data) {
@@ -147,7 +147,7 @@ vis.binds.materialdesign.table = {
 
             }, 1);
         } catch (ex) {
-            console.exception(`[Table] handle: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Table] handle: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     getContentElements: function (input, data, jsonData = null) {

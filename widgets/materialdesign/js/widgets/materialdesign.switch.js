@@ -77,6 +77,6 @@ vis.binds.materialdesign.switch =
                 }
             }
         } catch (ex) {
-            console.exception(`[Switch]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Switch]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     };

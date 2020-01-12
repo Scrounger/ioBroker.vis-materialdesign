@@ -14,7 +14,7 @@ vis.binds.materialdesign.helper = {
                 window.navigator.vibrate(duration);
             }
         } catch (ex) {
-            console.exception(`vibrate [${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`vibrate [${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     waitForElement: function (parent, elementPath, callBack) {

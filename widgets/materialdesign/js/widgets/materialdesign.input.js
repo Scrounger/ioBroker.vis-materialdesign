@@ -155,6 +155,6 @@ vis.binds.materialdesign.input =
             });
 
         } catch (ex) {
-            console.exception(`[Vuetify Input]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Vuetify Input]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     };

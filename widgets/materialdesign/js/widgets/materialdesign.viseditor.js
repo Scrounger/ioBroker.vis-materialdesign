@@ -58,7 +58,7 @@ vis.binds.materialdesign.viseditor = {
             return { input: `<a target="_blank" href="${url}">${_('readme')}</a>` }
 
         } catch (ex) {
-            console.exception(`[manualLink]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[manualLink]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     bmc: function (widAttr) {

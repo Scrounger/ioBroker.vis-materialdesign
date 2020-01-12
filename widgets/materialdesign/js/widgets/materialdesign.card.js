@@ -24,7 +24,7 @@ vis.binds.materialdesign.card = {
 
             let labelTextHeight = myMdwHelper.getValueFromData(data.labelTextHeight, '', 'height: ', 'px;');
             let labelSubTextHeight = myMdwHelper.getValueFromData(data.labelSubTextHeight, '', 'height: ', 'px;');
-
+            
             let showImage = 'display: none;';
             if (myMdwHelper.getValueFromData(data.image, null) !== null) {
                 showImage = '';
@@ -90,7 +90,7 @@ vis.binds.materialdesign.card = {
             return { card: card, style: cardStyle }
 
         } catch (ex) {
-            console.exception(`[Card] initialize: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Card] initialize: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handler: function (el, data) {
@@ -110,7 +110,7 @@ vis.binds.materialdesign.card = {
 
 
         } catch (ex) {
-            console.exception(`[Card] handler: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Card] handler: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

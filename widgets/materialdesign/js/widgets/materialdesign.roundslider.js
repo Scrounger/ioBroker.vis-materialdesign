@@ -137,6 +137,6 @@ vis.binds.materialdesign.roundslider =
                 }
             }
         } catch (ex) {
-            console.exception(`[Round Slider] error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Round Slider] error: ${ex.message}, stack: ${ex.stack}`);
         }
     };

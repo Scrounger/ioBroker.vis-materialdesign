@@ -184,7 +184,7 @@ vis.binds.materialdesign.slider = {
                 });
             });
         } catch (ex) {
-            console.exception(`[Vuetify Slider]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Vuetify Slider]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     mdcSlider: function (el, data, discrete = false) {
@@ -339,7 +339,7 @@ vis.binds.materialdesign.slider = {
                 }
             }, data.initDelay);
         } catch (ex) {
-            console.exception(`[MDC Slider]: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[MDC Slider]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

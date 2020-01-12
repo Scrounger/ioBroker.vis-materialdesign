@@ -40,7 +40,7 @@ vis.binds.materialdesign.dialog = {
                         <div class="mdc-dialog__scrim"></div>
                     </div>`;
         } catch (ex) {
-            console.exception(`[Dialog] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Dialog] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handle: function (el, data, isIFrame = false) {
@@ -116,7 +116,7 @@ vis.binds.materialdesign.dialog = {
             }, 1);
 
         } catch (ex) {
-            console.exception(`[Dialog] handle: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Dialog] handle: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

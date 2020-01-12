@@ -52,7 +52,7 @@ vis.binds.materialdesign.views = {
                 </div>
             `);
         } catch (ex) {
-            console.exception(`[Column Views]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Column Views]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     masonry: function (el, data) {
@@ -67,14 +67,11 @@ vis.binds.materialdesign.views = {
                 let viewWidth = myMdwHelper.getValueFromData(data.attr('viewsWidth' + i), '');
 
                 if (viewWidth !== '' && (viewWidth.endsWith('%') || viewWidth.endsWith('px'))) {
-                    console.log('hier1')
                     viewWidth = `width: ${myMdwHelper.getValueFromData(data.attr('viewsWidth' + i))};`
                 } else {
                     if (!isNaN(viewWidth) && viewWidth !== '') {
-                        console.log('hier2')
                         viewWidth = `width: ${myMdwHelper.getValueFromData(data.attr('viewsWidth' + i))}px;`
                     } else {
-                        console.log('hier3')
                         viewWidth = '';
                     }
                 }
@@ -91,6 +88,18 @@ vis.binds.materialdesign.views = {
                             </div>
                     </div>
                 `)
+
+                var $window = $(window);
+                var lastWindowWidth = $window.width();
+                
+                $window.resize(function () {
+                    var windowWidth = $window.width();
+                
+                    if (lastWindowWidth !== windowWidth) {
+                        lastWindowWidth = windowWidth;
+                        console.log(lastWindowWidth);
+                    }
+                });
             }
 
             $this.append(`
@@ -98,9 +107,9 @@ vis.binds.materialdesign.views = {
                     ${viewsList.join('')}
                 </div>
             `);
-            
+
         } catch (ex) {
-            console.exception(`[Masonry Views] error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Masonry Views] error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };
