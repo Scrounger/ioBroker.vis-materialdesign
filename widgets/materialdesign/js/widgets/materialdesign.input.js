@@ -13,7 +13,20 @@ vis.binds.materialdesign.input =
         try {
             let $this = $(el);
 
-            let layout = (myMdwHelper.getValueFromData(data.inputLayout, 'regular') === 'regular') ? '' : data.inputLayout;
+            let layout = myMdwHelper.getValueFromData(data.inputLayout, 'regular');
+            let shaped = false;
+            let rounded = false;
+
+            if (layout === 'regular') {
+                layout = '';
+            } else if (layout.includes('shaped')) {
+                layout = layout.replace('-shaped', '');
+                shaped = true;
+            } else if (layout.includes('rounded')) {
+                layout = layout.replace('-rounded', '');
+                rounded = true;
+            }
+
             let inputType = myMdwHelper.getValueFromData(data.inputType, 'text');
             let inputMask = '';
             let placeholder = ''
@@ -41,7 +54,10 @@ vis.binds.materialdesign.input =
                         :prefix="prefix"
                         :suffix="suffix"
                         :placeholder="placeholder"
-                        ${(data.showInputMessageAlways)?'persistent-hint':''}
+                        ${(data.showInputMessageAlways) ? 'persistent-hint' : ''}
+                        ${(shaped) ? 'shaped' : ''}
+                        ${(rounded) ? 'rounded' : ''}
+                        dense
                         
                         :rules="[rules.required, rules.counter]"
                         @change="changeEvent"

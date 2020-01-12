@@ -584,7 +584,7 @@
   min-height: 14px;
   overflow: hidden;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
 }
 .v-text-field__prefix {
   align-self: center;
