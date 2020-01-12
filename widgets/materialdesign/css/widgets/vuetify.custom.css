@@ -35,6 +35,10 @@
   --vue-text-field-message-color: rgba(0, 0, 0, 0.6);
   --vue-text-field-message-font-size: 12px;
   --vue-text-field-message-font-family: inherit;
+
+  --vue-text-field-counter-color: rgba(0,0,0,.6);
+  --vue-text-field-counter-font-size: 12px;
+  --vue-text-field-counter-font-family: inherit;
 }
 
 
@@ -508,14 +512,16 @@
 }
 
 .theme--light.v-counter {
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--vue-text-field-counter-color);
 }
 
 .v-counter {
   flex: 0 1 auto;
   font-size: 12px;
   min-height: 12px;
-  line-height: 2;
+  line-height: 1;
+  font-size: var(--vue-text-field-counter-font-size);
+  font-family: var(--vue-text-field-counter-font-family);
 }
 
 .v-text-field .v-counter {
@@ -574,6 +580,7 @@
   max-width: 100%;
   min-height: 14px;
   overflow: hidden;
+  align-items: center;
 }
 .v-text-field__prefix {
   align-self: center;

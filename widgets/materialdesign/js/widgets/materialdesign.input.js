@@ -82,7 +82,7 @@ vis.binds.materialdesign.input =
 
                     if (message === '') {
                         // Hack: no message -> move to right
-                        $this.find('.v-counter').css("width", "100%").css("text-align", "right");
+                        $this.find('.v-counter').css("width", "100%").css("text-align", "right").css('margin-top', '5px');
                     }
 
                     if (layout !== 'filled') {
@@ -111,6 +111,11 @@ vis.binds.materialdesign.input =
                     $this.context.style.setProperty("--vue-text-field-message-color", myMdwHelper.getValueFromData(data.inputMessageColor, ''));
                     $this.context.style.setProperty("--vue-text-field-message-font-size", myMdwHelper.getNumberFromData(data.inputMessageFontSize, '12') + 'px');
                     $this.context.style.setProperty("--vue-text-field-message-font-family", myMdwHelper.getValueFromData(data.inputMessageFontFamily, ''));
+
+                    // Counter style
+                    $this.context.style.setProperty("--vue-text-field-counter-color", myMdwHelper.getValueFromData(data.inputCounterColor, ''));
+                    $this.context.style.setProperty("--vue-text-field-counter-font-size", myMdwHelper.getNumberFromData(data.inputCounterFontSize, '12') + 'px');
+                    $this.context.style.setProperty("--vue-text-field-counter-font-family", myMdwHelper.getValueFromData(data.inputCounterFontFamily, ''));
 
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                         vueTextField.value = newVal;
