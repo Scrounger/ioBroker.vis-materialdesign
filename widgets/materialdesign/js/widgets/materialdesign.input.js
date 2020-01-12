@@ -7,6 +7,7 @@
 */
 "use strict";
 
+// this code can be placed directly in materialdesign.html
 vis.binds.materialdesign.input =
     function (el, data) {
         try {
@@ -20,26 +21,30 @@ vis.binds.materialdesign.input =
                         ${layout}
                         :value="value"
                         :height="height"
-                        label="${myMdwHelper.getValueFromData(data.inputLabelText, '')}"
+                        :label="label"
+                        :type="type"
+                        :maxlength="maxlength"
+                        :messages="messages"
+                        :counter="counter"
+                        hide-details="auto"
+
 
                         prefix="$"
                         suffix="lbs"
-                        @change="changeEvent"
-                        messages="Hallo"
+                        
+                        
                         :rules="[rules.required, rules.counter]"
-                        counter
-                        maxlength="20"
-  
+                        
+                        @change="changeEvent"
                     >
                     </v-text-field>
             </div>`);
-
-            //type: date, time, number
 
             myMdwHelper.waitForElement($this, '.materialdesign-vuetifyTextField', function () {
                 myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
 
                     let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
+                    let message = myMdwHelper.getValueFromData(data.inputMessage, '');
 
                     let vueTextField = new Vue({
                         el: $this.find('.materialdesign-vuetifyTextField').get(0),
@@ -48,8 +53,23 @@ vis.binds.materialdesign.input =
                             return {
                                 value: vis.states.attr(data.oid + '.val'),
                                 height: widgetHeight,
+                                label: myMdwHelper.getValueFromData(data.inputLabelText, ''),
+                                type: myMdwHelper.getValueFromData(data.inputType, 'text'),
+                                maxlength: myMdwHelper.getNumberFromData(data.inputMaxLength, ''),
+                                messages: message,
+                                counter: data.showInputCounter,
                                 rules: {
-                                    required: value => !!value || 'Required.',
+                                    required(value) {
+                                        // if (value === '') {
+                                        //     setTimeout(function () {
+                                        //         $this.find('.v-messages__message').text("fzuuuu")
+                                        //     }, 10);
+                                        //     return false;
+                                        // } else {
+                                        //     return true;
+                                        // }
+                                        return true;
+                                    },
                                     counter: value => value.length <= 20 || 'Max 20 characters',
                                 }
                             }
@@ -60,6 +80,11 @@ vis.binds.materialdesign.input =
                             },
                         }
                     });
+
+                    if (message === '') {
+                        // Hack: no message -> move to right
+                        $this.find('.v-counter').css("width", "100%").css("text-align", "right");
+                    }
 
                     if (layout !== 'filled') {
                         //TODO: background color data hinzufügen
