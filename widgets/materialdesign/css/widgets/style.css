@@ -1273,3 +1273,13 @@ svg.materialdesign-button__icon {
   font-size: 12px;
   font-family: Arial;
 }
+
+.masonry-helper-text {
+  width: 180px;
+}
+
+.masonry-helper-value {
+  left: 186px;
+  width: calc(100% - 20px);
+  text-align: end;
+}

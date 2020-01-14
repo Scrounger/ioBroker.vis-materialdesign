@@ -87,8 +87,39 @@ vis.binds.materialdesign.views = {
                 `)
             }
 
+            let resolutionHelper = `
+                <div 
+                class="materialdesign-masonry-item" style="height: calc(230px + var(--materialdesign-masonry-gaps));">
+                    <div class="mdc-card my-card-container" style="width: 100%; height: 230px;">
+                        <div class="materialdesign-html-card card-title-section" >
+                            <div class="materialdesign-html-card card-title mdc-typography--headline6" style="">${_('Resolution assistant')}</div>
+                            
+                        </div>
+                        <div class="materialdesign-html-card card-text-section" style="display: block">
+                            <div style="width: 100%; display: flex; height: 40px; align-items: center">
+                                <label class="masonry-helper-text">${_('width of resolution')}:</label>
+                                <label class="masonry-helper-value masonry-helper-resolution-width">568px</label>
+                            </div>
+                            <div style="width: 100%; display: flex; height: 40px; align-items: center">
+                                <label class="masonry-helper-text">${_('used rule')}:</label>
+                                <label class="masonry-helper-value masonry-helper-rule">mobil phone landscape</label>
+                            </div>
+                            <div style="width: 100%; display: flex; height: 40px; align-items: center">
+                                <label class="masonry-helper-text">${_('number of columns')}:</label>
+                                <label class="masonry-helper-value masonry-helper-columns">5</label>
+                            </div>
+                            <div style="width: 100%; display: flex; height: 40px; align-items: center">
+                                <label class="masonry-helper-text">${_('distance between views')}:</label>
+                                <label class="masonry-helper-value masonry-helper-gaps">5px</label>
+                            </div>                                                                               
+                        </div>
+                    </div>
+                </div>
+            `
+
             $this.append(`
                 <div class="materialdesign-masonry-container" style="text-align: ${data.viewAlignment};">
+                    ${(data.showResolutionAssistant) ? resolutionHelper : ''}
                     ${viewsList.join('')}
                 </div>
             `);
@@ -129,25 +160,57 @@ vis.binds.materialdesign.views = {
                 setColumns();
 
                 function setColumns() {
+                    if (data.showResolutionAssistant) $this.find('.masonry-helper-resolution-width').text(currentScreenWidth + ' px');
+
                     if (currentScreenWidth <= handyPortraitWidth) {
                         $this.context.style.setProperty("--materialdesign-masonry-column-count", handyPortraitCols);
                         $this.context.style.setProperty("--materialdesign-masonry-gaps", handyPortraitGaps + 'px');
+
+                        if (data.showResolutionAssistant) {
+                            $this.find('.masonry-helper-columns').text(handyPortraitCols);
+                            $this.find('.masonry-helper-gaps').text(handyPortraitGaps + ' px');
+                            $this.find('.masonry-helper-rule').text(_('mobil phone') + ' ' + _('portrait'));                 
+                        }
 
                     } else if (currentScreenWidth > handyPortraitWidth && currentScreenWidth <= handyLandscapeWidth) {
                         $this.context.style.setProperty("--materialdesign-masonry-column-count", handyLandscapeCols);
                         $this.context.style.setProperty("--materialdesign-masonry-gaps", handyLandscapeGaps + 'px');
 
+                        if (data.showResolutionAssistant) {
+                            $this.find('.masonry-helper-columns').text(handyLandscapeCols);
+                            $this.find('.masonry-helper-gaps').text(handyLandscapeGaps + ' px');
+                            $this.find('.masonry-helper-rule').text(_('mobil phone') + ' ' + _('landscape'));
+                        }
+
                     } else if (currentScreenWidth > handyLandscapeWidth && currentScreenWidth <= tabletPortraitWidth) {
                         $this.context.style.setProperty("--materialdesign-masonry-column-count", tabletPortraitCols);
                         $this.context.style.setProperty("--materialdesign-masonry-gaps", tabletPortraitGaps + 'px');
 
+                        if (data.showResolutionAssistant) {
+                            $this.find('.masonry-helper-columns').text(tabletPortraitCols);
+                            $this.find('.masonry-helper-gaps').text(tabletPortraitGaps + ' px');
+                            $this.find('.masonry-helper-rule').text(_('tablet') + ' ' + _('portrait'));
+                        }
+
                     } else if (currentScreenWidth > tabletPortraitWidth && currentScreenWidth <= tabletLandscapeWidth) {
                         $this.context.style.setProperty("--materialdesign-masonry-column-count", tabletLandscapeCols);
                         $this.context.style.setProperty("--materialdesign-masonry-gaps", tabletLandscapeGaps + 'px');
-                        
+
+                        if (data.showResolutionAssistant) {
+                            $this.find('.masonry-helper-columns').text(tabletLandscapeCols);
+                            $this.find('.masonry-helper-gaps').text(tabletLandscapeGaps + ' px');
+                            $this.find('.masonry-helper-rule').text(_('tablet') + ' ' + _('landscape'));
+                        }
+
                     } else if (currentScreenWidth > tabletLandscapeWidth) {
                         $this.context.style.setProperty("--materialdesign-masonry-column-count", desktopCols);
                         $this.context.style.setProperty("--materialdesign-masonry-gaps", desktopGaps + 'px');
+
+                        if (data.showResolutionAssistant) {
+                            $this.find('.masonry-helper-columns').text(desktopCols);
+                            $this.find('.masonry-helper-gaps').text(desktopGaps + ' px');
+                            $this.find('.masonry-helper-rule').text('-');
+                        }
                     }
                 }
             });
