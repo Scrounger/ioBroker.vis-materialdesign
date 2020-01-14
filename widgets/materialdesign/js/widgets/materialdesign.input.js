@@ -133,6 +133,10 @@ vis.binds.materialdesign.input =
                     $this.context.style.setProperty("--vue-text-field-counter-font-size", myMdwHelper.getNumberFromData(data.inputCounterFontSize, '12') + 'px');
                     $this.context.style.setProperty("--vue-text-field-counter-font-family", myMdwHelper.getValueFromData(data.inputCounterFontFamily, ''));
 
+                    // Transform options
+                    $this.context.style.setProperty("--vue-text-field-translate-x", myMdwHelper.getNumberFromData(data.inputTranslateX, 0) + 'px');
+                    $this.context.style.setProperty("--vue-text-field-translate-y", myMdwHelper.getNumberFromData(data.inputTranslateY, -16) + 'px');
+
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                         vueTextField.value = newVal;
                     });

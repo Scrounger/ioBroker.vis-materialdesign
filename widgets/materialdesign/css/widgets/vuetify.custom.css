@@ -41,6 +41,9 @@
   --vue-text-field-appendix-color: rgba(0,0,0,.6);
   --vue-text-field-appendix-font-size: inherit;
   --vue-text-field-appendix-font-family: inherit;
+
+  --vue-text-field-translate-x: 0px;
+  --vue-text-field-translate-y: -18px;
 }
 
 
@@ -552,7 +555,7 @@
 }
 .v-text-field .v-label--active {
   max-width: 133%;
-  transform: translateY(-18px) scale(0.75);
+  transform: translateX(var(--vue-text-field-translate-x)) translateY(var(--vue-text-field-translate-y)) scale(0.75);
 }
 .v-text-field > .v-input__control > .v-input__slot {
   cursor: text;
@@ -678,13 +681,7 @@
   top: 17px;
 }
 .v-text-field--filled.v-input--dense .v-label--active, .v-text-field--full-width.v-input--dense .v-label--active {
-  transform: translateX(-0px) translateY(-10px) scale(0.75);
-}
-.v-text-field--filled.v-input--dense.v-text-field--shaped .v-label--active, .v-text-field--full-width.v-input--dense .v-label--active {
-  transform: translateX(-8px) translateY(-10px) scale(0.75);
-}
-.v-text-field--filled.v-input--dense.v-text-field--rounded .v-label--active, .v-text-field--full-width.v-input--dense .v-label--active {
-  transform: translateX(-32px) translateY(-10px) scale(0.75);
+  transform: translateX(var(--vue-text-field-translate-x)) translateY(var(--vue-text-field-translate-y)) scale(0.75);
 }
 
 .v-text-field--filled.v-input--dense.v-text-field--single-line .v-label, .v-text-field--full-width.v-input--dense.v-text-field--single-line .v-label {
@@ -783,13 +780,7 @@
   top: 10px;
 }
 .v-text-field--outlined.v-input--dense .v-label--active {
-  transform: translateX(-0px) translateY(-16px) scale(0.75);
-}
-.v-text-field--outlined.v-input--dense.v-text-field--shaped .v-label--active {
-  transform: translateX(-8px) translateY(-16px) scale(0.75);
-}
-.v-text-field--outlined.v-input--dense.v-text-field--rounded .v-label--active {
-  transform: translateX(-32px) translateY(-16px) scale(0.75);
+  transform: translateX(var(--vue-text-field-translate-x)) translateY(var(--vue-text-field-translate-y)) scale(0.75);
 }
 
 .v-text-field--outlined fieldset {
