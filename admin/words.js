@@ -2525,18 +2525,6 @@ systemDictionary = {
         "pl": "dane jako JSON",
         "zh-cn": "数据作为JSON"
     },
-    "countCols": {
-        "en": "column count",
-        "de": "Spaltenanzahl",
-        "ru": "количество столбцов",
-        "pt": "contagem de colunas",
-        "nl": "aantal kolommen",
-        "fr": "nombre de colonnes",
-        "it": "conteggio delle colonne",
-        "es": "recuento de columnas",
-        "pl": "liczba kolumn",
-        "zh-cn": "列数"
-    },
     "tableLayout": {
         "en": "table layout",
         "de": "Tabellenlayout",
@@ -4949,7 +4937,7 @@ systemDictionary = {
         "pl": "układ wartości wykresu liniowego",
         "zh-cn": "折线图值的布局"
     },
-    "masnoryGaps": {
+    "desktopGaps": {
         "en": "distance between views",
         "de": "Abstand zwischen Views",
         "ru": "расстояние между взглядами",
@@ -4960,5 +4948,173 @@ systemDictionary = {
         "es": "distancia entre vistas",
         "pl": "odległość między widokami",
         "zh-cn": "视图之间的距离"
-      }
+    },
+    "group_handySettings": {
+        "en": "mobile phone settings",
+        "de": "Handy Einstellungen",
+        "ru": "настройки мобильного телефона",
+        "pt": "configurações do telefone móvel",
+        "nl": "mobiele telefoon instellingen",
+        "fr": "paramètres de téléphone mobile",
+        "it": "impostazioni del telefono cellulare",
+        "es": "configuración del teléfono móvil",
+        "pl": "ustawienia telefonu komórkowego",
+        "zh-cn": "手机设定"
+    },
+    "handyPortraitWidth": {
+        "en": "portrait format: width",
+        "de": "Hochformat: Breite",
+        "ru": "портретный формат: ширина",
+        "pt": "formato retrato: largura",
+        "nl": "portretformaat: breedte",
+        "fr": "format portrait: largeur",
+        "it": "formato verticale: larghezza",
+        "es": "formato vertical: ancho",
+        "pl": "format pionowy: szerokość",
+        "zh-cn": "纵向格式：宽度"
+    },
+    "handyPortraitCols": {
+        "en": "portrait format: count of columns",
+        "de": "Hochformat: Anzahl der Spalten",
+        "ru": "портретный формат: количество столбцов",
+        "pt": "formato retrato: contagem de colunas",
+        "nl": "staand formaat: aantal kolommen",
+        "fr": "format portrait: nombre de colonnes",
+        "it": "formato verticale: conteggio delle colonne",
+        "es": "formato de retrato: recuento de columnas",
+        "pl": "format pionowy: liczba kolumn",
+        "zh-cn": "纵向格式：列数"
+    },
+    "handyPortraitGaps": {
+        "en": "portrait format: distance between views",
+        "de": "Hochformat: Abstand zwischen Views",
+        "ru": "портретный формат: расстояние между видами",
+        "pt": "formato retrato: distância entre vistas",
+        "nl": "portretformaat: afstand tussen weergaven",
+        "fr": "format portrait: distance entre les vues",
+        "it": "formato verticale: distanza tra le viste",
+        "es": "formato de retrato: distancia entre vistas",
+        "pl": "format pionowy: odległość między widokami",
+        "zh-cn": "纵向格式：视图之间的距离"
+    },
+    "handyLandscapeWidth": {
+        "en": "landscape format: width",
+        "de": "Querformat: Breite",
+        "ru": "альбомный формат: ширина",
+        "pt": "formato paisagem: largura",
+        "nl": "liggend formaat: breedte",
+        "fr": "format paysage: largeur",
+        "it": "formato orizzontale: larghezza",
+        "es": "formato apaisado: ancho",
+        "pl": "format poziomy: szerokość",
+        "zh-cn": "横向格式：宽度"
+    },
+    "handyLandscapeCols": {
+        "en": "landscape format: count of columns",
+        "de": "Querformat: Anzahl der Spalten",
+        "ru": "альбомный формат: количество столбцов",
+        "pt": "formato paisagem: contagem de colunas",
+        "nl": "liggend formaat: aantal kolommen",
+        "fr": "format paysage: nombre de colonnes",
+        "it": "formato orizzontale: conteggio delle colonne",
+        "es": "formato apaisado: recuento de columnas",
+        "pl": "format poziomy: liczba kolumn",
+        "zh-cn": "横向格式：列数"
+    },
+    "handyLandscapeGaps": {
+        "en": "landscape format: distance between views",
+        "de": "Querformat: Abstand zwischen Views",
+        "ru": "альбомный формат: расстояние между видами",
+        "pt": "formato paisagem: distância entre vistas",
+        "nl": "liggend formaat: afstand tussen weergaven",
+        "fr": "format paysage: distance entre les vues",
+        "it": "formato orizzontale: distanza tra le viste",
+        "es": "formato horizontal: distancia entre vistas",
+        "pl": "format poziomy: odległość między widokami",
+        "zh-cn": "横向格式：视图之间的距离"
+    },
+    "group_tabletSettings": {
+        "en": "tablet settings",
+        "de": "Tablet Einstellungen",
+        "ru": "настройки планшета",
+        "pt": "configurações do tablet",
+        "nl": "tablet instellingen",
+        "fr": "paramètres de la tablette",
+        "it": "impostazioni del tablet",
+        "es": "configuración de la tableta",
+        "pl": "ustawienia tabletu",
+        "zh-cn": "平板电脑设置"
+    },
+    "tabletPortraitWidth": {
+        "en": "portrait format: width",
+        "de": "Hochformat: Breite",
+        "ru": "портретный формат: ширина",
+        "pt": "formato retrato: largura",
+        "nl": "portretformaat: breedte",
+        "fr": "format portrait: largeur",
+        "it": "formato verticale: larghezza",
+        "es": "formato vertical: ancho",
+        "pl": "format pionowy: szerokość",
+        "zh-cn": "纵向格式：宽度"
+    },
+    "tabletPortraitCols": {
+        "en": "portrait format: count of columns",
+        "de": "Hochformat: Anzahl der Spalten",
+        "ru": "портретный формат: количество столбцов",
+        "pt": "formato retrato: contagem de colunas",
+        "nl": "staand formaat: aantal kolommen",
+        "fr": "format portrait: nombre de colonnes",
+        "it": "formato verticale: conteggio delle colonne",
+        "es": "formato de retrato: recuento de columnas",
+        "pl": "format pionowy: liczba kolumn",
+        "zh-cn": "纵向格式：列数"
+    },
+    "tabletPortraitGaps": {
+        "en": "portrait format: distance between views",
+        "de": "Hochformat: Abstand zwischen Views",
+        "ru": "портретный формат: расстояние между видами",
+        "pt": "formato retrato: distância entre vistas",
+        "nl": "portretformaat: afstand tussen weergaven",
+        "fr": "format portrait: distance entre les vues",
+        "it": "formato verticale: distanza tra le viste",
+        "es": "formato de retrato: distancia entre vistas",
+        "pl": "format pionowy: odległość między widokami",
+        "zh-cn": "纵向格式：视图之间的距离"
+    },
+    "tabletLandscapeWidth": {
+        "en": "landscape format: width",
+        "de": "Querformat: Breite",
+        "ru": "альбомный формат: ширина",
+        "pt": "formato paisagem: largura",
+        "nl": "liggend formaat: breedte",
+        "fr": "format paysage: largeur",
+        "it": "formato orizzontale: larghezza",
+        "es": "formato apaisado: ancho",
+        "pl": "format poziomy: szerokość",
+        "zh-cn": "横向格式：宽度"
+    },
+    "tabletLandscapeCols": {
+        "en": "landscape format: count of columns",
+        "de": "Querformat: Anzahl der Spalten",
+        "ru": "альбомный формат: количество столбцов",
+        "pt": "formato paisagem: contagem de colunas",
+        "nl": "liggend formaat: aantal kolommen",
+        "fr": "format paysage: nombre de colonnes",
+        "it": "formato orizzontale: conteggio delle colonne",
+        "es": "formato apaisado: recuento de columnas",
+        "pl": "format poziomy: liczba kolumn",
+        "zh-cn": "横向格式：列数"
+    },
+    "tabletLandscapeGaps": {
+        "en": "landscape format: distance between views",
+        "de": "Querformat: Abstand zwischen Views",
+        "ru": "альбомный формат: расстояние между видами",
+        "pt": "formato paisagem: distância entre vistas",
+        "nl": "liggend formaat: afstand tussen weergaven",
+        "fr": "format paysage: distance entre les vues",
+        "it": "formato orizzontale: distanza tra le viste",
+        "es": "formato horizontal: distancia entre vistas",
+        "pl": "format poziomy: odległość między widokami",
+        "zh-cn": "横向格式：视图之间的距离"
+    }
 };

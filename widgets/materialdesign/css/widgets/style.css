@@ -1243,6 +1243,9 @@ svg.materialdesign-button__icon {
   padding: var(--materialdesign-masonry-gaps);
   orphans: 1 !important;
   widows:1 !important;
+  -webkit-column-count: var(--materialdesign-masonry-column-count);
+  -moz-column-count: var(--materialdesign-masonry-column-count);
+  column-count: var(--materialdesign-masonry-column-count);
 }
 
 .materialdesign-masonry-item {
@@ -1254,42 +1257,6 @@ svg.materialdesign-button__icon {
   -webkit-column-break-inside: avoid;
   page-break-inside: avoid;
   break-inside: avoid-column;  
-}
-
-@media screen and (min-width: 992px) {
-  /* start of desktop styles */
-  .materialdesign-masonry-container {
-    -webkit-column-count: var(--materialdesign-masonry-column-count);
-    -moz-column-count: var(--materialdesign-masonry-column-count);
-    column-count: var(--materialdesign-masonry-column-count);
-  }
-}
-
-@media screen and (max-width: 991px) {
-  /* start of large tablet styles */
-  .materialdesign-masonry-container {
-    -webkit-column-count: calc(var(--materialdesign-masonry-column-count) - 1);
-    -moz-column-count: calc(var(--materialdesign-masonry-column-count) - 1);
-    column-count: calc(var(--materialdesign-masonry-column-count) - 1);
-  }
-}
-  
-@media screen and (max-width: 767px) {
-  /* start of medium tablet styles */
-  .materialdesign-masonry-container {
-    -webkit-column-count: calc(var(--materialdesign-masonry-column-count) - 2);
-    -moz-column-count: calc(var(--materialdesign-masonry-column-count) - 2);
-    column-count: calc(var(--materialdesign-masonry-column-count) - 2);
-  }
-}
-  
-@media screen and (max-width: 479px) {
-  /* start of phone styles */
-  .materialdesign-masonry-container {
-    -webkit-column-count: calc(var(--materialdesign-masonry-column-count) - 3);
-    -moz-column-count: calc(var(--materialdesign-masonry-column-count) - 3);
-    column-count: calc(var(--materialdesign-masonry-column-count) - 3);
-  }
 }
 
 .materialdesign-version-container {

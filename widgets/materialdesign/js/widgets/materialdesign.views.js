@@ -59,9 +59,6 @@ vis.binds.materialdesign.views = {
         try {
             let $this = $(el);
             let viewsList = [];
-            let countCols = myMdwHelper.getNumberFromData(data.countCols, 3);
-
-            $this.context.style.setProperty("--materialdesign-masonry-gaps", myMdwHelper.getNumberFromData(data.masnoryGaps, 0) + 'px');
 
             for (var i = 0; i <= data.countViews; i++) {
                 let viewWidth = myMdwHelper.getValueFromData(data.attr('viewsWidth' + i), '');
@@ -82,31 +79,78 @@ vis.binds.materialdesign.views = {
 
                 viewsList.push(`
                     <div 
-                        class="materialdesign-masonry-item" style="height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100) + myMdwHelper.getNumberFromData(data.masnoryGaps, 0)}px; ${viewWidth}">
+                        class="materialdesign-masonry-item" style="height: calc(${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px + var(--materialdesign-masonry-gaps)); ${viewWidth}">
                             ${(vis.editMode) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;"></div>` : ''}                          
                             <div data-vis-contains="${data.attr('View' + i)}" class="vis-widget-body vis-view-container">
                             </div>
                     </div>
                 `)
-                
-                var $window = $(window);
-                var lastWindowWidth = $window.width();
-                
-                $window.resize(function () {
-                    var windowWidth = $window.width();
-                
-                    if (lastWindowWidth !== windowWidth) {
-                        lastWindowWidth = windowWidth;
-                        console.log(lastWindowWidth);
-                    }
-                });
             }
 
             $this.append(`
-                <div class="materialdesign-masonry-container" style="--materialdesign-masonry-column-count: ${countCols}; text-align: ${data.viewAlignment};">
+                <div class="materialdesign-masonry-container" style="text-align: ${data.viewAlignment};">
                     ${viewsList.join('')}
                 </div>
             `);
+
+            myMdwHelper.waitForElement($this, '.materialdesign-masonry-container', function () {
+                var $window = $(window);
+                var currentScreenWidth = $window.width();
+
+                $window.resize(function () {
+                    // resize event
+                    var windowWidth = $window.width();
+
+                    if (currentScreenWidth !== windowWidth) {
+                        currentScreenWidth = windowWidth;
+                        setColumns()
+                    }
+                });
+
+                let desktopCols = myMdwHelper.getNumberFromData(data.countCols, 3);
+                let desktopGaps = myMdwHelper.getNumberFromData(data.desktopGaps, 0);
+
+                let handyPortraitWidth = myMdwHelper.getNumberFromData(data.handyPortraitWidth, 360);
+                let handyPortraitCols = myMdwHelper.getNumberFromData(data.handyPortraitCols, 1);
+                let handyPortraitGaps = myMdwHelper.getNumberFromData(data.handyPortraitGaps, desktopGaps);
+
+                let handyLandscapeWidth = myMdwHelper.getNumberFromData(data.handyLandscapeWidth, 672);
+                let handyLandscapeCols = myMdwHelper.getNumberFromData(data.handyLandscapeCols, 2);
+                let handyLandscapeGaps = myMdwHelper.getNumberFromData(data.handyLandscapeGaps, desktopGaps);
+
+                let tabletPortraitWidth = myMdwHelper.getNumberFromData(data.tabletPortraitWidth, 768);
+                let tabletPortraitCols = myMdwHelper.getNumberFromData(data.tabletPortraitCols, 2);
+                let tabletPortraitGaps = myMdwHelper.getNumberFromData(data.tabletPortraitGaps, desktopGaps);
+
+                let tabletLandscapeWidth = myMdwHelper.getNumberFromData(data.tabletLandscapeWidth, 1024);
+                let tabletLandscapeCols = myMdwHelper.getNumberFromData(data.tabletLandscapeCols, 3);
+                let tabletLandscapeGaps = myMdwHelper.getNumberFromData(data.tabletLandscapeGaps, desktopGaps);
+
+                setColumns();
+
+                function setColumns() {
+                    if (currentScreenWidth <= handyPortraitWidth) {
+                        $this.context.style.setProperty("--materialdesign-masonry-column-count", handyPortraitCols);
+                        $this.context.style.setProperty("--materialdesign-masonry-gaps", handyPortraitGaps + 'px');
+
+                    } else if (currentScreenWidth > handyPortraitWidth && currentScreenWidth <= handyLandscapeWidth) {
+                        $this.context.style.setProperty("--materialdesign-masonry-column-count", handyLandscapeCols);
+                        $this.context.style.setProperty("--materialdesign-masonry-gaps", handyLandscapeGaps + 'px');
+
+                    } else if (currentScreenWidth > handyLandscapeWidth && currentScreenWidth <= tabletPortraitWidth) {
+                        $this.context.style.setProperty("--materialdesign-masonry-column-count", tabletPortraitCols);
+                        $this.context.style.setProperty("--materialdesign-masonry-gaps", tabletPortraitGaps + 'px');
+
+                    } else if (currentScreenWidth > tabletPortraitWidth && currentScreenWidth <= tabletLandscapeWidth) {
+                        $this.context.style.setProperty("--materialdesign-masonry-column-count", tabletLandscapeCols);
+                        $this.context.style.setProperty("--materialdesign-masonry-gaps", tabletLandscapeGaps + 'px');
+                        
+                    } else if (currentScreenWidth > tabletLandscapeWidth) {
+                        $this.context.style.setProperty("--materialdesign-masonry-column-count", desktopCols);
+                        $this.context.style.setProperty("--materialdesign-masonry-gaps", desktopGaps + 'px');
+                    }
+                }
+            });
 
         } catch (ex) {
             console.error(`[Masonry Views] error: ${ex.message}, stack: ${ex.stack}`);

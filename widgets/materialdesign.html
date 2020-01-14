@@ -487,6 +487,26 @@
         </div>        
 </script>
 
+<script id="tplVis-materialdesign-Input"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<div id="prev_tplJquiInput" style=" position: relative; text-align: initial;padding: 4px "><div class="vis-widget_prev ui-selectee ui-draggable-handle " style="top: 445px; left: 314px; width: 116px; height: 30px;" > <div class="vis-widget-prev-body" style="text-align: center"> <label style=" display: none;">Input</label><input type="text" value=" Input" size="10" data-o class="ui-button ui-widget ui-state-default ui-corner-all" role="button" style="font-family: inherit; font-size: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; text-align: left; outline: none; cursor: text;"> </div> '
+        data-vis-beta="true"
+        data-vis-set="materialdesign"
+        data-vis-type="ctrl"
+        data-vis-name="Input"
+        data-vis-update-style="true"
+        data-vis-attrs="label[Input];oid;inputType[text]/select,text,number,date,time,mask;inputMask;inputMaxLength/number;"
+        data-vis-attrs0="group.inputLayout;inputLayout[regular]/select,regular,solo,solo-rounded,solo-shaped,filled,filled-rounded,filled-shaped,outlined,outlined-rounded,outlined-shaped;inputLayoutBackgroundColor/color;inputLayoutBackgroundColorHover/color;inputLayoutBackgroundColorSelected/color;inputTextFontFamily/fontname;inputTextFontSize/number;inputTextColor/color;"
+        data-vis-attrs1="group.inputLabel;inputLabelText;inputLabelColor/color;inputLabelColorSelected/color;inputLabelFontFamily/fontname;inputLabelFontSize/number,0,24,1;"
+        data-vis-attrs2="group.inputAppendix;inputPrefix;inputSuffix;inputAppendixColor/color;inputAppendixFontSize/number;inputAppendixFontFamily/fontname;"
+        data-vis-attrs3="group.inputSubText;showInputMessageAlways[true]/checkbox;inputMessage;inputMessageFontFamily/fontname;inputMessageFontSize/number;inputMessageColor/color;"
+        data-vis-attrs4="group.counter;showInputCounter[true]/checkbox;inputCounterColor/color;inputCounterFontSize/number;inputCounterFontFamily/fontname;">
+        <div class="vis-widget materialdesign-widget materialdesign-inputws <%== this.data.attr('class') %>" style="width: 150px; height: 50px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.input(el, data) %>> 
+        
+        </div>
+</script>
+
 <script id="tplVis-materialdesign-Switch"
         type="text/ejs"
         class="vis-tpl"
@@ -1055,31 +1075,13 @@
         data-vis-type="container,view"
         data-vis-name="Masonry Views"
         data-vis-update-style="true"
-        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,columnViews;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;countCols[3]/number;countViews[3]/number;masnoryGaps[6]/number;viewAlignment[center]/select,left,center,right,justify;"
-        data-vis-attrs0="group.View/byindex;View(0-countViews)/views;viewsWidth(0-countViews);viewsHeight(0-countViews)/number;"> 
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,columnViews;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;countCols/number;desktopGaps/number;countViews[3]/number;viewAlignment[center]/select,left,center,right,justify;"
+        data-vis-attrs0="group.handySettings;handyPortraitWidth/number;handyPortraitCols/number;handyPortraitGaps/number;handyLandscapeWidth/number;handyLandscapeCols/number;handyLandscapeGaps/number;"
+        data-vis-attrs1="group.tabletSettings;tabletPortraitWidth/number;tabletPortraitCols/number;tabletPortraitGaps/number;tabletLandscapeWidth/number;tabletLandscapeCols/number;tabletLandscapeGaps/number;"
+        data-vis-attrs2="group.View/byindex;View(0-countViews)/views;viewsWidth(0-countViews);viewsHeight(0-countViews)/number;"> 
 
         <div class="vis-widget materialdesign-widget materialdesign-masonry-views <%== this.data.attr('class') %>" style="width: 100%; height: 100%;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.views.masonry(el, data) %>> 
 
-        </div>
-</script>
-
-<script id="tplVis-materialdesign-Input"
-        type="text/ejs"
-        class="vis-tpl"
-        data-vis-prev='<div id="prev_tplJquiInput" style=" position: relative; text-align: initial;padding: 4px "><div class="vis-widget_prev ui-selectee ui-draggable-handle " style="top: 445px; left: 314px; width: 116px; height: 30px;" > <div class="vis-widget-prev-body" style="text-align: center"> <label style=" display: none;">Input</label><input type="text" value=" Input" size="10" data-o class="ui-button ui-widget ui-state-default ui-corner-all" role="button" style="font-family: inherit; font-size: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit; line-height: inherit; text-align: left; outline: none; cursor: text;"> </div> '
-        data-vis-beta="true"
-        data-vis-set="materialdesign"
-        data-vis-type="ctrl"
-        data-vis-name="Input"
-        data-vis-update-style="true"
-        data-vis-attrs="label[Input];oid;inputType[text]/select,text,number,date,time,mask;inputMask;inputMaxLength/number;"
-        data-vis-attrs0="group.inputLayout;inputLayout[regular]/select,regular,solo,solo-rounded,solo-shaped,filled,filled-rounded,filled-shaped,outlined,outlined-rounded,outlined-shaped;inputLayoutBackgroundColor/color;inputLayoutBackgroundColorHover/color;inputLayoutBackgroundColorSelected/color;inputTextFontFamily/fontname;inputTextFontSize/number;inputTextColor/color;"
-        data-vis-attrs1="group.inputLabel;inputLabelText;inputLabelColor/color;inputLabelColorSelected/color;inputLabelFontFamily/fontname;inputLabelFontSize/number,0,24,1;"
-        data-vis-attrs2="group.inputAppendix;inputPrefix;inputSuffix;inputAppendixColor/color;inputAppendixFontSize/number;inputAppendixFontFamily/fontname;"
-        data-vis-attrs3="group.inputSubText;showInputMessageAlways[true]/checkbox;inputMessage;inputMessageFontFamily/fontname;inputMessageFontSize/number;inputMessageColor/color;"
-        data-vis-attrs4="group.counter;showInputCounter[true]/checkbox;inputCounterColor/color;inputCounterFontSize/number;inputCounterFontFamily/fontname;">
-        <div class="vis-widget materialdesign-widget materialdesign-inputws <%== this.data.attr('class') %>" style="width: 150px; height: 50px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.input(el, data) %>> 
-        
         </div>
 </script>
 
