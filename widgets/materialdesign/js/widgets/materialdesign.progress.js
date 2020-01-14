@@ -42,31 +42,35 @@ vis.binds.materialdesign.progress =
 
                 setProgressState();
 
-                vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
+                vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                     setProgressState();
                 });
 
                 function setProgressState() {
-                    var val = vis.states.attr(oid + '.val');
+                    var val = vis.states.attr(data.oid + '.val');
+
+                    if (val === undefined) {
+                        val = data.oid;
+                    }
 
                     // Falls quellen boolean ist
                     if (val === true || val === 'true') val = max;
                     if (val === false || val === 'false') val = min;
 
-                    val = parseFloat(val);
+                    let valPercent = parseFloat(val);
 
-                    if (isNaN(val)) val = min;
-                    if (val < min) val = min;
-                    if (val > max) val = max;
+                    if (isNaN(valPercent)) valPercent = min;
+                    if (valPercent < min) valPercent = min;
+                    if (valPercent > max) valPercent = max;
 
                     let simRange = 100;
                     let range = max - min;
                     let factor = simRange / range;
-                    val = Math.floor((val - min) * factor);
+                    valPercent = Math.floor((valPercent - min) * factor);
 
-                    mdcProgress.progress = val / 100;
+                    mdcProgress.progress = valPercent / 100;
 
-                    let valueLabel = Math.round(vis.states.attr(oid + '.val') * Math.pow(10, decimals)) / Math.pow(10, decimals)
+                    let valueLabel = Math.round(val * Math.pow(10, decimals)) / Math.pow(10, decimals)
                     $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html('&nbsp;' + valueLabel + unit + '&nbsp;');
 
                     if (valueLabel > colorOneCondition && valueLabel <= colorTwoCondition) {
