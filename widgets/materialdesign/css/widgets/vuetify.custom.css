@@ -391,8 +391,8 @@
   background-color: transparent;
   border-style: none;
   color: inherit;
-  margin-left: 6px;
-  margin-right: 6px;
+  margin-left: 12px;
+  margin-right: 12px;
 }
 
 .theme--light.v-text-field > .v-input__control > .v-input__slot:before {
@@ -540,7 +540,7 @@
   max-width: 90%;
   overflow: hidden;
   text-overflow: ellipsis;
-  top: 6px;
+  /* top: 6px; */
   white-space: nowrap;
   pointer-events: none;
 }
@@ -678,8 +678,15 @@
   top: 17px;
 }
 .v-text-field--filled.v-input--dense .v-label--active, .v-text-field--full-width.v-input--dense .v-label--active {
-  transform: translateY(-10px) scale(0.75);
+  transform: translateX(-0px) translateY(-10px) scale(0.75);
 }
+.v-text-field--filled.v-input--dense.v-text-field--shaped .v-label--active, .v-text-field--full-width.v-input--dense .v-label--active {
+  transform: translateX(-8px) translateY(-10px) scale(0.75);
+}
+.v-text-field--filled.v-input--dense.v-text-field--rounded .v-label--active, .v-text-field--full-width.v-input--dense .v-label--active {
+  transform: translateX(-32px) translateY(-10px) scale(0.75);
+}
+
 .v-text-field--filled.v-input--dense.v-text-field--single-line .v-label, .v-text-field--full-width.v-input--dense.v-text-field--single-line .v-label {
   top: 11px;
 }
@@ -776,8 +783,15 @@
   top: 10px;
 }
 .v-text-field--outlined.v-input--dense .v-label--active {
-  transform: translateY(-16px) scale(0.75);
+  transform: translateX(-0px) translateY(-16px) scale(0.75);
 }
+.v-text-field--outlined.v-input--dense.v-text-field--shaped .v-label--active {
+  transform: translateX(-8px) translateY(-16px) scale(0.75);
+}
+.v-text-field--outlined.v-input--dense.v-text-field--rounded .v-label--active {
+  transform: translateX(-32px) translateY(-16px) scale(0.75);
+}
+
 .v-text-field--outlined fieldset {
   border-style: solid;
   border-width: 1px;
@@ -1003,7 +1017,7 @@
   min-height: inherit;
   position: relative;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
-  width: 100%;
+  /* width: 100%; */
 }
 .v-input--dense > .v-input__control > .v-input__slot {
   margin-bottom: 4px;

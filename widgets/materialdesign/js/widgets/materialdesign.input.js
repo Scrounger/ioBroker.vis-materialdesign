@@ -59,7 +59,6 @@ vis.binds.materialdesign.input =
                         ${(rounded) ? 'rounded' : ''}
                         dense
                         
-                        :rules="[rules.required, rules.counter]"
                         @change="changeEvent"
                     >
                     </v-text-field>
@@ -88,20 +87,6 @@ vis.binds.materialdesign.input =
                                 prefix: myMdwHelper.getValueFromData(data.inputPrefix, ''),
                                 suffix: myMdwHelper.getValueFromData(data.inputSuffix, ''),
                                 placeholder: placeholder,
-                                rules: {
-                                    required(value) {
-                                        // if (value === '') {
-                                        //     setTimeout(function () {
-                                        //         $this.find('.v-messages__message').text("fzuuuu")
-                                        //     }, 10);
-                                        //     return false;
-                                        // } else {
-                                        //     return true;
-                                        // }
-                                        return true;
-                                    },
-                                    counter: value => value.length <= 20 || 'Max 20 characters',
-                                }
                             }
                         },
                         methods: {
