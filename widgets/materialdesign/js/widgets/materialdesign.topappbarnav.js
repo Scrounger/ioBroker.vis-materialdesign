@@ -122,7 +122,7 @@ vis.binds.materialdesign.topappbarnav = {
                             try {
                                 subItemsTextJson = JSON.parse(labelJsonString);
                                 itemLabelText = subItemsTextJson.itemText;
-                            } catch {
+                            } catch (e) {
                                 subItemsTextJson = '';
                                 itemLabelText = 'Error: wrong format!';
                             }
@@ -134,7 +134,7 @@ vis.binds.materialdesign.topappbarnav = {
                             try {
                                 subItemsImageJson = JSON.parse(imageJsonString);
                                 itemImage = subItemsImageJson.itemImage;
-                            } catch {
+                            } catch (e) {
                                 subItemsImageJson = '';
                             }
                         }
