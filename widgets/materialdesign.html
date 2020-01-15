@@ -497,7 +497,7 @@
         data-vis-type="ctrl"
         data-vis-name="Input"
         data-vis-update-style="true"
-        data-vis-attrs="oid;inputType[text]/select,text,number,date,time,mask;inputMask;inputMaxLength/number;"
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,switch;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;inputType[text]/select,text,number,date,time,mask;inputMask;inputMaxLength/number;"
         data-vis-attrs0="group.inputLayout;inputLayout[regular]/select,regular,solo,solo-rounded,solo-shaped,filled,filled-rounded,filled-shaped,outlined,outlined-rounded,outlined-shaped;inputLayoutBackgroundColor/color;inputLayoutBackgroundColorHover/color;inputLayoutBackgroundColorSelected/color;inputTextFontFamily/fontname;inputTextFontSize/number;inputTextColor/color;"
         data-vis-attrs1="group.inputLabel;inputLabelText;inputLabelColor/color;inputLabelColorSelected/color;inputLabelFontFamily/fontname;inputLabelFontSize/number,0,24,1;inputTranslateX/number;inputTranslateY/number;"
         data-vis-attrs2="group.inputAppendix;inputPrefix;inputSuffix;inputAppendixColor/color;inputAppendixFontSize/number;inputAppendixFontFamily/fontname;"
@@ -628,7 +628,7 @@
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,slider;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;oid-working;orientation[horizontal]/select,horizontal,vertical;reverseSlider/checkbox;knobSize[knobSmall]/select,knobSmall,knobMedium,knobBig;readOnly/checkbox;min;max;step[1];vibrateOnMobilDevices[50]/number;"
         data-vis-attrs0="group.tickLayout;showTicks[no]/select,no,yes,always;tickSize/number;tickLabels;tickColorBefore/color;tickColorAfter/color;"
         data-vis-attrs1="group.color;colorBeforeThumb/color;colorThumb/color;colorAfterThumb/color;"
-        data-vis-attrs2="group.label;prepandText;showValueLabel[true]/checkbox;valueLabelUnit;valueLabelMin/html;valueLabelMax/html;valueLessThan/number;textForValueLessThan/html;valueGreaterThan/number;textForValueGreaterThan/html;valueLabelWidth[50]/slider,0,200,1;"
+        data-vis-attrs2="group.label;prepandText;prepandTextColor/color;prepandTextFontSize/number;prepandTextFontFamily/fontname;showValueLabel[true]/checkbox;valueLabelUnit;valueLabelMin/html;valueLabelMax/html;valueLessThan/number;textForValueLessThan/html;valueGreaterThan/number;textForValueGreaterThan/html;valueLabelWidth[50]/slider,0,200,1;"
         data-vis-attrs3="group.thumbLabelLayout;showThumbLabel[no]/select,no,yes,always;thumbSize/number;thumbBackgroundColor/color;thumbFontColor/color;thumbFontSize/number;thumbFontFamily/fontname;useLabelRules/checkbox;">
 
         <div class="vis-widget materialdesign-widget materialdesign-slider-vertical <%== this.data.attr('class') %>" style="width: 150px; height: 150px; overflow:visible !important; display: flex; align-items: center;" id="<%= this.data.attr('wid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" <%= (el) -> vis.binds.materialdesign.slider.vuetifySlider(el, data) %>>

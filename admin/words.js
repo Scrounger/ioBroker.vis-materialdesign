@@ -4578,7 +4578,7 @@ systemDictionary = {
         "zh-cn": "调节器后的颜色"
     },
     "prepandText": {
-        "en": "text prepanded ",
+        "en": "text prepanded",
         "de": "Text vorangestellt",
         "ru": "предварительно подготовленный текст",
         "pt": "texto compactado",
@@ -4588,6 +4588,42 @@ systemDictionary = {
         "es": "texto preparado",
         "pl": "tekst wstępnie przygotowany",
         "zh-cn": "文字预填"
+    },
+    "prepandTextColor": {
+        "en": "color of text prepanded",
+        "de": "Farbe des vorangestellten Textes",
+        "ru": "цвет текста предварительно",
+        "pt": "cor do texto compactado",
+        "nl": "kleur van vooraf ingevoerde tekst",
+        "fr": "couleur du texte pré-étendu",
+        "it": "colore del testo preimpostato",
+        "es": "color del texto preparado",
+        "pl": "kolor tekstu z góry",
+        "zh-cn": "预设的文字颜色"
+    },
+    "prepandTextFontSize": {
+        "en": "size text prepanded",
+        "de": "Größe des vorangestellten Textes",
+        "ru": "размер текста предварительно",
+        "pt": "tamanho do texto compactado",
+        "nl": "tekstgrootte vooraf gezet",
+        "fr": "taille du texte pré-étendu",
+        "it": "dimensioni testo preimpostato",
+        "es": "tamaño de texto prepanded",
+        "pl": "rozmiar tekstu jest wstępnie przygotowany",
+        "zh-cn": "文字大小"
+    },
+    "prepandTextFontFamily": {
+        "en": "font of text prepanded",
+        "de": "Schriftartdes vorangestellten Textes",
+        "ru": "шрифт текста предварительно",
+        "pt": "fonte do texto compactado",
+        "nl": "lettertype van vooraf ingevoerde tekst",
+        "fr": "police de texte pré-étendue",
+        "it": "carattere del testo preconfigurato",
+        "es": "fuente de texto prepanded",
+        "pl": "Czcionka tekstu wstępnie przygotowana",
+        "zh-cn": "预设的文字字体"
     },
     "group_thumbLabelLayout": {
         "en": "layout of the controller label",
