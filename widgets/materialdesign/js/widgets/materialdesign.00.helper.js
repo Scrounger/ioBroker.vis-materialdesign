@@ -190,7 +190,8 @@ vis.binds.materialdesign.helper = {
                         style="width: ${width}; ${style};" />`;
             } else {
                 // is material-icons
-                return `<i class="material-icons" style="width: ${width}; font-size: ${width}; color: ${color}; ${style};">${icon.toLowerCase().replace(/\s/g, '_')}</i>`
+                return `<i class="material-icons ${className}" 
+                            style="width: ${width}; font-size: ${width}; color: ${color}; ${style};">${icon.toLowerCase().replace(/\s/g, '_')}</i>`
             }
         }
         
