@@ -12,17 +12,10 @@ vis.binds.materialdesign.button = {
         try {
             let buttonElementsList = [];
 
-            let image = myMdwHelper.getValueFromData(data.image, null);
-
-            let iconHeight = 'width: auto;';
-            if (myMdwHelper.getValueFromData(data.iconHeight, 0) > 0) {
-                iconHeight = `width: ${data.iconHeight}px;`
-            }
-
             let labelWidth = '';
             if (myMdwHelper.getValueFromData(data.labelWidth, 0) > 0) {
                 labelWidth = `style="width: ${data.labelWidth}%;"`
-            }            
+            }
 
             let invertImage = '';
             if (data.invertImage === 'true' || data.invertImage === true) {
@@ -38,12 +31,7 @@ vis.binds.materialdesign.button = {
                                         class="materialdesign-button-body" 
                                         style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">`);
 
-            let imageElement = '';
-            if (image !== null) {
-                imageElement = `<img 
-                                    class="imgButton" src="${image}" 
-                                    style="${iconHeight}${invertImage}" />`;
-            }
+            let imageElement = myMdwHelper.getIconElement(data.image, "imgButton", data.iconHeight, invertImage, data.imageColor);
 
             let labelElement = '';
             if (myMdwHelper.getValueFromData(data.buttontext, null) != null) {
@@ -312,7 +300,7 @@ vis.binds.materialdesign.button = {
                     setIconButtonState();
                 });
             }
-            
+
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 setIconButtonState();
             });

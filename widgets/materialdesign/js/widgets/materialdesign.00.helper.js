@@ -26,7 +26,7 @@ vis.binds.materialdesign.helper = {
                 vis.binds.materialdesign.helper.waitForElement(parent, elementPath, callBack);
             }
         }, 50)
-    },    
+    },
     installedVersion: function (el, data) {
         setTimeout(function () {
             let version = 'version: "0.2.40"'
@@ -168,6 +168,32 @@ vis.binds.materialdesign.helper = {
                 return `<hr class="mdc-list-divider mdc-list-divider--${dividerLayout}">`
             }
         }
+        return '';
+    },
+    getIconElement: function (iconData, className, widthData, style = '', iconColor = '') {
+        let imgFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
+
+        let icon = myMdwHelper.getValueFromData(iconData, null);
+        let color = myMdwHelper.getValueFromData(iconColor, null);
+
+        let width = 'width: auto;';
+        if (myMdwHelper.getValueFromData(widthData, 0) > 0) {
+            width = `width: ${widthData}px;`
+        }
+
+        if (icon !== null) {
+            if (imgFileExtensions.some(el => icon.includes(el))) {
+                // is image
+                return `<img 
+                        class=${className} 
+                        src="${icon}" 
+                        style="width: ${width}; ${style};" />`;
+            } else {
+                // is material-icons
+                return `<i class="material-icons" style="width: ${width}; font-size: ${width}; color: ${color}; ${style};">${icon.toLowerCase().replace(/\s/g, '_')}</i>`
+            }
+        }
+        
         return '';
     }
 };
