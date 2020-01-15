@@ -178,7 +178,7 @@ vis.binds.materialdesign.helper = {
 
         let width = 'width: auto;';
         if (myMdwHelper.getValueFromData(widthData, 0) > 0) {
-            width = `width: ${widthData}px;`
+            width = `${widthData}px;`
         }
 
         if (icon !== null) {
