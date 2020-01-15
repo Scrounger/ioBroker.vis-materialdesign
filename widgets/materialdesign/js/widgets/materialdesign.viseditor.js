@@ -7,11 +7,13 @@
 */
 "use strict";
 
+let myMdwEditorMaterialIconList = [];
+
 vis.binds.materialdesign.viseditor = {
     manualLink: function (widAttr, data) {
         try {
             let url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#iobrokervis-materialdesign';
-            
+
             if (data) {
 
                 if (data[1] === 'card') {
@@ -66,5 +68,122 @@ vis.binds.materialdesign.viseditor = {
     },
     onlineExample: function (widAttr) {
         return { input: `<a target="_blank" href="https://github.com/Scrounger/ioBroker.vis-materialdesign#online-example-project">${_('linkOnlineExampleProject')}</a>` }
+    },
+    materialIcons: function (widAttr) {
+        try {
+            var that = vis;
+
+            let line = {
+                // autocomplete for material icons
+                input: '<input type="text" id="inspect_' + widAttr + '" class="vis-edit-textbox"/>',
+                init: function (_wid_attr, data) {
+                    $(this).autocomplete({
+                        minLength: 0,
+                        source: function (request, response) {
+
+                            if (myMdwEditorMaterialIconList.length === 0) {
+                                $.getJSON("widgets/materialdesign/lib/font/material-icons/MaterialIcons-Regular.ijmap", function (data) {
+                                    $.each(data, function (key, icons) {
+                                        $.each(icons, function (key, val) {
+                                            myMdwEditorMaterialIconList.push(val.name.toLowerCase());
+                                        })
+                                    });
+
+                                    var _data = $.grep(myMdwEditorMaterialIconList, function (value) {
+                                        return value.toLowerCase().includes(request.term.toLowerCase());
+                                    });
+
+                                    response(_data);
+                                });
+                            } else {
+                                var _data = $.grep(myMdwEditorMaterialIconList, function (value) {
+                                    return value.toLowerCase().includes(request.term.toLowerCase());
+                                });
+
+                                response(_data);
+                            }
+                        },
+                        select: function (event, ui) {
+                            $(this).val(ui.item.value);
+                            $(this).trigger('change', ui.item.value);
+                        }
+                    }).focus(function () {
+                        // Show dropdown menu
+                        $(this).autocomplete('search', '');
+                    }).autocomplete('instance')._renderItem = function (ul, item) {
+
+                        return $('<li>')
+                            .append(`
+                            <div style="display: flex; align-items: center;">
+                                <i class="material-icons" style="width: 40px; font-size: 24px; color: #44739e;">${item.label.toLowerCase().replace(/\s/g, '_')}</i>
+                                <label>${item.label}</label>
+                            </div>
+                            `)
+                            .appendTo(ul);
+                    };
+                }
+            };
+
+            if ($.fm) {
+                // button for image dialog
+                line.button = {
+                    icon: 'ui-icon-note',
+                    text: false,
+                    title: _('Select image'),
+                    click: function (/*event*/) {
+                        var wdata = $(this).data('wdata');
+                        var defPath = ('/' + (that.conn.namespace ? that.conn.namespace + '/' : '') + that.projectPrefix + 'img/');
+
+                        var current = that.widgets[wdata.widgets[0]].data[wdata.attr];
+                        //workaround, that some widgets calling direct the img/picure.png without /vis/
+                        if (current && current.substring(0, 4) === 'img/') {
+                            current = '/vis/' + current;
+                        }
+
+                        $.fm({
+                            lang: that.language,
+                            defaultPath: defPath,
+                            path: current || defPath,
+                            uploadDir: '/' + (that.conn.namespace ? that.conn.namespace + '/' : ''),
+                            fileFilter: ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'],
+                            folderFilter: false,
+                            mode: 'open',
+                            view: 'prev',
+                            userArg: wdata,
+                            conn: that.conn,
+                            zindex: 1001
+                        }, function (_data, userData) {
+                            var src = _data.path + _data.file;
+                            $('#inspect_' + wdata.attr).val(src).trigger('change');
+                        });
+                    }
+                };
+            }
+            return line;
+
+        } catch (ex) {
+            console.error(`materialIcons: error: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
+    getMaterialIconsList: function () {
+        try {
+            let list = [];
+            $.getJSON("widgets/materialdesign/lib/font/material-icons/MaterialIcons-Regular.ijmap", function (data) {
+                $.each(data, function (key, icons) {
+                    $.each(icons, function (key, val) {
+                        list.push(val.name);
+                    })
+                });
+            });
+
+            return list;
+        } catch (ex) {
+            console.error(`getMaterialIconsList: error: ${ex.message}, stack: ${ex.stack}`);
+        }
     }
 };
+
+
+if (vis.editMode) {
+    myMdwEditorMaterialIconList = vis.binds.materialdesign.viseditor.getMaterialIconsList();
+}
