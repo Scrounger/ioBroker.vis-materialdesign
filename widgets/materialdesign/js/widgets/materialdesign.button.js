@@ -99,19 +99,6 @@ vis.binds.materialdesign.button = {
             let labelBgColor = myMdwHelper.getValueFromData(data.labelColorBgFalse, '');
             let labelBgColorTrue = myMdwHelper.getValueFromData(data.labelColorBgTrue, labelBgColor);
 
-            let imageFalse = myMdwHelper.getValueFromData(data.image, '');
-            let imageTrue = myMdwHelper.getValueFromData(data.imageTrue, imageFalse);
-
-            let invertImageFalse = { 'filter': '', '-webkit-filter': '', '-moz-filter': '', '-o-filter': '', '-ms-filter': '' };
-            if (data.invertImage === 'true' || data.invertImage === true) {
-                invertImageFalse = { 'filter': 'invert(1)', '-webkit-filter': 'invert(1)', '-moz-filter': 'invert(1)', '-o-filter': 'invert(1)', '-ms-filter': 'invert(1)' };
-            }
-
-            let invertImageTrue = { 'filter': '', '-webkit-filter': '', '-moz-filter': '', '-o-filter': '', '-ms-filter': '' };
-            if (data.invertImageTrue === 'true' || data.invertImageTrue === true) {
-                invertImageTrue = { 'filter': 'invert(1)', '-webkit-filter': 'invert(1)', '-moz-filter': 'invert(1)', '-o-filter': 'invert(1)', '-ms-filter': 'invert(1)' };
-            }
-
             let textFalse = myMdwHelper.getValueFromData(data.buttontext, '');
             let textTrue = myMdwHelper.getValueFromData(data.labelTrue, textFalse);
 
@@ -159,21 +146,19 @@ vis.binds.materialdesign.button = {
 
                 if (buttonState) {
                     $this.parent().attr('toggled', true);
-
                     $this.parent().css('background', bgColorTrue);
-                    $this.parent().find('.imgButton').attr('src', imageTrue).css(invertImageTrue);
-                    $this.parent().find('.materialdesign-button__label').html(textTrue).css('color', textColorTrue);
 
+                    myMdwHelper.changeIconElement($this.parent().find('.imgButton'), data.imageTrue, data.iconHeight, data.imageTrueColor);
+
+                    $this.parent().find('.materialdesign-button__label').html(textTrue).css('color', textColorTrue);
                     $this.find('.labelRowContainer').css('background', labelBgColorTrue);
                 } else {
                     $this.parent().attr('toggled', false);
-
                     $this.parent().css('background', bgColor);
-                    $this.parent().find('.imgButton').attr('src', imageFalse).css(invertImageFalse);
+
+                    myMdwHelper.changeIconElement($this.parent().find('.imgButton'), data.image, data.iconHeight, data.imageColor);
+
                     $this.parent().find('.materialdesign-button__label').html(textFalse).css('color', textColorFalse);
-
-
-
                     $this.find('.labelRowContainer').css('background', labelBgColor);
                 }
             }

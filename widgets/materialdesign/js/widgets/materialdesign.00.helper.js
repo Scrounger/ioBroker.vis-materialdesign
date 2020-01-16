@@ -176,7 +176,7 @@ vis.binds.materialdesign.helper = {
         let icon = myMdwHelper.getValueFromData(iconData, null);
         let color = myMdwHelper.getValueFromData(iconColor, null);
 
-        let width = 'width: auto;';
+        let width = 'auto;';
         if (myMdwHelper.getValueFromData(widthData, 0) > 0) {
             width = `${widthData}px;`
         }
@@ -196,6 +196,46 @@ vis.binds.materialdesign.helper = {
         }
 
         return '';
+    },
+    changeIconElement: function (element, iconData, widthData, iconColor = '', style = '') {
+        let imgFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
+
+        let icon = myMdwHelper.getValueFromData(iconData, null);
+        let color = myMdwHelper.getValueFromData(iconColor, null);
+
+        let width = 'auto;';
+        if (myMdwHelper.getValueFromData(widthData, 0) > 0) {
+            width = `${widthData}px;`
+        }
+
+        if (icon !== null) {
+            if (imgFileExtensions.some(el => icon.includes(el))) {
+                // is image
+                if (!element.attr("class").includes('material-icons')) {
+                    element.attr('src', icon);
+                } else {
+                    // previous image is material-icon
+                    let className = element.attr('class').replace('material-icons', '');
+                    element.replaceWith(`<img 
+                                            class=${className} 
+                                            src="${icon}" 
+                                            style="width: ${width}; ${style};" />`)
+                }
+            } else {
+                // is material-icons
+                if (element.attr("class").includes('material-icons')) {
+                    // previous image is material-icon
+                    element.text(icon.toLowerCase().replace(/\s/g, '_')).css('color', color);
+                } else {
+                    // previous image is image
+                    let className = element.attr('class');
+
+                    element.replaceWith(`<i class="material-icons ${className}" 
+                                            style="width: ${width}; font-size: ${width}; color: ${color}; ${style};">${icon.toLowerCase().replace(/\s/g, '_')}</i>`)
+                }
+            }
+        }
+
     }
 };
 
