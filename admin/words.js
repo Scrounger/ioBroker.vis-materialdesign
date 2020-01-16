@@ -5272,5 +5272,41 @@ systemDictionary = {
         "es": "formato de retrato",
         "pl": "format pionowy",
         "zh-cn": "纵向格式"
+    },
+    "imageColor": {
+        "en": "image color",
+        "de": "Bildfarbe",
+        "ru": "цвет изображения",
+        "pt": "cor da imagem",
+        "nl": "afbeeldingskleur",
+        "fr": "couleur de l'image",
+        "it": "colore dell'immagine",
+        "es": "color de imagen",
+        "pl": "kolor obrazu",
+        "zh-cn": "图像颜色"
+    },
+    "imageTrueColor": {
+        "en": "active image color",
+        "de": "aktive Bildfarbe",
+        "ru": "активный цвет изображения",
+        "pt": "cor ativa da imagem",
+        "nl": "actieve afbeeldingskleur",
+        "fr": "couleur d'image active",
+        "it": "colore dell'immagine attiva",
+        "es": "color de imagen activa",
+        "pl": "aktywny kolor obrazu",
+        "zh-cn": "活动图像颜色"
+    },
+    "iconPosition": {
+        "en": "image position",
+        "de": "Bildposition",
+        "ru": "положение изображения",
+        "pt": "posição da imagem",
+        "nl": "afbeelding positie",
+        "fr": "position de l'image",
+        "it": "posizione dell'immagine",
+        "es": "posición de la imagen",
+        "pl": "pozycja obrazu",
+        "zh-cn": "图像位置"
     }
 };

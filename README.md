@@ -36,6 +36,22 @@ https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate
 ### ioBroker VIS App
 not working at the moment, needs to be implemneted by app, see https://github.com/ioBroker/ioBroker.vis.cordova
 
+## Images and Material Icons
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=6><img src="doc/en/media/material-icons.png"></td>
+            <td>Some of the widgets support material icons. You can pic up an material icon from the list above or open the image picker by clicking the button on the right of the input field.<br><br><b>Image colors only applies to the material icons, not to an image!</b></td>
+        </tr>
+    </tbody>
+</table>
+
 ## Button Toggle
 ![Logo](doc/en/media/buttons.gif)
 
