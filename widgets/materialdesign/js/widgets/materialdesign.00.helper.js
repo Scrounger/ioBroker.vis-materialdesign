@@ -176,36 +176,31 @@ vis.binds.materialdesign.helper = {
         }
         return '';
     },
-    getIconElement: function (iconData, widthData, iconColor = '', style = '') {
+    getIconElement: function (iconData, width, height, iconColor = '', style = '') {
         let imgFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
         let className = 'materialdesign-icon-image'
 
         let icon = myMdwHelper.getValueFromData(iconData, null);
         let color = myMdwHelper.getValueFromData(iconColor, '');
 
-        let width = 'auto';
-        if (myMdwHelper.getValueFromData(widthData, 0) > 0) {
-            width = `${widthData}px`
-        }
-
         if (icon !== null) {
             if (imgFileExtensions.some(el => icon.includes(el))) {
                 // is image
                 return `<img 
-                        class=${className} 
+                        class="${className}"
                         src="${icon}" 
-                        style="width: auto; height: ${width}; ${style};" />`;
+                        style="width: ${width}; height: ${height}; ${style};" />`;
             } else {
                 // is material-icons
                 return `<span class="mdi mdi-${icon} ${className}" 
-                            style="width: ${width}; font-size: ${width}; color: ${color}; ${style};"></span>`
+                            style="width: ${height}; font-size: ${height}; color: ${color}; ${style};"></span>`
             }
         }
 
 
         return '';
     },
-    changeIconElement: function (parentElement, iconData, widthData, iconColor = '', style = '') {
+    changeIconElement: function (parentElement, iconData, width, height, iconColor = '', style = '') {
         let imgFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
         let className = 'materialdesign-icon-image'
 
@@ -213,11 +208,6 @@ vis.binds.materialdesign.helper = {
 
         let icon = myMdwHelper.getValueFromData(iconData, null);
         let color = myMdwHelper.getValueFromData(iconColor, '');
-
-        let width = 'auto';
-        if (myMdwHelper.getValueFromData(widthData, 0) > 0) {
-            width = `${widthData}px`
-        }
 
         if (icon !== null) {
             if (imgFileExtensions.some(el => icon.includes(el))) {
@@ -227,14 +217,14 @@ vis.binds.materialdesign.helper = {
                 } else {
                     // previous image is material-icon
                     element.replaceWith(`<img 
-                                            class=${className} 
+                                            class="${className}"
                                             src="${icon}" 
-                                            style="width: auto; height: ${width}; ${style};" />`);
+                                            style="width: ${width}; height: ${height}; ${style};" />`);
                 }
             } else {
                 // is material-icons
                 element.replaceWith(`<span class="mdi mdi-${icon} ${className}" 
-                                                style="width: ${width}; font-size: ${width}; color: ${color}; ${style};"></span>`)
+                                                style="width: ${height}; font-size: ${height}; color: ${color}; ${style};"></span>`)
             }
         }
     }
