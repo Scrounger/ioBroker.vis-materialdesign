@@ -999,6 +999,8 @@
 }
 .v-input__icon--clear {
   border-radius: 50%;
+  cursor: pointer;
+  margin-right: 12px;
 }
 .v-input__slot {
   align-items: center;

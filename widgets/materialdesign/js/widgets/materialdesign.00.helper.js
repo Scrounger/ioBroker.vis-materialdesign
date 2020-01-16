@@ -198,10 +198,10 @@ vis.binds.materialdesign.helper = {
     },
     changeIconElement: function (parentElement, iconData, width, height, iconColor = '', style = '', appendClass = '') {
         let imgFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
-        let className = `materialdesign-icon-image ${appendClass}`;
+        let className = (`materialdesign-icon-image ${appendClass}`).trim();
 
         let element = parentElement.find('.' + className.replace(/\s/g, '.'));
-
+        
         let icon = myMdwHelper.getValueFromData(iconData, null);
         let color = myMdwHelper.getValueFromData(iconColor, '');
 

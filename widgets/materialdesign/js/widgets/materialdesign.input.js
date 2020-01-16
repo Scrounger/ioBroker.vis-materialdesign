@@ -58,7 +58,7 @@ vis.binds.materialdesign.input =
                         ${(shaped) ? 'shaped' : ''}
                         ${(rounded) ? 'rounded' : ''}
                         dense
-                        
+                        ${(data.showClearButton) ? 'clearable' : ''}
                         @change="changeEvent"
                     >
                     </v-text-field>
