@@ -7,8 +7,6 @@
 */
 "use strict";
 
-let myMdwEditorMaterialIconList = [];
-
 vis.binds.materialdesign.viseditor = {
     manualLink: function (widAttr, data) {
         try {
@@ -81,27 +79,11 @@ vis.binds.materialdesign.viseditor = {
                         minLength: 0,
                         source: function (request, response) {
 
-                            if (myMdwEditorMaterialIconList.length === 0) {
-                                $.getJSON("widgets/materialdesign/lib/font/material-icons/MaterialIcons-Regular.ijmap", function (data) {
-                                    $.each(data, function (key, icons) {
-                                        $.each(icons, function (key, val) {
-                                            myMdwEditorMaterialIconList.push(val.name.toLowerCase());
-                                        })
-                                    });
+                            var _data = $.grep(vis.binds.materialdesign.materialdesignicons.getList(), function (value) {
+                                return value.toLowerCase().includes(request.term.toLowerCase());
+                            });
 
-                                    var _data = $.grep(myMdwEditorMaterialIconList, function (value) {
-                                        return value.toLowerCase().includes(request.term.toLowerCase());
-                                    });
-
-                                    response(_data);
-                                });
-                            } else {
-                                var _data = $.grep(myMdwEditorMaterialIconList, function (value) {
-                                    return value.toLowerCase().includes(request.term.toLowerCase());
-                                });
-
-                                response(_data);
-                            }
+                            response(_data);
                         },
                         select: function (event, ui) {
                             $(this).val(ui.item.value);
@@ -115,7 +97,7 @@ vis.binds.materialdesign.viseditor = {
                         return $('<li>')
                             .append(`
                             <div style="display: flex; align-items: center;">
-                                <i class="material-icons" style="width: 40px; font-size: 24px; color: #44739e;">${item.label.toLowerCase().replace(/\s/g, '_')}</i>
+                                <span class="mdi mdi-${item.label}" style="width: 40px; font-size: 24px; color: #44739e;"></span>
                                 <label>${item.label}</label>
                             </div>
                             `)
@@ -164,26 +146,5 @@ vis.binds.materialdesign.viseditor = {
         } catch (ex) {
             console.error(`materialIcons: error: ${ex.message}, stack: ${ex.stack}`);
         }
-    },
-    getMaterialIconsList: function () {
-        try {
-            let list = [];
-            $.getJSON("widgets/materialdesign/lib/font/material-icons/MaterialIcons-Regular.ijmap", function (data) {
-                $.each(data, function (key, icons) {
-                    $.each(icons, function (key, val) {
-                        list.push(val.name);
-                    })
-                });
-            });
-
-            return list;
-        } catch (ex) {
-            console.error(`getMaterialIconsList: error: ${ex.message}, stack: ${ex.stack}`);
-        }
     }
 };
-
-
-if (vis.editMode) {
-    myMdwEditorMaterialIconList = vis.binds.materialdesign.viseditor.getMaterialIconsList();
-}

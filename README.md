@@ -36,7 +36,7 @@ https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate
 ### ioBroker VIS App
 not working at the moment, needs to be implemneted by app, see https://github.com/ioBroker/ioBroker.vis.cordova
 
-## Images and Material Icons
+## Material Design Icons and Images
 <table>
     <thead>
         <tr>
@@ -47,7 +47,7 @@ not working at the moment, needs to be implemneted by app, see https://github.co
     <tbody>
         <tr>
             <td rowspan=6><img src="doc/en/media/material-icons.png"></td>
-            <td>Some of the widgets support material icons. You can pic up an material icon from the list above or open the image picker by clicking the button on the right of the input field.<br><br><b>Image colors only applies to the material icons, not to an image!</b></td>
+            <td>Some of the widgets support <a href="https://materialdesignicons.com/" target="_blank">Material Design Icons</a> library. You can pic up an icon from the list above or open the image picker by clicking the button on the right of the input field.<br><br><b>Image colors only applies to the material design icons, not to an image!</b></td>
         </tr>
     </tbody>
 </table>

@@ -26,7 +26,7 @@ vis.binds.materialdesign.button = {
                                         class="materialdesign-button-body" 
                                         style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">`);
 
-            let imageElement = myMdwHelper.getIconElement(data.image, "imgButton", data.iconHeight, data.imageColor);
+            let imageElement = myMdwHelper.getIconElement(data.image, data.iconHeight, data.imageColor);
 
             let labelElement = '';
             if (myMdwHelper.getValueFromData(data.buttontext, null) != null) {
@@ -148,7 +148,7 @@ vis.binds.materialdesign.button = {
                     $this.parent().attr('toggled', true);
                     $this.parent().css('background', bgColorTrue);
 
-                    myMdwHelper.changeIconElement($this.parent().find('.imgButton'), data.imageTrue, data.iconHeight, data.imageTrueColor);
+                    myMdwHelper.changeIconElement($this.parent(), data.imageTrue, data.iconHeight, data.imageTrueColor);
 
                     $this.parent().find('.materialdesign-button__label').html(textTrue).css('color', textColorTrue);
                     $this.find('.labelRowContainer').css('background', labelBgColorTrue);
@@ -156,7 +156,7 @@ vis.binds.materialdesign.button = {
                     $this.parent().attr('toggled', false);
                     $this.parent().css('background', bgColor);
 
-                    myMdwHelper.changeIconElement($this.parent().find('.imgButton'), data.image, data.iconHeight, data.imageColor);
+                    myMdwHelper.changeIconElement($this.parent(), data.image, data.iconHeight, data.imageColor);
 
                     $this.parent().find('.materialdesign-button__label').html(textFalse).css('color', textColorFalse);
                     $this.find('.labelRowContainer').css('background', labelBgColor);
