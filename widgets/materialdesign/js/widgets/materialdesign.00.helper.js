@@ -187,13 +187,14 @@ vis.binds.materialdesign.helper = {
                 return `<img 
                         class=${className} 
                         src="${icon}" 
-                        style="width: ${width}; height: auto; ${style};" />`;
+                        style="width: auto; height: ${width}; ${style};" />`;
             } else {
                 // is material-icons
                 return `<i class="material-icons ${className}" 
                             style="width: ${width}; font-size: ${width}; color: ${color}; ${style};">${icon.toLowerCase().replace(/\s/g, '_')}</i>`
             }
         }
+
 
         return '';
     },
@@ -219,7 +220,7 @@ vis.binds.materialdesign.helper = {
                     element.replaceWith(`<img 
                                             class=${className} 
                                             src="${icon}" 
-                                            style="width: ${width}; height: auto; ${style};" />`)
+                                            style="width: auto; height: ${width}; ${style};" />`);
                 }
             } else {
                 // is material-icons
