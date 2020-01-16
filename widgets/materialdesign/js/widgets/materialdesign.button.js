@@ -8,7 +8,7 @@
 "use strict";
 
 vis.binds.materialdesign.button = {
-    initializeButton: function (data, isToggle = false) {
+    initializeButton: function (data) {
         try {
             let buttonElementsList = [];
 

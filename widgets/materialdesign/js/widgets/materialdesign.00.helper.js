@@ -174,11 +174,11 @@ vis.binds.materialdesign.helper = {
         let imgFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
 
         let icon = myMdwHelper.getValueFromData(iconData, null);
-        let color = myMdwHelper.getValueFromData(iconColor, null);
+        let color = myMdwHelper.getValueFromData(iconColor, '');
 
-        let width = 'auto;';
+        let width = 'auto';
         if (myMdwHelper.getValueFromData(widthData, 0) > 0) {
-            width = `${widthData}px;`
+            width = `${widthData}px`
         }
 
         if (icon !== null) {
@@ -187,7 +187,7 @@ vis.binds.materialdesign.helper = {
                 return `<img 
                         class=${className} 
                         src="${icon}" 
-                        style="width: ${width}; ${style};" />`;
+                        style="width: ${width}; height: auto; ${style};" />`;
             } else {
                 // is material-icons
                 return `<i class="material-icons ${className}" 
@@ -201,11 +201,11 @@ vis.binds.materialdesign.helper = {
         let imgFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
 
         let icon = myMdwHelper.getValueFromData(iconData, null);
-        let color = myMdwHelper.getValueFromData(iconColor, null);
+        let color = myMdwHelper.getValueFromData(iconColor, '');
 
-        let width = 'auto;';
+        let width = 'auto';
         if (myMdwHelper.getValueFromData(widthData, 0) > 0) {
-            width = `${widthData}px;`
+            width = `${widthData}px`
         }
 
         if (icon !== null) {
@@ -219,7 +219,7 @@ vis.binds.materialdesign.helper = {
                     element.replaceWith(`<img 
                                             class=${className} 
                                             src="${icon}" 
-                                            style="width: ${width}; ${style};" />`)
+                                            style="width: ${width}; height: auto; ${style};" />`)
                 }
             } else {
                 // is material-icons
