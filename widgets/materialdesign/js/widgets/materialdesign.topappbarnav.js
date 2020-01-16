@@ -151,9 +151,9 @@ vis.binds.materialdesign.topappbarnav = {
                     // generate Item Image for Layout Standard
                     let listItemImage = ''
                     if (data.drawerItemLayout === 'standard') {
-                        listItemImage = myMdwHelper.getListItemImage(itemImage, drawerIconHeight);
+                        listItemImage = myMdwHelper.getListIcon(itemImage, 'auto', myMdwHelper.getValueFromData(data.drawerIconHeight, '', '', 'px !important;'), data.attr('iconDrawerColor' + i));
                     }
-
+                    
                     // add itemIndex to label if enabled
                     if (data.showIndexNum) {
                         itemLabelText = `[${itemIndex}] ${itemLabelText}`;
@@ -195,7 +195,7 @@ vis.binds.materialdesign.topappbarnav = {
                             // generate Item Image for Layout Standard
                             let listSubItemImage = ''
                             if (data.drawerSubItemLayout === 'standard') {
-                                listSubItemImage = myMdwHelper.getListItemImage(subItemImage, drawerSubItemIconHeight);
+                                listSubItemImage = myMdwHelper.getListIcon(subItemImage, 'auto', myMdwHelper.getValueFromData(data.drawerSubItemIconHeight, myMdwHelper.getValueFromData(data.drawerIconHeight, ''), '', 'px !important;'), data.attr('iconDrawerColor' + i));
                             }
 
                             // generate Item Label

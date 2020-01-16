@@ -746,6 +746,18 @@ systemDictionary = {
         "pl": "ikony paska nawigacji",
         "zh-cn": "导航栏图标"
     },
+    "group_drawerItems": {
+        "en": "item of navigation bar",
+        "de": "Navigationsleiste: Element",
+        "ru": "элемент панели навигации",
+        "pt": "item da barra de navegação",
+        "nl": "item van navigatiebalk",
+        "fr": "élément de la barre de navigation",
+        "it": "elemento della barra di navigazione",
+        "es": "elemento de la barra de navegación",
+        "pl": "element paska nawigacji",
+        "zh-cn": "导航栏项目"
+    },
     "iconDrawer": {
         "en": "icon",
         "de": "Bild",

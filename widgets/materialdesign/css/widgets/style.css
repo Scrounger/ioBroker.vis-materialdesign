@@ -930,6 +930,10 @@ svg.materialdesign-button__icon {
   margin-right: 0px;
 }
 
+.mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic{
+  color: initial;
+}
+
 .mdc-list-item__graphic{
   font-size: 24px;
 }
