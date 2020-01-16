@@ -127,8 +127,7 @@ vis.binds.materialdesign.helper = {
         let subItemToggleIcon = '';
         if (hasSubItems) {
             subItemToggleIcon = `<span 
-                                    class="mdc-list-item__meta material-icons toggleIcon" aria-hidden="true" ${vis.binds.materialdesign.helper.getValueFromData(toggleIconColor, '', 'style="color: ', ';"')}>
-                                        keyboard_arrow_down
+                                    class="mdc-list-item__meta mdi mdi-menu-down toggleIcon" aria-hidden="true" style="font-size: 24px; ${vis.binds.materialdesign.helper.getValueFromData(toggleIconColor, '', 'color: ', ';')}">                                        
                                 </span>`;
         }
 

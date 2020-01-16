@@ -370,10 +370,13 @@ vis.binds.materialdesign.topappbarnav = {
                     // listItem has subItems ->Toggle SubItems
                     if ($(this).hasClass('toggled')) {
                         $(this).removeClass("toggled");
-                        $(this).find(".toggleIcon").html("keyboard_arrow_down");
+
+                        $(this).find('.toggleIcon').removeClass("mdi-menu-up");
+                        $(this).find('.toggleIcon').addClass("mdi-menu-down");
                     } else {
                         $(this).addClass("toggled");
-                        $(this).find(".toggleIcon").html("keyboard_arrow_up");
+                        $(this).find('.toggleIcon').removeClass("mdi-menu-down");
+                        $(this).find('.toggleIcon').addClass("mdi-menu-up");
                     }
 
                     $(this).next("nav.mdc-sub-list").toggle();
