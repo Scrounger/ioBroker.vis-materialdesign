@@ -91,7 +91,7 @@ vis.binds.materialdesign.list = {
 
 
                 // generate Item Image for Layout Standard
-                let listItemImage = myMdwHelper.getListIcon(data.attr('listImage' + i),data.listImageHeight, data.attr('listImageColor' + i) , spaceBetweenImageAndLabel);
+                let listItemImage = myMdwHelper.getListIcon(data.attr('listImage' + i), 'auto', myMdwHelper.getValueFromData(data.listImageHeight, '', '', 'px !important;'), data.attr('listImageColor' + i) , spaceBetweenImageAndLabel);
 
                 // generate Item Control Element
                 let itemControl = '';
@@ -241,11 +241,11 @@ vis.binds.materialdesign.list = {
 
                 if (val === true) {
                     curListItem.css('background', myMdwHelper.getValueFromData(data.listItemBackgroundActive, ''));
-                    myMdwHelper.changeListIconElement(curListItem, data.attr('listImageActive' + index), data.listImageHeight, data.attr('listImageActiveColor' + index), spaceBetweenImageAndLabel);
+                    myMdwHelper.changeListIconElement(curListItem, data.attr('listImageActive' + index), 'auto', myMdwHelper.getValueFromData(data.listImageHeight, '', '', 'px !important;'), data.attr('listImageActiveColor' + index), spaceBetweenImageAndLabel);
 
                 } else {
                     curListItem.css('background', myMdwHelper.getValueFromData(data.listItemBackground, ''));
-                    myMdwHelper.changeListIconElement(curListItem, data.attr('listImage' + index), data.listImageHeight, data.attr('listImageColor' + index), spaceBetweenImageAndLabel);
+                    myMdwHelper.changeListIconElement(curListItem, data.attr('listImage' + index), 'auto', myMdwHelper.getValueFromData(data.listImageHeight, '', '', 'px !important;'), data.attr('listImageColor' + index), spaceBetweenImageAndLabel);
                 }
             }
 

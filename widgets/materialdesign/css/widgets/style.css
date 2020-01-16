@@ -930,6 +930,10 @@ svg.materialdesign-button__icon {
   margin-right: 0px;
 }
 
+.mdc-list-item__graphic{
+  font-size: 24px;
+}
+
 /* hint */
 .mdc-select:not(.mdc-select--disabled) .mdc-floating-label {
   color: var(--materialdesign-color-select-hint);

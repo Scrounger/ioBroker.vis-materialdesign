@@ -99,12 +99,7 @@ vis.binds.materialdesign.helper = {
         }
         return '';
     },
-    getListIcon: function (iconData, widthData, iconColor = '', style = '') {
-        return myMdwHelper.getIconElement(iconData, widthData, iconColor, `padding-top: 8px; padding-bottom: 8px;${style}`);
-    },
-    changeListIconElement: function (parentElement, iconData, widthData, iconColor = '', style = '') {
-        myMdwHelper.changeIconElement(parentElement, iconData, widthData, iconColor, `padding-top: 8px; padding-bottom: 8px;${style}`);
-    },
+
     getListItem: function (layout, itemIndex, backdropImage, hasSubItems, isSubItem = false, style = '', dataOid = '', role = '', dataValue = '') {
         if (layout === 'standard') {
             // Layout: Standard
@@ -176,9 +171,9 @@ vis.binds.materialdesign.helper = {
         }
         return '';
     },
-    getIconElement: function (iconData, width, height, iconColor = '', style = '') {
+    getIconElement: function (iconData, width, height, iconColor = '', style = '', appendClass = '') {
         let imgFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
-        let className = 'materialdesign-icon-image'
+        let className = `materialdesign-icon-image ${appendClass}`;
 
         let icon = myMdwHelper.getValueFromData(iconData, null);
         let color = myMdwHelper.getValueFromData(iconColor, '');
@@ -197,14 +192,16 @@ vis.binds.materialdesign.helper = {
             }
         }
 
-
         return '';
     },
-    changeIconElement: function (parentElement, iconData, width, height, iconColor = '', style = '') {
+    getListIcon: function (iconData, width, height, iconColor = '', style = '') {
+        return myMdwHelper.getIconElement(iconData, width, height, iconColor, `padding-top: 8px; padding-bottom: 8px;${style}`, 'mdc-list-item__graphic');
+    },
+    changeIconElement: function (parentElement, iconData, width, height, iconColor = '', style = '', appendClass = '') {
         let imgFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
-        let className = 'materialdesign-icon-image'
+        let className = `materialdesign-icon-image ${appendClass}`;
 
-        let element = parentElement.find('.' + className);
+        let element = parentElement.find('.' + className.replace(/\s/g, '.'));
 
         let icon = myMdwHelper.getValueFromData(iconData, null);
         let color = myMdwHelper.getValueFromData(iconColor, '');
@@ -227,7 +224,10 @@ vis.binds.materialdesign.helper = {
                                                 style="width: ${height}; font-size: ${height}; color: ${color}; ${style};"></span>`)
             }
         }
-    }
+    },
+    changeListIconElement: function (parentElement, iconData, width, height, iconColor = '', style = '') {
+        myMdwHelper.changeIconElement(parentElement, iconData, width, height, iconColor, `padding-top: 8px; padding-bottom: 8px;${style}`, 'mdc-list-item__graphic');
+    },
 };
 
 let myMdwHelper = vis.binds.materialdesign.helper;
