@@ -25,7 +25,6 @@ vis.binds.materialdesign.list = {
             let rightLabelFontSize = myMdwHelper.getFontSize(data.listItemTextRightSize);
             let rightSubLabelFontSize = myMdwHelper.getFontSize(data.listItemSubTextRightSize);
 
-            let imageHeight = myMdwHelper.getValueFromData(data.listImageHeight, '', 'height: ', 'px !important;');
             let spaceBetweenImageAndLabel = myMdwHelper.getValueFromData(data.distanceBetweenTextAndImage, '', 'margin-right: ', 'px;');
 
             let rightTextWidth = myMdwHelper.getValueFromData(data.rightTextWidth, '', '', 'px');
@@ -51,7 +50,6 @@ vis.binds.materialdesign.list = {
                 let itemHeaderText = myMdwHelper.getValueFromData(data.attr('groupHeader' + i), null);
                 let itemLabelText = myMdwHelper.getValueFromData(data.attr('label' + i), `Item ${i}`);
                 let itemSubLabelText = myMdwHelper.getValueFromData(data.attr('subLabel' + i), '');
-                let itemImage = myMdwHelper.getValueFromData(data.attr('listImage' + i), '');
 
                 let itemRightLabelText = myMdwHelper.getValueFromData(data.attr('rightLabel' + i), '');
                 let itemRightSubLabelText = myMdwHelper.getValueFromData(data.attr('rightSubLabel' + i), '');
@@ -92,10 +90,8 @@ vis.binds.materialdesign.list = {
                 rightItemLabel.css('text-align', 'right').css('width', rightTextWidth);
 
 
-
-
                 // generate Item Image for Layout Standard
-                let listItemImage = myMdwHelper.getListItemImage(itemImage, `${imageHeight}${spaceBetweenImageAndLabel}`);
+                let listItemImage = myMdwHelper.getListIcon(data.attr('listImage' + i),data.listImageHeight, data.attr('listImageColor' + i) , spaceBetweenImageAndLabel);
 
                 // generate Item Control Element
                 let itemControl = '';
@@ -136,6 +132,8 @@ vis.binds.materialdesign.list = {
             let $this = $(el);
 
             let list = $this.context;
+
+            let spaceBetweenImageAndLabel = myMdwHelper.getValueFromData(data.distanceBetweenTextAndImage, '', 'margin-right: ', 'px;');
 
             const mdcList = new mdc.list.MDCList(list);
             const mdcListAdapter = mdcList.getDefaultFoundation().adapter_;
@@ -240,14 +238,14 @@ vis.binds.materialdesign.list = {
 
             function setLayout(index, val) {
                 let curListItem = $this.find(`div[id="listItem_${index}"]`);
-                let curListItemImage = curListItem.find(`.mdc-list-item__graphic`);
 
                 if (val === true) {
                     curListItem.css('background', myMdwHelper.getValueFromData(data.listItemBackgroundActive, ''));
-                    curListItemImage.attr('src', myMdwHelper.getValueFromData(data.attr('listImageActive' + index), myMdwHelper.getValueFromData(data.attr('listImage' + index), '')))
+                    myMdwHelper.changeListIconElement(curListItem, data.attr('listImageActive' + index), data.listImageHeight, data.attr('listImageActiveColor' + index), spaceBetweenImageAndLabel);
+
                 } else {
                     curListItem.css('background', myMdwHelper.getValueFromData(data.listItemBackground, ''));
-                    curListItemImage.attr('src', myMdwHelper.getValueFromData(data.attr('listImage' + index), ''))
+                    myMdwHelper.changeListIconElement(curListItem, data.attr('listImage' + index), data.listImageHeight, data.attr('listImageColor' + index), spaceBetweenImageAndLabel);
                 }
             }
 

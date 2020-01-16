@@ -99,6 +99,12 @@ vis.binds.materialdesign.helper = {
         }
         return '';
     },
+    getListIcon: function (iconData, widthData, iconColor = '', style = '') {
+        return myMdwHelper.getIconElement(iconData, widthData, iconColor, `padding-top: 8px; padding-bottom: 8px;${style}`);
+    },
+    changeListIconElement: function (parentElement, iconData, widthData, iconColor = '', style = '') {
+        myMdwHelper.changeIconElement(parentElement, iconData, widthData, iconColor, `padding-top: 8px; padding-bottom: 8px;${style}`);
+    },
     getListItem: function (layout, itemIndex, backdropImage, hasSubItems, isSubItem = false, style = '', dataOid = '', role = '', dataValue = '') {
         if (layout === 'standard') {
             // Layout: Standard
@@ -231,7 +237,6 @@ vis.binds.materialdesign.helper = {
                                                 style="width: ${width}; font-size: ${width}; color: ${color}; ${style};"></span>`)
             }
         }
-
     }
 };
 

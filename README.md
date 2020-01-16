@@ -336,6 +336,7 @@ Column Views has multiple `view in widget` integrated, that will be ordered auto
 ## Changelog
 
 ### 0.2.xx
+* (Scrounger): use of Material Design Icons as images added
 * (Scrounger): Perfomrance optimized
 * (Scrounger): Input Widget added
 * (Scrounger): Masonry Views Widget: settings options for mobile phone and tablet added
