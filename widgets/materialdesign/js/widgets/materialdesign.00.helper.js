@@ -170,7 +170,7 @@ vis.binds.materialdesign.helper = {
         }
         return '';
     },
-    getIconElement: function (iconData, className, widthData, style = '', iconColor = '') {
+    getIconElement: function (iconData, className, widthData, iconColor = '', style = '') {
         let imgFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
 
         let icon = myMdwHelper.getValueFromData(iconData, null);
@@ -194,7 +194,7 @@ vis.binds.materialdesign.helper = {
                             style="width: ${width}; font-size: ${width}; color: ${color}; ${style};">${icon.toLowerCase().replace(/\s/g, '_')}</i>`
             }
         }
-        
+
         return '';
     }
 };

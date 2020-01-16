@@ -17,11 +17,6 @@ vis.binds.materialdesign.button = {
                 labelWidth = `style="width: ${data.labelWidth}%;"`
             }
 
-            let invertImage = '';
-            if (data.invertImage === 'true' || data.invertImage === true) {
-                invertImage = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
-            }
-
             let buttonStyle = '';
             if (data.buttonStyle !== 'text') {
                 buttonStyle = 'materialdesign-button--' + data.buttonStyle;
@@ -31,7 +26,7 @@ vis.binds.materialdesign.button = {
                                         class="materialdesign-button-body" 
                                         style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">`);
 
-            let imageElement = myMdwHelper.getIconElement(data.image, "imgButton", data.iconHeight, invertImage, data.imageColor);
+            let imageElement = myMdwHelper.getIconElement(data.image, "imgButton", data.iconHeight, data.imageColor);
 
             let labelElement = '';
             if (myMdwHelper.getValueFromData(data.buttontext, null) != null) {
