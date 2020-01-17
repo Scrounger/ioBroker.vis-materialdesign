@@ -158,6 +158,11 @@ vis.binds.materialdesign.input =
                         $this.context.style.setProperty("--vue-text-field-background-after-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColorSelected, myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, '')));
                     }
 
+                    // Input Border Colors
+                    $this.context.style.setProperty("--vue-text-field-before-color", myMdwHelper.getValueFromData(data.inputLayoutBorderColor, ''));
+                    $this.context.style.setProperty("--vue-text-field-hover-color", myMdwHelper.getValueFromData(data.inputLayoutBorderColorHover, ''));
+                    $this.context.style.setProperty("--vue-text-field-after-color", myMdwHelper.getValueFromData(data.inputLayoutBorderColorSelected, ''));
+
                     // Input Label style
                     $this.context.style.setProperty("--vue-text-field-label-before-color", myMdwHelper.getValueFromData(data.inputLabelColor, ''));
                     $this.context.style.setProperty("--vue-text-field-label-after-color", myMdwHelper.getValueFromData(data.inputLabelColorSelected, ''));
