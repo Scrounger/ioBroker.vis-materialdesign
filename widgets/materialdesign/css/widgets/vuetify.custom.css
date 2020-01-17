@@ -842,8 +842,13 @@
   border-radius: 28px;
 }
 .v-text-field--rounded > .v-input__control > .v-input__slot {
-  padding: 0 24px;
+  padding: 0 10px;
 }
+
+.v-text-field--rounded > .v-input__control > .v-input__slot > .v-input__append-inner > .v-input__icon--clear {
+  margin-right: 4px;
+}
+
 .v-text-field--shaped {
   border-radius: 16px 16px 0 0;
 }
