@@ -486,7 +486,28 @@
         data-vis-attrs3="group.inputSubText;showInputMessageAlways[true]/checkbox;inputMessage;inputMessageFontFamily/fontname;inputMessageFontSize/number;inputMessageColor/color;"
         data-vis-attrs4="group.counter;showInputCounter[true]/checkbox;inputCounterColor/color;inputCounterFontSize/number;inputCounterFontFamily/fontname;"
         data-vis-attrs5="group.icons;clearIconShow[true]/checkbox;clearIcon/custom,materialdesign.viseditor.materialDesignIcons;clearIconSize/number;clearIconColor/color;appendIcon/custom,materialdesign.viseditor.materialDesignIcons;appendIconSize/number;appendIconColor/color;appendOuterIcon/custom,materialdesign.viseditor.materialDesignIcons;appendOuterIconSize/number;appendOuterIconColor/color;prepandIcon/custom,materialdesign.viseditor.materialDesignIcons;prepandIconSize/number;prepandIconColor/color;prepandOuterIcon/custom,materialdesign.viseditor.materialDesignIcons;prepandOuterIconSize/number;prepandOuterIconColor/color;">
-        <div class="vis-widget materialdesign-widget materialdesign-inputws <%== this.data.attr('class') %>" style="width: 150px; height: 38px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.input(el, data) %>> 
+        <div class="vis-widget materialdesign-widget materialdesign-input <%== this.data.attr('class') %>" style="width: 150px; height: 38px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.input(el, data) %>> 
+        
+        </div>
+</script>
+
+<script id="tplVis-materialdesign-Autocomplete"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/materialdesign/img/prev_input.png"></img>'
+        data-vis-set="materialdesign"
+        data-vis-type="ctrl"
+        data-vis-name="Autocomplete"
+        data-vis-update-style="true"
+        data-vis-beta="true"
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,switch;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;inputType[text]/select,text,date,time;autoCompleteItems/html;"
+        data-vis-attrs0="group.inputLayout;inputLayout[regular]/select,regular,solo,solo-rounded,solo-shaped,filled,filled-rounded,filled-shaped,outlined,outlined-rounded,outlined-shaped;inputLayoutBackgroundColor/color;inputLayoutBackgroundColorHover/color;inputLayoutBackgroundColorSelected/color;inputTextFontFamily/fontname;inputTextFontSize/number;inputTextColor/color;"
+        data-vis-attrs1="group.inputLabel;inputLabelText;inputLabelColor/color;inputLabelColorSelected/color;inputLabelFontFamily/fontname;inputLabelFontSize/number,0,24,1;inputTranslateX/number;inputTranslateY/number;"
+        data-vis-attrs2="group.inputAppendix;inputPrefix;inputSuffix;inputAppendixColor/color;inputAppendixFontSize/number;inputAppendixFontFamily/fontname;"
+        data-vis-attrs3="group.inputSubText;showInputMessageAlways[true]/checkbox;inputMessage;inputMessageFontFamily/fontname;inputMessageFontSize/number;inputMessageColor/color;"
+        data-vis-attrs4="group.counter;showInputCounter[true]/checkbox;inputCounterColor/color;inputCounterFontSize/number;inputCounterFontFamily/fontname;"
+        data-vis-attrs5="group.icons;clearIconShow[true]/checkbox;clearIcon/custom,materialdesign.viseditor.materialDesignIcons;clearIconSize/number;clearIconColor/color;collapseIcon/custom,materialdesign.viseditor.materialDesignIcons;collapseIconSize/number;collapseIconColor/color;appendOuterIcon/custom,materialdesign.viseditor.materialDesignIcons;appendOuterIconSize/number;appendOuterIconColor/color;prepandIcon/custom,materialdesign.viseditor.materialDesignIcons;prepandIconSize/number;prepandIconColor/color;prepandOuterIcon/custom,materialdesign.viseditor.materialDesignIcons;prepandOuterIconSize/number;prepandOuterIconColor/color;">
+        <div class="vis-widget materialdesign-widget materialdesign-autocomplete <%== this.data.attr('class') %>" style="width: 150px; height: 38px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.input(el, data, true) %>> 
         
         </div>
 </script>

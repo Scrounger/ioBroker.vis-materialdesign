@@ -9,7 +9,7 @@
 
 // this code can be placed directly in materialdesign.html
 vis.binds.materialdesign.input =
-    function (el, data) {
+    function (el, data, isAutoComplete = false) {
         try {
             let $this = $(el);
 
@@ -40,14 +40,14 @@ vis.binds.materialdesign.input =
 
             $this.append(`
             <div class="materialdesign-vuetifyTextField" style="width: 100%; height: 100%;">
-                    <v-text-field
+                    ${(isAutoComplete) ? '<v-autocomplete' : '<v-text-field'}
                         ${layout}
-                        ${inputMask}
+                        ${(!isAutoComplete) ? inputMask : ''} 
                         :value="value"
                         :height="height"
                         :label="label"
                         :type="type"
-                        :maxlength="maxlength"
+                        ${(!isAutoComplete) ? ':maxlength="maxlength"' : ''} 
                         :hint="messages"
                         :counter="counter"
                         hide-details="auto"
@@ -61,15 +61,18 @@ vis.binds.materialdesign.input =
                         ${(data.clearIconShow) ? 'clearable' : ''}
                         :clear-icon="clearIcon"
 
-                        ${(myMdwHelper.getValueFromData(data.appendIcon, null) !== null) ? ':append-icon="appendIcon"' : ''}
+                        ${(myMdwHelper.getValueFromData(data.appendIcon, null) !== null) ? ':append-icon="appendIcon"' : ''}                        
                         ${(myMdwHelper.getValueFromData(data.appendOuterIcon, null) !== null) ? ':append-outer-icon="appendOuterIcon"' : ''}
 
                         ${(myMdwHelper.getValueFromData(data.prepandIcon, null) !== null) ? ':prepend-inner-icon="prepandIcon"' : ''}
                         ${(myMdwHelper.getValueFromData(data.prepandOuterIcon, null) !== null) ? ':prepend-icon="prepandOuterIcon"' : ''}
                         
+                        ${(isAutoComplete) ? ':items="autoCompleteItems"' : ''}
+                        ${(myMdwHelper.getValueFromData(data.collapseIcon, null) !== null) ? ':append-icon="collapseIcon"' : ''}
+
                         @change="changeEvent"
                     >
-                    </v-text-field>
+                    ${(isAutoComplete) ? '</v-autocomplete>' : '</v-text-field>'}
             </div>`);
 
             myMdwHelper.waitForElement($this, '.materialdesign-vuetifyTextField', function () {
@@ -78,18 +81,17 @@ vis.binds.materialdesign.input =
                     let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
                     let message = myMdwHelper.getValueFromData(data.inputMessage, '');
 
-                    Vue.use(VueTheMask)
+                    Vue.use(VueTheMask);
 
                     let vueTextField = new Vue({
                         el: $this.find('.materialdesign-vuetifyTextField').get(0),
                         vuetify: new Vuetify(),
                         data() {
-                            return {
+                            let dataObj = {
                                 value: vis.states.attr(data.oid + '.val'),
                                 height: widgetHeight,
                                 label: myMdwHelper.getValueFromData(data.inputLabelText, ''),
                                 type: inputType,
-                                maxlength: myMdwHelper.getNumberFromData(data.inputMaxLength, ''),
                                 messages: message,
                                 counter: data.showInputCounter,
                                 prefix: myMdwHelper.getValueFromData(data.inputPrefix, ''),
@@ -101,6 +103,16 @@ vis.binds.materialdesign.input =
                                 prepandIcon: 'mdi-' + myMdwHelper.getValueFromData(data.prepandIcon, undefined),
                                 prepandOuterIcon: 'mdi-' + myMdwHelper.getValueFromData(data.prepandOuterIcon, undefined),
                             }
+
+                            if (!isAutoComplete) {
+                                dataObj.maxlength = myMdwHelper.getNumberFromData(data.inputMaxLength, '');
+                            } else {
+                                dataObj.autoCompleteItems = myMdwHelper.getValueFromData(data.autoCompleteItems, []).split(',');
+                                dataObj.collapseIcon = 'mdi-' + myMdwHelper.getValueFromData(data.collapseIcon, '');
+                            }
+
+                            return dataObj;
+
                         },
                         methods: {
                             changeEvent(value) {
@@ -155,8 +167,15 @@ vis.binds.materialdesign.input =
                     $this.context.style.setProperty("--vue-text-icon-clear-color", myMdwHelper.getValueFromData(data.clearIconColor, ''));
 
                     // Icon: append options
-                    $this.context.style.setProperty("--vue-text-icon-append-size", myMdwHelper.getNumberFromData(data.appendIconSize, 16) + 'px');
-                    $this.context.style.setProperty("--vue-text-icon-append-color", myMdwHelper.getValueFromData(data.appendIconColor, ''));
+                    if (!isAutoComplete) {
+                        $this.context.style.setProperty("--vue-text-icon-append-size", myMdwHelper.getNumberFromData(data.appendIconSize, 16) + 'px');
+                        $this.context.style.setProperty("--vue-text-icon-append-color", myMdwHelper.getValueFromData(data.appendIconColor, ''));
+                    } else {
+                        $this.context.style.setProperty("--vue-text-icon-append-size", myMdwHelper.getNumberFromData(data.collapseIconSize, 16) + 'px');
+                        $this.context.style.setProperty("--vue-text-icon-append-color", myMdwHelper.getValueFromData(data.collapseIconColor, ''));
+                        $this.context.style.setProperty("--vue-text-icon-append-cursor", 'pointer');
+                    }
+
 
                     // Icon: append-outer options
                     $this.context.style.setProperty("--vue-text-icon-append-outer-size", myMdwHelper.getNumberFromData(data.appendOuterIconSize, 16) + 'px');
