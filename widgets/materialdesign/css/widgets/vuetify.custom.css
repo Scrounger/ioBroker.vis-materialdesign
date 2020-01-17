@@ -415,8 +415,6 @@
   background-color: transparent;
   border-style: none;
   color: inherit;
-  margin-left: 12px;
-  margin-right: 12px;
 }
 
 .theme--light.v-text-field > .v-input__control > .v-input__slot:before {
@@ -506,6 +504,9 @@
 .v-text-field.v-input--dense:not(.v-text-field--outlined):not(.v-text-field--single-line) input {
   padding: 4px 0 8px;
 }
+.v-text-field.v-input--dense:not(.v-text-field--outlined):not(.v-text-field--filled):not(.v-text-field--solo) input {
+  margin-top: 12px;
+}
 .v-text-field.v-input--dense[type=text]::-ms-clear {
   display: none;
 }
@@ -564,7 +565,6 @@
   max-width: 90%;
   overflow: hidden;
   text-overflow: ellipsis;
-  /* top: 6px; */
   white-space: nowrap;
   pointer-events: none;
 }
@@ -616,9 +616,9 @@
   transition: color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   white-space: nowrap;
   color: var(--vue-text-field-appendix-color);
-  margin-left: 6px;
   font-size: var(--vue-text-field-appendix-font-size);
   font-family: var(--vue-text-field-appendix-font-family);
+  padding-right: 10px;
 }
 .v-text-field__suffix {
   align-self: center;
@@ -626,9 +626,9 @@
   transition: color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   white-space: nowrap;
   color: var(--vue-text-field-appendix-color);
-  margin-right: 6px;
   font-size: var(--vue-text-field-appendix-font-size);
   font-family: var(--vue-text-field-appendix-font-family);
+  padding-left: 10px;
 }
 
 .v-application--is-ltr .v-text-field__prefix {
@@ -737,6 +737,7 @@
 .v-text-field.v-text-field--enclosed:not(.v-text-field--rounded) > .v-input__control > .v-input__slot,
 .v-text-field.v-text-field--enclosed .v-text-field__details {
   padding-right: 10px;
+  padding-left: 10px;
 }
 .v-text-field.v-text-field--enclosed .v-input__prepend-outer,
 .v-text-field.v-text-field--enclosed .v-input__prepend-inner,
@@ -863,11 +864,7 @@
   border-radius: 28px;
 }
 .v-text-field--rounded > .v-input__control > .v-input__slot {
-  padding: 0 10px;
-}
-
-.v-text-field--rounded > .v-input__control > .v-input__slot > .v-input__append-inner > .v-input__icon--clear {
-  margin-right: 4px;
+  padding: 0 20px;
 }
 
 .v-text-field--shaped {
@@ -1042,18 +1039,21 @@
   font-size: var(--vue-text-icon-append-outer-size);
   color: var(--vue-text-icon-append-outer-color);
   width: var(--vue-text-icon-append-outer-size);
+  padding-left: 10px;
 }
 
 .v-input__icon--prepend-inner{
   font-size: var(--vue-text-icon-prepand-size);
   color: var(--vue-text-icon-prepand-color);
   width: var(--vue-text-icon-prepand-size);
+  padding-right: 10px;
 }
 
 .v-input__icon--prepend {
   font-size: var(--vue-text-icon-prepand-outer-size);
   color: var(--vue-text-icon-prepand-outer-color);
   width: var(--vue-text-icon-prepand-outer-size);
+  padding-right: 10px;
 }
 
 .v-input__slot {
@@ -1064,8 +1064,7 @@
   min-height: inherit;
   position: relative;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
-  padding-right: 10px;
-  /* width: 100%; */
+  padding: 0 10px;
 }
 .v-input--dense > .v-input__control > .v-input__slot {
   margin-bottom: 4px;
@@ -1209,7 +1208,6 @@
   line-height: 1;
   min-height: 8px;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
-  margin-left: 12px;
   font-family: var(--vue-text-field-label-font-family);
 }
 
