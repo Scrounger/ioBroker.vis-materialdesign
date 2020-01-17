@@ -50,6 +50,14 @@ vis.binds.materialdesign.helper = {
             return 'Error';
         }
     },
+    getNumberFromData: function (dataValue, nullValue, prepand = '', append = '') {
+        try {
+            return (dataValue === undefined || dataValue === null || dataValue === '' || isNaN(dataValue)) ? nullValue : prepand + parseFloat(dataValue) + append;
+        } catch (err) {
+            console.error(err.message);
+            return 'Error';
+        }
+    },
     getFontSize: function (fontSizeValue) {
         let fontSize = vis.binds.materialdesign.helper.getValueFromData(fontSizeValue, null);
 
@@ -201,7 +209,7 @@ vis.binds.materialdesign.helper = {
         let className = (`materialdesign-icon-image ${appendClass}`).trim();
 
         let element = parentElement.find('.' + className.replace(/\s/g, '.'));
-        
+
         let icon = myMdwHelper.getValueFromData(iconData, null);
         let color = myMdwHelper.getValueFromData(iconColor, '');
 

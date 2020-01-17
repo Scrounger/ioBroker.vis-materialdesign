@@ -71,6 +71,7 @@ vis.binds.materialdesign.input =
                         ${(myMdwHelper.getValueFromData(data.collapseIcon, null) !== null) ? ':append-icon="collapseIcon"' : ''}
 
                         @change="changeEvent"
+                        @focus="focus"
                     >
                     ${(isAutoComplete) ? '</v-autocomplete>' : '</v-text-field>'}
             </div>`);
@@ -78,6 +79,7 @@ vis.binds.materialdesign.input =
             myMdwHelper.waitForElement($this, '.materialdesign-vuetifyTextField', function () {
                 myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
 
+                    let $vuetifyContainer = $("body").find('#materialdesign-vuetify-container');
                     let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
                     let message = myMdwHelper.getValueFromData(data.inputMessage, '');
 
@@ -118,6 +120,20 @@ vis.binds.materialdesign.input =
                             changeEvent(value) {
                                 vis.setValue(data.oid, value);
                             },
+                            focus(value) {
+                                // select object will first time created after item is focused. select object is created under vue app container
+                                let selectId = $this.find('.v-input__slot').attr('aria-owns');
+
+                                myMdwHelper.waitForElement($vuetifyContainer, '#' + selectId, function () {
+                                    // corresponding select object create -> set style options
+                                    let selectList = $vuetifyContainer.find(`#${selectId} .v-list`).get(0);
+
+                                    selectList.style.setProperty('--vue-list-item-height', myMdwHelper.getNumberFromData(data.listItemHeight, 'auto', '', 'px'));
+                                    selectList.style.setProperty('--vue-list-item-font-size', myMdwHelper.getNumberFromData(data.listItemFontSize, 'inherit', '', 'px'));
+                                    selectList.style.setProperty('--vue-list-item-font-family', myMdwHelper.getValueFromData(data.listItemFont, 'inherit'));
+                                    selectList.style.setProperty('--vue-list-item-font-color', myMdwHelper.getValueFromData(data.listItemFontColor, 'inherit'));
+                                });
+                            }
                         }
                     });
 

@@ -60,6 +60,11 @@
 
   --vue-text-icon-prepand-outer-color: #44739e;
   --vue-text-icon-prepand-outer-size: inherit;
+
+  --vue-list-item-height: auto;
+  --vue-list-item-font-size: inherit;
+  --vue-list-item-font-family: inherit;
+  --vue-list-item-font-color: inherit;
 }
 
 
@@ -1904,11 +1909,11 @@
   display: flex;
   flex: 1 1 100%;
   letter-spacing: normal;
-  min-height: 48px;
   outline: none;
   padding: 0 16px;
   position: relative;
   text-decoration: none;
+  height: var(--vue-list-item-height);
 }
 .v-list-item--disabled {
   pointer-events: none;
@@ -1971,7 +1976,6 @@
   flex-wrap: wrap;
   flex: 1 1;
   overflow: hidden;
-  padding: 12px 0;
 }
 .v-list-item__content > * {
   line-height: 1.1;
@@ -2036,6 +2040,7 @@
 .v-list-item__title {
   align-self: center;
   font-size: 1rem;
+
 }
 .v-list-item__title > .v-badge {
   margin-top: 16px;
@@ -2057,15 +2062,15 @@
 }
 .v-list-item--dense .v-list-item__content,
 .v-list--dense .v-list-item .v-list-item__content {
-  padding: 8px 0;
+  padding: 0;
 }
 .v-list-item--dense .v-list-item__title,
 .v-list-item--dense .v-list-item__subtitle,
 .v-list--dense .v-list-item .v-list-item__title,
 .v-list--dense .v-list-item .v-list-item__subtitle {
-  font-size: 0.8125rem;
-  font-weight: 500;
-  line-height: 1rem;
+  font-size: var(--vue-list-item-font-size);
+  font-family: var(--vue-list-item-font-family);
+  color: var(--vue-list-item-font-color);
 }
 .v-list-item--dense.v-list-item--two-line,
 .v-list--dense .v-list-item.v-list-item--two-line {
