@@ -736,7 +736,7 @@
 }
 .v-text-field.v-text-field--enclosed:not(.v-text-field--rounded) > .v-input__control > .v-input__slot,
 .v-text-field.v-text-field--enclosed .v-text-field__details {
-  padding: 0 0;
+  padding-right: 10px;
 }
 .v-text-field.v-text-field--enclosed .v-input__prepend-outer,
 .v-text-field.v-text-field--enclosed .v-input__prepend-inner,
@@ -1026,7 +1026,6 @@
 .v-input__icon--clear {
   border-radius: 50%;
   cursor: pointer;
-  margin-right: 12px;
   font-size: var(--vue-text-icon-clear-size);
   color: var(--vue-text-icon-clear-color);
   width: var(--vue-text-icon-clear-size);
@@ -1065,6 +1064,7 @@
   min-height: inherit;
   position: relative;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+  padding-right: 10px;
   /* width: 100%; */
 }
 .v-input--dense > .v-input__control > .v-input__slot {
