@@ -20,6 +20,7 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 * [Vuetify](https://github.com/vuetifyjs/vuetify)
 * [chartjs](https://www.chartjs.org/)
 * [round-slider from thomasloven](https://github.com/thomasloven/round-slider)
+* [Material Design Icons](https://materialdesignicons.com/)
 
 ## Online Example Project
 provided by [iobroker.click](https://iobroker.click/index.html), thanks to bluefox and iobroker.
@@ -295,7 +296,7 @@ Example see <a href="https://github.com/Scrounger/ioBroker.vis-materialdesign#in
 
 Working Widget Example can be found [here](https://forum.iobroker.net/topic/26199/test-adapter-material-design-widgets-v0-1-x/113)
 
-## Column Views
+## Column Views - decrepated !!!
 
 Column Views has multiple `view in widget` integrated, that will be ordered automatically depending of the width of the widget. With this widget it is possible to cereate a responsive layout (one layout for desktop, tablet and mobil)
 

@@ -494,7 +494,7 @@
 <script id="tplVis-materialdesign-Autocomplete"
         type="text/ejs"
         class="vis-tpl"
-        data-vis-prev='<img src="widgets/materialdesign/img/prev_input.png"></img>'
+        data-vis-prev='<img src="widgets/materialdesign/img/prev_autocomplete.png"></img>'
         data-vis-set="materialdesign"
         data-vis-type="ctrl"
         data-vis-name="Autocomplete"
@@ -507,7 +507,7 @@
         data-vis-attrs3="group.inputSubText;showInputMessageAlways[true]/checkbox;inputMessage;inputMessageFontFamily/fontname;inputMessageFontSize/number;inputMessageColor/color;"
         data-vis-attrs4="group.counter;showInputCounter[true]/checkbox;inputCounterColor/color;inputCounterFontSize/number;inputCounterFontFamily/fontname;"
         data-vis-attrs5="group.icons;clearIconShow[true]/checkbox;clearIcon/custom,materialdesign.viseditor.materialDesignIcons;clearIconSize/number;clearIconColor/color;collapseIcon/custom,materialdesign.viseditor.materialDesignIcons;collapseIconSize/number;collapseIconColor/color;appendOuterIcon/custom,materialdesign.viseditor.materialDesignIcons;appendOuterIconSize/number;appendOuterIconColor/color;prepandIcon/custom,materialdesign.viseditor.materialDesignIcons;prepandIconSize/number;prepandIconColor/color;prepandOuterIcon/custom,materialdesign.viseditor.materialDesignIcons;prepandOuterIconSize/number;prepandOuterIconColor/color;"
-        data-vis-attrs6="group.autoCompleteListLayout;listItemHeight/number;listItemFontSize/number;listItemFont/fontname;listItemFontColor/color;">
+        data-vis-attrs6="group.autoCompleteListLayout;listPosition[auto]/select,auto,top;listItemHeight/number;listItemFontSize/number;listItemFont/fontname;listItemFontColor/color;">
         <div class="vis-widget materialdesign-widget materialdesign-autocomplete <%== this.data.attr('class') %>" style="width: 150px; height: 38px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.input(el, data, true) %>> 
         
         </div>

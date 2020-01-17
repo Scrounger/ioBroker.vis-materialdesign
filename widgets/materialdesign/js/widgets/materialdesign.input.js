@@ -72,9 +72,11 @@ vis.binds.materialdesign.input =
 
                         @change="changeEvent"
                         @focus="focus"
+
+                        ${(isAutoComplete) ? `menu-props="${myMdwHelper.getValueFromData(data.listPosition, 'auto')}"` : ''}
                     >
                     ${(isAutoComplete) ? '</v-autocomplete>' : '</v-text-field>'}
-            </div>`);
+            </div > `);
 
             myMdwHelper.waitForElement($this, '.materialdesign-vuetifyTextField', function () {
                 myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
@@ -121,18 +123,21 @@ vis.binds.materialdesign.input =
                                 vis.setValue(data.oid, value);
                             },
                             focus(value) {
-                                // select object will first time created after item is focused. select object is created under vue app container
-                                let selectId = $this.find('.v-input__slot').attr('aria-owns');
 
-                                myMdwHelper.waitForElement($vuetifyContainer, '#' + selectId, function () {
-                                    // corresponding select object create -> set style options
-                                    let selectList = $vuetifyContainer.find(`#${selectId} .v-list`).get(0);
+                                if (isAutoComplete) {
+                                    // select object will first time created after item is focused. select object is created under vue app container
+                                    let selectId = $this.find('.v-input__slot').attr('aria-owns');
 
-                                    selectList.style.setProperty('--vue-list-item-height', myMdwHelper.getNumberFromData(data.listItemHeight, 'auto', '', 'px'));
-                                    selectList.style.setProperty('--vue-list-item-font-size', myMdwHelper.getNumberFromData(data.listItemFontSize, 'inherit', '', 'px'));
-                                    selectList.style.setProperty('--vue-list-item-font-family', myMdwHelper.getValueFromData(data.listItemFont, 'inherit'));
-                                    selectList.style.setProperty('--vue-list-item-font-color', myMdwHelper.getValueFromData(data.listItemFontColor, 'inherit'));
-                                });
+                                    myMdwHelper.waitForElement($vuetifyContainer, '#' + selectId, function () {
+                                        // corresponding select object create -> set style options
+                                        let selectList = $vuetifyContainer.find(`#${selectId} .v-list`).get(0);
+
+                                        selectList.style.setProperty('--vue-list-item-height', myMdwHelper.getNumberFromData(data.listItemHeight, 'auto', '', 'px'));
+                                        selectList.style.setProperty('--vue-list-item-font-size', myMdwHelper.getNumberFromData(data.listItemFontSize, 'inherit', '', 'px'));
+                                        selectList.style.setProperty('--vue-list-item-font-family', myMdwHelper.getValueFromData(data.listItemFont, 'inherit'));
+                                        selectList.style.setProperty('--vue-list-item-font-color', myMdwHelper.getValueFromData(data.listItemFontColor, 'inherit'));
+                                    });
+                                }
                             }
                         }
                     });
@@ -212,6 +217,6 @@ vis.binds.materialdesign.input =
             });
 
         } catch (ex) {
-            console.error(`[Vuetify Input]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Vuetify Input]: error: ${ex.message}, stack: ${ex.stack} `);
         }
     };
