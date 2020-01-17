@@ -7,6 +7,8 @@
 */
 "use strict";
 
+let myMdwMaterialDesignIconsList = [];
+
 vis.binds.materialdesign.viseditor = {
     manualLink: function (widAttr, data) {
         try {
@@ -67,7 +69,7 @@ vis.binds.materialdesign.viseditor = {
     onlineExample: function (widAttr) {
         return { input: `<a target="_blank" href="https://github.com/Scrounger/ioBroker.vis-materialdesign#online-example-project">${_('linkOnlineExampleProject')}</a>` }
     },
-    materialIcons: function (widAttr) {
+    imagesAndMaterialDesignIcons: function (widAttr) {
         try {
             var that = vis;
 
@@ -79,7 +81,11 @@ vis.binds.materialdesign.viseditor = {
                         minLength: 0,
                         source: function (request, response) {
 
-                            var _data = $.grep(vis.binds.materialdesign.materialdesignicons.getList(), function (value) {
+                            if (vis.editMode && myMdwMaterialDesignIconsList.length === 0) {
+                                myMdwMaterialDesignIconsList = vis.binds.materialdesign.materialdesignicons.getList();
+                            }
+
+                            var _data = $.grep(myMdwMaterialDesignIconsList, function (value) {
                                 return value.toLowerCase().includes(request.term.toLowerCase());
                             });
 
@@ -144,7 +150,59 @@ vis.binds.materialdesign.viseditor = {
             return line;
 
         } catch (ex) {
-            console.error(`materialIcons: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`imagesAndMaterialDesignIcons: error: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
+    materialDesignIcons: function (widAttr) {
+        try {
+            var that = vis;
+
+            let line = {
+                // autocomplete for material icons
+                input: '<input type="text" id="inspect_' + widAttr + '" class="vis-edit-textbox"/>',
+                init: function (_wid_attr, data) {
+                    $(this).autocomplete({
+                        minLength: 0,
+                        source: function (request, response) {
+
+                            if (vis.editMode && myMdwMaterialDesignIconsList.length === 0) {
+                                myMdwMaterialDesignIconsList = vis.binds.materialdesign.materialdesignicons.getList();
+                            }
+
+                            var _data = $.grep(myMdwMaterialDesignIconsList, function (value) {
+                                return value.toLowerCase().includes(request.term.toLowerCase());
+                            });
+
+                            response(_data);
+                        },
+                        select: function (event, ui) {
+                            $(this).val(ui.item.value);
+                            $(this).trigger('change', ui.item.value);
+                        }
+                    }).focus(function () {
+                        // Show dropdown menu
+                        $(this).autocomplete('search', '');
+                    }).autocomplete('instance')._renderItem = function (ul, item) {
+
+                        return $('<li>')
+                            .append(`
+                            <div style="display: flex; align-items: center;">
+                                <span class="mdi mdi-${item.label}" style="width: 40px; font-size: 24px; color: #44739e;"></span>
+                                <label>${item.label}</label>
+                            </div>
+                            `)
+                            .appendTo(ul);
+                    };
+                }
+            };
+            return line;
+
+        } catch (ex) {
+            console.error(`materialDesignIcons: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };
+
+if (vis.editMode) {
+    myMdwMaterialDesignIconsList = vis.binds.materialdesign.materialdesignicons.getList();
+}

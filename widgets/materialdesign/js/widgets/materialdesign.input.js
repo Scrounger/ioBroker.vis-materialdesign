@@ -58,7 +58,15 @@ vis.binds.materialdesign.input =
                         ${(shaped) ? 'shaped' : ''}
                         ${(rounded) ? 'rounded' : ''}
                         dense
-                        ${(data.showClearButton) ? 'clearable' : ''}
+                        ${(data.clearIconShow) ? 'clearable' : ''}
+                        :clear-icon="clearIcon"
+
+                        ${(myMdwHelper.getValueFromData(data.appendIcon, null) !== null) ? ':append-icon="appendIcon"' : ''}
+                        ${(myMdwHelper.getValueFromData(data.appendOuterIcon, null) !== null) ? ':append-outer-icon="appendOuterIcon"' : ''}
+
+                        ${(myMdwHelper.getValueFromData(data.prepandIcon, null) !== null) ? ':prepend-inner-icon="prepandIcon"' : ''}
+                        ${(myMdwHelper.getValueFromData(data.prepandOuterIcon, null) !== null) ? ':prepend-icon="prepandOuterIcon"' : ''}
+                        
                         @change="changeEvent"
                     >
                     </v-text-field>
@@ -87,6 +95,11 @@ vis.binds.materialdesign.input =
                                 prefix: myMdwHelper.getValueFromData(data.inputPrefix, ''),
                                 suffix: myMdwHelper.getValueFromData(data.inputSuffix, ''),
                                 placeholder: placeholder,
+                                clearIcon: 'mdi-' + myMdwHelper.getValueFromData(data.clearIcon, 'close'),
+                                appendIcon: 'mdi-' + myMdwHelper.getValueFromData(data.appendIcon, undefined),
+                                appendOuterIcon: 'mdi-' + myMdwHelper.getValueFromData(data.appendOuterIcon, undefined),
+                                prepandIcon: 'mdi-' + myMdwHelper.getValueFromData(data.prepandIcon, undefined),
+                                prepandOuterIcon: 'mdi-' + myMdwHelper.getValueFromData(data.prepandOuterIcon, undefined),
                             }
                         },
                         methods: {
@@ -136,6 +149,26 @@ vis.binds.materialdesign.input =
                     // Transform options
                     $this.context.style.setProperty("--vue-text-field-translate-x", myMdwHelper.getNumberFromData(data.inputTranslateX, 0) + 'px');
                     $this.context.style.setProperty("--vue-text-field-translate-y", myMdwHelper.getNumberFromData(data.inputTranslateY, -16) + 'px');
+
+                    // Icon: clear options
+                    $this.context.style.setProperty("--vue-text-icon-clear-size", myMdwHelper.getNumberFromData(data.clearIconSize, 16) + 'px');
+                    $this.context.style.setProperty("--vue-text-icon-clear-color", myMdwHelper.getValueFromData(data.clearIconColor, ''));
+
+                    // Icon: append options
+                    $this.context.style.setProperty("--vue-text-icon-append-size", myMdwHelper.getNumberFromData(data.appendIconSize, 16) + 'px');
+                    $this.context.style.setProperty("--vue-text-icon-append-color", myMdwHelper.getValueFromData(data.appendIconColor, ''));
+
+                    // Icon: append-outer options
+                    $this.context.style.setProperty("--vue-text-icon-append-outer-size", myMdwHelper.getNumberFromData(data.appendOuterIconSize, 16) + 'px');
+                    $this.context.style.setProperty("--vue-text-icon-append-outer-color", myMdwHelper.getValueFromData(data.appendOuterIconColor, ''));
+
+                    // Icon: prepand options
+                    $this.context.style.setProperty("--vue-text-icon-prepand-size", myMdwHelper.getNumberFromData(data.prepandIconSize, 16) + 'px');
+                    $this.context.style.setProperty("--vue-text-icon-prepand-color", myMdwHelper.getValueFromData(data.prepandIconColor, ''));
+
+                    // Icon: prepand-outer options
+                    $this.context.style.setProperty("--vue-text-icon-prepand-outer-size", myMdwHelper.getNumberFromData(data.prepandOuterIconSize, 16) + 'px');
+                    $this.context.style.setProperty("--vue-text-icon-prepand-outer-color", myMdwHelper.getValueFromData(data.prepandOuterIconColor, ''));
 
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                         vueTextField.value = newVal;

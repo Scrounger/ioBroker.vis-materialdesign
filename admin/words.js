@@ -386,6 +386,18 @@ systemDictionary = {
         "pl": "Ikona",
         "zh-cn": "图标"
     },
+    "group_icons": {
+        "en": "icons",
+        "de": "Symbole",
+        "ru": "иконки",
+        "pt": "ícones",
+        "nl": "pictogrammen",
+        "fr": "Icônes",
+        "it": "icone",
+        "es": "íconos",
+        "pl": "ikony",
+        "zh-cn": "图标"
+    },
     "imageFalse": {
         "en": "icon",
         "de": "Symbol",
