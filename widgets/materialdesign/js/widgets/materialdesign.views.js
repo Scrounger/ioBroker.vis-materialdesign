@@ -48,6 +48,7 @@ vis.binds.materialdesign.views = {
 
             $this.append(`
                 <div class="materialdesign-column-views-container">
+                    <span style="color:red"><b>Will be removed in next Version! Please use the Masnory Views Widget.</span>
                     ${columunList.join('')}
                 </div>
             `);
