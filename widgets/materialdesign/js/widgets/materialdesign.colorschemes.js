@@ -43,7 +43,7 @@ vis.binds.materialdesign.colorScheme = {
             if (myMdwHelper.getValueFromData(schemeName, null) != null) {
                 let result = [];
                 let selected = schemes[schemeName];
-                let repeats = Math.ceil(dataSize / selected.length);
+                let repeats = Math.ceil(dataSize + 1 / selected.length);
 
                 for (var i = 0; i <= repeats - 1; i++) {
                     result = result.concat(selected);
