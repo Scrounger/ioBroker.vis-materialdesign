@@ -417,7 +417,10 @@ vis.binds.materialdesign.topappbarnav = {
 
                     if (!parentListItem.hasClass("toggled")) {
                         parentListItem.addClass("toggled");
-                        parentListItem.find(".toggleIcon").html("keyboard_arrow_up");
+
+                        parentListItem.find('.toggleIcon').removeClass("mdi-menu-down");
+                        parentListItem.find('.toggleIcon').addClass("mdi-menu-up");
+
                         parentListItem.next("nav.mdc-sub-list").toggle();
                     }
                 }
