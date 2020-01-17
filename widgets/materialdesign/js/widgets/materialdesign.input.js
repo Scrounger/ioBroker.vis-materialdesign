@@ -38,9 +38,14 @@ vis.binds.materialdesign.input =
                 placeholder = myMdwHelper.getValueFromData(data.inputMask, '');
             }
 
+            let inputMode = 'combobox'
+            if (data.inputMode === 'select') {
+                inputMode = 'autocomplete';
+            }
+
             $this.append(`
             <div class="materialdesign-vuetifyTextField" style="width: 100%; height: 100%;">
-                    ${(isAutoComplete) ? '<v-autocomplete' : '<v-text-field'}
+                    ${(isAutoComplete) ? `<v-${inputMode}` : '<v-text-field'}
                         ${layout}
                         ${(!isAutoComplete) ? inputMask : ''} 
                         :value="value"
@@ -75,7 +80,7 @@ vis.binds.materialdesign.input =
 
                         ${(isAutoComplete) ? `menu-props="${myMdwHelper.getValueFromData(data.listPosition, 'auto')}"` : ''}
                     >
-                    ${(isAutoComplete) ? '</v-autocomplete>' : '</v-text-field>'}
+                    ${(isAutoComplete) ? `</v-${inputMode}>` : '</v-text-field>'}
             </div > `);
 
             myMdwHelper.waitForElement($this, '.materialdesign-vuetifyTextField', function () {
