@@ -21,6 +21,7 @@
   --vue-text-field-label-after-color: #44739e;
   --vue-text-field-label-font-family: inherit;
   --vue-text-field-label-font-size: 16px;
+  --vue-text-field-label-width: inherit;
 
   --vue-text-field-background-color: rgba(0, 0, 0, 0.06);
   --vue-text-field-background-hover-color:rgba(0, 0, 0, 0.12);
@@ -1209,6 +1210,7 @@
   min-height: 8px;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   font-family: var(--vue-text-field-label-font-family);
+  width: var(--vue-text-field-label-width);
 }
 
 .v-text-field .v-label--active {

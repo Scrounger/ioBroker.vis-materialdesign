@@ -137,6 +137,8 @@ vis.binds.materialdesign.slider = {
                     $this.context.style.setProperty("--vue-text-field-label-font-family", myMdwHelper.getValueFromData(data.prepandTextFontFamily, ''));
                     $this.context.style.setProperty("--vue-text-field-label-font-size", myMdwHelper.getNumberFromData(data.prepandTextFontSize, '16') + 'px');
 
+                    $this.context.style.setProperty("--vue-text-field-label-width", myMdwHelper.getStringFromNumberData(data.prepandTextWidth, 'inherit', '', 'px'));
+
                     //bug fix wegen 'div.row div'
                     $this.find('.v-slider__thumb-container').css('height', '0px')
 
