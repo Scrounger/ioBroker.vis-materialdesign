@@ -50,7 +50,7 @@ vis.binds.materialdesign.helper = {
             return 'Error';
         }
     },
-    getNumberFromData: function (dataValue, nullValue, prepand = '', append = '') {
+    getStringFromNumberData: function (dataValue, nullValue, prepand = '', append = '') {
         try {
             return (dataValue === undefined || dataValue === null || dataValue === '' || isNaN(dataValue)) ? nullValue : prepand + parseFloat(dataValue) + append;
         } catch (err) {

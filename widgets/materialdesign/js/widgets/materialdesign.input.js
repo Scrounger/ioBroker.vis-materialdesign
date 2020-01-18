@@ -137,8 +137,8 @@ vis.binds.materialdesign.input =
                                         // corresponding select object create -> set style options
                                         let selectList = $vuetifyContainer.find(`#${selectId} .v-list`).get(0);
 
-                                        selectList.style.setProperty('--vue-list-item-height', myMdwHelper.getNumberFromData(data.listItemHeight, 'auto', '', 'px'));
-                                        selectList.style.setProperty('--vue-list-item-font-size', myMdwHelper.getNumberFromData(data.listItemFontSize, 'inherit', '', 'px'));
+                                        selectList.style.setProperty('--vue-list-item-height', myMdwHelper.getStringFromNumberData(data.listItemHeight, 'auto', '', 'px'));
+                                        selectList.style.setProperty('--vue-list-item-font-size', myMdwHelper.getStringFromNumberData(data.listItemFontSize, 'inherit', '', 'px'));
                                         selectList.style.setProperty('--vue-list-item-font-family', myMdwHelper.getValueFromData(data.listItemFont, 'inherit'));
                                         selectList.style.setProperty('--vue-list-item-font-color', myMdwHelper.getValueFromData(data.listItemFontColor, 'inherit'));
                                     });
