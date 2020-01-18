@@ -66,6 +66,11 @@
   --vue-list-item-font-size: inherit;
   --vue-list-item-font-family: inherit;
   --vue-list-item-font-color: inherit;
+  --vue-list-item-background-color: inherit;
+  --vue-list-item-background-hover-color: black;
+  --vue-list-item-background-selected-color: black;
+  
+  --vue-ripple-effect-color: black;
 }
 
 
@@ -1890,12 +1895,14 @@
 }
 .theme--light.v-list-item:hover::before {
   opacity: 0.04;
+  background: var(--vue-list-item-background-hover-color);
 }
 .theme--light.v-list-item:focus::before {
   opacity: 0.12;
 }
 .theme--light.v-list-item--active:hover::before, .theme--light.v-list-item--active::before {
   opacity: 0.12;
+  background: var(--vue-list-item-background-selected-color);
 }
 .theme--light.v-list-item--active:focus::before {
   opacity: 0.16;
@@ -1914,6 +1921,7 @@
   position: relative;
   text-decoration: none;
   height: var(--vue-list-item-height);
+  background: var(--vue-list-item-background-color);
 }
 .v-list-item--disabled {
   pointer-events: none;
@@ -2184,7 +2192,7 @@
   top: 0;
   left: 0;
   border-radius: 50%;
-  background: currentColor;
+  background: var(--vue-ripple-effect-color);
   opacity: 0;
   pointer-events: none;
   overflow: hidden;
