@@ -514,7 +514,7 @@
 .v-text-field .v-input__append-inner {
   align-self: flex-start;
   display: inline-flex;
-  margin-top: 4px;
+  margin-top: 10px;
   line-height: 1;
   -webkit-user-select: none;
      -moz-user-select: none;
