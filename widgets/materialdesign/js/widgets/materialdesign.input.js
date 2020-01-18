@@ -65,7 +65,7 @@ vis.binds.materialdesign.input =
                         dense
                         ${(data.clearIconShow) ? 'clearable' : ''}
                         :clear-icon="clearIcon"
-
+                        
                         ${(myMdwHelper.getValueFromData(data.appendIcon, null) !== null) ? ':append-icon="appendIcon"' : ''}                        
                         ${(myMdwHelper.getValueFromData(data.appendOuterIcon, null) !== null) ? ':append-outer-icon="appendOuterIcon"' : ''}
 
@@ -125,10 +125,13 @@ vis.binds.materialdesign.input =
                         },
                         methods: {
                             changeEvent(value) {
-                                vis.setValue(data.oid, value);
+                                if (value) {
+                                    vis.setValue(data.oid, value);
+                                } else {
+                                    this.value = vis.states.attr(data.oid + '.val');
+                                }
                             },
                             focus(value) {
-
                                 if (isAutoComplete) {
                                     // select object will first time created after item is focused. select object is created under vue app container
                                     let selectId = $this.find('.v-input__slot').attr('aria-owns');
