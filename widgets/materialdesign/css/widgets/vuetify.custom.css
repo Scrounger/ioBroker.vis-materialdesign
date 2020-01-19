@@ -454,14 +454,27 @@
   color: #FFFFFF;
 }
 
-.theme--light.v-text-field > .v-input__control > .v-input__slot {
+.theme--light.v-text-field:not(.v-text-field--outlined) > .v-input__control > .v-input__slot {
   background: var(--vue-text-field-background-color);
 }
-.theme--light.v-text-field:not(.v-input--is-focused) > .v-input__control > .v-input__slot:hover {
+
+.theme--light.v-text-field--outlined > .v-input__control > .v-input__slot > fieldset{
+  background: var(--vue-text-field-background-color);
+}
+
+.theme--light.v-text-field:not(.v-input--is-focused.v-text-field--outlined) > .v-input__control > .v-input__slot:hover {
   background: var(--vue-text-field-background-hover-color);
 }
 
-.theme--light.v-text-field.v-input--is-focused > .v-input__control > .v-input__slot {
+.theme--light.v-text-field--outlined:not(.v-input--is-focused) > .v-input__control > .v-input__slot:hover > fieldset {
+  background: var(--vue-text-field-background-hover-color);
+}
+
+.theme--light.v-text-field.v-input--is-focused:not(.v-text-field--outlined) > .v-input__control > .v-input__slot {
+  background: var(--vue-text-field-background-after-color);
+}
+
+.theme--light.v-text-field--outlined.v-input--is-focused > .v-input__control > .v-input__slot > fieldset {
   background: var(--vue-text-field-background-after-color);
 }
 
