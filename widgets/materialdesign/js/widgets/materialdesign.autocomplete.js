@@ -31,6 +31,16 @@ vis.binds.materialdesign.autocomplete =
 
                     @focus="focus"
                 >
+
+                <template v-slot:item="data">
+                    <template>
+                        <v-list-item-content style="height: 100%">
+                            <v-list-item-title class="materialdesign-v-list-item-title" v-html="data.item"></v-list-item-title>
+                            <v-list-item-subtitle>fuuu</v-list-item-subtitle>
+                     </v-list-item-content>
+                    </template>
+                </template>
+
                 </v-${inputMode}>
             </div>`);
 

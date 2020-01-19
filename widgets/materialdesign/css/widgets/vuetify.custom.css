@@ -63,16 +63,25 @@
   --vue-text-icon-prepand-outer-size: inherit;
 
   --vue-list-item-height: auto;
-  --vue-list-item-font-size: inherit;
-  --vue-list-item-font-family: inherit;
-  --vue-list-item-font-color: inherit;
+
   --vue-list-item-background-color: inherit;
   --vue-list-item-background-hover-color: black;
   --vue-list-item-background-selected-color: black;
   
   --vue-ripple-effect-color: black;
+
+  --vue-list-item-font-size: inherit;
+  --vue-list-item-font-family: inherit;
+  --vue-list-item-font-color: inherit;
 }
 
+/* custom classes for templates */
+.materialdesign-v-list-item-title {
+  font-size: var(--vue-list-item-font-size);
+  font-family: var(--vue-list-item-font-family);
+  color: var(--vue-list-item-font-color);
+  line-height: 1.3em;
+}
 
 /* V-Slider */
 .v-input__slider > .v-input__control {
@@ -2065,9 +2074,8 @@
 
 .v-list-item__title {
   align-self: center;
-  font-size: 1rem;
-
 }
+
 .v-list-item__title > .v-badge {
   margin-top: 16px;
 }
@@ -2088,15 +2096,13 @@
 }
 .v-list-item--dense .v-list-item__content,
 .v-list--dense .v-list-item .v-list-item__content {
-  padding: 0;
+  padding: 8px 0;
 }
 .v-list-item--dense .v-list-item__title,
 .v-list-item--dense .v-list-item__subtitle,
 .v-list--dense .v-list-item .v-list-item__title,
 .v-list--dense .v-list-item .v-list-item__subtitle {
-  font-size: var(--vue-list-item-font-size);
-  font-family: var(--vue-list-item-font-family);
-  color: var(--vue-list-item-font-color);
+  font-weight: 500;
 }
 .v-list-item--dense.v-list-item--two-line,
 .v-list--dense .v-list-item.v-list-item--two-line {
