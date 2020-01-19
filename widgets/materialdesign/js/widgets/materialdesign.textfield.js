@@ -26,20 +26,15 @@ vis.binds.materialdesign.textfield =
                 placeholder = myMdwHelper.getValueFromData(data.inputMask, '');
             }
 
-            let inputMode = 'combobox'
-            if (data.inputMode === 'select') {
-                inputMode = 'autocomplete';
-            }
-
             $this.append(`
             <div class="${containerClass}" style="width: 100%; height: 100%;">
-                    <v-text-field
-                        ${helper.getConstructor(data)}
+                <v-text-field
+                    ${helper.getConstructor(data)}
 
-                        ${inputMask}
-                        :maxlength="maxlength"
-                    >
-                    </v-text-field>
+                    ${inputMask}
+                    :maxlength="maxlength"
+                >
+                </v-text-field>
             </div>`);
 
             myMdwHelper.waitForElement($this, `.${containerClass}`, function () {
@@ -83,6 +78,6 @@ vis.binds.materialdesign.textfield =
             });
 
         } catch (ex) {
-            console.error(`[Vuetify Input]: error: ${ex.message}, stack: ${ex.stack} `);
+            console.error(`[Vuetify TextField]: error: ${ex.message}, stack: ${ex.stack} `);
         }
     };
