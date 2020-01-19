@@ -65,11 +65,11 @@ vis.binds.materialdesign.input = {
                 prefix: myMdwHelper.getValueFromData(data.inputPrefix, ''),
                 suffix: myMdwHelper.getValueFromData(data.inputSuffix, ''),
                 placeholder: placeholder,
-                clearIcon: 'mdi-' + myMdwHelper.getValueFromData(data.clearIcon, 'close'),
-                appendIcon: 'mdi-' + myMdwHelper.getValueFromData(data.appendIcon, undefined),
-                appendOuterIcon: 'mdi-' + myMdwHelper.getValueFromData(data.appendOuterIcon, undefined),
-                prepandIcon: 'mdi-' + myMdwHelper.getValueFromData(data.prepandIcon, undefined),
-                prepandOuterIcon: 'mdi-' + myMdwHelper.getValueFromData(data.prepandOuterIcon, undefined),
+                clearIcon: myMdwHelper.getValueFromData(data.clearIcon, 'mdi-close', 'mdi-'),
+                appendIcon: myMdwHelper.getValueFromData(data.appendIcon, undefined, 'mdi-'),
+                appendOuterIcon: myMdwHelper.getValueFromData(data.appendOuterIcon, undefined, 'mdi-'),
+                prepandIcon: myMdwHelper.getValueFromData(data.prepandIcon, undefined, 'mdi-'),
+                prepandOuterIcon: myMdwHelper.getValueFromData(data.prepandOuterIcon, undefined, 'mdi-'),
             }
         },
         setStyles: function ($el, data) {

@@ -13,31 +13,7 @@ vis.binds.materialdesign.autocomplete =
         try {
             let $this = $(el);
             let helper = vis.binds.materialdesign.input.helper
-
-            let layout = myMdwHelper.getValueFromData(data.inputLayout, 'regular');
-            let shaped = false;
-            let rounded = false;
-
-            if (layout === 'regular') {
-                layout = '';
-            } else if (layout.includes('shaped')) {
-                layout = layout.replace('-shaped', '');
-                shaped = true;
-            } else if (layout.includes('rounded')) {
-                layout = layout.replace('-rounded', '');
-                rounded = true;
-            }
-
-            let inputType = myMdwHelper.getValueFromData(data.inputType, 'text');
-            let inputMask = '';
-            let placeholder = ''
-
-            if (inputType === 'mask') {
-                // mask needs text as input type
-                inputType = 'text';
-                inputMask = `v-mask="'${myMdwHelper.getValueFromData(data.inputMask, '')}'"`
-                placeholder = myMdwHelper.getValueFromData(data.inputMask, '');
-            }
+            let containerClass = 'materialdesign-vuetify-autoComplete';
 
             let inputMode = 'combobox'
             if (data.inputMode === 'select') {
@@ -45,84 +21,35 @@ vis.binds.materialdesign.autocomplete =
             }
 
             $this.append(`
-            <div class="materialdesign-vuetifyTextField" style="width: 100%; height: 100%;">
-                    ${(isAutoComplete) ? `<v-${inputMode}` : '<v-text-field'}
-                        ${layout}
-                        ${(!isAutoComplete) ? inputMask : ''} 
-                        :value="value"
-                        :height="height"
-                        :label="label"
-                        :type="type"
-                        ${(!isAutoComplete) ? ':maxlength="maxlength"' : ''} 
-                        :hint="messages"
-                        :counter="counter"
-                        hide-details="auto"
-                        :prefix="prefix"
-                        :suffix="suffix"
-                        :placeholder="placeholder"
-                        ${(data.showInputMessageAlways) ? 'persistent-hint' : ''}
-                        ${(shaped) ? 'shaped' : ''}
-                        ${(rounded) ? 'rounded' : ''}
-                        dense
-                        ${(data.clearIconShow) ? 'clearable' : ''}
-                        :clear-icon="clearIcon"
+            <div class="${containerClass}" style="width: 100%; height: 100%;">
+                <v-${inputMode}
+                    ${helper.getConstructor(data)}
                         
-                        ${(myMdwHelper.getValueFromData(data.appendIcon, null) !== null) ? ':append-icon="appendIcon"' : ''}                        
-                        ${(myMdwHelper.getValueFromData(data.appendOuterIcon, null) !== null) ? ':append-outer-icon="appendOuterIcon"' : ''}
+                    :items="autoCompleteItems"
+                    menu-props="${myMdwHelper.getValueFromData(data.listPosition, 'auto')}"
+                    :append-icon="collapseIcon"
 
-                        ${(myMdwHelper.getValueFromData(data.prepandIcon, null) !== null) ? ':prepend-inner-icon="prepandIcon"' : ''}
-                        ${(myMdwHelper.getValueFromData(data.prepandOuterIcon, null) !== null) ? ':prepend-icon="prepandOuterIcon"' : ''}
-                        
-                        ${(isAutoComplete) ? ':items="autoCompleteItems"' : ''}
-                        ${(myMdwHelper.getValueFromData(data.collapseIcon, null) !== null) ? ':append-icon="collapseIcon"' : ''}
+                    @focus="focus"
+                >
+                </v-${inputMode}>
+            </div>`);
 
-                        @change="changeEvent"
-                        @focus="focus"
-
-                        ${(isAutoComplete) ? `menu-props="${myMdwHelper.getValueFromData(data.listPosition, 'auto')}"` : ''}
-                    >
-                    ${(isAutoComplete) ? `</v-${inputMode}>` : '</v-text-field>'}
-            </div > `);
-
-            myMdwHelper.waitForElement($this, '.materialdesign-vuetifyTextField', function () {
+            myMdwHelper.waitForElement($this, `.${containerClass}`, function () {
                 myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
 
                     let $vuetifyContainer = $("body").find('#materialdesign-vuetify-container');
                     let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
-                    let message = myMdwHelper.getValueFromData(data.inputMessage, '');
-
-                    Vue.use(VueTheMask);
 
                     let vueTextField = new Vue({
-                        el: $this.find('.materialdesign-vuetifyTextField').get(0),
+                        el: $this.find(`.${containerClass}`).get(0),
                         vuetify: new Vuetify(),
                         data() {
-                            let dataObj = {
-                                value: vis.states.attr(data.oid + '.val'),
-                                height: widgetHeight,
-                                label: myMdwHelper.getValueFromData(data.inputLabelText, ''),
-                                type: inputType,
-                                messages: message,
-                                counter: data.showInputCounter,
-                                prefix: myMdwHelper.getValueFromData(data.inputPrefix, ''),
-                                suffix: myMdwHelper.getValueFromData(data.inputSuffix, ''),
-                                placeholder: placeholder,
-                                clearIcon: 'mdi-' + myMdwHelper.getValueFromData(data.clearIcon, 'close'),
-                                appendIcon: 'mdi-' + myMdwHelper.getValueFromData(data.appendIcon, undefined),
-                                appendOuterIcon: 'mdi-' + myMdwHelper.getValueFromData(data.appendOuterIcon, undefined),
-                                prepandIcon: 'mdi-' + myMdwHelper.getValueFromData(data.prepandIcon, undefined),
-                                prepandOuterIcon: 'mdi-' + myMdwHelper.getValueFromData(data.prepandOuterIcon, undefined),
-                            }
+                            let dataObj = helper.getData(data, widgetHeight);
 
-                            if (!isAutoComplete) {
-                                dataObj.maxlength = myMdwHelper.getNumberFromData(data.inputMaxLength, '');
-                            } else {
-                                dataObj.autoCompleteItems = myMdwHelper.getValueFromData(data.autoCompleteItems, []).split(',');
-                                dataObj.collapseIcon = 'mdi-' + myMdwHelper.getValueFromData(data.collapseIcon, '');
-                            }
+                            dataObj.autoCompleteItems = myMdwHelper.getValueFromData(data.autoCompleteItems, []).split(',');
+                            dataObj.collapseIcon = myMdwHelper.getValueFromData(data.collapseIcon, undefined, 'mdi-');
 
                             return dataObj;
-
                         },
                         methods: {
                             changeEvent(value) {
@@ -157,78 +84,11 @@ vis.binds.materialdesign.autocomplete =
                         }
                     });
 
-                    if (layout !== 'filled') {
-                        //TODO: background color data hinzufügen
-                        $this.context.style.setProperty("--vue-text-field-background-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, 'transparent'));
-                        $this.context.style.setProperty("--vue-text-field-background-hover-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColorHover, myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, 'transparent')));
-                        $this.context.style.setProperty("--vue-text-field-background-after-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColorSelected, myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, 'transparent')));
-                    } else {
-                        $this.context.style.setProperty("--vue-text-field-background-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, ''));
-                        $this.context.style.setProperty("--vue-text-field-background-hover-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColorHover, myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, '')));
-                        $this.context.style.setProperty("--vue-text-field-background-after-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColorSelected, myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, '')));
-                    }
+                    helper.setStyles($this, data);
 
-                    // Input Border Colors
-                    $this.context.style.setProperty("--vue-text-field-before-color", myMdwHelper.getValueFromData(data.inputLayoutBorderColor, ''));
-                    $this.context.style.setProperty("--vue-text-field-hover-color", myMdwHelper.getValueFromData(data.inputLayoutBorderColorHover, ''));
-                    $this.context.style.setProperty("--vue-text-field-after-color", myMdwHelper.getValueFromData(data.inputLayoutBorderColorSelected, ''));
-
-                    // Input Label style
-                    $this.context.style.setProperty("--vue-text-field-label-before-color", myMdwHelper.getValueFromData(data.inputLabelColor, ''));
-                    $this.context.style.setProperty("--vue-text-field-label-after-color", myMdwHelper.getValueFromData(data.inputLabelColorSelected, ''));
-                    $this.context.style.setProperty("--vue-text-field-label-font-family", myMdwHelper.getValueFromData(data.inputLabelFontFamily, ''));
-                    $this.context.style.setProperty("--vue-text-field-label-font-size", myMdwHelper.getNumberFromData(data.inputLabelFontSize, '16') + 'px');
-
-                    // Input style
-                    $this.context.style.setProperty("--vue-text-field-input-text-color", myMdwHelper.getValueFromData(data.inputTextColor, ''));
-                    $this.context.style.setProperty("--vue-text-field-input-text-font-size", myMdwHelper.getNumberFromData(data.inputTextFontSize, '16') + 'px');
-                    $this.context.style.setProperty("--vue-text-field-input-text-font-family", myMdwHelper.getValueFromData(data.inputTextFontFamily, ''));
-
-                    // Appendix style
-                    $this.context.style.setProperty("--vue-text-field-appendix-color", myMdwHelper.getValueFromData(data.inputAppendixColor, myMdwHelper.getValueFromData(data.inputTextColor, '')));
-                    $this.context.style.setProperty("--vue-text-field-appendix-font-size", myMdwHelper.getNumberFromData(data.inputAppendixFontSize, myMdwHelper.getNumberFromData(data.inputTextFontSize, '16')) + 'px');
-                    $this.context.style.setProperty("--vue-text-field-appendix-font-family", myMdwHelper.getValueFromData(data.inputAppendixFontFamily, myMdwHelper.getValueFromData(data.inputTextFontFamily, '')));
-
-                    // Message style
-                    $this.context.style.setProperty("--vue-text-field-message-color", myMdwHelper.getValueFromData(data.inputMessageColor, ''));
-                    $this.context.style.setProperty("--vue-text-field-message-font-size", myMdwHelper.getNumberFromData(data.inputMessageFontSize, '12') + 'px');
-                    $this.context.style.setProperty("--vue-text-field-message-font-family", myMdwHelper.getValueFromData(data.inputMessageFontFamily, ''));
-
-                    // Counter style
-                    $this.context.style.setProperty("--vue-text-field-counter-color", myMdwHelper.getValueFromData(data.inputCounterColor, ''));
-                    $this.context.style.setProperty("--vue-text-field-counter-font-size", myMdwHelper.getNumberFromData(data.inputCounterFontSize, '12') + 'px');
-                    $this.context.style.setProperty("--vue-text-field-counter-font-family", myMdwHelper.getValueFromData(data.inputCounterFontFamily, ''));
-
-                    // Transform options
-                    $this.context.style.setProperty("--vue-text-field-translate-x", myMdwHelper.getNumberFromData(data.inputTranslateX, 0) + 'px');
-                    $this.context.style.setProperty("--vue-text-field-translate-y", myMdwHelper.getNumberFromData(data.inputTranslateY, -16) + 'px');
-
-                    // Icon: clear options
-                    $this.context.style.setProperty("--vue-text-icon-clear-size", myMdwHelper.getNumberFromData(data.clearIconSize, 16) + 'px');
-                    $this.context.style.setProperty("--vue-text-icon-clear-color", myMdwHelper.getValueFromData(data.clearIconColor, ''));
-
-                    // Icon: append options
-                    if (!isAutoComplete) {
-                        $this.context.style.setProperty("--vue-text-icon-append-size", myMdwHelper.getNumberFromData(data.appendIconSize, 16) + 'px');
-                        $this.context.style.setProperty("--vue-text-icon-append-color", myMdwHelper.getValueFromData(data.appendIconColor, ''));
-                    } else {
-                        $this.context.style.setProperty("--vue-text-icon-append-size", myMdwHelper.getNumberFromData(data.collapseIconSize, 16) + 'px');
-                        $this.context.style.setProperty("--vue-text-icon-append-color", myMdwHelper.getValueFromData(data.collapseIconColor, ''));
-                        $this.context.style.setProperty("--vue-text-icon-append-cursor", 'pointer');
-                    }
-
-
-                    // Icon: append-outer options
-                    $this.context.style.setProperty("--vue-text-icon-append-outer-size", myMdwHelper.getNumberFromData(data.appendOuterIconSize, 16) + 'px');
-                    $this.context.style.setProperty("--vue-text-icon-append-outer-color", myMdwHelper.getValueFromData(data.appendOuterIconColor, ''));
-
-                    // Icon: prepand options
-                    $this.context.style.setProperty("--vue-text-icon-prepand-size", myMdwHelper.getNumberFromData(data.prepandIconSize, 16) + 'px');
-                    $this.context.style.setProperty("--vue-text-icon-prepand-color", myMdwHelper.getValueFromData(data.prepandIconColor, ''));
-
-                    // Icon: prepand-outer options
-                    $this.context.style.setProperty("--vue-text-icon-prepand-outer-size", myMdwHelper.getNumberFromData(data.prepandOuterIconSize, 16) + 'px');
-                    $this.context.style.setProperty("--vue-text-icon-prepand-outer-color", myMdwHelper.getValueFromData(data.prepandOuterIconColor, ''));
+                    $this.context.style.setProperty("--vue-text-icon-append-size", myMdwHelper.getNumberFromData(data.collapseIconSize, 16) + 'px');
+                    $this.context.style.setProperty("--vue-text-icon-append-color", myMdwHelper.getValueFromData(data.collapseIconColor, ''));
+                    $this.context.style.setProperty("--vue-text-icon-append-cursor", 'pointer');
 
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                         vueTextField.value = newVal;
@@ -237,6 +97,6 @@ vis.binds.materialdesign.autocomplete =
             });
 
         } catch (ex) {
-            console.error(`[Vuetify Input]: error: ${ex.message}, stack: ${ex.stack} `);
+            console.error(`[Vuetify AutoComplete]: error: ${ex.message}, stack: ${ex.stack} `);
         }
     };
