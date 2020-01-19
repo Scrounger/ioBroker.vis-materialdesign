@@ -5332,5 +5332,17 @@ systemDictionary = {
         "es": "posición de la imagen",
         "pl": "pozycja obrazu",
         "zh-cn": "图像位置"
+    },
+    "barWidth": {
+        "en": "bar width",
+        "de": "Balkenbreite",
+        "ru": "ширина полосы",
+        "pt": "largura da barra",
+        "nl": "staafbreedte",
+        "fr": "largeur de barre",
+        "it": "larghezza della barra",
+        "es": "ancho de barra",
+        "pl": "szerokość paska",
+        "zh-cn": "条宽"
     }
 };
