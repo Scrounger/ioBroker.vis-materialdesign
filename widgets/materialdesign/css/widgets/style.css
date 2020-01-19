@@ -1243,7 +1243,7 @@ svg.materialdesign-button__icon {
 }
 
 .materialdesign-masonry-container {
-  width: calc(100% - 2 * var(--materialdesign-masonry-gaps));
+  width: 100%;
   -moz-column-gap: var(--materialdesign-masonry-gaps);
   -webkit-column-gap: var(--materialdesign-masonry-gaps);
   column-gap: var(--materialdesign-masonry-gaps);
@@ -1254,6 +1254,7 @@ svg.materialdesign-button__icon {
   -webkit-column-count: var(--materialdesign-masonry-column-count);
   -moz-column-count: var(--materialdesign-masonry-column-count);
   column-count: var(--materialdesign-masonry-column-count);
+  box-sizing: border-box;
 }
 
 .materialdesign-masonry-item {
@@ -1262,9 +1263,9 @@ svg.materialdesign-button__icon {
   vertical-align: top;
   width: 100%;
   text-align: initial;
-  -webkit-column-break-inside: avoid;
-  page-break-inside: avoid;
-  break-inside: avoid-column;  
+  -webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
+            page-break-inside: avoid; /* Firefox */
+                break-inside: avoid; /* IE 10+ */
 }
 
 .materialdesign-version-container {

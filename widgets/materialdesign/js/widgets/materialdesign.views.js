@@ -78,9 +78,14 @@ vis.binds.materialdesign.views = {
                 if (viewAlignment === 'left') viewAlignment = 'flex-start';
                 if (viewAlignment === 'right') viewAlignment = 'flex-end';
 
+                let paddingBottom = 'var(--materialdesign-masonry-gaps)'
+                if (i >= data.countViews) {
+                    paddingBottom = '0px';
+                }
+
                 viewsList.push(`
                     <div 
-                        class="materialdesign-masonry-item" style="height: calc(${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px + var(--materialdesign-masonry-gaps)); ${viewWidth}">
+                        class="materialdesign-masonry-item" style="height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px; ${viewWidth}; padding-bottom: ${paddingBottom};">
                             ${(vis.editMode) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;"></div>` : ''}                          
                             <div data-vis-contains="${data.attr('View' + i)}" class="vis-widget-body vis-view-container">
                             </div>
@@ -170,7 +175,7 @@ vis.binds.materialdesign.views = {
                         if (data.showResolutionAssistant) {
                             $this.find('.masonry-helper-columns').text(handyPortraitCols);
                             $this.find('.masonry-helper-gaps').text(handyPortraitGaps + ' px');
-                            $this.find('.masonry-helper-rule').text(_('mobil phone') + ' ' + _('portrait'));                 
+                            $this.find('.masonry-helper-rule').text(_('mobil phone') + ' ' + _('portrait'));
                         }
 
                     } else if (currentScreenWidth > handyPortraitWidth && currentScreenWidth <= handyLandscapeWidth) {
