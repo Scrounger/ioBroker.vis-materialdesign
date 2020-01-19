@@ -8,10 +8,11 @@
 "use strict";
 
 // this code can be placed directly in materialdesign.html
-vis.binds.materialdesign.input =
+vis.binds.materialdesign.autocomplete =
     function (el, data, isAutoComplete = false) {
         try {
             let $this = $(el);
+            let helper = vis.binds.materialdesign.input.helper
 
             let layout = myMdwHelper.getValueFromData(data.inputLayout, 'regular');
             let shaped = false;

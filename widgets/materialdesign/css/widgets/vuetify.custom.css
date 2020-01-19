@@ -1533,8 +1533,13 @@
   background-color: transparent;
   border-style: none;
   color: inherit;
-  margin-left: 12px;
-  margin-right: 12px;
+}
+.v-select__selections > input {
+  border-radius: 0;
+  font: inherit;
+  background-color: transparent;
+  border-style: none;
+  color: inherit;
 }
 
 .theme--light.v-select .v-select__selections {
