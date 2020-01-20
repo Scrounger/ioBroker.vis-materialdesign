@@ -540,7 +540,7 @@
 }
 .v-text-field .v-input__prepend-inner,
 .v-text-field .v-input__append-inner {
-  align-self: flex-start;
+  /* align-self: flex-start; */
   display: inline-flex;
   margin-top: 10px;
   line-height: 1;
@@ -1037,6 +1037,7 @@
   flex-wrap: wrap;
   min-width: 0;
   width: 100%;
+  min-height: 30px;
 }
 
 .v-input__icon {
