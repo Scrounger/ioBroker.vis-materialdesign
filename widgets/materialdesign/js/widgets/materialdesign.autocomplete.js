@@ -22,21 +22,28 @@ vis.binds.materialdesign.autocomplete =
 
             let itemsList = [];
 
+            console.log(myMdwHelper.getValueFromData(data.attr('menuIcon' + i), ''));
+
             for (var i = 0; i <= data.countSelectItems; i++) {
                 itemsList.push(
                     {
-                        text: myMdwHelper.getValueFromData(data.attr('label' + i)),
-                        value: myMdwHelper.getValueFromData(data.attr('value' + i))
+                        text: myMdwHelper.getValueFromData(data.attr('label' + i), ''),
+                        value: myMdwHelper.getValueFromData(data.attr('value' + i), ''),
+                        icon: myMdwHelper.getValueFromData(data.attr('menuIcon' + i), '', 'mdi-'),
                     }
                 )
             }
+
+            //     <template v-slot:selection="data">
+            //     <v-icon v-html="data.item.icon"></v-icon>
+            // </template>
 
             $this.append(`
             <div class="${containerClass}" style="width: 100%; height: 100%;">
                 <v-${inputMode}
                     ${helper.getConstructor(data)}
                     
-                    v-model="value"
+                    v-model="item"
                     item-text="text"
                     item-value="value"
                     
@@ -47,10 +54,19 @@ vis.binds.materialdesign.autocomplete =
                     @focus="focus"
                 >
 
+                ${(data.showSelectedIcon !== 'no') ? `
+                    <template v-slot:${data.showSelectedIcon}>
+                        <div class="v-input__icon v-input__icon--${data.showSelectedIcon}">
+                            <v-icon>{{ icon }}</v-icon>
+                        </div>
+                    </template>
+                ` : ''}
+                 
                 <template v-slot:item="data">
                     <template>
+                    <v-icon v-html="data.item.icon"></v-icon>
                         <v-list-item-content style="height: 100%">                            
-                            <v-icon>home</v-icon></v-icon><v-list-item-title class="materialdesign-v-list-item-title" v-html="data.item.text"></v-list-item-title>
+                            </v-icon><v-list-item-title class="materialdesign-v-list-item-title" v-html="data.item.text"></v-list-item-title>
                             <v-list-item-subtitle v-html="data.item.value">fuuu</v-list-item-subtitle>
                      </v-list-item-content>
                     </template>
@@ -71,8 +87,11 @@ vis.binds.materialdesign.autocomplete =
                         data() {
                             let dataObj = helper.getData(data, widgetHeight);
 
-                            dataObj.value = getObjectByValue(vis.states.attr(data.oid + '.val'));
+                            let item = getObjectByValue(vis.states.attr(data.oid + '.val'));
+
+                            dataObj.item = item;
                             dataObj.items = itemsList;
+                            dataObj.icon = item.icon;
                             dataObj.collapseIcon = myMdwHelper.getValueFromData(data.collapseIcon, undefined, 'mdi-');
 
                             return dataObj;
@@ -88,7 +107,9 @@ vis.binds.materialdesign.autocomplete =
                                         vis.setValue(data.oid, value);
                                     }
                                 } else {
-                                    this.value = getObjectByValue(vis.states.attr(data.oid + '.val'));
+                                    let item = getObjectByValue(vis.states.attr(data.oid + '.val'));
+                                    this.value = item;
+                                    this.icon = item.icon;
                                 }
                             },
                             focus(value) {
@@ -121,7 +142,9 @@ vis.binds.materialdesign.autocomplete =
                     $this.context.style.setProperty("--vue-text-icon-append-cursor", 'pointer');
 
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                        vueTextField.value = getObjectByValue(newVal);
+                        let item = getObjectByValue(newVal);
+                        vueTextField.value = item;
+                        vueTextField.icon = item.icon;
                     });
 
                     function getObjectByValue(val) {
@@ -137,10 +160,10 @@ vis.binds.materialdesign.autocomplete =
                         } else {
                             if (inputMode = 'combobox') {
                                 // only if combobox (is writeable)
-                                return {text: val, value: val};
+                                return { text: val, value: val };
                             } else {
                                 return null;
-                            }                            
+                            }
                         }
                     }
                 });
