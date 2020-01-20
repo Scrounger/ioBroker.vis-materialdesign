@@ -28,7 +28,6 @@ vis.binds.materialdesign.input = {
 
             return `
                     ${layout}
-                    v-model="value"
                     :height="height"
                     :label="label"
                     :type="type"                         
@@ -55,8 +54,7 @@ vis.binds.materialdesign.input = {
                 `
         },
         getData: function (data, widgetHeight, placeholder = '') {
-            return {
-                value: vis.states.attr(data.oid + '.val'),
+            return {                
                 height: widgetHeight,
                 label: myMdwHelper.getValueFromData(data.inputLabelText, ''),
                 type: myMdwHelper.getValueFromData(data.inputType, 'text'),

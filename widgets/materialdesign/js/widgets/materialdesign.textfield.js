@@ -29,6 +29,7 @@ vis.binds.materialdesign.textfield =
             $this.append(`
             <div class="${containerClass}" style="width: 100%; height: 100%;">
                 <v-text-field
+                    v-model="value"
                     ${helper.getConstructor(data)}
 
                     ${inputMask}
@@ -48,7 +49,8 @@ vis.binds.materialdesign.textfield =
                         vuetify: new Vuetify(),
                         data() {
                             let dataObj = helper.getData(data, widgetHeight, placeholder);
-
+                            
+                            dataObj.value = vis.states.attr(data.oid + '.val');
                             dataObj.type = inputType;
                             dataObj.maxlength = myMdwHelper.getNumberFromData(data.inputMaxLength, '');
 
