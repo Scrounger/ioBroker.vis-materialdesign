@@ -164,6 +164,15 @@ vis.binds.materialdesign.vueHelper = {
     },
     select: {
         getConstructor: function (data) {
+            let position = myMdwHelper.getValueFromData(data.listPosition, 'auto');
+            let menuProps = `{offsetY: ${myMdwHelper.getValueFromData(data.listPositionOffset, 'false')}}`
+
+            if (position === 'top') {
+                menuProps = `{top: true, offsetY: ${myMdwHelper.getValueFromData(data.listPositionOffset, 'false')}}`;
+            } else if (position === 'bottom') {
+                menuProps = `{bottom: true, offsetY: ${myMdwHelper.getValueFromData(data.listPositionOffset, 'false')}}`;
+            }
+
             return `
                 ${vis.binds.materialdesign.vueHelper.input.getConstructor(data)}
 
@@ -172,7 +181,8 @@ vis.binds.materialdesign.vueHelper = {
                 item-value="value"
                 
                 :items="items"
-                ${(myMdwHelper.getValueFromData(data.listPosition, 'auto') === 'auto') ? '' : `menu-props="${myMdwHelper.getValueFromData(data.listPosition, 'auto')}"`}
+                :menu-props="${menuProps}"
+                
                 :append-icon="collapseIcon"
 
                 @focus="focusEvent"
