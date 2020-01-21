@@ -90,6 +90,18 @@
   line-height: 1.3em;
 }
 
+.v-list-item:hover .materialdesign-v-list-item-title {
+  color: var(--vue-list-item-font-color-hover);
+}
+
+.v-list .v-list-item--active:hover .materialdesign-v-list-item-title {
+  color: var(--vue-list-item-font-color-hover);
+}
+
+.v-list .v-list-item--active .materialdesign-v-list-item-title {
+  color: var(--vue-list-item-font-color-selected);
+}
+
 .materialdesign-v-list-item-icon {
   font-size: var(--vue-list-item-icon-size);
   color: var(--vue-list-item-icon-color);
@@ -97,6 +109,10 @@
 }
 
 .v-list-item:hover .v-icon.materialdesign-v-list-item-icon {
+  color: var(--vue-list-item-icon-color-hover);
+}
+
+.v-list .v-list-item--active:hover .v-icon.materialdesign-v-list-item-icon {
   color: var(--vue-list-item-icon-color-hover);
 }
 
