@@ -12,7 +12,7 @@ vis.binds.materialdesign.textfield =
     function (el, data, isAutoComplete = false) {
         try {
             let $this = $(el);
-            let helper = vis.binds.materialdesign.input.helper
+            let vueHelper = vis.binds.materialdesign.vueHelper.input
             let containerClass = 'materialdesign-vuetify-textField';
 
             let inputType = myMdwHelper.getValueFromData(data.inputType, 'text');
@@ -30,12 +30,12 @@ vis.binds.materialdesign.textfield =
             <div class="${containerClass}" style="width: 100%; height: 100%;">
                 <v-text-field
                     v-model="value"
-                    ${helper.getConstructor(data)}
+                    ${vueHelper.getConstructor(data)}
 
                     ${inputMask}
                     :maxlength="maxlength"
                 >
-                ${helper.getTemplates(data)}
+                ${vueHelper.getTemplates(data)}
 
                 ${(myMdwHelper.getValueFromData(data.appendIcon, null) !== null) ?
                     `<template v-slot:append>
@@ -59,7 +59,7 @@ vis.binds.materialdesign.textfield =
                         el: $this.find(`.${containerClass}`).get(0),
                         vuetify: new Vuetify(),
                         data() {
-                            let dataObj = helper.getData(data, widgetHeight, placeholder);
+                            let dataObj = vueHelper.getData(data, widgetHeight, placeholder);
 
                             dataObj.value = vis.states.attr(data.oid + '.val');
                             dataObj.type = inputType;
@@ -85,7 +85,7 @@ vis.binds.materialdesign.textfield =
                         }
                     });
 
-                    helper.setStyles($this, data);
+                    vueHelper.setStyles($this, data);
 
                     // Append Icon
                     $this.context.style.setProperty("--vue-text-icon-append-size", myMdwHelper.getNumberFromData(data.appendIconSize, 16) + 'px');

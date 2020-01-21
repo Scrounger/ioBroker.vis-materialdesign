@@ -12,7 +12,7 @@ vis.binds.materialdesign.autocomplete =
     function (el, data) {
         try {
             let $this = $(el);
-            let helper = vis.binds.materialdesign.input.helper
+            let vueHelper = vis.binds.materialdesign.vueHelper.input
             let containerClass = 'materialdesign-vuetify-autoComplete';
 
             let inputMode = 'combobox'
@@ -55,7 +55,7 @@ vis.binds.materialdesign.autocomplete =
             $this.append(`
             <div class="${containerClass}" style="width: 100%; height: 100%;">
                 <v-${inputMode}
-                    ${helper.getConstructor(data)}
+                    ${vueHelper.getConstructor(data)}
                     
                     v-model="item"
                     item-text="text"
@@ -67,7 +67,7 @@ vis.binds.materialdesign.autocomplete =
 
                     @focus="focus"
                 >
-                ${helper.getTemplates(data)}
+                ${vueHelper.getTemplates(data)}
 
                 ${(data.showSelectedIcon !== 'no') ? `
                     <template v-slot:${data.showSelectedIcon}>
@@ -103,7 +103,7 @@ vis.binds.materialdesign.autocomplete =
                         el: $this.find(`.${containerClass}`).get(0),
                         vuetify: new Vuetify(),
                         data() {
-                            let dataObj = helper.getData(data, widgetHeight);
+                            let dataObj = vueHelper.getData(data, widgetHeight);
 
                             let item = getObjectByValue(vis.states.attr(data.oid + '.val'));
 
@@ -194,7 +194,7 @@ vis.binds.materialdesign.autocomplete =
                         }
                     });
 
-                    helper.setStyles($this, data);
+                    vueHelper.setStyles($this, data);
 
                     $this.context.style.setProperty("--vue-text-icon-append-size", myMdwHelper.getNumberFromData(data.collapseIconSize, 16) + 'px');
                     $this.context.style.setProperty("--vue-text-icon-append-color", myMdwHelper.getValueFromData(data.collapseIconColor, ''));

@@ -8,8 +8,8 @@
 "use strict";
 
 // this code can be placed directly in materialdesign.html
-vis.binds.materialdesign.input = {
-    helper: {
+vis.binds.materialdesign.vueHelper = {
+    input: {
         getConstructor: function (data) {
 
             let layout = myMdwHelper.getValueFromData(data.inputLayout, 'regular');
