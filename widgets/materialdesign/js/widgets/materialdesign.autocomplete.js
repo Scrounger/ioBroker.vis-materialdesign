@@ -25,13 +25,26 @@ vis.binds.materialdesign.autocomplete =
             for (var i = 0; i <= data.countSelectItems; i++) {
                 let value = myMdwHelper.getValueFromData(data.attr('value' + i), null)
 
+
+                let imgFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
+                let imageTmp = myMdwHelper.getValueFromData(data.attr('listIcon' + i), null);
+                let icon = '';
+                let image = '';
+
+                if (imageTmp !== null && imgFileExtensions.some(el => imageTmp.includes(el))) {
+                    image = imageTmp;
+                } else {
+                    icon = 'mdi-' + imageTmp;
+                }
+
                 if (value !== null) {
                     itemsList.push(
                         {
                             text: myMdwHelper.getValueFromData(data.attr('label' + i), value),
                             subText: myMdwHelper.getValueFromData(data.attr('subLabel' + i), ''),
                             value: myMdwHelper.getValueFromData(data.attr('value' + i), ''),
-                            icon: myMdwHelper.getValueFromData(data.attr('listIcon' + i), '', 'mdi-'),
+                            icon: icon,
+                            image: image
                         }
                     )
                 }
@@ -59,19 +72,23 @@ vis.binds.materialdesign.autocomplete =
 
                 ${(data.showSelectedIcon !== 'no') ? `
                     <template v-slot:${data.showSelectedIcon}>
-                        <div class="v-input__icon v-input__icon--${data.showSelectedIcon}">
-                            <v-icon>{{ icon }}</v-icon>
+                        <div  class="v-input__icon v-input__icon--${data.showSelectedIcon}">                            
+                            <v-icon v-if="icon !== ''" class="materialdesign-v-list-item-icon">{{ icon }}</v-icon>
+                            <img v-if="image !== ''" class="materialdesign-v-list-item-image" :src="image" />
                         </div>
                     </template>
                 ` : ''}
                  
                 <template v-slot:item="data">
-                    <v-icon class="materialdesign-v-list-item-icon">{{data.item.icon}}</v-icon>
+                    <div class="materialdesign-v-list-item-image-container">
+                        <v-icon v-if="data.item.icon !== ''" class="materialdesign-v-list-item-icon">{{data.item.icon}}</v-icon>
+                        <img v-if="data.item.image !== ''" class="materialdesign-v-list-item-image" :src="data.item.image" />
+                    </div>
                     <v-list-item-content style="height: 100%">
                         <v-list-item-title class="materialdesign-v-list-item-title" v-html="data.item.text"></v-list-item-title>
                         <v-list-item-subtitle class="materialdesign-v-list-item-subtitle">{{data.item.subText}}</v-list-item-subtitle>
                     </v-list-item-content>
-                    ${(data.showValue) ? `<label class="materialdesign-v-list-item-value">{{data.item.value}}</label>`: ''}
+                    ${(data.showValue) ? `<label class="materialdesign-v-list-item-value">{{data.item.value}}</label>` : ''}
                 </template>
 
                 </v-${inputMode}>
@@ -94,6 +111,7 @@ vis.binds.materialdesign.autocomplete =
                             dataObj.item = item;
                             dataObj.items = itemsList;
                             dataObj.icon = item.icon;
+                            dataObj.image = item.image;
                             dataObj.collapseIcon = myMdwHelper.getValueFromData(data.collapseIcon, undefined, 'mdi-');
 
                             return dataObj;
@@ -111,6 +129,7 @@ vis.binds.materialdesign.autocomplete =
                                     let item = getObjectByValue(vis.states.attr(data.oid + '.val'));
                                     this.item = item;
                                     this.icon = item.icon;
+                                    this.image = item.image;
                                 }
                             },
                             focus(value) {
@@ -166,7 +185,7 @@ vis.binds.materialdesign.autocomplete =
                                         // list item icon style
                                         let listItemColor = myMdwHelper.getValueFromData(data.listIconColor, '#44739e');
 
-                                        selectList.style.setProperty('--vue-list-item-icon-size', myMdwHelper.getStringFromNumberData(data.listIconSize, 'inherit', '', 'px'));
+                                        selectList.style.setProperty('--vue-list-item-icon-size', myMdwHelper.getStringFromNumberData(data.listIconSize, '20px', '', 'px'));
                                         selectList.style.setProperty('--vue-list-item-icon-color', listItemColor);
                                         selectList.style.setProperty('--vue-list-item-icon-color-hover', myMdwHelper.getValueFromData(data.listIconHoverColor, listItemColor));
                                         selectList.style.setProperty('--vue-list-item-icon-color-selected', myMdwHelper.getValueFromData(data.listIconSelectedColor, listItemColor));
@@ -186,6 +205,7 @@ vis.binds.materialdesign.autocomplete =
                         let item = getObjectByValue(newVal);
                         vueTextField.item = item;
                         vueTextField.icon = item.icon;
+                        vueTextField.image = item.image;
                     });
 
                     function getObjectByValue(val) {
