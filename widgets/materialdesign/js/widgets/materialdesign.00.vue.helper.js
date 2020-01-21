@@ -282,6 +282,45 @@ vis.binds.materialdesign.vueHelper = {
                     selectList.style.setProperty('--vue-list-item-icon-color-selected', myMdwHelper.getValueFromData(data.listIconSelectedColor, listItemColor));
                 });
             }
+        },
+        generateItemList(data) {
+            let itemsList = [];
+
+            for (var i = 0; i <= data.countSelectItems; i++) {
+                let value = myMdwHelper.getValueFromData(data.attr('value' + i), null)
+
+                let imageTmp = myMdwHelper.getValueFromData(data.attr('listIcon' + i), null);
+                let icon = '';
+                let image = '';
+
+                if (imageTmp !== null && myMdwHelper.getAllowedImageFileExtensions().some(el => imageTmp.includes(el))) {
+                    image = imageTmp;
+                } else {
+                    icon = 'mdi-' + imageTmp;
+                }
+
+                if (value !== null) {
+                    itemsList.push(
+                        {
+                            text: myMdwHelper.getValueFromData(data.attr('label' + i), value),
+                            subText: myMdwHelper.getValueFromData(data.attr('subLabel' + i), ''),
+                            value: myMdwHelper.getValueFromData(data.attr('value' + i), ''),
+                            icon: icon,
+                            image: image
+                        }
+                    )
+                }
+            }
+
+            return itemsList;
+        },
+        setIoBrokerBinding(data, vueInput, itemsList, inputMode = '') {
+            vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                let item = vis.binds.materialdesign.vueHelper.getObjectByValue(newVal, itemsList, inputMode);
+                vueInput.item = item;
+                vueInput.icon = item.icon;
+                vueInput.image = item.image;
+            });
         }
     },
     getObjectByValue: function (val, itemsList, inputMode = '') {
