@@ -1154,6 +1154,7 @@
   font-size: var(--vue-text-icon-append-size);
   color: var(--vue-text-icon-append-color);
   cursor: var(--vue-text-icon-append-cursor);
+  width: auto;
 }
 
 .v-input__icon--append > img {
@@ -1164,6 +1165,7 @@
   font-size: var(--vue-text-icon-append-outer-size);
   color: var(--vue-text-icon-append-outer-color);
   padding-left: 10px;
+  width: auto;
 }
 
 .v-input__icon--append-outer > img {
@@ -1174,6 +1176,7 @@
   font-size: var(--vue-text-icon-prepand-inner-size);
   color: var(--vue-text-icon-prepand-inner-color);
   padding-right: 10px;
+  width: auto;
 }
 
 .v-input__icon--prepend-inner > img {
@@ -1184,6 +1187,7 @@
   font-size: var(--vue-text-icon-prepand-size);
   color: var(--vue-text-icon-prepand-color);
   padding-right: 10px;
+  width: auto;
 }
 
 .v-input__icon--prepend > img {
