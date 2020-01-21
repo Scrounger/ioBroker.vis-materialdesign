@@ -49,7 +49,7 @@ vis.binds.materialdesign.textfield =
                         vuetify: new Vuetify(),
                         data() {
                             let dataObj = helper.getData(data, widgetHeight, placeholder);
-                            
+
                             dataObj.value = vis.states.attr(data.oid + '.val');
                             dataObj.type = inputType;
                             dataObj.maxlength = myMdwHelper.getNumberFromData(data.inputMaxLength, '');
@@ -58,12 +58,16 @@ vis.binds.materialdesign.textfield =
                         },
                         methods: {
                             changeEvent(value) {
-                                if (value) {
+                                if (inputType !== 'number') {
                                     vis.setValue(data.oid, value);
                                 } else {
-                                    this.value = vis.states.attr(data.oid + '.val');
+                                    if (value) {
+                                        vis.setValue(data.oid, value);
+                                    } else {
+                                        this.value = vis.states.attr(data.oid + '.val');
+                                    }
                                 }
-                            },
+                            }
                         }
                     });
 
