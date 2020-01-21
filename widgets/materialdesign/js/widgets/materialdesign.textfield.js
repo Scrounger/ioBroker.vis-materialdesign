@@ -36,13 +36,23 @@ vis.binds.materialdesign.textfield =
                     :maxlength="maxlength"
                 >
                 ${helper.getTemplates(data)}
-                
+
+                ${(myMdwHelper.getValueFromData(data.appendIcon, null) !== null) ?
+                    `<template v-slot:append>
+                        <div  class="v-input__icon v-input__icon--append">                            
+                            <v-icon v-if="appendIcon !== ''">{{ appendIcon }}</v-icon>
+                            <img v-if="appendImage !== ''" :src="appendImage" />
+                        </div>
+                    </template>`
+                    : ''}                
+
                 </v-text-field>
             </div>`);
 
             myMdwHelper.waitForElement($this, `.${containerClass}`, function () {
                 myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
-
+                    let imgFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
+                    
                     let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
 
                     Vue.use(VueTheMask);
@@ -55,6 +65,9 @@ vis.binds.materialdesign.textfield =
                             dataObj.value = vis.states.attr(data.oid + '.val');
                             dataObj.type = inputType;
                             dataObj.maxlength = myMdwHelper.getNumberFromData(data.inputMaxLength, '');
+
+                            dataObj.appendIcon = (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.appendIcon, '').includes(el))) ? undefined : myMdwHelper.getValueFromData(data.appendIcon, undefined, 'mdi-');
+                            dataObj.appendImage = (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.appendIcon, '').includes(el))) ? myMdwHelper.getValueFromData(data.appendIcon, undefined) : undefined;
 
                             return dataObj;
                         },

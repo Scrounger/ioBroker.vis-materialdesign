@@ -43,8 +43,6 @@ vis.binds.materialdesign.input = {
                     dense
                     ${(data.clearIconShow) ? 'clearable' : ''}
                     :clear-icon="clearIcon"
-
-                    ${(myMdwHelper.getValueFromData(data.appendIcon, null) !== null) ? ':append-icon="appendIcon"' : ''}                        
                     
                     @change="changeEvent"
                 `
@@ -68,6 +66,7 @@ vis.binds.materialdesign.input = {
                         </div>
                     </template>`
                     : ''}
+
                 ${(myMdwHelper.getValueFromData(data.appendOuterIcon, null) !== null) ?
                     `<template v-slot:append-outer>
                         <div  class="v-input__icon v-input__icon--append-outer">                            
@@ -91,14 +90,10 @@ vis.binds.materialdesign.input = {
                 suffix: myMdwHelper.getValueFromData(data.inputSuffix, ''),
                 placeholder: placeholder,
                 clearIcon: myMdwHelper.getValueFromData(data.clearIcon, 'mdi-close', 'mdi-'),
-                appendIcon: myMdwHelper.getValueFromData(data.appendIcon, undefined, 'mdi-'),
-
                 prepandIcon: (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.prepandIcon, '').includes(el))) ? undefined : myMdwHelper.getValueFromData(data.prepandIcon, undefined, 'mdi-'),
                 prepandImage: (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.prepandIcon, '').includes(el))) ? myMdwHelper.getValueFromData(data.prepandIcon, undefined) : undefined,
-
                 prepandInnerIcon: (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.prepandInnerIcon, '').includes(el))) ? undefined : myMdwHelper.getValueFromData(data.prepandInnerIcon, undefined, 'mdi-'),
                 prepandInnerImage: (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.prepandInnerIcon, '').includes(el))) ? myMdwHelper.getValueFromData(data.prepandInnerIcon, undefined) : undefined,
-
                 appendOuterIcon: (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.appendOuterIcon, '').includes(el))) ? undefined : myMdwHelper.getValueFromData(data.appendOuterIcon, undefined, 'mdi-'),
                 appendOuterImage: (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.appendOuterIcon, '').includes(el))) ? myMdwHelper.getValueFromData(data.appendOuterIcon, undefined) : undefined,
             }
