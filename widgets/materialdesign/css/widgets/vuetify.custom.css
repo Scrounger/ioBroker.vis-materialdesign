@@ -73,6 +73,13 @@
   --vue-list-item-font-size: inherit;
   --vue-list-item-font-family: inherit;
   --vue-list-item-font-color: inherit;
+  --vue-list-item-font-color-hover: inherit;
+  --vue-list-item-font-color-selected: inherit;
+
+  --vue-list-item-icon-size: inherit;
+  --vue-list-item-icon-color: #44739e;
+  --vue-list-item-icon-color-hover: #44739e;
+  --vue-list-item-icon-color-selected: #44739e;
 }
 
 /* custom classes for templates */
@@ -81,6 +88,20 @@
   font-family: var(--vue-list-item-font-family);
   color: var(--vue-list-item-font-color);
   line-height: 1.3em;
+}
+
+.materialdesign-v-list-item-icon {
+  font-size: var(--vue-list-item-icon-size);
+  color: var(--vue-list-item-icon-color);
+  padding-right: 12px;
+}
+
+.v-list-item:hover .v-icon.materialdesign-v-list-item-icon {
+  color: var(--vue-list-item-icon-color-hover);
+}
+
+.v-list .v-list-item--active .v-icon.materialdesign-v-list-item-icon {
+  color: var(--vue-list-item-icon-color-selected);
 }
 
 /* V-Slider */

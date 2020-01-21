@@ -25,13 +25,17 @@ vis.binds.materialdesign.autocomplete =
             console.log(myMdwHelper.getValueFromData(data.attr('menuIcon' + i), ''));
 
             for (var i = 0; i <= data.countSelectItems; i++) {
-                itemsList.push(
-                    {
-                        text: myMdwHelper.getValueFromData(data.attr('label' + i), ''),
-                        value: myMdwHelper.getValueFromData(data.attr('value' + i), ''),
-                        icon: myMdwHelper.getValueFromData(data.attr('menuIcon' + i), '', 'mdi-'),
-                    }
-                )
+                let value = myMdwHelper.getValueFromData(data.attr('value' + i), null)
+
+                if (value !== null) {
+                    itemsList.push(
+                        {
+                            text: myMdwHelper.getValueFromData(data.attr('label' + i), ''),
+                            value: myMdwHelper.getValueFromData(data.attr('value' + i), ''),
+                            icon: myMdwHelper.getValueFromData(data.attr('listIcon' + i), '', 'mdi-'),
+                        }
+                    )
+                }
             }
 
             //     <template v-slot:selection="data">
@@ -64,7 +68,7 @@ vis.binds.materialdesign.autocomplete =
                  
                 <template v-slot:item="data">
                     <template>
-                    <v-icon v-html="data.item.icon"></v-icon>
+                    <v-icon class="materialdesign-v-list-item-icon">{{data.item.icon}}</v-icon>
                         <v-list-item-content style="height: 100%">                            
                             </v-icon><v-list-item-title class="materialdesign-v-list-item-title" v-html="data.item.text"></v-list-item-title>
                             <v-list-item-subtitle v-html="data.item.value">fuuu</v-list-item-subtitle>
@@ -116,21 +120,33 @@ vis.binds.materialdesign.autocomplete =
                                 // select object will first time created after item is focused. select object is created under vue app container
                                 let selectId = $this.find('.v-input__slot').attr('aria-owns');
 
-                                myMdwHelper.waitForElement($vuetifyContainer, '#' + selectId, function () {
-                                    // corresponding select object create -> set style options
-                                    let selectList = $vuetifyContainer.find(`#${selectId} .v-list`).get(0);
+                                if (itemsList.length > 0) {
+                                    myMdwHelper.waitForElement($vuetifyContainer, '#' + selectId, function () {
 
-                                    selectList.style.setProperty('--vue-list-item-height', myMdwHelper.getStringFromNumberData(data.listItemHeight, 'auto', '', 'px'));
-                                    selectList.style.setProperty('--vue-list-item-font-size', myMdwHelper.getStringFromNumberData(data.listItemFontSize, 'inherit', '', 'px'));
-                                    selectList.style.setProperty('--vue-list-item-font-family', myMdwHelper.getValueFromData(data.listItemFont, 'inherit'));
-                                    selectList.style.setProperty('--vue-list-item-font-color', myMdwHelper.getValueFromData(data.listItemFontColor, 'inherit'));
+                                        // corresponding select object create -> set style options
+                                        let selectList = $vuetifyContainer.find(`#${selectId} .v-list`).get(0);
 
-                                    selectList.style.setProperty('--vue-list-item-background-color', myMdwHelper.getValueFromData(data.listItemBackgroundColor, 'inherit'));
+                                        selectList.style.setProperty('--vue-list-item-height', myMdwHelper.getStringFromNumberData(data.listItemHeight, 'auto', '', 'px'));
+                                        selectList.style.setProperty('--vue-list-item-font-size', myMdwHelper.getStringFromNumberData(data.listItemFontSize, 'inherit', '', 'px'));
+                                        selectList.style.setProperty('--vue-list-item-font-family', myMdwHelper.getValueFromData(data.listItemFont, 'inherit'));
+                                        selectList.style.setProperty('--vue-list-item-font-color', myMdwHelper.getValueFromData(data.listItemFontColor, 'inherit'));
 
-                                    selectList.style.setProperty('--vue-list-item-background-hover-color', myMdwHelper.getValueFromData(data.listItemBackgroundHoverColor, ''));
-                                    selectList.style.setProperty('--vue-list-item-background-selected-color', myMdwHelper.getValueFromData(data.listItemBackgroundSelectedColor, ''));
-                                    selectList.style.setProperty('--vue-ripple-effect-color', myMdwHelper.getValueFromData(data.listItemRippleEffectColor, ''));
-                                });
+                                        selectList.style.setProperty('--vue-list-item-background-color', myMdwHelper.getValueFromData(data.listItemBackgroundColor, 'inherit'));
+
+                                        selectList.style.setProperty('--vue-list-item-background-hover-color', myMdwHelper.getValueFromData(data.listItemBackgroundHoverColor, ''));
+                                        selectList.style.setProperty('--vue-list-item-background-selected-color', myMdwHelper.getValueFromData(data.listItemBackgroundSelectedColor, ''));
+                                        selectList.style.setProperty('--vue-ripple-effect-color', myMdwHelper.getValueFromData(data.listItemRippleEffectColor, ''));
+
+                                        
+                                        // list item icon style
+                                        let listItemColor = myMdwHelper.getValueFromData(data.listIconColor, '#44739e');
+
+                                        selectList.style.setProperty('--vue-list-item-icon-size', myMdwHelper.getStringFromNumberData(data.listIconSize, 'inherit', '', 'px'));
+                                        selectList.style.setProperty('--vue-list-item-icon-color', listItemColor);
+                                        selectList.style.setProperty('--vue-list-item-icon-color-hover', myMdwHelper.getValueFromData(data.listIconHoverColor, listItemColor));
+                                        selectList.style.setProperty('--vue-list-item-icon-color-selected', myMdwHelper.getValueFromData(data.listIconSelectedColor, listItemColor));
+                                    });
+                                }
                             }
                         }
                     });
