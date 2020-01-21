@@ -179,14 +179,13 @@ vis.binds.materialdesign.helper = {
         return '';
     },
     getIconElement: function (iconData, width, height, iconColor = '', style = '', appendClass = '') {
-        let imgFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
         let className = `materialdesign-icon-image ${appendClass}`;
 
         let icon = myMdwHelper.getValueFromData(iconData, null);
         let color = myMdwHelper.getValueFromData(iconColor, '');
 
         if (icon !== null) {
-            if (imgFileExtensions.some(el => icon.includes(el))) {
+            if (myMdwHelper.getAllowedImageFileExtensions().some(el => icon.includes(el))) {
                 // is image
                 return `<img 
                         class="${className}"
@@ -205,7 +204,6 @@ vis.binds.materialdesign.helper = {
         return myMdwHelper.getIconElement(iconData, width, height, iconColor, `padding-top: 8px; padding-bottom: 8px;${style}`, 'mdc-list-item__graphic');
     },
     changeIconElement: function (parentElement, iconData, width, height, iconColor = '', style = '', appendClass = '') {
-        let imgFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
         let className = (`materialdesign-icon-image ${appendClass}`).trim();
 
         let element = parentElement.find('.' + className.replace(/\s/g, '.'));
@@ -214,7 +212,7 @@ vis.binds.materialdesign.helper = {
         let color = myMdwHelper.getValueFromData(iconColor, '');
 
         if (icon !== null) {
-            if (imgFileExtensions.some(el => icon.includes(el))) {
+            if (myMdwHelper.getAllowedImageFileExtensions().some(el => icon.includes(el))) {
                 // is image
                 if (element.is('img')) {
                     element.attr('src', icon);
@@ -235,6 +233,9 @@ vis.binds.materialdesign.helper = {
     changeListIconElement: function (parentElement, iconData, width, height, iconColor = '', style = '') {
         myMdwHelper.changeIconElement(parentElement, iconData, width, height, iconColor, `padding-top: 8px; padding-bottom: 8px;${style}`, 'mdc-list-item__graphic');
     },
+    getAllowedImageFileExtensions: function(){
+        return ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg']
+    }
 };
 
 let myMdwHelper = vis.binds.materialdesign.helper;

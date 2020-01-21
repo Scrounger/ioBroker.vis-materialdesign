@@ -25,13 +25,11 @@ vis.binds.materialdesign.autocomplete =
             for (var i = 0; i <= data.countSelectItems; i++) {
                 let value = myMdwHelper.getValueFromData(data.attr('value' + i), null)
 
-
-                let imgFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
                 let imageTmp = myMdwHelper.getValueFromData(data.attr('listIcon' + i), null);
                 let icon = '';
                 let image = '';
 
-                if (imageTmp !== null && imgFileExtensions.some(el => imageTmp.includes(el))) {
+                if (imageTmp !== null && myMdwHelper.getAllowedImageFileExtensions().some(el => imageTmp.includes(el))) {
                     image = imageTmp;
                 } else {
                     icon = 'mdi-' + imageTmp;

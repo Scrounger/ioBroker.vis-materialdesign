@@ -133,7 +133,7 @@ vis.binds.materialdesign.viseditor = {
                             defaultPath: defPath,
                             path: current || defPath,
                             uploadDir: '/' + (that.conn.namespace ? that.conn.namespace + '/' : ''),
-                            fileFilter: ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'],
+                            fileFilter: myMdwHelper.getAllowedImageFileExtensions(),
                             folderFilter: false,
                             mode: 'open',
                             view: 'prev',

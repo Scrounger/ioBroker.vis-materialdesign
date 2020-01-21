@@ -51,7 +51,6 @@ vis.binds.materialdesign.textfield =
 
             myMdwHelper.waitForElement($this, `.${containerClass}`, function () {
                 myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
-                    let imgFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
                     
                     let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
 
@@ -66,8 +65,8 @@ vis.binds.materialdesign.textfield =
                             dataObj.type = inputType;
                             dataObj.maxlength = myMdwHelper.getNumberFromData(data.inputMaxLength, '');
 
-                            dataObj.appendIcon = (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.appendIcon, '').includes(el))) ? undefined : myMdwHelper.getValueFromData(data.appendIcon, undefined, 'mdi-');
-                            dataObj.appendImage = (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.appendIcon, '').includes(el))) ? myMdwHelper.getValueFromData(data.appendIcon, undefined) : undefined;
+                            dataObj.appendIcon = (myMdwHelper.getAllowedImageFileExtensions().some(el => myMdwHelper.getValueFromData(data.appendIcon, '').includes(el))) ? undefined : myMdwHelper.getValueFromData(data.appendIcon, undefined, 'mdi-');
+                            dataObj.appendImage = (myMdwHelper.getAllowedImageFileExtensions().some(el => myMdwHelper.getValueFromData(data.appendIcon, '').includes(el))) ? myMdwHelper.getValueFromData(data.appendIcon, undefined) : undefined;
 
                             return dataObj;
                         },

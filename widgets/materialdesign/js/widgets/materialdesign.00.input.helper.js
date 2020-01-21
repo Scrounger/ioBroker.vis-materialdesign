@@ -78,8 +78,6 @@ vis.binds.materialdesign.input = {
             `
         },
         getData: function (data, widgetHeight, placeholder = '') {
-            let imgFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
-
             return {
                 height: widgetHeight,
                 label: myMdwHelper.getValueFromData(data.inputLabelText, ''),
@@ -90,12 +88,12 @@ vis.binds.materialdesign.input = {
                 suffix: myMdwHelper.getValueFromData(data.inputSuffix, ''),
                 placeholder: placeholder,
                 clearIcon: myMdwHelper.getValueFromData(data.clearIcon, 'mdi-close', 'mdi-'),
-                prepandIcon: (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.prepandIcon, '').includes(el))) ? undefined : myMdwHelper.getValueFromData(data.prepandIcon, undefined, 'mdi-'),
-                prepandImage: (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.prepandIcon, '').includes(el))) ? myMdwHelper.getValueFromData(data.prepandIcon, undefined) : undefined,
-                prepandInnerIcon: (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.prepandInnerIcon, '').includes(el))) ? undefined : myMdwHelper.getValueFromData(data.prepandInnerIcon, undefined, 'mdi-'),
-                prepandInnerImage: (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.prepandInnerIcon, '').includes(el))) ? myMdwHelper.getValueFromData(data.prepandInnerIcon, undefined) : undefined,
-                appendOuterIcon: (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.appendOuterIcon, '').includes(el))) ? undefined : myMdwHelper.getValueFromData(data.appendOuterIcon, undefined, 'mdi-'),
-                appendOuterImage: (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.appendOuterIcon, '').includes(el))) ? myMdwHelper.getValueFromData(data.appendOuterIcon, undefined) : undefined,
+                prepandIcon: (myMdwHelper.getAllowedImageFileExtensions().some(el => myMdwHelper.getValueFromData(data.prepandIcon, '').includes(el))) ? undefined : myMdwHelper.getValueFromData(data.prepandIcon, undefined, 'mdi-'),
+                prepandImage: (myMdwHelper.getAllowedImageFileExtensions().some(el => myMdwHelper.getValueFromData(data.prepandIcon, '').includes(el))) ? myMdwHelper.getValueFromData(data.prepandIcon, undefined) : undefined,
+                prepandInnerIcon: (myMdwHelper.getAllowedImageFileExtensions().some(el => myMdwHelper.getValueFromData(data.prepandInnerIcon, '').includes(el))) ? undefined : myMdwHelper.getValueFromData(data.prepandInnerIcon, undefined, 'mdi-'),
+                prepandInnerImage: (myMdwHelper.getAllowedImageFileExtensions().some(el => myMdwHelper.getValueFromData(data.prepandInnerIcon, '').includes(el))) ? myMdwHelper.getValueFromData(data.prepandInnerIcon, undefined) : undefined,
+                appendOuterIcon: (myMdwHelper.getAllowedImageFileExtensions().some(el => myMdwHelper.getValueFromData(data.appendOuterIcon, '').includes(el))) ? undefined : myMdwHelper.getValueFromData(data.appendOuterIcon, undefined, 'mdi-'),
+                appendOuterImage: (myMdwHelper.getAllowedImageFileExtensions().some(el => myMdwHelper.getValueFromData(data.appendOuterIcon, '').includes(el))) ? myMdwHelper.getValueFromData(data.appendOuterIcon, undefined) : undefined,
             }
         },
         setStyles: function ($el, data) {
