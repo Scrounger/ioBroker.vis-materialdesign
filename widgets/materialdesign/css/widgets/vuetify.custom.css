@@ -1797,6 +1797,11 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.v-select.v-input--dense:not(.v-text-field--outlined):not(.v-text-field--filled):not(.v-text-field--solo) .v-select__selection--comma {
+  margin-top: 16px;
+}
+
 .v-select__slot {
   position: relative;
   align-items: center;
