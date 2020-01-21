@@ -12,7 +12,7 @@ vis.binds.materialdesign.autocomplete =
     function (el, data) {
         try {
             let $this = $(el);
-            let vueHelper = vis.binds.materialdesign.vueHelper.input
+            let vueHelper = vis.binds.materialdesign.vueHelper
             let containerClass = 'materialdesign-vuetify-autoComplete';
 
             let inputMode = 'combobox'
@@ -55,19 +55,19 @@ vis.binds.materialdesign.autocomplete =
             $this.append(`
             <div class="${containerClass}" style="width: 100%; height: 100%;">
                 <v-${inputMode}
-                    ${vueHelper.getConstructor(data)}
+                    ${vueHelper.input.getConstructor(data)}
                     
                     v-model="item"
                     item-text="text"
                     item-value="value"
                     
                     :items="items"
-                    menu-props="${myMdwHelper.getValueFromData(data.listPosition, 'auto')}"
+                    ${(myMdwHelper.getValueFromData(data.listPosition, 'auto') === 'auto')? '' : `menu-props="${myMdwHelper.getValueFromData(data.listPosition, 'auto')}"` }
                     :append-icon="collapseIcon"
 
                     @focus="focus"
                 >
-                ${vueHelper.getTemplates(data)}
+                ${vueHelper.input.getTemplates(data)}
 
                 ${(data.showSelectedIcon !== 'no') ? `
                     <template v-slot:${data.showSelectedIcon}>
@@ -103,7 +103,7 @@ vis.binds.materialdesign.autocomplete =
                         el: $this.find(`.${containerClass}`).get(0),
                         vuetify: new Vuetify(),
                         data() {
-                            let dataObj = vueHelper.getData(data, widgetHeight);
+                            let dataObj = vueHelper.input.getData(data, widgetHeight);
 
                             let item = getObjectByValue(vis.states.attr(data.oid + '.val'));
 
@@ -194,7 +194,7 @@ vis.binds.materialdesign.autocomplete =
                         }
                     });
 
-                    vueHelper.setStyles($this, data);
+                    vueHelper.input.setStyles($this, data);
 
                     $this.context.style.setProperty("--vue-text-icon-append-size", myMdwHelper.getNumberFromData(data.collapseIconSize, 16) + 'px');
                     $this.context.style.setProperty("--vue-text-icon-append-color", myMdwHelper.getValueFromData(data.collapseIconColor, ''));

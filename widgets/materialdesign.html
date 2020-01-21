@@ -499,7 +499,6 @@
         data-vis-type="ctrl"
         data-vis-name="Autocomplete"
         data-vis-update-style="true"
-        data-vis-beta="true"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,switch;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;inputMode[write]/select,write,select;inputType[text]/select,text,date,time;countSelectItems[1]/number;"
         data-vis-attrs0="group.inputLayout;inputLayout[regular]/select,regular,solo,solo-rounded,solo-shaped,filled,filled-rounded,filled-shaped,outlined,outlined-rounded,outlined-shaped;inputLayoutBackgroundColor/color;inputLayoutBackgroundColorHover/color;inputLayoutBackgroundColorSelected/color;inputLayoutBorderColor/color;inputLayoutBorderColorHover/color;inputLayoutBorderColorSelected/color;inputTextFontFamily/fontname;inputTextFontSize/number;inputTextColor/color;"
         data-vis-attrs1="group.inputLabel;inputLabelText;inputLabelColor/color;inputLabelColorSelected/color;inputLabelFontFamily/fontname;inputLabelFontSize/number,0,24,1;inputTranslateX/number;inputTranslateY/number;"
@@ -507,10 +506,34 @@
         data-vis-attrs3="group.inputSubText;showInputMessageAlways[true]/checkbox;inputMessage;inputMessageFontFamily/fontname;inputMessageFontSize/number;inputMessageColor/color;"
         data-vis-attrs4="group.counter;showInputCounter[true]/checkbox;inputCounterColor/color;inputCounterFontSize/number;inputCounterFontFamily/fontname;"
         data-vis-attrs5="group.icons;clearIconShow[true]/checkbox;clearIcon/custom,materialdesign.viseditor.materialDesignIcons;clearIconSize/number;clearIconColor/color;prepandIcon/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;prepandIconSize/number;prepandIconColor/color;prepandInnerIcon/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;prepandInnerIconSize/number;prepandInnerIconColor/color;appendOuterIcon/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;appendOuterIconSize/number;appendOuterIconColor/color;"
-        data-vis-attrs6="group.autoCompleteListLayout;listPosition[auto]/select,auto,top;listItemHeight/number;listItemBackgroundColor/color;listItemBackgroundHoverColor/color;listItemBackgroundSelectedColor/color;listItemRippleEffectColor/color;showSelectedIcon[prepend-inner]/select,no,prepend,prepend-inner,append-outer;listIconSize/number;listIconColor/color;listIconHoverColor/color;listIconSelectedColor/color;listItemFontSize/number;listItemFont/fontname;listItemFontColor/color;listItemFontHoverColor/color;listItemFontSelectedColor/color;listItemSubFontSize/number;listItemSubFont/fontname;listItemSubFontColor/color;listItemSubFontHoverColor/color;listItemSubFontSelectedColor/color;showValue[true]/checkbox;listItemValueFontSize/number;listItemValueFont/fontname;listItemValueFontColor/color;listItemValueFontHoverColor/color;listItemValueFontSelectedColor/color;"
+        data-vis-attrs6="group.autoCompleteListLayout;listPosition[auto]/select,auto,top,bottom;listItemHeight/number;listItemBackgroundColor/color;listItemBackgroundHoverColor/color;listItemBackgroundSelectedColor/color;listItemRippleEffectColor/color;showSelectedIcon[prepend-inner]/select,no,prepend,prepend-inner,append-outer;listIconSize/number;listIconColor/color;listIconHoverColor/color;listIconSelectedColor/color;listItemFontSize/number;listItemFont/fontname;listItemFontColor/color;listItemFontHoverColor/color;listItemFontSelectedColor/color;listItemSubFontSize/number;listItemSubFont/fontname;listItemSubFontColor/color;listItemSubFontHoverColor/color;listItemSubFontSelectedColor/color;showValue[true]/checkbox;listItemValueFontSize/number;listItemValueFont/fontname;listItemValueFontColor/color;listItemValueFontHoverColor/color;listItemValueFontSelectedColor/color;"
         data-vis-attrs7="group.items/byindex;value(0-countSelectItems);label(0-countSelectItems);subLabel(0-countSelectItems);listIcon(0-countSelectItems)/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;">
         
         <div class="vis-widget materialdesign-widget materialdesign-autocomplete <%== this.data.attr('class') %>" style="width: 150px; height: 38px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.autocomplete(el, data) %>> 
+        
+        </div>
+</script>
+
+<script id="tplVis-materialdesign-Select"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/materialdesign/img/prev_autocomplete.png"></img>'
+        data-vis-set="materialdesign"
+        data-vis-type="ctrl"
+        data-vis-name="Select"
+        data-vis-update-style="true"
+        data-vis-beta="true"
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,switch;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;inputType[text]/select,text,date,time;countSelectItems[1]/number;"
+        data-vis-attrs0="group.inputLayout;inputLayout[regular]/select,regular,solo,solo-rounded,solo-shaped,filled,filled-rounded,filled-shaped,outlined,outlined-rounded,outlined-shaped;inputLayoutBackgroundColor/color;inputLayoutBackgroundColorHover/color;inputLayoutBackgroundColorSelected/color;inputLayoutBorderColor/color;inputLayoutBorderColorHover/color;inputLayoutBorderColorSelected/color;inputTextFontFamily/fontname;inputTextFontSize/number;inputTextColor/color;"
+        data-vis-attrs1="group.inputLabel;inputLabelText;inputLabelColor/color;inputLabelColorSelected/color;inputLabelFontFamily/fontname;inputLabelFontSize/number,0,24,1;inputTranslateX/number;inputTranslateY/number;"
+        data-vis-attrs2="group.inputAppendix;inputPrefix;inputSuffix;inputAppendixColor/color;inputAppendixFontSize/number;inputAppendixFontFamily/fontname;"
+        data-vis-attrs3="group.inputSubText;showInputMessageAlways[true]/checkbox;inputMessage;inputMessageFontFamily/fontname;inputMessageFontSize/number;inputMessageColor/color;"
+        data-vis-attrs4="group.counter;showInputCounter[true]/checkbox;inputCounterColor/color;inputCounterFontSize/number;inputCounterFontFamily/fontname;"
+        data-vis-attrs5="group.icons;clearIconShow[true]/checkbox;clearIcon/custom,materialdesign.viseditor.materialDesignIcons;clearIconSize/number;clearIconColor/color;prepandIcon/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;prepandIconSize/number;prepandIconColor/color;prepandInnerIcon/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;prepandInnerIconSize/number;prepandInnerIconColor/color;appendOuterIcon/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;appendOuterIconSize/number;appendOuterIconColor/color;"
+        data-vis-attrs6="group.selectListLayout;listPosition[auto]/select,auto,top,bottom;listItemHeight/number;listItemBackgroundColor/color;listItemBackgroundHoverColor/color;listItemBackgroundSelectedColor/color;listItemRippleEffectColor/color;showSelectedIcon[prepend-inner]/select,no,prepend,prepend-inner,append-outer;listIconSize/number;listIconColor/color;listIconHoverColor/color;listIconSelectedColor/color;listItemFontSize/number;listItemFont/fontname;listItemFontColor/color;listItemFontHoverColor/color;listItemFontSelectedColor/color;listItemSubFontSize/number;listItemSubFont/fontname;listItemSubFontColor/color;listItemSubFontHoverColor/color;listItemSubFontSelectedColor/color;showValue[true]/checkbox;listItemValueFontSize/number;listItemValueFont/fontname;listItemValueFontColor/color;listItemValueFontHoverColor/color;listItemValueFontSelectedColor/color;"
+        data-vis-attrs7="group.items/byindex;value(0-countSelectItems);label(0-countSelectItems);subLabel(0-countSelectItems);listIcon(0-countSelectItems)/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;">
+        
+        <div class="vis-widget materialdesign-widget materialdesign-select <%== this.data.attr('class') %>" style="width: 150px; height: 38px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.select(el, data) %>> 
         
         </div>
 </script>
@@ -719,17 +742,18 @@
         data-vis-prev='<img src="widgets/materialdesign/img/prev_select_bool.png"></img>'
         data-vis-set="materialdesign"
         data-vis-type="ctrl"
-        data-vis-name="Bool Select"
+        data-vis-name="Decrepated !!! Bool Select"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,selectBool;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;text_true;text_false;hintText;layout[standard]/select,standard,outlined;z_index/number;selectTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;selectTextFont/fontname;listItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;distanceBetweenTextAndImage/number;vibrateOnMobilDevices[50]/number;"
         data-vis-attrs0="group.icon;image/image;imageTrue/image;drawerIconHeight/number;"
         data-vis-attrs1="group.selectColor;selectBackground/color;selectBackgroundHover/color;selectTextColor/color;selectHintTextColor/color;selectHintTextColorSelected/color;selectBorderColor/color;selectBorderColorSelected/color;"
         data-vis-attrs2="group.menuColors;colorDrawerBackground/color;colorDrawerItemBackground/color;colorListItemHover/color;colorListItemSelected/color;colorListItemText/color;colorListItemTextSelected/color;">
 
         <%
-            let init = vis.binds.materialdesign.select.initialize(data, true);
+            let init = vis.binds.materialdesign.selectOld.initialize(data, true);
         %>
 
-        <div class="vis-widget materialdesign-widget materialdesign-select <%== this.data.attr('class') %>" style="width: 150px; height: 56px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.select.handle(el, data, true) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-select <%== this.data.attr('class') %>" style="width: 150px; height: 56px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.selectOld.handle(el, data, true) %>>
+            <span style="color:red"><b>Will be removed in next Version! Please use the new Select Widget!</b></span>
             <%== init %>
         </div>
 </script>
@@ -740,7 +764,7 @@
         data-vis-prev='<img src="widgets/materialdesign/img/prev_select_value.png"></img>'
         data-vis-set="materialdesign"
         data-vis-type="ctrl,val,list"
-        data-vis-name="Value Select"
+        data-vis-name="Decrepated !!! Value Select"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,selectValue;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;values[1]/number;hintText;layout[standard]/select,standard,outlined;z_index/number;selectTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;selectTextFont/fontname;listItemTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;distanceBetweenTextAndImage/number;showValueOnRight[true]/checkbox;valueRightFontsize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;valueRightAppendix;menuWidth/number;vibrateOnMobilDevices[50]/number;"
         data-vis-attrs0="group.icon;image/image;imageTrue/image;drawerIconHeight/number;"
         data-vis-attrs1="group.selectColor;selectBackground/color;selectBackgroundHover/color;selectTextColor/color;selectHintTextColor/color;selectHintTextColorSelected/color;selectBorderColor/color;selectBorderColorSelected/color;"
@@ -748,10 +772,11 @@
         data-vis-attrs3="group.items/byindex;value(0-values);label(0-values);menuIcon(0-values)/image;">
         
         <%
-            let init = vis.binds.materialdesign.select.initialize(data);
+            let init = vis.binds.materialdesign.selectOld.initialize(data);
         %>
 
-        <div class="vis-widget materialdesign-widget materialdesign-select <%== this.data.attr('class') %>" style="width: 150px; height: 56px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.select.handle(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-select <%== this.data.attr('class') %>" style="width: 150px; height: 56px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.selectOld.handle(el, data) %>>
+            <span style="color:red"><b>Will be removed in next Version! Please use the new Select Widget!</b></span>
             <%== init %>
         </div>
 </script>
