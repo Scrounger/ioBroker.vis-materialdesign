@@ -175,7 +175,7 @@ vis.binds.materialdesign.vueHelper = {
                 ${(myMdwHelper.getValueFromData(data.listPosition, 'auto') === 'auto') ? '' : `menu-props="${myMdwHelper.getValueFromData(data.listPosition, 'auto')}"`}
                 :append-icon="collapseIcon"
 
-                @focus="focus"
+                @focus="focusEvent"
             `
         },
         getTemplates: function (data) {
@@ -321,6 +321,29 @@ vis.binds.materialdesign.vueHelper = {
                 vueInput.icon = item.icon;
                 vueInput.image = item.image;
             });
+        },
+        getMethods: function (data, $el, itemsList, $vuetifyContainer, inputMode = '') {
+            return {
+                changeEvent(item) {
+                    if (item) {
+                        if (item.value) {
+                            vis.setValue(data.oid, item.value);
+                        } else {
+                            // only if combobox (is writeable)
+                            vis.setValue(data.oid, item);
+                        }
+                    } else {
+                        let item = vis.binds.materialdesign.vueHelper.getObjectByValue(vis.states.attr(data.oid + '.val'), itemsList, inputMode);
+                        this.item = item;
+                        this.icon = item.icon;
+                        this.image = item.image;
+                    }
+                },
+                focusEvent(value) {
+                    // select object will first time created after item is focused. select object is created under vue app container
+                    vis.binds.materialdesign.vueHelper.select.setMenuStyles($el, data, itemsList, $vuetifyContainer);
+                }
+            }
         }
     },
     getObjectByValue: function (val, itemsList, inputMode = '') {

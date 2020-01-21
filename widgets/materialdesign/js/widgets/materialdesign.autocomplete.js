@@ -49,27 +49,7 @@ vis.binds.materialdesign.autocomplete =
                         data() {
                             return vueHelper.getData(data, widgetHeight, itemsList, inputMode);
                         },
-                        methods: {
-                            changeEvent(item) {
-                                if (item) {
-                                    if (item.value) {
-                                        vis.setValue(data.oid, item.value);
-                                    } else {
-                                        // only if combobox (is writeable)
-                                        vis.setValue(data.oid, item);
-                                    }
-                                } else {
-                                    let item = vueHelper.getObjectByValue(vis.states.attr(data.oid + '.val'), itemsList, inputMode);
-                                    this.item = item;
-                                    this.icon = item.icon;
-                                    this.image = item.image;
-                                }
-                            },
-                            focus(value) {
-                                // select object will first time created after item is focused. select object is created under vue app container
-                                vueHelper.setMenuStyles($this, data, itemsList, $vuetifyContainer);
-                            }
-                        }
+                        methods: vueHelper.getMethods(data, $this, itemsList, $vuetifyContainer, inputMode)
                     });
 
                     vueHelper.setStyles($this, data);
