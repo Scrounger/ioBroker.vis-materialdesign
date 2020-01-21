@@ -76,6 +76,12 @@
   --vue-list-item-font-color-hover: inherit;
   --vue-list-item-font-color-selected: inherit;
 
+  --vue-list-item-subtitle-font-size: inherit;
+  --vue-list-item-subtitle-font-family: inherit;
+  --vue-list-item-subtitle-font-color: rgba(0, 0, 0, 0.6);
+  --vue-list-item-subtitle-font-color-hover: rgba(0, 0, 0, 0.6);
+  --vue-list-item-subtitle-font-color-selected: rgba(0, 0, 0, 0.6);
+
   --vue-list-item-icon-size: inherit;
   --vue-list-item-icon-color: #44739e;
   --vue-list-item-icon-color-hover: #44739e;
@@ -100,6 +106,25 @@
 
 .v-list .v-list-item--active .materialdesign-v-list-item-title {
   color: var(--vue-list-item-font-color-selected);
+}
+
+.materialdesign-v-list-item-subtitle {
+  font-size: var(--vue-list-item-subtitle-font-size);
+  font-family: var(--vue-list-item-subtitle-font-family);
+  color: var(--vue-list-item-subtitle-font-color);
+  line-height: 1.3em;
+}
+
+.v-list-item:hover .materialdesign-v-list-item-subtitle {
+  color: var(--vue-list-item-subtitle-font-color-hover);
+}
+
+.v-list .v-list-item--active:hover .materialdesign-v-list-item-subtitle {
+  color: var(--vue-list-item-subtitle-font-color-hover);
+}
+
+.v-list .v-list-item--active .materialdesign-v-list-item-subtitle {
+  color: var(--vue-list-item-subtitle-font-color-selected);
 }
 
 .materialdesign-v-list-item-icon {
@@ -1954,7 +1979,7 @@
   color: rgba(0, 0, 0, 0.38);
   background: #eeeeee;
 }
-.theme--light.v-list-item .v-list-item__subtitle,
+.theme--light.v-list-item,
 .theme--light.v-list-item .v-list-item__action-text {
   color: rgba(0, 0, 0, 0.6);
 }
@@ -2116,10 +2141,6 @@
 
 .v-list-item__title > .v-badge {
   margin-top: 16px;
-}
-
-.v-list-item__subtitle {
-  font-size: 0.875rem;
 }
 
 .v-list-item--dense,
