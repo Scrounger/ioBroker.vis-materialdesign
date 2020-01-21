@@ -22,15 +22,13 @@ vis.binds.materialdesign.autocomplete =
 
             let itemsList = [];
 
-            console.log(myMdwHelper.getValueFromData(data.attr('menuIcon' + i), ''));
-
             for (var i = 0; i <= data.countSelectItems; i++) {
                 let value = myMdwHelper.getValueFromData(data.attr('value' + i), null)
 
                 if (value !== null) {
                     itemsList.push(
                         {
-                            text: myMdwHelper.getValueFromData(data.attr('label' + i), ''),
+                            text: myMdwHelper.getValueFromData(data.attr('label' + i), value),
                             subText: myMdwHelper.getValueFromData(data.attr('subLabel' + i), ''),
                             value: myMdwHelper.getValueFromData(data.attr('value' + i), ''),
                             icon: myMdwHelper.getValueFromData(data.attr('listIcon' + i), '', 'mdi-'),
@@ -68,13 +66,12 @@ vis.binds.materialdesign.autocomplete =
                 ` : ''}
                  
                 <template v-slot:item="data">
-                    <template>
                     <v-icon class="materialdesign-v-list-item-icon">{{data.item.icon}}</v-icon>
-                        <v-list-item-content style="height: 100%">                            
-                            </v-icon><v-list-item-title class="materialdesign-v-list-item-title" v-html="data.item.text"></v-list-item-title>
-                            <v-list-item-subtitle class="materialdesign-v-list-item-subtitle">{{data.item.subText}}</v-list-item-subtitle>
-                     </v-list-item-content>
-                    </template>
+                    <v-list-item-content style="height: 100%">
+                        <v-list-item-title class="materialdesign-v-list-item-title" v-html="data.item.text"></v-list-item-title>
+                        <v-list-item-subtitle class="materialdesign-v-list-item-subtitle">{{data.item.subText}}</v-list-item-subtitle>
+                    </v-list-item-content>
+                    ${(data.showValue) ? `<label class="materialdesign-v-list-item-value">{{data.item.value}}</label>`: ''}
                 </template>
 
                 </v-${inputMode}>
@@ -103,7 +100,6 @@ vis.binds.materialdesign.autocomplete =
                         },
                         methods: {
                             changeEvent(item) {
-                                console.log(item);
                                 if (item) {
                                     if (item.value) {
                                         vis.setValue(data.oid, item.value);
@@ -156,6 +152,16 @@ vis.binds.materialdesign.autocomplete =
                                         selectList.style.setProperty('--vue-list-item-subtitle-font-color', listItemSubFontColor);
                                         selectList.style.setProperty('--vue-list-item-subtitle-font-color-hover', myMdwHelper.getValueFromData(data.listItemSubFontHoverColor, listItemSubFontColor));
                                         selectList.style.setProperty('--vue-list-item-subtitle-font-color-selected', myMdwHelper.getValueFromData(data.listItemSubFontSelectedColor, listItemSubFontColor));
+
+                                        // list item value font style
+                                        selectList.style.setProperty('--vue-list-item-value-font-size', myMdwHelper.getStringFromNumberData(data.listItemValueFontSize, 'inherit', '', 'px'));
+                                        selectList.style.setProperty('--vue-list-item-value-font-family', myMdwHelper.getValueFromData(data.listItemValueFont, 'inherit'));
+
+                                        let listItemValueFontColor = myMdwHelper.getValueFromData(data.listItemValueFontColor, '');
+
+                                        selectList.style.setProperty('--vue-list-item-value-font-color', listItemValueFontColor);
+                                        selectList.style.setProperty('--vue-list-item-value-font-color-hover', myMdwHelper.getValueFromData(data.listItemValueFontHoverColor, listItemValueFontColor));
+                                        selectList.style.setProperty('--vue-list-item-value-font-color-selected', myMdwHelper.getValueFromData(data.listItemValueFontSelectedColor, listItemValueFontColor));
 
                                         // list item icon style
                                         let listItemColor = myMdwHelper.getValueFromData(data.listIconColor, '#44739e');

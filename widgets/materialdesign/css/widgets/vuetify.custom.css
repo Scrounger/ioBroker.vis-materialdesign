@@ -82,6 +82,12 @@
   --vue-list-item-subtitle-font-color-hover: rgba(0, 0, 0, 0.6);
   --vue-list-item-subtitle-font-color-selected: rgba(0, 0, 0, 0.6);
 
+  --vue-list-item-value-font-size: inherit;
+  --vue-list-item-value-font-family: inherit;
+  --vue-list-item-value-font-color: rgba(0, 0, 0, 0.6);
+  --vue-list-item-value-font-color-hover: rgba(0, 0, 0, 0.6);
+  --vue-list-item-value-font-color-selected: rgba(0, 0, 0, 0.6);
+
   --vue-list-item-icon-size: inherit;
   --vue-list-item-icon-color: #44739e;
   --vue-list-item-icon-color-hover: #44739e;
@@ -124,6 +130,25 @@
 }
 
 .v-list .v-list-item--active .materialdesign-v-list-item-subtitle {
+  color: var(--vue-list-item-subtitle-font-color-selected);
+}
+
+.materialdesign-v-list-item-value {
+  font-size: var(--vue-list-item-value-font-size);
+  font-family: var(--vue-list-item-value-font-family);
+  color: var(--vue-list-item-value-font-color);
+  line-height: 1.3em;
+}
+
+.v-list-item:hover .materialdesign-v-list-item-value {
+  color: var(--vue-list-item-subtitle-font-color-hover);
+}
+
+.v-list .v-list-item--active:hover .materialdesign-v-list-item-value {
+  color: var(--vue-list-item-subtitle-font-color-hover);
+}
+
+.v-list .v-list-item--active .materialdesign-v-list-item-value {
   color: var(--vue-list-item-subtitle-font-color-selected);
 }
 
@@ -2070,6 +2095,7 @@
 .v-list-item__content {
   align-items: center;
   align-self: center;
+  align-content: center;
   display: flex;
   flex-wrap: wrap;
   flex: 1 1;
