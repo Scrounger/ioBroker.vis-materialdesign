@@ -45,16 +45,43 @@ vis.binds.materialdesign.input = {
                     :clear-icon="clearIcon"
 
                     ${(myMdwHelper.getValueFromData(data.appendIcon, null) !== null) ? ':append-icon="appendIcon"' : ''}                        
-                    ${(myMdwHelper.getValueFromData(data.appendOuterIcon, null) !== null) ? ':append-outer-icon="appendOuterIcon"' : ''}
-
-                    ${(myMdwHelper.getValueFromData(data.prepandIcon, null) !== null) ? ':prepend-inner-icon="prepandIcon"' : ''}
-                    ${(myMdwHelper.getValueFromData(data.prepandOuterIcon, null) !== null) ? ':prepend-icon="prepandOuterIcon"' : ''}
                     
                     @change="changeEvent"
                 `
         },
+        getTemplates: function (data) {
+            return `
+                ${(myMdwHelper.getValueFromData(data.prepandIcon, null) !== null) ?
+                    `<template v-slot:prepend>
+                        <div  class="v-input__icon v-input__icon--prepend">                            
+                            <v-icon v-if="prepandIcon !== ''">{{ prepandIcon }}</v-icon>
+                            <img v-if="prepandImage !== ''" :src="prepandImage" />
+                        </div>
+                    </template>`
+                    : ''}
+
+                ${(myMdwHelper.getValueFromData(data.prepandInnerIcon, null) !== null) ?
+                    `<template v-slot:prepend-inner>
+                        <div  class="v-input__icon v-input__icon--prepend-inner">                            
+                            <v-icon v-if="prepandInnerIcon !== ''">{{ prepandInnerIcon }}</v-icon>
+                            <img v-if="prepandInnerImage !== ''" :src="prepandInnerImage" />
+                        </div>
+                    </template>`
+                    : ''}
+                ${(myMdwHelper.getValueFromData(data.appendOuterIcon, null) !== null) ?
+                    `<template v-slot:append-outer>
+                        <div  class="v-input__icon v-input__icon--append-outer">                            
+                            <v-icon v-if="appendOuterIcon !== ''">{{ appendOuterIcon }}</v-icon>
+                            <img v-if="appendOuterImage !== ''" :src="appendOuterImage" />
+                        </div>
+                    </template>`
+                    : ''}                        
+            `
+        },
         getData: function (data, widgetHeight, placeholder = '') {
-            return {                
+            let imgFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
+
+            return {
                 height: widgetHeight,
                 label: myMdwHelper.getValueFromData(data.inputLabelText, ''),
                 type: myMdwHelper.getValueFromData(data.inputType, 'text'),
@@ -65,9 +92,15 @@ vis.binds.materialdesign.input = {
                 placeholder: placeholder,
                 clearIcon: myMdwHelper.getValueFromData(data.clearIcon, 'mdi-close', 'mdi-'),
                 appendIcon: myMdwHelper.getValueFromData(data.appendIcon, undefined, 'mdi-'),
-                appendOuterIcon: myMdwHelper.getValueFromData(data.appendOuterIcon, undefined, 'mdi-'),
-                prepandIcon: myMdwHelper.getValueFromData(data.prepandIcon, undefined, 'mdi-'),
-                prepandOuterIcon: myMdwHelper.getValueFromData(data.prepandOuterIcon, undefined, 'mdi-'),
+
+                prepandIcon: (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.prepandIcon, '').includes(el))) ? undefined : myMdwHelper.getValueFromData(data.prepandIcon, undefined, 'mdi-'),
+                prepandImage: (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.prepandIcon, '').includes(el))) ? myMdwHelper.getValueFromData(data.prepandIcon, undefined) : undefined,
+
+                prepandInnerIcon: (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.prepandInnerIcon, '').includes(el))) ? undefined : myMdwHelper.getValueFromData(data.prepandInnerIcon, undefined, 'mdi-'),
+                prepandInnerImage: (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.prepandInnerIcon, '').includes(el))) ? myMdwHelper.getValueFromData(data.prepandInnerIcon, undefined) : undefined,
+
+                appendOuterIcon: (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.appendOuterIcon, '').includes(el))) ? undefined : myMdwHelper.getValueFromData(data.appendOuterIcon, undefined, 'mdi-'),
+                appendOuterImage: (imgFileExtensions.some(el => myMdwHelper.getValueFromData(data.appendOuterIcon, '').includes(el))) ? myMdwHelper.getValueFromData(data.appendOuterIcon, undefined) : undefined,
             }
         },
         setStyles: function ($el, data) {
@@ -131,9 +164,9 @@ vis.binds.materialdesign.input = {
             $el.context.style.setProperty("--vue-text-icon-prepand-size", myMdwHelper.getNumberFromData(data.prepandIconSize, 16) + 'px');
             $el.context.style.setProperty("--vue-text-icon-prepand-color", myMdwHelper.getValueFromData(data.prepandIconColor, ''));
 
-            // Icon: prepand-outer options
-            $el.context.style.setProperty("--vue-text-icon-prepand-outer-size", myMdwHelper.getNumberFromData(data.prepandOuterIconSize, 16) + 'px');
-            $el.context.style.setProperty("--vue-text-icon-prepand-outer-color", myMdwHelper.getValueFromData(data.prepandOuterIconColor, ''));
+            // Icon: prepand-inner options
+            $el.context.style.setProperty("--vue-text-icon-prepand-inner-size", myMdwHelper.getNumberFromData(data.prepandInnerIconSize, 16) + 'px');
+            $el.context.style.setProperty("--vue-text-icon-prepand-inner-color", myMdwHelper.getValueFromData(data.prepandInnerIconColor, ''));
         }
     }
 };

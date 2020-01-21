@@ -59,8 +59,8 @@
   --vue-text-icon-prepand-color: #44739e;
   --vue-text-icon-prepand-size: inherit;
 
-  --vue-text-icon-prepand-outer-color: #44739e;
-  --vue-text-icon-prepand-outer-size: inherit;
+  --vue-text-icon-prepand-inner-color: #44739e;
+  --vue-text-icon-prepand-inner-size: inherit;
 
   --vue-list-item-height: auto;
 
@@ -1156,22 +1156,38 @@
   cursor: var(--vue-text-icon-append-cursor);
 }
 
+.v-input__icon--append > img {
+  height: var(--vue-text-icon-append-size);
+}
+
 .v-input__icon--append-outer {
   font-size: var(--vue-text-icon-append-outer-size);
   color: var(--vue-text-icon-append-outer-color);
   padding-left: 10px;
 }
 
-.v-input__icon--prepend-inner{
+.v-input__icon--append-outer > img {
+  height: var(--vue-text-icon-append-outer-size);
+}
+
+.v-input__icon--prepend-inner {
+  font-size: var(--vue-text-icon-prepand-inner-size);
+  color: var(--vue-text-icon-prepand-inner-color);
+  padding-right: 10px;
+}
+
+.v-input__icon--prepend-inner > img {
+  height: var(--vue-text-icon-prepand-inner-size);
+}
+
+.v-input__icon--prepend {
   font-size: var(--vue-text-icon-prepand-size);
   color: var(--vue-text-icon-prepand-color);
   padding-right: 10px;
 }
 
-.v-input__icon--prepend {
-  font-size: var(--vue-text-icon-prepand-outer-size);
-  color: var(--vue-text-icon-prepand-outer-color);
-  padding-right: 10px;
+.v-input__icon--prepend > img {
+  height: var(--vue-text-icon-prepand-size);
 }
 
 .v-input__slot {

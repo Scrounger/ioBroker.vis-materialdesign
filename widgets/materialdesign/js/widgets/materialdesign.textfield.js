@@ -35,6 +35,8 @@ vis.binds.materialdesign.textfield =
                     ${inputMask}
                     :maxlength="maxlength"
                 >
+                ${helper.getTemplates(data)}
+                
                 </v-text-field>
             </div>`);
 

@@ -69,6 +69,7 @@ vis.binds.materialdesign.autocomplete =
 
                     @focus="focus"
                 >
+                ${helper.getTemplates(data)}
 
                 ${(data.showSelectedIcon !== 'no') ? `
                     <template v-slot:${data.showSelectedIcon}>
