@@ -31,6 +31,7 @@ vis.binds.materialdesign.autocomplete =
                     itemsList.push(
                         {
                             text: myMdwHelper.getValueFromData(data.attr('label' + i), ''),
+                            subText: myMdwHelper.getValueFromData(data.attr('subLabel' + i), ''),
                             value: myMdwHelper.getValueFromData(data.attr('value' + i), ''),
                             icon: myMdwHelper.getValueFromData(data.attr('listIcon' + i), '', 'mdi-'),
                         }
@@ -71,7 +72,7 @@ vis.binds.materialdesign.autocomplete =
                     <v-icon class="materialdesign-v-list-item-icon">{{data.item.icon}}</v-icon>
                         <v-list-item-content style="height: 100%">                            
                             </v-icon><v-list-item-title class="materialdesign-v-list-item-title" v-html="data.item.text"></v-list-item-title>
-                            <v-list-item-subtitle v-html="data.item.value">fuuu</v-list-item-subtitle>
+                            <v-list-item-subtitle>{{data.item.subText}}</v-list-item-subtitle>
                      </v-list-item-content>
                     </template>
                 </template>
@@ -101,18 +102,18 @@ vis.binds.materialdesign.autocomplete =
                             return dataObj;
                         },
                         methods: {
-                            changeEvent(value) {
-                                console.log(value);
-                                if (value) {
-                                    if (value.value) {
-                                        vis.setValue(data.oid, value.value);
+                            changeEvent(item) {
+                                console.log(item);
+                                if (item) {
+                                    if (item.value) {
+                                        vis.setValue(data.oid, item.value);
                                     } else {
                                         // only if combobox (is writeable)
-                                        vis.setValue(data.oid, value);
+                                        vis.setValue(data.oid, item);
                                     }
                                 } else {
                                     let item = getObjectByValue(vis.states.attr(data.oid + '.val'));
-                                    this.value = item;
+                                    this.item = item;
                                     this.icon = item.icon;
                                 }
                             },
@@ -167,7 +168,7 @@ vis.binds.materialdesign.autocomplete =
 
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                         let item = getObjectByValue(newVal);
-                        vueTextField.value = item;
+                        vueTextField.item = item;
                         vueTextField.icon = item.icon;
                     });
 
