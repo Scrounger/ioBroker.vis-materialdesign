@@ -48,6 +48,14 @@ vis.binds.materialdesign.viseditor = {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#switch'
                 }
 
+                if (data[1] === 'select') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#select'
+                }
+
+                if (data[1] === 'autocomplete') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#autocomplete'
+                }
+
                 if (data[1] === 'table') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#table'
                 }

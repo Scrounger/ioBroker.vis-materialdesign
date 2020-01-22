@@ -111,7 +111,7 @@ Settings that are not listed in the table below are self-explanatory.
     </thead>
     <tbody>
         <tr>
-            <td rowspan=6><img src="doc/en/media/select_data_settings.png"></td>
+            <td rowspan=6><img src="doc/en/media/select_autocomplete_settings.png"></td>
             <td>method of data of menu</td>
             <td>There are three methods to define the data of the menu. First is to define it via editor. Second is to define it via a json string. Third method is to define it by three list for values, labels and icons</td>
         </tr>
@@ -176,7 +176,7 @@ Settings that are not listed in the table below are self-explanatory.
     </thead>
     <tbody>
         <tr>
-            <td rowspan=6><img src="doc/en/media/select_data_settings.png"></td>
+            <td rowspan=6><img src="doc/en/media/select_autocomplete_settings.png"></td>
             <td>method of data of menu</td>
             <td>There are three methods to define the data of the menu. First is to define it via editor. Second is to define it via a json string. Third method is to define it by three list for values, labels and icons</td>
         </tr>
