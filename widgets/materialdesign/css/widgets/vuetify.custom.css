@@ -93,9 +93,14 @@
   --vue-list-item-icon-color-hover: #44739e;
   --vue-list-item-icon-color-selected: #44739e;
 
-  --alerts-border-color: #44739e;
-  --alerts-border-outlined-color: #44739e;
-  --alerts-button-close-color: #44739e;
+  --vue-alerts-background-color: #fff;
+  --vue-alerts-border-color: #44739e;
+  --vue-alerts-border-outlined-color: #44739e;
+  --vue-alerts-button-close-color: #44739e;
+
+  --vue-alerts-text-size: 16px;
+  --vue-alerts-text-font-family: inherit;
+  --vue-alerts-text-font-color: inherit;
 }
 
 /* custom classes for templates */
@@ -2373,6 +2378,7 @@
   padding: 16px;
   position: relative;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+  background: var(--vue-alerts-background-color);
 }
 .v-alert:not(.v-sheet--tile) {
   border-radius: 4px;
@@ -2403,8 +2409,8 @@
   border-width: 4px;
   content: "";
   position: absolute;
-  border-color: var(--alerts-border-color);
-  background: var(--alerts-border-color);
+  border-color: var(--vue-alerts-border-color);
+  background: var(--vue-alerts-border-color);
 }
 
 .v-alert__border--left {
@@ -2468,6 +2474,9 @@
 
 .v-alert__content {
   flex: 1 1 auto;
+  font-size: var(--vue-alerts-text-size);
+  font-family: var(--vue-alerts-text-font-family);
+  color: var(--vue-alerts-text-font-color);
 }
 
 .v-application--is-ltr .v-alert__dismissible {
@@ -2510,7 +2519,7 @@
 
 .v-alert--outlined {
   background: transparent !important;
-  border: thin solid var(--alerts-border-outlined-color) !important;
+  border: thin solid var(--vue-alerts-border-outlined-color) !important;
 }
 .v-alert--outlined .v-alert__icon {
   color: inherit !important;

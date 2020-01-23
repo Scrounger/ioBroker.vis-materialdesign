@@ -1136,3 +1136,20 @@
             </div>
         </div>
 </script>
+
+<script id="tplVis-materialdesign-Alerts"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/materialdesign/img/prev_autocomplete.png"></img>'
+        data-vis-set="materialdesign"
+        data-vis-type="ctrl"
+        data-vis-name="Alerts"
+        data-vis-update-style="true"
+        data-vis-beta="true"
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;showMaxAlerts[3]/number;"
+        data-vis-attrs0="group.alertLayout;alertLayouts[normal]/select,normal,dense,outlined,tile,prominent;alertElevation[1]/slider,0,24,1;alertBackgroundColor/color;alertBorderLayout[none]/select,none,top,right,left,bottom;alertBorderColor/color;alertBorderOutlinedColor/color;closeIcon[close-circle-outline]/custom,materialdesign.viseditor.materialDesignIcons;closeIconColor/color;closeIconPressColor/color;alertFontSize/number;alertFontFamily/fontname;alertFontColor/color;">
+
+        <div class="vis-widget materialdesign-widget materialdesign-alerts <%== this.data.attr('class') %>" style="width: 150px; height: 38px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.alerts(el, data) %>> 
+        
+        </div>
+</script>
