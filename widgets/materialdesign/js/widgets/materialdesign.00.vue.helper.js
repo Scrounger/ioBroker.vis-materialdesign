@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.46"
+    version: "0.2.45"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -197,8 +197,8 @@ vis.binds.materialdesign.vueHelper = {
                 ${(data.showSelectedIcon !== 'no') ? `
                     <template v-slot:${data.showSelectedIcon}>
                         <div  class="v-input__icon v-input__icon--${data.showSelectedIcon}">                            
-                            <v-icon v-if="icon !== ''" class="materialdesign-v-list-item-icon">{{ icon }}</v-icon>
-                            <img v-if="image !== ''" class="materialdesign-v-list-item-image" :src="image" />
+                            <v-icon v-if="icon !== ''">{{ icon }}</v-icon>
+                            <img v-if="image !== ''" :src="image" />
                         </div>
                     </template>
                 ` : ''}

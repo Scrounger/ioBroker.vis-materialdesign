@@ -9,7 +9,7 @@
 
 // this code can be placed directly in materialdesign.html
 vis.binds.materialdesign.textfield =
-    function (el, data, isAutoComplete = false) {
+    function (el, data) {
         try {
             let $this = $(el);
             let vueHelper = vis.binds.materialdesign.vueHelper.input
