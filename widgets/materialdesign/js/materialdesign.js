@@ -7,16 +7,13 @@
 */
 "use strict";
 
-if (vis.editMode) {
-    let iobSystemDic = systemDictionary;
-    $.get("../vis-materialdesign.admin/words.js", function (script) {
-        let translation = script.substring(script.indexOf('{'), script.length);
-        translation = translation.substring(0, translation.lastIndexOf(';'));
-        $.extend(systemDictionary, JSON.parse(translation));
-        $.extend(systemDictionary, iobSystemDic);
-    });
-}
-
+let iobSystemDic = systemDictionary;
+$.get("../vis-materialdesign.admin/words.js", function (script) {
+    let translation = script.substring(script.indexOf('{'), script.length);
+    translation = translation.substring(0, translation.lastIndexOf(';'));
+    $.extend(systemDictionary, JSON.parse(translation));
+    $.extend(systemDictionary, iobSystemDic);
+});
 
 
 // TODO: move widgets to own file -> using minify
@@ -63,7 +60,7 @@ vis.binds.materialdesign = {
             vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
         });
     },
-    
+
 };
 
 vis.binds["materialdesign"].showVersion();
