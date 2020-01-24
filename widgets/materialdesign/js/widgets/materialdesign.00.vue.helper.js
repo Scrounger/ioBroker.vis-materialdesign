@@ -345,9 +345,9 @@ vis.binds.materialdesign.vueHelper = {
                 }
             } else if (data.listDataMethod === 'valueList') {
                 if (data.valueList) {
-                    let valueList = data.valueList.split(',');
-                    let valueListLabels = data.valueListLabels.split(',');
-                    let valueListIcons = data.valueListIcons.split(',');
+                    let valueList = myMdwHelper.getValueFromData(data.valueList, '').split(',');
+                    let valueListLabels = myMdwHelper.getValueFromData(data.valueListLabels, '').split(',');
+                    let valueListIcons = myMdwHelper.getValueFromData(data.valueListIcons, '').split(',');
 
                     for (var i = 0; i <= valueList.length - 1; i++) {
                         let value = valueList[i];
@@ -400,6 +400,64 @@ vis.binds.materialdesign.vueHelper = {
                     vis.binds.materialdesign.vueHelper.select.setMenuStyles($el, data, itemsList, $vuetifyContainer);
                 }
             }
+        }
+    },
+    alerts: {
+        generateElement: function (data, $container, idPrefix, elNum) {
+            let id = `${idPrefix}${elNum}`
+
+            let borderLayout = '';
+            if (myMdwHelper.getValueFromData(data.alertBorderLayout, null) !== null) {
+                borderLayout = `border="${data.alertBorderLayout}"`;
+            }
+
+            $container.append(`
+                <v-alert 
+                    id="${id}"
+                    :value="showAlert"
+                    elevation="${myMdwHelper.getNumberFromData(data.alertElevation, 0)}"
+                    ${data.alertLayouts}
+                    ${borderLayout}
+                    transition="scroll-x-transition"
+                >
+                    <template v-slot:default>
+                        <label v-if="text !== ''" v-html="text"></label>
+                    </template>
+
+                    <template v-slot:append>
+                        <div class="materialdesign-icon-button" index="${elNum}" style="position: relative; width: 30px; height: 30px;">
+                            <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+                                <span class="mdi mdi-${myMdwHelper.getValueFromData(data.closeIcon, 'close-circle-outline')} materialdesign-icon-image " style="font-size: 20px; color: var(--vue-alerts-button-close-color);"></span>                    
+                            </div>
+                        </div>
+                    </template>
+
+                    <template v-slot:prepend>
+                        <v-icon v-if="icon !== ''" class="materialdesign-v-alerts-icon-prepand">{{ icon }}</v-icon>
+                        <img v-if="image !== ''" class="materialdesign-v-alerts-image-prepand" :src="image" />
+                    </template>
+                </v-alert>
+            `);
+        },
+        getVuetifyElement: function ($container, item, idPrefix, elNum) {
+            let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(item.icon);
+
+            let alert = new Vue({
+                el: $container.find(`#${idPrefix}${elNum}`).get(0),
+                vuetify: new Vuetify(),
+                data() {
+                    return {
+                        showAlert: false,
+                        icon: imgObj.icon,
+                        image: imgObj.image,
+                        text: `item${elNum}<br>` + item.text,
+                    }
+                }
+            });
+
+            alert.showAlert = true;         //show here to use animation
+
+            return alert;
         }
     },
     getObjectByValue: function (val, itemsList, inputMode = '') {
