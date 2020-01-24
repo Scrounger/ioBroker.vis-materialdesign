@@ -407,7 +407,7 @@ vis.binds.materialdesign.vueHelper = {
             let id = `${idPrefix}${elNum}`
 
             let borderLayout = '';
-            if (myMdwHelper.getValueFromData(data.alertBorderLayout, null) !== null) {
+            if (myMdwHelper.getValueFromData(data.alertBorderLayout, 'none') !== 'none') {
                 borderLayout = `border="${data.alertBorderLayout}"`;
             }
 
