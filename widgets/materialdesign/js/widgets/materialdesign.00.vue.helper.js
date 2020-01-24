@@ -418,6 +418,7 @@ vis.binds.materialdesign.vueHelper = {
                     elevation="${myMdwHelper.getNumberFromData(data.alertElevation, 0)}"
                     ${data.alertLayouts}
                     ${borderLayout}
+                    ${(myMdwHelper.getValueFromData(data.alertDense, 'false') === 'true') ? 'dense' : ''}
                     transition="scroll-x-transition"
                 >
                     <template v-slot:default>
@@ -441,7 +442,7 @@ vis.binds.materialdesign.vueHelper = {
         },
         getVuetifyElement: function ($container, item, idPrefix, elNum) {
             let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(item.icon);
-            
+
 
             let alert = new Vue({
                 el: $container.find(`#${idPrefix}${elNum}`).get(0),
@@ -463,9 +464,9 @@ vis.binds.materialdesign.vueHelper = {
             el.style.setProperty("--vue-alerts-background-color", myMdwHelper.getValueFromData(item.backgroundColor, ''))
 
             el.style.setProperty("--vue-alerts-border-color", myMdwHelper.getValueFromData(item.borderColor, ''));
-            el.style.setProperty("--vue-alerts-border-outlined-color",myMdwHelper.getValueFromData(item.borderColor, ''));
+            el.style.setProperty("--vue-alerts-border-outlined-color", myMdwHelper.getValueFromData(item.borderColor, ''));
 
-            el.style.setProperty("--vue-alerts-icon-color",myMdwHelper.getValueFromData(item.iconColor, ''));
+            el.style.setProperty("--vue-alerts-icon-color", myMdwHelper.getValueFromData(item.iconColor, ''));
 
             el.style.setProperty("--vue-alerts-text-font-color", myMdwHelper.getValueFromData(item.fontColor, ''));
 

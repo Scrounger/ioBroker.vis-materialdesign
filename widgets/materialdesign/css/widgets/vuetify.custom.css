@@ -103,6 +103,9 @@
   --vue-alerts-text-font-color: inherit;
 
   --vue-alerts-icon-color: black;
+  --vue-alerts-icon-size: 24px;
+
+  --vue-alerts-bottom-margin: 16px;
 }
 
 /* custom classes for templates */
@@ -190,13 +193,13 @@
 
 .materialdesign-v-alerts-icon-prepand {
   padding-right: 12px;
-  font-size: 24px;
+  font-size: var(--vue-alerts-icon-size);
   color: var(--vue-alerts-icon-color);
 }
 
 .materialdesign-v-alerts-image-prepand {
   padding-right: 12px;
-  height: 24px;
+  height: var(--vue-alerts-icon-size);
 }
 
 
@@ -2379,7 +2382,7 @@
 .v-alert {
   display: block;
   font-size: 16px;
-  margin-bottom: 16px;
+  margin-bottom: var(--vue-alerts-bottom-margin);
   padding: 16px;
   position: relative;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
