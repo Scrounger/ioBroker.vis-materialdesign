@@ -101,6 +101,8 @@
   --vue-alerts-text-size: 16px;
   --vue-alerts-text-font-family: inherit;
   --vue-alerts-text-font-color: inherit;
+
+  --vue-alerts-icon-color: black;
 }
 
 /* custom classes for templates */
@@ -189,6 +191,7 @@
 .materialdesign-v-alerts-icon-prepand {
   padding-right: 12px;
   font-size: 24px;
+  color: var(--vue-alerts-icon-color);
 }
 
 .materialdesign-v-alerts-image-prepand {
@@ -2520,7 +2523,7 @@
 }
 
 .v-alert--outlined {
-  background: transparent !important;
+  background: var(--vue-alerts-background-color);
   border: thin solid var(--vue-alerts-border-outlined-color) !important;
 }
 .v-alert--outlined .v-alert__icon {

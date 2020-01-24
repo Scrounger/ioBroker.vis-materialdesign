@@ -1147,9 +1147,11 @@
         data-vis-update-style="true"
         data-vis-beta="true"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;showMaxAlerts[3]/number;"
-        data-vis-attrs0="group.alertLayout;alertLayouts[normal]/select,normal,dense,outlined,tile,prominent;alertElevation[1]/slider,0,24,1;alertBackgroundColor/color;alertBorderLayout[none]/select,none,top,right,left,bottom;alertBorderColor/color;alertBorderOutlinedColor/color;closeIcon[close-circle-outline]/custom,materialdesign.viseditor.materialDesignIcons;closeIconColor/color;closeIconPressColor/color;alertFontSize/number;alertFontFamily/fontname;alertFontColor/color;">
+        data-vis-attrs0="group.alertLayout;alertLayouts[normal]/select,normal,dense,outlined,tile;alertElevation[1]/slider,0,24,1;alertBorderLayout[none]/select,none,top,right,left,bottom;closeIcon[close-circle-outline]/custom,materialdesign.viseditor.materialDesignIcons;closeIconColor/color;closeIconPressColor/color;alertFontSize/number;alertFontFamily/fontname;">
 
-        <div class="vis-widget materialdesign-widget materialdesign-alerts <%== this.data.attr('class') %>" style="width: 150px; height: 38px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.alerts(el, data) %>> 
-        
+        <div class="vis-widget materialdesign-widget materialdesign-alerts <%== this.data.attr('class') %>" style="width: 150px; height: 38px; overflow: visible;" id="<%= this.data.attr('wid') %>"> 
+            <div class="materialdesign-vuetify-alerts" style="width: 100%; height: 100%;" <%= (el) -> vis.binds.materialdesign.alerts(el, data) %>>
+            
+            </div>
         </div>
 </script>

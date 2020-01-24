@@ -425,7 +425,7 @@ vis.binds.materialdesign.vueHelper = {
                     </template>
 
                     <template v-slot:append>
-                        <div class="materialdesign-icon-button" index="${elNum}" style="position: relative; width: 30px; height: 30px;">
+                        <div class="materialdesign-icon-button v-alert-materialdesign-icon-button" index="${elNum}" style="position: relative; width: 30px; height: 30px;">
                             <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
                                 <span class="mdi mdi-${myMdwHelper.getValueFromData(data.closeIcon, 'close-circle-outline')} materialdesign-icon-image " style="font-size: 20px; color: var(--vue-alerts-button-close-color);"></span>                    
                             </div>
@@ -441,6 +441,7 @@ vis.binds.materialdesign.vueHelper = {
         },
         getVuetifyElement: function ($container, item, idPrefix, elNum) {
             let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(item.icon);
+            
 
             let alert = new Vue({
                 el: $container.find(`#${idPrefix}${elNum}`).get(0),
@@ -450,14 +451,31 @@ vis.binds.materialdesign.vueHelper = {
                         showAlert: false,
                         icon: imgObj.icon,
                         image: imgObj.image,
-                        text: `item${elNum}<br>` + item.text,
+                        text: item.text,
                     }
                 }
             });
 
             alert.showAlert = true;         //show here to use animation
 
+            let el = $container.find(`#${idPrefix}${elNum}`).get(0);
+
+            el.style.setProperty("--vue-alerts-background-color", myMdwHelper.getValueFromData(item.backgroundColor, ''))
+
+            el.style.setProperty("--vue-alerts-border-color", myMdwHelper.getValueFromData(item.borderColor, ''));
+            el.style.setProperty("--vue-alerts-border-outlined-color",myMdwHelper.getValueFromData(item.borderColor, ''));
+
+            el.style.setProperty("--vue-alerts-icon-color",myMdwHelper.getValueFromData(item.iconColor, ''));
+
+            el.style.setProperty("--vue-alerts-text-font-color", myMdwHelper.getValueFromData(item.fontColor, ''));
+
             return alert;
+        },
+        initializeClearButtonEvent: function ($container, vueAlertElements) {
+            $container.find('.v-alert-materialdesign-icon-button').click(function () {
+                let index = $(this).attr('index')
+                vueAlertElements[index].showAlert = false;
+            });
         }
     },
     getObjectByValue: function (val, itemsList, inputMode = '') {
