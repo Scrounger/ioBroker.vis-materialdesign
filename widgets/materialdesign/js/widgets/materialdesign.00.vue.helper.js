@@ -472,10 +472,15 @@ vis.binds.materialdesign.vueHelper = {
 
             return alert;
         },
-        initializeClearButtonEvent: function ($container, vueAlertElements) {
+        initializeClearButtonEvent: function ($container, vueAlertElements, data, jsonData) {
             $container.find('.v-alert-materialdesign-icon-button').click(function () {
                 let index = $(this).attr('index')
                 vueAlertElements[index].showAlert = false;
+
+                myMdwAlertClearButtonClicked = true;
+
+                jsonData.splice(index, 1);
+                vis.setValue(data.oid, JSON.stringify(jsonData));
             });
         }
     },
