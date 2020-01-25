@@ -63,6 +63,10 @@ vis.binds.materialdesign.viseditor = {
                 if (data[1] === 'columnViews') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#column-views'
                 }
+
+                if (data[1] === 'alerts') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#alerts'
+                }
             }
 
             return { input: `<a target="_blank" href="${url}">${_('readme')}</a>` }
