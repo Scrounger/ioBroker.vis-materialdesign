@@ -803,7 +803,8 @@ vis.binds.materialdesign.chart.helper = {
                 fontFamily: myMdwHelper.getValueFromData(data.legendFontFamily, undefined),
                 fontSize: myMdwHelper.getNumberFromData(data.legendFontSize, undefined),
                 boxWidth: myMdwHelper.getNumberFromData(data.legendBoxWidth, 10),
-                usePointStyle: data.legendPointStyle
+                usePointStyle: data.legendPointStyle,
+                padding: myMdwHelper.getNumberFromData(data.legendPadding, 10)
             }
         }
     },
