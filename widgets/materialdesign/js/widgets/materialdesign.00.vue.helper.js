@@ -486,7 +486,7 @@ vis.binds.materialdesign.vueHelper = {
 
                 myMdwAlertClearButtonClicked = true;
 
-                for (var i = 0; i <= jsonData.length -1; i++) {
+                for (var i = 0; i <= jsonData.length - 1; i++) {
                     if (jsonData[i].id === `${idPrefix}${index}`) {
                         jsonData.splice(i, 1);
                         break;
@@ -495,14 +495,14 @@ vis.binds.materialdesign.vueHelper = {
 
                 vis.setValue(data.oid, JSON.stringify(jsonData));
 
-                $container.find(`#${idPrefix}${index}`).remove();
-
                 setTimeout(function () {
+                    $container.find(`#${idPrefix}${index}`).remove();
+
                     let nextHiddenEl = $container.find('.v-alert-materialdesign-icon-button').not(":visible");
                     if (nextHiddenEl.length > 0) {
                         vueAlertElements[parseInt(nextHiddenEl.attr('index'))].showAlert = true;
                     }
-                }, 1);
+                }, 300)
             });
         }
     },
