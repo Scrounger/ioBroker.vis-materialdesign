@@ -440,9 +440,9 @@ vis.binds.materialdesign.vueHelper = {
                 </v-alert>
             `);
         },
-        getVuetifyElement: function ($container, item, idPrefix, elNum) {
+        getVuetifyElement: function ($container, item, idPrefix, elNum, data) {
             let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(item.icon);
-
+            let maxAlerts = myMdwHelper.getNumberFromData(data.showMaxAlerts, 0);
 
             let alert = new Vue({
                 el: $container.find(`#${idPrefix}${elNum}`).get(0),
@@ -457,7 +457,13 @@ vis.binds.materialdesign.vueHelper = {
                 }
             });
 
-            alert.showAlert = true;         //show here to use animation
+            if (maxAlerts > 0) {
+                if (elNum < maxAlerts) {
+                    alert.showAlert = true;         //show here to use animation
+                }
+            } else {
+                alert.showAlert = true;
+            }
 
             let el = $container.find(`#${idPrefix}${elNum}`).get(0);
 
@@ -472,15 +478,31 @@ vis.binds.materialdesign.vueHelper = {
 
             return alert;
         },
-        initializeClearButtonEvent: function ($container, vueAlertElements, data, jsonData) {
+        initializeClearButtonEvent: function ($container, vueAlertElements, data, jsonData, idPrefix) {
             $container.find('.v-alert-materialdesign-icon-button').click(function () {
-                let index = $(this).attr('index')
+                let index = parseInt($(this).attr('index'));
+
                 vueAlertElements[index].showAlert = false;
 
                 myMdwAlertClearButtonClicked = true;
 
-                jsonData.splice(index, 1);
+                for (var i = 0; i <= jsonData.length -1; i++) {
+                    if (jsonData[i].id === `${idPrefix}${index}`) {
+                        jsonData.splice(i, 1);
+                        break;
+                    }
+                }
+
                 vis.setValue(data.oid, JSON.stringify(jsonData));
+
+                $container.find(`#${idPrefix}${index}`).remove();
+
+                setTimeout(function () {
+                    let nextHiddenEl = $container.find('.v-alert-materialdesign-icon-button').not(":visible");
+                    if (nextHiddenEl.length > 0) {
+                        vueAlertElements[parseInt(nextHiddenEl.attr('index'))].showAlert = true;
+                    }
+                }, 1);
             });
         }
     },

@@ -38,7 +38,9 @@ vis.binds.materialdesign.alerts =
 
                     for (var i = 0; i <= jsonData.length - 1; i++) {
                         let item = jsonData[i];
-                        vueAlertElements.push(vueHelper.getVuetifyElement($this, item, idPrefix, i));
+                        item.id = `${idPrefix}${i}`
+                        
+                        vueAlertElements.push(vueHelper.getVuetifyElement($this, item, idPrefix, i, data));
                     }
 
                     let iconButtons = $this.find('.materialdesign-icon-button');
@@ -48,7 +50,7 @@ vis.binds.materialdesign.alerts =
                     }
 
 
-                    vueHelper.initializeClearButtonEvent($this, vueAlertElements, data, jsonData);
+                    vueHelper.initializeClearButtonEvent($this, vueAlertElements, data, jsonData, idPrefix);
                 });
                 // });
             }
@@ -70,11 +72,19 @@ vis.binds.materialdesign.alerts =
                     if (jsonData !== null) {
                         for (var i = 0; i <= jsonData.length - 1; i++) {
                             let item = jsonData[i];
+                            item.id = `${idPrefix}${i}`
+
                             vueHelper.generateElement(data, $this, idPrefix, i);
-                            vueAlertElements.push(vueHelper.getVuetifyElement($this, item, idPrefix, i));
+                            vueAlertElements.push(vueHelper.getVuetifyElement($this, item, idPrefix, i, data));
                         }
 
-                        vueHelper.initializeClearButtonEvent($this, vueAlertElements, data, jsonData);
+                        let iconButtons = $this.find('.materialdesign-icon-button');
+                        for (var b = 0; b <= iconButtons.length - 1; b++) {
+                            // set ripple effect to icon buttons
+                            new mdc.iconButton.MDCIconButtonToggle($this.find('.materialdesign-icon-button').get(b));
+                        }
+
+                        vueHelper.initializeClearButtonEvent($this, vueAlertElements, data, jsonData, idPrefix);
                     }
                 }
 
