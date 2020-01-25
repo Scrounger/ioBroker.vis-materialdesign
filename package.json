@@ -37,6 +37,8 @@
   "main": "widgets/materialdesign.html",
   "scripts": {
     "test:package": "mocha test/package --exit",
+    "test:unit": "mocha test/unit --exit",
+    "test:integration": "mocha test/integration --exit",
     "test": "npm run test:package"
   },
   "bugs": {
