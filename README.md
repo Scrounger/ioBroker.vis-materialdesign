@@ -527,6 +527,8 @@ The Alerts widget requires a JSON string as object, which must be structured as 
 ## Changelog
 
 ### 0.2.xx
+* (Scrounger): new Select Widget added
+* (Scrounger): Autocomplete Widget added
 * (Scrounger): Alerts Widget added
 * (Scrounger): use of Material Design Icons as images added
 * (Scrounger): Perfomrance optimized
