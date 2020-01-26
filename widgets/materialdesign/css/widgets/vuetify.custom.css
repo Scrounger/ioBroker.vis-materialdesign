@@ -154,6 +154,10 @@
   line-height: 1.3em;
 }
 
+.materialdesign-v-alert-text {
+  word-wrap: anywhere;
+}
+
 .v-list-item:hover .materialdesign-v-list-item-value {
   color: var(--vue-list-item-subtitle-font-color-hover);
 }

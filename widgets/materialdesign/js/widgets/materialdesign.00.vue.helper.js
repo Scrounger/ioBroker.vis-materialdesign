@@ -422,7 +422,7 @@ vis.binds.materialdesign.vueHelper = {
                     transition="scroll-x-transition"
                 >
                     <template v-slot:default>
-                        <label v-if="text !== ''" v-html="text"></label>
+                        <label v-if="text !== ''" class="materialdesign-v-alert-text" v-html="text"></label>
                     </template>
 
                     <template v-slot:append>
