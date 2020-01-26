@@ -526,7 +526,7 @@ The Alerts widget requires a JSON string as object, which must be structured as 
 
 ## Changelog
 
-### 0.2.xx
+### 0.2.49
 * (Scrounger): new Select Widget added
 * (Scrounger): Autocomplete Widget added
 * (Scrounger): Alerts Widget added
