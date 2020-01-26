@@ -155,7 +155,7 @@
 }
 
 .materialdesign-v-alert-text {
-  word-wrap: anywhere;
+  word-wrap: break-word;
 }
 
 .v-list-item:hover .materialdesign-v-list-item-value {
