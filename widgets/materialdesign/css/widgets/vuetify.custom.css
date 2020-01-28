@@ -3154,7 +3154,7 @@
   transition: opacity 0.2s cubic-bezier(0.4, 0, 0.6, 1);
 }
 .v-btn:before {
-  background-color: currentColor;
+  background-color: var(--vue-ripple-effect-color);
 }
 .v-btn:not(.v-btn--disabled) {
   will-change: box-shadow;
