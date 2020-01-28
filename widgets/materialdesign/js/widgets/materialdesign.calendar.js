@@ -81,13 +81,17 @@ vis.binds.materialdesign.calendar =
                     :event-color="getEventColor"
                     :event-text-color="getEventTextColor"
                     :type="type"
-                    locale="de"
+                    :locale="locale"
+                    
                     first-interval=8
                     interval-count=5
+
+                    :short-intervals="shortIntervals"
+                    :interval-width="intervalWidth"
+                    :interval-height="intervalHeight"
                     :short-weekdays="shortWeekdays"
 
-                    :focus="focus"
-                    :weekdays="[1, 2, 3, 4, 5, 6, 0]"
+                    :weekdays="weekdays"
 
                     @click:more="viewDay"
                     @click:date="viewDay"
@@ -107,7 +111,12 @@ vis.binds.materialdesign.calendar =
                             now: moment().format('YYYY-MM-DD'),
                             type: data.calendarView,
                             btnTodayColor: myMdwHelper.getValueFromData(data.calendarDayButtonTodayColor, '#44739e'),
-                            shortWeekdays: true,
+                            shortWeekdays: (myMdwHelper.getValueFromData(data.calendarShortWeekdays, false) === 'true') ? true : false,
+                            intervalWidth: myMdwHelper.getNumberFromData(data.calendarTimeAxisWidth, 60),
+                            intervalHeight: myMdwHelper.getNumberFromData(data.calendarTimeAxisHeight, 48),
+                            shortIntervals: (myMdwHelper.getValueFromData(data.calendarTimeAxisShortIntervals, false) === 'true') ? true : false,
+                            locale: vis.language,
+                            weekdays: myMdwHelper.getValueFromData(data.calendarWeekdays, "1,2,3,4,5,6,0").split(",").map(Number),
                             events: [
                                 {
                                     name: 'Weekly Meeting',
@@ -139,10 +148,10 @@ vis.binds.materialdesign.calendar =
                                 return event.colorText
                             },
                             viewDay({ date }) {
+                                vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+
                                 this.focus = date
                                 this.type = 'week'
-
-                                vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                             },
                             swipe(direction) {
                                 this.swipeDirection = direction
