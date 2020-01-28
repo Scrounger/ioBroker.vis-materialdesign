@@ -76,7 +76,6 @@ vis.binds.materialdesign.calendar =
                     v-model="focus"
                     ref="calendar"
 
-                    :now="now"
                     :events="events"
                     :event-color="getEventColor"
                     :event-text-color="getEventTextColor"
@@ -84,7 +83,7 @@ vis.binds.materialdesign.calendar =
                     :locale="locale"
                     
                     first-interval=8
-                    interval-count=5
+                    interval-count=16
 
                     :short-intervals="shortIntervals"
                     :interval-width="intervalWidth"
@@ -108,7 +107,6 @@ vis.binds.materialdesign.calendar =
                         vuetify: new Vuetify(),
                         data: () => ({
                             focus: moment().format('YYYY-MM-DD'),
-                            now: moment().format('YYYY-MM-DD'),
                             type: data.calendarView,
                             btnTodayColor: myMdwHelper.getValueFromData(data.calendarDayButtonTodayColor, '#44739e'),
                             shortWeekdays: (myMdwHelper.getValueFromData(data.calendarShortWeekdays, false) === 'true') ? true : false,
@@ -164,7 +162,7 @@ vis.binds.materialdesign.calendar =
                             }
                         },
                         mounted() {
-                            this.$refs.calendar.scrollToTime('08:00')
+                            this.$refs.calendar.scrollToTime(moment(this.now).format('HH:mm'));
                         }
                     })
 
