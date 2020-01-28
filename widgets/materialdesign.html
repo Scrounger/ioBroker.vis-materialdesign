@@ -1137,6 +1137,22 @@
         </div>
 </script>
 
+<script id="tplVis-materialdesign-Calendar"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/materialdesign/img/prev_alerts.png"></img>'
+        data-vis-set="materialdesign"
+        data-vis-type="messages"
+        data-vis-name="Calendar"
+        data-vis-update-style="true"
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;showMaxAlerts[3]/number;"
+        data-vis-attrs0="group.calendarHeaderLayout;calendarDayButtonColor/color;calendarDayButtonFontSize/number;calendarDayButtonFontFamily/fontname;calendarDayButtonFontColor/color;calendarDayButtonTodayColor/color;calendarDayButtonTodayFontSize/number;calendarDayButtonTodayFontFamily/fontname;calendarDayButtonTodayFontColor/color;calendarDayLabelFontSize/number;calendarDayLabelFontFamily/fontname;calendarDayLabelFontColor/color;calendarDayLabelPreviousFontColor/color;calendarDayLabelTodayFontSize/number;calendarDayLabelTodayFontFamily/fontname;calendarDayLabelTodayFontColor/color;calendarDayBackgroundOutsideColor/color;"
+        data-vis-attrs1="group.controlLayout;controlButtonLayout[text]/select,text,raised,unelevated,outlined;controlShowLabel[true]/checkbox;controlIconSize/number;controlIconColor/color;controlTextSize/number;controlTextFont/fontname;controlTextColor/color;">
+        <div class="vis-widget materialdesign-widget materialdesign-calendar <%== this.data.attr('class') %>" style="width: 150px; height: 38px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.calendar(el, data) %> > 
+            
+        </div>
+</script>
+
 <script id="tplVis-materialdesign-Installed-Version"
         type="text/ejs"
         class="vis-tpl"

@@ -5668,7 +5668,7 @@ systemDictionary = {
         "es": "apéndices de la entrada",
         "pl": "dodatki wejścia",
         "zh-cn": "输入的附录"
-      },
+    },
     "inputPrefix": {
         "en": "prepended text",
         "de": "vorangestellter Text",
@@ -5800,5 +5800,77 @@ systemDictionary = {
         "es": "tamaño de fuente",
         "pl": "rozmiar czcionki",
         "zh-cn": "字体大小"
+    },
+    "calendarControlPrev": {
+        "en": "back",
+        "de": "zurück",
+        "ru": "назад",
+        "pt": "costas",
+        "nl": "terug",
+        "fr": "retour",
+        "it": "indietro",
+        "es": "espalda",
+        "pl": "plecy",
+        "zh-cn": "背部"
+    },
+    "calendarControlNext": {
+        "en": "next",
+        "de": "vor",
+        "ru": "следующий",
+        "pt": "Próximo",
+        "nl": "De volgende",
+        "fr": "suivant",
+        "it": "Il prossimo",
+        "es": "siguiente",
+        "pl": "Kolejny",
+        "zh-cn": "下一个"
+    },
+    "calendarControlToday": {
+        "en": "today",
+        "de": "heute",
+        "ru": "сегодня",
+        "pt": "hoje",
+        "nl": "vandaag",
+        "fr": "aujourd'hui",
+        "it": "oggi",
+        "es": "hoy",
+        "pl": "dzisiaj",
+        "zh-cn": "今天"
+    },
+    "calendarControlMonth": {
+        "en": "view month",
+        "de": "Monat anzeigen",
+        "ru": "просмотреть месяц",
+        "pt": "ver mês",
+        "nl": "bekijk maand",
+        "fr": "voir le mois",
+        "it": "guarda il mese",
+        "es": "ver mes",
+        "pl": "zobacz miesiąc",
+        "zh-cn": "查看月份"
+    },
+    "calendarControlWeek": {
+        "en": "view week",
+        "de": "Woche anzeigen",
+        "ru": "просмотр недели",
+        "pt": "ver semana",
+        "nl": "week bekijken",
+        "fr": "voir la semaine",
+        "it": "guarda la settimana",
+        "es": "ver semana",
+        "pl": "zobacz tydzień",
+        "zh-cn": "查看周"
+    },
+    "calendarControlDay": {
+        "en": "view day",
+        "de": "Tag anzeigen",
+        "ru": "день просмотра",
+        "pt": "ver dia",
+        "nl": "dag bekijken",
+        "fr": "voir le jour",
+        "it": "guarda il giorno",
+        "es": "ver dia",
+        "pl": "widok dnia",
+        "zh-cn": "查看日"
     }
 };

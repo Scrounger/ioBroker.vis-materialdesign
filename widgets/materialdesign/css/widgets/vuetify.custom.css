@@ -106,6 +106,40 @@
   --vue-alerts-icon-size: 24px;
 
   --vue-alerts-bottom-margin: 16px;
+
+  --vue-btn-background-color-before: transparent;
+
+  --vue-calendar-day-button-today-color: #44739e;
+
+
+  --vue-calendar-day-button-font-size: inherit;
+  --vue-calendar-day-button-font-family: inherit;
+  --vue-calendar-day-button-font-color: black;
+
+  --vue-calendar-day-button-today-font-size: inherit;
+  --vue-calendar-day-button-today-font-family: inherit;
+  --vue-calendar-day-button-today-font-color: #fff;
+
+  --vue-calendar-day-label-font-size: 12px;
+  --vue-calendar-day-label-font-family: inherit;
+  --vue-calendar-day-label-font-color: #000000;
+
+  --vue-calendar-day-label-previous-font-color: rgba(0, 0, 0, 0.38);
+
+  --vue-calendar-day-label-today-font-size: 12px;
+  --vue-calendar-day-label-today-font-family: inherit;
+  --vue-calendar-day-label-today-font-color: #44739e;
+
+  --vue-calender-day-background-outside-color: #f7f7f7;
+
+  --vue-calendar-control-container-height: 10px
+
+  --vue-calendar-control-button-icon-size: 24px;
+  --vue-calendar-control-button-icon-color: #44739e;
+
+  --vue-calendar-control-button-text-size: 12px;
+  --vue-calendar-control-button-text-color: black;
+  --vue-calendar-control-button-text-font: inherit;
 }
 
 /* custom classes for templates */
@@ -2980,3 +3014,922 @@
 .fab-transition-enter, .fab-transition-leave-to {
   transform: scale(0) rotate(-45deg);
 }
+
+/* button */
+.v-btn:not(.v-btn--outlined).primary, .v-btn:not(.v-btn--outlined).secondary, .v-btn:not(.v-btn--outlined).accent, .v-btn:not(.v-btn--outlined).success, .v-btn:not(.v-btn--outlined).error, .v-btn:not(.v-btn--outlined).warning, .v-btn:not(.v-btn--outlined).info {
+  color: #FFFFFF;
+}
+
+.theme--light.v-btn {
+  color: rgba(0, 0, 0, 0.87);
+}
+.theme--light.v-btn.v-btn--disabled {
+  color: rgba(0, 0, 0, 0.26) !important;
+}
+.theme--light.v-btn.v-btn--disabled .v-icon,
+.theme--light.v-btn.v-btn--disabled .v-btn__loading {
+  color: rgba(0, 0, 0, 0.26) !important;
+}
+.theme--light.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+  background-color: rgba(0, 0, 0, 0.12) !important;
+}
+.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+  background-color: var(--vue-btn-background-color-before);  
+}
+.theme--light.v-btn.v-btn--outlined.v-btn--text {
+  border-color: rgba(0, 0, 0, 0.12);
+}
+.theme--light.v-btn.v-btn--icon {
+  color: rgba(0, 0, 0, 0.54);
+}
+.theme--light.v-btn:hover::before {
+  opacity: 0.04;
+}
+.theme--light.v-btn:focus::before {
+  opacity: 0.12;
+}
+.theme--light.v-btn--active:hover::before, .theme--light.v-btn--active::before {
+  opacity: 0.12;
+}
+.theme--light.v-btn--active:focus::before {
+  opacity: 0.16;
+}
+
+.theme--dark.v-btn {
+  color: #FFFFFF;
+}
+.theme--dark.v-btn.v-btn--disabled {
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+.theme--dark.v-btn.v-btn--disabled .v-icon,
+.theme--dark.v-btn.v-btn--disabled .v-btn__loading {
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+.theme--dark.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+}
+.theme--dark.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+  background-color: #212121;
+}
+.theme--dark.v-btn.v-btn--outlined.v-btn--text {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.theme--dark.v-btn.v-btn--icon {
+  color: #FFFFFF;
+}
+.theme--dark.v-btn:hover::before {
+  opacity: 0.08;
+}
+.theme--dark.v-btn:focus::before {
+  opacity: 0.24;
+}
+.theme--dark.v-btn--active:hover::before, .theme--dark.v-btn--active::before {
+  opacity: 0.24;
+}
+.theme--dark.v-btn--active:focus::before {
+  opacity: 0.32;
+}
+
+.v-btn {
+  align-items: center;
+  border-radius: 4px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-weight: 500;
+  letter-spacing: 0.0892857143em;
+  justify-content: center;
+  outline: 0;
+  position: relative;
+  text-decoration: none;
+  text-indent: 0.0892857143em;
+  text-transform: uppercase;
+  transition-duration: 0.28s;
+  transition-property: box-shadow, transform, opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.v-btn.v-size--x-small {
+  font-size: 0.625rem;
+}
+.v-btn.v-size--small {
+  font-size: 0.75rem;
+}
+.v-btn.v-size--default {
+  font-size: 0.875rem;
+}
+.v-btn.v-size--large {
+  font-size: 0.875rem;
+}
+.v-btn.v-size--x-large {
+  font-size: 1rem;
+}
+.v-btn:before {
+  border-radius: inherit;
+  bottom: 0;
+  color: inherit;
+  content: "";
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.6, 1);
+}
+.v-btn:before {
+  background-color: currentColor;
+}
+.v-btn:not(.v-btn--disabled) {
+  will-change: box-shadow;
+}
+.v-btn:not(.v-btn--round).v-size--x-small {
+  height: 20px;
+  min-width: 36px;
+  padding: 0 8.8888888889px;
+}
+.v-btn:not(.v-btn--round).v-size--small {
+  height: 28px;
+  min-width: 50px;
+  padding: 0 12.4444444444px;
+}
+.v-btn:not(.v-btn--round).v-size--default {
+  height: 36px;
+  min-width: 64px;
+  padding: 0 16px;
+}
+.v-btn:not(.v-btn--round).v-size--large {
+  height: 44px;
+  min-width: 78px;
+  padding: 0 19.5555555556px;
+}
+.v-btn:not(.v-btn--round).v-size--x-large {
+  height: 52px;
+  min-width: 92px;
+  padding: 0 23.1111111111px;
+}
+.v-btn > .v-btn__content .v-icon {
+  color: inherit;
+}
+
+.v-btn__content {
+  align-items: center;
+  color: inherit;
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: inherit;
+  line-height: normal;
+  position: relative;
+}
+.v-btn__content .v-icon--left,
+.v-btn__content .v-icon--right {
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+}
+.v-application--is-ltr .v-btn__content .v-icon--left {
+  margin-left: -4px;
+  margin-right: 8px;
+}
+.v-application--is-rtl .v-btn__content .v-icon--left {
+  margin-left: 8px;
+  margin-right: -4px;
+}
+.v-application--is-ltr .v-btn__content .v-icon--right {
+  margin-left: 8px;
+  margin-right: -4px;
+}
+.v-application--is-rtl .v-btn__content .v-icon--right {
+  margin-left: -4px;
+  margin-right: 8px;
+}
+
+.v-btn__loader {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.v-btn:not(.v-btn--text):not(.v-btn--outlined).v-btn--active:before {
+  opacity: 0.18;
+}
+.v-btn:not(.v-btn--text):not(.v-btn--outlined):hover:before {
+  opacity: 0.08;
+}
+.v-btn:not(.v-btn--text):not(.v-btn--outlined):focus:before {
+  opacity: 0.24;
+}
+
+.v-btn--absolute,
+.v-btn--fixed {
+  position: absolute;
+}
+.v-btn--absolute.v-btn--right,
+.v-btn--fixed.v-btn--right {
+  right: 16px;
+}
+.v-btn--absolute.v-btn--left,
+.v-btn--fixed.v-btn--left {
+  left: 16px;
+}
+.v-btn--absolute.v-btn--top,
+.v-btn--fixed.v-btn--top {
+  top: 16px;
+}
+.v-btn--absolute.v-btn--bottom,
+.v-btn--fixed.v-btn--bottom {
+  bottom: 16px;
+}
+
+.v-btn--block {
+  display: flex;
+  flex: 1 0 auto;
+  min-width: 100% !important;
+  max-width: auto;
+}
+
+.v-btn--contained {
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+.v-btn--contained:after {
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+.v-btn--contained:active {
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.v-btn--depressed {
+  box-shadow: none !important;
+}
+
+.v-btn--disabled {
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.v-btn--icon,
+.v-btn--fab {
+  min-height: 0;
+  min-width: 0;
+  padding: 0;
+}
+.v-btn--icon.v-size--x-small .v-icon,
+.v-btn--fab.v-size--x-small .v-icon {
+  height: 18px;
+  font-size: 18px;
+  width: 18px;
+}
+.v-btn--icon.v-size--small .v-icon,
+.v-btn--fab.v-size--small .v-icon {
+  height: 24px;
+  font-size: 24px;
+  width: 24px;
+}
+.v-btn--icon.v-size--default .v-icon,
+.v-btn--fab.v-size--default .v-icon {
+  height: 24px;
+  font-size: 24px;
+  width: 24px;
+}
+.v-btn--icon.v-size--large .v-icon,
+.v-btn--fab.v-size--large .v-icon {
+  height: 28px;
+  font-size: 28px;
+  width: 28px;
+}
+.v-btn--icon.v-size--x-large .v-icon,
+.v-btn--fab.v-size--x-large .v-icon {
+  height: 32px;
+  font-size: 32px;
+  width: 32px;
+}
+
+.v-btn--icon.v-size--x-small {
+  height: 20px;
+  width: 20px;
+}
+.v-btn--icon.v-size--small {
+  height: 28px;
+  width: 28px;
+}
+.v-btn--icon.v-size--default {
+  height: 36px;
+  width: 36px;
+}
+.v-btn--icon.v-size--large {
+  height: 44px;
+  width: 44px;
+}
+.v-btn--icon.v-size--x-large {
+  height: 52px;
+  width: 52px;
+}
+
+.v-btn--fab.v-btn--contained {
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+}
+.v-btn--fab.v-btn--contained:after {
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+.v-btn--fab.v-btn--contained:active {
+  box-shadow: 0px 7px 8px -4px rgba(0, 0, 0, 0.2), 0px 12px 17px 2px rgba(0, 0, 0, 0.14), 0px 5px 22px 4px rgba(0, 0, 0, 0.12);
+}
+.v-btn--fab.v-btn--fixed, .v-btn--fab.v-btn--absolute {
+  z-index: 4;
+}
+.v-btn--fab.v-size--x-small {
+  height: 32px;
+  width: 32px;
+}
+.v-btn--fab.v-size--x-small.v-btn--absolute.v-btn--bottom {
+  bottom: -16px;
+}
+.v-btn--fab.v-size--x-small.v-btn--absolute.v-btn--top {
+  top: -16px;
+}
+.v-btn--fab.v-size--small {
+  height: 40px;
+  width: 40px;
+}
+.v-btn--fab.v-size--small.v-btn--absolute.v-btn--bottom {
+  bottom: -20px;
+}
+.v-btn--fab.v-size--small.v-btn--absolute.v-btn--top {
+  top: -20px;
+}
+.v-btn--fab.v-size--default {
+  height: 56px;
+  width: 56px;
+}
+.v-btn--fab.v-size--default.v-btn--absolute.v-btn--bottom {
+  bottom: -28px;
+}
+.v-btn--fab.v-size--default.v-btn--absolute.v-btn--top {
+  top: -28px;
+}
+.v-btn--fab.v-size--large {
+  height: 64px;
+  width: 64px;
+}
+.v-btn--fab.v-size--large.v-btn--absolute.v-btn--bottom {
+  bottom: -32px;
+}
+.v-btn--fab.v-size--large.v-btn--absolute.v-btn--top {
+  top: -32px;
+}
+.v-btn--fab.v-size--x-large {
+  height: 72px;
+  width: 72px;
+}
+.v-btn--fab.v-size--x-large.v-btn--absolute.v-btn--bottom {
+  bottom: -36px;
+}
+.v-btn--fab.v-size--x-large.v-btn--absolute.v-btn--top {
+  top: -36px;
+}
+
+.v-btn--fixed {
+  position: fixed;
+}
+
+.v-btn--loading {
+  pointer-events: none;
+  transition: none;
+}
+.v-btn--loading .v-btn__content {
+  opacity: 0;
+}
+
+.v-btn--outlined {
+  border: thin solid currentColor;
+}
+.v-btn--outlined:before {
+  border-radius: 0;
+}
+
+.v-btn--outlined .v-btn__content .v-icon,
+.v-btn--round .v-btn__content .v-icon {
+  color: currentColor;
+}
+
+.v-btn--outlined,
+.v-btn--flat,
+.v-btn--text {
+  background-color: transparent;
+}
+
+.v-btn--round:before,
+.v-btn--rounded:before {
+  border-radius: inherit;
+}
+
+.v-btn--round {
+  border-radius: 50%;
+}
+
+.v-btn--rounded {
+  border-radius: 28px;
+}
+
+.v-btn--tile {
+  border-radius: 0;
+}
+
+/* calendar */
+.theme--light.v-calendar-events .v-event-timed {
+  border: 1px solid !important;
+}
+.theme--light.v-calendar-events .v-event-more {
+  background-color: #FFFFFF;
+}
+.theme--light.v-calendar-events .v-event-more.v-outside {
+  background-color: #f7f7f7;
+}
+
+.theme--dark.v-calendar-events .v-event-timed {
+  border: 1px solid !important;
+}
+.theme--dark.v-calendar-events .v-event-more {
+  background-color: #303030;
+}
+.theme--dark.v-calendar-events .v-event-more.v-outside {
+  background-color: #202020;
+}
+
+.v-calendar .v-event {
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  cursor: pointer;
+  margin-right: -1px;
+  z-index: 1;
+  border-radius: 4px;
+}
+.v-calendar .v-event-more {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 1;
+  position: relative;
+}
+.v-calendar .v-event-timed-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-right: 10px;
+  pointer-events: none;
+}
+.v-calendar .v-event-timed {
+  position: absolute;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  pointer-events: all;
+}
+.v-calendar .v-event-timed > div {
+  padding: 4px;
+}
+
+.v-calendar.v-calendar-events .v-calendar-weekly__head-weekday {
+  margin-right: -1px;
+}
+.v-calendar.v-calendar-events .v-calendar-weekly__day {
+  overflow: visible;
+  margin-right: -1px;
+}
+.theme--light.v-calendar-weekly {
+  background-color: #FFFFFF;
+  border-top: #e0e0e0 1px solid;
+  border-left: #e0e0e0 1px solid;
+}
+.theme--light.v-calendar-weekly .v-calendar-weekly__head-weekday {
+  border-right: #e0e0e0 1px solid;
+  font-size: var(--vue-calendar-day-label-font-size);
+  font-family: var(--vue-calendar-day-label-font-family);
+  color: var(--vue-calendar-day-label-font-color);
+}
+.theme--light.v-calendar-weekly .v-calendar-weekly__head-weekday.v-past {
+  color: var(--vue-calendar-day-label-previous-font-color);
+}
+.theme--light.v-calendar-weekly .v-calendar-weekly__head-weekday.v-outside {
+  background-color: var(--vue-calender-day-background-outside-color);
+}
+.theme--light.v-calendar-weekly .v-calendar-weekly__day {
+  border-right: #e0e0e0 1px solid;
+  border-bottom: #e0e0e0 1px solid;
+  color: #000000;
+}
+.theme--light.v-calendar-weekly .v-calendar-weekly__day.v-outside {
+  background-color: var(--vue-calender-day-background-outside-color);  
+}
+
+.theme--dark.v-calendar-weekly {
+  background-color: #303030;
+  border-top: #9e9e9e 1px solid;
+  border-left: #9e9e9e 1px solid;
+}
+.theme--dark.v-calendar-weekly .v-calendar-weekly__head-weekday {
+  border-right: #9e9e9e 1px solid;
+  color: #FFFFFF;
+}
+.theme--dark.v-calendar-weekly .v-calendar-weekly__head-weekday.v-past {
+  color: rgba(255, 255, 255, 0.5);
+}
+.theme--dark.v-calendar-weekly .v-calendar-weekly__head-weekday.v-outside {
+  background-color: #202020;
+}
+.theme--dark.v-calendar-weekly .v-calendar-weekly__day {
+  border-right: #9e9e9e 1px solid;
+  border-bottom: #9e9e9e 1px solid;
+  color: #FFFFFF;
+}
+.theme--dark.v-calendar-weekly .v-calendar-weekly__day.v-outside {
+  background-color: #202020;
+}
+
+.v-calendar-weekly {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.v-calendar-weekly__head {
+  display: flex;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.v-calendar-weekly__head-weekday {
+  flex: 1 0 20px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  padding: 4px;
+  font-size: 11px;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.v-calendar-weekly__week {
+  display: flex;
+  flex: 1;
+  height: unset;
+  min-height: 0;
+}
+
+.v-calendar-weekly__day {
+  flex: 1;
+  width: 0;
+  overflow: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: relative;
+  padding: 0px 0px 0px 0px;
+  min-width: 0;
+}
+.v-calendar-weekly__day.v-present .v-calendar-weekly__day-month {
+  color: currentColor;
+}
+
+.v-calendar-weekly__day-label {
+  text-decoration: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  box-shadow: none;
+  text-align: center;
+  margin: 4px 0 4px 0;
+}
+
+.v-calendar-weekly__day-label > button {
+  cursor: pointer;
+  font: inherit;
+  overflow: visible;
+  border-style: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  -webkit-appearance: button;
+  text-transform: none;
+  background-color: transparent;
+  border-style: none;
+  color: inherit;
+}
+
+.v-calendar-weekly__day-label .v-btn {
+  font-size: 12px;
+  text-transform: none;
+}
+
+.v-calendar-weekly__day-month {
+  position: absolute;
+  text-decoration: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  box-shadow: none;
+  top: 0;
+  left: 36px;
+  height: 32px;
+  line-height: 32px;
+}
+.theme--light.v-calendar-daily {
+  background-color: #FFFFFF;
+}
+.theme--light.v-calendar-daily .v-calendar-daily__intervals-head {
+  border-right: #e0e0e0 1px solid;
+}
+.theme--light.v-calendar-daily .v-calendar-daily_head-day {
+  border-right: #e0e0e0 1px solid;
+  border-top: #e0e0e0 1px solid;
+  border-bottom: #e0e0e0 1px solid;
+  color: #000000;
+}
+.theme--light.v-calendar-daily .v-calendar-daily_head-day.v-past .v-calendar-daily_head-weekday,
+.theme--light.v-calendar-daily .v-calendar-daily_head-day.v-past .v-calendar-daily_head-day-label {
+  color: rgba(0, 0, 0, 0.38);
+}
+.theme--light.v-calendar-daily .v-calendar-daily__intervals-body {
+  border-right: #e0e0e0 1px solid;
+}
+.theme--light.v-calendar-daily .v-calendar-daily__intervals-body .v-calendar-daily__interval-text {
+  color: #424242;
+}
+.theme--light.v-calendar-daily .v-calendar-daily__day {
+  border-right: #e0e0e0 1px solid;
+  border-bottom: #e0e0e0 1px solid;
+  box-sizing: border-box;
+}
+.theme--light.v-calendar-daily .v-calendar-daily__day-interval {
+  border-top: #e0e0e0 1px solid;
+  box-sizing: border-box;
+}
+.theme--light.v-calendar-daily .v-calendar-daily__day-interval:first-child {
+  border-top: none !important;
+}
+.theme--light.v-calendar-daily .v-calendar-daily__interval::after {
+  border-top: #e0e0e0 1px solid;
+}
+
+.theme--dark.v-calendar-daily {
+  background-color: #303030;
+  border-left: #9e9e9e 1px solid;
+  border-top: #9e9e9e 1px solid;
+}
+.theme--dark.v-calendar-daily .v-calendar-daily__intervals-head {
+  border-right: #9e9e9e 1px solid;
+}
+.theme--dark.v-calendar-daily .v-calendar-daily__intervals-head::after {
+  background: #9e9e9e;
+  background: linear-gradient(90deg, transparent, #9e9e9e);
+}
+.theme--dark.v-calendar-daily .v-calendar-daily_head-day {
+  border-right: #9e9e9e 1px solid;
+  border-bottom: #9e9e9e 1px solid;
+  color: #FFFFFF;
+}
+.theme--dark.v-calendar-daily .v-calendar-daily_head-day.v-past .v-calendar-daily_head-weekday,
+.theme--dark.v-calendar-daily .v-calendar-daily_head-day.v-past .v-calendar-daily_head-day-label {
+  color: rgba(255, 255, 255, 0.5);
+}
+.theme--dark.v-calendar-daily .v-calendar-daily__intervals-body {
+  border-right: #9e9e9e 1px solid;
+}
+.theme--dark.v-calendar-daily .v-calendar-daily__intervals-body .v-calendar-daily__interval-text {
+  color: #eeeeee;
+}
+.theme--dark.v-calendar-daily .v-calendar-daily__day {
+  border-right: #9e9e9e 1px solid;
+  border-bottom: #9e9e9e 1px solid;
+}
+.theme--dark.v-calendar-daily .v-calendar-daily__day-interval {
+  border-top: #9e9e9e 1px solid;
+}
+.theme--dark.v-calendar-daily .v-calendar-daily__day-interval:first-child {
+  border-top: none !important;
+}
+.theme--dark.v-calendar-daily .v-calendar-daily__interval::after {
+  border-top: #9e9e9e 1px solid;
+}
+
+.v-calendar-daily {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.v-calendar-daily__head {
+  flex: none;
+  display: flex;
+}
+
+.v-calendar-daily__intervals-head {
+  flex: none;
+  position: relative;
+}
+.v-calendar-daily__intervals-head::after {
+  position: absolute;
+  bottom: 0px;
+  height: 1px;
+  left: 0;
+  right: 0;
+  content: "";
+}
+
+.v-calendar-daily_head-day {
+  flex: 1 1 auto;
+  width: 0;
+  position: relative;
+}
+
+.v-calendar-daily_head-weekday {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  padding: 4px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: var(--vue-calendar-day-label-font-size);
+  font-family: var(--vue-calendar-day-label-font-family);
+  color: var(--vue-calendar-day-label-font-color);
+}
+
+.v-calendar-daily_head-day-label {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  padding: 0px 0px 3px 0px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.v-calendar-daily_head-day-label > button {
+  cursor: pointer;
+  font: inherit;
+  overflow: visible;
+  border-style: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  -webkit-appearance: button;
+  text-transform: none;
+  background-color: transparent;
+  border-style: none;
+  color: inherit;
+}
+
+.v-calendar-daily_head-day-label .v-btn__content, .v-calendar-weekly__day-label .v-btn__content{
+  font-size: var(--vue-calendar-day-button-font-size);
+  font-family: var(--vue-calendar-day-button-font-family);
+  color: var(--vue-calendar-day-button-font-color);
+}
+
+.v-calendar-daily_head-day.v-present .v-calendar-daily_head-day-label .v-btn__content, .v-calendar-weekly__day.v-present .v-btn__content{
+  font-size: var(--vue-calendar-day-button-today-font-size);
+  font-family: var(--vue-calendar-day-button-today-font-family);
+  color: var(--vue-calendar-day-button-today-font-color);
+}
+
+.v-calendar-daily__body {
+  flex: 1 1 60%;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+.v-calendar-daily__scroll-area {
+  overflow-y: scroll;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: flex-start;
+}
+
+.v-calendar-daily__pane {
+  width: 100%;
+  overflow-y: hidden;
+  flex: none;
+  display: flex;
+  align-items: flex-start;
+}
+
+.v-calendar-daily__day-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.v-calendar-daily__intervals-body {
+  flex: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.v-calendar-daily__interval {
+  text-align: right;
+  padding-right: 8px;
+  border-bottom: none;
+  position: relative;
+}
+.v-calendar-daily__interval::after {
+  width: 8px;
+  position: absolute;
+  /* height: 1px; */
+  display: block;
+  content: "";
+  right: 0;
+  bottom: -1px;
+}
+
+.v-calendar-daily__interval-text {
+  display: block;
+  position: relative;
+  top: -6px;
+  font-size: 10px;
+  padding-right: 4px;
+}
+
+.v-calendar-daily__day {
+  flex: 1;
+  width: 0;
+  position: relative;
+}
+
+.v-calendar-weekly__day.v-present .v-calendar-weekly__day-label .v-btn,
+.v-calendar-daily_head-day.v-present .v-calendar-daily_head-day-label .v-btn {
+  background: var(--vue-calendar-day-button-today-color) !important;
+}
+
+.v-calendar-daily_head-day.v-present .v-calendar-daily_head-weekday,
+.v-calendar-weekly__head-weekday.v-present {
+  font-size: var(--vue-calendar-day-label-today-font-size) !important;
+  font-family: var(--vue-calendar-day-label-today-font-family) !important;
+  color: var(--vue-calendar-day-label-today-font-color) !important;
+}
+
+.materialdesign-vuetify-calendar{
+  display: flex;
+  flex-direction: column;
+}
+
+.materialdesign-vuetify-calendar-control-container {
+  display: flex;
+}
+
+.materialdesign-vuetify-calendar-control-button {  
+  height: auto; 
+  position: relative;
+  padding: 4px;
+  flex-grow: 1;
+}
+
+.materialdesign-vuetify-calendar-control-button-icon {
+  font-size: var(--vue-calendar-control-button-icon-size);
+  color: var(--vue-calendar-control-button-icon-color);
+}
+
+.materialdesign-vuetify-calendar-control-button-text {
+  margin-left: 4px; 
+  font-size: var(--vue-calendar-control-button-text-size);
+  color: var(--vue-calendar-control-button-text-color);
+  font-family: var(--vue-calendar-control-button-text-font);
+}
+
