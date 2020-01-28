@@ -141,6 +141,8 @@ vis.binds.materialdesign.calendar =
                             viewDay({ date }) {
                                 this.focus = date
                                 this.type = 'week'
+
+                                vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                             },
                             swipe(direction) {
                                 this.swipeDirection = direction
@@ -163,26 +165,32 @@ vis.binds.materialdesign.calendar =
                     }
 
                     $this.find('#control-prev').click(function () {
+                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                         vueCalendar.$refs.calendar.prev();
                     });
 
                     $this.find('#control-today').click(function () {
+                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                         vueCalendar.focus = vueCalendar.now;
                     });
 
                     $this.find('#control-month').click(function () {
+                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                         vueCalendar.type = 'month';
                     });
 
                     $this.find('#control-week').click(function () {
+                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                         vueCalendar.type = 'week';
                     });
 
                     $this.find('#control-day').click(function () {
+                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                         vueCalendar.type = 'day';
                     });
 
                     $this.find('#control-next').click(function () {
+                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                         vueCalendar.$refs.calendar.next();
                     });
 

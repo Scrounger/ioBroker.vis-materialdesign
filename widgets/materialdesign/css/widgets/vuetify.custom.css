@@ -68,7 +68,7 @@
   --vue-list-item-background-hover-color: black;
   --vue-list-item-background-selected-color: black;
   
-  --vue-ripple-effect-color: black;
+  --vue-ripple-effect-color: #44739e;
 
   --vue-list-item-font-size: inherit;
   --vue-list-item-font-family: inherit;
@@ -3808,7 +3808,6 @@
       -ms-user-select: none;
           user-select: none;
   padding: 0px 0px 3px 0px;
-  cursor: pointer;
   text-align: center;
 }
 
