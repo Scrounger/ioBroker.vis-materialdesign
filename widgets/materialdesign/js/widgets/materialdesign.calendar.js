@@ -82,8 +82,9 @@ vis.binds.materialdesign.calendar =
                     :type="type"
                     :locale="locale"
                     
-                    first-interval=8
-                    interval-count=16
+                    :first-interval="firstInterval"
+                    :interval-count="intervalCount"
+                    :interval-minutes="intervalMinutes"
 
                     :short-intervals="shortIntervals"
                     :interval-width="intervalWidth"
@@ -101,6 +102,9 @@ vis.binds.materialdesign.calendar =
             myMdwHelper.waitForElement($this, `.${containerClass}`, function () {
                 myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
                     // wait for Vuetify v-app application container is loaded
+                    let firstInterval = myMdwHelper.getNumberFromData(data.calendarTimeAxisStartTime, 0);
+                    let intervalCount = myMdwHelper.getNumberFromData(data.calendarTimeAxisEndTime, 24);
+                    let intervalMinutes = myMdwHelper.getNumberFromData(data.calendarTimeAxisIntervalMinutes, 60);
 
                     let vueCalendar = new Vue({
                         el: $this.find(`.${containerClass}`).get(0),
@@ -115,6 +119,9 @@ vis.binds.materialdesign.calendar =
                             shortIntervals: (myMdwHelper.getValueFromData(data.calendarTimeAxisShortIntervals, false) === 'true') ? true : false,
                             locale: vis.language,
                             weekdays: myMdwHelper.getValueFromData(data.calendarWeekdays, "1,2,3,4,5,6,0").split(",").map(Number),
+                            firstInterval: firstInterval * 60 / intervalMinutes,
+                            intervalCount: intervalCount * 60 / intervalMinutes - firstInterval * 60 / intervalMinutes,
+                            intervalMinutes: intervalMinutes,
                             events: [
                                 {
                                     name: 'Weekly Meeting',
