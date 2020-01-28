@@ -68,6 +68,11 @@ vis.binds.materialdesign.calendar =
                 `: ''}
 
                 <v-calendar 
+                    v-touch="{
+                        left: () => swipe('Left'),
+                        right: () => swipe('Right')
+                    }"
+
                     v-model="focus"
                     ref="calendar"
 
@@ -136,6 +141,15 @@ vis.binds.materialdesign.calendar =
                             viewDay({ date }) {
                                 this.focus = date
                                 this.type = 'week'
+                            },
+                            swipe(direction) {
+                                this.swipeDirection = direction
+
+                                if (direction === 'Left') {
+                                    this.$refs.calendar.prev()
+                                } else if (direction === 'Right') {
+                                    this.$refs.calendar.next()
+                                }
                             }
                         },
                         mounted() {
