@@ -100,8 +100,9 @@ vis.binds.materialdesign.calendar =
                     :short-weekdays="shortWeekdays"
 
                     :weekdays="weekdays"
+                    :event-height="eventHeight"
 
-                    event-overlap-mode="column"
+                    :event-overlap-mode="eventOverlapMode"
 
                     @click:more="viewDay"
                     @click:date="viewDay"
@@ -133,6 +134,8 @@ vis.binds.materialdesign.calendar =
                             intervalCount: intervalCount * 60 / intervalMinutes - firstInterval * 60 / intervalMinutes,
                             intervalMinutes: intervalMinutes,
                             events: jsonData,
+                            eventHeight: myMdwHelper.getNumberFromData(data.calendarEventHeight, 20),
+                            eventOverlapMode: data.calendarEventOverlapMode,
                         }),
                         methods: {
                             getEventColor(event) {
