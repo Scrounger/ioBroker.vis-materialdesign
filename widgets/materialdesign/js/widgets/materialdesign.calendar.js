@@ -18,6 +18,14 @@ vis.binds.materialdesign.calendar =
                 buttonLayout = 'materialdesign-button--' + data.controlButtonLayout;
             }
 
+            let jsonData = [];
+            try {
+                jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
+            } catch (err) {
+                jsonData = null;
+                console.error(`[Vuetify Calendar 1] cannot parse json string! Error: ${err.message}`);
+            }
+
             $this.append(`
             <div class="${containerClass}" style="width: 100%; height: 100%;">
                 
@@ -93,6 +101,8 @@ vis.binds.materialdesign.calendar =
 
                     :weekdays="weekdays"
 
+                    event-overlap-mode="column"
+
                     @click:more="viewDay"
                     @click:date="viewDay"
                 >
@@ -122,28 +132,7 @@ vis.binds.materialdesign.calendar =
                             firstInterval: firstInterval * 60 / intervalMinutes,
                             intervalCount: intervalCount * 60 / intervalMinutes - firstInterval * 60 / intervalMinutes,
                             intervalMinutes: intervalMinutes,
-                            events: [
-                                {
-                                    name: 'Weekly Meeting',
-                                    start: '2020-01-07 09:00',
-                                    end: '2020-01-07 10:00',
-                                    color: '#4287f5',
-                                    colorText: '#FFF'
-                                },
-                                {
-                                    name: 'Thomas\' Birthday',
-                                    start: '2020-01-10',
-                                    color: '#4287f5',
-                                    colorText: '#FFF'
-                                },
-                                {
-                                    name: 'Mash Potatoes\n',
-                                    start: '2020-01-09 12:30',
-                                    end: '2020-01-09 15:30',
-                                    color: '#4287f5',
-                                    colorText: '#FFF'
-                                },
-                            ],
+                            events: jsonData,
                         }),
                         methods: {
                             getEventColor(event) {
@@ -268,6 +257,17 @@ vis.binds.materialdesign.calendar =
                     // Control Button ripple color
                     $this.context.style.setProperty('--mdc-theme-primary', myMdwHelper.getValueFromData(data.controlButtonRippelEffectColor, ''));
                     $this.context.style.setProperty('--mdc-theme-on-primary', myMdwHelper.getValueFromData(data.controlButtonRippelEffectColor, ''));
+
+                    vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                        try {
+                            jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
+                        } catch (err) {
+                            jsonData === null;
+                            console.error(`[Vuetify Calendar 2] cannot parse json string! Error: ${err.message}`);
+                        }
+
+                        vueCalendar.events = jsonData;
+                    });
                 });
             });
 
