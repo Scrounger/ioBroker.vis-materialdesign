@@ -111,6 +111,18 @@
 
   --vue-calendar-day-button-today-color: #44739e;
 
+  --vue-calendar-border-color: #e0e0e0;
+  --vue-calendar-background-color: transparent;
+  --vue-calender-background-outside-color: #f7f7f7;
+
+  --vue-calender-header-background-color: transparent;
+
+  --vue-calendar-time-axis-background-color: transparent;
+  --vue-calendar-time-axis-header-background-color: transparent;
+
+  --vue-calendar-time-axis-text-size: 12px;
+  --vue-calendar-time-axis-text-font: inherit;
+  --vue-calendar-time-axis-text-color: black;
 
   --vue-calendar-day-button-font-size: inherit;
   --vue-calendar-day-button-font-family: inherit;
@@ -130,7 +142,7 @@
   --vue-calendar-day-label-today-font-family: inherit;
   --vue-calendar-day-label-today-font-color: #44739e;
 
-  --vue-calender-day-background-outside-color: #f7f7f7;
+  
 
   --vue-calendar-control-container-height: 10px
 
@@ -3518,28 +3530,29 @@
 }
 .theme--light.v-calendar-weekly {
   background-color: #FFFFFF;
-  border-top: #e0e0e0 1px solid;
-  border-left: #e0e0e0 1px solid;
+  border-top: var(--vue-calendar-border-color) 1px solid; 
+  border-left: var(--vue-calendar-border-color) 1px solid; 
 }
 .theme--light.v-calendar-weekly .v-calendar-weekly__head-weekday {
-  border-right: #e0e0e0 1px solid;
+  border-right: var(--vue-calendar-border-color) 1px solid; 
   font-size: var(--vue-calendar-day-label-font-size);
   font-family: var(--vue-calendar-day-label-font-family);
   color: var(--vue-calendar-day-label-font-color);
+  background-color: var(--vue-calender-header-background-color);
 }
 .theme--light.v-calendar-weekly .v-calendar-weekly__head-weekday.v-past {
   color: var(--vue-calendar-day-label-previous-font-color);
 }
 .theme--light.v-calendar-weekly .v-calendar-weekly__head-weekday.v-outside {
-  background-color: var(--vue-calender-day-background-outside-color);
+  background-color: var(--vue-calender-header-background-color);
 }
 .theme--light.v-calendar-weekly .v-calendar-weekly__day {
-  border-right: #e0e0e0 1px solid;
-  border-bottom: #e0e0e0 1px solid;
+  border-right: var(--vue-calendar-border-color) 1px solid; 
+  border-bottom: var(--vue-calendar-border-color) 1px solid; 
   color: #000000;
 }
 .theme--light.v-calendar-weekly .v-calendar-weekly__day.v-outside {
-  background-color: var(--vue-calender-day-background-outside-color);  
+  background-color: var(--vue-calender-background-outside-color);  
 }
 
 .theme--dark.v-calendar-weekly {
@@ -3615,6 +3628,7 @@
   position: relative;
   padding: 0px 0px 0px 0px;
   min-width: 0;
+  background: var(--vue-calendar-background-color);
 }
 .v-calendar-weekly__day.v-present .v-calendar-weekly__day-month {
   color: currentColor;
@@ -3669,38 +3683,37 @@
   background-color: #FFFFFF;
 }
 .theme--light.v-calendar-daily .v-calendar-daily__intervals-head {
-  border-right: #e0e0e0 1px solid;
+  border-right: var(--vue-calendar-border-color) 1px solid; 
 }
 .theme--light.v-calendar-daily .v-calendar-daily_head-day {
-  border-right: #e0e0e0 1px solid;
-  border-top: #e0e0e0 1px solid;
-  border-bottom: #e0e0e0 1px solid;
+  border-right: var(--vue-calendar-border-color) 1px solid; 
+  border-top: var(--vue-calendar-border-color) 1px solid; 
+  border-bottom: var(--vue-calendar-border-color) 1px solid;
+  background-color: var(--vue-calender-header-background-color);
   color: #000000;
 }
 .theme--light.v-calendar-daily .v-calendar-daily_head-day.v-past .v-calendar-daily_head-weekday,
 .theme--light.v-calendar-daily .v-calendar-daily_head-day.v-past .v-calendar-daily_head-day-label {
-  color: rgba(0, 0, 0, 0.38);
+  color: var(--vue-calendar-day-label-previous-font-color);
 }
 .theme--light.v-calendar-daily .v-calendar-daily__intervals-body {
-  border-right: #e0e0e0 1px solid;
-}
-.theme--light.v-calendar-daily .v-calendar-daily__intervals-body .v-calendar-daily__interval-text {
-  color: #424242;
+  border-right: var(--vue-calendar-border-color) 1px solid; 
 }
 .theme--light.v-calendar-daily .v-calendar-daily__day {
-  border-right: #e0e0e0 1px solid;
-  border-bottom: #e0e0e0 1px solid;
+  border-right: var(--vue-calendar-border-color) 1px solid; 
+  border-bottom: var(--vue-calendar-border-color) 1px solid; 
   box-sizing: border-box;
 }
 .theme--light.v-calendar-daily .v-calendar-daily__day-interval {
-  border-top: #e0e0e0 1px solid;
+  border-top: var(--vue-calendar-border-color) 1px solid; 
   box-sizing: border-box;
+  background: var(--vue-calendar-background-color);  
 }
 .theme--light.v-calendar-daily .v-calendar-daily__day-interval:first-child {
   border-top: none !important;
 }
 .theme--light.v-calendar-daily .v-calendar-daily__interval::after {
-  border-top: #e0e0e0 1px solid;
+  border-top: var(--vue-calendar-border-color) 1px solid; 
 }
 
 .theme--dark.v-calendar-daily {
@@ -3759,6 +3772,7 @@
 .v-calendar-daily__intervals-head {
   flex: none;
   position: relative;
+  background: var(--vue-calendar-time-axis-header-background-color);
 }
 .v-calendar-daily__intervals-head::after {
   position: absolute;
@@ -3856,11 +3870,13 @@
 }
 
 .v-calendar-daily__intervals-body {
+  background: var(--vue-calendar-time-axis-background-color);
   flex: none;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+          
 }
 
 .v-calendar-daily__interval {
@@ -3885,6 +3901,9 @@
   top: -6px;
   font-size: 10px;
   padding-right: 4px;
+  font-size: var(--vue-calendar-time-axis-text-size);
+  font-family: var(--vue-calendar-time-axis-text-font);
+  color: var(--vue-calendar-time-axis-text-color);
 }
 
 .v-calendar-daily__day {

@@ -20,49 +20,52 @@ vis.binds.materialdesign.calendar =
 
             $this.append(`
             <div class="${containerClass}" style="width: 100%; height: 100%;">
-                <div class="materialdesign-vuetify-calendar-control-container">                
-                    <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-prev">
-                        <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
-                            <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar-arrow-left"></span>
-                            ${(myMdwHelper.getValueFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlPrev')}</span>` : ''}
+                
+                ${(myMdwHelper.getValueFromData(data.controlShow, false) === 'true') ? `
+                    <div class="materialdesign-vuetify-calendar-control-container">
+                        <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-prev">
+                            <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+                                <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar-arrow-left"></span>
+                                ${(myMdwHelper.getValueFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlPrev')}</span>` : ''}
+                            </div>
+                        </div>
+
+                        <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-today">
+                            <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+                                <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar-today"></span>
+                                ${(myMdwHelper.getValueFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlToday')}</span>` : ''}
+                            </div>
+                        </div>
+
+                        <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-month">
+                            <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+                                <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar-month"></span>
+                                ${(myMdwHelper.getValueFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlMonth')}</span>` : ''}
+                            </div>
+                        </div>
+
+                        <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-week">
+                            <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+                                <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar-week"></span>
+                                ${(myMdwHelper.getValueFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlWeek')}</span>` : ''}
+                            </div>
+                        </div>
+
+                        <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-day">
+                            <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+                                <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar"></span>
+                                ${(myMdwHelper.getValueFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlDay')}</span>` : ''}
+                            </div>
+                        </div>                    
+
+                        <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-next">
+                            <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+                                <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar-arrow-right"></span>
+                                ${(myMdwHelper.getValueFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlNext')}</span>` : ''}
+                            </div>
                         </div>
                     </div>
-
-                    <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-today">
-                        <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
-                            <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar-today"></span>
-                            ${(myMdwHelper.getValueFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlToday')}</span>` : ''}
-                        </div>
-                    </div>
-
-                    <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-month">
-                        <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
-                            <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar-month"></span>
-                            ${(myMdwHelper.getValueFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlMonth')}</span>` : ''}
-                        </div>
-                    </div>
-
-                    <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-week">
-                        <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
-                            <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar-week"></span>
-                            ${(myMdwHelper.getValueFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlWeek')}</span>` : ''}
-                        </div>
-                    </div>
-
-                    <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-day">
-                        <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
-                            <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar"></span>
-                            ${(myMdwHelper.getValueFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlDay')}</span>` : ''}
-                        </div>
-                    </div>                    
-
-                    <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-next">
-                        <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
-                            <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar-arrow-right"></span>
-                            ${(myMdwHelper.getValueFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlNext')}</span>` : ''}
-                        </div>
-                    </div>
-                </div>
+                `: ''}
 
                 <v-calendar 
                     v-model="focus"
@@ -97,7 +100,7 @@ vis.binds.materialdesign.calendar =
                         data: () => ({
                             focus: moment().format('YYYY-MM-DD'),
                             now: moment().format('YYYY-MM-DD'),
-                            type: 'month',
+                            type: data.calendarView,
                             btnTodayColor: myMdwHelper.getValueFromData(data.calendarDayButtonTodayColor, '#44739e'),
                             shortWeekdays: true,
                             events: [
@@ -169,6 +172,25 @@ vis.binds.materialdesign.calendar =
                         vueCalendar.$refs.calendar.next();
                     });
 
+                    // Calendar Border
+                    $this.context.style.setProperty("--vue-calendar-border-color", myMdwHelper.getValueFromData(data.calendarBorderColor, ''));
+
+                    // Calendar Background color
+                    $this.context.style.setProperty("--vue-calendar-background-color", myMdwHelper.getValueFromData(data.calendarDayBackgroundColor, ''));
+                    $this.context.style.setProperty("--vue-calender-background-outside-color", myMdwHelper.getValueFromData(data.calendarDayBackgroundOutsideColor, ''));
+
+                    // Calendar Header Background
+                    $this.context.style.setProperty("--vue-calender-header-background-color", myMdwHelper.getValueFromData(data.calendarHeaderBackground, ''));
+
+                    // Calendar Time Axis Background
+                    $this.context.style.setProperty("--vue-calendar-time-axis-background-color", myMdwHelper.getValueFromData(data.calendarTimeAxisBackgroundColor, ''));
+                    $this.context.style.setProperty("--vue-calendar-time-axis-header-background-color", myMdwHelper.getValueFromData(data.calendarTimeAxisHeaderBackgroundColor, ''));
+
+                    // Calendar Time Axis Font
+                    $this.context.style.setProperty("--vue-calendar-time-axis-text-size", myMdwHelper.getStringFromNumberData(data.calendarTimeAxisFontSize, '12px', '', 'px'));
+                    $this.context.style.setProperty("--vue-calendar-time-axis-text-font", myMdwHelper.getValueFromData(data.calendarTimeAxisFont, 'inherit'));
+                    $this.context.style.setProperty("--vue-calendar-time-axis-text-color", myMdwHelper.getValueFromData(data.calendarTimeAxisFontColor, ''));
+
                     // Day Button colors
                     $this.context.style.setProperty("--vue-btn-background-color-before", myMdwHelper.getValueFromData(data.calendarDayButtonColor, ''));
                     $this.context.style.setProperty("--vue-calendar-day-button-today-color", myMdwHelper.getValueFromData(data.calendarDayButtonTodayColor, ''));
@@ -194,9 +216,6 @@ vis.binds.materialdesign.calendar =
                     $this.context.style.setProperty("--vue-calendar-day-label-today-font-size", myMdwHelper.getStringFromNumberData(data.calendarDayLabelTodayFontSize, '12px', '', 'px'));
                     $this.context.style.setProperty("--vue-calendar-day-label-today-font-family", myMdwHelper.getValueFromData(data.calendarDayLabelTodayFontFamily, 'inherit'));
                     $this.context.style.setProperty("--vue-calendar-day-label-today-font-color", myMdwHelper.getValueFromData(data.calendarDayLabelTodayFontColor, ''));
-
-                    // Background outside color
-                    $this.context.style.setProperty("--vue-calender-day-background-outside-color", myMdwHelper.getValueFromData(data.calendarDayBackgroundOutsideColor, ''));
 
                     // Control button icon
                     $this.context.style.setProperty("--vue-calendar-control-button-icon-size", myMdwHelper.getStringFromNumberData(data.controlIconSize, '24px', '', 'px'));
