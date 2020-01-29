@@ -3498,7 +3498,12 @@
   z-index: 1;
   position: relative;
   padding: 0 4px;
-  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
+  font-size: var(--vue-aclendar-event-font-size);
+  font-family: var(--vue-aclendar-event-font);
 }
 .v-calendar .v-event-timed-container {
   position: absolute;

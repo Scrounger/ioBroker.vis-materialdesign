@@ -5872,5 +5872,17 @@ systemDictionary = {
         "es": "ver dia",
         "pl": "widok dnia",
         "zh-cn": "查看日"
+    },
+    "calendarMoreEvent": {
+        "en": "more",
+        "de": "weitere",
+        "ru": "Больше",
+        "pt": "Mais",
+        "nl": "meer",
+        "fr": "plus",
+        "it": "Di Più",
+        "es": "más",
+        "pl": "więcej",
+        "zh-cn": "更多"
     }
 };
