@@ -152,6 +152,9 @@
   --vue-calendar-control-button-text-size: 12px;
   --vue-calendar-control-button-text-color: black;
   --vue-calendar-control-button-text-font: inherit;
+
+  --vue-aclendar-event-font-size: inherit;
+  --vue-aclendar-event-font: inherit;
 }
 
 /* custom classes for templates */
@@ -3954,3 +3957,7 @@
   font-family: var(--vue-calendar-control-button-text-font);
 }
 
+.v-event .pl-1, .v-event-timed .pl-1 {
+  font-size: var(--vue-aclendar-event-font-size);
+  font-family: var(--vue-aclendar-event-font);
+}

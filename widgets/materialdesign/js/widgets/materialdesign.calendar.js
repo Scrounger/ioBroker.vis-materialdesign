@@ -22,7 +22,7 @@ vis.binds.materialdesign.calendar =
             try {
                 jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
             } catch (err) {
-                jsonData = null;
+                jsonData = [];
                 console.error(`[Vuetify Calendar 1] cannot parse json string! Error: ${err.message}`);
             }
 
@@ -109,6 +109,72 @@ vis.binds.materialdesign.calendar =
                 >
               </v-calendar>
             </div>`);
+
+            // Calendar Border
+            $this.context.style.setProperty("--vue-calendar-border-color", myMdwHelper.getValueFromData(data.calendarBorderColor, ''));
+
+            // Calendar Background color
+            $this.context.style.setProperty("--vue-calendar-background-color", myMdwHelper.getValueFromData(data.calendarDayBackgroundColor, ''));
+            $this.context.style.setProperty("--vue-calender-background-outside-color", myMdwHelper.getValueFromData(data.calendarDayBackgroundOutsideColor, ''));
+
+            // Calendar Header Background
+            $this.context.style.setProperty("--vue-calender-header-background-color", myMdwHelper.getValueFromData(data.calendarHeaderBackground, ''));
+
+            // Calendar Time Axis Background
+            $this.context.style.setProperty("--vue-calendar-time-axis-background-color", myMdwHelper.getValueFromData(data.calendarTimeAxisBackgroundColor, ''));
+            $this.context.style.setProperty("--vue-calendar-time-axis-header-background-color", myMdwHelper.getValueFromData(data.calendarTimeAxisHeaderBackgroundColor, ''));
+
+            // Calendar Time Axis Font
+            $this.context.style.setProperty("--vue-calendar-time-axis-text-size", myMdwHelper.getStringFromNumberData(data.calendarTimeAxisFontSize, '12px', '', 'px'));
+            $this.context.style.setProperty("--vue-calendar-time-axis-text-font", myMdwHelper.getValueFromData(data.calendarTimeAxisFont, 'inherit'));
+            $this.context.style.setProperty("--vue-calendar-time-axis-text-color", myMdwHelper.getValueFromData(data.calendarTimeAxisFontColor, ''));
+
+            // Day Button colors
+            $this.context.style.setProperty("--vue-btn-background-color-before", myMdwHelper.getValueFromData(data.calendarDayButtonColor, ''));
+            $this.context.style.setProperty("--vue-calendar-day-button-today-color", myMdwHelper.getValueFromData(data.calendarDayButtonTodayColor, ''));
+
+            // Day Button ripple color
+            $this.context.style.setProperty('--vue-ripple-effect-color', myMdwHelper.getValueFromData(data.calendarDayButtonRippleEffectColor, ''));
+
+            // Day Button Label
+            $this.context.style.setProperty("--vue-calendar-day-button-font-size", myMdwHelper.getStringFromNumberData(data.calendarDayButtonFontSize, 'inherit', '', 'px'));
+            $this.context.style.setProperty("--vue-calendar-day-button-font-family", myMdwHelper.getValueFromData(data.calendarDayButtonFontFamily, 'inherit'));
+            $this.context.style.setProperty("--vue-calendar-day-button-font-color", myMdwHelper.getValueFromData(data.calendarDayButtonFontColor, ''));
+
+            // Day Button Label - Today
+            $this.context.style.setProperty("--vue-calendar-day-button-today-font-size", myMdwHelper.getStringFromNumberData(data.calendarDayButtonTodayFontSize, 'inherit', '', 'px'));
+            $this.context.style.setProperty("--vue-calendar-day-button-today-font-family", myMdwHelper.getValueFromData(data.calendarDayButtonTodayFontFamily, 'inherit'));
+            $this.context.style.setProperty("--vue-calendar-day-button-today-font-color", myMdwHelper.getValueFromData(data.calendarDayButtonTodayFontColor, '#fff'));
+
+            // Day Label
+            $this.context.style.setProperty("--vue-calendar-day-label-font-size", myMdwHelper.getStringFromNumberData(data.calendarDayLabelFontSize, '12px', '', 'px'));
+            $this.context.style.setProperty("--vue-calendar-day-label-font-family", myMdwHelper.getValueFromData(data.calendarDayLabelFontFamily, 'inherit'));
+            $this.context.style.setProperty("--vue-calendar-day-label-font-color", myMdwHelper.getValueFromData(data.calendarDayLabelFontColor, ''));
+
+            $this.context.style.setProperty("--vue-calendar-day-label-previous-font-color", myMdwHelper.getValueFromData(data.calendarDayLabelPreviousFontColor, ''));
+
+            // Day Label - Today
+            $this.context.style.setProperty("--vue-calendar-day-label-today-font-size", myMdwHelper.getStringFromNumberData(data.calendarDayLabelTodayFontSize, '12px', '', 'px'));
+            $this.context.style.setProperty("--vue-calendar-day-label-today-font-family", myMdwHelper.getValueFromData(data.calendarDayLabelTodayFontFamily, 'inherit'));
+            $this.context.style.setProperty("--vue-calendar-day-label-today-font-color", myMdwHelper.getValueFromData(data.calendarDayLabelTodayFontColor, ''));
+
+            // Control button icon
+            $this.context.style.setProperty("--vue-calendar-control-button-icon-size", myMdwHelper.getStringFromNumberData(data.controlIconSize, '24px', '', 'px'));
+            $this.context.style.setProperty("--vue-calendar-control-button-icon-color", myMdwHelper.getValueFromData(data.controlIconColor, ''));
+
+            // Control button text
+            $this.context.style.setProperty("--vue-calendar-control-button-text-size", myMdwHelper.getStringFromNumberData(data.controlTextSize, '12px', '', 'px'));
+            $this.context.style.setProperty("--vue-calendar-control-button-text-font", myMdwHelper.getValueFromData(data.controlTextFont, 'inherit'));
+            $this.context.style.setProperty("--vue-calendar-control-button-text-color", myMdwHelper.getValueFromData(data.controlTextColor, ''));
+
+            // Control Button ripple color
+            $this.context.style.setProperty('--mdc-theme-primary', myMdwHelper.getValueFromData(data.controlButtonRippelEffectColor, ''));
+            $this.context.style.setProperty('--mdc-theme-on-primary', myMdwHelper.getValueFromData(data.controlButtonRippelEffectColor, ''));
+
+            // Event style
+            $this.context.style.setProperty("--vue-aclendar-event-font-size", myMdwHelper.getStringFromNumberData(data.calendarEventFontSize, '12px', '', 'px'));
+            $this.context.style.setProperty("--vue-aclendar-event-font", myMdwHelper.getValueFromData(data.calendarEventFont, 'inherit'));
+
 
             myMdwHelper.waitForElement($this, `.${containerClass}`, function () {
                 myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
@@ -200,72 +266,12 @@ vis.binds.materialdesign.calendar =
                         vueCalendar.$refs.calendar.next();
                     });
 
-                    // Calendar Border
-                    $this.context.style.setProperty("--vue-calendar-border-color", myMdwHelper.getValueFromData(data.calendarBorderColor, ''));
-
-                    // Calendar Background color
-                    $this.context.style.setProperty("--vue-calendar-background-color", myMdwHelper.getValueFromData(data.calendarDayBackgroundColor, ''));
-                    $this.context.style.setProperty("--vue-calender-background-outside-color", myMdwHelper.getValueFromData(data.calendarDayBackgroundOutsideColor, ''));
-
-                    // Calendar Header Background
-                    $this.context.style.setProperty("--vue-calender-header-background-color", myMdwHelper.getValueFromData(data.calendarHeaderBackground, ''));
-
-                    // Calendar Time Axis Background
-                    $this.context.style.setProperty("--vue-calendar-time-axis-background-color", myMdwHelper.getValueFromData(data.calendarTimeAxisBackgroundColor, ''));
-                    $this.context.style.setProperty("--vue-calendar-time-axis-header-background-color", myMdwHelper.getValueFromData(data.calendarTimeAxisHeaderBackgroundColor, ''));
-
-                    // Calendar Time Axis Font
-                    $this.context.style.setProperty("--vue-calendar-time-axis-text-size", myMdwHelper.getStringFromNumberData(data.calendarTimeAxisFontSize, '12px', '', 'px'));
-                    $this.context.style.setProperty("--vue-calendar-time-axis-text-font", myMdwHelper.getValueFromData(data.calendarTimeAxisFont, 'inherit'));
-                    $this.context.style.setProperty("--vue-calendar-time-axis-text-color", myMdwHelper.getValueFromData(data.calendarTimeAxisFontColor, ''));
-
-                    // Day Button colors
-                    $this.context.style.setProperty("--vue-btn-background-color-before", myMdwHelper.getValueFromData(data.calendarDayButtonColor, ''));
-                    $this.context.style.setProperty("--vue-calendar-day-button-today-color", myMdwHelper.getValueFromData(data.calendarDayButtonTodayColor, ''));
-
-                    // Day Button ripple color
-                    $this.context.style.setProperty('--vue-ripple-effect-color', myMdwHelper.getValueFromData(data.calendarDayButtonRippleEffectColor, ''));
-
-                    // Day Button Label
-                    $this.context.style.setProperty("--vue-calendar-day-button-font-size", myMdwHelper.getStringFromNumberData(data.calendarDayButtonFontSize, 'inherit', '', 'px'));
-                    $this.context.style.setProperty("--vue-calendar-day-button-font-family", myMdwHelper.getValueFromData(data.calendarDayButtonFontFamily, 'inherit'));
-                    $this.context.style.setProperty("--vue-calendar-day-button-font-color", myMdwHelper.getValueFromData(data.calendarDayButtonFontColor, ''));
-
-                    // Day Button Label - Today
-                    $this.context.style.setProperty("--vue-calendar-day-button-today-font-size", myMdwHelper.getStringFromNumberData(data.calendarDayButtonTodayFontSize, 'inherit', '', 'px'));
-                    $this.context.style.setProperty("--vue-calendar-day-button-today-font-family", myMdwHelper.getValueFromData(data.calendarDayButtonTodayFontFamily, 'inherit'));
-                    $this.context.style.setProperty("--vue-calendar-day-button-today-font-color", myMdwHelper.getValueFromData(data.calendarDayButtonTodayFontColor, '#fff'));
-
-                    // Day Label
-                    $this.context.style.setProperty("--vue-calendar-day-label-font-size", myMdwHelper.getStringFromNumberData(data.calendarDayLabelFontSize, '12px', '', 'px'));
-                    $this.context.style.setProperty("--vue-calendar-day-label-font-family", myMdwHelper.getValueFromData(data.calendarDayLabelFontFamily, 'inherit'));
-                    $this.context.style.setProperty("--vue-calendar-day-label-font-color", myMdwHelper.getValueFromData(data.calendarDayLabelFontColor, ''));
-
-                    $this.context.style.setProperty("--vue-calendar-day-label-previous-font-color", myMdwHelper.getValueFromData(data.calendarDayLabelPreviousFontColor, ''));
-
-                    // Day Label - Today
-                    $this.context.style.setProperty("--vue-calendar-day-label-today-font-size", myMdwHelper.getStringFromNumberData(data.calendarDayLabelTodayFontSize, '12px', '', 'px'));
-                    $this.context.style.setProperty("--vue-calendar-day-label-today-font-family", myMdwHelper.getValueFromData(data.calendarDayLabelTodayFontFamily, 'inherit'));
-                    $this.context.style.setProperty("--vue-calendar-day-label-today-font-color", myMdwHelper.getValueFromData(data.calendarDayLabelTodayFontColor, ''));
-
-                    // Control button icon
-                    $this.context.style.setProperty("--vue-calendar-control-button-icon-size", myMdwHelper.getStringFromNumberData(data.controlIconSize, '24px', '', 'px'));
-                    $this.context.style.setProperty("--vue-calendar-control-button-icon-color", myMdwHelper.getValueFromData(data.controlIconColor, ''));
-
-                    // Control button text
-                    $this.context.style.setProperty("--vue-calendar-control-button-text-size", myMdwHelper.getStringFromNumberData(data.controlTextSize, '12px', '', 'px'));
-                    $this.context.style.setProperty("--vue-calendar-control-button-text-font", myMdwHelper.getValueFromData(data.controlTextFont, 'inherit'));
-                    $this.context.style.setProperty("--vue-calendar-control-button-text-color", myMdwHelper.getValueFromData(data.controlTextColor, ''));
-
-                    // Control Button ripple color
-                    $this.context.style.setProperty('--mdc-theme-primary', myMdwHelper.getValueFromData(data.controlButtonRippelEffectColor, ''));
-                    $this.context.style.setProperty('--mdc-theme-on-primary', myMdwHelper.getValueFromData(data.controlButtonRippelEffectColor, ''));
 
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                         try {
                             jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
                         } catch (err) {
-                            jsonData === null;
+                            jsonData === [];
                             console.error(`[Vuetify Calendar 2] cannot parse json string! Error: ${err.message}`);
                         }
 
