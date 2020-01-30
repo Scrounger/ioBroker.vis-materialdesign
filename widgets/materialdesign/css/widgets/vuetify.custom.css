@@ -2311,7 +2311,7 @@
 }
 .v-list-item--dense .v-list-item__content,
 .v-list--dense .v-list-item .v-list-item__content {
-  padding: 8px 0;
+  /* padding: 8px 0; */
 }
 .v-list-item--dense .v-list-item__title,
 .v-list-item--dense .v-list-item__subtitle,
