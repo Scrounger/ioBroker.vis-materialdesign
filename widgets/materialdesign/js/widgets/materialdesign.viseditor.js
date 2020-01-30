@@ -67,6 +67,10 @@ vis.binds.materialdesign.viseditor = {
                 if (data[1] === 'alerts') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#alerts'
                 }
+
+                if (data[1] === 'calendar') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#calendar'
+                }
             }
 
             return { input: `<a target="_blank" href="${url}">${_('readme')}</a>` }

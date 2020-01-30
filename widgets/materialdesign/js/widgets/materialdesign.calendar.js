@@ -26,11 +26,28 @@ vis.binds.materialdesign.calendar =
                 console.error(`[Vuetify Calendar 1] cannot parse json string! Error: ${err.message}`);
             }
 
+            // control button positions
+            let controlContainerStyle = '';
+            if (data.controlPosition === 'stretch') {
+                $this.context.style.setProperty("--vue-calendar-control-button-container-flex", 1);
+            } else {
+                $this.context.style.setProperty("--vue-calendar-control-button-container-flex", 0);
+                $this.context.style.setProperty("--vue-calendar-control-button-container-min-width", myMdwHelper.getStringFromNumberData(data.controlMinWidth, 'initial', '', 'px'));
+
+                if (data.controlPosition === 'center') {
+                    controlContainerStyle = ' style="justify-content: center;"'
+                } else if (data.controlPosition === 'left') {
+                    controlContainerStyle = ' style="justify-content: flex-start;"'
+                } else {
+                    controlContainerStyle = ' style="justify-content: flex-end;"'
+                }
+            }
+
             $this.append(`
             <div class="${containerClass}" style="width: 100%; height: 100%;">
                 
                 ${(myMdwHelper.getValueFromData(data.controlShow, false) === 'true') ? `
-                    <div class="materialdesign-vuetify-calendar-control-container">
+                    <div class="materialdesign-vuetify-calendar-control-container"${controlContainerStyle}>
                         <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-prev" style="background: ${myMdwHelper.getValueFromData(data.controlButtonColor, '')}">
                             <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
                                 <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar-arrow-left"></span>
@@ -214,7 +231,14 @@ vis.binds.materialdesign.calendar =
                                 vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
 
                                 this.focus = date
-                                this.type = 'week'
+
+                                if (this.type === 'month') {
+                                    this.type = data.calendarDayButtonMonthViewGoTo;
+                                } else if (this.type === 'week') {
+                                    this.type = data.calendarDayButtonWeekViewGoTo;
+                                } else if (this.type === 'day') {
+                                    this.type = data.calendarDayButtonDayViewGoTo;
+                                }
                             },
                             swipe(direction) {
                                 this.swipeDirection = direction

@@ -155,6 +155,9 @@
 
   --vue-aclendar-event-font-size: inherit;
   --vue-aclendar-event-font: inherit;
+
+  --vue-calendar-control-button-container-flex: 1;
+  --vue-calendar-control-button-container-min-width: initial;
 }
 
 /* custom classes for templates */
@@ -3947,7 +3950,8 @@
   height: auto; 
   position: relative;
   padding: 4px;
-  flex-grow: 1;
+  flex-grow: var(--vue-calendar-control-button-container-flex);
+  min-width: var(--vue-calendar-control-button-container-min-width);
 }
 
 .materialdesign-vuetify-calendar-control-button-icon {
