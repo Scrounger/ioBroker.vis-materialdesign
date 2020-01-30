@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.49"
+    version: "0.2.50"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -29,7 +29,7 @@ vis.binds.materialdesign.helper = {
     },
     installedVersion: function (el, data) {
         setTimeout(function () {
-            let version = 'version: "0.2.49"'
+            let version = 'version: "0.2.50"'
             console.log(version);
             $(el).find('#versionNumber').text(version.replace('version: "', '').replace('"', ''));
         }, 1)
