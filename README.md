@@ -509,7 +509,7 @@ The Alerts widget requires a JSON string as object, which must be structured as 
     </thead>
     <tbody>
         <tr>
-            <td rowspan=2><img src="doc/en/media/alerts_settings.png"></td>
+            <td rowspan=3><img src="doc/en/media/alerts_settings.png"></td>
             <td>number of columns</td>
             <td>define number of columns</td>
         </tr>
@@ -523,6 +523,103 @@ The Alerts widget requires a JSON string as object, which must be structured as 
         </tr>
     </tbody>
 </table>
+
+With the following script you can send easy messages to datapoint that is used by the Alerts Widget.
+The script must put into global scripts. Then it is possible to send message with the following command
+
+`materialDesignWidgets.sendTo('datapoint_id', 'message', 'color');`
+
+```
+
+
+var materialDesignWidgets = {};
+materialDesignWidgets.sendTo = function (id, text, backgroundColor = '', borderColor = '', icon = '', iconColor = '', fontColor = '') {
+    let json = getState(id).val;
+ 
+    if (json) {
+        try {
+
+            json = JSON.parse(json);
+
+        } catch (e) {
+            json = [];
+            console.warn('Wert ist kein JSON string! Wert wird ersetzt!');
+        }
+    } else {
+        json = [];
+    }
+
+    json.push(
+        {
+            text: text,
+            backgroundColor: backgroundColor,
+            borderColor: borderColor,
+            icon: icon,
+            iconColor: iconColor,
+            fontColor: fontColor
+        }
+    )
+    setState(id, JSON.stringify(json), true);
+}
+```
+
+## Calendar
+
+![Logo](doc/en/media/calendar.gif)
+
+The Calendar widget requires a JSON string as object, which must be structured as follows:
+```
+[
+	{
+		"name": "Event",
+		"color": "#e74c3c",
+		"colorText": "#FFFFFF",
+		"start": "2020-01-24",
+		"end": "2020-01-26"
+	},
+	{
+		"name": "Meeting",
+		"color": "#717d7e",
+		"colorText": "#FFFFFF",
+		"start": "2020-03-23",
+		"end": "2020-03-24"
+	}
+]
+```
+Only hex and rgba can be used as colors!
+
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=2><img src="doc/en/media/calendar_layout.png"></td>
+            <td>days of the week to be shown</td>
+            <td>Specifies which days of the week to display. To display Monday through Friday only, a value of <code>1, 2, 3, 4, 5</code> can be used. To display a week starting on Monday a value of <code>1, 2, 3, 4, 5, 6, 0</code> can be used.</td>
+        </tr>
+        <tr>
+            <td>Object ID</td>
+            <td>Object must be a json string, which must be structured as described above</td>
+        </tr>
+        <tr>
+            <td rowspan=2><img src="doc/en/media/calendar_timeaxis.png"></td>
+            <td>start hour</td>
+            <td>The hour from which appointments should be displayed in the week and day view.</td>
+        </tr>
+        <tr>
+            <td>end hour</td>
+            <td>Die Stunde bis wann in der Wochen und Tagesansicht Termine angezeigt werden sollen</td>
+        </tr>        
+    </tbody>
+</table>
+
 
 ## Changelog
 
