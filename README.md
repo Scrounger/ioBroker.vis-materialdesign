@@ -624,54 +624,67 @@ If you want to use the widget with the [ical adapter](https://github.com/iobroke
 ```
 // momentjs is required as dependecies in javascript adapter
 const moment = require("moment");
+ 
+var instances = $(`[id=ical.*.data.table]`);
+instances.on(ical2CalendarWidget);
 
-on({ id: 'ical.0.data.table', change: 'any' }, function (obj) {
+function ical2CalendarWidget() {
     try {
-        let icalObj = obj.state.val;
         let calList = [];
 
-        if (icalObj) {
-            for (var i = 0; i <= icalObj.length - 1; i++) {
-                let item = icalObj[i];
+        for (var inst = 0; inst <= instances.length - 1; inst++) {
+            let icalObj = getState(instances[inst]).val;
 
-                // extract calendar color
-                let calendarName = item._class.split(' ')[0].replace('ical_', '');
+            if (icalObj) {
+                for (var i = 0; i <= icalObj.length - 1; i++) {
+                    let item = icalObj[i];
 
-                // create object for calendar widget
-                calList.push({
-                    name: item.event,
-                    color: getMyCalendarColor(calendarName),
-                    colorText: getMyCalendarTextColor(calendarName),
-                    start: moment(item._date).format("YYYY-MM-DD hh:mm"),
-                    end: moment(item._end).format("YYYY-MM-DD hh:mm")
-                })
-            }
+                    // extract calendar color
+                    let calendarName = item._class.split(' ')[0].replace('ical_', '');
 
-            function getMyCalendarColor(calendarName) {
-                // assign colors via the calendar names, use calendar name as set in ical
-                if (calendarName === 'calendar1') {
-                    return '#FF0000';
-                } else if (calendarName === 'calendar2') {
-                    return '#44739e'
+                    // create object for calendar widget
+                    calList.push({
+                        name: item.event,
+                        color: getMyCalendarColor(calendarName),
+                        colorText: getMyCalendarTextColor(calendarName),
+                        start: moment(item._date).format("YYYY-MM-DD HH:mm"),
+                        end: moment(item._end).format("YYYY-MM-DD HH:mm")
+                    })
+                }
+
+                function getMyCalendarColor(calendarName) {
+                    // assign colors via the calendar names, use calendar name as set in ical
+                    if (calendarName === 'calendar1') {
+                        return '#FF0000';
+                    } else if (calendarName === 'calendar2') {
+                        return '#44739e'
+                    } else if (calendarName === 'calendar3') {
+                        return '#32a852'
+                    }
+                }
+
+                function getMyCalendarTextColor(calendarName) {
+                    // assign colors via the calendar names, use calendar name as set in ical
+                    if (calendarName === 'calendar1') {
+                        return '#FFFFFF';
+                    } else if (calendarName === 'calendar2') {
+                        return '#FFFFFF'
+                    } else if (calendarName === 'calendar3') {
+                        return '#FFFFFF'
+                    }
                 }
             }
-
-            function getMyCalendarTextColor(calendarName) {
-                // assign colors via the calendar names, use calendar name as set in ical
-                if (calendarName === 'calendar1') {
-                    return '#FFFFFF';
-                } else if (calendarName === 'calendar2') {
-                    return '#FFFFFF'
-                }
-            }
-
-            // Enter the destination data point that is to be used as object ID in the widget
+ 
+            // Enter the destination data point that is to be used as object ID in the widget                
             setState('0_userdata.0.materialdesignwidgets.ical2Calendar', JSON.stringify(calList), true);
         }
     } catch (e) {
         console.error(`ical2MaterialDesignCalendarWidget: message: ${e.message}, stack: {e.stack}`);
     }
-});
+}
+
+ical2CalendarWidget();
+
 ```
 
 ## Changelog
