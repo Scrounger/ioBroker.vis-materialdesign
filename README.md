@@ -428,6 +428,31 @@ Working Widget Example can be found
 * [here](https://forum.iobroker.net/topic/26199/test-adapter-material-design-widgets-v0-1-x/113)
 * [ical Adapter](https://forum.iobroker.net/topic/26925/test-adapter-material-design-widgets-v0-2-x/581)
 
+## Masonry Views
+
+Masonry Views has multiple `view in widget` integrated, that will be ordered automatically depending of the width of the widget. With this widget it is possible to cereate a responsive layout (one layout for desktop, tablet and mobil)
+
+<b>Take a look at the [Material Design Widgets example project](https://github.com/Scrounger/ioBroker.vis-materialdesign#online-example-project)</b> to understand how it works.
+
+![Logo](doc/en/media/masnory.gif)
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=2><img src="doc/en/media/masonry_resolution_settings.png"></td>
+            <td>Depending on the width of the resolution, the number of columns and the distance between the views can be set. The settings can be set independently for portrait and landscape format.
+To find out the width of the resolution for the different devices, activate the Resolution Assistant under the common settings.</td>
+        </tr>
+    </tbody>
+</table>
+
 ## Column Views - decrepated !!!
 
 Column Views has multiple `view in widget` integrated, that will be ordered automatically depending of the width of the widget. With this widget it is possible to cereate a responsive layout (one layout for desktop, tablet and mobil)
