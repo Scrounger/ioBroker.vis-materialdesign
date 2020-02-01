@@ -1043,6 +1043,22 @@
         </div>
 </script>
 
+<script id="tplVis-materialdesign-Vuetify-Dialog-View"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/materialdesign/img/prev_dialog_view.png"></img>'
+        data-vis-set="materialdesign"
+        data-vis-type="dialog,stateful,container,view"
+        data-vis-name="Dialog View"
+        data-vis-update-style="true"
+        data-vis-beta="true"
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,dialogView;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;showDialogMethod[button]/select,button,datapoint;showDialogOid/id;contains_view/views;viewWidth/number;viewHeight/number;vibrateOnMobilDevices[50]/number;">
+        
+        <div class="vis-widget materialdesign-widget materialdesign-vuetify-dialog <%== this.data.attr('class') %>" style="width: 350px; height: 180px; overflow: visible" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.dialog.vue(el, data) %>>
+
+        </div>
+</script>
+
 <script id="tplVis-materialdesign-Dialog-iFrame"
         type="text/ejs"
         class="vis-tpl"
@@ -1109,7 +1125,7 @@
         data-vis-type="container,view"
         data-vis-name="Masonry Views"
         data-vis-update-style="true"
-        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,columnViews;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;countCols/number;desktopGaps/number;countViews[3]/number;viewAlignment[center]/select,left,center,right,justify;showResolutionAssistant[true]/checkbox;"
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,masonry;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;countCols/number;desktopGaps/number;countViews[3]/number;viewAlignment[center]/select,left,center,right,justify;showResolutionAssistant[true]/checkbox;"
         data-vis-attrs0="group.handySettings;handyPortraitWidth/number;handyPortraitCols/number;handyPortraitGaps/number;handyLandscapeWidth/number;handyLandscapeCols/number;handyLandscapeGaps/number;"
         data-vis-attrs1="group.tabletSettings;tabletPortraitWidth/number;tabletPortraitCols/number;tabletPortraitGaps/number;tabletLandscapeWidth/number;tabletLandscapeCols/number;tabletLandscapeGaps/number;"
         data-vis-attrs2="group.View/byindex;View(0-countViews)/views;viewsWidth(0-countViews);viewsHeight(0-countViews)/number;"> 

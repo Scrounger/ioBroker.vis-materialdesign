@@ -1613,6 +1613,22 @@
   will-change: box-shadow;
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 }
+
+.v-card__actions > button {
+  cursor: pointer;
+  font: inherit;
+  overflow: visible;
+  border-style: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  -webkit-appearance: button;
+  text-transform: none;
+  background-color: transparent;
+  border-style: none;
+  color: inherit;
+}
+
 .v-card:not(.v-sheet--tile):not(.v-card--shaped) {
   border-radius: 4px;
 }
@@ -1670,7 +1686,7 @@
 }
 
 .v-card__text {
-  width: 100%;
+  width: calc(100% - 48px);
 }
 
 .v-card__actions {
@@ -3969,4 +3985,202 @@
 .v-event .pl-1, .v-event-timed .pl-1 {
   font-size: var(--vue-aclendar-event-font-size);
   font-family: var(--vue-aclendar-event-font);
+}
+
+/* dialog */
+.v-bottom-sheet.v-dialog {
+  align-self: flex-end;
+  border-radius: 0;
+  flex: 0 1 auto;
+  margin: 0;
+  overflow: visible;
+}
+.v-bottom-sheet.v-dialog.v-bottom-sheet--inset {
+  max-width: 70%;
+}
+@media only screen and (max-width: 599px) {
+  .v-bottom-sheet.v-dialog.v-bottom-sheet--inset {
+    max-width: none;
+  }
+}
+.v-dialog {
+  border-radius: 4px;
+  margin: 24px;
+  overflow-y: auto;
+  pointer-events: auto;
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  width: 100%;
+  z-index: inherit;
+  box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+}
+.v-dialog:not(.v-dialog--fullscreen) {
+  max-height: 90%;
+}
+.v-dialog > * {
+  width: 100%;
+}
+.v-dialog > .v-card > .v-card__title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.0125em;
+  padding: 16px 24px 10px;
+}
+.v-dialog > .v-card > .v-card__text {
+  padding: 0 24px 20px;
+}
+.v-dialog > .v-card > .v-card__subtitle {
+  padding: 0 24px 20px;
+}
+
+.v-dialog__content {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  transition: 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), z-index 1ms;
+  width: 100%;
+  z-index: 6;
+  outline: none;
+}
+
+.v-dialog__container {
+  display: none;
+}
+.v-dialog__container--attached {
+  display: inline;
+}
+
+.v-dialog--animated {
+  -webkit-animation-duration: 0.15s;
+          animation-duration: 0.15s;
+  -webkit-animation-name: animate-dialog;
+          animation-name: animate-dialog;
+  -webkit-animation-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+          animation-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.v-dialog--fullscreen {
+  border-radius: 0;
+  margin: 0;
+  height: 100%;
+  position: fixed;
+  overflow-y: auto;
+  top: 0;
+  left: 0;
+}
+.v-dialog--fullscreen > .v-card {
+  min-height: 100%;
+  min-width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.v-dialog--scrollable,
+.v-dialog--scrollable > form {
+  display: flex;
+}
+.v-dialog--scrollable > .v-card,
+.v-dialog--scrollable > form > .v-card {
+  display: flex;
+  flex: 1 1 100%;
+  flex-direction: column;
+  max-height: 100%;
+  max-width: 100%;
+}
+.v-dialog--scrollable > .v-card > .v-card__title,
+.v-dialog--scrollable > .v-card > .v-card__actions,
+.v-dialog--scrollable > form > .v-card > .v-card__title,
+.v-dialog--scrollable > form > .v-card > .v-card__actions {
+  flex: 0 0 auto;
+}
+.v-dialog--scrollable > .v-card > .v-card__text,
+.v-dialog--scrollable > form > .v-card > .v-card__text {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+@-webkit-keyframes animate-dialog {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes animate-dialog {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.theme--light.v-overlay {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.theme--dark.v-overlay {
+  color: #FFFFFF;
+}
+
+.v-overlay {
+  align-items: center;
+  border-radius: inherit;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1), z-index 1ms;
+}
+
+.v-overlay__content {
+  position: relative;
+}
+
+.v-overlay__scrim {
+  border-radius: inherit;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: inherit;
+  width: 100%;
+  will-change: opacity;
+}
+
+.v-overlay--absolute {
+  position: absolute;
+}
+
+.v-overlay--active {
+  pointer-events: auto;
+}
+
+
+
+.materialdesign-vuetify-dialog-button {  
+  height: auto; 
+  position: relative;
+  padding: 4px;
+  width: 100%;
+  height: 100%;
 }
