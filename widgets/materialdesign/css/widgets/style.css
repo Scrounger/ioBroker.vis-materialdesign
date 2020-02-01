@@ -1292,3 +1292,8 @@ svg.materialdesign-button__icon {
   width: calc(100% - 20px);
   text-align: end;
 }
+
+.mdc-list-item__meta:not(.material-icons) {
+  font-size: 0.75rem;
+  line-height: 1;
+}
