@@ -53,14 +53,16 @@ not working at the moment, needs to be implemneted by app, see https://github.co
     </tbody>
 </table>
 
-## Button Toggle
+## Buttons
+
+### Button Toggle
 ![Logo](doc/en/media/buttons.gif)
+
+### Icon Button
+![Logo](doc/en/media/icon-button.gif)
 
 ## Card
 ![Logo](doc/en/media/cards.png)
-
-## Icon Button
-![Logo](doc/en/media/icon-button.gif)
 
 ## List
 ![Logo](doc/en/media/list.gif)
@@ -646,10 +648,11 @@ Settings that are not listed in the table below are self-explanatory.
 </table>
 
 If you want to use the widget with the [ical adapter](https://github.com/iobroker-community-adapters/ioBroker.ical), you can use the following script to convert the ical object to work with the widget.
+
 ```
 // momentjs is required as dependecies in javascript adapter
 const moment = require("moment");
- 
+
 var instances = $(`[id=ical.*.data.table]`);
 instances.on(ical2CalendarWidget);
 
@@ -667,13 +670,32 @@ function ical2CalendarWidget() {
                     // extract calendar color
                     let calendarName = item._class.split(' ')[0].replace('ical_', '');
 
+                    let startTime = moment(item._date);
+                    let endTime = moment(item._end);
+                    
+                    let start = startTime.format("YYYY-MM-DD HH:mm");
+                    let end = endTime.format("YYYY-MM-DD HH:mm");
+
+                    if (startTime.format('HH:mm') === '00:00' && endTime.format('HH:mm') === '00:00') {
+                        // is full-day event
+                        if (endTime.diff(startTime, 'hours') === 24) {
+                            // full-day event, one day
+                            start = startTime.format("YYYY-MM-DD");
+                            end = startTime.format("YYYY-MM-DD");
+                        } else {
+                            // full-day event, multiple days
+                            start = startTime.format("YYYY-MM-DD");
+                            end = endTime.format("YYYY-MM-DD");
+                        }
+                    }
+
                     // create object for calendar widget
                     calList.push({
                         name: item.event,
                         color: getMyCalendarColor(calendarName),
                         colorText: getMyCalendarTextColor(calendarName),
-                        start: moment(item._date).format("YYYY-MM-DD HH:mm"),
-                        end: moment(item._end).format("YYYY-MM-DD HH:mm")
+                        start: start,
+                        end: end
                     })
                 }
 
@@ -699,17 +721,16 @@ function ical2CalendarWidget() {
                     }
                 }
             }
- 
+
             // Enter the destination data point that is to be used as object ID in the widget                
             setState('0_userdata.0.materialdesignwidgets.ical2Calendar', JSON.stringify(calList), true);
         }
     } catch (e) {
-        console.error(`ical2MaterialDesignCalendarWidget: message: ${e.message}, stack: {e.stack}`);
+        console.error(`ical2MaterialDesignCalendarWidget: message: ${e.message}, stack: ${e.stack}`);
     }
 }
 
 ical2CalendarWidget();
-
 ```
 
 ## Changelog
