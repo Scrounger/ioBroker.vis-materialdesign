@@ -100,6 +100,9 @@ Settings that are not listed in the table below are self-explanatory.
 ## Round Slider
 ![Logo](doc/en/media/round_slider.gif)
 
+## Checkbox
+![Logo](doc/en/media/checkbox.gif)
+
 ## Switch
 ![Logo](doc/en/media/switch.gif)
 
