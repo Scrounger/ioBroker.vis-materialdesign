@@ -749,9 +749,10 @@ ical2CalendarWidget();
 ## Changelog
 
 ### 0.3.xx
+* (Scrounger): Masonry Views Widget: visible condition for resolution greater / less than added
 * (Scrounger): Calendar Widget added
 * (Scrounger): translation added
-* (Scrounger): VIS Editor: Link to Forum added
+* (Scrounger): VIS Editor: Link to Forum widget threads added
 * (Scrounger): bug fixes
 
 ### 0.2.49
