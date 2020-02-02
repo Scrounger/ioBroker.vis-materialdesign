@@ -140,6 +140,9 @@ vis.binds.materialdesign.viseditor = {
     onlineExample: function (widAttr) {
         return { input: `<a target="_blank" href="https://github.com/Scrounger/ioBroker.vis-materialdesign#online-example-project">${_('linkOnlineExampleProject')}</a>` }
     },
+    visibilityCondition: function (widAttr) {
+        return vis.editSelect(widAttr, ['==', '!=', '<=', '>=', '<', '>', 'consist', 'not consist', 'exist', 'not exist'], true);
+    },
     imagesAndMaterialDesignIcons: function (widAttr) {
         try {
             var that = vis;

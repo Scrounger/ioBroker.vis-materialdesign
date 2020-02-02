@@ -233,8 +233,86 @@ vis.binds.materialdesign.helper = {
     changeListIconElement: function (parentElement, iconData, width, height, iconColor = '', style = '') {
         myMdwHelper.changeIconElement(parentElement, iconData, width, height, iconColor, `padding-top: 8px; padding-bottom: 8px;${style}`, 'mdc-list-item__graphic');
     },
-    getAllowedImageFileExtensions: function(){
+    getAllowedImageFileExtensions: function () {
         return ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg']
+    },
+    getVisibility: function (val, visibilityOid, visibilityCond, visibilityVal) {
+        var oid = visibilityOid;
+        var condition = visibilityCond;
+        if (oid) {
+            if (val === undefined || val === null) {
+                val = vis.states.attr(oid + '.val');
+            }
+            if (val === undefined || val === null) {
+                return (condition === 'not exist');
+            }
+
+            var value = visibilityVal;
+
+            if (!condition || value === undefined || value === null) {
+                return (condition === 'not exist');
+            }
+
+            if (val === 'null' && condition !== 'exist' && condition !== 'not exist') {
+                return false;
+            }
+
+            var t = typeof val;
+            if (t === 'boolean' || val === 'false' || val === 'true') {
+                value = value === 'true' || value === true || value === 1 || value === '1';
+            } else
+                if (t === 'number') {
+                    value = parseFloat(value);
+                } else
+                    if (t === 'object') {
+                        val = JSON.stringify(val);
+                    }
+
+            // Take care: return true if widget is hidden!
+            switch (condition) {
+                case '==':
+                    value = value.toString();
+                    val = val.toString();
+                    if (val === '1') val = 'true';
+                    if (value === '1') value = 'true';
+                    if (val === '0') val = 'false';
+                    if (value === '0') value = 'false';
+                    return value !== val;
+                case '!=':
+                    value = value.toString();
+                    val = val.toString();
+                    if (val === '1') val = 'true';
+                    if (value === '1') value = 'true';
+                    if (val === '0') val = 'false';
+                    if (value === '0') value = 'false';
+                    return value === val;
+                case '>=':
+                    return val < value;
+                case '<=':
+                    return val > value;
+                case '>':
+                    return val <= value;
+                case '<':
+                    return val >= value;
+                case 'consist':
+                    value = value.toString();
+                    val = val.toString();
+                    return (val.toString().indexOf(value) === -1);
+                case 'not consist':
+                    value = value.toString();
+                    val = val.toString();
+                    return (val.toString().indexOf(value) !== -1);
+                case 'exist':
+                    return val === 'null';
+                case 'not exist':
+                    return val !== 'null';
+                default:
+                    console.log('Unknown visibility condition: ' + condition);
+                    return false;
+            }
+        } else {
+            return (condition === 'not exist');
+        }
     }
 };
 
