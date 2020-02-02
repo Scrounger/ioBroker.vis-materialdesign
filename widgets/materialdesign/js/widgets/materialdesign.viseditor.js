@@ -20,11 +20,11 @@ vis.binds.materialdesign.viseditor = {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#card'
                 }
 
-                if (data[1] === 'drawer') {
+                if (data[1] === 'topAppBar') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#top-app-bar-with-navigation-drawer'
                 }
 
-                if (data[1] === 'drawerSubMenuViews') {
+                if (data[1] === 'topAppBarSubMenu') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#submenu'
                 }
 
@@ -82,6 +82,57 @@ vis.binds.materialdesign.viseditor = {
         } catch (ex) {
             console.error(`[manualLink]: error: ${ex.message}, stack: ${ex.stack}`);
         }
+    },
+    questionsAndAnswers: function (widAttr, data) {
+        let url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#questions-and-answers-about-the-widgets';
+
+        if (vis.language === 'de') {
+            if (data[1] === 'alerts') {
+                url = 'https://forum.iobroker.net/topic/29663/material-design-widgets-alerts-widget'
+            }
+
+            if (data[1] === 'buttons') {
+                url = 'https://forum.iobroker.net/topic/29664/material-design-widgets-buttons-widget'
+            }
+
+            if (data[1] === 'calendar') {
+                url = 'https://forum.iobroker.net/topic/29600/material-design-widgets-calendar-widget'
+            }
+
+            if (data[1] === 'checkboxSwitch') {
+                url = 'https://forum.iobroker.net/topic/29667/material-design-widgets-checkbox-switch-widget'
+            }
+
+            if (data[1] === 'input') {
+                url = 'https://forum.iobroker.net/topic/29666/material-design-widgets-input-select-autocompl'
+            }
+
+            if (data[1] === 'lineHistoryChart') {
+                url = 'https://forum.iobroker.net/topic/29662/material-design-widgets-line-history-chart-widget'
+            }
+
+            if (data[1] === 'list') {
+                url = 'https://forum.iobroker.net/topic/29665/material-design-widgets-list-widget'
+            }
+
+            if (data[1] === 'masonry') {
+                url = 'https://forum.iobroker.net/topic/29621/material-design-widgets-masonry-views-widget'
+            }
+
+            if (data[1] === 'slider') {
+                url = 'https://forum.iobroker.net/topic/29661/material-design-widgets-slider-widget'
+            }
+
+            if (data[1] === 'table') {
+                url = 'https://forum.iobroker.net/topic/29658/material-design-widgets-table-widget'
+            }
+
+            if (data[1] === 'topAppBar') {
+                url = 'https://forum.iobroker.net/topic/29660/material-design-widgets-top-app-bar-widget'
+            }
+        }
+
+        return { input: `<a target="_blank" href="${url}">${_('readme')}</a>` }
     },
     bmc: function (widAttr) {
         return { input: `<a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VWAXSTS634G88&source=url">${_('buymeacoffee')}</a>` }

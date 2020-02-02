@@ -7240,5 +7240,17 @@ systemDictionary = {
         "es": "mostrar alertas máximas",
         "pl": "pokaż maks. alerty",
         "zh-cn": "显示最大警报"
+    },
+    "questionsAndAnswers": {
+        "en": "questions and answers",
+        "de": "Fragen und Antworten",
+        "ru": "вопросы и ответы",
+        "pt": "perguntas e respostas",
+        "nl": "vragen en antwoorden",
+        "fr": "questions et réponses",
+        "it": "domande e risposte",
+        "es": "preguntas y respuestas",
+        "pl": "pytania i odpowiedzi",
+        "zh-cn": "问题与解答"
     }
 };
