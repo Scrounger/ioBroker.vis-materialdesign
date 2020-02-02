@@ -103,7 +103,9 @@ Settings that are not listed in the table below are self-explanatory.
 ## Switch
 ![Logo](doc/en/media/switch.gif)
 
-## Select
+## Input
+
+### Select
 ![Logo](doc/en/media/select.gif)
 
 Settings that are not listed in the table below are self-explanatory.
@@ -168,7 +170,7 @@ Settings that are not listed in the table below are self-explanatory.
     </tbody>
 </table>
 
-## Autocomplete
+### Autocomplete
 ![Logo](doc/en/media/autocomplete.gif)
 
 Settings that are not listed in the table below are self-explanatory.
