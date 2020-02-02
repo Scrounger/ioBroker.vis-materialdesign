@@ -438,7 +438,7 @@ Example see <a href="https://github.com/Scrounger/ioBroker.vis-materialdesign#in
 
 Working Widget Example can be found 
 * [here](https://forum.iobroker.net/topic/26199/test-adapter-material-design-widgets-v0-1-x/113)
-* [ical Adapter](https://forum.iobroker.net/topic/26925/test-adapter-material-design-widgets-v0-2-x/581)
+* [ical Adapter](https://forum.iobroker.net/topic/29658/material-design-widgets-table-widget/2)
 
 ## Masonry Views
 
