@@ -108,6 +108,9 @@ Settings that are not listed in the table below are self-explanatory.
 
 ## Input
 
+### Text input
+![Logo](doc/en/media/input.gif)
+
 ### Select
 ![Logo](doc/en/media/select.gif)
 
@@ -748,6 +751,7 @@ ical2CalendarWidget();
 ### 0.3.xx
 * (Scrounger): Calendar Widget added
 * (Scrounger): translation added
+* (Scrounger): VIS Editor: Link to Forum added
 * (Scrounger): bug fixes
 
 ### 0.2.49
