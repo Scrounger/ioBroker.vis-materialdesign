@@ -85,7 +85,7 @@ vis.binds.materialdesign.views = {
 
                 viewsList.push(`
                     <div 
-                        class="materialdesign-masonry-item" style="height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px; ${viewWidth}; padding-bottom: ${paddingBottom};">
+                        class="materialdesign-masonry-item" id="masonry_item_${i}" style="height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px; ${viewWidth}; padding-bottom: ${paddingBottom};">
                             ${(vis.editMode) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;"></div>` : ''}                          
                             <div data-vis-contains="${data.attr('View' + i)}" class="vis-widget-body vis-view-container">
                             </div>
@@ -140,7 +140,8 @@ vis.binds.materialdesign.views = {
 
                     if (currentScreenWidth !== windowWidth) {
                         currentScreenWidth = windowWidth;
-                        setColumns()
+                        setColumns();
+                        viewVisibility();
                     }
                 });
 
@@ -164,6 +165,7 @@ vis.binds.materialdesign.views = {
                 let tabletLandscapeGaps = myMdwHelper.getNumberFromData(data.tabletLandscapeGaps, desktopGaps);
 
                 setColumns();
+                viewVisibility();
 
                 function setColumns() {
                     if (data.showResolutionAssistant) $this.find('.masonry-helper-resolution-width').text(currentScreenWidth + ' px');
@@ -219,8 +221,26 @@ vis.binds.materialdesign.views = {
                         }
                     }
                 }
-            });
 
+
+                function viewVisibility() {
+                    for (var i = 0; i <= data.countViews; i++) {
+                        let lessThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionLessThan' + i), 50000);
+                        let greaterThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionGreaterThan' + i), 0);
+
+                        if (currentScreenWidth < greaterThan) {
+                            $this.find(`#masonry_item_${i}`).hide();
+                        } else if (currentScreenWidth > greaterThan && currentScreenWidth < lessThan) {
+                            $this.find(`#masonry_item_${i}`).show();
+                        } else if (currentScreenWidth > lessThan) {
+                            $this.find(`#masonry_item_${i}`).hide();
+                        } else {
+                            $this.find(`#masonry_item_${i}`).show();
+                        }
+                    }
+                }
+
+            });
         } catch (ex) {
             console.error(`[Masonry Views] error: ${ex.message}, stack: ${ex.stack}`);
         }

@@ -7252,5 +7252,29 @@ systemDictionary = {
         "es": "preguntas y respuestas",
         "pl": "pytania i odpowiedzi",
         "zh-cn": "问题与解答"
+    },
+    "visibleResolutionGreaterThan": {
+        "en": "visible when resolution greater than",
+        "de": "sichtbar, wenn Auflösung größer als",
+        "ru": "видно, когда разрешение больше",
+        "pt": "visível quando a resolução é superior a",
+        "nl": "zichtbaar wanneer resolutie groter dan",
+        "fr": "visible lorsque la résolution est supérieure à",
+        "it": "visibile quando la risoluzione è maggiore di",
+        "es": "visible cuando la resolución es mayor que",
+        "pl": "widoczne, gdy rozdzielczość jest większa niż",
+        "zh-cn": "分辨率大于时可见"
+    },
+    "visibleResolutionLessThan": {
+        "en": "visible when resolution less than",
+        "de": "sichtbar, wenn Auflösung kleiner als",
+        "ru": "видно, когда разрешение меньше",
+        "pt": "visível quando a resolução é menor que",
+        "nl": "zichtbaar wanneer resolutie minder dan",
+        "fr": "visible lorsque la résolution est inférieure à",
+        "it": "visibile quando la risoluzione è inferiore a",
+        "es": "visible cuando la resolución es inferior a",
+        "pl": "widoczne, gdy rozdzielczość jest mniejsza niż",
+        "zh-cn": "分辨率小于时可见"
     }
 };
