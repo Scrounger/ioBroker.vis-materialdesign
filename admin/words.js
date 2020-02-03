@@ -7276,5 +7276,41 @@ systemDictionary = {
         "es": "visible cuando la resolución es inferior a",
         "pl": "widoczne, gdy rozdzielczość jest mniejsza niż",
         "zh-cn": "分辨率小于时可见"
+    },
+    "visibilityOid": {
+        "en": "object id for visibility",
+        "de": "Objekt ID für die Sichtbarkeit",
+        "ru": "идентификатор объекта для видимости",
+        "pt": "ID do objeto para visibilidade",
+        "nl": "object-ID voor zichtbaarheid",
+        "fr": "identifiant d'objet pour la visibilité",
+        "it": "ID oggetto per visibilità",
+        "es": "ID de objeto para visibilidad",
+        "pl": "identyfikator obiektu dla widoczności",
+        "zh-cn": "可见性的对象ID"
+    },
+    "visibilityCondition": {
+        "en": "condition for visibility",
+        "de": "Bedingung für die Sichtbarkeit",
+        "ru": "условие видимости",
+        "pt": "condição para visibilidade",
+        "nl": "voorwaarde voor zichtbaarheid",
+        "fr": "condition de visibilité",
+        "it": "condizione per la visibilità",
+        "es": "condición para visibilidad",
+        "pl": "warunek widoczności",
+        "zh-cn": "可见性条件"
+    },
+    "visibilityConditionValue": {
+        "en": "value for visibility",
+        "de": "Wert für die Sichtbarkeit",
+        "ru": "значение для видимости",
+        "pt": "valor para visibilidade",
+        "nl": "waarde voor zichtbaarheid",
+        "fr": "valeur pour la visibilité",
+        "it": "valore per la visibilità",
+        "es": "valor para la visibilidad",
+        "pl": "wartość dla widoczności",
+        "zh-cn": "可见度值"
     }
 };
