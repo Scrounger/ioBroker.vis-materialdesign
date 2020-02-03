@@ -238,7 +238,7 @@ vis.binds.materialdesign.views = {
 
                         if (currentScreenWidth < greaterThan) {
                             $this.find(`#masonry_item_${i}`).hide();
-                        } else if (currentScreenWidth > greaterThan && currentScreenWidth < lessThan) {
+                        } else if (currentScreenWidth >= greaterThan && currentScreenWidth <= lessThan) {
                             $this.find(`#masonry_item_${i}`).show();
                         } else if (currentScreenWidth > lessThan) {
                             $this.find(`#masonry_item_${i}`).hide();
