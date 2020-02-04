@@ -281,10 +281,36 @@ vis.binds.materialdesign.views = {
                 `)
             }
 
+            let resolutionHelper = `
+                <v-col cols="6">
+                    <div class="mdc-card my-card-container" style="width: 100%; height: 230px;">
+                        <div class="materialdesign-html-card card-title-section" >
+                            <div class="materialdesign-html-card card-title mdc-typography--headline6" style="">${_('Resolution assistant')}</div>
+                            
+                        </div>
+                        <div class="materialdesign-html-card card-text-section" style="display: block">
+                            <div style="width: 100%; display: flex; height: 40px; align-items: center">
+                                <label class="grid-helper-text">${_('width of resolution')}:</label>
+                                <label class="grid-helper-value grid-helper-resolution-width">568px</label>
+                            </div>
+                            <div style="width: 100%; display: flex; height: 40px; align-items: center">
+                                <label class="grid-helper-text">${_('used rule')}:</label>
+                                <label class="grid-helper-value grid-helper-rule">mobil phone landscape</label>
+                            </div>
+                            <div style="width: 100%; display: flex; height: 40px; align-items: center">
+                                <label class="grid-helper-text">${_('distance between views')}:</label>
+                                <label class="grid-helper-value grid-helper-gaps">5px</label>
+                            </div>                                                                               
+                        </div>
+                    </div>
+                </v-col>
+            `            
+
             $this.append(`
             <div class="${containerClass}">
-                <v-container>
+                <v-container>                    
                     <v-row style="align-items: ${data.viewVertAlignment}; justify-content: ${data.viewHorAlignment};">
+                        ${(data.showResolutionAssistant) ? resolutionHelper : ''}
                         ${viewsList.join('')}
                     </v-row>
                 </v-container>
@@ -297,10 +323,79 @@ vis.binds.materialdesign.views = {
                         vuetify: new Vuetify()
                     });
 
-
-
+                    var $window = $(window);
+                    var currentScreenWidth = $window.width();
+    
+                    $window.resize(function () {
+                        // resize event
+                        var windowWidth = $window.width();
+    
+                        if (currentScreenWidth !== windowWidth) {
+                            currentScreenWidth = windowWidth;
+                            setColumns();
+                        }
+                    });
+    
                     let desktopGaps = myMdwHelper.getNumberFromData(data.desktopGaps, 0);
-                    $this.context.style.setProperty("--vue-grid-gaps", desktopGaps + 'px');
+    
+                    let handyPortraitWidth = myMdwHelper.getNumberFromData(data.handyPortraitWidth, 360);
+                    let handyPortraitGaps = myMdwHelper.getNumberFromData(data.handyPortraitGaps, desktopGaps);
+    
+                    let handyLandscapeWidth = myMdwHelper.getNumberFromData(data.handyLandscapeWidth, 672);
+                    let handyLandscapeGaps = myMdwHelper.getNumberFromData(data.handyLandscapeGaps, desktopGaps);
+    
+                    let tabletPortraitWidth = myMdwHelper.getNumberFromData(data.tabletPortraitWidth, 768);
+                    let tabletPortraitGaps = myMdwHelper.getNumberFromData(data.tabletPortraitGaps, desktopGaps);
+    
+                    let tabletLandscapeWidth = myMdwHelper.getNumberFromData(data.tabletLandscapeWidth, 1024);
+                    let tabletLandscapeGaps = myMdwHelper.getNumberFromData(data.tabletLandscapeGaps, desktopGaps);
+
+                    setColumns();
+
+                    function setColumns() {
+                        if (data.showResolutionAssistant) $this.find('.grid-helper-resolution-width').text(currentScreenWidth + ' px');
+
+                        if (currentScreenWidth <= handyPortraitWidth) {
+                            $this.context.style.setProperty("--vue-grid-gaps", handyPortraitGaps + 'px');
+    
+                            if (data.showResolutionAssistant) {
+                                $this.find('.grid-helper-gaps').text(handyPortraitGaps + ' px');
+                                $this.find('.grid-helper-rule').text(_('mobil phone') + ' ' + _('portrait'));
+                            }
+    
+                        } else if (currentScreenWidth > handyPortraitWidth && currentScreenWidth <= handyLandscapeWidth) {
+                            $this.context.style.setProperty("--vue-grid-gaps", handyLandscapeGaps + 'px');
+    
+                            if (data.showResolutionAssistant) {
+                                $this.find('.grid-helper-gaps').text(handyLandscapeGaps + ' px');
+                                $this.find('.grid-helper-rule').text(_('mobil phone') + ' ' + _('landscape'));
+                            }
+    
+                        } else if (currentScreenWidth > handyLandscapeWidth && currentScreenWidth <= tabletPortraitWidth) {
+                            $this.context.style.setProperty("--vue-grid-gaps", tabletPortraitGaps + 'px');
+    
+                            if (data.showResolutionAssistant) {
+                                $this.find('.grid-helper-gaps').text(tabletPortraitGaps + ' px');
+                                $this.find('.grid-helper-rule').text(_('tablet') + ' ' + _('portrait'));
+                            }
+    
+                        } else if (currentScreenWidth > tabletPortraitWidth && currentScreenWidth <= tabletLandscapeWidth) {
+                            $this.context.style.setProperty("--vue-grid-gaps", tabletLandscapeGaps + 'px');
+    
+                            if (data.showResolutionAssistant) {
+                                $this.find('.grid-helper-gaps').text(tabletLandscapeGaps + ' px');
+                                $this.find('.grid-helper-rule').text(_('tablet') + ' ' + _('landscape'));
+                            }
+    
+                        } else if (currentScreenWidth > tabletLandscapeWidth) {
+                            $this.context.style.setProperty("--vue-grid-gaps", desktopGaps + 'px');
+    
+                            if (data.showResolutionAssistant) {
+                                $this.find('.grid-helper-gaps').text(desktopGaps + ' px');
+                                $this.find('.grid-helper-rule').text('-');
+                            }
+                        }
+                    }
                 });
             });
 

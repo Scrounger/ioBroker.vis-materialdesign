@@ -1284,11 +1284,11 @@ svg.materialdesign-button__icon {
   font-family: Arial;
 }
 
-.masonry-helper-text {
+.masonry-helper-text, .grid-helper-text {
   width: 180px;
 }
 
-.masonry-helper-value {
+.masonry-helper-value, .grid-helper-value {
   left: 186px;
   width: calc(100% - 20px);
   text-align: end;
