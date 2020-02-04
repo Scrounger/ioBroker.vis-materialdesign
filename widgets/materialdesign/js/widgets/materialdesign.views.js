@@ -135,15 +135,14 @@ vis.binds.materialdesign.views = {
             `);
 
             myMdwHelper.waitForElement($this, '.materialdesign-masonry-container', function () {
-                var $window = $(window);
-                var currentScreenWidth = $window.width();
+                var currentWidgetWidth = $this.width();
 
-                $window.resize(function () {
+                $(window).resize(function () {
                     // resize event
-                    var windowWidth = $window.width();
+                    var widgetWidth = $this.width();
 
-                    if (currentScreenWidth !== windowWidth) {
-                        currentScreenWidth = windowWidth;
+                    if (currentWidgetWidth !== widgetWidth) {
+                        currentWidgetWidth = widgetWidth;
                         setColumns();
                         viewVisibilityByResolution();
                     }
@@ -172,9 +171,9 @@ vis.binds.materialdesign.views = {
                 viewVisibilityByResolution();
 
                 function setColumns() {
-                    if (data.showResolutionAssistant) $this.find('.masonry-helper-resolution-width').text(currentScreenWidth + ' px');
+                    if (data.showResolutionAssistant) $this.find('.masonry-helper-resolution-width').text(currentWidgetWidth + ' px');
 
-                    if (currentScreenWidth <= handyPortraitWidth) {
+                    if (currentWidgetWidth <= handyPortraitWidth) {
                         $this.context.style.setProperty("--materialdesign-masonry-column-count", handyPortraitCols);
                         $this.context.style.setProperty("--materialdesign-masonry-gaps", handyPortraitGaps + 'px');
 
@@ -184,7 +183,7 @@ vis.binds.materialdesign.views = {
                             $this.find('.masonry-helper-rule').text(_('mobil phone') + ' ' + _('portrait'));
                         }
 
-                    } else if (currentScreenWidth > handyPortraitWidth && currentScreenWidth <= handyLandscapeWidth) {
+                    } else if (currentWidgetWidth > handyPortraitWidth && currentWidgetWidth <= handyLandscapeWidth) {
                         $this.context.style.setProperty("--materialdesign-masonry-column-count", handyLandscapeCols);
                         $this.context.style.setProperty("--materialdesign-masonry-gaps", handyLandscapeGaps + 'px');
 
@@ -194,7 +193,7 @@ vis.binds.materialdesign.views = {
                             $this.find('.masonry-helper-rule').text(_('mobil phone') + ' ' + _('landscape'));
                         }
 
-                    } else if (currentScreenWidth > handyLandscapeWidth && currentScreenWidth <= tabletPortraitWidth) {
+                    } else if (currentWidgetWidth > handyLandscapeWidth && currentWidgetWidth <= tabletPortraitWidth) {
                         $this.context.style.setProperty("--materialdesign-masonry-column-count", tabletPortraitCols);
                         $this.context.style.setProperty("--materialdesign-masonry-gaps", tabletPortraitGaps + 'px');
 
@@ -204,7 +203,7 @@ vis.binds.materialdesign.views = {
                             $this.find('.masonry-helper-rule').text(_('tablet') + ' ' + _('portrait'));
                         }
 
-                    } else if (currentScreenWidth > tabletPortraitWidth && currentScreenWidth <= tabletLandscapeWidth) {
+                    } else if (currentWidgetWidth > tabletPortraitWidth && currentWidgetWidth <= tabletLandscapeWidth) {
                         $this.context.style.setProperty("--materialdesign-masonry-column-count", tabletLandscapeCols);
                         $this.context.style.setProperty("--materialdesign-masonry-gaps", tabletLandscapeGaps + 'px');
 
@@ -214,7 +213,7 @@ vis.binds.materialdesign.views = {
                             $this.find('.masonry-helper-rule').text(_('tablet') + ' ' + _('landscape'));
                         }
 
-                    } else if (currentScreenWidth > tabletLandscapeWidth) {
+                    } else if (currentWidgetWidth > tabletLandscapeWidth) {
                         $this.context.style.setProperty("--materialdesign-masonry-column-count", desktopCols);
                         $this.context.style.setProperty("--materialdesign-masonry-gaps", desktopGaps + 'px');
 
@@ -231,11 +230,11 @@ vis.binds.materialdesign.views = {
                         let lessThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionLessThan' + i), 50000);
                         let greaterThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionGreaterThan' + i), 0);
 
-                        if (currentScreenWidth < greaterThan) {
+                        if (currentWidgetWidth < greaterThan) {
                             $this.find(`#masonry_item_${i}`).hide();
-                        } else if (currentScreenWidth >= greaterThan && currentScreenWidth <= lessThan) {
+                        } else if (currentWidgetWidth >= greaterThan && currentWidgetWidth <= lessThan) {
                             $this.find(`#masonry_item_${i}`).show();
-                        } else if (currentScreenWidth > lessThan) {
+                        } else if (currentWidgetWidth > lessThan) {
                             $this.find(`#masonry_item_${i}`).hide();
                         } else {
                             $this.find(`#masonry_item_${i}`).show();
