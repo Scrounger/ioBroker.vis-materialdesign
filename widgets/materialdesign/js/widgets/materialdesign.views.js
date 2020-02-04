@@ -81,7 +81,7 @@ vis.binds.materialdesign.views = {
                 viewsList.push(`
                     <div 
                         class="materialdesign-masonry-item" id="masonry_item_${i}" itemindex="${i}" visibilityOid="${data.attr('visibilityOid' + i)}" style="height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px; ${viewWidth};">
-                            ${(vis.editMode) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;"></div>` : ''}                          
+                            ${(vis.editMode) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;"></div>` : ''}
                             <div data-vis-contains="${data.attr('View' + i)}" class="vis-widget-body vis-view-container">
                             </div>
                     </div>
@@ -255,6 +255,57 @@ vis.binds.materialdesign.views = {
             }
         } catch (ex) {
             console.error(`[Masonry Views] error: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
+    grid: function (el, data) {
+        try {
+            let $this = $(el);
+            let viewsList = [];
+
+            let containerClass = 'materialdesign-vuetify-grid';
+
+            for (var i = 0; i <= data.countViews; i++) {
+                let colSpan = myMdwHelper.getNumberFromData(data.attr('viewColSpan' + i), 6);
+                if (colSpan > 12) {
+                    colSpan = 12;
+                }
+
+                let view = myMdwHelper.getValueFromData(data.attr('View' + i), undefined);
+
+                viewsList.push(`
+                <v-col cols="${colSpan}">
+                    ${(vis.editMode && !view) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; position: relative; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;"></div>` : ''}
+                    <div data-vis-contains="${view}" class="vis-widget-body vis-view-container" style="position: relative; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;">
+                    </div>
+                </v-col>
+                `)
+            }
+
+            $this.append(`
+            <div class="${containerClass}">
+                <v-container>
+                    <v-row style="align-items: ${data.viewVertAlignment}; justify-content: ${data.viewHorAlignment};">
+                        ${viewsList.join('')}
+                    </v-row>
+                </v-container>
+            </div>`);
+
+            myMdwHelper.waitForElement($this, `.${containerClass}`, function () {
+                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
+                    let vueGrid = new Vue({
+                        el: $this.find(`.${containerClass}`).get(0),
+                        vuetify: new Vuetify()
+                    });
+
+
+
+                    let desktopGaps = myMdwHelper.getNumberFromData(data.desktopGaps, 0);
+                    $this.context.style.setProperty("--vue-grid-gaps", desktopGaps + 'px');
+                });
+            });
+
+        } catch (ex) {
+            console.error(`[Grid Views] error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };
