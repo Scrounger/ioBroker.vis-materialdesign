@@ -323,15 +323,14 @@ vis.binds.materialdesign.views = {
                         vuetify: new Vuetify()
                     });
 
-                    var $window = $(window);
-                    var currentScreenWidth = $window.width();
+                    var currentWidgetWidth = $this.width();
     
-                    $window.resize(function () {
+                    $(window).resize(function () {
                         // resize event
-                        var windowWidth = $window.width();
+                        var widgetWidth = $this.width();
     
-                        if (currentScreenWidth !== windowWidth) {
-                            currentScreenWidth = windowWidth;
+                        if (currentWidgetWidth !== widgetWidth) {
+                            currentWidgetWidth = widgetWidth;
                             setColumns();
                         }
                     });
@@ -353,9 +352,9 @@ vis.binds.materialdesign.views = {
                     setColumns();
 
                     function setColumns() {
-                        if (data.showResolutionAssistant) $this.find('.grid-helper-resolution-width').text(currentScreenWidth + ' px');
+                        if (data.showResolutionAssistant) $this.find('.grid-helper-resolution-width').text(currentWidgetWidth + ' px');
 
-                        if (currentScreenWidth <= handyPortraitWidth) {
+                        if (currentWidgetWidth <= handyPortraitWidth) {
                             $this.context.style.setProperty("--vue-grid-gaps", handyPortraitGaps + 'px');
     
                             if (data.showResolutionAssistant) {
@@ -363,7 +362,7 @@ vis.binds.materialdesign.views = {
                                 $this.find('.grid-helper-rule').text(_('mobil phone') + ' ' + _('portrait'));
                             }
     
-                        } else if (currentScreenWidth > handyPortraitWidth && currentScreenWidth <= handyLandscapeWidth) {
+                        } else if (currentWidgetWidth > handyPortraitWidth && currentWidgetWidth <= handyLandscapeWidth) {
                             $this.context.style.setProperty("--vue-grid-gaps", handyLandscapeGaps + 'px');
     
                             if (data.showResolutionAssistant) {
@@ -371,7 +370,7 @@ vis.binds.materialdesign.views = {
                                 $this.find('.grid-helper-rule').text(_('mobil phone') + ' ' + _('landscape'));
                             }
     
-                        } else if (currentScreenWidth > handyLandscapeWidth && currentScreenWidth <= tabletPortraitWidth) {
+                        } else if (currentWidgetWidth > handyLandscapeWidth && currentWidgetWidth <= tabletPortraitWidth) {
                             $this.context.style.setProperty("--vue-grid-gaps", tabletPortraitGaps + 'px');
     
                             if (data.showResolutionAssistant) {
@@ -379,7 +378,7 @@ vis.binds.materialdesign.views = {
                                 $this.find('.grid-helper-rule').text(_('tablet') + ' ' + _('portrait'));
                             }
     
-                        } else if (currentScreenWidth > tabletPortraitWidth && currentScreenWidth <= tabletLandscapeWidth) {
+                        } else if (currentWidgetWidth > tabletPortraitWidth && currentWidgetWidth <= tabletLandscapeWidth) {
                             $this.context.style.setProperty("--vue-grid-gaps", tabletLandscapeGaps + 'px');
     
                             if (data.showResolutionAssistant) {
@@ -387,7 +386,7 @@ vis.binds.materialdesign.views = {
                                 $this.find('.grid-helper-rule').text(_('tablet') + ' ' + _('landscape'));
                             }
     
-                        } else if (currentScreenWidth > tabletLandscapeWidth) {
+                        } else if (currentWidgetWidth > tabletLandscapeWidth) {
                             $this.context.style.setProperty("--vue-grid-gaps", desktopGaps + 'px');
     
                             if (data.showResolutionAssistant) {
