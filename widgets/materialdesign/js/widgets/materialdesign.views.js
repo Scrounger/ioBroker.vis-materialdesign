@@ -78,14 +78,9 @@ vis.binds.materialdesign.views = {
                 if (viewAlignment === 'left') viewAlignment = 'flex-start';
                 if (viewAlignment === 'right') viewAlignment = 'flex-end';
 
-                let paddingBottom = 'var(--materialdesign-masonry-gaps)'
-                if (i >= data.countViews) {
-                    paddingBottom = '0px';
-                }
-
                 viewsList.push(`
                     <div 
-                        class="materialdesign-masonry-item" id="masonry_item_${i}" itemindex="${i}" visibilityOid="${data.attr('visibilityOid' + i)}" style="height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px; ${viewWidth}; padding-bottom: ${paddingBottom};">
+                        class="materialdesign-masonry-item" id="masonry_item_${i}" itemindex="${i}" visibilityOid="${data.attr('visibilityOid' + i)}" style="height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px; ${viewWidth};">
                             ${(vis.editMode) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;"></div>` : ''}                          
                             <div data-vis-contains="${data.attr('View' + i)}" class="vis-widget-body vis-view-container">
                             </div>

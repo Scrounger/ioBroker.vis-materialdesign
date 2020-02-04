@@ -1263,6 +1263,7 @@ svg.materialdesign-button__icon {
   vertical-align: top;
   width: 100%;
   text-align: initial;
+  padding-bottom: var(--materialdesign-masonry-gaps);
   -webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
             page-break-inside: avoid; /* Firefox */
                 break-inside: avoid; /* IE 10+ */
