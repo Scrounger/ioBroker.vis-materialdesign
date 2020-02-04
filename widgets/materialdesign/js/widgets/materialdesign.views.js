@@ -64,11 +64,11 @@ vis.binds.materialdesign.views = {
             for (var i = 0; i <= data.countViews; i++) {
                 let viewWidth = myMdwHelper.getValueFromData(data.attr('viewsWidth' + i), '');
 
-                if (viewWidth !== '' && (viewWidth.endsWith('%') || viewWidth.endsWith('px'))) {
-                    viewWidth = `width: ${myMdwHelper.getValueFromData(data.attr('viewsWidth' + i))};`
+                if (viewWidth !== '' && (viewWidth.endsWith('%') || viewWidth.endsWith('px') || viewWidth.includes('calc'))) {
+                    viewWidth = `width: ${viewWidth};`
                 } else {
                     if (!isNaN(viewWidth) && viewWidth !== '') {
-                        viewWidth = `width: ${myMdwHelper.getValueFromData(data.attr('viewsWidth' + i))}px;`
+                        viewWidth = `width: ${viewWidth}px;`
                     } else {
                         viewWidth = '';
                     }

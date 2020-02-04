@@ -456,17 +456,24 @@ Masonry Views has multiple `view in widget` integrated, that will be ordered aut
     <thead>
         <tr>
             <th>Screenshot</th>
+            <th>Setting</th>
             <th>Description</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td rowspan=2><img src="doc/en/media/masonry_resolution_settings.png"></td>
-            <td>Depending on the width of the resolution, the number of columns and the distance between the views can be set. The settings can be set independently for portrait and landscape format.
+            <td rowspan=1><img src="doc/en/media/masonry_resolution_settings.png"></td>
+            <td colspan=2>Depending on the width of the resolution, the number of columns and the distance between the views can be set. The settings can be set independently for portrait and landscape format.
 To find out the width of the resolution for the different devices, activate the Resolution Assistant under the common settings.</td>
+        </tr>
+        <tr>
+            <td><img src="doc/en/media/masnory_settings_views.png"></td>
+            <td>width of view[x]</td>
+            <td>Define the width of the view. Allowed values are number, px, % or calc. Examples: <code>100</code>, <code>100px</code>, <code>55%</code>, <code>calc(60% - 12px)</code></td>
         </tr>
     </tbody>
 </table>
+
 
 ## Column Views - decrepated !!!
 
