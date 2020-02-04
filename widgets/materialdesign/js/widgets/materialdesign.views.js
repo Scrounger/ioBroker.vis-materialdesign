@@ -272,7 +272,7 @@ vis.binds.materialdesign.views = {
                 let view = myMdwHelper.getValueFromData(data.attr('View' + i), undefined);
 
                 viewsList.push(`
-                <v-col cols="${colSpan}">
+                <v-col cols="${colSpan}" id="item${i}">
                     ${(vis.editMode && !view) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; position: relative; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;"></div>` : ''}
                     <div data-vis-contains="${view}" class="vis-widget-body vis-view-container" style="position: relative; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;">
                     </div>
@@ -281,7 +281,7 @@ vis.binds.materialdesign.views = {
             }
 
             let resolutionHelper = `
-                <v-col cols="6">
+                <v-col cols="3" id="resAssistent">
                     <div class="mdc-card my-card-container" style="width: 100%; height: 230px;">
                         <div class="materialdesign-html-card card-title-section" >
                             <div class="materialdesign-html-card card-title mdc-typography--headline6" style="">${_('Resolution assistant')}</div>
@@ -359,6 +359,17 @@ vis.binds.materialdesign.views = {
                             if (data.showResolutionAssistant) {
                                 $this.find('.grid-helper-gaps').text(handyPortraitGaps + ' px');
                                 $this.find('.grid-helper-rule').text(_('mobil phone') + ' ' + _('portrait'));
+
+                                $this.find(`#resAssistent`).removeClass().addClass(`col col-12`);
+                            }
+
+                            for (var i = 0; i <= data.countViews; i++) {
+                                let colSpan = myMdwHelper.getNumberFromData(data.attr('handyGridPortraitColSpan' + i), 12);
+                                if (colSpan > 12) {
+                                    colSpan = 12;
+                                }
+
+                                $this.find(`#item${i}`).removeClass().addClass(`col col-${colSpan}`);
                             }
     
                         } else if (currentWidgetWidth > handyPortraitWidth && currentWidgetWidth <= handyLandscapeWidth) {
@@ -367,6 +378,17 @@ vis.binds.materialdesign.views = {
                             if (data.showResolutionAssistant) {
                                 $this.find('.grid-helper-gaps').text(handyLandscapeGaps + ' px');
                                 $this.find('.grid-helper-rule').text(_('mobil phone') + ' ' + _('landscape'));
+
+                                $this.find(`#resAssistent`).removeClass().addClass(`col col-6`);
+                            }
+
+                            for (var i = 0; i <= data.countViews; i++) {
+                                let colSpan = myMdwHelper.getNumberFromData(data.attr('handyGridLandscapeColSpan' + i), 6);
+                                if (colSpan > 12) {
+                                    colSpan = 12;
+                                }
+
+                                $this.find(`#item${i}`).removeClass().addClass(`col col-${colSpan}`);
                             }
     
                         } else if (currentWidgetWidth > handyLandscapeWidth && currentWidgetWidth <= tabletPortraitWidth) {
@@ -375,6 +397,17 @@ vis.binds.materialdesign.views = {
                             if (data.showResolutionAssistant) {
                                 $this.find('.grid-helper-gaps').text(tabletPortraitGaps + ' px');
                                 $this.find('.grid-helper-rule').text(_('tablet') + ' ' + _('portrait'));
+
+                                $this.find(`#resAssistent`).removeClass().addClass(`col col-6`);
+                            }
+
+                            for (var i = 0; i <= data.countViews; i++) {
+                                let colSpan = myMdwHelper.getNumberFromData(data.attr('tabletGridPortraitColSpan' + i), 4);
+                                if (colSpan > 12) {
+                                    colSpan = 12;
+                                }
+
+                                $this.find(`#item${i}`).removeClass().addClass(`col col-${colSpan}`);
                             }
     
                         } else if (currentWidgetWidth > tabletPortraitWidth && currentWidgetWidth <= tabletLandscapeWidth) {
@@ -383,6 +416,17 @@ vis.binds.materialdesign.views = {
                             if (data.showResolutionAssistant) {
                                 $this.find('.grid-helper-gaps').text(tabletLandscapeGaps + ' px');
                                 $this.find('.grid-helper-rule').text(_('tablet') + ' ' + _('landscape'));
+
+                                $this.find(`#resAssistent`).removeClass().addClass(`col col-4`);
+                            }
+
+                            for (var i = 0; i <= data.countViews; i++) {
+                                let colSpan = myMdwHelper.getNumberFromData(data.attr('tabletGridLandscapeColSpan' + i), 3);
+                                if (colSpan > 12) {
+                                    colSpan = 12;
+                                }
+
+                                $this.find(`#item${i}`).removeClass().addClass(`col col-${colSpan}`);
                             }
     
                         } else if (currentWidgetWidth > tabletLandscapeWidth) {
@@ -391,6 +435,17 @@ vis.binds.materialdesign.views = {
                             if (data.showResolutionAssistant) {
                                 $this.find('.grid-helper-gaps').text(desktopGaps + ' px');
                                 $this.find('.grid-helper-rule').text('-');
+
+                                $this.find(`#resAssistent`).removeClass().addClass(`col col-3`);
+                            }
+
+                            for (var i = 0; i <= data.countViews; i++) {
+                                let colSpan = myMdwHelper.getNumberFromData(data.attr('viewColSpan' + i), 2);
+                                if (colSpan > 12) {
+                                    colSpan = 12;
+                                }
+
+                                $this.find(`#item${i}`).removeClass().addClass(`col col-${colSpan}`);
                             }
                         }
                     }
