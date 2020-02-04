@@ -153,7 +153,7 @@ vis.binds.materialdesign.topappbarnav = {
                     if (data.drawerItemLayout === 'standard') {
                         listItemImage = myMdwHelper.getListIcon(itemImage, 'auto', myMdwHelper.getValueFromData(data.drawerIconHeight, '', '', 'px !important;'), data.attr('iconDrawerColor' + i));
                     }
-                    
+
                     // add itemIndex to label if enabled
                     if (data.showIndexNum) {
                         itemLabelText = `[${itemIndex}] ${itemLabelText}`;
@@ -226,10 +226,13 @@ vis.binds.materialdesign.topappbarnav = {
             let mdcTopAppBar = $this.parent().find('.mdc-top-app-bar').get(0);
             let mdcList = $this.parent().find('.mdc-list').get(0);
 
-            setTimeout(function () {
+            myMdwHelper.waitForElement($this.parent().parent(), '.mdc-top-app-bar__navigation-icon', function () {
                 // Bug fix für TopAppBar, da position: fixed sein muss, deshlab zur Laufzeit width anpassen -> wird von widget genommen
                 $this.parent().parent().css('left', '0px');
                 $this.parent().parent().css('top', '0px');
+
+                // remove z-index set in css common
+                $this.parent().parent().css('z-index', '');
 
                 if (data.drawerLayout === 'modal') {
                     let width = window.getComputedStyle(widget, null).width;
@@ -257,8 +260,7 @@ vis.binds.materialdesign.topappbarnav = {
                     }
                     $this.parent().find('.drawer-frame-app-content').css('left', widthDrawer);
                 }
-
-            }, 1);
+            });
 
             let colorDrawerBackground = myMdwHelper.getValueFromData(data.colorDrawerBackground, '');
             mdcDrawer.style.setProperty("--materialdesign-color-drawer-background", colorDrawerBackground);
