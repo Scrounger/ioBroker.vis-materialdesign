@@ -3560,11 +3560,14 @@
 }
 .theme--light.v-calendar-weekly {
   background-color: #FFFFFF;
-  border-top: var(--vue-calendar-border-color) 1px solid; 
-  border-left: var(--vue-calendar-border-color) 1px solid; 
+
+  border: solid var(--vue-calendar-border-color);
+  border-width: 0 0 1px 0;
 }
 .theme--light.v-calendar-weekly .v-calendar-weekly__head-weekday {
-  border-right: var(--vue-calendar-border-color) 1px solid; 
+  border: solid var(--vue-calendar-border-color);
+  border-width: 1px 1px 0 1px;
+
   font-size: var(--vue-calendar-day-label-font-size);
   font-family: var(--vue-calendar-day-label-font-family);
   color: var(--vue-calendar-day-label-font-color);
@@ -3577,8 +3580,9 @@
   background-color: var(--vue-calender-header-background-color);
 }
 .theme--light.v-calendar-weekly .v-calendar-weekly__day {
-  border-right: var(--vue-calendar-border-color) 1px solid; 
-  border-bottom: var(--vue-calendar-border-color) 1px solid; 
+  border: solid var(--vue-calendar-border-color);
+  border-width: 1px 1px 0 1px;
+
   color: #000000;
 }
 .theme--light.v-calendar-weekly .v-calendar-weekly__day.v-outside {
