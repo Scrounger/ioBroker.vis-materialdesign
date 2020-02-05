@@ -83,7 +83,9 @@ vis.binds.materialdesign.button = {
 
             $this.on('click touchend', function (e) {
                 let val = vis.states.attr(data.oid + '.val');
-                vis.setValue(data.oid, parseFloat(val) + parseFloat(data.value));
+                if(!data.minmax || val != data.minmax){
+                    vis.setValue(data.oid, parseFloat(val) + parseFloat(data.value));
+                }
             });
         } catch (ex) {
             console.error(`handleAdition [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
