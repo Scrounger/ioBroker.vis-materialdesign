@@ -80,6 +80,8 @@
   --materialdesign-color-slider-track-marker: #44739e;
 
   --materialdesign-masonry-gaps: 20px;
+
+  --materialdesign-grid-gaps: 0px;
 }
 
 /* Button style -> must defined here because of position bug in vis editor */
@@ -1297,4 +1299,112 @@ svg.materialdesign-button__icon {
 .mdc-list-item__meta:not(.material-icons) {
   font-size: 0.75rem;
   line-height: 1;
+}
+
+/* grid views */
+.materialdesign-grid {
+  flex: 1 1 auto;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.materialdesign-grid-container {
+  padding: var(--materialdesign-grid-gaps);
+}
+
+.materialdesign-grid-row {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+}
+
+.materialdesign-grid-row > .col,
+.materialdesign-grid-row > [class*=col-] {
+  padding: var(--materialdesign-grid-gaps);
+}
+
+.materialdesign-grid .col-xl,
+.materialdesign-grid .col-xl-auto, .materialdesign-grid .col-xl-12, .materialdesign-grid .col-xl-11, .materialdesign-grid .col-xl-10, .materialdesign-grid .col-xl-9, .materialdesign-grid .col-xl-8, .materialdesign-grid .col-xl-7, .materialdesign-grid .col-xl-6, .materialdesign-grid .col-xl-5, .materialdesign-grid .col-xl-4, .materialdesign-grid .col-xl-3, .materialdesign-grid .col-xl-2, .materialdesign-grid .col-xl-1, .materialdesign-grid .col-lg,
+.materialdesign-grid .col-lg-auto, .materialdesign-grid .col-lg-12, .materialdesign-grid .col-lg-11, .materialdesign-grid .col-lg-10, .materialdesign-grid .col-lg-9, .materialdesign-grid .col-lg-8, .materialdesign-grid .col-lg-7, .materialdesign-grid .col-lg-6, .materialdesign-grid .col-lg-5, .materialdesign-grid .col-lg-4, .materialdesign-grid .col-lg-3, .materialdesign-grid .col-lg-2, .materialdesign-grid .col-lg-1, .materialdesign-grid .col-md,
+.materialdesign-grid .col-md-auto, .materialdesign-grid .col-md-12, .materialdesign-grid .col-md-11, .materialdesign-grid .col-md-10, .materialdesign-grid .col-md-9, .materialdesign-grid .col-md-8, .materialdesign-grid .col-md-7, .materialdesign-grid .col-md-6, .materialdesign-grid .col-md-5, .materialdesign-grid .col-md-4, .materialdesign-grid .col-md-3, .materialdesign-grid .col-md-2, .materialdesign-grid .col-md-1, .materialdesign-grid .col-sm,
+.materialdesign-grid .col-sm-auto, .materialdesign-grid .col-sm-12, .materialdesign-grid .col-sm-11, .materialdesign-grid .col-sm-10, .materialdesign-grid .col-sm-9, .materialdesign-grid .col-sm-8, .materialdesign-grid .col-sm-7, .materialdesign-grid .col-sm-6, .materialdesign-grid .col-sm-5, .materialdesign-grid .col-sm-4, .materialdesign-grid .col-sm-3, .materialdesign-grid .col-sm-2, .materialdesign-grid .col-sm-1, .materialdesign-grid .col,
+.materialdesign-grid .col-auto, .materialdesign-grid .col-12, .materialdesign-grid .col-11, .materialdesign-grid .col-10, .materialdesign-grid .col-9, .materialdesign-grid .col-8, .materialdesign-grid .col-7, .materialdesign-grid .col-6, .materialdesign-grid .col-5, .materialdesign-grid .col-4, .materialdesign-grid .col-3, .materialdesign-grid .col-2, .materialdesign-grid .col-1 {
+  width: 100%;
+}
+
+.materialdesign-grid .col {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  height: 100%;
+}
+
+.materialdesign-grid .col-auto {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+.materialdesign-grid .col-1 {
+  flex: 0 0 calc(8.3333333333% - 2*var(--materialdesign-grid-gaps));
+  max-width: calc(8.3333333333% - 2*var(--materialdesign-grid-gaps));
+}
+
+.materialdesign-grid .col-2 {
+  flex: 0 0 calc(16.6666666667% - 2*var(--materialdesign-grid-gaps));
+  max-width: calc(16.6666666667% - 2*var(--materialdesign-grid-gaps));
+}
+
+.materialdesign-grid .col-3 {
+  flex: 0 0 calc(25% - 2*var(--materialdesign-grid-gaps));
+  max-width: calc(25% - 2*var(--materialdesign-grid-gaps));
+}
+
+.materialdesign-grid .col-4 {
+  flex: 0 0 calc(33.3333333333% - 2*var(--materialdesign-grid-gaps));
+  max-width: calc(33.3333333333% - 2*var(--materialdesign-grid-gaps));
+}
+
+.materialdesign-grid .col-5 {
+  flex: 0 0 calc(41.6666666667% - 2*var(--materialdesign-grid-gaps));
+  max-width: calc(41.6666666667% - 2*var(--materialdesign-grid-gaps));
+}
+
+.materialdesign-grid .col-6 {
+  flex: 0 0 calc(50% - 2*var(--materialdesign-grid-gaps));
+  max-width: calc(50% - 2*var(--materialdesign-grid-gaps));
+}
+
+.materialdesign-grid .col-7 {
+  flex: 0 0 calc(58.3333333333% - 2*var(--materialdesign-grid-gaps));
+  max-width: calc(58.3333333333% - 2*var(--materialdesign-grid-gaps));
+}
+
+.materialdesign-grid .col-8 {
+  flex: 0 0 calc(66.6666666667% - 2*var(--materialdesign-grid-gaps));
+  max-width: calc(66.6666666667% - 2*var(--materialdesign-grid-gaps));
+}
+
+.materialdesign-grid .col-9 {
+  flex: 0 0 calc(75% - 2*var(--materialdesign-grid-gaps));
+  max-width: calc(75% - 2*var(--materialdesign-grid-gaps));
+}
+
+.materialdesign-grid .col-10 {
+  flex: 0 0 calc(83.3333333333% - 2*var(--materialdesign-grid-gaps));
+  max-width: calc(83.3333333333% - 2*var(--materialdesign-grid-gaps));
+}
+
+.materialdesign-grid .col-11 {
+  flex: 0 0 calc(91.6666666667% - 2*var(--materialdesign-grid-gaps));
+  max-width: calc(91.6666666667% - 2*var(--materialdesign-grid-gaps));
+}
+
+.materialdesign-grid .col-12 {
+  flex: 0 0 calc(100% - 2*var(--materialdesign-grid-gaps));
+  max-width: calc(100% - 2*var(--materialdesign-grid-gaps));
 }

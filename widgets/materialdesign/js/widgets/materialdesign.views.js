@@ -266,7 +266,7 @@ vis.binds.materialdesign.views = {
             let $this = $(el);
             let viewsList = [];
 
-            let containerClass = 'materialdesign-vuetify-grid';
+            let containerClass = 'materialdesign-grid';
 
             for (var i = 0; i <= data.countViews; i++) {
                 let colSpan = myMdwHelper.getNumberFromData(data.attr('viewColSpan' + i), 6);
@@ -321,8 +321,8 @@ vis.binds.materialdesign.views = {
 
             $this.append(`
             <div class="${containerClass}" style="display: none;">
-                <div class="container">                    
-                    <div class="row" style="align-items: ${data.viewVertAlignment}; justify-content: ${data.viewHorAlignment};">
+                <div class="materialdesign-grid-container">                    
+                    <div class="materialdesign-grid-row" style="align-items: ${data.viewVertAlignment}; justify-content: ${data.viewHorAlignment};">
                         ${(data.showResolutionAssistant) ? resolutionHelper : ''}
                         ${viewsList.join('')}
                     </div>
@@ -367,7 +367,7 @@ vis.binds.materialdesign.views = {
                         if (data.showResolutionAssistant) $this.find('.grid-helper-resolution-width').text(currentWidgetWidth + ' px');
 
                         if (currentWidgetWidth <= handyPortraitWidth) {
-                            $this.context.style.setProperty("--vue-grid-gaps", handyPortraitGaps + 'px');
+                            $this.context.style.setProperty("--materialdesign-grid-gaps", handyPortraitGaps + 'px');
 
                             if (data.showResolutionAssistant) {
                                 $this.find('.grid-helper-gaps').text(handyPortraitGaps + ' px');
@@ -386,7 +386,7 @@ vis.binds.materialdesign.views = {
                             }
 
                         } else if (currentWidgetWidth > handyPortraitWidth && currentWidgetWidth <= handyLandscapeWidth) {
-                            $this.context.style.setProperty("--vue-grid-gaps", handyLandscapeGaps + 'px');
+                            $this.context.style.setProperty("--materialdesign-grid-gaps", handyLandscapeGaps + 'px');
 
                             if (data.showResolutionAssistant) {
                                 $this.find('.grid-helper-gaps').text(handyLandscapeGaps + ' px');
@@ -405,7 +405,7 @@ vis.binds.materialdesign.views = {
                             }
 
                         } else if (currentWidgetWidth > handyLandscapeWidth && currentWidgetWidth <= tabletPortraitWidth) {
-                            $this.context.style.setProperty("--vue-grid-gaps", tabletPortraitGaps + 'px');
+                            $this.context.style.setProperty("--materialdesign-grid-gaps", tabletPortraitGaps + 'px');
 
                             if (data.showResolutionAssistant) {
                                 $this.find('.grid-helper-gaps').text(tabletPortraitGaps + ' px');
@@ -424,7 +424,7 @@ vis.binds.materialdesign.views = {
                             }
 
                         } else if (currentWidgetWidth > tabletPortraitWidth && currentWidgetWidth <= tabletLandscapeWidth) {
-                            $this.context.style.setProperty("--vue-grid-gaps", tabletLandscapeGaps + 'px');
+                            $this.context.style.setProperty("--materialdesign-grid-gaps", tabletLandscapeGaps + 'px');
 
                             if (data.showResolutionAssistant) {
                                 $this.find('.grid-helper-gaps').text(tabletLandscapeGaps + ' px');
@@ -443,7 +443,7 @@ vis.binds.materialdesign.views = {
                             }
 
                         } else if (currentWidgetWidth > tabletLandscapeWidth) {
-                            $this.context.style.setProperty("--vue-grid-gaps", desktopGaps + 'px');
+                            $this.context.style.setProperty("--materialdesign-grid-gaps", desktopGaps + 'px');
 
                             if (data.showResolutionAssistant) {
                                 $this.find('.grid-helper-gaps').text(desktopGaps + ' px');
