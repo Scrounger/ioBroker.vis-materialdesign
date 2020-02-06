@@ -320,7 +320,7 @@ vis.binds.materialdesign.views = {
             `
 
             $this.append(`
-            <div class="${containerClass}">
+            <div class="${containerClass}" style="display: none;">
                 <div class="container">                    
                     <div class="row" style="align-items: ${data.viewVertAlignment}; justify-content: ${data.viewHorAlignment};">
                         ${(data.showResolutionAssistant) ? resolutionHelper : ''}
@@ -329,153 +329,158 @@ vis.binds.materialdesign.views = {
                 </div>
             </div>`);
 
-            myMdwHelper.waitForElement($this, `.${containerClass}`, function () {
-                var currentWidgetWidth = $this.width();
+            myMdwHelper.waitForElement($this, `#grid-item${data.countViews}`, function () {
+                setTimeout(function () {
+                    var currentWidgetWidth = $this.width();
 
-                $(window).resize(function () {
-                    // resize event
-                    var widgetWidth = $this.width();
+                    $(window).resize(function () {
+                        // resize event
+                        var widgetWidth = $this.width();
 
-                    if (currentWidgetWidth !== widgetWidth) {
-                        currentWidgetWidth = widgetWidth;
-                        setColumns();
-                        viewVisibilityByResolution();
-                    }
-                });
-
-                let desktopGaps = myMdwHelper.getNumberFromData(data.desktopGaps, 0);
-
-                let handyPortraitWidth = myMdwHelper.getNumberFromData(data.handyPortraitWidth, 360);
-                let handyPortraitGaps = myMdwHelper.getNumberFromData(data.handyPortraitGaps, desktopGaps);
-
-                let handyLandscapeWidth = myMdwHelper.getNumberFromData(data.handyLandscapeWidth, 672);
-                let handyLandscapeGaps = myMdwHelper.getNumberFromData(data.handyLandscapeGaps, desktopGaps);
-
-                let tabletPortraitWidth = myMdwHelper.getNumberFromData(data.tabletPortraitWidth, 768);
-                let tabletPortraitGaps = myMdwHelper.getNumberFromData(data.tabletPortraitGaps, desktopGaps);
-
-                let tabletLandscapeWidth = myMdwHelper.getNumberFromData(data.tabletLandscapeWidth, 1024);
-                let tabletLandscapeGaps = myMdwHelper.getNumberFromData(data.tabletLandscapeGaps, desktopGaps);
-
-                setColumns();
-                viewVisibilityByResolution();
-
-                function setColumns() {
-                    if (data.showResolutionAssistant) $this.find('.grid-helper-resolution-width').text(currentWidgetWidth + ' px');
-
-                    if (currentWidgetWidth <= handyPortraitWidth) {
-                        $this.context.style.setProperty("--vue-grid-gaps", handyPortraitGaps + 'px');
-
-                        if (data.showResolutionAssistant) {
-                            $this.find('.grid-helper-gaps').text(handyPortraitGaps + ' px');
-                            $this.find('.grid-helper-rule').text(_('mobil phone') + ' ' + _('portrait'));
-
-                            $this.find(`#resAssistent`).removeClass().addClass(`col col-12`);
+                        if (currentWidgetWidth !== widgetWidth) {
+                            currentWidgetWidth = widgetWidth;
+                            setColumns();
+                            viewVisibilityByResolution();
                         }
+                    });
 
-                        for (var i = 0; i <= data.countViews; i++) {
-                            let colSpan = myMdwHelper.getNumberFromData(data.attr('handyGridPortraitColSpan' + i), 12);
-                            if (colSpan > 12) {
-                                colSpan = 12;
+                    let desktopGaps = myMdwHelper.getNumberFromData(data.desktopGaps, 0);
+
+                    let handyPortraitWidth = myMdwHelper.getNumberFromData(data.handyPortraitWidth, 360);
+                    let handyPortraitGaps = myMdwHelper.getNumberFromData(data.handyPortraitGaps, desktopGaps);
+
+                    let handyLandscapeWidth = myMdwHelper.getNumberFromData(data.handyLandscapeWidth, 672);
+                    let handyLandscapeGaps = myMdwHelper.getNumberFromData(data.handyLandscapeGaps, desktopGaps);
+
+                    let tabletPortraitWidth = myMdwHelper.getNumberFromData(data.tabletPortraitWidth, 768);
+                    let tabletPortraitGaps = myMdwHelper.getNumberFromData(data.tabletPortraitGaps, desktopGaps);
+
+                    let tabletLandscapeWidth = myMdwHelper.getNumberFromData(data.tabletLandscapeWidth, 1024);
+                    let tabletLandscapeGaps = myMdwHelper.getNumberFromData(data.tabletLandscapeGaps, desktopGaps);
+
+                    setColumns();
+                    viewVisibilityByResolution();
+
+                    $this.find(`.${containerClass}`).show();
+
+                    function setColumns() {
+                        if (data.showResolutionAssistant) $this.find('.grid-helper-resolution-width').text(currentWidgetWidth + ' px');
+
+                        if (currentWidgetWidth <= handyPortraitWidth) {
+                            $this.context.style.setProperty("--vue-grid-gaps", handyPortraitGaps + 'px');
+
+                            if (data.showResolutionAssistant) {
+                                $this.find('.grid-helper-gaps').text(handyPortraitGaps + ' px');
+                                $this.find('.grid-helper-rule').text(_('mobil phone') + ' ' + _('portrait'));
+
+                                $this.find(`#resAssistent`).removeClass().addClass(`col col-12`);
                             }
 
-                            $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
-                        }
+                            for (var i = 0; i <= data.countViews; i++) {
+                                let colSpan = myMdwHelper.getNumberFromData(data.attr('handyGridPortraitColSpan' + i), 12);
+                                if (colSpan > 12) {
+                                    colSpan = 12;
+                                }
 
-                    } else if (currentWidgetWidth > handyPortraitWidth && currentWidgetWidth <= handyLandscapeWidth) {
-                        $this.context.style.setProperty("--vue-grid-gaps", handyLandscapeGaps + 'px');
-
-                        if (data.showResolutionAssistant) {
-                            $this.find('.grid-helper-gaps').text(handyLandscapeGaps + ' px');
-                            $this.find('.grid-helper-rule').text(_('mobil phone') + ' ' + _('landscape'));
-
-                            $this.find(`#resAssistent`).removeClass().addClass(`col col-6`);
-                        }
-
-                        for (var i = 0; i <= data.countViews; i++) {
-                            let colSpan = myMdwHelper.getNumberFromData(data.attr('handyGridLandscapeColSpan' + i), 6);
-                            if (colSpan > 12) {
-                                colSpan = 12;
+                                $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
                             }
 
-                            $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
-                        }
+                        } else if (currentWidgetWidth > handyPortraitWidth && currentWidgetWidth <= handyLandscapeWidth) {
+                            $this.context.style.setProperty("--vue-grid-gaps", handyLandscapeGaps + 'px');
 
-                    } else if (currentWidgetWidth > handyLandscapeWidth && currentWidgetWidth <= tabletPortraitWidth) {
-                        $this.context.style.setProperty("--vue-grid-gaps", tabletPortraitGaps + 'px');
+                            if (data.showResolutionAssistant) {
+                                $this.find('.grid-helper-gaps').text(handyLandscapeGaps + ' px');
+                                $this.find('.grid-helper-rule').text(_('mobil phone') + ' ' + _('landscape'));
 
-                        if (data.showResolutionAssistant) {
-                            $this.find('.grid-helper-gaps').text(tabletPortraitGaps + ' px');
-                            $this.find('.grid-helper-rule').text(_('tablet') + ' ' + _('portrait'));
-
-                            $this.find(`#resAssistent`).removeClass().addClass(`col col-4`);
-                        }
-
-                        for (var i = 0; i <= data.countViews; i++) {
-                            let colSpan = myMdwHelper.getNumberFromData(data.attr('tabletGridPortraitColSpan' + i), 4);
-                            if (colSpan > 12) {
-                                colSpan = 12;
+                                $this.find(`#resAssistent`).removeClass().addClass(`col col-6`);
                             }
 
-                            $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
-                        }
+                            for (var i = 0; i <= data.countViews; i++) {
+                                let colSpan = myMdwHelper.getNumberFromData(data.attr('handyGridLandscapeColSpan' + i), 6);
+                                if (colSpan > 12) {
+                                    colSpan = 12;
+                                }
 
-                    } else if (currentWidgetWidth > tabletPortraitWidth && currentWidgetWidth <= tabletLandscapeWidth) {
-                        $this.context.style.setProperty("--vue-grid-gaps", tabletLandscapeGaps + 'px');
-
-                        if (data.showResolutionAssistant) {
-                            $this.find('.grid-helper-gaps').text(tabletLandscapeGaps + ' px');
-                            $this.find('.grid-helper-rule').text(_('tablet') + ' ' + _('landscape'));
-
-                            $this.find(`#resAssistent`).removeClass().addClass(`col col-3`);
-                        }
-
-                        for (var i = 0; i <= data.countViews; i++) {
-                            let colSpan = myMdwHelper.getNumberFromData(data.attr('tabletGridLandscapeColSpan' + i), 3);
-                            if (colSpan > 12) {
-                                colSpan = 12;
+                                $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
                             }
 
-                            $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
-                        }
+                        } else if (currentWidgetWidth > handyLandscapeWidth && currentWidgetWidth <= tabletPortraitWidth) {
+                            $this.context.style.setProperty("--vue-grid-gaps", tabletPortraitGaps + 'px');
 
-                    } else if (currentWidgetWidth > tabletLandscapeWidth) {
-                        $this.context.style.setProperty("--vue-grid-gaps", desktopGaps + 'px');
+                            if (data.showResolutionAssistant) {
+                                $this.find('.grid-helper-gaps').text(tabletPortraitGaps + ' px');
+                                $this.find('.grid-helper-rule').text(_('tablet') + ' ' + _('portrait'));
 
-                        if (data.showResolutionAssistant) {
-                            $this.find('.grid-helper-gaps').text(desktopGaps + ' px');
-                            $this.find('.grid-helper-rule').text('-');
-
-                            $this.find(`#resAssistent`).removeClass().addClass(`col col-3`);
-                        }
-
-                        for (var i = 0; i <= data.countViews; i++) {
-                            let colSpan = myMdwHelper.getNumberFromData(data.attr('viewColSpan' + i), 3);
-                            if (colSpan > 12) {
-                                colSpan = 12;
+                                $this.find(`#resAssistent`).removeClass().addClass(`col col-4`);
                             }
 
-                            $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
-                        }
-                    }
-                }
+                            for (var i = 0; i <= data.countViews; i++) {
+                                let colSpan = myMdwHelper.getNumberFromData(data.attr('tabletGridPortraitColSpan' + i), 4);
+                                if (colSpan > 12) {
+                                    colSpan = 12;
+                                }
 
-                function viewVisibilityByResolution() {
-                    for (var i = 0; i <= data.countViews; i++) {
-                        let lessThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionLessThan' + i), 50000);
-                        let greaterThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionGreaterThan' + i), 0);
+                                $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
+                            }
 
-                        if (currentWidgetWidth < greaterThan) {
-                            $this.find(`#grid-item${i}`).hide();
-                        } else if (currentWidgetWidth >= greaterThan && currentWidgetWidth <= lessThan) {
-                            $this.find(`#grid-item${i}`).show();
-                        } else if (currentWidgetWidth > lessThan) {
-                            $this.find(`#grid-item${i}`).hide();
-                        } else {
-                            $this.find(`#grid-item${i}`).show();
+                        } else if (currentWidgetWidth > tabletPortraitWidth && currentWidgetWidth <= tabletLandscapeWidth) {
+                            $this.context.style.setProperty("--vue-grid-gaps", tabletLandscapeGaps + 'px');
+
+                            if (data.showResolutionAssistant) {
+                                $this.find('.grid-helper-gaps').text(tabletLandscapeGaps + ' px');
+                                $this.find('.grid-helper-rule').text(_('tablet') + ' ' + _('landscape'));
+
+                                $this.find(`#resAssistent`).removeClass().addClass(`col col-3`);
+                            }
+
+                            for (var i = 0; i <= data.countViews; i++) {
+                                let colSpan = myMdwHelper.getNumberFromData(data.attr('tabletGridLandscapeColSpan' + i), 3);
+                                if (colSpan > 12) {
+                                    colSpan = 12;
+                                }
+
+                                $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
+                            }
+
+                        } else if (currentWidgetWidth > tabletLandscapeWidth) {
+                            $this.context.style.setProperty("--vue-grid-gaps", desktopGaps + 'px');
+
+                            if (data.showResolutionAssistant) {
+                                $this.find('.grid-helper-gaps').text(desktopGaps + ' px');
+                                $this.find('.grid-helper-rule').text('-');
+
+                                $this.find(`#resAssistent`).removeClass().addClass(`col col-3`);
+                            }
+
+                            for (var i = 0; i <= data.countViews; i++) {
+                                let colSpan = myMdwHelper.getNumberFromData(data.attr('viewColSpan' + i), 3);
+                                if (colSpan > 12) {
+                                    colSpan = 12;
+                                }
+
+                                $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
+                            }
                         }
                     }
-                }
+
+                    function viewVisibilityByResolution() {
+                        for (var i = 0; i <= data.countViews; i++) {
+                            let lessThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionLessThan' + i), 50000);
+                            let greaterThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionGreaterThan' + i), 0);
+
+                            if (currentWidgetWidth < greaterThan) {
+                                $this.find(`#grid-item${i}`).hide();
+                            } else if (currentWidgetWidth >= greaterThan && currentWidgetWidth <= lessThan) {
+                                $this.find(`#grid-item${i}`).show();
+                            } else if (currentWidgetWidth > lessThan) {
+                                $this.find(`#grid-item${i}`).hide();
+                            } else {
+                                $this.find(`#grid-item${i}`).show();
+                            }
+                        }
+                    }
+                    
+                }, 100);
             });
 
             function viewVisibilityByCondition(index, val) {
