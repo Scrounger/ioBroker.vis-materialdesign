@@ -22,10 +22,23 @@ vis.binds.materialdesign.helper = {
             if (parent.find(elementPath).length) {
                 callBack(elementPath, $(elementPath));
             } else {
-                console.log('wait');
+                console.log(`wait for element`);
                 vis.binds.materialdesign.helper.waitForElement(parent, elementPath, callBack);
             }
         }, 50)
+    },
+    waitForRealWidth: function(element, callBack) {
+        setTimeout(function () {
+            let width =  window.getComputedStyle(element, null).width
+
+            if (width.includes('px')) {
+                callBack(width);
+            } else {
+                console.log(`wait for element: ${JSON.stringify(element)}`);
+                vis.binds.materialdesign.helper.waitForRealWidth(element, callBack);
+            }
+
+        }, 50);
     },
     installedVersion: function (el, data) {
         setTimeout(function () {

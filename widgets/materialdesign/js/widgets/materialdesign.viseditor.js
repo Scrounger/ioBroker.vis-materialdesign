@@ -72,6 +72,10 @@ vis.binds.materialdesign.viseditor = {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#masonry-views'
                 }
 
+                if (data[1] === 'grid') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#grid-views'
+                }
+
                 if (data[1] === 'calendar') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#calendar'
                 }
