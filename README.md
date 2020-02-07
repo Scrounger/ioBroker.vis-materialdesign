@@ -443,9 +443,15 @@ Working Widget Example can be found
 * [here](https://forum.iobroker.net/topic/26199/test-adapter-material-design-widgets-v0-1-x/113)
 * [ical Adapter](https://forum.iobroker.net/topic/29658/material-design-widgets-table-widget/2)
 
-## Masonry Views
+## Responsive Layout
+There are two widgets - Masonry Views and Grid Views - with which it is possible to create a repsonsive layout (a layout for desktop, tablet and mobile). Both Widgets has multiple `view in widget` integrated.
 
-Masonry Views has multiple `view in widget` integrated, that will be ordered automatically depending of the width of the widget. With this widget it is possible to cereate a responsive layout (one layout for desktop, tablet and mobil)
+
+### Masonry Views
+
+Masonry Views has multiple `view in widget` integrated, that will be ordered automatically depending of the width of the widget. With this widget it is possible to create a responsive layout (one layout for desktop, tablet and mobil).
+Masonry views are especially useful if the views included have different heights.
+
 
 <b>Take a look at the [Material Design Widgets example project](https://github.com/Scrounger/ioBroker.vis-materialdesign#online-example-project)</b> to understand how it works.
 
@@ -463,8 +469,8 @@ Masonry Views has multiple `view in widget` integrated, that will be ordered aut
     <tbody>
         <tr>
             <td rowspan=1><img src="doc/en/media/masonry_resolution_settings.png"></td>
-            <td colspan=2>Depending on the width of the resolution, the number of columns and the distance between the views can be set. The settings can be set independently for portrait and landscape format.
-To find out the width of the resolution for the different devices, activate the Resolution Assistant under the common settings.</td>
+            <td colspan=2>Depending on the width of the widget, the number of columns and the distance between the views can be set. The settings can be set independently for portrait and landscape format.
+            To find out the width of the resolution for the different devices, activate the Resolution Assistant under the common settings.</td>
         </tr>
         <tr>
             <td><img src="doc/en/media/masnory_settings_views.png"></td>
@@ -473,6 +479,37 @@ To find out the width of the resolution for the different devices, activate the 
         </tr>
     </tbody>
 </table>
+
+### Grid Views
+
+Grid Views has multiple `view in widget` integrated, that will be ordered automatically depending of the width of the widget. With this widget it is possible to create a responsive layout (one layout for desktop, tablet and mobil).
+Grid views are especially useful if the views included have the same heights.
+
+<b>The Grid View widget has 12 columns in total. If you want a view to have a width of 4 columns, you have to set column span to 4 in the corresponding view[x]</b>
+
+<b>Take a look at the [Material Design Widgets example project](https://github.com/Scrounger/ioBroker.vis-materialdesign#online-example-project)</b> to understand how it works.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=1><img src="doc/en/media/grid_settings_resolution.png"></td>
+            <td colspan=2>Depending on the width of the widget, defined from which width of the widget the rules for column span of the individual views[x] can be applied and the distance between the views. The settings can be set independently for portrait and landscape format.
+            To find out the width of the resolution for the different devices, activate the Resolution Assistant under the common settings.</td>
+        </tr>
+        <tr>
+            <td><img src="doc/en/media/grid_settings_view.png"></td>
+            <td colspan=2>Define the column span of the view depending of the current width resolution rule.<br>You can also specify here whether a view should only be displayed at a resolution higher or lower than a defined value or whether it should be visible via a object id.</td>
+        </tr>
+    </tbody>
+</table>
+
 
 
 ## Column Views - decrepated !!!

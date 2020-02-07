@@ -7540,5 +7540,89 @@ systemDictionary = {
         "es": "color del símbolo de menú abierto",
         "pl": "kolor symbolu otwartego menu",
         "zh-cn": "菜单打开符号的颜色"
+    },
+    "viewColSpan": {
+        "en": "column span",
+        "de": "Anzahl verwendete Spalten",
+        "ru": "диапазон столбцов",
+        "pt": "extensão da coluna",
+        "nl": "kolomspanning",
+        "fr": "portée de colonne",
+        "it": "intervallo di colonne",
+        "es": "tramo de columna",
+        "pl": "rozpiętość kolumny",
+        "zh-cn": "列跨度"
+    },
+    "handyGridPortraitColSpan": {
+        "en": "mobil phone portrait: column span",
+        "de": "Handy Hochformat: Anzahl verwendete Spalten",
+        "ru": "портрет мобильного телефона: длина столбца",
+        "pt": "retrato do telefone mobil: extensão da coluna",
+        "nl": "mobiel telefoonportret: kolombreedte",
+        "fr": "portrait du téléphone mobile: étendue des colonnes",
+        "it": "ritratto del telefono mobile: intervallo di colonna",
+        "es": "retrato del teléfono móvil: espacio de la columna",
+        "pl": "portret telefonu komórkowego: rozpiętość kolumny",
+        "zh-cn": "手机肖像：列跨度"
+    },
+    "handyGridLandscapeColSpan": {
+        "en": "mobil phone landscape: column span",
+        "de": "Handy Querformat: Anzahl verwendete Spalten",
+        "ru": "Мобильный телефон пейзаж: столбец пролет",
+        "pt": "paisagem do telefone mobil: extensão da coluna",
+        "nl": "mobiel telefoonlandschap: kolombereik",
+        "fr": "paysage du téléphone mobile: étendue des colonnes",
+        "it": "panorama telefono mobile: intervallo di colonne",
+        "es": "panorama del teléfono móvil: columna",
+        "pl": "krajobraz telefonu komórkowego: rozpiętość kolumny",
+        "zh-cn": "手机景观：专栏跨度"
+    },
+    "tabletGridPortraitColSpan": {
+        "en": "tablet protrait: column span",
+        "de": "Tablet Hochformat: Anzahl verwendete Spalten",
+        "ru": "планшетный протрейт: колонка пролет",
+        "pt": "tablet protrait: extensão da coluna",
+        "nl": "tablet protrait: kolom overspanning",
+        "fr": "protection de la tablette: envergure de la colonne",
+        "it": "tablet protrait: campata della colonna",
+        "es": "tableta protrait: tramo de columna",
+        "pl": "tablet protrait: rozpiętość kolumny",
+        "zh-cn": "平板电脑特性：列跨度"
+    },
+    "tabletGridLandscapeColSpan": {
+        "en": "tablet landscape: column span",
+        "de": "Tablet Querformat: Anzahl verwendete Spalten",
+        "ru": "планшетный пейзаж: столбец пролета",
+        "pt": "paisagem do tablet: extensão da coluna",
+        "nl": "tabletlandschap: kolombreedte",
+        "fr": "paysage de la tablette: étendue de colonne",
+        "it": "panorama tablet: intervallo di colonne",
+        "es": "paisaje de la tableta: tramo de columna",
+        "pl": "krajobraz tabletu: rozpiętość kolumny",
+        "zh-cn": "平板电脑格局：列跨度"
+    },
+    "viewVertAlignment": {
+        "en": "vertical alignment",
+        "de": "Vertikale Ausrichtung",
+        "ru": "вертикальное выравнивание",
+        "pt": "Alinhamento vertical",
+        "nl": "verticale uitlijning",
+        "fr": "alignement vertical",
+        "it": "allineamento verticale",
+        "es": "alineamiento vertical",
+        "pl": "wyrównanie pionowe",
+        "zh-cn": "垂直对齐"
+    },
+    "viewHorAlignment": {
+        "en": "horizontal alignment",
+        "de": "horizontale Ausrichtung",
+        "ru": "горизонтальное выравнивание",
+        "pt": "alinhamento horizontal",
+        "nl": "horizontale uitlijning",
+        "fr": "alignement horizontal",
+        "it": "allineamento orizzontale",
+        "es": "alineación horizontal",
+        "pl": "wyrównanie w poziomie",
+        "zh-cn": "水平对齐"
     }
 };
