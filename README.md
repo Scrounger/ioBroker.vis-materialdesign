@@ -489,6 +489,8 @@ Grid views are especially useful if the views included have the same heights.
 
 <b>Take a look at the [Material Design Widgets example project](https://github.com/Scrounger/ioBroker.vis-materialdesign#online-example-project)</b> to understand how it works.
 
+![Logo](doc/en/media/grid.gif)
+
 <table>
     <thead>
         <tr>

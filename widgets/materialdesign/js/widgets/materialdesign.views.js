@@ -135,7 +135,7 @@ vis.binds.materialdesign.views = {
             `);
 
             myMdwHelper.waitForElement($this, `#masonry_item_${0}`, function () {
-                myMdwHelper.waitForRealWidth($this.context, function () {
+                setTimeout(function () {
                     var currentWidgetWidth = $this.width();
 
                     $(window).resize(function () {
@@ -244,7 +244,8 @@ vis.binds.materialdesign.views = {
                             }
                         }
                     }
-                });
+
+                }, 100);
             });
 
             function viewVisibilityByCondition(index, val) {
@@ -294,7 +295,7 @@ vis.binds.materialdesign.views = {
             }
 
             let resolutionHelper = `
-                <div class="col col-3" id="resAssistent">
+                <div class="col col-12" id="resAssistent">
                     <div class="mdc-card my-card-container" style="width: 100%; height: 230px;">
                         <div class="materialdesign-html-card card-title-section" >
                             <div class="materialdesign-html-card card-title mdc-typography--headline6" style="">${_('Resolution assistant')}</div>
@@ -329,7 +330,7 @@ vis.binds.materialdesign.views = {
             </div>`);
 
             myMdwHelper.waitForElement($this, `#grid-item${data.countViews}`, function () {
-                myMdwHelper.waitForRealWidth($this.context, function () {
+                setTimeout(function () {
                     var currentWidgetWidth = $this.width();
 
                     $(window).resize(function () {
@@ -391,7 +392,7 @@ vis.binds.materialdesign.views = {
                                 $this.find('.grid-helper-gaps').text(handyLandscapeGaps + ' px');
                                 $this.find('.grid-helper-rule').text(_('mobil phone') + ' ' + _('landscape'));
 
-                                $this.find(`#resAssistent`).removeClass().addClass(`col col-6`);
+                                $this.find(`#resAssistent`).removeClass().addClass(`col col-12`);
                             }
 
                             for (var i = 0; i <= data.countViews; i++) {
@@ -410,7 +411,7 @@ vis.binds.materialdesign.views = {
                                 $this.find('.grid-helper-gaps').text(tabletPortraitGaps + ' px');
                                 $this.find('.grid-helper-rule').text(_('tablet') + ' ' + _('portrait'));
 
-                                $this.find(`#resAssistent`).removeClass().addClass(`col col-4`);
+                                $this.find(`#resAssistent`).removeClass().addClass(`col col-12`);
                             }
 
                             for (var i = 0; i <= data.countViews; i++) {
@@ -429,7 +430,7 @@ vis.binds.materialdesign.views = {
                                 $this.find('.grid-helper-gaps').text(tabletLandscapeGaps + ' px');
                                 $this.find('.grid-helper-rule').text(_('tablet') + ' ' + _('landscape'));
 
-                                $this.find(`#resAssistent`).removeClass().addClass(`col col-3`);
+                                $this.find(`#resAssistent`).removeClass().addClass(`col col-12`);
                             }
 
                             for (var i = 0; i <= data.countViews; i++) {
@@ -448,7 +449,7 @@ vis.binds.materialdesign.views = {
                                 $this.find('.grid-helper-gaps').text(desktopGaps + ' px');
                                 $this.find('.grid-helper-rule').text('-');
 
-                                $this.find(`#resAssistent`).removeClass().addClass(`col col-3`);
+                                $this.find(`#resAssistent`).removeClass().addClass(`col col-12`);
                             }
 
                             for (var i = 0; i <= data.countViews; i++) {
@@ -478,7 +479,8 @@ vis.binds.materialdesign.views = {
                             }
                         }
                     }
-                });
+                    
+                }, 100);
             });
 
             function viewVisibilityByCondition(index, val) {
@@ -490,6 +492,7 @@ vis.binds.materialdesign.views = {
                     $this.find(`#grid-item${index}`).show();
                 }
             }
+
         } catch (ex) {
             console.error(`[Grid Views] error: ${ex.message}, stack: ${ex.stack}`);
         }
