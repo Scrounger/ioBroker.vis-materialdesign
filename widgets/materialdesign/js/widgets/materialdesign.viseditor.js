@@ -134,6 +134,10 @@ vis.binds.materialdesign.viseditor = {
             if (data[1] === 'topAppBar') {
                 url = 'https://forum.iobroker.net/topic/29660/material-design-widgets-top-app-bar-widget'
             }
+
+            if (data[1] === 'grid') {
+                url = 'https://forum.iobroker.net/topic/29916/material-design-widgets-grid-views-widget'
+            }
         }
 
         return { input: `<a target="_blank" href="${url}">${_('readme')}</a>` }

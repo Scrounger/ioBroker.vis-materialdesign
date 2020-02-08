@@ -135,7 +135,7 @@ vis.binds.materialdesign.views = {
             `);
 
             myMdwHelper.waitForElement($this, `#masonry_item_${0}`, function () {
-                setTimeout(function () {
+                myMdwHelper.waitForRealWidth($this.context, function () {
                     var currentWidgetWidth = $this.width();
 
                     $(window).resize(function () {
@@ -245,7 +245,7 @@ vis.binds.materialdesign.views = {
                         }
                     }
 
-                }, 100);
+                });
             });
 
             function viewVisibilityByCondition(index, val) {
@@ -330,7 +330,7 @@ vis.binds.materialdesign.views = {
             </div>`);
 
             myMdwHelper.waitForElement($this, `#grid-item${data.countViews}`, function () {
-                setTimeout(function () {
+                myMdwHelper.waitForRealWidth($this.context, function () {
                     var currentWidgetWidth = $this.width();
 
                     $(window).resize(function () {
@@ -479,8 +479,8 @@ vis.binds.materialdesign.views = {
                             }
                         }
                     }
-                    
-                }, 100);
+
+                });
             });
 
             function viewVisibilityByCondition(index, val) {
