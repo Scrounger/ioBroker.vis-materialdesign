@@ -7624,5 +7624,41 @@ systemDictionary = {
         "es": "alineación horizontal",
         "pl": "wyrównanie w poziomie",
         "zh-cn": "水平对齐"
+    },
+    "countListItems": {
+        "en": "Editor: count of list items",
+        "de": "Editor: Anzahl der Listenelemente",
+        "ru": "Редактор: количество элементов списка",
+        "pt": "Editor: contagem de itens da lista",
+        "nl": "Editor: aantal lijstitems",
+        "fr": "Éditeur: nombre d'éléments de liste",
+        "it": "Editor: conteggio degli elementi dell'elenco",
+        "es": "Editor: recuento de elementos de la lista",
+        "pl": "Edytor: liczba pozycji na liście",
+        "zh-cn": "编辑器：列表项计数"
+    },
+    "group_listItemData": {
+        "en": "data of list",
+        "de": "Daten der Liste",
+        "ru": "данные списка",
+        "pt": "dados da lista",
+        "nl": "gegevens van lijst",
+        "fr": "données de liste",
+        "it": "dati dell'elenco",
+        "es": "datos de la lista",
+        "pl": "dane listy",
+        "zh-cn": "清单数据"
+    },
+    "listItemDataMethod": {
+        "en": "method of data of list",
+        "de": "Methode der Daten der Liste",
+        "ru": "метод данных списка",
+        "pt": "método de dados da lista",
+        "nl": "methode van gegevens van lijst",
+        "fr": "méthode des données de la liste",
+        "it": "metodo di dati di elenco",
+        "es": "método de datos de la lista",
+        "pl": "metoda danych listy",
+        "zh-cn": "清单数据的方法"
     }
 };

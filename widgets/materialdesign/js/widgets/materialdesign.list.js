@@ -46,7 +46,7 @@ vis.binds.materialdesign.list = {
                 listLayout = 'materialdesign-list-card materialdesign-list-card--outlined';
             }
 
-            for (var i = 0; i <= data.count; i++) {
+            for (var i = 0; i <= data.countListItems; i++) {
                 let itemHeaderText = myMdwHelper.getValueFromData(data.attr('groupHeader' + i), null);
                 let itemLabelText = myMdwHelper.getValueFromData(data.attr('label' + i), `Item ${i}`);
                 let itemSubLabelText = myMdwHelper.getValueFromData(data.attr('subLabel' + i), '');
