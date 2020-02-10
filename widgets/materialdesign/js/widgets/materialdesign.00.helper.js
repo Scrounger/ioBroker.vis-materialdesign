@@ -89,7 +89,7 @@ vis.binds.materialdesign.helper = {
         }
     },
     getListItemHeader: function (text, fontSize) {
-        if (text !== null) {
+        if (text !== null && text !== '') {
             return `<h3 class="mdc-list-group__subheader ${fontSize.class}" 
                         style="${fontSize.style}">
                             ${text}

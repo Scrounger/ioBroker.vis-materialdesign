@@ -137,7 +137,7 @@ Settings that are not listed in the table below are self-explanatory.
         <tr>
             <td>JSON string</td>
             <td>Method of data of menu: json string<br>Here you can add a JSON string to define the menu entries or use bindings to a datapoint that contains a JSON string.<br><br>JSON string must have the following format:<br>
-<code>
+<pre><code>
 [
 	{
 		"text": "text 0",
@@ -158,7 +158,7 @@ Settings that are not listed in the table below are self-explanatory.
 		"icon": "facebook-workplace"
 	}
 ]
-</code>
+</code></pre>
             </td>
         </tr>
         <tr>
@@ -202,7 +202,7 @@ Settings that are not listed in the table below are self-explanatory.
         <tr>
             <td>JSON string</td>
             <td>Method of data of menu: json string<br>Here you can add a JSON string to define the menu entries or use bindings to a datapoint that contains a JSON string.<br><br>JSON string must have the following format:<br>
-<code>
+<pre><code>
 [
 	{
 		"text": "text 0",
@@ -223,7 +223,7 @@ Settings that are not listed in the table below are self-explanatory.
 		"icon": "facebook-workplace"
 	}
 ]
-</code>
+</code></pre>
             </td>
         </tr>
         <tr>
@@ -385,11 +385,41 @@ Settings that are not listed in the table below are self-explanatory.
 Input data must be a json array of objects, example:
 ```
 [
-{"img":"/vis.0/myImages/erlebnis_50.png","name":"Empire","betriebszeit":"4h 06m","funk":"5G","ip":"10.0.0.1"},
-{"img":"/vis.0/myImages/erlebnis_100.png","name":"Handy","betriebszeit":"13m","funk":"5G","ip":"10.0.0.2"},
-{"img":"/vis.0/myImages/erlebnis_100.png","name":"Harmony Hub - Wohnzimmer","betriebszeit":"18T 07h 21m","funk":"2G","ip":"10.0.0.3"},
-{"img":"/vis.0/myImages/erlebnis_25.png","name":"MusicCast - Esszimmer (WX-030)","betriebszeit":"1h 57m","funk":"2G","ip":"10.0.0.4"},
-{"img":"/vis.0/myImages/erlebnis_75.png","name":"MusicCast - K�che (ISX-18D)","betriebszeit":"4h 10m","funk":"2G","ip":"10.0.0.5"}
+	{
+		"img": "/vis.0/myImages/erlebnis_50.png",
+		"name": "Empire",
+		"betriebszeit": "4h 06m",
+		"funk": "5G",
+		"ip": "10.0.0.1"
+	},
+	{
+		"img": "/vis.0/myImages/erlebnis_100.png",
+		"name": "Handy",
+		"betriebszeit": "13m",
+		"funk": "5G",
+		"ip": "10.0.0.2"
+	},
+	{
+		"img": "/vis.0/myImages/erlebnis_100.png",
+		"name": "Harmony Hub - Wohnzimmer",
+		"betriebszeit": "18T 07h 21m",
+		"funk": "2G",
+		"ip": "10.0.0.3"
+	},
+	{
+		"img": "/vis.0/myImages/erlebnis_25.png",
+		"name": "MusicCast - Esszimmer (WX-030)",
+		"betriebszeit": "1h 57m",
+		"funk": "2G",
+		"ip": "10.0.0.4"
+	},
+	{
+		"img": "/vis.0/myImages/erlebnis_75.png",
+		"name": "MusicCast - K�che (ISX-18D)",
+		"betriebszeit": "4h 10m",
+		"funk": "2G",
+		"ip": "10.0.0.5"
+	}
 ]
 ```
 
@@ -795,6 +825,8 @@ ical2CalendarWidget();
 ## Changelog
 
 ### 0.3.xx
+* (Scrounger): List Widget: color option for switch added
+* (Scrounger): List Widget: dynamic generate item using json string
 * (Scrounger): Masonry Views Widget: visible condition added
 * (Scrounger): Calendar Widget added
 * (Scrounger): translation added
