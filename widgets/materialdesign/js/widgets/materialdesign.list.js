@@ -190,14 +190,14 @@ vis.binds.materialdesign.list = {
 
                         vis.setValue(listItemObj.objectId, selectedValue);
 
-                        setLayout(index, selectedValue);
+                        setLayout(index, selectedValue, listItemObj);
 
                     } else if (data.listType === 'buttonToggle') {
                         let selectedValue = vis.states.attr(listItemObj.objectId + '.val');
 
                         vis.setValue(listItemObj.objectId, !selectedValue);
 
-                        setLayout(index, !selectedValue);
+                        setLayout(index, !selectedValue, listItemObj);
 
                     } else if (data.listType === 'buttonState') {
                         let valueToSet = listItemObj.buttonStateValue;
@@ -232,7 +232,7 @@ vis.binds.materialdesign.list = {
 
                     let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
                     mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(i, valOnLoading);
-                    setLayout(i, valOnLoading);
+                    setLayout(i, valOnLoading, listItemObj);
 
                     vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
                         // i wird nicht gespeichert -> umweg über oid gehen
@@ -242,13 +242,13 @@ vis.binds.materialdesign.list = {
                             // kann mit mehreren oid verknüpft sein
                             let index = input.eq(d).attr('itemindex');
                             mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(index, newVal);
-                            setLayout(index, newVal);
+                            setLayout(index, newVal, listItemObj);
                         });
                     });
 
                 } else if (data.listType === 'buttonToggle' || data.listType === 'buttonToggle_readonly') {
                     let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
-                    setLayout(i, valOnLoading);
+                    setLayout(i, valOnLoading, listItemObj);
 
                     vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
                         // i wird nicht gespeichert -> umweg über oid gehen
@@ -257,22 +257,22 @@ vis.binds.materialdesign.list = {
                         input.each(function (d) {
                             // kann mit mehreren oid verknüpft sein
                             let index = parseInt(input.eq(d).attr('id').replace('listItem_', ''));
-                            setLayout(index, newVal);
+                            setLayout(index, newVal, listItemObj);
                         });
                     });
                 }
             }
 
-            function setLayout(index, val) {
+            function setLayout(index, val, listItemObj) {
                 let curListItem = $this.find(`div[id="listItem_${index}"]`);
 
                 if (val === true) {
                     curListItem.css('background', myMdwHelper.getValueFromData(data.listItemBackgroundActive, ''));
-                    myMdwHelper.changeListIconElement(curListItem, data.attr('listImageActive' + index), 'auto', myMdwHelper.getValueFromData(data.listImageHeight, '', '', 'px !important;'), data.attr('listImageActiveColor' + index), spaceBetweenImageAndLabel);
+                    myMdwHelper.changeListIconElement(curListItem, listItemObj.imageActive, 'auto', myMdwHelper.getValueFromData(data.listImageHeight, '', '', 'px !important;'), listItemObj.imageActiveColor, spaceBetweenImageAndLabel);
 
                 } else {
                     curListItem.css('background', myMdwHelper.getValueFromData(data.listItemBackground, ''));
-                    myMdwHelper.changeListIconElement(curListItem, data.attr('listImage' + index), 'auto', myMdwHelper.getValueFromData(data.listImageHeight, '', '', 'px !important;'), data.attr('listImageColor' + index), spaceBetweenImageAndLabel);
+                    myMdwHelper.changeListIconElement(curListItem, listItemObj.image, 'auto', myMdwHelper.getValueFromData(data.listImageHeight, '', '', 'px !important;'), listItemObj.imageColor, spaceBetweenImageAndLabel);
                 }
             }
 
@@ -290,8 +290,8 @@ vis.binds.materialdesign.list = {
                 rightSubText: myMdwHelper.getValueFromData(data.attr('rightSubLabel' + i), ''),
                 image: myMdwHelper.getValueFromData(data.attr('listImage' + i), ""),
                 imageColor: myMdwHelper.getValueFromData(data.attr('listImageColor' + i), ""),
-                imageActive: "home",
-                imageActiveColor: "red",
+                imageActive: myMdwHelper.getValueFromData(data.attr('listImageActive' + i),''),
+                imageActiveColor: myMdwHelper.getValueFromData(data.attr('listImageActiveColor' + i),''),
                 header: myMdwHelper.getValueFromData(data.attr('groupHeader' + i), ""),
                 showDivider: data.attr('dividers' + i),
                 objectId: data.attr('oid' + i),
