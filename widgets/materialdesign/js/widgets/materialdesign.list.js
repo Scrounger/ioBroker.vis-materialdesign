@@ -18,7 +18,12 @@ vis.binds.materialdesign.list = {
                     jsonData = JSON.parse(data.jsonStringObject);
                     countOfItems = jsonData.length - 1;
                 } catch (err) {
-                    jsonData === null;
+                    jsonData = [
+                        {
+                            text: `<font color=\"red\"><b>${_("Error in JSON string")}</b></font>`,
+                            subText: `<label style="word-wrap: break-word; white-space: normal;">${err.message}</label>`
+                        }
+                    ];
                     console.error(`[List] cannot parse json string! Error: ${err.message}`);
                 }
             } else {
@@ -147,7 +152,7 @@ vis.binds.materialdesign.list = {
                 try {
                     jsonData = JSON.parse(data.jsonStringObject);
                 } catch (err) {
-                    jsonData === null;
+                    jsonData = null;
                     console.error(`[List] cannot parse json string! Error: ${err.message}`);
                 }
             }
@@ -290,8 +295,8 @@ vis.binds.materialdesign.list = {
                 rightSubText: myMdwHelper.getValueFromData(data.attr('rightSubLabel' + i), ''),
                 image: myMdwHelper.getValueFromData(data.attr('listImage' + i), ""),
                 imageColor: myMdwHelper.getValueFromData(data.attr('listImageColor' + i), ""),
-                imageActive: myMdwHelper.getValueFromData(data.attr('listImageActive' + i),''),
-                imageActiveColor: myMdwHelper.getValueFromData(data.attr('listImageActiveColor' + i),''),
+                imageActive: myMdwHelper.getValueFromData(data.attr('listImageActive' + i), ''),
+                imageActiveColor: myMdwHelper.getValueFromData(data.attr('listImageActiveColor' + i), ''),
                 header: myMdwHelper.getValueFromData(data.attr('groupHeader' + i), ""),
                 showDivider: data.attr('dividers' + i),
                 objectId: data.attr('oid' + i),
@@ -301,7 +306,22 @@ vis.binds.materialdesign.list = {
             };
         } else {
             // Data from json
-            return jsonData[i];
+            return {
+                text: myMdwHelper.getValueFromData(jsonData[i].text, ''),
+                subText: myMdwHelper.getValueFromData(jsonData[i].subText, ''),
+                rightText: myMdwHelper.getValueFromData(jsonData[i].rightText, ''),
+                rightSubText: myMdwHelper.getValueFromData(jsonData[i].rightSubText, ''),
+                image: myMdwHelper.getValueFromData(jsonData[i].image, ""),
+                imageColor: myMdwHelper.getValueFromData(jsonData[i].imageColor, ""),
+                imageActive: myMdwHelper.getValueFromData(jsonData[i].imageActive, ''),
+                imageActiveColor: myMdwHelper.getValueFromData(jsonData[i].imageActiveColor, ''),
+                header: myMdwHelper.getValueFromData(jsonData[i].header, ""),
+                showDivider: jsonData[i].showDivider,
+                objectId: jsonData[i].objectId,
+                buttonStateValue: jsonData[i].buttonStateValue,
+                buttonNavView: jsonData[i].buttonNavView,
+                buttonLink: jsonData[i].buttonLink
+            };
         }
     }
 };

@@ -7852,5 +7852,17 @@ systemDictionary = {
         "es": "Cambiar (solo lectura)",
         "pl": "Przełącznik (tylko do odczytu)",
         "zh-cn": "开关（只读）"
-    }
+    },
+    "Error in JSON string": {
+        "en": "Error in JSON string!",
+        "de": "Fehler im JSON-String!",
+        "ru": "Ошибка в строке JSON!",
+        "pt": "Erro na cadeia JSON!",
+        "nl": "Fout in JSON-string!",
+        "fr": "Erreur dans la chaîne JSON!",
+        "it": "Errore nella stringa JSON!",
+        "es": "¡Error en la cadena JSON!",
+        "pl": "Błąd w łańcuchu JSON!",
+        "zh-cn": "JSON字符串错误！"
+      }
 };
