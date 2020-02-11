@@ -246,6 +246,7 @@ vis.binds.materialdesign.list = {
                         input.each(function (d) {
                             // kann mit mehreren oid verknüpft sein
                             let index = input.eq(d).attr('itemindex');
+                            listItemObj = getListItemObj(index, data, jsonData);
                             mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(index, newVal);
                             setLayout(index, newVal, listItemObj);
                         });
@@ -262,6 +263,7 @@ vis.binds.materialdesign.list = {
                         input.each(function (d) {
                             // kann mit mehreren oid verknüpft sein
                             let index = parseInt(input.eq(d).attr('id').replace('listItem_', ''));
+                            listItemObj = getListItemObj(index, data, jsonData);
                             setLayout(index, newVal, listItemObj);
                         });
                     });
@@ -294,9 +296,9 @@ vis.binds.materialdesign.list = {
                 rightText: myMdwHelper.getValueFromData(data.attr('rightLabel' + i), ''),
                 rightSubText: myMdwHelper.getValueFromData(data.attr('rightSubLabel' + i), ''),
                 image: myMdwHelper.getValueFromData(data.attr('listImage' + i), ""),
-                imageColor: myMdwHelper.getValueFromData(data.attr('listImageColor' + i), ""),
-                imageActive: myMdwHelper.getValueFromData(data.attr('listImageActive' + i), ''),
-                imageActiveColor: myMdwHelper.getValueFromData(data.attr('listImageActiveColor' + i), ''),
+                imageColor: myMdwHelper.getValueFromData(data.attr('listImageColor' + i), "#44739e"),
+                imageActive: myMdwHelper.getValueFromData(data.attr('listImageActive' + i), myMdwHelper.getValueFromData(data.attr('listImage' + i), "")),
+                imageActiveColor: myMdwHelper.getValueFromData(data.attr('listImageActiveColor' + i), myMdwHelper.getValueFromData(data.attr('listImageColor' + i), "#44739e")),
                 header: myMdwHelper.getValueFromData(data.attr('groupHeader' + i), ""),
                 showDivider: data.attr('dividers' + i),
                 objectId: data.attr('oid' + i),
@@ -312,9 +314,9 @@ vis.binds.materialdesign.list = {
                 rightText: myMdwHelper.getValueFromData(jsonData[i].rightText, ''),
                 rightSubText: myMdwHelper.getValueFromData(jsonData[i].rightSubText, ''),
                 image: myMdwHelper.getValueFromData(jsonData[i].image, ""),
-                imageColor: myMdwHelper.getValueFromData(jsonData[i].imageColor, ""),
-                imageActive: myMdwHelper.getValueFromData(jsonData[i].imageActive, ''),
-                imageActiveColor: myMdwHelper.getValueFromData(jsonData[i].imageActiveColor, ''),
+                imageColor: myMdwHelper.getValueFromData(jsonData[i].imageColor, "#44739e"),
+                imageActive: myMdwHelper.getValueFromData(jsonData[i].imageActive, myMdwHelper.getValueFromData(jsonData[i].image, "")),
+                imageActiveColor: myMdwHelper.getValueFromData(jsonData[i].imageActiveColor, myMdwHelper.getValueFromData(jsonData[i].imageColor, "#44739e")),
                 header: myMdwHelper.getValueFromData(jsonData[i].header, ""),
                 showDivider: jsonData[i].showDivider,
                 objectId: jsonData[i].objectId,
