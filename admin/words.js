@@ -7864,5 +7864,53 @@ systemDictionary = {
         "es": "¡Error en la cadena JSON!",
         "pl": "Błąd w łańcuchu JSON!",
         "zh-cn": "JSON字符串错误！"
-      }
+    },
+    "buttonToggleValueTrue": {
+        "en": "Button Toggle Value: is only on if the value equals the condition 'on'",
+        "de": "Button Toggle Wert: ist nur aktiviert, wenn der Wert der Bedingung \"An\" entspricht.",
+        "ru": "Кнопка Toggle Value: состояние включено, если значение равно условию «включено»",
+        "pt": "Valor de alternância do botão: o estado está ativado se o valor for igual à condição 'on'",
+        "nl": "Knop Toggle Value: status is ingeschakeld als de waarde gelijk is aan de voorwaarde 'on'",
+        "fr": "Bouton Basculer la valeur: l'état est activé si la valeur est égale à la condition \"activé\"",
+        "it": "Pulsante Attiva / disattiva valore: lo stato è attivo se il valore è uguale alla condizione \"on\"",
+        "es": "Valor de alternancia de botones: el estado está activado si el valor es igual a la condición 'activado'",
+        "pl": "Przycisk Przełącz wartość: stan jest włączony, jeśli wartość jest równa warunkowi „on”",
+        "zh-cn": "按钮切换值：如果该值等于条件“ on”，则状态为on"
+    },
+    "buttonToggleValueFalse": {
+        "en": "Button Toggle Value: is only off if the value equals the condition 'off'",
+        "de": "Button Toggle Wert: ist nur deaktiviert, wenn der Wert der Bedingung \"Aus\" entspricht.",
+        "ru": "Кнопка Toggle Value: состояние отключено, только если значение равно условию «выключено»",
+        "pt": "Valor de alternância do botão: o estado estará desativado apenas se o valor for igual à condição 'off'",
+        "nl": "Knop Toggle Value: status is alleen uit als de waarde gelijk is aan de voorwaarde 'uit'",
+        "fr": "Bouton Basculer la valeur: l'état n'est désactivé que si la valeur est égale à la condition \"désactivé\"",
+        "it": "Pulsante Attiva / disattiva valore: lo stato è disattivato solo se il valore è uguale alla condizione \"off\"",
+        "es": "Valor de alternancia de botones: el estado solo está desactivado si el valor es igual a la condición 'desactivado'",
+        "pl": "Przycisk Przełącz wartość: stan jest wyłączony tylko wtedy, gdy wartość jest równa warunkowi „wyłączone”",
+        "zh-cn": "按钮切换值：仅当该值等于条件“关闭”时，状态才关闭"
+    },
+    "typeButtonToggleValueTrue": {
+        "en": "Button Toggle Value: value for on",
+        "de": "Button Toggle Wert: Wert für 'an'",
+        "ru": "Кнопка Toggle Value: значение для вкл",
+        "pt": "Valor de alternância do botão: valor para ativado",
+        "nl": "Knop Waarde omschakelen: waarde voor aan",
+        "fr": "Button Toggle Value: valeur pour on",
+        "it": "Pulsante Attiva / disattiva valore: valore per attivo",
+        "es": "Valor de alternancia de botones: valor para on",
+        "pl": "Przycisk Przełącz wartość: wartość dla włączenia",
+        "zh-cn": "按钮切换值：on的值"
+    },
+    "typeButtonToggleValueFalse": {
+        "en": "Button Toggle Value: value for off",
+        "de": "Button Toggle Wert: Wert für 'aus'",
+        "ru": "Кнопка Toggle Value: значение для выключения",
+        "pt": "Valor de alternância do botão: valor para desativado",
+        "nl": "Knop Toggle Value: waarde voor uit",
+        "fr": "Bouton Basculer la valeur: valeur pour off",
+        "it": "Pulsante Attiva / disattiva valore: valore per disattivato",
+        "es": "Valor de alternancia de botones: valor para apagado",
+        "pl": "Przycisk Przełącz wartość: wartość wyłączona",
+        "zh-cn": "按钮切换值：关闭值"
+    }
 };

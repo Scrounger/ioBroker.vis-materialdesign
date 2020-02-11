@@ -58,7 +58,7 @@ vis.binds.materialdesign.iconlist =
                     <div class="materialdesign-icon-list-item" id="icon-list-item${i}" data-oid="${listItemObj.objectId}">                    
                         ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text">${listItemObj.text}</label>` : ''}
                         ${imageElement}
-                        <label class="materialdesign-icon-list-item-value"></label>
+                        ${(data.showValueLabel && (data.listType.includes('buttonToggle') || data.listType === 'buttonState')) ? '<label class="materialdesign-icon-list-item-value"></label>' : ''}
                         ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText">${listItemObj.subText}</label>` : ''}
                     </div>
                 `)
@@ -138,7 +138,7 @@ vis.binds.materialdesign.iconlist =
             });
 
             function setLayout(index, val, listItemObj) {
-                let $item = $this.find(`#icon-list-item${index}`);                
+                let $item = $this.find(`#icon-list-item${index}`);
 
                 $item.find('.materialdesign-icon-list-item-value').text(val);
 
@@ -163,7 +163,12 @@ vis.binds.materialdesign.iconlist =
                         imageActiveColor: myMdwHelper.getValueFromData(data.attr('listImageActiveColor' + i), myMdwHelper.getValueFromData(data.attr('listImageColor' + i), "#44739e")),
                         buttonBackgroundColor: myMdwHelper.getValueFromData(data.attr('buttonBgColor' + i), ''),
                         buttonBackgroundActiveColor: myMdwHelper.getValueFromData(data.attr('buttonBgColorActive' + i), myMdwHelper.getValueFromData(data.attr('buttonBgColor' + i), '')),
-                        objectId: data.attr('oid' + i)
+                        objectId: data.attr('oid' + i),
+                        buttonStateValue: data.attr('listTypeButtonStateValue' + i),
+                        buttonNavView: data.attr('listTypeButtonNav' + i),
+                        buttonLink: data.attr('listTypeButtonLink' + i),
+                        buttonToggleValueTrue: data.attr('typeButtonToggleValueTrue' + i),
+                        buttonToggleValueFalse: data.attr('typeButtonToggleValueFalse' + i)
                     };
                 } else {
                     // Data from json
