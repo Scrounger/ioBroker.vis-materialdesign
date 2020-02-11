@@ -58,6 +58,7 @@ vis.binds.materialdesign.iconlist =
                     <div class="materialdesign-icon-list-item" id="icon-list-item${i}" data-oid="${listItemObj.objectId}">                    
                         ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text">${listItemObj.text}</label>` : ''}
                         ${imageElement}
+                        <label class="materialdesign-icon-list-item-value"></label>
                         ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText">${listItemObj.subText}</label>` : ''}
                     </div>
                 `)
@@ -78,6 +79,10 @@ vis.binds.materialdesign.iconlist =
             $this.context.style.setProperty("--materialdesign-icon-list-items-subText-font-size", myMdwHelper.getNumberFromData(data.subLabelFontSize, 12) + 'px');
             $this.context.style.setProperty("--materialdesign-icon-list-items-subText-font-family", myMdwHelper.getValueFromData(data.subLabelFontFamily, 'inherit'));
             $this.context.style.setProperty("--materialdesign-icon-list-items-subText-font-color", myMdwHelper.getValueFromData(data.subLabelFontColor, ''));
+
+            $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-size", myMdwHelper.getNumberFromData(data.valueFontSize, 12) + 'px');
+            $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-family", myMdwHelper.getValueFromData(data.valueFontFamily, 'inherit'));
+            $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-color", myMdwHelper.getValueFromData(data.valueFontColor, ''));
 
 
             myMdwHelper.waitForElement($this, `#icon-list-item${countOfItems}`, function () {
@@ -110,7 +115,7 @@ vis.binds.materialdesign.iconlist =
 
                     });
 
-                    if (data.listType === 'buttonToggle' || data.listType === 'buttonToggle_readonly') {
+                    if (data.listType === 'buttonToggle') {
                         let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
                         setLayout(i, valOnLoading, listItemObj);
 
@@ -133,12 +138,13 @@ vis.binds.materialdesign.iconlist =
             });
 
             function setLayout(index, val, listItemObj) {
-                let $item = $this.find(`#icon-list-item${index}`);
+                let $item = $this.find(`#icon-list-item${index}`);                
+
+                $item.find('.materialdesign-icon-list-item-value').text(val);
 
                 if (val === true) {
                     $item.find('.materialdesign-icon-button').css('background', listItemObj.buttonBackgroundActiveColor);
                     myMdwHelper.changeIconElement($item, listItemObj.imageActive, 'auto', iconHeight + 'px', listItemObj.imageActiveColor);
-
                 } else {
                     $item.find('.materialdesign-icon-button').css('background', listItemObj.buttonBackgroundColor);
                     myMdwHelper.changeIconElement($item, listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor);

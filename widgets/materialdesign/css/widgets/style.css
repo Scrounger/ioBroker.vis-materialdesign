@@ -92,6 +92,10 @@
   --materialdesign-icon-list-items-subText-font-size: 12px;
   --materialdesign-icon-list-items-subText-font-family: inherit;
   --materialdesign-icon-list-items-subText-font-color: rgba(0, 0, 0, 0.54);
+
+  --materialdesign-icon-list-items-value-font-size: 12px;
+  --materialdesign-icon-list-items-value-font-family: inherit;
+  --materialdesign-icon-list-items-value-font-color: #44739e;
 }
 
 /* Button style -> must defined here because of position bug in vis editor */
@@ -1456,6 +1460,18 @@ svg.materialdesign-button__icon {
   font-size: var(--materialdesign-icon-list-items-subText-font-size);
   font-family: var(--materialdesign-icon-list-items-subText-font-family);
   color: var(--materialdesign-icon-list-items-subText-font-color);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.materialdesign-icon-list-item-value{
+  width: 100%;
+  text-align: center;
+  margin-top: 4px;
+  font-size: var(--materialdesign-icon-list-items-value-font-size);
+  font-family: var(--materialdesign-icon-list-items-value-font-family);
+  color: var(--materialdesign-icon-list-items-value-font-color);
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;

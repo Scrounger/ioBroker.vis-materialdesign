@@ -7819,7 +7819,7 @@ systemDictionary = {
     },
     "buttonToggle": {
         "en": "toggle Button",
-        "de": "Umschaltknopf",
+        "de": "Button Toggle",
         "ru": "Кнопка-переключатель",
         "pt": "botão de alternância",
         "nl": "schakelknop",
@@ -7831,7 +7831,7 @@ systemDictionary = {
     },
     "buttonToggle_readonly": {
         "en": "toggle Button (read only)",
-        "de": "Umschaltknopf (schreibgeschützt)",
+        "de": "Button Toggle (schreibgeschützt)",
         "ru": "Кнопка переключения (только для чтения)",
         "pt": "botão de alternância (somente leitura)",
         "nl": "schakelknop (alleen lezen)",
