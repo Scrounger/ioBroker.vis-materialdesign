@@ -110,11 +110,14 @@ vis.binds.materialdesign.iconlist =
                             vis.setValue(listItemObj.objectId, !selectedValue);
 
                             setLayout(index, !selectedValue, listItemObj);
+                        } else if (data.listType === 'buttonNav') {
+                            vis.changeView(listItemObj.buttonNavView);
+                        } else if (data.listType === 'buttonLink') {
+                            window.open(listItemObj.buttonLink);
                         }
-
-
                     });
 
+                    // on Load & bind to object ids
                     if (data.listType === 'buttonToggle') {
                         let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
                         setLayout(i, valOnLoading, listItemObj);
@@ -133,8 +136,6 @@ vis.binds.materialdesign.iconlist =
                     }
 
                 }
-
-
             });
 
             function setLayout(index, val, listItemObj) {
