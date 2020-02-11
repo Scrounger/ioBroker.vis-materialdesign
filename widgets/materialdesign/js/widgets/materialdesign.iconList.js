@@ -40,18 +40,24 @@ vis.binds.materialdesign.iconlist =
                 let iconHeight = myMdwHelper.getNumberFromData(data.iconHeight, 24);
                 let buttonHeight = myMdwHelper.getNumberFromData(data.buttonHeight, iconHeight * 1.5);
 
+                let imageElement = '';
+                if (data.listType === 'text') {
+                    imageElement = myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor)
+                } else {
+                    // Buttons
+                    imageElement = `<div style="width: 100%; text-align: center;">
+                                        <div class="materialdesign-icon-button v-alert-materialdesign-icon-button" index="${i}" style="background: ${listItemObj.buttonBackgroundColor}; position: relative; width: ${buttonHeight}px; height: ${buttonHeight}px;">
+                                            <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+                                            ${myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor)}
+                                            </div>
+                                        </div>
+                                    </div>`
+                }
+
                 itemList.push(`
                     <div class="materialdesign-icon-list-item" id="icon-list-item${data.countOfItems}">                    
                         ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text">${listItemObj.text}</label>` : ''}
-                        ${myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor)}
-
-                        <div style="width: 100%; text-align: center;">
-                            <div class="materialdesign-icon-button v-alert-materialdesign-icon-button" index="${i}" style="position: relative; width: ${buttonHeight}px; height: ${buttonHeight}px;">
-                                <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
-                                ${myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor)}
-                                </div>
-                            </div>
-                        </div>
+                        ${imageElement}
                     </div>
                 `)
             }
@@ -67,7 +73,14 @@ vis.binds.materialdesign.iconlist =
                 let iconButtons = $this.find('.materialdesign-icon-button');
                 for (var b = 0; b <= iconButtons.length - 1; b++) {
                     // set ripple effect to icon buttons
-                    new mdc.iconButton.MDCIconButtonToggle($this.find('.materialdesign-icon-button').get(b));
+                    let button = new mdc.iconButton.MDCIconButtonToggle(iconButtons.get(b));
+                    iconButtons.get(b).style.setProperty("--mdc-theme-primary", myMdwHelper.getValueFromData(data.buttonColorPress, ''));
+
+                    button.listen('MDCIconButtonToggle:change', function (item) {
+                        let index = $(this).attr('index');
+                        console.log(index);
+                    });
+
                 }
 
                 $this.context.style.setProperty("--materialdesign-icon-list-items-per-row", myMdwHelper.getNumberFromData(data.maxItemsperRow, 1));
@@ -85,7 +98,11 @@ vis.binds.materialdesign.iconlist =
                         text: myMdwHelper.getValueFromData(data.attr('label' + i), ''),
                         subText: myMdwHelper.getValueFromData(data.attr('subLabel' + i), ''),
                         image: myMdwHelper.getValueFromData(data.attr('listImage' + i), ""),
-                        imageColor: myMdwHelper.getValueFromData(data.attr('listImageColor' + i), "#44739e")
+                        imageColor: myMdwHelper.getValueFromData(data.attr('listImageColor' + i), "#44739e"),
+                        imageActive: myMdwHelper.getValueFromData(data.attr('listImageActive' + i), ''),
+                        imageActiveColor: myMdwHelper.getValueFromData(data.attr('listImageActiveColor' + i), ''),
+                        buttonBackgroundColor: myMdwHelper.getValueFromData(data.attr('buttonBgColor' + i), ''),
+                        buttonBackgroundActiveColor: myMdwHelper.getValueFromData(data.attr('buttonBgColorActive' + i), '')
                     };
                 } else {
                     // Data from json
