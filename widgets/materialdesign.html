@@ -927,6 +927,26 @@
         </div>
 </script>
 
+<script id="tplVis-materialdesign-Icon-List"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/materialdesign/img/prev_list.png"></img>'
+        data-vis-set="materialdesign"
+        data-vis-type="val,ctrl,state,navigation,static,bool"
+        data-vis-name="Icon List"
+        data-vis-update-style="true"
+        data-vis-beta="true"
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,iconList;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,iconList;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;"
+        data-vis-attrs0="group.listLayout;listType[text]/select,text,buttonState,buttonToggle,buttonToggle_readonly,buttonNav,buttonLink;listItemDividerStyle[standard]/select,standard,padded,inset;maxItemsperRow/number;vibrateOnMobilDevices[50]/number;"
+        data-vis-attrs1="group.listItemData;listItemDataMethod[inputPerEditor]/select,inputPerEditor,jsonStringObject;countListItems[1]/number;jsonStringObject/html;"
+        data-vis-attrs2="group.listItemLayout;iconHeight/number;buttonHeight/number;labelFontSize/number;labelFontFamily/fontname;labelFontColor/color;"
+        data-vis-attrs3="group.rows/byindex;oid(0-countListItems);label(0-countListItems)/html;subLabel(0-countListItems)/html;listImage(0-countListItems)/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;listImageColor(0-countListItems)/color;">
+
+        <div class="vis-widget materialdesign-widget materialdesign-icon-list <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.iconlist(el, data) %>>
+
+        </div>
+</script>
+
 <script id="tplVis-materialdesign-Chart-Bar"
         type="text/ejs"
         class="vis-tpl"

@@ -82,6 +82,12 @@
   --materialdesign-masonry-gaps: 20px;
 
   --materialdesign-grid-gaps: 0px;
+
+  --materialdesign-icon-list-items-per-row: 3;
+
+  --materialdesign-icon-list-items-text-font-size: 14px;
+  --materialdesign-icon-list-items-text-font-family: inherit;
+  --materialdesign-icon-list-items-text-font-color: #44739e;
 }
 
 /* Button style -> must defined here because of position bug in vis editor */
@@ -1407,4 +1413,34 @@ svg.materialdesign-button__icon {
 .materialdesign-grid .col-12 {
   flex: 0 0 calc(100% - 2*var(--materialdesign-grid-gaps));
   max-width: calc(100% - 2*var(--materialdesign-grid-gaps));
+}
+
+/* iconList */
+.materialdesign-icon-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.materialdesign-icon-list-item {
+  flex: 1 1 calc(100% / var(--materialdesign-icon-list-items-per-row) - 20px);
+  max-width: calc(100% / var(--materialdesign-icon-list-items-per-row) - 20px);  
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.materialdesign-icon-list-item-text{
+  width: 100%;
+  text-align: center;
+  margin-bottom: 4px;
+  font-size: var(--materialdesign-icon-list-items-text-font-size);
+  font-family: var(--materialdesign-icon-list-items-text-font-family);
+  color: var(--materialdesign-icon-list-items-text-font-color);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
