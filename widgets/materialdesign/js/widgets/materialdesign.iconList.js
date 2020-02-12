@@ -172,6 +172,7 @@ vis.binds.materialdesign.iconlist =
                 let $item = $this.find(`#icon-list-item${index}`);
 
                 console.log(listItemObj.objectId + ": " + val);
+                console.log(vis.states.attr(listItemObj.objectId + '.val'));
 
                 $item.find('.materialdesign-icon-list-item-value').text(val);
 
