@@ -5358,16 +5358,16 @@ systemDictionary = {
         "zh-cn": "菜单数据"
     },
     "listDataMethod": {
-        "en": "method of data of menu",
-        "de": "Methode der Daten des Menüs",
-        "ru": "метод данных меню",
-        "pt": "método de dados do menu",
-        "nl": "methode van gegevens van menu",
-        "fr": "méthode des données du menu",
-        "it": "metodo di dati di menu",
-        "es": "método de datos del menú",
-        "pl": "metoda danych menu",
-        "zh-cn": "菜单数据的方法"
+        "en": "input method for the menu data",
+        "de": "Eingabemethode für die Menüdaten",
+        "ru": "метод ввода данных меню",
+        "pt": "método de entrada para os dados do menu",
+        "nl": "invoermethode voor de menugegevens",
+        "fr": "méthode de saisie des données de menu",
+        "it": "metodo di input per i dati del menu",
+        "es": "método de entrada para los datos del menú",
+        "pl": "metoda wprowadzania danych menu",
+        "zh-cn": "菜单数据的输入方法"
     },
     "inputPerEditor": {
         "en": "via editor",
@@ -7650,16 +7650,16 @@ systemDictionary = {
         "zh-cn": "清单数据"
     },
     "listItemDataMethod": {
-        "en": "method of data of list",
-        "de": "Methode der Daten der Liste",
-        "ru": "метод данных списка",
-        "pt": "método de dados da lista",
-        "nl": "methode van gegevens van lijst",
-        "fr": "méthode des données de la liste",
-        "it": "metodo di dati di elenco",
-        "es": "método de datos de la lista",
-        "pl": "metoda danych listy",
-        "zh-cn": "清单数据的方法"
+        "en": "input method for the list data",
+        "de": "Eingabemethode für die Listendaten",
+        "ru": "метод ввода данных списка",
+        "pt": "método de entrada para os dados da lista",
+        "nl": "invoermethode voor de lijstgegevens",
+        "fr": "méthode d'entrée pour les données de liste",
+        "it": "metodo di input per i dati dell'elenco",
+        "es": "método de entrada para los datos de la lista",
+        "pl": "metoda wprowadzania danych listy",
+        "zh-cn": "列表数据的输入方法"
     },
     "listImage": {
         "en": "icon",
@@ -7924,5 +7924,17 @@ systemDictionary = {
         "es": "no se especificó ID de objeto",
         "pl": "nie określono identyfikatora obiektu",
         "zh-cn": "未指定对象ID"
+    },
+    "maxItemsperRow": {
+        "en": "count of maximum list items per row",
+        "de": "Anzahl der maximalen Listenelemente pro Zeile",
+        "ru": "количество максимальных элементов списка в строке",
+        "pt": "contagem de itens máximos da lista por linha",
+        "nl": "telling van maximum lijstitems per rij",
+        "fr": "nombre maximal d'éléments de liste par ligne",
+        "it": "conteggio degli elementi dell'elenco massimo per riga",
+        "es": "recuento de elementos de lista máximos por fila",
+        "pl": "liczba maksymalnych elementów listy w wierszu",
+        "zh-cn": "每行最大列表项数"
     }
 };
