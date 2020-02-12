@@ -41,7 +41,7 @@ vis.binds.materialdesign.iconlist =
                 let listItemObj = getListItemObj(i, data, jsonData);
 
                 let imageElement = '';
-                if (data.listType === 'text') {
+                if (listItemObj.listType === 'text') {
                     imageElement = myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor)
                 } else {
                     // Buttons
@@ -58,7 +58,7 @@ vis.binds.materialdesign.iconlist =
                     <div class="materialdesign-icon-list-item" id="icon-list-item${i}" data-oid="${listItemObj.objectId}">                    
                         ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text">${listItemObj.text}</label>` : ''}
                         ${imageElement}
-                        ${(data.showValueLabel && (data.listType.includes('buttonToggle') || data.listType === 'buttonState')) ? '<label class="materialdesign-icon-list-item-value"></label>' : ''}
+                        ${(data.showValueLabel && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? '<label class="materialdesign-icon-list-item-value"></label>' : ''}
                         ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText">${listItemObj.subText}</label>` : ''}
                     </div>
                 `)
@@ -100,24 +100,24 @@ vis.binds.materialdesign.iconlist =
                         let index = $(this).attr('index');
                         listItemObj = getListItemObj(index, data, jsonData);
 
-                        if (data.listType !== 'text') {
+                        if (listItemObj.listType !== 'text') {
                             vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                         }
 
-                        if (data.listType === 'buttonToggle') {
+                        if (listItemObj.listType === 'buttonToggle') {
                             let selectedValue = vis.states.attr(listItemObj.objectId + '.val');
 
                             vis.setValue(listItemObj.objectId, !selectedValue);
 
                             setLayout(index, !selectedValue, listItemObj);
-                        } else if (data.listType === 'buttonState') {
+                        } else if (listItemObj.listType === 'buttonState') {
                             let valueToSet = listItemObj.buttonStateValue;
                             vis.setValue(listItemObj.objectId, valueToSet);
 
                             setLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
-                        } else if (data.listType === 'buttonNav') {
+                        } else if (listItemObj.listType === 'buttonNav') {
                             vis.changeView(listItemObj.buttonNavView);
-                        } else if (data.listType === 'buttonLink') {
+                        } else if (listItemObj.listType === 'buttonLink') {
                             window.open(listItemObj.buttonLink);
                         }
                     });
@@ -125,7 +125,7 @@ vis.binds.materialdesign.iconlist =
                     // on Load & bind to object ids
                     let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
 
-                    if (data.listType === 'buttonToggle' || data.listType === 'buttonState') {
+                    if (listItemObj.listType === 'buttonToggle' || listItemObj.listType === 'buttonState') {
                         setLayout(i, valOnLoading, listItemObj);
 
                         vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
@@ -148,11 +148,13 @@ vis.binds.materialdesign.iconlist =
 
                 $item.find('.materialdesign-icon-list-item-value').text(val);
 
-                if (data.listType === 'buttonState' && val === listItemObj.buttonStateValue) {
+                if (listItemObj.listType === 'buttonState') {
                     // buttonState -> show as active if value is state value
-                    val = true;
-                } else {
-                    val = false;
+                    if (val === listItemObj.buttonStateValue) {
+                        val = true;
+                    } else {
+                        val = false;
+                    }
                 }
 
                 if (val === true) {
@@ -176,6 +178,7 @@ vis.binds.materialdesign.iconlist =
                         imageActiveColor: myMdwHelper.getValueFromData(data.attr('listImageActiveColor' + i), myMdwHelper.getValueFromData(data.attr('listImageColor' + i), "#44739e")),
                         buttonBackgroundColor: myMdwHelper.getValueFromData(data.attr('buttonBgColor' + i), ''),
                         buttonBackgroundActiveColor: myMdwHelper.getValueFromData(data.attr('buttonBgColorActive' + i), myMdwHelper.getValueFromData(data.attr('buttonBgColor' + i), '')),
+                        listType: myMdwHelper.getValueFromData(data.attr('listType' + i), 'text'),
                         objectId: data.attr('oid' + i),
                         buttonStateValue: data.attr('listTypeButtonStateValue' + i),
                         buttonNavView: data.attr('listTypeButtonNav' + i),
