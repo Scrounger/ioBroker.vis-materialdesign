@@ -7912,5 +7912,17 @@ systemDictionary = {
         "es": "Valor de alternancia de botones: valor para apagado",
         "pl": "Przycisk Przełącz wartość: wartość wyłączona",
         "zh-cn": "按钮切换值：关闭值"
+    },
+    "noObjectIdSpecified": {
+        "en": "no object Id specified",
+        "de": "Keine Objekt-ID angegeben",
+        "ru": "идентификатор объекта не указан",
+        "pt": "nenhum ID de objeto especificado",
+        "nl": "geen object-id opgegeven",
+        "fr": "aucun identifiant d'objet spécifié",
+        "it": "nessun ID oggetto specificato",
+        "es": "no se especificó ID de objeto",
+        "pl": "nie określono identyfikatora obiektu",
+        "zh-cn": "未指定对象ID"
     }
 };

@@ -20,9 +20,15 @@ vis.binds.materialdesign.calendar =
 
             let jsonData = [];
             try {
-                jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
+                let val = vis.states.attr(data.oid + '.val');
+
+                if (val) {
+                    jsonData = JSON.parse(val);
+                } else {
+                    jsonData = getNoOidMessage();
+                }
             } catch (err) {
-                jsonData = [];
+                jsonData = getErrorMessage(err);
                 console.error(`[Vuetify Calendar 1] cannot parse json string! Error: ${err.message}`);
             }
 
@@ -293,9 +299,15 @@ vis.binds.materialdesign.calendar =
 
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                         try {
-                            jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
+                            let val = vis.states.attr(data.oid + '.val');
+
+                            if (val) {
+                                jsonData = JSON.parse(val);
+                            } else {
+                                jsonData = getNoOidMessage();
+                            }
                         } catch (err) {
-                            jsonData === [];
+                            jsonData === getErrorMessage(err);
                             console.error(`[Vuetify Calendar 2] cannot parse json string! Error: ${err.message}`);
                         }
 
@@ -303,6 +315,26 @@ vis.binds.materialdesign.calendar =
                     });
                 });
             });
+
+            function getNoOidMessage() {
+                return [{
+                    "name": _("noObjectIdSpecified"),
+                    "color": "#e6ae25",
+                    "colorText": "",
+                    "start": moment().add(-30, 'days').format("YYYY-MM-DD"),
+                    "end": moment().add(30, 'days').format("YYYY-MM-DD")
+                }]
+            }
+
+            function getErrorMessage(err){
+                return [{
+                    "name": _("Error in JSON string: ") + err.message,
+                    "color": "#FF0000",
+                    "colorText": "#FFFFFF",
+                    "start": moment().add(-30, 'days').format("YYYY-MM-DD"),
+                    "end": moment().add(30, 'days').format("YYYY-MM-DD")
+                }]
+            }
 
         } catch (ex) {
             console.error(`[Vuetify Calendar]: error: ${ex.message}, stack: ${ex.stack}`);
