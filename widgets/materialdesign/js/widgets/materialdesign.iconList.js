@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.53"
+    version: "0.2.52"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -151,7 +151,7 @@ vis.binds.materialdesign.iconlist =
                         setLayout(i, valOnLoading, listItemObj);
 
                         vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
-                            let input = $this.parent().find('div[data-oid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
+                            let input = $this.find('div[data-oid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
 
                             input.each(function (d) {
                                 // kann mit mehreren oid verknüpft sein
