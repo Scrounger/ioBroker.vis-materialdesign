@@ -168,6 +168,8 @@ vis.binds.materialdesign.iconlist =
             function setLayout(index, val, listItemObj) {
                 let $item = $this.find(`#icon-list-item${index}`);
 
+                console.log(listItemObj.objectId + ": " + val);
+
                 $item.find('.materialdesign-icon-list-item-value').text(val);
 
                 if (listItemObj.listType === 'buttonState') {
