@@ -7936,5 +7936,17 @@ systemDictionary = {
         "es": "recuento de elementos de lista máximos por fila",
         "pl": "liczba maksymalnych elementów listy w wierszu",
         "zh-cn": "每行最大列表项数"
+    },
+    "calendarJsonStringWrong": {
+        "en": "JSON-String structure is wrong, read documentation",
+        "de": "JSON-String Struktur ist falsch, Dokumentation lesen",
+        "ru": "Структура JSON-String неверна, прочитайте документацию",
+        "pt": "A estrutura JSON-String está incorreta, leia a documentação",
+        "nl": "JSON-String-structuur is verkeerd, lees documentatie",
+        "fr": "La structure JSON-String est incorrecte, lire la documentation",
+        "it": "La struttura della stringa JSON è errata, leggere la documentazione",
+        "es": "La estructura de la cadena JSON es incorrecta, lea la documentación",
+        "pl": "Struktura JSON-String jest niepoprawna, przeczytaj dokumentację",
+        "zh-cn": "JSON-String结构错误，请阅读文档"
     }
 };

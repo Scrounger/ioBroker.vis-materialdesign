@@ -18,19 +18,7 @@ vis.binds.materialdesign.calendar =
                 buttonLayout = 'materialdesign-button--' + data.controlButtonLayout;
             }
 
-            let jsonData = [];
-            try {
-                let val = vis.states.attr(data.oid + '.val');
-
-                if (val) {
-                    jsonData = JSON.parse(val);
-                } else {
-                    jsonData = getNoOidMessage();
-                }
-            } catch (err) {
-                jsonData = getErrorMessage(err);
-                console.error(`[Vuetify Calendar 1] cannot parse json string! Error: ${err.message}`);
-            }
+            let jsonData = parseJson();
 
             // control button positions
             let controlContainerStyle = '';
@@ -298,23 +286,40 @@ vis.binds.materialdesign.calendar =
 
 
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                        try {
-                            let val = vis.states.attr(data.oid + '.val');
-
-                            if (val) {
-                                jsonData = JSON.parse(val);
-                            } else {
-                                jsonData = getNoOidMessage();
-                            }
-                        } catch (err) {
-                            jsonData === getErrorMessage(err);
-                            console.error(`[Vuetify Calendar 2] cannot parse json string! Error: ${err.message}`);
-                        }
-
+                        jsonData = parseJson();
                         vueCalendar.events = jsonData;
                     });
                 });
             });
+
+            function parseJson() {
+                let jsonData = [];
+
+                try {
+                    let val = vis.states.attr(data.oid + '.val');
+
+                    if (val) {
+                        jsonData = JSON.parse(val);
+
+                        if (jsonData.length > 0) {
+                            if (!hasJsonMustHaveProperties(jsonData)) {
+                                jsonData = getJsonPropertiesWrongMessage();
+                            }
+                        }
+                    } else {
+                        if (data.oid) {
+                            jsonData = [];
+                        } else {
+                            jsonData = getNoOidMessage();
+                        }
+                    }
+                } catch (err) {
+                    jsonData = getErrorMessage(err);
+                    console.error(`[Vuetify Calendar] cannot parse json string! Error: ${err.message}`);
+                }
+
+                return jsonData;
+            }
 
             function getNoOidMessage() {
                 return [{
@@ -326,7 +331,7 @@ vis.binds.materialdesign.calendar =
                 }]
             }
 
-            function getErrorMessage(err){
+            function getErrorMessage(err) {
                 return [{
                     "name": _("Error in JSON string: ") + err.message,
                     "color": "#FF0000",
@@ -336,6 +341,28 @@ vis.binds.materialdesign.calendar =
                 }]
             }
 
+            function getJsonPropertiesWrongMessage() {
+                return [{
+                    "name": _("calendarJsonStringWrong"),
+                    "color": "#FF0000",
+                    "colorText": "#FFFFFF",
+                    "start": moment().add(-30, 'days').format("YYYY-MM-DD"),
+                    "end": moment().add(30, 'days').format("YYYY-MM-DD")
+                }]
+            }
+
+            function hasJsonMustHaveProperties(jsonData) {
+                let mustHaveProperties = ['name', 'start', 'end'];
+                let jsonProperties = Object.getOwnPropertyNames(jsonData[0]);
+
+                for (var i = 0; i <= mustHaveProperties.length - 1; i++) {
+                    if (!jsonProperties.includes(mustHaveProperties[i])) {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
         } catch (ex) {
             console.error(`[Vuetify Calendar]: error: ${ex.message}, stack: ${ex.stack}`);
         }

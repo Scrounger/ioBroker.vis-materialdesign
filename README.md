@@ -697,8 +697,8 @@ The Calendar widget requires a JSON string as object, which must be structured a
 		"name": "Meeting",
 		"color": "#717d7e",
 		"colorText": "#FFFFFF",
-		"start": "2020-03-23",
-		"end": "2020-03-24"
+		"start": "2020-03-23 16:00",
+		"end": "2020-03-24 17:15"
 	}
 ]
 ```
@@ -744,6 +744,16 @@ const moment = require("moment");
 
 var instances = $(`[id=ical.*.data.table]`);
 instances.on(ical2CalendarWidget);
+
+// remove this, if you know to use your own datapoint
+let datapointId = 'materialdesignwidgets.calendar.ical2calendar'
+createState(datapointId, "[]", {
+  read: true, 
+  write: false, 
+  desc: "JSON String for Calendar Widget", 
+  type: "string", 
+  def: "[]"
+});
 
 function ical2CalendarWidget() {
     try {
@@ -812,7 +822,7 @@ function ical2CalendarWidget() {
             }
 
             // Enter the destination data point that is to be used as object ID in the widget                
-            setState('0_userdata.0.materialdesignwidgets.ical2Calendar', JSON.stringify(calList), true);
+            setState(datapointId, JSON.stringify(calList), true);
         }
     } catch (e) {
         console.error(`ical2MaterialDesignCalendarWidget: message: ${e.message}, stack: ${e.stack}`);
