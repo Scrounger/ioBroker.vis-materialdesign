@@ -86,6 +86,7 @@ vis.binds.materialdesign.iconlist =
 
 
             myMdwHelper.waitForElement($this, `.materialdesign-icon-list-container`, function () {
+                console.log('div find');
 
                 let iconButtons = $this.find('.materialdesign-icon-button');
                 for (var i = 0; i <= iconButtons.length - 1; i++) {
@@ -144,10 +145,12 @@ vis.binds.materialdesign.iconlist =
                         }
                     });
 
-                    // on Load & bind to object ids
-                    let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
+
 
                     if (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState') {
+                        console.log('onLoad');
+                        // on Load & bind to object ids
+                        let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
                         setLayout(i, valOnLoading, listItemObj);
 
                         vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
@@ -193,7 +196,7 @@ vis.binds.materialdesign.iconlist =
                     }
                 }
 
-                if (val === true) {
+                if (val === true || val === 'true') {
                     $item.find('.materialdesign-icon-button').css('background', listItemObj.buttonBackgroundActiveColor);
                     myMdwHelper.changeIconElement($item, listItemObj.imageActive, 'auto', iconHeight + 'px', listItemObj.imageActiveColor);
                 } else {
