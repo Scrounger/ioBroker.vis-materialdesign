@@ -85,7 +85,7 @@ vis.binds.materialdesign.iconlist =
             $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-color", myMdwHelper.getValueFromData(data.valueFontColor, ''));
 
 
-            myMdwHelper.waitForElement($this, `#icon-list-item${countOfItems}`, function () {
+            myMdwHelper.waitForElement($this, `.materialdesign-icon-list-container`, function () {
 
                 let iconButtons = $this.find('.materialdesign-icon-button');
                 for (var i = 0; i <= iconButtons.length - 1; i++) {
