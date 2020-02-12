@@ -223,7 +223,21 @@ vis.binds.materialdesign.iconlist =
                 } else {
                     // Data from json
                     return {
-
+                        text: myMdwHelper.getValueFromData(jsonData[i].text, ''),
+                        subText: myMdwHelper.getValueFromData(jsonData[i].subText, ''),
+                        image: myMdwHelper.getValueFromData(jsonData[i].image, ""),
+                        imageColor: myMdwHelper.getValueFromData(jsonData[i].imageColor, "#44739e"),
+                        imageActive: myMdwHelper.getValueFromData(jsonData[i].imageActive, myMdwHelper.getValueFromData(jsonData[i].image, "")),
+                        imageActiveColor: myMdwHelper.getValueFromData(jsonData[i].imageActiveColor, myMdwHelper.getValueFromData(jsonData[i].imageColor, "#44739e")),
+                        buttonBackgroundColor: myMdwHelper.getValueFromData(jsonData[i].imageActiveColor, ''),
+                        buttonBackgroundActiveColor: myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundActiveColor, myMdwHelper.getValueFromData(jsonData[i].imageActiveColor, '')),
+                        listType: myMdwHelper.getValueFromData(jsonData[i].listType, 'text'),
+                        objectId: jsonData[i].objectId,
+                        buttonStateValue: jsonData[i].buttonStateValue,
+                        buttonNavView: jsonData[i].buttonNavView,
+                        buttonLink: jsonData[i].buttonLink,
+                        buttonToggleValueTrue: jsonData[i].buttonToggleValueTrue,
+                        buttonToggleValueFalse: jsonData[i].buttonToggleValueFalse
                     };
                 }
             }
