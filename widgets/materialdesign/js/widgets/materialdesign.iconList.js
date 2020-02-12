@@ -115,6 +115,28 @@ vis.binds.materialdesign.iconlist =
                             vis.setValue(listItemObj.objectId, valueToSet);
 
                             setLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
+                        } else if (listItemObj.listType === 'buttonToggleValueTrue') {
+                            let val = vis.states.attr(listItemObj.objectId + '.val');
+
+                            if (val === listItemObj.buttonToggleValueTrue || parseFloat(val) === parseFloat(listItemObj.buttonToggleValueTrue)) {
+                                vis.setValue(listItemObj.objectId, listItemObj.buttonToggleValueFalse);
+                            } else {
+                                vis.setValue(listItemObj.objectId, listItemObj.buttonToggleValueTrue);
+                            }
+
+                            setLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
+
+                        } else if (listItemObj.listType === 'buttonToggleValueFalse') {
+                            let val = vis.states.attr(listItemObj.objectId + '.val');
+
+                            if (val === listItemObj.buttonToggleValueFalse || parseFloat(val) === parseFloat(listItemObj.buttonToggleValueFalse)) {
+                                vis.setValue(listItemObj.objectId, listItemObj.buttonToggleValueTrue);
+                            } else {
+                                vis.setValue(listItemObj.objectId, listItemObj.buttonToggleValueFalse);
+                            }
+
+                            setLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
+
                         } else if (listItemObj.listType === 'buttonNav') {
                             vis.changeView(listItemObj.buttonNavView);
                         } else if (listItemObj.listType === 'buttonLink') {
@@ -125,7 +147,7 @@ vis.binds.materialdesign.iconlist =
                     // on Load & bind to object ids
                     let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
 
-                    if (listItemObj.listType === 'buttonToggle' || listItemObj.listType === 'buttonState') {
+                    if (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState') {
                         setLayout(i, valOnLoading, listItemObj);
 
                         vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
@@ -154,6 +176,18 @@ vis.binds.materialdesign.iconlist =
                         val = true;
                     } else {
                         val = false;
+                    }
+                } else if (listItemObj.listType === 'buttonToggleValueTrue') {
+                    if (val === listItemObj.buttonToggleValueTrue || parseFloat(val) === parseFloat(listItemObj.buttonToggleValueTrue)) {
+                        val = true;
+                    } else {
+                        val = false;
+                    }
+                } else if (listItemObj.listType === 'buttonToggleValueFalse') {
+                    if (val === listItemObj.buttonToggleValueFalse || parseFloat(val) === parseFloat(listItemObj.buttonToggleValueFalse)) {
+                        val = false;
+                    } else {
+                        val = true;
                     }
                 }
 
