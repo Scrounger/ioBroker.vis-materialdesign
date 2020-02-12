@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.53"
+    version: "0.2.54"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -19,7 +19,7 @@ $.get("../vis-materialdesign.admin/words.js", function (script) {
 // TODO: move widgets to own file -> using minify
 
 vis.binds.materialdesign = {
-    version: "0.2.53",
+    version: "0.2.54",
     showVersion: function () {
         if (vis.binds["materialdesign"].version) {
             console.log('Version vis-materialdesign: ' + vis.binds["materialdesign"].version);
