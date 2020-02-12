@@ -110,6 +110,11 @@ vis.binds.materialdesign.iconlist =
                             vis.setValue(listItemObj.objectId, !selectedValue);
 
                             setLayout(index, !selectedValue, listItemObj);
+                        } else if (data.listType === 'buttonState') {
+                            let valueToSet = listItemObj.buttonStateValue;
+                            vis.setValue(listItemObj.objectId, valueToSet);
+
+                            setLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
                         } else if (data.listType === 'buttonNav') {
                             vis.changeView(listItemObj.buttonNavView);
                         } else if (data.listType === 'buttonLink') {
@@ -118,8 +123,9 @@ vis.binds.materialdesign.iconlist =
                     });
 
                     // on Load & bind to object ids
-                    if (data.listType === 'buttonToggle') {
-                        let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
+                    let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
+
+                    if (data.listType === 'buttonToggle' || data.listType === 'buttonState') {
                         setLayout(i, valOnLoading, listItemObj);
 
                         vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
@@ -134,7 +140,6 @@ vis.binds.materialdesign.iconlist =
                             });
                         });
                     }
-
                 }
             });
 
@@ -142,6 +147,13 @@ vis.binds.materialdesign.iconlist =
                 let $item = $this.find(`#icon-list-item${index}`);
 
                 $item.find('.materialdesign-icon-list-item-value').text(val);
+
+                if (data.listType === 'buttonState' && val === listItemObj.buttonStateValue) {
+                    // buttonState -> show as active if value is state value
+                    val = true;
+                } else {
+                    val = false;
+                }
 
                 if (val === true) {
                     $item.find('.materialdesign-icon-button').css('background', listItemObj.buttonBackgroundActiveColor);
