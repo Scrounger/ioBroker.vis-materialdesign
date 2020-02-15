@@ -13,11 +13,20 @@ vis.binds.materialdesign.iconlist =
             let $this = $(el);
 
             let jsonData = null;
+            let jsonOids = [];
             let countOfItems = 0;
 
             if (data.listItemDataMethod === 'jsonStringObject') {
                 try {
-                    jsonData = JSON.parse(data.jsonStringObject);
+                    if (vis.editMode && data.jsonStringObject && data.jsonStringObject != null && data.jsonStringObject.startsWith('{') && data.jsonStringObject.endsWith('}')) {
+                        jsonData = [
+                            {
+                                text: `<label style="color: orange; word-wrap: break-word; white-space: normal;"><b>${_("bindingOnlyOnRuntime")}</b></label>`,
+                            }
+                        ];
+                    } else {
+                        jsonData = JSON.parse(data.jsonStringObject);
+                    }
                     countOfItems = jsonData.length - 1;
                 } catch (err) {
                     jsonData = [
@@ -26,7 +35,7 @@ vis.binds.materialdesign.iconlist =
                             subText: `<label style="word-wrap: break-word; white-space: normal;">${err.message}</label>`
                         }
                     ];
-                    console.error(`[List] cannot parse json string! Error: ${err.message}`);
+                    console.error(`[iconList] cannot parse json string! Error: ${err.message}`);
                 }
             } else {
                 countOfItems = data.countListItems;
@@ -39,6 +48,10 @@ vis.binds.materialdesign.iconlist =
 
             for (var i = 0; i <= countOfItems; i++) {
                 let listItemObj = getListItemObj(i, data, jsonData);
+
+                if (listItemObj.objectId && listItemObj.objectId !== null && listItemObj.objectId !== '') {
+                    jsonOids.push(listItemObj.objectId);
+                }
 
                 let imageElement = '';
                 if (listItemObj.listType === 'text') {
@@ -85,100 +98,119 @@ vis.binds.materialdesign.iconlist =
             $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-color", myMdwHelper.getValueFromData(data.valueFontColor, ''));
 
 
-            myMdwHelper.waitForElement($this, `.materialdesign-icon-list-container`, function () {
-                console.log('div find');
-
-                let iconButtons = $this.find('.materialdesign-icon-button');
-                for (var i = 0; i <= iconButtons.length - 1; i++) {
-                    let listItemObj = getListItemObj(i, data, jsonData);
-
-                    // set ripple effect to icon buttons
-                    let mdcButton = new mdc.iconButton.MDCIconButtonToggle(iconButtons.get(i));
-                    iconButtons.get(i).style.setProperty("--mdc-theme-primary", myMdwHelper.getValueFromData(data.buttonColorPress, ''));
-
-                    mdcButton.listen('MDCIconButtonToggle:change', function () {
-                        // icon button click event
-                        let index = $(this).attr('index');
-                        listItemObj = getListItemObj(index, data, jsonData);
-
-                        if (listItemObj.listType !== 'text') {
-                            vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
-                        }
-
-                        if (listItemObj.listType === 'buttonToggle') {
-                            let selectedValue = vis.states.attr(listItemObj.objectId + '.val');
-
-                            vis.setValue(listItemObj.objectId, !selectedValue);
-
-                            setLayout(index, !selectedValue, listItemObj);
-                        } else if (listItemObj.listType === 'buttonState') {
-                            let valueToSet = listItemObj.buttonStateValue;
-                            vis.setValue(listItemObj.objectId, valueToSet);
-
-                            setLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
-                        } else if (listItemObj.listType === 'buttonToggleValueTrue') {
-                            let val = vis.states.attr(listItemObj.objectId + '.val');
-
-                            if (val === listItemObj.buttonToggleValueTrue || parseFloat(val) === parseFloat(listItemObj.buttonToggleValueTrue)) {
-                                vis.setValue(listItemObj.objectId, listItemObj.buttonToggleValueFalse);
-                            } else {
-                                vis.setValue(listItemObj.objectId, listItemObj.buttonToggleValueTrue);
-                            }
-
-                            setLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
-
-                        } else if (listItemObj.listType === 'buttonToggleValueFalse') {
-                            let val = vis.states.attr(listItemObj.objectId + '.val');
-
-                            if (val === listItemObj.buttonToggleValueFalse || parseFloat(val) === parseFloat(listItemObj.buttonToggleValueFalse)) {
-                                vis.setValue(listItemObj.objectId, listItemObj.buttonToggleValueTrue);
-                            } else {
-                                vis.setValue(listItemObj.objectId, listItemObj.buttonToggleValueFalse);
-                            }
-
-                            setLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
-
-                        } else if (listItemObj.listType === 'buttonNav') {
-                            vis.changeView(listItemObj.buttonNavView);
-                        } else if (listItemObj.listType === 'buttonLink') {
-                            window.open(listItemObj.buttonLink);
-                        }
-                    });
-
-
-
-                    if (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState') {
-                        console.log('onLoad');
-                        // on Load & bind to object ids
-                        let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
-                        setLayout(i, valOnLoading, listItemObj);
-
-                        vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
-                            let input = $this.find('div[data-oid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
-
-                            input.each(function (d) {
-                                // kann mit mehreren oid verknüpft sein
-                                let index = parseInt(input.eq(d).attr('id').replace('icon-list-item', ''));
-                                listItemObj = getListItemObj(index, data, jsonData);
-
-                                setLayout(index, newVal, listItemObj);
-                            });
+            if (data.listItemDataMethod === 'inputPerEditor') {
+                handleWidget();
+            } else {
+                if (jsonOids && jsonOids !== null && jsonOids.length > 0) {
+                    // json: objectIds sind beim Laden der Runtime nicht bekannt
+                    vis.conn.subscribe(jsonOids, function () {
+                        // json: auf objectIds subscriben um Änderungen ausßerhalb der vis mitzubekommen
+                        vis.conn.getStates(jsonOids, function (error, jsonStates) {
+                            // json: aktuellen state der objectIds holen
+                            handleWidget(jsonStates);
                         });
-                    }
+                    });
+                } else {
+                    // json: hat keine objectIds
+                    handleWidget();
                 }
-            });
+            }
+
+            function handleWidget(jsonStates = undefined) {
+                myMdwHelper.waitForElement($this, `.materialdesign-icon-list-container`, function () {
+                    let iconButtons = $this.find('.materialdesign-icon-button');
+
+                    for (var i = 0; i <= iconButtons.length - 1; i++) {
+                        let listItemObj = getListItemObj(i, data, jsonData);
+
+                        if (jsonStates && jsonStates !== null && listItemObj.objectId && listItemObj.objectId !== null && listItemObj.objectId !== '') {
+                            // json: states müssen aktualisiert werden, damit nach laden richtige val angezeigt werden
+                            vis.updateState(listItemObj.objectId, jsonStates[listItemObj.objectId]);
+                        }
+
+                        // set ripple effect to icon buttons
+                        let mdcButton = new mdc.iconButton.MDCIconButtonToggle(iconButtons.get(i));
+                        iconButtons.get(i).style.setProperty("--mdc-theme-primary", myMdwHelper.getValueFromData(data.buttonColorPress, ''));
+
+                        mdcButton.listen('MDCIconButtonToggle:change', function () {
+                            // icon button click event
+                            let index = $(this).attr('index');
+                            listItemObj = getListItemObj(index, data, jsonData);
+
+                            if (listItemObj.listType !== 'text') {
+                                vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                            }
+
+                            if (listItemObj.listType === 'buttonToggle') {
+                                let selectedValue = vis.states.attr(listItemObj.objectId + '.val');
+
+                                vis.setValue(listItemObj.objectId, !selectedValue);
+
+                                setLayout(index, !selectedValue, listItemObj);
+                            } else if (listItemObj.listType === 'buttonState') {
+                                let valueToSet = listItemObj.buttonStateValue;
+                                vis.setValue(listItemObj.objectId, valueToSet);
+
+                                setLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
+                            } else if (listItemObj.listType === 'buttonToggleValueTrue') {
+                                let val = vis.states.attr(listItemObj.objectId + '.val');
+
+                                if (val === listItemObj.buttonToggleValueTrue || parseFloat(val) === parseFloat(listItemObj.buttonToggleValueTrue)) {
+                                    vis.setValue(listItemObj.objectId, listItemObj.buttonToggleValueFalse);
+                                } else {
+                                    vis.setValue(listItemObj.objectId, listItemObj.buttonToggleValueTrue);
+                                }
+
+                                setLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
+
+                            } else if (listItemObj.listType === 'buttonToggleValueFalse') {
+                                let val = vis.states.attr(listItemObj.objectId + '.val');
+
+                                if (val === listItemObj.buttonToggleValueFalse || parseFloat(val) === parseFloat(listItemObj.buttonToggleValueFalse)) {
+                                    vis.setValue(listItemObj.objectId, listItemObj.buttonToggleValueTrue);
+                                } else {
+                                    vis.setValue(listItemObj.objectId, listItemObj.buttonToggleValueFalse);
+                                }
+
+                                setLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
+
+                            } else if (listItemObj.listType === 'buttonNav') {
+                                vis.changeView(listItemObj.buttonNavView);
+                            } else if (listItemObj.listType === 'buttonLink') {
+                                window.open(listItemObj.buttonLink);
+                            }
+                        });
+
+                        if (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState') {
+                            // on Load & bind to object ids
+                            let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
+                            setLayout(i, valOnLoading, listItemObj);
+
+                            vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
+                                let input = $this.find('div[data-oid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
+
+                                input.each(function (d) {
+                                    // kann mit mehreren oid verknüpft sein
+                                    let index = parseInt(input.eq(d).attr('id').replace('icon-list-item', ''));
+                                    listItemObj = getListItemObj(index, data, jsonData);
+
+                                    setLayout(index, newVal, listItemObj);
+                                });
+                            });
+                        }
+                    }
+                });
+            }
 
             function setLayout(index, val, listItemObj) {
                 let $item = $this.find(`#icon-list-item${index}`);
-
-                console.log(listItemObj.objectId + ": " + val);
-                console.log(vis.states.attr(listItemObj.objectId + '.val'));
 
                 $item.find('.materialdesign-icon-list-item-value').text(val);
 
                 if (listItemObj.listType === 'buttonState') {
                     // buttonState -> show as active if value is state value
-                    if (val === listItemObj.buttonStateValue) {
+
+                    if (val === listItemObj.buttonStateValue || parseFloat(val) === parseFloat(listItemObj.buttonStateValue)) {
                         val = true;
                     } else {
                         val = false;
@@ -235,8 +267,8 @@ vis.binds.materialdesign.iconlist =
                         imageColor: myMdwHelper.getValueFromData(jsonData[i].imageColor, "#44739e"),
                         imageActive: myMdwHelper.getValueFromData(jsonData[i].imageActive, myMdwHelper.getValueFromData(jsonData[i].image, "")),
                         imageActiveColor: myMdwHelper.getValueFromData(jsonData[i].imageActiveColor, myMdwHelper.getValueFromData(jsonData[i].imageColor, "#44739e")),
-                        buttonBackgroundColor: myMdwHelper.getValueFromData(jsonData[i].imageActiveColor, ''),
-                        buttonBackgroundActiveColor: myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundActiveColor, myMdwHelper.getValueFromData(jsonData[i].imageActiveColor, '')),
+                        buttonBackgroundColor: myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundColor, ''),
+                        buttonBackgroundActiveColor: myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundActiveColor, myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundColor, '')),
                         listType: myMdwHelper.getValueFromData(jsonData[i].listType, 'text'),
                         objectId: jsonData[i].objectId,
                         buttonStateValue: jsonData[i].buttonStateValue,
@@ -248,6 +280,6 @@ vis.binds.materialdesign.iconlist =
                 }
             }
         } catch (ex) {
-            console.error(`[List] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[iconList] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }

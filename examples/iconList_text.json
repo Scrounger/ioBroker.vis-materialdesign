@@ -1,0 +1,24 @@
+[
+	{
+		"text": "text0",
+		"subText": "subText0",
+		"image": "home"
+	},
+	{
+		"text": "text1",
+		"subText": "subText1",
+		"image": "harddisk",
+		"imageColor": "red"
+	},
+	{
+		"text": "text2",
+		"subText": "subText2",
+		"image": "access-point",
+		"imageColor": "#f5b70a"
+	},
+	{
+		"text": "text3",
+		"subText": "subText3",
+		"image": "update"
+	}
+]

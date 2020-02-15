@@ -1,0 +1,40 @@
+[
+	{
+		"text": "text0",
+		"subText": "number",
+		"image": "home",
+		"buttonBackgroundActiveColor": "#a0f628",
+		"listType": "buttonState",
+		"objectId": "0_userdata.0.iconList.buttonState.number",
+		"buttonStateValue": "30"
+	},
+	{
+		"text": "text1",
+		"subText": "number",
+		"image": "harddisk",
+		"imageColor": "red",
+		"imageActive": "folder",
+		"imageActiveColor": "#5ad902",
+		"listType": "buttonState",
+		"objectId": "0_userdata.0.iconList.buttonState.number",
+		"buttonStateValue": "60"
+	},
+	{
+		"text": "text2",
+		"subText": "string",
+		"image": "access-point",
+		"imageColor": "#f5b70a",
+		"listType": "buttonState",
+		"objectId": "0_userdata.0.iconList.buttonState.string",
+		"buttonStateValue": "text1"		
+	},
+	{
+		"text": "text3",
+		"subText": "string",
+		"image": "update",
+		"imageActiveColor": "#5bc200",
+		"listType": "buttonState",
+		"objectId": "0_userdata.0.iconList.buttonState.string",
+		"buttonStateValue": "text2"				
+	}
+]

@@ -7948,5 +7948,17 @@ systemDictionary = {
         "es": "La estructura de la cadena JSON es incorrecta, lea la documentación",
         "pl": "Struktura JSON-String jest niepoprawna, przeczytaj dokumentację",
         "zh-cn": "JSON-String结构错误，请阅读文档"
+    },
+    "bindingOnlyOnRuntime": {
+        "en": "bindings are only displayed at runtime",
+        "de": "Bindings werden nur zur Laufzeit angezeigt",
+        "ru": "привязки отображаются только во время выполнения",
+        "pt": "ligações são exibidas apenas em tempo de execução",
+        "nl": "bindingen worden alleen tijdens runtime weergegeven",
+        "fr": "les liaisons ne s'affichent qu'au moment de l'exécution",
+        "it": "i binding vengono visualizzati solo in fase di esecuzione",
+        "es": "los enlaces solo se muestran en tiempo de ejecución",
+        "pl": "powiązania są wyświetlane tylko w czasie wykonywania",
+        "zh-cn": "绑定仅在运行时显示"
     }
 };
