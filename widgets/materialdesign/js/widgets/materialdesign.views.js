@@ -53,7 +53,7 @@ vis.binds.materialdesign.views = {
                 </div>
             `);
         } catch (ex) {
-            console.error(`[Column Views]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Column Views ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     masonry: function (el, data) {
@@ -135,7 +135,7 @@ vis.binds.materialdesign.views = {
             `);
 
             myMdwHelper.waitForElement($this, `#masonry_item_${0}`, function () {
-                myMdwHelper.waitForRealWidth($this.context, function () {
+                myMdwHelper.waitForRealWidth($this.context, data.wid, 'Masonry', function () {
                     var currentWidgetWidth = $this.width();
 
                     $(window).resize(function () {
@@ -258,7 +258,7 @@ vis.binds.materialdesign.views = {
                 }
             }
         } catch (ex) {
-            console.error(`[Masonry Views] error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Masonry Views ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     grid: function (el, data) {
@@ -330,7 +330,7 @@ vis.binds.materialdesign.views = {
             </div>`);
 
             myMdwHelper.waitForElement($this, `#grid-item${data.countViews}`, function () {
-                myMdwHelper.waitForRealWidth($this.context, function () {
+                myMdwHelper.waitForRealWidth($this.context, data.wid, 'Grid', function () {
                     var currentWidgetWidth = $this.width();
 
                     $(window).resize(function () {
@@ -494,7 +494,7 @@ vis.binds.materialdesign.views = {
             }
 
         } catch (ex) {
-            console.error(`[Grid Views] error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Grid Views ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

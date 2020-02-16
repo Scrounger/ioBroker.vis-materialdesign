@@ -27,17 +27,16 @@ vis.binds.materialdesign.helper = {
             }
         }, 50)
     },
-    waitForRealWidth: function(element, callBack) {
+    waitForRealWidth: function (element, wid, widgetName, callBack) {
         setTimeout(function () {
-            let width =  window.getComputedStyle(element, null).width
+            let width = window.getComputedStyle(element, null).width
 
             if (width.includes('px')) {
                 callBack(width);
             } else {
-                console.log(`wait for element: ${JSON.stringify(element)}`);
-                vis.binds.materialdesign.helper.waitForRealWidth(element, callBack);
+                console.log(`[${widgetName} ${wid}] wait for real width`);
+                vis.binds.materialdesign.helper.waitForRealWidth(element, wid, widgetName, callBack);
             }
-
         }, 50);
     },
     installedVersion: function (el, data) {
