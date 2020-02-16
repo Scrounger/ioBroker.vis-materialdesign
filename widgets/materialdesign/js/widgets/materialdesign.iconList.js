@@ -36,7 +36,7 @@ vis.binds.materialdesign.iconlist =
                             subText: `<label style="word-wrap: break-word; white-space: normal;">${err.message}</label>`
                         }
                     ];
-                    console.error(`[iconList] cannot parse json string! Error: ${err.message}`);
+                    console.error(`[IconList ${data.wid}] cannot parse json string! Error: ${err.message}`);
                 }
             } else {
                 countOfItems = data.countListItems;
@@ -88,7 +88,6 @@ vis.binds.materialdesign.iconlist =
             `);
 
 
-
             $this.context.style.setProperty("--materialdesign-icon-list-items-per-row", myMdwHelper.getNumberFromData(data.maxItemsperRow, 1));
 
             $this.context.style.setProperty("--materialdesign-icon-list-items-text-font-size", myMdwHelper.getNumberFromData(data.labelFontSize, 14) + 'px');
@@ -108,19 +107,16 @@ vis.binds.materialdesign.iconlist =
                 handleWidget();
             } else {
                 if (jsonOids && jsonOids !== null && jsonOids.length > 0) {
-                    console.log(data.wid + ': ' + jsonOids);
                     // json: objectIds sind beim Laden der Runtime nicht bekannt
                     vis.conn.subscribe(jsonOids, function () {
-                        console.log(data.wid + ': ' + jsonOids);
                         // json: auf objectIds subscriben um Änderungen ausßerhalb der vis mitzubekommen
-                        vis.conn.getStates(jsonOids, function (error, jsonStates) {
-                            // json: aktuellen state der objectIds holen
-                            console.log(jsonStates)
-                            if (jsonStates === undefined || jsonStates === null || Object.entries(jsonStates).length === 0 || jsonStates === {}) {
-                                console.error(data.wid + ' - error: ' + error);
-                                console.log(vis.states.attr());
+                        vis.conn._socket.emit('getStates', function (error, jsonStates) {
+                            if (error) {
+                                console.error(`[IconList ${data.wid}] error: ${error}`);
                             }
-
+                            if (!jsonData) {
+                                console.error(`[IconList ${data.wid}] jsonStates is null (${jsonOids})`);
+                            }
                             handleWidget(jsonStates);
                         });
                     });
@@ -296,6 +292,6 @@ vis.binds.materialdesign.iconlist =
                 }
             }
         } catch (ex) {
-            console.error(`[iconList] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[IconList ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
