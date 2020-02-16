@@ -15,6 +15,7 @@ vis.binds.materialdesign.iconlist =
             let jsonData = null;
             let jsonOids = [];
             let countOfItems = 0;
+            let containerClass = 'materialdesign-icon-list-container';
 
             if (data.listItemDataMethod === 'jsonStringObject') {
                 try {
@@ -50,7 +51,10 @@ vis.binds.materialdesign.iconlist =
                 let listItemObj = getListItemObj(i, data, jsonData);
 
                 if (listItemObj.objectId && listItemObj.objectId !== null && listItemObj.objectId !== '') {
-                    jsonOids.push(listItemObj.objectId);
+                    if (!jsonOids.includes(listItemObj.objectId)) {
+                        // add if not exists
+                        jsonOids.push(listItemObj.objectId);
+                    }
                 }
 
                 let imageElement = '';
@@ -78,10 +82,12 @@ vis.binds.materialdesign.iconlist =
             }
 
             $this.append(`
-                <div class="materialdesign-icon-list-container">
+                <div class=${containerClass}>
                     ${itemList.join("")}
                 </div>
             `);
+
+
 
             $this.context.style.setProperty("--materialdesign-icon-list-items-per-row", myMdwHelper.getNumberFromData(data.maxItemsperRow, 1));
 
@@ -102,11 +108,19 @@ vis.binds.materialdesign.iconlist =
                 handleWidget();
             } else {
                 if (jsonOids && jsonOids !== null && jsonOids.length > 0) {
+                    console.log(data.wid + ': ' + jsonOids);
                     // json: objectIds sind beim Laden der Runtime nicht bekannt
                     vis.conn.subscribe(jsonOids, function () {
+                        console.log(data.wid + ': ' + jsonOids);
                         // json: auf objectIds subscriben um Änderungen ausßerhalb der vis mitzubekommen
                         vis.conn.getStates(jsonOids, function (error, jsonStates) {
                             // json: aktuellen state der objectIds holen
+                            console.log(jsonStates)
+                            if (jsonStates === undefined || jsonStates === null || Object.entries(jsonStates).length === 0 || jsonStates === {}) {
+                                console.error(data.wid + ' - error: ' + error);
+                                console.log(vis.states.attr());
+                            }
+
                             handleWidget(jsonStates);
                         });
                     });
@@ -117,15 +131,17 @@ vis.binds.materialdesign.iconlist =
             }
 
             function handleWidget(jsonStates = undefined) {
-                myMdwHelper.waitForElement($this, `.materialdesign-icon-list-container`, function () {
+                myMdwHelper.waitForElement($this, `.${containerClass}`, function () {
                     let iconButtons = $this.find('.materialdesign-icon-button');
 
                     for (var i = 0; i <= iconButtons.length - 1; i++) {
                         let listItemObj = getListItemObj(i, data, jsonData);
 
-                        if (jsonStates && jsonStates !== null && listItemObj.objectId && listItemObj.objectId !== null && listItemObj.objectId !== '') {
+                        if (jsonStates && jsonStates !== undefined && jsonStates !== null && listItemObj.objectId && listItemObj.objectId !== null && listItemObj.objectId !== '') {
                             // json: states müssen aktualisiert werden, damit nach laden richtige val angezeigt werden
-                            vis.updateState(listItemObj.objectId, jsonStates[listItemObj.objectId]);
+                            if (jsonStates[listItemObj.objectId]) {
+                                vis.updateState(listItemObj.objectId, jsonStates[listItemObj.objectId]);
+                            }
                         }
 
                         // set ripple effect to icon buttons
