@@ -6,7 +6,8 @@
 		"buttonBackgroundActiveColor": "#a0f628",
 		"listType": "buttonState",
 		"objectId": "0_userdata.0.materialdesignwidgets.iconList.buttonState.number",
-		"buttonStateValue": "30"
+		"buttonStateValue": "30",
+		"valueAppendix": " %"
 	},
 	{
 		"text": "text1",
@@ -17,7 +18,8 @@
 		"imageActiveColor": "#5ad902",
 		"listType": "buttonState",
 		"objectId": "0_userdata.0.materialdesignwidgets.iconList.buttonState.number",
-		"buttonStateValue": "60"
+		"buttonStateValue": "60",
+		"valueAppendix": " °C"
 	},
 	{
 		"text": "text2",
@@ -35,6 +37,7 @@
 		"imageActiveColor": "#5bc200",
 		"listType": "buttonState",
 		"objectId": "0_userdata.0.materialdesignwidgets.iconList.buttonState.string",
-		"buttonStateValue": "text2"				
+		"buttonStateValue": "text2",
+		"valueAppendix": " append"
 	}
 ]

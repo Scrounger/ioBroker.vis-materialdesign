@@ -217,7 +217,7 @@ vis.binds.materialdesign.iconlist =
             function setLayout(index, val, listItemObj) {
                 let $item = $this.find(`#icon-list-item${index}`);
 
-                $item.find('.materialdesign-icon-list-item-value').text(val);
+                $item.find('.materialdesign-icon-list-item-value').text(`${val}${listItemObj.valueAppendix}`);
 
                 if (listItemObj.listType === 'buttonState') {
                     // buttonState -> show as active if value is state value
@@ -270,7 +270,8 @@ vis.binds.materialdesign.iconlist =
                         buttonNavView: data.attr('listTypeButtonNav' + i),
                         buttonLink: data.attr('listTypeButtonLink' + i),
                         buttonToggleValueTrue: data.attr('typeButtonToggleValueTrue' + i),
-                        buttonToggleValueFalse: data.attr('typeButtonToggleValueFalse' + i)
+                        buttonToggleValueFalse: data.attr('typeButtonToggleValueFalse' + i),
+                        valueAppendix: myMdwHelper.getValueFromData(data.attr('valueAppendix' + i), ""),
                     };
                 } else {
                     // Data from json
@@ -289,7 +290,8 @@ vis.binds.materialdesign.iconlist =
                         buttonNavView: jsonData[i].buttonNavView,
                         buttonLink: jsonData[i].buttonLink,
                         buttonToggleValueTrue: jsonData[i].buttonToggleValueTrue,
-                        buttonToggleValueFalse: jsonData[i].buttonToggleValueFalse
+                        buttonToggleValueFalse: jsonData[i].buttonToggleValueFalse,
+                        valueAppendix: myMdwHelper.getValueFromData(jsonData[i].valueAppendix, ""),
                     };
                 }
             }
