@@ -16,6 +16,7 @@ vis.binds.materialdesign.iconlist =
             let jsonOids = [];
             let countOfItems = 0;
             let containerClass = 'materialdesign-icon-list-container';
+            let oidsNeedSubscribe = false;
 
             if (data.listItemDataMethod === 'jsonStringObject') {
                 try {
@@ -71,11 +72,16 @@ vis.binds.materialdesign.iconlist =
                                     </div>`
                 }
 
+                let val = vis.states.attr(listItemObj.objectId + '.val');
+                if (val === 'null') {
+                    oidsNeedSubscribe = true;
+                }
+
                 itemList.push(`
-                    <div class="materialdesign-icon-list-item" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" ${(listItemObj.listType !== 'text') ? 'style="display: none;"' : ''} >                    
+                    <div class="materialdesign-icon-list-item" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" ${(listItemObj.listType !== 'text' && val === 'null') ? 'style="display: none;"' : ''} >                    
                         ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text">${listItemObj.text}</label>` : ''}
                         ${imageElement}
-                        ${(data.showValueLabel && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? '<label class="materialdesign-icon-list-item-value"></label>' : ''}
+                        ${(data.showValueLabel && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
                         ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText">${listItemObj.subText}</label>` : ''}
                     </div>
                 `)
@@ -102,12 +108,11 @@ vis.binds.materialdesign.iconlist =
             $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-family", myMdwHelper.getValueFromData(data.valueFontFamily, 'inherit'));
             $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-color", myMdwHelper.getValueFromData(data.valueFontColor, ''));
 
-
             if (data.listItemDataMethod === 'inputPerEditor') {
                 handleWidget();
             } else {
-                if (jsonOids && jsonOids !== null && jsonOids.length > 0) {
-                    // json: objectIds sind beim Laden der Runtime nicht bekannt
+                if (oidsNeedSubscribe && jsonOids && jsonOids !== null && jsonOids.length > 0) {
+                    // json: objectIds sind beim Laden der ggf. Runtime nicht bekannt
                     vis.conn.subscribe(jsonOids, function () {
                         // json: auf objectIds subscriben um Änderungen ausßerhalb der vis mitzubekommen
                         vis.conn._socket.emit('getStates', function (error, jsonStates) {
