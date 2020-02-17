@@ -134,7 +134,7 @@ vis.binds.materialdesign.views = {
                 </div>
             `);
 
-            myMdwHelper.waitForElement($this, `#masonry_item_${0}`, function () {
+            myMdwHelper.waitForElement($this, `#masonry_item_${0}`, data.wid, 'Masonry', function () {
                 myMdwHelper.waitForRealWidth($this.context, data.wid, 'Masonry', function () {
                     var currentWidgetWidth = $this.width();
 
@@ -329,7 +329,7 @@ vis.binds.materialdesign.views = {
                 </div>
             </div>`);
 
-            myMdwHelper.waitForElement($this, `#grid-item${data.countViews}`, function () {
+            myMdwHelper.waitForElement($this, `#grid-item${data.countViews}`, data.wid, 'Grid ', function () {
                 myMdwHelper.waitForRealWidth($this.context, data.wid, 'Grid', function () {
                     var currentWidgetWidth = $this.width();
 

@@ -71,8 +71,8 @@ vis.binds.materialdesign.slider = {
                 showThumbLabel = 'always';
             }
 
-            myMdwHelper.waitForElement($this, '.materialdesign-vuetifySlider', function () {
-                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
+            myMdwHelper.waitForElement($this, '.materialdesign-vuetifySlider', data.wid, 'Slider', function () {
+                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'Slider', function () {
                     // wait for Vuetify v-app application container is loaded
 
                     let vueSlider = new Vue({

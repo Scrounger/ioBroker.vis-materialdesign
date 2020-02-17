@@ -5,7 +5,7 @@
 		"image": "home",
 		"buttonBackgroundActiveColor": "#a0f628",
 		"listType": "buttonToggle",
-		"objectId": "0_userdata.0.iconList.buttonToggle.bool0"
+		"objectId": "0_userdata.0.materialdesignwidgets.iconList.buttonToggle.bool0"
 	},
 	{
 		"text": "text1",
@@ -15,7 +15,7 @@
 		"imageActive": "folder",
 		"imageActiveColor": "#5ad902",
 		"listType": "buttonToggle",
-		"objectId": "0_userdata.0.iconList.buttonToggle.bool1"
+		"objectId": "0_userdata.0.materialdesignwidgets.iconList.buttonToggle.bool1"
 	},
 	{
 		"text": "text2",
@@ -23,7 +23,7 @@
 		"image": "access-point",
 		"imageColor": "#f5b70a",
 		"listType": "buttonToggle",
-		"objectId": "0_userdata.0.iconList.buttonToggle.bool2"
+		"objectId": "0_userdata.0.materialdesignwidgets.iconList.buttonToggle.bool2"
 	},
 	{
 		"text": "text3",
@@ -31,6 +31,6 @@
 		"image": "update",
 		"imageActiveColor": "#5bc200",
 		"listType": "buttonToggle",
-		"objectId": "0_userdata.0.iconList.buttonToggle.bool0"		
+		"objectId": "0_userdata.0.materialdesignwidgets.iconList.buttonToggle.bool0"		
 	}
 ]

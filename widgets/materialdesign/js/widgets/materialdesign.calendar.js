@@ -187,8 +187,8 @@ vis.binds.materialdesign.calendar =
             $this.context.style.setProperty("--vue-aclendar-event-font", myMdwHelper.getValueFromData(data.calendarEventFont, 'inherit'));
 
 
-            myMdwHelper.waitForElement($this, `.${containerClass}`, function () {
-                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
+            myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'Calendar', function () {
+                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'Calendar', function () {
                     // wait for Vuetify v-app application container is loaded
                     let firstInterval = myMdwHelper.getNumberFromData(data.calendarTimeAxisStartTime, 0);
                     let intervalCount = myMdwHelper.getNumberFromData(data.calendarTimeAxisEndTime, 24);

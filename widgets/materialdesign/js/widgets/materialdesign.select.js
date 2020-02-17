@@ -31,8 +31,8 @@ vis.binds.materialdesign.select =
                 </v-select>
             </div>`);
 
-            myMdwHelper.waitForElement($this, `.${containerClass}`, function () {
-                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
+            myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'Select', function () {
+                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'Select', function () {
 
                     let $vuetifyContainer = $("body").find('#materialdesign-vuetify-container');
                     let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');

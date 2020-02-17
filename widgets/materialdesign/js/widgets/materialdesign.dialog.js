@@ -163,8 +163,8 @@ vis.binds.materialdesign.dialog = {
             `);
 
 
-            myMdwHelper.waitForElement($this, `.${containerClass}`, function () {
-                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
+            myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'Dialog', function () {
+                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'Dialog', function () {
 
                     let vueDialog = new Vue({
                         el: $this.find(`.${containerClass}`).get(0),
@@ -185,13 +185,13 @@ vis.binds.materialdesign.dialog = {
                             if (!vueDialog.showDialog) {
                                 vueDialog.showDialog = true;
 
-                                myMdwHelper.waitForElement($("body"), '.v-dialog__content', function () {
+                                myMdwHelper.waitForElement($("body"), '.v-dialog__content', data.wid, 'Dialog', function () {
                                     let $dialog = $("body").find("#materialdesign-vuetify-container .v-dialog__content .v-dialog");
 
                                     let view = data.contains_view;
                                     if (vis.views[view]) {
                                         vis.renderView(view, view, true, function (_view) {
-                                            $('#visview_' + _view).css('position', 'relative').css('height','300px').appendTo($dialog.find(`#viewContainer_${widgetId}`)).show().data('persistent', true);
+                                            $('#visview_' + _view).css('position', 'relative').css('height', '300px').appendTo($dialog.find(`#viewContainer_${widgetId}`)).show().data('persistent', true);
                                         });
                                     }
                                 });

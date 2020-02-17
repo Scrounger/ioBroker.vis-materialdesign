@@ -49,9 +49,9 @@ vis.binds.materialdesign.textfield =
                 </v-text-field>
             </div>`);
 
-            myMdwHelper.waitForElement($this, `.${containerClass}`, function () {
-                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
-                    
+            myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'TextField', function () {
+                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'TextField', function () {
+
                     let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
 
                     Vue.use(VueTheMask);

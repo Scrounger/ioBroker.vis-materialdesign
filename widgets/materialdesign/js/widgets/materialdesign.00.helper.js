@@ -17,27 +17,40 @@ vis.binds.materialdesign.helper = {
             console.error(`vibrate [${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    waitForElement: function (parent, elementPath, callBack) {
-        window.setTimeout(function () {
-            if (parent.find(elementPath).length) {
-                callBack(elementPath, $(elementPath));
-            } else {
-                console.log(`wait for element`);
-                vis.binds.materialdesign.helper.waitForElement(parent, elementPath, callBack);
-            }
-        }, 50)
-    },
-    waitForRealWidth: function (element, wid, widgetName, callBack) {
-        setTimeout(function () {
-            let width = window.getComputedStyle(element, null).width
+    waitForElement: function (parent, elementPath, wid, widgetName, callBack, counter = 0) {
+        if (counter < 100) {
 
-            if (width.includes('px')) {
-                callBack(width);
-            } else {
-                console.log(`[${widgetName} ${wid}] wait for real width`);
-                vis.binds.materialdesign.helper.waitForRealWidth(element, wid, widgetName, callBack);
-            }
-        }, 50);
+            setTimeout(function () {
+                if (parent.find(elementPath).length) {
+                    callBack(elementPath, $(elementPath));
+                } else {
+                    console.log(`[${widgetName} ${wid}] wait for elements`);
+                    counter++
+                    vis.binds.materialdesign.helper.waitForElement(parent, elementPath, wid, widgetName, callBack, counter);
+                }
+            }, 50)
+        } else {
+            console.log(`[${widgetName} ${wid}] stop waiting after 100 retries`);
+            callBack(elementPath, $(elementPath));
+        }
+    },
+    waitForRealWidth: function (element, wid, widgetName, callBack, counter = 0) {
+        if (counter < 100) {
+            setTimeout(function () {
+                let width = window.getComputedStyle(element, null).width
+
+                if (width.includes('px')) {
+                    callBack(width);
+                } else {
+                    console.log(`[${widgetName} ${wid}] wait for real width`);
+                    counter++
+                    vis.binds.materialdesign.helper.waitForRealWidth(element, wid, widgetName, callBack, counter);
+                }
+            }, 50);
+        } else {
+            console.log(`[${widgetName} ${wid}] stop waiting for real width after 100 retries`);
+            callBack(elementPath, $(elementPath));
+        }
     },
     installedVersion: function (el, data) {
         setTimeout(function () {

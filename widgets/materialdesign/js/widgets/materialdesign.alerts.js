@@ -34,12 +34,12 @@ vis.binds.materialdesign.alerts =
                 }
 
                 // myMdwHelper.waitForElement($this, `#${idPrefix}${jsonData.length - 1}`, function () {
-                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', function () {
+                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'Alerts', function () {
 
                     for (var i = 0; i <= jsonData.length - 1; i++) {
                         let item = jsonData[i];
                         item.id = `${idPrefix}${i}`
-                        
+
                         vueAlertElements.push(vueHelper.getVuetifyElement($this, item, idPrefix, i, data));
                     }
 

@@ -127,7 +127,7 @@ vis.binds.materialdesign.iconlist =
             }
 
             function handleWidget(jsonStates = undefined) {
-                myMdwHelper.waitForElement($this, `.${containerClass}`, function () {
+                myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'IconList', function () {
                     let iconButtons = $this.find('.materialdesign-icon-button');
 
                     for (var i = 0; i <= iconButtons.length - 1; i++) {

@@ -226,7 +226,7 @@ vis.binds.materialdesign.topappbarnav = {
             let mdcTopAppBar = $this.parent().find('.mdc-top-app-bar').get(0);
             let mdcList = $this.parent().find('.mdc-list').get(0);
 
-            myMdwHelper.waitForElement($this.parent().parent(), '.mdc-top-app-bar__navigation-icon', function () {
+            myMdwHelper.waitForElement($this.parent().parent(), '.mdc-top-app-bar__navigation-icon', data.wid, 'TopAppBar', function () {
                 // Bug fix für TopAppBar, da position: fixed sein muss, deshlab zur Laufzeit width anpassen -> wird von widget genommen
                 $this.parent().parent().css('left', '0px');
                 $this.parent().parent().css('top', '0px');
