@@ -72,7 +72,7 @@ vis.binds.materialdesign.iconlist =
                 }
 
                 itemList.push(`
-                    <div class="materialdesign-icon-list-item" id="icon-list-item${i}" data-oid="${listItemObj.objectId}">                    
+                    <div class="materialdesign-icon-list-item" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" ${(listItemObj.listType !== 'text') ? 'style="display: none;"' : ''} >                    
                         ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text">${listItemObj.text}</label>` : ''}
                         ${imageElement}
                         ${(data.showValueLabel && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? '<label class="materialdesign-icon-list-item-value"></label>' : ''}
@@ -248,6 +248,8 @@ vis.binds.materialdesign.iconlist =
                     $item.find('.materialdesign-icon-button').css('background', listItemObj.buttonBackgroundColor);
                     myMdwHelper.changeIconElement($item, listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor);
                 }
+
+                $this.find(`#icon-list-item${index}`).show();
             }
 
             function getListItemObj(i, data, jsonData) {
