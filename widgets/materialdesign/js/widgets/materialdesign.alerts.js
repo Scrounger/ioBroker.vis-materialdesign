@@ -23,8 +23,13 @@ vis.binds.materialdesign.alerts =
             let jsonData = null;
             try {
                 jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
+
+                if (vis.editMode && jsonData.length === 0) {
+                    jsonData = jsonHasNoAlerts();
+                    // Dummy alerts im Editor anzeigen, falls keine vorhanden
+                }
             } catch (err) {
-                jsonData = null;
+                jsonData = jsonHasErrorAlert();
                 console.error(`[Vuetify Alerts 1] cannot parse json string! Error: ${err.message}`);
             }
 
@@ -65,7 +70,7 @@ vis.binds.materialdesign.alerts =
                     try {
                         jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
                     } catch (err) {
-                        jsonData === null;
+                        jsonData = jsonHasErrorAlert();
                         console.error(`[Vuetify Alerts 2] cannot parse json string! Error: ${err.message}`);
                     }
 
@@ -100,6 +105,34 @@ vis.binds.materialdesign.alerts =
             $this.context.style.setProperty("--vue-alerts-icon-size", myMdwHelper.getNumberFromData(data.alertIconSize, '24') + 'px');
 
             $this.context.style.setProperty("--vue-alerts-bottom-margin", myMdwHelper.getNumberFromData(data.alertMarginBottom, '16') + 'px');
+
+            function jsonHasErrorAlert() {
+                return [
+                    {
+                        "text": _("Error in JSON string"),
+                        "borderColor": "red",
+                        "icon": "alert-box",
+                        "iconColor": "red"
+                    }
+                ]
+            }
+
+            function jsonHasNoAlerts() {
+                return [
+                    {
+                        "text": _("example that is only displayed in the editor"),
+                        "borderColor": "blue",
+                        "icon": "home",
+                        "iconColor": "blue"
+                    },
+                    {
+                        "text": _("no alert messages currently available"),
+                        "borderColor": "orange",
+                        "icon": "information",
+                        "iconColor": "orange"
+                    }
+                ]
+            }
         } catch (ex) {
             console.error(`[Vuetify Alerts]: error: ${ex.message}, stack: ${ex.stack} `);
         }

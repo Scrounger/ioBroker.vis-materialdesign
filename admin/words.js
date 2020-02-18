@@ -7960,5 +7960,29 @@ systemDictionary = {
         "es": "los enlaces solo se muestran en tiempo de ejecución",
         "pl": "powiązania są wyświetlane tylko w czasie wykonywania",
         "zh-cn": "绑定仅在运行时显示"
+    },
+    "example that is only displayed in the editor": {
+        "en": "example that is only displayed in the editor",
+        "de": "Beispiel, das nur im Editor angezeigt wird",
+        "ru": "пример, который отображается только в редакторе",
+        "pt": "exemplo que é exibido apenas no editor",
+        "nl": "voorbeeld dat alleen wordt weergegeven in de editor",
+        "fr": "exemple qui n'est affiché que dans l'éditeur",
+        "it": "esempio che viene visualizzato solo nell'editor",
+        "es": "ejemplo que solo se muestra en el editor",
+        "pl": "przykład wyświetlany tylko w edytorze",
+        "zh-cn": "仅在编辑器中显示的示例"
+    },
+    "no alert messages currently available": {
+        "en": "no messages currently available",
+        "de": "Zur Zeit sind keine Nachrichten vorhanden",
+        "ru": "в настоящее время нет доступных сообщений",
+        "pt": "nenhuma mensagem disponível no momento",
+        "nl": "momenteel geen berichten beschikbaar",
+        "fr": "aucun message actuellement disponible",
+        "it": "nessun messaggio attualmente disponibile",
+        "es": "no hay mensajes disponibles actualmente",
+        "pl": "obecnie brak wiadomości",
+        "zh-cn": "当前没有消息"
     }
 };
