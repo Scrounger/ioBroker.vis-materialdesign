@@ -81,7 +81,7 @@ vis.binds.materialdesign.iconlist =
                     <div class="materialdesign-icon-list-item" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" ${(listItemObj.listType !== 'text' && val === 'null') ? 'style="display: none;"' : ''} >                    
                         ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text">${listItemObj.text}</label>` : ''}
                         ${imageElement}
-                        ${(data.showValueLabel && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
+                        ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
                         ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText">${listItemObj.subText}</label>` : ''}
                     </div>
                 `)
@@ -278,6 +278,7 @@ vis.binds.materialdesign.iconlist =
                         buttonToggleValueTrue: data.attr('typeButtonToggleValueTrue' + i),
                         buttonToggleValueFalse: data.attr('typeButtonToggleValueFalse' + i),
                         valueAppendix: myMdwHelper.getValueFromData(data.attr('valueAppendix' + i), ""),
+                        showValueLabel: myMdwHelper.getBooleanFromData(data.attr('showValueLabel' + i), true)
                     };
                 } else {
                     // Data from json
@@ -298,6 +299,7 @@ vis.binds.materialdesign.iconlist =
                         buttonToggleValueTrue: jsonData[i].buttonToggleValueTrue,
                         buttonToggleValueFalse: jsonData[i].buttonToggleValueFalse,
                         valueAppendix: myMdwHelper.getValueFromData(jsonData[i].valueAppendix, ""),
+                        showValueLabel: myMdwHelper.getBooleanFromData(jsonData[i].showValueLabel, true)
                     };
                 }
             }

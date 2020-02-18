@@ -63,7 +63,22 @@ vis.binds.materialdesign.helper = {
         try {
             return (dataValue === undefined || dataValue === null || dataValue === '') ? nullValue : prepand + dataValue + append;
         } catch (err) {
-            console.error(err.message);
+            console.error(`[Helper] getValueFromData: ${err.message}`);
+            return 'Error';
+        }
+    },
+    getBooleanFromData: function (dataValue, nullValue) {
+        try {
+            if (dataValue === undefined || dataValue === null || dataValue === '') {
+                return nullValue
+            } else if (dataValue === true || dataValue === 'true' || dataValue === 1 || dataValue === '1') {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (err) {
+            console.error(`[Helper] getBooleanFromData: ${err.message}`);
             return 'Error';
         }
     },
@@ -71,7 +86,7 @@ vis.binds.materialdesign.helper = {
         try {
             return (dataValue === undefined || dataValue === null || dataValue === '' || isNaN(dataValue)) ? nullValue : parseFloat(dataValue);
         } catch (err) {
-            console.error(err.message);
+            console.error(`[Helper] getNumberFromData: ${err.message}`);
             return 'Error';
         }
     },
@@ -79,7 +94,7 @@ vis.binds.materialdesign.helper = {
         try {
             return (dataValue === undefined || dataValue === null || dataValue === '' || isNaN(dataValue)) ? nullValue : prepand + parseFloat(dataValue) + append;
         } catch (err) {
-            console.error(err.message);
+            console.error(`[Helper] getStringFromNumberData: ${err.message}`);
             return 'Error';
         }
     },
