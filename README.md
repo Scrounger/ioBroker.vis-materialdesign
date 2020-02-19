@@ -74,6 +74,8 @@ not working at the moment, needs to be implemneted by app, see https://github.co
 
 ## IconList
 
+![Logo](doc/en/media/iconList.gif)
+
 Settings that are not listed in the table below are self-explanatory.
 
 <table>
