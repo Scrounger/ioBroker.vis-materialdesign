@@ -48,6 +48,41 @@ vis.binds.materialdesign.button = {
             console.error(`[Button] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
+    initializeVerticalButton: function (data) {
+        try {
+            let buttonElementsList = [];
+
+            let buttonStyle = '';
+            if (data.buttonStyle !== 'text') {
+                buttonStyle = 'materialdesign-button--' + data.buttonStyle;
+            }
+
+            buttonElementsList.push(`<div 
+                                        class="materialdesign-button-body" 
+                                        style="display:flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; height: 100%; ">`);
+
+            let imageElement = myMdwHelper.getIconElement(data.image, 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), data.imageColor);
+
+            let labelElement = '';
+            if (myMdwHelper.getValueFromData(data.buttontext, null) != null) {
+                labelElement = `<span 
+                                    class="materialdesign-button__label" style="text-align: center;">
+                                    ${data.buttontext}
+                                </span>`;
+            }
+
+            if (data.iconPosition === 'top') {
+                buttonElementsList.push(`${imageElement}${labelElement}</div>`);
+            } else {
+                buttonElementsList.push(`${labelElement}${imageElement}</div>`);
+            }
+
+            return { button: buttonElementsList.join(''), style: buttonStyle }
+
+        } catch (ex) {
+            console.error(`[Vertical Button] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
     handleLink: function (el, data) {
         $(el).click(function () {
             if (!vis.editMode && data.href) {
@@ -83,7 +118,7 @@ vis.binds.materialdesign.button = {
 
             $this.on('click touchend', function (e) {
                 let val = vis.states.attr(data.oid + '.val');
-                if(!data.minmax || val != data.minmax){
+                if (!data.minmax || val != data.minmax) {
                     vis.setValue(data.oid, parseFloat(val) + parseFloat(data.value));
                 }
             });
@@ -118,17 +153,36 @@ vis.binds.materialdesign.button = {
             });
 
             if (!vis.editMode) {
-                $this.parent().click(function () {
-                    if (data.toggleType === 'boolean') {
-                        vis.setValue(data.oid, !vis.states.attr(data.oid + '.val'));
-                    } else {
-                        if ($this.parent().attr('toggled') === true || $this.parent().attr('toggled') === 'true') {
-                            vis.setValue(data.oid, data.valueOff);
+                if (myMdwHelper.getBooleanFromData(data.pushButton, false) === false) {
+                    $this.parent().click(function () {
+                        if (data.toggleType === 'boolean') {
+                            vis.setValue(data.oid, !vis.states.attr(data.oid + '.val'));
+                        } else {
+                            if ($this.parent().attr('toggled') === true || $this.parent().attr('toggled') === 'true') {
+                                vis.setValue(data.oid, data.valueOff);
+                            } else {
+                                vis.setValue(data.oid, data.valueOn);
+                            }
+                        }
+                    });
+                } else {
+                    // Button from type push (Taster)
+                    $this.parent().on('mousedown touchstart', function (e) {
+                        if (data.toggleType === 'boolean') {
+                            vis.setValue(data.oid, true);
                         } else {
                             vis.setValue(data.oid, data.valueOn);
                         }
-                    }
-                });
+                    });
+
+                    $this.parent().on('mouseup touchend', function (e) {
+                        if (data.toggleType === 'boolean') {
+                            vis.setValue(data.oid, false);
+                        } else {
+                            vis.setValue(data.oid, data.valueOff);
+                        }
+                    });
+                }
             }
 
             function setButtonState() {
@@ -150,7 +204,7 @@ vis.binds.materialdesign.button = {
                     $this.parent().attr('toggled', true);
                     $this.parent().css('background', bgColorTrue);
 
-                    myMdwHelper.changeIconElement($this.parent(), data.imageTrue, 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), data.imageTrueColor);
+                    myMdwHelper.changeIconElement($this.parent(), myMdwHelper.getValueFromData(data.imageTrue, myMdwHelper.getValueFromData(data.image, '')), 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.imageTrueColor, myMdwHelper.getValueFromData(data.imageColor, '')));
 
                     $this.parent().find('.materialdesign-button__label').html(textTrue).css('color', textColorTrue);
                     $this.find('.labelRowContainer').css('background', labelBgColorTrue);
@@ -167,84 +221,6 @@ vis.binds.materialdesign.button = {
 
         } catch (ex) {
             console.error(`[Button] handleToggle: error:: ${ex.message}, stack: ${ex.stack}`);
-        }
-    },
-    buttonToggle: function (el, data) {
-        try {
-            var $this = $(el).parent();
-
-            let bgColor = myMdwHelper.getValueFromData(data.colorBgFalse, '');
-            let bgColorTrue = myMdwHelper.getValueFromData(data.colorBgTrue, bgColor);
-
-            let labelBgColor = myMdwHelper.getValueFromData(data.labelColorBgFalse, '');
-            let labelBgColorTrue = myMdwHelper.getValueFromData(data.labelColorBgTrue, labelBgColor);
-
-            setButtonState();
-
-            if (data.readOnly && !vis.editMode) {
-                $this.parent().css('pointer-events', 'none');
-            }
-
-            vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                setButtonState();
-            });
-
-            if (!vis.editMode) {
-                $this.click(function () {
-                    if (data.toggleType === 'boolean') {
-                        vis.setValue(data.oid, !vis.states.attr(data.oid + '.val'));
-                    } else {
-                        if ($this.attr('toggled') === true || $this.attr('toggled') === 'true') {
-                            vis.setValue(data.oid, data.valueOff);
-                        } else {
-                            vis.setValue(data.oid, data.valueOn);
-                        }
-                    }
-                });
-            }
-
-            function setButtonState() {
-                var val = vis.states.attr(data.oid + '.val');
-
-                let buttonState = false;
-
-                if (data.toggleType === 'boolean') {
-                    buttonState = val;
-                } else {
-                    if (val === parseInt(data.valueOn) || val === data.valueOn) {
-                        buttonState = true;
-                    } else if (val !== parseInt(data.valueOn) && val !== data.valueOn && val !== parseInt(data.valueOff) && val !== data.valueOff && data.stateIfNotTrueValue === 'on') {
-                        buttonState = true;
-                    }
-                }
-
-                if (buttonState) {
-                    $this.attr('toggled', true);
-
-                    $this.find('.imgToggleTrue').show();
-                    $this.find('.imgToggleFalse').hide();
-
-                    $this.find('.labelToggleTrue').show();
-                    $this.find('.labelToggleFalse').hide();
-
-                    $this.parent().css('background', bgColorTrue);
-                    $this.find('.labelRowContainer').css('background', labelBgColorTrue);
-                } else {
-                    $this.attr('toggled', false);
-
-                    $this.find('.imgToggleTrue').hide();
-                    $this.find('.imgToggleFalse').show();
-
-                    $this.find('.labelToggleTrue').hide();
-                    $this.find('.labelToggleFalse').show();
-
-                    $this.parent().css('background', bgColor);
-                    $this.find('.labelRowContainer').css('background', labelBgColor);
-                }
-            }
-
-        } catch (ex) {
-            console.error(`[Button Toggle]: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

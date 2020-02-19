@@ -36,6 +36,10 @@ vis.binds.materialdesign.viseditor = {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#list'
                 }
 
+                if (data[1] === 'iconList') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#iconList'
+                }
+
                 if (data[1] === 'progress') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#progress'
                 }

@@ -7984,5 +7984,17 @@ systemDictionary = {
         "es": "no hay mensajes disponibles actualmente",
         "pl": "obecnie brak wiadomości",
         "zh-cn": "当前没有消息"
+    },
+    "pushButton": {
+        "en": "push button",
+        "de": "Taster",
+        "ru": "нажать кнопку",
+        "pt": "botão de apertar",
+        "nl": "druk op de knop",
+        "fr": "bouton poussoir",
+        "it": "premi il bottone",
+        "es": "presionar el botón",
+        "pl": "naciśnij przycisk",
+        "zh-cn": "按钮"
     }
 };

@@ -123,33 +123,16 @@
         data-vis-set="materialdesign"
         data-vis-type="navigation"
         data-vis-name="Button Navigation vertical"
-        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;buttonStyle[raised]/select,text,raised,unelevated,outlined;nav_view;vibrateOnMobilDevices[50]/number;"
-        data-vis-attrs0="group.label;labelFalse/html;labelColorFalse/color;"
-        data-vis-attrs1="group.icon;image/image;invertImage/checkbox;iconHeight/slider,0,200,1;"
-        data-vis-attrs2="group.color;colorBgFalse/color;labelColorBgFalse/color;colorPress/color">
-
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;buttonStyle[raised]/select,text,raised,unelevated,outlined;nav_view;buttontext/html;colorPress/color;vibrateOnMobilDevices[50]/number;"
+        data-vis-attrs0="group.icon;image/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[top]/select,top,bottom;iconHeight/slider,0,200,1;">
+        
         <%
-            let buttonStyle = '';
-            if (this.data.buttonStyle !== 'text'){
-                buttonStyle = 'materialdesign-button--' + this.data.buttonStyle;
-            }
-
-            let stylesInvertImageFalse = '';
-            if (this.data.invertImage === 'true' || this.data.invertImage === true) {
-                stylesInvertImageFalse = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
-            }      
+            let init = vis.binds.materialdesign.button.initializeVerticalButton(data);
         %>
 
-        <div class="vis-widget materialdesign-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.handleNavigation(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
-            <div class="materialdesign vis-widget-body" style="display: table; width: 100%; height: 100%;">
-                <div style="display: table-row;">                
-                    <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + 'px' || auto %>; <%= stylesInvertImageFalse %>" />
-                </div>
-                <div class="labelRowContainer" style="display: table-row; height: 100%; background: <%== this.data.attr('labelColorBgFalse') %>">
-                    <span class="labelToggleFalse materialdesign-button__label" style="color: <%== this.data.attr('labelColorFalse') %>;"><%== this.data.attr('labelFalse') %></span>
-                </div>
-            </div>
-        </div>        
+        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 150px; height: 100px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.handleNavigation(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+            <%== init.button %>
+        </div>
 </script>
 
 <script id="tplVis-materialdesign-Button-Link-vertical"
@@ -159,32 +142,15 @@
         data-vis-set="materialdesign"
         data-vis-type="static"
         data-vis-name="Button Link vertical"
-        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;buttonStyle[raised]/select,text,raised,unelevated,outlined;href/url;openNewWindow/checkbox;vibrateOnMobilDevices[50]/number;"
-        data-vis-attrs0="group.label;labelFalse/html;labelColorFalse/color;"
-        data-vis-attrs1="group.icon;image/image;invertImage/checkbox;iconHeight/slider,0,200,1;"
-        data-vis-attrs2="group.color;colorBgFalse/color;labelColorBgFalse/color;colorPress/color">
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;buttonStyle[raised]/select,text,raised,unelevated,outlined;href/url;openNewWindow/checkbox;buttontext/html;colorPress/color;vibrateOnMobilDevices[50]/number;"
+        data-vis-attrs0="group.icon;image/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[top]/select,top,bottom;iconHeight/slider,0,200,1;">
 
         <%
-            let buttonStyle = '';
-            if (this.data.buttonStyle !== 'text'){
-                buttonStyle = 'materialdesign-button--' + this.data.buttonStyle;
-            }
-
-            let stylesInvertImageFalse = '';
-            if (this.data.invertImage === 'true' || this.data.invertImage === true) {
-                stylesInvertImageFalse = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
-            }      
+            let init = vis.binds.materialdesign.button.initializeVerticalButton(data);
         %>
 
-        <div class="vis-widget materialdesign-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleLink(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
-            <div class="materialdesign vis-widget-body" style="display: table; width: 100%; height: 100%;">
-                <div style="display: table-row;">                
-                    <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + 'px' || auto %>; <%= stylesInvertImageFalse %>" />
-                </div>
-                <div class="labelRowContainer" style="display: table-row; height: 100%; background: <%== this.data.attr('labelColorBgFalse') %>">
-                    <span class="labelToggleFalse materialdesign-button__label" style="color: <%== this.data.attr('labelColorFalse') %>;"><%== this.data.attr('labelFalse') %></span>
-                </div>
-            </div>
+        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 150px; height: 100px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-vis-link="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleLink(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+            <%== init.button %>
         </div>
 </script>
 
@@ -195,32 +161,34 @@
         data-vis-set="materialdesign"
         data-vis-type="ctrl"
         data-vis-name="Button State vertical"
-        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;value;buttonStyle[raised]/select,text,raised,unelevated,outlined;vibrateOnMobilDevices[50]/number;"
-        data-vis-attrs0="group.label;labelFalse/html;labelColorFalse/color;"
-        data-vis-attrs1="group.icon;image/image;invertImage/checkbox;iconHeight/slider,0,200,1;"
-        data-vis-attrs2="group.color;colorBgFalse/color;labelColorBgFalse/color;colorPress/color">
-
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;value;buttontext/html;colorPress/color;vibrateOnMobilDevices[50]/number;"
+        data-vis-attrs0="group.icon;image/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[top]/select,top,bottom;iconHeight/slider,0,200,1;">
+        
         <%
-            let buttonStyle = '';
-            if (this.data.buttonStyle !== 'text'){
-                buttonStyle = 'materialdesign-button--' + this.data.buttonStyle;
-            }
-
-            let stylesInvertImageFalse = '';
-            if (this.data.invertImage === 'true' || this.data.invertImage === true) {
-                stylesInvertImageFalse = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
-            }      
+            let init = vis.binds.materialdesign.button.initializeVerticalButton(data);
         %>
 
-        <div class="vis-widget materialdesign-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.basic.state(el); vis.binds.materialdesign.addRippleEffect(el, data) %>>
-            <div class="materialdesign vis-widget-body" style="display: table; width: 100%; height: 100%;">
-                <div style="display: table-row;">                
-                    <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + 'px' || auto %>; <%= stylesInvertImageFalse %>" />
-                </div>
-                <div class="labelRowContainer" style="display: table-row; height: 100%; background: <%== this.data.attr('labelColorBgFalse') %>">
-                    <span class="labelToggleFalse materialdesign-button__label" style="color: <%== this.data.attr('labelColorFalse') %>;"><%== this.data.attr('labelFalse') %></span>
-                </div>
-            </div>
+        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 150px; height: 100px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.basic.state(el); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+            <%== init.button %>
+        </div>
+</script>
+
+<script id="tplVis-materialdesign-Button-Adition-vertical"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/materialdesign/img/prev_button_adition_vertical.png"></img>'
+        data-vis-set="materialdesign"
+        data-vis-type="ctrl"
+        data-vis-name="Button Adition vertical"
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;value;minmax;buttontext/html;colorPress/color;vibrateOnMobilDevices[50]/number;"
+        data-vis-attrs0="group.icon;image/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[top]/select,top,bottom;iconHeight/slider,0,200,1;">
+        
+        <%
+            let init = vis.binds.materialdesign.button.initializeVerticalButton(data);
+        %>
+
+        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 150px; height: 100px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleAdition(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+            <%== init.button %>
         </div>
 </script>
 
@@ -231,41 +199,19 @@
         data-vis-set="materialdesign"
         data-vis-type="ctrl,state,val,bool"
         data-vis-name="Button Toggle vertical"
-        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;readOnly/checkbox;toggleType[boolean]/select,boolean,value;valueOff;valueOn;stateIfNotTrueValue[on]/select,on,off;vibrateOnMobilDevices[50]/number;"
-        data-vis-attrs0="group.label;labelFalse/html;labelTrue/html;labelColorFalse/color;labelColorTrue/color;"
-        data-vis-attrs1="group.icon;image/image;invertImage/checkbox;imageTrue/image;invertImageTrue/checkbox;iconHeight/slider,0,200,1;"
-        data-vis-attrs2="group.color;colorBgFalse/color;colorBgTrue/color;labelColorBgFalse/color;labelColorBgTrue/color;colorPress/color">
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;readOnly/checkbox;toggleType[boolean]/select,boolean,value;pushButton/checkbox;valueOff;valueOn;stateIfNotTrueValue[on]/select,on,off;vibrateOnMobilDevices[50]/number;"
+        data-vis-attrs0="group.label;buttontext/html;labelTrue/html;labelColorFalse/color;labelColorTrue/color;"
+        data-vis-attrs1="group.icon;image/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;imageTrue/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageTrueColor/color;iconPosition[top]/select,top,bottom;iconHeight/slider,0,200,1;"
+        data-vis-attrs2="group.color;colorBgFalse/color;colorBgTrue/color;colorPress/color">
 
-    <%
-        let buttonStyle = '';
-        if (this.data.buttonStyle !== 'text'){
-            buttonStyle = 'materialdesign-button--' + this.data.buttonStyle;
-        }
-
-        let stylesInvertImageFalse = '';
-        if (this.data.invertImage === 'true' || this.data.invertImage === true) {
-            stylesInvertImageFalse = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
-        }
-
-        let stylesInvertImageTrue = '';
-        if (this.data.invertImageTrue === 'true' || this.data.invertImageTrue === true) {
-            stylesInvertImageTrue = "filter: invert(1); -webkit-filter: invert(1); -moz-filter: invert(1); -o-filter: invert(1); -ms-filter: invert(1);";
-        }
-    %>
-
-    <div class="vis-widget materialdesign-widget materialdesign-button <%= buttonStyle %> <%== this.data.attr('class') %>" style="width:150px; height:100px; padding: 0px; background: <%= this.data.attr('colorBgFalse')%>" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.addRippleEffect(el, data) %>>
-        <div class="materialdesign vis-widget-body" style="display: table; width: 100%; height: 100%;" toggled="false">
-            <div style="display: table-row;">                
-                <img class="imgToggleFalse" <%= this.data.attr('image') ? 'src="' +  this.data.attr('image') + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + 'px' || auto %>; <%= stylesInvertImageFalse %>" />
-                <img class="imgToggleTrue"  <%= this.data.attr('imageTrue')  ? 'src="' +  this.data.attr('imageTrue')  + '"' : '' %> style="width: <%= this.data.attr('iconHeight') + 'px' || auto %>; display:none; <%= stylesInvertImageTrue %>" />
-            </div>
-            <div class="labelRowContainer" style="display: table-row; height: 100%; background: <%== this.data.attr('labelColorBgFalse') %>">
-                <span class="labelToggleFalse materialdesign-button__label" style="color: <%== this.data.attr('labelColorFalse') %>;"><%== this.data.attr('labelFalse') %></span>
-                <span class="labelToggleTrue materialdesign-button__label" style="color: <%== this.data.attr('labelColorTrue') %>; display:none"><%== this.data.attr('labelTrue') %></span>
-            </div>
-            <div <%= (el) -> vis.binds.materialdesign.button.buttonToggle(el, this.data) %>></div>
+        <%
+            let init = vis.binds.materialdesign.button.initializeVerticalButton(data);
+        %> 
+        
+        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 150px; height: 100px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.addRippleEffect(el, data) %>>
+            <%== init.button %>
+            <div <%= (el) -> vis.binds.materialdesign.button.handleToggle(el, this.data) %>></div>
         </div>
-    </div>
 </script>
 
 
@@ -353,7 +299,7 @@
         data-vis-set="materialdesign"
         data-vis-type="ctrl,state,val,bool"
         data-vis-name="Button Toggle"
-        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;readOnly/checkbox;toggleType[boolean]/select,boolean,value;valueOff;valueOn;stateIfNotTrueValue[on]/select,on,off;vibrateOnMobilDevices[50]/number;"
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;readOnly/checkbox;toggleType[boolean]/select,boolean,value;pushButton/checkbox;valueOff;valueOn;stateIfNotTrueValue[on]/select,on,off;vibrateOnMobilDevices[50]/number;"
         data-vis-attrs0="group.label;buttontext/html;labelTrue/html;labelColorFalse/color;labelColorTrue/color;labelWidth/slider,0,100,1;"
         data-vis-attrs1="group.icon;image/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;imageTrue/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageTrueColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;"
         data-vis-attrs2="group.color;colorBgFalse/color;colorBgTrue/color;colorPress/color">
@@ -456,7 +402,7 @@
         data-vis-set="materialdesign"
         data-vis-type="ctrl,state,val,bool"
         data-vis-name="Icon Button Toggle"
-        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;readOnly/checkbox;toggleType[boolean]/select,boolean,value;valueOff;valueOn;stateIfNotTrueValue[on]/select,on,off;vibrateOnMobilDevices[50]/number;"
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;readOnly/checkbox;toggleType[boolean]/select,boolean,value;pushButton/checkbox;valueOff;valueOn;stateIfNotTrueValue[on]/select,on,off;vibrateOnMobilDevices[50]/number;"
         data-vis-attrs0="group.icon;image/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;imageTrue/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageTrueColor/color;iconHeight/slider,0,200,1;"
         data-vis-attrs1="group.color;colorBgFalse/color;colorBgTrue/color;colorPress/color">
 
