@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.57"
+    version: "0.2.56"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -85,7 +85,7 @@ vis.binds.materialdesign.views = {
                             <div data-vis-contains="${data.attr('View' + i)}" class="vis-widget-body vis-view-container">
                             </div>
                     </div>
-                `)
+                    `)
 
                 vis.states.bind(data.attr('visibilityOid' + i) + '.val', function (e, newVal, oldVal) {
                     let itemList = $this.find('.materialdesign-masonry-item[visibilityOid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
@@ -170,6 +170,11 @@ vis.binds.materialdesign.views = {
 
                     setColumns();
                     viewVisibilityByResolution();
+
+                    for (var i = 0; i <= data.countViews; i++) {
+                        let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
+                        viewVisibilityByCondition(i, val);
+                    }
 
                     $this.find('.materialdesign-masonry-container').show();
 
@@ -360,6 +365,11 @@ vis.binds.materialdesign.views = {
 
                     setColumns();
                     viewVisibilityByResolution();
+
+                    for (var i = 0; i <= data.countViews; i++) {
+                        let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
+                        viewVisibilityByCondition(i, val);
+                    }
 
                     $this.find(`.${containerClass}`).show();
 
