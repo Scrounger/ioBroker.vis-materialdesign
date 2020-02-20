@@ -8020,6 +8020,5 @@ systemDictionary = {
         "es": "ancho mínimo",
         "pl": "minimalna szerokość",
         "zh-cn": "最小宽度"
-    },
-
+    }
 };
