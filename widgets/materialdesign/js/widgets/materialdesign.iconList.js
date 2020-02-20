@@ -80,7 +80,7 @@ vis.binds.materialdesign.iconlist =
                 }
 
                 let val = vis.states.attr(listItemObj.objectId + '.val');
-                if (val === 'null') {
+                if (val === 'null' || val === undefined) {
                     oidsNeedSubscribe = true;
                 }
 
