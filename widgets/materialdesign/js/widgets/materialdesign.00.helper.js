@@ -234,7 +234,7 @@ vis.binds.materialdesign.helper = {
             } else {
                 // is material-icons
                 return `<span class="mdi mdi-${icon} ${className}" 
-                            style="width: ${height}; font-size: ${height}; color: ${color}; ${style};"></span>`
+                            style="width: ${height}; height: ${height}; font-size: ${height}; color: ${color}; ${style};"></span>`
             }
         }
 
@@ -266,8 +266,8 @@ vis.binds.materialdesign.helper = {
             } else {
                 // is material-icons
                 element.replaceWith(`<span class="mdi mdi-${icon} ${className}" 
-                                                style="width: ${height}; font-size: ${height}; color: ${color}; ${style};"></span>`)
-            }
+                                                style="width: ${height}; height: ${height}; font-size: ${height}; color: ${color}; ${style};"></span>`)
+            }            
         }
     },
     changeListIconElement: function (parentElement, iconData, width, height, iconColor = '', style = '') {

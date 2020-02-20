@@ -7996,5 +7996,30 @@ systemDictionary = {
         "es": "presionar el botón",
         "pl": "naciśnij przycisk",
         "zh-cn": "按钮"
-    }
+    },
+    "itemBackgroundColor": {
+        "en": "background color",
+        "de": "Hintergrundfarbe",
+        "ru": "фоновый цвет",
+        "pt": "cor de fundo",
+        "nl": "Achtergrond kleur",
+        "fr": "Couleur de l'arrière plan",
+        "it": "colore di sfondo",
+        "es": "color de fondo",
+        "pl": "kolor tła",
+        "zh-cn": "背景颜色"
+    },
+    "iconItemMinWidth": {
+        "en": "minimal width",
+        "de": "minimale Breite",
+        "ru": "минимальная ширина",
+        "pt": "largura mínima",
+        "nl": "minimale breedte",
+        "fr": "largeur minimale",
+        "it": "larghezza minima",
+        "es": "ancho mínimo",
+        "pl": "minimalna szerokość",
+        "zh-cn": "最小宽度"
+    },
+
 };

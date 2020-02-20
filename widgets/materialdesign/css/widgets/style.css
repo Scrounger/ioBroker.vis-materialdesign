@@ -84,6 +84,9 @@
   --materialdesign-grid-gaps: 0px;
 
   --materialdesign-icon-list-items-per-row: 3;
+  --materialdesign-icon-list-items-min-width: 50px;
+  --materialdesign-icon-list-items-gaps: 4px;
+  --materialdesign-icon-list-items-color-background: #fff;
 
   --materialdesign-icon-list-items-text-font-size: 14px;
   --materialdesign-icon-list-items-text-font-family: inherit;
@@ -96,6 +99,8 @@
   --materialdesign-icon-list-items-value-font-size: 12px;
   --materialdesign-icon-list-items-value-font-family: inherit;
   --materialdesign-icon-list-items-value-font-color: #44739e;
+
+  --materialdesign-icon-list-item-layout-horizontal-image-container-width: auto;
 }
 
 /* Button style -> must defined here because of position bug in vis editor */
@@ -1425,26 +1430,45 @@ svg.materialdesign-button__icon {
 
 /* iconList */
 .materialdesign-icon-list-container {
+  position: absolute;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  padding: calc(-1 * var(--materialdesign-icon-list-items-gaps) + 2px);
 }
 
 .materialdesign-icon-list-item {
-  flex: 1 1 calc(100% / var(--materialdesign-icon-list-items-per-row) - 20px);
-  max-width: calc(100% / var(--materialdesign-icon-list-items-per-row) - 20px);  
-  height: 100%;
+  flex: 1 1 calc(100% / var(--materialdesign-icon-list-items-per-row));
+  min-width: var(--materialdesign-icon-list-items-min-width) !important;
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 10px;
+  margin: var(--materialdesign-icon-list-items-gaps);
+  
+}
+
+.materialdesign-icon-list-item-standard {
+  background: var(--materialdesign-icon-list-items-color-background);
+  padding: 4px;
+}
+
+.materialdesign-icon-list-item-card {
+  border-radius: 4px;
+  background: var(--materialdesign-icon-list-items-color-background);
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  color: black;
+  padding: 4px;
+}
+
+.materialdesign-icon-list-item-card--outlined {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e0e0e0;
 }
 
 .materialdesign-icon-list-item-text{
   width: 100%;
-  text-align: center;
-  margin-bottom: 4px;
   font-size: var(--materialdesign-icon-list-items-text-font-size);
   font-family: var(--materialdesign-icon-list-items-text-font-family);
   color: var(--materialdesign-icon-list-items-text-font-color);
@@ -1455,24 +1479,44 @@ svg.materialdesign-button__icon {
 
 .materialdesign-icon-list-item-subText{
   width: 100%;
-  text-align: center;
-  margin-top: 4px;
   font-size: var(--materialdesign-icon-list-items-subText-font-size);
   font-family: var(--materialdesign-icon-list-items-subText-font-family);
   color: var(--materialdesign-icon-list-items-subText-font-color);
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  padding-top: 2px;
 }
 
 .materialdesign-icon-list-item-value{
   width: 100%;
-  text-align: center;
-  margin-top: 4px;
   font-size: var(--materialdesign-icon-list-items-value-font-size);
   font-family: var(--materialdesign-icon-list-items-value-font-family);
   color: var(--materialdesign-icon-list-items-value-font-color);
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  padding-top: 2px;
+}
+
+.materialdesign-icon-list-item-text-vertical {
+  text-align: center;
+}
+
+.materialdesign-icon-list-item-layout-horizontal-image-container {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: var(--materialdesign-icon-list-item-layout-horizontal-image-container-width);
+}
+
+.materialdesign-icon-list-item-layout-horizontal-text-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex: 1 1;
+  margin-left: 4px;
+  justify-content: center;
 }

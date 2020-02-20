@@ -48,6 +48,13 @@ vis.binds.materialdesign.iconlist =
             let iconHeight = myMdwHelper.getNumberFromData(data.iconHeight, 24);
             let buttonHeight = myMdwHelper.getNumberFromData(data.buttonHeight, iconHeight * 1.5);
 
+            let listLayout = 'materialdesign-icon-list-item-standard';
+            if (data.listLayout === 'card') {
+                listLayout = 'materialdesign-icon-list-item-card';
+            } else if (data.listLayout === 'cardOutlined') {
+                listLayout = 'materialdesign-icon-list-item-card materialdesign-icon-list-item-card--outlined';
+            }
+
             for (var i = 0; i <= countOfItems; i++) {
                 let listItemObj = getListItemObj(i, data, jsonData);
 
@@ -77,24 +84,45 @@ vis.binds.materialdesign.iconlist =
                     oidsNeedSubscribe = true;
                 }
 
-                itemList.push(`
-                    <div class="materialdesign-icon-list-item" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" ${(listItemObj.listType !== 'text' && val === 'null') ? 'style="display: none;"' : ''} >                    
-                        ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text">${listItemObj.text}</label>` : ''}
-                        ${imageElement}
-                        ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
-                        ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText">${listItemObj.subText}</label>` : ''}
-                    </div>
-                `)
+                if (data.itemLayout === 'vertical') {
+                    itemList.push(`
+                        <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" ${(listItemObj.listType !== 'text' && val === 'null') ? 'style="display: none;"' : ''}>
+                            ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text materialdesign-icon-list-item-text-vertical">${listItemObj.text}</label>` : ''}
+                            ${imageElement}
+                            ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value materialdesign-icon-list-item-text-vertical">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
+                            ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText materialdesign-icon-list-item-text-vertical">${listItemObj.subText}</label>` : ''}
+                        </div>
+                    `)
+                } else {
+                    itemList.push(`
+                        <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" ${(listItemObj.listType !== 'text' && val === 'null') ? 'style="display: none;"' : ''}>                            
+                            <div class="materialdesign-icon-list-item-layout-horizontal-image-container">
+                                ${imageElement}
+                            </div>
+                            <div class="materialdesign-icon-list-item-layout-horizontal-text-container">
+                                ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text">${listItemObj.text}</label>` : ''}                            
+                                ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText">${listItemObj.subText}</label>` : ''}
+                                ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
+                            </div>
+                        </div>
+                    `)
+                }
             }
 
             $this.append(`
-                <div class=${containerClass}>
+                <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap; width: 100%;"' : ''}>
                     ${itemList.join("")}
                 </div>
             `);
 
 
+
             $this.context.style.setProperty("--materialdesign-icon-list-items-per-row", myMdwHelper.getNumberFromData(data.maxItemsperRow, 1));
+
+            $this.context.style.setProperty("--materialdesign-icon-list-items-min-width", myMdwHelper.getNumberFromData(data.iconItemMinWidth, 50) + 'px');
+            $this.context.style.setProperty("--materialdesign-icon-list-items-gaps", myMdwHelper.getNumberFromData(data.itemGaps, 4) + 'px');
+
+            $this.context.style.setProperty("--materialdesign-icon-list-items-color-background", myMdwHelper.getValueFromData(data.itemBackgroundColor, ''));
 
             $this.context.style.setProperty("--materialdesign-icon-list-items-text-font-size", myMdwHelper.getNumberFromData(data.labelFontSize, 14) + 'px');
             $this.context.style.setProperty("--materialdesign-icon-list-items-text-font-family", myMdwHelper.getValueFromData(data.labelFontFamily, 'inherit'));
@@ -107,6 +135,8 @@ vis.binds.materialdesign.iconlist =
             $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-size", myMdwHelper.getNumberFromData(data.valueFontSize, 12) + 'px');
             $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-family", myMdwHelper.getValueFromData(data.valueFontFamily, 'inherit'));
             $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-color", myMdwHelper.getValueFromData(data.valueFontColor, ''));
+
+            $this.context.style.setProperty("--materialdesign-icon-list-item-layout-horizontal-image-container-width", myMdwHelper.getStringFromNumberData(data.verticalIconContainerWidth, 'auto', '', 'px'));
 
             if (data.listItemDataMethod === 'inputPerEditor') {
                 handleWidget();
