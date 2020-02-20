@@ -91,6 +91,7 @@ vis.binds.materialdesign.iconlist =
                             ${imageElement}
                             ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value materialdesign-icon-list-item-text-vertical">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
                             ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText materialdesign-icon-list-item-text-vertical">${listItemObj.subText}</label>` : ''}
+                            <div class="materialdesign-icon-list-item-layout-vertical-status-line" style="background: ${listItemObj.statusBarColor};"></div>
                         </div>
                     `)
                 } else {
@@ -104,6 +105,7 @@ vis.binds.materialdesign.iconlist =
                                 ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText">${listItemObj.subText}</label>` : ''}
                                 ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
                             </div>
+                            <div class="materialdesign-icon-list-item-layout-horizontal-status-line" style="background: ${listItemObj.statusBarColor};"></div>
                         </div>
                     `)
                 }
@@ -111,7 +113,7 @@ vis.binds.materialdesign.iconlist =
 
             $this.append(`
                 <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap; width: 100%;"' : ''}>
-                    ${itemList.join("")}
+                    ${itemList.join("")}                    
                 </div>
             `);
 
@@ -136,7 +138,7 @@ vis.binds.materialdesign.iconlist =
             $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-family", myMdwHelper.getValueFromData(data.valueFontFamily, 'inherit'));
             $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-color", myMdwHelper.getValueFromData(data.valueFontColor, ''));
 
-            $this.context.style.setProperty("--materialdesign-icon-list-item-layout-horizontal-image-container-width", myMdwHelper.getStringFromNumberData(data.verticalIconContainerWidth, 'auto', '', 'px'));
+            $this.context.style.setProperty("--materialdesign-icon-list-item-layout-horizontal-image-container-width", myMdwHelper.getStringFromNumberData(data.verticalIconContainerWidth, 'auto', '', 'px'));            
 
             if (data.listItemDataMethod === 'inputPerEditor') {
                 handleWidget();
@@ -308,7 +310,8 @@ vis.binds.materialdesign.iconlist =
                         buttonToggleValueTrue: data.attr('typeButtonToggleValueTrue' + i),
                         buttonToggleValueFalse: data.attr('typeButtonToggleValueFalse' + i),
                         valueAppendix: myMdwHelper.getValueFromData(data.attr('valueAppendix' + i), ""),
-                        showValueLabel: myMdwHelper.getBooleanFromData(data.attr('showValueLabel' + i), true)
+                        showValueLabel: myMdwHelper.getBooleanFromData(data.attr('showValueLabel' + i), true),
+                        statusBarColor: myMdwHelper.getValueFromData(data.attr('statusBarColor' + i), 'transparent')
                     };
                 } else {
                     // Data from json
@@ -329,7 +332,8 @@ vis.binds.materialdesign.iconlist =
                         buttonToggleValueTrue: jsonData[i].buttonToggleValueTrue,
                         buttonToggleValueFalse: jsonData[i].buttonToggleValueFalse,
                         valueAppendix: myMdwHelper.getValueFromData(jsonData[i].valueAppendix, ""),
-                        showValueLabel: myMdwHelper.getBooleanFromData(jsonData[i].showValueLabel, true)
+                        showValueLabel: myMdwHelper.getBooleanFromData(jsonData[i].showValueLabel, true),
+                        statusBarColor: myMdwHelper.getValueFromData(jsonData[i].statusBarColor, 'transparent')
                     };
                 }
             }

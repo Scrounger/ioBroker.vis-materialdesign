@@ -1503,6 +1503,16 @@ svg.materialdesign-button__icon {
   text-align: center;
 }
 
+.materialdesign-icon-list-item-layout-vertical-status-line {
+  background: transparent;
+  height: 4px; 
+  width: calc(100% + 8px); 
+  border-radius: 0 0 4px 4px;
+  margin-left: -4px;
+  margin-right: -4px;
+  margin-bottom: -4px;
+}
+
 .materialdesign-icon-list-item-layout-horizontal-image-container {
   text-align: center;
   display: flex;
@@ -1519,4 +1529,13 @@ svg.materialdesign-button__icon {
   flex: 1 1;
   margin-left: 4px;
   justify-content: center;
+}
+
+.materialdesign-icon-list-item-layout-horizontal-status-line {
+  background: transparent;
+  height: 4px; 
+  width: calc(100% + 8px); 
+  border-radius: 0 0 4px 4px;
+  margin-left: -4px;
+  margin-right: -4px;
 }

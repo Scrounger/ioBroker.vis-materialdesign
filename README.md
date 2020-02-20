@@ -114,7 +114,8 @@ Settings that are not listed in the table below are self-explanatory.
 		"buttonToggleValueTrue": "",
 		"buttonToggleValueFalse": "",
 		"valueAppendix": "",
-		"showValueLabel": "true"
+		"showValueLabel": "true",
+        "statusBarColor": "green"
 	},
 	{
 		"text": "text0",
@@ -133,7 +134,8 @@ Settings that are not listed in the table below are self-explanatory.
 		"buttonToggleValueTrue": "",
 		"buttonToggleValueFalse": "",
 		"valueAppendix": "",
-		"showValueLabel": "false"
+		"showValueLabel": "false",
+        "statusBarColor": ""
 	}
 ]
             </code></pre>
