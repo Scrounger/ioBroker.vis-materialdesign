@@ -367,11 +367,17 @@ vis.binds.materialdesign.helper = {
                         console.error(`[subscribeAtRuntime] ${widgetName} (${wid}): states is null (${oidList})`);
                     }
 
-                    if (states !== undefined && states !== null && Object.keys(states).length > 0) {
-                        for (var i = 0; i <= oidList.length -1; i++) {
-                            // states müssen aktualisiert werden, damit nach laden richtige val angezeigt werden                      
-                            vis.updateState(oidList[i], states[oidList[i]]);
-                            console.log(`[subscribeAtRuntime] ${widgetName} (${wid}): state updated: ${oidList[i]}`);
+                    if (states !== undefined && Object.keys(states).length > 0) {
+                        for (var i = 0; i <= oidList.length - 1; i++) {
+                            // states müssen aktualisiert werden, damit nach laden richtige val angezeigt werden
+                            let state = states[oidList[i]];
+
+                            if (state !== null) {
+                                vis.updateState(oidList[i], state);
+                                console.log(`[subscribeAtRuntime] ${widgetName} (${wid}): state updated: ${oidList[i]}`);
+                            } else {
+                                console.warn(`[subscribeAtRuntime] ${widgetName} (${wid}): state is null: ${oidList[i]}`);
+                            }
                         }
                     }
 
