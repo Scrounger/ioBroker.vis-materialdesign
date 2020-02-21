@@ -60,6 +60,8 @@ vis.binds.materialdesign.views = {
         try {
             let $this = $(el);
             let viewsList = [];
+            let oidsNeedSubscribe = false;
+            let oidsList = [];
 
             for (var i = 0; i <= data.countViews; i++) {
                 let viewWidth = myMdwHelper.getValueFromData(data.attr('viewsWidth' + i), '');
@@ -86,6 +88,20 @@ vis.binds.materialdesign.views = {
                             </div>
                     </div>
                     `)
+
+                // Check if Oid is subscribed and get values
+                let visibilityOid = data.attr('visibilityOid' + i);
+                if (visibilityOid !== undefined) {
+                    let val = vis.states.attr(visibilityOid + '.val');
+                    if (val === 'null' || val === undefined) {
+                        oidsNeedSubscribe = true;
+
+                        if (!oidsList.includes(visibilityOid)) {
+                            // add if not exists
+                            oidsList.push(visibilityOid);
+                        }
+                    }
+                }
 
                 vis.states.bind(data.attr('visibilityOid' + i) + '.val', function (e, newVal, oldVal) {
                     let itemList = $this.find('.materialdesign-masonry-item[visibilityOid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
@@ -134,124 +150,135 @@ vis.binds.materialdesign.views = {
                 </div>
             `);
 
-            myMdwHelper.waitForElement($this, `#masonry_item_${0}`, data.wid, 'Masonry', function () {
-                myMdwHelper.waitForRealWidth($this.context, data.wid, 'Masonry', function () {
-                    var currentWidgetWidth = $this.width();
-
-                    $(window).resize(function () {
-                        // resize event
-                        var widgetWidth = $this.width();
-
-                        if (currentWidgetWidth !== widgetWidth) {
-                            currentWidgetWidth = widgetWidth;
-                            setColumns();
-                            viewVisibilityByResolution();
-                        }
-                    });
-
-                    let desktopCols = myMdwHelper.getNumberFromData(data.countCols, 3);
-                    let desktopGaps = myMdwHelper.getNumberFromData(data.desktopGaps, 0);
-
-                    let handyPortraitWidth = myMdwHelper.getNumberFromData(data.handyPortraitWidth, 360);
-                    let handyPortraitCols = myMdwHelper.getNumberFromData(data.handyPortraitCols, 1);
-                    let handyPortraitGaps = myMdwHelper.getNumberFromData(data.handyPortraitGaps, desktopGaps);
-
-                    let handyLandscapeWidth = myMdwHelper.getNumberFromData(data.handyLandscapeWidth, 672);
-                    let handyLandscapeCols = myMdwHelper.getNumberFromData(data.handyLandscapeCols, 2);
-                    let handyLandscapeGaps = myMdwHelper.getNumberFromData(data.handyLandscapeGaps, desktopGaps);
-
-                    let tabletPortraitWidth = myMdwHelper.getNumberFromData(data.tabletPortraitWidth, 768);
-                    let tabletPortraitCols = myMdwHelper.getNumberFromData(data.tabletPortraitCols, 2);
-                    let tabletPortraitGaps = myMdwHelper.getNumberFromData(data.tabletPortraitGaps, desktopGaps);
-
-                    let tabletLandscapeWidth = myMdwHelper.getNumberFromData(data.tabletLandscapeWidth, 1024);
-                    let tabletLandscapeCols = myMdwHelper.getNumberFromData(data.tabletLandscapeCols, 3);
-                    let tabletLandscapeGaps = myMdwHelper.getNumberFromData(data.tabletLandscapeGaps, desktopGaps);
-
-                    setColumns();
-                    viewVisibilityByResolution();
-
-                    for (var i = 0; i <= data.countViews; i++) {
-                        let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
-                        viewVisibilityByCondition(i, val);
-                    }
-
-                    $this.find('.materialdesign-masonry-container').show();
-
-                    function setColumns() {
-                        if (data.showResolutionAssistant) $this.find('.masonry-helper-resolution-width').text(currentWidgetWidth + ' px');
-
-                        if (currentWidgetWidth <= handyPortraitWidth) {
-                            $this.context.style.setProperty("--materialdesign-masonry-column-count", handyPortraitCols);
-                            $this.context.style.setProperty("--materialdesign-masonry-gaps", handyPortraitGaps + 'px');
-
-                            if (data.showResolutionAssistant) {
-                                $this.find('.masonry-helper-columns').text(handyPortraitCols);
-                                $this.find('.masonry-helper-gaps').text(handyPortraitGaps + ' px');
-                                $this.find('.masonry-helper-rule').text(_('mobil phone') + ' ' + _('portrait'));
-                            }
-
-                        } else if (currentWidgetWidth > handyPortraitWidth && currentWidgetWidth <= handyLandscapeWidth) {
-                            $this.context.style.setProperty("--materialdesign-masonry-column-count", handyLandscapeCols);
-                            $this.context.style.setProperty("--materialdesign-masonry-gaps", handyLandscapeGaps + 'px');
-
-                            if (data.showResolutionAssistant) {
-                                $this.find('.masonry-helper-columns').text(handyLandscapeCols);
-                                $this.find('.masonry-helper-gaps').text(handyLandscapeGaps + ' px');
-                                $this.find('.masonry-helper-rule').text(_('mobil phone') + ' ' + _('landscape'));
-                            }
-
-                        } else if (currentWidgetWidth > handyLandscapeWidth && currentWidgetWidth <= tabletPortraitWidth) {
-                            $this.context.style.setProperty("--materialdesign-masonry-column-count", tabletPortraitCols);
-                            $this.context.style.setProperty("--materialdesign-masonry-gaps", tabletPortraitGaps + 'px');
-
-                            if (data.showResolutionAssistant) {
-                                $this.find('.masonry-helper-columns').text(tabletPortraitCols);
-                                $this.find('.masonry-helper-gaps').text(tabletPortraitGaps + ' px');
-                                $this.find('.masonry-helper-rule').text(_('tablet') + ' ' + _('portrait'));
-                            }
-
-                        } else if (currentWidgetWidth > tabletPortraitWidth && currentWidgetWidth <= tabletLandscapeWidth) {
-                            $this.context.style.setProperty("--materialdesign-masonry-column-count", tabletLandscapeCols);
-                            $this.context.style.setProperty("--materialdesign-masonry-gaps", tabletLandscapeGaps + 'px');
-
-                            if (data.showResolutionAssistant) {
-                                $this.find('.masonry-helper-columns').text(tabletLandscapeCols);
-                                $this.find('.masonry-helper-gaps').text(tabletLandscapeGaps + ' px');
-                                $this.find('.masonry-helper-rule').text(_('tablet') + ' ' + _('landscape'));
-                            }
-
-                        } else if (currentWidgetWidth > tabletLandscapeWidth) {
-                            $this.context.style.setProperty("--materialdesign-masonry-column-count", desktopCols);
-                            $this.context.style.setProperty("--materialdesign-masonry-gaps", desktopGaps + 'px');
-
-                            if (data.showResolutionAssistant) {
-                                $this.find('.masonry-helper-columns').text(desktopCols);
-                                $this.find('.masonry-helper-gaps').text(desktopGaps + ' px');
-                                $this.find('.masonry-helper-rule').text('-');
-                            }
-                        }
-                    }
-
-                    function viewVisibilityByResolution() {
-                        for (var i = 0; i <= data.countViews; i++) {
-                            let lessThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionLessThan' + i), 50000);
-                            let greaterThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionGreaterThan' + i), 0);
-
-                            if (currentWidgetWidth < greaterThan) {
-                                $this.find(`#masonry_item_${i}`).hide();
-                            } else if (currentWidgetWidth >= greaterThan && currentWidgetWidth <= lessThan) {
-                                $this.find(`#masonry_item_${i}`).show();
-                            } else if (currentWidgetWidth > lessThan) {
-                                $this.find(`#masonry_item_${i}`).hide();
-                            } else {
-                                $this.find(`#masonry_item_${i}`).show();
-                            }
-                        }
-                    }
-
+            if (oidsNeedSubscribe) {
+                myMdwHelper.subscribeAtRuntime(oidsList, data.wid, 'Masonry', function (states) {
+                    handleWidget();
                 });
-            });
+            } else {
+                // json: hat keine objectIds
+                handleWidget();
+            }
+
+            function handleWidget() {
+                myMdwHelper.waitForElement($this, `#masonry_item_${0}`, data.wid, 'Masonry', function () {
+                    myMdwHelper.waitForRealWidth($this.context, data.wid, 'Masonry', function () {
+                        var currentWidgetWidth = $this.width();
+
+                        $(window).resize(function () {
+                            // resize event
+                            var widgetWidth = $this.width();
+
+                            if (currentWidgetWidth !== widgetWidth) {
+                                currentWidgetWidth = widgetWidth;
+                                setColumns();
+                                viewVisibilityByResolution();
+                            }
+                        });
+
+                        let desktopCols = myMdwHelper.getNumberFromData(data.countCols, 3);
+                        let desktopGaps = myMdwHelper.getNumberFromData(data.desktopGaps, 0);
+
+                        let handyPortraitWidth = myMdwHelper.getNumberFromData(data.handyPortraitWidth, 360);
+                        let handyPortraitCols = myMdwHelper.getNumberFromData(data.handyPortraitCols, 1);
+                        let handyPortraitGaps = myMdwHelper.getNumberFromData(data.handyPortraitGaps, desktopGaps);
+
+                        let handyLandscapeWidth = myMdwHelper.getNumberFromData(data.handyLandscapeWidth, 672);
+                        let handyLandscapeCols = myMdwHelper.getNumberFromData(data.handyLandscapeCols, 2);
+                        let handyLandscapeGaps = myMdwHelper.getNumberFromData(data.handyLandscapeGaps, desktopGaps);
+
+                        let tabletPortraitWidth = myMdwHelper.getNumberFromData(data.tabletPortraitWidth, 768);
+                        let tabletPortraitCols = myMdwHelper.getNumberFromData(data.tabletPortraitCols, 2);
+                        let tabletPortraitGaps = myMdwHelper.getNumberFromData(data.tabletPortraitGaps, desktopGaps);
+
+                        let tabletLandscapeWidth = myMdwHelper.getNumberFromData(data.tabletLandscapeWidth, 1024);
+                        let tabletLandscapeCols = myMdwHelper.getNumberFromData(data.tabletLandscapeCols, 3);
+                        let tabletLandscapeGaps = myMdwHelper.getNumberFromData(data.tabletLandscapeGaps, desktopGaps);
+
+                        setColumns();
+                        viewVisibilityByResolution();
+
+                        for (var i = 0; i <= data.countViews; i++) {
+                            let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
+                            viewVisibilityByCondition(i, val);
+                        }
+
+                        $this.find('.materialdesign-masonry-container').show();
+
+                        function setColumns() {
+                            if (data.showResolutionAssistant) $this.find('.masonry-helper-resolution-width').text(currentWidgetWidth + ' px');
+
+                            if (currentWidgetWidth <= handyPortraitWidth) {
+                                $this.context.style.setProperty("--materialdesign-masonry-column-count", handyPortraitCols);
+                                $this.context.style.setProperty("--materialdesign-masonry-gaps", handyPortraitGaps + 'px');
+
+                                if (data.showResolutionAssistant) {
+                                    $this.find('.masonry-helper-columns').text(handyPortraitCols);
+                                    $this.find('.masonry-helper-gaps').text(handyPortraitGaps + ' px');
+                                    $this.find('.masonry-helper-rule').text(_('mobil phone') + ' ' + _('portrait'));
+                                }
+
+                            } else if (currentWidgetWidth > handyPortraitWidth && currentWidgetWidth <= handyLandscapeWidth) {
+                                $this.context.style.setProperty("--materialdesign-masonry-column-count", handyLandscapeCols);
+                                $this.context.style.setProperty("--materialdesign-masonry-gaps", handyLandscapeGaps + 'px');
+
+                                if (data.showResolutionAssistant) {
+                                    $this.find('.masonry-helper-columns').text(handyLandscapeCols);
+                                    $this.find('.masonry-helper-gaps').text(handyLandscapeGaps + ' px');
+                                    $this.find('.masonry-helper-rule').text(_('mobil phone') + ' ' + _('landscape'));
+                                }
+
+                            } else if (currentWidgetWidth > handyLandscapeWidth && currentWidgetWidth <= tabletPortraitWidth) {
+                                $this.context.style.setProperty("--materialdesign-masonry-column-count", tabletPortraitCols);
+                                $this.context.style.setProperty("--materialdesign-masonry-gaps", tabletPortraitGaps + 'px');
+
+                                if (data.showResolutionAssistant) {
+                                    $this.find('.masonry-helper-columns').text(tabletPortraitCols);
+                                    $this.find('.masonry-helper-gaps').text(tabletPortraitGaps + ' px');
+                                    $this.find('.masonry-helper-rule').text(_('tablet') + ' ' + _('portrait'));
+                                }
+
+                            } else if (currentWidgetWidth > tabletPortraitWidth && currentWidgetWidth <= tabletLandscapeWidth) {
+                                $this.context.style.setProperty("--materialdesign-masonry-column-count", tabletLandscapeCols);
+                                $this.context.style.setProperty("--materialdesign-masonry-gaps", tabletLandscapeGaps + 'px');
+
+                                if (data.showResolutionAssistant) {
+                                    $this.find('.masonry-helper-columns').text(tabletLandscapeCols);
+                                    $this.find('.masonry-helper-gaps').text(tabletLandscapeGaps + ' px');
+                                    $this.find('.masonry-helper-rule').text(_('tablet') + ' ' + _('landscape'));
+                                }
+
+                            } else if (currentWidgetWidth > tabletLandscapeWidth) {
+                                $this.context.style.setProperty("--materialdesign-masonry-column-count", desktopCols);
+                                $this.context.style.setProperty("--materialdesign-masonry-gaps", desktopGaps + 'px');
+
+                                if (data.showResolutionAssistant) {
+                                    $this.find('.masonry-helper-columns').text(desktopCols);
+                                    $this.find('.masonry-helper-gaps').text(desktopGaps + ' px');
+                                    $this.find('.masonry-helper-rule').text('-');
+                                }
+                            }
+                        }
+
+                        function viewVisibilityByResolution() {
+                            for (var i = 0; i <= data.countViews; i++) {
+                                let lessThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionLessThan' + i), 50000);
+                                let greaterThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionGreaterThan' + i), 0);
+
+                                if (currentWidgetWidth < greaterThan) {
+                                    $this.find(`#masonry_item_${i}`).hide();
+                                } else if (currentWidgetWidth >= greaterThan && currentWidgetWidth <= lessThan) {
+                                    $this.find(`#masonry_item_${i}`).show();
+                                } else if (currentWidgetWidth > lessThan) {
+                                    $this.find(`#masonry_item_${i}`).hide();
+                                } else {
+                                    $this.find(`#masonry_item_${i}`).show();
+                                }
+                            }
+                        }
+
+                    });
+                });
+            }
 
             function viewVisibilityByCondition(index, val) {
                 let visibility = myMdwHelper.getVisibility(val, 'visibilityOid' + index, data.attr('visibilityCondition' + index), data.attr('visibilityConditionValue' + index));
@@ -270,6 +297,8 @@ vis.binds.materialdesign.views = {
         try {
             let $this = $(el);
             let viewsList = [];
+            let oidsNeedSubscribe = false;
+            let oidsList = [];
 
             let containerClass = 'materialdesign-grid';
 
@@ -288,6 +317,20 @@ vis.binds.materialdesign.views = {
                     </div>
                 </div>
                 `)
+
+                // Check if Oid is subscribed and get values
+                let visibilityOid = data.attr('visibilityOid' + i);
+                if (visibilityOid !== undefined) {
+                    let val = vis.states.attr(visibilityOid + '.val');
+                    if (val === 'null' || val === undefined) {
+                        oidsNeedSubscribe = true;
+
+                        if (!oidsList.includes(visibilityOid)) {
+                            // add if not exists
+                            oidsList.push(visibilityOid);
+                        }
+                    }
+                }
 
                 vis.states.bind(data.attr('visibilityOid' + i) + '.val', function (e, newVal, oldVal) {
                     let itemList = $this.find('.col[visibilityOid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
@@ -334,164 +377,176 @@ vis.binds.materialdesign.views = {
                 </div>
             </div>`);
 
-            myMdwHelper.waitForElement($this, `#grid-item${data.countViews}`, data.wid, 'Grid ', function () {
-                myMdwHelper.waitForRealWidth($this.context, data.wid, 'Grid', function () {
-                    var currentWidgetWidth = $this.width();
 
-                    $(window).resize(function () {
-                        // resize event
-                        var widgetWidth = $this.width();
-
-                        if (currentWidgetWidth !== widgetWidth) {
-                            currentWidgetWidth = widgetWidth;
-                            setColumns();
-                            viewVisibilityByResolution();
-                        }
-                    });
-
-                    let desktopGaps = myMdwHelper.getNumberFromData(data.desktopGaps, 0);
-
-                    let handyPortraitWidth = myMdwHelper.getNumberFromData(data.handyPortraitWidth, 360);
-                    let handyPortraitGaps = myMdwHelper.getNumberFromData(data.handyPortraitGaps, desktopGaps);
-
-                    let handyLandscapeWidth = myMdwHelper.getNumberFromData(data.handyLandscapeWidth, 672);
-                    let handyLandscapeGaps = myMdwHelper.getNumberFromData(data.handyLandscapeGaps, desktopGaps);
-
-                    let tabletPortraitWidth = myMdwHelper.getNumberFromData(data.tabletPortraitWidth, 768);
-                    let tabletPortraitGaps = myMdwHelper.getNumberFromData(data.tabletPortraitGaps, desktopGaps);
-
-                    let tabletLandscapeWidth = myMdwHelper.getNumberFromData(data.tabletLandscapeWidth, 1024);
-                    let tabletLandscapeGaps = myMdwHelper.getNumberFromData(data.tabletLandscapeGaps, desktopGaps);
-
-                    setColumns();
-                    viewVisibilityByResolution();
-
-                    for (var i = 0; i <= data.countViews; i++) {
-                        let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
-                        viewVisibilityByCondition(i, val);
-                    }
-
-                    $this.find(`.${containerClass}`).show();
-
-                    function setColumns() {
-                        if (data.showResolutionAssistant) $this.find('.grid-helper-resolution-width').text(currentWidgetWidth + ' px');
-
-                        if (currentWidgetWidth <= handyPortraitWidth) {
-                            $this.context.style.setProperty("--materialdesign-grid-gaps", handyPortraitGaps + 'px');
-
-                            if (data.showResolutionAssistant) {
-                                $this.find('.grid-helper-gaps').text(handyPortraitGaps + ' px');
-                                $this.find('.grid-helper-rule').text(_('mobil phone') + ' ' + _('portrait'));
-
-                                $this.find(`#resAssistent`).removeClass().addClass(`col col-12`);
-                            }
-
-                            for (var i = 0; i <= data.countViews; i++) {
-                                let colSpan = myMdwHelper.getNumberFromData(data.attr('handyGridPortraitColSpan' + i), 12);
-                                if (colSpan > 12) {
-                                    colSpan = 12;
-                                }
-
-                                $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
-                            }
-
-                        } else if (currentWidgetWidth > handyPortraitWidth && currentWidgetWidth <= handyLandscapeWidth) {
-                            $this.context.style.setProperty("--materialdesign-grid-gaps", handyLandscapeGaps + 'px');
-
-                            if (data.showResolutionAssistant) {
-                                $this.find('.grid-helper-gaps').text(handyLandscapeGaps + ' px');
-                                $this.find('.grid-helper-rule').text(_('mobil phone') + ' ' + _('landscape'));
-
-                                $this.find(`#resAssistent`).removeClass().addClass(`col col-12`);
-                            }
-
-                            for (var i = 0; i <= data.countViews; i++) {
-                                let colSpan = myMdwHelper.getNumberFromData(data.attr('handyGridLandscapeColSpan' + i), 6);
-                                if (colSpan > 12) {
-                                    colSpan = 12;
-                                }
-
-                                $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
-                            }
-
-                        } else if (currentWidgetWidth > handyLandscapeWidth && currentWidgetWidth <= tabletPortraitWidth) {
-                            $this.context.style.setProperty("--materialdesign-grid-gaps", tabletPortraitGaps + 'px');
-
-                            if (data.showResolutionAssistant) {
-                                $this.find('.grid-helper-gaps').text(tabletPortraitGaps + ' px');
-                                $this.find('.grid-helper-rule').text(_('tablet') + ' ' + _('portrait'));
-
-                                $this.find(`#resAssistent`).removeClass().addClass(`col col-12`);
-                            }
-
-                            for (var i = 0; i <= data.countViews; i++) {
-                                let colSpan = myMdwHelper.getNumberFromData(data.attr('tabletGridPortraitColSpan' + i), 4);
-                                if (colSpan > 12) {
-                                    colSpan = 12;
-                                }
-
-                                $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
-                            }
-
-                        } else if (currentWidgetWidth > tabletPortraitWidth && currentWidgetWidth <= tabletLandscapeWidth) {
-                            $this.context.style.setProperty("--materialdesign-grid-gaps", tabletLandscapeGaps + 'px');
-
-                            if (data.showResolutionAssistant) {
-                                $this.find('.grid-helper-gaps').text(tabletLandscapeGaps + ' px');
-                                $this.find('.grid-helper-rule').text(_('tablet') + ' ' + _('landscape'));
-
-                                $this.find(`#resAssistent`).removeClass().addClass(`col col-12`);
-                            }
-
-                            for (var i = 0; i <= data.countViews; i++) {
-                                let colSpan = myMdwHelper.getNumberFromData(data.attr('tabletGridLandscapeColSpan' + i), 3);
-                                if (colSpan > 12) {
-                                    colSpan = 12;
-                                }
-
-                                $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
-                            }
-
-                        } else if (currentWidgetWidth > tabletLandscapeWidth) {
-                            $this.context.style.setProperty("--materialdesign-grid-gaps", desktopGaps + 'px');
-
-                            if (data.showResolutionAssistant) {
-                                $this.find('.grid-helper-gaps').text(desktopGaps + ' px');
-                                $this.find('.grid-helper-rule').text('-');
-
-                                $this.find(`#resAssistent`).removeClass().addClass(`col col-12`);
-                            }
-
-                            for (var i = 0; i <= data.countViews; i++) {
-                                let colSpan = myMdwHelper.getNumberFromData(data.attr('viewColSpan' + i), 3);
-                                if (colSpan > 12) {
-                                    colSpan = 12;
-                                }
-
-                                $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
-                            }
-                        }
-                    }
-
-                    function viewVisibilityByResolution() {
-                        for (var i = 0; i <= data.countViews; i++) {
-                            let lessThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionLessThan' + i), 50000);
-                            let greaterThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionGreaterThan' + i), 0);
-
-                            if (currentWidgetWidth < greaterThan) {
-                                $this.find(`#grid-item${i}`).hide();
-                            } else if (currentWidgetWidth >= greaterThan && currentWidgetWidth <= lessThan) {
-                                $this.find(`#grid-item${i}`).show();
-                            } else if (currentWidgetWidth > lessThan) {
-                                $this.find(`#grid-item${i}`).hide();
-                            } else {
-                                $this.find(`#grid-item${i}`).show();
-                            }
-                        }
-                    }
-
+            if (oidsNeedSubscribe) {
+                myMdwHelper.subscribeAtRuntime(oidsList, data.wid, 'Grid', function (states) {
+                    handleWidget();
                 });
-            });
+            } else {
+                // json: hat keine objectIds
+                handleWidget();
+            }
+
+            function handleWidget() {
+                myMdwHelper.waitForElement($this, `#grid-item${data.countViews}`, data.wid, 'Grid ', function () {
+                    myMdwHelper.waitForRealWidth($this.context, data.wid, 'Grid', function () {
+                        var currentWidgetWidth = $this.width();
+
+                        $(window).resize(function () {
+                            // resize event
+                            var widgetWidth = $this.width();
+
+                            if (currentWidgetWidth !== widgetWidth) {
+                                currentWidgetWidth = widgetWidth;
+                                setColumns();
+                                viewVisibilityByResolution();
+                            }
+                        });
+
+                        let desktopGaps = myMdwHelper.getNumberFromData(data.desktopGaps, 0);
+
+                        let handyPortraitWidth = myMdwHelper.getNumberFromData(data.handyPortraitWidth, 360);
+                        let handyPortraitGaps = myMdwHelper.getNumberFromData(data.handyPortraitGaps, desktopGaps);
+
+                        let handyLandscapeWidth = myMdwHelper.getNumberFromData(data.handyLandscapeWidth, 672);
+                        let handyLandscapeGaps = myMdwHelper.getNumberFromData(data.handyLandscapeGaps, desktopGaps);
+
+                        let tabletPortraitWidth = myMdwHelper.getNumberFromData(data.tabletPortraitWidth, 768);
+                        let tabletPortraitGaps = myMdwHelper.getNumberFromData(data.tabletPortraitGaps, desktopGaps);
+
+                        let tabletLandscapeWidth = myMdwHelper.getNumberFromData(data.tabletLandscapeWidth, 1024);
+                        let tabletLandscapeGaps = myMdwHelper.getNumberFromData(data.tabletLandscapeGaps, desktopGaps);
+
+                        setColumns();
+                        viewVisibilityByResolution();
+
+                        for (var i = 0; i <= data.countViews; i++) {
+                            let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
+                            viewVisibilityByCondition(i, val);
+                        }
+
+                        $this.find(`.${containerClass}`).show();
+
+                        function setColumns() {
+                            if (data.showResolutionAssistant) $this.find('.grid-helper-resolution-width').text(currentWidgetWidth + ' px');
+
+                            if (currentWidgetWidth <= handyPortraitWidth) {
+                                $this.context.style.setProperty("--materialdesign-grid-gaps", handyPortraitGaps + 'px');
+
+                                if (data.showResolutionAssistant) {
+                                    $this.find('.grid-helper-gaps').text(handyPortraitGaps + ' px');
+                                    $this.find('.grid-helper-rule').text(_('mobil phone') + ' ' + _('portrait'));
+
+                                    $this.find(`#resAssistent`).removeClass().addClass(`col col-12`);
+                                }
+
+                                for (var i = 0; i <= data.countViews; i++) {
+                                    let colSpan = myMdwHelper.getNumberFromData(data.attr('handyGridPortraitColSpan' + i), 12);
+                                    if (colSpan > 12) {
+                                        colSpan = 12;
+                                    }
+
+                                    $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
+                                }
+
+                            } else if (currentWidgetWidth > handyPortraitWidth && currentWidgetWidth <= handyLandscapeWidth) {
+                                $this.context.style.setProperty("--materialdesign-grid-gaps", handyLandscapeGaps + 'px');
+
+                                if (data.showResolutionAssistant) {
+                                    $this.find('.grid-helper-gaps').text(handyLandscapeGaps + ' px');
+                                    $this.find('.grid-helper-rule').text(_('mobil phone') + ' ' + _('landscape'));
+
+                                    $this.find(`#resAssistent`).removeClass().addClass(`col col-12`);
+                                }
+
+                                for (var i = 0; i <= data.countViews; i++) {
+                                    let colSpan = myMdwHelper.getNumberFromData(data.attr('handyGridLandscapeColSpan' + i), 6);
+                                    if (colSpan > 12) {
+                                        colSpan = 12;
+                                    }
+
+                                    $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
+                                }
+
+                            } else if (currentWidgetWidth > handyLandscapeWidth && currentWidgetWidth <= tabletPortraitWidth) {
+                                $this.context.style.setProperty("--materialdesign-grid-gaps", tabletPortraitGaps + 'px');
+
+                                if (data.showResolutionAssistant) {
+                                    $this.find('.grid-helper-gaps').text(tabletPortraitGaps + ' px');
+                                    $this.find('.grid-helper-rule').text(_('tablet') + ' ' + _('portrait'));
+
+                                    $this.find(`#resAssistent`).removeClass().addClass(`col col-12`);
+                                }
+
+                                for (var i = 0; i <= data.countViews; i++) {
+                                    let colSpan = myMdwHelper.getNumberFromData(data.attr('tabletGridPortraitColSpan' + i), 4);
+                                    if (colSpan > 12) {
+                                        colSpan = 12;
+                                    }
+
+                                    $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
+                                }
+
+                            } else if (currentWidgetWidth > tabletPortraitWidth && currentWidgetWidth <= tabletLandscapeWidth) {
+                                $this.context.style.setProperty("--materialdesign-grid-gaps", tabletLandscapeGaps + 'px');
+
+                                if (data.showResolutionAssistant) {
+                                    $this.find('.grid-helper-gaps').text(tabletLandscapeGaps + ' px');
+                                    $this.find('.grid-helper-rule').text(_('tablet') + ' ' + _('landscape'));
+
+                                    $this.find(`#resAssistent`).removeClass().addClass(`col col-12`);
+                                }
+
+                                for (var i = 0; i <= data.countViews; i++) {
+                                    let colSpan = myMdwHelper.getNumberFromData(data.attr('tabletGridLandscapeColSpan' + i), 3);
+                                    if (colSpan > 12) {
+                                        colSpan = 12;
+                                    }
+
+                                    $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
+                                }
+
+                            } else if (currentWidgetWidth > tabletLandscapeWidth) {
+                                $this.context.style.setProperty("--materialdesign-grid-gaps", desktopGaps + 'px');
+
+                                if (data.showResolutionAssistant) {
+                                    $this.find('.grid-helper-gaps').text(desktopGaps + ' px');
+                                    $this.find('.grid-helper-rule').text('-');
+
+                                    $this.find(`#resAssistent`).removeClass().addClass(`col col-12`);
+                                }
+
+                                for (var i = 0; i <= data.countViews; i++) {
+                                    let colSpan = myMdwHelper.getNumberFromData(data.attr('viewColSpan' + i), 3);
+                                    if (colSpan > 12) {
+                                        colSpan = 12;
+                                    }
+
+                                    $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
+                                }
+                            }
+                        }
+
+                        function viewVisibilityByResolution() {
+                            for (var i = 0; i <= data.countViews; i++) {
+                                let lessThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionLessThan' + i), 50000);
+                                let greaterThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionGreaterThan' + i), 0);
+
+                                if (currentWidgetWidth < greaterThan) {
+                                    $this.find(`#grid-item${i}`).hide();
+                                } else if (currentWidgetWidth >= greaterThan && currentWidgetWidth <= lessThan) {
+                                    $this.find(`#grid-item${i}`).show();
+                                } else if (currentWidgetWidth > lessThan) {
+                                    $this.find(`#grid-item${i}`).hide();
+                                } else {
+                                    $this.find(`#grid-item${i}`).show();
+                                }
+                            }
+                        }
+
+                    });
+                });
+            }
 
             function viewVisibilityByCondition(index, val) {
                 let visibility = myMdwHelper.getVisibility(val, 'visibilityOid' + index, data.attr('visibilityCondition' + index), data.attr('visibilityConditionValue' + index));

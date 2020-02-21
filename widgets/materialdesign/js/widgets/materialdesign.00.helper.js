@@ -267,7 +267,7 @@ vis.binds.materialdesign.helper = {
                 // is material-icons
                 element.replaceWith(`<span class="mdi mdi-${icon} ${className}" 
                                                 style="width: ${height}; height: ${height}; font-size: ${height}; color: ${color}; ${style};"></span>`)
-            }            
+            }
         }
     },
     changeListIconElement: function (parentElement, iconData, width, height, iconColor = '', style = '') {
@@ -352,6 +352,34 @@ vis.binds.materialdesign.helper = {
             }
         } else {
             return (condition === 'not exist');
+        }
+    },
+    subscribeAtRuntime(oidList, wid, widgetName, callback) {
+        if (oidList && oidList !== null && oidList.length > 0) {
+            console.log(`[subscribeAtRuntime] ${widgetName} (${wid}): subscribing states: ${oidList.join(", ")}`);
+            vis.conn.subscribe(oidList, function () {
+                // json: auf objectIds subscriben um Änderungen ausßerhalb der vis mitzubekommen
+                vis.conn._socket.emit('getStates', oidList, function (error, states) {
+                    if (error) {
+                        console.error(`[subscribeAtRuntime] ${widgetName} (${wid}): error: ${error}`);
+                    }
+                    if (!states) {
+                        console.error(`[subscribeAtRuntime] ${widgetName} (${wid}): states is null (${oidList})`);
+                    }
+
+                    if (states !== undefined && states !== null && Object.keys(states).length > 0) {
+                        for (var i = 0; i <= oidList.length -1; i++) {
+                            // states müssen aktualisiert werden, damit nach laden richtige val angezeigt werden                      
+                            vis.updateState(oidList[i], states[oidList[i]]);
+                            console.log(`[subscribeAtRuntime] ${widgetName} (${wid}): state updated: ${oidList[i]}`);
+                        }
+                    }
+
+                    callback(states);
+                });
+            });
+        } else {
+            callback(null);
         }
     }
 };

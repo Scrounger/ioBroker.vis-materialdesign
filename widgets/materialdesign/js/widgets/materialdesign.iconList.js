@@ -13,10 +13,10 @@ vis.binds.materialdesign.iconlist =
             let $this = $(el);
 
             let jsonData = null;
-            let jsonOids = [];
             let countOfItems = 0;
             let containerClass = 'materialdesign-icon-list-container';
             let oidsNeedSubscribe = false;
+            let oidsList = [];
 
             if (data.listItemDataMethod === 'jsonStringObject') {
                 try {
@@ -58,12 +58,12 @@ vis.binds.materialdesign.iconlist =
             for (var i = 0; i <= countOfItems; i++) {
                 let listItemObj = getListItemObj(i, data, jsonData);
 
-                if (listItemObj.objectId && listItemObj.objectId !== null && listItemObj.objectId !== '') {
-                    if (!jsonOids.includes(listItemObj.objectId)) {
-                        // add if not exists
-                        jsonOids.push(listItemObj.objectId);
-                    }
-                }
+                // if (listItemObj.objectId && listItemObj.objectId !== null && listItemObj.objectId !== '') {
+                //     if (!oidsList.includes(listItemObj.objectId)) {
+                //         // add if not exists
+                //         oidsList.push(listItemObj.objectId);
+                //     }
+                // }
 
                 let imageElement = '';
                 if (listItemObj.listType === 'text') {
@@ -79,9 +79,17 @@ vis.binds.materialdesign.iconlist =
                                     </div>`
                 }
 
+                // Check if Oid is subscribed and get values
                 let val = vis.states.attr(listItemObj.objectId + '.val');
-                if (val === 'null' || val === undefined) {
-                    oidsNeedSubscribe = true;
+                if (listItemObj.objectId !== undefined && listItemObj.objectId !== null && listItemObj.objectId !== '') {
+                    if (val === 'null' || val === undefined) {                                            
+                        oidsNeedSubscribe = true;
+
+                        if (!oidsList.includes(listItemObj.objectId)) {
+                            // add if not exists
+                            oidsList.push(listItemObj.objectId);
+                        }
+                    }
                 }
 
                 if (data.itemLayout === 'vertical') {
@@ -138,24 +146,14 @@ vis.binds.materialdesign.iconlist =
             $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-family", myMdwHelper.getValueFromData(data.valueFontFamily, 'inherit'));
             $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-color", myMdwHelper.getValueFromData(data.valueFontColor, ''));
 
-            $this.context.style.setProperty("--materialdesign-icon-list-item-layout-horizontal-image-container-width", myMdwHelper.getStringFromNumberData(data.verticalIconContainerWidth, 'auto', '', 'px'));            
+            $this.context.style.setProperty("--materialdesign-icon-list-item-layout-horizontal-image-container-width", myMdwHelper.getStringFromNumberData(data.verticalIconContainerWidth, 'auto', '', 'px'));
 
             if (data.listItemDataMethod === 'inputPerEditor') {
                 handleWidget();
             } else {
-                if (oidsNeedSubscribe && jsonOids && jsonOids !== null && jsonOids.length > 0) {
-                    // json: objectIds sind beim Laden der ggf. Runtime nicht bekannt
-                    vis.conn.subscribe(jsonOids, function () {
-                        // json: auf objectIds subscriben um Änderungen ausßerhalb der vis mitzubekommen
-                        vis.conn._socket.emit('getStates', function (error, jsonStates) {
-                            if (error) {
-                                console.error(`[IconList ${data.wid}] error: ${error}`);
-                            }
-                            if (!jsonData) {
-                                console.error(`[IconList ${data.wid}] jsonStates is null (${jsonOids})`);
-                            }
-                            handleWidget(jsonStates);
-                        });
+                if (oidsNeedSubscribe) {
+                    myMdwHelper.subscribeAtRuntime(oidsList, data.wid, 'IconList', function (states) {
+                        handleWidget(states);
                     });
                 } else {
                     // json: hat keine objectIds
@@ -163,19 +161,19 @@ vis.binds.materialdesign.iconlist =
                 }
             }
 
-            function handleWidget(jsonStates = undefined) {
+            function handleWidget() {
                 // myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'IconList', function () {
                 let iconButtons = $this.find('.materialdesign-icon-button');
 
                 for (var i = 0; i <= iconButtons.length - 1; i++) {
                     let listItemObj = getListItemObj(i, data, jsonData);
 
-                    if (jsonStates && jsonStates !== undefined && jsonStates !== null && listItemObj.objectId && listItemObj.objectId !== null && listItemObj.objectId !== '') {
-                        // json: states müssen aktualisiert werden, damit nach laden richtige val angezeigt werden
-                        if (jsonStates[listItemObj.objectId]) {
-                            vis.updateState(listItemObj.objectId, jsonStates[listItemObj.objectId]);
-                        }
-                    }
+                    // if (jsonStates && jsonStates !== undefined && jsonStates !== null && listItemObj.objectId && listItemObj.objectId !== null && listItemObj.objectId !== '') {
+                    //     // json: states müssen aktualisiert werden, damit nach laden richtige val angezeigt werden
+                    //     if (jsonStates[listItemObj.objectId]) {
+                    //         vis.updateState(listItemObj.objectId, jsonStates[listItemObj.objectId]);
+                    //     }
+                    // }
 
                     // set ripple effect to icon buttons
                     let mdcButton = new mdc.iconButton.MDCIconButtonToggle(iconButtons.get(i));
