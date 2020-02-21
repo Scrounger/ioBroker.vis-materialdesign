@@ -387,6 +387,13 @@ vis.binds.materialdesign.helper = {
         } else {
             callback(null);
         }
+    },
+    getViewOfWidget(wid) {
+        for (var view in vis.views) {
+            if (vis.views[view].widgets && vis.views[view].widgets[wid]) {
+                return vis.views[view].name;
+            }
+        }
     }
 };
 
