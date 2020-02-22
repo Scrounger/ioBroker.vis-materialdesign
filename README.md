@@ -908,7 +908,11 @@ ical2CalendarWidget();
 
 ## Changelog
 
-### 0.3.xx
+### 0.2.59
+* (Scrounger): Buttons Toggle: option for push function added
+* (Scrounger): IconList Widget added
+* (Scrounger): Alerts Widget: show dummy message in Editor
+* (Scrounger): Grid Views Widget added
 * (Scrounger): List Widget: color option for switch added
 * (Scrounger): List Widget: dynamic generate item using json string
 * (Scrounger): Masonry Views Widget: visible condition added
