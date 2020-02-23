@@ -246,7 +246,7 @@ vis.binds.materialdesign.list = {
                         input.each(function (d) {
                             // kann mit mehreren oid verknüpft sein
                             let index = input.eq(d).attr('itemindex');
-                            listItemObj = getListItemObj(index, data, jsonData);
+                            listItemObj = vis.binds.materialdesign.list.getListItemObj(index, data, jsonData);
                             mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(index, newVal);
                             setLayout(index, newVal, listItemObj);
                         });
@@ -263,7 +263,7 @@ vis.binds.materialdesign.list = {
                         input.each(function (d) {
                             // kann mit mehreren oid verknüpft sein
                             let index = parseInt(input.eq(d).attr('id').replace('listItem_', ''));
-                            listItemObj = getListItemObj(index, data, jsonData);
+                            listItemObj = vis.binds.materialdesign.list.getListItemObj(index, data, jsonData);
                             setLayout(index, newVal, listItemObj);
                         });
                     });
