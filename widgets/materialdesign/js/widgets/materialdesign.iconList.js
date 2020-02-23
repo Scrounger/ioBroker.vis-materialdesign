@@ -74,20 +74,8 @@ vis.binds.materialdesign.iconlist =
                                     </div>`
                 }
 
-                // Check if Oid is subscribed and prepare list for getting values
-                let val = vis.states.attr(listItemObj.objectId + '.val');
-                if (listItemObj.objectId !== undefined && listItemObj.objectId !== null && listItemObj.objectId !== '') {
-                    if (val === 'null' || val === undefined) {
-                        oidsNeedSubscribe = true;
-
-                        if (!oidsList.includes(listItemObj.objectId)) {
-                            // add if not exists
-                            oidsList.push(listItemObj.objectId);
-                        }
-                    }
-                }
-
                 let element = ''
+                let val = vis.states.attr(listItemObj.objectId + '.val');
                 if (data.itemLayout === 'vertical') {
                     element = `
                         <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" ${(listItemObj.listType !== 'text' && val === 'null') ? 'style="display: none;"' : ''}>
@@ -112,6 +100,12 @@ vis.binds.materialdesign.iconlist =
                             <div class="materialdesign-icon-list-item-layout-horizontal-status-line" style="background: ${listItemObj.statusBarColor};"></div>
                         </div>
                     `;
+                }
+
+                // Check if Oid is subscribed and put to vis subscribing object
+                if (!vis.editMode && !vis.subscribing.byViews[viewOfWidget].includes(jsonData[i].objectId)) {
+                    vis.subscribing.byViews[viewOfWidget].push(jsonData[i].objectId)
+                    oidsNeedSubscribe = true;
                 }
 
                 // Check if Bindings is subscribed and prepare list for getting values
@@ -178,7 +172,7 @@ vis.binds.materialdesign.iconlist =
                 handleWidget();
             } else {
                 if (oidsNeedSubscribe) {
-                    myMdwHelper.subscribeAtRuntime(oidsList, data.wid, 'IconList', function (states) {
+                    myMdwHelper.subscribeStatesAtRuntime(viewOfWidget, function (states) {
                         handleWidget();
                     });
                 } else {

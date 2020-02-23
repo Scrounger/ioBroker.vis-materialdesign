@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.60"
+    version: "0.2.59"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -54,7 +54,7 @@ vis.binds.materialdesign.helper = {
     },
     installedVersion: function (el, data) {
         setTimeout(function () {
-            let version = 'version: "0.2.60"'
+            let version = 'version: "0.2.59"'
             console.log(version);
             $(el).find('#versionNumber').text(version.replace('version: "', '').replace('"', ''));
         }, 1)
@@ -354,46 +354,48 @@ vis.binds.materialdesign.helper = {
             return (condition === 'not exist');
         }
     },
-    subscribeAtRuntime(oidList, wid, widgetName, callback) {
-        if (oidList && oidList !== null && oidList.length > 0) {
-            console.log(`[subscribeAtRuntime] ${widgetName} (${wid}): subscribing states: ${oidList.join(", ")}`);
-            vis.conn.subscribe(oidList, function () {
-                // json: auf objectIds subscriben um Änderungen ausßerhalb der vis mitzubekommen
-                vis.conn._socket.emit('getStates', oidList, function (error, states) {
-                    if (error) {
-                        console.error(`[subscribeAtRuntime] ${widgetName} (${wid}): error: ${error}`);
-                    }
-                    if (!states) {
-                        console.error(`[subscribeAtRuntime] ${widgetName} (${wid}): states is null (${oidList})`);
-                    }
-
-                    if (states !== undefined && Object.keys(states).length > 0) {
-                        for (var i = 0; i <= oidList.length - 1; i++) {
-                            // states müssen aktualisiert werden, damit nach laden richtige val angezeigt werden
-                            let state = states[oidList[i]];
-
-                            if (state !== null) {
-                                vis.updateState(oidList[i], state);
-                                console.log(`[subscribeAtRuntime] ${widgetName} (${wid}): state updated: ${oidList[i]}`);
-                            } else {
-                                console.warn(`[subscribeAtRuntime] ${widgetName} (${wid}): state is null: ${oidList[i]}`);
-                            }
-                        }
-                    }
-
-                    callback(states);
-                });
-            });
-        } else {
-            callback(null);
-        }
-    },
     getViewOfWidget(wid) {
         for (var view in vis.views) {
             if (vis.views[view].widgets && vis.views[view].widgets[wid]) {
-                // return vis.views[view].name;
                 return view;
             }
+        }
+    },
+    subscribeStatesAtRuntime(view, callback) {
+        // modified from vis.js -> https://github.com/ioBroker/ioBroker.vis/blob/2a08ee6da626a65b9d0b42b8679563e74272bfc6/www/js/vis.js#L2710
+
+        if (!view || vis.editMode) {
+            if (callback) callback();
+            return;
+        }
+
+        if (!vis.subscribing.activeViews.includes(view)) {
+            vis.subscribing.activeViews.push(view);
+        }
+
+        vis.subscribing.byViews[view] = vis.subscribing.byViews[view] || [];
+
+        // subscribe
+        var oids = [];
+        for (var i = 0; i < vis.subscribing.byViews[view].length; i++) {
+            if (vis.subscribing.active.indexOf(vis.subscribing.byViews[view][i]) === -1) {
+                vis.subscribing.active.push(vis.subscribing.byViews[view][i]);
+                oids.push(vis.subscribing.byViews[view][i]);
+            }
+        }
+
+        if (oids.length) {
+            var that = vis;
+            console.debug('[' + Date.now() + '] Request ' + oids.length + ' states.');
+            vis.conn.getStates(oids, function (error, data) {
+                if (error) that.showError(error);
+
+                that.updateStates(data);
+                that.conn.subscribe(oids);
+                if (callback) callback();
+            });
+        } else {
+            if (callback) callback();
         }
     }
 };
