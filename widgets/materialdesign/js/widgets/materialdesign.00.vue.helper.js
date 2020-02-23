@@ -240,7 +240,7 @@ vis.binds.materialdesign.vueHelper = {
             let selectId = $el.find('.v-input__slot').attr('aria-owns');
 
             if (itemsList.length > 0) {
-                myMdwHelper.waitForElement($vuetifyContainer, '#' + selectId, function () {
+                myMdwHelper.waitForElement($vuetifyContainer, '#' + selectId, data.wid, 'Select', function () {
 
                     // corresponding select object create -> set style options
                     let selectList = $vuetifyContainer.find(`#${selectId} .v-list`).get(0);
@@ -507,8 +507,9 @@ vis.binds.materialdesign.vueHelper = {
         }
     },
     getObjectByValue: function (val, itemsList, inputMode = '') {
+
         var result = itemsList.filter(obj => {
-            return obj.value === val;
+            return obj.value.toString() === val.toString();
         });
 
         if (result.length === 1) {
