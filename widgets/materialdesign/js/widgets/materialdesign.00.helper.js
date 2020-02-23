@@ -391,7 +391,8 @@ vis.binds.materialdesign.helper = {
     getViewOfWidget(wid) {
         for (var view in vis.views) {
             if (vis.views[view].widgets && vis.views[view].widgets[wid]) {
-                return vis.views[view].name;
+                // return vis.views[view].name;
+                return view;
             }
         }
     }
