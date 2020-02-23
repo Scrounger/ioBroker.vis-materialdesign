@@ -11,6 +11,7 @@ vis.binds.materialdesign.iconlist =
     function (el, data) {
         try {
             let $this = $(el);
+            let widgetName = 'IconList';
             let viewOfWidget = myMdwHelper.getViewOfWidget(data.wid);
 
             let jsonData = null;
@@ -103,10 +104,7 @@ vis.binds.materialdesign.iconlist =
                 }
 
                 // Check if Oid is subscribed and put to vis subscribing object
-                if (!vis.editMode && !vis.subscribing.byViews[viewOfWidget].includes(jsonData[i].objectId)) {
-                    vis.subscribing.byViews[viewOfWidget].push(jsonData[i].objectId)
-                    oidsNeedSubscribe = true;
-                }
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(listItemObj.objectId, data.wid, widgetName, oidsNeedSubscribe);
 
                 // Check if Bindings is subscribed and prepare list for getting values
                 let bindings = extractBinding(element);
@@ -168,17 +166,13 @@ vis.binds.materialdesign.iconlist =
 
             $this.context.style.setProperty("--materialdesign-icon-list-item-layout-horizontal-image-container-width", myMdwHelper.getStringFromNumberData(data.verticalIconContainerWidth, 'auto', '', 'px'));
 
-            if (data.listItemDataMethod === 'inputPerEditor') {
-                handleWidget();
-            } else {
-                if (oidsNeedSubscribe) {
-                    myMdwHelper.subscribeStatesAtRuntime(viewOfWidget, function (states) {
-                        handleWidget();
-                    });
-                } else {
-                    // json: hat keine objectIds / bindings bzw. bereits subscribed
+            if (oidsNeedSubscribe) {
+                myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
                     handleWidget();
-                }
+                });
+            } else {
+                // json: hat keine objectIds / bindings bzw. bereits subscribed
+                handleWidget();
             }
 
             function handleWidget() {
@@ -194,7 +188,7 @@ vis.binds.materialdesign.iconlist =
                     </div>
                 `);
 
-                // myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'IconList', function () {
+                // myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, widgetName, function () {
                 let iconButtons = $this.find('.materialdesign-icon-button');
 
                 for (var i = 0; i <= iconButtons.length - 1; i++) {

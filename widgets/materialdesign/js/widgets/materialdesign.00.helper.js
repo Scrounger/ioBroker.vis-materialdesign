@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.59"
+    version: "0.2.60"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -361,8 +361,28 @@ vis.binds.materialdesign.helper = {
             }
         }
     },
-    subscribeStatesAtRuntime(view, callback) {
+    oidNeedSubscribe(oid, wid, widgetName, oidNeedSubscribe) {
+        let view = vis.binds.materialdesign.helper.getViewOfWidget(wid);
+
+        if (oid !== undefined) {
+            // Check if Oid is subscribed and put to vis subscribing object
+            if (!vis.editMode && !vis.subscribing.byViews[view].includes(oid)) {
+                vis.subscribing.byViews[view].push(oid)
+
+                console.log(`[oidNeedSubscribe] ${widgetName} (${wid}): oid '${oid}' need subscribe`);
+
+                return true;
+            }
+        }
+
+        return oidNeedSubscribe;
+    },
+    subscribeStatesAtRuntime(wid, widgetName, callback) {
         // modified from vis.js -> https://github.com/ioBroker/ioBroker.vis/blob/2a08ee6da626a65b9d0b42b8679563e74272bfc6/www/js/vis.js#L2710
+
+        console.log(`[subscribeStatesAtRuntime] ${widgetName} (${wid}) subscribe states at runtime`);
+        
+        let view = vis.binds.materialdesign.helper.getViewOfWidget(wid);
 
         if (!view || vis.editMode) {
             if (callback) callback();

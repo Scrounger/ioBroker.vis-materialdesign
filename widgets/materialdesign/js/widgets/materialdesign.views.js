@@ -59,7 +59,7 @@ vis.binds.materialdesign.views = {
     masonry: function (el, data) {
         try {
             let $this = $(el);
-            let viewOfWidget = myMdwHelper.getViewOfWidget(data.wid);
+            let widgetName = 'Masonry';
 
             let viewsList = [];
             let oidsNeedSubscribe = false;
@@ -90,15 +90,8 @@ vis.binds.materialdesign.views = {
                     </div>
                     `)
 
-                // Check if Oid is subscribed and get values
-                let visibilityOid = data.attr('visibilityOid' + i);
-                if (visibilityOid !== undefined) {
-                    // Check if Oid is subscribed and put to vis subscribing object
-                    if (!vis.editMode && !vis.subscribing.byViews[viewOfWidget].includes(data.attr('visibilityOid' + i))) {
-                        vis.subscribing.byViews[viewOfWidget].push(data.attr('visibilityOid' + i))
-                        oidsNeedSubscribe = true;
-                    }
-                }
+                // Check if Oid is subscribed and put to vis subscribing object
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(data.attr('visibilityOid' + i), data.wid, widgetName, oidsNeedSubscribe);
 
                 vis.states.bind(data.attr('visibilityOid' + i) + '.val', function (e, newVal, oldVal) {
                     let itemList = $this.find('.materialdesign-masonry-item[visibilityOid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
@@ -148,7 +141,7 @@ vis.binds.materialdesign.views = {
             `);
 
             if (oidsNeedSubscribe) {
-                myMdwHelper.subscribeStatesAtRuntime(viewOfWidget, function () {
+                myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
                     handleWidget();
                 });
             } else {
@@ -293,7 +286,7 @@ vis.binds.materialdesign.views = {
     grid: function (el, data) {
         try {
             let $this = $(el);
-            let viewOfWidget = myMdwHelper.getViewOfWidget(data.wid);
+            let widgetName = 'Grid';
 
             let viewsList = [];
             let oidsNeedSubscribe = false;
@@ -316,15 +309,8 @@ vis.binds.materialdesign.views = {
                 </div>
                 `)
 
-                // Check if Oid is subscribed and get values
-                let visibilityOid = data.attr('visibilityOid' + i);
-                if (visibilityOid !== undefined) {
-                    // Check if Oid is subscribed and put to vis subscribing object
-                    if (!vis.editMode && !vis.subscribing.byViews[viewOfWidget].includes(data.attr('visibilityOid' + i))) {
-                        vis.subscribing.byViews[viewOfWidget].push(data.attr('visibilityOid' + i))
-                        oidsNeedSubscribe = true;
-                    }
-                }
+                // Check if Oid is subscribed and put to vis subscribing object
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(data.attr('visibilityOid' + i), data.wid, widgetName, oidsNeedSubscribe);
 
                 vis.states.bind(data.attr('visibilityOid' + i) + '.val', function (e, newVal, oldVal) {
                     let itemList = $this.find('.col[visibilityOid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
@@ -373,7 +359,7 @@ vis.binds.materialdesign.views = {
 
 
             if (oidsNeedSubscribe) {
-                myMdwHelper.subscribeStatesAtRuntime(viewOfWidget, function () {
+                myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
                     handleWidget();
                 });
             } else {
