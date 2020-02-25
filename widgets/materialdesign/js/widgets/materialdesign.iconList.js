@@ -12,14 +12,12 @@ vis.binds.materialdesign.iconlist =
         try {
             let $this = $(el);
             let widgetName = 'IconList';
-            let viewOfWidget = myMdwHelper.getViewOfWidget(data.wid);
 
             let itemList = [];
             let jsonData = null;
             let countOfItems = 0;
             let containerClass = 'materialdesign-icon-list-container';
             let oidsNeedSubscribe = false;
-            let oidsList = [];
             let bindingTokenList = [];
 
             $this.context.style.setProperty("--materialdesign-icon-list-items-per-row", myMdwHelper.getNumberFromData(data.maxItemsperRow, 1));
@@ -77,11 +75,15 @@ vis.binds.materialdesign.iconlist =
 
             function generateContent() {
                 itemList = [];
+                bindingTokenList = [];
                 oidsNeedSubscribe = false;
 
                 if (data.listItemDataMethod === 'jsonStringObject') {
                     try {
                         jsonData = JSON.parse(vis.states.attr(data.json_string_oid + '.val'));
+
+                        // console.log(data.wid + ': ' + vis.states.attr(data.json_string_oid + '.val'));
+
                         countOfItems = jsonData.length - 1;
                     } catch (err) {
                         jsonData = [
@@ -153,61 +155,34 @@ vis.binds.materialdesign.iconlist =
                     // Check if Oid is subscribed and put to vis subscribing object
                     oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(listItemObj.objectId, data.wid, widgetName, oidsNeedSubscribe);
 
-                    // // Check if Bindings is subscribed and prepare list for getting values
-                    // let bindings = extractBinding(element);
-                    // if (bindings !== 'null' && bindings !== null) {
-                    //     if (bindings.length > 0) {
-                    //         for (var b = 0; b <= bindings.length - 1; b++) {
-                    //             bindingTokenList.push(bindings[b].token);
-
-                    //             if (vis.bindings.hasOwnProperty([bindings[b].systemOid]) === false) {
-                    //                 let val = vis.states.attr(bindings[b].visOid + '.val');
-
-                    //                 if (val === 'null' || val === undefined) {
-                    //                     oidsNeedSubscribe = true;
-
-                    //                     if (!oidsList.includes(bindings[b].systemOid)) {
-                    //                         oidsList.push(bindings[b].systemOid);
-                    //                     }
-
-                    //                     vis.bindings[[bindings[b].systemOid]] = [{
-                    //                         visOid: bindings[b].visOid,
-                    //                         systemOid: bindings[b].visOid,
-                    //                         token: bindings[b].visOid,
-                    //                         format: bindings[b].format,
-                    //                         isSeconds: bindings[b].isSeconds,
-                    //                         type: "data",
-                    //                         attr: undefined,
-                    //                         view: viewOfWidget,
-                    //                         widget: data.wid
-                    //                     }]
-                    //                 }
-                    //             }
-                    //         }
-                    //     }
-                    // }
+                    // Check if Bindings is subscribed and put to vis subcribing and bindings object 
+                    let bindingResult = myMdwHelper.bindingNeedSubscribe(element, data.wid, widgetName, oidsNeedSubscribe);
+                    oidsNeedSubscribe = bindingResult.oidNeedSubscribe;
+                    bindingTokenList = bindingTokenList.concat(bindingResult.bindingTokenList);
 
                     itemList.push(element);
                 }
             }
 
             function appendContent(replace = false) {
-                // if (bindingTokenList.length > 0) {
-                //     for (var b = 0; b <= bindingTokenList.length - 1; b++) {
-                //         widgetElement = widgetElement.replace(bindingTokenList[b], vis.formatBinding(bindingTokenList[b]))
-                //     }
-                // }
+                let widgetElement = itemList.join("");
+
+                if (bindingTokenList.length > 0) {
+                    for (var b = 0; b <= bindingTokenList.length - 1; b++) {
+                        widgetElement = widgetElement.replace(bindingTokenList[b], vis.formatBinding(bindingTokenList[b]))
+                    }
+                }
 
                 if (!replace) {
                     $this.append(`
                         <div class="materialdesign-icon-list-container" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap; width: 100%;"' : ''}>
-                            ${itemList.join("")}
+                            ${widgetElement}
                         </div>
                     `);
                 } else {
                     $this.find(`.${containerClass}`).replaceWith(`
                         <div class="materialdesign-icon-list-container" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap; width: 100%;"' : ''}>
-                            ${itemList.join("")}
+                            ${widgetElement}
                         </div>              
                     `);
                 }

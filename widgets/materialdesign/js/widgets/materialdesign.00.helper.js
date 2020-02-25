@@ -361,7 +361,7 @@ vis.binds.materialdesign.helper = {
             }
         }
     },
-    oidNeedSubscribe(oid, wid, widgetName, oidNeedSubscribe) {
+    oidNeedSubscribe(oid, wid, widgetName, oidNeedSubscribe, isBinding = false) {
         let view = vis.binds.materialdesign.helper.getViewOfWidget(wid);
 
         if (oid !== undefined) {
@@ -369,7 +369,11 @@ vis.binds.materialdesign.helper = {
             if (!vis.editMode && !vis.subscribing.byViews[view].includes(oid)) {
                 vis.subscribing.byViews[view].push(oid)
 
-                console.log(`[oidNeedSubscribe] ${widgetName} (${wid}): oid '${oid}' need subscribe`);
+                if (!isBinding) {
+                    console.log(`[oidNeedSubscribe] ${widgetName} (${wid}): oid '${oid}' need subscribe`);
+                } else {
+                    console.log(`[oidNeedSubscribe] ${widgetName} (${wid}): binding '${oid}' need subscribe`);
+                }
 
                 return true;
             }
@@ -377,11 +381,41 @@ vis.binds.materialdesign.helper = {
 
         return oidNeedSubscribe;
     },
+    bindingNeedSubscribe(element, wid, widgetName, oidNeedSubscribe) {
+        let result = { bindingTokenList: [], oidNeedSubscribe: oidNeedSubscribe };
+
+        let bindings = vis.extractBinding(element);
+
+        if (bindings !== 'null' && bindings !== null && bindings.length > 0) {
+            for (var b = 0; b <= bindings.length - 1; b++) {
+                result.bindingTokenList.push(bindings[b].token);
+
+                if (vis.bindings.hasOwnProperty([bindings[b].systemOid]) === false) {
+                    result.oidNeedSubscribe = vis.binds.materialdesign.helper.oidNeedSubscribe(bindings[b].systemOid, wid, widgetName, oidNeedSubscribe, true);
+
+                    vis.bindings[[bindings[b].systemOid]] = [{
+                        visOid: bindings[b].visOid,
+                        systemOid: bindings[b].visOid,
+                        token: bindings[b].visOid,
+                        format: bindings[b].format,
+                        isSeconds: bindings[b].isSeconds,
+                        operations: bindings[b].operations,
+                        type: "data",
+                        attr: bindings[b].systemOid,
+                        view: vis.binds.materialdesign.helper.getViewOfWidget(wid),
+                        widget: wid
+                    }]
+                }
+            }
+        }
+
+        return result;
+    },
     subscribeStatesAtRuntime(wid, widgetName, callback) {
         // modified from vis.js -> https://github.com/ioBroker/ioBroker.vis/blob/2a08ee6da626a65b9d0b42b8679563e74272bfc6/www/js/vis.js#L2710
 
         console.log(`[subscribeStatesAtRuntime] ${widgetName} (${wid}) subscribe states at runtime`);
-        
+
         let view = vis.binds.materialdesign.helper.getViewOfWidget(wid);
 
         if (!view || vis.editMode) {
@@ -407,7 +441,7 @@ vis.binds.materialdesign.helper = {
         if (oids.length) {
             var that = vis;
             console.debug('[' + Date.now() + '] Request ' + oids.length + ' states.');
-            vis.conn.getStates(oids, function (error, data) {
+            vis.conn._socket.emit('getStates', oids, function (error, data) {
                 if (error) that.showError(error);
 
                 that.updateStates(data);
