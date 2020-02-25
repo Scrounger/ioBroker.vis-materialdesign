@@ -58,17 +58,18 @@ vis.binds.materialdesign.iconlist =
 
             vis.states.bind(data.json_string_oid + '.val', function (e, newVal, oldVal) {
                 // json Object changed
-                // $this.find(`.${containerClass}`).empty();
+                let scrollTop = $this.scrollTop();
+                let scrollLeft = $this.scrollLeft();
                 generateContent();
 
                 if (oidsNeedSubscribe) {
                     myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
-                        appendContent(true);
+                        appendContent(true, scrollTop, scrollLeft);
                         eventListener();
                     });
                 } else {
                     // json: hat keine objectIds / bindings bzw. bereits subscribed
-                    appendContent(true);
+                    appendContent(true, scrollTop, scrollLeft);
                     eventListener();
                 }
             });
@@ -81,9 +82,6 @@ vis.binds.materialdesign.iconlist =
                 if (data.listItemDataMethod === 'jsonStringObject') {
                     try {
                         jsonData = JSON.parse(vis.states.attr(data.json_string_oid + '.val'));
-
-                        // console.log(data.wid + ': ' + vis.states.attr(data.json_string_oid + '.val'));
-
                         countOfItems = jsonData.length - 1;
                     } catch (err) {
                         jsonData = [
@@ -164,7 +162,7 @@ vis.binds.materialdesign.iconlist =
                 }
             }
 
-            function appendContent(replace = false) {
+            function appendContent(replace = false, scrollTop = 0, scrollLeft = 0) {
                 let widgetElement = itemList.join("");
 
                 if (bindingTokenList.length > 0) {
@@ -175,17 +173,20 @@ vis.binds.materialdesign.iconlist =
 
                 if (!replace) {
                     $this.append(`
-                        <div class="materialdesign-icon-list-container" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap; width: 100%;"' : ''}>
+                        <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap; width: 100%;"' : ''}>
                             ${widgetElement}
                         </div>
                     `);
                 } else {
                     $this.find(`.${containerClass}`).replaceWith(`
-                        <div class="materialdesign-icon-list-container" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap; width: 100%;"' : ''}>
+                        <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap; width: 100%;"' : ''}>
                             ${widgetElement}
                         </div>              
                     `);
                 }
+
+                $this.scrollTop(scrollTop);
+                $this.scrollLeft(scrollLeft);
             }
 
             function eventListener() {
