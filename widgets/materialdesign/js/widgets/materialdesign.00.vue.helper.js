@@ -188,6 +188,7 @@ vis.binds.materialdesign.vueHelper = {
                 no-data-text="nur der smarte ioBrokler wird bestehen"
 
                 @focus="focusEvent"
+                @click:clear="clearEvent"
             `
         },
         getTemplates: function (data) {
@@ -389,15 +390,39 @@ vis.binds.materialdesign.vueHelper = {
                             vis.setValue(data.oid, item);
                         }
                     } else {
-                        let item = vis.binds.materialdesign.vueHelper.getObjectByValue(vis.states.attr(data.oid + '.val'), itemsList, inputMode);
-                        this.item = item;
-                        this.icon = item.icon;
-                        this.image = item.image;
+                        let obj = vis.binds.materialdesign.vueHelper.getObjectByValue(vis.states.attr(data.oid + '.val'), itemsList, inputMode);
+                        this.item = obj;
+                        this.icon = obj.icon;
+                        this.image = obj.image;
                     }
                 },
                 focusEvent(value) {
                     // select object will first time created after item is focused. select object is created under vue app container
                     vis.binds.materialdesign.vueHelper.select.setMenuStyles($el, data, itemsList, $vuetifyContainer);
+                },
+                clearEvent(value) {
+                    vis.conn._socket.emit('getObject', data.oid, function (error, obj) {
+                        if (obj && obj.common && obj.common.type) {
+                            if (obj.common.type === 'string') {
+                                if (obj.common.def) {
+                                    vis.setValue(data.oid, obj.common.def);
+                                } else {
+                                    vis.setValue(data.oid, '');
+                                }
+                            } else if (obj.common.type === 'number') {
+                                if (obj.common.def) {
+                                    vis.setValue(data.oid, obj.common.def);
+                                } else {
+                                    vis.setValue(data.oid, 0);
+                                }
+                            } else {
+                                console.warn(`[Vue Helper Select] no clear value for ${obj.common.type} defined!`)
+                                vis.setValue(data.oid, undefined);
+                            }
+                        } else {
+                            vis.setValue(data.oid, undefined);
+                        }
+                    });
                 }
             }
         }
@@ -507,23 +532,26 @@ vis.binds.materialdesign.vueHelper = {
         }
     },
     getObjectByValue: function (val, itemsList, inputMode = '') {
+        if (val !== undefined && val !== null) {
+            var result = itemsList.filter(obj => {
+                return obj.value.toString() === val.toString();
+            });
 
-        var result = itemsList.filter(obj => {
-            return obj.value.toString() === val.toString();
-        });
-
-        if (result.length === 1) {
-            return result[0];
-        } else if (result.length > 1) {
-            console.warn("[Vuetify AutoComplete]: more than one result found!")
-            return result[0];
-        } else {
-            if (inputMode = 'combobox') {
-                // only if combobox (is writeable)
-                return { text: val, value: val };
+            if (result.length === 1) {
+                return result[0];
+            } else if (result.length > 1) {
+                console.warn("[Vuetify AutoComplete]: more than one result found!")
+                return result[0];
             } else {
-                return null;
+                if (inputMode = 'combobox') {
+                    // only if combobox (is writeable)
+                    return { text: val, value: val };
+                } else {
+                    return null;
+                }
             }
+        } else {
+            return { text: '', value: '' };
         }
     },
     getIconOrImage: function (imageOrIcon) {
