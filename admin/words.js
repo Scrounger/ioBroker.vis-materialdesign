@@ -8308,5 +8308,29 @@ systemDictionary = {
         "es": "filtro gris si está bloqueado",
         "pl": "szary filtr, jeśli zablokowany",
         "zh-cn": "灰色滤镜（如果锁定）"
+    },
+    "lockIconTop": {
+        "en": "symbol distance from top [%]",
+        "de": "Symbolabstand von oben [%]",
+        "ru": "расстояние символа от вершины [%]",
+        "pt": "distância do símbolo do topo [%]",
+        "nl": "symbool afstand vanaf top [%]",
+        "fr": "distance entre le symbole et le haut [%]",
+        "it": "distanza simbolo dall'alto [%]",
+        "es": "distancia de símbolo desde arriba [%]",
+        "pl": "odległość symbolu od góry [%]",
+        "zh-cn": "距顶部的符号距离[％]"
+    },
+    "lockIconLeft": {
+        "en": "symbol distance from left [%]",
+        "de": "Symbolabstand von links [%]",
+        "ru": "расстояние символа слева [%]",
+        "pt": "distância do símbolo da esquerda [%]",
+        "nl": "symbool afstand vanaf links [%]",
+        "fr": "distance du symbole à gauche [%]",
+        "it": "distanza simbolo da sinistra [%]",
+        "es": "distancia del símbolo a la izquierda [%]",
+        "pl": "odległość symbolu od lewej [%]",
+        "zh-cn": "距左的符号距离[％]"
     }
 };

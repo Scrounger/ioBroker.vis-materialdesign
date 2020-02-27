@@ -20,7 +20,7 @@ vis.binds.materialdesign.button = {
             let lockIcon = '';
             if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {
                 lockIcon = `<span class="mdi mdi-${myMdwHelper.getValueFromData(data.lockIcon, 'lock-outline')} materialdesign-lock-icon" 
-                            style="${(myMdwHelper.getNumberFromData(data.lockIconSize, 0)) !== 0 ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} ${(myMdwHelper.getValueFromData(data.lockIconColor, null) !== null) ? `color: ${data.lockIconColor};` : ''}"></span>`;
+                            style="${(myMdwHelper.getNumberFromData(data.lockIconSize, undefined) !== '0') ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} ${(myMdwHelper.getValueFromData(data.lockIconColor, null) !== null) ? `color: ${data.lockIconColor};` : ''}"></span>`;
             }
 
             let buttonStyle = '';
@@ -58,6 +58,14 @@ vis.binds.materialdesign.button = {
         try {
             let buttonElementsList = [];
 
+            console.log((parseFloat(myMdwHelper.getNumberFromData(data.lockIconSize, 0)) !== 0));
+
+            let lockIcon = '';
+            if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {
+                lockIcon = `<span class="mdi mdi-${myMdwHelper.getValueFromData(data.lockIcon, 'lock-outline')} materialdesign-lock-icon" 
+                            style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; ${(myMdwHelper.getNumberFromData(data.lockIconSize, undefined) !== '0') ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} ${(myMdwHelper.getValueFromData(data.lockIconColor, null) !== null) ? `color: ${data.lockIconColor};` : ''}"></span>`;
+            }
+
             let buttonStyle = '';
             if (data.buttonStyle !== 'text') {
                 buttonStyle = 'materialdesign-button--' + data.buttonStyle;
@@ -78,9 +86,9 @@ vis.binds.materialdesign.button = {
             }
 
             if (data.iconPosition === 'top') {
-                buttonElementsList.push(`${imageElement}${labelElement}</div>`);
+                buttonElementsList.push(`${imageElement}${labelElement}${lockIcon}</div>`);
             } else {
-                buttonElementsList.push(`${labelElement}${imageElement}</div>`);
+                buttonElementsList.push(`${labelElement}${imageElement}${lockIcon}</div>`);
             }
 
             return { button: buttonElementsList.join(''), style: buttonStyle }
