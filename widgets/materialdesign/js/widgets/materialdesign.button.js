@@ -17,6 +17,12 @@ vis.binds.materialdesign.button = {
                 labelWidth = `style="width: ${data.labelWidth}%;"`
             }
 
+            let lockIcon = '';
+            if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {
+                lockIcon = `<span class="mdi mdi-${myMdwHelper.getValueFromData(data.lockIcon, 'lock-outline')} materialdesign-lock-icon" 
+                            style="${(myMdwHelper.getNumberFromData(data.lockIconSize, 0)) !== 0 ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} ${(myMdwHelper.getValueFromData(data.lockIconColor, null) !== null) ? `color: ${data.lockIconColor};` : ''}"></span>`;
+            }
+
             let buttonStyle = '';
             if (data.buttonStyle !== 'text') {
                 buttonStyle = 'materialdesign-button--' + data.buttonStyle;
@@ -37,9 +43,9 @@ vis.binds.materialdesign.button = {
             }
 
             if (data.iconPosition === 'left') {
-                buttonElementsList.push(`${imageElement}${labelElement}</div>`);
+                buttonElementsList.push(`${imageElement} ${labelElement} ${lockIcon}</div>`);
             } else {
-                buttonElementsList.push(`${labelElement}${imageElement}</div>`);
+                buttonElementsList.push(`${lockIcon} ${labelElement} ${imageElement}</div>`);
             }
 
             return { button: buttonElementsList.join(''), style: buttonStyle }
@@ -130,6 +136,10 @@ vis.binds.materialdesign.button = {
         try {
             var $this = $(el);
 
+            if ($this.parent().attr('isLocked') === 'true') {
+                $this.parent().css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
+            }
+
             let bgColor = myMdwHelper.getValueFromData(data.colorBgFalse, '');
             let bgColorTrue = myMdwHelper.getValueFromData(data.colorBgTrue, bgColor);
 
@@ -155,23 +165,31 @@ vis.binds.materialdesign.button = {
             if (!vis.editMode) {
                 if (myMdwHelper.getBooleanFromData(data.pushButton, false) === false) {
                     $this.parent().click(function () {
-                        if (data.toggleType === 'boolean') {
-                            vis.setValue(data.oid, !vis.states.attr(data.oid + '.val'));
-                        } else {
-                            if ($this.parent().attr('toggled') === true || $this.parent().attr('toggled') === 'true') {
-                                vis.setValue(data.oid, data.valueOff);
+                        if ($this.parent().attr('isLocked') === 'false' || $this.parent().attr('isLocked') === undefined) {
+                            if (data.toggleType === 'boolean') {
+                                vis.setValue(data.oid, !vis.states.attr(data.oid + '.val'));
                             } else {
-                                vis.setValue(data.oid, data.valueOn);
+                                if ($this.parent().attr('toggled') === true || $this.parent().attr('toggled') === 'true') {
+                                    vis.setValue(data.oid, data.valueOff);
+                                } else {
+                                    vis.setValue(data.oid, data.valueOn);
+                                }
                             }
+                        } else {
+                            unlockButton();
                         }
                     });
                 } else {
-                    // Button from type push (Taster)
+                    // Button from type push (Taster)                   
                     $this.parent().on('mousedown touchstart', function (e) {
-                        if (data.toggleType === 'boolean') {
-                            vis.setValue(data.oid, true);
+                        if ($this.parent().attr('isLocked') === 'false' || $this.parent().attr('isLocked') === undefined) {
+                            if (data.toggleType === 'boolean') {
+                                vis.setValue(data.oid, true);
+                            } else {
+                                vis.setValue(data.oid, data.valueOn);
+                            }
                         } else {
-                            vis.setValue(data.oid, data.valueOn);
+                            unlockButton();
                         }
                     });
 
@@ -184,6 +202,8 @@ vis.binds.materialdesign.button = {
                     });
                 }
             }
+
+
 
             function setButtonState() {
                 var val = vis.states.attr(data.oid + '.val');
@@ -217,6 +237,18 @@ vis.binds.materialdesign.button = {
                     $this.parent().find('.materialdesign-button__label').html(textFalse).css('color', textColorFalse);
                     $this.find('.labelRowContainer').css('background', labelBgColor);
                 }
+            }
+
+            function unlockButton() {
+                $this.parent().find('.materialdesign-lock-icon').fadeOut();
+                $this.parent().attr('isLocked', false);
+                $this.parent().css('filter', 'grayscale(0%)');
+
+                setTimeout(function () {
+                    $this.parent().attr('isLocked', true);
+                    $this.parent().find('.materialdesign-lock-icon').show();
+                    $this.parent().css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
+                }, myMdwHelper.getNumberFromData(data.autoLockAfter, 10) * 1000);
             }
 
         } catch (ex) {

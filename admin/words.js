@@ -8224,5 +8224,89 @@ systemDictionary = {
         "es": "color de fondo del botón activo",
         "pl": "kolor tła aktywnego przycisku",
         "zh-cn": "活动按钮的背景色"
+    },
+    "group_lock": {
+        "en": "Locking",
+        "de": "Verriegeln",
+        "ru": "запирающий",
+        "pt": "Travamento",
+        "nl": "Locking",
+        "fr": "Verrouillage",
+        "it": "Locking",
+        "es": "Cierre",
+        "pl": "Zamykający",
+        "zh-cn": "锁定"
+    },
+    "lockEnabled": {
+        "en": "enable Locking",
+        "de": "Verriegeln aktivieren",
+        "ru": "включить блокировку",
+        "pt": "ativar o bloqueio",
+        "nl": "Vergrendeling inschakelen",
+        "fr": "activer le verrouillage",
+        "it": "abilitare il blocco",
+        "es": "habilitar bloqueo",
+        "pl": "włączyć blokowanie",
+        "zh-cn": "启用锁定"
+    },
+    "autoLockAfter": {
+        "en": "auto Locking after [s]",
+        "de": "automatisch Verriegeln nach [s]",
+        "ru": "автоматическая блокировка после [s]",
+        "pt": "Bloqueio automático após [s]",
+        "nl": "automatisch vergrendelen na [s]",
+        "fr": "Verrouillage automatique après [s]",
+        "it": "Blocco automatico dopo [s]",
+        "es": "Bloqueo automático después de [s]",
+        "pl": "automatyczne blokowanie po [s]",
+        "zh-cn": "[s]之后自动锁定"
+    },
+    "lockIcon": {
+        "en": "icon",
+        "de": "Symbol",
+        "ru": "икона",
+        "pt": "ícone",
+        "nl": "icoon",
+        "fr": "icône",
+        "it": "icona",
+        "es": "icono",
+        "pl": "Ikona",
+        "zh-cn": "图标"
+    },
+    "lockIconSize": {
+        "en": "icon size",
+        "de": "Symbolgröße",
+        "ru": "размер значка",
+        "pt": "tamanho do ícone",
+        "nl": "pictogramgrootte",
+        "fr": "taille de l'icône",
+        "it": "dimensione dell'icona",
+        "es": "tamaño de ícono",
+        "pl": "rozmiar ikony",
+        "zh-cn": "图标大小"
+    },
+    "lockIconColor": {
+        "en": "icon color",
+        "de": "Symbolfarbe",
+        "ru": "цвет значка",
+        "pt": "cor do ícone",
+        "nl": "pictogram kleur",
+        "fr": "couleur de l'icône",
+        "it": "colore dell'icona",
+        "es": "color del icono",
+        "pl": "kolor ikony",
+        "zh-cn": "图标颜色"
+    },
+    "lockFilterGrayscale": {
+        "en": "gray filter if locked",
+        "de": "Graufilter, wenn verriegelt",
+        "ru": "серый фильтр, если заблокирован",
+        "pt": "filtro cinza se bloqueado",
+        "nl": "grijs filter indien vergrendeld",
+        "fr": "filtre gris s'il est verrouillé",
+        "it": "filtro grigio se bloccato",
+        "es": "filtro gris si está bloqueado",
+        "pl": "szary filtr, jeśli zablokowany",
+        "zh-cn": "灰色滤镜（如果锁定）"
     }
 };
