@@ -59,14 +59,12 @@ vis.binds.materialdesign.button = {
             return { button: buttonElementsList.join(''), style: buttonStyle }
 
         } catch (ex) {
-            console.error(`[Button] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Button - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     initializeVerticalButton: function (data) {
         try {
             let buttonElementsList = [];
-
-            console.log((parseFloat(myMdwHelper.getNumberFromData(data.lockIconSize, 0)) !== 0));
 
             let lockIcon = '';
             if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {
@@ -102,7 +100,7 @@ vis.binds.materialdesign.button = {
             return { button: buttonElementsList.join(''), style: buttonStyle }
 
         } catch (ex) {
-            console.error(`[Vertical Button] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Button - ${data.wid}] vertical initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handleLink: function (el, data) {
@@ -145,7 +143,65 @@ vis.binds.materialdesign.button = {
                 }
             });
         } catch (ex) {
-            console.error(`handleAdition [${data.wid}]: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Button - ${data.wid}] handleAdition: error:: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
+    handleState: function (el, data) {
+        try {
+            // modified from vis adapter -> https://github.com/ioBroker/ioBroker.vis/blob/2a08ee6da626a65b9d0b42b8679563e74272bfc6/www/widgets/basic.html#L480
+            var $this = $(el);
+            var val = data.value;
+
+            if (val === 'true') val = true;
+            if (val === 'false') val = false;
+
+            if ($this.attr('isLocked') === 'true') {
+                $this.css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
+            }
+
+            if (!vis.editMode) {
+                var moved = false;
+                $this.on('click touchend', function (e) {
+                    // Protect against two events
+                    if (vis.detectBounce(this)) return;
+
+                    if (moved) return;
+
+                    if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === undefined) {
+                        var oid = data.oid;
+
+                        if (oid) {
+                            var val = data.value;
+                            if (val === undefined || val === null) val = false;
+                            if (val === 'true') val = true;
+                            if (val === 'false') val = false;
+                            if (parseFloat(val).toString() == val) val = parseFloat(val);
+
+                            if (oid) vis.setValue(oid, val);
+                        }
+                    } else {
+                        unlockButton();
+                    }
+                }).on('touchmove', function () {
+                    moved = true;
+                }).on('touchstart', function () {
+                    moved = false;
+                });
+
+                function unlockButton() {
+                    $this.find('.materialdesign-lock-icon').fadeOut();
+                    $this.attr('isLocked', false);
+                    $this.css('filter', 'grayscale(0%)');
+
+                    setTimeout(function () {
+                        $this.attr('isLocked', true);
+                        $this.find('.materialdesign-lock-icon').show();
+                        $this.css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
+                    }, myMdwHelper.getNumberFromData(data.autoLockAfter, 10) * 1000);
+                }
+            }
+        } catch (ex) {
+            console.error(`[Button - ${data.wid}] handleState: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handleToggle: function (el, data) {
@@ -268,7 +324,7 @@ vis.binds.materialdesign.button = {
             }
 
         } catch (ex) {
-            console.error(`[Button] handleToggle: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Button - ${data.wid}] handleToggle: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

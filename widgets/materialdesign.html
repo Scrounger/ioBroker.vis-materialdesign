@@ -163,13 +163,14 @@
         data-vis-type="ctrl"
         data-vis-name="Button State vertical"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;value;buttontext/html;colorPress/color;vibrateOnMobilDevices[50]/number;"
-        data-vis-attrs0="group.icon;image/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[top]/select,top,bottom;iconHeight/slider,0,200,1;">
+        data-vis-attrs0="group.icon;image/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[top]/select,top,bottom;iconHeight/slider,0,200,1;"
+        data-vis-attrs1="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materaldesign.viseditor.materialDesignIcons;lockIconSize/number;lockIconColor/color;lockFilterGrayscale[30]/slider,0,100,1;">
         
         <%
             let init = vis.binds.materialdesign.button.initializeVerticalButton(data);
         %>
 
-        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 150px; height: 100px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.basic.state(el); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 150px; height: 100px; padding: 0px;" id="<%= this.data.attr('wid') %>" isLocked="<%== myMdwHelper.getBooleanFromData(this.data.attr('lockEnabled'), false) %>" <%= (el) -> vis.binds.materialdesign.button.handleState(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
             <%== init.button %>
         </div>
 </script>
@@ -263,13 +264,14 @@
         data-vis-type="ctrl"
         data-vis-name="Button State"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;value;buttontext/html;colorPress/color;labelWidth/slider,0,100,1;vibrateOnMobilDevices[50]/number;"
-        data-vis-attrs0="group.icon;image/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;">
+        data-vis-attrs0="group.icon;image/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;"
+        data-vis-attrs1="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materaldesign.viseditor.materialDesignIcons;lockIconSize/number;lockIconColor/color;lockFilterGrayscale[30]/slider,0,100,1;">
         
         <%
             let init = vis.binds.materialdesign.button.initializeButton(data);
         %>
 
-        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.basic.state(el); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" isLocked="<%== myMdwHelper.getBooleanFromData(this.data.attr('lockEnabled'), false) %>" <%= (el) -> vis.binds.materialdesign.button.handleState(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
             <%== init.button %>
         </div>
 </script>
