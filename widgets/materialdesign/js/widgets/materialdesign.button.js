@@ -8,7 +8,7 @@
 "use strict";
 
 vis.binds.materialdesign.button = {
-    initializeButton: function (data) {
+    initializeButton: function (data, isIconButton = false) {
         try {
             let buttonElementsList = [];
 
@@ -18,10 +18,18 @@ vis.binds.materialdesign.button = {
             }
 
             let lockIcon = '';
-            if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {
-                lockIcon = `<span class="mdi mdi-${myMdwHelper.getValueFromData(data.lockIcon, 'lock-outline')} materialdesign-lock-icon" 
-                            style="${(myMdwHelper.getNumberFromData(data.lockIconSize, undefined) !== '0') ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} ${(myMdwHelper.getValueFromData(data.lockIconColor, null) !== null) ? `color: ${data.lockIconColor};` : ''}"></span>`;
+            if (!isIconButton) {
+                if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {
+                    lockIcon = `<span class="mdi mdi-${myMdwHelper.getValueFromData(data.lockIcon, 'lock-outline')} materialdesign-lock-icon" 
+                                style="${(myMdwHelper.getNumberFromData(data.lockIconSize, undefined) !== '0') ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} ${(myMdwHelper.getValueFromData(data.lockIconColor, null) !== null) ? `color: ${data.lockIconColor};` : ''}"></span>`;
+                }
+            } else {
+                if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {
+                    lockIcon = `<span class="mdi mdi-${myMdwHelper.getValueFromData(data.lockIcon, 'lock-outline')} materialdesign-lock-icon" 
+                            style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; ${(myMdwHelper.getNumberFromData(data.lockIconSize, undefined) !== '0') ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} ${(myMdwHelper.getValueFromData(data.lockIconColor, null) !== null) ? `color: ${data.lockIconColor};` : ''}"></span>`;
+                }
             }
+
 
             let buttonStyle = '';
             if (data.buttonStyle !== 'text') {
