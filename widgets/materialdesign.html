@@ -368,13 +368,14 @@
         data-vis-name="Icon Button State"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;value;vibrateOnMobilDevices[50]/number;"
         data-vis-attrs0="group.icon;image/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconHeight/slider,0,200,1;"
-        data-vis-attrs1="group.color;colorPress/color">
+        data-vis-attrs1="group.color;colorPress/color;"
+        data-vis-attrs2="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materialdesign.viseditor.materialDesignIcons;lockIconTop[45]/slider,0,100,1;lockIconLeft[55]/slider,0,100,1;lockIconSize[20]/number;lockIconColor[red]/color;lockFilterGrayscale[30]/slider,0,100,1;">
 
         <%
-            let init = vis.binds.materialdesign.button.initializeButton(data);
+            let init = vis.binds.materialdesign.button.initializeButton(data, true);
         %>
 
-        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.basic.state(el); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
+        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" isLocked="<%== myMdwHelper.getBooleanFromData(this.data.attr('lockEnabled'), false) %>" <%= (el) -> vis.binds.materialdesign.button.handleState(el, data); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
             <%== init.button %>
         </div>        
 </script>
@@ -1177,4 +1178,3 @@
             </div>
         </div>
 </script>
-
