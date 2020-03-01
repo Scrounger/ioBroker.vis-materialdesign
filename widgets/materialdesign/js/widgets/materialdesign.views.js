@@ -154,6 +154,8 @@ vis.binds.materialdesign.views = {
                     myMdwHelper.waitForRealWidth($this.context, data.wid, 'Masonry', function () {
                         var currentWidgetWidth = $this.width();
 
+                        myMdwHelper.calcChecker(getComputedStyle($this.context).width, data.wid, 'Masonry');
+
                         $(window).resize(function () {
                             // resize event
                             var widgetWidth = $this.width();
@@ -371,6 +373,8 @@ vis.binds.materialdesign.views = {
                 myMdwHelper.waitForElement($this, `#grid-item${data.countViews}`, data.wid, 'Grid ', function () {
                     myMdwHelper.waitForRealWidth($this.context, data.wid, 'Grid', function () {
                         var currentWidgetWidth = $this.width();
+
+                        myMdwHelper.calcChecker(getComputedStyle($this.context).width, data.wid, 'Grid');
 
                         $(window).resize(function () {
                             // resize event

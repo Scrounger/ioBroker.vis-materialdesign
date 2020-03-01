@@ -451,6 +451,12 @@ vis.binds.materialdesign.helper = {
         } else {
             if (callback) callback();
         }
+    },
+    calcChecker(prop, wid, widgetName) {
+        console.log(prop);
+        if (prop.includes("calc")) {
+            console.error(`${widgetName} (${wid}) not supoort calc()! Use px or % instead! (${prop})`);
+        }
     }
 };
 
