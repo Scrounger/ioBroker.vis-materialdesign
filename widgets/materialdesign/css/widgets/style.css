@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.63"
+    version: "0.2.62"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -1434,6 +1434,7 @@ svg.materialdesign-button__icon {
   display: flex;
   justify-content: center;
   padding: calc(-1 * var(--materialdesign-icon-list-items-gaps) + 2px);
+  width: 100%;
 }
 
 .materialdesign-icon-list-item {
@@ -1444,7 +1445,6 @@ svg.materialdesign-button__icon {
   flex-direction: row;
   flex-wrap: wrap;
   margin: var(--materialdesign-icon-list-items-gaps);
-  
 }
 
 .materialdesign-icon-list-item-standard {
