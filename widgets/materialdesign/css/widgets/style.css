@@ -1467,6 +1467,11 @@ svg.materialdesign-button__icon {
   border-color: #e0e0e0;
 }
 
+.materialdesign-icon-list-item-layout-vertical-image-container {
+  position: relative;
+  width: 100%;
+}
+
 .materialdesign-icon-list-item-text{
   width: 100%;
   font-size: var(--materialdesign-icon-list-items-text-font-size);
@@ -1514,6 +1519,7 @@ svg.materialdesign-button__icon {
 }
 
 .materialdesign-icon-list-item-layout-horizontal-image-container {
+  position: relative;
   text-align: center;
   display: flex;
   justify-content: center;

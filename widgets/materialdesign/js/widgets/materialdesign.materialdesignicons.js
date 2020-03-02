@@ -8,6 +8,15 @@
 "use strict";
 
 vis.binds.materialdesign.materialdesignicons = {
+    initialize: function (el, data) {
+        try {
+            let $this = $(el);
+
+            $this.append(myMdwHelper.getIconElement(myMdwHelper.getValueFromData(data.mdwIcon, 'material-design'), 'auto', myMdwHelper.getNumberFromData(data.mdwIconSize, 50) + 'px', myMdwHelper.getValueFromData(data.mdwIconColor, '#44739e')));
+        } catch (ex) {
+            console.error(`[MaterialDesignIcon ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
     getList: function () {
         // v4.7.95
         // extract from meta.json on https://github.com/Templarian/MaterialDesign
