@@ -1470,6 +1470,7 @@ svg.materialdesign-button__icon {
 .materialdesign-icon-list-item-layout-vertical-image-container {
   position: relative;
   width: 100%;
+  text-align: center;
 }
 
 .materialdesign-icon-list-item-text{
