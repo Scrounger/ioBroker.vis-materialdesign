@@ -8332,5 +8332,53 @@ systemDictionary = {
         "es": "distancia del símbolo a la izquierda [%]",
         "pl": "odległość symbolu od lewej [%]",
         "zh-cn": "距左的符号距离[％]"
+    },
+    "lockApplyOnlyOnImage": {
+        "en": "apply grayfilter only on icon",
+        "de": "Graufilter nur auf das Symbol anwenden",
+        "ru": "применять серый фильтр только на значке",
+        "pt": "aplicar grayfilter apenas no ícone",
+        "nl": "grijsfilter alleen toepassen op pictogram",
+        "fr": "appliquer le filtre gris uniquement sur l'icône",
+        "it": "applica grayfilter solo sull'icona",
+        "es": "aplicar filtro gris solo en el icono",
+        "pl": "zastosuj filtr szary tylko do ikony",
+        "zh-cn": "仅在图标上应用Grayfilter"
+    },
+    "mdwIcon": {
+        "en": "icon",
+        "de": "Symbol",
+        "ru": "икона",
+        "pt": "ícone",
+        "nl": "icoon",
+        "fr": "icône",
+        "it": "icona",
+        "es": "icono",
+        "pl": "Ikona",
+        "zh-cn": "图标"
+    },
+    "mdwIconSize": {
+        "en": "icon size",
+        "de": "Symbolgröße",
+        "ru": "размер значка",
+        "pt": "tamanho do ícone",
+        "nl": "pictogramgrootte",
+        "fr": "taille de l'icône",
+        "it": "dimensione dell'icona",
+        "es": "tamaño de ícono",
+        "pl": "rozmiar ikony",
+        "zh-cn": "图标大小"
+    },
+    "mdwIconColor": {
+        "en": "icon color",
+        "de": "Symbolfarbe",
+        "ru": "цвет значка",
+        "pt": "cor do ícone",
+        "nl": "pictogram kleur",
+        "fr": "couleur de l'icône",
+        "it": "colore dell'icona",
+        "es": "color del icono",
+        "pl": "kolor ikony",
+        "zh-cn": "图标颜色"
     }
 };
