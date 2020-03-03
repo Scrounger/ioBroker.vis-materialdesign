@@ -101,6 +101,7 @@
   --materialdesign-icon-list-items-value-font-color: #44739e;
 
   --materialdesign-icon-list-item-layout-horizontal-image-container-width: auto;
+  --materialdesign-icon-list-item-layout-vertical-image-container-height: auto;
 }
 
 /* Button style -> must defined here because of position bug in vis editor */
@@ -1471,6 +1472,10 @@ svg.materialdesign-button__icon {
   position: relative;
   width: 100%;
   text-align: center;
+  height: var(--materialdesign-icon-list-item-layout-vertical-image-container-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .materialdesign-icon-list-item-text{

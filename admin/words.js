@@ -8380,5 +8380,17 @@ systemDictionary = {
         "es": "color del icono",
         "pl": "kolor ikony",
         "zh-cn": "图标颜色"
+    },
+    "verticalIconContainerHeight": {
+        "en": "vertical: height of image container",
+        "de": "vertikal: Höhe des Bildcontainers",
+        "ru": "вертикальный: высота контейнера изображения",
+        "pt": "vertical: altura do contêiner de imagem",
+        "nl": "verticaal: hoogte van afbeeldingscontainer",
+        "fr": "vertical: hauteur du conteneur d'image",
+        "it": "verticale: altezza del contenitore dell'immagine",
+        "es": "vertical: altura del contenedor de imágenes",
+        "pl": "pionowa: wysokość pojemnika na zdjęcie",
+        "zh-cn": "垂直：图像容器的高度"
     }
 };

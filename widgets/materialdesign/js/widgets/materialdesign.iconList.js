@@ -40,6 +40,7 @@ vis.binds.materialdesign.iconlist =
             $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-color", myMdwHelper.getValueFromData(data.valueFontColor, ''));
 
             $this.context.style.setProperty("--materialdesign-icon-list-item-layout-horizontal-image-container-width", myMdwHelper.getStringFromNumberData(data.horizontalIconContainerWidth, 'auto', '', 'px'));
+            $this.context.style.setProperty("--materialdesign-icon-list-item-layout-vertical-image-container-height", myMdwHelper.getStringFromNumberData(data.verticalIconContainerHeight, 'auto', '', 'px'));
 
             let iconHeight = myMdwHelper.getNumberFromData(data.iconHeight, 24);
 
