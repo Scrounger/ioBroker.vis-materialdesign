@@ -13,8 +13,6 @@ var myMdwAlertClearButtonClicked = false;
 vis.binds.materialdesign.alerts =
     function (el, data) {
         try {
-
-            //[{ 		"text": "gedfsdfndert kommt eine nachricht", 		"borderColor": "darkred", 		"icon": "information-outline", 		"iconColor": "darkred" 	},{ 		"text": "hier kommt eine nachricht", 		"borderColor": "", 		"icon": "chat-alert-outline", 		"iconColor": "yellow" 	},{ 		"text": "hier kommt eine nachricht", 		"borderColor": "yellow", 		"icon": "/vis/img/bulb_on.png", 		"iconColor": "yellow" 	} ,{ 		"text": "hier kommt eine nachricht", 		"borderColor": "yellow", 		"icon": "home", 		"iconColor": "yellow" 	}]
             let $this = $(el);
             let idPrefix = "alerts_";
             let vueHelper = vis.binds.materialdesign.vueHelper.alerts;
@@ -105,6 +103,18 @@ vis.binds.materialdesign.alerts =
             $this.context.style.setProperty("--vue-alerts-icon-size", myMdwHelper.getNumberFromData(data.alertIconSize, '24') + 'px');
 
             $this.context.style.setProperty("--vue-alerts-bottom-margin", myMdwHelper.getNumberFromData(data.alertMarginBottom, '16') + 'px');
+
+            if ($(window).width() < data.minScreenResolution) {
+                $this.hide();
+            }
+
+            $(window).resize(function () {
+                if ($(window).width() < data.minScreenResolution) {
+                    $this.hide();
+                }else{
+                    $this.show();
+                }
+            });
 
             function jsonHasErrorAlert() {
                 return [
