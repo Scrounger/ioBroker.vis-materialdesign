@@ -114,13 +114,23 @@ vis.binds.materialdesign.iconlist =
                         imageElement = myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor)
                     } else {
                         // Buttons
-                        imageElement = `<div style="width: 100%; text-align: center;">
-                                        <div class="materialdesign-icon-button" index="${i}" style="background: ${listItemObj.buttonBackgroundColor}; position: relative; width: ${buttonHeight}px; height: ${buttonHeight}px;">
-                                            <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
-                                            ${myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor)}
-                                            </div>
-                                        </div>
-                                    </div>`
+                        if (data.buttonLayout === 'round') {
+                            imageElement = `<div style="width: 100%; text-align: center;">
+                                                <div class="materialdesign-icon-button materialdesign-iconList-button" index="${i}" style="background: ${listItemObj.buttonBackgroundColor}; position: relative; width: ${buttonHeight}px; height: ${buttonHeight}px;">
+                                                    <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+                                                        ${myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor)}
+                                                    </div>
+                                                </div>
+                                            </div>`
+                        } else {
+                            imageElement = `<div style="width: 100%; text-align: center;">
+                                                <div class="materialdesign-button materialdesign-iconList-button" index="${i}" style="background: ${listItemObj.buttonBackgroundColor}; position: relative; width: 100%; height: ${buttonHeight}px;">
+                                                    <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+                                                        ${myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor)}
+                                                    </div>
+                                                </div>
+                                            </div>`
+                        }
                     }
 
                     let lockElement = '';
@@ -201,19 +211,24 @@ vis.binds.materialdesign.iconlist =
             }
 
             function eventListener() {
-                let iconButtons = $this.find('.materialdesign-icon-button');
+                let iconButtons = $this.find('.materialdesign-iconList-button');
 
                 for (var i = 0; i <= iconButtons.length - 1; i++) {
                     let listItemObj = getListItemObj(i, data, jsonData);
 
                     // set ripple effect to icon buttons
-                    let mdcButton = new mdc.iconButton.MDCIconButtonToggle(iconButtons.get(i));
+                    if (data.buttonLayout === 'round') {
+                        new mdc.iconButton.MDCIconButtonToggle(iconButtons.get(i));
+                    } else {
+                        new mdc.ripple.MDCRipple(iconButtons.get(i));
+                    }
                     iconButtons.get(i).style.setProperty("--mdc-theme-primary", myMdwHelper.getValueFromData(data.buttonColorPress, ''));
 
-                    mdcButton.listen('MDCIconButtonToggle:change', function () {
+                    iconButtons.eq(i).click(function () {
                         // icon button click event
                         let index = $(this).attr('index');
                         let $item = $this.find(`#icon-list-item${index}`);
+
                         listItemObj = getListItemObj(index, data, jsonData);
 
                         if (listItemObj.listType !== 'text') {
@@ -221,7 +236,7 @@ vis.binds.materialdesign.iconlist =
                         }
 
                         if (listItemObj.listType === 'buttonToggle') {
-
+                            console.log($item.attr('isLocked'))
                             if ($item.attr('isLocked') === 'false' || $item.attr('isLocked') === undefined) {
                                 let selectedValue = vis.states.attr(listItemObj.objectId + '.val');
 
@@ -323,16 +338,16 @@ vis.binds.materialdesign.iconlist =
                 }
 
                 if (val === true || val === 'true') {
-                    $item.find('.materialdesign-icon-button').css('background', listItemObj.buttonBackgroundActiveColor);
+                    $item.find('.materialdesign-iconList-button').css('background', listItemObj.buttonBackgroundActiveColor);
                     myMdwHelper.changeIconElement($item, listItemObj.imageActive, 'auto', iconHeight + 'px', listItemObj.imageActiveColor);
                 } else {
-                    $item.find('.materialdesign-icon-button').css('background', listItemObj.buttonBackgroundColor);
+                    $item.find('.materialdesign-iconList-button').css('background', listItemObj.buttonBackgroundColor);
                     myMdwHelper.changeIconElement($item, listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor);
                 }
 
                 if ($item.attr('isLocked') === 'true') {
                     if (myMdwHelper.getBooleanFromData(data.lockApplyOnlyOnImage, false) === true) {
-                        $item.find('.materialdesign-icon-button').css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
+                        $item.find('.materialdesign-iconList-button').css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
                     } else {
                         $item.css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
                     }
@@ -348,7 +363,7 @@ vis.binds.materialdesign.iconlist =
                 $item.css('filter', 'grayscale(0%)');
 
                 if (myMdwHelper.getBooleanFromData(data.lockApplyOnlyOnImage, false) === true) {
-                    $item.find('.materialdesign-icon-button').css('filter', 'grayscale(0%)');
+                    $item.find('.materialdesign-iconList-button').css('filter', 'grayscale(0%)');
                 } else {
                     $item.css('filter', 'grayscale(0%)');
                 }
@@ -358,7 +373,7 @@ vis.binds.materialdesign.iconlist =
                     $item.find('.materialdesign-lock-icon').show();
 
                     if (myMdwHelper.getBooleanFromData(data.lockApplyOnlyOnImage, false) === true) {
-                        $item.find('.materialdesign-icon-button').css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
+                        $item.find('.materialdesign-iconList-button').css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
                     } else {
                         $item.css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
                     }
