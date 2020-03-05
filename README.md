@@ -910,7 +910,7 @@ ical2CalendarWidget();
 
 ## Changelog
 
-### 0.2.65
+### 0.2.66
 * (Scrounger): IconListWidget: button layout options added
 * (Scrounger): IconListWidget: lock option for toggle and state function added
 * (Scrounger): Alert Widget: visibility depending on resoltuion added
