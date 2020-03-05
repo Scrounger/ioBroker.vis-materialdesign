@@ -112,7 +112,6 @@
   font-size: 0.875rem;
   line-height: 2.25rem;
   font-weight: 500;
-  letter-spacing: 0.0892857143em;
   text-decoration: none;
   padding: 0 8px 0 8px;
   /* display: inline-flex; */
@@ -1431,7 +1430,6 @@ svg.materialdesign-button__icon {
 
 /* iconList */
 .materialdesign-icon-list-container {
-  position: absolute;
   display: flex;
   justify-content: center;
   padding: calc(-1 * var(--materialdesign-icon-list-items-gaps) + 2px);

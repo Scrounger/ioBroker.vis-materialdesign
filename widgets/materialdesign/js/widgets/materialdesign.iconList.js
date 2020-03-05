@@ -97,25 +97,23 @@ vis.binds.materialdesign.iconlist =
                     countOfItems = data.countListItems;
                 }
 
-
-
-                let listLayout = 'materialdesign-icon-list-item-standard';
-                if (data.listLayout === 'card') {
-                    if (data.buttonLayout === 'full') {
-                        listLayout = 'materialdesign-icon-list-item-card-layout-full';
-                    } else {
-                        listLayout = 'materialdesign-icon-list-item-card';
-                    }
-                } else if (data.listLayout === 'cardOutlined') {
-                    if (data.buttonLayout === 'full') {
-                        listLayout = 'materialdesign-icon-list-item-card-layout-full materialdesign-icon-list-item-card--outlined';
-                    } else {
-                        listLayout = 'materialdesign-icon-list-item-card materialdesign-icon-list-item-card--outlined';
-                    }
-                }
-
                 for (var i = 0; i <= countOfItems; i++) {
                     let listItemObj = getListItemObj(i, data, jsonData);
+
+                    let listLayout = 'materialdesign-icon-list-item-standard';
+                    if (data.listLayout === 'card') {
+                        if (data.buttonLayout === 'full' && listItemObj.listType !== 'text') {
+                            listLayout = 'materialdesign-icon-list-item-card-layout-full';
+                        } else {
+                            listLayout = 'materialdesign-icon-list-item-card';
+                        }
+                    } else if (data.listLayout === 'cardOutlined') {
+                        if (data.buttonLayout === 'full' && listItemObj.listType !== 'text') {
+                            listLayout = 'materialdesign-icon-list-item-card-layout-full materialdesign-icon-list-item-card--outlined';
+                        } else {
+                            listLayout = 'materialdesign-icon-list-item-card materialdesign-icon-list-item-card--outlined';
+                        }
+                    }
 
                     let imageElement = '';
                     if (listItemObj.listType === 'text') {
@@ -197,7 +195,7 @@ vis.binds.materialdesign.iconlist =
                                         <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">                            
 
                                             <div class="materialdesign-icon-list-item-layout-horizontal-image-container">
-                                                ${imageElement}
+                                                ${myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor)}
                                                 ${lockElement}
                                             </div>
                                             <div class="materialdesign-icon-list-item-layout-horizontal-text-container" style="cursor: pointer;">
