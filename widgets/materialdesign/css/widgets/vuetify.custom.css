@@ -158,6 +158,12 @@
 
   --vue-calendar-control-button-container-flex: 1;
   --vue-calendar-control-button-container-min-width: initial;
+
+
+  --vue-dialog-title-font-size: 20px;
+  --vue-dialog-title-font-family: inherit;
+
+  --vue-dialog-view-container-distance-to-border: 24px;
 }
 
 /* custom classes for templates */
@@ -1674,7 +1680,6 @@
   font-size: 1.25rem;
   font-weight: 500;
   letter-spacing: 0.0125em;
-  line-height: 2rem;
   word-break: break-all;
 }
 .v-card__title + .v-card__subtitle,
@@ -3992,6 +3997,35 @@
 }
 
 /* dialog */
+.v-dialog > .v-card > .v-card__title.v-dialog-my-title-layout {
+  font-size: var(--vue-dialog-title-font-size);
+  color: var(--vue-dialog-title-font-color, #44739e);
+  font-family: var(--vue-dialog-title-font-family);
+}
+
+.v-dialog-toolbar-my-title-layout {
+  font-size: var(--vue-dialog-title-font-size);
+  color: var(--vue-dialog-title-font-color, #fff);
+  font-family: var(--vue-dialog-title-font-family);
+  margin-left: 10px;
+}
+
+.v-dialog > .v-card > .v-card__text.v-dialog-view-container{
+  padding-left: var(--vue-dialog-view-container-distance-to-border);
+  padding-right: var(--vue-dialog-view-container-distance-to-border);
+  width: calc(100% - 2 * var(--vue-dialog-view-container-distance-to-border));
+}
+
+.v-dialog-toolbar-my-btn-layout {
+  background-color: #fff
+
+}
+
+.v-dialog-toolbar-my-btn-layout > .v-btn__content {
+  color: #fff;
+  display: block;
+}
+
 .v-bottom-sheet.v-dialog {
   align-self: flex-end;
   border-radius: 0;
@@ -4030,7 +4064,7 @@
   padding: 16px 24px 10px;
 }
 .v-dialog > .v-card > .v-card__text {
-  padding: 0 24px 20px;
+  padding: 0 24px;
 }
 .v-dialog > .v-card > .v-card__subtitle {
   padding: 0 24px 20px;
@@ -4186,3 +4220,174 @@
   width: 100%;
   height: 100%;
 }
+
+/* v-toolbar */
+.v-toolbar__content > button {
+  background-color: transparent;
+  border-style: none;
+  color: inherit;
+}
+
+.v-toolbar {
+  contain: layout;
+  display: block;
+  flex: 1 1 auto;
+  max-width: 100%;
+  transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1) transform, 0.2s cubic-bezier(0.4, 0, 0.2, 1) background-color, 0.2s cubic-bezier(0.4, 0, 0.2, 1) left, 0.2s cubic-bezier(0.4, 0, 0.2, 1) right, 280ms cubic-bezier(0.4, 0, 0.2, 1) box-shadow, 0.25s cubic-bezier(0.4, 0, 0.2, 1) max-width, 0.25s cubic-bezier(0.4, 0, 0.2, 1) width;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  background: #44739e;
+}
+.v-toolbar .v-input {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.v-toolbar__content,
+.v-toolbar__extension {
+  padding: 4px 16px;
+}
+.v-toolbar__content .v-btn.v-btn--icon.v-size--default,
+.v-toolbar__extension .v-btn.v-btn--icon.v-size--default {
+  height: 48px;
+  width: 48px;
+}
+.v-application--is-ltr .v-toolbar__content > .v-btn.v-btn--icon:first-child,
+.v-application--is-ltr .v-toolbar__extension > .v-btn.v-btn--icon:first-child {
+  margin-left: -12px;
+}
+.v-application--is-rtl .v-toolbar__content > .v-btn.v-btn--icon:first-child,
+.v-application--is-rtl .v-toolbar__extension > .v-btn.v-btn--icon:first-child {
+  margin-right: -12px;
+}
+.v-application--is-ltr .v-toolbar__content > .v-btn.v-btn--icon:first-child + .v-toolbar__title,
+.v-application--is-ltr .v-toolbar__extension > .v-btn.v-btn--icon:first-child + .v-toolbar__title {
+  padding-left: 20px;
+}
+.v-application--is-rtl .v-toolbar__content > .v-btn.v-btn--icon:first-child + .v-toolbar__title,
+.v-application--is-rtl .v-toolbar__extension > .v-btn.v-btn--icon:first-child + .v-toolbar__title {
+  padding-right: 20px;
+}
+.v-application--is-ltr .v-toolbar__content > .v-btn.v-btn--icon:last-child,
+.v-application--is-ltr .v-toolbar__extension > .v-btn.v-btn--icon:last-child {
+  margin-right: -12px;
+}
+.v-application--is-rtl .v-toolbar__content > .v-btn.v-btn--icon:last-child,
+.v-application--is-rtl .v-toolbar__extension > .v-btn.v-btn--icon:last-child {
+  margin-left: -12px;
+}
+.v-toolbar__content > .v-tabs,
+.v-toolbar__extension > .v-tabs {
+  height: inherit;
+  margin-top: -4px;
+  margin-bottom: -4px;
+}
+.v-toolbar__content > .v-tabs .v-tabs-bar,
+.v-toolbar__extension > .v-tabs .v-tabs-bar {
+  height: inherit;
+}
+.v-toolbar__content > .v-tabs:first-child,
+.v-toolbar__extension > .v-tabs:first-child {
+  margin-left: -16px;
+}
+.v-toolbar__content > .v-tabs:last-child,
+.v-toolbar__extension > .v-tabs:last-child {
+  margin-right: -16px;
+}
+
+.v-toolbar__content,
+.v-toolbar__extension {
+  align-items: center;
+  display: flex;
+  position: relative;
+  z-index: 0;
+}
+
+.v-toolbar__image {
+  border-radius: inherit;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 0;
+  contain: strict;
+}
+.v-toolbar__image .v-image {
+  border-radius: inherit;
+}
+
+.v-toolbar__items {
+  display: flex;
+  height: inherit;
+}
+.v-toolbar__items > .v-btn {
+  border-radius: 0;
+  height: 100% !important;
+  max-height: none;
+}
+
+.v-toolbar__title {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.v-toolbar.v-toolbar--absolute {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+.v-toolbar.v-toolbar--bottom {
+  top: initial;
+  bottom: 0;
+}
+
+.v-toolbar.v-toolbar--collapse .v-toolbar__title {
+  white-space: nowrap;
+}
+
+.v-toolbar.v-toolbar--collapsed {
+  max-width: 112px;
+  overflow: hidden;
+}
+.v-application--is-ltr .v-toolbar.v-toolbar--collapsed {
+  border-bottom-right-radius: 24px;
+}
+.v-application--is-rtl .v-toolbar.v-toolbar--collapsed {
+  border-bottom-left-radius: 24px;
+}
+.v-toolbar.v-toolbar--collapsed .v-toolbar__title,
+.v-toolbar.v-toolbar--collapsed .v-toolbar__extension {
+  display: none;
+}
+
+.v-toolbar--dense .v-toolbar__content,
+.v-toolbar--dense .v-toolbar__extension {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.v-toolbar--flat {
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12);
+}
+
+.v-toolbar--floating {
+  display: inline-flex;
+}
+
+.v-toolbar--prominent .v-toolbar__content {
+  align-items: flex-start;
+}
+.v-toolbar--prominent .v-toolbar__title {
+  font-size: 1.5rem;
+  padding-top: 6px;
+}
+.v-toolbar--prominent:not(.v-toolbar--bottom) .v-toolbar__title {
+  align-self: flex-end;
+  padding-bottom: 6px;
+  padding-top: 0;
+}
+
+
