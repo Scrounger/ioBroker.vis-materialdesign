@@ -1431,7 +1431,7 @@ svg.materialdesign-button__icon {
 /* iconList */
 .materialdesign-icon-list-container {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   padding: calc(-1 * var(--materialdesign-icon-list-items-gaps) + 2px);
   width: 100%;
 }
