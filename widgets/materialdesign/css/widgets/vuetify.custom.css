@@ -163,9 +163,15 @@
   --vue-dialog-title-font-size: 20px;
   --vue-dialog-title-font-family: inherit;
 
+  --vue-dialog-footer-background-color: initial;
+
   --vue-dialog-view-container-distance-to-border: 24px;
 
   --vue-toolbar-background-color: #44739e;
+
+
+  --vue-overlay-scrim-opacity: 0.46;
+  --vue-overlay-scrim-background-color: rgb(33, 33, 33);
 }
 
 /* custom classes for templates */
@@ -4003,6 +4009,7 @@
   font-size: var(--vue-dialog-title-font-size);
   color: var(--vue-dialog-title-font-color, #44739e);
   font-family: var(--vue-dialog-title-font-family);
+  background: var(--vue-toolbar-background-color);
 }
 
 .v-dialog-toolbar-my-title-layout {
@@ -4010,12 +4017,33 @@
   color: var(--vue-dialog-title-font-color, #fff);
   font-family: var(--vue-dialog-title-font-family);
   margin-left: 10px;
+  flex: 1 1;
+}
+
+.v-dialog-footer {
+  background: var(--vue-dialog-footer-background-color);  
+}
+
+.v-dialog-my-card-actions {
+  height: calc(100% - 16px - 1px);
 }
 
 .v-dialog > .v-card > .v-card__text.v-dialog-view-container{
   padding-left: var(--vue-dialog-view-container-distance-to-border);
   padding-right: var(--vue-dialog-view-container-distance-to-border);
   width: calc(100% - 2 * var(--vue-dialog-view-container-distance-to-border));
+}
+
+.materialdesign-v-dialog-button-icon {
+  font-size: var(--vue-dialog-control-button-icon-size);
+  color: var(--vue-dialog-control-button-icon-color);
+}
+
+.materialdesign-v-dialog-button-text {
+  margin-left: 4px;
+  font-size: var(--vue-dialog-control-button-text-size);
+  color: var(--vue-dialog-control-button-text-color);
+  font-family: var(--vue-dialog-control-button-text-font);
 }
 
 .v-dialog-toolbar-my-btn-layout {

@@ -1023,9 +1023,11 @@
         data-vis-name="Dialog View"
         data-vis-update-style="true"
         data-vis-beta="true"
-        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,dialogView;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;showDialogMethod[button]/select,button,datapoint;showDialogOid/id;contains_view/views;dialogMaxWidth;viewHeight/number;fullscreenResolutionLower[360]/number;vibrateOnMobilDevices[50]/number;"
-        data-vis-attrs0="group.layoutTitle;showTitle[true]/checkbox;title/html;titleFontSize/number;titleFont/fontname;titleColor/color;viewDistanceToBorder/number;fullscreenToolbarHeight/number;fullscreenToolbarColor/color;"
-        data-vis-attrs1="group.layoutdialogCloseButton;buttonPosition[flex-end]/select,flex-start,center,flex-end;buttonSize[medium]/select,small,medium,large;buttonFullWidth/checkbox;buttonText;buttonFontSize/number;buttonFont/fontname;buttonFontColor/color;fullscreenCloseIcon/custom,materialdesign.viseditor.materialDesignIcons;fullscreenCloseIconColor/color;pressColor/color;">
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,dialogView;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;showDialogMethod[button]/select,button,datapoint;showDialogOid/id;contains_view/views;fullscreenResolutionLower[360]/number;vibrateOnMobilDevices[50]/number;"
+        data-vis-attrs0="group.buttonLayout;text;"
+        data-vis-attrs1="group.layoutDialog;dialogMaxWidth;viewHeight/number;closingClickOutside[true]/checkbox;viewDistanceToBorder/number;backgroundColor/color;headerHeight/number;headerBackgroundColor/color;footerHeight/number;footerBackgroundColor/color;showDivider/checkbox;dividerColor/color;overlayColor/color;overlayOpacity/slider,0,1,0.1;"
+        data-vis-attrs2="group.layoutTitle;showTitle[true]/checkbox;title/html;titleFontSize/number;titleFont/fontname;titleColor/color;"
+        data-vis-attrs3="group.layoutdialogCloseButton;buttonPosition[flex-end]/select,flex-start,center,flex-end;buttonSize[medium]/select,small,medium,large;buttonFullWidth/checkbox;buttonText;buttonFontSize/number;buttonFont/fontname;buttonFontColor/color;fullscreenCloseIcon/custom,materialdesign.viseditor.materialDesignIcons;fullscreenCloseIconColor/color;pressColor/color;">
         
         <div class="vis-widget materialdesign-widget materialdesign-vuetify-dialog <%== this.data.attr('class') %>" style="width: 100px; height: 30px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.dialog.vue(el, data) %>>
 

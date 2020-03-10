@@ -126,16 +126,14 @@ vis.binds.materialdesign.dialog = {
             let wishHeight = 0;
             let fullscreen = false;
 
-            console.log($(window).width());
-
             $this.append(`
             <div class="${containerClass}" style="width: 100%; height: 100%;">
 
                 ${(data.showDialogMethod === 'button') ? `
                     <div class="materialdesign-button materialdesign-vuetify-dialog-button" id="dialog-button">
                         <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
-                            <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar-arrow-left"></span>
-                            <span class="materialdesign-vuetify-calendar-control-button-text">open Dialog</span>
+                            <span class="materialdesign-v-dialog-button-icon mdi mdi-calendar-arrow-left"></span>
+                            <span class="materialdesign-v-dialog-button-text">${myMdwHelper.getValueFromData(data.text, _('open'))}</span>
                         </div>
                     </div>
                 ` : ''}
@@ -147,24 +145,25 @@ vis.binds.materialdesign.dialog = {
                     color="green"
                     :fullscreen="fullscreen"
                     :transition="transition"
+                    ${myMdwHelper.getBooleanFromData(data.closingClickOutside, false) ? '' : 'persistent'}
                     >
-                    <v-card height="auto">
 
-                        <v-toolbar flat v-show="showToolbar" height="${myMdwHelper.getNumberFromData(data.fullscreenToolbarHeight, 64)}">
-                            <v-btn class="v-dialog-toolbar-my-btn-layout" icon @click="closeButton">
-                                <v-icon>mdi-close</v-icon>
+                    <v-card height="auto" style="background: ${myMdwHelper.getValueFromData(data.backgroundColor, '')}">
+
+                        <v-toolbar flat v-show="showToolbar" height="${myMdwHelper.getNumberFromData(data.headerHeight, 64)}">
+                            <v-toolbar-title class="v-dialog-toolbar-my-title-layout" v-html="title"></v-toolbar-title>    
+                            <v-btn class="v-dialog-toolbar-my-btn-layout" icon @click="closeButton" style="text-indent: 0;">
+                                <v-icon style="color: ${myMdwHelper.getValueFromData(data.fullscreenCloseIconColor, '#ffffff')};">mdi-${myMdwHelper.getValueFromData(data.fullscreenCloseIcon, 'close')}</v-icon>
                             </v-btn>
-                            <v-toolbar-title class="v-dialog-toolbar-my-title-layout" v-html="title"></v-toolbar-title>
                         </v-toolbar>
 
                         ${myMdwHelper.getBooleanFromData(data.showTitle, false) ? `<v-card-title class="v-dialog-my-title-layout" v-html="title" v-show="!showToolbar"></v-card-title>` : ''} 
 
                         <v-card-text class="v-dialog-view-container" id="viewContainer_${data.wid}"></v-card-text>
 
-                        <div class="v-dialog-footer" v-show="!showToolbar">
-                            <v-divider></v-divider>
-                            <v-card-actions style="justify-content: ${data.buttonPosition};">
-                                <v-spacer></v-spacer>
+                        <div class="v-dialog-footer" v-show="!showToolbar" style="height: ${myMdwHelper.getNumberFromData(data.footerHeight, myMdwHelper.getBooleanFromData(data.showTitle, false) ? 61 : 56)}px">
+                            ${myMdwHelper.getBooleanFromData(data.showDivider, false) ? `<div style="width: 100%; height: 1px; background: ${myMdwHelper.getValueFromData(data.dividerColor, 'lightgray')}; margin-top: 4px;"></div>` : ''}
+                            <v-card-actions class="v-dialog-my-card-actions" style="justify-content: ${data.buttonPosition};">
                                 <v-btn color="primary"
                                     text
                                     ${(data.buttonSize !== 'medium') ? data.buttonSize : ''}
@@ -178,9 +177,6 @@ vis.binds.materialdesign.dialog = {
                     </v-card>
                 </v-dialog>
             `);
-
-            // fullscreen
-            // transition="dialog-bottom-transition"
 
             myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'Dialog', function () {
                 myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'Dialog', function () {
@@ -254,9 +250,12 @@ vis.binds.materialdesign.dialog = {
                             $dialog.get(0).style.setProperty("--vue-dialog-title-font-color", myMdwHelper.getValueFromData(data.titleColor, ''));
                             $dialog.get(0).style.setProperty("--vue-dialog-title-font-family", myMdwHelper.getValueFromData(data.titleFont, 'inherit'));
 
-                            $dialog.get(0).style.setProperty("--vue-toolbar-background-color", myMdwHelper.getValueFromData(data.fullscreenToolbarColor, ''));
 
-                            $dialog.get(0).style.setProperty("--vue-ripple-effect-color", myMdwHelper.getValueFromData(data.pressColor, ''));
+                            $dialog.get(0).style.setProperty("--vue-dialog-footer-background-color", myMdwHelper.getValueFromData(data.footerBackgroundColor, ''));
+
+                            // Overlay
+                            $("body").find('.v-overlay__scrim').css('opacity', myMdwHelper.getValueFromData(data.overlayOpacity, 0.46));
+                            $("body").find('.v-overlay__scrim').css('background', myMdwHelper.getValueFromData(data.overlayColor, ''));
 
                             calcHeight();
 
@@ -284,26 +283,30 @@ vis.binds.materialdesign.dialog = {
                         wishHeight = myMdwHelper.getNumberFromData(data.viewHeight, 5000);
 
                         if (fullscreen) {
-                            console.log('fullscreen');
                             let toolBarHeight = $dialog.find('.v-toolbar__content').height();
-                            console.log(toolBarHeight);
-
-                            console.log($(window).height());
                             wishHeight = $(window).height() - toolBarHeight - 1;
 
-                            console.log(wishHeight);
                         } else {
-                            console.log('not fullscreen');
-                            let titleHeight = $dialog.find('.v-card__title').height();
+                            let titleHeight = $dialog.find('.v-card__title').outerHeight();
                             let footerHeight = $dialog.find('.v-dialog-footer').height();
 
                             if (wishHeight > $(window).height() * 0.9) {
                                 // wenn höhe größer als screen -> dann auf screen begrenzen um responsiv zu sein
-                                wishHeight = $(window).height() * 0.9 - footerHeight - titleHeight - 35;
+                                wishHeight = $(window).height() * 0.9 - footerHeight - titleHeight;
                             }
                         }
 
+                        if (fullscreen) {
+                            $dialog.get(0).style.setProperty("--vue-toolbar-background-color", myMdwHelper.getValueFromData(data.headerBackgroundColor, '#44739e'));
+                            $dialog.get(0).style.setProperty("--vue-ripple-effect-color", myMdwHelper.getValueFromData(data.pressColor, '#ffffff'));
+                        } else {
+                            $dialog.get(0).style.setProperty("--vue-toolbar-background-color", myMdwHelper.getValueFromData(data.headerBackgroundColor, 'initial'));
+                            $dialog.get(0).style.setProperty("--vue-ripple-effect-color", myMdwHelper.getValueFromData(data.pressColor, ''));
+                        }
+
                         $dialog.find('.vis-view').css('height', wishHeight + 'px');
+
+
                     }
                 });
             });
