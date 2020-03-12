@@ -241,7 +241,7 @@ vis.binds.materialdesign.dialog = {
                         setLayout();
                         vueDialog.showDialog = show;
 
-                        myMdwHelper.waitForElement($("body"), '.v-dialog__content', data.wid, 'Dialog', function () {
+                        myMdwHelper.waitForElement($("body"), `#dialog_card_${data.wid}`, data.wid, 'Dialog', function () {
                             let $dialog = $("body").find(`#dialog_card_${data.wid}`);
 
                             $dialog.get(0).style.setProperty("--vue-dialog-view-container-distance-to-border", myMdwHelper.getNumberFromData(data.viewDistanceToBorder, 24) + 'px');
