@@ -43,7 +43,7 @@ vis.binds.materialdesign.button = {
             let imageElement = myMdwHelper.getIconElement(data.image, 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), data.imageColor);
 
             let labelElement = '';
-            if (myMdwHelper.getValueFromData(data.buttontext, null) != null) {
+            if (myMdwHelper.getValueFromData(data.buttontext, null) != null && !isIconButton) {
                 labelElement = `<span 
                                     class="materialdesign-button__label" ${labelWidth}>
                                     ${data.buttontext}
