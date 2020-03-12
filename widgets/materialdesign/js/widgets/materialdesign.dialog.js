@@ -151,7 +151,7 @@ vis.binds.materialdesign.dialog = {
                             </v-btn>
                         </v-toolbar>
 
-                        ${myMdwHelper.getBooleanFromData(data.showTitle, false) ? `<v-card-title class="v-dialog-my-title-layout" v-html="title" v-show="!showToolbar"></v-card-title>` : ''} 
+                        ${myMdwHelper.getBooleanFromData(data.showTitle, false) ? `<v-card-title class="v-dialog-my-title-layout" v-html="title" v-show="!showToolbar" style="height: ${myMdwHelper.getNumberFromData(data.headerHeight, 50)}px;"></v-card-title>` : ''} 
 
                         <v-card-text class="v-dialog-view-container" id="viewContainer_${data.wid}"></v-card-text>
 
