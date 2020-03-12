@@ -22,7 +22,7 @@ vis.binds.materialdesign.helper = {
 
             setTimeout(function () {
                 if (parent.find(elementPath).length) {
-                    callBack(elementPath, $(elementPath));
+                    callBack();
                 } else {
                     console.log(`[${widgetName} ${wid}] wait for elements`);
                     counter++
@@ -31,7 +31,7 @@ vis.binds.materialdesign.helper = {
             }, 50)
         } else {
             console.log(`[${widgetName} ${wid}] stop waiting after 100 retries`);
-            callBack(elementPath, $(elementPath));
+            callBack();
         }
     },
     waitForRealWidth: function (element, wid, widgetName, callBack, counter = 0) {
@@ -40,7 +40,7 @@ vis.binds.materialdesign.helper = {
                 let width = window.getComputedStyle(element, null).width
 
                 if (width.includes('px')) {
-                    callBack(width);
+                    callBack();
                 } else {
                     console.log(`[${widgetName} ${wid}] wait for real width`);
                     counter++
@@ -49,7 +49,7 @@ vis.binds.materialdesign.helper = {
             }, 50);
         } else {
             console.log(`[${widgetName} ${wid}] stop waiting for real width after 100 retries`);
-            callBack(elementPath, $(elementPath));
+            callBack();
         }
     },
     installedVersion: function (el, data) {
@@ -453,9 +453,10 @@ vis.binds.materialdesign.helper = {
         }
     },
     calcChecker(prop, wid, widgetName) {
-        console.log(prop);
         if (prop.includes("calc")) {
             console.error(`${widgetName} (${wid}) not supoort calc()! Use px or % instead! (${prop})`);
+        } else {
+            console.log(`${widgetName} (${wid}) width: ${prop}`);
         }
     }
 };
