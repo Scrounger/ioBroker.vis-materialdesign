@@ -126,29 +126,23 @@ vis.binds.materialdesign.dialog = {
             let wishHeight = 0;
             let fullscreen = false;
 
+            if (vis.editMode) {
+                // bei Änderungen am Widget, wird Widget neu erzeugt. Dialog hängt aber unter vis app, deshalb zu erst entfernen damit nicht doppelt
+                $("body").find(`#dialog_card_${data.wid}`).parent().remove();
+            }
+
             $this.append(`
             <div class="${containerClass}" style="width: 100%; height: 100%;">
-
-                ${(data.showDialogMethod === 'button') ? `
-                    <div class="materialdesign-button materialdesign-vuetify-dialog-button" id="dialog-button">
-                        <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
-                            <span class="materialdesign-v-dialog-button-icon mdi mdi-calendar-arrow-left"></span>
-                            <span class="materialdesign-v-dialog-button-text">${myMdwHelper.getValueFromData(data.text, _('open'))}</span>
-                        </div>
-                    </div>
-                ` : ''}
-
-
                 <v-dialog
                     v-model="showDialog"
                     max-width="${myMdwHelper.getValueFromData(data.dialogMaxWidth, undefined) ? data.dialogMaxWidth : 'auto'}"
-                    color="green"
                     :fullscreen="fullscreen"
                     :transition="transition"
+                    eager
                     ${myMdwHelper.getBooleanFromData(data.closingClickOutside, false) ? '' : 'persistent'}
                     >
 
-                    <v-card height="auto" style="background: ${myMdwHelper.getValueFromData(data.backgroundColor, '')}">
+                    <v-card id="dialog_card_${data.wid}" height="auto" style="background: ${myMdwHelper.getValueFromData(data.backgroundColor, '')}">
 
                         <v-toolbar flat v-show="showToolbar" height="${myMdwHelper.getNumberFromData(data.headerHeight, 64)}">
                             <v-toolbar-title class="v-dialog-toolbar-my-title-layout" v-html="title"></v-toolbar-title>    
@@ -211,8 +205,14 @@ vis.binds.materialdesign.dialog = {
                     });
 
                     if (data.showDialogMethod === 'button') {
-                        let button = $this.find('.materialdesign-vuetify-dialog-button')
-                        mdc.ripple.MDCRipple.attachTo(button.get(0));
+                        let button = $this;
+                        $this.context.style.setProperty("--mdc-theme-primary", myMdwHelper.getValueFromData(data.colorPress, ''));
+
+                        if (data.buttonStyle === 'icon') {
+                            mdc.iconButton.MDCIconButtonToggle.attachTo(button.get(0));
+                        } else {
+                            mdc.ripple.MDCRipple.attachTo(button.get(0));
+                        }
 
                         button.click(function () {
                             vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
@@ -242,7 +242,7 @@ vis.binds.materialdesign.dialog = {
                         vueDialog.showDialog = show;
 
                         myMdwHelper.waitForElement($("body"), '.v-dialog__content', data.wid, 'Dialog', function () {
-                            let $dialog = $("body").find("#materialdesign-vuetify-container .v-dialog__content .v-dialog");
+                            let $dialog = $("body").find(`#dialog_card_${data.wid}`);
 
                             $dialog.get(0).style.setProperty("--vue-dialog-view-container-distance-to-border", myMdwHelper.getNumberFromData(data.viewDistanceToBorder, 24) + 'px');
 
@@ -255,15 +255,17 @@ vis.binds.materialdesign.dialog = {
 
                             // Overlay
                             $("body").find('.v-overlay__scrim').css('opacity', myMdwHelper.getValueFromData(data.overlayOpacity, 0.46));
-                            $("body").find('.v-overlay__scrim').css('background', myMdwHelper.getValueFromData(data.overlayColor, ''));
+                            $("body").find('.v-overlay__scrim').css('background', myMdwHelper.getValueFromData(data.overlayColor, 'rgb(33, 33, 33)'));
 
                             calcHeight();
 
                             let view = data.contains_view;
-                            if (vis.views[view]) {
-                                vis.renderView(view, view, true, function (_view) {
-                                    $('#visview_' + _view).css('position', 'relative').css('height', wishHeight + 'px').appendTo($dialog.find(`#viewContainer_${data.wid}`)).show().data('persistent', true);
-                                });
+                            if ($dialog.find('#visview_' + view).length < 1) {
+                                if (vis.views[view]) {
+                                    vis.renderView(view, view, true, function (_view) {
+                                        $('#visview_' + _view).css('position', 'relative').css('height', wishHeight + 'px').appendTo($dialog.find(`#viewContainer_${data.wid}`)).show().data('persistent', true);
+                                    });
+                                }
                             }
                         });
                     }
@@ -278,21 +280,21 @@ vis.binds.materialdesign.dialog = {
                     }
 
                     function calcHeight() {
-                        let $dialog = $("body").find("#materialdesign-vuetify-container .v-dialog__content .v-dialog");
+                        let $dialog = $("body").find(`#dialog_card_${data.wid}`);
 
                         wishHeight = myMdwHelper.getNumberFromData(data.viewHeight, 5000);
 
                         if (fullscreen) {
                             let toolBarHeight = $dialog.find('.v-toolbar__content').height();
-                            wishHeight = $(window).height() - toolBarHeight - 1;
+                            wishHeight = Math.floor($(window).height() - toolBarHeight - 1);
 
                         } else {
                             let titleHeight = $dialog.find('.v-card__title').outerHeight();
                             let footerHeight = $dialog.find('.v-dialog-footer').height();
 
-                            if (wishHeight > $(window).height() * 0.9) {
+                            if (wishHeight > $(window).height() * 0.9 || (wishHeight + titleHeight + footerHeight) > $(window).height() * 0.9) {
                                 // wenn höhe größer als screen -> dann auf screen begrenzen um responsiv zu sein
-                                wishHeight = $(window).height() * 0.9 - footerHeight - titleHeight;
+                                wishHeight = Math.floor($(window).height() * 0.9 - footerHeight - titleHeight - 5);
                             }
                         }
 
@@ -304,9 +306,7 @@ vis.binds.materialdesign.dialog = {
                             $dialog.get(0).style.setProperty("--vue-ripple-effect-color", myMdwHelper.getValueFromData(data.pressColor, ''));
                         }
 
-                        $dialog.find('.vis-view').css('height', wishHeight + 'px');
-
-
+                        $dialog.find('#visview_' + data.contains_view).css('height', wishHeight + 'px');
                     }
                 });
             });

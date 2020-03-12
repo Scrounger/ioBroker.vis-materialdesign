@@ -330,7 +330,7 @@
         data-vis-attrs1="group.color;colorPress/color">
 
         <%
-            let init = vis.binds.materialdesign.button.initializeButton(data);
+            let init = vis.binds.materialdesign.button.initializeButton(data, true);
         %>
 
         <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.handleNavigation(el, data); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
@@ -351,7 +351,7 @@
         data-vis-attrs1="group.color;colorPress/color">
 
         <%
-            let init = vis.binds.materialdesign.button.initializeButton(data);
+            let init = vis.binds.materialdesign.button.initializeButton(data, true);
         %>
 
         <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleLink(el, data); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
@@ -392,7 +392,7 @@
         data-vis-attrs1="group.color;colorPress/color">
 
         <%
-            let init = vis.binds.materialdesign.button.initializeButton(data);
+            let init = vis.binds.materialdesign.button.initializeButton(data, true);
         %>
 
         <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleAdition(el, data); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
@@ -1024,13 +1024,30 @@
         data-vis-update-style="true"
         data-vis-beta="true"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,dialogView;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;showDialogMethod[button]/select,button,datapoint;showDialogOid/id;contains_view/views;fullscreenResolutionLower[360]/number;vibrateOnMobilDevices[50]/number;"
-        data-vis-attrs0="group.buttonLayout;text;"
+        data-vis-attrs0="group.buttonLayout;buttonStyle[raised]/select,text,raised,unelevated,outlined,icon;buttontext/html;colorPress/color;labelWidth/slider,0,100,1;image/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;"
         data-vis-attrs1="group.layoutDialog;dialogMaxWidth;viewHeight/number;closingClickOutside[true]/checkbox;viewDistanceToBorder/number;backgroundColor/color;headerHeight/number;headerBackgroundColor/color;footerHeight/number;footerBackgroundColor/color;showDivider/checkbox;dividerColor/color;overlayColor/color;overlayOpacity/slider,0,1,0.1;"
         data-vis-attrs2="group.layoutTitle;showTitle[true]/checkbox;title/html;titleFontSize/number;titleFont/fontname;titleColor/color;"
         data-vis-attrs3="group.layoutdialogCloseButton;buttonPosition[flex-end]/select,flex-start,center,flex-end;buttonSize[medium]/select,small,medium,large;buttonFullWidth/checkbox;buttonText;buttonFontSize/number;buttonFont/fontname;buttonFontColor/color;fullscreenCloseIcon/custom,materialdesign.viseditor.materialDesignIcons;fullscreenCloseIconColor/color;pressColor/color;">
         
-        <div class="vis-widget materialdesign-widget materialdesign-vuetify-dialog <%== this.data.attr('class') %>" style="width: 100px; height: 30px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.dialog.vue(el, data) %>>
+        <%
+            let init = {button: '', style: ''};
+            if (this.data.showDialogMethod === 'button') {
+                if (this.data.buttonStyle === 'icon') {
+                    init = vis.binds.materialdesign.button.initializeButton(data, true);
+                    init.style = 'materialdesign-icon-button ' + init.style; 
+                } else {
+                    init = vis.binds.materialdesign.button.initializeButton(data);
+                    init.style = 'materialdesign-button ' + init.style; 
+                }
+            } else {
+                if (vis.editMode) {
+                    init.button = _('dialogUsingDatapoint');
+                }
+            }
+        %>
 
+        <div class="vis-widget materialdesign-widget materialdesign-vuetify-dialog <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.dialog.vue(el, data) %>>
+            <%== init.button %>
         </div>
 </script>
 
