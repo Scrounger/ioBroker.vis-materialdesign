@@ -23,7 +23,7 @@ vis.binds.materialdesign.dialog = {
                         <div class="mdc-dialog__container">
                         <div class="mdc-dialog__surface">
                             <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
-                            <h2 class="mdc-dialog__title ${titleTextSize.class}" id="my-dialog-title" style="${(title === '') ? 'display: none;' : ''}${titleTextSize.style}" >${myMdwHelper.getValueFromData(data.title, '')}</h2>
+                            <h2 class="mdc-dialog__title ${titleTextSize.class}" id="my-dialog-title" style="${(title === '') ? 'display: none;' : ''}${titleTextSize.style}" >${myMdwHelper.getValueFromData(data.title, '')}<br><span style="color:red"><b>Will be removed in next Version! Please use the new Dialog Widget!</b></span></h2>
                             <div class="mdc-dialog__content" id="my-dialog-content">
                                 ${(vis.editMode && !isIFrame) ? `<div data-vis-contains="${data.contains_view}" class="vis-widget-body vis-view-container" style="position: relative"></div>` : ''}
                                 <!-- vis container for view generated at runtime --!>
