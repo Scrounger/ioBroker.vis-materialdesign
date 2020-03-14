@@ -25,7 +25,7 @@ vis.binds.materialdesign.iconlist =
             $this.context.style.setProperty("--materialdesign-icon-list-items-min-width", myMdwHelper.getNumberFromData(data.iconItemMinWidth, 50) + 'px');
             $this.context.style.setProperty("--materialdesign-icon-list-items-gaps", myMdwHelper.getNumberFromData(data.itemGaps, 4) + 'px');
 
-            $this.context.style.setProperty("--materialdesign-icon-list-items-color-background", myMdwHelper.getValueFromData(data.itemBackgroundColor, ''));
+
 
             $this.context.style.setProperty("--materialdesign-icon-list-items-text-font-size", myMdwHelper.getNumberFromData(data.labelFontSize, 14) + 'px');
             $this.context.style.setProperty("--materialdesign-icon-list-items-text-font-family", myMdwHelper.getValueFromData(data.labelFontFamily, 'inherit'));
@@ -152,7 +152,7 @@ vis.binds.materialdesign.iconlist =
                     if (data.itemLayout === 'vertical') {
                         if (data.buttonLayout === 'full' && listItemObj.listType !== 'text') {
                             element = `
-                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" isLocked="${listItemObj.lockEnabled}" ${(listItemObj.listType !== 'text' && val === 'null') ? 'style="display: none;"' : ''}>
+                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};`:''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''}" >
                                     <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
                                         <div class="materialdesign-button materialdesign-iconList-button" index="${i}" style="background: ${listItemObj.buttonBackgroundColor}; position: relative; width: 100%; height: 100%; padding: 4px;">
                                             <div class="materialdesign-button-body" style="display:flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; height: 100%;">                            
@@ -173,7 +173,7 @@ vis.binds.materialdesign.iconlist =
                             `;
                         } else {
                             element = `
-                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" isLocked="${listItemObj.lockEnabled}" ${(listItemObj.listType !== 'text' && val === 'null') ? 'style="display: none;"' : ''}>
+                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};`:''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''}" >
                                     ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text materialdesign-icon-list-item-text-vertical">${listItemObj.text}</label>` : ''}
                                     <div class="materialdesign-icon-list-item-layout-vertical-image-container">
                                         ${imageElement}
@@ -189,7 +189,7 @@ vis.binds.materialdesign.iconlist =
                     } else {
                         if (data.buttonLayout === 'full' && listItemObj.listType !== 'text') {
                             element = `
-                            <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" isLocked="${listItemObj.lockEnabled}" ${(listItemObj.listType !== 'text' && val === 'null') ? 'style="display: none;"' : ''}>
+                            <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};`:''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''}" >
                                 <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
                                     <div class="materialdesign-button materialdesign-iconList-button" index="${i}" style="background: ${listItemObj.buttonBackgroundColor}; position: relative; width: 100%; height: 100%; padding: 4px;">
                                         <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">                            
@@ -211,7 +211,7 @@ vis.binds.materialdesign.iconlist =
                             `;
                         } else {
                             element = `
-                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" isLocked="${listItemObj.lockEnabled}" ${(listItemObj.listType !== 'text' && val === 'null') ? 'style="display: none;"' : ''}>                            
+                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};`:''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''}" >
                                     <div class="materialdesign-icon-list-item-layout-horizontal-image-container">
                                         ${imageElement}
                                         ${lockElement}
@@ -441,6 +441,7 @@ vis.binds.materialdesign.iconlist =
                 if (data.listItemDataMethod === 'inputPerEditor') {
                     // Data from Editor
                     return {
+                        background: myMdwHelper.getValueFromData(data.attr('itemBackgroundColor' + i), ''),
                         text: myMdwHelper.getValueFromData(data.attr('label' + i), ''),
                         subText: myMdwHelper.getValueFromData(data.attr('subLabel' + i), ''),
                         image: myMdwHelper.getValueFromData(data.attr('listImage' + i), ""),
@@ -464,6 +465,7 @@ vis.binds.materialdesign.iconlist =
                 } else {
                     // Data from json
                     return {
+                        background: myMdwHelper.getValueFromData(jsonData[i].background, ''),
                         text: myMdwHelper.getValueFromData(jsonData[i].text, ''),
                         subText: myMdwHelper.getValueFromData(jsonData[i].subText, ''),
                         image: myMdwHelper.getValueFromData(jsonData[i].image, ""),
