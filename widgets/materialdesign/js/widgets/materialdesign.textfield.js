@@ -14,6 +14,7 @@ vis.binds.materialdesign.textfield =
             let $this = $(el);
             let vueHelper = vis.binds.materialdesign.vueHelper.input
             let containerClass = 'materialdesign-vuetify-textField';
+            let widgetName = 'TextField';
 
             let inputType = myMdwHelper.getValueFromData(data.inputType, 'text');
             let inputMask = '';
@@ -49,54 +50,64 @@ vis.binds.materialdesign.textfield =
                 </v-text-field>
             </div>`);
 
-            myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'TextField', function () {
-                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'TextField', function () {
+            if (myMdwHelper.oidNeedSubscribe(data.oid, data.wid, widgetName, false)) {
+                // ggf subscribing notwendig, wenn z.B. Binding als ObjektId verwendet wird und eine oid übergeben wird
+                myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
+                    handler();
+                });
+            } else {
+                handler();
+            }
 
-                    let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
+            function handler() {
+                myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'TextField', function () {
+                    myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'TextField', function () {
 
-                    Vue.use(VueTheMask);
-                    let vueTextField = new Vue({
-                        el: $this.find(`.${containerClass}`).get(0),
-                        vuetify: new Vuetify(),
-                        data() {
-                            let dataObj = vueHelper.getData(data, widgetHeight, placeholder);
+                        let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
 
-                            dataObj.value = vis.states.attr(data.oid + '.val');
-                            dataObj.type = inputType;
-                            dataObj.maxlength = myMdwHelper.getNumberFromData(data.inputMaxLength, '');
+                        Vue.use(VueTheMask);
+                        let vueTextField = new Vue({
+                            el: $this.find(`.${containerClass}`).get(0),
+                            vuetify: new Vuetify(),
+                            data() {
+                                let dataObj = vueHelper.getData(data, widgetHeight, placeholder);
 
-                            dataObj.appendIcon = (myMdwHelper.getAllowedImageFileExtensions().some(el => myMdwHelper.getValueFromData(data.appendIcon, '').includes(el))) ? undefined : myMdwHelper.getValueFromData(data.appendIcon, undefined, 'mdi-');
-                            dataObj.appendImage = (myMdwHelper.getAllowedImageFileExtensions().some(el => myMdwHelper.getValueFromData(data.appendIcon, '').includes(el))) ? myMdwHelper.getValueFromData(data.appendIcon, undefined) : undefined;
+                                dataObj.value = vis.states.attr(data.oid + '.val');
+                                dataObj.type = inputType;
+                                dataObj.maxlength = myMdwHelper.getNumberFromData(data.inputMaxLength, '');
 
-                            return dataObj;
-                        },
-                        methods: {
-                            changeEvent(value) {
-                                if (inputType !== 'number') {
-                                    vis.setValue(data.oid, value);
-                                } else {
-                                    if (value) {
+                                dataObj.appendIcon = (myMdwHelper.getAllowedImageFileExtensions().some(el => myMdwHelper.getValueFromData(data.appendIcon, '').includes(el))) ? undefined : myMdwHelper.getValueFromData(data.appendIcon, undefined, 'mdi-');
+                                dataObj.appendImage = (myMdwHelper.getAllowedImageFileExtensions().some(el => myMdwHelper.getValueFromData(data.appendIcon, '').includes(el))) ? myMdwHelper.getValueFromData(data.appendIcon, undefined) : undefined;
+
+                                return dataObj;
+                            },
+                            methods: {
+                                changeEvent(value) {
+                                    if (inputType !== 'number') {
                                         vis.setValue(data.oid, value);
                                     } else {
-                                        this.value = vis.states.attr(data.oid + '.val');
+                                        if (value) {
+                                            vis.setValue(data.oid, value);
+                                        } else {
+                                            this.value = vis.states.attr(data.oid + '.val');
+                                        }
                                     }
                                 }
                             }
-                        }
-                    });
+                        });
 
-                    vueHelper.setStyles($this, data);
+                        vueHelper.setStyles($this, data);
 
-                    // Append Icon
-                    $this.context.style.setProperty("--vue-text-icon-append-size", myMdwHelper.getNumberFromData(data.appendIconSize, 16) + 'px');
-                    $this.context.style.setProperty("--vue-text-icon-append-color", myMdwHelper.getValueFromData(data.appendIconColor, ''));
+                        // Append Icon
+                        $this.context.style.setProperty("--vue-text-icon-append-size", myMdwHelper.getNumberFromData(data.appendIconSize, 16) + 'px');
+                        $this.context.style.setProperty("--vue-text-icon-append-color", myMdwHelper.getValueFromData(data.appendIconColor, ''));
 
-                    vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                        vueTextField.value = newVal;
+                        vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                            vueTextField.value = newVal;
+                        });
                     });
                 });
-            });
-
+            }
         } catch (ex) {
             console.error(`[Vuetify TextField]: error: ${ex.message}, stack: ${ex.stack} `);
         }
