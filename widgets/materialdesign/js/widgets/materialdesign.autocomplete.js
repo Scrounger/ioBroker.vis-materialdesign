@@ -14,6 +14,7 @@ vis.binds.materialdesign.autocomplete =
             let $this = $(el);
             let vueHelper = vis.binds.materialdesign.vueHelper.select
             let containerClass = 'materialdesign-vuetify-autoComplete';
+            let widgetName = 'AutoComplete';
 
             let inputMode = 'combobox'
             if (data.inputMode === 'select') {
@@ -37,25 +38,36 @@ vis.binds.materialdesign.autocomplete =
                 </v-${inputMode}>
             </div>`);
 
-            myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'AutoComplete', function () {
-                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'AutoComplete', function () {
-
-                    let $vuetifyContainer = $("body").find('#materialdesign-vuetify-container');
-                    let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
-
-                    let vueAutoComplete = new Vue({
-                        el: $this.find(`.${containerClass}`).get(0),
-                        vuetify: new Vuetify(),
-                        data() {
-                            return vueHelper.getData(data, widgetHeight, itemsList, inputMode);
-                        },
-                        methods: vueHelper.getMethods(data, $this, itemsList, $vuetifyContainer, inputMode)
-                    });
-
-                    vueHelper.setStyles($this, data);
-                    vueHelper.setIoBrokerBinding(data, vueAutoComplete, itemsList, inputMode);
+            if (myMdwHelper.oidNeedSubscribe(data.oid, data.wid, widgetName, false)) {
+                // ggf subscribing notwendig, wenn z.B. Binding als ObjektId verwendet wird und eine oid übergeben wird
+                myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
+                    handler();
                 });
-            });
+            } else {
+                handler();
+            }
+
+            function handler() {
+                myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'AutoComplete', function () {
+                    myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'AutoComplete', function () {
+
+                        let $vuetifyContainer = $("body").find('#materialdesign-vuetify-container');
+                        let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
+
+                        let vueAutoComplete = new Vue({
+                            el: $this.find(`.${containerClass}`).get(0),
+                            vuetify: new Vuetify(),
+                            data() {
+                                return vueHelper.getData(data, widgetHeight, itemsList, inputMode);
+                            },
+                            methods: vueHelper.getMethods(data, $this, itemsList, $vuetifyContainer, inputMode)
+                        });
+
+                        vueHelper.setStyles($this, data);
+                        vueHelper.setIoBrokerBinding(data, vueAutoComplete, itemsList, inputMode);
+                    });
+                });
+            }
         } catch (ex) {
             console.error(`[Vuetify AutoComplete]: error: ${ex.message}, stack: ${ex.stack} `);
         }
