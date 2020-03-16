@@ -164,6 +164,11 @@ vis.binds.materialdesign.views = {
                                 currentWidgetWidth = widgetWidth;
                                 setColumns();
                                 viewVisibilityByResolution();
+
+                                for (var i = 0; i <= data.countViews; i++) {
+                                    let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
+                                    viewVisibilityByCondition(i, val);
+                                }
                             }
                         });
 
@@ -275,6 +280,8 @@ vis.binds.materialdesign.views = {
             function viewVisibilityByCondition(index, val) {
                 let visibility = myMdwHelper.getVisibility(val, 'visibilityOid' + index, data.attr('visibilityCondition' + index), data.attr('visibilityConditionValue' + index));
 
+                console.log(visibility);
+
                 if (visibility) {
                     $this.find(`#masonry_item_${index}`).hide();
                 } else {
@@ -384,6 +391,11 @@ vis.binds.materialdesign.views = {
                                 currentWidgetWidth = widgetWidth;
                                 setColumns();
                                 viewVisibilityByResolution();
+
+                                for (var i = 0; i <= data.countViews; i++) {
+                                    let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
+                                    viewVisibilityByCondition(i, val);
+                                }
                             }
                         });
 
