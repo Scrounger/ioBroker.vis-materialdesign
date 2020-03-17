@@ -164,11 +164,7 @@ vis.binds.materialdesign.views = {
                                 currentWidgetWidth = widgetWidth;
                                 setColumns();
                                 viewVisibilityByResolution();
-
-                                for (var i = 0; i <= data.countViews; i++) {
-                                    let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
-                                    viewVisibilityByCondition(i, val);
-                                }
+                                viewVisibilityByCondition();
                             }
                         });
 
@@ -193,11 +189,7 @@ vis.binds.materialdesign.views = {
 
                         setColumns();
                         viewVisibilityByResolution();
-
-                        for (var i = 0; i <= data.countViews; i++) {
-                            let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
-                            viewVisibilityByCondition(i, val);
-                        }
+                        viewVisibilityByCondition();
 
                         $this.find('.materialdesign-masonry-container').show();
 
@@ -277,15 +269,16 @@ vis.binds.materialdesign.views = {
                 });
             }
 
-            function viewVisibilityByCondition(index, val) {
-                let visibility = myMdwHelper.getVisibility(val, 'visibilityOid' + index, data.attr('visibilityCondition' + index), data.attr('visibilityConditionValue' + index));
+            function viewVisibilityByCondition() {
+                for (var i = 0; i <= data.countViews; i++) {
+                    let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
+                    let visibility = myMdwHelper.getVisibility(val, 'visibilityOid' + i, data.attr('visibilityCondition' + i), data.attr('visibilityConditionValue' + i));
 
-                console.log(visibility);
-
-                if (visibility) {
-                    $this.find(`#masonry_item_${index}`).hide();
-                } else {
-                    $this.find(`#masonry_item_${index}`).show();
+                    if (visibility) {
+                        $this.find(`#masonry_item_${i}`).hide();
+                    } else {
+                        $this.find(`#masonry_item_${i}`).show();
+                    }
                 }
             }
         } catch (ex) {
@@ -391,11 +384,7 @@ vis.binds.materialdesign.views = {
                                 currentWidgetWidth = widgetWidth;
                                 setColumns();
                                 viewVisibilityByResolution();
-
-                                for (var i = 0; i <= data.countViews; i++) {
-                                    let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
-                                    viewVisibilityByCondition(i, val);
-                                }
+                                viewVisibilityByCondition();
                             }
                         });
 
@@ -415,11 +404,7 @@ vis.binds.materialdesign.views = {
 
                         setColumns();
                         viewVisibilityByResolution();
-
-                        for (var i = 0; i <= data.countViews; i++) {
-                            let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
-                            viewVisibilityByCondition(i, val);
-                        }
+                        viewVisibilityByCondition();
 
                         $this.find(`.${containerClass}`).show();
 
@@ -544,13 +529,17 @@ vis.binds.materialdesign.views = {
                 });
             }
 
-            function viewVisibilityByCondition(index, val) {
-                let visibility = myMdwHelper.getVisibility(val, 'visibilityOid' + index, data.attr('visibilityCondition' + index), data.attr('visibilityConditionValue' + index));
+            function viewVisibilityByCondition() {
+                for (var i = 0; i <= data.countViews; i++) {
+                    let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
 
-                if (visibility) {
-                    $this.find(`#grid-item${index}`).hide();
-                } else {
-                    $this.find(`#grid-item${index}`).show();
+                    let visibility = myMdwHelper.getVisibility(val, 'visibilityOid' + i, data.attr('visibilityCondition' + i), data.attr('visibilityConditionValue' + i));
+
+                    if (visibility) {
+                        $this.find(`#grid-item${i}`).hide();
+                    } else {
+                        $this.find(`#grid-item${i}`).show();
+                    }
                 }
             }
 
