@@ -440,7 +440,7 @@ vis.binds.materialdesign.iconlist =
                 if (data.listItemDataMethod === 'inputPerEditor') {
                     // Data from Editor
                     return {
-                        background: myMdwHelper.getValueFromData(data.attr('itemBackgroundColor' + i), ''),
+                        background: myMdwHelper.getValueFromData(data.attr('itemBackgroundColor' + i), myMdwHelper.getValueFromData(data.itemBackgroundColor, '')),
                         text: myMdwHelper.getValueFromData(data.attr('label' + i), ''),
                         subText: myMdwHelper.getValueFromData(data.attr('subLabel' + i), ''),
                         image: myMdwHelper.getValueFromData(data.attr('listImage' + i), ""),
@@ -464,7 +464,7 @@ vis.binds.materialdesign.iconlist =
                 } else {
                     // Data from json
                     return {
-                        background: myMdwHelper.getValueFromData(jsonData[i].background, ''),
+                        background: myMdwHelper.getValueFromData(jsonData[i].background, myMdwHelper.getValueFromData(data.itemBackgroundColor, '')),
                         text: myMdwHelper.getValueFromData(jsonData[i].text, ''),
                         subText: myMdwHelper.getValueFromData(jsonData[i].subText, ''),
                         image: myMdwHelper.getValueFromData(jsonData[i].image, ""),
