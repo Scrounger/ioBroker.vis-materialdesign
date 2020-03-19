@@ -349,6 +349,23 @@ vis.binds.materialdesign.chart = {
                                 datasets: myDatasets,
                             };
 
+                            let xAxisTimeFormats = myChartHelper.defaultTimeFormats();
+                            try {
+                                xAxisTimeFormats = JSON.parse(data.xAxisTimeFormats)
+                            } catch (errJSON) {
+                                // Formatierung kann ggf. Binding sein -> Workaroung damit chart in VIS Editor angezeigt wird
+                                var bindingVal = vis.states.attr(data.xAxisTimeFormats.replace('{', '').replace('}', '') + '.val');
+                                if (bindingVal && bindingVal !== null && bindingVal !== 'null') {
+                                    try {
+                                        xAxisTimeFormats = JSON.parse(bindingVal)
+                                    } catch (errJsonBinding) {
+                                        console.error(`[LineHistoryChart] (${data.wid}): parsing Binding for xaxis time format  failed! error in json syntax: ${errJsonBinding.message}`);
+                                    }
+                                } else {
+                                    console.error(`[LineHistoryChart] (${data.wid}): xaxis time format parsing failed! error in json syntax: ${errJSON.message}`);
+                                }
+                            }
+
                             // Notice how nested the beginAtZero is
                             var options = {
                                 responsive: true,
@@ -388,7 +405,7 @@ vis.binds.materialdesign.chart = {
                                         bounds: (myMdwHelper.getValueFromData(data.xAxisBounds, '') === 'axisTicks') ? 'ticks' : 'data',
                                         time:
                                         {
-                                            displayFormats: (myMdwHelper.getValueFromData(data.xAxisTimeFormats, null) !== null) ? JSON.parse(data.xAxisTimeFormats) : myChartHelper.defaultTimeFormats(),      // muss entsprechend konfigurietr werden siehe 
+                                            displayFormats: xAxisTimeFormats,      // muss entsprechend konfigurietr werden siehe 
                                             tooltipFormat: 'll'
                                         },
                                         position: data.xAxisPosition,
