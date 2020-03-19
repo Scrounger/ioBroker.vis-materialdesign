@@ -270,7 +270,7 @@ vis.binds.materialdesign.chart = {
                                         label: myMdwHelper.getValueFromData(data.attr('legendText' + i), ''),
                                         borderColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor),     // Line Color
                                         pointBackgroundColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor),
-                                        fill: myChartHelper.getBooleanFromData(data.attr('useFillColor' + i), false),
+                                        fill: myMdwHelper.getBooleanFromData(data.attr('useFillColor' + i), false),
                                         backgroundColor: myMdwHelper.getValueFromData(data.attr('fillColor' + i), myChartHelper.convertHex(myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor), 10)),  //Fill Background color
                                         pointRadius: myMdwHelper.getNumberFromData(data.pointSize, 3),
                                         pointHoverRadius: myMdwHelper.getNumberFromData(data.pointSizeHover, 4),
