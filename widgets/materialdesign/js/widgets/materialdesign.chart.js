@@ -718,7 +718,7 @@ vis.binds.materialdesign.chart.helper = {
                 maxTicksLimit: (chartType === 'horizontal') ? myMdwHelper.getNumberFromData(axisMaxLabel, undefined) : undefined,
                 callback: function (value, index, values) {
                     if (chartType === 'vertical') {                                      // only for chartType: vertical
-                        return `${value}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                        return `${value.toLocaleString()}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
                     }
                     return value;
                 },
@@ -759,7 +759,7 @@ vis.binds.materialdesign.chart.helper = {
                 maxTicksLimit: (chartType === 'vertical') ? myMdwHelper.getNumberFromData(axisMaxLabel, undefined) : undefined,
                 callback: function (value, index, values) {                                 // only for chartType: horizontal
                     if (chartType === 'horizontal') {
-                        return `${value}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                        return `${value.toLocaleString()}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
                     }
                     return value;
                 },
