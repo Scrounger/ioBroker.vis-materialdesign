@@ -328,7 +328,7 @@ vis.binds.materialdesign.chart = {
                                             padding: myMdwHelper.getNumberFromData(data.yAxisValueDistanceToAxis, 0),
                                             callback: function (value, index, values) {
                                                 let axisId = this.id.replace('yAxis_id_', '');
-                                                return `${value}${myMdwHelper.getValueFromData(data.attr('yAxisValueAppendText' + axisId), '')}`.split('\\n');
+                                                return `${value.toLocaleString()}${myMdwHelper.getValueFromData(data.attr('yAxisValueAppendText' + axisId), '')}`.split('\\n');
                                             }
                                         },
                                         gridLines: {
