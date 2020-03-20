@@ -386,16 +386,26 @@ vis.binds.materialdesign.chart = {
                                             var ci = this.chart;
                                             var meta = ci.getDatasetMeta(index);
 
-                                            // hide / show yAxis 
-                                            if (myMdwHelper.getNumberFromData(data.attr('commonYAxis' + index), index) === index) {
-                                                myChart.options.scales.yAxes[index].display = !myChart.options.scales.yAxes[index].display;
-                                            }
-
                                             // See controller.isDatasetVisible comment
                                             meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
 
-                                            // We hid a dataset ... rerender the chart
+                                            myChart.options.scales.yAxes[ci.data.datasets[index].yAxisID.replace('yAxis_id_', '')].display = checkAnyDataIsVisible();
                                             ci.update();
+
+                                            function checkAnyDataIsVisible() {
+                                                let result = false;
+                                                for (var i = 0; i <= data.dataCount; i++) {
+                                                    // Schauen ob yAxis gemeinsam genutzt wird und Daten angezeigt werden -> nur ausblenden wenn alle Daten die gemeinsame Achsen nicht sichtbar sind
+                                                    if (ci.data.datasets[i].yAxisID === ci.data.datasets[index].yAxisID) {
+                                                        result = (ci.getDatasetMeta(i).hidden === null) ? true : false;
+
+                                                        if (result) {
+                                                            return result;
+                                                        }
+                                                    }
+                                                }
+                                                return result;
+                                            }
                                         }
                                     }
                                 ),
