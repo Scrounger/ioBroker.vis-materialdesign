@@ -42,28 +42,47 @@ vis.binds.materialdesign.chart = {
                     let hoverDataColorArray = [];
                     let globalValueTextColor = myMdwHelper.getValueFromData(data.valuesFontColor, 'black')
                     let valueTextColorArray = [];
-                    for (var i = 0; i <= data.dataCount; i++) {
-                        // row data
-                        dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
-                        labelArray.push(myMdwHelper.getValueFromData(data.attr('label' + i), '').split('\\n'));
+                    let countOfItems = 0;
+                    let jsonData = null;
 
+                    if (data.chartDataMethod === 'jsonStringObject') {
+                        try {
+                            jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
+                            countOfItems = jsonData.length - 1;
+                        } catch (err) {
+                            console.error(`[Bar Chart ${data.wid}] cannot parse json string! Error: ${err.message}`);
+                        }
+
+                        vis.states.bind(data.oid + '.val', onChange);
+                    } else {
+                        countOfItems = data.dataCount;
+                    }
+
+                    for (var i = 0; i <= countOfItems; i++) {
+                        // row data
                         if (colorScheme != null) {
                             globalColor = colorScheme[i];
                         }
 
-                        let bgColor = myMdwHelper.getValueFromData(data.attr('dataColor' + i), globalColor)
-                        dataColorArray.push(bgColor);
+                        let barItem = getBarItemObj(i, data, jsonData, globalColor, globalValueTextColor);
+
+                        dataArray.push(barItem.value);
+                        labelArray.push(barItem.label);
+
+                        dataColorArray.push(barItem.dataColor);
 
                         if (myMdwHelper.getValueFromData(data.hoverColor, null) === null) {
-                            hoverDataColorArray.push(myChartHelper.convertHex(bgColor, 80))
+                            hoverDataColorArray.push(myChartHelper.convertHex(barItem.dataColor, 80))
                         } else {
                             hoverDataColorArray.push(data.hoverColor)
                         }
 
-                        valueTextColorArray.push(myMdwHelper.getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor))
+                        valueTextColorArray.push(barItem.valueColor)
 
                         vis.states.bind(data.attr('oid' + i) + '.val', onChange);
                     }
+
+
 
                     // Data with datasets options
                     var chartData = {
@@ -137,8 +156,8 @@ vis.binds.materialdesign.chart = {
                                 rotation: myMdwHelper.getNumberFromData(data.valuesRotation, undefined),
                                 formatter: function (value, context) {
                                     if (value) {
-                                        return `${myChartHelper.roundNumber(value, myMdwHelper.getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}${myMdwHelper.getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
-                                            .split('\\n');
+                                        let barItem = getBarItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor);
+                                        return `${myChartHelper.roundNumber(value, myMdwHelper.getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}${barItem.valueAppendix}`.split('\\n');
                                     }
                                     return '';
                                 },
@@ -163,17 +182,76 @@ vis.binds.materialdesign.chart = {
                     });
 
                     function onChange(e, newVal, oldVal) {
-                        // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
-                        let oidId = e.type.substr(0, e.type.lastIndexOf("."));
+                        console.log('onChange');
 
-                        for (var d = 0; d <= data.dataCount; d++) {
-                            if (oidId === data.attr('oid' + d)) {
-                                let index = d;
-                                myBarChart.data.datasets[0].data[index] = newVal;
+                        // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
+                        if (data.chartDataMethod === 'inputPerEditor') {
+                            let oidId = e.type.substr(0, e.type.lastIndexOf("."));
+
+                            for (var d = 0; d <= data.dataCount; d++) {
+                                if (oidId === data.attr('oid' + d)) {
+                                    let index = d;
+                                    myBarChart.data.datasets[0].data[index] = newVal;
+                                    myBarChart.update();
+                                }
+                            }
+                        } else {
+                            try {
+                                let jsonData = JSON.parse(newVal);
+
+                                for (var d = 0; d <= jsonData.length - 1; d++) {
+                                    if (colorScheme != null) {
+                                        globalColor = colorScheme[d];
+                                    }
+
+                                    let barItem = getBarItemObj(d, data, jsonData, globalColor, globalValueTextColor);
+
+                                    myBarChart.data.datasets[0].data[d] = barItem.value;
+                                    myBarChart.data.datasets[0].backgroundColor[d] = barItem.dataColor;
+                                    myBarChart.data.labels[d] = barItem.label;
+
+                                    if (myMdwHelper.getValueFromData(data.hoverColor, null) === null) {
+                                        myBarChart.data.datasets[0].hoverBackgroundColor[d] = myChartHelper.convertHex(barItem.dataColor, 80);
+                                    } else {
+                                        myBarChart.data.datasets[0].hoverBackgroundColor[d] = data.hoverColor;
+                                    }
+
+                                    myBarChart.options.plugins.datalabels.color[d] = barItem.valueColor;
+
+                                    myBarChart.options.plugins.datalabels.formatter = function (value, context) {
+                                        if (value) {
+                                            let barItem = getBarItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor);
+                                            return `${myChartHelper.roundNumber(value, myMdwHelper.getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}${barItem.valueAppendix}`.split('\\n');
+                                        }
+                                        return '';
+                                    }
+                                }
                                 myBarChart.update();
+                            } catch (err) {
+                                console.error(`[Bar Chart ${data.wid}] onChange: cannot parse json string! Error: ${err.message}`);
                             }
                         }
-                    };
+                    }
+
+                    function getBarItemObj(i, data, jsonData, globalColor, globalValueTextColor) {
+                        if (data.chartDataMethod === 'inputPerEditor') {
+                            return {
+                                label: myMdwHelper.getValueFromData(data.attr('label' + i), '').split('\\n'),
+                                value: vis.states.attr(data.attr('oid' + i) + '.val'),
+                                dataColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), globalColor),
+                                valueColor: myMdwHelper.getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor),
+                                valueAppendix: myMdwHelper.getValueFromData(data.attr('labelValueAppend' + i), '')
+                            }
+                        } else {
+                            return {
+                                label: myMdwHelper.getValueFromData(jsonData[i].label, '').split('\\n'),
+                                value: jsonData[i].value,
+                                dataColor: myMdwHelper.getValueFromData(jsonData[i].dataColor, globalColor),
+                                valueColor: myMdwHelper.getValueFromData(jsonData[i].valueColor, globalValueTextColor),
+                                valueAppendix: myMdwHelper.getValueFromData(jsonData[i].valueAppendix, '')
+                            }
+                        }
+                    }
                 }
             }, 1)
         } catch (ex) {
