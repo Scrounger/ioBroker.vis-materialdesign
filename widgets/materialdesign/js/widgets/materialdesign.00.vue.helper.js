@@ -534,7 +534,7 @@ vis.binds.materialdesign.vueHelper = {
     getObjectByValue: function (val, itemsList, inputMode = '') {
         if (val !== undefined && val !== null) {
             var result = itemsList.filter(obj => {
-                return obj.value.toString() === val.toString();
+                return obj.value.toString() === val.toString() || parseFloat(obj.value) === parseFloat(val);
             });
 
             if (result.length === 1) {
