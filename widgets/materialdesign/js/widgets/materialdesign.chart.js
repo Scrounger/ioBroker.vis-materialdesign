@@ -156,8 +156,8 @@ vis.binds.materialdesign.chart = {
                                 rotation: myMdwHelper.getNumberFromData(data.valuesRotation, undefined),
                                 formatter: function (value, context) {
                                     if (value) {
-                                        let barItem = getBarItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor);
-                                        return `${myChartHelper.roundNumber(value, myMdwHelper.getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}${barItem.valueAppendix}`.split('\\n');
+                                        let barItem = getBarItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor,value);
+                                        return `${barItem.valueText}${barItem.valueAppendix}`.split('\\n');
                                     }
                                     return '';
                                 },
@@ -220,8 +220,8 @@ vis.binds.materialdesign.chart = {
 
                                     myBarChart.options.plugins.datalabels.formatter = function (value, context) {
                                         if (value) {
-                                            let barItem = getBarItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor);
-                                            return `${myChartHelper.roundNumber(value, myMdwHelper.getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}${barItem.valueAppendix}`.split('\\n');
+                                            let barItem = getBarItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor,value);
+                                            return `${barItem.valueText}${barItem.valueAppendix}`.split('\\n');
                                         }
                                         return '';
                                     }
@@ -233,12 +233,13 @@ vis.binds.materialdesign.chart = {
                         }
                     }
 
-                    function getBarItemObj(i, data, jsonData, globalColor, globalValueTextColor) {
+                    function getBarItemObj(i, data, jsonData, globalColor, globalValueTextColor, value=0) {
                         if (data.chartDataMethod === 'inputPerEditor') {
                             return {
                                 label: myMdwHelper.getValueFromData(data.attr('label' + i), '').split('\\n'),
                                 value: vis.states.attr(data.attr('oid' + i) + '.val'),
                                 dataColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), globalColor),
+                                valueText: myMdwHelper.getValueFromData(data.attr('valueText' + i), `${myChartHelper.roundNumber(value, myMdwHelper.getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
                                 valueColor: myMdwHelper.getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor),
                                 valueAppendix: myMdwHelper.getValueFromData(data.attr('labelValueAppend' + i), '')
                             }
@@ -247,6 +248,7 @@ vis.binds.materialdesign.chart = {
                                 label: myMdwHelper.getValueFromData(jsonData[i].label, '').split('\\n'),
                                 value: jsonData[i].value,
                                 dataColor: myMdwHelper.getValueFromData(jsonData[i].dataColor, globalColor),
+                                valueText: myMdwHelper.getValueFromData(jsonData[i].valueText, `${myChartHelper.roundNumber(value, myMdwHelper.getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
                                 valueColor: myMdwHelper.getValueFromData(jsonData[i].valueColor, globalValueTextColor),
                                 valueAppendix: myMdwHelper.getValueFromData(jsonData[i].valueAppendix, '')
                             }
