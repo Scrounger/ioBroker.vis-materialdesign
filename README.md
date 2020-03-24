@@ -455,6 +455,190 @@ Settings that are not listed in the table below are self-explanatory.
     </tbody>
 </table>
 
+### JSON Chart
+
+#### General
+
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>axisLabels</td>
+            <td>axis label of graph</td>
+            <td>Array</td>
+            <td>numbers or string</td>
+        </tr>
+        <tr>
+            <td>graphs</td>
+            <td>data of graphs</td>
+            <td>Array of graph</td>
+            <td>see graph</td>
+        </tr>
+        <tr>
+            <td>tooltipMaxDigits</td>
+            <td>max decimals of tooltip value</td>
+            <td>number</td>
+            <td>0, 1, 2, ...</td>
+        </tr>
+    </tbody>
+</table>
+
+#### graph
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>data</td>
+            <td>data of graph</td>
+            <td>Array of numbers</td>
+            <td>number</td>
+        </tr>
+        <tr>
+            <td>type</td>
+            <td>type of graph</td>
+            <td>string</td>
+            <td>'line', 'bar'</td>
+        </tr>
+        <tr>
+            <td>displayOrder</td>
+            <td>overlay order of graph</td>
+            <td>number</td>
+            <td>1, 2, ...</td>
+        </tr>
+        <tr>
+            <td>color</td>
+            <td>color of graph</td>
+            <td>color</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+#### line chart spfeicifc
+
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>linePointColor</td>
+            <td>color of line point</td>
+            <td>color</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>linePointColorBorder</td>
+            <td>border color of line point</td>
+            <td>color</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>linePointColorHover</td>
+            <td>hover color of line point</td>
+            <td>color</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>linePointColorBorderHover</td>
+            <td>border hover color of line point</td>
+            <td>color</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>lineTension</td>
+            <td>smothness of line</td>
+            <td>number</td>
+            <td>0 - 1</td>
+        </tr>
+        <tr>
+            <td>lineThikness</td>
+            <td>thikness of line</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+        <tr>
+            <td>lineUseFillColor</td>
+            <td>use fill color under line</td>
+            <td>boolean</td>
+            <td>false, true</td>
+        </tr>
+        <tr>
+            <td>lineFillColor</td>
+            <td>fill color under line</td>
+            <td>color</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+    </tbody>
+</table>
+
+
+#### bar chart spfeicifc
+
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>barColorHover</td>
+            <td>hover color of bar</td>
+            <td>color</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>barBorderColor</td>
+            <td>border color of bar</td>
+            <td>color</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>barBorderWidth</td>
+            <td>thikness of bar border</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+        <tr>
+            <td>barBorderColorHover</td>
+            <td>border hover color of bar</td>
+            <td>color</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>barBorderWidthHover</td>
+            <td>hover thikness of bar border</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+    </tbody>
+</table>
+
 ## Table
 ![Logo](doc/en/media/table.gif)
 

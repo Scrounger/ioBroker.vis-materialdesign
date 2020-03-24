@@ -951,6 +951,29 @@
         </div>
 </script>
 
+
+<script id="tplVis-materialdesign-Chart-JSON"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<img src="widgets/materialdesign/img/bar_chart.png"></img>'
+        data-vis-set="materialdesign"
+        data-vis-type="state,chart"
+        data-vis-name="JSON Chart"
+        data-vis-update-style="true"
+        data-vis-beta="true"
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,barChart;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;chartPaddingTop/number;chartPaddingLeft/number;chartPaddingRight/number;chartPaddingBottom/number;"
+        data-vis-attrs0="group.chartLayout;backgroundColor/color;chartAreaBackgroundColor/color;colorScheme/custom,materialdesign.colorScheme.editorSelector;globalColor/color;disableHoverEffects/checkbox;animationDuration/number;"
+        data-vis-attrs1="group.barLayout;barWidth/slider,0,100,1;"
+        data-vis-attrs2="group.lineLayout;pointStyle[circle]/select,circle,cross,crossRot,dash,line,rect,rectRounded,rectRot,star,triangle;pointSize/number;pointSizeHover/number;lineSpanGaps[true]/checkbox;"
+        data-vis-attrs3="group.legendLayout;showLegend[true]/checkbox;legendPosition[right]/select,top,left,bottom,right;legendFontColor/color;legendFontFamily/fontname;legendFontSize/number;legendBoxWidth/slider,0,100,1;legendPointStyle[true]/checkbox;legendPadding/number;"
+        data-vis-attrs4="group.tooltipLayout;showTooltip[true]/checkbox;tooltipMode[nearest]/select,nearest,point,index,dataset;tooltipBackgroundColor/color;tooltipArrowSize/number;tooltipDistanceToBar/number;tooltipBoxRadius/number;tooltipShowColorBox[true]/checkbox;tooltipXpadding/number;tooltipYpadding/number;tooltipTitleFontColor/color;tooltipTitleFontFamily/fontname;tooltipTitleFontSize/number;tooltipTitleMarginBottom/number;tooltipBodyFontColor/color;tooltipBodyFontFamily/fontname;tooltipBodyFontSize/number;tooltipBodyAppend;tooltipValueMaxDecimals/number;"
+        data-vis-attrs5="group.xAxisLayout;xAxisPosition[bottom]/select,top,bottom;xAxisTitle;xAxisTitleColor/color;xAxisTitleFontFamily/fontname;xAxisTitleFontSize/number;xAxisValueLabelColor/color;xAxisValueFontFamily/fontname;xAxisValueFontSize/number;xAxisValueDistanceToAxis[0]/slider,0,100,1;xAxisShowAxis[true]/checkbox;xAxisShowAxisLabels[true]/checkbox;xAxisShowGridLines[true]/checkbox;xAxisGridLinesColor/color;xAxisGridLinesWitdh;xAxisShowTicks[true]/checkbox;xAxisTickLength/slider,0,100,1;">
+
+        <div class="vis-widget materialdesign-widget materialdesign-chart <%== this.data.attr('class') %>" style="width:400px; height: 270px; background-color: <%= this.data.attr('backgroundColor')%>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.chart.json(el, data) %>>
+            <canvas class="materialdesign-chart-container"></canvas>
+        </div>
+</script>
+
 <script id="tplVis-materialdesign-Chart-Pie"
         type="text/ejs"
         class="vis-tpl"

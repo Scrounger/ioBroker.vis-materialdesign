@@ -156,7 +156,7 @@ vis.binds.materialdesign.chart = {
                                 rotation: myMdwHelper.getNumberFromData(data.valuesRotation, undefined),
                                 formatter: function (value, context) {
                                     if (value) {
-                                        let barItem = getBarItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor,value);
+                                        let barItem = getBarItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor, value);
                                         return `${barItem.valueText}${barItem.valueAppendix}`.split('\\n');
                                     }
                                     return '';
@@ -220,7 +220,7 @@ vis.binds.materialdesign.chart = {
 
                                     myBarChart.options.plugins.datalabels.formatter = function (value, context) {
                                         if (value) {
-                                            let barItem = getBarItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor,value);
+                                            let barItem = getBarItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor, value);
                                             return `${barItem.valueText}${barItem.valueAppendix}`.split('\\n');
                                         }
                                         return '';
@@ -233,7 +233,7 @@ vis.binds.materialdesign.chart = {
                         }
                     }
 
-                    function getBarItemObj(i, data, jsonData, globalColor, globalValueTextColor, value=0) {
+                    function getBarItemObj(i, data, jsonData, globalColor, globalValueTextColor, value = 0) {
                         if (data.chartDataMethod === 'inputPerEditor') {
                             return {
                                 label: myMdwHelper.getValueFromData(data.attr('label' + i), '').split('\\n'),
@@ -257,7 +257,7 @@ vis.binds.materialdesign.chart = {
                 }
             }, 1)
         } catch (ex) {
-            console.error(`[Bar Chart] error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Bar Chart ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     lineHistory: function (el, data) {
@@ -633,7 +633,7 @@ vis.binds.materialdesign.chart = {
                 };
             }, 1)
         } catch (ex) {
-            console.error(`[Line History Chart] error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Line History Chart ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     pie: function (el, data) {
@@ -789,7 +789,206 @@ vis.binds.materialdesign.chart = {
                 }
             }, 1)
         } catch (ex) {
-            console.error(`[Pie Chart] error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Pie Chart ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
+    json: function (el, data) {
+        try {
+            setTimeout(function () {
+                let myChartHelper = vis.binds.materialdesign.chart.helper;
+                myChartHelper.registerChartAreaPlugin();
+
+                var myChart;
+                let $this = $(el);
+                var chartContainer = $this.find('.materialdesign-chart-container').get(0);
+
+                $this.find('.materialdesign-chart-container').css('background-color', myMdwHelper.getValueFromData(data.backgroundColor, ''));
+                let globalColor = myMdwHelper.getValueFromData(data.globalColor, '#44739e');
+
+                if (chartContainer !== undefined && chartContainer !== null && chartContainer !== '') {
+                    var ctx = chartContainer.getContext('2d');
+
+                    // Global Options:
+                    Chart.defaults.global.defaultFontColor = '#44739e';
+                    Chart.defaults.global.defaultFontSize = 15;
+                    Chart.defaults.global.animation.duration = myMdwHelper.getNumberFromData(data.animationDuration, 1000);
+
+                    Chart.plugins.unregister(ChartDataLabels);
+
+                    let myDatasets = [];
+
+                    let jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
+                    if (Object.keys(jsonData).length > 0) {
+
+                        let colorScheme = myMdwHelper.getValueFromData(data.colorScheme, null);
+                        if (colorScheme != null) {
+                            colorScheme = vis.binds.materialdesign.colorScheme.get(data.colorScheme, data.dataCount);
+                        }
+
+                        for (const i of Object.keys(jsonData.graphs)) {
+                            let graph = jsonData.graphs[i];
+
+                            let graphObj = {
+                                data: graph.data,
+                                label: graph.legendText,
+                                type: graph.type,
+                                order: myMdwHelper.getNumberFromData(graph.displayOrder, undefined)
+                            }
+
+                            let graphColor = myMdwHelper.getValueFromData(graph.color, (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor);
+
+                            if (graph.type && graph.type === 'line') {
+                                // line graph
+                                let fillColor = myChartHelper.convertHex(graphColor, 20);
+                                if (myMdwHelper.getValueFromData(graph.lineFillColor, null) !== null) {
+                                    fillColor = graph.lineFillColor;
+                                }
+
+                                Object.assign(graphObj,
+                                    {
+                                        // chart specific properties
+                                        borderColor: graphColor,
+
+                                        // JSON Daten
+                                        pointBackgroundColor: myMdwHelper.getValueFromData(graph.linePointColor, graphColor),
+                                        pointBorderColor: myMdwHelper.getValueFromData(graph.linePointColorBorder, graphColor),
+                                        pointHoverBorderColor: myMdwHelper.getValueFromData(graph.linePointColorBorderHover, graphColor),
+                                        pointHoverBackgroundColor: myMdwHelper.getValueFromData(graph.linePointColorHover, graphColor),
+                                        lineTension: myMdwHelper.getNumberFromData(graph.lineTension, 0.4),
+                                        borderWidth: myMdwHelper.getNumberFromData(graph.lineThikness, 3),
+                                        fill: myMdwHelper.getBooleanFromData(graph.lineUseFillColor, false),
+                                        backgroundColor: fillColor,
+
+                                        // Editor Daten
+                                        pointStyle: myMdwHelper.getValueFromData(data.pointStyle, 'circle'),
+                                        pointRadius: myMdwHelper.getNumberFromData(data.pointSize, 3),
+                                        pointHoverRadius: myMdwHelper.getNumberFromData(data.pointSizeHover, 4),
+                                        spanGaps: myMdwHelper.getBooleanFromData(data.lineSpanGaps, true),
+                                    }
+                                )
+                            } else {
+                                // bar graph
+                                let barColorHover = myChartHelper.convertHex(graphColor, 80);
+                                if (myMdwHelper.getValueFromData(graph.barColorHover, null) !== null) {
+                                    barColorHover = graph.barColorHover;
+                                }
+
+                                Object.assign(graphObj,
+                                    {
+                                        // chart specific properties
+                                        backgroundColor: graphColor,
+                                        hoverBackgroundColor: barColorHover,
+
+                                        // JSON Daten
+                                        borderColor: myMdwHelper.getValueFromData(graph.barBorderColor, 'white'),
+                                        borderWidth: myMdwHelper.getNumberFromData(graph.barBorderWidth, undefined),
+                                        hoverBorderColor: myMdwHelper.getValueFromData(graph.barBorderColorHover, undefined),
+                                        hoverBorderWidth: myMdwHelper.getNumberFromData(graph.barBorderWidthHover, undefined),
+
+                                        // Editor Daten
+                                        categoryPercentage: myMdwHelper.getNumberFromData(data.barWidth, 80) / 100,
+                                        barPercentage: myMdwHelper.getNumberFromData(data.barWidth, 80) / 100,
+                                    }
+                                )
+                            }
+
+                            myDatasets.push(graphObj);
+                        }
+
+                        // Notice how nested the beginAtZero is
+                        var options = {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            layout: myChartHelper.getLayout(data),
+                            chartArea: {
+                                backgroundColor: myMdwHelper.getValueFromData(data.chartAreaBackgroundColor, ''),
+                            },
+                            scales: {
+                                xAxes: [
+                                    myChartHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
+                                        data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
+                                        data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
+                                        data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength)
+                                ],
+                            },
+                            legend: Object.assign(myChartHelper.getLegend(data),
+                                {
+                                    // custom to hide / show also yAxis if data de-/selected
+                                    onClick: function (event, legendItem) {
+                                        var index = legendItem.datasetIndex;
+
+                                        var ci = this.chart;
+                                        var meta = ci.getDatasetMeta(index);
+
+                                        // See controller.isDatasetVisible comment
+                                        meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
+
+                                        myChart.options.scales.yAxes[ci.data.datasets[index].yAxisID.replace('yAxis_id_', '')].display = checkAnyDataIsVisible();
+                                        ci.update();
+
+                                        function checkAnyDataIsVisible() {
+                                            let result = false;
+                                            for (var i = 0; i <= data.dataCount; i++) {
+                                                // Schauen ob yAxis gemeinsam genutzt wird und Daten angezeigt werden -> nur ausblenden wenn alle Daten die gemeinsame Achsen nicht sichtbar sind
+                                                if (ci.data.datasets[i].yAxisID === ci.data.datasets[index].yAxisID) {
+                                                    result = (ci.getDatasetMeta(i).hidden === null) ? true : false;
+
+                                                    if (result) {
+                                                        return result;
+                                                    }
+                                                }
+                                            }
+                                            return result;
+                                        }
+                                    }
+                                }
+                            ),
+                            tooltips: {
+                                mode: data.tooltipMode,
+                                enabled: data.showTooltip,
+                                backgroundColor: myMdwHelper.getValueFromData(data.tooltipBackgroundColor, 'black'),
+                                caretSize: myMdwHelper.getNumberFromData(data.tooltipArrowSize, 5),
+                                caretPadding: myMdwHelper.getNumberFromData(data.tooltipDistanceToBar, 2),
+                                cornerRadius: myMdwHelper.getNumberFromData(data.tooltipBoxRadius, 4),
+                                displayColors: data.tooltipShowColorBox,
+                                xPadding: myMdwHelper.getNumberFromData(data.tooltipXpadding, 10),
+                                yPadding: myMdwHelper.getNumberFromData(data.tooltipYpadding, 10),
+                                titleFontColor: myMdwHelper.getValueFromData(data.tooltipTitleFontColor, 'white'),
+                                titleFontFamily: myMdwHelper.getValueFromData(data.tooltipTitleFontFamily, undefined),
+                                titleFontSize: myMdwHelper.getNumberFromData(data.tooltipTitleFontSize, undefined),
+                                titleMarginBottom: myMdwHelper.getNumberFromData(data.tooltipTitleMarginBottom, 6),
+                                bodyFontColor: myMdwHelper.getValueFromData(data.tooltipBodyFontColor, 'white'),
+                                bodyFontFamily: myMdwHelper.getValueFromData(data.tooltipBodyFontFamily, undefined),
+                                bodyFontSize: myMdwHelper.getNumberFromData(data.tooltipBodyFontSize, undefined),
+                                callbacks: {
+                                    label: function (tooltipItem, chart) {
+                                        if (tooltipItem && tooltipItem.value) {
+                                            return `${chart.datasets[tooltipItem.datasetIndex].label}: ${myChartHelper.roundNumber(parseFloat(tooltipItem.value), myMdwHelper.getNumberFromData(jsonData.graphs[tooltipItem.datasetIndex].tooltipMaxDigits, 10)).toLocaleString()}${myMdwHelper.getValueFromData(jsonData.graphs[tooltipItem.datasetIndex].tooltipAppendText, '')}`
+                                                .split('\\n');
+                                        }
+                                        return '';
+                                    }
+                                }
+                            },
+                        }
+
+                        if (data.disableHoverEffects) options.hover = { mode: null };
+
+                        // Chart declaration:
+                        var myBarChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: jsonData.axisLabels,
+                                datasets: myDatasets,
+                            },
+                            options: options,
+                            // plugins: (data.showValues) ? [ChartDataLabels] : undefined     // show value labels
+                        });
+                    }
+                }
+            }, 1);
+        } catch (ex) {
+            console.error(`[JSON Chart ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };
