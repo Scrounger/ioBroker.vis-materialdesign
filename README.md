@@ -481,12 +481,6 @@ Settings that are not listed in the table below are self-explanatory.
             <td>Array of graph</td>
             <td>see graph</td>
         </tr>
-        <tr>
-            <td>tooltipMaxDigits</td>
-            <td>max decimals of tooltip value</td>
-            <td>number</td>
-            <td>0, 1, 2, ...</td>
-        </tr>
     </tbody>
 </table>
 
@@ -525,12 +519,24 @@ Settings that are not listed in the table below are self-explanatory.
             <td>color</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
         </tr>
+        <tr>
+            <td>tooltip_MaxDigits</td>
+            <td>max decimals of tooltip value</td>
+            <td>number</td>
+            <td>0, 1, 2, ...</td>
+        </tr>
+        <tr>
+            <td>tooltip_AppendText</td>
+            <td>append text to tooltip value</td>
+            <td>string</td>
+            <td></td>
+        </tr>
     </tbody>
 </table>
 
 
 
-#### line chart spfeicifc
+#### graph line chart spfeicifc
 
 <table>
     <thead>
@@ -543,49 +549,55 @@ Settings that are not listed in the table below are self-explanatory.
     </thead>
     <tbody>
         <tr>
-            <td>linePointColor</td>
+            <td>line_PointColor</td>
             <td>color of line point</td>
             <td>color</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
         </tr>
         <tr>
-            <td>linePointColorBorder</td>
+            <td>line_PointColorBorder</td>
             <td>border color of line point</td>
             <td>color</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
         </tr>
         <tr>
-            <td>linePointColorHover</td>
+            <td>line_PointColorHover</td>
             <td>hover color of line point</td>
             <td>color</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
         </tr>
         <tr>
-            <td>linePointColorBorderHover</td>
+            <td>line_PointColorBorderHover</td>
             <td>border hover color of line point</td>
             <td>color</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
         </tr>
         <tr>
-            <td>lineTension</td>
+            <td>line_SpanGaps</td>
+            <td>draw lines if data has gaps</td>
+            <td>boolean</td>
+            <td>false, true</td>
+        </tr>
+        <tr>
+            <td>line_Tension</td>
             <td>smothness of line</td>
             <td>number</td>
             <td>0 - 1</td>
         </tr>
         <tr>
-            <td>lineThikness</td>
+            <td>line_Thikness</td>
             <td>thikness of line</td>
             <td>number</td>
             <td>1, 2, 5, ...</td>
         </tr>
         <tr>
-            <td>lineUseFillColor</td>
+            <td>line_UseFillColor</td>
             <td>use fill color under line</td>
             <td>boolean</td>
             <td>false, true</td>
         </tr>
         <tr>
-            <td>lineFillColor</td>
+            <td>line_FillColor</td>
             <td>fill color under line</td>
             <td>color</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
@@ -594,7 +606,7 @@ Settings that are not listed in the table below are self-explanatory.
 </table>
 
 
-#### bar chart spfeicifc
+#### graph bar chart spfeicifc
 
 <table>
     <thead>
@@ -633,6 +645,158 @@ Settings that are not listed in the table below are self-explanatory.
         <tr>
             <td>barBorderWidthHover</td>
             <td>hover thikness of bar border</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+    </tbody>
+</table>
+
+#### graph y-Axis
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>yAxis_id</td>
+            <td>id of y-axis. If you would like to use a common y-axis for multipl graph data, use the same id.</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+        <tr>
+            <td>yAxis_position</td>
+            <td>position of y-axis</td>
+            <td>string</td>
+            <td>left, right</td>
+        </tr>
+        <tr>
+            <td>yAxis_show</td>
+            <td>show y-axis</td>
+            <td>boolean</td>
+            <td>false, true</td>
+        </tr>
+        <tr>
+            <td>yAxis_title_text</td>
+            <td>y-axis title</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>yAxis_title_color</td>
+            <td>override y-axis title color</td>
+            <td>color</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>yAxis_title_fontFamily</td>
+            <td>override y-axis title font family</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>yAxis_title_fontSize</td>
+            <td>override y-axis title font size</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+        <tr>
+            <td>yAxis_min</td>
+            <td>minimum value of y-axis</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+        <tr>
+            <td>yAxis_max</td>
+            <td>maximum value of y-axis</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+        <tr>
+            <td>yAxis_step</td>
+            <td>steps of y-axis</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+        <tr>
+            <td>yAxis_maxSteps</td>
+            <td>maximum steps of y-axis</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+        <tr>
+            <td>yAxis_distance</td>
+            <td>override y-axis value distance to axis</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+        <tr>
+            <td>yAxis_appendix</td>
+            <td>append text to y-axis value</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>yAxis_color</td>
+            <td>override y-axis value color</td>
+            <td>color</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>yAxis_fontFamily</td>
+            <td>override y-axis value font family</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>yAxis_fontSize</td>
+            <td>override y-axis value font size</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+        <tr>
+            <td>yAxis_gridLines_show</td>
+            <td>show y-axis grid lines</td>
+            <td>boolean</td>
+            <td>false, true</td>
+        </tr>
+        <tr>
+            <td>yAxis_gridLines_color</td>
+            <td>color of y-axis grid lines</td>
+            <td>color</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>yAxis_gridLines_lineWidth</td>
+            <td>width of grid lines</td>
+            <td>number</td>
+            <td>0 - 1</td>
+        </tr>
+        <tr>
+            <td>yAxis_gridLines_border_show</td>
+            <td>show border of y-axis grid lines</td>
+            <td>boolean</td>
+            <td>false, true</td>
+        </tr>
+        <tr>
+            <td>yAxis_gridLines_on_chart_area_show</td>
+            <td>show grid lines on chart area</td>
+            <td>boolean</td>
+            <td>false, true</td>
+        </tr>
+        <tr>
+            <td>yAxis_gridLines_ticks_show</td>
+            <td>show y-axis grid ticks</td>
+            <td>boolean</td>
+            <td>false, true</td>
+        </tr>
+        <tr>
+            <td>yAxis_gridLines_ticks_length</td>
+            <td>length of y-axis grid ticks</td>
             <td>number</td>
             <td>1, 2, 5, ...</td>
         </tr>

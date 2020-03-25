@@ -816,6 +816,7 @@ vis.binds.materialdesign.chart = {
                     Chart.plugins.unregister(ChartDataLabels);
 
                     let myDatasets = [];
+                    let myYAxis = [];
 
                     let jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
                     if (Object.keys(jsonData).length > 0) {
@@ -829,10 +830,11 @@ vis.binds.materialdesign.chart = {
                             let graph = jsonData.graphs[i];
 
                             let graphObj = {
-                                data: graph.data,
+                                data: graph.data.map(Number, null),
                                 label: graph.legendText,
                                 type: graph.type,
-                                order: myMdwHelper.getNumberFromData(graph.displayOrder, undefined)
+                                order: myMdwHelper.getNumberFromData(graph.displayOrder, undefined),
+                                yAxisID: `yAxis_id_${myMdwHelper.getNumberFromData(graph.yAxis_id, i)}`,
                             }
 
                             let graphColor = myMdwHelper.getValueFromData(graph.color, (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor);
@@ -840,8 +842,8 @@ vis.binds.materialdesign.chart = {
                             if (graph.type && graph.type === 'line') {
                                 // line graph
                                 let fillColor = myChartHelper.convertHex(graphColor, 20);
-                                if (myMdwHelper.getValueFromData(graph.lineFillColor, null) !== null) {
-                                    fillColor = graph.lineFillColor;
+                                if (myMdwHelper.getValueFromData(graph.line_FillColor, null) !== null) {
+                                    fillColor = graph.line_FillColor;
                                 }
 
                                 Object.assign(graphObj,
@@ -850,13 +852,14 @@ vis.binds.materialdesign.chart = {
                                         borderColor: graphColor,
 
                                         // JSON Daten
-                                        pointBackgroundColor: myMdwHelper.getValueFromData(graph.linePointColor, graphColor),
-                                        pointBorderColor: myMdwHelper.getValueFromData(graph.linePointColorBorder, graphColor),
-                                        pointHoverBorderColor: myMdwHelper.getValueFromData(graph.linePointColorBorderHover, graphColor),
-                                        pointHoverBackgroundColor: myMdwHelper.getValueFromData(graph.linePointColorHover, graphColor),
-                                        lineTension: myMdwHelper.getNumberFromData(graph.lineTension, 0.4),
-                                        borderWidth: myMdwHelper.getNumberFromData(graph.lineThikness, 3),
-                                        fill: myMdwHelper.getBooleanFromData(graph.lineUseFillColor, false),
+                                        pointBackgroundColor: myMdwHelper.getValueFromData(graph.line_PointColor, graphColor),
+                                        pointBorderColor: myMdwHelper.getValueFromData(graph.line_PointColorBorder, graphColor),
+                                        pointHoverBackgroundColor: myMdwHelper.getValueFromData(graph.line_PointColorHover, graphColor),
+                                        pointHoverBorderColor: myMdwHelper.getValueFromData(graph.line_PointColorBorderHover, graphColor),
+                                        spanGaps: myMdwHelper.getBooleanFromData(graph.line_SpanGaps, true),
+                                        lineTension: myMdwHelper.getNumberFromData(graph.line_Tension, 0.4),
+                                        borderWidth: myMdwHelper.getNumberFromData(graph.line_Thikness, 3),
+                                        fill: myMdwHelper.getBooleanFromData(graph.line_UseFillColor, false),
                                         backgroundColor: fillColor,
 
                                         // Editor Daten
@@ -893,6 +896,46 @@ vis.binds.materialdesign.chart = {
                             }
 
                             myDatasets.push(graphObj);
+
+                            myYAxis.push(
+                                {
+                                    id: `yAxis_id_${myMdwHelper.getNumberFromData(graph.yAxis_id, i)}`,
+                                    type: 'linear',
+                                    position: myMdwHelper.getValueFromData(graph.yAxis_position, 'left'),
+                                    display: myMdwHelper.getBooleanFromData(graph.yAxis_show, true),
+                                    scaleLabel: {       // y-Axis title
+                                        display: myMdwHelper.getValueFromData(graph.yAxis_title_text, '') !== '' ? true : false,
+                                        labelString: myMdwHelper.getValueFromData(graph.yAxis_title_text, ''),
+                                        fontColor: myMdwHelper.getValueFromData(graph.yAxis_title_color, myMdwHelper.getValueFromData(data.yAxisTitleColor, undefined)),
+                                        fontFamily: myMdwHelper.getValueFromData(graph.yAxis_title_fontFamily, myMdwHelper.getValueFromData(data.yAxisTitleFontFamily, undefined)),
+                                        fontSize: myMdwHelper.getNumberFromData(graph.yAxis_title_fontSize, myMdwHelper.getNumberFromData(data.yAxisTitleFontSize, undefined))
+                                    },
+                                    ticks: {
+                                        min: myMdwHelper.getNumberFromData(graph.yAxis_min, undefined),
+                                        max: myMdwHelper.getNumberFromData(graph.yAxis_max, undefined),
+                                        stepSize: myMdwHelper.getNumberFromData(graph.yAxis_step, undefined),
+                                        autoSkip: true,
+                                        maxTicksLimit: myMdwHelper.getNumberFromData(graph.yAxis_maxSteps, undefined),
+                                        fontColor: myMdwHelper.getValueFromData(graph.yAxis_color, myMdwHelper.getValueFromData(data.yAxisValueLabelColor, undefined)),
+                                        fontFamily: myMdwHelper.getValueFromData(graph.yAxis_fontFamily, myMdwHelper.getValueFromData(data.yAxisValueFontFamily, undefined)),
+                                        fontSize: myMdwHelper.getNumberFromData(graph.yAxis_fontSize, myMdwHelper.getNumberFromData(data.yAxisValueFontSize, undefined)),
+                                        padding: myMdwHelper.getNumberFromData(graph.yAxis_distance, myMdwHelper.getNumberFromData(data.yAxisValueDistanceToAxis, 0)),
+                                        callback: function (value, index, values) {
+                                            let axisId = this.id.replace('yAxis_id_', '');
+                                            return `${value.toLocaleString()}${myMdwHelper.getValueFromData(graph.yAxis_appendix, '')}`.split('\\n');
+                                        }
+                                    },
+                                    gridLines: {
+                                        display: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_show, true),
+                                        color: myMdwHelper.getValueFromData(graph.yAxis_gridLines_color, 'black'),
+                                        lineWidth: myMdwHelper.getNumberFromData(graph.yAxis_gridLines_lineWidth, 0.1),
+                                        drawBorder: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_border_show, true),
+                                        drawOnChartArea: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_on_chart_area_show, true),
+                                        drawTicks: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_ticks_show, true),
+                                        tickMarkLength: myMdwHelper.getNumberFromData(graph.yAxis_gridLines_ticks_length, 5),
+                                    }
+                                }
+                            )
                         }
 
                         // Notice how nested the beginAtZero is
@@ -910,6 +953,7 @@ vis.binds.materialdesign.chart = {
                                         data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
                                         data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength)
                                 ],
+                                yAxes: myYAxis,
                             },
                             legend: Object.assign(myChartHelper.getLegend(data),
                                 {
@@ -963,7 +1007,7 @@ vis.binds.materialdesign.chart = {
                                 callbacks: {
                                     label: function (tooltipItem, chart) {
                                         if (tooltipItem && tooltipItem.value) {
-                                            return `${chart.datasets[tooltipItem.datasetIndex].label}: ${myChartHelper.roundNumber(parseFloat(tooltipItem.value), myMdwHelper.getNumberFromData(jsonData.graphs[tooltipItem.datasetIndex].tooltipMaxDigits, 10)).toLocaleString()}${myMdwHelper.getValueFromData(jsonData.graphs[tooltipItem.datasetIndex].tooltipAppendText, '')}`
+                                            return `${chart.datasets[tooltipItem.datasetIndex].label}: ${myChartHelper.roundNumber(parseFloat(tooltipItem.value), myMdwHelper.getNumberFromData(jsonData.graphs[tooltipItem.datasetIndex].tooltip_MaxDigits, 10)).toLocaleString()}${myMdwHelper.getValueFromData(jsonData.graphs[tooltipItem.datasetIndex].tooltip_AppendText, '')}`
                                                 .split('\\n');
                                         }
                                         return '';
@@ -984,6 +1028,9 @@ vis.binds.materialdesign.chart = {
                             options: options,
                             // plugins: (data.showValues) ? [ChartDataLabels] : undefined     // show value labels
                         });
+
+                        console.log(myBarChart.data.datasets);
+                        console.log(options);
                     }
                 }
             }, 1);
