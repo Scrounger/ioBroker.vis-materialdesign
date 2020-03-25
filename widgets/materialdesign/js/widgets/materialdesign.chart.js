@@ -801,6 +801,8 @@ vis.binds.materialdesign.chart = {
                         for (const i of Object.keys(jsonData.graphs)) {
                             let graph = jsonData.graphs[i];
 
+                            let graphColor = myMdwHelper.getValueFromData(graph.color, (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor);
+
                             let graphObj = {
                                 data: graph.data.map(Number, null),
                                 label: graph.legendText,
@@ -812,12 +814,24 @@ vis.binds.materialdesign.chart = {
                                     display: myMdwHelper.getBooleanFromData(graph.datalabel_show, true),
                                     anchor: myMdwHelper.getValueFromData(graph.datalabel_anchor, 'end'),
                                     align: myMdwHelper.getValueFromData(graph.datalabel_align, 'top'),
+                                    textAlign: myMdwHelper.getValueFromData(graph.datalabel_text_align, 'center'),
                                     offset: myMdwHelper.getNumberFromData(graph.datalabel_offset, 0),
                                     clamp: true,
+                                    rotation: myMdwHelper.getNumberFromData(graph.datalabel_rotation, undefined),
+                                    formatter: function (value, context) {
+                                        if (value) {
+                                            return `${myChartHelper.roundNumber(value, myMdwHelper.getNumberFromData(graph.datalabel_maxDigits, 10)).toLocaleString()}${myMdwHelper.getValueFromData(graph.datalabel_append, '')}`
+                                                .split('\\n');
+                                        }
+                                        return '';
+                                    },
+                                    font: {
+                                        family: myMdwHelper.getValueFromData(graph.datalabel_fontFamily, undefined),
+                                        size: myMdwHelper.getNumberFromData(graph.datalabel_fontSize, undefined),
+                                    },
+                                    color: myMdwHelper.getValueFromData(graph.datalabel_color, graphColor),
                                 }
                             }
-
-                            let graphColor = myMdwHelper.getValueFromData(graph.color, (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor);
 
                             if (graph.type && graph.type === 'line') {
                                 // line graph

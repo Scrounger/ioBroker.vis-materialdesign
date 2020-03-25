@@ -545,15 +545,57 @@ Settings that are not listed in the table below are self-explanatory.
         </tr>
         <tr>
             <td>datalabel_align</td>
-            <td>position of the label relative to the anchor point</td>
+            <td>position of the data label relative to the anchor point</td>
             <td>string</td>
-            <td>center, start, end, right, bottom, left, top</td>
+            <td>left, start, center, end, right, top, bottom</td>
         </tr>
         <tr>
             <td>datalabel_offset</td>
-            <td>distance (in pixels) to pull the label away from the anchor point</td>
+            <td>distance (in pixels) to pull the data label away from the anchor point</td>
             <td>number</td>
             <td>0, 1, 2, ...</td>
+        </tr>
+        <tr>
+            <td>datalabel_text_align</td>
+            <td>text aligment of the data label</td>
+            <td>string</td>
+            <td>left, start, center, end, right</td>
+        </tr>
+        <tr>
+            <td>datalabel_rotation</td>
+            <td>clockwise rotation angle (in degrees) of the data label</td>
+            <td>number</td>
+            <td>0, 1, 2, ...</td>
+        </tr>
+        <tr>
+            <td>datalabel_maxDigits</td>
+            <td>max decimals of data labels</td>
+            <td>number</td>
+            <td>0, 1, 2, ...</td>
+        </tr>
+        <tr>
+            <td>datalabel_append</td>
+            <td>append text to data label</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>datalabel_color</td>
+            <td>data label color</td>
+            <td>color</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>datalabel_fontFamily</td>
+            <td>data label font family</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>datalabel_fontSize</td>
+            <td>data label font size</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
         </tr>
     </tbody>
 </table>
