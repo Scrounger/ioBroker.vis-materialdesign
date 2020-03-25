@@ -153,6 +153,7 @@ vis.binds.materialdesign.chart = {
                                 anchor: data.valuesPositionAnchor,
                                 align: data.valuesPositionAlign,
                                 clamp: true,
+                                offset: myMdwHelper.getNumberFromData(data.valuesPositionOffset, 0),
                                 rotation: myMdwHelper.getNumberFromData(data.valuesRotation, undefined),
                                 formatter: function (value, context) {
                                     if (value) {
@@ -364,6 +365,7 @@ vis.binds.materialdesign.chart = {
                                             display: data.attr('showValues' + i),
                                             anchor: data.attr('valuesPositionAnchor' + i),
                                             align: data.attr('valuesPositionAlign' + i),
+                                            offset: myMdwHelper.getNumberFromData(data.attr('valuesPositionOffset' + i), 0),
                                             clamp: true,
                                             rotation: myMdwHelper.getNumberFromData(data.attr('valuesRotation' + i), undefined),
                                             formatter: function (value, context) {
@@ -715,6 +717,7 @@ vis.binds.materialdesign.chart = {
                                 anchor: data.valuesPositionAnchor,
                                 align: data.valuesPositionAlign,
                                 clamp: true,
+                                offset: myMdwHelper.getNumberFromData(data.valuesPositionOffset, 0),
                                 rotation: myMdwHelper.getNumberFromData(data.valuesRotation, undefined),
                                 formatter: function (value, context) {
                                     if (value) {
@@ -804,6 +807,14 @@ vis.binds.materialdesign.chart = {
                                 type: graph.type,
                                 order: myMdwHelper.getNumberFromData(graph.displayOrder, i),
                                 yAxisID: `yAxis_id_${myMdwHelper.getNumberFromData(graph.yAxis_id, i)}`,
+                                datalabels: {
+                                    // Plugin datalabels
+                                    display: myMdwHelper.getBooleanFromData(graph.datalabel_show, true),
+                                    anchor: myMdwHelper.getValueFromData(graph.datalabel_anchor, 'end'),
+                                    align: myMdwHelper.getValueFromData(graph.datalabel_align, 'top'),
+                                    offset: myMdwHelper.getNumberFromData(graph.datalabel_offset, 0),
+                                    clamp: true,
+                                }
                             }
 
                             let graphColor = myMdwHelper.getValueFromData(graph.color, (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor);
@@ -964,7 +975,7 @@ vis.binds.materialdesign.chart = {
                                 datasets: myDatasets,
                             },
                             options: options,
-                            // plugins: (data.showValues) ? [ChartDataLabels] : undefined     // show value labels
+                            plugins: [ChartDataLabels]     // show value labels
                         });
                     }
                 }

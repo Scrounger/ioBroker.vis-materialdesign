@@ -531,6 +531,30 @@ Settings that are not listed in the table below are self-explanatory.
             <td>string</td>
             <td></td>
         </tr>
+        <tr>
+            <td>datalabel_show</td>
+            <td>show data labels for graph</td>
+            <td>boolean</td>
+            <td>false, true</td>
+        </tr>
+        <tr>
+            <td>datalabel_anchor</td>
+            <td>anchor of data labels</td>
+            <td>string</td>
+            <td>center, start, end</td>
+        </tr>
+        <tr>
+            <td>datalabel_align</td>
+            <td>position of the label relative to the anchor point</td>
+            <td>string</td>
+            <td>center, start, end, right, bottom, left, top</td>
+        </tr>
+        <tr>
+            <td>datalabel_offset</td>
+            <td>distance (in pixels) to pull the label away from the anchor point</td>
+            <td>number</td>
+            <td>0, 1, 2, ...</td>
+        </tr>
     </tbody>
 </table>
 
