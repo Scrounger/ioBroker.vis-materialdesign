@@ -1027,10 +1027,9 @@ vis.binds.materialdesign.chart = {
                             let chartNeedsUpdate = false;
 
                             if (!_.isEqual(myChart.data.labels, changedData.labels)) {
+                                if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart 'labels' changed`);
                                 myChart.data.labels = changedData.labels;
                                 chartNeedsUpdate = true;
-
-                                if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart 'labels' changed`);
                             }
 
                             let datasetsCounter = changedData.datasets.length;
@@ -1045,26 +1044,38 @@ vis.binds.materialdesign.chart = {
                                         for (var prop in changedData.datasets[i]) {
                                             // check only if prop has changed, so chart will only update the changes
                                             if (!_.isEqual(myChart.data.datasets[i][prop], changedData.datasets[i][prop])) {
+
+                                                if (debug) {
+                                                    if (!Array.isArray(changedData.datasets[i][prop]) && typeof (changedData.datasets[i][prop]) === 'object') {
+                                                        for (var subProp in changedData.datasets[i][prop]) {
+                                                            if (!_.isEqual(myChart.data.datasets[i][prop][subProp], changedData.datasets[i][prop][subProp])) {
+                                                                console.log(`[JSON Chart ${data.wid}] [onChange]: chart graph '${changedData.datasets[i].label} (${i})' '${prop}.${subProp}' changed`);
+                                                            }
+                                                        }
+                                                    } else {
+                                                        console.log(`[JSON Chart ${data.wid}] [onChange]: chart graph '${changedData.datasets[i].label} (${i})' '${prop}' changed`);
+                                                    }
+                                                }
+
                                                 myChart.data.datasets[i][prop] = changedData.datasets[i][prop];
                                                 chartNeedsUpdate = true;
-
-                                                if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart graph '${i}' '${prop}' changed`);
                                             }
                                         }
                                     }
                                 } else {
                                     if (changedData.datasets[i]) {
                                         // new dataset in json
+                                        if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart new graph '${changedData.datasets[i].label} (${i})' added`);
+
                                         myChart.data.datasets.push(changedData.datasets[i]);
                                         chartNeedsUpdate = true;
-
-                                        if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart new graph '${i}' added`);
+                                        
                                     } else {
                                         // dataset in json removed
+                                        if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart graph '${myChart.data.datasets[i].label} (${i})' removed`);
+
                                         myChart.data.datasets.splice(i);
                                         chartNeedsUpdate = true;
-
-                                        if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart graph '${i}' removed`);
                                     }
                                 }
                             }
@@ -1072,17 +1083,29 @@ vis.binds.materialdesign.chart = {
                             if (!_.isEqual(myChart.options, changedData.options)) {
                                 for (var prop in changedData.options) {
                                     if (!_.isEqual(myChart.options[prop], changedData.options[prop])) {
+
+                                        if (debug) {
+                                            if (!Array.isArray(changedData.options[prop]) && typeof (changedData.options[prop]) === 'object') {
+                                                for (var subProp in changedData.options[prop]) {
+                                                    if (!_.isEqual(myChart.options[prop][subProp], changedData.options[prop][subProp])) {
+                                                        console.log(`[JSON Chart ${data.wid}] [onChange]: chart option '${prop}.${subProp}' changed`);
+                                                    }
+                                                }
+                                            } else {
+                                                console.log(`[JSON Chart ${data.wid}] [onChange]: chart option '${prop}' changed`);
+                                            }
+                                        }
+
                                         myChart.options[prop] = changedData.options[prop];
                                         chartNeedsUpdate = true;
-
-                                        if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart option '${prop}' changed`);
                                     }
                                 }
                             }
 
                             if (chartNeedsUpdate) {
-                                myChart.update();
                                 if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart updated`);
+
+                                myChart.update();
                             }
                         } catch (err) {
                             console.error(`[JSON Chart ${data.wid}] [onChange] error: ${err.message}, stack: ${err.stack}`);
