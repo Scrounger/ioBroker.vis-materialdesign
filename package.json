@@ -32,7 +32,8 @@
     "vue": "^2.6.11",
     "vuetify": "2.2.5",
     "vue-the-mask": "0.11.1",
-    "@mdi/font": "^4.9.95"
+    "@mdi/font": "^4.9.95",
+    "underscore": "^1.9.2"
   },
   "main": "widgets/materialdesign.html",
   "scripts": {

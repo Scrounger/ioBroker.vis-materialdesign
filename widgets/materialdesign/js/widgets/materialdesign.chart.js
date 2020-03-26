@@ -183,8 +183,6 @@ vis.binds.materialdesign.chart = {
                     });
 
                     function onChange(e, newVal, oldVal) {
-                        console.log('onChange');
-
                         // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
                         if (data.chartDataMethod === 'inputPerEditor') {
                             let oidId = e.type.substr(0, e.type.lastIndexOf("."));
@@ -459,7 +457,7 @@ vis.binds.materialdesign.chart = {
                                 hover: {
                                     mode: 'nearest'
                                 },
-                                legend: Object.assign(myChartHelper.getLegend(data),myChartHelper.getLegendClickEvent()),
+                                legend: Object.assign(myChartHelper.getLegend(data), myChartHelper.getLegendClickEvent()),
                                 scales: {
                                     xAxes: [{
                                         type: 'time',
@@ -766,6 +764,8 @@ vis.binds.materialdesign.chart = {
     },
     json: function (el, data) {
         try {
+            let debug = myMdwHelper.getBooleanFromData(data.debug, false);
+
             setTimeout(function () {
                 let myChartHelper = vis.binds.materialdesign.chart.helper;
                 myChartHelper.registerChartAreaPlugin();
@@ -775,7 +775,7 @@ vis.binds.materialdesign.chart = {
                 var chartContainer = $this.find('.materialdesign-chart-container').get(0);
 
                 $this.find('.materialdesign-chart-container').css('background-color', myMdwHelper.getValueFromData(data.backgroundColor, ''));
-                let globalColor = myMdwHelper.getValueFromData(data.globalColor, '#44739e');
+
 
                 if (chartContainer !== undefined && chartContainer !== null && chartContainer !== '') {
                     var ctx = chartContainer.getContext('2d');
@@ -787,210 +787,306 @@ vis.binds.materialdesign.chart = {
 
                     Chart.plugins.unregister(ChartDataLabels);
 
-                    let myDatasets = [];
-                    let myYAxis = [];
+                    // Chart declaration:
+                    myChart = new Chart(ctx, {
+                        type: 'bar',
+                        plugins: [ChartDataLabels]     // show value labels
+                    });
 
-                    let jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
-                    if (Object.keys(jsonData).length > 0) {
 
-                        let colorScheme = myMdwHelper.getValueFromData(data.colorScheme, null);
-                        if (colorScheme != null) {
-                            colorScheme = vis.binds.materialdesign.colorScheme.get(data.colorScheme, data.dataCount);
+                    let mydata = getDataFromJson(vis.states.attr(data.oid + '.val'));
+
+                    myChart.data.labels = mydata.labels;
+                    myChart.data.datasets = mydata.datasets;
+                    myChart.options = mydata.options;
+                    myChart.update();
+
+                    vis.states.bind(data.oid + '.val', onChange);
+
+                    function getDataFromJson(oidVal) {
+                        let myDatasets = [];
+                        let myYAxis = [];
+                        let labels = []
+                        let options = {}
+
+                        let globalColor = myMdwHelper.getValueFromData(data.globalColor, '#44739e');
+
+                        let jsonData = JSON.parse(oidVal);
+                        if (Object.keys(jsonData).length > 0) {
+
+                            labels = jsonData.axisLabels;
+
+                            let colorScheme = myMdwHelper.getValueFromData(data.colorScheme, null);
+                            if (colorScheme != null) {
+                                colorScheme = vis.binds.materialdesign.colorScheme.get(data.colorScheme, data.dataCount);
+                            }
+
+                            for (const i of Object.keys(jsonData.graphs)) {
+                                let graph = jsonData.graphs[i];
+
+                                let graphColor = myMdwHelper.getValueFromData(graph.color, (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor);
+
+                                let graphObj = {
+                                    data: graph.data.map(Number, null),
+                                    label: graph.legendText,
+                                    type: graph.type,
+                                    order: myMdwHelper.getNumberFromData(graph.displayOrder, i),
+                                    yAxisID: `yAxis_id_${myMdwHelper.getNumberFromData(graph.yAxis_id, i)}`,
+                                    datalabels: {
+                                        // Plugin datalabels
+                                        display: myMdwHelper.getBooleanFromData(graph.datalabel_show, true),
+                                        anchor: myMdwHelper.getValueFromData(graph.datalabel_anchor, 'end'),
+                                        align: myMdwHelper.getValueFromData(graph.datalabel_align, 'top'),
+                                        textAlign: myMdwHelper.getValueFromData(graph.datalabel_text_align, 'center'),
+                                        offset: myMdwHelper.getNumberFromData(graph.datalabel_offset, 0),
+                                        clamp: true,
+                                        rotation: myMdwHelper.getNumberFromData(graph.datalabel_rotation, undefined),
+                                        formatter: function (value, context) {
+                                            if (value) {
+                                                return `${myChartHelper.roundNumber(value, myMdwHelper.getNumberFromData(graph.datalabel_maxDigits, 10)).toLocaleString()}${myMdwHelper.getValueFromData(graph.datalabel_append, '')}`
+                                                    .split('\\n');
+                                            }
+                                            return '';
+                                        },
+                                        font: {
+                                            family: myMdwHelper.getValueFromData(graph.datalabel_fontFamily, undefined),
+                                            size: myMdwHelper.getNumberFromData(graph.datalabel_fontSize, undefined),
+                                        },
+                                        color: myMdwHelper.getValueFromData(graph.datalabel_color, graphColor),
+                                    }
+                                }
+
+                                if (graph.type && graph.type === 'line') {
+                                    // line graph
+                                    let fillColor = myChartHelper.convertHex(graphColor, 20);
+                                    if (myMdwHelper.getValueFromData(graph.line_FillColor, null) !== null) {
+                                        fillColor = graph.line_FillColor;
+                                    }
+
+                                    Object.assign(graphObj,
+                                        {
+                                            // chart specific properties
+                                            borderColor: graphColor,
+
+                                            // JSON Daten
+                                            pointBackgroundColor: myMdwHelper.getValueFromData(graph.line_PointColor, graphColor),
+                                            pointBorderColor: myMdwHelper.getValueFromData(graph.line_PointColorBorder, graphColor),
+                                            pointHoverBackgroundColor: myMdwHelper.getValueFromData(graph.line_PointColorHover, graphColor),
+                                            pointHoverBorderColor: myMdwHelper.getValueFromData(graph.line_PointColorBorderHover, graphColor),
+                                            spanGaps: myMdwHelper.getBooleanFromData(graph.line_SpanGaps, true),
+                                            lineTension: myMdwHelper.getNumberFromData(graph.line_Tension, 0.4),
+                                            borderWidth: myMdwHelper.getNumberFromData(graph.line_Thikness, 3),
+                                            fill: myMdwHelper.getBooleanFromData(graph.line_UseFillColor, false),
+                                            backgroundColor: fillColor,
+
+                                            // Editor Daten
+                                            pointStyle: myMdwHelper.getValueFromData(data.pointStyle, 'circle'),
+                                            pointRadius: myMdwHelper.getNumberFromData(data.pointSize, 3),
+                                            pointHoverRadius: myMdwHelper.getNumberFromData(data.pointSizeHover, 4),
+                                            spanGaps: myMdwHelper.getBooleanFromData(data.lineSpanGaps, true),
+                                        }
+                                    )
+                                } else {
+                                    // bar graph
+                                    let barColorHover = myChartHelper.convertHex(graphColor, 80);
+                                    if (myMdwHelper.getValueFromData(graph.barColorHover, null) !== null) {
+                                        barColorHover = graph.barColorHover;
+                                    }
+
+                                    Object.assign(graphObj,
+                                        {
+                                            // chart specific properties
+                                            backgroundColor: graphColor,
+                                            hoverBackgroundColor: barColorHover,
+
+                                            // JSON Daten
+                                            borderColor: myMdwHelper.getValueFromData(graph.barBorderColor, 'white'),
+                                            borderWidth: myMdwHelper.getNumberFromData(graph.barBorderWidth, undefined),
+                                            hoverBorderColor: myMdwHelper.getValueFromData(graph.barBorderColorHover, undefined),
+                                            hoverBorderWidth: myMdwHelper.getNumberFromData(graph.barBorderWidthHover, undefined),
+
+                                            // Editor Daten
+                                            categoryPercentage: myMdwHelper.getNumberFromData(data.barWidth, 80) / 100,
+                                            barPercentage: myMdwHelper.getNumberFromData(data.barWidth, 80) / 100,
+                                        }
+                                    )
+                                }
+
+                                myDatasets.push(graphObj);
+
+                                myYAxis.push(
+                                    {
+                                        id: `yAxis_id_${myMdwHelper.getNumberFromData(graph.yAxis_id, i)}`,
+                                        type: 'linear',
+                                        position: myMdwHelper.getValueFromData(graph.yAxis_position, 'left'),
+                                        display: myMdwHelper.getBooleanFromData(graph.yAxis_show, true),
+                                        scaleLabel: {       // y-Axis title
+                                            display: myMdwHelper.getValueFromData(graph.yAxis_title_text, '') !== '' ? true : false,
+                                            labelString: myMdwHelper.getValueFromData(graph.yAxis_title_text, ''),
+                                            fontColor: myMdwHelper.getValueFromData(graph.yAxis_title_color, myMdwHelper.getValueFromData(data.yAxisTitleColor, undefined)),
+                                            fontFamily: myMdwHelper.getValueFromData(graph.yAxis_title_fontFamily, myMdwHelper.getValueFromData(data.yAxisTitleFontFamily, undefined)),
+                                            fontSize: myMdwHelper.getNumberFromData(graph.yAxis_title_fontSize, myMdwHelper.getNumberFromData(data.yAxisTitleFontSize, undefined))
+                                        },
+                                        ticks: {
+                                            min: myMdwHelper.getNumberFromData(graph.yAxis_min, undefined),
+                                            max: myMdwHelper.getNumberFromData(graph.yAxis_max, undefined),
+                                            stepSize: myMdwHelper.getNumberFromData(graph.yAxis_step, undefined),
+                                            autoSkip: true,
+                                            maxTicksLimit: myMdwHelper.getNumberFromData(graph.yAxis_maxSteps, undefined),
+                                            fontColor: myMdwHelper.getValueFromData(graph.yAxis_color, myMdwHelper.getValueFromData(data.yAxisValueLabelColor, undefined)),
+                                            fontFamily: myMdwHelper.getValueFromData(graph.yAxis_fontFamily, myMdwHelper.getValueFromData(data.yAxisValueFontFamily, undefined)),
+                                            fontSize: myMdwHelper.getNumberFromData(graph.yAxis_fontSize, myMdwHelper.getNumberFromData(data.yAxisValueFontSize, undefined)),
+                                            padding: myMdwHelper.getNumberFromData(graph.yAxis_distance, myMdwHelper.getNumberFromData(data.yAxisValueDistanceToAxis, 0)),
+                                            callback: function (value, index, values) {
+                                                let axisId = this.id.replace('yAxis_id_', '');
+                                                return `${value.toLocaleString()}${myMdwHelper.getValueFromData(graph.yAxis_appendix, '')}`.split('\\n');
+                                            }
+                                        },
+                                        gridLines: {
+                                            display: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_show, true),
+                                            color: myMdwHelper.getValueFromData(graph.yAxis_gridLines_color, 'black'),
+                                            lineWidth: myMdwHelper.getNumberFromData(graph.yAxis_gridLines_lineWidth, 0.1),
+                                            drawBorder: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_border_show, true),
+                                            drawOnChartArea: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_on_chart_area_show, true),
+                                            drawTicks: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_ticks_show, true),
+                                            tickMarkLength: myMdwHelper.getNumberFromData(graph.yAxis_gridLines_ticks_length, 5),
+                                        }
+                                    }
+                                )
+                            }
+
+                            // Notice how nested the beginAtZero is
+                            options = {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                layout: myChartHelper.getLayout(data),
+                                chartArea: {
+                                    backgroundColor: myMdwHelper.getValueFromData(data.chartAreaBackgroundColor, ''),
+                                },
+                                scales: {
+                                    xAxes: [
+                                        myChartHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
+                                            data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
+                                            data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
+                                            data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength)
+                                    ],
+                                    yAxes: myYAxis,
+                                },
+                                legend: Object.assign(myChartHelper.getLegend(data), myChartHelper.getLegendClickEvent()),
+                                tooltips: {
+                                    mode: data.tooltipMode,
+                                    enabled: data.showTooltip,
+                                    backgroundColor: myMdwHelper.getValueFromData(data.tooltipBackgroundColor, 'black'),
+                                    caretSize: myMdwHelper.getNumberFromData(data.tooltipArrowSize, 5),
+                                    caretPadding: myMdwHelper.getNumberFromData(data.tooltipDistanceToBar, 2),
+                                    cornerRadius: myMdwHelper.getNumberFromData(data.tooltipBoxRadius, 4),
+                                    displayColors: data.tooltipShowColorBox,
+                                    xPadding: myMdwHelper.getNumberFromData(data.tooltipXpadding, 10),
+                                    yPadding: myMdwHelper.getNumberFromData(data.tooltipYpadding, 10),
+                                    titleFontColor: myMdwHelper.getValueFromData(data.tooltipTitleFontColor, 'white'),
+                                    titleFontFamily: myMdwHelper.getValueFromData(data.tooltipTitleFontFamily, undefined),
+                                    titleFontSize: myMdwHelper.getNumberFromData(data.tooltipTitleFontSize, undefined),
+                                    titleMarginBottom: myMdwHelper.getNumberFromData(data.tooltipTitleMarginBottom, 6),
+                                    bodyFontColor: myMdwHelper.getValueFromData(data.tooltipBodyFontColor, 'white'),
+                                    bodyFontFamily: myMdwHelper.getValueFromData(data.tooltipBodyFontFamily, undefined),
+                                    bodyFontSize: myMdwHelper.getNumberFromData(data.tooltipBodyFontSize, undefined),
+                                    callbacks: {
+                                        label: function (tooltipItem, chart) {
+                                            if (tooltipItem && tooltipItem.value) {
+                                                return `${chart.datasets[tooltipItem.datasetIndex].label}: ${myChartHelper.roundNumber(parseFloat(tooltipItem.value), myMdwHelper.getNumberFromData(jsonData.graphs[tooltipItem.datasetIndex].tooltip_MaxDigits, 10)).toLocaleString()}${myMdwHelper.getValueFromData(jsonData.graphs[tooltipItem.datasetIndex].tooltip_AppendText, '')}`
+                                                    .split('\\n');
+                                            }
+                                            return '';
+                                        }
+                                    }
+                                },
+                            }
+
+                            if (data.disableHoverEffects) options.hover = { mode: null };
+
+                            // Chart declaration:
+                            // myChart = new Chart(ctx, {
+                            //     type: 'bar',
+                            //     data: {
+                            //         labels: jsonData.axisLabels,
+                            //         datasets: myDatasets,
+                            //     },
+                            //     options: options,
+                            //     plugins: [ChartDataLabels]     // show value labels
+                            // });
+
                         }
 
-                        for (const i of Object.keys(jsonData.graphs)) {
-                            let graph = jsonData.graphs[i];
+                        return { labels: labels, datasets: myDatasets, options: options }
+                    }
 
-                            let graphColor = myMdwHelper.getValueFromData(graph.color, (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor);
+                    function onChange(e, newVal, oldVal) {
+                        try {
+                            let changedData = getDataFromJson(newVal);
 
-                            let graphObj = {
-                                data: graph.data.map(Number, null),
-                                label: graph.legendText,
-                                type: graph.type,
-                                order: myMdwHelper.getNumberFromData(graph.displayOrder, i),
-                                yAxisID: `yAxis_id_${myMdwHelper.getNumberFromData(graph.yAxis_id, i)}`,
-                                datalabels: {
-                                    // Plugin datalabels
-                                    display: myMdwHelper.getBooleanFromData(graph.datalabel_show, true),
-                                    anchor: myMdwHelper.getValueFromData(graph.datalabel_anchor, 'end'),
-                                    align: myMdwHelper.getValueFromData(graph.datalabel_align, 'top'),
-                                    textAlign: myMdwHelper.getValueFromData(graph.datalabel_text_align, 'center'),
-                                    offset: myMdwHelper.getNumberFromData(graph.datalabel_offset, 0),
-                                    clamp: true,
-                                    rotation: myMdwHelper.getNumberFromData(graph.datalabel_rotation, undefined),
-                                    formatter: function (value, context) {
-                                        if (value) {
-                                            return `${myChartHelper.roundNumber(value, myMdwHelper.getNumberFromData(graph.datalabel_maxDigits, 10)).toLocaleString()}${myMdwHelper.getValueFromData(graph.datalabel_append, '')}`
-                                                .split('\\n');
+                            let chartNeedsUpdate = false;
+
+                            if (!_.isEqual(myChart.data.labels, changedData.labels)) {
+                                myChart.data.labels = changedData.labels;
+                                chartNeedsUpdate = true;
+
+                                if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart 'labels' changed`);
+                            }
+
+                            let datasetsCounter = changedData.datasets.length;
+                            if (myChart.data.datasets.length > datasetsCounter) {
+                                datasetsCounter = myChart.data.datasets.length;
+                            }
+
+                            for (var i = 0; i <= datasetsCounter - 1; i++) {
+                                if (myChart.data.datasets[i] && changedData.datasets[i]) {
+                                    // dataset exist in chart and json
+                                    if (!_.isEqual(myChart.data.datasets[i], changedData.datasets[i])) {
+                                        for (var prop in changedData.datasets[i]) {
+                                            // check only if prop has changed, so chart will only update the changes
+                                            if (!_.isEqual(myChart.data.datasets[i][prop], changedData.datasets[i][prop])) {
+                                                myChart.data.datasets[i][prop] = changedData.datasets[i][prop];
+                                                chartNeedsUpdate = true;
+
+                                                if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart graph '${i}' '${prop}' changed`);
+                                            }
                                         }
-                                        return '';
-                                    },
-                                    font: {
-                                        family: myMdwHelper.getValueFromData(graph.datalabel_fontFamily, undefined),
-                                        size: myMdwHelper.getNumberFromData(graph.datalabel_fontSize, undefined),
-                                    },
-                                    color: myMdwHelper.getValueFromData(graph.datalabel_color, graphColor),
+                                    }
+                                } else {
+                                    if (changedData.datasets[i]) {
+                                        // new dataset in json
+                                        myChart.data.datasets.push(changedData.datasets[i]);
+                                        chartNeedsUpdate = true;
+
+                                        if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart new graph '${i}' added`);
+                                    } else {
+                                        // dataset in json removed
+                                        myChart.data.datasets.splice(i);
+                                        chartNeedsUpdate = true;
+
+                                        if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart graph '${i}' removed`);
+                                    }
                                 }
                             }
 
-                            if (graph.type && graph.type === 'line') {
-                                // line graph
-                                let fillColor = myChartHelper.convertHex(graphColor, 20);
-                                if (myMdwHelper.getValueFromData(graph.line_FillColor, null) !== null) {
-                                    fillColor = graph.line_FillColor;
-                                }
+                            if (!_.isEqual(myChart.options, changedData.options)) {
+                                for (var prop in changedData.options) {
+                                    if (!_.isEqual(myChart.options[prop], changedData.options[prop])) {
+                                        myChart.options[prop] = changedData.options[prop];
+                                        chartNeedsUpdate = true;
 
-                                Object.assign(graphObj,
-                                    {
-                                        // chart specific properties
-                                        borderColor: graphColor,
-
-                                        // JSON Daten
-                                        pointBackgroundColor: myMdwHelper.getValueFromData(graph.line_PointColor, graphColor),
-                                        pointBorderColor: myMdwHelper.getValueFromData(graph.line_PointColorBorder, graphColor),
-                                        pointHoverBackgroundColor: myMdwHelper.getValueFromData(graph.line_PointColorHover, graphColor),
-                                        pointHoverBorderColor: myMdwHelper.getValueFromData(graph.line_PointColorBorderHover, graphColor),
-                                        spanGaps: myMdwHelper.getBooleanFromData(graph.line_SpanGaps, true),
-                                        lineTension: myMdwHelper.getNumberFromData(graph.line_Tension, 0.4),
-                                        borderWidth: myMdwHelper.getNumberFromData(graph.line_Thikness, 3),
-                                        fill: myMdwHelper.getBooleanFromData(graph.line_UseFillColor, false),
-                                        backgroundColor: fillColor,
-
-                                        // Editor Daten
-                                        pointStyle: myMdwHelper.getValueFromData(data.pointStyle, 'circle'),
-                                        pointRadius: myMdwHelper.getNumberFromData(data.pointSize, 3),
-                                        pointHoverRadius: myMdwHelper.getNumberFromData(data.pointSizeHover, 4),
-                                        spanGaps: myMdwHelper.getBooleanFromData(data.lineSpanGaps, true),
+                                        if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart option '${prop}' changed`);
                                     }
-                                )
-                            } else {
-                                // bar graph
-                                let barColorHover = myChartHelper.convertHex(graphColor, 80);
-                                if (myMdwHelper.getValueFromData(graph.barColorHover, null) !== null) {
-                                    barColorHover = graph.barColorHover;
                                 }
-
-                                Object.assign(graphObj,
-                                    {
-                                        // chart specific properties
-                                        backgroundColor: graphColor,
-                                        hoverBackgroundColor: barColorHover,
-
-                                        // JSON Daten
-                                        borderColor: myMdwHelper.getValueFromData(graph.barBorderColor, 'white'),
-                                        borderWidth: myMdwHelper.getNumberFromData(graph.barBorderWidth, undefined),
-                                        hoverBorderColor: myMdwHelper.getValueFromData(graph.barBorderColorHover, undefined),
-                                        hoverBorderWidth: myMdwHelper.getNumberFromData(graph.barBorderWidthHover, undefined),
-
-                                        // Editor Daten
-                                        categoryPercentage: myMdwHelper.getNumberFromData(data.barWidth, 80) / 100,
-                                        barPercentage: myMdwHelper.getNumberFromData(data.barWidth, 80) / 100,
-                                    }
-                                )
                             }
 
-                            myDatasets.push(graphObj);
-
-                            myYAxis.push(
-                                {
-                                    id: `yAxis_id_${myMdwHelper.getNumberFromData(graph.yAxis_id, i)}`,
-                                    type: 'linear',
-                                    position: myMdwHelper.getValueFromData(graph.yAxis_position, 'left'),
-                                    display: myMdwHelper.getBooleanFromData(graph.yAxis_show, true),
-                                    scaleLabel: {       // y-Axis title
-                                        display: myMdwHelper.getValueFromData(graph.yAxis_title_text, '') !== '' ? true : false,
-                                        labelString: myMdwHelper.getValueFromData(graph.yAxis_title_text, ''),
-                                        fontColor: myMdwHelper.getValueFromData(graph.yAxis_title_color, myMdwHelper.getValueFromData(data.yAxisTitleColor, undefined)),
-                                        fontFamily: myMdwHelper.getValueFromData(graph.yAxis_title_fontFamily, myMdwHelper.getValueFromData(data.yAxisTitleFontFamily, undefined)),
-                                        fontSize: myMdwHelper.getNumberFromData(graph.yAxis_title_fontSize, myMdwHelper.getNumberFromData(data.yAxisTitleFontSize, undefined))
-                                    },
-                                    ticks: {
-                                        min: myMdwHelper.getNumberFromData(graph.yAxis_min, undefined),
-                                        max: myMdwHelper.getNumberFromData(graph.yAxis_max, undefined),
-                                        stepSize: myMdwHelper.getNumberFromData(graph.yAxis_step, undefined),
-                                        autoSkip: true,
-                                        maxTicksLimit: myMdwHelper.getNumberFromData(graph.yAxis_maxSteps, undefined),
-                                        fontColor: myMdwHelper.getValueFromData(graph.yAxis_color, myMdwHelper.getValueFromData(data.yAxisValueLabelColor, undefined)),
-                                        fontFamily: myMdwHelper.getValueFromData(graph.yAxis_fontFamily, myMdwHelper.getValueFromData(data.yAxisValueFontFamily, undefined)),
-                                        fontSize: myMdwHelper.getNumberFromData(graph.yAxis_fontSize, myMdwHelper.getNumberFromData(data.yAxisValueFontSize, undefined)),
-                                        padding: myMdwHelper.getNumberFromData(graph.yAxis_distance, myMdwHelper.getNumberFromData(data.yAxisValueDistanceToAxis, 0)),
-                                        callback: function (value, index, values) {
-                                            let axisId = this.id.replace('yAxis_id_', '');
-                                            return `${value.toLocaleString()}${myMdwHelper.getValueFromData(graph.yAxis_appendix, '')}`.split('\\n');
-                                        }
-                                    },
-                                    gridLines: {
-                                        display: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_show, true),
-                                        color: myMdwHelper.getValueFromData(graph.yAxis_gridLines_color, 'black'),
-                                        lineWidth: myMdwHelper.getNumberFromData(graph.yAxis_gridLines_lineWidth, 0.1),
-                                        drawBorder: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_border_show, true),
-                                        drawOnChartArea: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_on_chart_area_show, true),
-                                        drawTicks: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_ticks_show, true),
-                                        tickMarkLength: myMdwHelper.getNumberFromData(graph.yAxis_gridLines_ticks_length, 5),
-                                    }
-                                }
-                            )
+                            if (chartNeedsUpdate) {
+                                myChart.update();
+                                if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart updated`);
+                            }
+                        } catch (err) {
+                            console.error(`[JSON Chart ${data.wid}] [onChange] error: ${err.message}, stack: ${err.stack}`);
                         }
-
-                        // Notice how nested the beginAtZero is
-                        var options = {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            layout: myChartHelper.getLayout(data),
-                            chartArea: {
-                                backgroundColor: myMdwHelper.getValueFromData(data.chartAreaBackgroundColor, ''),
-                            },
-                            scales: {
-                                xAxes: [
-                                    myChartHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
-                                        data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
-                                        data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
-                                        data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength)
-                                ],
-                                yAxes: myYAxis,
-                            },
-                            legend: Object.assign(myChartHelper.getLegend(data), myChartHelper.getLegendClickEvent()),
-                            tooltips: {
-                                mode: data.tooltipMode,
-                                enabled: data.showTooltip,
-                                backgroundColor: myMdwHelper.getValueFromData(data.tooltipBackgroundColor, 'black'),
-                                caretSize: myMdwHelper.getNumberFromData(data.tooltipArrowSize, 5),
-                                caretPadding: myMdwHelper.getNumberFromData(data.tooltipDistanceToBar, 2),
-                                cornerRadius: myMdwHelper.getNumberFromData(data.tooltipBoxRadius, 4),
-                                displayColors: data.tooltipShowColorBox,
-                                xPadding: myMdwHelper.getNumberFromData(data.tooltipXpadding, 10),
-                                yPadding: myMdwHelper.getNumberFromData(data.tooltipYpadding, 10),
-                                titleFontColor: myMdwHelper.getValueFromData(data.tooltipTitleFontColor, 'white'),
-                                titleFontFamily: myMdwHelper.getValueFromData(data.tooltipTitleFontFamily, undefined),
-                                titleFontSize: myMdwHelper.getNumberFromData(data.tooltipTitleFontSize, undefined),
-                                titleMarginBottom: myMdwHelper.getNumberFromData(data.tooltipTitleMarginBottom, 6),
-                                bodyFontColor: myMdwHelper.getValueFromData(data.tooltipBodyFontColor, 'white'),
-                                bodyFontFamily: myMdwHelper.getValueFromData(data.tooltipBodyFontFamily, undefined),
-                                bodyFontSize: myMdwHelper.getNumberFromData(data.tooltipBodyFontSize, undefined),
-                                callbacks: {
-                                    label: function (tooltipItem, chart) {
-                                        if (tooltipItem && tooltipItem.value) {
-                                            return `${chart.datasets[tooltipItem.datasetIndex].label}: ${myChartHelper.roundNumber(parseFloat(tooltipItem.value), myMdwHelper.getNumberFromData(jsonData.graphs[tooltipItem.datasetIndex].tooltip_MaxDigits, 10)).toLocaleString()}${myMdwHelper.getValueFromData(jsonData.graphs[tooltipItem.datasetIndex].tooltip_AppendText, '')}`
-                                                .split('\\n');
-                                        }
-                                        return '';
-                                    }
-                                }
-                            },
-                        }
-
-                        if (data.disableHoverEffects) options.hover = { mode: null };
-
-                        // Chart declaration:
-                        myChart = new Chart(ctx, {
-                            type: 'bar',
-                            data: {
-                                labels: jsonData.axisLabels,
-                                datasets: myDatasets,
-                            },
-                            options: options,
-                            plugins: [ChartDataLabels]     // show value labels
-                        });
                     }
                 }
             }, 1);
