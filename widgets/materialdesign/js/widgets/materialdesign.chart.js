@@ -1,4 +1,3 @@
-
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
@@ -1021,12 +1020,14 @@ vis.binds.materialdesign.chart = {
                     }
 
                     function onChange(e, newVal, oldVal) {
+                        console.log('onChange');
+
                         try {
                             let changedData = getDataFromJson(newVal);
 
                             let chartNeedsUpdate = false;
 
-                            if (!_.isEqual(myChart.data.labels, changedData.labels)) {
+                            if (!myUnderscore.isEqual(myChart.data.labels, changedData.labels)) {
                                 if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart 'labels' changed`);
                                 myChart.data.labels = changedData.labels;
                                 chartNeedsUpdate = true;
@@ -1040,15 +1041,15 @@ vis.binds.materialdesign.chart = {
                             for (var i = 0; i <= datasetsCounter - 1; i++) {
                                 if (myChart.data.datasets[i] && changedData.datasets[i]) {
                                     // dataset exist in chart and json
-                                    if (!_.isEqual(myChart.data.datasets[i], changedData.datasets[i])) {
+                                    if (!myUnderscore.isEqual(myChart.data.datasets[i], changedData.datasets[i])) {
                                         for (var prop in changedData.datasets[i]) {
                                             // check only if prop has changed, so chart will only update the changes
-                                            if (!_.isEqual(myChart.data.datasets[i][prop], changedData.datasets[i][prop])) {
+                                            if (!myUnderscore.isEqual(myChart.data.datasets[i][prop], changedData.datasets[i][prop])) {
 
                                                 if (debug) {
                                                     if (!Array.isArray(changedData.datasets[i][prop]) && typeof (changedData.datasets[i][prop]) === 'object') {
                                                         for (var subProp in changedData.datasets[i][prop]) {
-                                                            if (!_.isEqual(myChart.data.datasets[i][prop][subProp], changedData.datasets[i][prop][subProp])) {
+                                                            if (!myUnderscore.isEqual(myChart.data.datasets[i][prop][subProp], changedData.datasets[i][prop][subProp])) {
                                                                 console.log(`[JSON Chart ${data.wid}] [onChange]: chart graph '${changedData.datasets[i].label} (${i})' '${prop}.${subProp}' changed`);
                                                             }
                                                         }
@@ -1080,14 +1081,14 @@ vis.binds.materialdesign.chart = {
                                 }
                             }
 
-                            if (!_.isEqual(myChart.options, changedData.options)) {
+                            if (!myUnderscore.isEqual(myChart.options, changedData.options)) {
                                 for (var prop in changedData.options) {
-                                    if (!_.isEqual(myChart.options[prop], changedData.options[prop])) {
+                                    if (!myUnderscore.isEqual(myChart.options[prop], changedData.options[prop])) {
 
                                         if (debug) {
                                             if (!Array.isArray(changedData.options[prop]) && typeof (changedData.options[prop]) === 'object') {
                                                 for (var subProp in changedData.options[prop]) {
-                                                    if (!_.isEqual(myChart.options[prop][subProp], changedData.options[prop][subProp])) {
+                                                    if (!myUnderscore.isEqual(myChart.options[prop][subProp], changedData.options[prop][subProp])) {
                                                         console.log(`[JSON Chart ${data.wid}] [onChange]: chart option '${prop}.${subProp}' changed`);
                                                     }
                                                 }
