@@ -32,6 +32,10 @@ vis.binds.materialdesign.viseditor = {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#line-history-chart'
                 }
 
+                if (data[1] === 'jsonChart') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#json-chart'
+                }
+
                 if (data[1] === 'list') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#list'
                 }
