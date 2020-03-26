@@ -61,7 +61,15 @@ vis.binds.materialdesign.helper = {
     },
     getValueFromData: function (dataValue, nullValue, prepand = '', append = '') {
         try {
-            return (dataValue === undefined || dataValue === null || dataValue === '') ? nullValue : prepand + dataValue + append;
+            if (Array.isArray(dataValue)) {
+                if (dataValue.length > 0) {
+                    return dataValue;
+                } else {
+                    return nullValue;
+                }
+            } else {
+                return (dataValue === undefined || dataValue === null || dataValue === '') ? nullValue : prepand + dataValue + append;
+            }
         } catch (err) {
             console.error(`[Helper] getValueFromData: ${err.message}`);
             return 'Error';

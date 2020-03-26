@@ -344,7 +344,7 @@ vis.binds.materialdesign.chart = {
                                     {
                                         data: dataArray,
                                         lineTension: myMdwHelper.getNumberFromData(data.attr('lineTension' + i), 0.4),
-                                        borderWidth: myMdwHelper.getNumberFromData(data.attr('lineThikness' + i), 3),
+                                        borderWidth: myMdwHelper.getNumberFromData(data.attr('lineThikness' + i), 2),
                                         label: myMdwHelper.getValueFromData(data.attr('legendText' + i), ''),
                                         borderColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor),     // Line Color
                                         pointBackgroundColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor),
@@ -874,7 +874,7 @@ vis.binds.materialdesign.chart = {
                                             pointHoverBorderColor: myMdwHelper.getValueFromData(graph.line_PointColorBorderHover, graphColor),
                                             spanGaps: myMdwHelper.getBooleanFromData(graph.line_SpanGaps, true),
                                             lineTension: myMdwHelper.getNumberFromData(graph.line_Tension, 0.4),
-                                            borderWidth: myMdwHelper.getNumberFromData(graph.line_Thikness, 3),
+                                            borderWidth: myMdwHelper.getNumberFromData(graph.line_Thickness, 2),
                                             fill: myMdwHelper.getBooleanFromData(graph.line_UseFillColor, false),
                                             backgroundColor: fillColor,
 

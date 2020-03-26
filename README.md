@@ -508,6 +508,12 @@ Settings that are not listed in the table below are self-explanatory.
             <td>'line', 'bar'</td>
         </tr>
         <tr>
+            <td>legendText</td>
+            <td>text of legend</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
             <td>displayOrder</td>
             <td>overlay order of graph</td>
             <td>number</td>
@@ -582,7 +588,7 @@ Settings that are not listed in the table below are self-explanatory.
         <tr>
             <td>datalabel_color</td>
             <td>data label color</td>
-            <td>color</td>
+            <td>color | array[colors]</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
         </tr>
         <tr>
@@ -617,25 +623,25 @@ Settings that are not listed in the table below are self-explanatory.
         <tr>
             <td>line_PointColor</td>
             <td>color of line point</td>
-            <td>color</td>
+            <td>color | array[colors]</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
         </tr>
         <tr>
             <td>line_PointColorBorder</td>
             <td>border color of line point</td>
-            <td>color</td>
+            <td>color | array[colors]</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
         </tr>
         <tr>
             <td>line_PointColorHover</td>
             <td>hover color of line point</td>
-            <td>color</td>
+            <td>color | array[colors]</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
         </tr>
         <tr>
             <td>line_PointColorBorderHover</td>
             <td>border hover color of line point</td>
-            <td>color</td>
+            <td>color | array[colors]</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
         </tr>
         <tr>
@@ -651,7 +657,7 @@ Settings that are not listed in the table below are self-explanatory.
             <td>0 - 1</td>
         </tr>
         <tr>
-            <td>line_Thikness</td>
+            <td>line_Thickness</td>
             <td>thikness of line</td>
             <td>number</td>
             <td>1, 2, 5, ...</td>
@@ -687,13 +693,13 @@ Settings that are not listed in the table below are self-explanatory.
         <tr>
             <td>barColorHover</td>
             <td>hover color of bar</td>
-            <td>color</td>
+            <td>color | array[colors]</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
         </tr>
         <tr>
             <td>barBorderColor</td>
             <td>border color of bar</td>
-            <td>color</td>
+            <td>color | array[colors]</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
         </tr>
         <tr>
@@ -705,7 +711,7 @@ Settings that are not listed in the table below are self-explanatory.
         <tr>
             <td>barBorderColorHover</td>
             <td>border hover color of bar</td>
-            <td>color</td>
+            <td>color | array[colors]</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
         </tr>
         <tr>
