@@ -852,6 +852,10 @@ vis.binds.materialdesign.chart = {
                                             size: myMdwHelper.getNumberFromData(graph.datalabel_fontSize, undefined),
                                         },
                                         color: myMdwHelper.getValueFromData(graph.datalabel_color, graphColor),
+                                        backgroundColor: myMdwHelper.getValueFromData(graph.datalabel_backgroundColor, graphColor),
+                                        borderColor: myMdwHelper.getValueFromData(graph.datalabel_borderColor, graphColor),
+                                        borderWidth: myMdwHelper.getNumberFromData(graph.datalabel_borderWidth, 0),
+                                        borderRadius: myMdwHelper.getNumberFromData(graph.datalabel_borderRadius, 0),
                                     }
                                 }
 

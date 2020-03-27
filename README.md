@@ -603,6 +603,30 @@ Settings that are not listed in the table below are self-explanatory.
             <td>number</td>
             <td>1, 2, 5, ...</td>
         </tr>
+        <tr>
+            <td>datalabel_backgroundColor</td>
+            <td>data label background color</td>
+            <td>color | array[colors]</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>datalabel_borderColor</td>
+            <td>data label border color</td>
+            <td>color | array[colors]</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>datalabel_borderWidth</td>
+            <td>data label border width</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+        <tr>
+            <td>datalabel_borderRadius</td>
+            <td>data label border radius</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
     </tbody>
 </table>
 
