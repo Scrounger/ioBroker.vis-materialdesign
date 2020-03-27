@@ -155,11 +155,11 @@ vis.binds.materialdesign.chart = {
                                 offset: myMdwHelper.getNumberFromData(data.valuesPositionOffset, 0),
                                 rotation: myMdwHelper.getNumberFromData(data.valuesRotation, undefined),
                                 formatter: function (value, context) {
-                                    if (value|| value === 0) {
+                                    if ((value || value === 0) && context.dataIndex % myMdwHelper.getNumberFromData(data.valuesSteps, 1) === 0) {
                                         let barItem = getBarItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor, value);
                                         return `${barItem.valueText}${barItem.valueAppendix}`.split('\\n');
                                     }
-                                    return '';
+                                    return null;
                                 },
                                 font: {
                                     family: myMdwHelper.getValueFromData(data.valuesFontFamily, undefined),
@@ -366,11 +366,12 @@ vis.binds.materialdesign.chart = {
                                             clamp: true,
                                             rotation: myMdwHelper.getNumberFromData(data.attr('valuesRotation' + i), undefined),
                                             formatter: function (value, context) {
-                                                if (value.y || value.y === 0) {
+                                                console.log(context);
+                                                if ((value.y || value.y === 0) && context.dataIndex % myMdwHelper.getNumberFromData(data.attr('valuesSteps' + context.datasetIndex), 1) === 0) {
                                                     return `${myChartHelper.roundNumber(value.y, valuesMaxDecimals).toLocaleString()}${valuesAppendText}`
                                                         .split('\\n');
                                                 }
-                                                return '';
+                                                return null;
                                             },
                                             font: {
                                                 family: myMdwHelper.getValueFromData(data.attr('valuesFontFamily' + i), undefined),
@@ -378,7 +379,7 @@ vis.binds.materialdesign.chart = {
                                             },
                                             color: myMdwHelper.getValueFromData(data.attr('valuesFontColor' + i), myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor)),
                                             textAlign: data.attr('valuesTextAlign' + i)
-                                        }
+                                        },
                                     }
                                 );
 
@@ -717,11 +718,11 @@ vis.binds.materialdesign.chart = {
                                 offset: myMdwHelper.getNumberFromData(data.valuesPositionOffset, 0),
                                 rotation: myMdwHelper.getNumberFromData(data.valuesRotation, undefined),
                                 formatter: function (value, context) {
-                                    if (value|| value === 0) {
+                                    if ((value || value === 0) && context.dataIndex % myMdwHelper.getNumberFromData(data.valuesSteps, 1) === 0) {
                                         return `${myChartHelper.roundNumber(value, myMdwHelper.getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}${myMdwHelper.getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
                                             .split('\\n');
                                     }
-                                    return '';
+                                    return null;
                                 },
                                 font: {
                                     family: myMdwHelper.getValueFromData(data.valuesFontFamily, undefined),
@@ -841,8 +842,7 @@ vis.binds.materialdesign.chart = {
                                         clamp: true,
                                         rotation: myMdwHelper.getNumberFromData(graph.datalabel_rotation, undefined),
                                         formatter: function (value, context) {
-                                            console.log(context.dataIndex);
-                                            if ((value || value === 0) && context.dataIndex % myMdwHelper.getNumberFromData(graph.datalabel_steps, 1) === 0) {                                                
+                                            if ((value || value === 0) && context.dataIndex % myMdwHelper.getNumberFromData(graph.datalabel_steps, 1) === 0) {
                                                 return `${myChartHelper.roundNumber(value, myMdwHelper.getNumberFromData(graph.datalabel_maxDigits, 10)).toLocaleString()}${myMdwHelper.getValueFromData(graph.datalabel_append, '')}`
                                                     .split('\\n');
                                             }
@@ -1073,7 +1073,7 @@ vis.binds.materialdesign.chart = {
 
                                         myChart.data.datasets.push(changedData.datasets[i]);
                                         chartNeedsUpdate = true;
-                                        
+
                                     } else {
                                         // dataset in json removed
                                         if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart graph '${myChart.data.datasets[i].label} (${i})' removed`);
