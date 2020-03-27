@@ -155,7 +155,7 @@ vis.binds.materialdesign.chart = {
                                 offset: myMdwHelper.getNumberFromData(data.valuesPositionOffset, 0),
                                 rotation: myMdwHelper.getNumberFromData(data.valuesRotation, undefined),
                                 formatter: function (value, context) {
-                                    if (value) {
+                                    if (value|| value === 0) {
                                         let barItem = getBarItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor, value);
                                         return `${barItem.valueText}${barItem.valueAppendix}`.split('\\n');
                                     }
@@ -366,7 +366,7 @@ vis.binds.materialdesign.chart = {
                                             clamp: true,
                                             rotation: myMdwHelper.getNumberFromData(data.attr('valuesRotation' + i), undefined),
                                             formatter: function (value, context) {
-                                                if (value.y) {
+                                                if (value.y || value.y === 0) {
                                                     return `${myChartHelper.roundNumber(value.y, valuesMaxDecimals).toLocaleString()}${valuesAppendText}`
                                                         .split('\\n');
                                                 }
@@ -717,7 +717,7 @@ vis.binds.materialdesign.chart = {
                                 offset: myMdwHelper.getNumberFromData(data.valuesPositionOffset, 0),
                                 rotation: myMdwHelper.getNumberFromData(data.valuesRotation, undefined),
                                 formatter: function (value, context) {
-                                    if (value) {
+                                    if (value|| value === 0) {
                                         return `${myChartHelper.roundNumber(value, myMdwHelper.getNumberFromData(data.valuesMaxDecimals, 10)).toLocaleString()}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}${myMdwHelper.getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
                                             .split('\\n');
                                     }
@@ -841,7 +841,7 @@ vis.binds.materialdesign.chart = {
                                         clamp: true,
                                         rotation: myMdwHelper.getNumberFromData(graph.datalabel_rotation, undefined),
                                         formatter: function (value, context) {
-                                            if (value) {
+                                            if (value || value === 0) {                                                
                                                 return `${myChartHelper.roundNumber(value, myMdwHelper.getNumberFromData(graph.datalabel_maxDigits, 10)).toLocaleString()}${myMdwHelper.getValueFromData(graph.datalabel_append, '')}`
                                                     .split('\\n');
                                             }
