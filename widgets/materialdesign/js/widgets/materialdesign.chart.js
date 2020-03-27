@@ -864,25 +864,23 @@ vis.binds.materialdesign.chart = {
 
                                     Object.assign(graphObj,
                                         {
-                                            // chart specific properties
+                                            // line graph specific properties
                                             borderColor: graphColor,
 
                                             // JSON Daten
+                                            pointStyle: myMdwHelper.getValueFromData(graph.line_pointStyle, 'circle'),
+                                            pointRadius: myMdwHelper.getNumberFromData(graph.line_pointSize, 3),
+                                            pointHoverRadius: myMdwHelper.getNumberFromData(graph.line_pointSizeHover, 4),
+
                                             pointBackgroundColor: myMdwHelper.getValueFromData(graph.line_PointColor, graphColor),
                                             pointBorderColor: myMdwHelper.getValueFromData(graph.line_PointColorBorder, graphColor),
                                             pointHoverBackgroundColor: myMdwHelper.getValueFromData(graph.line_PointColorHover, graphColor),
                                             pointHoverBorderColor: myMdwHelper.getValueFromData(graph.line_PointColorBorderHover, graphColor),
-                                            spanGaps: myMdwHelper.getBooleanFromData(graph.line_SpanGaps, true),
+                                            spanGaps: myMdwHelper.getBooleanFromData(graph.line_spanGaps, true),
                                             lineTension: myMdwHelper.getNumberFromData(graph.line_Tension, 0.4),
                                             borderWidth: myMdwHelper.getNumberFromData(graph.line_Thickness, 2),
                                             fill: myMdwHelper.getBooleanFromData(graph.line_UseFillColor, false),
                                             backgroundColor: fillColor,
-
-                                            // Editor Daten
-                                            pointStyle: myMdwHelper.getValueFromData(data.pointStyle, 'circle'),
-                                            pointRadius: myMdwHelper.getNumberFromData(data.pointSize, 3),
-                                            pointHoverRadius: myMdwHelper.getNumberFromData(data.pointSizeHover, 4),
-                                            spanGaps: myMdwHelper.getBooleanFromData(data.lineSpanGaps, true),
                                         }
                                     )
                                 } else {
@@ -894,7 +892,7 @@ vis.binds.materialdesign.chart = {
 
                                     Object.assign(graphObj,
                                         {
-                                            // chart specific properties
+                                            // bar chart specific properties
                                             backgroundColor: graphColor,
                                             hoverBackgroundColor: barColorHover,
 

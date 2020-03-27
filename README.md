@@ -621,6 +621,24 @@ Settings that are not listed in the table below are self-explanatory.
     </thead>
     <tbody>
         <tr>
+            <td>line_pointStyle</td>
+            <td>point style of line</td>
+            <td>string</td>
+            <td>circle, cross, crossRot, dash, line, rect, rectRounded, rectRot, star, triangle</td>
+        </tr>
+        <tr>
+            <td>line_pointSize</td>
+            <td>point size of line</td>
+            <td>number</td>
+            <td>1, 2, 3, ...</td>
+        </tr>
+        <tr>
+            <td>line_pointSizeHover</td>
+            <td>point size of line</td>
+            <td>number</td>
+            <td>1, 2, 3, ...</td>
+        </tr>
+        <tr>
             <td>line_PointColor</td>
             <td>color of line point</td>
             <td>color | array[colors]</td>
@@ -645,7 +663,7 @@ Settings that are not listed in the table below are self-explanatory.
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
         </tr>
         <tr>
-            <td>line_SpanGaps</td>
+            <td>line_spanGaps</td>
             <td>draw lines if data has gaps</td>
             <td>boolean</td>
             <td>false, true</td>
