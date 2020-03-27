@@ -574,6 +574,12 @@ Settings that are not listed in the table below are self-explanatory.
             <td>0, 1, 2, ...</td>
         </tr>
         <tr>
+            <td>datalabel_steps</td>
+            <td>show data label every x step</td>
+            <td>number</td>
+            <td>0, 1, 2, ...</td>
+        </tr>
+        <tr>
             <td>datalabel_maxDigits</td>
             <td>max decimals of data labels</td>
             <td>number</td>

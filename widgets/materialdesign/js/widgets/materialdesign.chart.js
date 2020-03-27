@@ -841,11 +841,12 @@ vis.binds.materialdesign.chart = {
                                         clamp: true,
                                         rotation: myMdwHelper.getNumberFromData(graph.datalabel_rotation, undefined),
                                         formatter: function (value, context) {
-                                            if (value || value === 0) {                                                
+                                            console.log(context.dataIndex);
+                                            if ((value || value === 0) && context.dataIndex % myMdwHelper.getNumberFromData(graph.datalabel_steps, 1) === 0) {                                                
                                                 return `${myChartHelper.roundNumber(value, myMdwHelper.getNumberFromData(graph.datalabel_maxDigits, 10)).toLocaleString()}${myMdwHelper.getValueFromData(graph.datalabel_append, '')}`
                                                     .split('\\n');
                                             }
-                                            return '';
+                                            return null;
                                         },
                                         font: {
                                             family: myMdwHelper.getValueFromData(graph.datalabel_fontFamily, undefined),
