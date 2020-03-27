@@ -326,7 +326,6 @@ vis.binds.materialdesign.chart = {
 
                         Promise.all(operations).then((result) => {
                             // execute all db queries -> getting all needed data at same time
-                            // console.log(result);
 
                             let myDatasets = [];
                             let myYAxis = [];
@@ -366,7 +365,6 @@ vis.binds.materialdesign.chart = {
                                             clamp: true,
                                             rotation: myMdwHelper.getNumberFromData(data.attr('valuesRotation' + i), undefined),
                                             formatter: function (value, context) {
-                                                console.log(context);
                                                 if ((value.y || value.y === 0) && context.dataIndex % myMdwHelper.getNumberFromData(data.attr('valuesSteps' + context.datasetIndex), 1) === 0) {
                                                     return `${myChartHelper.roundNumber(value.y, valuesMaxDecimals).toLocaleString()}${valuesAppendText}`
                                                         .split('\\n');
@@ -793,7 +791,6 @@ vis.binds.materialdesign.chart = {
                         plugins: [ChartDataLabels]     // show value labels
                     });
 
-
                     let mydata = getDataFromJson(vis.states.attr(data.oid + '.val'));
 
                     myChart.data.labels = mydata.labels;
@@ -962,6 +959,7 @@ vis.binds.materialdesign.chart = {
                                 responsive: true,
                                 maintainAspectRatio: false,
                                 layout: myChartHelper.getLayout(data),
+                                hover: myMdwHelper.getBooleanFromData(data.disableHoverEffects, false) ? { mode: null } : { mode: 'nearest' },
                                 chartArea: {
                                     backgroundColor: myMdwHelper.getValueFromData(data.chartAreaBackgroundColor, ''),
                                 },
@@ -1003,28 +1001,12 @@ vis.binds.materialdesign.chart = {
                                     }
                                 },
                             }
-
-                            if (data.disableHoverEffects) options.hover = { mode: null };
-
-                            // Chart declaration:
-                            // myChart = new Chart(ctx, {
-                            //     type: 'bar',
-                            //     data: {
-                            //         labels: jsonData.axisLabels,
-                            //         datasets: myDatasets,
-                            //     },
-                            //     options: options,
-                            //     plugins: [ChartDataLabels]     // show value labels
-                            // });
-
                         }
 
                         return { labels: labels, datasets: myDatasets, options: options }
                     }
 
                     function onChange(e, newVal, oldVal) {
-                        console.log('onChange');
-
                         try {
                             let changedData = getDataFromJson(newVal);
 
