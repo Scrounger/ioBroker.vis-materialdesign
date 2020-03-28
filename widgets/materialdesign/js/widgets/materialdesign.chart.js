@@ -118,7 +118,7 @@ vis.binds.materialdesign.chart = {
                                 myChartHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
                                     data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
                                     data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
-                                    data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength)
+                                    data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength, data.xAxisZeroLineWidth)
                             ],
                         },
                         tooltips: {
@@ -496,6 +496,7 @@ vis.binds.materialdesign.chart = {
                                             drawOnChartArea: data.xAxisShowGridLines,
                                             drawTicks: data.xAxisShowTicks,
                                             tickMarkLength: myMdwHelper.getNumberFromData(data.xAxisTickLength, 5),
+                                            zeroLineWidth: myMdwHelper.getNumberFromData(data.xAxisZeroLineWidth, 1)
                                         }
                                     }],
                                     yAxes: myYAxis,
@@ -968,7 +969,7 @@ vis.binds.materialdesign.chart = {
                                         myChartHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
                                             data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
                                             data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
-                                            data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength)
+                                            data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength, data.xAxisZeroLineWidth)
                                     ],
                                     yAxes: myYAxis,
                                 },
@@ -1158,7 +1159,7 @@ vis.binds.materialdesign.chart.helper = {
     },
     get_X_AxisObject: function (chartType, xAxisPosition, xAxisTitle, xAxisTitleColor, xAxisTitleFontFamily, xAxisTitleFontSize, xAxisShowAxisLabels, axisValueMin, axisValueMax, axisValueStepSize,
         axisMaxLabel, axisLabelAutoSkip, axisValueAppendText, xAxisValueLabelColor, xAxisValueFontFamily, xAxisValueFontSize, xAxisValueDistanceToAxis, xAxisGridLinesColor, xAxisGridLinesWitdh,
-        xAxisShowAxis, xAxisShowGridLines, xAxisShowTicks, xAxisTickLength) {
+        xAxisShowAxis, xAxisShowGridLines, xAxisShowTicks, xAxisTickLength, xAxisZeroLineWidth) {
         return {
             position: xAxisPosition,
             scaleLabel: {       // x-Axis title
@@ -1195,6 +1196,7 @@ vis.binds.materialdesign.chart.helper = {
                 drawOnChartArea: xAxisShowGridLines,
                 drawTicks: xAxisShowTicks,
                 tickMarkLength: myMdwHelper.getNumberFromData(xAxisTickLength, 5),
+                zeroLineWidth: myMdwHelper.getNumberFromData(xAxisZeroLineWidth, 1),
             }
         }
     },
