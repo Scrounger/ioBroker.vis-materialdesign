@@ -879,6 +879,12 @@ Settings that are not listed in the table below are self-explanatory.
             <td>1, 2, 5, ...</td>
         </tr>
         <tr>
+            <td>yAxis_zeroLineWidth</td>
+            <td>width of y-axis zero line</td>
+            <td>number</td>
+            <td>0.3, 1.5, 4, ...</td>
+        </tr>
+        <tr>
             <td>yAxis_gridLines_show</td>
             <td>show y-axis grid lines</td>
             <td>boolean</td>

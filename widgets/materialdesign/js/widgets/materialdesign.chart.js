@@ -112,7 +112,7 @@ vis.binds.materialdesign.chart = {
                                 myChartHelper.get_Y_AxisObject(data.chartType, data.yAxisPosition, data.yAxisTitle, data.yAxisTitleColor, data.yAxisTitleFontFamily, data.yAxisTitleFontSize,
                                     data.yAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
                                     data.yAxisValueLabelColor, data.yAxisValueFontFamily, data.yAxisValueFontSize, data.yAxisValueDistanceToAxis, data.yAxisGridLinesColor,
-                                    data.yAxisGridLinesWitdh, data.yAxisShowAxis, data.yAxisShowGridLines, data.yAxisShowTicks, data.yAxisTickLength)
+                                    data.yAxisGridLinesWitdh, data.yAxisShowAxis, data.yAxisShowGridLines, data.yAxisShowTicks, data.yAxisTickLength, data.yAxisZeroLineWidth)
                             ],
                             xAxes: [
                                 myChartHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
@@ -417,6 +417,7 @@ vis.binds.materialdesign.chart = {
                                             drawOnChartArea: data.attr('yAxisShowGridLines' + i),
                                             drawTicks: data.attr('yAxisShowTicks' + i),
                                             tickMarkLength: myMdwHelper.getNumberFromData(data.attr('yAxisTickLength' + i), 5),
+                                            zeroLineWidth: myMdwHelper.getNumberFromData(data.attr('yAxisZeroLineWidth' + i), 1),
                                         }
                                     }
                                 );
@@ -950,6 +951,7 @@ vis.binds.materialdesign.chart = {
                                             drawOnChartArea: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_show, true),
                                             drawTicks: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_ticks_show, true),
                                             tickMarkLength: myMdwHelper.getNumberFromData(graph.yAxis_gridLines_ticks_length, 5),
+                                            zeroLineWidth: myMdwHelper.getNumberFromData(graph.yAxis_zeroLineWidth, 1),
                                         }
                                     }
                                 )
@@ -1118,7 +1120,7 @@ vis.binds.materialdesign.chart.helper = {
     },
     get_Y_AxisObject: function (chartType, yAxisPosition, yAxisTitle, yAxisTitleColor, yAxisTitleFontFamily, yAxisTitleFontSize, yAxisShowAxisLabels, axisValueMin,
         axisValueMax, axisValueStepSize, axisMaxLabel, axisLabelAutoSkip, axisValueAppendText, yAxisValueLabelColor, yAxisValueFontFamily, yAxisValueFontSize,
-        yAxisValueDistanceToAxis, yAxisGridLinesColor, yAxisGridLinesWitdh, yAxisShowAxis, yAxisShowGridLines, yAxisShowTicks, yAxisTickLength) {
+        yAxisValueDistanceToAxis, yAxisGridLinesColor, yAxisGridLinesWitdh, yAxisShowAxis, yAxisShowGridLines, yAxisShowTicks, yAxisTickLength, yAxisZeroLineWidth) {
         return {
             position: yAxisPosition,
             scaleLabel: {       // y-Axis title
@@ -1154,6 +1156,7 @@ vis.binds.materialdesign.chart.helper = {
                 drawOnChartArea: yAxisShowGridLines,
                 drawTicks: yAxisShowTicks,
                 tickMarkLength: myMdwHelper.getNumberFromData(yAxisTickLength, 5),
+                zeroLineWidth: myMdwHelper.getNumberFromData(yAxisZeroLineWidth, 1),
             }
         }
     },
