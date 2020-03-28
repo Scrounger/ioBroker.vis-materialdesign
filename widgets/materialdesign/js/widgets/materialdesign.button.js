@@ -132,7 +132,7 @@ vis.binds.materialdesign.button = {
             });
         }
     },
-    handleAddition: function (el, data) {
+    handleAdition: function (el, data) {
         try {
             let $this = $(el);
 
@@ -143,7 +143,7 @@ vis.binds.materialdesign.button = {
                 }
             });
         } catch (ex) {
-            console.error(`[Button - ${data.wid}] handleAddition: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Button - ${data.wid}] handleAdition: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handleState: function (el, data) {

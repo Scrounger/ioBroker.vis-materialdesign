@@ -1471,8 +1471,8 @@ ical2CalendarWidget();
  
 ### 0.2.0
 * (Scrounger): Round Slider Widget added
-* (Scrounger): Icon Button Addition Widget added
-* (Scrounger): Button Addition Widget added
+* (Scrounger): Icon Button Adition Widget added
+* (Scrounger): Button Adition Widget added
 * (Scrounger): Line History Chart Widget added
 * (Scrounger): Table Widget added
 * (Scrounger): Dialog iFrame Widget added
