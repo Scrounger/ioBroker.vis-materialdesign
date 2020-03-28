@@ -500,7 +500,7 @@ vis.binds.materialdesign.chart = {
                                             tickMarkLength: myMdwHelper.getNumberFromData(data.xAxisTickLength, 5),
                                             zeroLineWidth: myMdwHelper.getNumberFromData(data.xAxisZeroLineWidth, 1),
                                             zeroLineColor: myMdwHelper.getValueFromData(data.xAxisZeroLineColor, 'rgba(0, 0, 0, 0.25)'),
-                                            offsetGridLines: myMdwHelper.getBooleanFromData(data.xAxisOffsetGridLines),
+                                            offsetGridLines: myMdwHelper.getBooleanFromData(data.xAxisOffsetGridLines, false),
                                         }
                                     }],
                                     yAxes: myYAxis,
@@ -1206,7 +1206,7 @@ vis.binds.materialdesign.chart.helper = {
                 tickMarkLength: myMdwHelper.getNumberFromData(xAxisTickLength, 5),
                 zeroLineWidth: myMdwHelper.getNumberFromData(xAxisZeroLineWidth, 1),
                 zeroLineColor: myMdwHelper.getValueFromData(xAxisZeroLineColor, 'rgba(0, 0, 0, 0.25)'),
-                offsetGridLines: myMdwHelper.getBooleanFromData(xAxisOffsetGridLines),
+                offsetGridLines: myMdwHelper.getBooleanFromData(xAxisOffsetGridLines, false),
             }
         }
     },
