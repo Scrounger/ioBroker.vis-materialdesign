@@ -903,14 +903,8 @@ Settings that are not listed in the table below are self-explanatory.
             <td>false, true</td>
         </tr>
         <tr>
-            <td>yAxis_gridLines_on_chart_area_show</td>
-            <td>show grid lines on chart area</td>
-            <td>boolean</td>
-            <td>false, true</td>
-        </tr>
-        <tr>
             <td>yAxis_gridLines_ticks_show</td>
-            <td>show y-axis grid ticks</td>
+            <td>show y-axis grid interval ticks</td>
             <td>boolean</td>
             <td>false, true</td>
         </tr>

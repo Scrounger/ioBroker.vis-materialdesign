@@ -942,11 +942,11 @@ vis.binds.materialdesign.chart = {
                                             }
                                         },
                                         gridLines: {
-                                            display: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_show, true),
+                                            display: true,
                                             color: myMdwHelper.getValueFromData(graph.yAxis_gridLines_color, 'black'),
                                             lineWidth: myMdwHelper.getNumberFromData(graph.yAxis_gridLines_lineWidth, 0.1),
                                             drawBorder: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_border_show, true),
-                                            drawOnChartArea: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_on_chart_area_show, true),
+                                            drawOnChartArea: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_show, true),
                                             drawTicks: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_ticks_show, true),
                                             tickMarkLength: myMdwHelper.getNumberFromData(graph.yAxis_gridLines_ticks_length, 5),
                                         }
