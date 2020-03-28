@@ -457,7 +457,7 @@ vis.binds.materialdesign.chart = {
                                 hover: {
                                     mode: 'nearest'
                                 },
-                                legend: Object.assign(myChartHelper.getLegend(data), myChartHelper.getLegendClickEvent()),
+                                legend: Object.assign(myChartHelper.getLegend(data), myChartHelper.getLegendClickEvent(myYAxis)),
                                 scales: {
                                     xAxes: [{
                                         type: 'time',
@@ -978,7 +978,7 @@ vis.binds.materialdesign.chart = {
                                     ],
                                     yAxes: myYAxis,
                                 },
-                                legend: Object.assign(myChartHelper.getLegend(data), myChartHelper.getLegendClickEvent()),
+                                legend: Object.assign(myChartHelper.getLegend(data), myChartHelper.getLegendClickEvent(myYAxis)),
                                 tooltips: {
                                     mode: data.tooltipMode,
                                     enabled: data.showTooltip,
@@ -1236,7 +1236,7 @@ vis.binds.materialdesign.chart.helper = {
             }
         }
     },
-    getLegendClickEvent: function () {
+    getLegendClickEvent: function (myYAxis) {
         return {
             // custom to hide / show also yAxis if data de-/selected
             onClick: function (event, legendItem) {
@@ -1247,10 +1247,12 @@ vis.binds.materialdesign.chart.helper = {
                 // See controller.isDatasetVisible comment
                 meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
 
+                console.log(myYAxis[index].display);
+
                 // ci.options.scales.yAxes[ci.data.datasets[index].yAxisID.replace('yAxis_id_', '')].display = checkAnyDataIsVisible();
                 let visibility = checkAnyDataIsVisible();
                 for (var i = 0; i <= ci.options.scales.yAxes.length - 1; i++) {
-                    if (ci.options.scales.yAxes[i].id === ci.data.datasets[index].yAxisID) {
+                    if (ci.options.scales.yAxes[i].id === ci.data.datasets[index].yAxisID && myYAxis[index].display) {
                         ci.options.scales.yAxes[i].display = visibility;
                     }
                 }
@@ -1259,6 +1261,9 @@ vis.binds.materialdesign.chart.helper = {
                 function checkAnyDataIsVisible() {
                     let result = null;
                     for (var i = 0; i <= ci.data.datasets.length - 1; i++) {
+                        console.log(ci.getDatasetMeta(i));
+
+                        // display
 
                         // Schauen ob yAxis gemeinsam genutzt wird und Daten angezeigt werden -> nur ausblenden wenn alle Daten die gemeinsame Achsen nicht sichtbar sind
                         if (ci.data.datasets[i].yAxisID === ci.data.datasets[index].yAxisID) {
