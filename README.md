@@ -885,6 +885,12 @@ Settings that are not listed in the table below are self-explanatory.
             <td>0.3, 1.5, 4, ...</td>
         </tr>
         <tr>
+            <td>yAxis_zeroLineColor</td>
+            <td>y-axis zero line color</td>
+            <td>color</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
             <td>yAxis_gridLines_show</td>
             <td>show y-axis grid lines</td>
             <td>boolean</td>
