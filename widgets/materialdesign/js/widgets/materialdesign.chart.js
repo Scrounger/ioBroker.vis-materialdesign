@@ -827,6 +827,16 @@ vis.binds.materialdesign.chart = {
 
                                 let graphColor = myMdwHelper.getValueFromData(graph.color, (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor);
 
+                                let fillColor = myChartHelper.addOpacityToColor(graphColor, 20);
+                                if (myMdwHelper.getValueFromData(graph.line_FillColor, null) !== null) {
+                                    fillColor = graph.line_FillColor;
+                                }
+
+                                let barColorHover = myChartHelper.addOpacityToColor(graphColor, 80);
+                                if (myMdwHelper.getValueFromData(graph.barColorHover, null) !== null) {
+                                    barColorHover = graph.barColorHover;
+                                }
+
                                 let graphObj = {
                                     data: graph.data.map(Number, null),
                                     label: graph.legendText,
@@ -863,17 +873,12 @@ vis.binds.materialdesign.chart = {
                                         useGradientColor: myMdwHelper.getBooleanFromData(graph.use_gradient_color, false),
                                         gradientColors: myMdwHelper.getBooleanFromData(graph.use_gradient_color, false) ? myMdwHelper.getValueFromData(graph.gradient_color, undefined) : graphColor,
                                         useGradientFillColor: myMdwHelper.getBooleanFromData(graph.use_line_gradient_fill_color, false),
-                                        gradientFillColors: myMdwHelper.getBooleanFromData(graph.use_line_gradient_fill_color, false) ? myMdwHelper.getValueFromData(graph.line_gradient_fill_color, undefined) : graphColor,
+                                        gradientFillColors: myMdwHelper.getBooleanFromData(graph.use_line_gradient_fill_color, false) ? myMdwHelper.getValueFromData(graph.line_gradient_fill_color, undefined) : (graph.type === 'line')? fillColor: barColorHover,
                                     }
                                 }
 
                                 if (graph.type && graph.type === 'line') {
                                     // line graph
-                                    let fillColor = myChartHelper.addOpacityToColor(graphColor, 20);
-                                    if (myMdwHelper.getValueFromData(graph.line_FillColor, null) !== null) {
-                                        fillColor = graph.line_FillColor;
-                                    }
-
                                     let fillBetweenLines = myMdwHelper.getValueFromData(graph.line_FillBetweenLines, undefined);
 
                                     Object.assign(graphObj,
@@ -899,11 +904,6 @@ vis.binds.materialdesign.chart = {
                                     )
                                 } else {
                                     // bar graph
-                                    let barColorHover = myChartHelper.addOpacityToColor(graphColor, 80);
-                                    if (myMdwHelper.getValueFromData(graph.barColorHover, null) !== null) {
-                                        barColorHover = graph.barColorHover;
-                                    }
-
                                     Object.assign(graphObj,
                                         {
                                             // bar chart specific properties
