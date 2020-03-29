@@ -526,6 +526,18 @@ Settings that are not listed in the table below are self-explanatory.
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
         </tr>
         <tr>
+            <td>use_gradient_color</td>
+            <td>use gradient color</td>
+            <td>boolean</td>
+            <td>false, true</td>
+        </tr>
+        <tr>
+            <td>gradient_color</td>
+            <td>gradient color array</td>
+            <td>array[gradientColor]</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
             <td>tooltip_MaxDigits</td>
             <td>max decimals of tooltip value</td>
             <td>number</td>
@@ -925,6 +937,32 @@ Settings that are not listed in the table below are self-explanatory.
             <td>length of y-axis grid ticks</td>
             <td>number</td>
             <td>1, 2, 5, ...</td>
+        </tr>
+    </tbody>
+</table>
+
+#### gradientColor
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>value</td>
+            <td>value where color should be applied</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+        <tr>
+            <td>color</td>
+            <td>color for value</td>
+            <td>color</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
         </tr>
     </tbody>
 </table>

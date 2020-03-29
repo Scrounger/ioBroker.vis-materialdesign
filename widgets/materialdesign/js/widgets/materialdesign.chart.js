@@ -784,7 +784,7 @@ vis.binds.materialdesign.chart = {
                     // intialize chart -> some parameters needed
                     var myChart = new Chart(ctx, {
                         type: myMdwHelper.getValueFromData(data.chartType, 'bar'),
-                        plugins: [ChartDataLabels]     // show value labels
+                        plugins: [ChartDataLabels, myChartHelper.getMyGradientPlugin()]     // show value labels
                     });
 
                     // Global Options:
@@ -858,6 +858,10 @@ vis.binds.materialdesign.chart = {
                                         borderColor: myMdwHelper.getValueFromData(graph.datalabel_borderColor, undefined),
                                         borderWidth: myMdwHelper.getNumberFromData(graph.datalabel_borderWidth, 0),
                                         borderRadius: myMdwHelper.getNumberFromData(graph.datalabel_borderRadius, 0),
+                                    },
+                                    myGradientColors: {
+                                        useGradientColor: myMdwHelper.getBooleanFromData(graph.use_gradient_color, false),
+                                        gradientColors: myMdwHelper.getBooleanFromData(graph.use_gradient_color, false) ? myMdwHelper.getValueFromData(graph.gradient_color, undefined) : graphColor
                                     }
                                 }
 
@@ -1393,5 +1397,48 @@ vis.binds.materialdesign.chart.helper = {
                 }
             }
         });
+    },
+    getMyGradientPlugin() {
+        const pluginId = "myGradientColors";
+
+        const regenerateGradient = (chart, pluginOpts) => {
+            for (var i = 0; i <= chart.data.datasets.length - 1; i++) {
+                let graph = chart.data.datasets[i];
+
+                console.log(chart.scales);
+
+                if (graph[pluginId] && graph[pluginId].useGradientColor) {
+                    const gradient = chart.ctx.createLinearGradient(0, chart.chartArea.bottom, 0, chart.chartArea.top);
+                    const scale = chart.scales[graph.yAxisID];
+
+                    if (graph[pluginId].gradientColors && graph[pluginId].gradientColors.length > 0) {
+                        graph[pluginId].gradientColors.forEach(item => {
+                            const pixel = scale.getPixelForValue(item.value);
+                            const stop = Math.max(scale.getDecimalForPixel(pixel), 0);
+
+                            if (stop <= 1) {
+                                // This if can fail if the levels are outside the scale bounds.
+                                gradient.addColorStop(stop, item.color);
+                            }
+                        });
+
+                        if (graph.type === 'line') {
+                            graph.borderColor = gradient;
+                        } else if (graph.type === 'bar') {
+                            graph.backgroundColor = gradient;
+                        }
+                    }
+                } else {
+                    // zurück auf graph color
+                    graph.borderColor = graph[pluginId].gradientColors;
+                }
+            }
+        }
+
+        return {
+            id: pluginId,
+            beforeDatasetsUpdate: regenerateGradient,
+            resize: (chart, newSize, opts) => regenerateGradient(chart, opts),
+        }
     }
 }
