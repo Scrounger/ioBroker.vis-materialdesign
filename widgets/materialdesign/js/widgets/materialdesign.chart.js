@@ -893,7 +893,7 @@ vis.binds.materialdesign.chart = {
                                             spanGaps: myMdwHelper.getBooleanFromData(graph.line_spanGaps, true),
                                             lineTension: myMdwHelper.getNumberFromData(graph.line_Tension, 0.4),
                                             borderWidth: myMdwHelper.getNumberFromData(graph.line_Thickness, 2),
-                                            fill: fillBetweenLines ? fillBetweenLines :  myMdwHelper.getBooleanFromData(graph.line_UseFillColor, false) || myMdwHelper.getBooleanFromData(graph.use_line_gradient_fill_color, false),
+                                            fill: fillBetweenLines ? fillBetweenLines : myMdwHelper.getBooleanFromData(graph.line_UseFillColor, false) || myMdwHelper.getBooleanFromData(graph.use_line_gradient_fill_color, false),
                                             backgroundColor: fillColor,
                                         }
                                     )
@@ -1241,7 +1241,13 @@ vis.binds.materialdesign.chart.helper = {
                 fontSize: myMdwHelper.getNumberFromData(data.legendFontSize, undefined),
                 boxWidth: myMdwHelper.getNumberFromData(data.legendBoxWidth, 10),
                 usePointStyle: data.legendPointStyle,
-                padding: myMdwHelper.getNumberFromData(data.legendPadding, 10)
+                padding: myMdwHelper.getNumberFromData(data.legendPadding, 10),
+                filter: function (item, chart) {
+                    // Logic to remove a particular legend item goes here
+                    if (item && item.text) {
+                        return item.text;
+                    }
+                }
             }
         }
     },
@@ -1256,8 +1262,6 @@ vis.binds.materialdesign.chart.helper = {
                 // See controller.isDatasetVisible comment
                 meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
 
-                console.log(myYAxis[index].display);
-
                 // ci.options.scales.yAxes[ci.data.datasets[index].yAxisID.replace('yAxis_id_', '')].display = checkAnyDataIsVisible();
                 let visibility = checkAnyDataIsVisible();
                 for (var i = 0; i <= ci.options.scales.yAxes.length - 1; i++) {
@@ -1270,10 +1274,6 @@ vis.binds.materialdesign.chart.helper = {
                 function checkAnyDataIsVisible() {
                     let result = null;
                     for (var i = 0; i <= ci.data.datasets.length - 1; i++) {
-                        console.log(ci.getDatasetMeta(i));
-
-                        // display
-
                         // Schauen ob yAxis gemeinsam genutzt wird und Daten angezeigt werden -> nur ausblenden wenn alle Daten die gemeinsame Achsen nicht sichtbar sind
                         if (ci.data.datasets[i].yAxisID === ci.data.datasets[index].yAxisID) {
                             result = (ci.getDatasetMeta(i).hidden === null) ? true : false;
@@ -1438,7 +1438,7 @@ vis.binds.materialdesign.chart.helper = {
                     }
                 }
 
-                function getGradient(chart, graph, gradientColors){
+                function getGradient(chart, graph, gradientColors) {
                     const gradient = chart.ctx.createLinearGradient(0, chart.chartArea.bottom, 0, chart.chartArea.top);
                     const scale = chart.scales[graph.yAxisID];
 
