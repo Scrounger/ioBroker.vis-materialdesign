@@ -861,7 +861,9 @@ vis.binds.materialdesign.chart = {
                                     },
                                     myGradientColors: {
                                         useGradientColor: myMdwHelper.getBooleanFromData(graph.use_gradient_color, false),
-                                        gradientColors: myMdwHelper.getBooleanFromData(graph.use_gradient_color, false) ? myMdwHelper.getValueFromData(graph.gradient_color, undefined) : graphColor
+                                        gradientColors: myMdwHelper.getBooleanFromData(graph.use_gradient_color, false) ? myMdwHelper.getValueFromData(graph.gradient_color, undefined) : graphColor,
+                                        useGradientFillColor: myMdwHelper.getBooleanFromData(graph.use_line_gradient_fill_color, false),
+                                        gradientFillColors: myMdwHelper.getBooleanFromData(graph.use_line_gradient_fill_color, false) ? myMdwHelper.getValueFromData(graph.line_gradient_fill_color, undefined) : graphColor,
                                     }
                                 }
 
@@ -891,7 +893,7 @@ vis.binds.materialdesign.chart = {
                                             spanGaps: myMdwHelper.getBooleanFromData(graph.line_spanGaps, true),
                                             lineTension: myMdwHelper.getNumberFromData(graph.line_Tension, 0.4),
                                             borderWidth: myMdwHelper.getNumberFromData(graph.line_Thickness, 2),
-                                            fill: fillBetweenLines ? fillBetweenLines : myMdwHelper.getBooleanFromData(graph.line_UseFillColor, false),
+                                            fill: fillBetweenLines ? fillBetweenLines :  myMdwHelper.getBooleanFromData(graph.line_UseFillColor, false) || myMdwHelper.getBooleanFromData(graph.use_line_gradient_fill_color, false),
                                             backgroundColor: fillColor,
                                         }
                                     )
@@ -1407,20 +1409,10 @@ vis.binds.materialdesign.chart.helper = {
             for (var i = 0; i <= chart.data.datasets.length - 1; i++) {
                 let graph = chart.data.datasets[i];
 
+                // Line / Bar Color
                 if (graph[pluginId] && graph[pluginId].useGradientColor) {
-                    const gradient = chart.ctx.createLinearGradient(0, chart.chartArea.bottom, 0, chart.chartArea.top);
-                    const scale = chart.scales[graph.yAxisID];
-
                     if (graph[pluginId].gradientColors && graph[pluginId].gradientColors.length > 0) {
-                        graph[pluginId].gradientColors.forEach(item => {
-                            const pixel = scale.getPixelForValue(item.value);
-                            const stop = Math.max(scale.getDecimalForPixel(pixel), 0);
-
-                            if (stop <= 1) {
-                                // This if can fail if the levels are outside the scale bounds.
-                                gradient.addColorStop(stop, item.color);
-                            }
-                        });
+                        let gradient = getGradient(chart, graph, graph[pluginId].gradientColors);
 
                         if (graph.type === 'line') {
                             graph.borderColor = gradient;
@@ -1431,6 +1423,36 @@ vis.binds.materialdesign.chart.helper = {
                 } else {
                     // zurück auf graph color
                     graph.borderColor = graph[pluginId].gradientColors;
+                }
+
+                // FillColor for Line
+                if (graph.type === 'line') {
+                    if (graph[pluginId] && graph[pluginId].useGradientFillColor) {
+                        if (graph[pluginId].gradientFillColors && graph[pluginId].gradientFillColors.length > 0) {
+                            let gradientFill = getGradient(chart, graph, graph[pluginId].gradientFillColors);
+
+                            graph.backgroundColor = gradientFill;
+                        }
+                    } else {
+                        graph.backgroundColor = graph[pluginId].gradientFillColors;
+                    }
+                }
+
+                function getGradient(chart, graph, gradientColors){
+                    const gradient = chart.ctx.createLinearGradient(0, chart.chartArea.bottom, 0, chart.chartArea.top);
+                    const scale = chart.scales[graph.yAxisID];
+
+                    gradientColors.forEach(item => {
+                        const pixel = scale.getPixelForValue(item.value);
+                        const stop = Math.max(scale.getDecimalForPixel(pixel), 0);
+
+                        if (stop <= 1) {
+                            // This if can fail if the levels are outside the scale bounds.
+                            gradient.addColorStop(stop, item.color);
+                        }
+                    });
+
+                    return gradient
                 }
             }
         }

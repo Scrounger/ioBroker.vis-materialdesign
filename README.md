@@ -735,6 +735,18 @@ Settings that are not listed in the table below are self-explanatory.
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
         </tr>
         <tr>
+            <td>use_line_gradient_fill_color</td>
+            <td>use gradient fill color</td>
+            <td>boolean</td>
+            <td>false, true</td>
+        </tr>
+        <tr>
+            <td>line_gradient_fill_color</td>
+            <td>gradient color array</td>
+            <td>array[<a href="#gradientcolor">gradientColor</a>]</td>
+            <td>[ { value: -20, color: '#7d3c98' }, { value: 0, color: '#2874a6' } ]</td>
+        </tr>
+        <tr>
             <td>line_FillBetweenLines</td>
             <td>fill color to next / previous line</td>
             <td>string</td>
