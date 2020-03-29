@@ -478,7 +478,7 @@ Settings that are not listed in the table below are self-explanatory.
         <tr>
             <td>graphs</td>
             <td>data of graphs</td>
-            <td>Array of graph</td>
+            <td>array[<a href="#graph">graph</a>]</td>
             <td>see graph</td>
         </tr>
     </tbody>
@@ -534,8 +534,8 @@ Settings that are not listed in the table below are self-explanatory.
         <tr>
             <td>gradient_color</td>
             <td>gradient color array</td>
-            <td>array[gradientColor]</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+            <td>array[<a href="#gradientcolor">gradientColor</a>]</td>
+            <td>[ { value: -20, color: '#7d3c98' }, { value: 0, color: '#2874a6' } ]</td>
         </tr>
         <tr>
             <td>tooltip_MaxDigits</td>
