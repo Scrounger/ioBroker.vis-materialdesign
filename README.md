@@ -734,6 +734,12 @@ Settings that are not listed in the table below are self-explanatory.
             <td>color</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
         </tr>
+        <tr>
+            <td>line_FillBetweenLines</td>
+            <td>fill color to next / previous line</td>
+            <td>string</td>
+            <td>'+1', '-1', '+2', ...</td>
+        </tr>
     </tbody>
 </table>
 

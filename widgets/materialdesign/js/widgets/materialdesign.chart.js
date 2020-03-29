@@ -872,6 +872,8 @@ vis.binds.materialdesign.chart = {
                                         fillColor = graph.line_FillColor;
                                     }
 
+                                    let fillBetweenLines = myMdwHelper.getValueFromData(graph.line_FillBetweenLines, undefined);
+
                                     Object.assign(graphObj,
                                         {
                                             // line graph specific properties
@@ -889,7 +891,7 @@ vis.binds.materialdesign.chart = {
                                             spanGaps: myMdwHelper.getBooleanFromData(graph.line_spanGaps, true),
                                             lineTension: myMdwHelper.getNumberFromData(graph.line_Tension, 0.4),
                                             borderWidth: myMdwHelper.getNumberFromData(graph.line_Thickness, 2),
-                                            fill: myMdwHelper.getBooleanFromData(graph.line_UseFillColor, false),
+                                            fill: fillBetweenLines ? fillBetweenLines : myMdwHelper.getBooleanFromData(graph.line_UseFillColor, false),
                                             backgroundColor: fillColor,
                                         }
                                     )
@@ -1404,8 +1406,6 @@ vis.binds.materialdesign.chart.helper = {
         const regenerateGradient = (chart, pluginOpts) => {
             for (var i = 0; i <= chart.data.datasets.length - 1; i++) {
                 let graph = chart.data.datasets[i];
-
-                console.log(chart.scales);
 
                 if (graph[pluginId] && graph[pluginId].useGradientColor) {
                     const gradient = chart.ctx.createLinearGradient(0, chart.chartArea.bottom, 0, chart.chartArea.top);
