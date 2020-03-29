@@ -873,7 +873,7 @@ vis.binds.materialdesign.chart = {
                                         useGradientColor: myMdwHelper.getBooleanFromData(graph.use_gradient_color, false),
                                         gradientColors: myMdwHelper.getBooleanFromData(graph.use_gradient_color, false) ? myMdwHelper.getValueFromData(graph.gradient_color, undefined) : graphColor,
                                         useGradientFillColor: myMdwHelper.getBooleanFromData(graph.use_line_gradient_fill_color, false),
-                                        gradientFillColors: myMdwHelper.getBooleanFromData(graph.use_line_gradient_fill_color, false) ? myMdwHelper.getValueFromData(graph.line_gradient_fill_color, undefined) : (graph.type === 'line')? fillColor: barColorHover,
+                                        gradientFillColors: myMdwHelper.getBooleanFromData(graph.use_line_gradient_fill_color, false) ? myMdwHelper.getValueFromData(graph.line_gradient_fill_color, undefined) : (graph.type === 'line') ? fillColor : barColorHover,
                                     }
                                 }
 
@@ -1402,53 +1402,57 @@ vis.binds.materialdesign.chart.helper = {
         const pluginId = "myGradientColors";
 
         const regenerateGradient = (chart, pluginOpts) => {
-            for (var i = 0; i <= chart.data.datasets.length - 1; i++) {
-                let graph = chart.data.datasets[i];
+            
+            if (chart.chartArea.bottom && !isNaN(chart.chartArea.bottom) && chart.chartArea.top && !isNaN(chart.chartArea.top)) {
+                const gradient = chart.ctx.createLinearGradient(0, chart.chartArea.bottom, 0, chart.chartArea.top);
 
-                // Line / Bar Color
-                if (graph[pluginId] && graph[pluginId].useGradientColor) {
-                    if (graph[pluginId].gradientColors && graph[pluginId].gradientColors.length > 0) {
-                        let gradient = getGradient(chart, graph, graph[pluginId].gradientColors);
+                for (var i = 0; i <= chart.data.datasets.length - 1; i++) {
+                    let graph = chart.data.datasets[i];
 
-                        if (graph.type === 'line') {
-                            graph.borderColor = gradient;
-                        } else if (graph.type === 'bar') {
-                            graph.backgroundColor = gradient;
-                        }
-                    }
-                } else {
-                    // zurück auf graph color
-                    graph.borderColor = graph[pluginId].gradientColors;
-                }
+                    // Line / Bar Color
+                    if (graph[pluginId] && graph[pluginId].useGradientColor) {
+                        if (graph[pluginId].gradientColors && graph[pluginId].gradientColors.length > 0) {
+                            let gradient = getGradient(chart, graph, graph[pluginId].gradientColors);
 
-                // FillColor for Line
-                if (graph.type === 'line') {
-                    if (graph[pluginId] && graph[pluginId].useGradientFillColor) {
-                        if (graph[pluginId].gradientFillColors && graph[pluginId].gradientFillColors.length > 0) {
-                            let gradientFill = getGradient(chart, graph, graph[pluginId].gradientFillColors);
-
-                            graph.backgroundColor = gradientFill;
+                            if (graph.type === 'line') {
+                                graph.borderColor = gradient;
+                            } else if (graph.type === 'bar') {
+                                graph.backgroundColor = gradient;
+                            }
                         }
                     } else {
-                        graph.backgroundColor = graph[pluginId].gradientFillColors;
+                        // zurück auf graph color
+                        graph.borderColor = graph[pluginId].gradientColors;
                     }
-                }
 
-                function getGradient(chart, graph, gradientColors) {
-                    const gradient = chart.ctx.createLinearGradient(0, chart.chartArea.bottom, 0, chart.chartArea.top);
-                    const scale = chart.scales[graph.yAxisID];
+                    // FillColor for Line
+                    if (graph.type === 'line') {
+                        if (graph[pluginId] && graph[pluginId].useGradientFillColor) {
+                            if (graph[pluginId].gradientFillColors && graph[pluginId].gradientFillColors.length > 0) {
+                                let gradientFill = getGradient(chart, graph, graph[pluginId].gradientFillColors);
 
-                    gradientColors.forEach(item => {
-                        const pixel = scale.getPixelForValue(item.value);
-                        const stop = Math.max(scale.getDecimalForPixel(pixel), 0);
-
-                        if (stop <= 1) {
-                            // This if can fail if the levels are outside the scale bounds.
-                            gradient.addColorStop(stop, item.color);
+                                graph.backgroundColor = gradientFill;
+                            }
+                        } else {
+                            graph.backgroundColor = graph[pluginId].gradientFillColors;
                         }
-                    });
+                    }
 
-                    return gradient
+                    function getGradient(chart, graph, gradientColors) {
+                        const scale = chart.scales[graph.yAxisID];
+
+                        gradientColors.forEach(item => {
+                            const pixel = scale.getPixelForValue(item.value);
+                            const stop = Math.max(scale.getDecimalForPixel(pixel), 0);
+
+                            if (stop <= 1) {
+                                // This if can fail if the levels are outside the scale bounds.
+                                gradient.addColorStop(stop, item.color);
+                            }
+                        });
+
+                        return gradient
+                    }
                 }
             }
         }
