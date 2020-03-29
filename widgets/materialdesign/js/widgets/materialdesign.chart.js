@@ -71,7 +71,7 @@ vis.binds.materialdesign.chart = {
                         dataColorArray.push(barItem.dataColor);
 
                         if (myMdwHelper.getValueFromData(data.hoverColor, null) === null) {
-                            hoverDataColorArray.push(myChartHelper.convertHex(barItem.dataColor, 80))
+                            hoverDataColorArray.push(myChartHelper.addOpacityToColor(barItem.dataColor, 80))
                         } else {
                             hoverDataColorArray.push(data.hoverColor)
                         }
@@ -209,7 +209,7 @@ vis.binds.materialdesign.chart = {
                                     myBarChart.data.labels[d] = barItem.label;
 
                                     if (myMdwHelper.getValueFromData(data.hoverColor, null) === null) {
-                                        myBarChart.data.datasets[0].hoverBackgroundColor[d] = myChartHelper.convertHex(barItem.dataColor, 80);
+                                        myBarChart.data.datasets[0].hoverBackgroundColor[d] = myChartHelper.addOpacityToColor(barItem.dataColor, 80);
                                     } else {
                                         myBarChart.data.datasets[0].hoverBackgroundColor[d] = data.hoverColor;
                                     }
@@ -348,7 +348,7 @@ vis.binds.materialdesign.chart = {
                                         borderColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor),     // Line Color
                                         pointBackgroundColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor),
                                         fill: myMdwHelper.getBooleanFromData(data.attr('useFillColor' + i), false),
-                                        backgroundColor: myMdwHelper.getValueFromData(data.attr('fillColor' + i), myChartHelper.convertHex(myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor), 10)),  //Fill Background color
+                                        backgroundColor: myMdwHelper.getValueFromData(data.attr('fillColor' + i), myChartHelper.addOpacityToColor(myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor), 10)),  //Fill Background color
                                         pointRadius: myMdwHelper.getNumberFromData(data.pointSize, 3),
                                         pointHoverRadius: myMdwHelper.getNumberFromData(data.pointSizeHover, 4),
                                         pointStyle: myMdwHelper.getValueFromData(data.pointStyle, 'circle'),
@@ -654,7 +654,7 @@ vis.binds.materialdesign.chart = {
                         dataColorArray.push(bgColor);
 
                         if (myMdwHelper.getValueFromData(data.hoverColor, null) === null) {
-                            hoverDataColorArray.push(myChartHelper.convertHex(bgColor, 80))
+                            hoverDataColorArray.push(myChartHelper.addOpacityToColor(bgColor, 80))
                         } else {
                             hoverDataColorArray.push(data.hoverColor)
                         }
@@ -869,7 +869,7 @@ vis.binds.materialdesign.chart = {
 
                                 if (graph.type && graph.type === 'line') {
                                     // line graph
-                                    let fillColor = myChartHelper.convertHex(graphColor, 20);
+                                    let fillColor = myChartHelper.addOpacityToColor(graphColor, 20);
                                     if (myMdwHelper.getValueFromData(graph.line_FillColor, null) !== null) {
                                         fillColor = graph.line_FillColor;
                                     }
@@ -899,7 +899,7 @@ vis.binds.materialdesign.chart = {
                                     )
                                 } else {
                                     // bar graph
-                                    let barColorHover = myChartHelper.convertHex(graphColor, 80);
+                                    let barColorHover = myChartHelper.addOpacityToColor(graphColor, 80);
                                     if (myMdwHelper.getValueFromData(graph.barColorHover, null) !== null) {
                                         barColorHover = graph.barColorHover;
                                     }
@@ -1121,13 +1121,9 @@ vis.binds.materialdesign.chart = {
 
 
 vis.binds.materialdesign.chart.helper = {
-    convertHex: function (hex, opacity) {
-        hex = hex.replace('#', '');
-        let r = parseInt(hex.substring(0, 2), 16);
-        let g = parseInt(hex.substring(2, 4), 16);
-        let b = parseInt(hex.substring(4, 6), 16);
-
-        return 'rgba(' + r + ',' + g + ',' + b + ',' + opacity / 100 + ')';
+    // TODO: chromaJS verwenden
+    addOpacityToColor: function (color, opacity) {
+        return chroma(color).alpha(opacity / 100).hex();
     },
     get_Y_AxisObject: function (chartType, yAxisPosition, yAxisTitle, yAxisTitleColor, yAxisTitleFontFamily, yAxisTitleFontSize, yAxisShowAxisLabels, axisValueMin,
         axisValueMax, axisValueStepSize, axisMaxLabel, axisLabelAutoSkip, axisValueAppendText, yAxisValueLabelColor, yAxisValueFontFamily, yAxisValueFontSize,
