@@ -773,15 +773,19 @@ vis.binds.materialdesign.chart = {
                 let myChartHelper = vis.binds.materialdesign.chart.helper;
                 myChartHelper.registerChartAreaPlugin();
 
-                var myChart;
                 let $this = $(el);
                 var chartContainer = $this.find('.materialdesign-chart-container').get(0);
 
                 $this.find('.materialdesign-chart-container').css('background-color', myMdwHelper.getValueFromData(data.backgroundColor, ''));
 
-
                 if (chartContainer !== undefined && chartContainer !== null && chartContainer !== '') {
                     var ctx = chartContainer.getContext('2d');
+
+                    // intialize chart -> some parameters needed
+                    var myChart = new Chart(ctx, {
+                        type: myMdwHelper.getValueFromData(data.chartType, 'bar'),
+                        plugins: [ChartDataLabels]     // show value labels
+                    });
 
                     // Global Options:
                     Chart.defaults.global.defaultFontColor = '#44739e';
@@ -790,14 +794,9 @@ vis.binds.materialdesign.chart = {
 
                     Chart.plugins.unregister(ChartDataLabels);
 
-                    // Chart declaration:
-                    myChart = new Chart(ctx, {
-                        type: myMdwHelper.getValueFromData(data.chartType, 'bar'),
-                        plugins: [ChartDataLabels]     // show value labels
-                    });
-
                     let mydata = getDataFromJson(vis.states.attr(data.oid + '.val'));
 
+                    myChart.type = myMdwHelper.getValueFromData(data.chartType, 'bar');
                     myChart.data.labels = mydata.labels;
                     myChart.data.datasets = mydata.datasets;
                     myChart.options = mydata.options;
