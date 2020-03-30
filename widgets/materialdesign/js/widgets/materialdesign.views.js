@@ -296,7 +296,7 @@ vis.binds.materialdesign.views = {
             let containerClass = 'materialdesign-grid';
 
             for (var i = 0; i <= data.countViews; i++) {
-                let colSpan = myMdwHelper.getNumberFromData(data.attr('viewColSpan' + i), 6);
+                let colSpan = myMdwHelper.getNumberFromData(data.attr('viewColSpan' + i), myMdwHelper.getNumberFromData(data.viewColSpan, 6));
                 if (colSpan > 12) {
                     colSpan = 12;
                 }
@@ -422,7 +422,7 @@ vis.binds.materialdesign.views = {
                                 }
 
                                 for (var i = 0; i <= data.countViews; i++) {
-                                    let colSpan = myMdwHelper.getNumberFromData(data.attr('handyGridPortraitColSpan' + i), 12);
+                                    let colSpan = myMdwHelper.getNumberFromData(data.attr('handyGridPortraitColSpan' + i), myMdwHelper.getNumberFromData(data.handyGridPortraitColSpan, 12));
                                     if (colSpan > 12) {
                                         colSpan = 12;
                                     }
@@ -441,7 +441,7 @@ vis.binds.materialdesign.views = {
                                 }
 
                                 for (var i = 0; i <= data.countViews; i++) {
-                                    let colSpan = myMdwHelper.getNumberFromData(data.attr('handyGridLandscapeColSpan' + i), 6);
+                                    let colSpan = myMdwHelper.getNumberFromData(data.attr('handyGridLandscapeColSpan' + i), myMdwHelper.getNumberFromData(data.handyGridLandscapeColSpan, 6));
                                     if (colSpan > 12) {
                                         colSpan = 12;
                                     }
@@ -460,7 +460,7 @@ vis.binds.materialdesign.views = {
                                 }
 
                                 for (var i = 0; i <= data.countViews; i++) {
-                                    let colSpan = myMdwHelper.getNumberFromData(data.attr('tabletGridPortraitColSpan' + i), 4);
+                                    let colSpan = myMdwHelper.getNumberFromData(data.attr('tabletGridPortraitColSpan' + i), myMdwHelper.getNumberFromData(data.tabletGridPortraitColSpan, 4));
                                     if (colSpan > 12) {
                                         colSpan = 12;
                                     }
@@ -479,7 +479,7 @@ vis.binds.materialdesign.views = {
                                 }
 
                                 for (var i = 0; i <= data.countViews; i++) {
-                                    let colSpan = myMdwHelper.getNumberFromData(data.attr('tabletGridLandscapeColSpan' + i), 3);
+                                    let colSpan = myMdwHelper.getNumberFromData(data.attr('tabletGridLandscapeColSpan' + i), myMdwHelper.getNumberFromData(data.tabletGridLandscapeColSpan, 3));
                                     if (colSpan > 12) {
                                         colSpan = 12;
                                     }
@@ -498,7 +498,7 @@ vis.binds.materialdesign.views = {
                                 }
 
                                 for (var i = 0; i <= data.countViews; i++) {
-                                    let colSpan = myMdwHelper.getNumberFromData(data.attr('viewColSpan' + i), 3);
+                                    let colSpan = myMdwHelper.getNumberFromData(data.attr('viewColSpan' + i), myMdwHelper.getNumberFromData(data.viewColSpan, 3));
                                     if (colSpan > 12) {
                                         colSpan = 12;
                                     }
