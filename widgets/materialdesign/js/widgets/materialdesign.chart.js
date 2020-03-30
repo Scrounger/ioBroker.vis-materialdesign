@@ -21,7 +21,7 @@ vis.binds.materialdesign.chart = {
                 let globalColor = myMdwHelper.getValueFromData(data.globalColor, '#44739e');
 
                 let colorScheme = myMdwHelper.getValueFromData(data.colorScheme, null);
-                if (colorScheme != null) {
+                if (colorScheme !== null) {
                     colorScheme = vis.binds.materialdesign.colorScheme.get(data.colorScheme, data.dataCount);
                 }
 
@@ -59,7 +59,7 @@ vis.binds.materialdesign.chart = {
 
                     for (var i = 0; i <= countOfItems; i++) {
                         // row data
-                        if (colorScheme != null) {
+                        if (colorScheme !== null) {
                             globalColor = colorScheme[i];
                         }
 
@@ -198,7 +198,7 @@ vis.binds.materialdesign.chart = {
                                 let jsonData = JSON.parse(newVal);
 
                                 for (var d = 0; d <= jsonData.length - 1; d++) {
-                                    if (colorScheme != null) {
+                                    if (colorScheme !== null) {
                                         globalColor = colorScheme[d];
                                     }
 
@@ -286,7 +286,7 @@ vis.binds.materialdesign.chart = {
                 let globalColor = myMdwHelper.getValueFromData(data.globalColor, '#44739e');
 
                 let colorScheme = myMdwHelper.getValueFromData(data.colorScheme, null);
-                if (colorScheme != null) {
+                if (colorScheme !== null) {
                     colorScheme = vis.binds.materialdesign.colorScheme.get(data.colorScheme, data.dataCount);
                 }
 
@@ -621,7 +621,7 @@ vis.binds.materialdesign.chart = {
                 let globalColor = myMdwHelper.getValueFromData(data.globalColor, '#44739e');
 
                 let colorScheme = myMdwHelper.getValueFromData(data.colorScheme, null);
-                if (colorScheme != null) {
+                if (colorScheme !== null) {
                     colorScheme = vis.binds.materialdesign.colorScheme.get(data.colorScheme, data.dataCount);
                 }
 
@@ -646,7 +646,7 @@ vis.binds.materialdesign.chart = {
                         dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
                         labelArray.push(myMdwHelper.getValueFromData(data.attr('label' + i), '').split('\\n'));
 
-                        if (colorScheme != null) {
+                        if (colorScheme !== null) {
                             globalColor = colorScheme[i];
                         }
 
@@ -818,7 +818,7 @@ vis.binds.materialdesign.chart = {
                             labels = jsonData.axisLabels;
 
                             let colorScheme = myMdwHelper.getValueFromData(data.colorScheme, null);
-                            if (colorScheme != null) {
+                            if (colorScheme !== null) {
                                 colorScheme = vis.binds.materialdesign.colorScheme.get(data.colorScheme, data.dataCount);
                             }
 
