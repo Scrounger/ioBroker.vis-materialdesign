@@ -35,7 +35,7 @@ vis.binds.materialdesign.views = {
 
                 viewsList.push(`
                     <div 
-                        class="materialdesign-masonry-item" id="masonry_item_${i}" itemindex="${i}" visibilityOid="${data.attr('visibilityOid' + i)}" style="height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px; ${viewWidth};">
+                        class="materialdesign-masonry-item" id="masonry_item_${i}" itemindex="${i}" sortOrder="${myMdwHelper.getNumberFromData(data.attr('viewSortOrder' + i), i)}" visibilityOid="${data.attr('visibilityOid' + i)}" style="height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px; ${viewWidth};">
                             ${(vis.editMode) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;"></div>` : ''}
                             <div data-vis-contains="${data.attr('View' + i)}" class="vis-widget-body vis-view-container">
                             </div>
@@ -84,6 +84,11 @@ vis.binds.materialdesign.views = {
                     </div>
                 </div>
             `
+            viewsList.sort(function (a, b) {
+                let aSortOrder = parseInt($(a).attr('sortOrder'));
+                let bSortOrder = parseInt($(b).attr('sortOrder'));
+                return aSortOrder == bSortOrder ? 0 : +(aSortOrder > bSortOrder) || -1;
+            });
 
             $this.append(`
                 <div class="materialdesign-masonry-container" style="text-align: ${data.viewAlignment}; display: none;">
