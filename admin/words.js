@@ -8392,5 +8392,17 @@ systemDictionary = {
         "es": "vertical: altura del contenedor de imágenes",
         "pl": "pionowa: wysokość pojemnika na zdjęcie",
         "zh-cn": "垂直：图像容器的高度"
+    },
+    "viewSortOrder": {
+        "en": "sort order",
+        "de": "Sortierung",
+        "ru": "Порядок сортировки",
+        "pt": "ordem de classificação",
+        "nl": "sorteervolgorde",
+        "fr": "ordre de tri",
+        "it": "ordinamento",
+        "es": "Orden de clasificación",
+        "pl": "porządek sortowania",
+        "zh-cn": "排序"
     }
 };

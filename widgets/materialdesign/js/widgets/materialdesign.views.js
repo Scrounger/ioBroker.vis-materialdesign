@@ -304,7 +304,7 @@ vis.binds.materialdesign.views = {
                 let view = myMdwHelper.getValueFromData(data.attr('View' + i), undefined);
 
                 viewsList.push(`
-                <div class="col col-${colSpan}" id="grid-item${i}" itemindex="${i}" visibilityOid="${data.attr('visibilityOid' + i)}">
+                <div class="col col-${colSpan}" id="grid-item${i}" itemindex="${i}" sortOrder="${myMdwHelper.getNumberFromData(data.attr('viewSortOrder' + i), i)}" visibilityOid="${data.attr('visibilityOid' + i)}">
                     ${(vis.editMode && !view) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; position: relative; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;"></div>` : ''}
                     <div data-vis-contains="${view}" class="vis-widget-body vis-view-container" style="position: relative; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;">
                     </div>
@@ -348,6 +348,12 @@ vis.binds.materialdesign.views = {
                     </div>
                 </div>
             `
+
+            viewsList.sort(function (a, b) {
+                let aSortOrder = parseInt($(a).attr('sortOrder'));
+                let bSortOrder = parseInt($(b).attr('sortOrder'));
+                return aSortOrder == bSortOrder ? 0 : +(aSortOrder > bSortOrder) || -1;
+            });
 
             $this.append(`
             <div class="${containerClass}" style="display: none;">
