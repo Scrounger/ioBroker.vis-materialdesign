@@ -598,8 +598,14 @@ Settings that are not listed in the table below are self-explanatory.
             <td>0, 1, 2, ...</td>
         </tr>
         <tr>
+            <td>datalabel_minDigits</td>
+            <td>minimum decimals of data labels</td>
+            <td>number</td>
+            <td>0, 1, 2, ...</td>
+        </tr>
+        <tr>
             <td>datalabel_maxDigits</td>
-            <td>max decimals of data labels</td>
+            <td>maximum decimals of data labels</td>
             <td>number</td>
             <td>0, 1, 2, ...</td>
         </tr>

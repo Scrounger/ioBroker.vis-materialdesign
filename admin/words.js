@@ -1370,6 +1370,18 @@ systemDictionary = {
         "pl": "pokaż wartości",
         "zh-cn": "显示价值"
     },
+    "valuesMinDecimals": {
+        "en": "minimal decimales",
+        "de": "minimale Dezimalstellen",
+        "ru": "минимальные десятичные дроби",
+        "pt": "dizimadas mínimas",
+        "nl": "minimale decimalen",
+        "fr": "décimales minimales",
+        "it": "decimali minimi",
+        "es": "decimales mínimos",
+        "pl": "minimalne dziesiętne",
+        "zh-cn": "最小小数"
+      },
     "valuesMaxDecimals": {
         "en": "maximal decimales",
         "de": "maximale Dezimalstellen",
