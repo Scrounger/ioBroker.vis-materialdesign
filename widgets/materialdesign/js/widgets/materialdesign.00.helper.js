@@ -468,10 +468,11 @@ vis.binds.materialdesign.helper = {
         }
     },
     formatNumber(value, minDigits = undefined, maxDigits = undefined) {
-        if (isNaN(value)) {
+        if (isNaN(parseFloat(value))) {
             // keine zahl
             return value;
         } else {
+            value = parseFloat(value);
             if ((minDigits !== undefined && minDigits !== '') && (maxDigits !== undefined && maxDigits !== '')) {
                 return value.toLocaleString(undefined, { minimumFractionDigits: minDigits, maximumFractionDigits: maxDigits });
             } else if (minDigits !== undefined && minDigits !== '') {

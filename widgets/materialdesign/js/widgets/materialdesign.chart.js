@@ -140,7 +140,7 @@ vis.binds.materialdesign.chart = {
                             callbacks: {
                                 label: function (tooltipItem, chart) {
                                     if (tooltipItem && tooltipItem.value) {
-                                        return `${chart.datasets[0].label}: ${myChartHelper.roundNumber(parseFloat(tooltipItem.value), myMdwHelper.getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${myMdwHelper.getValueFromData(data.tooltipBodyAppend, '')}`
+                                        return `${chart.datasets[0].label}: ${myMdwHelper.formatNumber(tooltipItem.value, data.tooltipValueMinDecimals, data.tooltipValueMaxDecimals)}${myMdwHelper.getValueFromData(data.tooltipBodyAppend, '')}`
                                             .split('\\n');
                                     }
                                     return '';
@@ -540,7 +540,7 @@ vis.binds.materialdesign.chart = {
 
 
                                             if (tooltipItem && tooltipItem.value) {
-                                                return `${chart.datasets[tooltipItem.datasetIndex].label}: ${myChartHelper.roundNumber(parseFloat(tooltipItem.value), myMdwHelper.getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${myMdwHelper.getValueFromData(data.tooltipBodyAppend, '')}`
+                                                return `${chart.datasets[tooltipItem.datasetIndex].label}: ${myMdwHelper.formatNumber(tooltipItem.value, data.tooltipValueMinDecimals, data.tooltipValueMaxDecimals)}${myMdwHelper.getValueFromData(data.tooltipBodyAppend, '')}`
                                                     .split('\\n');
                                             }
                                             return '';
@@ -706,7 +706,7 @@ vis.binds.materialdesign.chart = {
                             callbacks: {
                                 label: function (tooltipItem, chart) {
                                     if (tooltipItem) {
-                                        return `${labelArray[tooltipItem.index]}: ${myChartHelper.roundNumber(parseFloat(chart.datasets[0].data[tooltipItem.index]), myMdwHelper.getNumberFromData(data.tooltipValueMaxDecimals, 10)).toLocaleString()}${myMdwHelper.getValueFromData(data.tooltipBodyAppend, '')}`
+                                        return `${labelArray[tooltipItem.index]}: ${myMdwHelper.formatNumber(chart.datasets[0].data[tooltipItem.index], data.tooltipValueMinDecimals, data.tooltipValueMaxDecimals)}${myMdwHelper.getValueFromData(data.tooltipBodyAppend, '')}`
                                             .split('\\n');
                                     }
                                     return '';
@@ -1007,7 +1007,7 @@ vis.binds.materialdesign.chart = {
                                     callbacks: {
                                         label: function (tooltipItem, chart) {
                                             if (tooltipItem && tooltipItem.value) {
-                                                return `${chart.datasets[tooltipItem.datasetIndex].label}: ${myChartHelper.roundNumber(parseFloat(tooltipItem.value), myMdwHelper.getNumberFromData(jsonData.graphs[tooltipItem.datasetIndex].tooltip_MaxDigits, 10)).toLocaleString()}${myMdwHelper.getValueFromData(jsonData.graphs[tooltipItem.datasetIndex].tooltip_AppendText, '')}`
+                                                return `${chart.datasets[tooltipItem.datasetIndex].label}: ${myMdwHelper.formatNumber(tooltipItem.value, jsonData.graphs[tooltipItem.datasetIndex].tooltip_MinDigits, jsonData.graphs[tooltipItem.datasetIndex].tooltip_MaxDigits)}${myMdwHelper.getValueFromData(jsonData.graphs[tooltipItem.datasetIndex].tooltip_AppendText, '')}`
                                                     .split('\\n');
                                             }
                                             return '';

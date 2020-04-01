@@ -1754,6 +1754,18 @@ systemDictionary = {
         "pl": "załącznik tekstowy",
         "zh-cn": "文字附录"
     },
+    "tooltipValueMinDecimals": {
+        "en": "text minimum decimals",
+        "de": "Text minimale Dezimalstellen",
+        "ru": "текстовые минимальные десятичные дроби",
+        "pt": "decimais mínimos de texto",
+        "nl": "tekst minimum decimalen",
+        "fr": "décimales minimales du texte",
+        "it": "decimali minimi del testo",
+        "es": "decimales mínimos de texto",
+        "pl": "minimalna liczba miejsc po przecinku",
+        "zh-cn": "文字最小小数"
+    },
     "tooltipValueMaxDecimals": {
         "en": "text maximal decimals",
         "de": "Text maximal Dezimalstellen",

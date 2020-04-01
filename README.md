@@ -538,6 +538,12 @@ Settings that are not listed in the table below are self-explanatory.
             <td>[ { value: -20, color: '#7d3c98' }, { value: 0, color: '#2874a6' } ]</td>
         </tr>
         <tr>
+            <td>tooltip_MinDigits</td>
+            <td>max decimals of tooltip value</td>
+            <td>number</td>
+            <td>0, 1, 2, ...</td>
+        </tr>
+        <tr>
             <td>tooltip_MaxDigits</td>
             <td>max decimals of tooltip value</td>
             <td>number</td>
