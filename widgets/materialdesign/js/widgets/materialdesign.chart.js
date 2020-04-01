@@ -112,13 +112,13 @@ vis.binds.materialdesign.chart = {
                                 myChartHelper.get_Y_AxisObject(data.chartType, data.yAxisPosition, data.yAxisTitle, data.yAxisTitleColor, data.yAxisTitleFontFamily, data.yAxisTitleFontSize,
                                     data.yAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
                                     data.yAxisValueLabelColor, data.yAxisValueFontFamily, data.yAxisValueFontSize, data.yAxisValueDistanceToAxis, data.yAxisGridLinesColor,
-                                    data.yAxisGridLinesWitdh, data.yAxisShowAxis, data.yAxisShowGridLines, data.yAxisShowTicks, data.yAxisTickLength, data.yAxisZeroLineWidth, data.yAxisZeroLineColor)
+                                    data.yAxisGridLinesWitdh, data.yAxisShowAxis, data.yAxisShowGridLines, data.yAxisShowTicks, data.yAxisTickLength, data.yAxisZeroLineWidth, data.yAxisZeroLineColor, data.axisValueMinDigits, data.axisValueMaxDigits)
                             ],
                             xAxes: [
                                 myChartHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
                                     data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
                                     data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
-                                    data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength, data.xAxisZeroLineWidth, data.xAxisZeroLineColor, data.xAxisOffsetGridLines)
+                                    data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength, data.xAxisZeroLineWidth, data.xAxisZeroLineColor, data.xAxisOffsetGridLines, data.axisValueMinDigits, data.axisValueMaxDigits)
                             ],
                         },
                         tooltips: {
@@ -406,7 +406,7 @@ vis.binds.materialdesign.chart = {
                                             padding: myMdwHelper.getNumberFromData(data.yAxisValueDistanceToAxis, 0),
                                             callback: function (value, index, values) {
                                                 let axisId = this.id.replace('yAxis_id_', '');
-                                                return `${value.toLocaleString()}${myMdwHelper.getValueFromData(data.attr('yAxisValueAppendText' + axisId), '')}`.split('\\n');
+                                                return `${myMdwHelper.formatNumber(value, data.attr('yAxisValueMinDigits' + axisId), data.attr('yAxisValueMaxDigits' + axisId))}${myMdwHelper.getValueFromData(data.attr('yAxisValueAppendText' + axisId), '')}`.split('\\n');
                                             }
                                         },
                                         gridLines: {
@@ -950,7 +950,7 @@ vis.binds.materialdesign.chart = {
                                             padding: myMdwHelper.getNumberFromData(graph.yAxis_distance, myMdwHelper.getNumberFromData(data.yAxisValueDistanceToAxis, 0)),
                                             callback: function (value, index, values) {
                                                 let axisId = this.id.replace('yAxis_id_', '');
-                                                return `${value.toLocaleString()}${myMdwHelper.getValueFromData(graph.yAxis_appendix, '')}`.split('\\n');
+                                                return `${myMdwHelper.formatNumber(value, jsonData.graphs[axisId].yAxis_minimumDigits, jsonData.graphs[axisId].yAxis_maximumDigits)}${myMdwHelper.getValueFromData(jsonData.graphs[axisId].yAxis_appendix, '')}`.split('\\n');
                                             }
                                         },
                                         gridLines: {
@@ -1127,7 +1127,7 @@ vis.binds.materialdesign.chart.helper = {
     },
     get_Y_AxisObject: function (chartType, yAxisPosition, yAxisTitle, yAxisTitleColor, yAxisTitleFontFamily, yAxisTitleFontSize, yAxisShowAxisLabels, axisValueMin,
         axisValueMax, axisValueStepSize, axisMaxLabel, axisLabelAutoSkip, axisValueAppendText, yAxisValueLabelColor, yAxisValueFontFamily, yAxisValueFontSize,
-        yAxisValueDistanceToAxis, yAxisGridLinesColor, yAxisGridLinesWitdh, yAxisShowAxis, yAxisShowGridLines, yAxisShowTicks, yAxisTickLength, yAxisZeroLineWidth, yAxisZeroLineColor) {
+        yAxisValueDistanceToAxis, yAxisGridLinesColor, yAxisGridLinesWitdh, yAxisShowAxis, yAxisShowGridLines, yAxisShowTicks, yAxisTickLength, yAxisZeroLineWidth, yAxisZeroLineColor, axisValueMinDigits, axisValueMaxDigits) {
         return {
             position: yAxisPosition,
             scaleLabel: {       // y-Axis title
@@ -1142,13 +1142,10 @@ vis.binds.materialdesign.chart.helper = {
                 min: myMdwHelper.getNumberFromData(axisValueMin, undefined),                       // only for chartType: vertical
                 max: myMdwHelper.getNumberFromData(axisValueMax, undefined),                       // only for chartType: vertical
                 stepSize: myMdwHelper.getNumberFromData(axisValueStepSize, undefined),             // only for chartType: vertical
-                autoSkip: (chartType === 'horizontal' && (myMdwHelper.getNumberFromData(axisMaxLabel, undefined) > 0) || myMdwHelper.getBooleanFromData(axisLabelAutoSkip,false)),
+                autoSkip: (chartType === 'horizontal' && (myMdwHelper.getNumberFromData(axisMaxLabel, undefined) > 0) || myMdwHelper.getBooleanFromData(axisLabelAutoSkip, false)),
                 maxTicksLimit: (chartType === 'horizontal') ? myMdwHelper.getNumberFromData(axisMaxLabel, undefined) : undefined,
                 callback: function (value, index, values) {
-                    if (chartType === 'vertical') {                                      // only for chartType: vertical
-                        return `${value.toLocaleString()}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
-                    }
-                    return value;
+                    return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
                 },
                 fontColor: myMdwHelper.getValueFromData(yAxisValueLabelColor, undefined),
                 fontFamily: myMdwHelper.getValueFromData(yAxisValueFontFamily, undefined),
@@ -1170,7 +1167,7 @@ vis.binds.materialdesign.chart.helper = {
     },
     get_X_AxisObject: function (chartType, xAxisPosition, xAxisTitle, xAxisTitleColor, xAxisTitleFontFamily, xAxisTitleFontSize, xAxisShowAxisLabels, axisValueMin, axisValueMax, axisValueStepSize,
         axisMaxLabel, axisLabelAutoSkip, axisValueAppendText, xAxisValueLabelColor, xAxisValueFontFamily, xAxisValueFontSize, xAxisValueDistanceToAxis, xAxisGridLinesColor, xAxisGridLinesWitdh,
-        xAxisShowAxis, xAxisShowGridLines, xAxisShowTicks, xAxisTickLength, xAxisZeroLineWidth, xAxisZeroLineColor, xAxisOffsetGridLines) {
+        xAxisShowAxis, xAxisShowGridLines, xAxisShowTicks, xAxisTickLength, xAxisZeroLineWidth, xAxisZeroLineColor, xAxisOffsetGridLines, axisValueMinDigits, axisValueMaxDigits) {
         return {
             position: xAxisPosition,
             scaleLabel: {       // x-Axis title
@@ -1185,13 +1182,10 @@ vis.binds.materialdesign.chart.helper = {
                 min: myMdwHelper.getNumberFromData(axisValueMin, undefined),                       // only for chartType: horizontal
                 max: myMdwHelper.getNumberFromData(axisValueMax, undefined),                       // only for chartType: horizontal
                 stepSize: myMdwHelper.getNumberFromData(axisValueStepSize, undefined),             // only for chartType: vertical
-                autoSkip: (chartType === 'vertical' && (myMdwHelper.getNumberFromData(axisMaxLabel, undefined) > 0) || myMdwHelper.getBooleanFromData(axisLabelAutoSkip,false)),
+                autoSkip: (chartType === 'vertical' && (myMdwHelper.getNumberFromData(axisMaxLabel, undefined) > 0) || myMdwHelper.getBooleanFromData(axisLabelAutoSkip, false)),
                 maxTicksLimit: (chartType === 'vertical') ? myMdwHelper.getNumberFromData(axisMaxLabel, undefined) : undefined,
                 callback: function (value, index, values) {                                 // only for chartType: horizontal
-                    if (chartType === 'horizontal') {
-                        return `${value.toLocaleString()}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
-                    }
-                    return value;
+                    return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
                 },
                 fontColor: myMdwHelper.getValueFromData(xAxisValueLabelColor, undefined),
                 fontFamily: myMdwHelper.getValueFromData(xAxisValueFontFamily, undefined),
@@ -1401,7 +1395,7 @@ vis.binds.materialdesign.chart.helper = {
         const pluginId = "myGradientColors";
 
         const regenerateGradient = (chart, pluginOpts) => {
-            
+
             if (chart.chartArea.bottom && !isNaN(chart.chartArea.bottom) && chart.chartArea.top && !isNaN(chart.chartArea.top)) {
                 const gradient = chart.ctx.createLinearGradient(0, chart.chartArea.bottom, 0, chart.chartArea.top);
 

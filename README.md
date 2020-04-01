@@ -873,6 +873,18 @@ Settings that are not listed in the table below are self-explanatory.
             <td>1, 2, 5, ...</td>
         </tr>
         <tr>
+            <td>yAxis_minimumDigits</td>
+            <td>y-axis minimum number of decimal places</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+        <tr>
+            <td>yAxis_maximumDigits</td>
+            <td>y-axis maximum number of decimal places</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+        <tr>
             <td>yAxis_maxSteps</td>
             <td>maximum steps of y-axis</td>
             <td>number</td>

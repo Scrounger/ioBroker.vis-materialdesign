@@ -466,6 +466,22 @@ vis.binds.materialdesign.helper = {
         } else {
             console.log(`${widgetName} (${wid}) width: ${prop}`);
         }
+    },
+    formatNumber(value, minDigits = undefined, maxDigits = undefined) {
+        if (isNaN(value)) {
+            // keine zahl
+            return value;
+        } else {
+            if ((minDigits !== undefined && minDigits !== '') && (maxDigits !== undefined && maxDigits !== '')) {
+                return value.toLocaleString(undefined, { minimumFractionDigits: minDigits, maximumFractionDigits: maxDigits });
+            } else if (minDigits !== undefined && minDigits !== '') {
+                return value.toLocaleString(undefined, { minimumFractionDigits: minDigits });
+            } else if (maxDigits !== undefined && maxDigits !== '') {
+                return value.toLocaleString(undefined, { maximumFractionDigits: maxDigits });
+            }
+
+            return value.toLocaleString();
+        }
     }
 };
 

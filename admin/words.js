@@ -8512,5 +8512,53 @@ systemDictionary = {
         "es": "eje de omisión automática de etiquetas",
         "pl": "automatyczne pomijanie etykiet w osi",
         "zh-cn": "标签轴自动跳过"
+    },
+    "axisValueMinDigits": {
+        "en": "minimum number of decimal places",
+        "de": "Mindestanzahl von Dezimalstellen",
+        "ru": "минимальное количество знаков после запятой",
+        "pt": "número mínimo de casas decimais",
+        "nl": "minimumaantal decimalen",
+        "fr": "nombre minimum de décimales",
+        "it": "numero minimo di cifre decimali",
+        "es": "número mínimo de decimales",
+        "pl": "minimalna liczba miejsc po przecinku",
+        "zh-cn": "最小小数位数"
+    },
+    "axisValueMaxDigits": {
+        "en": "maximum number of decimal places",
+        "de": "maximale Anzahl von Dezimalstellen",
+        "ru": "максимальное количество знаков после запятой",
+        "pt": "número máximo de casas decimais",
+        "nl": "maximumaantal decimalen",
+        "fr": "nombre maximum de décimales",
+        "it": "numero massimo di cifre decimali",
+        "es": "número máximo de decimales",
+        "pl": "maksymalna liczba miejsc po przecinku",
+        "zh-cn": "最大小数位数"
+    },
+    "yAxisValueMinDigits": {
+        "en": "minimum number of decimal places",
+        "de": "Mindestanzahl von Dezimalstellen",
+        "ru": "минимальное количество знаков после запятой",
+        "pt": "número mínimo de casas decimais",
+        "nl": "minimumaantal decimalen",
+        "fr": "nombre minimum de décimales",
+        "it": "numero minimo di cifre decimali",
+        "es": "número mínimo de decimales",
+        "pl": "minimalna liczba miejsc po przecinku",
+        "zh-cn": "最小小数位数"
+    },
+    "yAxisValueMaxDigits": {
+        "en": "maximum number of decimal places",
+        "de": "maximale Anzahl von Dezimalstellen",
+        "ru": "максимальное количество знаков после запятой",
+        "pt": "número máximo de casas decimais",
+        "nl": "maximumaantal decimalen",
+        "fr": "nombre maximum de décimales",
+        "it": "numero massimo di cifre decimali",
+        "es": "número máximo de decimales",
+        "pl": "maksymalna liczba miejsc po przecinku",
+        "zh-cn": "最大小数位数"
     }
 };
