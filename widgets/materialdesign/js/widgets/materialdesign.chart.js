@@ -1180,7 +1180,7 @@ vis.binds.materialdesign.chart.helper = {
                 stepSize: myMdwHelper.getNumberFromData(axisValueStepSize, undefined),             // only for chartType: vertical
                 autoSkip: (chartType === 'vertical' && (myMdwHelper.getNumberFromData(axisMaxLabel, undefined) > 0) || myMdwHelper.getBooleanFromData(axisLabelAutoSkip, false)),
                 maxTicksLimit: (chartType === 'vertical') ? myMdwHelper.getNumberFromData(axisMaxLabel, undefined) : undefined,
-                callback: function (value, index, values) {                                 // only for chartType: horizontal
+                callback: function (value, index, values) { 
                     return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
                 },
                 fontColor: myMdwHelper.getValueFromData(xAxisValueLabelColor, undefined),

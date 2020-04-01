@@ -468,10 +468,7 @@ vis.binds.materialdesign.helper = {
         }
     },
     formatNumber(value, minDigits = undefined, maxDigits = undefined) {
-        if (isNaN(parseFloat(value))) {
-            // keine zahl
-            return value;
-        } else {
+        if (!isNaN(parseFloat(value)) && typeof (value) === 'number') {
             value = parseFloat(value);
             if ((minDigits !== undefined && minDigits !== '') && (maxDigits !== undefined && maxDigits !== '')) {
                 return value.toLocaleString(undefined, { minimumFractionDigits: minDigits, maximumFractionDigits: maxDigits });
@@ -483,6 +480,8 @@ vis.binds.materialdesign.helper = {
 
             return value.toLocaleString();
         }
+        // keine zahl
+        return value;
     }
 };
 
