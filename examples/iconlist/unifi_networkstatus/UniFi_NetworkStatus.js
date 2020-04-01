@@ -14,7 +14,7 @@ Dieses Skript erzeugt einen json string um den Netzwerk Status aller Geräte des
 
 --- Links ---
 * Support:          https://forum.iobroker.net/topic/30875/material-design-widgets-unifi-netzwerk-status
-* Github:           tbd
+* Github:           https://github.com/Scrounger/ioBroker.vis-materialdesign/tree/master/examples/iconlist/unifi_networkstatus
 
 =========================================================================================================================================================================
 

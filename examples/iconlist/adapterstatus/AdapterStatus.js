@@ -1,5 +1,5 @@
 /************************************************************************************************************************************************************************
-Version: 1.0.1
+Version: 1.0.2
 created by Scrounger
 
 Dieses Skript erzeugt einen json string um den Status aller Adapter mithilfe des Material Design IconList Widget anzuzeigen.
@@ -13,13 +13,14 @@ Dieses Skript erzeugt einen json string um den Status aller Adapter mithilfe des
 
 --- Links ---
 * Support:          https://forum.iobroker.net/topic/30661/material-design-widgets-adapter-status
-* Github:           tbd
+* Github:           https://github.com/Scrounger/ioBroker.vis-materialdesign/tree/master/examples/iconlist/adapterstatus
 
 =========================================================================================================================================================================
 
 --- Changelog ---
 * 1.0.0:            Initial release
-* 1.0.1:            Verriegeln Funktion hinzugefügt, Einstellung Farbe Werte von bommel_30 hinzugefügt, bug fixes
+* 1.0.1:            Verriegeln Funktion hinzugefügt, Einstellung Farbe Werte von bommel_30 hinzugefügt, Fehlerbehebung
+* 1.0.2:            Fehlerbehebung falls Texte zu lang
 
 ************************************************************************************************************************************************************************/
 
@@ -141,37 +142,37 @@ function adapterStatus() {
             let newVersion = (hasUpdates) ? '<span class="mdi mdi-update" style="color: #ec0909;"></span>' : '';
 
             let text = `<div style="display: flex; flex-direction: row; line-height: 1.5; padding-right: 8px; align-items: center;">
-                            <div style="flex: 1">${newVersion} ${nameWithInstance}</div>
+                            <div style="flex: 1; width: 1px; text-overflow: ellipsis; overflow: hidden;">${newVersion} ${nameWithInstance}</div>
                             <div style="color: ${farbeAdapterWerte}; font-size: 12px; font-family: RobotoCondensed-LightItalic;">${myHelper().getCommonPropertyIfExist(obj, 'version', '-', 'v', '')}</div>
                         </div>`
 
             let subText = `<div style="display: flex; flex-direction: row; line-height: 1.3; padding-left: 1px; padding-right: 8px; align-items: center;">
-                                <div style="flex: 1;">CPU</div>
+                                <div style="flex: 1; width: 1px; text-overflow: ellipsis; overflow: hidden;">CPU</div>
                                 <div style="color: ${farbeAdapterWerte}; font-size: 14px; font-family: RobotoCondensed-LightItalic; text-align: right;">${myHelper().getStateValueIfExist(id + '.cpu', '-', '', ' %')}</div>
                             </div>
                             <div style="display: flex; flex-direction: row; line-height: 1.3; padding-left: 1px; padding-right: 8px; align-items: center;">
-                                <div style="flex: 1;">RAM total</div>
+                                <div style="flex: 1; width: 1px; text-overflow: ellipsis; overflow: hidden;">RAM total</div>
                                 <div style="color: ${farbeAdapterWerte}; font-size: 14px; font-family: RobotoCondensed-LightItalic; text-align: right;">${myHelper().getStateValueIfExist(id + '.memHeapTotal', '-', '', ' MB')}</div>
                             </div>
                             <div style="display: flex; flex-direction: row; line-height: 1.3; padding-left: 1px; padding-right: 8px; align-items: center;">
-                                <div style="flex: 1;">RAM verwendet</div>
+                                <div style="flex: 1; width: 1px; text-overflow: ellipsis; overflow: hidden;">RAM verwendet</div>
                                 <div style="color: ${farbeAdapterWerte}; font-size: 14px; font-family: RobotoCondensed-LightItalic; text-align: right;">${myHelper().getStateValueIfExist(id + '.memHeapUsed', '-', '', ' MB')}</div>
                             </div>
                             <div style="display: flex; flex-direction: row; line-height: 1.3; padding-left: 1px; padding-right: 8px; align-items: center;">
-                                <div style="flex: 1;">RAM reserviert</div>
+                                <div style="flex: 1; width: 1px; text-overflow: ellipsis; overflow: hidden;">RAM reserviert</div>
                                 <div style="color: ${farbeAdapterWerte}; font-size: 14px; font-family: RobotoCondensed-LightItalic; text-align: right;">${myHelper().getStateValueIfExist(id + '.memRss', '-', '', ' MB')}</div>
                             </div>
                             <div style="display: flex; flex-direction: row; line-height: 1.3; padding-left: 1px; padding-right: 8px; align-items: center;">
-                                <div style="flex: 1;">Betriebszeit</div>
+                                <div style="flex: 1; width: 1px; text-overflow: ellipsis; overflow: hidden;">Betriebszeit</div>
                                 <div style="color: ${farbeAdapterWerte}; font-size: 14px; font-family: RobotoCondensed-LightItalic; text-align: right;">${uptime}</div>
                             </div>
                             <div style="display: flex; flex-direction: row; line-height: 1.3; padding-left: 1px; padding-right: 8px; align-items: center;">
-                                <div style="flex: 1;">Modus</div>
+                                <div style="flex: 1; width: 1px; text-overflow: ellipsis; overflow: hidden;">Modus</div>
                                 <div style="color: ${farbeAdapterWerte}; font-size: 14px; font-family: RobotoCondensed-LightItalic; text-align: right;">${myHelper().getCommonPropertyIfExist(obj, 'mode', '-')}</div>
                             </div>`
 
             let statusBarColor = farbeAdapterNichtAktiv;
-            let status = 3;
+            let status = 3;            
 
             if (myHelper().getStateValueIfExist(adapterAliveList[i]) === 'true') {
                 statusBarColor = farbeAdapterAktiv;

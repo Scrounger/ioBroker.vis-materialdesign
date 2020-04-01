@@ -1,13 +1,15 @@
 {
   "settings": {
     "style": {
-      "background_class": ""
+      "background_class": "",
+      "background-color": ""
     },
     "theme": "redmond",
     "sizex": "",
     "sizey": "",
     "gridSize": "",
-    "snapType": null
+    "snapType": null,
+    "useBackground": false
   },
   "widgets": {
     "e00001": {
