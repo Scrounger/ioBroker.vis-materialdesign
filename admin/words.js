@@ -8404,5 +8404,113 @@ systemDictionary = {
         "es": "Orden de clasificación",
         "pl": "porządek sortowania",
         "zh-cn": "排序"
+    },
+    "axisValueMin": {
+        "en": "minimum value of axis",
+        "de": "Minimalwert der Achse",
+        "ru": "минимальное значение оси",
+        "pt": "valor mínimo do eixo",
+        "nl": "minimumwaarde van as",
+        "fr": "valeur minimale de l'axe",
+        "it": "valore minimo dell'asse",
+        "es": "valor mínimo del eje",
+        "pl": "minimalna wartość osi",
+        "zh-cn": "轴的最小值"
+    },
+    "axisValueMax": {
+        "en": "maximum value of axis",
+        "de": "Maximalwert der Achse",
+        "ru": "максимальное значение оси",
+        "pt": "valor máximo do eixo",
+        "nl": "maximale waarde van de as",
+        "fr": "valeur maximale de l'axe",
+        "it": "valore massimo dell'asse",
+        "es": "valor máximo del eje",
+        "pl": "maksymalna wartość osi",
+        "zh-cn": "轴的最大值"
+    },
+    "axisValueStepSize": {
+        "en": "value steps of axis",
+        "de": "Wertschritte der Achse",
+        "ru": "шаг значения оси",
+        "pt": "valor passos do eixo",
+        "nl": "waarde stappen van as",
+        "fr": "pas de valeur de l'axe",
+        "it": "valore passi dell'asse",
+        "es": "pasos de valor del eje",
+        "pl": "kroki wartości osi",
+        "zh-cn": "轴的值步长"
+    },
+    "axisMaxLabel": {
+        "en": "maximum number of axis labels",
+        "de": "maximale Anzahl von Achsenbeschriftungen",
+        "ru": "максимальное количество меток оси",
+        "pt": "número máximo de etiquetas de eixo",
+        "nl": "maximum aantal aslabels",
+        "fr": "nombre maximum d'étiquettes d'axe",
+        "it": "numero massimo di etichette degli assi",
+        "es": "número máximo de etiquetas de eje",
+        "pl": "maksymalna liczba etykiet osi",
+        "zh-cn": "轴标签的最大数量"
+    },
+    "yAxisZeroLineWidth": {
+        "en": "y-axis zero line thickness",
+        "de": "y-Achse Nulllinienstärke",
+        "ru": "нулевая толщина линии оси Y",
+        "pt": "espessura da linha zero do eixo y",
+        "nl": "y-as nul lijndikte",
+        "fr": "épaisseur de ligne zéro sur l'axe des y",
+        "it": "Spessore della linea zero dell'asse y",
+        "es": "grosor de línea cero del eje y",
+        "pl": "grubość linii zerowej w osi y",
+        "zh-cn": "y轴零线粗细"
+    },
+    "yAxisZeroLineColor": {
+        "en": "y-axis zero line color",
+        "de": "Nulllinienfarbe der y-Achse",
+        "ru": "Цвет нулевой линии оси Y",
+        "pt": "cor da linha zero do eixo y",
+        "nl": "y-as nullijnkleur",
+        "fr": "couleur de la ligne zéro de l'axe y",
+        "it": "colore linea zero asse y",
+        "es": "color de línea cero del eje y",
+        "pl": "Kolor linii zerowej osi y",
+        "zh-cn": "y轴零线颜色"
+    },
+    "xAxisZeroLineWidth": {
+        "en": "x-axis zero line thickness",
+        "de": "x-Achse Nulllinienstärke",
+        "ru": "нулевая толщина линии оси X",
+        "pt": "espessura da linha zero no eixo x",
+        "nl": "x-as nul lijndikte",
+        "fr": "épaisseur de ligne zéro sur l'axe des x",
+        "it": "spessore della linea zero dell'asse x",
+        "es": "grosor de línea cero del eje x",
+        "pl": "grubość linii zerowej osi x",
+        "zh-cn": "x轴零线粗细"
+    },
+    "xAxisZeroLineColor": {
+        "en": "x-axis zero line color",
+        "de": "x-Achse Nulllinienfarbe",
+        "ru": "Цвет нулевой линии оси X",
+        "pt": "cor da linha zero do eixo x",
+        "nl": "x-as nullijnkleur",
+        "fr": "couleur de la ligne zéro de l'axe des x",
+        "it": "colore linea zero asse x",
+        "es": "color de línea cero del eje x",
+        "pl": "Kolor linii zerowej osi x",
+        "zh-cn": "x轴零线颜色"
+    },
+    "axisLabelAutoSkip": {
+        "en": "axis auto skip of labels",
+        "de": "Automatisches Überspringen von Beschriftungen auf der Achse",
+        "ru": "ось авто пропустить метки",
+        "pt": "salto automático de etiquetas nos eixos",
+        "nl": "as automatisch overslaan van labels",
+        "fr": "saut automatique d'axe des étiquettes",
+        "it": "Salto automatico dell'asse delle etichette",
+        "es": "eje de omisión automática de etiquetas",
+        "pl": "automatyczne pomijanie etykiet w osi",
+        "zh-cn": "标签轴自动跳过"
     }
 };

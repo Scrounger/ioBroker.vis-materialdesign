@@ -1142,7 +1142,7 @@ vis.binds.materialdesign.chart.helper = {
                 min: myMdwHelper.getNumberFromData(axisValueMin, undefined),                       // only for chartType: vertical
                 max: myMdwHelper.getNumberFromData(axisValueMax, undefined),                       // only for chartType: vertical
                 stepSize: myMdwHelper.getNumberFromData(axisValueStepSize, undefined),             // only for chartType: vertical
-                autoSkip: (chartType === 'horizontal' && (myMdwHelper.getNumberFromData(axisMaxLabel, undefined) > 0 || axisLabelAutoSkip)),
+                autoSkip: (chartType === 'horizontal' && (myMdwHelper.getNumberFromData(axisMaxLabel, undefined) > 0) || myMdwHelper.getBooleanFromData(axisLabelAutoSkip,false)),
                 maxTicksLimit: (chartType === 'horizontal') ? myMdwHelper.getNumberFromData(axisMaxLabel, undefined) : undefined,
                 callback: function (value, index, values) {
                     if (chartType === 'vertical') {                                      // only for chartType: vertical
@@ -1185,7 +1185,7 @@ vis.binds.materialdesign.chart.helper = {
                 min: myMdwHelper.getNumberFromData(axisValueMin, undefined),                       // only for chartType: horizontal
                 max: myMdwHelper.getNumberFromData(axisValueMax, undefined),                       // only for chartType: horizontal
                 stepSize: myMdwHelper.getNumberFromData(axisValueStepSize, undefined),             // only for chartType: vertical
-                autoSkip: (chartType === 'vertical' && (myMdwHelper.getNumberFromData(axisMaxLabel, undefined) > 0 || axisLabelAutoSkip)),
+                autoSkip: (chartType === 'vertical' && (myMdwHelper.getNumberFromData(axisMaxLabel, undefined) > 0) || myMdwHelper.getBooleanFromData(axisLabelAutoSkip,false)),
                 maxTicksLimit: (chartType === 'vertical') ? myMdwHelper.getNumberFromData(axisMaxLabel, undefined) : undefined,
                 callback: function (value, index, values) {                                 // only for chartType: horizontal
                     if (chartType === 'horizontal') {
@@ -1197,7 +1197,6 @@ vis.binds.materialdesign.chart.helper = {
                 fontFamily: myMdwHelper.getValueFromData(xAxisValueFontFamily, undefined),
                 fontSize: myMdwHelper.getNumberFromData(xAxisValueFontSize, undefined),
                 padding: myMdwHelper.getNumberFromData(xAxisValueDistanceToAxis, 0),
-
             },
             gridLines: {
                 display: true,
