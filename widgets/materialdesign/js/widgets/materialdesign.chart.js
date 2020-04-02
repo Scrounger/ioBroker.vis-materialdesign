@@ -812,6 +812,7 @@ vis.binds.materialdesign.chart = {
                     function getDataFromJson(oidVal) {
                         let myDatasets = [];
                         let myYAxis = [];
+                        let timeAxisSettings = {};
                         let labels = []
                         let options = {}
 
@@ -829,6 +830,7 @@ vis.binds.materialdesign.chart = {
 
                             for (const i of Object.keys(jsonData.graphs)) {
                                 let graph = jsonData.graphs[i];
+                                let isTimeAxis = false;
 
                                 let graphColor = myMdwHelper.getValueFromData(graph.color, (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor);
 
@@ -842,9 +844,16 @@ vis.binds.materialdesign.chart = {
                                     barColorHover = graph.barColorHover;
                                 }
 
+                                if (graph.data && graph.data.length > 0) {
+                                    if (typeof (graph.data[0]) === 'object') {
+                                        isTimeAxis = true;
+                                        if (debug) console.log(`[JSON Chart ${data.wid}] chart has data object -> using time axis`);
+                                    }
+                                }
+
                                 let graphObj = {
-                                    data: graph.data.map(Number, null),
-                                    label: graph.legendText,
+                                    data: isTimeAxis ? graph.data : graph.data.map(Number, null),
+                                    label: isTimeAxis ? undefined : graph.legendText,
                                     type: graph.type,
                                     order: myMdwHelper.getNumberFromData(graph.displayOrder, i),
                                     yAxisID: `yAxis_id_${myMdwHelper.getNumberFromData(graph.yAxis_id, i)}`,
@@ -971,6 +980,18 @@ vis.binds.materialdesign.chart = {
                                         }
                                     }
                                 )
+
+                                if (isTimeAxis) {
+                                    timeAxisSettings = {
+                                        type: 'time',
+                                        bounds: (graph.xAxis_bounds === 'data') ? 'data' : 'ticks',
+                                        time:
+                                        {
+                                            displayFormats: (graph.xAxis_timeFormats) ? graph.xAxis_timeFormats : myChartHelper.defaultTimeFormats(),
+                                            tooltipFormat: (graph.xAxis_tooltip_timeFormats) ? graph.xAxis_tooltip_timeFormats : 'lll',
+                                        }
+                                    }
+                                }
                             }
 
                             // Notice how nested the beginAtZero is
@@ -984,10 +1005,13 @@ vis.binds.materialdesign.chart = {
                                 },
                                 scales: {
                                     xAxes: [
-                                        myChartHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
-                                            data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
-                                            data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
-                                            data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength, data.xAxisZeroLineWidth, data.xAxisZeroLineColor, data.xAxisOffsetGridLines)
+                                        Object.assign(
+                                            myChartHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
+                                                data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
+                                                data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
+                                                data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength, data.xAxisZeroLineWidth, data.xAxisZeroLineColor, data.xAxisOffsetGridLines),
+                                            timeAxisSettings
+                                        )
                                     ],
                                     yAxes: myYAxis,
                                 },
@@ -1188,6 +1212,9 @@ vis.binds.materialdesign.chart.helper = {
                 max: myMdwHelper.getNumberFromData(axisValueMax, undefined),                       // only for chartType: horizontal
                 stepSize: myMdwHelper.getNumberFromData(axisValueStepSize, undefined),             // only for chartType: vertical
                 autoSkip: (chartType === 'vertical' && (myMdwHelper.getNumberFromData(axisMaxLabel, undefined) > 0) || myMdwHelper.getBooleanFromData(axisLabelAutoSkip, false)),
+                autoSkipPadding: 10,
+                maxRotation: 0,
+                minRotation: 0,
                 maxTicksLimit: (chartType === 'vertical') ? myMdwHelper.getNumberFromData(axisMaxLabel, undefined) : undefined,
                 callback: function (value, index, values) {
                     return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');

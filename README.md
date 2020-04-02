@@ -497,8 +497,8 @@ Settings that are not listed in the table below are self-explanatory.
     <tbody>
         <tr>
             <td>data</td>
-            <td>data of graph</td>
-            <td>Array of numbers</td>
+            <td>data of graph or data with timestamp</td>
+            <td>Array[numbers] | Array[<a href="#data-with-time-axis">values with timestamp</a>]</td>
             <td>number</td>
         </tr>
         <tr>
@@ -1005,6 +1005,67 @@ Settings that are not listed in the table below are self-explanatory.
             <td>color for value</td>
             <td>color</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+    </tbody>
+</table>
+
+### Chart with time axis
+JSON Chart supports data that have a timestamp. To use this the data array must have values for timestamp (x-axis value) and value (y-axis value).
+
+#### values with timestamp
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>t</td>
+            <td>timestamp - xAxis value</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+        <tr>
+            <td>y</td>
+            <td>value for timestamp - yAxis value</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+    </tbody>
+</table>
+
+#### x-axis settings for data with timestamp
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>xAxis_bounds</td>
+            <td>scale boundary strategy<br><br>'data': makes sure data are fully visible, labels outside are removed<br>'ticks': makes sure ticks are fully visible, data outside are truncated</td>
+            <td>String</td>
+            <td>data, ticks</td>
+        </tr>
+        <tr>
+            <td>xAxis_timeFormats</td>
+            <td>time formats for the x-axis</td>
+            <td>Object</td>
+            <td>Time formats must be entered for all time units, <a href="https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/c677220868961b3cf0b153fb8bf04e13b4475c09/widgets/materialdesign/js/materialdesign.chart.js#L805">the following time units are permitted.</a><br>Approved time formats must be entered according to the moment.js library, <a href="https://momentjs.com/docs/#/displaying/">see link</a></td>
+        </tr>
+        <tr>
+            <td>xAxis_tooltip_timeFormats</td>
+            <td>time formats for the x-axis</td>
+            <td>String</td>
+            <td>Approved time formats must be entered according to the moment.js library, <a href="https://momentjs.com/docs/#/displaying/">see link</a></td>
         </tr>
     </tbody>
 </table>
