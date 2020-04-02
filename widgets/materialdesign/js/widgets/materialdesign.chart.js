@@ -275,12 +275,19 @@ vis.binds.materialdesign.chart = {
 
 
                 let timeInterval = data.timeIntervalToShow;
-                if (myMdwHelper.getValueFromData(data.time_interval_oid, null) !== null && myChartHelper.intervals[vis.states.attr(data.time_interval_oid + '.val')] !== undefined) {
-                    timeInterval = vis.states.attr(data.time_interval_oid + '.val');
+                let dataRangeStartTime = new Date().getTime() - myChartHelper.intervals[timeInterval];
+                if (myMdwHelper.getValueFromData(data.time_interval_oid, null) !== null) {
+                    let val = vis.states.attr(data.time_interval_oid + '.val');
+
+                    if (typeof (val) === 'string' && myChartHelper.intervals[val] !== undefined) {
+                        dataRangeStartTime = new Date().getTime() - myChartHelper.intervals[val]
+                        timeInterval = vis.states.attr(data.time_interval_oid + '.val');
+                    } else {
+                        dataRangeStartTime = val;
+                    }
+
                     vis.states.bind(data.time_interval_oid + '.val', onChange);
                 }
-                let dataRangeStartTime = myChartHelper.intervals[timeInterval] ? new Date().getTime() - myChartHelper.intervals[timeInterval] : undefined;
-
 
                 $this.find('.materialdesign-chart-container').css('background-color', myMdwHelper.getValueFromData(data.backgroundColor, ''));
                 let globalColor = myMdwHelper.getValueFromData(data.globalColor, '#44739e');
@@ -567,15 +574,17 @@ vis.binds.materialdesign.chart = {
                         progressBar.show();
 
                         let timeInterval = data.timeIntervalToShow;
-                        if (myMdwHelper.getValueFromData(data.time_interval_oid, null) !== null && myChartHelper.intervals[vis.states.attr(data.time_interval_oid + '.val')] !== undefined) {
-                            timeInterval = vis.states.attr(data.time_interval_oid + '.val');
+                        dataRangeStartTime = new Date().getTime() - myChartHelper.intervals[timeInterval];
+                        if (myMdwHelper.getValueFromData(data.time_interval_oid, null) !== null) {
+                            let val = vis.states.attr(data.time_interval_oid + '.val');
 
-                            if (myMdwHelper.getValueFromData(newVal, null) !== null && myChartHelper.intervals[newVal] !== undefined) {
-                                // timeinterval changed
-                                timeInterval = newVal;
+                            if (typeof (val) === 'string' && myChartHelper.intervals[val] !== undefined) {
+                                dataRangeStartTime = new Date().getTime() - myChartHelper.intervals[val]
+                                timeInterval = vis.states.attr(data.time_interval_oid + '.val');
+                            } else {
+                                dataRangeStartTime = val;
                             }
                         }
-                        dataRangeStartTime = myChartHelper.intervals[timeInterval] ? new Date().getTime() - myChartHelper.intervals[timeInterval] : undefined;
 
                         let operations = [];
                         for (var i = 0; i <= data.dataCount; i++) {
@@ -1180,7 +1189,7 @@ vis.binds.materialdesign.chart.helper = {
                 stepSize: myMdwHelper.getNumberFromData(axisValueStepSize, undefined),             // only for chartType: vertical
                 autoSkip: (chartType === 'vertical' && (myMdwHelper.getNumberFromData(axisMaxLabel, undefined) > 0) || myMdwHelper.getBooleanFromData(axisLabelAutoSkip, false)),
                 maxTicksLimit: (chartType === 'vertical') ? myMdwHelper.getNumberFromData(axisMaxLabel, undefined) : undefined,
-                callback: function (value, index, values) { 
+                callback: function (value, index, values) {
                     return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
                 },
                 fontColor: myMdwHelper.getValueFromData(xAxisValueLabelColor, undefined),
