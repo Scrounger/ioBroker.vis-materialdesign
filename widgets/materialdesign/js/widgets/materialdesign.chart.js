@@ -832,167 +832,173 @@ vis.binds.materialdesign.chart = {
                                 let graph = jsonData.graphs[i];
                                 let isTimeAxis = false;
 
-                                let graphColor = myMdwHelper.getValueFromData(graph.color, (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor);
+                                if (graph) {
+                                    let graphColor = myMdwHelper.getValueFromData(graph.color, (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor);
 
-                                let fillColor = myChartHelper.addOpacityToColor(graphColor, 20);
-                                if (myMdwHelper.getValueFromData(graph.line_FillColor, null) !== null) {
-                                    fillColor = graph.line_FillColor;
-                                }
-
-                                let barColorHover = myChartHelper.addOpacityToColor(graphColor, 80);
-                                if (myMdwHelper.getValueFromData(graph.barColorHover, null) !== null) {
-                                    barColorHover = graph.barColorHover;
-                                }
-
-                                if (graph.data && graph.data.length > 0) {
-                                    if (typeof (graph.data[0]) === 'object') {
-                                        isTimeAxis = true;
-                                        if (debug) console.log(`[JSON Chart ${data.wid}] chart has data object -> using time axis`);
+                                    let fillColor = myChartHelper.addOpacityToColor(graphColor, 20);
+                                    if (myMdwHelper.getValueFromData(graph.line_FillColor, null) !== null) {
+                                        fillColor = graph.line_FillColor;
                                     }
-                                }
-                                
-                                if (graph.data) {
-                                    let graphObj = {
-                                        data: isTimeAxis ? graph.data : graph.data.map(Number, null),
-                                        label: graph.legendText,
-                                        type: graph.type,
-                                        order: myMdwHelper.getNumberFromData(graph.displayOrder, i),
-                                        yAxisID: `yAxis_id_${myMdwHelper.getNumberFromData(graph.yAxis_id, i)}`,
-                                        datalabels: {
-                                            // Plugin datalabels
-                                            display: myMdwHelper.getBooleanFromData(graph.datalabel_show, true),
-                                            anchor: myMdwHelper.getValueFromData(graph.datalabel_anchor, 'end'),
-                                            align: myMdwHelper.getValueFromData(graph.datalabel_align, 'top'),
-                                            textAlign: myMdwHelper.getValueFromData(graph.datalabel_text_align, 'center'),
-                                            offset: myMdwHelper.getNumberFromData(graph.datalabel_offset, 0),
-                                            clamp: true,
-                                            rotation: myMdwHelper.getNumberFromData(graph.datalabel_rotation, undefined),
-                                            formatter: function (value, context) {
-                                                if ((value || value === 0) && context.dataIndex % myMdwHelper.getNumberFromData(graph.datalabel_steps, 1) === 0) {
-                                                    return `${myMdwHelper.formatNumber(value, graph.datalabel_minDigits, graph.datalabel_maxDigits)}${myMdwHelper.getValueFromData(graph.datalabel_append, '')}`
-                                                        .split('\\n');
-                                                }
-                                                return null;
-                                            },
-                                            font: {
-                                                family: myMdwHelper.getValueFromData(graph.datalabel_fontFamily, undefined),
-                                                size: myMdwHelper.getNumberFromData(graph.datalabel_fontSize, undefined),
-                                            },
-                                            color: myMdwHelper.getValueFromData(graph.datalabel_color, graphColor),
-                                            backgroundColor: myMdwHelper.getValueFromData(graph.datalabel_backgroundColor, undefined),
-                                            borderColor: myMdwHelper.getValueFromData(graph.datalabel_borderColor, undefined),
-                                            borderWidth: myMdwHelper.getNumberFromData(graph.datalabel_borderWidth, 0),
-                                            borderRadius: myMdwHelper.getNumberFromData(graph.datalabel_borderRadius, 0),
-                                        },
-                                        myGradientColors: {
-                                            useGradientColor: myMdwHelper.getBooleanFromData(graph.use_gradient_color, false),
-                                            gradientColors: myMdwHelper.getBooleanFromData(graph.use_gradient_color, false) ? myMdwHelper.getValueFromData(graph.gradient_color, undefined) : graphColor,
-                                            useGradientFillColor: myMdwHelper.getBooleanFromData(graph.use_line_gradient_fill_color, false),
-                                            gradientFillColors: myMdwHelper.getBooleanFromData(graph.use_line_gradient_fill_color, false) ? myMdwHelper.getValueFromData(graph.line_gradient_fill_color, undefined) : (graph.type === 'line') ? fillColor : barColorHover,
+
+                                    let barColorHover = myChartHelper.addOpacityToColor(graphColor, 80);
+                                    if (myMdwHelper.getValueFromData(graph.barColorHover, null) !== null) {
+                                        barColorHover = graph.barColorHover;
+                                    }
+
+                                    if (graph.data && graph.data.length > 0) {
+                                        if (typeof (graph.data[0]) === 'object') {
+                                            isTimeAxis = true;
+                                            if (debug) console.log(`[JSON Chart ${data.wid}] chart has data object -> using time axis`);
                                         }
                                     }
 
-                                    if (graph.type && graph.type === 'line') {
-                                        // line graph
-                                        let fillBetweenLines = myMdwHelper.getValueFromData(graph.line_FillBetweenLines, undefined);
+                                    if (graph.data) {
+                                        let graphObj = {
+                                            data: isTimeAxis ? graph.data : graph.data.map(Number, null),
+                                            label: graph.legendText,
+                                            type: graph.type,
+                                            order: myMdwHelper.getNumberFromData(graph.displayOrder, i),
+                                            yAxisID: `yAxis_id_${myMdwHelper.getNumberFromData(graph.yAxis_id, i)}`,
+                                            datalabels: {
+                                                // Plugin datalabels
+                                                display: myMdwHelper.getBooleanFromData(graph.datalabel_show, true),
+                                                anchor: myMdwHelper.getValueFromData(graph.datalabel_anchor, 'end'),
+                                                align: myMdwHelper.getValueFromData(graph.datalabel_align, 'top'),
+                                                textAlign: myMdwHelper.getValueFromData(graph.datalabel_text_align, 'center'),
+                                                offset: myMdwHelper.getNumberFromData(graph.datalabel_offset, 0),
+                                                clamp: true,
+                                                rotation: myMdwHelper.getNumberFromData(graph.datalabel_rotation, undefined),
+                                                formatter: function (value, context) {
+                                                    if ((value || value === 0) && context.dataIndex % myMdwHelper.getNumberFromData(graph.datalabel_steps, 1) === 0) {
+                                                        return `${myMdwHelper.formatNumber(value, graph.datalabel_minDigits, graph.datalabel_maxDigits)}${myMdwHelper.getValueFromData(graph.datalabel_append, '')}`
+                                                            .split('\\n');
+                                                    }
+                                                    return null;
+                                                },
+                                                font: {
+                                                    family: myMdwHelper.getValueFromData(graph.datalabel_fontFamily, undefined),
+                                                    size: myMdwHelper.getNumberFromData(graph.datalabel_fontSize, undefined),
+                                                },
+                                                color: myMdwHelper.getValueFromData(graph.datalabel_color, graphColor),
+                                                backgroundColor: myMdwHelper.getValueFromData(graph.datalabel_backgroundColor, undefined),
+                                                borderColor: myMdwHelper.getValueFromData(graph.datalabel_borderColor, undefined),
+                                                borderWidth: myMdwHelper.getNumberFromData(graph.datalabel_borderWidth, 0),
+                                                borderRadius: myMdwHelper.getNumberFromData(graph.datalabel_borderRadius, 0),
+                                            },
+                                            myGradientColors: {
+                                                useGradientColor: myMdwHelper.getBooleanFromData(graph.use_gradient_color, false),
+                                                gradientColors: myMdwHelper.getBooleanFromData(graph.use_gradient_color, false) ? myMdwHelper.getValueFromData(graph.gradient_color, undefined) : graphColor,
+                                                useGradientFillColor: myMdwHelper.getBooleanFromData(graph.use_line_gradient_fill_color, false),
+                                                gradientFillColors: myMdwHelper.getBooleanFromData(graph.use_line_gradient_fill_color, false) ? myMdwHelper.getValueFromData(graph.line_gradient_fill_color, undefined) : (graph.type === 'line') ? fillColor : barColorHover,
+                                            }
+                                        }
 
-                                        Object.assign(graphObj,
+                                        if (graph.type && graph.type === 'line') {
+                                            // line graph
+                                            let fillBetweenLines = myMdwHelper.getValueFromData(graph.line_FillBetweenLines, undefined);
+
+                                            Object.assign(graphObj,
+                                                {
+                                                    // line graph specific properties
+                                                    borderColor: graphColor,
+
+                                                    // JSON Daten
+                                                    pointStyle: myMdwHelper.getValueFromData(graph.line_pointStyle, 'circle'),
+                                                    pointRadius: myMdwHelper.getNumberFromData(graph.line_pointSize, 3),
+                                                    pointHoverRadius: myMdwHelper.getNumberFromData(graph.line_pointSizeHover, 4),
+
+                                                    pointBackgroundColor: myMdwHelper.getValueFromData(graph.line_PointColor, graphColor),
+                                                    pointBorderColor: myMdwHelper.getValueFromData(graph.line_PointColorBorder, graphColor),
+                                                    pointHoverBackgroundColor: myMdwHelper.getValueFromData(graph.line_PointColorHover, graphColor),
+                                                    pointHoverBorderColor: myMdwHelper.getValueFromData(graph.line_PointColorBorderHover, graphColor),
+                                                    spanGaps: myMdwHelper.getBooleanFromData(graph.line_spanGaps, true),
+                                                    lineTension: myMdwHelper.getNumberFromData(graph.line_Tension, 0.4),
+                                                    borderWidth: myMdwHelper.getNumberFromData(graph.line_Thickness, 2),
+                                                    fill: fillBetweenLines ? fillBetweenLines : myMdwHelper.getBooleanFromData(graph.line_UseFillColor, false) || myMdwHelper.getBooleanFromData(graph.use_line_gradient_fill_color, false),
+                                                    backgroundColor: fillColor,
+                                                }
+                                            )
+                                        } else {
+                                            // bar graph
+                                            Object.assign(graphObj,
+                                                {
+                                                    // bar chart specific properties
+                                                    backgroundColor: graphColor,
+                                                    hoverBackgroundColor: barColorHover,
+
+                                                    // JSON Daten
+                                                    borderColor: myMdwHelper.getValueFromData(graph.barBorderColor, 'white'),
+                                                    borderWidth: myMdwHelper.getNumberFromData(graph.barBorderWidth, undefined),
+                                                    hoverBorderColor: myMdwHelper.getValueFromData(graph.barBorderColorHover, undefined),
+                                                    hoverBorderWidth: myMdwHelper.getNumberFromData(graph.barBorderWidthHover, undefined),
+
+                                                    // Editor Daten
+                                                    categoryPercentage: myMdwHelper.getNumberFromData(data.barWidth, 80) / 100,
+                                                    barPercentage: myMdwHelper.getNumberFromData(data.barWidth, 80) / 100,
+                                                }
+                                            )
+                                        }
+
+                                        myDatasets.push(graphObj);
+
+                                        myYAxis.push(
                                             {
-                                                // line graph specific properties
-                                                borderColor: graphColor,
-
-                                                // JSON Daten
-                                                pointStyle: myMdwHelper.getValueFromData(graph.line_pointStyle, 'circle'),
-                                                pointRadius: myMdwHelper.getNumberFromData(graph.line_pointSize, 3),
-                                                pointHoverRadius: myMdwHelper.getNumberFromData(graph.line_pointSizeHover, 4),
-
-                                                pointBackgroundColor: myMdwHelper.getValueFromData(graph.line_PointColor, graphColor),
-                                                pointBorderColor: myMdwHelper.getValueFromData(graph.line_PointColorBorder, graphColor),
-                                                pointHoverBackgroundColor: myMdwHelper.getValueFromData(graph.line_PointColorHover, graphColor),
-                                                pointHoverBorderColor: myMdwHelper.getValueFromData(graph.line_PointColorBorderHover, graphColor),
-                                                spanGaps: myMdwHelper.getBooleanFromData(graph.line_spanGaps, true),
-                                                lineTension: myMdwHelper.getNumberFromData(graph.line_Tension, 0.4),
-                                                borderWidth: myMdwHelper.getNumberFromData(graph.line_Thickness, 2),
-                                                fill: fillBetweenLines ? fillBetweenLines : myMdwHelper.getBooleanFromData(graph.line_UseFillColor, false) || myMdwHelper.getBooleanFromData(graph.use_line_gradient_fill_color, false),
-                                                backgroundColor: fillColor,
+                                                id: `yAxis_id_${myMdwHelper.getNumberFromData(graph.yAxis_id, i)}`,
+                                                type: 'linear',
+                                                position: myMdwHelper.getValueFromData(graph.yAxis_position, 'left'),
+                                                display: myMdwHelper.getBooleanFromData(graph.yAxis_show, true),
+                                                scaleLabel: {       // y-Axis title
+                                                    display: myMdwHelper.getValueFromData(graph.yAxis_title_text, '') !== '' ? true : false,
+                                                    labelString: myMdwHelper.getValueFromData(graph.yAxis_title_text, ''),
+                                                    fontColor: myMdwHelper.getValueFromData(graph.yAxis_title_color, myMdwHelper.getValueFromData(data.yAxisTitleColor, undefined)),
+                                                    fontFamily: myMdwHelper.getValueFromData(graph.yAxis_title_fontFamily, myMdwHelper.getValueFromData(data.yAxisTitleFontFamily, undefined)),
+                                                    fontSize: myMdwHelper.getNumberFromData(graph.yAxis_title_fontSize, myMdwHelper.getNumberFromData(data.yAxisTitleFontSize, undefined))
+                                                },
+                                                ticks: {
+                                                    min: myMdwHelper.getNumberFromData(graph.yAxis_min, undefined),
+                                                    max: myMdwHelper.getNumberFromData(graph.yAxis_max, undefined),
+                                                    stepSize: myMdwHelper.getNumberFromData(graph.yAxis_step, undefined),
+                                                    autoSkip: true,
+                                                    maxTicksLimit: myMdwHelper.getNumberFromData(graph.yAxis_maxSteps, undefined),
+                                                    fontColor: myMdwHelper.getValueFromData(graph.yAxis_color, myMdwHelper.getValueFromData(data.yAxisValueLabelColor, undefined)),
+                                                    fontFamily: myMdwHelper.getValueFromData(graph.yAxis_fontFamily, myMdwHelper.getValueFromData(data.yAxisValueFontFamily, undefined)),
+                                                    fontSize: myMdwHelper.getNumberFromData(graph.yAxis_fontSize, myMdwHelper.getNumberFromData(data.yAxisValueFontSize, undefined)),
+                                                    padding: myMdwHelper.getNumberFromData(graph.yAxis_distance, myMdwHelper.getNumberFromData(data.yAxisValueDistanceToAxis, 0)),
+                                                    callback: function (value, index, values) {
+                                                        let axisId = this.id.replace('yAxis_id_', '');
+                                                        return `${myMdwHelper.formatNumber(value, jsonData.graphs[axisId].yAxis_minimumDigits, jsonData.graphs[axisId].yAxis_maximumDigits)}${myMdwHelper.getValueFromData(jsonData.graphs[axisId].yAxis_appendix, '')}`.split('\\n');
+                                                    }
+                                                },
+                                                gridLines: {
+                                                    display: true,
+                                                    color: myMdwHelper.getValueFromData(graph.yAxis_gridLines_color, 'black'),
+                                                    lineWidth: myMdwHelper.getNumberFromData(graph.yAxis_gridLines_lineWidth, 0.1),
+                                                    drawBorder: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_border_show, true),
+                                                    drawOnChartArea: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_show, true),
+                                                    drawTicks: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_ticks_show, true),
+                                                    tickMarkLength: myMdwHelper.getNumberFromData(graph.yAxis_gridLines_ticks_length, 5),
+                                                    zeroLineWidth: myMdwHelper.getNumberFromData(graph.yAxis_zeroLineWidth, 1),
+                                                    zeroLineColor: myMdwHelper.getValueFromData(graph.yAxis_zeroLineColor, 'rgba(0, 0, 0, 0.25)'),
+                                                }
                                             }
                                         )
+
+                                        if (isTimeAxis) {
+                                            timeAxisSettings = {
+                                                type: 'time',
+                                                bounds: (graph.xAxis_bounds === 'data') ? 'data' : 'ticks',
+                                                time:
+                                                {
+                                                    displayFormats: (graph.xAxis_timeFormats) ? graph.xAxis_timeFormats : myChartHelper.defaultTimeFormats(),
+                                                    tooltipFormat: (graph.xAxis_tooltip_timeFormats) ? graph.xAxis_tooltip_timeFormats : 'lll',
+                                                }
+                                            }
+                                        }
                                     } else {
-                                        // bar graph
-                                        Object.assign(graphObj,
-                                            {
-                                                // bar chart specific properties
-                                                backgroundColor: graphColor,
-                                                hoverBackgroundColor: barColorHover,
-
-                                                // JSON Daten
-                                                borderColor: myMdwHelper.getValueFromData(graph.barBorderColor, 'white'),
-                                                borderWidth: myMdwHelper.getNumberFromData(graph.barBorderWidth, undefined),
-                                                hoverBorderColor: myMdwHelper.getValueFromData(graph.barBorderColorHover, undefined),
-                                                hoverBorderWidth: myMdwHelper.getNumberFromData(graph.barBorderWidthHover, undefined),
-
-                                                // Editor Daten
-                                                categoryPercentage: myMdwHelper.getNumberFromData(data.barWidth, 80) / 100,
-                                                barPercentage: myMdwHelper.getNumberFromData(data.barWidth, 80) / 100,
-                                            }
-                                        )
+                                        console.error(`[JSON Chart ${data.wid}] graph[${i}].data is null! Check json string input!`);
                                     }
-
-                                    myDatasets.push(graphObj);
-
-                                    myYAxis.push(
-                                        {
-                                            id: `yAxis_id_${myMdwHelper.getNumberFromData(graph.yAxis_id, i)}`,
-                                            type: 'linear',
-                                            position: myMdwHelper.getValueFromData(graph.yAxis_position, 'left'),
-                                            display: myMdwHelper.getBooleanFromData(graph.yAxis_show, true),
-                                            scaleLabel: {       // y-Axis title
-                                                display: myMdwHelper.getValueFromData(graph.yAxis_title_text, '') !== '' ? true : false,
-                                                labelString: myMdwHelper.getValueFromData(graph.yAxis_title_text, ''),
-                                                fontColor: myMdwHelper.getValueFromData(graph.yAxis_title_color, myMdwHelper.getValueFromData(data.yAxisTitleColor, undefined)),
-                                                fontFamily: myMdwHelper.getValueFromData(graph.yAxis_title_fontFamily, myMdwHelper.getValueFromData(data.yAxisTitleFontFamily, undefined)),
-                                                fontSize: myMdwHelper.getNumberFromData(graph.yAxis_title_fontSize, myMdwHelper.getNumberFromData(data.yAxisTitleFontSize, undefined))
-                                            },
-                                            ticks: {
-                                                min: myMdwHelper.getNumberFromData(graph.yAxis_min, undefined),
-                                                max: myMdwHelper.getNumberFromData(graph.yAxis_max, undefined),
-                                                stepSize: myMdwHelper.getNumberFromData(graph.yAxis_step, undefined),
-                                                autoSkip: true,
-                                                maxTicksLimit: myMdwHelper.getNumberFromData(graph.yAxis_maxSteps, undefined),
-                                                fontColor: myMdwHelper.getValueFromData(graph.yAxis_color, myMdwHelper.getValueFromData(data.yAxisValueLabelColor, undefined)),
-                                                fontFamily: myMdwHelper.getValueFromData(graph.yAxis_fontFamily, myMdwHelper.getValueFromData(data.yAxisValueFontFamily, undefined)),
-                                                fontSize: myMdwHelper.getNumberFromData(graph.yAxis_fontSize, myMdwHelper.getNumberFromData(data.yAxisValueFontSize, undefined)),
-                                                padding: myMdwHelper.getNumberFromData(graph.yAxis_distance, myMdwHelper.getNumberFromData(data.yAxisValueDistanceToAxis, 0)),
-                                                callback: function (value, index, values) {
-                                                    let axisId = this.id.replace('yAxis_id_', '');
-                                                    return `${myMdwHelper.formatNumber(value, jsonData.graphs[axisId].yAxis_minimumDigits, jsonData.graphs[axisId].yAxis_maximumDigits)}${myMdwHelper.getValueFromData(jsonData.graphs[axisId].yAxis_appendix, '')}`.split('\\n');
-                                                }
-                                            },
-                                            gridLines: {
-                                                display: true,
-                                                color: myMdwHelper.getValueFromData(graph.yAxis_gridLines_color, 'black'),
-                                                lineWidth: myMdwHelper.getNumberFromData(graph.yAxis_gridLines_lineWidth, 0.1),
-                                                drawBorder: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_border_show, true),
-                                                drawOnChartArea: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_show, true),
-                                                drawTicks: myMdwHelper.getBooleanFromData(graph.yAxis_gridLines_ticks_show, true),
-                                                tickMarkLength: myMdwHelper.getNumberFromData(graph.yAxis_gridLines_ticks_length, 5),
-                                                zeroLineWidth: myMdwHelper.getNumberFromData(graph.yAxis_zeroLineWidth, 1),
-                                                zeroLineColor: myMdwHelper.getValueFromData(graph.yAxis_zeroLineColor, 'rgba(0, 0, 0, 0.25)'),
-                                            }
-                                        }
-                                    )
-
-                                    if (isTimeAxis) {
-                                        timeAxisSettings = {
-                                            type: 'time',
-                                            bounds: (graph.xAxis_bounds === 'data') ? 'data' : 'ticks',
-                                            time:
-                                            {
-                                                displayFormats: (graph.xAxis_timeFormats) ? graph.xAxis_timeFormats : myChartHelper.defaultTimeFormats(),
-                                                tooltipFormat: (graph.xAxis_tooltip_timeFormats) ? graph.xAxis_tooltip_timeFormats : 'lll',
-                                            }
-                                        }
-                                    }
+                                } else {
+                                    console.error(`[JSON Chart ${data.wid}] graph[${i}] is null! Check json string input!`);
                                 }
                             }
 
