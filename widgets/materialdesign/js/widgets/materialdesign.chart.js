@@ -853,7 +853,7 @@ vis.binds.materialdesign.chart = {
 
                                 let graphObj = {
                                     data: isTimeAxis ? graph.data : graph.data.map(Number, null),
-                                    label: isTimeAxis ? undefined : graph.legendText,
+                                    label: graph.legendText,
                                     type: graph.type,
                                     order: myMdwHelper.getNumberFromData(graph.displayOrder, i),
                                     yAxisID: `yAxis_id_${myMdwHelper.getNumberFromData(graph.yAxis_id, i)}`,
