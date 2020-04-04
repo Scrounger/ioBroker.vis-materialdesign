@@ -8584,5 +8584,17 @@ systemDictionary = {
         "es": "número máximo de decimales",
         "pl": "maksymalna liczba miejsc po przecinku",
         "zh-cn": "最大小数位数"
-    }
+    },
+    "datapoint '{0}' not exist!": {
+        "en": "datapoint '{0}' not exist!",
+        "de": "Datenpunkt '{0}' existiert nicht!",
+        "ru": "точка данных '{0}' не существует!",
+        "pt": "datapoint '{0}' não existe!",
+        "nl": "datapunt '{0}' bestaat niet!",
+        "fr": "le point de données '{0}' n'existe pas!",
+        "it": "punto dati '{0}' non esiste!",
+        "es": "¡El punto de datos '{0}' no existe!",
+        "pl": "punkt danych '{0}' nie istnieje!",
+        "zh-cn": "数据点'{0}'不存在！"
+      }
 };

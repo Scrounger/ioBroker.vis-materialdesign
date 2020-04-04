@@ -799,15 +799,25 @@ vis.binds.materialdesign.chart = {
 
                     Chart.plugins.unregister(ChartDataLabels);
 
-                    let mydata = getDataFromJson(vis.states.attr(data.oid + '.val'));
+                    if (vis.states.attr(data.oid + '.val') && vis.states.attr(data.oid + '.val') !== 'null') {
+                        let mydata = getDataFromJson(vis.states.attr(data.oid + '.val'));
 
-                    myChart.type = myMdwHelper.getValueFromData(data.chartType, 'bar');
-                    myChart.data.labels = mydata.labels;
-                    myChart.data.datasets = mydata.datasets;
-                    myChart.options = mydata.options;
-                    myChart.update();
+                        myChart.type = myMdwHelper.getValueFromData(data.chartType, 'bar');
+                        myChart.data.labels = mydata.labels;
+                        myChart.data.datasets = mydata.datasets;
+                        myChart.options = mydata.options;
+                        myChart.update();
 
-                    vis.states.bind(data.oid + '.val', onChange);
+                        vis.states.bind(data.oid + '.val', onChange);
+                    } else {
+                        myChart.options.title = {
+                            display: true,
+                            text: `${_("datapoint '{0}' not exist!").replace('{0}', data.oid)}`,
+                            fontColor: 'red'
+                        };
+                        myChart.update();
+                        console.error(`[JSON Chart ${data.wid}] ${_("datapoint '{0}' not exist!").replace('{0}', data.oid)}`);
+                    }
 
                     function getDataFromJson(oidVal) {
                         let myDatasets = [];
@@ -819,8 +829,22 @@ vis.binds.materialdesign.chart = {
 
                         let globalColor = myMdwHelper.getValueFromData(data.globalColor, '#44739e');
 
-                        let jsonData = JSON.parse(oidVal);
-                        if (Object.keys(jsonData).length > 0) {
+                        let jsonData = undefined
+                        try {
+                            jsonData = JSON.parse(oidVal);
+                        } catch (jsonError) {
+                            let options = {
+                                title: {
+                                    display: true,
+                                    text: `${_("Error in JSON string")}<br>${jsonError.message}`.split('<br>'),
+                                    fontColor: 'red'
+                                }
+                            };
+                            console.error(`[JSON Chart ${data.wid}] cannot parse json string! Error: ${jsonError.message}`);
+                            return { labels: [], datasets: [], options: options }
+                        }
+
+                        if (jsonData && Object.keys(jsonData).length > 0) {
 
                             labels = (jsonData.axisLabels) ? jsonData.axisLabels : [];
 
