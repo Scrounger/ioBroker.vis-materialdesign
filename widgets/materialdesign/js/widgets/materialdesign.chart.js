@@ -821,7 +821,7 @@ vis.binds.materialdesign.chart = {
                         let jsonData = JSON.parse(oidVal);
                         if (Object.keys(jsonData).length > 0) {
 
-                            labels = jsonData.axisLabels;
+                            labels = (jsonData.axisLabels) ? jsonData.axisLabels : [];
 
                             let colorScheme = myMdwHelper.getValueFromData(data.colorScheme, null);
                             if (colorScheme !== null) {
