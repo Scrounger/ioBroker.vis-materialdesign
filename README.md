@@ -1527,6 +1527,17 @@ ical2CalendarWidget();
 
 ## Changelog
 
+### 0.2.76
+* (Scrounger): deprecated Widgets Slider, TopAppBar, Select, Column View removed
+* (Scrounger): JSON Chart Widget added
+* (Scrounger): Line Chart Widget: starttime by object added
+* (Scrounger): Bar Chart Widget: support for json string oid added
+* (Scrounger): Chart Widget: min / max decimals for axis, labels and tooltip added
+* (Scrounger): Masonry View Widget: sort order added
+* (Scrounger): Grid View Widget: sort order added
+* (Scrounger): new Dialog Widget added
+* (Scrounger): bug fixes
+
 ### 0.2.66
 * (Scrounger): IconListWidget: button layout options added
 * (Scrounger): IconListWidget: lock option for toggle and state function added
