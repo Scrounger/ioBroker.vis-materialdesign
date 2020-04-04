@@ -150,6 +150,14 @@ vis.binds.materialdesign.viseditor = {
             if (data[1] === 'grid') {
                 url = 'https://forum.iobroker.net/topic/29916/material-design-widgets-grid-views-widget'
             }
+
+            if (data[1] === 'dialogView') {
+                url = 'https://forum.iobroker.net/topic/31870/material-design-widgets-dialog-view-widget'
+            }
+            
+            if (data[1] === 'jsonChart') {
+                url = 'https://forum.iobroker.net/topic/31871/material-design-widgets-json-chart-widget'
+            }
         }
 
         return { input: `<a target="_blank" href="${url}">${_('readme')}</a>` }
