@@ -1381,7 +1381,7 @@ systemDictionary = {
         "es": "decimales mínimos",
         "pl": "minimalne dziesiętne",
         "zh-cn": "最小小数"
-      },
+    },
     "valuesMaxDecimals": {
         "en": "maximal decimales",
         "de": "maximale Dezimalstellen",
@@ -8596,5 +8596,29 @@ systemDictionary = {
         "es": "¡El punto de datos '{0}' no existe!",
         "pl": "punkt danych '{0}' nie istnieje!",
         "zh-cn": "数据点'{0}'不存在！"
-      }
+    },
+    "datapoint '{0}' has no data!": {
+        "en": "datapoint '{0}' has no data!",
+        "de": "Datenpunkt '{0}' hat keine Daten!",
+        "ru": "точка данных '{0}' не имеет данных!",
+        "pt": "datapoint '{0}' não possui dados!",
+        "nl": "datapoint '{0}' heeft geen data!",
+        "fr": "le point de données '{0}' ne contient aucune donnée!",
+        "it": "datapoint '{0}' non ha dati!",
+        "es": "¡El punto de datos '{0}' no tiene datos!",
+        "pl": "punkt danych '{0}' nie ma danych!",
+        "zh-cn": "数据点'{0}'没有数据！"
+    },
+    "datapoint '{0}' has no datasets!": {
+        "en": "datapoint '{0}' has no datasets!",
+        "de": "Datenpunkt '{0}' hat keine Datensätze!",
+        "ru": "у точки данных {0} нет наборов данных!",
+        "pt": "datapoint '{0}' não possui conjuntos de dados!",
+        "nl": "datapoint '{0}' heeft geen datasets!",
+        "fr": "le point de données '{0}' n'a pas de jeux de données!",
+        "it": "datapoint '{0}' non ha set di dati!",
+        "es": "¡el punto de datos '{0}' no tiene conjuntos de datos!",
+        "pl": "punkt danych „{0}” nie ma żadnych zestawów danych!",
+        "zh-cn": "数据点'{0}'没有数据集！"
+    }
 };

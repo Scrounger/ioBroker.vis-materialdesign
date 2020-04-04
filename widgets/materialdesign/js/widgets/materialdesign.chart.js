@@ -833,7 +833,7 @@ vis.binds.materialdesign.chart = {
                         try {
                             jsonData = JSON.parse(oidVal);
                         } catch (jsonError) {
-                            let options = {
+                            options = {
                                 title: {
                                     display: true,
                                     text: `${_("Error in JSON string")}<br>${jsonError.message}`.split('<br>'),
@@ -1091,9 +1091,16 @@ vis.binds.materialdesign.chart = {
                                     }
                                 },
                             }
+                        } else {
+                            console.error(`[JSON Chart ${data.wid}] ${_("datapoint '{0}' has no data!").replace('{0}', data.oid)}`);
                         }
 
-                        return { labels: labels, datasets: myDatasets, options: options }
+                        if (myDatasets.length > 0) {
+                            return { labels: labels, datasets: myDatasets, options: options }
+                        } else {
+                            console.error(`[JSON Chart ${data.wid}] ${_("datapoint '{0}' has no datasets!").replace('{0}', data.oid)}`);
+                            return { labels: [], datasets: [], options: [] }
+                        }
                     }
 
                     function onChange(e, newVal, oldVal) {
