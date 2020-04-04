@@ -1235,46 +1235,6 @@ Grid views are especially useful if the views included have the same heights.
     </tbody>
 </table>
 
-
-
-## Column Views - decrepated !!!
-
-Column Views has multiple `view in widget` integrated, that will be ordered automatically depending of the width of the widget. With this widget it is possible to cereate a responsive layout (one layout for desktop, tablet and mobil)
-
-<b>Take a look at the [Material Design Widgets example project](https://github.com/Scrounger/ioBroker.vis-materialdesign#online-example-project)</b> to understand how it works.
-
-![Logo](doc/en/media/column_views.gif)
-
-<table>
-    <thead>
-        <tr>
-            <th>Screenshot</th>
-            <th>Setting</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td rowspan=2><img src="doc/en/media/column_views_common.png"></td>
-            <td>number of columns</td>
-            <td>define number of columns</td>
-        </tr>
-        <tr>
-            <td>minmal width</td>
-            <td>minimal width of each column. For example use the width of the resolution of a mobil device</td>
-        </tr>
-        <tr>
-            <td rowspan=2><img src="doc/en/media/column_views_col_settings.png"></td>
-            <td>views in column[x]</td>
-            <td>Define the views that should be shown in this column. Multiple views must be separated by '|'</td>
-        </tr>
-        <tr>
-            <td>height of views in column[x]</td>
-            <td>Define the height of each view in the column. Multiple heights must be separated by '|'</td>
-        </tr>
-    </tbody>
-</table>
-
 ## Alerts
 Alerts widget can be used e.g. to display messages in the VIS, like it works with the pushover adapter, but directly in the VIS.
 

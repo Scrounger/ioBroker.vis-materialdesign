@@ -811,6 +811,7 @@ vis.binds.materialdesign.chart = {
 
                     function getDataFromJson(oidVal) {
                         let myDatasets = [];
+                        let myXAxis = [];
                         let myYAxis = [];
                         let timeAxisSettings = {};
                         let labels = []
@@ -989,18 +990,33 @@ vis.binds.materialdesign.chart = {
                                                 }
                                             }
                                         )
+                                        timeAxisSettings = {
+                                            id: i,
+                                            display: (i > 0) ? false : true
+                                        }
 
                                         if (isTimeAxis) {
-                                            timeAxisSettings = {
-                                                type: 'time',
-                                                bounds: (graph.xAxis_bounds === 'data') ? 'data' : 'ticks',
-                                                time:
+                                            timeAxisSettings = Object.assign(timeAxisSettings,
                                                 {
-                                                    displayFormats: (graph.xAxis_timeFormats) ? graph.xAxis_timeFormats : myChartHelper.defaultTimeFormats(),
-                                                    tooltipFormat: (graph.xAxis_tooltip_timeFormats) ? graph.xAxis_tooltip_timeFormats : 'lll',
+                                                    type: 'time',
+                                                    bounds: (graph.xAxis_bounds === 'data') ? 'data' : 'ticks',
+                                                    time:
+                                                    {
+                                                        displayFormats: (graph.xAxis_timeFormats) ? graph.xAxis_timeFormats : myChartHelper.defaultTimeFormats(),
+                                                        tooltipFormat: (graph.xAxis_tooltip_timeFormats) ? graph.xAxis_tooltip_timeFormats : 'lll',
+                                                    }
                                                 }
-                                            }
+                                            );
                                         }
+
+                                        myXAxis.push(Object.assign(
+                                            myChartHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
+                                                data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.xAxisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
+                                                data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
+                                                data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength, data.xAxisZeroLineWidth, data.xAxisZeroLineColor, data.xAxisOffsetGridLines, undefined, undefined, data.xAxisMinRotation, data.xAxisMaxRotation),
+                                            timeAxisSettings
+                                        ));
+
                                     } else {
                                         console.error(`[JSON Chart ${data.wid}] graph[${i}].data is null! Check json string input!`);
                                     }
@@ -1019,15 +1035,7 @@ vis.binds.materialdesign.chart = {
                                     backgroundColor: myMdwHelper.getValueFromData(data.chartAreaBackgroundColor, ''),
                                 },
                                 scales: {
-                                    xAxes: [
-                                        Object.assign(
-                                            myChartHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
-                                                data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.xAxisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
-                                                data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
-                                                data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength, data.xAxisZeroLineWidth, data.xAxisZeroLineColor, data.xAxisOffsetGridLines, undefined, undefined, data.xAxisMinRotation, data.xAxisMaxRotation),
-                                            timeAxisSettings
-                                        )
-                                    ],
+                                    xAxes: myXAxis,
                                     yAxes: myYAxis,
                                 },
                                 legend: Object.assign(myChartHelper.getLegend(data), myChartHelper.getLegendClickEvent(myYAxis)),
