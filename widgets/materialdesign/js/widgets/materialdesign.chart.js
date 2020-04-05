@@ -781,6 +781,9 @@ vis.binds.materialdesign.chart = {
                 let $this = $(el);
                 var chartContainer = $this.find('.materialdesign-chart-container').get(0);
 
+                var progressBar = $this.find('.material-progress-circular-container');
+                progressBar.show();
+
                 $this.find('.materialdesign-chart-container').css('background-color', myMdwHelper.getValueFromData(data.backgroundColor, ''));
 
                 if (chartContainer !== undefined && chartContainer !== null && chartContainer !== '') {
@@ -807,6 +810,7 @@ vis.binds.materialdesign.chart = {
                         myChart.data.datasets = mydata.datasets;
                         myChart.options = mydata.options;
                         myChart.update();
+                        progressBar.hide();
 
                         vis.states.bind(data.oid + '.val', onChange);
                     } else {
@@ -816,6 +820,8 @@ vis.binds.materialdesign.chart = {
                             fontColor: 'red'
                         };
                         myChart.update();
+                        progressBar.hide();
+
                         console.error(`[JSON Chart ${data.wid}] ${_("datapoint '{0}' not exist!").replace('{0}', data.oid)}`);
                     }
 
@@ -1105,6 +1111,8 @@ vis.binds.materialdesign.chart = {
 
                     function onChange(e, newVal, oldVal) {
                         try {
+                            progressBar.show();
+
                             let changedData = getDataFromJson(newVal);
 
                             let chartNeedsUpdate = false;
@@ -1189,6 +1197,7 @@ vis.binds.materialdesign.chart = {
                                 if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart updated`);
 
                                 myChart.update();
+                                progressBar.hide();
                             }
                         } catch (err) {
                             console.error(`[JSON Chart ${data.wid}] [onChange] error: ${err.message}, stack: ${err.stack}`);

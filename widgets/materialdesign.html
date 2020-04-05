@@ -837,6 +837,9 @@
         data-vis-attrs5="group.yAxisLayout;yAxisTitleColor/color;yAxisTitleFontFamily/fontname;yAxisTitleFontSize/number;yAxisValueLabelColor/color;yAxisValueFontFamily/fontname;yAxisValueFontSize/number;yAxisValueDistanceToAxis[10]/slider,0,100,1;">
 
         <div class="vis-widget materialdesign-widget materialdesign-chart <%== this.data.attr('class') %>" style="width:400px; height: 270px; background-color: <%= this.data.attr('backgroundColor')%>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.chart.json(el, data) %>>
+            <div class="material-progress-circular-container">
+                <progress class="material-progress-circular"/>
+            </div>
             <canvas class="materialdesign-chart-container"></canvas>
         </div>
 </script>
