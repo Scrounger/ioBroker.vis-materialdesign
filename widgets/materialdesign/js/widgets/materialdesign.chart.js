@@ -490,7 +490,7 @@ vis.binds.materialdesign.chart = {
                                             fontSize: myMdwHelper.getNumberFromData(data.xAxisTitleFontSize, undefined)
                                         },
                                         ticks: {        // x-Axis values
-                                            display: data.xAxisShowAxisLabels,
+                                            display: myMdwHelper.getBooleanFromData(data.xAxisShowAxisLabels, true),
                                             autoSkip: true,
                                             autoSkipPadding: 10,
                                             maxTicksLimit: myMdwHelper.getNumberFromData(data.xAxisMaxLabel, undefined),
