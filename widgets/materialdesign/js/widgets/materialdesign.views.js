@@ -35,7 +35,7 @@ vis.binds.materialdesign.views = {
 
                 viewsList.push(`
                     <div 
-                        class="materialdesign-masonry-item" id="masonry_item_${i}" itemindex="${i}" sortOrder="${myMdwHelper.getNumberFromData(data.attr('viewSortOrder' + i), i)}" visibilityOid="${data.attr('visibilityOid' + i)}" style="height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px; ${viewWidth};">
+                        class="materialdesign-masonry-item" id="masonry_item_${i}" itemindex="${i}" sortOrder="${myMdwHelper.getNumberFromData(data.attr('viewSortOrder' + i), i)}" visibilityOid="${data.attr('visibilityOid' + i)}" style="height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px; ${viewWidth}; display: none;">
                             ${(vis.editMode) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;"></div>` : ''}
                             <div data-vis-contains="${data.attr('View' + i)}" class="vis-widget-body vis-view-container">
                             </div>
@@ -91,7 +91,7 @@ vis.binds.materialdesign.views = {
             });
 
             $this.append(`
-                <div class="materialdesign-masonry-container" style="text-align: ${data.viewAlignment}; display: none;">
+                <div class="materialdesign-masonry-container" style="text-align: ${data.viewAlignment};">
                     ${(data.showResolutionAssistant) ? resolutionHelper : ''}
                     ${viewsList.join('')}
                 </div>
@@ -148,7 +148,7 @@ vis.binds.materialdesign.views = {
                         viewVisibilityByResolution();
                         viewVisibilityByCondition();
 
-                        $this.find('.materialdesign-masonry-container').show();
+                        // $this.find('.materialdesign-masonry-container').show();
 
                         function setColumns() {
                             if (data.showResolutionAssistant) $this.find('.masonry-helper-resolution-width').text(currentWidgetWidth + ' px');
@@ -261,7 +261,7 @@ vis.binds.materialdesign.views = {
                 let view = myMdwHelper.getValueFromData(data.attr('View' + i), undefined);
 
                 viewsList.push(`
-                <div class="col col-${colSpan}" id="grid-item${i}" itemindex="${i}" sortOrder="${myMdwHelper.getNumberFromData(data.attr('viewSortOrder' + i), i)}" visibilityOid="${data.attr('visibilityOid' + i)}">
+                <div class="col col-${colSpan}" id="grid-item${i}" itemindex="${i}" sortOrder="${myMdwHelper.getNumberFromData(data.attr('viewSortOrder' + i), i)}" visibilityOid="${data.attr('visibilityOid' + i)}" style="display: none;">
                     ${(vis.editMode && !view) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; position: relative; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;"></div>` : ''}
                     <div data-vis-contains="${view}" class="vis-widget-body vis-view-container" style="position: relative; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;">
                     </div>
@@ -313,7 +313,7 @@ vis.binds.materialdesign.views = {
             });
 
             $this.append(`
-            <div class="${containerClass}" style="display: none;">
+            <div class="${containerClass}">
                 <div class="materialdesign-grid-container">                    
                     <div class="materialdesign-grid-row" style="align-items: ${data.viewVertAlignment}; justify-content: ${data.viewHorAlignment};">
                         ${(data.showResolutionAssistant) ? resolutionHelper : ''}
@@ -333,7 +333,7 @@ vis.binds.materialdesign.views = {
             }
 
             function handleWidget() {
-                myMdwHelper.waitForElement($this, `#grid-item${data.countViews}`, data.wid, 'Grid ', function () {
+                myMdwHelper.waitForElement($this, `#grid-item${0}`, data.wid, 'Grid ', function () {
                     myMdwHelper.waitForRealWidth($this.context, data.wid, 'Grid', function () {
                         var currentWidgetWidth = $this.width();
 
@@ -369,7 +369,7 @@ vis.binds.materialdesign.views = {
                         viewVisibilityByResolution();
                         viewVisibilityByCondition();
 
-                        $this.find(`.${containerClass}`).show();
+                        // $this.find(`.${containerClass}`).show();
 
                         function setColumns() {
                             if (data.showResolutionAssistant) $this.find('.grid-helper-resolution-width').text(currentWidgetWidth + ' px');
