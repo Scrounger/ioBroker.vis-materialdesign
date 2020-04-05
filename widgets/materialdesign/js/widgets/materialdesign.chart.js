@@ -261,7 +261,7 @@ vis.binds.materialdesign.chart = {
     lineHistory: function (el, data) {
         try {
             let debug = myMdwHelper.getBooleanFromData(data.mdwDebug, false);
-            if (debug) console.log(`[JSON Chart ${data.wid}] widget setting: ${JSON.stringify(data)}`);
+            if (debug) console.log(`[Line History Chart ${data.wid}] widget setting: ${JSON.stringify(data)}`);
 
             setTimeout(function () {
                 let myChartHelper = vis.binds.materialdesign.chart.helper;
@@ -326,7 +326,7 @@ vis.binds.materialdesign.chart = {
                         let operations = [];
                         for (var i = 0; i <= data.dataCount; i++) {
                             if (myMdwHelper.getValueFromData(data.attr('oid' + i), null) !== null) {
-                                operations.push(myChartHelper.getTaskForHistoryData(data.attr('oid' + i), data, dataRangeStartTime))
+                                operations.push(myChartHelper.getTaskForHistoryData(data.attr('oid' + i), data, dataRangeStartTime, debug))
 
                                 if (data.refreshMethod === 'realtime') {
                                     vis.states.bind(data.attr('oid' + i) + '.val', onChange);
@@ -445,10 +445,10 @@ vis.binds.materialdesign.chart = {
                                     try {
                                         xAxisTimeFormats = JSON.parse(bindingVal)
                                     } catch (errJsonBinding) {
-                                        console.error(`[LineHistoryChart] (${data.wid}): parsing Binding for xaxis time format  failed! error in json syntax: ${errJsonBinding.message}`);
+                                        console.error(`[Line History Chart] (${data.wid}): parsing Binding for xaxis time format  failed! error in json syntax: ${errJsonBinding.message}`);
                                     }
                                 } else {
-                                    console.error(`[LineHistoryChart] (${data.wid}): xaxis time format parsing failed! error in json syntax: ${errJSON.message}`);
+                                    console.error(`[Line History Chart] (${data.wid}): xaxis time format parsing failed! error in json syntax: ${errJSON.message}`);
                                 }
                             }
 
@@ -572,6 +572,7 @@ vis.binds.materialdesign.chart = {
 
                 function onChange(e, newVal, oldVal) {
                     // value or timeinterval changed
+                    if (debug) console.log(`[Line History Chart ${data.wid}] ************************************************************** onChange **************************************************************`);
 
                     if (myChart) {
                         progressBar.show();
@@ -592,7 +593,7 @@ vis.binds.materialdesign.chart = {
                         let operations = [];
                         for (var i = 0; i <= data.dataCount; i++) {
                             if (myMdwHelper.getValueFromData(data.attr('oid' + i), null) !== null) {
-                                operations.push(myChartHelper.getTaskForHistoryData(data.attr('oid' + i), data, dataRangeStartTime))
+                                operations.push(myChartHelper.getTaskForHistoryData(data.attr('oid' + i), data, dataRangeStartTime, debug))
                             }
                         }
 
@@ -1451,23 +1452,32 @@ vis.binds.materialdesign.chart.helper = {
             }
             `);
     },
-    getTaskForHistoryData: function (id, data, dataRangeStartTime) {
+    getTaskForHistoryData: function (id, data, dataRangeStartTime, debug = false) {
+
         return new Promise((resolve, reject) => {
-            vis.getHistory(id, {
-                instance: data.historyAdapterInstance,
-                count: parseInt(myMdwHelper.getNumberFromData(data.maxDataPoints, 100)),
-                step: parseInt(myMdwHelper.getNumberFromData(data.minTimeInterval, 0)) * 1000,
-                aggregate: data.aggregate || 'average',
-                start: dataRangeStartTime,
-                end: new Date().getTime(),
-                timeout: 2000
-            }, function (err, result) {
-                if (!err && result) {
-                    resolve(result);
-                } else {
-                    resolve(null);
-                }
-            });
+            try {
+                vis.getHistory(id, {
+                    instance: data.historyAdapterInstance,
+                    count: parseInt(myMdwHelper.getNumberFromData(data.maxDataPoints, 100)),
+                    step: parseInt(myMdwHelper.getNumberFromData(data.minTimeInterval, 0)) * 1000,
+                    aggregate: data.aggregate || 'average',
+                    start: dataRangeStartTime,
+                    end: new Date().getTime(),
+                    timeout: 2000
+                }, function (err, result) {
+                    if (!err && result) {
+                        if (debug) console.log(`[getTaskForHistoryData ${data.wid}] history data '${id}' length: ${result.length}`);
+                        if (debug) console.log(`[getTaskForHistoryData ${data.wid}] history data '${id}': ${JSON.stringify(result)}`);
+                        resolve(result);
+                    } else {
+                        if (debug) console.error(`[getTaskForHistoryData ${data.wid}] result error: ${err}`);
+                        resolve(null);
+                    }
+                });
+            } catch (ex) {
+                console.error(`[getTaskForHistoryData ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
+                resolve(null);
+            }
         });
     },
     getPreparedData: function (result, data, index) {
