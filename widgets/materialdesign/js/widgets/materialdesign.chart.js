@@ -307,6 +307,7 @@ vis.binds.materialdesign.chart = {
 
                 if (data.refreshMethod === 'timeInterval') {
                     setInterval(function () {
+                        if (debug) console.log(`[Line History Chart ${data.wid}] ************************************************************** onChange - TimeInterval by Editor **************************************************************`);
                         onChange();
                     }, myChartHelper.intervals[data.refreshTimeInterval]);
                 }
@@ -572,21 +573,42 @@ vis.binds.materialdesign.chart = {
 
                 function onChange(e, newVal, oldVal) {
                     // value or timeinterval changed
-                    if (debug) console.log(`[Line History Chart ${data.wid}] ************************************************************** onChange **************************************************************`);
+                    if (e && e.type) {
+                        console.log('changed by: ' +  e.type);
+                    }
 
-                    if (myChart) {
+                    let needsChange = true
+
+                    if (e && e.type && e.type.includes(data.manualRefreshTrigger)) {
+                        // oid - manuell refresh trigger
+                        if (moment(newVal).diff(moment(oldVal)) < 2000) {
+                            if (debug) console.log(`[Line History Chart ${data.wid}] trigger '${e.type}' - you have to wait 2 seconds until next refresh!: ${moment(newVal).diff(moment(oldVal))} ms`);
+                            needsChange = false;
+                        } else {
+                            if (debug) console.log(`[Line History Chart ${data.wid}] ************************************************************** onChange - OID Refresh Trigger **************************************************************`);
+                            if (debug) console.log(`[Line History Chart ${data.wid}] time diff since last refresh from '${e.type}': ${moment(newVal).diff(moment(oldVal))} ms`);
+                        }
+                    }
+
+                    if (myChart && needsChange) {
                         progressBar.show();
 
                         let timeInterval = data.timeIntervalToShow;
                         dataRangeStartTime = new Date().getTime() - myChartHelper.intervals[timeInterval];
-                        if (myMdwHelper.getValueFromData(data.time_interval_oid, null) !== null) {
-                            let val = vis.states.attr(data.time_interval_oid + '.val');
 
-                            if (typeof (val) === 'string' && myChartHelper.intervals[val] !== undefined) {
-                                dataRangeStartTime = new Date().getTime() - myChartHelper.intervals[val]
-                                timeInterval = vis.states.attr(data.time_interval_oid + '.val');
-                            } else {
-                                dataRangeStartTime = val;
+                        if (e && e.type && e.type.includes(data.time_interval_oid)) {
+                            if (myMdwHelper.getValueFromData(data.time_interval_oid, null) !== null) {
+                                let val = vis.states.attr(data.time_interval_oid + '.val');
+
+                                if (debug) console.log(`[Line History Chart ${data.wid}] ************************************************************** onChange - OID TimeInterval **************************************************************`);
+                                if (debug) console.log(`[Line History Chart ${data.wid}] time interval changed by '${data.time_interval_oid}' to: ${val}`);
+
+                                if (typeof (val) === 'string' && myChartHelper.intervals[val] !== undefined) {
+                                    dataRangeStartTime = new Date().getTime() - myChartHelper.intervals[val]
+                                    timeInterval = vis.states.attr(data.time_interval_oid + '.val');
+                                } else {
+                                    dataRangeStartTime = val;
+                                }
                             }
                         }
 
