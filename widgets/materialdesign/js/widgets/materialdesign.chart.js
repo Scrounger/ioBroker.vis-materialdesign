@@ -347,6 +347,8 @@ vis.binds.materialdesign.chart = {
 
                                 let dataArray = myChartHelper.getPreparedData(result[i], data, i, debug);
 
+                                if (debug) console.log(`[Line History Chart ${data.wid}] prepare dataset for '${result[i].id}'`);
+
                                 myDatasets.push(
                                     {
                                         data: dataArray,
@@ -388,6 +390,8 @@ vis.binds.materialdesign.chart = {
                                         },
                                     }
                                 );
+
+                                if (debug) console.log(`[Line History Chart ${data.wid}] prepare yAxis for '${result[i].id}'`);
 
                                 myYAxis.push(
                                     {
@@ -453,6 +457,8 @@ vis.binds.materialdesign.chart = {
                                     console.error(`[Line History Chart] (${data.wid}): xaxis time format parsing failed! error in json syntax: ${errJSON.message}`);
                                 }
                             }
+
+                            if (debug) console.log(`[Line History Chart ${data.wid}] prepare chart options`);
 
                             // Notice how nested the beginAtZero is
                             var options = {
@@ -559,6 +565,8 @@ vis.binds.materialdesign.chart = {
 
                             if (data.disableHoverEffects) options.hover = { mode: null };
 
+                            if (debug) console.log(`[Line History Chart ${data.wid}] chart creating...`);
+
                             // Chart declaration:
                             myChart = new Chart(ctx, {
                                 type: 'line',
@@ -568,73 +576,79 @@ vis.binds.materialdesign.chart = {
                             });
 
                             progressBar.hide();
+
+                            if (debug) console.log(`[Line History Chart ${data.wid}] chart successful created`);
                         });
                     }
                 }
 
                 function onChange(e, newVal, oldVal) {
-                    // value or timeinterval changed
-                    if (e && e.type && !e.type.includes(data.manualRefreshTrigger) && !e.type.includes(data.time_interval_oid)) {
-                        if (debug) console.log(`[Line History Chart ${data.wid}] ************************************************************** onChange - Data changed **************************************************************`);
-                        if (debug) console.log(`[Line History Chart ${data.wid}] data changed for '${e.type}'`);
-                    }
-
-                    let needsChange = true
-
-                    if (e && e.type && e.type.includes(data.manualRefreshTrigger)) {
-                        // oid - manuell refresh trigger
-                        if (moment(newVal).diff(moment(oldVal)) < 2000) {
-                            if (debug) console.log(`[Line History Chart ${data.wid}] trigger '${e.type}' - you have to wait 2 seconds until next refresh!: ${moment(newVal).diff(moment(oldVal))} ms`);
-                            needsChange = false;
-                        } else {
-                            if (debug) console.log(`[Line History Chart ${data.wid}] ************************************************************** onChange - OID Refresh Trigger **************************************************************`);
-                            if (debug) console.log(`[Line History Chart ${data.wid}] time diff since last refresh from '${e.type}': ${moment(newVal).diff(moment(oldVal))} ms`);
+                    try {
+                        // value or timeinterval changed
+                        if (e && e.type && !e.type.includes(data.manualRefreshTrigger) && !e.type.includes(data.time_interval_oid)) {
+                            if (debug) console.log(`[Line History Chart ${data.wid}] ************************************************************** onChange - Data changed **************************************************************`);
+                            if (debug) console.log(`[Line History Chart ${data.wid}] data changed for '${e.type}'`);
                         }
-                    }
 
-                    if (myChart && needsChange) {
-                        progressBar.show();
+                        let needsChange = true
 
-                        let timeInterval = data.timeIntervalToShow;
-                        dataRangeStartTime = new Date().getTime() - myChartHelper.intervals[timeInterval];
-
-                        if (myMdwHelper.getValueFromData(data.time_interval_oid, null) !== null) {
-                            let val = vis.states.attr(data.time_interval_oid + '.val');
-
-                            if (e && e.type && e.type.includes(data.time_interval_oid)) {
-                                if (debug) console.log(`[Line History Chart ${data.wid}] ************************************************************** onChange - OID TimeInterval **************************************************************`);
-                                if (debug) console.log(`[Line History Chart ${data.wid}] time interval changed by '${data.time_interval_oid}' to: ${val}`);
-                            }
-
-                            if (typeof (val) === 'string' && myChartHelper.intervals[val] !== undefined) {
-                                dataRangeStartTime = new Date().getTime() - myChartHelper.intervals[val]
-                                timeInterval = vis.states.attr(data.time_interval_oid + '.val');
+                        if (e && e.type && e.type.includes(data.manualRefreshTrigger)) {
+                            // oid - manuell refresh trigger
+                            if (moment(newVal).diff(moment(oldVal)) < 2000) {
+                                if (debug) console.log(`[Line History Chart ${data.wid}] trigger '${e.type}' - you have to wait 2 seconds until next refresh!: ${moment(newVal).diff(moment(oldVal))} ms`);
+                                needsChange = false;
                             } else {
-                                dataRangeStartTime = val;
+                                if (debug) console.log(`[Line History Chart ${data.wid}] ************************************************************** onChange - OID Refresh Trigger **************************************************************`);
+                                if (debug) console.log(`[Line History Chart ${data.wid}] time diff since last refresh from '${e.type}': ${moment(newVal).diff(moment(oldVal))} ms`);
                             }
                         }
 
-                        let operations = [];
-                        for (var i = 0; i <= data.dataCount; i++) {
-                            if (myMdwHelper.getValueFromData(data.attr('oid' + i), null) !== null) {
-                                operations.push(myChartHelper.getTaskForHistoryData(data.attr('oid' + i), data, dataRangeStartTime, debug))
+                        if (myChart && needsChange) {
+                            progressBar.show();
+
+                            let timeInterval = data.timeIntervalToShow;
+                            dataRangeStartTime = new Date().getTime() - myChartHelper.intervals[timeInterval];
+
+                            if (myMdwHelper.getValueFromData(data.time_interval_oid, null) !== null) {
+                                let val = vis.states.attr(data.time_interval_oid + '.val');
+
+                                if (e && e.type && e.type.includes(data.time_interval_oid)) {
+                                    if (debug) console.log(`[Line History Chart ${data.wid}] ************************************************************** onChange - OID TimeInterval **************************************************************`);
+                                    if (debug) console.log(`[Line History Chart ${data.wid}] time interval changed by '${data.time_interval_oid}' to: ${val}`);
+                                }
+
+                                if (typeof (val) === 'string' && myChartHelper.intervals[val] !== undefined) {
+                                    dataRangeStartTime = new Date().getTime() - myChartHelper.intervals[val]
+                                    timeInterval = vis.states.attr(data.time_interval_oid + '.val');
+                                } else {
+                                    dataRangeStartTime = val;
+                                }
                             }
+
+                            let operations = [];
+                            for (var i = 0; i <= data.dataCount; i++) {
+                                if (myMdwHelper.getValueFromData(data.attr('oid' + i), null) !== null) {
+                                    operations.push(myChartHelper.getTaskForHistoryData(data.attr('oid' + i), data, dataRangeStartTime, debug))
+                                }
+                            }
+
+                            Promise.all(operations).then((result) => {
+                                // execute all db queries -> getting all needed data at same time
+                                if (debug) console.log(`[Line History Chart ${data.wid}] promise all datasets - count: ${result.length}`);
+
+                                for (var i = 0; i <= result.length - 1; i++) {
+                                    let dataArray = myChartHelper.getPreparedData(result[i], data, i, debug);
+
+                                    myChart.data.datasets[i].data = dataArray;
+                                }
+
+                                myChart.update();
+
+                                progressBar.hide();
+                            });
                         }
-
-                        Promise.all(operations).then((result) => {
-                            // execute all db queries -> getting all needed data at same time
-                            if (debug) console.log(`[Line History Chart ${data.wid}] promise all datasets - count: ${result.length}`);
-
-                            for (var i = 0; i <= result.length - 1; i++) {
-                                let dataArray = myChartHelper.getPreparedData(result[i], data, i, debug);
-
-                                myChart.data.datasets[i].data = dataArray;
-                            }
-
-                            myChart.update();
-
-                            progressBar.hide();
-                        });
+                    } catch (onChangeError) {
+                        console.error(`[Line History Chart ${data.wid}] onChange error: ${onChangeError.message}, stack: ${onChangeError.stack}`);
                     }
                 };
             }, 1)
@@ -1478,21 +1492,24 @@ vis.binds.materialdesign.chart.helper = {
             `);
     },
     getTaskForHistoryData: function (id, data, dataRangeStartTime, debug = false) {
-
         return new Promise((resolve, reject) => {
             try {
-                vis.getHistory(id, {
+                let historyOptions = {
                     instance: data.historyAdapterInstance,
                     count: parseInt(myMdwHelper.getNumberFromData(data.maxDataPoints, 100)),
-                    step: parseInt(myMdwHelper.getNumberFromData(data.minTimeInterval, 0)) * 1000,
+                    step: (myMdwHelper.getNumberFromData(data.minTimeInterval, undefined)) ? parseInt(data.minTimeInterval) * 1000 : undefined,
                     aggregate: data.aggregate || 'average',
                     start: dataRangeStartTime,
                     end: new Date().getTime(),
                     timeout: 2000
-                }, function (err, result) {
+                }
+
+                if (debug) console.log(`[getTaskForHistoryData ${data.wid}] history options for '${id}': ${JSON.stringify(historyOptions)}`);
+
+                vis.getHistory(id, historyOptions, function (err, result) {
                     if (!err && result) {
-                        if (debug) console.log(`[getTaskForHistoryData ${data.wid}] history data '${id}' length: ${result.length}`);
-                        if (debug) console.log(`[getTaskForHistoryData ${data.wid}] history data '${id}': ${JSON.stringify(result)}`);
+                        if (debug) console.log(`[getTaskForHistoryData ${data.wid}] history data result '${id}' length: ${result.length}`);
+                        if (debug) console.log(`[getTaskForHistoryData ${data.wid}] history data result '${id}': ${JSON.stringify(result)}`);
                         resolve({ id: id, data: result });
                     } else {
                         if (debug) console.error(`[getTaskForHistoryData ${data.wid}] result error: ${err}`);
