@@ -337,6 +337,7 @@ vis.binds.materialdesign.chart = {
 
                         Promise.all(operations).then((result) => {
                             // execute all db queries -> getting all needed data at same time
+                            if (debug) console.log(`[Line History Chart ${data.wid}] promise all datasets - count: ${result.length}`);
 
                             let myDatasets = [];
                             let myYAxis = [];
@@ -344,7 +345,7 @@ vis.binds.materialdesign.chart = {
 
                             for (var i = 0; i <= result.length - 1; i++) {
 
-                                let dataArray = myChartHelper.getPreparedData(result[i], data, i);
+                                let dataArray = myChartHelper.getPreparedData(result[i], data, i, debug);
 
                                 myDatasets.push(
                                     {
@@ -573,8 +574,9 @@ vis.binds.materialdesign.chart = {
 
                 function onChange(e, newVal, oldVal) {
                     // value or timeinterval changed
-                    if (e && e.type) {
-                        console.log('changed by: ' +  e.type);
+                    if (e && e.type && !e.type.includes(data.manualRefreshTrigger) && !e.type.includes(data.time_interval_oid)) {
+                        if (debug) console.log(`[Line History Chart ${data.wid}] ************************************************************** onChange - Data changed **************************************************************`);
+                        if (debug) console.log(`[Line History Chart ${data.wid}] data changed for '${e.type}'`);
                     }
 
                     let needsChange = true
@@ -596,19 +598,19 @@ vis.binds.materialdesign.chart = {
                         let timeInterval = data.timeIntervalToShow;
                         dataRangeStartTime = new Date().getTime() - myChartHelper.intervals[timeInterval];
 
-                        if (e && e.type && e.type.includes(data.time_interval_oid)) {
-                            if (myMdwHelper.getValueFromData(data.time_interval_oid, null) !== null) {
-                                let val = vis.states.attr(data.time_interval_oid + '.val');
+                        if (myMdwHelper.getValueFromData(data.time_interval_oid, null) !== null) {
+                            let val = vis.states.attr(data.time_interval_oid + '.val');
 
+                            if (e && e.type && e.type.includes(data.time_interval_oid)) {
                                 if (debug) console.log(`[Line History Chart ${data.wid}] ************************************************************** onChange - OID TimeInterval **************************************************************`);
                                 if (debug) console.log(`[Line History Chart ${data.wid}] time interval changed by '${data.time_interval_oid}' to: ${val}`);
+                            }
 
-                                if (typeof (val) === 'string' && myChartHelper.intervals[val] !== undefined) {
-                                    dataRangeStartTime = new Date().getTime() - myChartHelper.intervals[val]
-                                    timeInterval = vis.states.attr(data.time_interval_oid + '.val');
-                                } else {
-                                    dataRangeStartTime = val;
-                                }
+                            if (typeof (val) === 'string' && myChartHelper.intervals[val] !== undefined) {
+                                dataRangeStartTime = new Date().getTime() - myChartHelper.intervals[val]
+                                timeInterval = vis.states.attr(data.time_interval_oid + '.val');
+                            } else {
+                                dataRangeStartTime = val;
                             }
                         }
 
@@ -621,9 +623,10 @@ vis.binds.materialdesign.chart = {
 
                         Promise.all(operations).then((result) => {
                             // execute all db queries -> getting all needed data at same time
+                            if (debug) console.log(`[Line History Chart ${data.wid}] promise all datasets - count: ${result.length}`);
 
                             for (var i = 0; i <= result.length - 1; i++) {
-                                let dataArray = myChartHelper.getPreparedData(result[i], data, i);
+                                let dataArray = myChartHelper.getPreparedData(result[i], data, i, debug);
 
                                 myChart.data.datasets[i].data = dataArray;
                             }
@@ -1490,26 +1493,30 @@ vis.binds.materialdesign.chart.helper = {
                     if (!err && result) {
                         if (debug) console.log(`[getTaskForHistoryData ${data.wid}] history data '${id}' length: ${result.length}`);
                         if (debug) console.log(`[getTaskForHistoryData ${data.wid}] history data '${id}': ${JSON.stringify(result)}`);
-                        resolve(result);
+                        resolve({ id: id, data: result });
                     } else {
                         if (debug) console.error(`[getTaskForHistoryData ${data.wid}] result error: ${err}`);
-                        resolve(null);
+                        resolve({ id: id, data: null });
                     }
                 });
             } catch (ex) {
                 console.error(`[getTaskForHistoryData ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
-                resolve(null);
+                resolve({ id: id, data: null });
             }
         });
     },
-    getPreparedData: function (result, data, index) {
+    getPreparedData: function (result, data, index, debug = false) {
         let dataArray = [];
-
-        if (result) {
-            dataArray = result.map(elm => ({
-                t: (elm.ts !== null && elm.ts !== undefined) ? elm.ts : null,
-                y: (elm.val !== null && elm.val !== undefined) ? elm.val * myMdwHelper.getNumberFromData(data.attr('multiply' + index), 1) : null
-            }));
+        try {
+            if (result.data) {
+                if (debug) console.log(`[getPreparedData ${data.wid}] prepare data for '${result.id}' length: ${result.data.length}`);
+                dataArray = result.data.map(elm => ({
+                    t: (elm.ts !== null && elm.ts !== undefined) ? elm.ts : null,
+                    y: (elm.val !== null && elm.val !== undefined) ? elm.val * myMdwHelper.getNumberFromData(data.attr('multiply' + index), 1) : null
+                }));
+            }
+        } catch (ex) {
+            console.error(`[getPreparedData ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
 
         return dataArray;
