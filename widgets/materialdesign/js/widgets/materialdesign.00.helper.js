@@ -17,24 +17,24 @@ vis.binds.materialdesign.helper = {
             console.error(`vibrate [${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    waitForElement: function (parent, elementPath, wid, widgetName, callBack, counter = 0) {
+    waitForElement: function (parent, elementPath, wid, widgetName, callBack, counter = 0, debug = false) {
         if (counter < 100) {
 
             setTimeout(function () {
                 if (parent.find(elementPath).length) {
                     callBack();
                 } else {
-                    console.log(`[${widgetName} ${wid}] wait for elements`);
+                    if (debug) console.log(`[${widgetName} ${wid}] wait for elements`);
                     counter++
                     vis.binds.materialdesign.helper.waitForElement(parent, elementPath, wid, widgetName, callBack, counter);
                 }
             }, 50)
         } else {
-            console.log(`[${widgetName} ${wid}] stop waiting after 100 retries`);
+            if (debug) console.log(`[${widgetName} ${wid}] stop waiting after 100 retries`);
             callBack();
         }
     },
-    waitForRealWidth: function (element, wid, widgetName, callBack, counter = 0) {
+    waitForRealWidth: function (element, wid, widgetName, callBack, counter = 0, debug = false) {
         if (counter < 100) {
             setTimeout(function () {
                 let width = window.getComputedStyle(element, null).width
@@ -42,13 +42,13 @@ vis.binds.materialdesign.helper = {
                 if (width.includes('px')) {
                     callBack();
                 } else {
-                    console.log(`[${widgetName} ${wid}] wait for real width`);
+                    if (debug) console.log(`[${widgetName} ${wid}] wait for real width`);
                     counter++
                     vis.binds.materialdesign.helper.waitForRealWidth(element, wid, widgetName, callBack, counter);
                 }
             }, 50);
         } else {
-            console.log(`[${widgetName} ${wid}] stop waiting for real width after 100 retries`);
+            if (debug) console.log(`[${widgetName} ${wid}] stop waiting for real width after 100 retries`);
             callBack();
         }
     },
@@ -369,7 +369,7 @@ vis.binds.materialdesign.helper = {
             }
         }
     },
-    oidNeedSubscribe(oid, wid, widgetName, oidNeedSubscribe, isBinding = false) {
+    oidNeedSubscribe(oid, wid, widgetName, oidNeedSubscribe, isBinding = false, debug = false) {
         let view = vis.binds.materialdesign.helper.getViewOfWidget(wid);
 
         if (oid !== undefined) {
@@ -378,9 +378,9 @@ vis.binds.materialdesign.helper = {
                 vis.subscribing.byViews[view].push(oid)
 
                 if (!isBinding) {
-                    console.log(`[oidNeedSubscribe] ${widgetName} (${wid}): oid '${oid}' need subscribe`);
+                    if (debug) console.log(`[oidNeedSubscribe] ${widgetName} (${wid}): oid '${oid}' need subscribe`);
                 } else {
-                    console.log(`[oidNeedSubscribe] ${widgetName} (${wid}): binding '${oid}' need subscribe`);
+                    if (debug) console.log(`[oidNeedSubscribe] ${widgetName} (${wid}): binding '${oid}' need subscribe`);
                 }
 
                 return true;
@@ -419,10 +419,10 @@ vis.binds.materialdesign.helper = {
 
         return result;
     },
-    subscribeStatesAtRuntime(wid, widgetName, callback) {
+    subscribeStatesAtRuntime(wid, widgetName, callback, debug = false) {
         // modified from vis.js -> https://github.com/ioBroker/ioBroker.vis/blob/2a08ee6da626a65b9d0b42b8679563e74272bfc6/www/js/vis.js#L2710
 
-        console.log(`[subscribeStatesAtRuntime] ${widgetName} (${wid}) subscribe states at runtime`);
+        if (debug) console.log(`[subscribeStatesAtRuntime] ${widgetName} (${wid}) subscribe states at runtime`);
 
         let view = vis.binds.materialdesign.helper.getViewOfWidget(wid);
 
@@ -460,11 +460,11 @@ vis.binds.materialdesign.helper = {
             if (callback) callback();
         }
     },
-    calcChecker(prop, wid, widgetName) {
+    calcChecker(prop, wid, widgetName, debug = false) {
         if (prop.includes("calc")) {
             console.error(`${widgetName} (${wid}) not supoort calc()! Use px or % instead! (${prop})`);
         } else {
-            console.log(`${widgetName} (${wid}) width: ${prop}`);
+            if (debug) console.log(`${widgetName} (${wid}) width: ${prop}`);
         }
     },
     formatNumber(value, minDigits = undefined, maxDigits = undefined) {
