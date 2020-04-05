@@ -8620,5 +8620,17 @@ systemDictionary = {
         "es": "¡el punto de datos '{0}' no tiene conjuntos de datos!",
         "pl": "punkt danych „{0}” nie ma żadnych zestawów danych!",
         "zh-cn": "数据点'{0}'没有数据集！"
+    },
+    "mdwDebug": {
+        "en": "debug mode",
+        "de": "Debug-Modus",
+        "ru": "режим отладки",
+        "pt": "modo de depuração",
+        "nl": "debug-modus",
+        "fr": "Mode débogage",
+        "it": "modalità di debug",
+        "es": "modo de depuración",
+        "pl": "Tryb debugowania",
+        "zh-cn": "调试模式"
     }
 };

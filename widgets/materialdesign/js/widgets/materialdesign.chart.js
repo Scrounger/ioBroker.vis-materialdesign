@@ -260,6 +260,9 @@ vis.binds.materialdesign.chart = {
     },
     lineHistory: function (el, data) {
         try {
+            let debug = myMdwHelper.getBooleanFromData(data.mdwDebug, false);
+            if (debug) console.log(`[JSON Chart ${data.wid}] widget setting: ${JSON.stringify(data)}`);
+
             setTimeout(function () {
                 let myChartHelper = vis.binds.materialdesign.chart.helper;
                 myChartHelper.registerChartAreaPlugin();
@@ -772,7 +775,8 @@ vis.binds.materialdesign.chart = {
     },
     json: function (el, data) {
         try {
-            let debug = myMdwHelper.getBooleanFromData(data.debug, false);
+            let debug = myMdwHelper.getBooleanFromData(data.mdwDebug, false);
+            if (debug) console.log(`[JSON Chart ${data.wid}] widget setting: ${JSON.stringify(data)}`);
 
             setTimeout(function () {
                 let myChartHelper = vis.binds.materialdesign.chart.helper;
@@ -804,6 +808,8 @@ vis.binds.materialdesign.chart = {
 
                     if (vis.states.attr(data.oid + '.val') && vis.states.attr(data.oid + '.val') !== 'null') {
                         let mydata = getDataFromJson(vis.states.attr(data.oid + '.val'));
+
+                        if (debug) console.log(`[JSON Chart ${data.wid}] mydata: ${JSON.stringify(mydata)}`);
 
                         myChart.type = myMdwHelper.getValueFromData(data.chartType, 'bar');
                         myChart.data.labels = mydata.labels;
@@ -838,6 +844,7 @@ vis.binds.materialdesign.chart = {
                         let jsonData = undefined
                         try {
                             jsonData = JSON.parse(oidVal);
+                            if (debug) console.log(`[JSON Chart ${data.wid}] json: ${JSON.stringify(jsonData)}`);
                         } catch (jsonError) {
                             options = {
                                 title: {
@@ -863,6 +870,8 @@ vis.binds.materialdesign.chart = {
                                 let graph = jsonData.graphs[i];
                                 let isTimeAxis = false;
 
+                                if (debug) console.log(`[JSON Chart ${data.wid}] graph[${i}]: ${JSON.stringify(graph)}`);
+
                                 if (graph) {
                                     let graphColor = myMdwHelper.getValueFromData(graph.color, (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor);
 
@@ -879,11 +888,13 @@ vis.binds.materialdesign.chart = {
                                     if (graph.data && graph.data.length > 0) {
                                         if (typeof (graph.data[0]) === 'object') {
                                             isTimeAxis = true;
-                                            if (debug) console.log(`[JSON Chart ${data.wid}] chart has data object -> using time axis`);
+                                            if (debug) console.log(`[JSON Chart ${data.wid}] graph[${i}].data is data object -> using time axis`);
                                         }
                                     }
 
                                     if (graph.data) {
+                                        if (debug) console.log(`[JSON Chart ${data.wid}] graph[${i}].data length: ${graph.data.length}`);
+
                                         let graphObj = {
                                             data: isTimeAxis ? graph.data : graph.data.map(Number, null),
                                             label: graph.legendText,
@@ -1111,6 +1122,7 @@ vis.binds.materialdesign.chart = {
 
                     function onChange(e, newVal, oldVal) {
                         try {
+                            if (debug) console.log(`[JSON Chart ${data.wid}] ************************************************************** onChange **************************************************************`);
                             progressBar.show();
 
                             let changedData = getDataFromJson(newVal);
