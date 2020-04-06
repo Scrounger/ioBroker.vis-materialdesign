@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.2.78"
+    version: "0.2.79"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -269,6 +269,8 @@ vis.binds.materialdesign.chart = {
 
                 var myChart;
 
+                let errorsOnDataLoading = [];
+
                 let $this = $(el);
                 var chartContainer = $this.find('.materialdesign-chart-container').get(0);
 
@@ -343,11 +345,17 @@ vis.binds.materialdesign.chart = {
                             let myYAxis = [];
                             let myDatalabels = [];
 
-                            for (var i = 0; i <= result.length - 1; i++) {
+                            errorsOnDataLoading = [];
 
+                            for (var i = 0; i <= result.length - 1; i++) {
+                                
                                 let dataArray = myChartHelper.getPreparedData(result[i], data, i, debug);
 
                                 if (debug) console.log(`[Line History Chart ${data.wid}] prepare dataset for '${result[i].id}'`);
+
+                                if (result[i].error) {
+                                    errorsOnDataLoading.push(`[${i}] ${result[i].error}`);
+                                }
 
                                 myDatasets.push(
                                     {
@@ -567,6 +575,14 @@ vis.binds.materialdesign.chart = {
 
                             if (debug) console.log(`[Line History Chart ${data.wid}] chart creating...`);
 
+                            if (errorsOnDataLoading.length > 0) {
+                                options.title = {
+                                    display: true,
+                                    text: `Error: ${errorsOnDataLoading.join(', ')}`,
+                                    fontColor: 'red'
+                                };
+                            }
+
                             // Chart declaration:
                             myChart = new Chart(ctx, {
                                 type: 'line',
@@ -636,10 +652,23 @@ vis.binds.materialdesign.chart = {
                                 // execute all db queries -> getting all needed data at same time
                                 if (debug) console.log(`[Line History Chart ${data.wid}] promise all datasets - count: ${result.length}`);
 
+                                errorsOnDataLoading = []
                                 for (var i = 0; i <= result.length - 1; i++) {
                                     let dataArray = myChartHelper.getPreparedData(result[i], data, i, debug);
 
                                     myChart.data.datasets[i].data = dataArray;
+
+                                    if (result[i].error) {
+                                        errorsOnDataLoading.push(`[${i}] ${result[i].error}`);
+                                    }
+                                }
+
+                                if (errorsOnDataLoading.length > 0) {
+                                    myChart.options.title = {
+                                        display: true,
+                                        text: `Error: ${errorsOnDataLoading.join(', ')}`,
+                                        fontColor: 'red'
+                                    };
                                 }
 
                                 myChart.update();
@@ -1496,12 +1525,12 @@ vis.binds.materialdesign.chart.helper = {
             try {
                 let historyOptions = {
                     instance: data.historyAdapterInstance,
-                    count: parseInt(myMdwHelper.getNumberFromData(data.maxDataPoints, 100)),
+                    count: parseInt(myMdwHelper.getNumberFromData(data.maxDataPoints, (data.aggregate === 'minmax') ? 50 : 100)),
                     step: (myMdwHelper.getNumberFromData(data.minTimeInterval, undefined)) ? parseInt(data.minTimeInterval) * 1000 : undefined,
                     aggregate: data.aggregate || 'average',
                     start: dataRangeStartTime,
                     end: new Date().getTime(),
-                    timeout: 2000
+                    timeout: 5000
                 }
 
                 if (debug) console.log(`[getTaskForHistoryData ${data.wid}] history options for '${id}': ${JSON.stringify(historyOptions)}`);
@@ -1510,15 +1539,15 @@ vis.binds.materialdesign.chart.helper = {
                     if (!err && result) {
                         if (debug) console.log(`[getTaskForHistoryData ${data.wid}] history data result '${id}' length: ${result.length}`);
                         if (debug) console.log(`[getTaskForHistoryData ${data.wid}] history data result '${id}': ${JSON.stringify(result)}`);
-                        resolve({ id: id, data: result });
+                        resolve({ id: id, data: result, error: undefined });
                     } else {
                         if (debug) console.error(`[getTaskForHistoryData ${data.wid}] result error: ${err}`);
-                        resolve({ id: id, data: null });
+                        resolve({ id: id, data: null, error: err });
                     }
                 });
             } catch (ex) {
                 console.error(`[getTaskForHistoryData ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
-                resolve({ id: id, data: null });
+                resolve({ id: id, data: null, error: ex.message });
             }
         });
     },
