@@ -348,7 +348,7 @@ vis.binds.materialdesign.chart = {
                             errorsOnDataLoading = [];
 
                             for (var i = 0; i <= result.length - 1; i++) {
-                                
+
                                 let dataArray = myChartHelper.getPreparedData(result[i], data, i, debug);
 
                                 if (debug) console.log(`[Line History Chart ${data.wid}] prepare dataset for '${result[i].id}'`);
@@ -669,11 +669,18 @@ vis.binds.materialdesign.chart = {
                                         text: `Error: ${errorsOnDataLoading.join(', ')}`,
                                         fontColor: 'red'
                                     };
+                                } else {
+                                    myChart.options.title = {
+                                        display: false
+                                    };
                                 }
 
+                                if (debug) console.log(`[Line History Chart ${data.wid}] chart updating...`);
                                 myChart.update();
 
                                 progressBar.hide();
+                                if (debug) console.log(`[Line History Chart ${data.wid}] chart successful updated`);
+
                             });
                         }
                     } catch (onChangeError) {
@@ -1530,7 +1537,7 @@ vis.binds.materialdesign.chart.helper = {
                     aggregate: data.aggregate || 'average',
                     start: dataRangeStartTime,
                     end: new Date().getTime(),
-                    timeout: 5000
+                    timeout: 10000
                 }
 
                 if (debug) console.log(`[getTaskForHistoryData ${data.wid}] history options for '${id}': ${JSON.stringify(historyOptions)}`);
