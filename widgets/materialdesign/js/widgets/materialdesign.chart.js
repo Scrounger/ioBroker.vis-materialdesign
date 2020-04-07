@@ -1537,7 +1537,7 @@ vis.binds.materialdesign.chart.helper = {
                     aggregate: data.aggregate || 'average',
                     start: dataRangeStartTime,
                     end: new Date().getTime(),
-                    timeout: 10000
+                    timeout: parseInt(myMdwHelper.getNumberFromData(data.chartTimeout, 2)) * 1000
                 }
 
                 if (debug) console.log(`[getTaskForHistoryData ${data.wid}] history options for '${id}': ${JSON.stringify(historyOptions)}`);
