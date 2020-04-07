@@ -1056,6 +1056,7 @@ vis.binds.materialdesign.chart = {
                                                     borderWidth: myMdwHelper.getNumberFromData(graph.barBorderWidth, undefined),
                                                     hoverBorderColor: myMdwHelper.getValueFromData(graph.barBorderColorHover, undefined),
                                                     hoverBorderWidth: myMdwHelper.getNumberFromData(graph.barBorderWidthHover, undefined),
+                                                    stack: myMdwHelper.getNumberFromData(graph.barStackId, (myMdwHelper.getBooleanFromData(graph.barIsStacked, false)) ? 0: 5000),
 
                                                     // Editor Daten
                                                     categoryPercentage: myMdwHelper.getNumberFromData(data.barWidth, 80) / 100,
@@ -1072,6 +1073,7 @@ vis.binds.materialdesign.chart = {
                                                 type: 'linear',
                                                 position: myMdwHelper.getValueFromData(graph.yAxis_position, 'left'),
                                                 display: myMdwHelper.getBooleanFromData(graph.yAxis_show, true),
+                                                stacked: myMdwHelper.getBooleanFromData(graph.barIsStacked, false),
                                                 scaleLabel: {       // y-Axis title
                                                     display: myMdwHelper.getValueFromData(graph.yAxis_title_text, '') !== '' ? true : false,
                                                     labelString: myMdwHelper.getValueFromData(graph.yAxis_title_text, ''),
@@ -1109,7 +1111,8 @@ vis.binds.materialdesign.chart = {
                                         )
                                         timeAxisSettings = {
                                             id: i,
-                                            display: (i > 0) ? false : true
+                                            display: (i > 0) ? false : true,
+                                            stacked: myMdwHelper.getBooleanFromData(graph.barIsStacked, false)
                                         }
 
                                         if (isTimeAxis) {

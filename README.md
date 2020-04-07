@@ -781,6 +781,18 @@ Settings that are not listed in the table below are self-explanatory.
     </thead>
     <tbody>
         <tr>
+            <td>barIsStacked</td>
+            <td>stacked bar</td>
+            <td>boolean</td>
+            <td>false, true</td>
+        </tr>
+        <tr>
+            <td>barStackId</td>
+            <td>id of stack. Bar that should combine to a stack must have the same id</td>
+            <td>number</td>
+            <td>1, 2, 5, ...</td>
+        </tr>
+        <tr>
             <td>barColorHover</td>
             <td>hover color of bar</td>
             <td>color | array[colors]</td>
