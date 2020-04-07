@@ -502,8 +502,8 @@ vis.binds.materialdesign.chart = {
                                             autoSkip: true,
                                             autoSkipPadding: 10,
                                             maxTicksLimit: myMdwHelper.getNumberFromData(data.xAxisMaxLabel, undefined),
-                                            minRotation: data.xAxisMinRotation,
-                                            maxRotation: data.xAxisMaxRotation,
+                                            minRotation: parseInt(myMdwHelper.getNumberFromData(data.xAxisMinRotation, 0)),
+                                            maxRotation: parseInt(myMdwHelper.getNumberFromData(data.xAxisMaxRotation, 0)),
                                             callback: function (value, index, values) {                                 // only for chartType: horizontal
                                                 return `${value}${myMdwHelper.getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
                                             },
@@ -1364,8 +1364,8 @@ vis.binds.materialdesign.chart.helper = {
                 stepSize: myMdwHelper.getNumberFromData(axisValueStepSize, undefined),             // only for chartType: vertical
                 autoSkip: (chartType === 'vertical' && (myMdwHelper.getNumberFromData(axisMaxLabel, undefined) > 0) || myMdwHelper.getBooleanFromData(axisLabelAutoSkip, false)),
                 autoSkipPadding: 10,
-                minRotation: myMdwHelper.getNumberFromData(minRotation, 0),
-                maxRotation: myMdwHelper.getNumberFromData(maxRotation, 0),
+                minRotation: parseInt(myMdwHelper.getNumberFromData(minRotation, 0)),
+                maxRotation: parseInt(myMdwHelper.getNumberFromData(maxRotation, 0)),
                 maxTicksLimit: (chartType === 'vertical') ? myMdwHelper.getNumberFromData(axisMaxLabel, undefined) : undefined || myMdwHelper.getNumberFromData(axisMaxLabel, undefined),
                 callback: function (value, index, values) {
                     return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
