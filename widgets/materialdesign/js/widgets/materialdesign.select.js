@@ -14,40 +14,37 @@ vis.binds.materialdesign.select =
             let vueHelper = vis.binds.materialdesign.vueHelper.select
             let containerClass = 'materialdesign-vuetify-select';
 
-            let itemsList = vueHelper.generateItemList(data);
+            vueHelper.generateItemList(data, function (itemsList) {
 
-            //     <template v-slot:selection="data">
-            //     <v-icon v-html="data.item.icon"></v-icon>
-            // </template>
+                $this.append(`
+                    <div class="${containerClass}" style="width: 100%; height: 100%;">
+                        <v-select
+                            ${vueHelper.getConstructor(data)}
+                        >
+                        
+                        ${vueHelper.getTemplates(data)}
 
-            $this.append(`
-            <div class="${containerClass}" style="width: 100%; height: 100%;">
-                <v-select
-                    ${vueHelper.getConstructor(data)}
-                >
-                
-                ${vueHelper.getTemplates(data)}
+                        </v-select>
+                    </div>`);
 
-                </v-select>
-            </div>`);
+                myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'Select', function () {
+                    myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'Select', function () {
 
-            myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'Select', function () {
-                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'Select', function () {
+                        let $vuetifyContainer = $("body").find('#materialdesign-vuetify-container');
+                        let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
 
-                    let $vuetifyContainer = $("body").find('#materialdesign-vuetify-container');
-                    let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
+                        let vueSelect = new Vue({
+                            el: $this.find(`.${containerClass}`).get(0),
+                            vuetify: new Vuetify(),
+                            data() {
+                                return vueHelper.getData(data, widgetHeight, itemsList);
+                            },
+                            methods: vueHelper.getMethods(data, $this, itemsList, $vuetifyContainer)
+                        });
 
-                    let vueSelect = new Vue({
-                        el: $this.find(`.${containerClass}`).get(0),
-                        vuetify: new Vuetify(),
-                        data() {
-                            return vueHelper.getData(data, widgetHeight, itemsList);
-                        },
-                        methods: vueHelper.getMethods(data, $this, itemsList, $vuetifyContainer)
+                        vueHelper.setStyles($this, data);
+                        vueHelper.setIoBrokerBinding(data, vueSelect, itemsList);
                     });
-
-                    vueHelper.setStyles($this, data);
-                    vueHelper.setIoBrokerBinding(data, vueSelect, itemsList);
                 });
             });
         } catch (ex) {

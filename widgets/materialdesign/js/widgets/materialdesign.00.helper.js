@@ -482,6 +482,15 @@ vis.binds.materialdesign.helper = {
         }
         // keine zahl
         return value;
+    },
+    getObject(id, callback) {
+        vis.conn._socket.emit('getObject', id, function (err, obj) {
+            if (!err && obj) {
+                callback(obj)
+            } else {
+                callback(undefined)
+            }
+        });
     }
 };
 

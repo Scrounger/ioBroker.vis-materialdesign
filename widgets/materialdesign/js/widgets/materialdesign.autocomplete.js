@@ -21,53 +21,50 @@ vis.binds.materialdesign.autocomplete =
                 inputMode = 'autocomplete';
             }
 
-            let itemsList = vueHelper.generateItemList(data);
+            vueHelper.generateItemList(data, function (itemsList) {
+                
+                $this.append(`
+                    <div class="${containerClass}" style="width: 100%; height: 100%;">
+                        <v-${inputMode}
+                            ${vueHelper.getConstructor(data)}
+                        >
 
-            //     <template v-slot:selection="data">
-            //     <v-icon v-html="data.item.icon"></v-icon>
-            // </template>
+                        ${vueHelper.getTemplates(data)}
 
-            $this.append(`
-            <div class="${containerClass}" style="width: 100%; height: 100%;">
-                <v-${inputMode}
-                    ${vueHelper.getConstructor(data)}
-                >
+                        </v-${inputMode}>
+                    </div>`);
 
-                ${vueHelper.getTemplates(data)}
-
-                </v-${inputMode}>
-            </div>`);
-
-            if (myMdwHelper.oidNeedSubscribe(data.oid, data.wid, widgetName, false)) {
-                // ggf subscribing notwendig, wenn z.B. Binding als ObjektId verwendet wird und eine oid übergeben wird
-                myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
-                    handler();
-                });
-            } else {
-                handler();
-            }
-
-            function handler() {
-                myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'AutoComplete', function () {
-                    myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'AutoComplete', function () {
-
-                        let $vuetifyContainer = $("body").find('#materialdesign-vuetify-container');
-                        let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
-
-                        let vueAutoComplete = new Vue({
-                            el: $this.find(`.${containerClass}`).get(0),
-                            vuetify: new Vuetify(),
-                            data() {
-                                return vueHelper.getData(data, widgetHeight, itemsList, inputMode);
-                            },
-                            methods: vueHelper.getMethods(data, $this, itemsList, $vuetifyContainer, inputMode)
-                        });
-
-                        vueHelper.setStyles($this, data);
-                        vueHelper.setIoBrokerBinding(data, vueAutoComplete, itemsList, inputMode);
+                if (myMdwHelper.oidNeedSubscribe(data.oid, data.wid, widgetName, false)) {
+                    // ggf subscribing notwendig, wenn z.B. Binding als ObjektId verwendet wird und eine oid übergeben wird
+                    myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
+                        handler();
                     });
-                });
-            }
+                } else {
+                    handler();
+                }
+
+                function handler() {
+                    myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'AutoComplete', function () {
+                        myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'AutoComplete', function () {
+
+                            let $vuetifyContainer = $("body").find('#materialdesign-vuetify-container');
+                            let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
+
+                            let vueAutoComplete = new Vue({
+                                el: $this.find(`.${containerClass}`).get(0),
+                                vuetify: new Vuetify(),
+                                data() {
+                                    return vueHelper.getData(data, widgetHeight, itemsList, inputMode);
+                                },
+                                methods: vueHelper.getMethods(data, $this, itemsList, $vuetifyContainer, inputMode)
+                            });
+
+                            vueHelper.setStyles($this, data);
+                            vueHelper.setIoBrokerBinding(data, vueAutoComplete, itemsList, inputMode);
+                        });
+                    });
+                }
+            });
         } catch (ex) {
             console.error(`[Vuetify AutoComplete]: error: ${ex.message}, stack: ${ex.stack} `);
         }

@@ -296,7 +296,7 @@ vis.binds.materialdesign.vueHelper = {
                 });
             }
         },
-        generateItemList(data) {
+        generateItemList(data, callback) {
             let itemsList = [];
 
             if (data.listDataMethod === 'inputPerEditor') {
@@ -317,6 +317,8 @@ vis.binds.materialdesign.vueHelper = {
                         )
                     }
                 }
+                callback(itemsList);
+
             } else if (data.listDataMethod === 'jsonStringObject') {
                 let jsonData = null;
 
@@ -344,6 +346,8 @@ vis.binds.materialdesign.vueHelper = {
                         }
                     }
                 }
+                callback(itemsList);
+
             } else if (data.listDataMethod === 'valueList') {
                 if (data.valueList) {
                     let valueList = myMdwHelper.getValueFromData(data.valueList, '').split(',');
@@ -368,8 +372,52 @@ vis.binds.materialdesign.vueHelper = {
                         }
                     }
                 }
+                callback(itemsList);
+
+            } else if (data.listDataMethod === 'multistatesObject') {
+                myMdwHelper.getObject(data.oid, function (obj) {
+
+                    if (obj && obj.common && obj.common.states) {
+                        let states = obj.common.states;
+
+                        if (typeof (states) === 'object') {
+                            for (var i = 0; i <= Object.keys(states).length - 1; i++) {
+                                let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(myMdwHelper.getValueFromData(data.attr('listIcon' + i), null));
+
+                                itemsList.push(
+                                    {
+                                        text: myMdwHelper.getValueFromData(data.attr('label' + i), Object.keys(states)[i].replace(/_/g, ' ')),
+                                        subText: myMdwHelper.getValueFromData(data.attr('subLabel' + i), ''),
+                                        value: Object.values(states)[i],
+                                        icon: imgObj.icon,
+                                        image: imgObj.image
+                                    }
+                                )
+                            }
+                        } else if (typeof (states) === 'string') {
+                            let list = states.split(';');
+
+                            for (var i = 0; i <= list.length - 1; i++) {
+                                let itemSplitted = list[i].split(':');
+
+                                let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(myMdwHelper.getValueFromData(data.attr('listIcon' + i), null));
+
+                                itemsList.push(
+                                    {
+                                        text: myMdwHelper.getValueFromData(data.attr('label' + i), itemSplitted[1]),
+                                        subText: myMdwHelper.getValueFromData(data.attr('subLabel' + i), ''),
+                                        value: itemSplitted[0],
+                                        icon: imgObj.icon,
+                                        image: imgObj.image
+                                    }
+                                )
+                            }
+                        }
+
+                        callback(itemsList);
+                    }
+                });
             }
-            return itemsList;
         },
         setIoBrokerBinding(data, vueInput, itemsList, inputMode = '') {
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {

@@ -2022,7 +2022,7 @@ systemDictionary = {
     },
     "yAxisTitleColor": {
         "en": "title font color",
-        "de": "Ttiel Schriftfarbe",
+        "de": "Titel Schriftfarbe",
         "ru": "цвет шрифта заголовка",
         "pt": "cor da fonte do título",
         "nl": "titel lettertypekleur",
@@ -2034,7 +2034,7 @@ systemDictionary = {
     },
     "xAxisTitleColor": {
         "en": "title font color",
-        "de": "Ttiel Schriftfarbe",
+        "de": "Titel Schriftfarbe",
         "ru": "цвет шрифта заголовка",
         "pt": "cor da fonte do título",
         "nl": "titel lettertypekleur",
@@ -8632,5 +8632,17 @@ systemDictionary = {
         "es": "modo de depuración",
         "pl": "Tryb debugowania",
         "zh-cn": "调试模式"
-    }
+    },
+    "multistatesObject": {
+        "en": "Object has multistate",
+        "de": "Objekt hat Werteliste",
+        "ru": "Объект имеет несколько состояний",
+        "pt": "O objeto possui várias etapas",
+        "nl": "Object heeft meertraps",
+        "fr": "L'objet a plusieurs états",
+        "it": "L'oggetto ha multi-stato",
+        "es": "El objeto tiene estado múltiple",
+        "pl": "Obiekt ma wielostanowiskowy",
+        "zh-cn": "对象具有多状态"
+      }
 };
