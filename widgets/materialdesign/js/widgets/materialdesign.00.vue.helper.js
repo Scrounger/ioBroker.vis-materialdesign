@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.3.0"
+    version: "0.2.80"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -206,7 +206,7 @@ vis.binds.materialdesign.vueHelper = {
                  
                 <template v-slot:item="data">
                     <div class="materialdesign-v-list-item-image-container">
-                        <v-icon v-if="data.item.icon !== ''" class="materialdesign-v-list-item-icon">{{data.item.icon}}</v-icon>
+                        <v-icon v-if="data.item.icon !== ''" class="materialdesign-v-list-item-icon" :style="{color: data.item.imageColor}">{{data.item.icon}}</v-icon>
                         <img v-if="data.item.image !== ''" class="materialdesign-v-list-item-image" :src="data.item.image" />
                     </div>
                     <v-list-item-content style="height: 100%">
@@ -226,6 +226,7 @@ vis.binds.materialdesign.vueHelper = {
             dataObj.items = itemsList;
             dataObj.icon = item.icon;
             dataObj.image = item.image;
+            dataObj.imageColor = item.imageColor;
             dataObj.collapseIcon = myMdwHelper.getValueFromData(data.collapseIcon, undefined, 'mdi-');
 
             return dataObj;
@@ -312,7 +313,8 @@ vis.binds.materialdesign.vueHelper = {
                                 subText: myMdwHelper.getValueFromData(data.attr('subLabel' + i), ''),
                                 value: myMdwHelper.getValueFromData(data.attr('value' + i), ''),
                                 icon: imgObj.icon,
-                                image: imgObj.image
+                                image: imgObj.image,
+                                imageColor: myMdwHelper.getValueFromData(data.attr('listIconColor' + i), '')
                             }
                         )
                     }
@@ -340,7 +342,8 @@ vis.binds.materialdesign.vueHelper = {
                                     subText: jsonObj.subText,
                                     value: jsonObj.value,
                                     icon: imgObj.icon,
-                                    image: imgObj.image
+                                    image: imgObj.image,
+                                    imageColor: jsonObj.iconColor
                                 }
                             )
                         }
@@ -366,7 +369,8 @@ vis.binds.materialdesign.vueHelper = {
                                     subText: '',
                                     value: value,
                                     icon: imgObj.icon,
-                                    image: imgObj.image
+                                    image: imgObj.image,
+                                    imageColor: myMdwHelper.getValueFromData(data.attr('listIconColor' + i), '')
                                 }
                             )
                         }
@@ -390,7 +394,8 @@ vis.binds.materialdesign.vueHelper = {
                                         subText: myMdwHelper.getValueFromData(data.attr('subLabel' + i), ''),
                                         value: Object.values(states)[i],
                                         icon: imgObj.icon,
-                                        image: imgObj.image
+                                        image: imgObj.image,
+                                        imageColor: myMdwHelper.getValueFromData(data.attr('listIconColor' + i), '')
                                     }
                                 )
                             }
@@ -408,7 +413,8 @@ vis.binds.materialdesign.vueHelper = {
                                         subText: myMdwHelper.getValueFromData(data.attr('subLabel' + i), ''),
                                         value: itemSplitted[0],
                                         icon: imgObj.icon,
-                                        image: imgObj.image
+                                        image: imgObj.image,
+                                        imageColor: myMdwHelper.getValueFromData(data.attr('listIconColor' + i), '')
                                     }
                                 )
                             }
@@ -425,6 +431,7 @@ vis.binds.materialdesign.vueHelper = {
                 vueInput.item = item;
                 vueInput.icon = item.icon;
                 vueInput.image = item.image;
+                vueInput.imageColor = item.imageColor;
             });
         },
         getMethods: function (data, $el, itemsList, $vuetifyContainer, inputMode = '') {
@@ -442,6 +449,7 @@ vis.binds.materialdesign.vueHelper = {
                         this.item = obj;
                         this.icon = obj.icon;
                         this.image = obj.image;
+                        this.imageColor = obj.imageColor;
                     }
                 },
                 focusEvent(value) {
