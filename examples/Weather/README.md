@@ -14,7 +14,7 @@ Ein Beispiel Projekt für eine responsiv VIS View mit Wetter Daten.
 * [DasWetter](https://github.com/rg-engineering/ioBroker.daswetter) >= 2.8.1
 * [weatherunderground](https://github.com/iobroker-community-adapters/ioBroker.weatherunderground) >= 3.2.1
 * [Pollenflug](https://github.com/schmupu/ioBroker.pollenflug) >= 1.0.4
-* [Javascript ](https://github.com/ioBroker/ioBroker.javascript) >= 4.0.0
+* [Javascript ](https://github.com/ioBroker/ioBroker.javascript) >= 4.0.0 (optional)
 
 ###### Folgende NPM Module und Einstellung im Javascript Adapter:
 * moment
@@ -56,6 +56,7 @@ let color_graph_temperatur_verlauf = [                                          
 let color_graph_regenwahrscheinlichkeit = '#0d47a1';                                                            // Farbe Charts - Regenwahrscheinlichkeit
 let color_graph_niederschlag = '#6dd600';                                                                       // Farbe Charts - Niederschlag
 
+let enablePollenFlug = true;                                                                                    // PollenFlug Adapter verwenden
 let idPollenFlugRegion = 'pollenflug.0.region#112.summary'                                                      // Id des Summary Channels deiner Region
 let pollenFlugFarben = ['#57bb8a', '#94bd77', '#d4c86a', '#e9b861', '#e79a69', '#dd776e', 'red']                // Farben für die Pollenflug darstellung (Werte 0 - 6)
 let pollenFlugText = ['keine', 'kaum', 'gering', 'mäßig', 'mittel', 'hoch', 'stark']                            // Texte für die Pollenflug darstellung (Werte 0 - 6)
@@ -64,7 +65,7 @@ let pollenFlugText = ['keine', 'kaum', 'gering', 'mäßig', 'mittel', 'hoch', 's
 
 // Fortgeschrittene Einstellungen ***************************************************************************************************************************************
 let idIconList_Vorschau = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Vorschau.IconList`;              // Datenpunkt für IconList Widget Vorschau
-let idIconList_Vorschau_Chart = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Vorschau.Chart`;              // Datenpunkt für IconList Widget Vorschau
+let idIconList_Vorschau_Chart = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Vorschau.Chart`;           // Datenpunkt für IconList Widget Vorschau
 
 let idDialogSchalter = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Dialog.Day_`                        // Schalter Datenpunkt für Dialog Widget Luftfeuchtigkeit (wird pro Tag erzeugt mit angehängter Nummer)
 
@@ -86,6 +87,7 @@ let idMeineSensoren = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Aktue
 
 let idChart = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Chart.Day_`                                  // Datenpunkt für Chart Widget Werte des Tages (wird pro Tag erzeugt mit angehängter Nummer)
 
+let idVisibiltyPollenFlug = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Pollenflug.visible`            // Datenpunkt um Pollenflug views anzuzeigen oder auszublenden
 let idPollenflug = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Pollenflug.Day_`                        // Datenpunkt Pollenflug für Bar Chart Widget (wird für heute und morgen erzeugt)
 // **********************************************************************************************************************************************************************
 ```
@@ -98,6 +100,10 @@ let idPollenflug = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Pollenfl
 * [Mic](https://forum.iobroker.net/user/mic): für sein Skript um Datenpunkte unter `0_userdata.0` zu ereugen. [Das Skript findet ihr hier](https://github.com/Mic-M/iobroker.createUserStates)
 
 ### Changelog
+
+### 1.0.2 (13.04.2020)
+* (Scrounger) trigger bug fix
+* (Scrounger) Pollenflug Adapter optional
 
 ### 1.0.0 (13.04.2020)
 * (Scrounger) intial release

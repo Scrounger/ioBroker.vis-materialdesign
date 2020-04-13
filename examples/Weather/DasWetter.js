@@ -9,7 +9,7 @@ Dieses Skript erzeugt json strings um Wetter Informationen im VIS mit den Materi
 * Material Design Widgets               >= 0.3.0
 * DasWetter                             >= 2.8.1
 * weatherunderground                    >= 3.2.1
-* Pollenflug                            >= 1.0.4
+* Pollenflug                            >= 1.0.4        (optional in Skript Einstellung de- / aktivierbar)
 * Javascript Adapter                    >= 4.0.0
 * Javascript Adapter NPM Module:        moment, moment-timezone, moment-duration-format, chroma-js
 =========================================================================================================================================================================
@@ -22,6 +22,8 @@ Dieses Skript erzeugt json strings um Wetter Informationen im VIS mit den Materi
 
 --- Changelog ---
 * 1.0.0:            Initial release
+* 1.0.1:            Trigger bug fixes
+* 1.0.2:            enable / disable option for Pollenflug Adapter added
 
 ************************************************************************************************************************************************************************/
 
@@ -46,6 +48,7 @@ let color_graph_temperatur_verlauf = [                                          
 let color_graph_regenwahrscheinlichkeit = '#0d47a1';                                                            // Farbe Charts - Regenwahrscheinlichkeit
 let color_graph_niederschlag = '#6dd600';                                                                       // Farbe Charts - Niederschlag
 
+let enablePollenFlug = true;                                                                                    // PollenFlug Adapter verwenden. Wenn nicht verwendet wird -> im Grid Widget von der View 'Wetter' & 'Wetter_Dialog_View_Day_2' muss die Anzahl der Spalten für das Chart 'Verlauf' angepasst werden
 let idPollenFlugRegion = 'pollenflug.0.region#112.summary'                                                      // Id des Summary Channels deiner Region
 let pollenFlugFarben = ['#57bb8a', '#94bd77', '#d4c86a', '#e9b861', '#e79a69', '#dd776e', 'red']                // Farben für die Pollenflug darstellung (Werte 0 - 6)
 let pollenFlugText = ['keine', 'kaum', 'gering', 'mäßig', 'mittel', 'hoch', 'stark']                            // Texte für die Pollenflug darstellung (Werte 0 - 6)
@@ -54,7 +57,7 @@ let pollenFlugText = ['keine', 'kaum', 'gering', 'mäßig', 'mittel', 'hoch', 's
 
 // Fortgeschrittene Einstellungen ***************************************************************************************************************************************
 let idIconList_Vorschau = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Vorschau.IconList`;              // Datenpunkt für IconList Widget Vorschau
-let idIconList_Vorschau_Chart = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Vorschau.Chart`;              // Datenpunkt für IconList Widget Vorschau
+let idIconList_Vorschau_Chart = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Vorschau.Chart`;           // Datenpunkt für IconList Widget Vorschau
 
 let idDialogSchalter = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Dialog.Day_`                        // Schalter Datenpunkt für Dialog Widget Luftfeuchtigkeit (wird pro Tag erzeugt mit angehängter Nummer)
 
@@ -76,6 +79,7 @@ let idMeineSensoren = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Aktue
 
 let idChart = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Chart.Day_`                                  // Datenpunkt für Chart Widget Werte des Tages (wird pro Tag erzeugt mit angehängter Nummer)
 
+let idVisibiltyPollenFlug = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Pollenflug.visible`            // Datenpunkt um Pollenflug views anzuzeigen oder auszublenden
 let idPollenflug = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Pollenflug.Day_`                        // Datenpunkt Pollenflug für Bar Chart Widget (wird für heute und morgen erzeugt)
 // **********************************************************************************************************************************************************************
 
@@ -87,14 +91,19 @@ moment.locale("de");
 let temperaturGradientColors = getGradientColors(-20, 40, color_graph_temperatur_verlauf);
 
 // Trigger
-on({ id: "system.adapter.daswetter.0.alive", change: "any" }, createData);
+on({ id: "system.adapter.daswetter.0.alive", val: false }, createData);
 
 // Trigger eigener Sensor
-on({ id: "idSensor_Temperatur" }, createData);
+on({ id: idSensor_Temperatur }, createData);
 
-function createData() {
+function createData(obj) {
     try {
-        console.log("create Data für Das Wetter");
+        if (obj) {
+            console.log(`Material Design Widgets: Wetter Skript triggered by '${obj.id}'`);
+        } else {
+            console.log(`Material Design Widgets: Wetter Skript gestartet`);
+        }
+
         let currentHour = moment().format('H');
         let vorschauIconList = [];
 
@@ -201,7 +210,7 @@ function createBewolkung() {
     mySetState(`${idBewolkung}`, JSON.stringify(listForWidget), 'string', `Bewölkung aktuell für List Widget`);
 }
 
-function createDatumFormatierung(day){
+function createDatumFormatierung(day) {
     let idDasWetter = `daswetter.0.NextHours.Location_1.Day_${day}`;
     let datum = getState(`${idDasWetter}.day_value`).val;
 
@@ -213,35 +222,41 @@ function createDatumFormatierung(day){
 function createPollenFlug(day) {
     let barData = [];
 
-    if (day === 1) {
-        let idDp = `${idPollenFlugRegion}.json_index_today`;
-        generateData(idDp);
-    } else if (day === 2) {
-        let idDp = `${idPollenFlugRegion}.json_index_tomorrow`;
-        generateData(idDp);
-    }
+    if (enablePollenFlug) {
+        mySetState(`${idVisibiltyPollenFlug}`, true, 'boolean', `Pollenflug Widgets anzeigen / ausblenden`)
 
-    function generateData(idDp) {
-        if (existsState(idDp)) {
-            let data = JSON.parse(getState(idDp).val);
-
-            if (data && data.length > 0) {
-                for (const pollenInfo of data) {
-                    barData.push(
-                        {
-                            label: pollenInfo.Pollen,
-                            value: pollenInfo.Riskindex + 1,
-                            dataColor: pollenFlugFarben[pollenInfo.Riskindex],
-                            valueText: pollenFlugText[pollenInfo.Riskindex]
-                        }
-                    )
-                }
-            }
-
-            mySetState(`${idPollenflug}${day}`, JSON.stringify(barData), 'string', `Pollenflug Tag ${day} für Bar Chart Widget`);
-        } else {
-            console.warn(`Datapoint '${idDp}' not exist!`);
+        if (day === 1) {
+            let idDp = `${idPollenFlugRegion}.json_index_today`;
+            generateData(idDp);
+        } else if (day === 2) {
+            let idDp = `${idPollenFlugRegion}.json_index_tomorrow`;
+            generateData(idDp);
         }
+
+        function generateData(idDp) {
+            if (existsState(idDp)) {
+                let data = JSON.parse(getState(idDp).val);
+
+                if (data && data.length > 0) {
+                    for (const pollenInfo of data) {
+                        barData.push(
+                            {
+                                label: pollenInfo.Pollen,
+                                value: pollenInfo.Riskindex + 1,
+                                dataColor: pollenFlugFarben[pollenInfo.Riskindex],
+                                valueText: pollenFlugText[pollenInfo.Riskindex]
+                            }
+                        )
+                    }
+                }
+
+                mySetState(`${idPollenflug}${day}`, JSON.stringify(barData), 'string', `Pollenflug Tag ${day} für Bar Chart Widget`);
+            } else {
+                console.warn(`Datapoint '${idDp}' not exist!`);
+            }
+        }
+    } else {
+        mySetState(`${idVisibiltyPollenFlug}`, false, 'boolean', `Pollenflug Widgets anzeigen / ausblenden`);
     }
 }
 
