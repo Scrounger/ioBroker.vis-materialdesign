@@ -15,8 +15,8 @@ Dieses Skript erzeugt json strings um Wetter Informationen im VIS mit den Materi
 =========================================================================================================================================================================
 
 --- Links ---
-* Support:          tbd
-* Github:           tbd
+* Support:          https://forum.iobroker.net/topic/32232/material-design-widgets-wetter-view
+* Github:           https://github.com/Scrounger/ioBroker.vis-materialdesign/tree/master/examples/Weather
 
 =========================================================================================================================================================================
 
