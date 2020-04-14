@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "news": {
             "0.3.0": {
                 "en": "see changelog",
