@@ -353,7 +353,7 @@ vis.binds.materialdesign.vueHelper = {
 
             } else if (data.listDataMethod === 'valueList') {
                 if (data.valueList) {
-                    let valueList = myMdwHelper.getValueFromData(data.valueList, '').split(',');
+                    let valueList = myMdwHelper.getValueFromData(data.valueList, '').replace(/(\r\n|\n|\r)/gm, "").split(',');
                     let valueListLabels = myMdwHelper.getValueFromData(data.valueListLabels, '').split(',');
                     let valueListIcons = myMdwHelper.getValueFromData(data.valueListIcons, '').split(',');
 
@@ -590,7 +590,7 @@ vis.binds.materialdesign.vueHelper = {
     getObjectByValue: function (val, itemsList, inputMode = '') {
         if (val !== undefined && val !== null) {
             var result = itemsList.filter(obj => {
-                return obj.value.toString() === val.toString() || (!isNaN(parseFloat(obj.value)) && typeof (obj.value) === 'number' && parseFloat(obj.value) === parseFloat(val));
+                return obj.value.toString() === val.toString() || parseFloat(obj.value) === parseFloat(val);
             });
 
             if (result.length === 1) {
