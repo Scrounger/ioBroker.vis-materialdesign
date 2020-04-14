@@ -491,6 +491,21 @@ vis.binds.materialdesign.helper = {
                 callback(undefined)
             }
         });
+    },
+    setValue(id, value) {
+        vis.binds.materialdesign.helper.getObject(id, function (obj) {
+            if (obj && obj.common && obj.common['type']) {
+                if (obj.common['type'] === 'string') {
+                    vis.setValue(id, value.toString());
+                } else if (obj.common['type'] === 'number') {
+                    vis.setValue(id, parseFloat(value));
+                } else if (obj.common['type'] === 'boolean') {
+                    vis.setValue(id, !(/^(false|0)$/i).test(value.toLowerCase()) && !!value);
+                } else {
+                    vis.setValue(value);
+                }
+            }
+        })
     }
 };
 
