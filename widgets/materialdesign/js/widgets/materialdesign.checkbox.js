@@ -29,12 +29,12 @@ vis.binds.materialdesign.checkbox =
                     vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
 
                     if (data.toggleType === 'boolean') {
-                        vis.setValue(data.oid, mdcCheckbox.checked);
+                        myMdwHelper.setValue(data.oid, mdcCheckbox.checked);
                     } else {
                         if (!mdcCheckbox.checked === true) {
-                            vis.setValue(data.oid, data.valueOff);
+                            myMdwHelper.setValue(data.oid, data.valueOff);
                         } else {
-                            vis.setValue(data.oid, data.valueOn);
+                            myMdwHelper.setValue(data.oid, data.valueOn);
                         }
                     }
 

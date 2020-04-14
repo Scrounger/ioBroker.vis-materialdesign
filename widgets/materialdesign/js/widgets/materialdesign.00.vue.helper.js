@@ -439,10 +439,10 @@ vis.binds.materialdesign.vueHelper = {
                 changeEvent(item) {
                     if (item) {
                         if (item.value) {
-                            vis.setValue(data.oid, item.value);
+                            myMdwHelper.setValue(data.oid, item.value);
                         } else {
                             // only if combobox (is writeable)
-                            vis.setValue(data.oid, item);
+                            myMdwHelper.setValue(data.oid, item);
                         }
                     } else {
                         let obj = vis.binds.materialdesign.vueHelper.getObjectByValue(vis.states.attr(data.oid + '.val'), itemsList, inputMode);
@@ -574,7 +574,7 @@ vis.binds.materialdesign.vueHelper = {
                     }
                 }
 
-                vis.setValue(data.oid, JSON.stringify(jsonData));
+                myMdwHelper.setValue(data.oid, JSON.stringify(jsonData));
 
                 setTimeout(function () {
                     $container.find(`#${idPrefix}${index}`).remove();

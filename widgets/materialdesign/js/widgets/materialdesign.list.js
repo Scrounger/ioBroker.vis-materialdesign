@@ -193,21 +193,21 @@ vis.binds.materialdesign.list = {
                     if (data.listType === 'checkbox' || data.listType === 'switch') {
                         let selectedValue = mdcListAdapter.isCheckboxCheckedAtIndex(index);
 
-                        vis.setValue(listItemObj.objectId, selectedValue);
+                        myMdwHelper.setValue(listItemObj.objectId, selectedValue);
 
                         setLayout(index, selectedValue, listItemObj);
 
                     } else if (data.listType === 'buttonToggle') {
                         let selectedValue = vis.states.attr(listItemObj.objectId + '.val');
 
-                        vis.setValue(listItemObj.objectId, !selectedValue);
+                        myMdwHelper.setValue(listItemObj.objectId, !selectedValue);
 
                         setLayout(index, !selectedValue, listItemObj);
 
                     } else if (data.listType === 'buttonState') {
                         let valueToSet = listItemObj.buttonStateValue;
 
-                        vis.setValue(listItemObj.objectId, valueToSet);
+                        myMdwHelper.setValue(listItemObj.objectId, valueToSet);
 
                     } else if (data.listType === 'buttonNav') {
                         vis.changeView(listItemObj.buttonNavView);

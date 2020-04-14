@@ -33,12 +33,12 @@ vis.binds.materialdesign.switch =
                     vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
 
                     if (data.toggleType === 'boolean') {
-                        vis.setValue(data.oid, mdcSwitch.checked);
+                        myMdwHelper.setValue(data.oid, mdcSwitch.checked);
                     } else {
                         if (!mdcSwitch.checked === true) {
-                            vis.setValue(data.oid, data.valueOff);
+                            myMdwHelper.setValue(data.oid, data.valueOff);
                         } else {
-                            vis.setValue(data.oid, data.valueOn);
+                            myMdwHelper.setValue(data.oid, data.valueOn);
                         }
                     }
 

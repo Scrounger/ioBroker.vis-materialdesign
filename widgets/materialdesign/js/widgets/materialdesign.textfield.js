@@ -84,10 +84,10 @@ vis.binds.materialdesign.textfield =
                             methods: {
                                 changeEvent(value) {
                                     if (inputType !== 'number') {
-                                        vis.setValue(data.oid, value);
+                                        myMdwHelper.setValue(data.oid, value);
                                     } else {
                                         if (value) {
-                                            vis.setValue(data.oid, value);
+                                            myMdwHelper.setValue(data.oid, value);
                                         } else {
                                             this.value = vis.states.attr(data.oid + '.val');
                                         }

@@ -139,7 +139,7 @@ vis.binds.materialdesign.button = {
             $this.on('click touchend', function (e) {
                 let val = vis.states.attr(data.oid + '.val');
                 if (!data.minmax || val != data.minmax) {
-                    vis.setValue(data.oid, parseFloat(val) + parseFloat(data.value));
+                    myMdwHelper.setValue(data.oid, parseFloat(val) + parseFloat(data.value));
                 }
             });
         } catch (ex) {
@@ -177,7 +177,7 @@ vis.binds.materialdesign.button = {
                             if (val === 'false') val = false;
                             if (parseFloat(val).toString() == val) val = parseFloat(val);
 
-                            if (oid) vis.setValue(oid, val);
+                            if (oid) myMdwHelper.setValue(oid, val);
                         }
                     } else {
                         unlockButton();
@@ -239,12 +239,12 @@ vis.binds.materialdesign.button = {
                     $this.parent().click(function () {
                         if ($this.parent().attr('isLocked') === 'false' || $this.parent().attr('isLocked') === undefined) {
                             if (data.toggleType === 'boolean') {
-                                vis.setValue(data.oid, !vis.states.attr(data.oid + '.val'));
+                                myMdwHelper.setValue(data.oid, !vis.states.attr(data.oid + '.val'));
                             } else {
                                 if ($this.parent().attr('toggled') === true || $this.parent().attr('toggled') === 'true') {
-                                    vis.setValue(data.oid, data.valueOff);
+                                    myMdwHelper.setValue(data.oid, data.valueOff);
                                 } else {
-                                    vis.setValue(data.oid, data.valueOn);
+                                    myMdwHelper.setValue(data.oid, data.valueOn);
                                 }
                             }
                         } else {
@@ -256,9 +256,9 @@ vis.binds.materialdesign.button = {
                     $this.parent().on('mousedown touchstart', function (e) {
                         if ($this.parent().attr('isLocked') === 'false' || $this.parent().attr('isLocked') === undefined) {
                             if (data.toggleType === 'boolean') {
-                                vis.setValue(data.oid, true);
+                                myMdwHelper.setValue(data.oid, true);
                             } else {
-                                vis.setValue(data.oid, data.valueOn);
+                                myMdwHelper.setValue(data.oid, data.valueOn);
                             }
                         } else {
                             unlockButton();
@@ -267,9 +267,9 @@ vis.binds.materialdesign.button = {
 
                     $this.parent().on('mouseup touchend', function (e) {
                         if (data.toggleType === 'boolean') {
-                            vis.setValue(data.oid, false);
+                            myMdwHelper.setValue(data.oid, false);
                         } else {
-                            vis.setValue(data.oid, data.valueOff);
+                            myMdwHelper.setValue(data.oid, data.valueOff);
                         }
                     });
                 }

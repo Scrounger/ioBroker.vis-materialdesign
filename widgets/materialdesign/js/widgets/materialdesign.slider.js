@@ -102,7 +102,7 @@ vis.binds.materialdesign.slider = {
                         methods: {
                             changeEvent(value) {
                                 if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
-                                    vis.setValue(data.oid, value);
+                                    myMdwHelper.setValue(data.oid, value);
                                 }
                                 setSliderState();
                             },

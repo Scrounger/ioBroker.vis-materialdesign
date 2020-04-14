@@ -306,7 +306,7 @@ vis.binds.materialdesign.iconlist =
                             if ($item.attr('isLocked') === 'false' || $item.attr('isLocked') === undefined) {
                                 let selectedValue = vis.states.attr(listItemObj.objectId + '.val');
 
-                                vis.setValue(listItemObj.objectId, !selectedValue);
+                                myMdwHelper.setValue(listItemObj.objectId, !selectedValue);
 
                                 setLayout(index, !selectedValue, listItemObj);
                             } else {
@@ -315,7 +315,7 @@ vis.binds.materialdesign.iconlist =
                         } else if (listItemObj.listType === 'buttonState') {
                             if ($item.attr('isLocked') === 'false' || $item.attr('isLocked') === undefined) {
                                 let valueToSet = listItemObj.buttonStateValue;
-                                vis.setValue(listItemObj.objectId, valueToSet);
+                                myMdwHelper.setValue(listItemObj.objectId, valueToSet);
 
                                 setLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
                             } else {
@@ -326,9 +326,9 @@ vis.binds.materialdesign.iconlist =
                                 let val = vis.states.attr(listItemObj.objectId + '.val');
 
                                 if (val === listItemObj.buttonToggleValueTrue || parseFloat(val) === parseFloat(listItemObj.buttonToggleValueTrue)) {
-                                    vis.setValue(listItemObj.objectId, listItemObj.buttonToggleValueFalse);
+                                    myMdwHelper.setValue(listItemObj.objectId, listItemObj.buttonToggleValueFalse);
                                 } else {
-                                    vis.setValue(listItemObj.objectId, listItemObj.buttonToggleValueTrue);
+                                    myMdwHelper.setValue(listItemObj.objectId, listItemObj.buttonToggleValueTrue);
                                 }
 
                                 setLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
@@ -340,9 +340,9 @@ vis.binds.materialdesign.iconlist =
                                 let val = vis.states.attr(listItemObj.objectId + '.val');
 
                                 if (val === listItemObj.buttonToggleValueFalse || parseFloat(val) === parseFloat(listItemObj.buttonToggleValueFalse)) {
-                                    vis.setValue(listItemObj.objectId, listItemObj.buttonToggleValueTrue);
+                                    myMdwHelper.setValue(listItemObj.objectId, listItemObj.buttonToggleValueTrue);
                                 } else {
-                                    vis.setValue(listItemObj.objectId, listItemObj.buttonToggleValueFalse);
+                                    myMdwHelper.setValue(listItemObj.objectId, listItemObj.buttonToggleValueFalse);
                                 }
 
                                 setLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);

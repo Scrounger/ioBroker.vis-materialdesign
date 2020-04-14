@@ -94,7 +94,7 @@ vis.binds.materialdesign.dialog = {
 
                     if (!vis.editMode) {
                         mdcDialog.listen('MDCDialog:closing', function () {
-                            vis.setValue(data.showDialogOid, false);
+                            myMdwHelper.setValue(data.showDialogOid, false);
                             vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                         });
                     }
@@ -198,7 +198,7 @@ vis.binds.materialdesign.dialog = {
                         watch: {
                             showDialog(val) {
                                 if (data.showDialogMethod === 'datapoint') {
-                                    vis.setValue(data.showDialogOid, val);
+                                    myMdwHelper.setValue(data.showDialogOid, val);
                                 }
                             }
                         }

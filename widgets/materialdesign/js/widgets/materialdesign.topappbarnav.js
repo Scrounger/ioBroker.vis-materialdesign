@@ -389,7 +389,7 @@ vis.binds.materialdesign.topappbarnav = {
                     val = vis.states.attr(data.oid + '.val');
 
                     if (val != selctedIndex) {
-                        vis.setValue(data.oid, selctedIndex);
+                        myMdwHelper.setValue(data.oid, selctedIndex);
 
                         setTopAppBarWithDrawerLayout();
 

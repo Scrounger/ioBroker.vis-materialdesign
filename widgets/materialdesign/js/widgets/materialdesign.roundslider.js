@@ -88,7 +88,7 @@ vis.binds.materialdesign.roundslider =
                 let changedVal = parseFloat(ev.target.__value);
 
                 if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
-                    vis.setValue(data.oid, changedVal);
+                    myMdwHelper.setValue(data.oid, changedVal);
                     setSliderState();
                 }
             });
