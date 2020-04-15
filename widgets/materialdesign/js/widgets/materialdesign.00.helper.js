@@ -500,7 +500,7 @@ vis.binds.materialdesign.helper = {
                 } else if (obj.common['type'] === 'number') {
                     vis.setValue(id, parseFloat(value));
                 } else if (obj.common['type'] === 'boolean') {
-                    vis.setValue(id, !(/^(false|0)$/i).test(value.toLowerCase()) && !!value);
+                    vis.setValue(id, !(/^(false|0)$/i).test(value.toString().toLowerCase()) && !!value);
                 } else {
                     vis.setValue(value);
                 }
