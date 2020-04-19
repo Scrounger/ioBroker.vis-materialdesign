@@ -504,6 +504,8 @@ vis.binds.materialdesign.helper = {
                 } else {
                     vis.setValue(id, value);
                 }
+            } else {
+                vis.setValue(id, value);
             }
         })
     }
