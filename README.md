@@ -1509,6 +1509,11 @@ ical2CalendarWidget();
 
 ## Changelog
 
+### 0.3.2
+* (Scrounger): Select & Autocomplete Widget: color option for menu items added
+* (Scrounger): setState type bug fixes
+* (Scrounger): small bug fixes
+
 ### 0.3.0
 * (Scrounger): JSON Chart: error handling added
 * (Scrounger): IconList: error handling added
