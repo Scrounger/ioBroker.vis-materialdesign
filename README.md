@@ -1509,6 +1509,10 @@ ical2CalendarWidget();
 
 ## Changelog
 
+### 0.3.3
+* (Scrounger): css file bug fixes
+* (Scrounger): Material Design Icons library updated to v5.1.45
+
 ### 0.3.2
 * (Scrounger): Select & Autocomplete Widget: color option for menu items added
 * (Scrounger): setState type bug fixes
