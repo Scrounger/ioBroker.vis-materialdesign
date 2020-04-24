@@ -34,14 +34,16 @@
     "vue-the-mask": "0.11.1",
     "@mdi/font": "^5.1.45",
     "underscore": "^1.9.2",
-    "chroma-js": "^2.1.0"
+    "chroma-js": "^2.1.0",
+    "@alcalzone/release-script": "^1.2.0"
   },
   "main": "widgets/materialdesign.html",
   "scripts": {
     "test:package": "mocha test/package --exit",
     "test:unit": "mocha test/unit --exit",
     "test:integration": "mocha test/integration --exit",
-    "test": "npm run test:package"
+    "test": "npm run test:package",
+    "release": "release-script"
   },
   "bugs": {
     "url": "https://github.com/Scrounger/ioBroker.vis-materialdesign/issues"
