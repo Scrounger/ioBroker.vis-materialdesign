@@ -1510,7 +1510,7 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
-
+* Browser Edge: gradient color bug fix
 
 ### 0.3.3
 * (Scrounger): css file bug fixes
