@@ -725,25 +725,42 @@ vis.binds.materialdesign.chart = {
                     let hoverDataColorArray = [];
                     let globalValueTextColor = myMdwHelper.getValueFromData(data.valuesFontColor, 'black')
                     let valueTextColorArray = [];
-                    for (var i = 0; i <= data.dataCount; i++) {
-                        // row data
-                        dataArray.push(vis.states.attr(data.attr('oid' + i) + '.val'));
-                        labelArray.push(myMdwHelper.getValueFromData(data.attr('label' + i), '').split('\\n'));
+                    let countOfItems = 0;
+                    let jsonData = null;
 
+                    if (data.chartDataMethod === 'jsonStringObject') {
+                        try {
+                            jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
+                            countOfItems = jsonData.length - 1;
+                        } catch (err) {
+                            console.error(`[Pie Chart ${data.wid}] cannot parse json string! Error: ${err.message}`);
+                        }
+
+                        vis.states.bind(data.oid + '.val', onChange);
+                    } else {
+                        countOfItems = data.dataCount;
+                    }
+
+                    for (var i = 0; i <= countOfItems; i++) {
+                        // row data
                         if (colorScheme !== null) {
                             globalColor = colorScheme[i];
                         }
 
-                        let bgColor = myMdwHelper.getValueFromData(data.attr('dataColor' + i), globalColor)
-                        dataColorArray.push(bgColor);
+                        let pieItem = getBarItemObj(i, data, jsonData, globalColor, globalValueTextColor);
+
+                        dataArray.push(pieItem.value);
+                        labelArray.push(pieItem.label);
+                        
+                        dataColorArray.push(pieItem.dataColor);
 
                         if (myMdwHelper.getValueFromData(data.hoverColor, null) === null) {
-                            hoverDataColorArray.push(myChartHelper.addOpacityToColor(bgColor, 80))
+                            hoverDataColorArray.push(myChartHelper.addOpacityToColor(pieItem.dataColor, 80))
                         } else {
                             hoverDataColorArray.push(data.hoverColor)
                         }
 
-                        valueTextColorArray.push(myMdwHelper.getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor))
+                        valueTextColorArray.push(pieItem.valueColor);
 
                         vis.states.bind(data.attr('oid' + i) + '.val', onChange);
                     }
@@ -806,8 +823,9 @@ vis.binds.materialdesign.chart = {
                                 rotation: myMdwHelper.getNumberFromData(data.valuesRotation, undefined),
                                 formatter: function (value, context) {
                                     if ((value || value === 0) && context.dataIndex % myMdwHelper.getNumberFromData(data.valuesSteps, 1) === 0) {
-                                        return `${myMdwHelper.formatNumber(value, data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}${myMdwHelper.getValueFromData(data.attr('labelValueAppend' + context.dataIndex), '')}`
-                                            .split('\\n');
+                                        let pieItem = getBarItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor, value);
+
+                                        return `${pieItem.valueText}${pieItem.valueAppendix}`.split('\\n');
                                     }
                                     return null;
                                 },
@@ -843,6 +861,21 @@ vis.binds.materialdesign.chart = {
                             }
                         }
                     };
+
+                    function getBarItemObj(i, data, jsonData, globalColor, globalValueTextColor, value = 0) {
+                        if (data.chartDataMethod === 'inputPerEditor') {
+                            return {
+                                label: myMdwHelper.getValueFromData(data.attr('label' + i), '').split('\\n'),
+                                value: vis.states.attr(data.attr('oid' + i) + '.val'),
+                                dataColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), globalColor),
+                                valueText: myMdwHelper.getValueFromData(data.attr('valueText' + i), `${myMdwHelper.formatNumber(value, data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
+                                valueColor: myMdwHelper.getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor),
+                                valueAppendix: myMdwHelper.getValueFromData(data.attr('labelValueAppend' + i), '')
+                            }
+                        } else {
+
+                        }
+                    }
                 }
             }, 1)
         } catch (ex) {
@@ -1634,19 +1667,19 @@ vis.binds.materialdesign.chart.helper = {
                         }
 
                         function getGradient(chart, graph, gradientColors) {
-                                const scale = chart.scales[graph.yAxisID];
+                            const scale = chart.scales[graph.yAxisID];
 
-                                gradientColors.forEach(item => {
-                                    const pixel = scale.getPixelForValue(item.value);
-                                    const stop = Math.max(scale.getDecimalForPixel(pixel), 0);
+                            gradientColors.forEach(item => {
+                                const pixel = scale.getPixelForValue(item.value);
+                                const stop = Math.max(scale.getDecimalForPixel(pixel), 0);
 
-                                    if (stop <= 1) {
-                                        // This if can fail if the levels are outside the scale bounds.
-                                        gradient.addColorStop(stop, chroma(item.color).css());
-                                    }
-                                });
+                                if (stop <= 1) {
+                                    // This if can fail if the levels are outside the scale bounds.
+                                    gradient.addColorStop(stop, chroma(item.color).css());
+                                }
+                            });
 
-                                return gradient
+                            return gradient
                         }
                     }
                 }
