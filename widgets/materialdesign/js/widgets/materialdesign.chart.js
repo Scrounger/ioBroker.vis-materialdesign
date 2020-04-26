@@ -751,7 +751,7 @@ vis.binds.materialdesign.chart = {
 
                         dataArray.push(pieItem.value);
                         labelArray.push(pieItem.label);
-                        
+
                         dataColorArray.push(pieItem.dataColor);
 
                         if (myMdwHelper.getValueFromData(data.hoverColor, null) === null) {
@@ -842,7 +842,7 @@ vis.binds.materialdesign.chart = {
                     if (data.disableHoverEffects) options.hover = { mode: null };
 
                     // Chart declaration:
-                    var myBarChart = new Chart(ctx, {
+                    var myPieChart = new Chart(ctx, {
                         type: (data.chartType === 'pie') ? 'pie' : 'doughnut',
                         data: chartData,
                         options: options,
@@ -851,13 +851,50 @@ vis.binds.materialdesign.chart = {
 
                     function onChange(e, newVal, oldVal) {
                         // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
-                        let oidId = e.type.substr(0, e.type.lastIndexOf("."));
+                        if (data.chartDataMethod === 'inputPerEditor') {
+                            let oidId = e.type.substr(0, e.type.lastIndexOf("."));
 
-                        for (var d = 0; d <= data.dataCount; d++) {
-                            if (oidId === data.attr('oid' + d)) {
-                                let index = d;
-                                myBarChart.data.datasets[0].data[index] = newVal;
-                                myBarChart.update();
+                            for (var d = 0; d <= data.dataCount; d++) {
+                                if (oidId === data.attr('oid' + d)) {
+                                    let index = d;
+                                    myPieChart.data.datasets[0].data[index] = newVal;
+                                    myPieChart.update();
+                                }
+                            }
+                        } else {
+                            try {
+                                let jsonData = JSON.parse(newVal);
+
+                                for (var d = 0; d <= jsonData.length - 1; d++) {
+                                    if (colorScheme !== null) {
+                                        globalColor = colorScheme[d];
+                                    }
+
+                                    let barItem = getBarItemObj(d, data, jsonData, globalColor, globalValueTextColor);
+
+                                    myPieChart.data.datasets[0].data[d] = barItem.value;
+                                    myPieChart.data.datasets[0].backgroundColor[d] = barItem.dataColor;
+                                    myPieChart.data.labels[d] = barItem.label;
+
+                                    if (myMdwHelper.getValueFromData(data.hoverColor, null) === null) {
+                                        myPieChart.data.datasets[0].hoverBackgroundColor[d] = myChartHelper.addOpacityToColor(barItem.dataColor, 80);
+                                    } else {
+                                        myPieChart.data.datasets[0].hoverBackgroundColor[d] = data.hoverColor;
+                                    }
+
+                                    myPieChart.options.plugins.datalabels.color[d] = barItem.valueColor;
+
+                                    myPieChart.options.plugins.datalabels.formatter = function (value, context) {
+                                        if (value) {
+                                            let barItem = getBarItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor, value);
+                                            return `${barItem.valueText}${barItem.valueAppendix}`.split('\\n');
+                                        }
+                                        return '';
+                                    }
+                                }
+                                myPieChart.update();
+                            } catch (err) {
+                                console.error(`[Pie Chart ${data.wid}] onChange: cannot parse json string! Error: ${err.message}`);
                             }
                         }
                     };
@@ -872,7 +909,7 @@ vis.binds.materialdesign.chart = {
                                 valueColor: myMdwHelper.getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor),
                                 valueAppendix: myMdwHelper.getValueFromData(data.attr('labelValueAppend' + i), '')
                             }
-                        } else {                            
+                        } else {
                             return {
                                 label: myMdwHelper.getValueFromData(jsonData[i].label, '').split('\\n'),
                                 value: jsonData[i].value,

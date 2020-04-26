@@ -1,0 +1,27 @@
+[
+	{
+		"label": "val0",
+		"value": "30",
+		"valueColor": "#ffffff"
+	},
+	{
+		"label": "val1",
+		"value": "12.54645646"
+	},
+	{
+		"label": "val2",
+		"value": "48",
+		"dataColor": "#c2c2c2",
+		"valueAppendix": "\nextra"
+	},
+	{
+		"label": "val3",
+		"value": "97",
+		"valueColor": "#ffffff"
+	},
+	{
+		"label": "val4",
+		"value": "32",
+		"valueText": "text"		
+	}
+]
