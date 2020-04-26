@@ -719,6 +719,12 @@ vis.binds.materialdesign.chart = {
 
                     Chart.plugins.unregister(ChartDataLabels);
 
+                    // Chart declaration:
+                    var myPieChart = new Chart(ctx, {
+                        type: (data.chartType === 'pie') ? 'pie' : 'doughnut',
+                        plugins: (data.showValues) ? [ChartDataLabels] : undefined     // show value labels
+                    });
+
                     let dataArray = []
                     let labelArray = [];
                     let dataColorArray = [];
@@ -732,8 +738,15 @@ vis.binds.materialdesign.chart = {
                         try {
                             jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
                             countOfItems = jsonData.length - 1;
-                        } catch (err) {
-                            console.error(`[Pie Chart ${data.wid}] cannot parse json string! Error: ${err.message}`);
+                        } catch (jsonError) {
+                            myPieChart.options.title = {
+                                display: true,
+                                text: `${_("Error in JSON string")}<br>${jsonError.message}`.split('<br>'),
+                                fontColor: 'red'
+                            };
+                            myPieChart.update();
+
+                            console.error(`[Pie Chart ${data.wid}] cannot parse json string! Error: ${jsonError.message}`);
                         }
 
                         vis.states.bind(data.oid + '.val', onChange);
@@ -842,12 +855,14 @@ vis.binds.materialdesign.chart = {
                     if (data.disableHoverEffects) options.hover = { mode: null };
 
                     // Chart declaration:
-                    var myPieChart = new Chart(ctx, {
+                    myPieChart = new Chart(ctx, {
                         type: (data.chartType === 'pie') ? 'pie' : 'doughnut',
                         data: chartData,
                         options: options,
                         plugins: (data.showValues) ? [ChartDataLabels] : undefined     // show value labels
                     });
+
+                    myPieChart.update();
 
                     function onChange(e, newVal, oldVal) {
                         // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
@@ -893,8 +908,15 @@ vis.binds.materialdesign.chart = {
                                     }
                                 }
                                 myPieChart.update();
-                            } catch (err) {
-                                console.error(`[Pie Chart ${data.wid}] onChange: cannot parse json string! Error: ${err.message}`);
+                            } catch (jsonError) {
+                                myPieChart.options.title = {
+                                    display: true,
+                                    text: `${_("Error in JSON string")}<br>${jsonError.message}`.split('<br>'),
+                                    fontColor: 'red'
+                                };
+                                myPieChart.update();
+
+                                console.error(`[Pie Chart ${data.wid}] onChange: cannot parse json string! Error: ${jsonError.message}`);
                             }
                         }
                     };
