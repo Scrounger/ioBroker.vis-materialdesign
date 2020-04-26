@@ -28,6 +28,14 @@ vis.binds.materialdesign.viseditor = {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#submenu'
                 }
 
+                if (data[1] === 'barChart') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#bar-chart'
+                }
+
+                if (data[1] === 'pieChart') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#pie-chart'
+                }
+
                 if (data[1] === 'lineHistoryChart') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#line-history-chart'
                 }
