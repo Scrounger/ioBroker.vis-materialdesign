@@ -237,7 +237,7 @@ vis.binds.materialdesign.chart = {
                                 label: myMdwHelper.getValueFromData(data.attr('label' + i), '').split('\\n'),
                                 value: vis.states.attr(data.attr('oid' + i) + '.val'),
                                 dataColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), globalColor),
-                                valueText: myMdwHelper.getValueFromData(data.attr('valueText' + i), `${myMdwHelper.formatNumber(value, data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
+                                valueText: myMdwHelper.getValueFromData(data.attr('valueText' + i), `${myMdwHelper.formatNumber(parseFloat(value), data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
                                 valueColor: myMdwHelper.getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor),
                                 valueAppendix: myMdwHelper.getValueFromData(data.attr('labelValueAppend' + i), '')
                             }
@@ -246,7 +246,7 @@ vis.binds.materialdesign.chart = {
                                 label: myMdwHelper.getValueFromData(jsonData[i].label, '').split('\\n'),
                                 value: jsonData[i].value,
                                 dataColor: myMdwHelper.getValueFromData(jsonData[i].dataColor, globalColor),
-                                valueText: myMdwHelper.getValueFromData(jsonData[i].valueText, `${myMdwHelper.formatNumber(value, data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
+                                valueText: myMdwHelper.getValueFromData(jsonData[i].valueText, `${myMdwHelper.formatNumber(parseFloat(value), data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
                                 valueColor: myMdwHelper.getValueFromData(jsonData[i].valueColor, globalValueTextColor),
                                 valueAppendix: myMdwHelper.getValueFromData(jsonData[i].valueAppendix, '')
                             }
@@ -868,12 +868,19 @@ vis.binds.materialdesign.chart = {
                                 label: myMdwHelper.getValueFromData(data.attr('label' + i), '').split('\\n'),
                                 value: vis.states.attr(data.attr('oid' + i) + '.val'),
                                 dataColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), globalColor),
-                                valueText: myMdwHelper.getValueFromData(data.attr('valueText' + i), `${myMdwHelper.formatNumber(value, data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
+                                valueText: myMdwHelper.getValueFromData(data.attr('valueText' + i), `${myMdwHelper.formatNumber(parseFloat(value), data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
                                 valueColor: myMdwHelper.getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor),
                                 valueAppendix: myMdwHelper.getValueFromData(data.attr('labelValueAppend' + i), '')
                             }
-                        } else {
-
+                        } else {                            
+                            return {
+                                label: myMdwHelper.getValueFromData(jsonData[i].label, '').split('\\n'),
+                                value: jsonData[i].value,
+                                dataColor: myMdwHelper.getValueFromData(jsonData[i].dataColor, globalColor),
+                                valueText: myMdwHelper.getValueFromData(jsonData[i].valueText, `${myMdwHelper.formatNumber(parseFloat(value), data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
+                                valueColor: myMdwHelper.getValueFromData(jsonData[i].valueColor, globalValueTextColor),
+                                valueAppendix: myMdwHelper.getValueFromData(jsonData[i].valueAppendix, '')
+                            }
                         }
                     }
                 }
