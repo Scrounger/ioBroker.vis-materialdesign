@@ -21,6 +21,7 @@
   "devDependencies": {
     "@iobroker/testing": "^2.1.0",
     "@types/gulp": "^4.0.6",
+    "@alcalzone/release-script": "^1.2.0",
     "axios": "^0.19.2",
     "gulp": "^4.0.2",
     "mocha": "^7.1.1",
@@ -41,7 +42,8 @@
     "test:package": "mocha test/package --exit",
     "test:unit": "mocha test/unit --exit",
     "test:integration": "mocha test/integration --exit",
-    "test": "npm run test:package"
+    "test": "npm run test:package",
+    "release": "release-script"
   },
   "bugs": {
     "url": "https://github.com/Scrounger/ioBroker.vis-materialdesign/issues"
