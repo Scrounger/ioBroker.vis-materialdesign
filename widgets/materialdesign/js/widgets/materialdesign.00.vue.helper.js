@@ -353,9 +353,9 @@ vis.binds.materialdesign.vueHelper = {
 
             } else if (data.listDataMethod === 'valueList') {
                 if (data.valueList) {
-                    let valueList = myMdwHelper.getValueFromData(data.valueList, '').replace(/(\r\n|\n|\r)/gm, "").split(',');
-                    let valueListLabels = myMdwHelper.getValueFromData(data.valueListLabels, '').split(',');
-                    let valueListIcons = myMdwHelper.getValueFromData(data.valueListIcons, '').split(',');
+                    let valueList = myMdwHelper.getValueFromData(data.valueList, '').replace(/(\r\n|\n|\r)/gm, "").split(';');
+                    let valueListLabels = myMdwHelper.getValueFromData(data.valueListLabels, '').split(';');
+                    let valueListIcons = myMdwHelper.getValueFromData(data.valueListIcons, '').split(';');
 
                     for (var i = 0; i <= valueList.length - 1; i++) {
                         let value = valueList[i];
