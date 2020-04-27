@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.3.3",
+        "version": "0.3.4",
         "news": {
+            "0.3.4": {
+                "en": "* Select / AutoComplete Widget: Breaking Changes !!! separator for valuelist changed from comma to semicolon\r\n* Pie Chart Widget: support for json string implemented\r\n* Browser Edge: gradient color bug fix",
+                "de": "* Select / AutoComplete Widget: Breaking Changes !!! Das Trennzeichen für die Wertliste wurde von Komma in Semikolon geändert\r\n* Kreisdiagramm-Widget: Unterstützung für JSON-Zeichenfolge implementiert\r\n* Browser Edge: Fehlerbehebung bei Farbverläufen",
+                "ru": "* Выбор / автозаполнение виджета: критические изменения !!! разделитель для оценочного списка изменен с запятой на точку с запятой\r\n* Виджет круговой диаграммы: реализована поддержка строки json\r\n* Browser Edge: исправлена ошибка с градиентным цветом",
+                "pt": "* Selecione / Widget AutoCompletar: Quebrando Alterações !!! separador para valuelista alterado de vírgula para ponto e vírgula\r\n* Widget de gráfico de pizza: suporte para json string implementado\r\n* Navegador Edge: correção de bug de cor gradiente",
+                "nl": "* Widget Selecteren / AutoAanvullen: Brekende Wijzigingen !!! scheidingsteken voor valuelist gewijzigd van komma in puntkomma\r\n* Pie Chart Widget: ondersteuning voor json string geïmplementeerd\r\n* Browser Edge: bugfix in kleurverloop",
+                "fr": "* Widget Select / AutoComplete: Breaking Changes !!! le séparateur de la liste de valeurs est passé de la virgule au point-virgule\r\n* Pie Chart Widget: prise en charge de la chaîne json implémentée\r\n* Browser Edge: correction d'un bug de dégradé de couleur",
+                "it": "* Seleziona / Widget di completamento automatico: Breaking Changes !!! il separatore per valuelista è cambiato da virgola a punto e virgola\r\n* Widget grafico a torta: supporto per stringa json implementato\r\n* Bordo del browser: correzione del bug del colore sfumato",
+                "es": "* Seleccionar / Autocompletar widget: ¡Cambios de última hora! el separador para la lista de valores cambió de coma a punto y coma\r\n* Pie Chart Widget: soporte para cadena json implementado\r\n* Browser Edge: corrección de errores de color degradado",
+                "pl": "* Wybierz / AutoComplete Widget: Breaking Changes !!! zmieniono separator wartościowania z przecinka na średnik\r\n* Widget Wykres kołowy: zaimplementowano obsługę ciągu Json\r\n* Krawędź przeglądarki: naprawa błędu koloru gradientu",
+                "zh-cn": "*选择/自动完成小部件：重大变化！值列表的分隔符从逗号更改为分号\r\n*饼图小工具：实现了对json字符串的支持\r\n*浏览器边缘：渐变颜色错误修复"
+            },
             "0.3.3": {
                 "en": "see changelog",
                 "de": "siehe Changelog",
@@ -14,7 +26,7 @@
                 "es": "ver registro de cambios",
                 "pl": "patrz dziennik zmian",
                 "zh-cn": "看到变更日志"
-            },            
+            },
             "0.3.2": {
                 "en": "see changelog",
                 "de": "siehe Changelog",
@@ -38,7 +50,7 @@
                 "es": "ver registro de cambios",
                 "pl": "patrz dziennik zmian",
                 "zh-cn": "看到变更日志"
-            }, 
+            },
             "0.2.76": {
                 "en": "see changelog",
                 "de": "siehe Changelog",
@@ -50,7 +62,7 @@
                 "es": "ver registro de cambios",
                 "pl": "patrz dziennik zmian",
                 "zh-cn": "看到变更日志"
-            }, 
+            },
             "0.2.66": {
                 "en": "see changelog",
                 "de": "siehe Changelog",
@@ -62,7 +74,7 @@
                 "es": "ver registro de cambios",
                 "pl": "patrz dziennik zmian",
                 "zh-cn": "看到变更日志"
-            },             
+            },
             "0.2.59": {
                 "en": "see changelog",
                 "de": "siehe Changelog",
@@ -74,7 +86,7 @@
                 "es": "ver registro de cambios",
                 "pl": "patrz dziennik zmian",
                 "zh-cn": "看到变更日志"
-            },            
+            },
             "0.2.49": {
                 "en": "see changelog",
                 "de": "siehe Changelog",
@@ -110,7 +122,7 @@
                 "es": "ver registro de cambios",
                 "pl": "patrz dziennik zmian",
                 "zh-cn": "看到变更日志"
-            },            
+            },
             "0.2.22": {
                 "en": "see changelog",
                 "de": "siehe Changelog",
