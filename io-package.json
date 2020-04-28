@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.3.4",
+        "version": "0.3.5",
         "news": {
             "0.3.4": {
                 "en": "* Select / AutoComplete Widget: Breaking Changes !!! separator for valuelist changed from comma to semicolon\r\n* Pie Chart Widget: support for json string implemented\r\n* Browser Edge: gradient color bug fix",
