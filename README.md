@@ -578,8 +578,8 @@ Settings that are not listed in the table below are self-explanatory.
         <tr>
             <td>datalabel_show</td>
             <td>show data labels for graph</td>
-            <td>boolean</td>
-            <td>false, true</td>
+            <td>string | boolean</td>
+            <td>false, true, auto</td>
         </tr>
         <tr>
             <td>datalabel_anchor</td>
