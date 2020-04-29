@@ -377,7 +377,7 @@ vis.binds.materialdesign.chart = {
                                         spanGaps: data.attr('lineSpanGaps' + i),
                                         datalabels: {
                                             // Plugin datalabels
-                                            display: data.attr('showValues' + i),
+                                            display: myMdwHelper.getValueFromData(data.attr('showValues' + i), 'showValuesOn') === 'showValuesOn' ? true : data.attr('showValues' + i) === 'showValuesOff' ? false : 'auto',
                                             anchor: data.attr('valuesPositionAnchor' + i),
                                             align: data.attr('valuesPositionAlign' + i),
                                             offset: myMdwHelper.getNumberFromData(data.attr('valuesPositionOffset' + i), 0),

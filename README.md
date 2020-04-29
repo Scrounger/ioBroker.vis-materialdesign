@@ -1520,6 +1520,7 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
+* Line History Chart: auto mode to show values added
 * Bar Chart: auto mode to show values added
 * Pie Chart: auto mode to show values added
 * Button State: lock icon input field bug fix
