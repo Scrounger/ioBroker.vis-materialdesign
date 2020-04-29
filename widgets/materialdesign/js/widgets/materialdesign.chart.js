@@ -1080,7 +1080,7 @@ vis.binds.materialdesign.chart = {
                                             yAxisID: `yAxis_id_${myMdwHelper.getNumberFromData(graph.yAxis_id, i)}`,
                                             datalabels: {
                                                 // Plugin datalabels
-                                                display: myMdwHelper.getBooleanFromData(graph.datalabel_show, true),
+                                                display: graph.datalabel_show && graph.datalabel_show.toString() === 'auto' ? 'auto' : myMdwHelper.getBooleanFromData(graph.datalabel_show, true) === false ? false : true,
                                                 anchor: myMdwHelper.getValueFromData(graph.datalabel_anchor, 'end'),
                                                 align: myMdwHelper.getValueFromData(graph.datalabel_align, 'top'),
                                                 textAlign: myMdwHelper.getValueFromData(graph.datalabel_text_align, 'center'),
