@@ -494,7 +494,7 @@ vis.binds.materialdesign.helper = {
     },
     setValue(id, value) {
         vis.binds.materialdesign.helper.getObject(id, function (obj) {
-            if (obj && obj.common && obj.common['type']) {
+            if (obj && obj.common && obj.common['type'] && value !== null) {
                 if (obj.common['type'] === 'string') {
                     vis.setValue(id, value.toString());
                 } else if (obj.common['type'] === 'number') {
