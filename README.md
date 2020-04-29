@@ -1519,7 +1519,7 @@ ical2CalendarWidget();
 
 ## Changelog
 
-### __WORK IN PROGRESS__
+### 0.3.6 (2020-04-29)
 * Input, Select, Autocomplete: default input controll buttons removed
 * vuetify library updated to v2.2.26 
 * JSON Chart: auto mode to show values added

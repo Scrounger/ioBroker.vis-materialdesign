@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.3.5",
+        "version": "0.3.6",
         "news": {
+            "0.3.6": {
+                "en": "* Input, Select, Autocomplete: default input controll buttons removed\r\n* vuetify library updated to v2.2.26 \r\n* JSON Chart: auto mode to show values added\r\n* Line History Chart: auto mode to show values added\r\n* Bar Chart: auto mode to show values added\r\n* Pie Chart: auto mode to show values added\r\n* Button State: lock icon input field bug fix",
+                "de": "* Eingabe, Auswahl, automatische Vervollständigung: Die Standardtasten für die Eingabesteuerung wurden entfernt\r\n* vuetify Bibliothek auf v2.2.26 aktualisiert\r\n* JSON-Diagramm: Automatischer Modus zum Anzeigen der hinzugefügten Werte\r\n* Linienverlaufsdiagramm: Auto-Modus zum Anzeigen der hinzugefügten Werte\r\n* Balkendiagramm: Auto-Modus zur Anzeige der hinzugefügten Werte\r\n* Kreisdiagramm: Auto-Modus zur Anzeige der hinzugefügten Werte\r\n* Button State: Fehlerbehebung beim Eingabefeld des Schlosssymbols",
+                "ru": "* Input, Select, Autocomplete: кнопки управления вводом по умолчанию удалены\r\n* vuetify библиотека обновлена до v2.2.26\r\n* JSON Chart: автоматический режим для отображения добавленных значений\r\n* Line History Chart: автоматический режим для отображения добавленных значений\r\n* Гистограмма: автоматический режим для отображения добавленных значений\r\n* Круговая диаграмма: автоматический режим для отображения добавленных значений\r\n* Состояние кнопки: исправлена ошибка в поле ввода значка блокировки",
+                "pt": "* Entrada, Seleção, Preenchimento automático: botões de controle de entrada padrão removidos\r\n* biblioteca vuetify atualizada para v2.2.26\r\n* Gráfico JSON: modo automático para mostrar os valores adicionados\r\n* Gráfico do histórico de linhas: modo automático para mostrar os valores adicionados\r\n* Gráfico de barras: modo automático para mostrar os valores adicionados\r\n* Gráfico de pizza: modo automático para mostrar os valores adicionados\r\n* Estado do botão: ícone de cadeado",
+                "nl": "* Input, Select, Autocomplete: standaard input control knoppen verwijderd\r\n* vuetify-bibliotheek bijgewerkt naar v2.2.26\r\n* JSON-diagram: automatische modus om toegevoegde waarden weer te geven\r\n* Lijngeschiedenisdiagram: automatische modus om toegevoegde waarden weer te geven\r\n* Staafdiagram: automatische modus om toegevoegde waarden weer te geven\r\n* Cirkeldiagram: automatische modus om toegevoegde waarden weer te geven\r\n* Knopstatus: buginvoer in slotinvoerveld",
+                "fr": "* Input, Select, Autocomplete: boutons de contrôle d'entrée par défaut supprimés\r\n* Bibliothèque vuetify mise à jour vers v2.2.26\r\n* Graphique JSON: mode automatique pour afficher les valeurs ajoutées\r\n* Graphique de l'historique des lignes: mode automatique pour afficher les valeurs ajoutées\r\n* Diagramme à barres: mode automatique pour afficher les valeurs ajoutées\r\n* Pie Chart: mode automatique pour afficher les valeurs ajoutées\r\n* État du bouton: correction du bug du champ de saisie de l'icône de verrouillage",
+                "it": "* Input, Seleziona, Completamento automatico: pulsanti di controllo input predefiniti rimossi\r\n* libreria vuetify aggiornata alla v2.2.26\r\n* Grafico JSON: modalità automatica per mostrare i valori aggiunti\r\n* Grafico cronologico linee: modalità automatica per mostrare i valori aggiunti\r\n* Grafico a barre: modalità automatica per mostrare i valori aggiunti\r\n* Grafico a torta: modalità automatica per mostrare i valori aggiunti\r\n* Stato pulsante: correzione dell'errore del campo di input dell'icona di blocco",
+                "es": "* Entrada, Seleccionar, Autocompletar: botones de control de entrada predeterminados eliminados\r\n* Biblioteca vuetify actualizada a v2.2.26\r\n* Gráfico JSON: modo automático para mostrar los valores agregados\r\n* Gráfico de historial de línea: modo automático para mostrar los valores agregados\r\n* Gráfico de barras: modo automático para mostrar los valores agregados\r\n* Gráfico circular: modo automático para mostrar los valores agregados\r\n* Estado del botón: corrección de errores del campo de entrada del icono de bloqueo",
+                "pl": "* Input, Select, Autouzupełnianie: usunięto domyślne przyciski kontrolera wprowadzania\r\n* Biblioteka vuetify zaktualizowana do wersji 2.2.26\r\n* Wykres JSON: tryb automatyczny, aby wyświetlić dodane wartości\r\n* Wykres historii linii: tryb automatyczny, aby wyświetlić dodane wartości\r\n* Wykres słupkowy: tryb automatyczny, aby wyświetlić dodane wartości\r\n* Wykres kołowy: tryb automatyczny, aby wyświetlić dodane wartości\r\n* Stan przycisku: naprawa błędu pola wprowadzania ikony blokady",
+                "zh-cn": "*输入，选择，自动完成：删除了默认输入控制按钮\r\n* vuetify库已更新至v2.2.26\r\n* JSON图表：自动模式以显示添加的值\r\n*线历史记录图表：自动模式以显示添加的值\r\n*条形图：自动模式以显示添加的值\r\n*饼图：自动模式以显示添加的值\r\n*按钮状态：锁定图标输入字段的错误修复"
+            },
             "0.3.4": {
                 "en": "* Select / AutoComplete Widget: Breaking Changes !!! separator for valuelist changed from comma to semicolon\r\n* Pie Chart Widget: support for json string implemented\r\n* Browser Edge: gradient color bug fix",
                 "de": "* Select / AutoComplete Widget: Breaking Changes !!! Das Trennzeichen für die Wertliste wurde von Komma in Semikolon geändert\r\n* Kreisdiagramm-Widget: Unterstützung für JSON-Zeichenfolge implementiert\r\n* Browser Edge: Fehlerbehebung bei Farbverläufen",
@@ -230,18 +242,6 @@
                 "es": "primer lanzamiento oficial para el último repositorio",
                 "pl": "pierwsze oficjalne wydanie najnowszego repozytorium",
                 "zh-cn": "最新版本库的第一个正式版本"
-            },
-            "0.0.1": {
-                "en": "initial release",
-                "de": "Erstveröffentlichung",
-                "ru": "Начальная версия",
-                "pt": "lançamento inicial",
-                "nl": "Eerste uitgave",
-                "fr": "Première version",
-                "it": "Versione iniziale",
-                "es": "Versión inicial",
-                "pl": "Pierwsze wydanie",
-                "zh-cn": "首次出版"
             }
         },
         "title": "Material Design Widgets",
