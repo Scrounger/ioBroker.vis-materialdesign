@@ -1519,6 +1519,11 @@ ical2CalendarWidget();
 
 ## Changelog
 
+### __WORK IN PROGRESS__
+* Bar Chart: auto mode to show values added
+* Pie Chart: auto mode to show values added
+* Button State: lock icon input field bug fix
+
 ### 0.3.4 (2020-04-27)
 * Select / AutoComplete Widget: Breaking Changes !!! separator for valuelist changed from comma to semicolon
 * Pie Chart Widget: support for json string implemented

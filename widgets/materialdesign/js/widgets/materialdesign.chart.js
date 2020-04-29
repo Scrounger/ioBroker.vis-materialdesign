@@ -149,6 +149,7 @@ vis.binds.materialdesign.chart = {
                         },
                         plugins: {
                             datalabels: {
+                                display: myMdwHelper.getValueFromData(data.showValues, 'showValuesOn') === 'showValuesOn' ? true : data.showValues === 'showValuesOff' ? false : 'auto',
                                 anchor: data.valuesPositionAnchor,
                                 align: data.valuesPositionAlign,
                                 clamp: true,
@@ -178,7 +179,7 @@ vis.binds.materialdesign.chart = {
                         type: (data.chartType === 'vertical') ? 'bar' : 'horizontalBar',
                         data: chartData,
                         options: options,
-                        plugins: (data.showValues) ? [ChartDataLabels] : undefined     // show value labels
+                        plugins: [ChartDataLabels]
                     });
 
                     function onChange(e, newVal, oldVal) {
