@@ -101,6 +101,9 @@ let idPollenflug = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Pollenfl
 
 ### Changelog
 
+### 1.0.2 (29.04.2020)
+* (Scrounger) new feature of Material Design Widgets 0.3.6 added: auto show data labels on chart
+
 ### 1.0.2 (13.04.2020)
 * (Scrounger) trigger bug fix
 * (Scrounger) Pollenflug Adapter optional

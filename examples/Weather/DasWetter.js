@@ -6,7 +6,7 @@ Dieses Skript erzeugt json strings um Wetter Informationen im VIS mit den Materi
 =========================================================================================================================================================================
 
 !!! Voraussetzungen !!!
-* Material Design Widgets               >= 0.3.0
+* Material Design Widgets               >= 0.3.6
 * DasWetter                             >= 2.8.1
 * weatherunderground                    >= 3.2.1
 * Pollenflug                            >= 1.0.4        (optional in Skript Einstellung de- / aktivierbar)
@@ -24,6 +24,7 @@ Dieses Skript erzeugt json strings um Wetter Informationen im VIS mit den Materi
 * 1.0.0:            Initial release
 * 1.0.1:            Trigger bug fixes
 * 1.0.2:            enable / disable option for Pollenflug Adapter added
+* 1.0.3:            new feature of Material Design Widgets 0.3.6 added: auto show data labels on chart
 
 ************************************************************************************************************************************************************************/
 
@@ -48,7 +49,7 @@ let color_graph_temperatur_verlauf = [                                          
 let color_graph_regenwahrscheinlichkeit = '#0d47a1';                                                            // Farbe Charts - Regenwahrscheinlichkeit
 let color_graph_niederschlag = '#6dd600';                                                                       // Farbe Charts - Niederschlag
 
-let enablePollenFlug = true;                                                                                    // PollenFlug Adapter verwenden. Wenn nicht verwendet wird -> im Grid Widget von der View 'Wetter' & 'Wetter_Dialog_View_Day_2' muss die Anzahl der Spalten für das Chart 'Verlauf' angepasst werden
+let enablePollenFlug = true;                                                                                    // PollenFlug Adapter verwenden. Wenn nicht verwendet wird -> im Grid Widget von der View 'Wetter' & 'Wetter_Dialog_View_Day_2' sollte die Anzahl der Spalten für das Chart 'Verlauf' angepasst werden, damit es wieder stimmig aussieht
 let idPollenFlugRegion = 'pollenflug.0.region#112.summary'                                                      // Id des Summary Channels deiner Region
 let pollenFlugFarben = ['#57bb8a', '#94bd77', '#d4c86a', '#e9b861', '#e79a69', '#dd776e', 'red']                // Farben für die Pollenflug darstellung (Werte 0 - 6)
 let pollenFlugText = ['keine', 'kaum', 'gering', 'mäßig', 'mittel', 'hoch', 'stark']                            // Texte für die Pollenflug darstellung (Werte 0 - 6)
@@ -662,7 +663,7 @@ function createCharts(day) {
             datalabel_fontFamily: 'RobotoCondensed-Light',
             datalabel_fontSize: 12,
             datalabel_borderRadius: 6,
-            datalabel_steps: (temperatur.length > 8) ? 2 : 1,
+            datalabel_show: 'auto',
             line_PointColor: temperaturColors,
             line_PointColorBorder: temperaturColors,
             line_PointColorHover: temperaturColors,
