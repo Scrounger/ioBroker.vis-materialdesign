@@ -8644,5 +8644,41 @@ systemDictionary = {
         "es": "El objeto tiene estado múltiple",
         "pl": "Obiekt ma wielostanowiskowy",
         "zh-cn": "对象具有多状态"
-      }
+    },
+    "showValuesOn": {
+        "en": "yes",
+        "de": "Ja",
+        "ru": "да",
+        "pt": "sim",
+        "nl": "Ja",
+        "fr": "Oui",
+        "it": "sì",
+        "es": "si",
+        "pl": "tak",
+        "zh-cn": "是"
+    },
+    "showValuesOff": {
+        "en": "no",
+        "de": "Nein",
+        "ru": "нет",
+        "pt": "não",
+        "nl": "Nee",
+        "fr": "non",
+        "it": "no",
+        "es": "No",
+        "pl": "Nie",
+        "zh-cn": "没有"
+    },
+    "showValuesAuto": {
+        "en": "automatic",
+        "de": "automatisch",
+        "ru": "автоматический",
+        "pt": "automático",
+        "nl": "automatisch",
+        "fr": "automatique",
+        "it": "automatico",
+        "es": "automático",
+        "pl": "automatyczny",
+        "zh-cn": "自动"
+    }
 };
