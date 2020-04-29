@@ -98,6 +98,11 @@ vis.binds.materialdesign.vueHelper = {
         },
         setStyles: function ($el, data) {
 
+            if (data.inputType === 'date' || data.inputType === 'time' || data.inputType === 'number') {
+                // Remove input default button for clear
+                $el.find('input').attr('required', 'required');
+            }
+
             if (data.inputLayout.includes('filled')) {
                 //TODO: background color data hinzufügen
                 $el.context.style.setProperty("--vue-text-field-background-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, ''));

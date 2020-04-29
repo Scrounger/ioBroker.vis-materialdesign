@@ -2185,14 +2185,26 @@
   
   
   /* v-text-field */
-  .v-text-field__slot > input{
+  .v-text-field__slot > input {
     border-radius: 0;
     font: inherit;
     background-color: transparent;
     border-style: none;
     color: inherit;
   }
+
+  /* Chrome, Safari, Edge, Opera: Remove Number Spinner of input field */
+  .v-text-field__slot > input::-webkit-outer-spin-button,
+  .v-text-field__slot > input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
   
+  /* Firefox: Remove Number Spinner of input field */
+  .v-text-field__slot > input[type=number] {
+    -moz-appearance: textfield;
+  }
+    
   .theme--light.v-text-field > .v-input__control > .v-input__slot:before {
     border-color: var(--vue-text-field-before-color);
   }
@@ -3383,6 +3395,19 @@
     border-style: none;
     color: inherit;
   }
+
+  /* Chrome, Safari, Edge, Opera: Remove Number Spinner of input field */
+  .v-select__slot > input::-webkit-outer-spin-button,
+  .v-select__slot > input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  /* Firefox: Remove Number Spinner of input field */
+  .v-select__slot > input[type=number] {
+    -moz-appearance: textfield;
+  }
+
   .v-select__selections > input {
     border-radius: 0;
     background-color: transparent;
