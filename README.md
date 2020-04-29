@@ -1520,13 +1520,13 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
-* Input, Select, Autocomplete: default input controll buttons removed
-* vuetify library updated to v2.2.26 
-* JSON Chart: auto mode to show values added
-* Line History Chart: auto mode to show values added
-* Bar Chart: auto mode to show values added
-* Pie Chart: auto mode to show values added
-* Button State: lock icon input field bug fix
+* (Scrounger): Input, Select, Autocomplete: default input controll buttons removed
+* (Scrounger): vuetify library updated to v2.2.26 
+* (Scrounger): JSON Chart: auto mode to show values added
+* (Scrounger): Line History Chart: auto mode to show values added
+* (Scrounger): Bar Chart: auto mode to show values added
+* (Scrounger): Pie Chart: auto mode to show values added
+* (Scrounger): Button State: lock icon input field bug fix
 
 ### 0.3.4 (2020-04-27)
 * Select / AutoComplete Widget: Breaking Changes !!! separator for valuelist changed from comma to semicolon
