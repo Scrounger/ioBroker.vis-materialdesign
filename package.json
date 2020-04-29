@@ -31,7 +31,7 @@
     "material-components-web": "^4.0.0",
     "@thomasloven/round-slider": "0.3.7",
     "vue": "^2.6.11",
-    "vuetify": "2.2.5",
+    "vuetify": "^2.2.26",
     "vue-the-mask": "0.11.1",
     "@mdi/font": "^5.1.45",
     "underscore": "^1.9.2",

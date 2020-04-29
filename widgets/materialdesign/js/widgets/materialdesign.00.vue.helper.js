@@ -245,7 +245,7 @@ vis.binds.materialdesign.vueHelper = {
                 myMdwHelper.waitForElement($vuetifyContainer, '#' + selectId, data.wid, 'Select', function () {
 
                     // corresponding select object create -> set style options
-                    let selectList = $vuetifyContainer.find(`#${selectId} .v-list`).get(0);
+                    let selectList = $vuetifyContainer.find(`.v-select-list#${selectId}`).get(0);
 
                     // list item style
                     selectList.style.setProperty('--vue-list-item-height', myMdwHelper.getStringFromNumberData(data.listItemHeight, 'auto', '', 'px'));

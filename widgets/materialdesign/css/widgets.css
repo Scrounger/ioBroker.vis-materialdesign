@@ -2832,6 +2832,21 @@
     font-size: var(--vue-text-icon-clear-size);
     color: var(--vue-text-icon-clear-color);
   }
+
+  .v-input__icon--clear > button {
+    cursor: pointer;
+    font: inherit;
+    overflow: visible;
+    border-style: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
+    -webkit-appearance: button;
+    text-transform: none;
+    background-color: transparent;
+    border-style: none;
+    color: inherit;
+  }
   
   .v-input__icon--append {
     font-size: var(--vue-text-icon-append-size);
