@@ -83,6 +83,6 @@ vis.binds.materialdesign.progress =
                 }
             }, 1);
         } catch (ex) {
-            console.error(`[Progress]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Progress ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     };

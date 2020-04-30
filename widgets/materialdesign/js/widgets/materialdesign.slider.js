@@ -189,7 +189,7 @@ vis.binds.materialdesign.slider = {
                 });
             });
         } catch (ex) {
-            console.error(`[Vuetify Slider]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Vuetify Slider ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

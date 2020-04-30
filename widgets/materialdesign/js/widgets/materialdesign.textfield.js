@@ -109,6 +109,6 @@ vis.binds.materialdesign.textfield =
                 });
             }
         } catch (ex) {
-            console.error(`[Vuetify TextField]: error: ${ex.message}, stack: ${ex.stack} `);
+            console.error(`[Vuetify TextField ${data.wid}]: error: ${ex.message}, stack: ${ex.stack} `);
         }
     };

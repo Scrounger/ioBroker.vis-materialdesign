@@ -144,6 +144,6 @@ vis.binds.materialdesign.alerts =
                 ]
             }
         } catch (ex) {
-            console.error(`[Vuetify Alerts]: error: ${ex.message}, stack: ${ex.stack} `);
+            console.error(`[Vuetify Alerts ${data.wid}]: error: ${ex.message}, stack: ${ex.stack} `);
         }
     };

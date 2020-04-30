@@ -139,7 +139,7 @@ vis.binds.materialdesign.list = {
 
             return { itemList: itemList.join(''), listLayout: listLayout, nonInteractive: nonInteractive }
         } catch (ex) {
-            console.error(`[List] initialize: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[List ${data.wid}] initialize: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handler: function (el, data) {
@@ -284,7 +284,7 @@ vis.binds.materialdesign.list = {
             }
 
         } catch (ex) {
-            console.error(`[List] handler: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[List ${data.wid}] handler: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     getListItemObj: function (i, data, jsonData) {
