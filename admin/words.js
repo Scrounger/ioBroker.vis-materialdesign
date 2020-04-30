@@ -8680,5 +8680,29 @@ systemDictionary = {
         "es": "automático",
         "pl": "automatyczny",
         "zh-cn": "自动"
+    },
+    "group_tableLayout": {
+        "en": "layout",
+        "de": "Layout",
+        "ru": "расположение",
+        "pt": "disposição",
+        "nl": "indeling",
+        "fr": "disposition",
+        "it": "disposizione",
+        "es": "diseño",
+        "pl": "układ",
+        "zh-cn": "布局"
+    },
+    "fixedHeader": {
+        "en": "fixed table headline",
+        "de": "feste Tabellenüberschrift",
+        "ru": "фиксированный заголовок таблицы",
+        "pt": "título da mesa fixa",
+        "nl": "vaste tafelkop",
+        "fr": "titre de table fixe",
+        "it": "titolo del tavolo fisso",
+        "es": "titular de mesa fija",
+        "pl": "naprawiono nagłówek tabeli",
+        "zh-cn": "固定表格标题"
     }
 };

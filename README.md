@@ -1519,6 +1519,9 @@ ical2CalendarWidget();
 
 ## Changelog
 
+### __WORK IN PROGRESS__
+* table: option for fixed table headline added
+
 ### 0.3.6 (2020-04-29)
 * Input, Select, Autocomplete: default input controll buttons removed
 * vuetify library updated to v2.2.26 

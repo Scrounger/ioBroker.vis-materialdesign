@@ -52,6 +52,24 @@ vis.binds.materialdesign.helper = {
             callBack();
         }
     },
+    waitForRealHeight: function (element, wid, widgetName, callBack, counter = 0, debug = false) {
+        if (counter < 100) {
+            setTimeout(function () {
+                let height = window.getComputedStyle(element, null).height
+
+                if (height.includes('px')) {
+                    callBack();
+                } else {
+                    if (debug) console.log(`[${widgetName} ${wid}] wait for real height`);
+                    counter++
+                    vis.binds.materialdesign.helper.waitForRealHeight(element, wid, widgetName, callBack, counter);
+                }
+            }, 50);
+        } else {
+            if (debug) console.log(`[${widgetName} ${wid}] stop waiting for real height after 100 retries`);
+            callBack();
+        }
+    },    
     installedVersion: function (el, data) {
         setTimeout(function () {
             let version = 'version: "0.3.6"'

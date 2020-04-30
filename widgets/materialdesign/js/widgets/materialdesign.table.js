@@ -8,8 +8,9 @@
 "use strict";
 
 vis.binds.materialdesign.table = {
-    initialize: function (data) {
+    initialize: function (el, data) {
         try {
+            let $this = $(el);
             let tableElement = []
 
             let headerFontSize = myMdwHelper.getFontSize(data.headerTextSize);
@@ -21,11 +22,13 @@ vis.binds.materialdesign.table = {
                 tableLayout = 'materialdesign-list-card materialdesign-list-card--outlined';
             }
 
-            tableElement.push(`<div class="mdc-data-table ${tableLayout}" style="width: 100%;">
+            tableElement.push(`<div class="mdc-data-table ${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'fixed-header' : ''} ${tableLayout}" style="width: 100%;">
                                     <table class="mdc-data-table__table" aria-label="Material Design Widgets Table">`)
 
-            tableElement.push(`<thead>
+            tableElement.push(`<thead ${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'style="position: sticky; top: 0;"' : ''}>
                                     <tr class="mdc-data-table__header-row" style="height: ${(myMdwHelper.getNumberFromData(data.headerRowHeight, null) !== null) ? data.headerRowHeight + 'px' : '1px'};">`)
+
+
 
             if (data.showHeader) {
                 for (var i = 0; i <= data.countCols; i++) {
@@ -66,88 +69,98 @@ vis.binds.materialdesign.table = {
 
             return tableElement.join('');
         } catch (ex) {
-            console.error(`[Table] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Table ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handle: function (el, data) {
         try {
-            setTimeout(function () {
-                let $this = $(el);
-                let table = $this.find('.mdc-data-table').get(0);
+            let $this = $(el);
+            $this.append(this.initialize(el, data));
 
-                table.style.setProperty("--materialdesign-color-table-background", myMdwHelper.getValueFromData(data.colorBackground, ''));
-                table.style.setProperty("--materialdesign-color-table-border", myMdwHelper.getValueFromData(data.borderColor, ''));
-                table.style.setProperty("--materialdesign-color-table-header-row-background", myMdwHelper.getValueFromData(data.colorHeaderRowBackground, ''));
-                table.style.setProperty("--materialdesign-color-table-header-row-text-color", myMdwHelper.getValueFromData(data.colorHeaderRowText, ''));
-                table.style.setProperty("--materialdesign-color-table-row-background", myMdwHelper.getValueFromData(data.colorRowBackground, ''));
-                table.style.setProperty("--materialdesign-color-table-row-text-color", myMdwHelper.getValueFromData(data.colorRowText, ''));
-                table.style.setProperty("--materialdesign-color-table-row-divider", myMdwHelper.getValueFromData(data.dividers, ''));
+            myMdwHelper.waitForElement($this, `.mdc-data-table`, data.wid, 'Table', function () {
+                myMdwHelper.waitForRealHeight($this.context, data.wid, 'Table', function () {
+                    let table = $this.find('.mdc-data-table').get(0);
 
-                const mdcTable = new mdc.dataTable.MDCDataTable(table);
+                    let height = window.getComputedStyle($this.context, null).height
+                    $this.find('.mdc-data-table').css('height', height);
+                    // $this.find('.mdc-data-table__table').css('height', height);
 
-                vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                    $this.find('.mdc-data-table__content').empty();
-                    $this.find('.mdc-data-table__content').append(vis.binds.materialdesign.table.getContentElements(newVal, data));
-                });
+                    let heightHeader = window.getComputedStyle($this.find('.mdc-data-table__header-row').get(0), null).height;
+                    $this.find('.mdc-data-table__content').css('height', (parseInt(height.replace('px', '')) - parseInt(heightHeader.replace('px', '')) - 2) + 'px');
 
-                $this.find('.mdc-data-table__header-cell').click(function (obj) {
-                    let colIndex = $(this).attr('colIndex');
-                    let sortASC = true;
+                    table.style.setProperty("--materialdesign-color-table-background", myMdwHelper.getValueFromData(data.colorBackground, ''));
+                    table.style.setProperty("--materialdesign-color-table-border", myMdwHelper.getValueFromData(data.borderColor, ''));
+                    table.style.setProperty("--materialdesign-color-table-header-row-background", myMdwHelper.getValueFromData(data.colorHeaderRowBackground, ''));
+                    table.style.setProperty("--materialdesign-color-table-header-row-text-color", myMdwHelper.getValueFromData(data.colorHeaderRowText, ''));
+                    table.style.setProperty("--materialdesign-color-table-row-background", myMdwHelper.getValueFromData(data.colorRowBackground, ''));
+                    table.style.setProperty("--materialdesign-color-table-row-text-color", myMdwHelper.getValueFromData(data.colorRowText, ''));
+                    table.style.setProperty("--materialdesign-color-table-row-divider", myMdwHelper.getValueFromData(data.dividers, ''));
 
-                    let jsonData = [];
-                    if (myMdwHelper.getValueFromData(data.oid, null) !== null) {
-                        jsonData = vis.binds.materialdesign.table.getJsonData(vis.states.attr(data.oid + '.val'), data);
-                    } else {
-                        jsonData = JSON.parse(data.dataJson)
-                    }
+                    const mdcTable = new mdc.dataTable.MDCDataTable(table);
 
-                    let key = (myMdwHelper.getValueFromData(data.attr('sortKey' + colIndex), null) !== null) ? data.attr('sortKey' + colIndex) : Object.keys(jsonData[0])[colIndex];
-
-                    if ($(this).attr('sort')) {
-                        if ($(this).attr('sort') === 'ASC') {
-                            sortASC = false;
-                            $(this).attr('sort', 'DESC');
-                            ($(this).text().includes('▾') || $(this).text().includes('▴')) ?
-                                $(this).text($(this).text().replace('▾', '▴')) : $(this).text($(this).text() + '▴');
-                        } else {
-                            sortASC = true;
-                            $(this).attr('sort', 'ASC');
-                            ($(this).text().includes('▾') || $(this).text().includes('▴')) ?
-                                $(this).text($(this).text().replace('▴', '▾')) : $(this).text($(this).text() + '▾');
-                        }
-                    } else {
-                        // sort order is not defined -> sortASC
-                        sortASC = true;
-                        $(this).attr('sort', 'ASC');
-                        $(this).text($(this).text() + '▾');
-                    }
-
-                    $('.mdc-data-table__header-cell').each(function () {
-                        if ($(this).attr('colIndex') !== colIndex) {
-                            $(this).text($(this).text().replace('▴', '').replace('▾', ''));
-                        }
+                    vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                        $this.find('.mdc-data-table__content').empty();
+                        $this.find('.mdc-data-table__content').append(vis.binds.materialdesign.table.getContentElements(newVal, data));
                     });
 
-                    $this.find('.mdc-data-table__content').empty();
-                    $this.find('.mdc-data-table__content').append(vis.binds.materialdesign.table.getContentElements(null, data, sortByKey(jsonData, key, sortASC)));      //TODO: sort key by user defined
+                    $this.find('.mdc-data-table__header-cell').click(function (obj) {
+                        let colIndex = $(this).attr('colIndex');
+                        let sortASC = true;
 
-                    function sortByKey(array, key, sortASC) {
-                        return array.sort(function (a, b) {
-                            var x = a[key];
-                            var y = b[key];
+                        let jsonData = [];
+                        if (myMdwHelper.getValueFromData(data.oid, null) !== null) {
+                            jsonData = vis.binds.materialdesign.table.getJsonData(vis.states.attr(data.oid + '.val'), data);
+                        } else {
+                            jsonData = JSON.parse(data.dataJson)
+                        }
 
-                            if (sortASC) {
-                                return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+                        let key = (myMdwHelper.getValueFromData(data.attr('sortKey' + colIndex), null) !== null) ? data.attr('sortKey' + colIndex) : Object.keys(jsonData[0])[colIndex];
+
+                        if ($(this).attr('sort')) {
+                            if ($(this).attr('sort') === 'ASC') {
+                                sortASC = false;
+                                $(this).attr('sort', 'DESC');
+                                ($(this).text().includes('▾') || $(this).text().includes('▴')) ?
+                                    $(this).text($(this).text().replace('▾', '▴')) : $(this).text($(this).text() + '▴');
                             } else {
-                                return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+                                sortASC = true;
+                                $(this).attr('sort', 'ASC');
+                                ($(this).text().includes('▾') || $(this).text().includes('▴')) ?
+                                    $(this).text($(this).text().replace('▴', '▾')) : $(this).text($(this).text() + '▾');
+                            }
+                        } else {
+                            // sort order is not defined -> sortASC
+                            sortASC = true;
+                            $(this).attr('sort', 'ASC');
+                            $(this).text($(this).text() + '▾');
+                        }
+
+                        $('.mdc-data-table__header-cell').each(function () {
+                            if ($(this).attr('colIndex') !== colIndex) {
+                                $(this).text($(this).text().replace('▴', '').replace('▾', ''));
                             }
                         });
-                    }
-                });
 
-            }, 1);
+                        $this.find('.mdc-data-table__content').empty();
+                        $this.find('.mdc-data-table__content').append(vis.binds.materialdesign.table.getContentElements(null, data, sortByKey(jsonData, key, sortASC)));      //TODO: sort key by user defined
+
+                        function sortByKey(array, key, sortASC) {
+                            return array.sort(function (a, b) {
+                                var x = a[key];
+                                var y = b[key];
+
+                                if (sortASC) {
+                                    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+                                } else {
+                                    return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+                                }
+                            });
+                        }
+                    });
+                });
+            });
         } catch (ex) {
-            console.error(`[Table] handle: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Table ${data.wid}] handle: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     getContentElements: function (input, data, jsonData = null) {
@@ -221,6 +234,7 @@ vis.binds.materialdesign.table = {
                             color: ${myMdwHelper.getValueFromData(data.attr('colTextColor' + col), '')}; 
                             font-family: ${myMdwHelper.getValueFromData(data.attr('fontFamily' + col), '')};
                             white-space: ${(data.attr('colNoWrap' + col) ? 'nowrap' : 'unset')};
+                            ${(myMdwHelper.getNumberFromData(data.attr('columnWidth' + col), null) !== null) ? `width: ${data.attr('columnWidth' + col)}px;` : ''};
                             ">
                                 ${prefix}${objValue}${suffix}
                         </td>`
