@@ -235,7 +235,7 @@ vis.binds.materialdesign.chart = {
                     function getBarItemObj(i, data, jsonData, globalColor, globalValueTextColor, value = 0) {
                         if (data.chartDataMethod === 'inputPerEditor') {
                             return {
-                                label: myMdwHelper.getValueFromData(data.attr('label' + i), '').split('\\n'),
+                                label: myMdwHelper.getValueFromData(data.attr('label' + i), ''),
                                 value: vis.states.attr(data.attr('oid' + i) + '.val'),
                                 dataColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), globalColor),
                                 valueText: myMdwHelper.getValueFromData(data.attr('valueText' + i), `${myMdwHelper.formatNumber(parseFloat(value), data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
@@ -244,7 +244,7 @@ vis.binds.materialdesign.chart = {
                             }
                         } else {
                             return {
-                                label: myMdwHelper.getValueFromData(jsonData[i].label, '').split('\\n'),
+                                label: myMdwHelper.getValueFromData(jsonData[i].label, ''),
                                 value: jsonData[i].value,
                                 dataColor: myMdwHelper.getValueFromData(jsonData[i].dataColor, globalColor),
                                 valueText: myMdwHelper.getValueFromData(jsonData[i].valueText, `${myMdwHelper.formatNumber(parseFloat(value), data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
@@ -926,7 +926,7 @@ vis.binds.materialdesign.chart = {
                     function getBarItemObj(i, data, jsonData, globalColor, globalValueTextColor, value = 0) {
                         if (data.chartDataMethod === 'inputPerEditor') {
                             return {
-                                label: myMdwHelper.getValueFromData(data.attr('label' + i), '').split('\\n'),
+                                label: myMdwHelper.getValueFromData(data.attr('label' + i), ''),
                                 value: vis.states.attr(data.attr('oid' + i) + '.val'),
                                 dataColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), globalColor),
                                 valueText: myMdwHelper.getValueFromData(data.attr('valueText' + i), `${myMdwHelper.formatNumber(parseFloat(value), data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
@@ -935,7 +935,7 @@ vis.binds.materialdesign.chart = {
                             }
                         } else {
                             return {
-                                label: myMdwHelper.getValueFromData(jsonData[i].label, '').split('\\n'),
+                                label: myMdwHelper.getValueFromData(jsonData[i].label, ''),
                                 value: jsonData[i].value,
                                 dataColor: myMdwHelper.getValueFromData(jsonData[i].dataColor, globalColor),
                                 valueText: myMdwHelper.getValueFromData(jsonData[i].valueText, `${myMdwHelper.formatNumber(parseFloat(value), data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
