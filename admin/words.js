@@ -8704,5 +8704,17 @@ systemDictionary = {
         "es": "titular de mesa fija",
         "pl": "naprawiono nagłówek tabeli",
         "zh-cn": "固定表格标题"
+    },
+    "legendPadding": {
+        "en": "distance between legends points",
+        "de": "Abstand zwischen Legendenpunkten",
+        "ru": "расстояние между точками легенды",
+        "pt": "distância entre pontos de legendas",
+        "nl": "afstand tussen legendapunten",
+        "fr": "distance entre les points des légendes",
+        "it": "distanza tra i punti delle legende",
+        "es": "distancia entre puntos de leyendas",
+        "pl": "odległość między punktami legend",
+        "zh-cn": "图例点之间的距离"
     }
 };
