@@ -55,7 +55,7 @@ vis.binds.materialdesign.table = {
             tableElement.push(`<tbody class="mdc-data-table__content">`);
 
             // adding Content
-            if (myMdwHelper.getValueFromData(data.oid, null) !== null) {
+            if (myMdwHelper.getValueFromData(data.oid, null) !== null && vis.states.attr(data.oid + '.val') !== null) {
                 tableElement.push(vis.binds.materialdesign.table.getContentElements(vis.states.attr(data.oid + '.val'), data));
             } else {
                 tableElement.push(vis.binds.materialdesign.table.getContentElements(data.dataJson, data));
@@ -108,7 +108,7 @@ vis.binds.materialdesign.table = {
                         let sortASC = true;
 
                         let jsonData = [];
-                        if (myMdwHelper.getValueFromData(data.oid, null) !== null) {
+                        if (myMdwHelper.getValueFromData(data.oid, null) !== null && vis.states.attr(data.oid + '.val') !== null) {
                             jsonData = vis.binds.materialdesign.table.getJsonData(vis.states.attr(data.oid + '.val'), data);
                         } else {
                             jsonData = JSON.parse(data.dataJson)
