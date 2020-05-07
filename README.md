@@ -1520,6 +1520,7 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
+* switch: lock option added
 * bar & pie chart: option for distance between legends points added
 * table: option for fixed table headline added
 * charts: newline bug fixed
