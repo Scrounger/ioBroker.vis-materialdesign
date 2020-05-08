@@ -798,6 +798,10 @@ vis.binds.materialdesign.chart = {
                         maintainAspectRatio: false,
                         layout: myChartHelper.getLayout(data),
                         legend: myChartHelper.getLegend(data),
+                        onResize: function (chart, size) {
+                            // reRender after orientation change
+                            vis.reRenderWidget(vis.activeViewDiv, vis.activeView, data.wid);
+                        },
                         cutoutPercentage: (data.chartType === 'doughnut') ? myMdwHelper.getNumberFromData(data.doughnutCutOut, 50) : 0,
                         chartArea: {
                             backgroundColor: myMdwHelper.getValueFromData(data.chartAreaBackgroundColor, ''),
