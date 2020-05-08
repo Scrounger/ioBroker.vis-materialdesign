@@ -146,7 +146,7 @@ vis.binds.materialdesign.chart = {
                                     } else {
                                         return null;
                                     }
-                                },                                
+                                },
                                 label: function (tooltipItem, chart) {
                                     let barItem = getBarItemObj(tooltipItem.index, data, jsonData, globalColor, globalValueTextColor);
 
@@ -1316,8 +1316,17 @@ vis.binds.materialdesign.chart = {
                                     bodyFontFamily: myMdwHelper.getValueFromData(data.tooltipBodyFontFamily, undefined),
                                     bodyFontSize: myMdwHelper.getNumberFromData(data.tooltipBodyFontSize, undefined),
                                     callbacks: {
+                                        title: function (tooltipItem, chart) {
+                                            if (jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title) {
+                                                return jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title.split('\\n');
+                                            } else {
+                                                return null;
+                                            }
+                                        },
                                         label: function (tooltipItem, chart) {
-                                            if (tooltipItem && tooltipItem.value) {
+                                            if (jsonData.graphs[tooltipItem.datasetIndex].tooltip_text) {
+                                                return jsonData.graphs[tooltipItem.datasetIndex].tooltip_text.split('\\n');
+                                            } else if (tooltipItem && tooltipItem.value) {
                                                 return `${chart.datasets[tooltipItem.datasetIndex].label}: ${myMdwHelper.formatNumber(tooltipItem.value, jsonData.graphs[tooltipItem.datasetIndex].tooltip_MinDigits, jsonData.graphs[tooltipItem.datasetIndex].tooltip_MaxDigits)}${myMdwHelper.getValueFromData(jsonData.graphs[tooltipItem.datasetIndex].tooltip_AppendText, '')}`
                                                     .split('\\n');
                                             }

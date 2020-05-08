@@ -558,6 +558,18 @@ Settings that are not listed in the table below are self-explanatory.
             <td>[ { value: -20, color: '#7d3c98' }, { value: 0, color: '#2874a6' } ]</td>
         </tr>
         <tr>
+            <td>tooltip_title</td>
+            <td>title of tooltip</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>tooltip_text</td>
+            <td>ovveride text of tooltip</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
             <td>tooltip_MinDigits</td>
             <td>max decimals of tooltip value</td>
             <td>number</td>
@@ -1523,9 +1535,11 @@ ical2CalendarWidget();
 * checkbox: lock option added
 * switch: lock option added
 * bar & pie chart: option for distance between legends points added
+* bar, pie & json chart: tooltip title and value override options added
+* pie chart: orientation change bug fix
 * table: option for fixed table headline added
 * charts: newline bug fixed
-* pie chart: tooltip layout options added
+
 
 ### 0.3.6 (2020-04-29)
 * Input, Select, Autocomplete: default input controll buttons removed
