@@ -138,12 +138,25 @@ vis.binds.materialdesign.chart = {
                             bodyFontFamily: myMdwHelper.getValueFromData(data.tooltipBodyFontFamily, undefined),
                             bodyFontSize: myMdwHelper.getNumberFromData(data.tooltipBodyFontSize, undefined),
                             callbacks: {
+                                title: function (tooltipItem, chart) {
+                                    let barItem = getBarItemObj(tooltipItem[0].index, data, jsonData, globalColor, globalValueTextColor);
+
+                                    if (barItem && barItem.tooltipTitle) {
+                                        return barItem.tooltipTitle.split('\\n');
+                                    } else {
+                                        return null;
+                                    }
+                                },                                
                                 label: function (tooltipItem, chart) {
-                                    if (tooltipItem && tooltipItem.value) {
+                                    let barItem = getBarItemObj(tooltipItem.index, data, jsonData, globalColor, globalValueTextColor);
+
+                                    if (barItem && barItem.tooltipText) {
+                                        return barItem.tooltipText.split('\\n');
+                                    } else if (tooltipItem && tooltipItem.value) {
                                         return `${chart.datasets[0].label}: ${myMdwHelper.formatNumber(tooltipItem.value, data.tooltipValueMinDecimals, data.tooltipValueMaxDecimals)}${myMdwHelper.getValueFromData(data.tooltipBodyAppend, '')}`
                                             .split('\\n');
                                     }
-                                    return '';
+                                    return null;
                                 }
                             }
                         },
@@ -240,7 +253,9 @@ vis.binds.materialdesign.chart = {
                                 dataColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), globalColor),
                                 valueText: myMdwHelper.getValueFromData(data.attr('valueText' + i), `${myMdwHelper.formatNumber(parseFloat(value), data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
                                 valueColor: myMdwHelper.getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor),
-                                valueAppendix: myMdwHelper.getValueFromData(data.attr('labelValueAppend' + i), '')
+                                valueAppendix: myMdwHelper.getValueFromData(data.attr('labelValueAppend' + i), ''),
+                                tooltipTitle: myMdwHelper.getValueFromData(data.attr('tooltipTitle' + i), undefined),
+                                tooltipText: myMdwHelper.getValueFromData(data.attr('tooltipText' + i), undefined),
                             }
                         } else {
                             return {
@@ -249,7 +264,9 @@ vis.binds.materialdesign.chart = {
                                 dataColor: myMdwHelper.getValueFromData(jsonData[i].dataColor, globalColor),
                                 valueText: myMdwHelper.getValueFromData(jsonData[i].valueText, `${myMdwHelper.formatNumber(parseFloat(value), data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
                                 valueColor: myMdwHelper.getValueFromData(jsonData[i].valueColor, globalValueTextColor),
-                                valueAppendix: myMdwHelper.getValueFromData(jsonData[i].valueAppendix, '')
+                                valueAppendix: myMdwHelper.getValueFromData(jsonData[i].valueAppendix, ''),
+                                tooltipTitle: myMdwHelper.getValueFromData(jsonData[i].tooltipTitle, undefined),
+                                tooltipText: myMdwHelper.getValueFromData(jsonData[i].tooltipText, undefined),
                             }
                         }
                     }
