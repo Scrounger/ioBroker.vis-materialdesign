@@ -1,6 +1,6 @@
 {
   "name": "iobroker.vis-materialdesign",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "Material Design Widgets based on Google material components web library",
   "author": {
     "name": "Scrounger",
@@ -21,7 +21,7 @@
   "devDependencies": {
     "@iobroker/testing": "^2.1.0",
     "@types/gulp": "^4.0.6",
-    "@alcalzone/release-script": "^1.3.1",
+    "@alcalzone/release-script": "^1.4.0",
     "axios": "^0.19.2",
     "gulp": "^4.0.2",
     "mocha": "^7.1.1",

@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.3.7",
+        "version": "0.3.8",
         "news": {
             "0.3.6": {
                 "en": "* Input, Select, Autocomplete: default input controll buttons removed\r\n* vuetify library updated to v2.2.26 \r\n* JSON Chart: auto mode to show values added\r\n* Line History Chart: auto mode to show values added\r\n* Bar Chart: auto mode to show values added\r\n* Pie Chart: auto mode to show values added\r\n* Button State: lock icon input field bug fix",
