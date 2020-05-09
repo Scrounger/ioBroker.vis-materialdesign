@@ -818,7 +818,17 @@ vis.binds.materialdesign.chart = {
                         legend: myChartHelper.getLegend(data),
                         onResize: function (chart, size) {
                             // reRender after orientation change
-                            vis.reRenderWidget(vis.activeViewDiv, vis.activeView, data.wid);
+                            let parentViewId = $(el).parent().attr('id');
+                            
+                            console.log(`[Pie Chart ${data.wid}] onResize triggered`);
+                            
+                            if (parentViewId.includes('visview_')) {
+                                parentViewId = parentViewId.replace('visview_', '')
+                                vis.reRenderWidget(parentViewId, parentViewId, data.wid);
+                            } else {
+                                console.error(`[Pie Chart ${data.wid}] parent view not contains 'visview_'`);
+                                console.error($(el).parent());
+                            }
                         },
                         cutoutPercentage: (data.chartType === 'doughnut') ? myMdwHelper.getNumberFromData(data.doughnutCutOut, 50) : 0,
                         chartArea: {
