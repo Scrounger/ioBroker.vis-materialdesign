@@ -380,6 +380,7 @@ vis.binds.materialdesign.chart = {
                                         data: dataArray,
                                         lineTension: myMdwHelper.getNumberFromData(data.attr('lineTension' + i), 0.4),
                                         borderWidth: myMdwHelper.getNumberFromData(data.attr('lineThikness' + i), 2),
+                                        steppedLine: myMdwHelper.getBooleanFromData(data.attr('steppedLine' + i), false),
                                         label: myMdwHelper.getValueFromData(data.attr('legendText' + i), ''),
                                         borderColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor),     // Line Color
                                         pointBackgroundColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor),

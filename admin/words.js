@@ -8716,5 +8716,41 @@ systemDictionary = {
         "es": "distancia entre puntos de leyendas",
         "pl": "odległość między punktami legend",
         "zh-cn": "图例点之间的距离"
+    },
+    "steppedLine": {
+        "en": "enable stepped line",
+        "de": "gestufte Linie aktivieren",
+        "ru": "включить ступенчатую линию",
+        "pt": "ativar linha escalonada",
+        "nl": "staplijn inschakelen",
+        "fr": "activer la ligne étagée",
+        "it": "abilita linea a gradini",
+        "es": "habilitar línea escalonada",
+        "pl": "włącz schodkową linię",
+        "zh-cn": "启用阶梯线"
+    },
+    "tooltipTitle": {
+        "en": "tooltip title",
+        "de": "Tooltip-Titel",
+        "ru": "название всплывающей подсказки",
+        "pt": "título da dica de ferramenta",
+        "nl": "titel van tooltip",
+        "fr": "titre de l'infobulle",
+        "it": "titolo descrizione comando",
+        "es": "título de información sobre herramientas",
+        "pl": "tytuł podpowiedzi",
+        "zh-cn": "工具提示标题"
+    },
+    "tooltipText": {
+        "en": "override tooltip text",
+        "de": "Tooltip-Text überschreiben",
+        "ru": "переопределить текст подсказки",
+        "pt": "substituir texto da dica de ferramenta",
+        "nl": "tooltip-tekst overschrijven",
+        "fr": "remplacer le texte de l'infobulle",
+        "it": "sovrascrive il testo della descrizione comandi",
+        "es": "anular texto de información sobre herramientas",
+        "pl": "zastępuj tekst podpowiedzi",
+        "zh-cn": "覆盖工具提示文字"
     }
 };

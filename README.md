@@ -1537,6 +1537,7 @@ ical2CalendarWidget();
 * bar & pie chart: option for distance between legends points added
 * bar, pie & json chart: tooltip title and value override options added
 * pie chart: orientation change bug fix
+* line history chart: stepped line option added
 * table: option for fixed table headline added
 * charts: newline bug fixed
 
