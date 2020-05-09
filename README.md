@@ -755,6 +755,12 @@ Settings that are not listed in the table below are self-explanatory.
             <td>false, true</td>
         </tr>
         <tr>
+            <td>line_steppedLine</td>
+            <td>enable stepped line</td>
+            <td>boolean</td>
+            <td>false, true</td>
+        </tr>
+        <tr>
             <td>line_Tension</td>
             <td>smothness of line</td>
             <td>number</td>
@@ -1537,7 +1543,7 @@ ical2CalendarWidget();
 * bar & pie chart: option for distance between legends points added
 * bar, pie & json chart: tooltip title and value override options added
 * pie chart: orientation change bug fix
-* line history chart: stepped line option added
+* json & line history chart: stepped line option added
 * table: option for fixed table headline added
 * charts: newline bug fixed
 
