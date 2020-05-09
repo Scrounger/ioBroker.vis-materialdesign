@@ -1176,7 +1176,7 @@ vis.binds.materialdesign.chart = {
                                                 {
                                                     // line graph specific properties
                                                     borderColor: graphColor,
-                                                    steppedLine: myMdwHelper.getNumberFromData(graph.line_steppedLine, true),
+                                                    steppedLine: myMdwHelper.getNumberFromData(graph.line_steppedLine, false),
 
                                                     // JSON Daten
                                                     pointStyle: myMdwHelper.getValueFromData(graph.line_pointStyle, 'circle'),
