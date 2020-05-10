@@ -1546,6 +1546,7 @@ ical2CalendarWidget();
 * json & line history chart: stepped line option added
 * table: option for fixed table headline added
 * charts: newline bug fixed
+* charts: tooltip decimal places bug fix
 
 
 ### 0.3.6 (2020-04-29)

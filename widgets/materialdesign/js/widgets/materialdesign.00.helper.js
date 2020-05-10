@@ -486,7 +486,7 @@ vis.binds.materialdesign.helper = {
         }
     },
     formatNumber(value, minDigits = undefined, maxDigits = undefined) {
-        if (!isNaN(parseFloat(value)) && typeof (value) === 'number') {
+        if (!isNaN(parseFloat(value))) {
             value = parseFloat(value);
             if ((minDigits !== undefined && minDigits !== '') && (maxDigits !== undefined && maxDigits !== '')) {
                 return value.toLocaleString(undefined, { minimumFractionDigits: minDigits, maximumFractionDigits: maxDigits });
