@@ -1,7 +1,7 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
 
-    version: "0.3.8"
+    version: "0.3.7"
 
     Copyright 2019 Scrounger scrounger@gmx.net
 */
@@ -146,7 +146,7 @@ vis.binds.materialdesign.button = {
             console.error(`[Button - ${data.wid}] handleAddition: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    handleState: function (el, data) {
+    handleState: function (el, data, isMulti = false) {
         try {
             // modified from vis adapter -> https://github.com/ioBroker/ioBroker.vis/blob/2a08ee6da626a65b9d0b42b8679563e74272bfc6/www/widgets/basic.html#L480
             var $this = $(el);
@@ -158,7 +158,7 @@ vis.binds.materialdesign.button = {
             if ($this.attr('isLocked') === 'true') {
                 $this.css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
             }
-
+            console.log(data.wid + ": " + isMulti);
             if (!vis.editMode) {
                 var moved = false;
                 $this.on('click touchend', function (e) {
@@ -169,15 +169,12 @@ vis.binds.materialdesign.button = {
 
                     if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === undefined) {
                         var oid = data.oid;
-
-                        if (oid) {
-                            var val = data.value;
-                            if (val === undefined || val === null) val = false;
-                            if (val === 'true') val = true;
-                            if (val === 'false') val = false;
-                            if (parseFloat(val).toString() == val) val = parseFloat(val);
-
-                            if (oid) myMdwHelper.setValue(oid, val);
+                        if (!isMulti) {
+                            setValue(data.oid, data.value);
+                        } else {
+                            for (var i = 0; i <= data.countOids; i++) {
+                                setValue(data.attr('oid' + i), data.attr('value' + i))
+                            }
                         }
                     } else {
                         unlockButton();
@@ -198,6 +195,18 @@ vis.binds.materialdesign.button = {
                         $this.find('.materialdesign-lock-icon').show();
                         $this.css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
                     }, myMdwHelper.getNumberFromData(data.autoLockAfter, 10) * 1000);
+                }
+
+                function setValue(oid, value) {
+                    if (oid) {
+                        var val = value;
+                        if (val === undefined || val === null) val = false;
+                        if (val === 'true') val = true;
+                        if (val === 'false') val = false;
+                        if (parseFloat(val).toString() == val) val = parseFloat(val);
+
+                        if (oid) myMdwHelper.setValue(oid, val);
+                    }
                 }
             }
         } catch (ex) {
