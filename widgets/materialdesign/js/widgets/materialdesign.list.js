@@ -45,8 +45,15 @@ vis.binds.materialdesign.list =
 
                 if (data.listItemDataMethod === 'jsonStringObject') {
                     try {
-                        jsonData = JSON.parse(data.jsonStringObject);
-                        countOfItems = jsonData.length - 1;
+
+                        if (vis.editMode && data.jsonStringObject && data.jsonStringObject.startsWith('{') && data.jsonStringObject.endsWith("}")) {
+                            // show in Editor if json is Binding
+                            jsonData = JSON.parse(vis.states.attr(data.jsonStringObject.substring(1, data.jsonStringObject.length - 1) + '.val'));
+                            countOfItems = jsonData.length - 1;
+                        } else {
+                            jsonData = JSON.parse(data.jsonStringObject);
+                            countOfItems = jsonData.length - 1;
+                        }
                     } catch (err) {
                         jsonData = [
                             {
@@ -206,91 +213,91 @@ vis.binds.materialdesign.list =
                 let list = $this.context;
 
                 let spaceBetweenImageAndLabel = myMdwHelper.getValueFromData(data.distanceBetweenTextAndImage, '', 'margin-right: ', 'px;');
-    
+
                 const mdcList = new mdc.list.MDCList(list);
                 const mdcListAdapter = mdcList.getDefaultFoundation().adapter_;
                 const listItemRipples = mdcList.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
-    
+
                 list.style.setProperty("--materialdesign-color-list-item-background", myMdwHelper.getValueFromData(data.listItemBackground, ''));
                 list.style.setProperty("--materialdesign-color-list-item-hover", myMdwHelper.getValueFromData(data.colorListItemHover, ''));
                 list.style.setProperty("--materialdesign-color-list-item-selected", myMdwHelper.getValueFromData(data.colorListItemSelected, ''));
                 list.style.setProperty("--materialdesign-color-list-item-text", myMdwHelper.getValueFromData(data.colorListItemText, ''));
                 list.style.setProperty("--materialdesign-color-list-item-text-activated", myMdwHelper.getValueFromData(data.colorListItemText, ''));
                 list.style.setProperty("--materialdesign-color-list-item-text-secondary", myMdwHelper.getValueFromData(data.colorListItemTextSecondary, ''));
-    
+
                 list.style.setProperty("--materialdesign-color-list-item-text-right", myMdwHelper.getValueFromData(data.colorListItemTextRight, ''));
                 list.style.setProperty("--materialdesign-color-list-item-text-secondary-right", myMdwHelper.getValueFromData(data.colorListItemTextSecondaryRight, ''));
-    
+
                 list.style.setProperty("--materialdesign-color-list-item-header", myMdwHelper.getValueFromData(data.colorListItemHeaders, ''));
                 list.style.setProperty("--materialdesign-color-list-item-divider", myMdwHelper.getValueFromData(data.colorListItemDivider, ''));
-    
+
                 list.style.setProperty("--materialdesign-color-switch-on", myMdwHelper.getValueFromData(data.colorSwitchTrue, ''));
                 list.style.setProperty("--materialdesign-color-switch-off", myMdwHelper.getValueFromData(data.colorSwitchThumb, ''));
                 list.style.setProperty("--materialdesign-color-switch-track", myMdwHelper.getValueFromData(data.colorSwitchTrack, ''));
                 list.style.setProperty("--materialdesign-color-switch-off-hover", myMdwHelper.getValueFromData(data.colorSwitchHover, ''));
-    
+
                 if (!vis.editMode) {
                     mdcList.listen('MDCList:action', function (item) {
                         let index = item.detail.index;
                         let listItemObj = getListItemObj(index, data, jsonData);
-    
+
                         if (data.listType !== 'text') {
                             vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                         }
-    
+
                         if (data.listType === 'checkbox' || data.listType === 'switch') {
                             let selectedValue = mdcListAdapter.isCheckboxCheckedAtIndex(index);
-    
+
                             myMdwHelper.setValue(listItemObj.objectId, selectedValue);
-    
+
                             setLayout(index, selectedValue, listItemObj);
-    
+
                         } else if (data.listType === 'buttonToggle') {
                             let selectedValue = vis.states.attr(listItemObj.objectId + '.val');
-    
+
                             myMdwHelper.setValue(listItemObj.objectId, !selectedValue);
-    
+
                             setLayout(index, !selectedValue, listItemObj);
-    
+
                         } else if (data.listType === 'buttonState') {
                             let valueToSet = listItemObj.buttonStateValue;
-    
+
                             myMdwHelper.setValue(listItemObj.objectId, valueToSet);
-    
+
                         } else if (data.listType === 'buttonNav') {
                             vis.changeView(listItemObj.buttonNavView);
-    
+
                         } else if (data.listType === 'buttonLink') {
                             window.open(listItemObj.buttonLink);
                         }
                     });
                 }
-    
+
                 let itemCount = (data.listType === 'switch' || data.listType === 'switch_readonly') ? $this.find('.mdc-switch').length : mdcList.listElements.length;
-    
+
                 for (var i = 0; i <= itemCount - 1; i++) {
                     let listItemObj = getListItemObj(i, data, jsonData);
-    
+
                     if (data.listType === 'checkbox' || data.listType === 'checkbox_readonly' || data.listType === 'switch' || data.listType === 'switch_readonly') {
                         if (data.listType === 'switch' || data.listType === 'switch_readonly') new mdc.switchControl.MDCSwitch($this.find('.mdc-switch').get(i));
                         if (data.listType === 'checkbox' || data.listType === 'checkbox_readonly') {
                             let mdcCheckBox = new mdc.checkbox.MDCCheckbox($this.find('.mdc-checkbox').get(i));
-    
+
                             $this.find('.mdc-checkbox').get(i).style.setProperty("--mdc-theme-secondary", myMdwHelper.getValueFromData(data.colorCheckBox, ''));
-    
+
                             if (data.listType === 'checkbox_readonly') {
                                 mdcCheckBox.disabled = true;
                             }
                         }
-    
+
                         let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
                         mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(i, valOnLoading);
                         setLayout(i, valOnLoading, listItemObj);
-    
+
                         vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
                             // i wird nicht gespeichert -> umweg über oid gehen
                             let input = $this.find('input[data-oid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
-    
+
                             input.each(function (d) {
                                 // kann mit mehreren oid verknüpft sein
                                 let index = input.eq(d).attr('itemindex');
@@ -299,15 +306,15 @@ vis.binds.materialdesign.list =
                                 setLayout(index, newVal, listItemObj);
                             });
                         });
-    
+
                     } else if (data.listType === 'buttonToggle' || data.listType === 'buttonToggle_readonly') {
                         let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
                         setLayout(i, valOnLoading, listItemObj);
-    
+
                         vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
                             // i wird nicht gespeichert -> umweg über oid gehen
                             let input = $this.parent().find('div[data-oid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
-    
+
                             input.each(function (d) {
                                 // kann mit mehreren oid verknüpft sein
                                 let index = parseInt(input.eq(d).attr('id').replace('listItem_', ''));
@@ -317,14 +324,14 @@ vis.binds.materialdesign.list =
                         });
                     }
                 }
-    
+
                 function setLayout(index, val, listItemObj) {
                     let curListItem = $this.find(`div[id="listItem_${index}"]`);
-    
+
                     if (val === true) {
                         curListItem.css('background', myMdwHelper.getValueFromData(data.listItemBackgroundActive, ''));
                         myMdwHelper.changeListIconElement(curListItem, listItemObj.imageActive, 'auto', myMdwHelper.getValueFromData(data.listImageHeight, '', '', 'px !important;'), listItemObj.imageActiveColor, spaceBetweenImageAndLabel);
-    
+
                     } else {
                         curListItem.css('background', myMdwHelper.getValueFromData(data.listItemBackground, ''));
                         myMdwHelper.changeListIconElement(curListItem, listItemObj.image, 'auto', myMdwHelper.getValueFromData(data.listImageHeight, '', '', 'px !important;'), listItemObj.imageColor, spaceBetweenImageAndLabel);
