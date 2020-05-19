@@ -126,9 +126,9 @@ vis.binds.materialdesign.dialog = {
             let wishHeight = 0;
             let fullscreen = false;
 
-            if (vis.editMode) {
+            if ($(`.dialog_${data.wid}`).parent().length > 0) {
                 // bei Änderungen am Widget, wird Widget neu erzeugt. Dialog hängt aber unter vis app, deshalb zu erst entfernen damit nicht doppelt
-                $("body").find(`#dialog_card_${data.wid}`).parent().remove();
+                $(`.dialog_${data.wid}`).parent().remove();
             }
 
             $this.append(`
@@ -138,6 +138,7 @@ vis.binds.materialdesign.dialog = {
                     max-width="${myMdwHelper.getValueFromData(data.dialogMaxWidth, undefined) ? data.dialogMaxWidth : 'auto'}"
                     :fullscreen="fullscreen"
                     :transition="transition"
+                    content-class="dialog_${data.wid}"
                     eager
                     ${myMdwHelper.getBooleanFromData(data.closingClickOutside, false) ? '' : 'persistent'}
                     >
@@ -163,7 +164,7 @@ vis.binds.materialdesign.dialog = {
                                     ${(data.buttonSize !== 'medium') ? data.buttonSize : ''}
                                     ${(myMdwHelper.getBooleanFromData(data.buttonFullWidth, false)) ? 'block ' : ''}
                                     @click="closeButton" 
-                                    v-html="closeText"
+                                    v-html="closeText"                                    
                                     style="color: ${myMdwHelper.getValueFromData(data.buttonFontColor, '#44739e')}; font-family: ${myMdwHelper.getValueFromData(data.buttonFont, 'inherit')}; font-size: ${myMdwHelper.getNumberFromData(data.buttonFontSize, 20)}px;"
                                     ></v-btn>
                             </v-card-actions>
