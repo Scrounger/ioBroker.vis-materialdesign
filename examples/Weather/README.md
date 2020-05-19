@@ -10,11 +10,11 @@ Ein Beispiel Projekt für eine responsiv VIS View mit Wetter Daten.
 ### Voraussetzungen
 
 ###### Folgende Adapter werden benötigt:
-* [Material Design Widgets](https://github.com/Scrounger/ioBroker.vis-materialdesign) >= 0.3.0
-* [DasWetter](https://github.com/rg-engineering/ioBroker.daswetter) >= 2.8.1
+* [Material Design Widgets](https://github.com/Scrounger/ioBroker.vis-materialdesign) >= 0.3.6
+* [DasWetter](https://github.com/rg-engineering/ioBroker.daswetter) >= 3.0.1
 * [weatherunderground](https://github.com/iobroker-community-adapters/ioBroker.weatherunderground) >= 3.2.1
 * [Pollenflug](https://github.com/schmupu/ioBroker.pollenflug) >= 1.0.4 (optional)
-* [Javascript ](https://github.com/ioBroker/ioBroker.javascript) >= 4.0.0
+* [Javascript ](https://github.com/ioBroker/ioBroker.javascript) >= 4.6.1
 
 ###### Folgende NPM Module und Einstellung im Javascript Adapter:
 * moment
@@ -101,7 +101,10 @@ let idPollenflug = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Pollenfl
 
 ### Changelog
 
-### 1.0.2 (29.04.2020)
+### 1.0.4 (29.04.2020)
+* (Scrounger) bug fix graphs y-Axis range, Javascript Adapter >= 4.6.1 needed, DasWetter >= 3.0.1 needed
+
+### 1.0.3 (29.04.2020)
 * (Scrounger) new feature of Material Design Widgets 0.3.6 added: auto show data labels on chart
 
 ### 1.0.2 (13.04.2020)
