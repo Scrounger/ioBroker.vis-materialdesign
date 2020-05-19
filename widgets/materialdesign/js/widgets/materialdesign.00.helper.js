@@ -466,7 +466,7 @@ vis.binds.materialdesign.helper = {
 
         if (oids.length) {
             var that = vis;
-            console.debug('[' + Date.now() + '] Request ' + oids.length + ' states.');
+            console.debug('[subscribeStatesAtRuntime] [' + Date.now() + '] Request ' + oids.length + ' states.');
             vis.conn._socket.emit('getStates', oids, function (error, data) {
                 if (error) that.showError(error);
 
