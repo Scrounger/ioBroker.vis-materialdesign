@@ -1,5 +1,5 @@
 /************************************************************************************************************************************************************************
-Version: 1.0.4
+Version: 1.0.5
 created by Scrounger
 
 Dieses Skript erzeugt json strings um Wetter Informationen im VIS mit den Material Design Widgets darzustellen
@@ -26,6 +26,7 @@ Dieses Skript erzeugt json strings um Wetter Informationen im VIS mit den Materi
 * 1.0.2:            enable / disable option for Pollenflug Adapter added
 * 1.0.3:            new feature of Material Design Widgets 0.3.6 added: auto show data labels on chart
 * 1.0.4:            bug fix graphs y-Axis range, Javascript Adapter >= 4.6.1 needed, DasWetter >= 3.0.1 needed
+* 1.0.5:            bug fix Windrichtung
 
 ************************************************************************************************************************************************************************/
 
@@ -401,13 +402,13 @@ function createWindrichtung(day) {
             listForWidget.push(
                 {
                     rightText: getRightText(
-                        formatValue(getState(`${idWeatherUnderground}.windDirection`).val, 0), ' km/h'
+                        getState(`${idWeatherUnderground}.windDirection`).val, ''
                     )
                 }
             )
         }
     }
-    mySetState(`${idWindrichtung}${day}`, JSON.stringify(listForWidget), 'string', `Windgeschwindigkeit Tag ${day} für List Widget`);
+    mySetState(`${idWindrichtung}${day}`, JSON.stringify(listForWidget), 'string', `Windrichtung Tag ${day} für List Widget`);
 
 }
 
