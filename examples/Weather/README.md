@@ -101,7 +101,7 @@ let idPollenflug = `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.Pollenfl
 
 ### Changelog
 
-### 1.0.4 (29.04.2020)
+### 1.0.4 (19.05.2020)
 * (Scrounger) bug fix graphs y-Axis range, Javascript Adapter >= 4.6.1 needed, DasWetter >= 3.0.1 needed
 
 ### 1.0.3 (29.04.2020)
