@@ -104,7 +104,8 @@ vis.binds.materialdesign.button = {
         }
     },
     handleLink: function (el, data) {
-        $(el).click(function () {
+        $(el).click(function (e) {
+            e.preventDefault();
             if (!vis.editMode && data.href) {
                 if (data.openNewWindow) {
                     window.open(data.href);
@@ -119,15 +120,18 @@ vis.binds.materialdesign.button = {
             var $this = $(el);
             var moved = false;
             $this.on('click touchend', function (e) {
+                e.preventDefault();
                 // Protect against two events
                 if (vis.detectBounce(this)) return;
                 if (moved) return;
                 vis.changeView(data.nav_view, data.nav_view);
                 //e.preventDefault();
                 //return false;
-            }).on('touchmove', function () {
+            }).on('touchmove', function (e) {
+                e.preventDefault();
                 moved = true;
-            }).on('touchstart', function () {
+            }).on('touchstart', function (e) {
+                e.preventDefault();
                 moved = false;
             });
         }
@@ -137,6 +141,7 @@ vis.binds.materialdesign.button = {
             let $this = $(el);
 
             $this.on('click touchend', function (e) {
+                e.preventDefault();
                 let val = vis.states.attr(data.oid + '.val');
                 if (!data.minmax || val != data.minmax) {
                     myMdwHelper.setValue(data.oid, parseFloat(val) + parseFloat(data.value));
@@ -162,6 +167,8 @@ vis.binds.materialdesign.button = {
             if (!vis.editMode) {
                 var moved = false;
                 $this.on('click touchend', function (e) {
+                    e.preventDefault();
+
                     // Protect against two events
                     if (vis.detectBounce(this)) return;
 
@@ -179,9 +186,11 @@ vis.binds.materialdesign.button = {
                     } else {
                         unlockButton();
                     }
-                }).on('touchmove', function () {
+                }).on('touchmove', function (e) {
+                    e.preventDefault();
                     moved = true;
-                }).on('touchstart', function () {
+                }).on('touchstart', function (e) {
+                    e.preventDefault();
                     moved = false;
                 });
 
@@ -245,7 +254,8 @@ vis.binds.materialdesign.button = {
 
             if (!vis.editMode) {
                 if (myMdwHelper.getBooleanFromData(data.pushButton, false) === false) {
-                    $this.parent().click(function () {
+                    $this.parent().click(function (e) {
+                        e.preventDefault();
                         if ($this.parent().attr('isLocked') === 'false' || $this.parent().attr('isLocked') === undefined) {
                             if (data.toggleType === 'boolean') {
                                 myMdwHelper.setValue(data.oid, !vis.states.attr(data.oid + '.val'));
@@ -263,6 +273,7 @@ vis.binds.materialdesign.button = {
                 } else {
                     // Button from type push (Taster)                   
                     $this.parent().on('mousedown touchstart', function (e) {
+                        e.preventDefault();
                         if ($this.parent().attr('isLocked') === 'false' || $this.parent().attr('isLocked') === undefined) {
                             if (data.toggleType === 'boolean') {
                                 myMdwHelper.setValue(data.oid, true);
@@ -275,6 +286,7 @@ vis.binds.materialdesign.button = {
                     });
 
                     $this.parent().on('mouseup touchend', function (e) {
+                        e.preventDefault();
                         if (data.toggleType === 'boolean') {
                             myMdwHelper.setValue(data.oid, false);
                         } else {
