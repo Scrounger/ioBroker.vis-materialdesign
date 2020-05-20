@@ -1537,7 +1537,7 @@ ical2CalendarWidget();
 
 ## Changelog
 
-### __WORK IN PROGRESS__
+### 0.3.9 (2020-05-20)
 * (Scrounger): List Widget: subscribe for nested oids and bindings bug fix
 * (Scrounger): Multi State Button Widgets added
 * (Scrounger): checkbox: lock option added

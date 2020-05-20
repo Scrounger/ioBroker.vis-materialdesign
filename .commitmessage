@@ -1,0 +1,13 @@
+chore: release v0.3.9
+
+: List Widget: subscribe for nested oids and bindings bug fix
+: Multi State Button Widgets added
+: checkbox: lock option added
+: switch: lock option added
+: bar & pie chart: option for distance between legends points added
+: bar, pie & json chart: tooltip title and value override options added
+: pie chart: orientation change bug fix
+: json & line history chart: stepped line option added
+: table: option for fixed table headline added
+: charts: newline bug fixed
+: charts: tooltip decimal places bug fix
