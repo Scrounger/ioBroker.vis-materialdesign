@@ -705,7 +705,6 @@
         <div class="vis-widget materialdesign-widget materialdesign-progress <%== this.data.attr('class') %>" style="width: 180px; height: 50px;" id="<%= this.data.attr('wid') %>">
             <div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
                 <div role="progressbar" class="mdc-linear-progress" style="text-align: left;" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.progress(el, data) %>>
-                    <div class="mdc-linear-progress__buffering-dots"></div>
                     <div class="mdc-linear-progress__buffer" style="<%= colorBgFalse %>"></div>
                     <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
                         <span class="mdc-linear-progress__bar-inner"></span>
