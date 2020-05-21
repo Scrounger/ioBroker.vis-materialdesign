@@ -704,7 +704,7 @@
 
         <div class="vis-widget materialdesign-widget materialdesign-progress <%== this.data.attr('class') %>" style="width: 180px; height: 50px;" id="<%= this.data.attr('wid') %>">
             <div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
-                <div role="progressbar" class="mdc-linear-progress" style="text-align: left;" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.progress(el, data) %>>
+                <div role="progressbar" class="mdc-linear-progress" style="text-align: left;" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.progress.linear(el, data) %>>
                     <div class="mdc-linear-progress__buffer" style="<%= colorBgFalse %>"></div>
                     <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
                         <span class="mdc-linear-progress__bar-inner"></span>
@@ -717,6 +717,24 @@
                     <label class="labelValue" style="<%= showValue %>">100%</label>
                 </div>
             </div>
+        </div>
+</script>
+
+<script id="tplVis-materialdesign-Progress-Circular"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<div id="prev_tplVis-materialdesign-Progress-Circular" style="position: relative; text-align: initial; padding: 4px "><div class="vis-widget_prev materialdesign-widget materialdesign-progress vis-tpl-materialdesign-Progress Circular " style="width: 110px; height: 63px; left: 500px; top: 110px; text-align: center; font-size: 14px; font-weight: bold; position: absolute;" > <div class="materialdesign-vuetify-progress-circular" style="width: 100%; height: 100%; display: flex; justify-content: center;"><div role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="74" class="v-progress-circular" style="height: 60px; width: 60px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="21.428571428571427 21.428571428571427 42.857142857142854 42.857142857142854" style="transform: rotate(90deg);"><circle fill="transparent" cx="42.857142857142854" cy="42.857142857142854" r="20" stroke-width="2.8571428571428568" stroke-dasharray="125.664" stroke-dashoffset="0" class="v-progress-circular__underlay"></circle><circle fill="transparent" cx="42.857142857142854" cy="42.857142857142854" r="20" stroke-width="2.8571428571428568" stroke-dasharray="125.664" stroke-dashoffset="32.67256359733385px" class="v-progress-circular__overlay"></circle></svg><div class="v-progress-circular__info"><div class="materialdesign-vuetify-progress-circular-value-label">74 %</div></div></div></div><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div></div>'
+        data-vis-set="materialdesign"
+        data-vis-type="val,progress"
+        data-vis-name="Progress Circular"
+        data-vis-update-style="true"
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,progress;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;min;max;"
+        data-vis-attrs0="group.layout;progressCircularSize/number;progressCircularWidth/number;progressCircularRotate/number;"
+        data-vis-attrs1="group.color;colorProgressBackground/color;colorProgress/color;innerColor/color;textColor/color;colorOneCondition/number;colorOne/color;colorTwoCondition/number;colorTwo/color;"
+        data-vis-attrs2="group.label;showValueLabel[true]/checkbox;valueLabelStyle[percent]/select,percent,value,custom;valueLabelUnit;valueMaxDecimals/number;valueLabelCustum/html;">
+
+        <div class="vis-widget materialdesign-widget materialdesign-progress <%== this.data.attr('class') %>" style="width: 70px; height: 70px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.progress.circular(el, data) %>>
+
         </div>
 </script>
 
