@@ -166,6 +166,10 @@ vis.binds.materialdesign.viseditor = {
             if (data[1] === 'jsonChart') {
                 url = 'https://forum.iobroker.net/topic/31871/material-design-widgets-json-chart-widget'
             }
+
+            if (data[1] === 'progress') {
+                url = 'https://forum.iobroker.net/topic/33623/material-design-widgets-progress-widget'
+            }
         }
 
         return { input: `<a target="_blank" href="${url}">${_('readme')}</a>` }
