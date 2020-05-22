@@ -1246,9 +1246,17 @@ Masonry views are especially useful if the views included have different heights
             To find out the width of the resolution for the different devices, activate the Resolution Assistant under the common settings.</td>
         </tr>
         <tr>
-            <td><img src="doc/en/media/masnory_settings_views.png"></td>
+            <td rowspan=2><img src="doc/en/media/masnory_settings_views.png"></td>
             <td>width of view[x]</td>
             <td>Define the width of the view. Allowed values are number, px, % or calc. Examples: <code>100</code>, <code>100px</code>, <code>55%</code>, <code>calc(60% - 12px)</code></td>
+        </tr>
+        <tr>
+            <td>height of view[x]</td>
+            <td>Here you can specify the height of the view used. 
+                <br><br>If you want the height to adjust variably to the view, then this input must be empty and for the widget with the highest height in the view the position must be set to relative, see screenshot:
+                <br><br>
+                <img src="doc/en/media/masonry_grid_position_settings.png">
+            </td>
         </tr>
     </tbody>
 </table>
@@ -1279,9 +1287,16 @@ Grid views are especially useful if the views included have the same heights.
             To find out the width of the resolution for the different devices, activate the Resolution Assistant under the common settings.</td>
         </tr>
         <tr>
-            <td><img src="doc/en/media/grid_settings_view.png"></td>
+            <td rowspan=2><img src="doc/en/media/grid_settings_view.png"></td>
             <td colspan=2>Define the column span of the view depending of the current width resolution rule.<br>You can also specify here whether a view should only be displayed at a resolution higher or lower than a defined value or whether it should be visible via a object id.</td>
         </tr>
+        <tr>
+            <td>height of view[x]</td>
+            <td>Here you can specify the height of the view used. 
+                <br><br>If you want the height to adjust variably to the view, then this input must be empty and for the widget with the highest height in the view the position must be set to relative, see screenshot:
+                <br><br>
+                <img src="doc/en/media/masonry_grid_position_settings.png">
+            </td>
     </tbody>
 </table>
 
@@ -1538,6 +1553,7 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
+* (Scrounger): Masonry & Grid Widget: height changed to optional to support widgets using relative position
 * (Scrounger): Progress Widget revised
 * (Scrounger): Progress Circular Widget added
 
