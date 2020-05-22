@@ -261,11 +261,12 @@ vis.binds.materialdesign.views = {
                 }
 
                 let view = myMdwHelper.getValueFromData(data.attr('View' + i), undefined);
+                let viewHeight = myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 0);
 
                 viewsList.push(`
                 <div class="col col-${colSpan}" id="grid-item${i}" itemindex="${i}" sortOrder="${myMdwHelper.getNumberFromData(data.attr('viewSortOrder' + i), i)}" visibilityOid="${data.attr('visibilityOid' + i)}" style="display: none;">
-                    ${(vis.editMode && !view) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; position: relative; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;"></div>` : ''}
-                    <div data-vis-contains="${view}" class="vis-widget-body vis-view-container" style="position: relative; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;">
+                    ${(vis.editMode && !view) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; position: relative; ${view ? viewHeight > 0 ? `height: ${viewHeight}px;` : '' : 'height: 100px;'}"></div>` : ''}
+                    <div data-vis-contains="${view}" class="vis-widget-body vis-view-container" style="position: relative; ${view ? viewHeight > 0 ? `height: ${viewHeight}px;` : '' : 'height: 100px;'}">
                     </div>
                 </div>
                 `)
