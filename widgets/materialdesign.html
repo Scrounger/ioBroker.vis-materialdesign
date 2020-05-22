@@ -966,24 +966,40 @@
         </div>
 </script>
 
-<script id="tplVis-materialdesign-Dialog-iFrame"
+<script id="tplVis-materialdesign-Vuetify-Dialog-iFrame"
         type="text/ejs"
         class="vis-tpl"
         data-vis-prev='<img src="widgets/materialdesign/img/prev_dialog_view.png"></img>'
         data-vis-set="materialdesign"
-        data-vis-type="dialog,static"
+        data-vis-type="dialog,stateful,container,view"
         data-vis-name="Dialog iFrame"
         data-vis-update-style="true"
-        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,dialogIFrame;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;showDialogOid/id;showInEditor[true]/checkbox;showInCenterOfScreen[true]/checkbox;z_index[1000]/number;title[title];buttonText[close];titleTextSize/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;vibrateOnMobilDevices[50]/number;"
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,dialogView;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,dialogView;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;showDialogMethod[button]/select,button,datapoint;showDialogOid/id;fullscreenResolutionLower[360]/number;vibrateOnMobilDevices[50]/number;"
         data-vis-attrs0="group.iFrame;src;refreshInterval[0]/slider,0,180000,100;noSandbox/checkbox;refreshOnWakeUp/checkbox;refreshOnViewChange/checkbox;refreshWithNoQuery/checkbox;scrollX/checkbox;scrollY/checkbox;seamless[true]/checkbox;"
-        data-vis-attrs1="group.color;colorBackground/color;colorTitleBackground/color;colorTitle/color;colorButtonBackground/color;colorButtonText/color;colorButtonHover/color;">
-
+        data-vis-attrs1="group.buttonLayout;buttonStyle[raised]/select,text,raised,unelevated,outlined,icon;buttontext/html;colorPress/color;labelWidth/slider,0,100,1;image/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;"
+        data-vis-attrs2="group.layoutDialog;dialogMaxWidth;viewHeight/number;closingClickOutside[true]/checkbox;viewDistanceToBorder/number;backgroundColor/color;headerHeight/number;headerBackgroundColor/color;footerHeight/number;footerBackgroundColor/color;showDivider/checkbox;dividerColor/color;overlayColor/color;overlayOpacity/slider,0,1,0.1;"
+        data-vis-attrs3="group.layoutTitle;showTitle[true]/checkbox;title/html;titleFontSize/number;titleFont/fontname;titleColor/color;"
+        data-vis-attrs4="group.layoutdialogCloseButton;buttonPosition[flex-end]/select,flex-start,center,flex-end;buttonSize[medium]/select,small,medium,large;buttonFullWidth/checkbox;buttonText;buttonFontSize/number;buttonFont/fontname;buttonFontColor/color;fullscreenCloseIcon/custom,materialdesign.viseditor.materialDesignIcons;fullscreenCloseIconColor/color;pressColor/color;">
+        
         <%
-            let init = vis.binds.materialdesign.dialog.initialize(data, true);
+            let init = {button: '', style: ''};
+            if (this.data.showDialogMethod === 'button') {
+                if (this.data.buttonStyle === 'icon') {
+                    init = vis.binds.materialdesign.button.initializeButton(data, true);
+                    init.style = 'materialdesign-icon-button ' + init.style; 
+                } else {
+                    init = vis.binds.materialdesign.button.initializeButton(data);
+                    init.style = 'materialdesign-button ' + init.style; 
+                }
+            } else {
+                if (vis.editMode) {
+                    init.button = _('dialogUsingDatapoint');
+                }
+            }
         %>
 
-        <div class="vis-widget materialdesign-widget materialdesign-dialog <%== this.data.attr('class') %>" style="width: 350px; height: 180px; overflow: visible" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.dialog.handle(el, data, true) %>>
-            <%== init %>
+        <div class="vis-widget materialdesign-widget materialdesign-vuetify-dialog <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.dialog.vue(el, data, true) %>>
+            <%== init.button %>
         </div>
 </script>
 
