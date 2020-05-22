@@ -677,46 +677,12 @@
         data-vis-name="Progress"
         data-vis-update-style="true"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,progress;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;min;max;reverse/checkbox;"
-        data-vis-attrs0="group.color;colorBgFalse/color;colorProgress/color;colorOneCondition;colorOne/color;colorTwoCondition;colorTwo/color;"
-        data-vis-attrs1="group.label;showValueLabel[true]/checkbox;valueLabelUnit;valueMaxDecimals;valuePosition[inside]/select,inside,outside;valueLabelWidth[25]/slider,0,100,1;">
+        data-vis-attrs0="group.layout;progressRounded[true]/checkbox;progressStriped/checkbox;progressStripedColor/color;"
+        data-vis-attrs1="group.color;colorBgFalse/color;colorProgress/color;colorOneCondition;colorOne/color;colorTwoCondition;colorTwo/color;"
+        data-vis-attrs2="group.label;showValueLabel[true]/checkbox;valueLabelStyle[progressPercent]/select,progressPercent,progressValue,progressCustom;valueLabelUnit;valueMaxDecimals/number;valueLabelCustum/html;">
 
-        <%
-            let colorBgFalse = '';
-            if (this.data.colorBgFalse !== '' && this.data.colorBgFalse !== undefined){
-                colorBgFalse = 'background-color: ' + this.data.colorBgFalse + ';';
-            }
+        <div class="vis-widget materialdesign-widget materialdesign-progress <%== this.data.attr('class') %>" style="width: 180px; height: 50px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.progress.linear(el, data) %>>
 
-            let showValue = '';
-            if (this.data.showValueLabel === 'false' || this.data.showValueLabel === false) {
-                showValue = 'display:none;'
-            }
-
-            let valuePosition = 'position: relative;';
-            if (this.data.valuePosition === 'inside'){
-                valuePosition = 'position: absolute; width: 100%;';
-            }
-
-            let valueLabelWidth = '0%';
-            if (this.data.valueLabelWidth !== undefined && this.data.valueLabelWidth !== null && this.data.valueLabelWidth !== ''){
-                valueLabelWidth = this.data.valueLabelWidth + '%';
-            }
-        %>
-
-        <div class="vis-widget materialdesign-widget materialdesign-progress <%== this.data.attr('class') %>" style="width: 180px; height: 50px;" id="<%= this.data.attr('wid') %>">
-            <div class="materialdesign vis-widget-body" style="display: flex; justify-content: center; align-items: center;">
-                <div role="progressbar" class="mdc-linear-progress" style="text-align: left;" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.progress.linear(el, data) %>>
-                    <div class="mdc-linear-progress__buffer" style="<%= colorBgFalse %>"></div>
-                    <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
-                        <span class="mdc-linear-progress__bar-inner"></span>
-                    </div>
-                    <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
-                        <span class="mdc-linear-progress__bar-inner"></span>
-                    </div>
-                </div>
-                <div style="min-width: <%= valueLabelWidth %>; <%= valuePosition %>">
-                    <label class="labelValue" style="<%= showValue %>">100%</label>
-                </div>
-            </div>
         </div>
 </script>
 
@@ -731,7 +697,7 @@
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,progress;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;min;max;"
         data-vis-attrs0="group.layout;progressCircularSize/number;progressCircularWidth/number;progressCircularRotate/number;"
         data-vis-attrs1="group.color;colorProgressBackground/color;colorProgress/color;innerColor/color;textColor/color;colorOneCondition/number;colorOne/color;colorTwoCondition/number;colorTwo/color;"
-        data-vis-attrs2="group.label;showValueLabel[true]/checkbox;valueLabelStyle[percent]/select,percent,value,custom;valueLabelUnit;valueMaxDecimals/number;valueLabelCustum/html;">
+        data-vis-attrs2="group.label;showValueLabel[true]/checkbox;valueLabelStyle[progressPercent]/select,progressPercent,progressValue,progressCustom;valueLabelUnit;valueMaxDecimals/number;valueLabelCustum/html;">
 
         <div class="vis-widget materialdesign-widget materialdesign-progress <%== this.data.attr('class') %>" style="width: 70px; height: 70px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.progress.circular(el, data) %>>
 

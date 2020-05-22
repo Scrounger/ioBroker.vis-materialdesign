@@ -11,77 +11,57 @@ vis.binds.materialdesign.progress = {
     linear: function (el, data) {
         try {
             let $this = $(el);
-            let progressElement = $this.context;
-            var oid = $this.attr('data-oid');
+            let containerClass = 'materialdesign-vuetify-progress';
+            let widgetName = 'Progress';
 
-            const mdcProgress = new mdc.linearProgress.MDCLinearProgress(progressElement);
+            $this.append(`
+            <div class="${containerClass}" style="width: 100%; height: 100%; display: flex; justify-content: center;">
+                <v-progress-linear
+                    :height="height"
+                    :rounded="rounded"
+                    :striped="striped"
+                    :value="value"
+                    >
 
-            setTimeout(function () {
+                    <template v-slot="{ value }">
+                        ${myMdwHelper.getBooleanFromData(data.showValueLabel, true) ? '<div class="materialdesign-vuetify-progress-value-label" style="width: 100%; margin-left: 10px; margin-right: 10px;"></div>' : ''} 
+                    </template>
+                </v-progress-linear>
+            `);
 
-                // since mdc 4.0.0, current progress is styled over border-top property
-                // let widgetHeight = window.getComputedStyle($this.context, null).height;
-                // let currentProgressEl = $this.find('.mdc-linear-progress__bar-inner');
-                // $this.find('.mdc-linear-progress__bar-inner').css('border-top', `${widgetHeight} solid`).css('-webkit-border-top', `${widgetHeight} solid`);
+            myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, widgetName, function () {
+                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, widgetName, function () {
 
-                var min = myMdwHelper.getValueFromData(data.min, 0);
-                var max = myMdwHelper.getValueFromData(data.max, 1);
-                var unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
-                var decimals = myMdwHelper.getValueFromData(data.valueMaxDecimals, 0);
+                    Vue.use(VueTheMask);
+                    let vueProgress = new Vue({
+                        el: $this.find(`.${containerClass}`).get(0),
+                        vuetify: new Vuetify(),
+                        data() {
+                            let dataObj = {
+                                height: window.getComputedStyle($this.context, null).height.replace('px', ''),
+                                rounded: myMdwHelper.getBooleanFromData(data.progressRounded, true),
+                                striped: myMdwHelper.getBooleanFromData(data.progressStriped, false),
+                            };
 
-                mdcProgress.reverse = data.reverse;
+                            let val = myMdwHelper.getNumberFromData(vis.states.attr(data.oid + '.val'), 0);
+                            dataObj.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label');
 
-                var color = myMdwHelper.getValueFromData(data.colorProgress, '');
-                var colorOneCondition = myMdwHelper.getValueFromData(data.colorOneCondition, 0);
-                var colorOne = myMdwHelper.getValueFromData(data.colorOne, '');
-                var colorTwoCondition = myMdwHelper.getValueFromData(data.colorTwoCondition, 0);
-                var colorTwo = myMdwHelper.getValueFromData(data.colorTwo, '');
+                            return dataObj;
+                        },
+                    });
 
+                    vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                        vueProgress.value = vis.binds.materialdesign.progress.getProgressState($this, data, newVal, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label');
+                    });
 
-                if (colorOne === '') colorOne = color;
-                if (colorTwo === '') colorTwo = color;
+                    $this.context.style.setProperty("--vue-progress-progress-color-background", myMdwHelper.getValueFromData(data.colorBgFalse, ''));
+                    $this.context.style.setProperty("--vue-progress-progress-color-striped", myMdwHelper.getValueFromData(data.progressStripedColor, ''));
 
-                setProgressState();
-
-                vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                    setProgressState();
+                    let val = myMdwHelper.getNumberFromData(vis.states.attr(data.oid + '.val'), 0);
+                    vueProgress.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label');
                 });
+            });
 
-                function setProgressState() {
-                    var val = vis.states.attr(data.oid + '.val');
-
-                    if (val === undefined) {
-                        val = data.oid;
-                    }
-
-                    // Falls quellen boolean ist
-                    if (val === true || val === 'true') val = max;
-                    if (val === false || val === 'false') val = min;
-
-                    let valPercent = parseFloat(val);
-
-                    if (isNaN(valPercent)) valPercent = min;
-                    if (valPercent < min) valPercent = min;
-                    if (valPercent > max) valPercent = max;
-
-                    let simRange = 100;
-                    let range = max - min;
-                    let factor = simRange / range;
-                    valPercent = Math.floor((valPercent - min) * factor);
-
-                    mdcProgress.progress = valPercent / 100;
-
-                    let valueLabel = Math.round(val * Math.pow(10, decimals)) / Math.pow(10, decimals)
-                    $this.parents('.materialdesign.vis-widget-body').find('.labelValue').html('&nbsp;' + valueLabel + unit + '&nbsp;');
-
-                    if (valueLabel > colorOneCondition && valueLabel <= colorTwoCondition) {
-                        $this.find('.mdc-linear-progress__bar-inner').css('border-top-color', colorOne)
-                    } else if (valueLabel > colorTwoCondition) {
-                        $this.find('.mdc-linear-progress__bar-inner').css('border-top-color', colorTwo)
-                    } else {
-                        $this.find('.mdc-linear-progress__bar-inner').css('border-top-color', color)
-                    }
-                }
-            }, 1);
         } catch (ex) {
             console.error(`[Progress ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
@@ -97,17 +77,15 @@ vis.binds.materialdesign.progress = {
                 <v-progress-circular
                     :value="value"
                     size="${myMdwHelper.getNumberFromData(data.progressCircularSize, 60)}"                    
-                    :width="${myMdwHelper.getNumberFromData(data.progressCircularWidth, 4)}"
-                    :rotate="${myMdwHelper.getNumberFromData(data.progressCircularRotate, 0)}"
+                    width="${myMdwHelper.getNumberFromData(data.progressCircularWidth, 4)}"
+                    rotate="${myMdwHelper.getNumberFromData(data.progressCircularRotate, 0)}"
                     >
                     ${myMdwHelper.getBooleanFromData(data.showValueLabel, true) ? '<div class="materialdesign-vuetify-progress-circular-value-label"></div>' : ''} 
                 </v-progress-circular>
-
             `);
 
-
-            myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'TextField', function () {
-                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'TextField', function () {
+            myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, widgetName, function () {
+                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, widgetName, function () {
 
                     Vue.use(VueTheMask);
                     let vueProgressCircular = new Vue({
@@ -117,76 +95,72 @@ vis.binds.materialdesign.progress = {
                             let dataObj = {};
 
                             let val = myMdwHelper.getNumberFromData(vis.states.attr(data.oid + '.val'), 0);
-                            dataObj.value = getProgressState(val);
+                            dataObj.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-circular-progress-color", '.materialdesign-vuetify-progress-circular-value-label');
 
                             return dataObj;
                         },
                     });
 
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                        vueProgressCircular.value = getProgressState(newVal);
+                        vueProgressCircular.value = vis.binds.materialdesign.progress.getProgressState($this, data, newVal, "--vue-progress-circular-progress-color", '.materialdesign-vuetify-progress-circular-value-label');
                     });
 
-                    $this.context.style.setProperty("--vue-progress-circular-progress-background", myMdwHelper.getValueFromData(data.colorProgressBackground, ''));
-                    $this.context.style.setProperty("--vue-progress-circular-progress-text", myMdwHelper.getValueFromData(data.textColor, ''));
+                    $this.context.style.setProperty("--vue-progress-circular-progress-color-background", myMdwHelper.getValueFromData(data.colorProgressBackground, ''));
+                    $this.context.style.setProperty("--vue-progress-circular-progress-color-text", myMdwHelper.getValueFromData(data.textColor, ''));
 
                     $this.find(`.v-progress-circular__underlay`).attr('fill', myMdwHelper.getValueFromData(data.innerColor, 'transparent'))
-
-                    // $this.find(`.${containerClass}`).show();
-                    // $this.find(`.${containerClass}`).css('display', 'flex');
-
-                    function getProgressState(val) {
-                        let min = myMdwHelper.getNumberFromData(data.min, 0);
-                        let max = myMdwHelper.getNumberFromData(data.max, 100);
-
-                        let color = myMdwHelper.getValueFromData(data.colorProgress, '');
-                        let colorOneCondition = myMdwHelper.getValueFromData(data.colorOneCondition, 0);
-                        let colorOne = myMdwHelper.getValueFromData(data.colorOne, color);
-                        let colorTwoCondition = myMdwHelper.getValueFromData(data.colorTwoCondition, 0);
-                        let colorTwo = myMdwHelper.getValueFromData(data.colorTwo, color);
-
-                        if (val === undefined) {
-                            val = data.oid;
-                        }
-
-                        // Falls quellen boolean ist
-                        if (val === true || val === 'true') val = max;
-                        if (val === false || val === 'false') val = min;
-
-                        let valPercent = parseFloat(val);
-
-                        if (isNaN(valPercent)) valPercent = min;
-                        if (valPercent < min) valPercent = min;
-                        if (valPercent > max) valPercent = max;
-
-                        let simRange = 100;
-                        let range = max - min;
-                        let factor = simRange / range;
-                        valPercent = Math.floor((valPercent - min) * factor);
-
-                        if (valPercent > colorOneCondition && valPercent <= colorTwoCondition) {
-                            $this.context.style.setProperty("--vue-progress-circular-progress", colorOne);
-                        } else if (valPercent > colorTwoCondition) {
-                            $this.context.style.setProperty("--vue-progress-circular-progress", colorTwo);
-                        } else {
-                            $this.context.style.setProperty("--vue-progress-circular-progress", color);
-                        }
-
-                        if (data.valueLabelStyle === 'percent') {
-                            $this.find('.materialdesign-vuetify-progress-circular-value-label').html(`${myMdwHelper.formatNumber(valPercent, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))} %`);
-                        } else if (data.valueLabelStyle === 'value') {
-                            $this.find('.materialdesign-vuetify-progress-circular-value-label').html(`${myMdwHelper.formatNumber(val, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))}${myMdwHelper.getValueFromData(data.valueLabelUnit, '')}`);
-                        } else{
-                            $this.find('.materialdesign-vuetify-progress-circular-value-label').html(`${myMdwHelper.getValueFromData(data.valueLabelCustum, '').replace('[#value]', myMdwHelper.formatNumber(val, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))).replace('[#percent]', myMdwHelper.formatNumber(valPercent, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0)))}`);
-                        }
-
-                        return valPercent;
-                    }
                 });
             });
 
         } catch (ex) {
             console.error(`[Progress Circular ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
+    },
+    getProgressState: function ($this, data, val, colorProperty, labelClass) {
+        let min = myMdwHelper.getNumberFromData(data.min, 0);
+        let max = myMdwHelper.getNumberFromData(data.max, 100);
+
+        let color = myMdwHelper.getValueFromData(data.colorProgress, '');
+        let colorOneCondition = myMdwHelper.getValueFromData(data.colorOneCondition, 0);
+        let colorOne = myMdwHelper.getValueFromData(data.colorOne, color);
+        let colorTwoCondition = myMdwHelper.getValueFromData(data.colorTwoCondition, 0);
+        let colorTwo = myMdwHelper.getValueFromData(data.colorTwo, color);
+
+        if (val === undefined) {
+            val = data.oid;
+        }
+
+        // Falls quellen boolean ist
+        if (val === true || val === 'true') val = max;
+        if (val === false || val === 'false') val = min;
+
+        let valPercent = parseFloat(val);
+
+        if (isNaN(valPercent)) valPercent = min;
+        if (valPercent < min) valPercent = min;
+        if (valPercent > max) valPercent = max;
+
+        let simRange = 100;
+        let range = max - min;
+        let factor = simRange / range;
+        valPercent = Math.floor((valPercent - min) * factor);
+
+        if (valPercent > colorOneCondition && valPercent <= colorTwoCondition) {
+            $this.context.style.setProperty(colorProperty, colorOne);
+        } else if (valPercent > colorTwoCondition) {
+            $this.context.style.setProperty(colorProperty, colorTwo);
+        } else {
+            $this.context.style.setProperty(colorProperty, color);
+        }
+
+        if (data.valueLabelStyle === 'progressPercent') {
+            $this.find(labelClass).html(`${myMdwHelper.formatNumber(valPercent, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))} %`);
+        } else if (data.valueLabelStyle === 'progressValue') {
+            $this.find(labelClass).html(`${myMdwHelper.formatNumber(val, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))}${myMdwHelper.getValueFromData(data.valueLabelUnit, '')}`);
+        } else {
+            $this.find(labelClass).html(`${myMdwHelper.getValueFromData(data.valueLabelCustum, '').replace('[#value]', myMdwHelper.formatNumber(val, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))).replace('[#percent]', myMdwHelper.formatNumber(valPercent, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0)))}`);
+        }
+
+        return valPercent;
     }
 }

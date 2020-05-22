@@ -8752,5 +8752,138 @@ systemDictionary = {
         "es": "anular texto de información sobre herramientas",
         "pl": "zastępuj tekst podpowiedzi",
         "zh-cn": "覆盖工具提示文字"
+    },
+    "group_layout": {
+        "en": "layout",
+        "de": "Layout",
+        "ru": "расположение",
+        "pt": "disposição",
+        "nl": "indeling",
+        "fr": "disposition",
+        "it": "disposizione",
+        "es": "diseño",
+        "pl": "układ",
+        "zh-cn": "布局"
+    },
+    "progressRounded": {
+        "en": "rounded corners",
+        "de": "abgerundete Ecken",
+        "ru": "закругленные углы",
+        "pt": "cantos arredondados",
+        "nl": "afgeronde hoeken",
+        "fr": "coins arrondis",
+        "it": "angoli arrotondati",
+        "es": "esquinas redondeadas",
+        "pl": "zaokrąglone rogi",
+        "zh-cn": "圆角"
+    },
+    "progressStriped": {
+        "en": "striped",
+        "de": "gestreift",
+        "ru": "полосатый",
+        "pt": "listrado",
+        "nl": "gestreept",
+        "fr": "rayé",
+        "it": "a strisce",
+        "es": "a rayas",
+        "pl": "w paski",
+        "zh-cn": "条纹的"
+    },
+    "progressStripedColorr": {
+        "en": "striped color",
+        "de": "gestreifte Farbe",
+        "ru": "полосатый цвет",
+        "pt": "cor listrada",
+        "nl": "gestreepte kleur",
+        "fr": "couleur rayée",
+        "it": "colore a strisce",
+        "es": "color rayado",
+        "pl": "kolor w paski",
+        "zh-cn": "条纹色"
+    },
+    "progressCircularSize": {
+        "en": "size",
+        "de": "Größe",
+        "ru": "размер",
+        "pt": "Tamanho",
+        "nl": "grootte",
+        "fr": "Taille",
+        "it": "dimensione",
+        "es": "Talla",
+        "pl": "rozmiar",
+        "zh-cn": "尺寸"
+    },
+    "progressCircularWidth": {
+        "en": "thickness",
+        "de": "Dicke",
+        "ru": "толщина",
+        "pt": "espessura",
+        "nl": "dikte",
+        "fr": "épaisseur",
+        "it": "spessore",
+        "es": "grosor",
+        "pl": "grubość",
+        "zh-cn": "厚度"
+    },
+    "progressCircularRotate": {
+        "en": "rotate start point",
+        "de": "Startpunkt drehen",
+        "ru": "повернуть начальную точку",
+        "pt": "girar ponto inicial",
+        "nl": "draai startpunt",
+        "fr": "faire pivoter le point de départ",
+        "it": "ruotare il punto iniziale",
+        "es": "girar el punto de inicio",
+        "pl": "obróć punkt początkowy",
+        "zh-cn": "旋转起点"
+    },
+    "progressPercent": {
+        "en": "percent",
+        "de": "Prozent",
+        "ru": "процент",
+        "pt": "por cento",
+        "nl": "procent",
+        "fr": "pour cent",
+        "it": "per cento",
+        "es": "por ciento",
+        "pl": "procent",
+        "zh-cn": "百分"
+    },
+    "progressValue": {
+        "en": "value",
+        "de": "Wert",
+        "ru": "ценность",
+        "pt": "valor",
+        "nl": "waarde",
+        "fr": "valeur",
+        "it": "valore",
+        "es": "valor",
+        "pl": "wartość",
+        "zh-cn": "值"
+    },
+    "progressCustom": {
+        "en": "custom",
+        "de": "Benutzerdefiniert",
+        "ru": "обычай",
+        "pt": "personalizadas",
+        "nl": "Op maat",
+        "fr": "Douane",
+        "it": "costume",
+        "es": "personalizado",
+        "pl": "zwyczaj",
+        "zh-cn": "习俗"
+    },
+    "valueLabelCustum": {
+        "en": "custom label",
+        "de": "benutzerdefiniertes Beschriftung",
+        "ru": "пользовательский ярлык",
+        "pt": "etiqueta personalizada",
+        "nl": "aangepast label",
+        "fr": "étiquette personnalisée",
+        "it": "etichetta personalizzata",
+        "es": "etiqueta personalizada",
+        "pl": "niestandardowa etykieta",
+        "zh-cn": "自定义标签"
     }
+
 };

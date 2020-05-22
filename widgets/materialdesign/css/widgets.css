@@ -271,10 +271,13 @@
   --vue-overlay-scrim-opacity: 0.46;
   --vue-overlay-scrim-background-color: rgb(33, 33, 33);    
 
+  --vue-progress-progress-color: #44739e;
+  --vue-progress-progress-color-background: #e6e6e6;
+  --vue-progress-progress-color-striped: rgba(255,255,255,0.25);
 
-  --vue-progress-circular-progress: #44739e;
-  --vue-progress-circular-progress-background: rgba(0, 0, 0, 0.1);
-  --vue-progress-circular-progress-text: #44739e;
+  --vue-progress-circular-progress-color: #44739e;
+  --vue-progress-circular-progress-color-background: #e6e6e6;
+  --vue-progress-circular-progress-color-text: #44739e;
 }
 
 /* Button style -> must defined here because of position bug in vis editor */
@@ -6052,8 +6055,8 @@ svg.materialdesign-button__icon {
   vertical-align: middle;
   justify-content: center;
   align-items: center;
-  color: var(--vue-progress-circular-progress);
-  caret-color: var(--vue-progress-circular-progress);
+  color: var(--vue-progress-circular-progress-color);
+  caret-color: var(--vue-progress-circular-progress-color);
 }
 .v-progress-circular svg {
   width: 100%;
@@ -6083,15 +6086,279 @@ svg.materialdesign-button__icon {
   align-items: center;
   display: flex;
   justify-content: center;
-  color: var(--vue-progress-circular-progress-text);
+  color: var(--vue-progress-circular-progress-color-text);
   z-index: 1;
 }
 .v-progress-circular__underlay {
-  stroke: var(--vue-progress-circular-progress-background);
+  stroke: var(--vue-progress-circular-progress-color-background);
   z-index: 1;
 }
 .v-progress-circular__overlay {
   stroke: currentColor;
   z-index: 2;
   transition: all 0.6s ease-in-out;
+}
+
+.v-progress-linear {
+  background: transparent;
+  overflow: hidden;
+  position: relative;
+  transition: 0.2s cubic-bezier(0.4, 0, 0.6, 1);
+  width: 100%;
+}
+
+.v-progress-linear__buffer {
+  height: inherit;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: inherit;
+  width: 100%;
+  z-index: 1;
+}
+
+.v-progress-linear__background {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: inherit;
+  background: var(--vue-progress-progress-color-background);
+}
+
+.v-progress-linear__content {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  left: 0;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.v-progress-linear__determinate {
+  height: inherit;
+  transition: inherit;
+  background: var(--vue-progress-progress-color);
+}
+
+.v-progress-linear__indeterminate .long, .v-progress-linear__indeterminate .short {
+  background-color: inherit;
+  bottom: 0;
+  height: inherit;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: auto;
+  will-change: left, right;
+}
+.v-progress-linear__indeterminate--active .long {
+  background: var(--vue-progress-progress-color);
+  -webkit-animation: indeterminate;
+          animation: indeterminate;
+  -webkit-animation-duration: 2.2s;
+          animation-duration: 2.2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+.v-progress-linear__indeterminate--active .short {
+  background: var(--vue-progress-progress-color);
+  -webkit-animation: indeterminate-short;
+          animation: indeterminate-short;
+  -webkit-animation-duration: 2.2s;
+          animation-duration: 2.2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+.v-progress-linear__stream {
+  -webkit-animation: stream 0.25s infinite linear;
+          animation: stream 0.25s infinite linear;
+  border-color: currentColor;
+  border-top: 4px dotted;
+  bottom: 0;
+  opacity: 0.3;
+  pointer-events: none;
+  position: absolute;
+  right: -8px;
+  top: calc(50% - 2px);
+  transition: inherit;
+}
+
+.v-progress-linear__wrapper {
+  overflow: hidden;
+  position: relative;
+  transition: inherit;
+}
+
+.v-progress-linear--absolute,
+.v-progress-linear--fixed {
+  left: 0;
+  z-index: 1;
+}
+
+.v-progress-linear--absolute {
+  position: absolute;
+}
+
+.v-progress-linear--fixed {
+  position: fixed;
+}
+
+.v-progress-linear--reactive .v-progress-linear__content {
+  pointer-events: none;
+}
+
+.v-progress-linear--rounded {
+  border-radius: 4px;
+}
+
+.v-progress-linear--striped .v-progress-linear__determinate {
+  background-image: linear-gradient(135deg, var(--vue-progress-progress-color-striped) 25%, transparent 0, transparent 50%, var(--vue-progress-progress-color-striped) 0, var(--vue-progress-progress-color-striped) 75%, transparent 0, transparent);
+  background-size: 40px 40px;
+  background-repeat: repeat;
+}
+
+.v-progress-linear--query .v-progress-linear__indeterminate--active .long {
+  -webkit-animation: query;
+          animation: query;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+.v-progress-linear--query .v-progress-linear__indeterminate--active .short {
+  -webkit-animation: query-short;
+          animation: query-short;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+
+@-webkit-keyframes indeterminate {
+  0% {
+    left: -90%;
+    right: 100%;
+  }
+  60% {
+    left: -90%;
+    right: 100%;
+  }
+  100% {
+    left: 100%;
+    right: -35%;
+  }
+}
+
+@keyframes indeterminate {
+  0% {
+    left: -90%;
+    right: 100%;
+  }
+  60% {
+    left: -90%;
+    right: 100%;
+  }
+  100% {
+    left: 100%;
+    right: -35%;
+  }
+}
+@-webkit-keyframes indeterminate-short {
+  0% {
+    left: -200%;
+    right: 100%;
+  }
+  60% {
+    left: 107%;
+    right: -8%;
+  }
+  100% {
+    left: 107%;
+    right: -8%;
+  }
+}
+@keyframes indeterminate-short {
+  0% {
+    left: -200%;
+    right: 100%;
+  }
+  60% {
+    left: 107%;
+    right: -8%;
+  }
+  100% {
+    left: 107%;
+    right: -8%;
+  }
+}
+@-webkit-keyframes query {
+  0% {
+    right: -90%;
+    left: 100%;
+  }
+  60% {
+    right: -90%;
+    left: 100%;
+  }
+  100% {
+    right: 100%;
+    left: -35%;
+  }
+}
+@keyframes query {
+  0% {
+    right: -90%;
+    left: 100%;
+  }
+  60% {
+    right: -90%;
+    left: 100%;
+  }
+  100% {
+    right: 100%;
+    left: -35%;
+  }
+}
+@-webkit-keyframes query-short {
+  0% {
+    right: -200%;
+    left: 100%;
+  }
+  60% {
+    right: 107%;
+    left: -8%;
+  }
+  100% {
+    right: 107%;
+    left: -8%;
+  }
+}
+@keyframes query-short {
+  0% {
+    right: -200%;
+    left: 100%;
+  }
+  60% {
+    right: 107%;
+    left: -8%;
+  }
+  100% {
+    right: 107%;
+    left: -8%;
+  }
+}
+@-webkit-keyframes stream {
+  to {
+    transform: translateX(-8px);
+  }
+}
+@keyframes stream {
+  to {
+    transform: translateX(-8px);
+  }
 }
