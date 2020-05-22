@@ -33,10 +33,12 @@ vis.binds.materialdesign.views = {
                 if (viewAlignment === 'left') viewAlignment = 'flex-start';
                 if (viewAlignment === 'right') viewAlignment = 'flex-end';
 
+                let viewHeight = myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 0);
+
                 viewsList.push(`
                     <div 
-                        class="materialdesign-masonry-item" id="masonry_item_${i}" itemindex="${i}" sortOrder="${myMdwHelper.getNumberFromData(data.attr('viewSortOrder' + i), i)}" visibilityOid="${data.attr('visibilityOid' + i)}" style="height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px; ${viewWidth}; display: none;">
-                            ${(vis.editMode) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; height: ${myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 100)}px;"></div>` : ''}
+                        class="materialdesign-masonry-item" id="masonry_item_${i}" itemindex="${i}" sortOrder="${myMdwHelper.getNumberFromData(data.attr('viewSortOrder' + i), i)}" visibilityOid="${data.attr('visibilityOid' + i)}" style="${viewWidth}; display: none; ${myMdwHelper.getValueFromData(data.attr('View' + i), undefined) ? viewHeight > 0 ? `height: ${viewHeight}px;` : '' : 'height: 100px;'}">
+                            ${(vis.editMode) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; ${myMdwHelper.getValueFromData(data.attr('View' + i), undefined) ? viewHeight > 0 ? `height: ${viewHeight}px;` : '' : 'height: 100px;'}"></div>` : ''}
                             <div data-vis-contains="${data.attr('View' + i)}" class="vis-widget-body vis-view-container">
                             </div>
                     </div>
