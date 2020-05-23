@@ -240,7 +240,7 @@ vis.binds.materialdesign.list =
                         let listItemObj = getListItemObj(index, data, jsonData);
 
                         if (data.listType !== 'text') {
-                            vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                            myMdwHelper.vibrate(data.vibrateOnMobilDevices);
                         }
 
                         if (data.listType === 'checkbox' || data.listType === 'switch') {
