@@ -103,6 +103,8 @@ vis.binds.materialdesign.button = {
     },
     handleLink: function (el, data) {
         try {
+            let $this = $(el);
+
             $this.on('click touchend', function (e) {
                 // Protect against two events
                 if (vis.detectBounce(this)) return;
