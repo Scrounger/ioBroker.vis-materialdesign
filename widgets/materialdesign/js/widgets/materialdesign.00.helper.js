@@ -568,6 +568,8 @@ vis.binds.materialdesign.helper = {
                 // Modify the event here
                 if (!vis.editMode && event && event.message && event.message.includes('materialdesign')) {
                     // only send to sentry, if error is at runtime and fired by MDW
+                    event.message = event.message.replace(new RegExp("( - w\\d+)", "g"), "");   // remove data.wid from message
+
                     return event;
                 }
             }

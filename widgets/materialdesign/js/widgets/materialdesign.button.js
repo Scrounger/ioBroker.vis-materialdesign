@@ -172,7 +172,6 @@ vis.binds.materialdesign.button = {
             if ($this.attr('isLocked') === 'true') {
                 $this.css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
             }
-            console.log(data.wid + ": " + isMulti);
             if (!vis.editMode) {
                 var moved = false;
                 $this.on('click touchend', function (e) {
