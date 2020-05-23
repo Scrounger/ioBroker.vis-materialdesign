@@ -192,6 +192,8 @@ vis.binds.materialdesign.vueHelper = {
 
                 @focus="focusEvent"
                 @click:clear="clearEvent"
+                @click="click"
+                @input="menuClick"
             `
         },
         getTemplates: function (data) {
@@ -439,6 +441,12 @@ vis.binds.materialdesign.vueHelper = {
         },
         getMethods: function (data, $el, itemsList, $vuetifyContainer, inputMode = '') {
             return {
+                click(item) {
+                    myMdwHelper.vibrate(data.vibrateOnMobilDevices);
+                },
+                menuClick(item){
+                    myMdwHelper.vibrate(data.vibrateOnMobilDevices);
+                },
                 changeEvent(item) {
                     if (item) {
                         if (item.value) {
@@ -460,6 +468,8 @@ vis.binds.materialdesign.vueHelper = {
                     vis.binds.materialdesign.vueHelper.select.setMenuStyles($el, data, itemsList, $vuetifyContainer);
                 },
                 clearEvent(value) {
+                    myMdwHelper.vibrate(data.vibrateOnMobilDevices);
+
                     vis.conn._socket.emit('getObject', data.oid, function (error, obj) {
                         if (obj && obj.common && obj.common.type) {
                             if (obj.common.type === 'string') {

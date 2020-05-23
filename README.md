@@ -1554,6 +1554,7 @@ ical2CalendarWidget();
 
 ### __WORK IN PROGRESS__
 * (Scrounger): Sentry added
+* (Scrounger): Select & Autocomplete Widget: vibrate on mobil devices added
 * (Scrounger): List Widget: vibrate on mobil devices added
 * (Scrounger): Masonry & Grid Widget: height changed to optional to support widgets using relative position
 * (Scrounger): Progress Widget revised
