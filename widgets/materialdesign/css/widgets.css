@@ -3085,6 +3085,10 @@ svg.materialdesign-button__icon {
 }
 
 .v-text-field .v-label--active {
+  color: var(--vue-text-field-label-before-color);
+}
+
+.v-text-field .v-label--active.primary--text{
   color: var(--vue-text-field-label-after-color);
 }
 
