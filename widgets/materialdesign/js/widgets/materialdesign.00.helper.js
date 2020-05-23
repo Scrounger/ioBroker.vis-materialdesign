@@ -17,6 +17,23 @@ vis.binds.materialdesign.helper = {
             console.error(`vibrate [${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
+    waitForVisConnected: function (callBack, counter = 0, debug = false) {
+        if (counter < 500) {
+
+            setTimeout(function () {
+                if (vis.conn && vis.conn.getIsConnected()) {
+                    callBack();
+                } else {
+                    if (debug) console.log(`[waitForVisConnected] wait for vis connection`);
+                    counter++
+                    vis.binds.materialdesign.helper.waitForVisConnected(callBack, counter);
+                }
+            }, 1)
+        } else {
+            if (debug) console.log(`[waitForVisConnected] stop waiting for vis connection after 100 retries`);
+            callBack();
+        }
+    },
     waitForElement: function (parent, elementPath, wid, widgetName, callBack, counter = 0, debug = false) {
         if (counter < 100) {
 
@@ -69,13 +86,13 @@ vis.binds.materialdesign.helper = {
             if (debug) console.log(`[${widgetName} ${wid}] stop waiting for real height after 100 retries`);
             callBack();
         }
-    },    
+    },
     installedVersion: function (el, data) {
-        setTimeout(function () {
-            let version = 'version: "0.3.9"'
-            console.log(version);
-            $(el).find('#versionNumber').text(version.replace('version: "', '').replace('"', ''));
-        }, 1)
+        myMdwHelper.waitForVisConnected(function () {
+            myMdwHelper.getVersion(function (version) {
+                $(el).find('#versionNumber').text(version);
+            });
+        });
     },
     getValueFromData: function (dataValue, nullValue, prepand = '', append = '') {
         try {
@@ -510,6 +527,17 @@ vis.binds.materialdesign.helper = {
             }
         });
     },
+    getVersion(callback) {
+        vis.binds.materialdesign.helper.getObject('system.adapter.vis-materialdesign', function (obj) {
+            if (obj && obj.common && obj.common.installedVersion) {
+                callback(obj.common.installedVersion);
+            } else if (obj && obj.common && obj.common.version) {
+                callback(obj.common.version);
+            } else {
+                callback('unknown');
+            }
+        });
+    },
     setValue(id, value) {
         vis.binds.materialdesign.helper.getObject(id, function (obj) {
             if (obj && obj.common && obj.common['type'] && value !== null) {
@@ -526,7 +554,33 @@ vis.binds.materialdesign.helper = {
                 vis.setValue(id, value);
             }
         })
+    },
+    initializeSentry(version) {
+        Sentry.init({
+            dsn: 'https://888b0efc877b4b12a8a83e3c1fb7fe1a@sentry.iobroker.net/77',
+            debug: false,
+            release: version,
+            integrations: [
+                new Sentry.Integrations.Dedupe(),
+                new Sentry.Integrations.CaptureConsole({
+                    levels: ['error']
+                })
+            ],
+            beforeSend(event) {
+                // Modify the event here
+                if (!vis.editMode && event && event.message && event.message.includes('materialdesign')) {
+                    // only send to sentry, if error is at runtime and fired by MDW
+                    return event;
+                }
+            }
+        });
+
+        Sentry.configureScope(function (scope) {
+            scope.setExtra("vis version", vis.version);
+            scope.setUser(null);
+        });
     }
 };
 
 let myMdwHelper = vis.binds.materialdesign.helper;
+vis.binds.materialdesign.showVersion();

@@ -31,23 +31,14 @@ Vue.config.warnHandler = function (msg, vm, trace) {
 vis.binds.materialdesign = {
     version: "0.3.9",
     showVersion: function () {
-        if (vis.binds["materialdesign"].version) {
-            console.log('Version vis-materialdesign: ' + vis.binds["materialdesign"].version);
-            vis.binds["materialdesign"].version = null;
-        }
+        myMdwHelper.waitForVisConnected(function () {
+            myMdwHelper.getVersion(function (version) {
+                console.log('Version vis-materialdesign: ' + version);
+
+                myMdwHelper.initializeSentry(version);
+            });
+        });
     },
-    // initVuetfiyApp: function () {
-    //     $(window).on('load', function () {
-    //         let myHelper = vis.binds.materialdesign.helper;
-    //         myHelper.waitForElement($("body"), '#vis_container', function () {
-    //             if ($("#materialdesign-vuetify-container").length === 0) {
-    //                 // intitialize Vuetify v-app application container, if not exist
-    //                 $('body').wrapInner('<v-app id="materialdesign-vuetify-container" data-app="true">');
-    //                 console.log('initialize vuetify v-app application container');
-    //             }
-    //         });
-    //     });
-    // },
     addRippleEffect: function (el, data, isIconButton = false) {
         var $this = $(el).parent();
         if (!isIconButton) {
@@ -72,6 +63,3 @@ vis.binds.materialdesign = {
     },
 
 };
-
-vis.binds["materialdesign"].showVersion();
-// vis.binds["materialdesign"].initVuetfiyApp();
