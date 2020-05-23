@@ -1553,6 +1553,7 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
+* (Scrounger): Sentry added
 * (Scrounger): Masonry & Grid Widget: height changed to optional to support widgets using relative position
 * (Scrounger): Progress Widget revised
 * (Scrounger): Progress Circular Widget added
