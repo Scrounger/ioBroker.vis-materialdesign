@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.3.9",
+        "version": "0.3.10",
         "news": {
             "0.3.9": {
                 "en": ": List Widget: subscribe for nested oids and bindings bug fix\n: Multi State Button Widgets added\n: checkbox: lock option added\n: switch: lock option added\n: bar & pie chart: option for distance between legends points added\n: bar, pie & json chart: tooltip title and value override options added\n: pie chart: orientation change bug fix\n: json & line history chart: stepped line option added\n: table: option for fixed table headline added\n: charts: newline bug fixed\n: charts: tooltip decimal places bug fix",

@@ -1,6 +1,6 @@
 {
   "name": "iobroker.vis-materialdesign",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "description": "Material Design Widgets based on Google material components web library",
   "author": {
     "name": "Scrounger",
