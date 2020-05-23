@@ -1559,6 +1559,7 @@ ical2CalendarWidget();
 * (Scrounger): Masonry & Grid Widget: height changed to optional to support widgets using relative position
 * (Scrounger): Progress Widget revised
 * (Scrounger): Progress Circular Widget added
+* (Scrounger): bug fixes
 
 ### 0.3.9 (2020-05-20)
 * (Scrounger): List Widget: subscribe for nested oids and bindings bug fix
