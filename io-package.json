@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.3.10",
+        "version": "0.3.11",
         "news": {
+            "0.3.11": {
+                "en": ": Sentry added\n: Select & Autocomplete Widget: vibrate on mobil devices added\n: List Widget: vibrate on mobil devices added\n: Masonry & Grid Widget: height changed to optional to support widgets using relative position\n: Progress Widget revised\n: Progress Circular Widget added\n: bug fixes",
+                "de": ": Wachposten hinzugefügt\n: Widget auswählen und automatisch vervollständigen: Vibrieren auf hinzugefügten Mobilgeräten\n: List Widget: Vibrieren auf Mobilgeräten hinzugefügt\n: Masonry & Grid Widget: Die Höhe wurde auf optional geändert, um Widgets mit relativer Position zu unterstützen\n: Fortschritts-Widget überarbeitet\n: Progress Circular Widget hinzugefügt\n: Fehlerbehebung",
+                "ru": ": Добавлен часовой\n: Выбор и автозаполнение виджета: добавлена вибрация на мобильных устройствах\n: Виджет списка: добавлена вибрация на мобильных устройствах\n: Masonry & Grid Widget: высота изменена на необязательную для поддержки виджетов, использующих относительное положение\n: Виджет прогресса исправлен\n: Добавлен круговой виджет прогресса\n: исправление ошибок",
+                "pt": ": Sentry added\n: Selecionar e widget de preenchimento automático: vibrar em dispositivos móveis adicionados\n: Widget da lista: vibrar em dispositivos móveis adicionados\n: Widget de alvenaria e grade: altura alterada para opcional para suportar widgets usando posição relativa\n: Widget de progresso revisado\n: Widget circular de progresso adicionado\n: correções de bugs",
+                "nl": ": Sentry toegevoegd\n: Widget selecteren en automatisch aanvullen: trillen op mobiele apparaten toegevoegd\n: List Widget: trillen op mobiele apparaten toegevoegd\n: Masonry & Grid Widget: hoogte gewijzigd in optioneel om widgets te ondersteunen met relatieve positie\n: Progress Widget herzien\n: Progress Circular Widget toegevoegd\n: bugfixes",
+                "fr": ": Sentry ajouté\n: Widget de sélection et de saisie semi-automatique: vibration sur les appareils mobiles ajoutée\n: Widget de liste: vibration sur les appareils mobiles ajoutée\n: Widget de maçonnerie et de grille: la hauteur est devenue facultative pour prendre en charge les widgets en utilisant la position relative\n: Progress Widget révisé\n: Widget circulaire de progression ajouté\n: corrections de bugs",
+                "it": ": Sentinella aggiunta\n: Seleziona e Completa automaticamente Widget: vibrazione sui dispositivi mobili aggiunti\n: Widget elenco: vibrazione sui dispositivi mobili aggiunti\n: Widget Masonry & Grid: l'altezza è stata modificata in opzionale per supportare i widget utilizzando la posizione relativa\n: Widget Progress rivisto\n: Widget circolare progressivo aggiunto\n: correzioni di bug",
+                "es": ": Sentry agregado\n: Seleccionar y Autocompletar widget: vibrar en dispositivos móviles agregados\n: Lista de widgets: vibrar en dispositivos móviles añadidos\n: Widget de mampostería y cuadrícula: la altura se cambió a opcional para admitir widgets utilizando la posición relativa\n: Widget de progreso revisado\n: Widget circular de progreso agregado\n: corrección de errores",
+                "pl": ": Dodano Sentry\n: Wybierz i wypełnij widget: wibruj na urządzeniach mobilnych\n: Widżet listy: dodano wibracje na urządzeniach mobilnych\n: Widżet murarski i siatki: wysokość została zmieniona na opcjonalną, aby obsługiwać widżety przy użyciu pozycji względnej\n: Poprawiono widżet postępu\n: Dodano okrągły widżet Postęp\n: poprawki błędów",
+                "zh-cn": "：已添加哨兵\n：“选择”和“自动完成”小部件：在添加的移动设备上振动\n：列表小部件：在移动设备上振动\n：砌体和网格小部件：高度更改为可选，以支持使用相对位置的小部件\n：进度小部件已修改\n：已添加进度通告小部件\n： bug修复"
+            },
             "0.3.9": {
                 "en": ": List Widget: subscribe for nested oids and bindings bug fix\n: Multi State Button Widgets added\n: checkbox: lock option added\n: switch: lock option added\n: bar & pie chart: option for distance between legends points added\n: bar, pie & json chart: tooltip title and value override options added\n: pie chart: orientation change bug fix\n: json & line history chart: stepped line option added\n: table: option for fixed table headline added\n: charts: newline bug fixed\n: charts: tooltip decimal places bug fix",
                 "de": ": List Widget: Abonnieren Sie die Fehlerbehebung für verschachtelte Oids und Bindungen\n: Multi State Button Widgets hinzugefügt\n: Kontrollkästchen: Sperroption hinzugefügt\n: switch: lock option hinzugefügt\n: Balkendiagramm: Option für Abstand zwischen Legendenpunkten hinzugefügt\n: Balken-, Kreis- und JSON-Diagramm: Optionen für Tooltip-Titel und Wertüberschreibung hinzugefügt\n: Kreisdiagramm: Fehlerbehebung bei Orientierungsänderung\n: json & line history chart: Option für gestufte Linien hinzugefügt\n: table: Option für feste Tabellenüberschrift hinzugefügt\n: Charts: Newline-Fehler behoben\n: Diagramme: Tooltip Dezimalstellen Fehlerbehebung",
@@ -230,18 +242,6 @@
                 "es": "soporte para valores no booleanos agregados para botones, casillas de verificación e interruptores. Opción de retroalimentación háptica (vibración) para el navegador mobil agregado. opción de etiqueta derecha para la lista agregada. opción de texto del valor del control deslizante para lías o más grande que el agregado. corrección de errores.",
                 "pl": "dodano obsługę wartości innych niż logiczne dla przycisków, pól wyboru i przełączników. dodano opcję dotykowego sprzężenia zwrotnego (wibracji) dla przeglądarki mobilnej. dodano opcję prawej etykiety dla listy. suwakowa wartość opcji tekstowej dla osadów lub większa niż dodana. poprawki błędów.",
                 "zh-cn": "支持为按钮，复选框和开关添加的非布尔值。为Mobil浏览器添加了触觉反馈（振动）选项。列表的右侧标签选项已添加。滑块值文本选项，用于添加或添加的内容。 bug修复。"
-            },
-            "0.1.1": {
-                "en": "bug fixes",
-                "de": "Fehlerbehebung",
-                "ru": "исправление ошибок",
-                "pt": "correções de bugs",
-                "nl": "bugfixes",
-                "fr": "corrections de bugs",
-                "it": "correzioni di bug",
-                "es": "corrección de errores",
-                "pl": "poprawki błędów",
-                "zh-cn": "bug修复"
             }
         },
         "title": "Material Design Widgets",

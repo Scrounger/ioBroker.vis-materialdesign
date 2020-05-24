@@ -1552,7 +1552,7 @@ ical2CalendarWidget();
 
 ## Changelog
 
-### __WORK IN PROGRESS__
+### 0.3.11 (2020-05-24)
 * (Scrounger): Sentry added
 * (Scrounger): Select & Autocomplete Widget: vibrate on mobil devices added
 * (Scrounger): List Widget: vibrate on mobil devices added
