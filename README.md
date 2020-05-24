@@ -159,6 +159,23 @@ Settings that are not listed in the table below are self-explanatory.
 ## Progress
 ![Logo](doc/en/media/progress.gif)
 
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=6><img src="doc/en/media/progress_settings.png"></td>
+            <td>custom label</td>
+            <td>For custom label you can use the property <code>[#value]</code> to show the real value of the datapoint. To show the current percent you can use <code>[#percent]</code></td>
+        </tr>
+    </tbody>
+</table>
+
 ## Slider
 ![Logo](doc/en/media/slider.gif)
 

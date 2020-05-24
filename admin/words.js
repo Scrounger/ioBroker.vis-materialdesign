@@ -9160,6 +9160,18 @@ systemDictionary = {
         "es": "color de fuente",
         "pl": "kolor czcionki",
         "zh-cn": "字体颜色"
+    },
+    "valueLabelStyle": {
+        "en": "value caption style",
+        "de": "Wertbeschriftungsstil",
+        "ru": "стиль заголовка",
+        "pt": "estilo da legenda do valor",
+        "nl": "waarde bijschrift stijl",
+        "fr": "style de légende de valeur",
+        "it": "valore stile didascalia",
+        "es": "estilo de título de valor",
+        "pl": "styl podpisu wartości",
+        "zh-cn": "价值标题样式"
     }
 
 
