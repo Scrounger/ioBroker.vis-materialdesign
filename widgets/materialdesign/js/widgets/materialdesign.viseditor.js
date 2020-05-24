@@ -137,6 +137,10 @@ vis.binds.materialdesign.viseditor = {
                 url = 'https://forum.iobroker.net/topic/30331/material-design-widgets-iconlist-widget'
             }
 
+            if (data[1] === 'progress') {
+                url = 'https://forum.iobroker.net/topic/33623/material-design-widgets-progress-widget'
+            }
+
             if (data[1] === 'masonry') {
                 url = 'https://forum.iobroker.net/topic/29621/material-design-widgets-masonry-views-widget'
             }
