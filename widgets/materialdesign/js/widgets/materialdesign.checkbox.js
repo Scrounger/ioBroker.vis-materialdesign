@@ -25,7 +25,7 @@ vis.binds.materialdesign.checkbox =
             const mdcCheckbox = new mdc.checkbox.MDCCheckbox(checkboxElement);
             mdcFormField.input = mdcCheckbox;
 
-            mdcCheckbox.disabled = data.readOnly, false;
+            mdcCheckbox.disabled = myMdwHelper.getBooleanFromData(data.readOnly, false);
 
             checkboxElement.style.setProperty("--mdc-theme-secondary", myMdwHelper.getValueFromData(data.colorCheckBox, ''));
 

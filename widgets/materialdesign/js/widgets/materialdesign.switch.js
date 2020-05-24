@@ -26,7 +26,7 @@ vis.binds.materialdesign.switch =
             const mdcSwitch = new mdc.switchControl.MDCSwitch(switchElement);
             mdcFormField.input = mdcSwitch;
 
-            mdcSwitch.disabled = data.readOnly, false;
+            mdcSwitch.disabled = myMdwHelper.getBooleanFromData(data.readOnly, false);
 
             switchElement.style.setProperty("--materialdesign-color-switch-on", myMdwHelper.getValueFromData(data.colorSwitchTrue, ''));
             switchElement.style.setProperty("--materialdesign-color-switch-off", myMdwHelper.getValueFromData(data.colorSwitchThumb, ''));
