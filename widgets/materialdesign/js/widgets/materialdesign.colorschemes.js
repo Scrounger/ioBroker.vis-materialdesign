@@ -41,10 +41,13 @@ vis.binds.materialdesign.colorScheme = {
             if (myMdwHelper.getValueFromData(schemeName, null) != null) {
                 let result = [];
                 let selected = schemes[schemeName];
-                let repeats = Math.ceil(dataSize + 1 / selected.length);
 
-                for (var i = 0; i <= repeats - 1; i++) {
-                    result = result.concat(selected);
+                if (dataSize && selected) {
+                    let repeats = Math.ceil(dataSize + 1 / selected.length);
+
+                    for (var i = 0; i <= repeats - 1; i++) {
+                        result = result.concat(selected);
+                    }
                 }
 
                 return result;
@@ -52,7 +55,7 @@ vis.binds.materialdesign.colorScheme = {
                 return schemes;
             }
         } catch (ex) {
-            console.error(`get: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[colorScheme] get: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     preview: function (data) {
@@ -75,7 +78,7 @@ vis.binds.materialdesign.colorScheme = {
 
             return preview.join('');
         } catch (ex) {
-            console.error(`preview: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[colorScheme] preview: error: ${ex.message}, stack: ${ex.stack}`);
         }
 
     },
@@ -120,7 +123,7 @@ vis.binds.materialdesign.colorScheme = {
                 }
             };
         } catch (ex) {
-            console.error(`editorSelector: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[colorScheme] editorSelector: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };
