@@ -67,7 +67,7 @@ vis.binds.materialdesign.table = {
 
             return tableElement.join('');
         } catch (ex) {
-            console.error(`[Table ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Table - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handle: function (el, data) {
@@ -158,7 +158,7 @@ vis.binds.materialdesign.table = {
                 });
             });
         } catch (ex) {
-            console.error(`[Table ${data.wid}] handle: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Table - ${data.wid}] handle: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     getContentElements: function ($this, input, data, jsonData = null) {
@@ -284,7 +284,7 @@ vis.binds.materialdesign.table = {
             try {
                 jsonData = JSON.parse(input)
             } catch (err) {
-                console.error(`input: ${input}, error: ${err.message}`);
+                console.error(`[Table - ${data.wid}] getJsonData: input: ${input}, error: ${err.message}`);
             }
         } else {
             jsonData = input;
