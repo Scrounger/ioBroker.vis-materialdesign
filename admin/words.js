@@ -8873,7 +8873,7 @@ systemDictionary = {
         "pl": "zwyczaj",
         "zh-cn": "习俗"
     },
-    "valueLabelCustum": {
+    "valueLabelCustom": {
         "en": "custom label",
         "de": "benutzerdefiniertes Beschriftung",
         "ru": "пользовательский ярлык",

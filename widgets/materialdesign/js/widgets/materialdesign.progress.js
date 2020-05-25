@@ -56,6 +56,10 @@ vis.binds.materialdesign.progress = {
 
                     $this.get(0).style.setProperty("--vue-progress-progress-color-background", myMdwHelper.getValueFromData(data.colorProgressBackground, ''));
                     $this.get(0).style.setProperty("--vue-progress-progress-color-striped", myMdwHelper.getValueFromData(data.progressStripedColor, ''));
+                    $this.get(0).style.setProperty("--vue-progress-progress-color-text", myMdwHelper.getValueFromData(data.textColor, ''));
+                    $this.get(0).style.setProperty("--vue-progress-progress-color-text-size", myMdwHelper.getNumberFromData(data.textFontSize, 12) + 'px');
+                    $this.get(0).style.setProperty("--vue-progress-progress-color-text-font-family", myMdwHelper.getValueFromData(data.textFontFamily, 'inherit'));
+                    $this.get(0).style.setProperty("--vue-progress-progress-color-text-align", myMdwHelper.getValueFromData(data.textAlign, 'end'));
 
                     let val = myMdwHelper.getNumberFromData(vis.states.attr(data.oid + '.val'), 0);
                     vueProgress.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label');
@@ -107,6 +111,8 @@ vis.binds.materialdesign.progress = {
 
                     $this.get(0).style.setProperty("--vue-progress-circular-progress-color-background", myMdwHelper.getValueFromData(data.colorProgressBackground, ''));
                     $this.get(0).style.setProperty("--vue-progress-circular-progress-color-text", myMdwHelper.getValueFromData(data.textColor, ''));
+                    $this.get(0).style.setProperty("--vue-progress-circular-progress-color-text-size", myMdwHelper.getNumberFromData(data.textFontSize, 12) + 'px');
+                    $this.get(0).style.setProperty("--vue-progress-circular-progress-color-text-font-family", myMdwHelper.getValueFromData(data.textFontFamily, 'inherit'));
 
                     $this.find(`.v-progress-circular__underlay`).attr('fill', myMdwHelper.getValueFromData(data.innerColor, 'transparent'))
                 });
@@ -153,9 +159,9 @@ vis.binds.materialdesign.progress = {
             $this.get(0).style.setProperty(colorProperty, color);
         }
 
-        if (data.valueLabelStyle === 'progressPercent') {
+        if (myMdwHelper.getValueFromData(data.valueLabelStyle, "progressPercent") === 'progressPercent') {
             $this.find(labelClass).html(`${myMdwHelper.formatNumber(valPercent, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))} %`);
-        } else if (data.valueLabelStyle === 'progressValue') {
+        } else if (myMdwHelper.getValueFromData(data.valueLabelStyle, "progressPercent") === 'progressValue') {
             $this.find(labelClass).html(`${myMdwHelper.formatNumber(val, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))}${myMdwHelper.getValueFromData(data.valueLabelUnit, '')}`);
         } else {
             $this.find(labelClass).html(`${myMdwHelper.getValueFromData(data.valueLabelCustom, '').replace('[#value]', myMdwHelper.formatNumber(val, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))).replace('[#percent]', myMdwHelper.formatNumber(valPercent, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0)))}`);

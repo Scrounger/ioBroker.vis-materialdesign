@@ -272,10 +272,16 @@
   --vue-progress-progress-color: #44739e;
   --vue-progress-progress-color-background: #e6e6e6;
   --vue-progress-progress-color-striped: rgba(255,255,255,0.25);
+  --vue-progress-progress-color-text: #44739e;
+  --vue-progress-progress-color-text-size: initial;
+  --vue-progress-progress-color-text-font-family: inherit;
+  --vue-progress-progress-color-text-align: end;
 
   --vue-progress-circular-progress-color: #44739e;
   --vue-progress-circular-progress-color-background: #e6e6e6;
   --vue-progress-circular-progress-color-text: #44739e;
+  --vue-progress-circular-progress-color-text-size: initial;
+  --vue-progress-circular-progress-color-text-font-family: inherit;
 }
 
 /* MaterialDesignIcons */
@@ -6101,6 +6107,8 @@ svg.materialdesign-button__icon {
   display: flex;
   justify-content: center;
   color: var(--vue-progress-circular-progress-color-text);
+  font-size: var(--vue-progress-circular-progress-color-text-size);
+  font-family: var(--vue-progress-circular-progress-color-text-font-family);
   z-index: 1;
 }
 .v-progress-circular__underlay {
@@ -6150,6 +6158,10 @@ svg.materialdesign-button__icon {
   top: 0;
   width: 100%;
   z-index: 2;
+  color: var(--vue-progress-progress-color-text);
+  font-size: var(--vue-progress-progress-color-text-size);
+  font-family: var(--vue-progress-progress-color-text-font-family);
+  text-align: var(--vue-progress-progress-color-text-align);
 }
 
 .v-progress-linear__determinate {
