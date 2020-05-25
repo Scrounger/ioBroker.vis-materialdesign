@@ -278,6 +278,18 @@
   --vue-progress-circular-progress-color-text: #44739e;
 }
 
+/* MaterialDesignIcons */
+.mdi:before,
+.mdi-set {
+  display: inline-block;
+  font: normal normal normal 24px/1 "Material Design Icons";
+  font-size: inherit;
+  text-rendering: auto;
+  line-height: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Button style -> must defined here because of position bug in vis editor */
 .materialdesign-button {
   font-family: Roboto, sans-serif;

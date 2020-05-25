@@ -263,7 +263,7 @@ vis.binds.materialdesign.button = {
                         if (vis.detectBounce(this)) return;
 
                         if ($this.parent().attr('isLocked') === 'false' || $this.parent().attr('isLocked') === undefined) {
-                            if (data.toggleType === 'boolean') {
+                            if (myMdwHelper.getValueFromData(data.toggleType, 'boolean') === 'boolean') {
                                 myMdwHelper.setValue(data.oid, !vis.states.attr(data.oid + '.val'));
                             } else {
                                 if ($this.parent().attr('toggled') === true || $this.parent().attr('toggled') === 'true') {

@@ -38,25 +38,27 @@ vis.binds.materialdesign = {
     },
     addRippleEffect: function (el, data, isIconButton = false) {
         var $this = $(el).parent();
+
+        let btn = $this.get(0) ? $this.get(0) : $this.context;
+
         if (!isIconButton) {
-            mdc.ripple.MDCRipple.attachTo($this.context);
+            mdc.ripple.MDCRipple.attachTo(btn);
             var colorPress = (data.colorPress === undefined || data.colorPress === null || data.colorPress === '') ? '' : data.colorPress;
 
             if (data.buttonStyle === 'text' || data.buttonStyle === 'outlined') {
-                $this.context.style.setProperty("--mdc-theme-primary", colorPress);
+                btn.style.setProperty("--mdc-theme-primary", colorPress);
             } else {
-                $this.context.style.setProperty("--mdc-theme-on-primary", colorPress);
+                btn.style.setProperty("--mdc-theme-on-primary", colorPress);
             }
         } else {
             var colorPress = (data.colorPress === undefined || data.colorPress === null || data.colorPress === '') ? '' : data.colorPress;
-            $this.context.style.setProperty("--mdc-theme-primary", colorPress);
+            btn.style.setProperty("--mdc-theme-primary", colorPress);
 
-            const mdcIconButton = new mdc.iconButton.MDCIconButtonToggle($this.context);
+            const mdcIconButton = new mdc.iconButton.MDCIconButtonToggle(btn);
         }
 
         $(el).click(function () {
             vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
         });
     },
-
 };
