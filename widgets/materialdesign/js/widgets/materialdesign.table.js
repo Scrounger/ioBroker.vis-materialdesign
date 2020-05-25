@@ -393,14 +393,17 @@ vis.binds.materialdesign.table = {
                 colorTwoCondition: obj.colorTwoCondition,
                 colorTwo: obj.colorTwo,
                 innerColor: obj.innerColor,                                                             // nur Progress  Circular
-                textColor: obj.textColor,                                                               // nur Progress  Circular
 
                 //attrs2
                 showValueLabel: obj.showValueLabel,
                 valueLabelStyle: obj.valueLabelStyle,
                 valueLabelUnit: obj.valueLabelUnit,
                 valueMaxDecimals: obj.valueMaxDecimals,
-                valueLabelCustum: obj.valueLabelCustom
+                valueLabelCustum: obj.valueLabelCustom,
+                textColor: obj.textColor,
+                textFontSize: obj.textFontSize,
+                textFontFamily: obj.textFontFamily,
+                textAlign: obj.textAlign                                                                // nur Progress
             }
         }
     }

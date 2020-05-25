@@ -1746,14 +1746,6 @@ Properties for all Button Toggle types. In the last columns is described for whi
             <td style="text-align: center;">X</td>
         </tr>
         <tr>
-            <td>textColor</td>
-            <td>text color of progress circular</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-            <td style="text-align: center;">-</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
             <td>showValueLabel</td>
             <td>show value of progress</td>
             <td>boolean</td>
@@ -1796,6 +1788,40 @@ Properties for all Button Toggle types. In the last columns is described for whi
             <td></td>
             <td style="text-align: center;">X</td>
             <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>textColor</td>
+            <td>text color of progress circular</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>textFontSize</td>
+            <td>font size of text</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>textFontFamily</td>
+            <td>font family of text</td>
+            <td>string</td>
+            <td></td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>textAlign</td>
+            <td>alignment of text</td>
+            <td>string</td>
+            <td>start | center | end</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">-</td>
         </tr>
     </tbody>
 </table>
