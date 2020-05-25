@@ -168,7 +168,7 @@ vis.binds.materialdesign.table = {
             jsonData = vis.binds.materialdesign.table.getJsonData(input, data);
         }
 
-        if (jsonData != null) {
+        if (jsonData && jsonData != null) {
 
             for (var row = 0; row <= jsonData.length - 1; row++) {
                 contentElements.push(`<tr class="mdc-data-table__row" style="height: ${(myMdwHelper.getNumberFromData(data.rowHeight, null) !== null) ? data.rowHeight + 'px' : '1px'};">`);
