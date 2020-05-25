@@ -257,7 +257,7 @@ vis.binds.materialdesign.table = {
                             vis.binds.materialdesign.addRippleEffect(btn, elementData, true);
                             vis.binds.materialdesign.button.handleToggle(btn, elementData);
                         });
-                    } else if (objValue.type === 'progress' || objValue.type === 'progress_circular') {
+                    } else if (objValue.type === 'progress') {
                         element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 24px;'}">
                                     </div>`
 
@@ -268,6 +268,19 @@ vis.binds.materialdesign.table = {
                                 let progress = $this.find(`.materialdesign-progress-table-row_${row}-col_${col}`);
 
                                 vis.binds.materialdesign.progress.linear(progress, elementData);
+                            });
+                        });
+                    } else if (objValue.type === 'progress_circular') {
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-circular-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; ${objValue.width ? `width: ${objValue.width};` : 'width: 60px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 60px;'}">
+                                    </div>`
+
+                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Progress Circular', true);
+
+                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Progress Circular', function () {
+                            myMdwHelper.waitForElement($this, `.materialdesign-progress-circular-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
+                                let progress = $this.find(`.materialdesign-progress-circular-table-row_${row}-col_${col}`);
+
+                                vis.binds.materialdesign.progress.circular(progress, elementData);
                             });
                         });
                     }
