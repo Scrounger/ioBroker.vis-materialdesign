@@ -54,9 +54,9 @@ vis.binds.materialdesign.table = {
 
             // adding Content
             if (myMdwHelper.getValueFromData(data.oid, null) !== null && vis.states.attr(data.oid + '.val') !== null) {
-                tableElement.push(vis.binds.materialdesign.table.getContentElements(vis.states.attr(data.oid + '.val'), data));
+                tableElement.push(vis.binds.materialdesign.table.getContentElements($this, vis.states.attr(data.oid + '.val'), data));
             } else {
-                tableElement.push(vis.binds.materialdesign.table.getContentElements(data.dataJson, data));
+                tableElement.push(vis.binds.materialdesign.table.getContentElements($this, data.dataJson, data));
             }
 
             tableElement.push(`</tbody>`);
@@ -98,7 +98,7 @@ vis.binds.materialdesign.table = {
 
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                         $this.find('.mdc-data-table__content').empty();
-                        $this.find('.mdc-data-table__content').append(vis.binds.materialdesign.table.getContentElements(newVal, data));
+                        $this.find('.mdc-data-table__content').append(vis.binds.materialdesign.table.getContentElements($this, newVal, data));
                     });
 
                     $this.find('.mdc-data-table__header-cell').click(function (obj) {
@@ -140,7 +140,7 @@ vis.binds.materialdesign.table = {
                         });
 
                         $this.find('.mdc-data-table__content').empty();
-                        $this.find('.mdc-data-table__content').append(vis.binds.materialdesign.table.getContentElements(null, data, sortByKey(jsonData, key, sortASC)));      //TODO: sort key by user defined
+                        $this.find('.mdc-data-table__content').append(vis.binds.materialdesign.table.getContentElements($this, null, data, sortByKey(jsonData, key, sortASC)));      //TODO: sort key by user defined
 
                         function sortByKey(array, key, sortASC) {
                             return array.sort(function (a, b) {
@@ -161,7 +161,7 @@ vis.binds.materialdesign.table = {
             console.error(`[Table ${data.wid}] handle: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    getContentElements: function (input, data, jsonData = null) {
+    getContentElements: function ($this, input, data, jsonData = null) {
         let contentElements = [];
 
         if (jsonData === null) {
@@ -181,14 +181,14 @@ vis.binds.materialdesign.table = {
                         if (data.attr('showColumn' + col)) {
                             let textSize = myMdwHelper.getFontSize(data.attr('colTextSize' + col));
 
-                            contentElements.push(getContentElement(col, Object.values(jsonData[row])[col], textSize, jsonData[row]));
+                            contentElements.push(getContentElement(row, col, Object.values(jsonData[row])[col], textSize, jsonData[row]));
                         }
                     }
                 }
                 contentElements.push(`</tr>`);
             }
 
-            function getContentElement(col, objValue, textSize, rowData = null) {
+            function getContentElement(row, col, objValue, textSize, rowData = null) {
                 let prefix = myMdwHelper.getValueFromData(data.attr('prefix' + col), '');
                 let suffix = myMdwHelper.getValueFromData(data.attr('suffix' + col), '');
 
@@ -224,6 +224,42 @@ vis.binds.materialdesign.table = {
                     objValue = `<img src="${objValue}" style="height: auto; vertical-align: middle; width: ${myMdwHelper.getValueFromData(data.attr('imageSize' + col), '', '', 'px;')}">`;
                 }
 
+                let element = `${prefix}${objValue}${suffix}`
+
+                if (typeof (objValue) === 'object') {
+                    let elementData = vis.binds.materialdesign.table.getElementData(objValue, data.wid);
+
+                    if (objValue.type === 'buttonToggle' || objValue.type === 'buttonToggle_vertical') {
+
+                        let init = vis.binds.materialdesign.button.initializeButton(elementData);
+                        if (objValue.type === 'buttonToggle_vertical') {
+                            init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
+                        }
+
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
+                                        ${init.button}
+                                    </div>`
+
+                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
+                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
+                            vis.binds.materialdesign.addRippleEffect(btn, elementData);
+                            vis.binds.materialdesign.button.handleToggle(btn, elementData);
+                        });
+                    } else if (objValue.type === 'buttonToggle_icon') {
+                        let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
+
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
+                                        ${init.button}
+                                    </div>`
+
+                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
+                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
+                            vis.binds.materialdesign.addRippleEffect(btn, elementData, true);
+                            vis.binds.materialdesign.button.handleToggle(btn, elementData);
+                        });
+                    }
+                }
+
                 return `<td class="mdc-data-table__cell ${textSize.class}" 
                             style="
                             text-align: ${data.attr('textAlign' + col)};${textSize.style}; 
@@ -234,7 +270,7 @@ vis.binds.materialdesign.table = {
                             white-space: ${(data.attr('colNoWrap' + col) ? 'nowrap' : 'unset')};
                             ${(myMdwHelper.getNumberFromData(data.attr('columnWidth' + col), null) !== null) ? `width: ${data.attr('columnWidth' + col)}px;` : ''};
                             ">
-                                ${prefix}${objValue}${suffix}
+                                ${element}
                         </td>`
             };
 
@@ -269,5 +305,54 @@ vis.binds.materialdesign.table = {
         }
 
         return jsonData;
+    },
+    getElementData: function (obj, widgetId) {
+        if (obj.type === 'buttonToggle' || obj.type === 'buttonToggle_vertical' || obj.type === 'buttonToggle_icon') {
+            return {
+                wid: widgetId,
+
+                //attrs
+                oid: obj.oid,
+                buttonStyle: myMdwHelper.getValueFromData(obj.buttonStyle, 'raised'),                   // nur Button Toggle, Button Toggle Vertical
+                readOnly: obj.readOnly,
+                toggleType: myMdwHelper.getValueFromData(obj.toggleType, 'boolean'),
+                pushButton: obj.pushButton,
+                valueOff: obj.valueOff,
+                valueOn: obj.valueOn,
+                stateIfNotTrueValue: myMdwHelper.getValueFromData(obj.stateIfNotTrueValue, 'on'),
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+
+                //attrs0
+                buttontext: obj.text,                                                                   // nur Button Toggle, Button Toggle Vertical
+                labelTrue: obj.textTrue,                                                                // nur Button Toggle, Button Toggle Vertical
+                labelColorFalse: obj.textColor,                                                         // nur Button Toggle, Button Toggle Vertical
+                labelColorTrue: obj.textColorTrue,                                                      // nur Button Toggle, Button Toggle Vertical
+                labelWidth: obj.textWidth,                                                              // nur Button Toggle
+
+                //attrs1
+                image: obj.image,
+                imageColor: obj.imageColor,
+                imageTrue: obj.imageTrue,
+                imageTrueColor: obj.imageTrueColor,
+                iconPosition: myMdwHelper.getValueFromData(obj.imagePosition, 'top'),                   // nur Button Toggle, Button Toggle Vertical
+                iconHeight: obj.imageHeight,
+
+                //attrs2
+                colorBgFalse: obj.backgroundColor,
+                colorBgTrue: obj.backgroundTrueColor,
+                colorPress: obj.backgroundPressColor,
+
+                //attrs3
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconTop: obj.lockIconTop,                                                           // nur Button Toggle Vertical, Button Toggle Icon
+                lockIconLeft: obj.lockIconLeft,                                                         // nur Button Toggle Vertical, Button Toggle Icon
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockFilterGrayscale: obj.lockFilterGrayscale,
+            };
+        }
     }
+
 };

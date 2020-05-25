@@ -1141,7 +1141,7 @@ JSON Chart supports data that have a timestamp. To use this the data array must 
 ![Logo](doc/en/media/table.gif)
 
 
-##### Input Data
+### Input Data
 Input data must be a json array of objects, example:
 ```
 [
@@ -1165,23 +1165,415 @@ Input data must be a json array of objects, example:
 		"betriebszeit": "18T 07h 21m",
 		"funk": "2G",
 		"ip": "10.0.0.3"
-	},
-	{
-		"img": "/vis.0/myImages/erlebnis_25.png",
-		"name": "MusicCast - Esszimmer (WX-030)",
-		"betriebszeit": "1h 57m",
-		"funk": "2G",
-		"ip": "10.0.0.4"
-	},
-	{
-		"img": "/vis.0/myImages/erlebnis_75.png",
-		"name": "MusicCast - K�che (ISX-18D)",
-		"betriebszeit": "4h 10m",
-		"funk": "2G",
-		"ip": "10.0.0.5"
 	}
 ]
 ```
+
+#### Control Elements
+
+To generate a control element (button, checkbox, etc.) in cell of the table you must create an object instead of a string.
+
+```
+[
+	{
+		"control": {
+			"type": "buttonToggle",
+			"oid": "0_userdata.0.MDW.Buttons.bool",
+			"buttonText": "&nbsp;off",
+			"buttonTextTrue": "&nbsp;on",
+			"image": "home",
+			"imagePosition": "left",
+			"colorBgTrue": "green",
+			"lockEnabled": "true"
+		},
+		"img": "/vis.0/myImages/erlebnis_50.png",
+		"name": "Empire",
+		"betriebszeit": "4h 06m",
+		"funk": "5G"
+	}, {
+		"img": "/vis.0/myImages/erlebnis_100.png",
+		"control": {
+			"type": "buttonToggle",
+			"oid": "0_userdata.0.MDW.Buttons.bool",
+			"buttonText": "off",
+			"buttonTextTrue": "on",
+			"image": "home",
+			"colorBgTrue": "green"
+		},
+		"name": "Handy",
+		"betriebszeit": "13m",
+		"funk": "5G",
+		"ip": "10.0.0.2"
+	}, {
+		"img": "/vis.0/myImages/erlebnis_100.png",
+		"name": "Harmony Hub - Wohnzimmer",
+		"betriebszeit": "18T 07h 21m",
+		"funk": "2G",
+		"ip": "10.0.0.3"
+	}
+]
+```
+
+##### General
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>type</td>
+            <td>type of control element</td>
+            <td>string</td>
+            <td>
+                <ul>
+                    <li>buttonToggle</li>
+                    <li>buttonToggle_vertical</li>
+                    <li>buttonToggle_icon</li>
+                    <li>buttonState</li>
+                    <li>buttonState_vertical</li>
+                    <li>buttonState_icon</li>
+                </ul> 
+            </td>
+        </tr>
+        <tr>
+            <td>width</td>
+            <td>width in % or px of control element</td>
+            <td>string</td>
+            <td>
+                100% | 100px
+            </td>
+        </tr>
+        <tr>
+            <td>height</td>
+            <td>height in % or px of control element</td>
+            <td>string</td>
+            <td>
+                100% | 100px
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+##### Button Toggle | Button Toggle Vertical | Button Toggle Icon
+
+Properties for all Button Toggle types. In the last columns is described for which button type the property is available.
+
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Values</th>
+            <th style="text-align: center;">Toggle</th>
+            <th>Vertical</th>
+            <th>Icon</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>oid</td>
+            <td>Object Id</td>
+            <td>string</td>
+            <td></td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>buttonStyle</td>
+            <td>style of button</td>
+            <td>string</td>
+            <td>text | raised | unelevated | outlined</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td>readOnly</td>
+            <td>Button is readonly</td>
+            <td>boolean</td>
+            <td>
+                false | true
+            </td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>toggleType</td>
+            <td>type of toggle</td>
+            <td>string</td>
+            <td>
+                boolean | value
+            </td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>pushButton</td>
+            <td>push button</td>
+            <td>boolean</td>
+            <td>
+                false | true
+            </td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>valueOff</td>
+            <td>value off for toogleType 'value'</td>
+            <td>string | number | boolean</td>
+            <td></td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>valueOn</td>
+            <td>value on for toogleType 'value'</td>
+            <td>string | number | boolean</td>
+            <td></td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>stateIfNotTrueValue</td>
+            <td>state if value unequal to 'on' condition for toogleType 'value'</td>
+            <td>string</td>
+            <td>on | off</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>vibrateOnMobilDevices</td>
+            <td>vibrate on mobil devices [s]</td>
+            <td>number</td>
+            <td>0, 1, 2, ...</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>text</td>
+            <td>text of button</td>
+            <td>string</td>
+            <td></td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td>textTrue</td>
+            <td>text of button for state on / true</td>
+            <td>string</td>
+            <td></td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td>textColor</td>
+            <td>text color of button</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td>textColorTrue</td>
+            <td>text color of button for state on / true</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td>textWidth</td>
+            <td>width of text in %</td>
+            <td>number</td>
+            <td>0, 1, 2, ...</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td>image</td>
+            <td>name of material design icon or filename of image</td>
+            <td>string</td>
+            <td></td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>imageColor</td>
+            <td>color of material design icon</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>imageTrue</td>
+            <td>name of material design icon or filename of image for state on / true</td>
+            <td>string</td>
+            <td></td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>imageTrueColor</td>
+            <td>color of material design icon for state on / true</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>iconPosition</td>
+            <td>icon position</td>
+            <td>string</td>
+            <td></td>
+            <td style="text-align: center;">X<br> left | right</td>
+            <td style="text-align: center;">X<br> top | bottom</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td>imageHeight</td>
+            <td>height of image in px</td>
+            <td>number</td>
+            <td>0, 1, 2, ...</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>backgroundColor</td>
+            <td>background color</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>backgroundTrueColor</td>
+            <td>background color for state on / true</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>backgroundPressColor</td>
+            <td>background color on button is pressed</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>lockEnabled</td>
+            <td>enable Locking</td>
+            <td>boolean</td>
+            <td>
+                false | true
+            </td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>autoLockAfter</td>
+            <td>auto Locking after [s]</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>lockIcon</td>
+            <td>material design lock icon</td>
+            <td>string</td>
+            <td></td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>lockIconTop</td>
+            <td>symbol distance from top [%]</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>lockIconLeft</td>
+            <td>symbol distance from left [%]</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>lockIconColor</td>
+            <td>color of lock icon</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>lockFilterGrayscale</td>
+            <td>gray filter if locked in %</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+##### Button State
+
+###### Button State Vertical
+
+###### Button State Icon
+
+### Editor Settings
 
 <table>
     <thead>
