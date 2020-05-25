@@ -257,7 +257,22 @@ vis.binds.materialdesign.table = {
                             vis.binds.materialdesign.addRippleEffect(btn, elementData, true);
                             vis.binds.materialdesign.button.handleToggle(btn, elementData);
                         });
+                    } else if (objValue.type === 'progress' || objValue.type === 'progress_circular') {
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 24px;'}">
+                                    </div>`
+
+                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Progress', true);
+
+                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Progress', function () {
+                            myMdwHelper.waitForElement($this, `.materialdesign-progress-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
+                                let progress = $this.find(`.materialdesign-progress-table-row_${row}-col_${col}`);
+
+                                vis.binds.materialdesign.progress.linear(progress, elementData);
+                            });
+                        });
                     }
+
+
                 }
 
                 return `<td class="mdc-data-table__cell ${textSize.class}" 
@@ -352,6 +367,41 @@ vis.binds.materialdesign.table = {
                 lockIconColor: obj.lockIconColor,
                 lockFilterGrayscale: obj.lockFilterGrayscale,
             };
+        } else if (obj.type === 'progress' || obj.type === 'progress_circular') {
+            return {
+                wid: widgetId,
+
+                //attrs
+                oid: obj.oid,
+                min: obj.min,
+                max: obj.max,
+                reverse: obj.reverse,                                                                   // nur Progress
+
+                //attrs0
+                progressRounded: obj.progressRounded,                                                   // nur Progress
+                progressStriped: obj.progressStriped,                                                   // nur Progress
+                progressStripedColor: obj.progressStripedColor,                                         // nur Progress
+                progressCircularSize: obj.progressCircularSize,                                         // nur Progress  Circular                    
+                progressCircularWidth: obj.progressCircularWidth,                                       // nur Progress  Circular
+                progressCircularRotate: obj.progressCircularRotate,                                     // nur Progress  Circular
+
+                //attrs1
+                colorProgressBackground: obj.backgroundColor,
+                colorProgress: obj.progressColor,
+                colorOneCondition: obj.colorOneCondition,
+                colorOne: obj.colorOne,
+                colorTwoCondition: obj.colorTwoCondition,
+                colorTwo: obj.colorTwo,
+                innerColor: obj.innerColor,                                                             // nur Progress  Circular
+                textColor: obj.textColor,                                                               // nur Progress  Circular
+
+                //attrs2
+                showValueLabel: obj.showValueLabel,
+                valueLabelStyle: obj.valueLabelStyle,
+                valueLabelUnit: obj.valueLabelUnit,
+                valueMaxDecimals: obj.valueMaxDecimals,
+                valueLabelCustum: obj.valueLabelCustom
+            }
         }
     }
 

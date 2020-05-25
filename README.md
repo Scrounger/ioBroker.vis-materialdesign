@@ -1237,6 +1237,8 @@ To generate a control element (button, checkbox, etc.) in cell of the table you 
                     <li>buttonState</li>
                     <li>buttonState_vertical</li>
                     <li>buttonState_icon</li>
+                    <li>progress</li>
+                    <li>progress_circular</li>
                 </ul> 
             </td>
         </tr>
@@ -1271,8 +1273,8 @@ Properties for all Button Toggle types. In the last columns is described for whi
             <th>Type</th>
             <th>Values</th>
             <th style="text-align: center;">Toggle</th>
-            <th>Vertical</th>
-            <th>Icon</th>
+            <th style="text-align: center;">Vertical</th>
+            <th style="text-align: center;">Icon</th>
         </tr>
     </thead>
     <tbody>
@@ -1567,11 +1569,236 @@ Properties for all Button Toggle types. In the last columns is described for whi
 
 
 
-##### Button State
+##### Button State | Button State Vertical | Button State Icon
 
-###### Button State Vertical
+tbd.
 
-###### Button State Icon
+##### Progress | Progress Circular
+
+Properties for all Button Toggle types. In the last columns is described for which button type the property is available.
+
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Values</th>
+            <th style="text-align: center;">Progress</th>
+            <th style="text-align: center;">Circular</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>oid</td>
+            <td>Object Id</td>
+            <td>string</td>
+            <td></td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>min</td>
+            <td>min value of datapoint</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>max</td>
+            <td>max value of datapoint</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>reverse</td>
+            <td>right to left direction for progress</td>
+            <td>boolean</td>
+            <td>
+                false | true
+            </td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td>progressRounded</td>
+            <td>rounded corners for progress</td>
+            <td>boolean</td>
+            <td>
+                false | true
+            </td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td>progressStriped</td>
+            <td>striped layout</td>
+            <td>boolean</td>
+            <td>
+                false | true
+            </td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td>progressStripedColor</td>
+            <td>color of striped</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+            <td>progressCircularSize</td>
+            <td>size of circular progress</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>progressCircularWidth</td>
+            <td>width / thickness of circular progress</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>progressCircularRotate</td>
+            <td>start angle of circular progress</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>colorProgressBackground</td>
+            <td>background color of progress</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>colorProgress</td>
+            <td>color of progress</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>colorOneCondition</td>
+            <td>condition for color 1 progress [>]</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>colorOne</td>
+            <td>color 1 progress</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>colorTwoCondition</td>
+            <td>condition for color 2 progress [>]</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>colorTwo</td>
+            <td>color 2 progress</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>innerColor</td>
+            <td>inner background color of progress circular</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>textColor</td>
+            <td>text color of progress circular</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+            <td style="text-align: center;">-</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>showValueLabel</td>
+            <td>show value of progress</td>
+            <td>boolean</td>
+            <td>
+                false | true
+            </td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>valueLabelStyle</td>
+            <td>style of value label</td>
+            <td>string</td>
+            <td>hexprogressPercent | progressValue | progressCustom</td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>valueLabelUnit</td>
+            <td>append unit to value label</td>
+            <td>string</td>
+            <td></td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>valueMaxDecimals</td>
+            <td>max decimal points</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+        <tr>
+            <td>valueLabelCustom</td>
+            <td>custom label for progress, <a href="#progress">see progress for details</a></td>
+            <td>string</td>
+            <td></td>
+            <td style="text-align: center;">X</td>
+            <td style="text-align: center;">X</td>
+        </tr>
+    </tbody>
+</table>
 
 ### Editor Settings
 
