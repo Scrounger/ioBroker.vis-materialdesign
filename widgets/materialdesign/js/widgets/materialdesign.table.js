@@ -258,7 +258,7 @@ vis.binds.materialdesign.table = {
                             vis.binds.materialdesign.button.handleToggle(btn, elementData);
                         });
                     } else if (objValue.type === 'progress') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 24px;'}">
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 12px;'}">
                                     </div>`
 
                         myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Progress', true);
@@ -283,12 +283,28 @@ vis.binds.materialdesign.table = {
                                 vis.binds.materialdesign.progress.circular(progress, elementData);
                             });
                         });
+                    } else if (objValue.type === 'slider') {
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-slider-vertical materialdesign-slider-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${objValue["oid-working"]}" style="display: inline-block; position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
+                        </div>`
+
+                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Slider', true);
+
+                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Slider', function () {
+                            myMdwHelper.waitForElement($this, `.materialdesign-slider-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
+                                let slider = $this.find(`.materialdesign-slider-table-row_${row}-col_${col}`);
+
+                                vis.binds.materialdesign.slider.vuetifySlider(slider, elementData);
+                            });
+                        });
+
                     }
 
 
                 }
 
-                return `<td class="mdc-data-table__cell ${textSize.class}" 
+                return `<td class="mdc-data-table__cell ${textSize.class}"
+                            ${(objValue && objValue.rowspan) ? `rowspan="${objValue.rowspan}"` : ''}
+                            ${(objValue && objValue.colspan) ? `colspan="${objValue.colspan}"` : ''}
                             style="
                             text-align: ${data.attr('textAlign' + col)};${textSize.style}; 
                             padding-left: ${myMdwHelper.getNumberFromData(data.attr('padding_left' + col), 8)}px; 
@@ -418,7 +434,59 @@ vis.binds.materialdesign.table = {
                 textFontFamily: obj.textFontFamily,
                 textAlign: obj.textAlign                                                                // nur Progress
             }
+        } else if (obj.type === 'slider') {
+            return {
+                wid: widgetId,
+
+                //attrs
+                oid: obj.oid,
+                "oid-working": obj["oid-working"],
+                orientation: obj.orientation,
+                reverseSlider: obj.reverseSlider,
+                knobSize: obj.knobSize,
+                readOnly: obj.readOnly,
+                min: obj.min,
+                max: obj.max,
+                step: obj.step,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+
+                //attrs0
+                showTicks: obj.showTicks,
+                tickSize: obj.tickSize,
+                tickLabels: obj.tickLabels,
+                tickColorBefore: obj.tickColorBefore,
+                tickColorAfter: obj.tickColorAfter,
+
+                //attrs1
+                colorBeforeThumb: obj.colorBeforeThumb,
+                colorThumb: obj.colorThumb,
+                colorAfterThumb: obj.colorAfterThumb,
+
+                //attrs2
+                prepandText: obj.prepandText,
+                prepandTextWidth: obj.prepandTextWidth,
+                prepandTextColor: obj.prepandTextColor,
+                prepandTextFontSize: obj.prepandTextFontSize,
+                prepandTextFontFamily: obj.prepandTextFontFamily,
+                showValueLabel: obj.showValueLabel,
+                valueLabelUnit: obj.valueLabelUnit,
+                valueLabelMin: obj.valueLabelMin,
+                valueLabelMax: obj.valueLabelMax,
+                valueLessThan: obj.valueLessThan,
+                textForValueLessThan: obj.textForValueLessThan,
+                valueGreaterThan: obj.valueGreaterThan,
+                textForValueGreaterThan: obj.textForValueGreaterThan,
+                valueLabelWidth: obj.valueLabelWidth,
+
+                //attrs3
+                showThumbLabel: obj.showThumbLabel,
+                thumbSize: obj.thumbSize,
+                thumbBackgroundColor: obj.thumbBackgroundColor,
+                thumbFontColor: obj.thumbFontColor,
+                thumbFontSize: obj.thumbFontSize,
+                thumbFontFamily: obj.thumbFontFamily,
+                useLabelRules: obj.useLabelRules
+            }
         }
     }
-
 };

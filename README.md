@@ -1239,6 +1239,7 @@ To generate a control element (button, checkbox, etc.) in cell of the table you 
                     <li>buttonState_icon</li>
                     <li>progress</li>
                     <li>progress_circular</li>
+                    <li>slider</li>
                 </ul> 
             </td>
         </tr>
@@ -1256,6 +1257,22 @@ To generate a control element (button, checkbox, etc.) in cell of the table you 
             <td>string</td>
             <td>
                 100% | 100px
+            </td>
+        </tr>
+        <tr>
+            <td>rowspan</td>
+            <td>cell that spans x rows</td>
+            <td>number</td>
+            <td>
+                1, 2, 3, ... 
+            </td>
+        </tr>
+        <tr>
+            <td>colspan</td>
+            <td>cell that spans x columns</td>
+            <td>number</td>
+            <td>
+                1, 2, 3, ... 
             </td>
         </tr>
     </tbody>
@@ -1575,7 +1592,7 @@ tbd.
 
 ##### Progress | Progress Circular
 
-Properties for all Button Toggle types. In the last columns is described for which button type the property is available.
+Properties for all Progress types. In the last columns is described for which button type the property is available.
 
 <table>
     <thead>
@@ -1822,6 +1839,279 @@ Properties for all Button Toggle types. In the last columns is described for whi
             <td>start | center | end</td>
             <td style="text-align: center;">X</td>
             <td style="text-align: center;">-</td>
+        </tr>
+    </tbody>
+</table>
+
+##### Slider
+
+Properties for all Progress types. In the last columns is described for which button type the property is available.
+
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>oid</td>
+            <td>Object Id</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>oid-working</td>
+            <td>Object Working Id</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>orientation</td>
+            <td>orientation of slider</td>
+            <td>string</td>
+            <td>horizontal | vertical</td>
+        </tr>
+        <tr>
+            <td>reverseSlider</td>
+            <td>right to left slider</td>
+            <td>boolean</td>
+            <td>false | true</td>
+        </tr>
+        <tr>
+            <td>knobSize</td>
+            <td>size of knob</td>
+            <td>string</td>
+            <td>knobSmall | knobMedium | knobBig</td>
+        </tr>
+        <tr>
+            <td>readOnly</td>
+            <td>readOnly slider</td>
+            <td>boolean</td>
+            <td>false | true</td>
+        </tr>
+        <tr>
+            <td>min</td>
+            <td>min value of datapoint</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+        </tr>
+        <tr>
+            <td>max</td>
+            <td>max value of datapoint</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+        </tr>
+        <tr>
+            <td>step</td>
+            <td>steps of slider</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+        </tr>
+        <tr>
+            <td>vibrateOnMobilDevices</td>
+            <td>vibrate on mobil devices [s]</td>
+            <td>number</td>
+            <td>0, 1, 2, ...</td>
+        </tr>
+        <tr>
+            <td>showTicks</td>
+            <td>show steps of slider</td>
+            <td>boolean</td>
+            <td>false | true</td>
+        </tr>
+        <tr>
+            <td>tickSize</td>
+            <td>display size of steps</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+        </tr>
+        <tr>
+            <td>tickLabels</td>
+            <td>text of steps (comma separated)</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>tickColorBefore</td>
+            <td>tick color before the regulator</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>tickColorAfter</td>
+            <td>tick color after the regulator</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>colorBeforeThumb</td>
+            <td>color before regulator</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>colorThumb</td>
+            <td>color of regulator</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>colorAfterThumb</td>
+            <td>color after regulator</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>prepandText</td>
+            <td>text prepanded</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>prepandTextWidth</td>
+            <td>width of text prepanded</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+        </tr>
+        <tr>
+            <td>prepandTextColor</td>
+            <td>color of text prepanded</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>prepandTextFontSize</td>
+            <td>font size of text prepanded</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+        </tr>
+        <tr>
+            <td>prepandTextFontFamily</td>
+            <td>font family of text prepanded</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>showValueLabel</td>
+            <td>show value</td>
+            <td>boolean</td>
+            <td>false | true</td>
+        </tr>
+        <tr>
+            <td>valueLabelUnit</td>
+            <td>unit for value</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>valueLabelMin</td>
+            <td>text for value less than min</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>valueLabelMax</td>
+            <td>text for value greater than min</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>valueLessThan</td>
+            <td>'smaller than' condition for the text of the value</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+        </tr>
+        <tr>
+            <td>textForValueLessThan</td>
+            <td>value text for 'smaller than'</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>valueGreaterThan</td>
+            <td>'greater than' condition for the text of the value</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+        </tr>
+        <tr>
+            <td>textForValueGreaterThan</td>
+            <td>value text for 'greater than'</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>valueLabelWidth</td>
+            <td>distance between value text and slider</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+        </tr>
+        <tr>
+            <td>showThumbLabel</td>
+            <td>show thumb label</td>
+            <td>string</td>
+            <td>no | yes | always</td>
+        </tr>
+        <tr>
+            <td>thumbSize</td>
+            <td>size of thumb</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+        </tr>
+        <tr>
+            <td>thumbBackgroundColor</td>
+            <td>background color of thumb</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>thumbFontColor</td>
+            <td>font color of thumb</td>
+            <td>string</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>thumbFontSize</td>
+            <td>font size of thumb</td>
+            <td>number</td>
+            <td>
+                0, 1, 2, ...
+            </td>
+        </tr>
+        <tr>
+            <td>thumbFontFamily</td>
+            <td>font family of thumb</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>useLabelRules</td>
+            <td>use rules of the text</td>
+            <td>boolean</td>
+            <td>false | true</td>
         </tr>
     </tbody>
 </table>
