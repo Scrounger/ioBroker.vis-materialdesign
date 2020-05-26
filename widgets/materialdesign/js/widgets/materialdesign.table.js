@@ -248,7 +248,7 @@ vis.binds.materialdesign.table = {
                     } else if (objValue.type === 'buttonToggle_icon') {
                         let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
 
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
                                         ${init.button}
                                     </div>`
 
@@ -367,24 +367,24 @@ vis.binds.materialdesign.table = {
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
 
                 //attrs0
-                buttontext: obj.text,                                                                   // nur Button Toggle, Button Toggle Vertical
-                labelTrue: obj.textTrue,                                                                // nur Button Toggle, Button Toggle Vertical
-                labelColorFalse: obj.textColor,                                                         // nur Button Toggle, Button Toggle Vertical
-                labelColorTrue: obj.textColorTrue,                                                      // nur Button Toggle, Button Toggle Vertical
-                labelWidth: obj.textWidth,                                                              // nur Button Toggle
+                buttontext: obj.buttontext,                                                                   // nur Button Toggle, Button Toggle Vertical
+                labelTrue: obj.labelTrue,                                                                // nur Button Toggle, Button Toggle Vertical
+                labelColorFalse: obj.labelColorFalse,                                                         // nur Button Toggle, Button Toggle Vertical
+                labelColorTrue: obj.labelColorTrue,                                                      // nur Button Toggle, Button Toggle Vertical
+                labelWidth: obj.labelWidth,                                                              // nur Button Toggle
 
                 //attrs1
                 image: obj.image,
                 imageColor: obj.imageColor,
                 imageTrue: obj.imageTrue,
                 imageTrueColor: obj.imageTrueColor,
-                iconPosition: myMdwHelper.getValueFromData(obj.imagePosition, 'top'),                   // nur Button Toggle, Button Toggle Vertical
-                iconHeight: obj.imageHeight,
+                iconPosition: myMdwHelper.getValueFromData(obj.iconPosition, 'top'),                   // nur Button Toggle, Button Toggle Vertical
+                iconHeight: obj.iconHeight,
 
                 //attrs2
-                colorBgFalse: obj.backgroundColor,
-                colorBgTrue: obj.backgroundTrueColor,
-                colorPress: obj.backgroundPressColor,
+                colorBgFalse: obj.colorBgFalse,
+                colorBgTrue: obj.colorBgTrue,
+                colorPress: obj.colorPress,
 
                 //attrs3
                 lockEnabled: obj.lockEnabled,
@@ -415,8 +415,8 @@ vis.binds.materialdesign.table = {
                 progressCircularRotate: obj.progressCircularRotate,                                     // nur Progress  Circular
 
                 //attrs1
-                colorProgressBackground: obj.backgroundColor,
-                colorProgress: obj.progressColor,
+                colorProgressBackground: obj.colorProgressBackground,
+                colorProgress: obj.colorProgress,
                 colorOneCondition: obj.colorOneCondition,
                 colorOne: obj.colorOne,
                 colorTwoCondition: obj.colorTwoCondition,
@@ -428,7 +428,7 @@ vis.binds.materialdesign.table = {
                 valueLabelStyle: obj.valueLabelStyle,
                 valueLabelUnit: obj.valueLabelUnit,
                 valueMaxDecimals: obj.valueMaxDecimals,
-                valueLabelCustum: obj.valueLabelCustom,
+                valueLabelCustom: obj.valueLabelCustom,
                 textColor: obj.textColor,
                 textFontSize: obj.textFontSize,
                 textFontFamily: obj.textFontFamily,

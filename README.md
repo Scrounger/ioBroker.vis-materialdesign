@@ -1173,6 +1173,8 @@ Input data must be a json array of objects, example:
 
 To generate a control element (button, checkbox, etc.) in cell of the table you must create an object instead of a string.
 
+![Logo](doc/en/media/table_control_example.gif)
+
 ```
 [
 	{
@@ -1213,6 +1215,13 @@ To generate a control element (button, checkbox, etc.) in cell of the table you 
 	}
 ]
 ```
+
+##### Generate by Editor
+
+You can very easy generate controls by using the editor. Just create a supported Widget, configure it over the editor and export the settings by copy and paste to the table wigdet.
+Take a look at the animated screenshot below:
+
+![Logo](doc/en/media/table_controls.gif)
 
 ##### General
 <table>
@@ -1383,7 +1392,7 @@ Properties for all Button Toggle types. In the last columns is described for whi
             <td style="text-align: center;">X</td>
         </tr>
         <tr>
-            <td>text</td>
+            <td>buttontext</td>
             <td>text of button</td>
             <td>string</td>
             <td></td>
@@ -1392,7 +1401,7 @@ Properties for all Button Toggle types. In the last columns is described for whi
             <td style="text-align: center;">-</td>
         </tr>
         <tr>
-            <td>textTrue</td>
+            <td>labelTrue</td>
             <td>text of button for state on / true</td>
             <td>string</td>
             <td></td>
@@ -1401,7 +1410,7 @@ Properties for all Button Toggle types. In the last columns is described for whi
             <td style="text-align: center;">-</td>
         </tr>
         <tr>
-            <td>textColor</td>
+            <td>labelColorFalse</td>
             <td>text color of button</td>
             <td>string</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
@@ -1410,7 +1419,7 @@ Properties for all Button Toggle types. In the last columns is described for whi
             <td style="text-align: center;">-</td>
         </tr>
         <tr>
-            <td>textColorTrue</td>
+            <td>labelColorTrue</td>
             <td>text color of button for state on / true</td>
             <td>string</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
@@ -1419,7 +1428,7 @@ Properties for all Button Toggle types. In the last columns is described for whi
             <td style="text-align: center;">-</td>
         </tr>
         <tr>
-            <td>textWidth</td>
+            <td>labelWidth</td>
             <td>width of text in %</td>
             <td>number</td>
             <td>0, 1, 2, ...</td>
@@ -1473,7 +1482,7 @@ Properties for all Button Toggle types. In the last columns is described for whi
             <td style="text-align: center;">-</td>
         </tr>
         <tr>
-            <td>imageHeight</td>
+            <td>iconHeight</td>
             <td>height of image in px</td>
             <td>number</td>
             <td>0, 1, 2, ...</td>
@@ -1482,7 +1491,7 @@ Properties for all Button Toggle types. In the last columns is described for whi
             <td style="text-align: center;">X</td>
         </tr>
         <tr>
-            <td>backgroundColor</td>
+            <td>colorBgFalse</td>
             <td>background color</td>
             <td>string</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
@@ -1491,7 +1500,7 @@ Properties for all Button Toggle types. In the last columns is described for whi
             <td style="text-align: center;">X</td>
         </tr>
         <tr>
-            <td>backgroundTrueColor</td>
+            <td>colorBgTrue</td>
             <td>background color for state on / true</td>
             <td>string</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
@@ -1500,7 +1509,7 @@ Properties for all Button Toggle types. In the last columns is described for whi
             <td style="text-align: center;">X</td>
         </tr>
         <tr>
-            <td>backgroundPressColor</td>
+            <td>colorPress</td>
             <td>background color on button is pressed</td>
             <td>string</td>
             <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
