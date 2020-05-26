@@ -298,8 +298,6 @@ vis.binds.materialdesign.table = {
                         });
 
                     }
-
-
                 }
 
                 return `<td class="mdc-data-table__cell ${textSize.class}"
@@ -351,79 +349,122 @@ vis.binds.materialdesign.table = {
         return jsonData;
     },
     getElementData: function (obj, widgetId) {
-        if (obj.type === 'buttonToggle' || obj.type === 'buttonToggle_vertical' || obj.type === 'buttonToggle_icon') {
+        if (obj.type === 'buttonToggle') {
             return {
                 wid: widgetId,
 
-                //attrs
                 oid: obj.oid,
-                buttonStyle: myMdwHelper.getValueFromData(obj.buttonStyle, 'raised'),                   // nur Button Toggle, Button Toggle Vertical
+                buttonStyle: obj.buttonStyle,
                 readOnly: obj.readOnly,
-                toggleType: myMdwHelper.getValueFromData(obj.toggleType, 'boolean'),
+                toggleType: obj.toggleType,
                 pushButton: obj.pushButton,
                 valueOff: obj.valueOff,
                 valueOn: obj.valueOn,
-                stateIfNotTrueValue: myMdwHelper.getValueFromData(obj.stateIfNotTrueValue, 'on'),
+                stateIfNotTrueValue: obj.stateIfNotTrueValue,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-
-                //attrs0
-                buttontext: obj.buttontext,                                                                   // nur Button Toggle, Button Toggle Vertical
-                labelTrue: obj.labelTrue,                                                                // nur Button Toggle, Button Toggle Vertical
-                labelColorFalse: obj.labelColorFalse,                                                         // nur Button Toggle, Button Toggle Vertical
-                labelColorTrue: obj.labelColorTrue,                                                      // nur Button Toggle, Button Toggle Vertical
-                labelWidth: obj.labelWidth,                                                              // nur Button Toggle
-
-                //attrs1
+                buttontext: obj.buttontext,
+                labelTrue: obj.labelTrue,
+                labelColorFalse: obj.labelColorFalse,
+                labelColorTrue: obj.labelColorTrue,
+                labelWidth: obj.labelWidth,
                 image: obj.image,
                 imageColor: obj.imageColor,
                 imageTrue: obj.imageTrue,
                 imageTrueColor: obj.imageTrueColor,
-                iconPosition: myMdwHelper.getValueFromData(obj.iconPosition, 'top'),                   // nur Button Toggle, Button Toggle Vertical
+                iconPosition: obj.iconPosition,
                 iconHeight: obj.iconHeight,
-
-                //attrs2
                 colorBgFalse: obj.colorBgFalse,
                 colorBgTrue: obj.colorBgTrue,
                 colorPress: obj.colorPress,
-
-                //attrs3
                 lockEnabled: obj.lockEnabled,
                 autoLockAfter: obj.autoLockAfter,
                 lockIcon: obj.lockIcon,
-                lockIconTop: obj.lockIconTop,                                                           // nur Button Toggle Vertical, Button Toggle Icon
-                lockIconLeft: obj.lockIconLeft,                                                         // nur Button Toggle Vertical, Button Toggle Icon
                 lockIconSize: obj.lockIconSize,
                 lockIconColor: obj.lockIconColor,
-                lockFilterGrayscale: obj.lockFilterGrayscale,
+                lockFilterGrayscale: obj.lockFilterGrayscale
             };
-        } else if (obj.type === 'progress' || obj.type === 'progress_circular') {
+        } else if (obj.type === 'buttonToggle_vertical') {
             return {
                 wid: widgetId,
 
-                //attrs
+                oid: obj.oid,
+                buttonStyle: obj.buttonStyle,
+                readOnly: obj.readOnly,
+                toggleType: obj.toggleType,
+                pushButton: obj.pushButton,
+                valueOff: obj.valueOff,
+                valueOn: obj.valueOn,
+                stateIfNotTrueValue: obj.stateIfNotTrueValue,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                buttontext: obj.buttontext,
+                labelTrue: obj.labelTrue,
+                labelColorFalse: obj.labelColorFalse,
+                labelColorTrue: obj.labelColorTrue,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                imageTrue: obj.imageTrue,
+                imageTrueColor: obj.imageTrueColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight,
+                colorBgFalse: obj.colorBgFalse,
+                colorBgTrue: obj.colorBgTrue,
+                colorPress: obj.colorPress,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconTop: obj.lockIconTop,
+                lockIconLeft: obj.lockIconLeft,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+
+        } else if (obj.type === 'buttonToggle_icon') {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                readOnly: obj.readOnly,
+                toggleType: obj.toggleType,
+                pushButton: obj.pushButton,
+                valueOff: obj.valueOff,
+                valueOn: obj.valueOn,
+                stateIfNotTrueValue: obj.stateIfNotTrueValue,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                imageTrue: obj.imageTrue,
+                imageTrueColor: obj.imageTrueColor,
+                iconHeight: obj.iconHeight,
+                colorBgFalse: obj.colorBgFalse,
+                colorBgTrue: obj.colorBgTrue,
+                colorPress: obj.colorPress,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconTop: obj.lockIconTop,
+                lockIconLeft: obj.lockIconLeft,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+        } else if (obj.type === 'progress') {
+            return {
+                wid: widgetId,
+
                 oid: obj.oid,
                 min: obj.min,
                 max: obj.max,
-                reverse: obj.reverse,                                                                   // nur Progress
-
-                //attrs0
-                progressRounded: obj.progressRounded,                                                   // nur Progress
-                progressStriped: obj.progressStriped,                                                   // nur Progress
-                progressStripedColor: obj.progressStripedColor,                                         // nur Progress
-                progressCircularSize: obj.progressCircularSize,                                         // nur Progress  Circular                    
-                progressCircularWidth: obj.progressCircularWidth,                                       // nur Progress  Circular
-                progressCircularRotate: obj.progressCircularRotate,                                     // nur Progress  Circular
-
-                //attrs1
+                reverse: obj.reverse,
+                progressRounded: obj.progressRounded,
+                progressStriped: obj.progressStriped,
+                progressStripedColor: obj.progressStripedColor,
                 colorProgressBackground: obj.colorProgressBackground,
                 colorProgress: obj.colorProgress,
                 colorOneCondition: obj.colorOneCondition,
                 colorOne: obj.colorOne,
                 colorTwoCondition: obj.colorTwoCondition,
                 colorTwo: obj.colorTwo,
-                innerColor: obj.innerColor,                                                             // nur Progress  Circular
-
-                //attrs2
                 showValueLabel: obj.showValueLabel,
                 valueLabelStyle: obj.valueLabelStyle,
                 valueLabelUnit: obj.valueLabelUnit,
@@ -432,13 +473,38 @@ vis.binds.materialdesign.table = {
                 textColor: obj.textColor,
                 textFontSize: obj.textFontSize,
                 textFontFamily: obj.textFontFamily,
-                textAlign: obj.textAlign                                                                // nur Progress
+                textAlign: obj.textAlign
+            }
+        } else if (obj.type === 'progress_circular') {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                min: obj.min,
+                max: obj.max,
+                progressCircularSize: obj.progressCircularSize,
+                progressCircularWidth: obj.progressCircularWidth,
+                progressCircularRotate: obj.progressCircularRotate,
+                colorProgressBackground: obj.colorProgressBackground,
+                colorProgress: obj.colorProgress,
+                innerColor: obj.innerColor,
+                colorOneCondition: obj.colorOneCondition,
+                colorOne: obj.colorOne,
+                colorTwoCondition: obj.colorTwoCondition,
+                colorTwo: obj.colorTwo,
+                showValueLabel: obj.showValueLabel,
+                valueLabelStyle: obj.valueLabelStyle,
+                valueLabelUnit: obj.valueLabelUnit,
+                valueMaxDecimals: obj.valueMaxDecimals,
+                valueLabelCustom: obj.valueLabelCustom,
+                textColor: obj.textColor,
+                textFontSize: obj.textFontSize,
+                textFontFamily: obj.textFontFamily
             }
         } else if (obj.type === 'slider') {
             return {
                 wid: widgetId,
 
-                //attrs
                 oid: obj.oid,
                 "oid-working": obj["oid-working"],
                 orientation: obj.orientation,
@@ -449,20 +515,14 @@ vis.binds.materialdesign.table = {
                 max: obj.max,
                 step: obj.step,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-
-                //attrs0
                 showTicks: obj.showTicks,
                 tickSize: obj.tickSize,
                 tickLabels: obj.tickLabels,
                 tickColorBefore: obj.tickColorBefore,
                 tickColorAfter: obj.tickColorAfter,
-
-                //attrs1
                 colorBeforeThumb: obj.colorBeforeThumb,
                 colorThumb: obj.colorThumb,
                 colorAfterThumb: obj.colorAfterThumb,
-
-                //attrs2
                 prepandText: obj.prepandText,
                 prepandTextWidth: obj.prepandTextWidth,
                 prepandTextColor: obj.prepandTextColor,
@@ -477,8 +537,6 @@ vis.binds.materialdesign.table = {
                 valueGreaterThan: obj.valueGreaterThan,
                 textForValueGreaterThan: obj.textForValueGreaterThan,
                 valueLabelWidth: obj.valueLabelWidth,
-
-                //attrs3
                 showThumbLabel: obj.showThumbLabel,
                 thumbSize: obj.thumbSize,
                 thumbBackgroundColor: obj.thumbBackgroundColor,

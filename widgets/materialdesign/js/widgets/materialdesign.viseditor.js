@@ -322,8 +322,6 @@ vis.binds.materialdesign.viseditor = {
             var that = vis;
             let type = data[1];
 
-            console.log(that.views[that.activeView].widgets[that.activeWidgets[0]].style);
-
             // options = {min: ?,max: ?,step: ?}
             // Select
             var line = {
@@ -346,11 +344,46 @@ vis.binds.materialdesign.viseditor = {
                             let attrNames = []
                             let widgetAttrs = that.findCommonAttributes(view, that.activeWidgets)
 
-                            for (const attr in widgetAttrs) {
-                                for (const prop in widgetAttrs[attr]) {
-                                    attrNames.push(prop);
-                                }
-                            }
+                            // // for documentation and object creation
+                            // let objectForDev = {};
+                            // let strTableForDev = `<table><thead><tr>
+                            //         <th>Property</th>
+                            //         <th>Description</th>
+                            //         <th>Type</th>
+                            //         <th>Values</th>
+                            //     </tr></thead><tbody>`;
+                            // for (const attr in widgetAttrs) {
+                            //     for (const prop in widgetAttrs[attr]) {
+                            //         attrNames.push(prop);
+
+                            //         let ausnahmen = ["manual", "questionsAndAnswers", "donate", "onlineExampleProject", "exportData"]
+                            //         if (!ausnahmen.includes(prop)) {
+                            //             objectForDev[prop] = `obj.${prop}`;
+
+                            //             let valExample = '';
+                            //             if (widgetAttrs[attr][prop].type === 'select') {
+                            //                 valExample = widgetAttrs[attr][prop].options !== null && Array.isArray(widgetAttrs[attr][prop].options) ? widgetAttrs[attr][prop].options.join(" | ") : '';
+                            //             } else if (widgetAttrs[attr][prop].type === 'checkbox') {
+                            //                 valExample = "false | true";
+                            //             } else if (widgetAttrs[attr][prop].type === 'color') {
+                            //                 valExample = "hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)";
+                            //             }
+
+                            //             strTableForDev = strTableForDev + 
+                            //                 `<tr>
+                            //                     <td>${prop}</td>
+                            //                     <td>${_(prop)}</td>
+                            //                     <td>${widgetAttrs[attr][prop].type ? widgetAttrs[attr][prop].type.replace('color', 'string').replace('slider','number').replace('select', 'string').replace('checkbox', 'boolean').replace('id', 'string').replace('html', 'string').replace("undefined", 'string').replace("fontname", "string") : 'string'}</td>
+                            //                     <td>${valExample}</td>
+                            //                 </tr>
+                            //                 `
+                            //         }
+                            //     }
+                            // }
+                            // strTableForDev = strTableForDev + `</tbody></table>`
+                            // console.log(objectForDev);
+                            // console.log(strTableForDev);
+
 
                             let widget = that.views[view].widgets[that.activeWidgets[0]];
                             let style = widget.style;

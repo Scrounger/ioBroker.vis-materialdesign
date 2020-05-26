@@ -1287,321 +1287,561 @@ Take a look at the animated screenshot below:
     </tbody>
 </table>
 
-##### Button Toggle | Button Toggle Vertical | Button Toggle Icon
-
-Properties for all Button Toggle types. In the last columns is described for which button type the property is available.
+##### Button Toggle 
 
 <table>
-    <thead>
-        <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Values</th>
-            <th style="text-align: center;">Toggle</th>
-            <th style="text-align: center;">Vertical</th>
-            <th style="text-align: center;">Icon</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>oid</td>
-            <td>Object Id</td>
-            <td>string</td>
-            <td></td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>buttonStyle</td>
-            <td>style of button</td>
-            <td>string</td>
-            <td>text | raised | unelevated | outlined</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">-</td>
-        </tr>
-        <tr>
-            <td>readOnly</td>
-            <td>Button is readonly</td>
-            <td>boolean</td>
-            <td>
-                false | true
-            </td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>toggleType</td>
-            <td>type of toggle</td>
-            <td>string</td>
-            <td>
-                boolean | value
-            </td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>pushButton</td>
-            <td>push button</td>
-            <td>boolean</td>
-            <td>
-                false | true
-            </td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>valueOff</td>
-            <td>value off for toogleType 'value'</td>
-            <td>string | number | boolean</td>
-            <td></td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>valueOn</td>
-            <td>value on for toogleType 'value'</td>
-            <td>string | number | boolean</td>
-            <td></td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>stateIfNotTrueValue</td>
-            <td>state if value unequal to 'on' condition for toogleType 'value'</td>
-            <td>string</td>
-            <td>on | off</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>vibrateOnMobilDevices</td>
-            <td>vibrate on mobil devices [s]</td>
-            <td>number</td>
-            <td>0, 1, 2, ...</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>buttontext</td>
-            <td>text of button</td>
-            <td>string</td>
-            <td></td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">-</td>
-        </tr>
-        <tr>
-            <td>labelTrue</td>
-            <td>text of button for state on / true</td>
-            <td>string</td>
-            <td></td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">-</td>
-        </tr>
-        <tr>
-            <td>labelColorFalse</td>
-            <td>text color of button</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">-</td>
-        </tr>
-        <tr>
-            <td>labelColorTrue</td>
-            <td>text color of button for state on / true</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">-</td>
-        </tr>
-        <tr>
-            <td>labelWidth</td>
-            <td>width of text in %</td>
-            <td>number</td>
-            <td>0, 1, 2, ...</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">-</td>
-            <td style="text-align: center;">-</td>
-        </tr>
-        <tr>
-            <td>image</td>
-            <td>name of material design icon or filename of image</td>
-            <td>string</td>
-            <td></td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>imageColor</td>
-            <td>color of material design icon</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>imageTrue</td>
-            <td>name of material design icon or filename of image for state on / true</td>
-            <td>string</td>
-            <td></td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>imageTrueColor</td>
-            <td>color of material design icon for state on / true</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>iconPosition</td>
-            <td>icon position</td>
-            <td>string</td>
-            <td></td>
-            <td style="text-align: center;">X<br> left | right</td>
-            <td style="text-align: center;">X<br> top | bottom</td>
-            <td style="text-align: center;">-</td>
-        </tr>
-        <tr>
-            <td>iconHeight</td>
-            <td>height of image in px</td>
-            <td>number</td>
-            <td>0, 1, 2, ...</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>colorBgFalse</td>
-            <td>background color</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>colorBgTrue</td>
-            <td>background color for state on / true</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>colorPress</td>
-            <td>background color on button is pressed</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>lockEnabled</td>
-            <td>enable Locking</td>
-            <td>boolean</td>
-            <td>
-                false | true
-            </td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>autoLockAfter</td>
-            <td>auto Locking after [s]</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>lockIcon</td>
-            <td>material design lock icon</td>
-            <td>string</td>
-            <td></td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>lockIconTop</td>
-            <td>symbol distance from top [%]</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-            <td style="text-align: center;">-</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>lockIconLeft</td>
-            <td>symbol distance from left [%]</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-            <td style="text-align: center;">-</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>lockIconColor</td>
-            <td>color of lock icon</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>lockFilterGrayscale</td>
-            <td>gray filter if locked in %</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-    </tbody>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>buttonStyle</td>
+			<td>button style</td>
+			<td>string</td>
+			<td>text | raised | unelevated | outlined</td>
+		</tr>
+		<tr>
+			<td>readOnly</td>
+			<td>read only</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>toggleType</td>
+			<td>type of toggle</td>
+			<td>string</td>
+			<td>boolean | value</td>
+		</tr>
+		<tr>
+			<td>pushButton</td>
+			<td>push button</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>valueOff</td>
+			<td>value for off</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>valueOn</td>
+			<td>value for on</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>stateIfNotTrueValue</td>
+			<td>state if value unequal to 'on' condition</td>
+			<td>string</td>
+			<td>on | off</td>
+		</tr>
+		<tr>
+			<td>vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>buttontext</td>
+			<td>Button text</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>labelTrue</td>
+			<td>Label true</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>labelColorFalse</td>
+			<td>label color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>labelColorTrue</td>
+			<td>active label color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>labelWidth</td>
+			<td>text width</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>image</td>
+			<td>Image</td>
+			<td>custom</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>imageTrue</td>
+			<td>active image</td>
+			<td>custom</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>imageTrueColor</td>
+			<td>active image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>iconPosition</td>
+			<td>image position</td>
+			<td>string</td>
+			<td>left | right</td>
+		</tr>
+		<tr>
+			<td>iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>colorBgFalse</td>
+			<td>background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorBgTrue</td>
+			<td>active background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>lockEnabled</td>
+			<td>enable Locking</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>autoLockAfter</td>
+			<td>auto Locking after [s]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIcon</td>
+			<td>icon</td>
+			<td>custom</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconSize</td>
+			<td>icon size</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconColor</td>
+			<td>icon color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>lockFilterGrayscale</td>
+			<td>gray filter if locked</td>
+			<td>number</td>
+			<td/>
+		</tr>
+	</tbody>
 </table>
 
+<br>
 
+##### Button Toggle Vertical 
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>buttonStyle</td>
+			<td>button style</td>
+			<td>string</td>
+			<td>text | raised | unelevated | outlined</td>
+		</tr>
+		<tr>
+			<td>readOnly</td>
+			<td>read only</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>toggleType</td>
+			<td>type of toggle</td>
+			<td>string</td>
+			<td>boolean | value</td>
+		</tr>
+		<tr>
+			<td>pushButton</td>
+			<td>push button</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>valueOff</td>
+			<td>value for off</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>valueOn</td>
+			<td>value for on</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>stateIfNotTrueValue</td>
+			<td>state if value unequal to 'on' condition</td>
+			<td>string</td>
+			<td>on | off</td>
+		</tr>
+		<tr>
+			<td>vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>buttontext</td>
+			<td>Button text</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>labelTrue</td>
+			<td>Label true</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>labelColorFalse</td>
+			<td>label color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>labelColorTrue</td>
+			<td>active label color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>image</td>
+			<td>Image</td>
+			<td>custom</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>imageTrue</td>
+			<td>active image</td>
+			<td>custom</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>imageTrueColor</td>
+			<td>active image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>iconPosition</td>
+			<td>image position</td>
+			<td>string</td>
+			<td>top | bottom</td>
+		</tr>
+		<tr>
+			<td>iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>colorBgFalse</td>
+			<td>background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorBgTrue</td>
+			<td>active background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>lockEnabled</td>
+			<td>enable Locking</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>autoLockAfter</td>
+			<td>auto Locking after [s]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIcon</td>
+			<td>icon</td>
+			<td>custom</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconTop</td>
+			<td>symbol distance from top [%]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconLeft</td>
+			<td>symbol distance from left [%]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconSize</td>
+			<td>icon size</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconColor</td>
+			<td>icon color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>lockFilterGrayscale</td>
+			<td>gray filter if locked</td>
+			<td>number</td>
+			<td/>
+		</tr>
+	</tbody>
+</table>
+
+<br>
+
+##### Button Toggle Icon
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>readOnly</td>
+			<td>read only</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>toggleType</td>
+			<td>type of toggle</td>
+			<td>string</td>
+			<td>boolean | value</td>
+		</tr>
+		<tr>
+			<td>pushButton</td>
+			<td>push button</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>valueOff</td>
+			<td>value for off</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>valueOn</td>
+			<td>value for on</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>stateIfNotTrueValue</td>
+			<td>state if value unequal to 'on' condition</td>
+			<td>string</td>
+			<td>on | off</td>
+		</tr>
+		<tr>
+			<td>vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>image</td>
+			<td>Image</td>
+			<td>custom</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>imageTrue</td>
+			<td>active image</td>
+			<td>custom</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>imageTrueColor</td>
+			<td>active image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>colorBgFalse</td>
+			<td>background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorBgTrue</td>
+			<td>active background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>lockEnabled</td>
+			<td>enable Locking</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>autoLockAfter</td>
+			<td>auto Locking after [s]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIcon</td>
+			<td>icon</td>
+			<td>custom</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconTop</td>
+			<td>symbol distance from top [%]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconLeft</td>
+			<td>symbol distance from left [%]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconSize</td>
+			<td>icon size</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconColor</td>
+			<td>icon color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>lockFilterGrayscale</td>
+			<td>gray filter if locked</td>
+			<td>number</td>
+			<td/>
+		</tr>
+	</tbody>
+</table>
+
+<br>
 
 ##### Button State | Button State Vertical | Button State Icon
 
 tbd.
 
-##### Progress | Progress Circular
 
-Properties for all Progress types. In the last columns is described for which button type the property is available.
+##### Progress
 
 <table>
     <thead>
@@ -1610,252 +1850,291 @@ Properties for all Progress types. In the last columns is described for which bu
             <th>Description</th>
             <th>Type</th>
             <th>Values</th>
-            <th style="text-align: center;">Progress</th>
-            <th style="text-align: center;">Circular</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>oid</td>
-            <td>Object Id</td>
-            <td>string</td>
-            <td></td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>min</td>
-            <td>min value of datapoint</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>max</td>
-            <td>max value of datapoint</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>reverse</td>
-            <td>right to left direction for progress</td>
-            <td>boolean</td>
-            <td>
-                false | true
-            </td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">-</td>
-        </tr>
-        <tr>
-            <td>progressRounded</td>
-            <td>rounded corners for progress</td>
-            <td>boolean</td>
-            <td>
-                false | true
-            </td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">-</td>
-        </tr>
-        <tr>
-            <td>progressStriped</td>
-            <td>striped layout</td>
-            <td>boolean</td>
-            <td>
-                false | true
-            </td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">-</td>
-        </tr>
-        <tr>
-            <td>progressStripedColor</td>
-            <td>color of striped</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">-</td>
-        </tr>
-        <tr>
-            <td>progressCircularSize</td>
-            <td>size of circular progress</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-            <td style="text-align: center;">-</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>progressCircularWidth</td>
-            <td>width / thickness of circular progress</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-            <td style="text-align: center;">-</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>progressCircularRotate</td>
-            <td>start angle of circular progress</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-            <td style="text-align: center;">-</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>colorProgressBackground</td>
-            <td>background color of progress</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>colorProgress</td>
-            <td>color of progress</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>colorOneCondition</td>
-            <td>condition for color 1 progress [>]</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-            <td style="text-align: center;">-</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>colorOne</td>
-            <td>color 1 progress</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>colorTwoCondition</td>
-            <td>condition for color 2 progress [>]</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>colorTwo</td>
-            <td>color 2 progress</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>innerColor</td>
-            <td>inner background color of progress circular</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>showValueLabel</td>
-            <td>show value of progress</td>
-            <td>boolean</td>
-            <td>
-                false | true
-            </td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>valueLabelStyle</td>
-            <td>style of value label</td>
-            <td>string</td>
-            <td>hexprogressPercent | progressValue | progressCustom</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>valueLabelUnit</td>
-            <td>append unit to value label</td>
-            <td>string</td>
-            <td></td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>valueMaxDecimals</td>
-            <td>max decimal points</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>valueLabelCustom</td>
-            <td>custom label for progress, <a href="#progress">see progress for details</a></td>
-            <td>string</td>
-            <td></td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>textColor</td>
-            <td>text color of progress circular</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>textFontSize</td>
-            <td>font size of text</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>textFontFamily</td>
-            <td>font family of text</td>
-            <td>string</td>
-            <td></td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">X</td>
-        </tr>
-        <tr>
-            <td>textAlign</td>
-            <td>alignment of text</td>
-            <td>string</td>
-            <td>start | center | end</td>
-            <td style="text-align: center;">X</td>
-            <td style="text-align: center;">-</td>
-        </tr>
+		<tr>
+			<td>oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>min</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>max</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>reverse</td>
+			<td>Revers value</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>progressRounded</td>
+			<td>rounded corners</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>progressStriped</td>
+			<td>striped</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>progressStripedColor</td>
+			<td>progressStripedColor</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorProgressBackground</td>
+			<td>background color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorProgress</td>
+			<td>color progress</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorOneCondition</td>
+			<td>condition for color 1 progress [>]</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>colorOne</td>
+			<td>color 1 progress</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorTwoCondition</td>
+			<td>condition for color 2 progress [>]</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>colorTwo</td>
+			<td>color 2 progress</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>showValueLabel</td>
+			<td>show value</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>valueLabelStyle</td>
+			<td>value caption style</td>
+			<td>string</td>
+			<td>progressPercent | progressValue | progressCustom</td>
+		</tr>
+		<tr>
+			<td>valueLabelUnit</td>
+			<td>unit</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>valueMaxDecimals</td>
+			<td>decimal points</td>
+			<td>number</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>valueLabelCustom</td>
+			<td>valueLabelCustom</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>textColor</td>
+			<td>text color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>textFontSize</td>
+			<td>text size</td>
+			<td>number</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>textFontFamily</td>
+			<td>textFontFamily</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>textAlign</td>
+			<td>textAlign</td>
+			<td>string</td>
+			<td>start | center | end</td>
+		</tr>
     </tbody>
 </table>
+
+<br>
+
+##### Progress Circular
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>min</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>max</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>progressCircularSize</td>
+			<td>size</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>progressCircularWidth</td>
+			<td>thickness</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>progressCircularRotate</td>
+			<td>rotate start point</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>colorProgressBackground</td>
+			<td>background color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorProgress</td>
+			<td>color progress</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>innerColor</td>
+			<td>circle background color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorOneCondition</td>
+			<td>condition for color 1 progress [>]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>colorOne</td>
+			<td>color 1 progress</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorTwoCondition</td>
+			<td>condition for color 2 progress [>]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>colorTwo</td>
+			<td>color 2 progress</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>showValueLabel</td>
+			<td>show value</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>valueLabelStyle</td>
+			<td>value caption style</td>
+			<td>string</td>
+			<td>progressPercent | progressValue | progressCustom</td>
+		</tr>
+		<tr>
+			<td>valueLabelUnit</td>
+			<td>unit</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>valueMaxDecimals</td>
+			<td>decimal points</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>valueLabelCustom</td>
+			<td>valueLabelCustom</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>textColor</td>
+			<td>text color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>textFontSize</td>
+			<td>text size</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>textFontFamily</td>
+			<td>textFontFamily</td>
+			<td>string</td>
+			<td/>
+		</tr>
+	</tbody>
+</table>
+
+<br>
 
 ##### Slider
 
-Properties for all Progress types. In the last columns is described for which button type the property is available.
-
 <table>
     <thead>
         <tr>
@@ -1867,263 +2146,243 @@ Properties for all Progress types. In the last columns is described for which bu
     </thead>
     <tbody>
         <tr>
-            <td>oid</td>
-            <td>Object Id</td>
-            <td>string</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>oid-working</td>
-            <td>Object Working Id</td>
-            <td>string</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>orientation</td>
-            <td>orientation of slider</td>
-            <td>string</td>
-            <td>horizontal | vertical</td>
-        </tr>
-        <tr>
-            <td>reverseSlider</td>
-            <td>right to left slider</td>
-            <td>boolean</td>
-            <td>false | true</td>
-        </tr>
-        <tr>
-            <td>knobSize</td>
-            <td>size of knob</td>
-            <td>string</td>
-            <td>knobSmall | knobMedium | knobBig</td>
-        </tr>
-        <tr>
-            <td>readOnly</td>
-            <td>readOnly slider</td>
-            <td>boolean</td>
-            <td>false | true</td>
-        </tr>
-        <tr>
-            <td>min</td>
-            <td>min value of datapoint</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-        </tr>
-        <tr>
-            <td>max</td>
-            <td>max value of datapoint</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-        </tr>
-        <tr>
-            <td>step</td>
-            <td>steps of slider</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-        </tr>
-        <tr>
-            <td>vibrateOnMobilDevices</td>
-            <td>vibrate on mobil devices [s]</td>
-            <td>number</td>
-            <td>0, 1, 2, ...</td>
-        </tr>
-        <tr>
-            <td>showTicks</td>
-            <td>show steps of slider</td>
-            <td>boolean</td>
-            <td>false | true</td>
-        </tr>
-        <tr>
-            <td>tickSize</td>
-            <td>display size of steps</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-        </tr>
-        <tr>
-            <td>tickLabels</td>
-            <td>text of steps (comma separated)</td>
-            <td>string</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>tickColorBefore</td>
-            <td>tick color before the regulator</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-        </tr>
-        <tr>
-            <td>tickColorAfter</td>
-            <td>tick color after the regulator</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-        </tr>
-        <tr>
-            <td>colorBeforeThumb</td>
-            <td>color before regulator</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-        </tr>
-        <tr>
-            <td>colorThumb</td>
-            <td>color of regulator</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-        </tr>
-        <tr>
-            <td>colorAfterThumb</td>
-            <td>color after regulator</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-        </tr>
-        <tr>
-            <td>prepandText</td>
-            <td>text prepanded</td>
-            <td>string</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>prepandTextWidth</td>
-            <td>width of text prepanded</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-        </tr>
-        <tr>
-            <td>prepandTextColor</td>
-            <td>color of text prepanded</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-        </tr>
-        <tr>
-            <td>prepandTextFontSize</td>
-            <td>font size of text prepanded</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-        </tr>
-        <tr>
-            <td>prepandTextFontFamily</td>
-            <td>font family of text prepanded</td>
-            <td>string</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>showValueLabel</td>
-            <td>show value</td>
-            <td>boolean</td>
-            <td>false | true</td>
-        </tr>
-        <tr>
-            <td>valueLabelUnit</td>
-            <td>unit for value</td>
-            <td>string</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>valueLabelMin</td>
-            <td>text for value less than min</td>
-            <td>string</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>valueLabelMax</td>
-            <td>text for value greater than min</td>
-            <td>string</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>valueLessThan</td>
-            <td>'smaller than' condition for the text of the value</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-        </tr>
-        <tr>
-            <td>textForValueLessThan</td>
-            <td>value text for 'smaller than'</td>
-            <td>string</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>valueGreaterThan</td>
-            <td>'greater than' condition for the text of the value</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-        </tr>
-        <tr>
-            <td>textForValueGreaterThan</td>
-            <td>value text for 'greater than'</td>
-            <td>string</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>valueLabelWidth</td>
-            <td>distance between value text and slider</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-        </tr>
-        <tr>
-            <td>showThumbLabel</td>
-            <td>show thumb label</td>
-            <td>string</td>
-            <td>no | yes | always</td>
-        </tr>
-        <tr>
-            <td>thumbSize</td>
-            <td>size of thumb</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-        </tr>
-        <tr>
-            <td>thumbBackgroundColor</td>
-            <td>background color of thumb</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-        </tr>
-        <tr>
-            <td>thumbFontColor</td>
-            <td>font color of thumb</td>
-            <td>string</td>
-            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-        </tr>
-        <tr>
-            <td>thumbFontSize</td>
-            <td>font size of thumb</td>
-            <td>number</td>
-            <td>
-                0, 1, 2, ...
-            </td>
-        </tr>
-        <tr>
-            <td>thumbFontFamily</td>
-            <td>font family of thumb</td>
-            <td>string</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>useLabelRules</td>
-            <td>use rules of the text</td>
-            <td>boolean</td>
-            <td>false | true</td>
-        </tr>
+			<td>oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>oid-working</td>
+			<td>Working Object ID</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>orientation</td>
+			<td>Orientation</td>
+			<td>string</td>
+			<td>horizontal | vertical</td>
+		</tr>
+		<tr>
+			<td>reverseSlider</td>
+			<td>invert slider</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>knobSize</td>
+			<td>knob size</td>
+			<td>string</td>
+			<td>knobSmall | knobMedium | knobBig</td>
+		</tr>
+		<tr>
+			<td>readOnly</td>
+			<td>read only</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>min</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>max</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>step</td>
+			<td>steps</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>showTicks</td>
+			<td>show steps</td>
+			<td>string</td>
+			<td>no | yes | always</td>
+		</tr>
+		<tr>
+			<td>tickSize</td>
+			<td>display size of steps</td>
+			<td>number</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>tickLabels</td>
+			<td>text of steps (comma separated)</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>tickColorBefore</td>
+			<td>color before the regulator</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>tickColorAfter</td>
+			<td>color after the regulator</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorBeforeThumb</td>
+			<td>color before regulator</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorThumb</td>
+			<td>color of regulator</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorAfterThumb</td>
+			<td>color after regulator</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>prepandText</td>
+			<td>text prepanded</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>prepandTextWidth</td>
+			<td>prepandTextWidth</td>
+			<td>number</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>prepandTextColor</td>
+			<td>color of text prepanded</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>prepandTextFontSize</td>
+			<td>size text prepanded</td>
+			<td>number</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>prepandTextFontFamily</td>
+			<td>font of text prepanded</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>showValueLabel</td>
+			<td>show value</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>valueLabelUnit</td>
+			<td>unit</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>valueLabelMin</td>
+			<td>text for value less than min</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>valueLabelMax</td>
+			<td>text for value greater than min</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>valueLessThan</td>
+			<td>'smaller than' condition for the text of the value</td>
+			<td>number</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>textForValueLessThan</td>
+			<td>text for 'smaller than'</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>valueGreaterThan</td>
+			<td>'greater than' condition for the text of the value</td>
+			<td>number</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>textForValueGreaterThan</td>
+			<td>text for 'greater than'</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>valueLabelWidth</td>
+			<td>distance label</td>
+			<td>number</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>showThumbLabel</td>
+			<td>show label</td>
+			<td>string</td>
+			<td>no | yes | always</td>
+		</tr>
+		<tr>
+			<td>thumbSize</td>
+			<td>label size</td>
+			<td>number</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>thumbBackgroundColor</td>
+			<td>background color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>thumbFontColor</td>
+			<td>font color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>thumbFontSize</td>
+			<td>font size</td>
+			<td>number</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>thumbFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>useLabelRules</td>
+			<td>use rules of the text</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
     </tbody>
 </table>
+
+<br>
 
 ### Editor Settings
 
