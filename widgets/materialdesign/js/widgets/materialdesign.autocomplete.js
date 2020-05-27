@@ -64,6 +64,6 @@ vis.binds.materialdesign.autocomplete =
                 }
             });
         } catch (ex) {
-            console.error(`[Vuetify AutoComplete ${data.wid}]: error: ${ex.message}, stack: ${ex.stack} `);
+            console.error(`[AutoComplete - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack} `);
         }
     };

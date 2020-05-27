@@ -313,7 +313,7 @@ vis.binds.materialdesign.calendar =
                     }
                 } catch (err) {
                     jsonData = getErrorMessage(err);
-                    console.error(`[Vuetify Calendar] cannot parse json string! Error: ${err.message}`);
+                    console.error(`[Calendar - ${data.wid}] cannot parse json string! Error: ${err.message}`);
                 }
 
                 return jsonData;
@@ -362,6 +362,6 @@ vis.binds.materialdesign.calendar =
                 return true;
             }
         } catch (ex) {
-            console.error(`[Vuetify Calendar]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Calendar - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }

@@ -210,7 +210,7 @@ vis.binds.materialdesign.dialog = {
                 });
             });
         } catch (ex) {
-            console.error(`[Vuetify Dialog ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Vuetify Dialog - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

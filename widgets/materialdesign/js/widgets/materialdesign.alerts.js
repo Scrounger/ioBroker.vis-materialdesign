@@ -26,7 +26,7 @@ vis.binds.materialdesign.alerts =
                 }
             } catch (err) {
                 jsonData = jsonHasErrorAlert();
-                console.error(`[Vuetify Alerts 1] cannot parse json string! Error: ${err.message}`);
+                console.error(`[Vuetify Alerts 1 - ${data.wid}] cannot parse json string! Error: ${err.message}`);
             }
 
             if (jsonData !== null) {
@@ -67,7 +67,7 @@ vis.binds.materialdesign.alerts =
                         jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
                     } catch (err) {
                         jsonData = jsonHasErrorAlert();
-                        console.error(`[Vuetify Alerts 2] cannot parse json string! Error: ${err.message}`);
+                        console.error(`[Vuetify Alerts 2 - ${data.wid}] cannot parse json string! Error: ${err.message}`);
                     }
 
                     if (jsonData !== null) {
@@ -142,6 +142,6 @@ vis.binds.materialdesign.alerts =
                 ]
             }
         } catch (ex) {
-            console.error(`[Vuetify Alerts ${data.wid}]: error: ${ex.message}, stack: ${ex.stack} `);
+            console.error(`[Vuetify Alerts - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack} `);
         }
     };

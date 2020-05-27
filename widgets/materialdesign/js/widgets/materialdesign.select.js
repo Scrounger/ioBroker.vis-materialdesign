@@ -46,6 +46,6 @@ vis.binds.materialdesign.select =
                 });
             });
         } catch (ex) {
-            console.error(`[Vuetify Select ${data.wid}]: error: ${ex.message}, stack: ${ex.stack} `);
+            console.error(`[Select - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack} `);
         }
     };

@@ -239,7 +239,7 @@ vis.binds.materialdesign.views = {
                 }
             }
         } catch (ex) {
-            console.error(`[Masonry Views ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Masonry Views - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     grid: function (el, data) {
@@ -508,7 +508,7 @@ vis.binds.materialdesign.views = {
             }
 
         } catch (ex) {
-            console.error(`[Grid Views ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Grid Views - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

@@ -97,6 +97,6 @@ vis.binds.materialdesign.checkbox =
                 }, myMdwHelper.getNumberFromData(data.autoLockAfter, 10) * 1000);
             }
         } catch (ex) {
-            console.error(`[Checkbox]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Checkbox - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     };

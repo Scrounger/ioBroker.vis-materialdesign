@@ -91,7 +91,7 @@ vis.binds.materialdesign.iconlist =
                                 }
                             ];
                             countOfItems = jsonData.length - 1;
-                            console.error(`[IconList ${data.wid}] cannot parse json string! Error: ${err.message}`);
+                            console.error(`[IconList - ${data.wid}] cannot parse json string! Error: ${err.message}`);
                         }
                     } else {
                         jsonData = [
@@ -100,7 +100,7 @@ vis.binds.materialdesign.iconlist =
                             }
                         ];
                         countOfItems = jsonData.length - 1;
-                        console.error(`[IconList ${data.wid}] ${_("datapoint '{0}' not exist!").replace('{0}', data.json_string_oid)}`);
+                        console.error(`[IconList - ${data.wid}] ${_("datapoint '{0}' not exist!").replace('{0}', data.json_string_oid)}`);
                     }
                 } else {
                     countOfItems = data.countListItems;
@@ -498,6 +498,6 @@ vis.binds.materialdesign.iconlist =
             }
 
         } catch (ex) {
-            console.error(`[IconList ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[IconList - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }

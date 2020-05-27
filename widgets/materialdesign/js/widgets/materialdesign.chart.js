@@ -47,7 +47,7 @@ vis.binds.materialdesign.chart = {
                             jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
                             countOfItems = jsonData.length - 1;
                         } catch (err) {
-                            console.error(`[Bar Chart ${data.wid}] cannot parse json string! Error: ${err.message}`);
+                            console.error(`[Bar Chart - ${data.wid}] cannot parse json string! Error: ${err.message}`);
                         }
 
                         vis.states.bind(data.oid + '.val', onChange);
@@ -238,7 +238,7 @@ vis.binds.materialdesign.chart = {
                                 }
                                 myBarChart.update();
                             } catch (err) {
-                                console.error(`[Bar Chart ${data.wid}] onChange: cannot parse json string! Error: ${err.message}`);
+                                console.error(`[Bar Chart - ${data.wid}] onChange: cannot parse json string! Error: ${err.message}`);
                             }
                         }
                     }
@@ -271,7 +271,7 @@ vis.binds.materialdesign.chart = {
                 }
             }, 1)
         } catch (ex) {
-            console.error(`[Bar Chart ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Bar Chart - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     lineHistory: function (el, data) {
@@ -476,14 +476,14 @@ vis.binds.materialdesign.chart = {
                                     try {
                                         xAxisTimeFormats = JSON.parse(bindingVal)
                                     } catch (errJsonBinding) {
-                                        console.error(`[Line History Chart] (${data.wid}): parsing Binding for xaxis time format  failed! error in json syntax: ${errJsonBinding.message}`);
+                                        console.error(`[Line History Chart - ${data.wid}] parsing Binding for xaxis time format  failed! error in json syntax: ${errJsonBinding.message}`);
                                     }
                                 } else {
-                                    console.error(`[Line History Chart] (${data.wid}): xaxis time format parsing failed! error in json syntax: ${errJSON.message}`);
+                                    console.error(`[Line History Chart - ${data.wid}] xaxis time format parsing failed! error in json syntax: ${errJSON.message}`);
                                 }
                             }
 
-                            if (debug) console.log(`[Line History Chart ${data.wid}] prepare chart options`);
+                            if (debug) console.log(`[Line History Chart - ${data.wid}] prepare chart options`);
 
                             // Notice how nested the beginAtZero is
                             var options = {
@@ -701,12 +701,12 @@ vis.binds.materialdesign.chart = {
                             });
                         }
                     } catch (onChangeError) {
-                        console.error(`[Line History Chart ${data.wid}] onChange error: ${onChangeError.message}, stack: ${onChangeError.stack}`);
+                        console.error(`[Line History Chart - ${data.wid}] onChange error: ${onChangeError.message}, stack: ${onChangeError.stack}`);
                     }
                 };
             }, 1)
         } catch (ex) {
-            console.error(`[Line History Chart ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Line History Chart - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     pie: function (el, data) {
@@ -763,7 +763,7 @@ vis.binds.materialdesign.chart = {
                             };
                             myPieChart.update();
 
-                            console.error(`[Pie Chart ${data.wid}] cannot parse json string! Error: ${jsonError.message}`);
+                            console.error(`[Pie Chart - ${data.wid}] cannot parse json string! Error: ${jsonError.message}`);
                         }
 
                         vis.states.bind(data.oid + '.val', onChange);
@@ -824,7 +824,7 @@ vis.binds.materialdesign.chart = {
                                 parentViewId = parentViewId.replace('visview_', '')
                                 vis.reRenderWidget(parentViewId, parentViewId, data.wid);
                             } else {
-                                console.error(`[Pie Chart ${data.wid}] parent view not contains 'visview_'`);
+                                console.error(`[Pie Chart - ${data.wid}] parent view not contains 'visview_'`);
                                 console.error($(el).parent());
                             }
                         },
@@ -961,7 +961,7 @@ vis.binds.materialdesign.chart = {
                                 };
                                 myPieChart.update();
 
-                                console.error(`[Pie Chart ${data.wid}] onChange: cannot parse json string! Error: ${jsonError.message}`);
+                                console.error(`[Pie Chart - ${data.wid}] onChange: cannot parse json string! Error: ${jsonError.message}`);
                             }
                         }
                     };
@@ -994,7 +994,7 @@ vis.binds.materialdesign.chart = {
                 }
             }, 1)
         } catch (ex) {
-            console.error(`[Pie Chart ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Pie Chart - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     json: function (el, data) {
@@ -1052,7 +1052,7 @@ vis.binds.materialdesign.chart = {
                         myChart.update();
                         progressBar.hide();
 
-                        console.error(`[JSON Chart ${data.wid}] ${_("datapoint '{0}' not exist!").replace('{0}', data.oid)}`);
+                        console.error(`[JSON Chart - ${data.wid}] ${_("datapoint '{0}' not exist!").replace('{0}', data.oid)}`);
                     }
 
                     function getDataFromJson(oidVal) {
@@ -1077,7 +1077,7 @@ vis.binds.materialdesign.chart = {
                                     fontColor: 'red'
                                 }
                             };
-                            console.error(`[JSON Chart ${data.wid}] cannot parse json string! Error: ${jsonError.message}`);
+                            console.error(`[JSON Chart - ${data.wid}] cannot parse json string! Error: ${jsonError.message}`);
                             return { labels: [], datasets: [], options: options }
                         }
 
@@ -1287,10 +1287,10 @@ vis.binds.materialdesign.chart = {
                                         ));
 
                                     } else {
-                                        console.error(`[JSON Chart ${data.wid}] graph[${i}].data is null! Check json string input!`);
+                                        console.error(`[JSON Chart - ${data.wid}] graph[${i}].data is null! Check json string input!`);
                                     }
                                 } else {
-                                    console.error(`[JSON Chart ${data.wid}] graph[${i}] is null! Check json string input!`);
+                                    console.error(`[JSON Chart - ${data.wid}] graph[${i}] is null! Check json string input!`);
                                 }
                             }
 
@@ -1346,13 +1346,13 @@ vis.binds.materialdesign.chart = {
                                 },
                             }
                         } else {
-                            console.error(`[JSON Chart ${data.wid}] ${_("datapoint '{0}' has no data!").replace('{0}', data.oid)}`);
+                            console.error(`[JSON Chart - ${data.wid}] ${_("datapoint '{0}' has no data!").replace('{0}', data.oid)}`);
                         }
 
                         if (myDatasets.length > 0) {
                             return { labels: labels, datasets: myDatasets, options: options }
                         } else {
-                            console.error(`[JSON Chart ${data.wid}] ${_("datapoint '{0}' has no datasets!").replace('{0}', data.oid)}`);
+                            console.error(`[JSON Chart - ${data.wid}] ${_("datapoint '{0}' has no datasets!").replace('{0}', data.oid)}`);
                             return { labels: [], datasets: [], options: [] }
                         }
                     }
@@ -1449,13 +1449,13 @@ vis.binds.materialdesign.chart = {
                                 progressBar.hide();
                             }
                         } catch (err) {
-                            console.error(`[JSON Chart ${data.wid}] [onChange] error: ${err.message}, stack: ${err.stack}`);
+                            console.error(`[JSON Chart - ${data.wid}] [onChange] error: ${err.message}, stack: ${err.stack}`);
                         }
                     }
                 }
             }, 1);
         } catch (ex) {
-            console.error(`[JSON Chart ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[JSON Chart - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };
@@ -1709,12 +1709,12 @@ vis.binds.materialdesign.chart.helper = {
                         if (debug) console.log(`[getTaskForHistoryData ${data.wid}] history data result '${id}': ${JSON.stringify(result)}`);
                         resolve({ id: id, data: result, error: undefined });
                     } else {
-                        if (debug) console.error(`[getTaskForHistoryData ${data.wid}] result error: ${err}`);
+                        if (debug) console.error(`[getTaskForHistoryData - ${data.wid}] result error: ${err}`);
                         resolve({ id: id, data: null, error: err });
                     }
                 });
             } catch (ex) {
-                console.error(`[getTaskForHistoryData ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
+                console.error(`[getTaskForHistoryData - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
                 resolve({ id: id, data: null, error: ex.message });
             }
         });
@@ -1730,7 +1730,7 @@ vis.binds.materialdesign.chart.helper = {
                 }));
             }
         } catch (ex) {
-            console.error(`[getPreparedData ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[getPreparedData - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
 
         return dataArray;
@@ -1809,7 +1809,7 @@ vis.binds.materialdesign.chart.helper = {
                     }
                 }
             } catch (ex) {
-                console.error(`[regenerateGradient ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
+                console.error(`[regenerateGradient - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
             }
         }
 

@@ -101,6 +101,6 @@ vis.binds.materialdesign.switch =
                 }, myMdwHelper.getNumberFromData(data.autoLockAfter, 10) * 1000);
             }
         } catch (ex) {
-            console.error(`[Switch]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Switch - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
     };

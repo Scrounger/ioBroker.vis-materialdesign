@@ -88,7 +88,7 @@ vis.binds.materialdesign.card = {
             return { card: card, style: cardStyle }
 
         } catch (ex) {
-            console.error(`[Card] initialize: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Card - ${data.wid}] initialize: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     handler: function (el, data) {
@@ -108,7 +108,7 @@ vis.binds.materialdesign.card = {
 
 
         } catch (ex) {
-            console.error(`[Card] handler: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Card - ${data.wid}] handler: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

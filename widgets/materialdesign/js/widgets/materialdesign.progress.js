@@ -67,7 +67,7 @@ vis.binds.materialdesign.progress = {
             });
 
         } catch (ex) {
-            console.error(`[Progress ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Progress - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     circular: function (el, data) {
@@ -119,7 +119,7 @@ vis.binds.materialdesign.progress = {
             });
 
         } catch (ex) {
-            console.error(`[Progress Circular ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Progress Circular - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     getProgressState: function ($this, data, val, colorProperty, labelClass) {

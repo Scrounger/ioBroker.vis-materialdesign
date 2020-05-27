@@ -59,7 +59,7 @@ vis.binds.materialdesign.list =
                                 subText: `<label style="word-wrap: break-word; white-space: normal;">${err.message}</label>`
                             }
                         ];
-                        console.error(`[List] cannot parse json string! Error: ${err.message}`);
+                        console.error(`[List - ${data.wid}] cannot parse json string! Error: ${err.message}`);
                     }
                 } else {
                     countOfItems = data.countListItems;
@@ -377,6 +377,6 @@ vis.binds.materialdesign.list =
                 }
             }
         } catch (ex) {
-            console.error(`[List ${data.wid}] handler: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[List - ${data.wid}] handler: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
