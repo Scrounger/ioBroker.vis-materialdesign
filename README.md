@@ -2384,6 +2384,179 @@ tbd.
 
 <br>
 
+##### Slider Round
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>oid-working</td>
+			<td>Working Object ID</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>min</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>max</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>step</td>
+			<td>steps</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>startAngle</td>
+			<td>start angle</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>arcLength</td>
+			<td>arc length</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>sliderWidth</td>
+			<td>slider thikness</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>handleSize</td>
+			<td>knob size</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>handleZoom</td>
+			<td>knob zoom at control</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>rtl</td>
+			<td>slider movement from right to left</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>colorSliderBg</td>
+			<td>background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorBeforeThumb</td>
+			<td>color before regulator</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorThumb</td>
+			<td>color of regulator</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorAfterThumb</td>
+			<td>color after regulator</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>valueLabelColor</td>
+			<td>text color of value</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>showValueLabel</td>
+			<td>show value</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>valueLabelVerticalPosition</td>
+			<td>vertical text position of value </td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>valueLabelUnit</td>
+			<td>unit</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>valueLabelMin</td>
+			<td>text for value less than min</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>valueLabelMax</td>
+			<td>text for value greater than min</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>valueLessThan</td>
+			<td>'smaller than' condition for the text of the value</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>textForValueLessThan</td>
+			<td>text for 'smaller than'</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>valueGreaterThan</td>
+			<td>'greater than' condition for the text of the value</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>textForValueGreaterThan</td>
+			<td>text for 'greater than'</td>
+			<td>string</td>
+			<td/>
+		</tr>
+	</tbody>
+</table>
+
+<br>
+
 ### Editor Settings
 
 <table>

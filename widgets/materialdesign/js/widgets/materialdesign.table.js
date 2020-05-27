@@ -297,6 +297,19 @@ vis.binds.materialdesign.table = {
                             });
                         });
 
+                    } else if (objValue.type === 'slider_round') {
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-slider-round materialdesign-slider-round-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${objValue["oid-working"]}" style="display: inline-block; position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 60px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 60px;'}">
+                        </div>`
+
+                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Slider Round', true);
+
+                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Slider Round', function () {
+                            myMdwHelper.waitForElement($this, `.materialdesign-slider-round-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
+                                let slider = $this.find(`.materialdesign-slider-round-table-row_${row}-col_${col}`);
+
+                                vis.binds.materialdesign.roundslider(slider, elementData);
+                            });
+                        });
                     }
                 }
 
@@ -544,6 +557,37 @@ vis.binds.materialdesign.table = {
                 thumbFontSize: obj.thumbFontSize,
                 thumbFontFamily: obj.thumbFontFamily,
                 useLabelRules: obj.useLabelRules
+            }
+        } else if (obj.type === 'slider_round') {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                "oid-working": obj["oid-working"],
+                min: obj.min,
+                max: obj.max,
+                step: obj.step,
+                startAngle: obj.startAngle,
+                arcLength: obj.arcLength,
+                sliderWidth: obj.sliderWidth,
+                handleSize: obj.handleSize,
+                handleZoom: obj.handleZoom,
+                rtl: obj.rtl,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                colorSliderBg: obj.colorSliderBg,
+                colorBeforeThumb: obj.colorBeforeThumb,
+                colorThumb: obj.colorThumb,
+                colorAfterThumb: obj.colorAfterThumb,
+                valueLabelColor: obj.valueLabelColor,
+                showValueLabel: obj.showValueLabel,
+                valueLabelVerticalPosition: obj.valueLabelVerticalPosition,
+                valueLabelUnit: obj.valueLabelUnit,
+                valueLabelMin: obj.valueLabelMin,
+                valueLabelMax: obj.valueLabelMax,
+                valueLessThan: obj.valueLessThan,
+                textForValueLessThan: obj.textForValueLessThan,
+                valueGreaterThan: obj.valueGreaterThan,
+                textForValueGreaterThan: obj.textForValueGreaterThan
             }
         }
     }
