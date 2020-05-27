@@ -597,7 +597,7 @@
         <%
             let init = vis.binds.materialdesign.checkbox.initialize(data);
         %>
-        
+
 
         <div class="vis-widget materialdesign-widget mdc-form-field <%== init.labelPosition %> materialdesign-checkbox <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" isLocked="<%== myMdwHelper.getBooleanFromData(this.data.attr('lockEnabled'), false) %>" <%= (el) -> vis.binds.materialdesign.checkbox.handle(el, data) %>>
             <%== init.checkbox %>
@@ -932,7 +932,7 @@
                 }
             }
         %>
-
+        
         <div class="vis-widget materialdesign-widget materialdesign-vuetify-dialog <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.dialog.vue(el, data) %>>
             <%== init.button %>
         </div>

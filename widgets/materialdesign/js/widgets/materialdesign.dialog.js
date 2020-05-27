@@ -62,155 +62,159 @@ vis.binds.materialdesign.dialog = {
                 </v-dialog>
             `);
 
-            myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'Dialog', function () {
-                myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'Dialog', function () {
+            myMdwHelper.oidNeedSubscribe(data.showDialogOid, data.wid, 'Dialog', true);
 
-                    let vueDialog = new Vue({
-                        el: $this.find(`.${containerClass}`).get(0),
-                        vuetify: new Vuetify(),
-                        data() {
-                            fullscreen = $(window).width() <= myMdwHelper.getNumberFromData(data.fullscreenResolutionLower, 0);
-                            return {
-                                showDialog: false,
-                                title: myMdwHelper.getValueFromData(data.title, myMdwHelper.getValueFromData(data.contains_view, '')),
-                                closeText: myMdwHelper.getValueFromData(data.buttonText, _('close')),
-                                showToolbar: fullscreen,
-                                fullscreen: fullscreen,
-                                transition: (fullscreen) ? 'dialog-bottom-transition' : 'dialog-transition'
-                            }
-                        },
-                        methods: {
-                            closeButton(value) {
-                                vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
-                                this.showDialog = false;
-                            }
-                        },
-                        watch: {
-                            showDialog(val) {
-                                if (data.showDialogMethod === 'datapoint') {
-                                    myMdwHelper.setValue(data.showDialogOid, val);
+            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Dialog', function () {
+                myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'Dialog', function () {
+                    myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'Dialog', function () {
+
+                        let vueDialog = new Vue({
+                            el: $this.find(`.${containerClass}`).get(0),
+                            vuetify: new Vuetify(),
+                            data() {
+                                fullscreen = $(window).width() <= myMdwHelper.getNumberFromData(data.fullscreenResolutionLower, 0);
+                                return {
+                                    showDialog: false,
+                                    title: myMdwHelper.getValueFromData(data.title, myMdwHelper.getValueFromData(data.contains_view, '')),
+                                    closeText: myMdwHelper.getValueFromData(data.buttonText, _('close')),
+                                    showToolbar: fullscreen,
+                                    fullscreen: fullscreen,
+                                    transition: (fullscreen) ? 'dialog-bottom-transition' : 'dialog-transition'
+                                }
+                            },
+                            methods: {
+                                closeButton(value) {
+                                    vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                                    this.showDialog = false;
+                                }
+                            },
+                            watch: {
+                                showDialog(val) {
+                                    if (data.showDialogMethod === 'datapoint') {
+                                        myMdwHelper.setValue(data.showDialogOid, val);
+                                    }
                                 }
                             }
-                        }
-                    });
+                        });
 
-                    if (data.showDialogMethod === 'button') {
-                        let button = $this;
-                        $this.context.style.setProperty("--mdc-theme-primary", myMdwHelper.getValueFromData(data.colorPress, ''));
+                        if (data.showDialogMethod === 'button') {
+                            let button = $this;
+                            $this.context.style.setProperty("--mdc-theme-primary", myMdwHelper.getValueFromData(data.colorPress, ''));
 
-                        if (data.buttonStyle === 'icon') {
-                            mdc.iconButton.MDCIconButtonToggle.attachTo(button.get(0));
+                            if (data.buttonStyle === 'icon') {
+                                mdc.iconButton.MDCIconButtonToggle.attachTo(button.get(0));
+                            } else {
+                                mdc.ripple.MDCRipple.attachTo(button.get(0));
+                            }
+
+                            button.click(function () {
+                                vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+
+                                if (!vueDialog.showDialog) {
+                                    showDialog(true);
+                                }
+                            });
                         } else {
-                            mdc.ripple.MDCRipple.attachTo(button.get(0));
+                            vis.states.bind(data.showDialogOid + '.ts', function (e, newVal, oldVal) {
+                                let val = vis.states.attr(data.showDialogOid + '.val');
+
+                                if (!vueDialog.showDialog && (val === true || val === 'true')) {
+                                    showDialog(true)
+                                } else if (vueDialog.showDialog && (val === false || val === 'false')) {
+                                    showDialog(false)
+                                }
+                            });
                         }
 
-                        button.click(function () {
-                            vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
-
-                            if (!vueDialog.showDialog) {
-                                showDialog(true);
-                            }
+                        $(window).resize(function () {
+                            setLayout();
                         });
-                    } else {
-                        vis.states.bind(data.showDialogOid + '.ts', function (e, newVal, oldVal) {
-                            let val = vis.states.attr(data.showDialogOid + '.val');
 
-                            if (!vueDialog.showDialog && (val === true || val === 'true')) {
-                                showDialog(true)
-                            } else if (vueDialog.showDialog && (val === false || val === 'false')) {
-                                showDialog(false)
-                            }
-                        });
-                    }
+                        function showDialog(show) {
+                            setLayout();
+                            vueDialog.showDialog = show;
 
-                    $(window).resize(function () {
-                        setLayout();
-                    });
+                            myMdwHelper.waitForElement($("body"), `#dialog_card_${data.wid}`, data.wid, 'Dialog', function () {
+                                let $dialog = $("body").find(`#dialog_card_${data.wid}`);
 
-                    function showDialog(show) {
-                        setLayout();
-                        vueDialog.showDialog = show;
+                                $dialog.get(0).style.setProperty("--vue-dialog-view-container-distance-to-border", myMdwHelper.getNumberFromData(data.viewDistanceToBorder, 24) + 'px');
 
-                        myMdwHelper.waitForElement($("body"), `#dialog_card_${data.wid}`, data.wid, 'Dialog', function () {
-                            let $dialog = $("body").find(`#dialog_card_${data.wid}`);
-
-                            $dialog.get(0).style.setProperty("--vue-dialog-view-container-distance-to-border", myMdwHelper.getNumberFromData(data.viewDistanceToBorder, 24) + 'px');
-
-                            $dialog.get(0).style.setProperty("--vue-dialog-title-font-size", myMdwHelper.getNumberFromData(data.titleFontSize, 20) + 'px');
-                            $dialog.get(0).style.setProperty("--vue-dialog-title-font-color", myMdwHelper.getValueFromData(data.titleColor, ''));
-                            $dialog.get(0).style.setProperty("--vue-dialog-title-font-family", myMdwHelper.getValueFromData(data.titleFont, 'inherit'));
+                                $dialog.get(0).style.setProperty("--vue-dialog-title-font-size", myMdwHelper.getNumberFromData(data.titleFontSize, 20) + 'px');
+                                $dialog.get(0).style.setProperty("--vue-dialog-title-font-color", myMdwHelper.getValueFromData(data.titleColor, ''));
+                                $dialog.get(0).style.setProperty("--vue-dialog-title-font-family", myMdwHelper.getValueFromData(data.titleFont, 'inherit'));
 
 
-                            $dialog.get(0).style.setProperty("--vue-dialog-footer-background-color", myMdwHelper.getValueFromData(data.footerBackgroundColor, ''));
+                                $dialog.get(0).style.setProperty("--vue-dialog-footer-background-color", myMdwHelper.getValueFromData(data.footerBackgroundColor, ''));
 
-                            // Overlay
-                            $("body").find('.v-overlay__scrim').css('opacity', myMdwHelper.getValueFromData(data.overlayOpacity, 0.46));
-                            $("body").find('.v-overlay__scrim').css('background', myMdwHelper.getValueFromData(data.overlayColor, 'rgb(33, 33, 33)'));
+                                // Overlay
+                                $("body").find('.v-overlay__scrim').css('opacity', myMdwHelper.getValueFromData(data.overlayOpacity, 0.46));
+                                $("body").find('.v-overlay__scrim').css('background', myMdwHelper.getValueFromData(data.overlayColor, 'rgb(33, 33, 33)'));
+
+                                calcHeight();
+
+                                let view = data.contains_view;
+                                if ($dialog.find('#visview_' + view).length < 1) {
+                                    if (!isIFrame) {
+                                        if (vis.views[view]) {
+                                            vis.renderView(view, view, true, function (_view) {
+                                                $('#visview_' + _view).css('position', 'relative').css('height', wishHeight + 'px').appendTo($dialog.find(`#viewContainer_${data.wid}`)).show().data('persistent', true);
+                                            });
+                                        }
+                                    } else {
+                                        vis.binds.basic.iframeRefresh($dialog, data, view)
+                                    }
+
+                                }
+                            });
+                        }
+
+                        function setLayout() {
+                            fullscreen = $(window).width() <= myMdwHelper.getNumberFromData(data.fullscreenResolutionLower, 0);
+                            vueDialog.showToolbar = fullscreen;
+                            vueDialog.fullscreen = fullscreen;
+                            vueDialog.transition = (fullscreen) ? 'dialog-bottom-transition' : 'dialog-transition'
 
                             calcHeight();
+                        }
 
-                            let view = data.contains_view;
-                            if ($dialog.find('#visview_' + view).length < 1) {
-                                if (!isIFrame) {
-                                    if (vis.views[view]) {
-                                        vis.renderView(view, view, true, function (_view) {
-                                            $('#visview_' + _view).css('position', 'relative').css('height', wishHeight + 'px').appendTo($dialog.find(`#viewContainer_${data.wid}`)).show().data('persistent', true);
-                                        });
-                                    }
-                                } else {
-                                    vis.binds.basic.iframeRefresh($dialog, data, view)
+                        function calcHeight() {
+                            let $dialog = $("body").find(`#dialog_card_${data.wid}`);
+
+                            wishHeight = myMdwHelper.getNumberFromData(data.viewHeight, 5000);
+
+                            if (fullscreen) {
+                                let toolBarHeight = $dialog.find('.v-toolbar__content').height();
+                                wishHeight = Math.floor($(window).height() - toolBarHeight - 1);
+
+                            } else {
+                                let titleHeight = $dialog.find('.v-card__title').outerHeight();
+                                let footerHeight = $dialog.find('.v-dialog-footer').height();
+
+                                if (wishHeight > $(window).height() * 0.9 || (wishHeight + titleHeight + footerHeight) > $(window).height() * 0.9) {
+                                    // wenn höhe größer als screen -> dann auf screen begrenzen um responsiv zu sein
+                                    wishHeight = Math.floor($(window).height() * 0.9 - footerHeight - titleHeight - 5);
                                 }
-
                             }
-                        });
-                    }
 
-                    function setLayout() {
-                        fullscreen = $(window).width() <= myMdwHelper.getNumberFromData(data.fullscreenResolutionLower, 0);
-                        vueDialog.showToolbar = fullscreen;
-                        vueDialog.fullscreen = fullscreen;
-                        vueDialog.transition = (fullscreen) ? 'dialog-bottom-transition' : 'dialog-transition'
+                            if (fullscreen) {
+                                $dialog.get(0).style.setProperty("--vue-toolbar-background-color", myMdwHelper.getValueFromData(data.headerBackgroundColor, '#44739e'));
+                                $dialog.get(0).style.setProperty("--vue-ripple-effect-color", myMdwHelper.getValueFromData(data.pressColor, '#ffffff'));
+                            } else {
+                                $dialog.get(0).style.setProperty("--vue-toolbar-background-color", myMdwHelper.getValueFromData(data.headerBackgroundColor, 'initial'));
+                                $dialog.get(0).style.setProperty("--vue-ripple-effect-color", myMdwHelper.getValueFromData(data.pressColor, ''));
+                            }
 
-                        calcHeight();
-                    }
-
-                    function calcHeight() {
-                        let $dialog = $("body").find(`#dialog_card_${data.wid}`);
-
-                        wishHeight = myMdwHelper.getNumberFromData(data.viewHeight, 5000);
-
-                        if (fullscreen) {
-                            let toolBarHeight = $dialog.find('.v-toolbar__content').height();
-                            wishHeight = Math.floor($(window).height() - toolBarHeight - 1);
-
-                        } else {
-                            let titleHeight = $dialog.find('.v-card__title').outerHeight();
-                            let footerHeight = $dialog.find('.v-dialog-footer').height();
-
-                            if (wishHeight > $(window).height() * 0.9 || (wishHeight + titleHeight + footerHeight) > $(window).height() * 0.9) {
-                                // wenn höhe größer als screen -> dann auf screen begrenzen um responsiv zu sein
-                                wishHeight = Math.floor($(window).height() * 0.9 - footerHeight - titleHeight - 5);
+                            if (!isIFrame) {
+                                $dialog.find('#visview_' + data.contains_view).css('height', wishHeight + 'px');
+                            } else {
+                                $dialog.find('.iFrame_container').css('height', (wishHeight - 2) + 'px');
                             }
                         }
-
-                        if (fullscreen) {
-                            $dialog.get(0).style.setProperty("--vue-toolbar-background-color", myMdwHelper.getValueFromData(data.headerBackgroundColor, '#44739e'));
-                            $dialog.get(0).style.setProperty("--vue-ripple-effect-color", myMdwHelper.getValueFromData(data.pressColor, '#ffffff'));
-                        } else {
-                            $dialog.get(0).style.setProperty("--vue-toolbar-background-color", myMdwHelper.getValueFromData(data.headerBackgroundColor, 'initial'));
-                            $dialog.get(0).style.setProperty("--vue-ripple-effect-color", myMdwHelper.getValueFromData(data.pressColor, ''));
-                        }
-
-                        if (!isIFrame) {
-                            $dialog.find('#visview_' + data.contains_view).css('height', wishHeight + 'px');
-                        } else {
-                            $dialog.find('.iFrame_container').css('height', (wishHeight - 2) + 'px');
-                        }
-                    }
+                    });
                 });
             });
         } catch (ex) {
-            console.error(`[Vuetify Dialog - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Dialog - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };
