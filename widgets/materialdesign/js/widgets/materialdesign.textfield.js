@@ -61,7 +61,7 @@ vis.binds.materialdesign.textfield =
                 myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'TextField', function () {
                     myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'TextField', function () {
 
-                        let widgetHeight = window.getComputedStyle($this.context, null).height.replace('px', '');
+                        let widgetHeight = window.getComputedStyle($this.get(0), null).height.replace('px', '');
 
                         Vue.use(VueTheMask);
                         let vueTextField = new Vue({
@@ -97,8 +97,8 @@ vis.binds.materialdesign.textfield =
                         vueHelper.setStyles($this, data);
 
                         // Append Icon
-                        $this.context.style.setProperty("--vue-text-icon-append-size", myMdwHelper.getNumberFromData(data.appendIconSize, 16) + 'px');
-                        $this.context.style.setProperty("--vue-text-icon-append-color", myMdwHelper.getValueFromData(data.appendIconColor, ''));
+                        $this.get(0).style.setProperty("--vue-text-icon-append-size", myMdwHelper.getNumberFromData(data.appendIconSize, 16) + 'px');
+                        $this.get(0).style.setProperty("--vue-text-icon-append-color", myMdwHelper.getValueFromData(data.appendIconColor, ''));
 
                         vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                             vueTextField.value = newVal;

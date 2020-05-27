@@ -112,6 +112,8 @@ vis.binds.materialdesign.table = {
                             jsonData = JSON.parse(data.dataJson)
                         }
 
+                        
+
                         let key = (myMdwHelper.getValueFromData(data.attr('sortKey' + colIndex), null) !== null) ? data.attr('sortKey' + colIndex) : Object.keys(jsonData[0])[colIndex];
 
                         if ($(this).attr('sort')) {
@@ -373,6 +375,35 @@ vis.binds.materialdesign.table = {
                                 vis.binds.materialdesign.checkbox.handle(checkbox, elementData);
                             });
                         });
+                    } else if (objValue.type === 'textfield') {
+
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-input materialdesign-input-table-row_${row}-col_${col}" style="display: inline-block; position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
+                                    </div>`
+
+                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Textfield', true);
+
+                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Textfield', function () {
+                            myMdwHelper.waitForElement($this, `.materialdesign-input-table-row_${row}-col_${col}`, data.wid, 'Table Textfield', function () {
+                                let input = $this.find(`.materialdesign-input-table-row_${row}-col_${col}`);
+
+                                vis.binds.materialdesign.textfield(input, elementData);
+                            });
+                        });
+
+                    } else if (objValue.type === 'select') {
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-select materialdesign-select-table-row_${row}-col_${col}" style="display: inline-block; position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
+                                    </div>`
+
+                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Select', true);
+
+                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Select', function () {
+                            myMdwHelper.waitForElement($this, `.materialdesign-select-table-row_${row}-col_${col}`, data.wid, 'Table Select', function () {
+                                let select = $this.find(`.materialdesign-select-table-row_${row}-col_${col}`);
+
+                                vis.binds.materialdesign.select(select, elementData);
+                            });
+                        });
+
                     }
                 }
 
@@ -774,6 +805,162 @@ vis.binds.materialdesign.table = {
                 lockIconColor: obj.lockIconColor,
                 lockFilterGrayscale: obj.lockFilterGrayscale
             }
+        } else if (obj.type === 'textfield') {
+            return {
+                wid: widgetId,
+
+
+                oid: obj.oid,
+                inputType: obj.inputType,
+                inputMask: obj.inputMask,
+                inputMaxLength: obj.inputMaxLength,
+                inputLayout: obj.inputLayout,
+                inputLayoutBackgroundColor: obj.inputLayoutBackgroundColor,
+                inputLayoutBackgroundColorHover: obj.inputLayoutBackgroundColorHover,
+                inputLayoutBackgroundColorSelected: obj.inputLayoutBackgroundColorSelected,
+                inputLayoutBorderColor: obj.inputLayoutBorderColor,
+                inputLayoutBorderColorHover: obj.inputLayoutBorderColorHover,
+                inputLayoutBorderColorSelected: obj.inputLayoutBorderColorSelected,
+                inputTextFontFamily: obj.inputTextFontFamily,
+                inputTextFontSize: obj.inputTextFontSize,
+                inputTextColor: obj.inputTextColor,
+                inputLabelText: obj.inputLabelText,
+                inputLabelColor: obj.inputLabelColor,
+                inputLabelColorSelected: obj.inputLabelColorSelected,
+                inputLabelFontFamily: obj.inputLabelFontFamily,
+                inputLabelFontSize: obj.inputLabelFontSize,
+                inputTranslateX: obj.inputTranslateX,
+                inputTranslateY: obj.inputTranslateY,
+                inputPrefix: obj.inputPrefix,
+                inputSuffix: obj.inputSuffix,
+                inputAppendixColor: obj.inputAppendixColor,
+                inputAppendixFontSize: obj.inputAppendixFontSize,
+                inputAppendixFontFamily: obj.inputAppendixFontFamily,
+                showInputMessageAlways: obj.showInputMessageAlways,
+                inputMessage: obj.inputMessage,
+                inputMessageFontFamily: obj.inputMessageFontFamily,
+                inputMessageFontSize: obj.inputMessageFontSize,
+                inputMessageColor: obj.inputMessageColor,
+                showInputCounter: obj.showInputCounter,
+                inputCounterColor: obj.inputCounterColor,
+                inputCounterFontSize: obj.inputCounterFontSize,
+                inputCounterFontFamily: obj.inputCounterFontFamily,
+                clearIconShow: obj.clearIconShow,
+                clearIcon: obj.clearIcon,
+                clearIconSize: obj.clearIconSize,
+                clearIconColor: obj.clearIconColor,
+                prepandIcon: obj.prepandIcon,
+                prepandIconSize: obj.prepandIconSize,
+                prepandIconColor: obj.prepandIconColor,
+                prepandInnerIcon: obj.prepandInnerIcon,
+                prepandInnerIconSize: obj.prepandInnerIconSize,
+                prepandInnerIconColor: obj.prepandInnerIconColor,
+                appendIcon: obj.appendIcon,
+                appendIconSize: obj.appendIconSize,
+                appendIconColor: obj.appendIconColor,
+                appendOuterIcon: obj.appendOuterIcon,
+                appendOuterIconSize: obj.appendOuterIconSize,
+                appendOuterIconColor: obj.appendOuterIconColor
+            }
+        } else if (obj.type === 'select') {
+            let data = {
+                wid: widgetId,
+
+                oid: obj.oid,
+                inputType: obj.inputType,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                inputLayout: obj.inputLayout,
+                inputLayoutBackgroundColor: obj.inputLayoutBackgroundColor,
+                inputLayoutBackgroundColorHover: obj.inputLayoutBackgroundColorHover,
+                inputLayoutBackgroundColorSelected: obj.inputLayoutBackgroundColorSelected,
+                inputLayoutBorderColor: obj.inputLayoutBorderColor,
+                inputLayoutBorderColorHover: obj.inputLayoutBorderColorHover,
+                inputLayoutBorderColorSelected: obj.inputLayoutBorderColorSelected,
+                inputTextFontFamily: obj.inputTextFontFamily,
+                inputTextFontSize: obj.inputTextFontSize,
+                inputTextColor: obj.inputTextColor,
+                inputLabelText: obj.inputLabelText,
+                inputLabelColor: obj.inputLabelColor,
+                inputLabelColorSelected: obj.inputLabelColorSelected,
+                inputLabelFontFamily: obj.inputLabelFontFamily,
+                inputLabelFontSize: obj.inputLabelFontSize,
+                inputTranslateX: obj.inputTranslateX,
+                inputTranslateY: obj.inputTranslateY,
+                inputPrefix: obj.inputPrefix,
+                inputSuffix: obj.inputSuffix,
+                inputAppendixColor: obj.inputAppendixColor,
+                inputAppendixFontSize: obj.inputAppendixFontSize,
+                inputAppendixFontFamily: obj.inputAppendixFontFamily,
+                showInputMessageAlways: obj.showInputMessageAlways,
+                inputMessage: obj.inputMessage,
+                inputMessageFontFamily: obj.inputMessageFontFamily,
+                inputMessageFontSize: obj.inputMessageFontSize,
+                inputMessageColor: obj.inputMessageColor,
+                showInputCounter: obj.showInputCounter,
+                inputCounterColor: obj.inputCounterColor,
+                inputCounterFontSize: obj.inputCounterFontSize,
+                inputCounterFontFamily: obj.inputCounterFontFamily,
+                clearIconShow: obj.clearIconShow,
+                clearIcon: obj.clearIcon,
+                clearIconSize: obj.clearIconSize,
+                clearIconColor: obj.clearIconColor,
+                collapseIcon: obj.collapseIcon,
+                collapseIconSize: obj.collapseIconSize,
+                collapseIconColor: obj.collapseIconColor,
+                prepandIcon: obj.prepandIcon,
+                prepandIconSize: obj.prepandIconSize,
+                prepandIconColor: obj.prepandIconColor,
+                prepandInnerIcon: obj.prepandInnerIcon,
+                prepandInnerIconSize: obj.prepandInnerIconSize,
+                prepandInnerIconColor: obj.prepandInnerIconColor,
+                appendOuterIcon: obj.appendOuterIcon,
+                appendOuterIconSize: obj.appendOuterIconSize,
+                appendOuterIconColor: obj.appendOuterIconColor,
+                listDataMethod: obj.listDataMethod,
+                countSelectItems: obj.countSelectItems,
+                jsonStringObject: obj.jsonStringObject,
+                valueList: obj.valueList,
+                valueListLabels: obj.valueListLabels,
+                valueListIcons: obj.valueListIcons,
+                listPosition: obj.listPosition,
+                listPositionOffset: obj.listPositionOffset,
+                listItemHeight: obj.listItemHeight,
+                listItemBackgroundColor: obj.listItemBackgroundColor,
+                listItemBackgroundHoverColor: obj.listItemBackgroundHoverColor,
+                listItemBackgroundSelectedColor: obj.listItemBackgroundSelectedColor,
+                listItemRippleEffectColor: obj.listItemRippleEffectColor,
+                showSelectedIcon: obj.showSelectedIcon,
+                listIconSize: obj.listIconSize,
+                listIconColor: obj.listIconColor,
+                listIconHoverColor: obj.listIconHoverColor,
+                listIconSelectedColor: obj.listIconSelectedColor,
+                listItemFontSize: obj.listItemFontSize,
+                listItemFont: obj.listItemFont,
+                listItemFontColor: obj.listItemFontColor,
+                listItemFontHoverColor: obj.listItemFontHoverColor,
+                listItemFontSelectedColor: obj.listItemFontSelectedColor,
+                listItemSubFontSize: obj.listItemSubFontSize,
+                listItemSubFont: obj.listItemSubFont,
+                listItemSubFontColor: obj.listItemSubFontColor,
+                listItemSubFontHoverColor: obj.listItemSubFontHoverColor,
+                listItemSubFontSelectedColor: obj.listItemSubFontSelectedColor,
+                showValue: obj.showValue,
+                listItemValueFontSize: obj.listItemValueFontSize,
+                listItemValueFont: obj.listItemValueFont,
+                listItemValueFontColor: obj.listItemValueFontColor,
+                listItemValueFontHoverColor: obj.listItemValueFontHoverColor,
+                listItemValueFontSelectedColor: obj.listItemValueFontSelectedColor,
+            }
+
+            for (var i = 0; i <= obj.countSelectItems; i++) {
+                data['value' + i] = obj['value' + i];
+                data['label' + i] = obj['label' + i];
+                data['subLabel' + i] = obj['subLabel' + i];
+                data['listIcon' + i] = obj['listIcon' + i];
+                data['listIconColor' + i] = obj['listIconColor' + i];
+            }
+
+            return data;
         }
     }
 };

@@ -103,66 +103,66 @@ vis.binds.materialdesign.vueHelper = {
 
             if (data.inputLayout.includes('filled')) {
                 //TODO: background color data hinzufügen
-                $el.context.style.setProperty("--vue-text-field-background-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, ''));
-                $el.context.style.setProperty("--vue-text-field-background-hover-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColorHover, myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, '')));
-                $el.context.style.setProperty("--vue-text-field-background-after-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColorSelected, myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, '')));
+                $el.get(0).style.setProperty("--vue-text-field-background-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, ''));
+                $el.get(0).style.setProperty("--vue-text-field-background-hover-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColorHover, myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, '')));
+                $el.get(0).style.setProperty("--vue-text-field-background-after-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColorSelected, myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, '')));
             } else {
-                $el.context.style.setProperty("--vue-text-field-background-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, 'transparent'));
-                $el.context.style.setProperty("--vue-text-field-background-hover-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColorHover, myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, 'transparent')));
-                $el.context.style.setProperty("--vue-text-field-background-after-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColorSelected, myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, 'transparent')));
+                $el.get(0).style.setProperty("--vue-text-field-background-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, 'transparent'));
+                $el.get(0).style.setProperty("--vue-text-field-background-hover-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColorHover, myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, 'transparent')));
+                $el.get(0).style.setProperty("--vue-text-field-background-after-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColorSelected, myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, 'transparent')));
             }
 
             // Input Border Colors
-            $el.context.style.setProperty("--vue-text-field-before-color", myMdwHelper.getValueFromData(data.inputLayoutBorderColor, ''));
-            $el.context.style.setProperty("--vue-text-field-hover-color", myMdwHelper.getValueFromData(data.inputLayoutBorderColorHover, ''));
-            $el.context.style.setProperty("--vue-text-field-after-color", myMdwHelper.getValueFromData(data.inputLayoutBorderColorSelected, ''));
+            $el.get(0).style.setProperty("--vue-text-field-before-color", myMdwHelper.getValueFromData(data.inputLayoutBorderColor, ''));
+            $el.get(0).style.setProperty("--vue-text-field-hover-color", myMdwHelper.getValueFromData(data.inputLayoutBorderColorHover, ''));
+            $el.get(0).style.setProperty("--vue-text-field-after-color", myMdwHelper.getValueFromData(data.inputLayoutBorderColorSelected, ''));
 
             // Input Label style
-            $el.context.style.setProperty("--vue-text-field-label-before-color", myMdwHelper.getValueFromData(data.inputLabelColor, ''));
-            $el.context.style.setProperty("--vue-text-field-label-after-color", myMdwHelper.getValueFromData(data.inputLabelColorSelected, ''));
-            $el.context.style.setProperty("--vue-text-field-label-font-family", myMdwHelper.getValueFromData(data.inputLabelFontFamily, ''));
-            $el.context.style.setProperty("--vue-text-field-label-font-size", myMdwHelper.getNumberFromData(data.inputLabelFontSize, '16') + 'px');
+            $el.get(0).style.setProperty("--vue-text-field-label-before-color", myMdwHelper.getValueFromData(data.inputLabelColor, ''));
+            $el.get(0).style.setProperty("--vue-text-field-label-after-color", myMdwHelper.getValueFromData(data.inputLabelColorSelected, ''));
+            $el.get(0).style.setProperty("--vue-text-field-label-font-family", myMdwHelper.getValueFromData(data.inputLabelFontFamily, ''));
+            $el.get(0).style.setProperty("--vue-text-field-label-font-size", myMdwHelper.getNumberFromData(data.inputLabelFontSize, '16') + 'px');
 
             // Input style
-            $el.context.style.setProperty("--vue-text-field-input-text-color", myMdwHelper.getValueFromData(data.inputTextColor, ''));
-            $el.context.style.setProperty("--vue-text-field-input-text-font-size", myMdwHelper.getNumberFromData(data.inputTextFontSize, '16') + 'px');
-            $el.context.style.setProperty("--vue-text-field-input-text-font-family", myMdwHelper.getValueFromData(data.inputTextFontFamily, ''));
+            $el.get(0).style.setProperty("--vue-text-field-input-text-color", myMdwHelper.getValueFromData(data.inputTextColor, ''));
+            $el.get(0).style.setProperty("--vue-text-field-input-text-font-size", myMdwHelper.getNumberFromData(data.inputTextFontSize, '16') + 'px');
+            $el.get(0).style.setProperty("--vue-text-field-input-text-font-family", myMdwHelper.getValueFromData(data.inputTextFontFamily, ''));
 
             // Appendix style
-            $el.context.style.setProperty("--vue-text-field-appendix-color", myMdwHelper.getValueFromData(data.inputAppendixColor, myMdwHelper.getValueFromData(data.inputTextColor, '')));
-            $el.context.style.setProperty("--vue-text-field-appendix-font-size", myMdwHelper.getNumberFromData(data.inputAppendixFontSize, myMdwHelper.getNumberFromData(data.inputTextFontSize, '16')) + 'px');
-            $el.context.style.setProperty("--vue-text-field-appendix-font-family", myMdwHelper.getValueFromData(data.inputAppendixFontFamily, myMdwHelper.getValueFromData(data.inputTextFontFamily, '')));
+            $el.get(0).style.setProperty("--vue-text-field-appendix-color", myMdwHelper.getValueFromData(data.inputAppendixColor, myMdwHelper.getValueFromData(data.inputTextColor, '')));
+            $el.get(0).style.setProperty("--vue-text-field-appendix-font-size", myMdwHelper.getNumberFromData(data.inputAppendixFontSize, myMdwHelper.getNumberFromData(data.inputTextFontSize, '16')) + 'px');
+            $el.get(0).style.setProperty("--vue-text-field-appendix-font-family", myMdwHelper.getValueFromData(data.inputAppendixFontFamily, myMdwHelper.getValueFromData(data.inputTextFontFamily, '')));
 
             // Message style
-            $el.context.style.setProperty("--vue-text-field-message-color", myMdwHelper.getValueFromData(data.inputMessageColor, ''));
-            $el.context.style.setProperty("--vue-text-field-message-font-size", myMdwHelper.getNumberFromData(data.inputMessageFontSize, '12') + 'px');
-            $el.context.style.setProperty("--vue-text-field-message-font-family", myMdwHelper.getValueFromData(data.inputMessageFontFamily, ''));
+            $el.get(0).style.setProperty("--vue-text-field-message-color", myMdwHelper.getValueFromData(data.inputMessageColor, ''));
+            $el.get(0).style.setProperty("--vue-text-field-message-font-size", myMdwHelper.getNumberFromData(data.inputMessageFontSize, '12') + 'px');
+            $el.get(0).style.setProperty("--vue-text-field-message-font-family", myMdwHelper.getValueFromData(data.inputMessageFontFamily, ''));
 
             // Counter style
-            $el.context.style.setProperty("--vue-text-field-counter-color", myMdwHelper.getValueFromData(data.inputCounterColor, ''));
-            $el.context.style.setProperty("--vue-text-field-counter-font-size", myMdwHelper.getNumberFromData(data.inputCounterFontSize, '12') + 'px');
-            $el.context.style.setProperty("--vue-text-field-counter-font-family", myMdwHelper.getValueFromData(data.inputCounterFontFamily, ''));
+            $el.get(0).style.setProperty("--vue-text-field-counter-color", myMdwHelper.getValueFromData(data.inputCounterColor, ''));
+            $el.get(0).style.setProperty("--vue-text-field-counter-font-size", myMdwHelper.getNumberFromData(data.inputCounterFontSize, '12') + 'px');
+            $el.get(0).style.setProperty("--vue-text-field-counter-font-family", myMdwHelper.getValueFromData(data.inputCounterFontFamily, ''));
 
             // Transform options
-            $el.context.style.setProperty("--vue-text-field-translate-x", myMdwHelper.getNumberFromData(data.inputTranslateX, 0) + 'px');
-            $el.context.style.setProperty("--vue-text-field-translate-y", myMdwHelper.getNumberFromData(data.inputTranslateY, -16) + 'px');
+            $el.get(0).style.setProperty("--vue-text-field-translate-x", myMdwHelper.getNumberFromData(data.inputTranslateX, 0) + 'px');
+            $el.get(0).style.setProperty("--vue-text-field-translate-y", myMdwHelper.getNumberFromData(data.inputTranslateY, -16) + 'px');
 
             // Icon: clear options
-            $el.context.style.setProperty("--vue-text-icon-clear-size", myMdwHelper.getNumberFromData(data.clearIconSize, 16) + 'px');
-            $el.context.style.setProperty("--vue-text-icon-clear-color", myMdwHelper.getValueFromData(data.clearIconColor, ''));
+            $el.get(0).style.setProperty("--vue-text-icon-clear-size", myMdwHelper.getNumberFromData(data.clearIconSize, 16) + 'px');
+            $el.get(0).style.setProperty("--vue-text-icon-clear-color", myMdwHelper.getValueFromData(data.clearIconColor, ''));
 
 
             // Icon: append-outer options
-            $el.context.style.setProperty("--vue-text-icon-append-outer-size", myMdwHelper.getNumberFromData(data.appendOuterIconSize, 16) + 'px');
-            $el.context.style.setProperty("--vue-text-icon-append-outer-color", myMdwHelper.getValueFromData(data.appendOuterIconColor, ''));
+            $el.get(0).style.setProperty("--vue-text-icon-append-outer-size", myMdwHelper.getNumberFromData(data.appendOuterIconSize, 16) + 'px');
+            $el.get(0).style.setProperty("--vue-text-icon-append-outer-color", myMdwHelper.getValueFromData(data.appendOuterIconColor, ''));
 
             // Icon: prepand options
-            $el.context.style.setProperty("--vue-text-icon-prepand-size", myMdwHelper.getNumberFromData(data.prepandIconSize, 16) + 'px');
-            $el.context.style.setProperty("--vue-text-icon-prepand-color", myMdwHelper.getValueFromData(data.prepandIconColor, ''));
+            $el.get(0).style.setProperty("--vue-text-icon-prepand-size", myMdwHelper.getNumberFromData(data.prepandIconSize, 16) + 'px');
+            $el.get(0).style.setProperty("--vue-text-icon-prepand-color", myMdwHelper.getValueFromData(data.prepandIconColor, ''));
 
             // Icon: prepand-inner options
-            $el.context.style.setProperty("--vue-text-icon-prepand-inner-size", myMdwHelper.getNumberFromData(data.prepandInnerIconSize, 16) + 'px');
-            $el.context.style.setProperty("--vue-text-icon-prepand-inner-color", myMdwHelper.getValueFromData(data.prepandInnerIconColor, ''));
+            $el.get(0).style.setProperty("--vue-text-icon-prepand-inner-size", myMdwHelper.getNumberFromData(data.prepandInnerIconSize, 16) + 'px');
+            $el.get(0).style.setProperty("--vue-text-icon-prepand-inner-color", myMdwHelper.getValueFromData(data.prepandInnerIconColor, ''));
         }
     },
     select: {
@@ -239,9 +239,9 @@ vis.binds.materialdesign.vueHelper = {
         setStyles: function ($el, data) {
             vis.binds.materialdesign.vueHelper.input.setStyles($el, data);
 
-            $el.context.style.setProperty("--vue-text-icon-append-size", myMdwHelper.getNumberFromData(data.collapseIconSize, 16) + 'px');
-            $el.context.style.setProperty("--vue-text-icon-append-color", myMdwHelper.getValueFromData(data.collapseIconColor, ''));
-            $el.context.style.setProperty("--vue-text-icon-append-cursor", 'pointer');
+            $el.get(0).style.setProperty("--vue-text-icon-append-size", myMdwHelper.getNumberFromData(data.collapseIconSize, 16) + 'px');
+            $el.get(0).style.setProperty("--vue-text-icon-append-color", myMdwHelper.getValueFromData(data.collapseIconColor, ''));
+            $el.get(0).style.setProperty("--vue-text-icon-append-cursor", 'pointer');
         },
         setMenuStyles: function ($el, data, itemsList, $vuetifyContainer) {
             let selectId = $el.find('.v-input__slot').attr('aria-owns');
