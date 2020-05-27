@@ -105,9 +105,9 @@ vis.binds.materialdesign.button = {
         try {
             let $this = $(el);
 
-            $this.on('click touchend', function (e) {
+            $this.on('click', function (e) {
                 // Protect against two events
-                if (vis.detectBounce(this)) return;
+                event.preventDefault();
 
                 if (!vis.editMode && data.href) {
                     if (data.openNewWindow) {
@@ -126,9 +126,10 @@ vis.binds.materialdesign.button = {
             if (!vis.editMode && data.nav_view) {
                 var $this = $(el);
                 var moved = false;
-                $this.on('click touchend', function (e) {
+                $this.on('click', function (e) {
                     // Protect against two events
-                    if (vis.detectBounce(this)) return;
+                    event.preventDefault();
+
                     if (moved) return;
                     vis.changeView(data.nav_view, data.nav_view);
                     //e.preventDefault();
@@ -147,9 +148,9 @@ vis.binds.materialdesign.button = {
         try {
             let $this = $(el);
 
-            $this.on('click touchend', function (e) {
+            $this.on('click', function (e) {
                 // Protect against two events
-                if (vis.detectBounce(this)) return;
+                event.preventDefault();
 
                 let val = vis.states.attr(data.oid + '.val');
                 if (!data.minmax || val != data.minmax) {
@@ -174,9 +175,9 @@ vis.binds.materialdesign.button = {
             }
             if (!vis.editMode) {
                 var moved = false;
-                $this.on('click touchend', function (e) {
+                $this.on('click', function (e) {
                     // Protect against two events
-                    if (vis.detectBounce(this)) return;
+                    event.preventDefault();
 
                     if (moved) return;
 
@@ -258,9 +259,9 @@ vis.binds.materialdesign.button = {
 
             if (!vis.editMode) {
                 if (myMdwHelper.getBooleanFromData(data.pushButton, false) === false) {
-                    $this.parent().on('click touchend', function (e) {
+                    $this.parent().on('click', function (e) {
                         // Protect against two events
-                        if (vis.detectBounce(this)) return;
+                        event.preventDefault();
 
                         if ($this.parent().attr('isLocked') === 'false' || $this.parent().attr('isLocked') === undefined) {
                             if (myMdwHelper.getValueFromData(data.toggleType, 'boolean') === 'boolean') {
