@@ -21,7 +21,7 @@ vis.binds.materialdesign.checkbox =
 
             let checkboxElement = $this.find('.mdc-checkbox').get(0);
 
-            const mdcFormField = new mdc.formField.MDCFormField($this.context);
+            const mdcFormField = new mdc.formField.MDCFormField($this.get(0));
             const mdcCheckbox = new mdc.checkbox.MDCCheckbox(checkboxElement);
             mdcFormField.input = mdcCheckbox;
 
@@ -78,10 +78,10 @@ vis.binds.materialdesign.checkbox =
                 let label = $this.find('label[id="label"]');
                 if (buttonState) {
                     label.css('color', myMdwHelper.getValueFromData(data.labelColorTrue, ''));
-                    label.text(myMdwHelper.getValueFromData(data.labelTrue, ''));
+                    label.html(myMdwHelper.getValueFromData(data.labelTrue, ''));
                 } else {
                     label.css('color', myMdwHelper.getValueFromData(data.labelColorFalse, ''));
-                    label.text(myMdwHelper.getValueFromData(data.labelFalse, ''));
+                    label.html(myMdwHelper.getValueFromData(data.labelFalse, ''));
                 }
             }
 

@@ -3071,11 +3071,154 @@ Take a look at the animated screenshot below:
 	</tbody>
 </table>
 
-
-
 <br>
 
 ##### Checkbox
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>readOnly</td>
+			<td>nur lesend</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>toggleType</td>
+			<td>Art der Umschaltung</td>
+			<td>string</td>
+			<td>boolean | value</td>
+		</tr>
+		<tr>
+			<td>valueOff</td>
+			<td>Wert für aus</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>valueOn</td>
+			<td>Wert für ein</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>stateIfNotTrueValue</td>
+			<td>Zustand, wenn der Wert nicht der Bedingung 'Ein' entspricht</td>
+			<td>string</td>
+			<td>on | off</td>
+		</tr>
+		<tr>
+			<td>vibrateOnMobilDevices</td>
+			<td>auf mobilen Geräten vibrieren [s]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>labelFalse</td>
+			<td>Beschriftung False</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>labelTrue</td>
+			<td>Beschriftung True</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>labelPosition</td>
+			<td>labelPosition</td>
+			<td>string</td>
+			<td>left | right</td>
+		</tr>
+		<tr>
+			<td>labelClickActive</td>
+			<td>Beschriftungs-Klick aktivieren</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>colorCheckBox</td>
+			<td>Kontrollkästchen Farbe</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>labelColorFalse</td>
+			<td>Beschriftungsfarbe</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>labelColorTrue</td>
+			<td>Beschriftungsfarbe für true</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>lockEnabled</td>
+			<td>Verriegeln aktivieren</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>autoLockAfter</td>
+			<td>automatisch Verriegeln nach [s]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIcon</td>
+			<td>Symbol</td>
+			<td>custom</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconTop</td>
+			<td>Symbolabstand von oben [%]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconLeft</td>
+			<td>Symbolabstand von links [%]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconSize</td>
+			<td>Symbolgröße</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconColor</td>
+			<td>Symbolfarbe</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>lockFilterGrayscale</td>
+			<td>Graufilter, wenn verriegelt</td>
+			<td>number</td>
+			<td/>
+		</tr>
+	</tbody>
+</table>
 
 <br>
 

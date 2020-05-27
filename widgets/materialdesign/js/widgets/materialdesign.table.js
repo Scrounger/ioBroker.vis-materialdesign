@@ -346,9 +346,9 @@ vis.binds.materialdesign.table = {
                         if (elementData.labelClickActive === 'false' || elementData.labelClickActive === false) {
                             labelClickActive = 'pointer-events:none;'
                         }
-            
+
                         let labelPosition = '';
-                        if (elementData.labelPosition === 'left'){
+                        if (elementData.labelPosition === 'left') {
                             labelPosition = 'mdc-form-field--align-end'
                         }
 
@@ -364,14 +364,49 @@ vis.binds.materialdesign.table = {
                             </div>
                             <label id="label" for="materialdesign-checkbox-switch" style="width: 100%; cursor: pointer; ${labelClickActive}">Checkbox 1</label>
                         </div>`
-                    
+
                         myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Switch', true);
 
                         myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Switch', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-switch-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
+                            myMdwHelper.waitForElement($this, `.materialdesign-switch-table-row_${row}-col_${col}`, data.wid, 'Table Switch', function () {
                                 let sw = $this.find(`.materialdesign-switch-table-row_${row}-col_${col}`);
 
                                 vis.binds.materialdesign.switch(sw, elementData);
+                            });
+                        });
+                    } else if (objValue.type === 'checkbox') {
+
+                        let labelClickActive = '';
+                        if (elementData.labelClickActive === 'false' || elementData.labelClickActive === false) {
+                            labelClickActive = 'pointer-events:none;'
+                        }
+
+                        let labelPosition = '';
+                        if (elementData.labelPosition === 'left') {
+                            labelPosition = 'mdc-form-field--align-end'
+                        }
+
+                        element = `        
+                        <div class="vis-widget materialdesign-widget mdc-form-field ${labelPosition} materialdesign-checkbox materialdesign-checkbox-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
+                            <div class="mdc-checkbox">
+                                <input type="checkbox" class="mdc-checkbox__native-control" id="materialdesign-checkbox"/>
+                                <div class="mdc-checkbox__background">
+                                <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                    <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                                </svg>
+                                <div class="mdc-checkbox__mixedmark"></div>
+                                </div>
+                            </div>
+                            <label id="label" for="materialdesign-checkbox" style="width: 100%; cursor: pointer; ${labelClickActive}">Checkbox 1</label>
+                        </div>`
+
+                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Checkbox', true);
+
+                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Switch', function () {
+                            myMdwHelper.waitForElement($this, `.materialdesign-checkbox-table-row_${row}-col_${col}`, data.wid, 'Table Checkbox', function () {
+                                let checkbox = $this.find(`.materialdesign-checkbox-table-row_${row}-col_${col}`);
+
+                                vis.binds.materialdesign.checkbox(checkbox, elementData);
                             });
                         });
                     }
@@ -737,6 +772,33 @@ vis.binds.materialdesign.table = {
                 colorSwitchTrack: obj.colorSwitchTrack,
                 colorSwitchTrue: obj.colorSwitchTrue,
                 colorSwitchHover: obj.colorSwitchHover,
+                labelColorFalse: obj.labelColorFalse,
+                labelColorTrue: obj.labelColorTrue,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconTop: obj.lockIconTop,
+                lockIconLeft: obj.lockIconLeft,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+        } else if (obj.type === 'checkbox') {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                readOnly: obj.readOnly,
+                toggleType: obj.toggleType,
+                valueOff: obj.valueOff,
+                valueOn: obj.valueOn,
+                stateIfNotTrueValue: obj.stateIfNotTrueValue,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                labelFalse: obj.labelFalse,
+                labelTrue: obj.labelTrue,
+                labelPosition: obj.labelPosition,
+                labelClickActive: obj.labelClickActive,
+                colorCheckBox: obj.colorCheckBox,
                 labelColorFalse: obj.labelColorFalse,
                 labelColorTrue: obj.labelColorTrue,
                 lockEnabled: obj.lockEnabled,
