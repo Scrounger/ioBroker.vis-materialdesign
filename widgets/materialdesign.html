@@ -573,27 +573,11 @@
         data-vis-attrs2="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materialdesign.viseditor.materialDesignIcons;lockIconTop[5]/slider,0,100,1;lockIconLeft[5]/slider,0,100,1;lockIconSize/number;lockIconColor/color;lockFilterGrayscale[30]/slider,0,100,1;">
         
         <%
-            let labelClickActive = '';
-            if (this.data.labelClickActive === 'false' || this.data.labelClickActive === false) {
-                labelClickActive = 'pointer-events:none;'
-            }
-
-            let labelPosition = '';
-            if (this.data.labelPosition === 'left'){
-                labelPosition = 'mdc-form-field--align-end'
-            }
+            let init = vis.binds.materialdesign.switch.initialize(data);
         %>
 
-        <div class="vis-widget materialdesign-widget mdc-form-field <%= labelPosition %> materialdesign-switch <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" islocked="false" <%= (el) -> vis.binds.materialdesign.switch(el, data) %>>
-            <div class="mdc-switch" style="margin-left: 10px; margin-right: 10px;">
-                <div class="mdc-switch__track"></div>
-                <div class="mdc-switch__thumb-underlay">
-                    <div class="mdc-switch__thumb">
-                        <input class="mdc-switch__native-control" id="materialdesign-checkbox-switch<%= this.data.attr('wid') %>" type="checkbox" data-oid="<%= this.data.attr('oid') %>" role="switch">
-                    </div>
-                </div>
-            </div>
-            <label id="label" for="materialdesign-checkbox-switch<%= this.data.attr('wid') %>" style="width: 100%; cursor: pointer; <%= labelClickActive %>">Checkbox 1</label>
+        <div class="vis-widget materialdesign-widget mdc-form-field <%== init.labelPosition %> materialdesign-switch <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" isLocked="<%== myMdwHelper.getBooleanFromData(this.data.attr('lockEnabled'), false) %>" <%= (el) -> vis.binds.materialdesign.switch.handle(el, data) %>>
+            <%== init.myswitch %>
         </div>
 </script>
 
@@ -611,28 +595,12 @@
         data-vis-attrs2="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materialdesign.viseditor.materialDesignIcons;lockIconTop[5]/slider,0,100,1;lockIconLeft[5]/slider,0,100,1;lockIconSize/number;lockIconColor/color;lockFilterGrayscale[30]/slider,0,100,1;">
 
         <%
-            let labelClickActive = '';
-            if (this.data.labelClickActive === 'false' || this.data.labelClickActive === false) {
-                labelClickActive = 'pointer-events:none;'
-            }
-
-            let labelPosition = '';
-            if (this.data.labelPosition === 'left'){
-                labelPosition = 'mdc-form-field--align-end'
-            }
+            let init = vis.binds.materialdesign.checkbox.initialize(data);
         %>
+        
 
-        <div class="vis-widget materialdesign-widget mdc-form-field <%= labelPosition %> materialdesign-checkbox <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.checkbox(el, data) %>>
-            <div class="mdc-checkbox">
-                <input type="checkbox" class="mdc-checkbox__native-control" id="materialdesign-checkbox-<%= this.data.attr('wid') %>"/>
-                <div class="mdc-checkbox__background">
-                <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                    <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-                </svg>
-                <div class="mdc-checkbox__mixedmark"></div>
-                </div>
-            </div>
-            <label id="label" for="materialdesign-checkbox-<%= this.data.attr('wid') %>" style="width: 100%; cursor: pointer; <%= labelClickActive %>">Checkbox 1</label>
+        <div class="vis-widget materialdesign-widget mdc-form-field <%== init.labelPosition %> materialdesign-checkbox <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" isLocked="<%== myMdwHelper.getBooleanFromData(this.data.attr('lockEnabled'), false) %>" <%= (el) -> vis.binds.materialdesign.checkbox.handle(el, data) %>>
+            <%== init.checkbox %>
         </div>
 </script>
 

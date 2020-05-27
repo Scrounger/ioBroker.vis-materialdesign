@@ -5,8 +5,40 @@
 */
 "use strict";
 
-vis.binds.materialdesign.switch =
-    function (el, data) {
+vis.binds.materialdesign.switch = {
+    initialize: function (data) {
+        try {
+
+            let labelClickActive = '';
+            if (data.labelClickActive === 'false' || data.labelClickActive === false) {
+                labelClickActive = 'pointer-events:none;'
+            }
+
+            let labelPosition = '';
+            if (data.labelPosition === 'left') {
+                labelPosition = 'mdc-form-field--align-end'
+            }
+
+            let element = `
+            <div class="mdc-switch" style="margin-left: 10px; margin-right: 10px;">
+                <div class="mdc-switch__track"></div>
+                <div class="mdc-switch__thumb-underlay">
+                    <div class="mdc-switch__thumb">
+                        <input class="mdc-switch__native-control" id="materialdesign-checkbox-switch-${data.wid}" type="checkbox" data-oid="${data.oid}" role="switch">
+                    </div>
+                </div>
+            </div>
+            <label id="label" for="materialdesign-checkbox-switch-${data.wid}" style="width: 100%; cursor: pointer; ${labelClickActive}">Checkbox 1</label>
+            `
+
+            return { myswitch: element, style: labelPosition };
+
+        } catch (ex) {
+            console.error(`[Switch - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+        }
+
+    },
+    handle: function (el, data) {
         try {
             var $this = $(el);
             var oid = $this.data('oid');
@@ -103,4 +135,5 @@ vis.binds.materialdesign.switch =
         } catch (ex) {
             console.error(`[Switch - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
-    };
+    }
+}

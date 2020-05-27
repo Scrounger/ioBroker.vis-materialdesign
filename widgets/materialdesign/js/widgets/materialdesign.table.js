@@ -342,28 +342,11 @@ vis.binds.materialdesign.table = {
                             });
                         });
                     } else if (objValue.type === 'switch') {
-                        let labelClickActive = '';
-                        if (elementData.labelClickActive === 'false' || elementData.labelClickActive === false) {
-                            labelClickActive = 'pointer-events:none;'
-                        }
+                        let init = vis.binds.materialdesign.switch.initialize(elementData);
 
-                        let labelPosition = '';
-                        if (elementData.labelPosition === 'left') {
-                            labelPosition = 'mdc-form-field--align-end'
-                        }
-
-                        element = `        
-                        <div class="vis-widget materialdesign-widget mdc-form-field ${labelPosition} materialdesign-switch materialdesign-switch-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
-                            <div class="mdc-switch" style="margin-left: 10px; margin-right: 10px;">
-                                <div class="mdc-switch__track"></div>
-                                <div class="mdc-switch__thumb-underlay">
-                                    <div class="mdc-switch__thumb">
-                                        <input class="mdc-switch__native-control" id="materialdesign-checkbox-switch" type="checkbox" data-oid="${elementData.oid}" role="switch">
-                                    </div>
-                                </div>
-                            </div>
-                            <label id="label" for="materialdesign-checkbox-switch" style="width: 100%; cursor: pointer; ${labelClickActive}">Checkbox 1</label>
-                        </div>`
+                        element = `<div class="vis-widget materialdesign-widget mdc-form-field ${init.labelPosition} materialdesign-switch materialdesign-switch-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
+                                        ${init.myswitch}
+                                    </div>`
 
                         myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Switch', true);
 
@@ -371,42 +354,23 @@ vis.binds.materialdesign.table = {
                             myMdwHelper.waitForElement($this, `.materialdesign-switch-table-row_${row}-col_${col}`, data.wid, 'Table Switch', function () {
                                 let sw = $this.find(`.materialdesign-switch-table-row_${row}-col_${col}`);
 
-                                vis.binds.materialdesign.switch(sw, elementData);
+                                vis.binds.materialdesign.switch.handle(sw, elementData);
                             });
                         });
                     } else if (objValue.type === 'checkbox') {
+                        let init = vis.binds.materialdesign.checkbox.initialize(elementData);
 
-                        let labelClickActive = '';
-                        if (elementData.labelClickActive === 'false' || elementData.labelClickActive === false) {
-                            labelClickActive = 'pointer-events:none;'
-                        }
-
-                        let labelPosition = '';
-                        if (elementData.labelPosition === 'left') {
-                            labelPosition = 'mdc-form-field--align-end'
-                        }
-
-                        element = `        
-                        <div class="vis-widget materialdesign-widget mdc-form-field ${labelPosition} materialdesign-checkbox materialdesign-checkbox-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
-                            <div class="mdc-checkbox">
-                                <input type="checkbox" class="mdc-checkbox__native-control" id="materialdesign-checkbox"/>
-                                <div class="mdc-checkbox__background">
-                                <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                                    <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-                                </svg>
-                                <div class="mdc-checkbox__mixedmark"></div>
-                                </div>
-                            </div>
-                            <label id="label" for="materialdesign-checkbox" style="width: 100%; cursor: pointer; ${labelClickActive}">Checkbox 1</label>
-                        </div>`
+                        element = `<div class="vis-widget materialdesign-widget mdc-form-field ${init.labelPosition} materialdesign-checkbox materialdesign-checkbox-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
+                                        ${init.checkbox}
+                                    </div>`
 
                         myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Checkbox', true);
 
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Switch', function () {
+                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Checkbox', function () {
                             myMdwHelper.waitForElement($this, `.materialdesign-checkbox-table-row_${row}-col_${col}`, data.wid, 'Table Checkbox', function () {
                                 let checkbox = $this.find(`.materialdesign-checkbox-table-row_${row}-col_${col}`);
 
-                                vis.binds.materialdesign.checkbox(checkbox, elementData);
+                                vis.binds.materialdesign.checkbox.handle(checkbox, elementData);
                             });
                         });
                     }

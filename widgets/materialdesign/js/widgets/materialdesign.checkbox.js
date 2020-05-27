@@ -5,15 +5,47 @@
 */
 "use strict";
 
-vis.binds.materialdesign.checkbox =
-    function (el, data) {
+vis.binds.materialdesign.checkbox = {
+    initialize: function (data) {
+        try {
+
+            let labelClickActive = '';
+            if (data.labelClickActive === 'false' || data.labelClickActive === false) {
+                labelClickActive = 'pointer-events:none;'
+            }
+
+            let labelPosition = '';
+            if (data.labelPosition === 'left') {
+                labelPosition = 'mdc-form-field--align-end'
+            }
+
+            let element = `
+            <div class="mdc-checkbox">
+                <input type="checkbox" class="mdc-checkbox__native-control" id="materialdesign-checkbox-${data.wid}"/>
+                <div class="mdc-checkbox__background">
+                <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                    <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                </svg>
+                <div class="mdc-checkbox__mixedmark"></div>
+                </div>
+            </div>
+            <label id="label" for="materialdesign-checkbox-${data.wid}" style="width: 100%; cursor: pointer; ${labelClickActive}">Checkbox 1</label>
+            `
+
+            return { checkbox: element, style: labelPosition };
+
+        } catch (ex) {
+            console.error(`[Checkbox - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
+    handle: function (el, data) {
         try {
             let $this = $(el);
 
             if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {
                 // Append lock icon if activated
                 $this.append(`<span class="mdi mdi-${myMdwHelper.getValueFromData(data.lockIcon, 'lock-outline')} materialdesign-lock-icon" 
-                        style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; ${(myMdwHelper.getNumberFromData(data.lockIconSize, undefined) !== '0') ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} ${(myMdwHelper.getValueFromData(data.lockIconColor, null) !== null) ? `color: ${data.lockIconColor};` : ''}"></span>`);
+                            style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; ${(myMdwHelper.getNumberFromData(data.lockIconSize, undefined) !== '0') ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} ${(myMdwHelper.getValueFromData(data.lockIconColor, null) !== null) ? `color: ${data.lockIconColor};` : ''}"></span>`);
 
                 $this.attr('isLocked', true);
                 $this.css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
@@ -97,6 +129,7 @@ vis.binds.materialdesign.checkbox =
                 }, myMdwHelper.getNumberFromData(data.autoLockAfter, 10) * 1000);
             }
         } catch (ex) {
-            console.error(`[Checkbox - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[Checkbox - ${data.wid}] handle: error: ${ex.message}, stack: ${ex.stack}`);
         }
-    };
+    }
+}
