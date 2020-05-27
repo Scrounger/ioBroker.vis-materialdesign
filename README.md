@@ -1249,6 +1249,7 @@ Take a look at the animated screenshot below:
                     <li>progress</li>
                     <li>progress_circular</li>
                     <li>slider</li>
+                    <li>slider_round</li>
                 </ul> 
             </td>
         </tr>
@@ -1836,10 +1837,356 @@ Take a look at the animated screenshot below:
 
 <br>
 
-##### Button State | Button State Vertical | Button State Icon
+##### Button State
 
-tbd.
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>buttonStyle</td>
+			<td>button style</td>
+			<td>string</td>
+			<td>text | raised | unelevated | outlined</td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>value</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>buttontext</td>
+			<td>Button text</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>colorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>labelWidth</td>
+			<td>text width</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>image</td>
+			<td>Image</td>
+			<td>custom</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>iconPosition</td>
+			<td>image position</td>
+			<td>string</td>
+			<td>left | right</td>
+		</tr>
+		<tr>
+			<td>iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockEnabled</td>
+			<td>enable Locking</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>autoLockAfter</td>
+			<td>auto Locking after [s]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIcon</td>
+			<td>icon</td>
+			<td>custom</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconSize</td>
+			<td>icon size</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconColor</td>
+			<td>icon color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>lockFilterGrayscale</td>
+			<td>gray filter if locked</td>
+			<td>number</td>
+			<td/>
+		</tr>
+	</tbody>
+</table>
 
+<br>
+
+##### Button State Vertical 
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>buttonStyle</td>
+			<td>button style</td>
+			<td>string</td>
+			<td>text | raised | unelevated | outlined</td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>value</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>buttontext</td>
+			<td>Button text</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>colorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>image</td>
+			<td>Image</td>
+			<td>custom</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>iconPosition</td>
+			<td>image position</td>
+			<td>string</td>
+			<td>top | bottom</td>
+		</tr>
+		<tr>
+			<td>iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockEnabled</td>
+			<td>enable Locking</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>autoLockAfter</td>
+			<td>auto Locking after [s]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIcon</td>
+			<td>icon</td>
+			<td>custom</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconTop</td>
+			<td>symbol distance from top [%]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconLeft</td>
+			<td>symbol distance from left [%]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconSize</td>
+			<td>icon size</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconColor</td>
+			<td>icon color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>lockFilterGrayscale</td>
+			<td>gray filter if locked</td>
+			<td>number</td>
+			<td/>
+		</tr>
+	</tbody>
+</table>
+
+<br>
+
+##### Button State Icon
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>value</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>image</td>
+			<td>Image</td>
+			<td>custom</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>colorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>lockEnabled</td>
+			<td>enable Locking</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
+			<td>autoLockAfter</td>
+			<td>auto Locking after [s]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIcon</td>
+			<td>icon</td>
+			<td>custom</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconTop</td>
+			<td>symbol distance from top [%]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconLeft</td>
+			<td>symbol distance from left [%]</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconSize</td>
+			<td>icon size</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>lockIconColor</td>
+			<td>icon color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>lockFilterGrayscale</td>
+			<td>gray filter if locked</td>
+			<td>number</td>
+			<td/>
+		</tr>
+	</tbody>
+</table>
+
+<br>
 
 ##### Progress
 

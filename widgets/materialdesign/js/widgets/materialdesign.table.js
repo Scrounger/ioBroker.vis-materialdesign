@@ -240,7 +240,7 @@ vis.binds.materialdesign.table = {
                                         ${init.button}
                                     </div>`
 
-                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
+                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle', function () {
                             let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
                             vis.binds.materialdesign.addRippleEffect(btn, elementData);
                             vis.binds.materialdesign.button.handleToggle(btn, elementData);
@@ -252,11 +252,42 @@ vis.binds.materialdesign.table = {
                                         ${init.button}
                                     </div>`
 
-                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
+                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Icon', function () {
                             let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
                             vis.binds.materialdesign.addRippleEffect(btn, elementData, true);
                             vis.binds.materialdesign.button.handleToggle(btn, elementData);
                         });
+
+                    } else if (objValue.type === 'buttonState' || objValue.type === 'buttonState_vertical') {
+
+                        let init = vis.binds.materialdesign.button.initializeButton(elementData);
+                        if (objValue.type === 'buttonState_vertical') {
+                            init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
+                        }
+
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
+                                        ${init.button}
+                                    </div>`
+
+                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button State', function () {
+                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
+                            vis.binds.materialdesign.addRippleEffect(btn, elementData);
+                            vis.binds.materialdesign.button.handleState(btn, elementData);
+                        });
+
+                    } else if (objValue.type === 'buttonState_icon') {
+                        let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
+
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
+                                        ${init.button}
+                                    </div>`
+
+                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button State Icon', function () {
+                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
+                            vis.binds.materialdesign.addRippleEffect(btn, elementData, true);
+                            vis.binds.materialdesign.button.handleState(btn, elementData);
+                        });
+
                     } else if (objValue.type === 'progress') {
                         element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 12px;'}">
                                     </div>`
@@ -451,6 +482,71 @@ vis.binds.materialdesign.table = {
                 iconHeight: obj.iconHeight,
                 colorBgFalse: obj.colorBgFalse,
                 colorBgTrue: obj.colorBgTrue,
+                colorPress: obj.colorPress,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconTop: obj.lockIconTop,
+                lockIconLeft: obj.lockIconLeft,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+        } else if (obj.type === 'buttonState') {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                buttonStyle: obj.buttonStyle,
+                value: obj.value,
+                buttontext: obj.buttontext,
+                colorPress: obj.colorPress,
+                labelWidth: obj.labelWidth,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+        } else if (obj.type === 'buttonState_vertical') {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                buttonStyle: obj.buttonStyle,
+                value: obj.value,
+                buttontext: obj.buttontext,
+                colorPress: obj.colorPress,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconTop: obj.lockIconTop,
+                lockIconLeft: obj.lockIconLeft,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+        } else if (obj.type === 'buttonState_icon') {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                value: obj.value,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconHeight: obj.iconHeight,
                 colorPress: obj.colorPress,
                 lockEnabled: obj.lockEnabled,
                 autoLockAfter: obj.autoLockAfter,
