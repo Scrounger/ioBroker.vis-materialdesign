@@ -3049,10 +3049,10 @@ var MDCDataTable = /** @class */function (_super) {
                 return _this.root_.querySelectorAll(constants_1.strings.ROW_SELECTED_SELECTOR).length;
             },
             isCheckboxAtRowIndexChecked: function isCheckboxAtRowIndexChecked(rowIndex) {
-                return _this.rowCheckboxList_[rowIndex].checked;
+                // return _this.rowCheckboxList_[rowIndex].checked;
             },
             isHeaderRowCheckboxChecked: function isHeaderRowCheckboxChecked() {
-                return _this.headerRowCheckbox_.checked;
+                // return _this.headerRowCheckbox_.checked;
             },
             isRowsSelectable: function isRowsSelectable() {
                 return !!_this.root_.querySelector(constants_1.strings.ROW_CHECKBOX_SELECTOR);
@@ -3073,23 +3073,23 @@ var MDCDataTable = /** @class */function (_super) {
                 return _this.emit(constants_1.events.UNSELECTED_ALL, {}, /** shouldBubble */true);
             },
             registerHeaderRowCheckbox: function registerHeaderRowCheckbox() {
-                if (_this.headerRowCheckbox_) {
-                    _this.headerRowCheckbox_.destroy();
-                }
-                var checkboxEl = _this.root_.querySelector(constants_1.strings.HEADER_ROW_CHECKBOX_SELECTOR);
-                _this.headerRowCheckbox_ = _this.checkboxFactory_(checkboxEl);
+                // if (_this.headerRowCheckbox_) {
+                //     _this.headerRowCheckbox_.destroy();
+                // }
+                // var checkboxEl = _this.root_.querySelector(constants_1.strings.HEADER_ROW_CHECKBOX_SELECTOR);
+                // _this.headerRowCheckbox_ = _this.checkboxFactory_(checkboxEl);
             },
             registerRowCheckboxes: function registerRowCheckboxes() {
-                if (_this.rowCheckboxList_) {
-                    _this.rowCheckboxList_.forEach(function (checkbox) {
-                        return checkbox.destroy();
-                    });
-                }
-                _this.rowCheckboxList_ = [];
-                _this.getRows().forEach(function (rowEl) {
-                    var checkbox = _this.checkboxFactory_(rowEl.querySelector(constants_1.strings.ROW_CHECKBOX_SELECTOR));
-                    _this.rowCheckboxList_.push(checkbox);
-                });
+                // if (_this.rowCheckboxList_) {
+                //     _this.rowCheckboxList_.forEach(function (checkbox) {
+                //         return checkbox.destroy();
+                //     });
+                // }
+                // _this.rowCheckboxList_ = [];
+                // _this.getRows().forEach(function (rowEl) {
+                //     var checkbox = _this.checkboxFactory_(rowEl.querySelector(constants_1.strings.ROW_CHECKBOX_SELECTOR));
+                //     _this.rowCheckboxList_.push(checkbox);
+                // });
             },
             removeClassAtRowIndex: function removeClassAtRowIndex(rowIndex, className) {
                 _this.getRows()[rowIndex].classList.remove(className);
@@ -3098,10 +3098,10 @@ var MDCDataTable = /** @class */function (_super) {
                 _this.getRows()[rowIndex].setAttribute(attr, value);
             },
             setHeaderRowCheckboxChecked: function setHeaderRowCheckboxChecked(checked) {
-                _this.headerRowCheckbox_.checked = checked;
+                // _this.headerRowCheckbox_.checked = checked;
             },
             setHeaderRowCheckboxIndeterminate: function setHeaderRowCheckboxIndeterminate(indeterminate) {
-                _this.headerRowCheckbox_.indeterminate = indeterminate;
+                // _this.headerRowCheckbox_.indeterminate = indeterminate;
             },
             setRowCheckboxCheckedAtIndex: function setRowCheckboxCheckedAtIndex(rowIndex, checked) {
                 _this.rowCheckboxList_[rowIndex].checked = checked;

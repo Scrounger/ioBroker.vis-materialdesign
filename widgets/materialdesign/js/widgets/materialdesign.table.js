@@ -315,7 +315,7 @@ vis.binds.materialdesign.table = {
                             });
                         });
                     } else if (objValue.type === 'slider') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-slider-vertical materialdesign-slider-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${objValue["oid-working"]}" style="display: inline-block; position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-slider-vertical materialdesign-slider-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${elementData["oid-working"]}" style="display: inline-block; position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
                         </div>`
 
                         myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Slider', true);
@@ -329,7 +329,7 @@ vis.binds.materialdesign.table = {
                         });
 
                     } else if (objValue.type === 'slider_round') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-slider-round materialdesign-slider-round-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${objValue["oid-working"]}" style="display: inline-block; position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 60px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 60px;'}">
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-slider-round materialdesign-slider-round-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${elementData["oid-working"]}" style="display: inline-block; position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 60px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 60px;'}">
                         </div>`
 
                         myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Slider Round', true);
@@ -339,6 +339,39 @@ vis.binds.materialdesign.table = {
                                 let slider = $this.find(`.materialdesign-slider-round-table-row_${row}-col_${col}`);
 
                                 vis.binds.materialdesign.roundslider(slider, elementData);
+                            });
+                        });
+                    } else if (objValue.type === 'switch') {
+                        let labelClickActive = '';
+                        if (elementData.labelClickActive === 'false' || elementData.labelClickActive === false) {
+                            labelClickActive = 'pointer-events:none;'
+                        }
+            
+                        let labelPosition = '';
+                        if (elementData.labelPosition === 'left'){
+                            labelPosition = 'mdc-form-field--align-end'
+                        }
+
+                        element = `        
+                        <div class="vis-widget materialdesign-widget mdc-form-field ${labelPosition} materialdesign-switch materialdesign-switch-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
+                            <div class="mdc-switch" style="margin-left: 10px; margin-right: 10px;">
+                                <div class="mdc-switch__track"></div>
+                                <div class="mdc-switch__thumb-underlay">
+                                    <div class="mdc-switch__thumb">
+                                        <input class="mdc-switch__native-control" id="materialdesign-checkbox-switch" type="checkbox" data-oid="${elementData.oid}" role="switch">
+                                    </div>
+                                </div>
+                            </div>
+                            <label id="label" for="materialdesign-checkbox-switch" style="width: 100%; cursor: pointer; ${labelClickActive}">Checkbox 1</label>
+                        </div>`
+                    
+                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Switch', true);
+
+                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Switch', function () {
+                            myMdwHelper.waitForElement($this, `.materialdesign-switch-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
+                                let sw = $this.find(`.materialdesign-switch-table-row_${row}-col_${col}`);
+
+                                vis.binds.materialdesign.switch(sw, elementData);
                             });
                         });
                     }
@@ -684,6 +717,36 @@ vis.binds.materialdesign.table = {
                 textForValueLessThan: obj.textForValueLessThan,
                 valueGreaterThan: obj.valueGreaterThan,
                 textForValueGreaterThan: obj.textForValueGreaterThan
+            }
+        } else if (obj.type === 'switch') {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                readOnly: obj.readOnly,
+                toggleType: obj.toggleType,
+                valueOff: obj.valueOff,
+                valueOn: obj.valueOn,
+                stateIfNotTrueValue: obj.stateIfNotTrueValue,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                labelFalse: obj.labelFalse,
+                labelTrue: obj.labelTrue,
+                labelPosition: obj.labelPosition,
+                labelClickActive: obj.labelClickActive,
+                colorSwitchThumb: obj.colorSwitchThumb,
+                colorSwitchTrack: obj.colorSwitchTrack,
+                colorSwitchTrue: obj.colorSwitchTrue,
+                colorSwitchHover: obj.colorSwitchHover,
+                labelColorFalse: obj.labelColorFalse,
+                labelColorTrue: obj.labelColorTrue,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconTop: obj.lockIconTop,
+                lockIconLeft: obj.lockIconLeft,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
             }
         }
     }
