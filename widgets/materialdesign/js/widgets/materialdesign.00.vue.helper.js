@@ -101,7 +101,7 @@ vis.binds.materialdesign.vueHelper = {
                 $el.find('input').attr('required', 'required');
             }
 
-            if (data.inputLayout.includes('filled')) {
+            if (myMdwHelper.getValueFromData(data.inputLayout, 'regular').includes('filled')) {
                 //TODO: background color data hinzufügen
                 $el.get(0).style.setProperty("--vue-text-field-background-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, ''));
                 $el.get(0).style.setProperty("--vue-text-field-background-hover-color", myMdwHelper.getValueFromData(data.inputLayoutBackgroundColorHover, myMdwHelper.getValueFromData(data.inputLayoutBackgroundColor, '')));
