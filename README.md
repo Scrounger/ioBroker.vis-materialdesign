@@ -1252,6 +1252,9 @@ Take a look at the animated screenshot below:
                     <li>slider_round</li>
                     <li>switch</li>
                     <li>checkbox</li>
+					<li>textfield</li>
+					<li>select</li>
+					<li>autocomplete</li>
                 </ul> 
             </td>
         </tr>
@@ -1292,6 +1295,7 @@ Take a look at the animated screenshot below:
 
 ##### Button Toggle 
 
+<details>
 <table>
 	<thead>
 		<tr>
@@ -1478,11 +1482,11 @@ Take a look at the animated screenshot below:
 		</tr>
 	</tbody>
 </table>
-
-<br>
+</details>
 
 ##### Button Toggle Vertical 
 
+<details>
 <table>
 	<thead>
 		<tr>
@@ -1675,11 +1679,11 @@ Take a look at the animated screenshot below:
 		</tr>
 	</tbody>
 </table>
-
-<br>
+</details>
 
 ##### Button Toggle Icon
 
+<details>
 <table>
 	<thead>
 		<tr>
@@ -1836,11 +1840,12 @@ Take a look at the animated screenshot below:
 		</tr>
 	</tbody>
 </table>
+</details>
 
-<br>
 
 ##### Button State
 
+<details>
 <table>
 	<thead>
 		<tr>
@@ -1955,11 +1960,12 @@ Take a look at the animated screenshot below:
 		</tr>
 	</tbody>
 </table>
+</details>
 
-<br>
 
 ##### Button State Vertical 
 
+<details>
 <table>
 	<thead>
 		<tr>
@@ -2080,11 +2086,12 @@ Take a look at the animated screenshot below:
 		</tr>
 	</tbody>
 </table>
+</details>
 
-<br>
 
 ##### Button State Icon
 
+<details>
 <table>
 	<thead>
 		<tr>
@@ -2187,11 +2194,12 @@ Take a look at the animated screenshot below:
 		</tr>
 	</tbody>
 </table>
+</details>
 
-<br>
 
 ##### Progress
 
+<details>
 <table>
     <thead>
         <tr>
@@ -2336,11 +2344,12 @@ Take a look at the animated screenshot below:
 		</tr>
     </tbody>
 </table>
+</details>
 
-<br>
 
 ##### Progress Circular
 
+<details>
 <table>
 	<thead>
 		<tr>
@@ -2479,11 +2488,12 @@ Take a look at the animated screenshot below:
 		</tr>
 	</tbody>
 </table>
+</details>
 
-<br>
 
 ##### Slider
 
+<details>
 <table>
     <thead>
         <tr>
@@ -2730,11 +2740,12 @@ Take a look at the animated screenshot below:
 		</tr>
     </tbody>
 </table>
+</details>
 
-<br>
 
 ##### Slider Round
 
+<details>
 <table>
 	<thead>
 		<tr>
@@ -2903,11 +2914,12 @@ Take a look at the animated screenshot below:
 		</tr>
 	</tbody>
 </table>
+</details>
 
-<br>
 
 ##### Switch
 
+<details>
 <table>
 	<thead>
 		<tr>
@@ -2938,13 +2950,13 @@ Take a look at the animated screenshot below:
 		</tr>
 		<tr>
 			<td>valueOff</td>
-			<td>Wert für aus</td>
+			<td>Wert fï¿½r aus</td>
 			<td>string</td>
 			<td/>
 		</tr>
 		<tr>
 			<td>valueOn</td>
-			<td>Wert für ein</td>
+			<td>Wert fï¿½r ein</td>
 			<td>string</td>
 			<td/>
 		</tr>
@@ -2956,7 +2968,7 @@ Take a look at the animated screenshot below:
 		</tr>
 		<tr>
 			<td>vibrateOnMobilDevices</td>
-			<td>auf mobilen Geräten vibrieren [s]</td>
+			<td>auf mobilen Gerï¿½ten vibrieren [s]</td>
 			<td>number</td>
 			<td/>
 		</tr>
@@ -3016,7 +3028,7 @@ Take a look at the animated screenshot below:
 		</tr>
 		<tr>
 			<td>labelColorTrue</td>
-			<td>Beschriftungsfarbe für true</td>
+			<td>Beschriftungsfarbe fï¿½r true</td>
 			<td>string</td>
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
 		</tr>
@@ -3052,7 +3064,7 @@ Take a look at the animated screenshot below:
 		</tr>
 		<tr>
 			<td>lockIconSize</td>
-			<td>Symbolgröße</td>
+			<td>Symbolgrï¿½ï¿½e</td>
 			<td>number</td>
 			<td/>
 		</tr>
@@ -3070,11 +3082,12 @@ Take a look at the animated screenshot below:
 		</tr>
 	</tbody>
 </table>
+</details>
 
-<br>
 
 ##### Checkbox
 
+<details>
 <table>
 	<thead>
 		<tr>
@@ -3105,13 +3118,13 @@ Take a look at the animated screenshot below:
 		</tr>
 		<tr>
 			<td>valueOff</td>
-			<td>Wert für aus</td>
+			<td>Wert fï¿½r aus</td>
 			<td>string</td>
 			<td/>
 		</tr>
 		<tr>
 			<td>valueOn</td>
-			<td>Wert für ein</td>
+			<td>Wert fï¿½r ein</td>
 			<td>string</td>
 			<td/>
 		</tr>
@@ -3123,7 +3136,7 @@ Take a look at the animated screenshot below:
 		</tr>
 		<tr>
 			<td>vibrateOnMobilDevices</td>
-			<td>auf mobilen Geräten vibrieren [s]</td>
+			<td>auf mobilen Gerï¿½ten vibrieren [s]</td>
 			<td>number</td>
 			<td/>
 		</tr>
@@ -3153,7 +3166,7 @@ Take a look at the animated screenshot below:
 		</tr>
 		<tr>
 			<td>colorCheckBox</td>
-			<td>Kontrollkästchen Farbe</td>
+			<td>Kontrollkï¿½stchen Farbe</td>
 			<td>string</td>
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
 		</tr>
@@ -3165,7 +3178,7 @@ Take a look at the animated screenshot below:
 		</tr>
 		<tr>
 			<td>labelColorTrue</td>
-			<td>Beschriftungsfarbe für true</td>
+			<td>Beschriftungsfarbe fï¿½r true</td>
 			<td>string</td>
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
 		</tr>
@@ -3201,7 +3214,7 @@ Take a look at the animated screenshot below:
 		</tr>
 		<tr>
 			<td>lockIconSize</td>
-			<td>Symbolgröße</td>
+			<td>Symbolgrï¿½ï¿½e</td>
 			<td>number</td>
 			<td/>
 		</tr>
@@ -3219,11 +3232,12 @@ Take a look at the animated screenshot below:
 		</tr>
 	</tbody>
 </table>
+</details>
 
-<br>
 
-##### Input
+##### Textfield
 
+<details>
 <table>
 	<thead>
 		<tr>
@@ -3542,11 +3556,12 @@ Take a look at the animated screenshot below:
 		</tr>
 	</tbody>
 </table>
+</details>
 
-<br>
 
 ##### Select
 
+<details>
 <table>
 	<thead>
 		<tr>
@@ -4092,11 +4107,12 @@ Take a look at the animated screenshot below:
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
 		</tr>
 </table>
+</details>
 
-<br>
 
 ##### Autocomplete
 
+<details>
 <table>
 	<thead>
 		<tr>
@@ -4679,6 +4695,7 @@ Take a look at the animated screenshot below:
 		</tr>
 	</tbody>
 </table>
+</details>
 
 <br>
 
