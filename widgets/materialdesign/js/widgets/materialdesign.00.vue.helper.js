@@ -330,10 +330,15 @@ vis.binds.materialdesign.vueHelper = {
                 let jsonData = null;
 
                 try {
-                    jsonData = JSON.parse(data.jsonStringObject);
+                    if (typeof (data.jsonStringObject) === 'object') {
+                        jsonData = data.jsonStringObject;
+                    } else {
+                        jsonData = JSON.parse(data.jsonStringObject);
+                    }
                 } catch (err) {
                     console.error(`[jsonStringObject] cannot parse json string! Error: ${err.message}`);
                 }
+
                 if (jsonData) {
                     for (var i = 0; i <= jsonData.length - 1; i++) {
                         let jsonObj = jsonData[i];
@@ -444,7 +449,7 @@ vis.binds.materialdesign.vueHelper = {
                 click(item) {
                     myMdwHelper.vibrate(data.vibrateOnMobilDevices);
                 },
-                menuClick(item){
+                menuClick(item) {
                     myMdwHelper.vibrate(data.vibrateOnMobilDevices);
                 },
                 changeEvent(item) {

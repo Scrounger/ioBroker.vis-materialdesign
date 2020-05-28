@@ -105,14 +105,17 @@ vis.binds.materialdesign.table = {
                         let colIndex = $(this).attr('colIndex');
                         let sortASC = true;
 
+
+
                         let jsonData = [];
                         if (myMdwHelper.getValueFromData(data.oid, null) !== null && vis.states.attr(data.oid + '.val') !== null) {
                             jsonData = vis.binds.materialdesign.table.getJsonData(vis.states.attr(data.oid + '.val'), data);
                         } else {
+
                             jsonData = JSON.parse(data.dataJson)
                         }
 
-                        
+
 
                         let key = (myMdwHelper.getValueFromData(data.attr('sortKey' + colIndex), null) !== null) ? data.attr('sortKey' + colIndex) : Object.keys(jsonData[0])[colIndex];
 

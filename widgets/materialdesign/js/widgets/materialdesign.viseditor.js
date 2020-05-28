@@ -403,11 +403,14 @@ vis.binds.materialdesign.viseditor = {
                                 if ((!attrNames.includes(attr) || attr === 'exportData') && attr !== 'type' && attr !== 'width' && attr !== 'height') {
                                     delete widgetData[attr];
                                 }
+
+                                if (type === 'select' && attr === 'jsonStringObject') {
+                                    widgetData[attr] = JSON.parse(widgetData[attr]);
+                                }
                             }
 
                             dialogText = JSON.stringify(widgetData, null, "\t");
                         }
-
 
                         $('#dialog-edit-text').dialog({
                             autoOpen: true,
