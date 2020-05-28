@@ -12,7 +12,7 @@ vis.binds.materialdesign.select =
             let vueHelper = vis.binds.materialdesign.vueHelper.select
             let containerClass = 'materialdesign-vuetify-select';
 
-            vueHelper.generateItemList(data, function (itemsList) {
+            vueHelper.generateItemList(data, `Select - ${data.wid}`, function (itemsList) {
 
                 $this.append(`
                     <div class="${containerClass}" style="width: 100%; height: 100%;">

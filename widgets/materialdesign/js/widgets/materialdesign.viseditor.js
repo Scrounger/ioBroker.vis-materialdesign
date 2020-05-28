@@ -405,7 +405,9 @@ vis.binds.materialdesign.viseditor = {
                                 }
 
                                 if (type === 'select' && attr === 'jsonStringObject') {
-                                    widgetData[attr] = JSON.parse(widgetData[attr]);
+                                    if (!widgetData[attr].startsWith('{') && !widgetData[attr].endsWith("}")) {
+                                        widgetData[attr] = JSON.parse(widgetData[attr]);
+                                    }
                                 }
                             }
 

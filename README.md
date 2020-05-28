@@ -3873,7 +3873,7 @@ Take a look at the animated screenshot below:
 			<td>jsonStringObject</td>
 			<td>JSON string</td>
 			<td>string</td>
-			<td/>
+			<td>bindings not working!</td>
 		</tr>
 		<tr>
 			<td>valueList</td>

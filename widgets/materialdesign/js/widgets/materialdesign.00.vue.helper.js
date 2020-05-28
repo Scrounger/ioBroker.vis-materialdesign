@@ -302,7 +302,7 @@ vis.binds.materialdesign.vueHelper = {
                 });
             }
         },
-        generateItemList(data, callback) {
+        generateItemList(data, logPrefix, callback) {
             let itemsList = [];
 
             if (data.listDataMethod === 'inputPerEditor') {
@@ -330,13 +330,16 @@ vis.binds.materialdesign.vueHelper = {
                 let jsonData = null;
 
                 try {
-                    if (typeof (data.jsonStringObject) === 'object') {
+                    if (vis.editMode && data.jsonStringObject && data.jsonStringObject.startsWith('{') && data.jsonStringObject.endsWith("}")) {
+                        // show in Editor if json is Binding
+                        jsonData = JSON.parse(vis.states.attr(data.jsonStringObject.substring(1, data.jsonStringObject.length - 1) + '.val'));
+                    } else if (typeof (data.jsonStringObject) === 'object') {
                         jsonData = data.jsonStringObject;
                     } else {
                         jsonData = JSON.parse(data.jsonStringObject);
                     }
                 } catch (err) {
-                    console.error(`[jsonStringObject] cannot parse json string! Error: ${err.message}`);
+                    console.error(`[${logPrefix}] generateItemList: cannot parse json string! Error: ${err.message}`);
                 }
 
                 if (jsonData) {

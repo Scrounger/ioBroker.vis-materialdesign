@@ -53,10 +53,12 @@ vis.binds.materialdesign.table = {
             tableElement.push(`<tbody class="mdc-data-table__content">`);
 
             // adding Content
-            if (myMdwHelper.getValueFromData(data.oid, null) !== null && vis.states.attr(data.oid + '.val') !== null) {
+            if (myMdwHelper.getValueFromData(data.oid, null) !== null && myMdwHelper.getValueFromData(data.oid, null) !== 'nothing_selected' && vis.states.attr(data.oid + '.val') !== null) {
                 tableElement.push(vis.binds.materialdesign.table.getContentElements($this, vis.states.attr(data.oid + '.val'), data));
             } else {
-                tableElement.push(vis.binds.materialdesign.table.getContentElements($this, data.dataJson, data));
+                if (data.dataJson) {
+                    tableElement.push(vis.binds.materialdesign.table.getContentElements($this, data.dataJson, data));
+                }
             }
 
             tableElement.push(`</tbody>`);

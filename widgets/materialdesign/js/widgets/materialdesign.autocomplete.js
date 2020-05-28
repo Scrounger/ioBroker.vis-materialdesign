@@ -19,8 +19,8 @@ vis.binds.materialdesign.autocomplete =
                 inputMode = 'autocomplete';
             }
 
-            vueHelper.generateItemList(data, function (itemsList) {
-                
+            vueHelper.generateItemList(data, `AutoComplete - ${data.wid}`, function (itemsList) {
+
                 $this.append(`
                     <div class="${containerClass}" style="width: 100%; height: 100%;">
                         <v-${inputMode}
