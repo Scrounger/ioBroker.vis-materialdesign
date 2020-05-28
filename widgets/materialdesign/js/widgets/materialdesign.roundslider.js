@@ -40,14 +40,14 @@ vis.binds.materialdesign.roundslider =
                             arcLength="${myMdwHelper.getNumberFromData(data.arcLength, 270)}"
                             handleSize="${myMdwHelper.getNumberFromData(data.handleSize, 6)}"
                             handleZoom="${myMdwHelper.getNumberFromData(data.handleZoom, 1.5)}"
-                            ${(data.rtl === true) ? 'rtl = "true"' : ''}
-                            style="position: absolute;"
+                            ${(data.rtl === true) ? 'rtl = "true"' : ''}                            
                             >
                             </round-slider>
                             
                             ${(data.showValueLabel) ?
                     `<label class="labelValue" 
-                                    style="position: relative; 
+                                    style="position: absolute; 
+                                    width: 100%;
                                     text-align: center;
                                     display: flex;
                                     justify-content: center;
