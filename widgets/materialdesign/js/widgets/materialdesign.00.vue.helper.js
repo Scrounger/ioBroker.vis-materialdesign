@@ -307,19 +307,19 @@ vis.binds.materialdesign.vueHelper = {
 
             if (data.listDataMethod === 'inputPerEditor') {
                 for (var i = 0; i <= data.countSelectItems; i++) {
-                    let value = myMdwHelper.getValueFromData(data.attr('value' + i), null)
+                    let value = myMdwHelper.getValueFromData(data['value' + i], null)
 
                     if (value !== null) {
-                        let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(myMdwHelper.getValueFromData(data.attr('listIcon' + i), null));
+                        let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(myMdwHelper.getValueFromData(data['listIcon' + i], null));
 
                         itemsList.push(
                             {
-                                text: myMdwHelper.getValueFromData(data.attr('label' + i), value),
-                                subText: myMdwHelper.getValueFromData(data.attr('subLabel' + i), ''),
-                                value: myMdwHelper.getValueFromData(data.attr('value' + i), ''),
+                                text: myMdwHelper.getValueFromData(data['label' + i], value),
+                                subText: myMdwHelper.getValueFromData(data['subLabel' + i], ''),
+                                value: myMdwHelper.getValueFromData(data['value' + i], ''),
                                 icon: imgObj.icon,
                                 image: imgObj.image,
-                                imageColor: myMdwHelper.getValueFromData(data.attr('listIconColor' + i), '')
+                                imageColor: myMdwHelper.getValueFromData(data['listIconColor' + i], '')
                             }
                         )
                     }
@@ -330,13 +330,16 @@ vis.binds.materialdesign.vueHelper = {
                 let jsonData = null;
 
                 try {
-                    if (vis.editMode && data.jsonStringObject && data.jsonStringObject.startsWith('{') && data.jsonStringObject.endsWith("}")) {
-                        // show in Editor if json is Binding
-                        jsonData = JSON.parse(vis.states.attr(data.jsonStringObject.substring(1, data.jsonStringObject.length - 1) + '.val'));
-                    } else if (typeof (data.jsonStringObject) === 'object') {
+                    if (typeof (data.jsonStringObject) === 'object') {
                         jsonData = data.jsonStringObject;
                     } else {
-                        jsonData = JSON.parse(data.jsonStringObject);
+                        if (vis.editMode && data.jsonStringObject && data.jsonStringObject.startsWith('{') && data.jsonStringObject.endsWith("}")) {
+                            // show in Editor if json is Binding
+                            jsonData = JSON.parse(vis.states.attr(data.jsonStringObject.substring(1, data.jsonStringObject.length - 1) + '.val'));
+                        } else {
+                            jsonData = JSON.parse(data.jsonStringObject);
+
+                        }
                     }
                 } catch (err) {
                     console.error(`[${logPrefix}] generateItemList: cannot parse json string! Error: ${err.message}`);
@@ -383,7 +386,7 @@ vis.binds.materialdesign.vueHelper = {
                                     value: value,
                                     icon: imgObj.icon,
                                     image: imgObj.image,
-                                    imageColor: myMdwHelper.getValueFromData(data.attr('listIconColor' + i), '')
+                                    imageColor: myMdwHelper.getValueFromData(data['listIconColor' + i], '')
                                 }
                             )
                         }
@@ -399,16 +402,16 @@ vis.binds.materialdesign.vueHelper = {
 
                         if (typeof (states) === 'object') {
                             for (var i = 0; i <= Object.keys(states).length - 1; i++) {
-                                let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(myMdwHelper.getValueFromData(data.attr('listIcon' + i), null));
+                                let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(myMdwHelper.getValueFromData(data['listIcon' + i], null));
 
                                 itemsList.push(
                                     {
-                                        text: myMdwHelper.getValueFromData(data.attr('label' + i), Object.keys(states)[i].replace(/_/g, ' ')),
-                                        subText: myMdwHelper.getValueFromData(data.attr('subLabel' + i), ''),
+                                        text: myMdwHelper.getValueFromData(data['label' + i], Object.keys(states)[i].replace(/_/g, ' ')),
+                                        subText: myMdwHelper.getValueFromData(data['subLabel' + i], ''),
                                         value: Object.values(states)[i],
                                         icon: imgObj.icon,
                                         image: imgObj.image,
-                                        imageColor: myMdwHelper.getValueFromData(data.attr('listIconColor' + i), '')
+                                        imageColor: myMdwHelper.getValueFromData(data['listIconColor' + i], '')
                                     }
                                 )
                             }
@@ -418,16 +421,16 @@ vis.binds.materialdesign.vueHelper = {
                             for (var i = 0; i <= list.length - 1; i++) {
                                 let itemSplitted = list[i].split(':');
 
-                                let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(myMdwHelper.getValueFromData(data.attr('listIcon' + i), null));
+                                let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(myMdwHelper.getValueFromData(data['listIcon' + i], null));
 
                                 itemsList.push(
                                     {
-                                        text: myMdwHelper.getValueFromData(data.attr('label' + i), itemSplitted[1]),
-                                        subText: myMdwHelper.getValueFromData(data.attr('subLabel' + i), ''),
+                                        text: myMdwHelper.getValueFromData(data['label' + i], itemSplitted[1]),
+                                        subText: myMdwHelper.getValueFromData(data['subLabel' + i], ''),
                                         value: itemSplitted[0],
                                         icon: imgObj.icon,
                                         image: imgObj.image,
-                                        imageColor: myMdwHelper.getValueFromData(data.attr('listIconColor' + i), '')
+                                        imageColor: myMdwHelper.getValueFromData(data['listIconColor' + i], '')
                                     }
                                 )
                             }

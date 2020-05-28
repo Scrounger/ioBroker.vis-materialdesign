@@ -404,7 +404,7 @@ vis.binds.materialdesign.viseditor = {
                                     delete widgetData[attr];
                                 }
 
-                                if (type === 'select' && attr === 'jsonStringObject') {
+                                if ((type === 'select' || type === 'autocomplete') && attr === 'jsonStringObject' && widgetData['listDataMethod'] === 'jsonStringObject') {
                                     if (!widgetData[attr].startsWith('{') && !widgetData[attr].endsWith("}")) {
                                         widgetData[attr] = JSON.parse(widgetData[attr]);
                                     }

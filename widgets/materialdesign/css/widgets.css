@@ -3591,6 +3591,11 @@ svg.materialdesign-button__icon {
   width: 100%;
   padding: 0 10px;
 }
+
+.v-select__slot .v-label {
+  width: auto;
+}
+
 .v-select:not(.v-text-field--single-line):not(.v-text-field--outlined) .v-select__slot > input {
   align-self: flex-end;
 }
