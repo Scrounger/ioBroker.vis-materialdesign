@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.3.11",
+        "version": "0.3.12",
         "news": {
             "0.3.11": {
                 "en": ": Sentry added\n: Select & Autocomplete Widget: vibrate on mobil devices added\n: List Widget: vibrate on mobil devices added\n: Masonry & Grid Widget: height changed to optional to support widgets using relative position\n: Progress Widget revised\n: Progress Circular Widget added\n: bug fixes",
