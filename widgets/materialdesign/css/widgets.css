@@ -1235,6 +1235,16 @@ svg.materialdesign-button__icon {
   height: auto;
 }
 
+.mdc-data-table__header-cell:hover .materialdesign-table-header-sort-hidden {
+  opacity: 0.5 !important;
+}
+
+.materialdesign-table-header-sort {
+  vertical-align: middle; 
+  font-size: 8px; 
+  opacity: 0;
+}
+
 .material-progress-circular-container {
   display: flex;
   position: absolute;

@@ -42,6 +42,7 @@ vis.binds.materialdesign.table = {
                                                 font-family: ${myMdwHelper.getValueFromData(data.headerFontFamily, '')};
                                                 ${(myMdwHelper.getNumberFromData(data.attr('columnWidth' + i), null) !== null) ? `width: ${data.attr('columnWidth' + i)}px;` : ''};">
                                                     ${myMdwHelper.getValueFromData(data.attr('label' + i), 'col ' + i)}
+                                                    <span class="mdi mdi-triangle materialdesign-icon-image materialdesign-table-header-sort materialdesign-table-header-sort-hidden"></span>
                                             </th>`)
                     }
                 }
@@ -107,7 +108,7 @@ vis.binds.materialdesign.table = {
                         let colIndex = $(this).attr('colIndex');
                         let sortASC = true;
 
-
+                        $this.hide();
 
                         let jsonData = [];
                         if (myMdwHelper.getValueFromData(data.oid, null) !== null && vis.states.attr(data.oid + '.val') !== null) {
@@ -117,37 +118,35 @@ vis.binds.materialdesign.table = {
                             jsonData = JSON.parse(data.dataJson)
                         }
 
-
-
                         let key = (myMdwHelper.getValueFromData(data.attr('sortKey' + colIndex), null) !== null) ? data.attr('sortKey' + colIndex) : Object.keys(jsonData[0])[colIndex];
 
                         if ($(this).attr('sort')) {
                             if ($(this).attr('sort') === 'ASC') {
                                 sortASC = false;
                                 $(this).attr('sort', 'DESC');
-                                ($(this).text().includes('▾') || $(this).text().includes('▴')) ?
-                                    $(this).text($(this).text().replace('▾', '▴')) : $(this).text($(this).text() + '▴');
+                                $(this).find('.materialdesign-table-header-sort').removeClass('materialdesign-table-header-sort-hidden').removeClass('mdi-rotate-180').css('opacity', '1')
                             } else {
                                 sortASC = true;
                                 $(this).attr('sort', 'ASC');
-                                ($(this).text().includes('▾') || $(this).text().includes('▴')) ?
-                                    $(this).text($(this).text().replace('▴', '▾')) : $(this).text($(this).text() + '▾');
+                                $(this).find('.materialdesign-table-header-sort').removeClass('materialdesign-table-header-sort-hidden').addClass('mdi-rotate-180').css('opacity', '1')
                             }
                         } else {
                             // sort order is not defined -> sortASC
                             sortASC = true;
                             $(this).attr('sort', 'ASC');
-                            $(this).text($(this).text() + '▾');
+                            $(this).find('.materialdesign-table-header-sort').removeClass('materialdesign-table-header-sort-hidden').addClass('mdi-rotate-180').css('opacity', '1');
                         }
 
                         $('.mdc-data-table__header-cell').each(function () {
                             if ($(this).attr('colIndex') !== colIndex) {
-                                $(this).text($(this).text().replace('▴', '').replace('▾', ''));
+                                $(this).find('.materialdesign-table-header-sort').css('opacity', '0').addClass('materialdesign-table-header-sort-hidden');
                             }
                         });
 
                         $this.find('.mdc-data-table__content').empty();
                         $this.find('.mdc-data-table__content').append(vis.binds.materialdesign.table.getContentElements($this, null, data, sortByKey(jsonData, key, sortASC)));      //TODO: sort key by user defined
+
+                        $this.show();
 
                         function sortByKey(array, key, sortASC) {
                             return array.sort(function (a, b) {
