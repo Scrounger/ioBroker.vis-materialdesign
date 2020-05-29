@@ -9196,5 +9196,17 @@ systemDictionary = {
         "es": "valor",
         "pl": "wartość",
         "zh-cn": "值"
+    },
+    "delayInMs": {
+        "en": "delay [ms]",
+        "de": "Verzögerung [ms]",
+        "ru": "задержка [мс]",
+        "pt": "atraso [ms]",
+        "nl": "vertraging [ms]",
+        "fr": "délai [ms]",
+        "it": "ritardo [ms]",
+        "es": "retraso [ms]",
+        "pl": "opóźnienie [ms]",
+        "zh-cn": "延迟[毫秒]"
     }
 };

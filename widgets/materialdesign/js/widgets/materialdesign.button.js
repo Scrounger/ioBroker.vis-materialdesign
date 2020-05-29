@@ -187,7 +187,12 @@ vis.binds.materialdesign.button = {
                             setValue(data.oid, data.value);
                         } else {
                             for (var i = 0; i <= data.countOids; i++) {
-                                setValue(data.attr('oid' + i), data.attr('value' + i))
+                                let oid = data['oid' + i]
+                                let value = data['value' + i];
+
+                                setTimeout(function () {
+                                    setValue(oid, value);
+                                }, myMdwHelper.getNumberFromData(data['delayInMs' + i], 0));
                             }
                         }
                     } else {
