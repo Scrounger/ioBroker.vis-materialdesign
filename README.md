@@ -1240,8 +1240,8 @@ Take a look at the animated screenshot below:
             <td>string</td>
             <td>
                 <ul>
-                    <li>buttonToggle</li>
-                    <li>buttonToggle_vertical</li>
+                    <li><a href="button-toggle-1">buttonToggle</a></li>
+                    <li><a href="button-toggle-vertical">buttonToggle_vertical</a></li>
                     <li>buttonToggle_icon</li>
                     <li>buttonState</li>
                     <li>buttonState_vertical</li>
@@ -5098,6 +5098,8 @@ ical2CalendarWidget();
 ```
 
 ## Changelog
+
+### __WORK IN PROGRESS__
 
 ### 0.3.13 (2020-05-29)
 * (Scrounger): Multi State Button Widgets: delay option added
