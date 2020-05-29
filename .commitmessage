@@ -1,9 +1,9 @@
-chore: release v0.3.11
+chore: release v0.3.13
 
-: Sentry added
-: Select & Autocomplete Widget: vibrate on mobil devices added
-: List Widget: vibrate on mobil devices added
-: Masonry & Grid Widget: height changed to optional to support widgets using relative position
-: Progress Widget revised
-: Progress Circular Widget added
-: bug fixes
+: Multi State Button Widgets: delay option added
+: Table Widget: option to add ohter Widgets to table added
+: Slider & Round Slider Widget: option to show value in percent added
+: Sentry error handling improved
+: Buttons: click bug fix
+: MaterialDesingIcons: extension bug fix
+: small bug fixes

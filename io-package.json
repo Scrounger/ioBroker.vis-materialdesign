@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.3.12",
+        "version": "0.3.13",
         "news": {
+            "0.3.13": {
+                "en": ": Multi State Button Widgets: delay option added\n: Table Widget: option to add ohter Widgets to table added\n: Slider & Round Slider Widget: option to show value in percent added\n: Sentry error handling improved\n: Buttons: click bug fix\n: MaterialDesingIcons: extension bug fix\n: small bug fixes",
+                "de": ": Multi State Button Widgets: Verzögerungsoption hinzugefügt\n: Tabellen-Widget: Option zum Hinzufügen weiterer Widgets zur hinzugefügten Tabelle\n: Slider & Round Slider Widget: Option zum Anzeigen des Werts in Prozent\n: Die Behandlung von Sentry-Fehlern wurde verbessert\n: Buttons: Klicken Sie auf Bugfix\n: MaterialDesingIcons: Erweiterungsfehlerbehebung\n: kleine Fehlerbehebungen",
+                "ru": ": Виджеты кнопок с несколькими состояниями: добавлена опция задержки\n: Виджет таблицы: добавлена возможность добавления других виджетов в таблицу\n: Виджет слайдера и круглого слайдера: опция, показывающая добавленную стоимость в процентах\n: Улучшена обработка ошибок\n: Кнопки: нажмите исправить ошибку\n: MaterialDesingIcons: исправление ошибки расширения\n: небольшие исправления",
+                "pt": ": Widgets de botão Multiestado: opção de atraso adicionada\n: Widget da tabela: opção para adicionar outros widgets à tabela adicionada\n: Slider & Round Slider Widget: opção para mostrar o valor em porcentagem adicionada\n: Tratamento de erro de sentinela aprimorado\n: Botões: clique em correção de bug\n: MaterialDesingIcons: correção de erro de extensão\n: pequenas correções de bugs",
+                "nl": ": Multi State Button Widgets: vertragingsoptie toegevoegd\n: Table Widget: optie om andere widgets aan de tafel toe te voegen\n: Slider & Round Slider Widget: optie om waarde weer te geven in percentage toegevoegd\n: Afhandeling van schildwachtfouten verbeterd\n: Knoppen: klik op bugfix\n: MaterialDesingIcons: bugfix voor extensie\n: kleine bugfixes",
+                "fr": ": Widgets de boutons multi-états: option de délai ajoutée\n: Widget de table: option pour ajouter des widgets supplémentaires au tableau ajouté\n: Widget curseur et curseur rond: option pour afficher la valeur en pourcentage ajouté\n: Gestion des erreurs Sentry améliorée\n: Boutons: cliquez sur la correction de bogue\n: MaterialDesingIcons: correction d'un bug d'extension\n: petites corrections de bugs",
+                "it": ": Widget pulsanti multi stato: aggiunta opzione ritardo\n: Widget tabella: opzione per aggiungere altri widget alla tabella aggiunta\n: Slider & Round Slider Widget: opzione per mostrare il valore in percentuale aggiunto\n: Gestione degli errori di sentinella migliorata\n: Pulsanti: fare clic su correzione bug\n: MaterialDesingIcons: correzione bug estensione\n: piccole correzioni di bug",
+                "es": ": Widgets de botón de estado múltiple: opción de retraso agregada\n: Table Widget: opción para agregar widgets de ohter a la tabla agregada\n: Control deslizante y control deslizante redondo: opción para mostrar el valor en porcentaje agregado\n: Manejo de errores centinela mejorado\n: Botones: haga clic en corrección de errores\n: MaterialDesingIcons: corrección de errores de extensión\n: pequeñas correcciones de errores",
+                "pl": ": Widżety przycisków wielostanowych: dodano opcję opóźnienia\n: Widżet tabeli: opcja dodania innych widżetów do dodanej tabeli\n: Slider & Round Slider Widget: opcja pokazująca wartość w procentach dodanych\n: Poprawiona obsługa błędów Sentry\n: Przyciski: kliknij błąd naprawy\n: MaterialDesingIcons: naprawa błędu rozszerzenia\n: drobne poprawki błędów",
+                "zh-cn": "：多状态按钮小部件：添加了延迟选项\n：表窗口小部件：将其他窗口小部件添加到表的选项\n：“滑块”和“圆形滑块”小部件：选项以增加的百分比显示值\n：改进了哨兵错误处理\n：按钮：点击错误修复\n：MaterialDesingIcons：扩展错误修复\n：小错误修复"
+            },
             "0.3.11": {
                 "en": ": Sentry added\n: Select & Autocomplete Widget: vibrate on mobil devices added\n: List Widget: vibrate on mobil devices added\n: Masonry & Grid Widget: height changed to optional to support widgets using relative position\n: Progress Widget revised\n: Progress Circular Widget added\n: bug fixes",
                 "de": ": Wachposten hinzugefügt\n: Widget auswählen und automatisch vervollständigen: Vibrieren auf hinzugefügten Mobilgeräten\n: List Widget: Vibrieren auf Mobilgeräten hinzugefügt\n: Masonry & Grid Widget: Die Höhe wurde auf optional geändert, um Widgets mit relativer Position zu unterstützen\n: Fortschritts-Widget überarbeitet\n: Progress Circular Widget hinzugefügt\n: Fehlerbehebung",
@@ -230,18 +242,6 @@
                 "es": "barra y gráfico agregado",
                 "pl": "dodano wykres słupkowy i kołowy",
                 "zh-cn": "添加了条形图和饼图"
-            },
-            "0.1.2": {
-                "en": "support for non boolean values added for buttons, checkboxes and switches. haptic feedback (vibration) option for mobil browser added. right label option for list added. slider value text option for lees or greather than added. bug fixes.",
-                "de": "Unterstützung für nicht-boolesche Werte für Schaltflächen, Kontrollkästchen und Schalter. Option für haptisches Feedback (Vibration) für mobilen Browser hinzugefügt. Rechte Beschriftungsoption für Liste hinzugefügt. Textoption mit Schieberegler für kleiner oder größer als hinzugefügt. Fehlerbehebung.",
-                "ru": "добавлена поддержка не булевых значений для кнопок, флажков и переключателей. Добавлена опция тактильной обратной связи (вибрация) для мобильного браузера. добавлена правая метка для списка. текстовая опция значения ползунка для ли или больше, чем добавлено. исправление ошибок.",
-                "pt": "suporte para valores não booleanos adicionados a botões, caixas de seleção e opções. opção de retorno háptico (vibração) para o navegador mobil adicionado. opção de etiqueta à direita para a lista adicionada. opção de texto do valor do controle deslizante para borras ou maior que a adicionada. correções de bugs.",
-                "nl": "ondersteuning voor niet-booleaanse waarden toegevoegd voor knoppen, selectievakjes en schakelaars. haptische feedback (vibratie) optie voor mobil browser toegevoegd. juiste labeloptie voor lijst toegevoegd. schuif waarde optie voor lees of groter dan toegevoegd. bugfixes.",
-                "fr": "prise en charge des valeurs non booléennes ajoutées pour les boutons, les cases à cocher et les commutateurs. retour haptique option (vibration) pour le navigateur mobil ajouté. option bonne étiquette pour la liste ajoutée. option de texte de valeur de curseur pour les lies ou plus grand que ajouté. corrections de bugs.",
-                "it": "supporto per valori non booleani aggiunto per pulsanti, caselle di controllo e interruttori. aggiunta dell'opzione feedback tattile (vibrazione) per il browser mobil. opzione etichetta destra per elenco aggiunto. opzione di testo del valore del dispositivo di scorrimento per le fecce o maggiore di quella aggiunta. correzioni di bug.",
-                "es": "soporte para valores no booleanos agregados para botones, casillas de verificación e interruptores. Opción de retroalimentación háptica (vibración) para el navegador mobil agregado. opción de etiqueta derecha para la lista agregada. opción de texto del valor del control deslizante para lías o más grande que el agregado. corrección de errores.",
-                "pl": "dodano obsługę wartości innych niż logiczne dla przycisków, pól wyboru i przełączników. dodano opcję dotykowego sprzężenia zwrotnego (wibracji) dla przeglądarki mobilnej. dodano opcję prawej etykiety dla listy. suwakowa wartość opcji tekstowej dla osadów lub większa niż dodana. poprawki błędów.",
-                "zh-cn": "支持为按钮，复选框和开关添加的非布尔值。为Mobil浏览器添加了触觉反馈（振动）选项。列表的右侧标签选项已添加。滑块值文本选项，用于添加或添加的内容。 bug修复。"
             }
         },
         "title": "Material Design Widgets",

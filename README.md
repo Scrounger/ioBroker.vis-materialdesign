@@ -5099,7 +5099,7 @@ ical2CalendarWidget();
 
 ## Changelog
 
-### __WORK IN PROGRESS__
+### 0.3.13 (2020-05-29)
 * (Scrounger): Multi State Button Widgets: delay option added
 * (Scrounger): Table Widget: option to add ohter Widgets to table added
 * (Scrounger): Slider & Round Slider Widget: option to show value in percent added
