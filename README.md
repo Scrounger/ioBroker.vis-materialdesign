@@ -5100,8 +5100,12 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
+* (Scrounger): Table Widget: option to add ohter Widgets to table added
 * (Scrounger): Slider & Round Slider Widget: option to show value in percent added
-
+* (Scrounger): sentry.io error handling improved
+* (scrounger): Buttons: click bug fix
+* (scrounger): MaterialDesingIcons: extension bug fix
+* (Scrounger): small bug fixes
 
 ### 0.3.11 (2020-05-24)
 * (Scrounger): Sentry added
