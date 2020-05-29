@@ -1240,21 +1240,21 @@ Take a look at the animated screenshot below:
             <td>string</td>
             <td>
                 <ul>
-                    <li><a href="button-toggle-1">buttonToggle</a></li>
-                    <li><a href="button-toggle-vertical">buttonToggle_vertical</a></li>
-                    <li>buttonToggle_icon</li>
-                    <li>buttonState</li>
-                    <li>buttonState_vertical</li>
-                    <li>buttonState_icon</li>
-                    <li>progress</li>
-                    <li>progress_circular</li>
-                    <li>slider</li>
-                    <li>slider_round</li>
-                    <li>switch</li>
-                    <li>checkbox</li>
-					<li>textfield</li>
-					<li>select</li>
-					<li>autocomplete</li>
+                    <li><a href="#button-toggle-1">buttonToggle</a></li>
+                    <li><a href="#button-toggle-vertical">buttonToggle_vertical</a></li>
+                    <li><a href="#button-toggle-icon">buttonToggle_icon</a></li>
+                    <li><a href="#button-state">buttonState</a></li>
+                    <li><a href="#button-state-vertical">buttonState_vertical</a></li>
+                    <li><a href="#button-state-icon">buttonState_icon</a></li>
+                    <li><a href="#progress-1">progress</a></li>
+                    <li><a href="#progress-circular">progress_circular</a></li>
+                    <li><a href="#slider-1">slider</a></li>
+                    <li><a href="#slider-round">slider_round</a></li>
+                    <li><a href="#switch-1">switch</a></li>
+                    <li><a href="#checkbox-1">checkbox</a></li>
+					<li><a href="#textfield">textfield</a></li>
+					<li><a href="#select-1">select</a></li>
+					<li><a href="#autocomplete-1">autocomplete</a></li>
                 </ul> 
             </td>
         </tr>
