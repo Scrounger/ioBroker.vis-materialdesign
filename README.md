@@ -5103,7 +5103,7 @@ ical2CalendarWidget();
 * (Scrounger): Multi State Button Widgets: delay option added
 * (Scrounger): Table Widget: option to add ohter Widgets to table added
 * (Scrounger): Slider & Round Slider Widget: option to show value in percent added
-* (Scrounger): sentry.io error handling improved
+* (Scrounger): Sentry error handling improved
 * (scrounger): Buttons: click bug fix
 * (scrounger): MaterialDesingIcons: extension bug fix
 * (Scrounger): small bug fixes
