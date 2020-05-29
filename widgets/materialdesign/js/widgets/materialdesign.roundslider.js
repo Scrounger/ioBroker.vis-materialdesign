@@ -121,6 +121,17 @@ vis.binds.materialdesign.roundslider =
                         slider.attr('value', val);
                     }
 
+                    let valPercent = parseFloat(val);
+
+                    if (isNaN(valPercent)) valPercent = min;
+                    if (valPercent < min) valPercent = min;
+                    if (valPercent > max) valPercent = max;
+
+                    let simRange = 100;
+                    let range = max - min;
+                    let factor = simRange / range;
+                    valPercent = Math.floor((valPercent - min) * factor);
+
                     if (val <= min && labelMin != null) {
                         $this.find('.labelValue').html(labelMin);
                     } else if (val > min && val <= valueLessThan && textForValueLessThan != null) {
@@ -130,7 +141,11 @@ vis.binds.materialdesign.roundslider =
                     } else if (val >= max && labelMax != null) {
                         $this.find('.labelValue').html(labelMax);
                     } else {
-                        $this.find('.labelValue').html(`${val} ${unit}`);
+                        if (myMdwHelper.getValueFromData(data.valueLabelStyle, "sliderValue") === 'sliderValue') {
+                            $this.find('.labelValue').html(`${val} ${unit}`);
+                        } else {
+                            $this.find('.labelValue').html(`${valPercent} %`);
+                        }
                     }
                 }
             }

@@ -9172,7 +9172,29 @@ systemDictionary = {
         "es": "estilo de título de valor",
         "pl": "styl podpisu wartości",
         "zh-cn": "价值标题样式"
+    },
+    "sliderPercent": {
+        "en": "percent",
+        "de": "Prozent",
+        "ru": "процент",
+        "pt": "por cento",
+        "nl": "procent",
+        "fr": "pour cent",
+        "it": "per cento",
+        "es": "por ciento",
+        "pl": "procent",
+        "zh-cn": "百分"
+    },
+    "sliderValue": {
+        "en": "value",
+        "de": "Wert",
+        "ru": "ценность",
+        "pt": "valor",
+        "nl": "waarde",
+        "fr": "valeur",
+        "it": "valore",
+        "es": "valor",
+        "pl": "wartość",
+        "zh-cn": "值"
     }
-
-
 };

@@ -2649,6 +2649,12 @@ Take a look at the animated screenshot below:
 			<td>false | true</td>
 		</tr>
 		<tr>
+			<td>valueLabelStyle</td>
+			<td>value caption style</td>
+			<td>string</td>
+			<td>sliderPercent | sliderValue</td>
+		</tr>
+		<tr>
 			<td>valueLabelUnit</td>
 			<td>unit</td>
 			<td>string</td>
@@ -2869,6 +2875,12 @@ Take a look at the animated screenshot below:
 			<td>vertical text position of value </td>
 			<td>number</td>
 			<td/>
+		</tr>
+		<tr>
+			<td>valueLabelStyle</td>
+			<td>value caption style</td>
+			<td>string</td>
+			<td>sliderPercent | sliderValue</td>
 		</tr>
 		<tr>
 			<td>valueLabelUnit</td>
@@ -5088,6 +5100,7 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
+* (Scrounger): Slider & Round Slider Widget: option to show value in percent added
 
 
 ### 0.3.11 (2020-05-24)

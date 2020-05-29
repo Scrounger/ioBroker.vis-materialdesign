@@ -125,15 +125,15 @@ vis.binds.materialdesign.slider = {
 
                     $this.context.style.setProperty("--vue-slider-thumb-label-font-color", myMdwHelper.getValueFromData(data.thumbFontColor, ''));
                     $this.context.style.setProperty("--vue-slider-thumb-label-font-family", myMdwHelper.getValueFromData(data.thumbFontFamily, ''));
-                    $this.context.style.setProperty("--vue-slider-thumb-label-font-size", myMdwHelper.getValueFromData(data.thumbFontSize, '12', '', 'px'));
+                    $this.context.style.setProperty("--vue-slider-thumb-label-font-size", myMdwHelper.getNumberFromData(data.thumbFontSize, 12) + 'px');
                     $this.find('.v-slider__thumb-label').css('background-color', myMdwHelper.getValueFromData(data.thumbBackgroundColor, myMdwHelper.getValueFromData(data.colorThumb, defaultColor)));
 
                     $this.context.style.setProperty("--vue-slider-tick-before-color", myMdwHelper.getValueFromData(data.tickColorBefore, ''));
                     $this.context.style.setProperty("--vue-slider-tick-after-color", myMdwHelper.getValueFromData(data.tickColorAfter, ''));
 
                     $this.context.style.setProperty("--vue-text-field-label-before-color", myMdwHelper.getValueFromData(data.prepandTextColor, ''));
-                    $this.context.style.setProperty("--vue-text-field-label-font-family", myMdwHelper.getValueFromData(data.prepandTextFontFamily, ''));
-                    $this.context.style.setProperty("--vue-text-field-label-font-size", myMdwHelper.getNumberFromData(data.prepandTextFontSize, '16') + 'px');
+                    $this.context.style.setProperty("--vue-text-field-label-font-family", myMdwHelper.getNumberFromData(data.prepandTextFontFamily, 12) + 'px');
+                    $this.context.style.setProperty("--vue-text-field-label-font-size", myMdwHelper.getNumberFromData(data.prepandTextFontSize, 16) + 'px');
 
                     $this.context.style.setProperty("--vue-text-field-label-width", myMdwHelper.getStringFromNumberData(data.prepandTextWidth, 'inherit', '', 'px'));
 
@@ -166,6 +166,17 @@ vis.binds.materialdesign.slider = {
                                 vueSlider.value = val;
                             }
 
+                            let valPercent = parseFloat(val);
+
+                            if (isNaN(valPercent)) valPercent = min;
+                            if (valPercent < min) valPercent = min;
+                            if (valPercent > max) valPercent = max;
+
+                            let simRange = 100;
+                            let range = max - min;
+                            let factor = simRange / range;
+                            valPercent = Math.floor((valPercent - min) * factor);
+
                             if (val <= min && labelMin != null) {
                                 $this.find('.slider-value').html(labelMin);
                                 if (data.useLabelRules) $this.find('.v-slider__thumb-label').find('span').html(labelMin);
@@ -179,8 +190,14 @@ vis.binds.materialdesign.slider = {
                                 $this.find('.slider-value').html(labelMax);
                                 if (data.useLabelRules) $this.find('.v-slider__thumb-label').find('span').html(labelMax);
                             } else {
-                                $this.find('.slider-value').html(`${val} ${unit}`);
-                                if (data.useLabelRules) $this.find('.v-slider__thumb-label').find('span').html(`${val} ${unit}`);
+
+                                if (myMdwHelper.getValueFromData(data.valueLabelStyle, "sliderValue") === 'sliderValue') {
+                                    $this.find('.slider-value').html(`${val} ${unit}`);
+                                    if (data.useLabelRules) $this.find('.v-slider__thumb-label').find('span').html(`${val} ${unit}`);
+                                } else {
+                                    $this.find('.slider-value').html(`${valPercent} %`);
+                                    if (data.useLabelRules) $this.find('.v-slider__thumb-label').find('span').html(`${valPercent} %`);
+                                }
                             }
                         }
                     }
