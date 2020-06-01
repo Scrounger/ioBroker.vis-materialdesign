@@ -5100,6 +5100,7 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
+* (Scrounger): Table Widget: onChange bug fix for controls
 
 ### 0.3.13 (2020-05-29)
 * (Scrounger): Multi State Button Widgets: delay option added

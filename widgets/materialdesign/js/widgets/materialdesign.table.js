@@ -54,13 +54,13 @@ vis.binds.materialdesign.table = {
             tableElement.push(`<tbody class="mdc-data-table__content">`);
 
             // adding Content
-            if (myMdwHelper.getValueFromData(data.oid, null) !== null && myMdwHelper.getValueFromData(data.oid, null) !== 'nothing_selected' && vis.states.attr(data.oid + '.val') !== null) {
-                tableElement.push(vis.binds.materialdesign.table.getContentElements($this, vis.states.attr(data.oid + '.val'), data));
-            } else {
-                if (data.dataJson) {
-                    tableElement.push(vis.binds.materialdesign.table.getContentElements($this, data.dataJson, data));
-                }
-            }
+            // if (myMdwHelper.getValueFromData(data.oid, null) !== null && myMdwHelper.getValueFromData(data.oid, null) !== 'nothing_selected' && vis.states.attr(data.oid + '.val') !== null) {
+            //     tableElement.push(vis.binds.materialdesign.table.getContentElements($this, vis.states.attr(data.oid + '.val'), data));
+            // } else {
+            //     if (data.dataJson) {
+            //         tableElement.push(vis.binds.materialdesign.table.getContentElements($this, data.dataJson, data));
+            //     }
+            // }
 
             tableElement.push(`</tbody>`);
 
@@ -101,22 +101,28 @@ vis.binds.materialdesign.table = {
 
                         const mdcTable = new mdc.dataTable.MDCDataTable(table);
 
+                        // adding Content
+                        if (myMdwHelper.getValueFromData(data.oid, null) !== null && myMdwHelper.getValueFromData(data.oid, null) !== 'nothing_selected' && vis.states.attr(data.oid + '.val') !== null) {
+                            vis.binds.materialdesign.table.getContentElements($this, vis.states.attr(data.oid + '.val'), data);
+                        } else {
+                            if (data.dataJson) {
+                                vis.binds.materialdesign.table.getContentElements($this, data.dataJson, data);
+                            }
+                        }
+
+                        // Content changed
                         vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                            $this.find('.mdc-data-table__content').empty();
-                            $this.find('.mdc-data-table__content').append(vis.binds.materialdesign.table.getContentElements($this, newVal, data));
+                            vis.binds.materialdesign.table.getContentElements($this, newVal, data, null, oldVal);
                         });
 
                         $this.find('.mdc-data-table__header-cell').click(function (obj) {
                             let colIndex = $(this).attr('colIndex');
                             let sortASC = true;
 
-                            $this.hide();
-
                             let jsonData = [];
                             if (myMdwHelper.getValueFromData(data.oid, null) !== null && vis.states.attr(data.oid + '.val') !== null) {
                                 jsonData = vis.binds.materialdesign.table.getJsonData(vis.states.attr(data.oid + '.val'), data);
                             } else {
-
                                 jsonData = JSON.parse(data.dataJson)
                             }
 
@@ -145,10 +151,7 @@ vis.binds.materialdesign.table = {
                                 }
                             });
 
-                            $this.find('.mdc-data-table__content').empty();
-                            $this.find('.mdc-data-table__content').append(vis.binds.materialdesign.table.getContentElements($this, null, data, sortByKey(jsonData, key, sortASC)));      //TODO: sort key by user defined
-
-                            $this.show();
+                            vis.binds.materialdesign.table.getContentElements($this, null, data, sortByKey(jsonData, key, sortASC));      //TODO: sort key by user defined
 
                             function sortByKey(array, key, sortASC) {
                                 return array.sort(function (a, b) {
@@ -170,34 +173,97 @@ vis.binds.materialdesign.table = {
             console.error(`[Table - ${data.wid}] handle: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    getContentElements: function ($this, input, data, jsonData = null) {
-        let contentElements = [];
+    getContentElements: function ($this, input, data, jsonData = null, oldVal = null) {
+        let tableContent = $this.find('.mdc-data-table__content');
+        let oldJsonData = null;
+        let rowsCount = 0;
 
         if (jsonData === null) {
             jsonData = vis.binds.materialdesign.table.getJsonData(input, data);
+
+            rowsCount = jsonData.length - 1;
+        } else {
+            rowsCount = jsonData.length - 1;
+        }
+
+        if (oldVal !== null) {
+            oldJsonData = vis.binds.materialdesign.table.getJsonData(oldVal, data);
+
+            if (rowsCount < oldJsonData.length - 1) {
+                rowsCount = oldJsonData.length - 1;
+            }
         }
 
         if (jsonData && jsonData != null) {
+            for (var row = 0; row <= rowsCount; row++) {
+                let $row = tableContent.find(`#row${row}`)
 
-            for (var row = 0; row <= jsonData.length - 1; row++) {
-                contentElements.push(`<tr class="mdc-data-table__row" style="height: ${(myMdwHelper.getNumberFromData(data.rowHeight, null) !== null) ? data.rowHeight + 'px' : '1px'};">`);
+                // row not exist -> create
+                if ($row.length === 0) {
+                    if (jsonData[row]) {
+                        tableContent.append(`<tr class="mdc-data-table__row" id="row${row}" style="height: ${(myMdwHelper.getNumberFromData(data.rowHeight, null) !== null) ? data.rowHeight + 'px' : '1px'};">
+                                        </tr>`)
 
-                if (jsonData[row]) {
-                    // col items is object
-                    let until = (Object.keys(jsonData[row]).length - 1 > data.countCols) ? data.countCols : Object.keys(jsonData[row]).length - 1;
+                        // col items is object
+                        let until = (Object.keys(jsonData[row]).length - 1 > data.countCols) ? data.countCols : Object.keys(jsonData[row]).length - 1;
 
-                    for (var col = 0; col <= until; col++) {
-                        if (data.attr('showColumn' + col)) {
-                            let textSize = myMdwHelper.getFontSize(data.attr('colTextSize' + col));
+                        for (var col = 0; col <= until; col++) {
+                            if (data.attr('showColumn' + col)) {
+                                let textSize = myMdwHelper.getFontSize(data.attr('colTextSize' + col));
 
-                            contentElements.push(getContentElement(row, col, Object.values(jsonData[row])[col], textSize, jsonData[row]));
+                                let colElement = getColElement(row, col, Object.values(jsonData[row])[col], textSize, jsonData[row]);
+                                tableContent.find(`#row${row}`).append(colElement);
+                            }
                         }
                     }
+                } else if ($row.length === 1) {
+                    // row exist -> update cols
+                    if (jsonData[row]) {
+                        // col items is object
+                        let colsCount = Object.keys(jsonData[row]).length - 1;
+
+                        if (oldJsonData && oldJsonData[row] && colsCount < Object.keys(oldJsonData[row]).length - 1) {
+                            colsCount = Object.keys(oldJsonData[row]).length - 1;
+                        }
+
+                        if (colsCount > data.countCols) {
+                            colsCount = data.countCols;
+                        }
+
+                        for (var col = 0; col <= colsCount; col++) {
+                            if (data.attr('showColumn' + col)) {
+                                let textSize = myMdwHelper.getFontSize(data.attr('colTextSize' + col));
+
+                                let existingCell = $this.find(`#cell-row${row}-col${col}`);
+                                if (Object.values(jsonData[row])[col]) {
+                                    if (existingCell.length === 1) {
+                                        if (oldJsonData) {
+                                            if (oldJsonData[row] && !myUnderscore.isEqual(Object.values(jsonData[row])[col], Object.values(oldJsonData[row])[col])) {
+                                                // console.log(`notEqual: row: ${row}, col: ${col}`);
+
+                                                let colElement = getColElement(row, col, Object.values(jsonData[row])[col], textSize, jsonData[row]);
+                                                existingCell.replaceWith($(colElement));
+                                            }
+                                        } else {
+                                            let colElement = getColElement(row, col, Object.values(jsonData[row])[col], textSize, jsonData[row]);
+                                            existingCell.replaceWith($(colElement));
+                                        }
+                                    } else {
+                                        let colElement = getColElement(row, col, Object.values(jsonData[row])[col], textSize, jsonData[row]);
+                                        tableContent.find(`#row${row}`).append(colElement);
+                                    }
+                                } else {
+                                    existingCell.closest('td').remove();
+                                }
+                            }
+                        }
+                    } else {
+                        $this.find(`#row${row}`).closest('tr').remove();
+                    }
                 }
-                contentElements.push(`</tr>`);
             }
 
-            function getContentElement(row, col, objValue, textSize, rowData = null) {
+            function getColElement(row, col, objValue, textSize, rowData = null) {
                 let prefix = myMdwHelper.getValueFromData(data.attr('prefix' + col), '');
                 let suffix = myMdwHelper.getValueFromData(data.attr('suffix' + col), '');
 
@@ -428,6 +494,7 @@ vis.binds.materialdesign.table = {
                 }
 
                 return `<td class="mdc-data-table__cell ${textSize.class}"
+                            id="cell-row${row}-col${col}"
                             ${(objValue && objValue.rowspan) ? `rowspan="${objValue.rowspan}"` : ''}
                             ${(objValue && objValue.colspan) ? `colspan="${objValue.colspan}"` : ''}
                             style="
@@ -442,8 +509,6 @@ vis.binds.materialdesign.table = {
                                 ${element}
                         </td>`
             };
-
-            return contentElements.join('');
         }
     },
     getJsonData: function (input, data) {
