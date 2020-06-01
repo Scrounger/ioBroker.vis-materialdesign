@@ -11,6 +11,14 @@ vis.binds.materialdesign.table = {
             let $this = $(el);
             let tableElement = []
 
+            $this.get(0).style.setProperty("--materialdesign-color-table-background", myMdwHelper.getValueFromData(data.colorBackground, ''));
+            $this.get(0).style.setProperty("--materialdesign-color-table-border", myMdwHelper.getValueFromData(data.borderColor, ''));
+            $this.get(0).style.setProperty("--materialdesign-color-table-header-row-background", myMdwHelper.getValueFromData(data.colorHeaderRowBackground, ''));
+            $this.get(0).style.setProperty("--materialdesign-color-table-header-row-text-color", myMdwHelper.getValueFromData(data.colorHeaderRowText, ''));
+            $this.get(0).style.setProperty("--materialdesign-color-table-row-background", myMdwHelper.getValueFromData(data.colorRowBackground, ''));
+            $this.get(0).style.setProperty("--materialdesign-color-table-row-text-color", myMdwHelper.getValueFromData(data.colorRowText, ''));
+            $this.get(0).style.setProperty("--materialdesign-color-table-row-divider", myMdwHelper.getValueFromData(data.dividers, ''));
+
             let headerFontSize = myMdwHelper.getFontSize(data.headerTextSize);
 
             let tableLayout = '';
@@ -20,12 +28,11 @@ vis.binds.materialdesign.table = {
                 tableLayout = 'materialdesign-list-card materialdesign-list-card--outlined';
             }
 
-            tableElement.push(`<div class="mdc-data-table ${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'fixed-header' : ''} ${tableLayout}" style="width: 100%;">
-                                    <table class="mdc-data-table__table" aria-label="Material Design Widgets Table">`)
+            tableElement.push(`<div class="mdc-data-table ${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'fixed-header' : ''} ${tableLayout}" style="width: 100%; height: 100%;">
+                                    <table class="mdc-data-table__table" aria-label="Material Design Widgets Table" style="width: 100%; height: 100%;">`)
 
             tableElement.push(`<thead ${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'style="position: sticky; top: 0;"' : ''}>
                                     <tr class="mdc-data-table__header-row" style="height: ${(myMdwHelper.getNumberFromData(data.headerRowHeight, null) !== null) ? data.headerRowHeight + 'px' : '1px'};">`)
-
 
 
             if (data.showHeader) {
@@ -48,25 +55,11 @@ vis.binds.materialdesign.table = {
                 }
             }
             tableElement.push(`</tr>
-                            </thead>`);
-
-
-            tableElement.push(`<tbody class="mdc-data-table__content">`);
-
-            // adding Content
-            // if (myMdwHelper.getValueFromData(data.oid, null) !== null && myMdwHelper.getValueFromData(data.oid, null) !== 'nothing_selected' && vis.states.attr(data.oid + '.val') !== null) {
-            //     tableElement.push(vis.binds.materialdesign.table.getContentElements($this, vis.states.attr(data.oid + '.val'), data));
-            // } else {
-            //     if (data.dataJson) {
-            //         tableElement.push(vis.binds.materialdesign.table.getContentElements($this, data.dataJson, data));
-            //     }
-            // }
-
-            tableElement.push(`</tbody>`);
-
-
-            tableElement.push(`</table>
-                            </div>`)
+                            </thead>
+                            <tbody class="mdc-data-table__content">
+                            </tbody>
+                            </table>
+                            </div>`);
 
             return tableElement.join('');
         } catch (ex) {
@@ -90,14 +83,6 @@ vis.binds.materialdesign.table = {
 
                         let heightHeader = window.getComputedStyle($this.find('.mdc-data-table__header-row').get(0), null).height;
                         $this.find('.mdc-data-table__content').css('height', (parseInt(height.replace('px', '')) - parseInt(heightHeader.replace('px', '')) - 2) + 'px');
-
-                        table.style.setProperty("--materialdesign-color-table-background", myMdwHelper.getValueFromData(data.colorBackground, ''));
-                        table.style.setProperty("--materialdesign-color-table-border", myMdwHelper.getValueFromData(data.borderColor, ''));
-                        table.style.setProperty("--materialdesign-color-table-header-row-background", myMdwHelper.getValueFromData(data.colorHeaderRowBackground, ''));
-                        table.style.setProperty("--materialdesign-color-table-header-row-text-color", myMdwHelper.getValueFromData(data.colorHeaderRowText, ''));
-                        table.style.setProperty("--materialdesign-color-table-row-background", myMdwHelper.getValueFromData(data.colorRowBackground, ''));
-                        table.style.setProperty("--materialdesign-color-table-row-text-color", myMdwHelper.getValueFromData(data.colorRowText, ''));
-                        table.style.setProperty("--materialdesign-color-table-row-divider", myMdwHelper.getValueFromData(data.dividers, ''));
 
                         const mdcTable = new mdc.dataTable.MDCDataTable(table);
 
