@@ -74,6 +74,8 @@ vis.binds.materialdesign.table = {
             myMdwHelper.waitForElement($this, `.mdc-data-table`, data.wid, 'Table', function () {
                 myMdwHelper.waitForRealHeight($this.context, data.wid, 'Table', function () {
                     let table = $this.find('.mdc-data-table').get(0);
+                    let sortByKey = undefined;
+                    let sortASC = true;
 
                     if (table) {
                         let height = window.getComputedStyle($this.context, null).height
@@ -97,12 +99,12 @@ vis.binds.materialdesign.table = {
 
                         // Content changed
                         vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                            vis.binds.materialdesign.table.getContentElements($this, newVal, data, null, oldVal);
+                            vis.binds.materialdesign.table.getContentElements($this, newVal, data, null, oldVal, sortByKey, sortASC);
                         });
 
                         $this.find('.mdc-data-table__header-cell').click(function (obj) {
                             let colIndex = $(this).attr('colIndex');
-                            let sortASC = true;
+
 
                             let jsonData = [];
                             if (myMdwHelper.getValueFromData(data.oid, null) !== null && vis.states.attr(data.oid + '.val') !== null) {
@@ -111,7 +113,7 @@ vis.binds.materialdesign.table = {
                                 jsonData = JSON.parse(data.dataJson)
                             }
 
-                            let key = (myMdwHelper.getValueFromData(data.attr('sortKey' + colIndex), null) !== null) ? data.attr('sortKey' + colIndex) : Object.keys(jsonData[0])[colIndex];
+                            sortByKey = (myMdwHelper.getValueFromData(data.attr('sortKey' + colIndex), null) !== null) ? data.attr('sortKey' + colIndex) : Object.keys(jsonData[0])[colIndex];
 
                             if ($(this).attr('sort')) {
                                 if ($(this).attr('sort') === 'ASC') {
@@ -136,20 +138,7 @@ vis.binds.materialdesign.table = {
                                 }
                             });
 
-                            vis.binds.materialdesign.table.getContentElements($this, null, data, sortByKey(jsonData, key, sortASC));      //TODO: sort key by user defined
-
-                            function sortByKey(array, key, sortASC) {
-                                return array.sort(function (a, b) {
-                                    var x = a[key];
-                                    var y = b[key];
-
-                                    if (sortASC) {
-                                        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-                                    } else {
-                                        return ((x > y) ? -1 : ((x < y) ? 1 : 0));
-                                    }
-                                });
-                            }
+                            vis.binds.materialdesign.table.getContentElements($this, null, data, vis.binds.materialdesign.table.sortByKey(jsonData, sortByKey, sortASC));      //TODO: sort key by user defined
                         });
                     }
                 });
@@ -158,13 +147,15 @@ vis.binds.materialdesign.table = {
             console.error(`[Table - ${data.wid}] handle: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    getContentElements: function ($this, input, data, jsonData = null, oldVal = null) {
+    getContentElements: function ($this, input, data, jsonData = null, oldVal = null, sortByKey = undefined, sortASC = true) {
         let tableContent = $this.find('.mdc-data-table__content');
         let oldJsonData = null;
         let rowsCount = 0;
 
         if (jsonData === null) {
             jsonData = vis.binds.materialdesign.table.getJsonData(input, data);
+
+            if (sortByKey) jsonData = vis.binds.materialdesign.table.sortByKey(jsonData, sortByKey, sortASC);
 
             rowsCount = jsonData.length - 1;
         } else {
@@ -173,6 +164,8 @@ vis.binds.materialdesign.table = {
 
         if (oldVal !== null) {
             oldJsonData = vis.binds.materialdesign.table.getJsonData(oldVal, data);
+
+            if (sortByKey) oldJsonData = vis.binds.materialdesign.table.sortByKey(oldJsonData, sortByKey, sortASC);
 
             if (rowsCount < oldJsonData.length - 1) {
                 rowsCount = oldJsonData.length - 1;
@@ -234,7 +227,7 @@ vis.binds.materialdesign.table = {
                                     if (existingCell.length === 1) {
                                         if (oldJsonData) {
                                             if (oldJsonData[row] && !myUnderscore.isEqual(Object.values(jsonData[row])[col], Object.values(oldJsonData[row])[col])) {
-                                                // console.log(`notEqual: row: ${row}, col: ${col}`);
+                                                console.log(`notEqual: row: ${row}, col: ${col}`);
 
                                                 let colElement = getColElement(row, col, Object.values(jsonData[row])[col], textSize, jsonData[row]);
                                                 existingCell.replaceWith($(colElement));
@@ -1145,5 +1138,17 @@ vis.binds.materialdesign.table = {
 
             return data;
         }
+    },
+    sortByKey: function (array, key, sortASC) {
+        return array.sort(function (a, b) {
+            var x = a[key];
+            var y = b[key];
+
+            if (sortASC) {
+                return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+            } else {
+                return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+            }
+        });
     }
 };
