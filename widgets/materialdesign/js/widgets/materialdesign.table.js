@@ -179,6 +179,11 @@ vis.binds.materialdesign.table = {
             }
         }
 
+        let existingRowsCount = tableContent.find('tr').length - 1
+        if (rowsCount < existingRowsCount) {
+            rowsCount = existingRowsCount
+        }
+
         if (jsonData && jsonData != null) {
             for (var row = 0; row <= rowsCount; row++) {
                 let $row = tableContent.find(`#row${row}`)
@@ -213,6 +218,11 @@ vis.binds.materialdesign.table = {
 
                         if (colsCount > data.countCols) {
                             colsCount = data.countCols;
+                        }
+
+                        let existingColsCount = $row.find('td').length - 1;
+                        if (colsCount < existingColsCount) {
+                            colsCount = existingColsCount;
                         }
 
                         for (var col = 0; col <= colsCount; col++) {
