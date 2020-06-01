@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.3.13",
+        "version": "0.3.14",
         "news": {
+            "0.3.14": {
+                "en": ": Table Widget: bug fixes",
+                "de": ": Tabellen-Widget: Fehlerbehebungen",
+                "ru": ": Виджет таблицы: исправление ошибок",
+                "pt": ": Widget da tabela: correções de bugs",
+                "nl": ": Table Widget: bugfixes",
+                "fr": ": Table Widget: corrections de bugs",
+                "it": ": Widget tabella: correzioni di errori",
+                "es": ": Widget de tabla: correcciones de errores",
+                "pl": ": Widżet tabeli: poprawki błędów",
+                "zh-cn": "：表格小部件：错误修复"
+            },
             "0.3.13": {
                 "en": ": Multi State Button Widgets: delay option added\n: Table Widget: option to add ohter Widgets to table added\n: Slider & Round Slider Widget: option to show value in percent added\n: Sentry error handling improved\n: Buttons: click bug fix\n: MaterialDesingIcons: extension bug fix\n: small bug fixes",
                 "de": ": Multi State Button Widgets: Verzögerungsoption hinzugefügt\n: Tabellen-Widget: Option zum Hinzufügen weiterer Widgets zur hinzugefügten Tabelle\n: Slider & Round Slider Widget: Option zum Anzeigen des Werts in Prozent\n: Die Behandlung von Sentry-Fehlern wurde verbessert\n: Buttons: Klicken Sie auf Bugfix\n: MaterialDesingIcons: Erweiterungsfehlerbehebung\n: kleine Fehlerbehebungen",
@@ -230,18 +242,6 @@
                 "es": "Control deslizante redondo, adición de botón de icono, adición de botón, gráfico de historial de línea, tabla, iFrame de diálogo, vista de diálogo y selección de widgets agregados",
                 "pl": "Dodano okrągły przycisk, ikonę przycisku, przycisk przycisku, wykres historii linii, tabelę, okno dialogowe iFrame, widok okna dialogowego i wybrane widżety",
                 "zh-cn": "添加了滑条，图标按钮添加，按钮添加，折线图，表格，对话框iFrame，对话框视图和选择小部件"
-            },
-            "0.1.5": {
-                "en": "bar and pie chart added",
-                "de": "Balken- und Kreisdiagramm hinzugefügt",
-                "ru": "добавлена гистограмма и круговая диаграмма",
-                "pt": "barra e gráfico de pizza adicionados",
-                "nl": "bar en cirkeldiagram toegevoegd",
-                "fr": "diagramme à barres et à secteurs ajouté",
-                "it": "barra e grafico a torta aggiunti",
-                "es": "barra y gráfico agregado",
-                "pl": "dodano wykres słupkowy i kołowy",
-                "zh-cn": "添加了条形图和饼图"
             }
         },
         "title": "Material Design Widgets",

@@ -5100,6 +5100,8 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
+
+### 0.3.14 (2020-06-01)
 * (Scrounger): Table Widget: bug fixes
 
 ### 0.3.13 (2020-05-29)
