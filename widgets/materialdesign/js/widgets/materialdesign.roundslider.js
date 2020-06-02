@@ -40,7 +40,8 @@ vis.binds.materialdesign.roundslider =
                             arcLength="${myMdwHelper.getNumberFromData(data.arcLength, 270)}"
                             handleSize="${myMdwHelper.getNumberFromData(data.handleSize, 6)}"
                             handleZoom="${myMdwHelper.getNumberFromData(data.handleZoom, 1.5)}"
-                            ${(data.rtl === true) ? 'rtl = "true"' : ''}                            
+                            ${(data.rtl === true) ? 'rtl = "true"' : ''} 
+                            ${myMdwHelper.getBooleanFromData(data.readOnly, false) === true ? 'readonly' : ''}                           
                             >
                             </round-slider>
                             

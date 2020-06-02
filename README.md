@@ -2793,6 +2793,12 @@ Take a look at the animated screenshot below:
 			<td/>
 		</tr>
 		<tr>
+			<td>readOnly</td>
+			<td>nur lesend</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
 			<td>startAngle</td>
 			<td>start angle</td>
 			<td>number</td>
@@ -5100,6 +5106,8 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
+* (Scrounger): Round Slider lib updated to v0.5.0
+* (Scrounger): Round Slider Widget: readonly option added
 
 ### 0.3.14 (2020-06-01)
 * (Scrounger): Table Widget: bug fixes

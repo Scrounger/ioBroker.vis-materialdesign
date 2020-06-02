@@ -227,8 +227,6 @@ vis.binds.materialdesign.table = {
                                     if (existingCell.length === 1) {
                                         if (oldJsonData) {
                                             if (oldJsonData[row] && !myUnderscore.isEqual(Object.values(jsonData[row])[col], Object.values(oldJsonData[row])[col])) {
-                                                console.log(`notEqual: row: ${row}, col: ${col}`);
-
                                                 let colElement = getColElement(row, col, Object.values(jsonData[row])[col], textSize, jsonData[row]);
                                                 existingCell.replaceWith($(colElement));
                                             }
@@ -800,6 +798,7 @@ vis.binds.materialdesign.table = {
                 min: obj.min,
                 max: obj.max,
                 step: obj.step,
+                readOnly: obj.readOnly,
                 startAngle: obj.startAngle,
                 arcLength: obj.arcLength,
                 sliderWidth: obj.sliderWidth,
