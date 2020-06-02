@@ -298,7 +298,7 @@ vis.binds.materialdesign.table = {
                             init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
                         }
 
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign,'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
                                         ${init.button}
                                     </div>`
 
@@ -310,7 +310,7 @@ vis.binds.materialdesign.table = {
                     } else if (objValue.type === 'buttonToggle_icon') {
                         let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
 
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign,'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
                                         ${init.button}
                                     </div>`
 
@@ -327,7 +327,7 @@ vis.binds.materialdesign.table = {
                             init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
                         }
 
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign,'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
                                         ${init.button}
                                     </div>`
 
@@ -340,7 +340,7 @@ vis.binds.materialdesign.table = {
                     } else if (objValue.type === 'buttonState_icon') {
                         let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
 
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign,'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
                                         ${init.button}
                                     </div>`
 
@@ -351,7 +351,7 @@ vis.binds.materialdesign.table = {
                         });
 
                     } else if (objValue.type === 'progress') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 12px;'}">
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign,'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 12px;'}">
                                     </div>`
 
                         myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Progress', true);
@@ -364,7 +364,7 @@ vis.binds.materialdesign.table = {
                             });
                         });
                     } else if (objValue.type === 'progress_circular') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-circular-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; ${objValue.width ? `width: ${objValue.width};` : 'width: 60px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 60px;'}">
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-circular-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign,'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 60px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 60px;'}">
                                     </div>`
 
                         myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Progress Circular', true);
@@ -377,7 +377,7 @@ vis.binds.materialdesign.table = {
                             });
                         });
                     } else if (objValue.type === 'slider') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-slider-vertical materialdesign-slider-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${elementData["oid-working"]}" style="display: inline-block; position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-slider-vertical materialdesign-slider-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${elementData["oid-working"]}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign,'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
                         </div>`
 
                         myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Slider', true);
@@ -391,7 +391,7 @@ vis.binds.materialdesign.table = {
                         });
 
                     } else if (objValue.type === 'slider_round') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-slider-round materialdesign-slider-round-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${elementData["oid-working"]}" style="display: inline-block; position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 60px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 60px;'}">
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-slider-round materialdesign-slider-round-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${elementData["oid-working"]}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign,'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 60px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 60px;'}">
                         </div>`
 
                         myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Slider Round', true);
@@ -406,7 +406,7 @@ vis.binds.materialdesign.table = {
                     } else if (objValue.type === 'switch') {
                         let init = vis.binds.materialdesign.switch.initialize(elementData);
 
-                        element = `<div class="vis-widget materialdesign-widget mdc-form-field ${init.labelPosition} materialdesign-switch materialdesign-switch-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
+                        element = `<div class="vis-widget materialdesign-widget mdc-form-field ${init.labelPosition} materialdesign-switch materialdesign-switch-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign,'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
                                         ${init.myswitch}
                                     </div>`
 
@@ -422,7 +422,7 @@ vis.binds.materialdesign.table = {
                     } else if (objValue.type === 'checkbox') {
                         let init = vis.binds.materialdesign.checkbox.initialize(elementData);
 
-                        element = `<div class="vis-widget materialdesign-widget mdc-form-field ${init.labelPosition} materialdesign-checkbox materialdesign-checkbox-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
+                        element = `<div class="vis-widget materialdesign-widget mdc-form-field ${init.labelPosition} materialdesign-checkbox materialdesign-checkbox-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign,'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
                                         ${init.checkbox}
                                     </div>`
 
@@ -437,7 +437,7 @@ vis.binds.materialdesign.table = {
                         });
                     } else if (objValue.type === 'textfield') {
 
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-input materialdesign-input-table-row_${row}-col_${col}" style="display: inline-block; position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-input materialdesign-input-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign,'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
                                     </div>`
 
                         myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Textfield', true);
@@ -451,7 +451,7 @@ vis.binds.materialdesign.table = {
                         });
 
                     } else if (objValue.type === 'select') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-select materialdesign-select-table-row_${row}-col_${col}" style="display: inline-block; position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-select materialdesign-select-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign,'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
                                     </div>`
 
                         myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Select', true);
@@ -465,7 +465,7 @@ vis.binds.materialdesign.table = {
                         });
 
                     } else if (objValue.type === 'autocomplete') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-autocomplete materialdesign-autocomplete-table-row_${row}-col_${col}" style="display: inline-block; position: relative; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-autocomplete materialdesign-autocomplete-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign,'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
                         </div>`
 
                         myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Autocomplete', true);
@@ -477,6 +477,8 @@ vis.binds.materialdesign.table = {
                                 vis.binds.materialdesign.autocomplete(autocomplete, elementData);
                             });
                         });
+                    }else if (objValue.type === 'html') {
+                        element = objValue.html;
                     }
                 }
 
@@ -1137,6 +1139,8 @@ vis.binds.materialdesign.table = {
             }
 
             return data;
+        } else if (obj.type === 'html') {
+            return obj.html;
         }
     },
     sortByKey: function (array, key, sortASC) {

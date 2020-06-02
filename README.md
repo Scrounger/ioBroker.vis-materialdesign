@@ -1290,6 +1290,14 @@ Take a look at the animated screenshot below:
                 1, 2, 3, ... 
             </td>
         </tr>
+        <tr>
+            <td>verticalAlign</td>
+            <td>vertical alignment</td>
+            <td>string</td>
+            <td>
+                top | middle | bottom
+            </td>
+        </tr>
     </tbody>
 </table>
 
