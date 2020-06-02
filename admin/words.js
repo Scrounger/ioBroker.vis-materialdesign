@@ -2549,6 +2549,18 @@ systemDictionary = {
         "pl": "wiersz koloru tła",
         "zh-cn": "背景色行"
     },
+    "colorRowBackgroundHover": {
+        "en": "hover background color row",
+        "de": "Hintergrundfarbe Zeile Hover",
+        "ru": "навести фон строки цвета",
+        "pt": "pairar linha de cor de fundo",
+        "nl": "zweven achtergrondkleur rij",
+        "fr": "survoler la ligne de couleur d'arrière-plan",
+        "it": "riga di colore di sfondo al passaggio del mouse",
+        "es": "colocar el color de fondo de la fila",
+        "pl": "najedź na wiersz koloru tła",
+        "zh-cn": "悬停背景颜色行"
+    },
     "colorRowText": {
         "en": "text color row",
         "de": "Textfarbe Zeile",

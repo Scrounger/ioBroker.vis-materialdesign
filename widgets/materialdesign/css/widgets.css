@@ -65,6 +65,7 @@
   --materialdesign-color-table-header-row-background: inherit;
   --materialdesign-color-table-header-row-text-color: #44739e;
   --materialdesign-color-table-row-background: inherit;
+  --materialdesign-color-table-row-background-hover: rgba(0, 0, 0, 0.04);
   --materialdesign-color-table-row-text-color: rgba(0, 0, 0, 0.87);
   --materialdesign-color-table-row-divider: rgba(0, 0, 0, 0.12);
 
@@ -1237,6 +1238,10 @@ svg.materialdesign-button__icon {
 
 .mdc-data-table__header-cell:hover .materialdesign-table-header-sort-hidden {
   opacity: 0.5 !important;
+}
+
+.mdc-data-table__row:not(.mdc-data-table__row--selected):hover {
+  background-color: var(--materialdesign-color-table-row-background-hover) !important;
 }
 
 .materialdesign-table-header-sort {

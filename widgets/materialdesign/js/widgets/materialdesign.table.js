@@ -16,6 +16,7 @@ vis.binds.materialdesign.table = {
             $this.get(0).style.setProperty("--materialdesign-color-table-header-row-background", myMdwHelper.getValueFromData(data.colorHeaderRowBackground, ''));
             $this.get(0).style.setProperty("--materialdesign-color-table-header-row-text-color", myMdwHelper.getValueFromData(data.colorHeaderRowText, ''));
             $this.get(0).style.setProperty("--materialdesign-color-table-row-background", myMdwHelper.getValueFromData(data.colorRowBackground, ''));
+            $this.get(0).style.setProperty("--materialdesign-color-table-row-background-hover", myMdwHelper.getValueFromData(data.colorRowBackgroundHover, ''));
             $this.get(0).style.setProperty("--materialdesign-color-table-row-text-color", myMdwHelper.getValueFromData(data.colorRowText, ''));
             $this.get(0).style.setProperty("--materialdesign-color-table-row-divider", myMdwHelper.getValueFromData(data.dividers, ''));
 

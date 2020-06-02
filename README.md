@@ -5108,6 +5108,7 @@ ical2CalendarWidget();
 ### __WORK IN PROGRESS__
 * (Scrounger): Round Slider lib updated to v0.5.0
 * (Scrounger): Round Slider Widget: readonly option added
+* (Scrounger): Table Widget: background color hover option added
 
 ### 0.3.14 (2020-06-01)
 * (Scrounger): Table Widget: bug fixes
