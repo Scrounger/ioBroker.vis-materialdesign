@@ -4725,6 +4725,43 @@ Take a look at the animated screenshot below:
 
 <br>
 
+##### Material Design Icons
+
+<details>
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdwIcon</td>
+			<td><a href="https://materialdesignicons.com/">materialdesignicon name</a></td>
+			<td>string</td>
+			<td>home, place, ...</td>
+		</tr>
+		<tr>
+			<td>mdwIconSize</td>
+			<td>size of icon</td>
+			<td>number</td>
+			<td>0, 1, 2, ... </td>
+		</tr>
+		<tr>
+			<td>mdwIconColor</td>
+			<td>color of icon</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+	</tbody>
+</table>
+</details>
+
+<br>
+
 ### Editor Settings
 
 <table>
