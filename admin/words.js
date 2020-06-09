@@ -9220,5 +9220,29 @@ systemDictionary = {
         "es": "retraso [ms]",
         "pl": "opóźnienie [ms]",
         "zh-cn": "延迟[毫秒]"
+    },
+    "group_listItemCardBackground": {
+        "en": "card background",
+        "de": "Card Hintergrund",
+        "ru": "фон карты",
+        "pt": "fundo do cartão",
+        "nl": "kaart achtergrond",
+        "fr": "fond de carte",
+        "it": "sfondo di carta",
+        "es": "fondo de la tarjeta",
+        "pl": "tło karty",
+        "zh-cn": "卡背景"
+    },
+    "cardUse": {
+        "en": "enable card background",
+        "de": "Card Hintergrund aktivieren",
+        "ru": "включить фон карты",
+        "pt": "ativar o plano de fundo do cartão",
+        "nl": "kaartachtergrond inschakelen",
+        "fr": "activer le fond de carte",
+        "it": "abilita lo sfondo della carta",
+        "es": "habilitar fondo de tarjeta",
+        "pl": "włącz tło karty",
+        "zh-cn": "启用卡背景"
     }
 };

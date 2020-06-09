@@ -257,11 +257,37 @@ vis.binds.materialdesign.iconlist =
                 }
 
                 if (!replace) {
-                    $this.append(`
-                        <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap; width: 100%;"' : ''}>
-                            ${widgetElement}
-                        </div>
-                    `);
+                    if (!myMdwHelper.getBooleanFromData(data.cardUse, false)) {
+                        $this.append(`
+                            <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap; width: 100%;"' : ''}>
+                                ${widgetElement}
+                            </div>
+                        `);
+                    } else {
+                        let colorBackground = myMdwHelper.getValueFromData(data.colorBackground, '');
+                        $this.context.style.setProperty("--materialdesign-color-card-background", colorBackground);
+                        $this.context.style.setProperty("--materialdesign-color-card-title-section-background", myMdwHelper.getValueFromData(data.colorTitleSectionBackground, colorBackground));
+                        $this.context.style.setProperty("--materialdesign-color-card-title", myMdwHelper.getValueFromData(data.colorTitle, ''));
+
+                        let titleFontSize = myMdwHelper.getFontSize(data.titleLayout);
+                        let showTitleSection = 'display: none;';
+                        if (myMdwHelper.getValueFromData(data.title, null) != null) {
+                            showTitleSection = '';
+                        }
+
+                        $this.append(`<div class="materialdesign-html-card mdc-card">
+                                        <div class="materialdesign-html-card card-title-section" style="${showTitleSection}">
+                                            <div class="materialdesign-html-card card-title ${titleFontSize.class}" style="${titleFontSize.style}">${data.title}</div>
+                                        </div>
+                                        <div class="materialdesign-html-card card-text-section iconlist">
+                                            <div class="materialdesign-html-card">
+                                                <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap; width: 100%;"' : ''}>
+                                                    ${widgetElement}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`);
+                    }
                 } else {
                     $this.find(`.${containerClass}`).replaceWith(`
                         <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap; width: 100%;"' : ''}>

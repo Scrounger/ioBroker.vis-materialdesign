@@ -856,6 +856,14 @@ svg.materialdesign-button__icon {
   background-color: var(--materialdesign-color-card-text-section-background);
 }
 
+.materialdesign-html-card.card-text-section.iconlist{
+  visibility: visible;
+  box-sizing: border-box;
+  padding: 0px;
+  background-color: var(--materialdesign-color-card-text-section-background);
+}
+
+
 .materialdesign-html-card.card-title {
   color: var(--materialdesign-color-card-title);
 }
