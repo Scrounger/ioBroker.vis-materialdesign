@@ -5151,7 +5151,7 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
-* (Scrounger): Card Background for whole icon list added
+* (Scrounger): IconList Widget: Card Background for whole icon list added
 * (Scrounger): Table Wigdet: material design icon widget added
 * (Scrounger): Table Wigdet: alignment option for controls added
 * (Scrounger): materialdesignicons library updated to v5.3.45

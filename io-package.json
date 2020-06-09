@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.3.14",
+        "version": "0.3.15",
         "news": {
             "0.3.14": {
                 "en": ": Table Widget: bug fixes",
