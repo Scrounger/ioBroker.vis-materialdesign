@@ -275,6 +275,7 @@ vis.binds.materialdesign.iconlist =
                             showTitleSection = '';
                         }
 
+                        $this.css('overflow', 'visible');
                         $this.append(`<div class="materialdesign-html-card mdc-card">
                                         <div class="materialdesign-html-card card-title-section" style="${showTitleSection}">
                                             <div class="materialdesign-html-card card-title ${titleFontSize.class}" style="${titleFontSize.style}">${data.title}</div>
