@@ -4963,8 +4963,6 @@ Take a look at the animated screenshot below:
 </table>
 </details>
 
-<br>
-
 ##### Material Design Icons
 
 <details>
@@ -5391,7 +5389,9 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
+* (Scrounger): Grid & Mansonry Widget: visibilty by resoltuin bug fix
 * (Scrounger): IconList Widget: Card Background for whole icon list added
+* (Scrounger): Table Wigdet: button link widget added
 * (Scrounger): Table Wigdet: material design icon widget added
 * (Scrounger): Table Wigdet: alignment option for controls added
 * (Scrounger): materialdesignicons library updated to v5.3.45

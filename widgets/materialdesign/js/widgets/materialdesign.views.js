@@ -119,9 +119,9 @@ vis.binds.materialdesign.views = {
 
                             if (currentWidgetWidth !== widgetWidth) {
                                 currentWidgetWidth = widgetWidth;
-                                setColumns();
-                                viewVisibilityByResolution();
+                                setColumns();                                
                                 viewVisibilityByCondition();
+                                viewVisibilityByResolution();
                             }
                         });
 
@@ -144,9 +144,9 @@ vis.binds.materialdesign.views = {
                         let tabletLandscapeCols = myMdwHelper.getNumberFromData(data.tabletLandscapeCols, 3);
                         let tabletLandscapeGaps = myMdwHelper.getNumberFromData(data.tabletLandscapeGaps, desktopGaps);
 
-                        setColumns();
-                        viewVisibilityByResolution();
+                        setColumns();                        
                         viewVisibilityByCondition();
+                        viewVisibilityByResolution();
 
                         // $this.find('.materialdesign-masonry-container').show();
 
@@ -346,9 +346,9 @@ vis.binds.materialdesign.views = {
 
                             if (currentWidgetWidth !== widgetWidth) {
                                 currentWidgetWidth = widgetWidth;
-                                setColumns();
-                                viewVisibilityByResolution();
+                                setColumns();                                
                                 viewVisibilityByCondition();
+                                viewVisibilityByResolution();
                             }
                         });
 
@@ -366,9 +366,9 @@ vis.binds.materialdesign.views = {
                         let tabletLandscapeWidth = myMdwHelper.getNumberFromData(data.tabletLandscapeWidth, 1024);
                         let tabletLandscapeGaps = myMdwHelper.getNumberFromData(data.tabletLandscapeGaps, desktopGaps);
 
-                        setColumns();
-                        viewVisibilityByResolution();
+                        setColumns();                        
                         viewVisibilityByCondition();
+                        viewVisibilityByResolution();
 
                         // $this.find(`.${containerClass}`).show();
 
