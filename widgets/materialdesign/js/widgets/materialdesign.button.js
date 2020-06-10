@@ -84,7 +84,7 @@ vis.binds.materialdesign.button = {
             let labelElement = '';
             if (myMdwHelper.getValueFromData(data.buttontext, null) != null) {
                 labelElement = `<span 
-                                    class="materialdesign-button__label" style="text-align: center; margin-top: 10px;">
+                                    class="materialdesign-button__label" style="text-align: center;">
                                     ${data.buttontext}
                                 </span>`;
             }
