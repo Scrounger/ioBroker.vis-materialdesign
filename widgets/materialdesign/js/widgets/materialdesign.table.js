@@ -283,7 +283,7 @@ vis.binds.materialdesign.table = {
                 }
 
                 if (data.attr('colType' + col) === 'image') {
-                    objValue = `<img src="${objValue}" style="height: auto; vertical-align: middle; width: ${myMdwHelper.getValueFromData(data.attr('imageSize' + col), '', '', 'px;')}">`;
+                    objValue = `<img src="${objValue}" style="max-height: ${(myMdwHelper.getNumberFromData(data.rowHeight, null) !== null) ? data.rowHeight + 'px' : 'auto'}; auto; vertical-align: middle; max-width: ${myMdwHelper.getValueFromData(data.attr('imageSize' + col), '', '', 'px;')}">`;
                 }
 
                 let element = `${prefix}${objValue}${suffix}`
