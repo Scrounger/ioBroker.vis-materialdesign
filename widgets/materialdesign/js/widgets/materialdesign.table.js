@@ -350,6 +350,37 @@ vis.binds.materialdesign.table = {
                             vis.binds.materialdesign.button.handleState(btn, elementData);
                         });
 
+
+                    } else if (objValue.type === 'buttonLink' || objValue.type === 'buttonLink_vertical') {
+
+                        let init = vis.binds.materialdesign.button.initializeButton(elementData);
+                        if (objValue.type === 'buttonLink_vertical') {
+                            init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
+                        }
+
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
+                                        ${init.button}
+                                    </div>`
+
+                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Link', function () {
+                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
+                            vis.binds.materialdesign.addRippleEffect(btn, elementData);
+                            vis.binds.materialdesign.button.handleLink(btn, elementData);
+                        });
+
+                    } else if (objValue.type === 'buttonLink_icon') {
+                        let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
+
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
+                                        ${init.button}
+                                    </div>`
+
+                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Link Icon', function () {
+                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
+                            vis.binds.materialdesign.addRippleEffect(btn, elementData, true);
+                            vis.binds.materialdesign.button.handleLink(btn, elementData);
+                        });                        
+
                     } else if (objValue.type === 'progress') {
                         element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 12px;'}">
                                     </div>`
@@ -708,6 +739,49 @@ vis.binds.materialdesign.table = {
                 lockIconSize: obj.lockIconSize,
                 lockIconColor: obj.lockIconColor,
                 lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+        } else if (obj.type === 'buttonLink') {
+            return {
+                wid: widgetId,
+
+                buttonStyle: obj.buttonStyle,
+                href: obj.href,
+                openNewWindow: obj.openNewWindow,
+                buttontext: obj.buttontext,
+                colorPress: obj.colorPress,
+                labelWidth: obj.labelWidth,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight
+            }
+        } else if (obj.type === 'buttonLink_vertical') {
+            return {
+                wid: widgetId,
+
+                buttonStyle: obj.buttonStyle,
+                href: obj.href,
+                openNewWindow: obj.openNewWindow,
+                buttontext: obj.buttontext,
+                colorPress: obj.colorPress,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight
+            }
+        } else if (obj.type === 'buttonLink_icon') {
+            return {
+                wid: widgetId,
+
+                href: obj.href,
+                openNewWindow: obj.openNewWindow,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconHeight: obj.iconHeight,
+                colorPress: obj.colorPress
             }
         } else if (obj.type === 'progress') {
             return {
