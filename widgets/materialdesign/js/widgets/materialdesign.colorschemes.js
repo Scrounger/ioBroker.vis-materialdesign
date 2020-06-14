@@ -42,7 +42,7 @@ vis.binds.materialdesign.colorScheme = {
                 let result = [];
                 let selected = schemes[schemeName];
 
-                if (dataSize && selected) {
+                if (dataSize && selected && selected.length > 0) {
                     let repeats = Math.ceil(dataSize + 1 / selected.length);
 
                     for (var i = 0; i <= repeats - 1; i++) {

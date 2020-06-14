@@ -553,7 +553,7 @@ vis.binds.materialdesign.table = {
             try {
                 jsonData = JSON.parse(input)
             } catch (err) {
-                console.error(`[Table - ${data.wid}] getJsonData: input: ${input}, error: ${err.message}`);
+                console.error(`[Table - ${data.wid}] getJsonData: cannot parse json string! input: ${input}, error: ${err.message}`);
             }
         } else {
             jsonData = input;

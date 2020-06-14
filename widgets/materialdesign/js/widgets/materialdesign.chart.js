@@ -1121,7 +1121,7 @@ vis.binds.materialdesign.chart = {
 
                                         let graphObj = {
                                             data: isTimeAxis ? graph.data : graph.data.map(Number, null),
-                                            label: graph.legendText,
+                                            label: myMdwHelper.getValueFromData(graph.legendText, ""),
                                             type: graph.type,
                                             order: myMdwHelper.getNumberFromData(graph.displayOrder, i),
                                             yAxisID: `yAxis_id_${myMdwHelper.getNumberFromData(graph.yAxis_id, i)}`,
@@ -1242,7 +1242,7 @@ vis.binds.materialdesign.chart = {
                                                     padding: myMdwHelper.getNumberFromData(graph.yAxis_distance, myMdwHelper.getNumberFromData(data.yAxisValueDistanceToAxis, 0)),
                                                     callback: function (value, index, values) {
                                                         let axisId = this.id.replace('yAxis_id_', '');
-                                                        return `${myMdwHelper.formatNumber(value, jsonData.graphs[axisId].yAxis_minimumDigits, jsonData.graphs[axisId].yAxis_maximumDigits)}${myMdwHelper.getValueFromData(jsonData.graphs[axisId].yAxis_appendix, '')}`.split('\\n');
+                                                        return `${myMdwHelper.formatNumber(value, myMdwHelper.getNumberFromData(jsonData.graphs[axisId].yAxis_minimumDigits, 0), myMdwHelper.getNumberFromData(jsonData.graphs[axisId].yAxis_maximumDigits, 0))}${myMdwHelper.getValueFromData(jsonData.graphs[axisId].yAxis_appendix, '')}`.split('\\n');
                                                     }
                                                 },
                                                 gridLines: {

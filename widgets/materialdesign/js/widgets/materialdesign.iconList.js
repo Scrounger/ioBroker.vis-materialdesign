@@ -100,7 +100,7 @@ vis.binds.materialdesign.iconlist =
                             }
                         ];
                         countOfItems = jsonData.length - 1;
-                        console.error(`[IconList - ${data.wid}] ${_("datapoint '{0}' not exist!").replace('{0}', data.json_string_oid)}`);
+                        console.warn(`[IconList - ${data.wid}] ${_("datapoint '{0}' not exist!").replace('{0}', data.json_string_oid)}`);
                     }
                 } else {
                     countOfItems = data.countListItems;
