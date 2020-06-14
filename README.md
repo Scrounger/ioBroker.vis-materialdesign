@@ -5389,6 +5389,7 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
+* (Scrounger): prevent set value in vis editor
 * (Scrounger): Grid & Mansonry Widget: visibilty by resoltuin bug fix
 * (Scrounger): IconList Widget: Card Background for whole icon list added
 * (Scrounger): Table Wigdet: button link widget added
