@@ -571,7 +571,10 @@ vis.binds.materialdesign.helper = {
                 if (!vis.editMode && event && event.message && event.message.includes('materialdesign')) {
                     // only send to sentry, if error is at runtime and fired by MDW
 
-                    if (!event.message.includes('cannot parse json string')) {
+                    if (!event.message.includes('cannot parse json string') &&                                          // ignore json parse errors
+                        !/\b(Cannot access)\b .* \b(before initialization)\b/g.test(event.message)) {                   // ignore lib init errors
+
+
                         event.message = event.message.replace(new RegExp("( - w\\d+)", "g"), "");   // remove data.wid from message
                         return event;
                     }
