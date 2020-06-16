@@ -106,7 +106,6 @@ vis.binds.materialdesign.table = {
                         $this.find('.mdc-data-table__header-cell').click(function (obj) {
                             let colIndex = $(this).attr('colIndex');
 
-
                             let jsonData = [];
                             if (myMdwHelper.getValueFromData(data.oid, null) !== null && vis.states.attr(data.oid + '.val') !== null) {
                                 jsonData = vis.binds.materialdesign.table.getJsonData(vis.states.attr(data.oid + '.val'), data);
@@ -114,32 +113,35 @@ vis.binds.materialdesign.table = {
                                 jsonData = JSON.parse(data.dataJson)
                             }
 
-                            sortByKey = (myMdwHelper.getValueFromData(data.attr('sortKey' + colIndex), null) !== null) ? data.attr('sortKey' + colIndex) : Object.keys(jsonData[0])[colIndex];
+                            if (jsonData && jsonData.length > 0) {
+                                sortByKey = (myMdwHelper.getValueFromData(data.attr('sortKey' + colIndex), null) !== null) ? data.attr('sortKey' + colIndex) : Object.keys(jsonData[0])[colIndex];
 
-                            if ($(this).attr('sort')) {
-                                if ($(this).attr('sort') === 'ASC') {
-                                    sortASC = false;
-                                    $(this).attr('sort', 'DESC');
-                                    $(this).find('.materialdesign-table-header-sort').removeClass('materialdesign-table-header-sort-hidden').removeClass('mdi-rotate-180').css('opacity', '1')
+                                if ($(this).attr('sort')) {
+                                    if ($(this).attr('sort') === 'ASC') {
+                                        sortASC = false;
+                                        $(this).attr('sort', 'DESC');
+                                        $(this).find('.materialdesign-table-header-sort').removeClass('materialdesign-table-header-sort-hidden').removeClass('mdi-rotate-180').css('opacity', '1')
+                                    } else {
+                                        sortASC = true;
+                                        $(this).attr('sort', 'ASC');
+                                        $(this).find('.materialdesign-table-header-sort').removeClass('materialdesign-table-header-sort-hidden').addClass('mdi-rotate-180').css('opacity', '1')
+                                    }
                                 } else {
+                                    // sort order is not defined -> sortASC
                                     sortASC = true;
                                     $(this).attr('sort', 'ASC');
-                                    $(this).find('.materialdesign-table-header-sort').removeClass('materialdesign-table-header-sort-hidden').addClass('mdi-rotate-180').css('opacity', '1')
+                                    $(this).find('.materialdesign-table-header-sort').removeClass('materialdesign-table-header-sort-hidden').addClass('mdi-rotate-180').css('opacity', '1');
                                 }
-                            } else {
-                                // sort order is not defined -> sortASC
-                                sortASC = true;
-                                $(this).attr('sort', 'ASC');
-                                $(this).find('.materialdesign-table-header-sort').removeClass('materialdesign-table-header-sort-hidden').addClass('mdi-rotate-180').css('opacity', '1');
+
+
+                                $('.mdc-data-table__header-cell').each(function () {
+                                    if ($(this).attr('colIndex') !== colIndex) {
+                                        $(this).find('.materialdesign-table-header-sort').css('opacity', '0').addClass('materialdesign-table-header-sort-hidden');
+                                    }
+                                });
+
+                                vis.binds.materialdesign.table.getContentElements($this, null, data, vis.binds.materialdesign.table.sortByKey(jsonData, sortByKey, sortASC));      //TODO: sort key by user defined
                             }
-
-                            $('.mdc-data-table__header-cell').each(function () {
-                                if ($(this).attr('colIndex') !== colIndex) {
-                                    $(this).find('.materialdesign-table-header-sort').css('opacity', '0').addClass('materialdesign-table-header-sort-hidden');
-                                }
-                            });
-
-                            vis.binds.materialdesign.table.getContentElements($this, null, data, vis.binds.materialdesign.table.sortByKey(jsonData, sortByKey, sortASC));      //TODO: sort key by user defined
                         });
                     }
                 });
@@ -379,7 +381,7 @@ vis.binds.materialdesign.table = {
                             let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
                             vis.binds.materialdesign.addRippleEffect(btn, elementData, true);
                             vis.binds.materialdesign.button.handleLink(btn, elementData);
-                        });                        
+                        });
 
                     } else if (objValue.type === 'progress') {
                         element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 12px;'}">
