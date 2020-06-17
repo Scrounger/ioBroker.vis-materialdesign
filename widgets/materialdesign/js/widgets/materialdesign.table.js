@@ -194,7 +194,7 @@ vis.binds.materialdesign.table = {
                         let until = (Object.keys(jsonData[row]).length - 1 > data.countCols) ? data.countCols : Object.keys(jsonData[row]).length - 1;
 
                         for (var col = 0; col <= until; col++) {
-                            if (data.attr('showColumn' + col)) {
+                            if (data.attr('showColumn' + col) && Object.values(jsonData[row])[col]) {
                                 let textSize = myMdwHelper.getFontSize(data.attr('colTextSize' + col));
 
                                 let colElement = getColElement(row, col, Object.values(jsonData[row])[col], textSize, jsonData[row]);
