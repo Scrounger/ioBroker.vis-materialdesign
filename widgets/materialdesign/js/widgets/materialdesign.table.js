@@ -194,7 +194,8 @@ vis.binds.materialdesign.table = {
                         let until = (Object.keys(jsonData[row]).length - 1 > data.countCols) ? data.countCols : Object.keys(jsonData[row]).length - 1;
 
                         for (var col = 0; col <= until; col++) {
-                            if (data.attr('showColumn' + col) && Object.values(jsonData[row])[col]) {
+                            if (data.attr('showColumn' + col) && Object.values(jsonData[row])) {
+
                                 let textSize = myMdwHelper.getFontSize(data.attr('colTextSize' + col));
 
                                 let colElement = getColElement(row, col, Object.values(jsonData[row])[col], textSize, jsonData[row]);
@@ -226,7 +227,7 @@ vis.binds.materialdesign.table = {
                                 let textSize = myMdwHelper.getFontSize(data.attr('colTextSize' + col));
 
                                 let existingCell = $this.find(`#cell-row${row}-col${col}`);
-                                if (Object.values(jsonData[row])[col]) {
+                                if (Object.values(jsonData[row])) {
                                     if (existingCell.length === 1) {
                                         if (oldJsonData) {
                                             if (oldJsonData[row] && !myUnderscore.isEqual(Object.values(jsonData[row])[col], Object.values(oldJsonData[row])[col])) {
