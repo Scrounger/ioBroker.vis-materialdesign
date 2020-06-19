@@ -32,14 +32,13 @@ vis.binds.materialdesign.table = {
             tableElement.push(`<div class="mdc-data-table ${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'fixed-header' : ''} ${tableLayout}" style="width: 100%; height: 100%;">
                                     <table class="mdc-data-table__table" aria-label="Material Design Widgets Table" style="width: 100%; height: 100%;">`)
 
-            tableElement.push(`<thead ${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'style="position: sticky; top: 0;"' : ''}>
+            tableElement.push(`<thead style="${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'position: sticky; top: 0;' : ''} ${myMdwHelper.getBooleanFromData(data.showHeader, false) ? '' : 'display: none;'}">
                                     <tr class="mdc-data-table__header-row" style="height: ${(myMdwHelper.getNumberFromData(data.headerRowHeight, null) !== null) ? data.headerRowHeight + 'px' : '1px'};">`)
 
 
-            if (data.showHeader) {
-                for (var i = 0; i <= data.countCols; i++) {
-                    if (data.attr('showColumn' + i)) {
-                        tableElement.push(`<th class="mdc-data-table__header-cell ${headerFontSize.class}" 
+            for (var i = 0; i <= data.countCols; i++) {
+                if (data.attr('showColumn' + i)) {
+                    tableElement.push(`<th class="mdc-data-table__header-cell ${headerFontSize.class}" 
                                             colIndex="${i}" 
                                             role="columnheader" 
                                             scope="col" 
@@ -52,7 +51,6 @@ vis.binds.materialdesign.table = {
                                                     ${myMdwHelper.getValueFromData(data.attr('label' + i), 'col ' + i)}
                                                     <span class="mdi mdi-triangle materialdesign-icon-image materialdesign-table-header-sort materialdesign-table-header-sort-hidden"></span>
                                             </th>`)
-                    }
                 }
             }
             tableElement.push(`</tr>
