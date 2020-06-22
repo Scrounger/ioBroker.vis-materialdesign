@@ -1205,7 +1205,7 @@ vis.binds.materialdesign.chart = {
                                                     borderWidth: myMdwHelper.getNumberFromData(graph.barBorderWidth, undefined),
                                                     hoverBorderColor: myMdwHelper.getValueFromData(graph.barBorderColorHover, undefined),
                                                     hoverBorderWidth: myMdwHelper.getNumberFromData(graph.barBorderWidthHover, undefined),
-                                                    stack: myMdwHelper.getNumberFromData(graph.barStackId, (myMdwHelper.getBooleanFromData(graph.barIsStacked, false)) ? 0 : 5000),
+                                                    stack: myMdwHelper.getNumberFromData(graph.barStackId, (myMdwHelper.getBooleanFromData(graph.barIsStacked, false)) ? 0 : undefined),
 
                                                     // Editor Daten
                                                     categoryPercentage: myMdwHelper.getNumberFromData(data.barWidth, 80) / 100,
