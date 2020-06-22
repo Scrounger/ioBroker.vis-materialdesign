@@ -1282,7 +1282,7 @@ vis.binds.materialdesign.chart = {
                                             myChartHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
                                                 data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.xAxisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
                                                 data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
-                                                data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength, data.xAxisZeroLineWidth, data.xAxisZeroLineColor, data.xAxisOffsetGridLines, undefined, undefined, data.xAxisMinRotation, data.xAxisMaxRotation),
+                                                data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength, data.xAxisZeroLineWidth, data.xAxisZeroLineColor, data.xAxisOffsetGridLines, undefined, undefined, data.xAxisMinRotation, data.xAxisMaxRotation, isTimeAxis),
                                             timeAxisSettings
                                         ));
 
@@ -1508,7 +1508,7 @@ vis.binds.materialdesign.chart.helper = {
     },
     get_X_AxisObject: function (chartType, xAxisPosition, xAxisTitle, xAxisTitleColor, xAxisTitleFontFamily, xAxisTitleFontSize, xAxisShowAxisLabels, axisValueMin, axisValueMax, axisValueStepSize,
         axisMaxLabel, axisLabelAutoSkip, axisValueAppendText, xAxisValueLabelColor, xAxisValueFontFamily, xAxisValueFontSize, xAxisValueDistanceToAxis, xAxisGridLinesColor, xAxisGridLinesWitdh,
-        xAxisShowAxis, xAxisShowGridLines, xAxisShowTicks, xAxisTickLength, xAxisZeroLineWidth, xAxisZeroLineColor, xAxisOffsetGridLines, axisValueMinDigits, axisValueMaxDigits, minRotation, maxRotation) {
+        xAxisShowAxis, xAxisShowGridLines, xAxisShowTicks, xAxisTickLength, xAxisZeroLineWidth, xAxisZeroLineColor, xAxisOffsetGridLines, axisValueMinDigits, axisValueMaxDigits, minRotation, maxRotation, isTimeAxis) {
         return {
             position: xAxisPosition,
             scaleLabel: {       // x-Axis title
@@ -1535,6 +1535,7 @@ vis.binds.materialdesign.chart.helper = {
                 fontFamily: myMdwHelper.getValueFromData(xAxisValueFontFamily, undefined),
                 fontSize: myMdwHelper.getNumberFromData(xAxisValueFontSize, undefined),
                 padding: myMdwHelper.getNumberFromData(xAxisValueDistanceToAxis, 0),
+                source: isTimeAxis ? 'data' : 'auto'
             },
             gridLines: {
                 display: true,
