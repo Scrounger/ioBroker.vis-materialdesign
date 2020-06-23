@@ -1795,15 +1795,17 @@ vis.binds.materialdesign.chart.helper = {
                         function getGradient(chart, graph, gradientColors) {
                             const scale = chart.scales[graph.yAxisID];
 
-                            gradientColors.forEach(item => {
-                                const pixel = scale.getPixelForValue(item.value);
-                                const stop = Math.max(scale.getDecimalForPixel(pixel), 0);
+                            if (gradientColors && gradientColors.length > 0) {
+                                gradientColors.forEach(item => {
+                                    const pixel = scale.getPixelForValue(item.value);
+                                    const stop = Math.max(scale.getDecimalForPixel(pixel), 0);
 
-                                if (stop <= 1) {
-                                    // This if can fail if the levels are outside the scale bounds.
-                                    gradient.addColorStop(stop, chroma(item.color).css());
-                                }
-                            });
+                                    if (stop <= 1) {
+                                        // This if can fail if the levels are outside the scale bounds.
+                                        gradient.addColorStop(stop, chroma(item.color).css());
+                                    }
+                                });
+                            }
 
                             return gradient
                         }
