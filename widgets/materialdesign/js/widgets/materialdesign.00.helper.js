@@ -555,7 +555,50 @@ vis.binds.materialdesign.helper = {
             })
         }
     },
+    generateUuidv4() {
+        return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+        );
+    },
     initializeSentry(version) {
+        const fileName = 'materialdesign.sentry'
+
+        vis.conn.readFile(fileName, function (err, data) {
+            if (err === 'Not exists') {
+                const uuid = vis.binds.materialdesign.helper.generateUuidv4();
+
+                vis.conn.writeFile(fileName, uuid, function (err) {
+                    if (!err) {
+                        vis.binds.materialdesign.helper._initializeSentry(version, uuid);
+                    } else {
+                        vis.binds.materialdesign.helper._initializeSentry(version, 'uuid_error');
+                    }
+                });
+            } else {
+                if (data !== 'disabled') {
+                    // TODO: check if is uuid format
+
+                    if (/^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i.test(data)) {
+                        vis.binds.materialdesign.helper._initializeSentry(version, data)
+                    } else {
+                        console.warn('uuid is not valid -> recreate');
+                        const uuid = vis.binds.materialdesign.helper.generateUuidv4();
+
+                        vis.conn.writeFile(fileName, uuid, function (err) {
+                            if (!err) {
+                                vis.binds.materialdesign.helper._initializeSentry(version, uuid);
+                            } else {
+                                vis.binds.materialdesign.helper._initializeSentry(version, 'uuid_error');
+                            }
+                        });
+                    }
+                } else {
+                    console.log('sentry is deactivated for vis-materialdesign');
+                }
+            }
+        })
+    },
+    _initializeSentry(version, uuid) {
         Sentry.init({
             dsn: 'https://888b0efc877b4b12a8a83e3c1fb7fe1a@sentry.iobroker.net/77',
             debug: false,
@@ -574,7 +617,6 @@ vis.binds.materialdesign.helper = {
                     if (!event.message.includes('cannot parse json string') &&                                          // ignore json parse errors
                         !/\b(Cannot access)\b .* \b(before initialization)\b/g.test(event.message)) {                   // ignore lib init errors
 
-
                         event.message = event.message.replace(new RegExp("( - w\\d+)", "g"), "");   // remove data.wid from message
                         return event;
                     }
@@ -584,8 +626,10 @@ vis.binds.materialdesign.helper = {
 
         Sentry.configureScope(function (scope) {
             scope.setExtra("vis version", vis.version);
-            scope.setUser(null);
+            scope.setUser({ id: uuid });
         });
+
+        console.log('sentry initialized for vis-materialdesign');
     }
 };
 
