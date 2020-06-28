@@ -5398,6 +5398,7 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
+* (Scrounger): possibility to deactivate sentry implemented -> see documentation
 * (Scrounger): Fixed some bugs reported via Sentry
 * (Scrounger): prevent set value in vis editor
 * (Scrounger): Grid & Mansonry Widget: visibilty by resoltuin bug fix
