@@ -303,6 +303,8 @@ vis.binds.materialdesign.table = {
                                         ${init.button}
                                     </div>`
 
+                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button Toggle', true);
+
                         myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle', function () {
                             let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
                             vis.binds.materialdesign.addRippleEffect(btn, elementData);
@@ -314,6 +316,8 @@ vis.binds.materialdesign.table = {
                         element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
                                         ${init.button}
                                     </div>`
+
+                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button Toggle Icon', true);
 
                         myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Icon', function () {
                             let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
@@ -332,6 +336,8 @@ vis.binds.materialdesign.table = {
                                         ${init.button}
                                     </div>`
 
+                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button State', true);
+
                         myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button State', function () {
                             let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
                             vis.binds.materialdesign.addRippleEffect(btn, elementData);
@@ -344,6 +350,8 @@ vis.binds.materialdesign.table = {
                         element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
                                         ${init.button}
                                     </div>`
+
+                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button State Icon', true);
 
                         myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button State Icon', function () {
                             let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
