@@ -549,6 +549,7 @@ vis.binds.materialdesign.table = {
                             font-family: ${myMdwHelper.getValueFromData(data.attr('fontFamily' + col), '')};
                             white-space: ${(data.attr('colNoWrap' + col) ? 'nowrap' : 'unset')};
                             ${(myMdwHelper.getNumberFromData(data.attr('columnWidth' + col), null) !== null) ? `width: ${data.attr('columnWidth' + col)}px;` : ''};
+                            ${(objValue && objValue.offsetFromTop) ? `top: ${objValue.offsetFromTop}; position: relative;` : ''}
                             ">
                                 ${element}
                         </td>`
