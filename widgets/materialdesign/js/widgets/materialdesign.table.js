@@ -339,7 +339,7 @@ vis.binds.materialdesign.table = {
                         myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button State', true);
 
                         myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button State', function () {
-                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
+                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
                             vis.binds.materialdesign.addRippleEffect(btn, elementData);
                             vis.binds.materialdesign.button.handleState(btn, elementData);
                         });
@@ -354,7 +354,7 @@ vis.binds.materialdesign.table = {
                         myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button State Icon', true);
 
                         myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button State Icon', function () {
-                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
+                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
                             vis.binds.materialdesign.addRippleEffect(btn, elementData, true);
                             vis.binds.materialdesign.button.handleState(btn, elementData);
                         });
