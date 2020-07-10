@@ -49,8 +49,7 @@ vis.binds.materialdesign.views = {
                     let itemList = $this.find('.materialdesign-masonry-item[visibilityOid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
 
                     itemList.each(function (d) {
-                        let index = itemList.eq(d).attr('itemindex');
-                        viewVisibilityByCondition(index, newVal);
+                        setViewVisibilityByCondition($this.width());
                     });
                 });
             }
@@ -119,9 +118,8 @@ vis.binds.materialdesign.views = {
 
                             if (currentWidgetWidth !== widgetWidth) {
                                 currentWidgetWidth = widgetWidth;
-                                setColumns();                                
-                                viewVisibilityByCondition();
-                                viewVisibilityByResolution();
+                                setColumns();
+                                setViewVisibilityByCondition(currentWidgetWidth);
                             }
                         });
 
@@ -144,9 +142,8 @@ vis.binds.materialdesign.views = {
                         let tabletLandscapeCols = myMdwHelper.getNumberFromData(data.tabletLandscapeCols, 3);
                         let tabletLandscapeGaps = myMdwHelper.getNumberFromData(data.tabletLandscapeGaps, desktopGaps);
 
-                        setColumns();                        
-                        viewVisibilityByCondition();
-                        viewVisibilityByResolution();
+                        setColumns();
+                        setViewVisibilityByCondition(currentWidgetWidth);
 
                         // $this.find('.materialdesign-masonry-container').show();
 
@@ -204,37 +201,34 @@ vis.binds.materialdesign.views = {
                                 }
                             }
                         }
-
-                        function viewVisibilityByResolution() {
-                            for (var i = 0; i <= data.countViews; i++) {
-                                let lessThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionLessThan' + i), 50000);
-                                let greaterThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionGreaterThan' + i), 0);
-
-                                if (currentWidgetWidth < greaterThan) {
-                                    $this.find(`#masonry_item_${i}`).hide();
-                                } else if (currentWidgetWidth >= greaterThan && currentWidgetWidth <= lessThan) {
-                                    $this.find(`#masonry_item_${i}`).show();
-                                } else if (currentWidgetWidth > lessThan) {
-                                    $this.find(`#masonry_item_${i}`).hide();
-                                } else {
-                                    $this.find(`#masonry_item_${i}`).show();
-                                }
-                            }
-                        }
-
                     });
                 });
             }
 
-            function viewVisibilityByCondition() {
+            function setViewVisibilityByCondition(currentWidgetWidth) {
                 for (var i = 0; i <= data.countViews; i++) {
+                    let lessThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionLessThan' + i), 50000);
+                    let greaterThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionGreaterThan' + i), 0);
+
                     let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
                     let visibility = myMdwHelper.getVisibility(val, 'visibilityOid' + i, data.attr('visibilityCondition' + i), data.attr('visibilityConditionValue' + i));
 
-                    if (visibility) {
+                    if (currentWidgetWidth < greaterThan) {
+                        $this.find(`#masonry_item_${i}`).hide();
+                    } else if (currentWidgetWidth >= greaterThan && currentWidgetWidth <= lessThan) {
+                        if (visibility) {
+                            $this.find(`#masonry_item_${i}`).hide();
+                        } else {
+                            $this.find(`#masonry_item_${i}`).show();
+                        }
+                    } else if (currentWidgetWidth > lessThan) {
                         $this.find(`#masonry_item_${i}`).hide();
                     } else {
-                        $this.find(`#masonry_item_${i}`).show();
+                        if (visibility) {
+                            $this.find(`#masonry_item_${i}`).hide();
+                        } else {
+                            $this.find(`#masonry_item_${i}`).show();
+                        }
                     }
                 }
             }
@@ -276,8 +270,7 @@ vis.binds.materialdesign.views = {
                     let itemList = $this.find('.col[visibilityOid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
 
                     itemList.each(function (d) {
-                        let index = itemList.eq(d).attr('itemindex');
-                        viewVisibilityByCondition(index, newVal);
+                        setViewVisibilityByCondition($this.width());
                     });
                 });
             }
@@ -346,9 +339,8 @@ vis.binds.materialdesign.views = {
 
                             if (currentWidgetWidth !== widgetWidth) {
                                 currentWidgetWidth = widgetWidth;
-                                setColumns();                                
-                                viewVisibilityByCondition();
-                                viewVisibilityByResolution();
+                                setColumns();
+                                setViewVisibilityByCondition(currentWidgetWidth);
                             }
                         });
 
@@ -366,9 +358,8 @@ vis.binds.materialdesign.views = {
                         let tabletLandscapeWidth = myMdwHelper.getNumberFromData(data.tabletLandscapeWidth, 1024);
                         let tabletLandscapeGaps = myMdwHelper.getNumberFromData(data.tabletLandscapeGaps, desktopGaps);
 
-                        setColumns();                        
-                        viewVisibilityByCondition();
-                        viewVisibilityByResolution();
+                        setColumns();
+                        setViewVisibilityByCondition(currentWidgetWidth);
 
                         // $this.find(`.${containerClass}`).show();
 
@@ -472,41 +463,39 @@ vis.binds.materialdesign.views = {
                             }
                         }
 
-                        function viewVisibilityByResolution() {
-                            for (var i = 0; i <= data.countViews; i++) {
-                                let lessThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionLessThan' + i), 50000);
-                                let greaterThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionGreaterThan' + i), 0);
 
-                                if (currentWidgetWidth < greaterThan) {
-                                    $this.find(`#grid-item${i}`).hide();
-                                } else if (currentWidgetWidth >= greaterThan && currentWidgetWidth <= lessThan) {
-                                    $this.find(`#grid-item${i}`).show();
-                                } else if (currentWidgetWidth > lessThan) {
-                                    $this.find(`#grid-item${i}`).hide();
-                                } else {
-                                    $this.find(`#grid-item${i}`).show();
-                                }
-                            }
-                        }
 
                     });
                 });
             }
 
-            function viewVisibilityByCondition() {
+            function setViewVisibilityByCondition(currentWidgetWidth) {
                 for (var i = 0; i <= data.countViews; i++) {
-                    let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
+                    let lessThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionLessThan' + i), 50000);
+                    let greaterThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionGreaterThan' + i), 0);
 
+                    let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
                     let visibility = myMdwHelper.getVisibility(val, 'visibilityOid' + i, data.attr('visibilityCondition' + i), data.attr('visibilityConditionValue' + i));
 
-                    if (visibility) {
+                    if (currentWidgetWidth < greaterThan) {
+                        $this.find(`#grid-item${i}`).hide();
+                    } else if (currentWidgetWidth >= greaterThan && currentWidgetWidth <= lessThan) {
+                        if (visibility) {
+                            $this.find(`#grid-item${i}`).hide();
+                        } else {
+                            $this.find(`#grid-item${i}`).show();
+                        }
+                    } else if (currentWidgetWidth > lessThan) {
                         $this.find(`#grid-item${i}`).hide();
                     } else {
-                        $this.find(`#grid-item${i}`).show();
+                        if (visibility) {
+                            $this.find(`#grid-item${i}`).hide();
+                        } else {
+                            $this.find(`#grid-item${i}`).show();
+                        }
                     }
                 }
             }
-
         } catch (ex) {
             console.error(`[Grid Views - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
