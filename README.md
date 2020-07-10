@@ -1329,11 +1329,11 @@ Take a look at the animated screenshot below:
             </td>
         </tr>
         <tr>
-            <td>offsetFromTop</td>
-            <td>offset from top row</td>
+            <td>cellStyleAttrs</td>
+            <td>css style attributes for cell</td>
             <td>string</td>
             <td>
-                -5px | 5% | ...
+                ...
             </td>
         </tr>
     </tbody>
