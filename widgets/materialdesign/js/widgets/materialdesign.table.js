@@ -32,13 +32,13 @@ vis.binds.materialdesign.table = {
             tableElement.push(`<div class="mdc-data-table ${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'fixed-header' : ''} ${tableLayout}" style="width: 100%; height: 100%;">
                                     <table class="mdc-data-table__table" aria-label="Material Design Widgets Table" style="width: 100%; height: 100%;">`)
 
-            tableElement.push(`<thead style="${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'position: sticky; top: 0;' : ''} ${myMdwHelper.getBooleanFromData(data.showHeader, false) ? '' : 'display: none;'}">
+            tableElement.push(`<thead style="${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'position: sticky; top: 0;' : ''}">
                                     <tr class="mdc-data-table__header-row" style="height: ${(myMdwHelper.getNumberFromData(data.headerRowHeight, null) !== null) ? data.headerRowHeight + 'px' : '1px'};">`)
 
-
-            for (var i = 0; i <= data.countCols; i++) {
-                if (data.attr('showColumn' + i)) {
-                    tableElement.push(`<th class="mdc-data-table__header-cell ${headerFontSize.class}" 
+            if (myMdwHelper.getBooleanFromData(data.showHeader, false)) {
+                for (var i = 0; i <= data.countCols; i++) {
+                    if (data.attr('showColumn' + i)) {
+                        tableElement.push(`<th class="mdc-data-table__header-cell ${headerFontSize.class}" 
                                             colIndex="${i}" 
                                             role="columnheader" 
                                             scope="col" 
@@ -51,6 +51,7 @@ vis.binds.materialdesign.table = {
                                                     ${myMdwHelper.getValueFromData(data.attr('label' + i), 'col ' + i)}
                                                     <span class="mdi mdi-triangle materialdesign-icon-image materialdesign-table-header-sort materialdesign-table-header-sort-hidden"></span>
                                             </th>`)
+                    }
                 }
             }
             tableElement.push(`</tr>
@@ -185,7 +186,8 @@ vis.binds.materialdesign.table = {
                 // row not exist -> create
                 if ($row.length === 0) {
                     if (jsonData[row]) {
-                        tableContent.append(`<tr class="mdc-data-table__row" id="row${row}" style="height: ${(myMdwHelper.getNumberFromData(data.rowHeight, null) !== null) ? data.rowHeight + 'px' : '1px'};">
+                        
+                        tableContent.append(`<tr class="mdc-data-table__row" id="row${row}" style="height: ${(myMdwHelper.getNumberFromData(data.rowHeight, null) !== null) ? data.rowHeight + 'px' : '1px'}; ${row === 0 && !myMdwHelper.getBooleanFromData(data.showHeader, false) ? 'border-top-color: transparent' : ''};">
                                         </tr>`)
 
                         // col items is object
