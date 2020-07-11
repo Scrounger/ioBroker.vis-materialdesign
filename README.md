@@ -1879,6 +1879,18 @@ Take a look at the animated screenshot below:
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
 		</tr>
 		<tr>
+			<td>lockIconBackground</td>
+			<td>background color of lock icon</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>lockBackgroundSizeFactor</td>
+			<td>grow factor of background size</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
 			<td>lockFilterGrayscale</td>
 			<td>gray filter if locked</td>
 			<td>number</td>
@@ -2231,6 +2243,18 @@ Take a look at the animated screenshot below:
 			<td>icon color</td>
 			<td>string</td>
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>lockIconBackground</td>
+			<td>background color of lock icon</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>lockBackgroundSizeFactor</td>
+			<td>grow factor of background size</td>
+			<td>number</td>
+			<td/>
 		</tr>
 		<tr>
 			<td>lockFilterGrayscale</td>
@@ -5406,6 +5430,7 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
+* (Scrounger): Icon Button Widget: background color option for lockicon added
 * (Scrounger): possibility to deactivate sentry implemented -> see documentation
 * (Scrounger): Fixed some bugs reported via Sentry
 * (Scrounger): prevent set value in vis editor

@@ -23,8 +23,11 @@ vis.binds.materialdesign.button = {
                 }
             } else {
                 if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {
+                    let iconSize = myMdwHelper.getNumberFromData(data.lockIconSize, 16);
+                    let elementSize = myMdwHelper.getValueFromData(data.lockIconBackground, undefined) ? iconSize * myMdwHelper.getNumberFromData(data.lockBackgroundSizeFactor, 1) : iconSize;
+
                     lockIcon = `<span class="mdi mdi-${myMdwHelper.getValueFromData(data.lockIcon, 'lock-outline')} materialdesign-lock-icon" 
-                            style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; ${(myMdwHelper.getNumberFromData(data.lockIconSize, undefined) !== '0') ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} ${(myMdwHelper.getValueFromData(data.lockIconColor, null) !== null) ? `color: ${data.lockIconColor};` : ''}"></span>`;
+                            style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; width: ${elementSize}px; height: ${elementSize}px; line-height: ${elementSize}px; text-align: center; font-size: ${iconSize}px; ${(myMdwHelper.getValueFromData(data.lockIconColor, null) !== null) ? `color: ${data.lockIconColor};` : ''} ${myMdwHelper.getValueFromData(data.lockIconBackground, undefined)? `background: ${myMdwHelper.getValueFromData(data.lockIconBackground, undefined)}; border-radius: ${elementSize}px`:''}"></span>`;
                 }
             }
 

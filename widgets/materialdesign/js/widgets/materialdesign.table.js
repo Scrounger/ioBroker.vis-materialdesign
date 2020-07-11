@@ -683,6 +683,8 @@ vis.binds.materialdesign.table = {
                 lockIconLeft: obj.lockIconLeft,
                 lockIconSize: obj.lockIconSize,
                 lockIconColor: obj.lockIconColor,
+                lockIconBackground: obj.lockIconBackground,
+                lockBackgroundSizeFactor: obj.lockBackgroundSizeFactor,
                 lockFilterGrayscale: obj.lockFilterGrayscale
             }
         } else if (obj.type === 'buttonState') {
@@ -748,6 +750,8 @@ vis.binds.materialdesign.table = {
                 lockIconLeft: obj.lockIconLeft,
                 lockIconSize: obj.lockIconSize,
                 lockIconColor: obj.lockIconColor,
+                lockIconBackground: obj.lockIconBackground,
+                lockBackgroundSizeFactor: obj.lockBackgroundSizeFactor,
                 lockFilterGrayscale: obj.lockFilterGrayscale
             }
         } else if (obj.type === 'buttonLink') {
