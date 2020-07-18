@@ -5430,7 +5430,7 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
-* (Scrounger): Icon Button Widget: background color option for lockicon added
+* (Scrounger): Icon Button Widget: background color option for lock icon added
 * (Scrounger): possibility to deactivate sentry implemented -> see documentation
 * (Scrounger): Fixed some bugs reported via Sentry
 * (Scrounger): prevent set value in vis editor
