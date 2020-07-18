@@ -579,7 +579,7 @@ D.h. ihr müsst hier z.B. `proxmox.0.lxc_devBroker.status` mit der id Eures Date
 
 
 ### Links
-* [Thema im ioBroker Forum](https://forum.iobroker.net/topic/32232/material-design-widgets-wetter-view)
+* [Thema im ioBroker Forum](https://forum.iobroker.net/topic/35296/material-design-widgets-proxmox)
 
 ### Changelog
 

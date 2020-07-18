@@ -13,7 +13,7 @@ Dieses Skript erzeugt json strings um Proxmox Informationen im VIS mit den Mater
 =========================================================================================================================================================================
 
 --- Links ---
-* Support:          tbd
+* Support:          https://forum.iobroker.net/topic/35296/material-design-widgets-proxmox
 * Github:           https://github.com/Scrounger/ioBroker.vis-materialdesign/tree/master/examples/Proxmox
 
 =========================================================================================================================================================================
