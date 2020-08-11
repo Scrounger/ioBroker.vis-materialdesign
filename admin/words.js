@@ -2322,15 +2322,15 @@ systemDictionary = {
         "zh-cn": "轴间隔线长"
     },
     "group_oids": {
-        "en": "datasets",
-        "de": "Datensätze",
-        "ru": "Наборы данных",
-        "pt": "conjuntos de dados",
-        "nl": "datasets",
-        "fr": "jeux de données",
+        "en": "dataset",
+        "de": "Datensatz",
+        "ru": "Набор данных",
+        "pt": "conjunto de dados",
+        "nl": "dataset",
+        "fr": "base de données",
         "it": "dataset",
-        "es": "conjuntos de datos",
-        "pl": "zestawy danych",
+        "es": "conjunto de datos",
+        "pl": "zbiór danych",
         "zh-cn": "资料集"
     },
     "manual": {
@@ -9484,5 +9484,17 @@ systemDictionary = {
         "es": "color de prensa",
         "pl": "naciśnij kolor",
         "zh-cn": "按颜色"
+    },
+    "aggregate": {
+        "en": "display methode",
+        "de": "Anzeigemethode",
+        "ru": "метод отображения",
+        "pt": "método de exibição",
+        "nl": "weergavemethode",
+        "fr": "méthode d'affichage",
+        "it": "metodo di visualizzazione",
+        "es": "método de visualización",
+        "pl": "sposób wyświetlania",
+        "zh-cn": "显示方式"
     }
 };

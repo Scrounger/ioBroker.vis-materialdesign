@@ -345,7 +345,7 @@ vis.binds.materialdesign.chart = {
                         let operations = [];
                         for (var i = 0; i <= data.dataCount; i++) {
                             if (myMdwHelper.getValueFromData(data.attr('oid' + i), null) !== null) {
-                                operations.push(myChartHelper.getTaskForHistoryData(data.attr('oid' + i), data, dataRangeStartTime, debug))
+                                operations.push(myChartHelper.getTaskForHistoryData(i, data, dataRangeStartTime, debug))
 
                                 if (data.refreshMethod === 'realtime') {
                                     vis.states.bind(data.attr('oid' + i) + '.val', onChange);
@@ -661,7 +661,7 @@ vis.binds.materialdesign.chart = {
                             let operations = [];
                             for (var i = 0; i <= data.dataCount; i++) {
                                 if (myMdwHelper.getValueFromData(data.attr('oid' + i), null) !== null) {
-                                    operations.push(myChartHelper.getTaskForHistoryData(data.attr('oid' + i), data, dataRangeStartTime, debug))
+                                    operations.push(myChartHelper.getTaskForHistoryData(i, data, dataRangeStartTime, debug))
                                 }
                             }
 
@@ -1689,14 +1689,15 @@ vis.binds.materialdesign.chart.helper = {
             }
             `);
     },
-    getTaskForHistoryData: function (id, data, dataRangeStartTime, debug = false) {
+    getTaskForHistoryData: function (index, data, dataRangeStartTime, debug = false) {
         return new Promise((resolve, reject) => {
             try {
+                let id = data.attr('oid' + index);
                 let historyOptions = {
                     instance: data.historyAdapterInstance,
-                    count: parseInt(myMdwHelper.getNumberFromData(data.maxDataPoints, (data.aggregate === 'minmax') ? 50 : 100)),
+                    count: parseInt(myMdwHelper.getNumberFromData(data.maxDataPoints, (data.attr('aggregate' + index) === 'minmax') ? 50 : 100)),
                     step: (myMdwHelper.getNumberFromData(data.minTimeInterval, undefined)) ? parseInt(data.minTimeInterval) * 1000 : undefined,
-                    aggregate: data.aggregate || 'average',
+                    aggregate: data.attr('aggregate' + index) || 'minmax',
                     start: dataRangeStartTime,
                     end: new Date().getTime(),
                     timeout: parseInt(myMdwHelper.getNumberFromData(data.chartTimeout, 2)) * 1000
