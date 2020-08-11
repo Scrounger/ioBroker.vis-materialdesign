@@ -1696,7 +1696,7 @@ vis.binds.materialdesign.chart.helper = {
                 let historyOptions = {
                     instance: data.historyAdapterInstance,
                     count: parseInt(myMdwHelper.getNumberFromData(data.attr('maxDataPoints' + index), (data.attr('aggregate' + index) === 'minmax') ? 50 : 100)),
-                    step: (myMdwHelper.getNumberFromData(data.minTimeInterval, undefined)) ? parseInt(data.minTimeInterval) * 1000 : undefined,
+                    step: (myMdwHelper.getNumberFromData(data.attr('minTimeInterval' + index), undefined)) ? parseInt(data.attr('minTimeInterval' + index)) * 1000 : undefined,
                     aggregate: data.attr('aggregate' + index) || 'minmax',
                     start: dataRangeStartTime,
                     end: new Date().getTime(),
