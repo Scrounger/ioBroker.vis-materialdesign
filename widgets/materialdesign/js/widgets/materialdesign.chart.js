@@ -1389,11 +1389,11 @@ vis.binds.materialdesign.chart = {
                                                     if (!Array.isArray(changedData.datasets[i][prop]) && typeof (changedData.datasets[i][prop]) === 'object') {
                                                         for (var subProp in changedData.datasets[i][prop]) {
                                                             if (!myUnderscore.isEqual(myChart.data.datasets[i][prop][subProp], changedData.datasets[i][prop][subProp])) {
-                                                                console.log(`[JSON Chart ${data.wid}] [onChange]: chart graph '${changedData.datasets[i].label} (${i})' '${prop}.${subProp}' changed`);
+                                                                console.log(`[JSON Chart ${data.wid}] [onChange]: chart graph '${changedData.datasets[i].label ? changedData.datasets[i].label : 'not defined'} (${i})' '${prop}.${subProp}' changed`);
                                                             }
                                                         }
                                                     } else {
-                                                        console.log(`[JSON Chart ${data.wid}] [onChange]: chart graph '${changedData.datasets[i].label} (${i})' '${prop}' changed`);
+                                                        console.log(`[JSON Chart ${data.wid}] [onChange]: chart graph '${changedData.datasets[i].label ? changedData.datasets[i].label : 'not defined'} (${i})' '${prop}' changed`);
                                                     }
                                                 }
 
@@ -1405,14 +1405,14 @@ vis.binds.materialdesign.chart = {
                                 } else {
                                     if (changedData.datasets[i]) {
                                         // new dataset in json
-                                        if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart new graph '${changedData.datasets[i].label} (${i})' added`);
+                                        if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart new graph '${changedData.datasets[i].label ? changedData.datasets[i].label : 'not defined'} (${i})' added`);
 
                                         myChart.data.datasets.push(changedData.datasets[i]);
                                         chartNeedsUpdate = true;
 
                                     } else {
                                         // dataset in json removed
-                                        if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart graph '${myChart.data.datasets[i].label} (${i})' removed`);
+                                        if (debug) console.log(`[JSON Chart ${data.wid}] [onChange]: chart graph '${changedData.datasets[i].label ? changedData.datasets[i].label : 'not defined'} (${i})' removed`);
 
                                         myChart.data.datasets.splice(i);
                                         chartNeedsUpdate = true;
@@ -1748,14 +1748,15 @@ vis.binds.materialdesign.chart.helper = {
         Chart.pluginService.register({
             beforeDraw: function (chart, easing) {
                 if (chart.config.options.chartArea && chart.config.options.chartArea.backgroundColor) {
-                    var helpers = Chart.helpers;
                     var ctx = chart.chart.ctx;
                     var chartArea = chart.chartArea;
 
-                    ctx.save();
-                    ctx.fillStyle = chart.config.options.chartArea.backgroundColor;
-                    ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
-                    ctx.restore();
+                    if (chartArea) {
+                        ctx.save();
+                        ctx.fillStyle = chart.config.options.chartArea.backgroundColor;
+                        ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
+                        ctx.restore();
+                    }
                 }
             }
         });
