@@ -9496,5 +9496,41 @@ systemDictionary = {
         "es": "método de visualización",
         "pl": "sposób wyświetlania",
         "zh-cn": "显示方式"
+    },
+    "xAxisOffset": {
+        "en": "x-axis offset",
+        "de": "Versatz der x-Achse",
+        "ru": "смещение оси x",
+        "pt": "deslocamento do eixo x",
+        "nl": "x-as offset",
+        "fr": "décalage de l'axe x",
+        "it": "offset dell'asse x",
+        "es": "desplazamiento del eje x",
+        "pl": "Przesunięcie osi X.",
+        "zh-cn": "x轴偏移"
+    },
+    "xAxisOffsetGridLines": {
+        "en": "x-axis gridlines offset",
+        "de": "Versatz der x-Achsen-Gitterlinien",
+        "ru": "смещение линий сетки по оси x",
+        "pt": "deslocamento das linhas de grade do eixo x",
+        "nl": "x-as rasterlijnen verschoven",
+        "fr": "décalage du quadrillage de l'axe des x",
+        "it": "Offset delle linee della griglia dell'asse x",
+        "es": "Desplazamiento de las líneas de cuadrícula del eje x",
+        "pl": "Odsunięcie linii siatki na osi x",
+        "zh-cn": "x轴网格线偏移"
+    },
+    "chartDataMethod": {
+        "en": "set datasets with",
+        "de": "Datensätze setzen mit",
+        "ru": "установить наборы данных с",
+        "pt": "definir conjuntos de dados com",
+        "nl": "stel datasets in met",
+        "fr": "définir des ensembles de données avec",
+        "it": "imposta set di dati con",
+        "es": "establecer conjuntos de datos con",
+        "pl": "ustaw zbiory danych z",
+        "zh-cn": "设置数据集"
     }
 };
