@@ -1,5 +1,5 @@
 /************************************************************************************************************************************************************************
-Version: 1.0.0
+Version: 1.0.2
 created by Scrounger
 
 Dieses Skript erzeugt json strings um Proxmox Informationen im VIS mit den Material Design Widgets darzustellen
@@ -20,6 +20,8 @@ Dieses Skript erzeugt json strings um Proxmox Informationen im VIS mit den Mater
 
 --- Changelog ---
 * 1.0.0:            Initial release
+* 1.0.1:            Number decimal format changed
+* 1.0.2:            Bug Fix wenn nur ein Datenpunkt für die Temperatur verwendet wird
 
 ************************************************************************************************************************************************************************/
 
@@ -81,7 +83,7 @@ let nodesList = [                                                               
         //         id: 'linux-control.0.proxmox.updates.lastUpdate',                                               // id des Datenpunktes
         //         text: 'letztes Update',                                                                         // text der angezeigt werden soll
         //         icon: 'package-up',                                                                             // icon das angezeigt werden soll
-        //         type: 'timestamp',                                                                              // welche Funktion verwendet werden soll
+        //         type: 'timestamp',                                                                     // welche Funktion verwendet werden soll
         //     }
         // ]
     }
@@ -113,35 +115,35 @@ let vmList = [                                                                  
         //         id: 'linux-control.0.lxc_ioBroker.updates.lastUpdate',                                          // id des Datenpunktes
         //         text: 'letztes Update',                                                                         // text der angezeigt werden soll
         //         icon: 'package-up',                                                                             // icon das angezeigt werden soll
-        //         type: 'timestamp',                                                                              // welche Funktion verwendet werden soll
+        //         type: 'timestamp',                                                                     // welche Funktion verwendet werden soll
         //     },
         //     {
-        //         id: 'linux-control.0.lxc_ioBroker.backup.container.timestamp',                                  // id des Datenpunktes
+        //         id: 'linux-control.0.lxc_ioBroker.folders.backup.container.lastChange',                                  // id des Datenpunktes
         //         secondIds: [                                                                                    // ids für subtext
-        //             'linux-control.0.lxc_ioBroker.backup.container.files',
-        //             'linux-control.0.lxc_ioBroker.backup.container.size'
+        //             'linux-control.0.lxc_ioBroker.folders.backup.container.files',
+        //             'linux-control.0.lxc_ioBroker.folders.backup.container.size'
         //         ],
         //         text: 'LXC Backup',                                                                             // text der angezeigt werden soll
         //         icon: 'backup-restore',                                                                         // icon das angezeigt werden soll
-        //         type: 'timestampInSeconds'
+        //         type: 'timestamp'
         //     },
         //     {
-        //         id: 'linux-control.0.lxc_ioBroker.backup.data.timestamp',                                       // id des Datenpunktes
+        //         id: 'linux-control.0.lxc_ioBroker.folders.backup.data.lastChange',                                       // id des Datenpunktes
         //         secondIds: [                                                                                    // ids für subtext
-        //             'linux-control.0.lxc_ioBroker.backup.data.files',
-        //             'linux-control.0.lxc_ioBroker.backup.data.size'
+        //             'linux-control.0.lxc_ioBroker.folders.backup.data.files',
+        //             'linux-control.0.lxc_ioBroker.folders.backup.data.size'
         //         ],
         //         text: 'Daten Backup',                                                                           // text der angezeigt werden soll
         //         icon: 'file-upload',                                                                            // icon das angezeigt werden soll
-        //         type: 'timestampInSeconds'
+        //         type: 'timestamp'
         //     },
         //     {
-        //         id: 'linux-control.0.lxc_ioBroker.folders.ioBroker',                                            // id des Datenpunktes
+        //         id: 'linux-control.0.lxc_ioBroker.folders.ioBroker.size',                                       // id des Datenpunktes
         //         text: 'Ordnergröße',                                                                            // text der angezeigt werden soll
         //         icon: 'folder-information',                                                                     // icon das angezeigt werden soll
         //     },
         //     {
-        //         id: 'linux-control.0.lxc_ioBroker.folders.npm_cache',                                           // id des Datenpunktes
+        //         id: 'linux-control.0.lxc_ioBroker.folders.npm_cache.size',                                      // id des Datenpunktes
         //         text: 'NPM Cache',                                                                              // text der angezeigt werden soll
         //         icon: 'folder-clock',                                                                           // icon das angezeigt werden soll
         //     }
@@ -172,20 +174,20 @@ let vmList = [                                                                  
         //         id: 'linux-control.0.lxc_NextCloud.updates.lastUpdate',                                          // id des Datenpunktes
         //         text: 'letztes Update',                                                                         // text der angezeigt werden soll
         //         icon: 'package-up',                                                                             // icon das angezeigt werden soll
-        //         type: 'timestamp',                                                                              // welche Funktion verwendet werden soll
+        //         type: 'timestamp',                                                                     // welche Funktion verwendet werden soll
         //     },
         //     {
-        //         id: 'linux-control.0.lxc_NextCloud.backup.container.timestamp',                                  // id des Datenpunktes
+        //         id: 'linux-control.0.lxc_NextCloud.folders.backup.container.lastChange',                                  // id des Datenpunktes
         //         secondIds: [                                                                                     // ids für subtext
-        //             'linux-control.0.lxc_NextCloud.backup.container.files',
-        //             'linux-control.0.lxc_NextCloud.backup.container.size'
+        //             'linux-control.0.lxc_NextCloud.folders.backup.container.files',
+        //             'linux-control.0.lxc_NextCloud.folders.backup.container.size'
         //         ],
         //         text: 'LXC Backup',                                                                              // text der angezeigt werden soll
         //         icon: 'backup-restore',                                                                          // icon das angezeigt werden soll
-        //         type: 'timestampInSeconds'
-        //     },
+        //         type: 'timestamp'
+        //     },          
         //     {
-        //         id: 'linux-control.0.lxc_NextCloud.folders.userData',                                            // id des Datenpunktes
+        //         id: 'linux-control.0.lxc_NextCloud.folders.userData.size',                                       // id des Datenpunktes
         //         text: 'Benutzerdaten',                                                                           // text der angezeigt werden soll
         //         icon: 'folder-account',                                                                          // icon das angezeigt werden soll
         //     }
@@ -216,17 +218,17 @@ let vmList = [                                                                  
         //         id: 'linux-control.0.lxc_Waihona.updates.lastUpdate',                                          // id des Datenpunktes
         //         text: 'letztes Update',                                                                         // text der angezeigt werden soll
         //         icon: 'package-up',                                                                             // icon das angezeigt werden soll
-        //         type: 'timestamp',                                                                              // welche Funktion verwendet werden soll
+        //         type: 'timestamp',                                                                     // welche Funktion verwendet werden soll
         //     },
         //     {
-        //         id: 'linux-control.0.lxc_Waihona.backup.container.timestamp',                                    // id des Datenpunktes
+        //         id: 'linux-control.0.lxc_Waihona.folders.backup.container.lastChange',                                    // id des Datenpunktes
         //         secondIds: [                                                                                     // ids für subtext
-        //             'linux-control.0.lxc_Waihona.backup.container.files',
-        //             'linux-control.0.lxc_Waihona.backup.container.size'
+        //             'linux-control.0.lxc_Waihona.folders.backup.container.files',
+        //             'linux-control.0.lxc_Waihona.folders.backup.container.size'
         //         ],
         //         text: 'LXC Backup',                                                                              // text der angezeigt werden soll
         //         icon: 'backup-restore',                                                                          // icon das angezeigt werden soll
-        //         type: 'timestampInSeconds'
+        //         type: 'timestamp'
         //     }
         // ]
     },
@@ -251,33 +253,33 @@ let vmList = [                                                                  
         //         attention: true                                                                                 // ob Attention Farbe angezeigt werden soll
         //     },
         //     {
-        //         id: 'linux-control.0.lxc_MySql.updates.lastUpdate',                                          // id des Datenpunktes
+        //         id: 'linux-control.0.lxc_MySql.updates.lastUpdate',                                             // id des Datenpunktes
         //         text: 'letztes Update',                                                                         // text der angezeigt werden soll
         //         icon: 'package-up',                                                                             // icon das angezeigt werden soll
-        //         type: 'timestamp',                                                                              // welche Funktion verwendet werden soll
+        //         type: 'timestamp',                                                                     // welche Funktion verwendet werden soll
         //     },
         //     {
-        //         id: 'linux-control.0.lxc_MySql.backup.container.timestamp',                                      // id des Datenpunktes
+        //         id: 'linux-control.0.lxc_MySql.folders.backup.container.lastChange',                                      // id des Datenpunktes
         //         secondIds: [                                                                                     // ids für subtext
-        //             'linux-control.0.lxc_MySql.backup.container.files',
-        //             'linux-control.0.lxc_MySql.backup.container.size'
+        //             'linux-control.0.lxc_MySql.folders.backup.container.files',
+        //             'linux-control.0.lxc_MySql.folders.backup.container.size'
         //         ],
         //         text: 'LXC Backup',                                                                              // text der angezeigt werden soll
         //         icon: 'backup-restore',                                                                          // icon das angezeigt werden soll
-        //         type: 'timestampInSeconds'
+        //         type: 'timestamp'
         //     },
         //     {
-        //         id: 'linux-control.0.lxc_MySql.backup.data.timestamp',                                          // id des Datenpunktes
+        //         id: 'linux-control.0.lxc_MySql.folders.backup.data.lastChange',                                          // id des Datenpunktes
         //         secondIds: [                                                                                    // ids für subtext
-        //             'linux-control.0.lxc_MySql.backup.data.files',
-        //             'linux-control.0.lxc_MySql.backup.data.size'
+        //             'linux-control.0.lxc_MySql.folders.backup.data.files',
+        //             'linux-control.0.lxc_MySql.folders.backup.data.size'
         //         ],
         //         text: 'Daten Backup',                                                                           // text der angezeigt werden soll
         //         icon: 'file-upload',                                                                            // icon das angezeigt werden soll
-        //         type: 'timestampInSeconds'
+        //         type: 'timestamp'
         //     },
         //     {
-        //         id: 'linux-control.0.lxc_MySql.folders.databaseSize',                                            // id des Datenpunktes
+        //         id: 'linux-control.0.lxc_MySql.folders.database.size',                                           // id des Datenpunktes
         //         text: 'Datenbank',                                                                               // text der angezeigt werden soll
         //         icon: 'database',                                                                                // icon das angezeigt werden soll
         //     }
@@ -308,30 +310,30 @@ let vmList = [                                                                  
         //         id: 'linux-control.0.lxc_piHole.updates.lastUpdate',                                          // id des Datenpunktes
         //         text: 'letztes Update',                                                                         // text der angezeigt werden soll
         //         icon: 'package-up',                                                                             // icon das angezeigt werden soll
-        //         type: 'timestamp',                                                                              // welche Funktion verwendet werden soll
+        //         type: 'timestamp',                                                                     // welche Funktion verwendet werden soll
         //     },
         //     {
-        //         id: 'linux-control.0.lxc_piHole.backup.container.timestamp',                                     // id des Datenpunktes
+        //         id: 'linux-control.0.lxc_piHole.folders.backup.container.lastChange',                            // id des Datenpunktes
         //         secondIds: [                                                                                     // ids für subtext
-        //             'linux-control.0.lxc_piHole.backup.container.files',
-        //             'linux-control.0.lxc_piHole.backup.container.size'
+        //             'linux-control.0.lxc_piHole.folders.backup.container.files',
+        //             'linux-control.0.lxc_piHole.folders.backup.container.size'
         //         ],
         //         text: 'LXC Backup',                                                                              // text der angezeigt werden soll
         //         icon: 'backup-restore',                                                                          // icon das angezeigt werden soll
-        //         type: 'timestampInSeconds'
+        //         type: 'timestamp'
         //     },
         //     {
-        //         id: 'linux-control.0.lxc_piHole.backup.data.timestamp',                                         // id des Datenpunktes
-        //         secondIds: [                                                                                    // ids für subtext
-        //             'linux-control.0.lxc_piHole.backup.data.files',
-        //             'linux-control.0.lxc_piHole.backup.data.size'
+        //         id: 'linux-control.0.lxc_piHole.folders.backup.data.lastChange',                                // id des Datenpunktes
+        //         secondIds: [                                                                                     // ids für subtext
+        //             'linux-control.0.lxc_piHole.folders.backup.data.files',
+        //             'linux-control.0.lxc_piHole.folders.backup.data.size'
         //         ],
         //         text: 'Daten Backup',                                                                           // text der angezeigt werden soll
         //         icon: 'file-upload',                                                                            // icon das angezeigt werden soll
-        //         type: 'timestampInSeconds'
+        //         type: 'timestamp'
         //     },
         //     {
-        //         id: 'linux-control.0.lxc_piHole.folders.databaseSize',                                           // id des Datenpunktes
+        //         id: 'linux-control.0.lxc_piHole.folders.database.size',                                          // id des Datenpunktes
         //         text: 'Datenbank',                                                                               // text der angezeigt werden soll
         //         icon: 'database',                                                                                // icon das angezeigt werden soll
         //     }
@@ -362,25 +364,25 @@ let vmList = [                                                                  
         //         id: 'linux-control.0.lxc_devBroker.updates.lastUpdate',                                          // id des Datenpunktes
         //         text: 'letztes Update',                                                                         // text der angezeigt werden soll
         //         icon: 'package-up',                                                                             // icon das angezeigt werden soll
-        //         type: 'timestamp',                                                                              // welche Funktion verwendet werden soll
+        //         type: 'timestamp',                                                                     // welche Funktion verwendet werden soll
         //     },
         //     {
-        //         id: 'linux-control.0.lxc_devBroker.backup.container.timestamp',                                  // id des Datenpunktes
+        //         id: 'linux-control.0.lxc_devBroker.folders.backup.container.lastChange',                                  // id des Datenpunktes
         //         secondIds: [                                                                                     // ids für subtext
-        //             'linux-control.0.lxc_devBroker.backup.container.files',
-        //             'linux-control.0.lxc_devBroker.backup.container.size'
+        //             'linux-control.0.lxc_devBroker.folders.backup.container.files',
+        //             'linux-control.0.lxc_devBroker.folders.backup.container.size'
         //         ],
         //         text: 'LXC Backup',                                                                              // text der angezeigt werden soll
         //         icon: 'backup-restore',                                                                          // icon das angezeigt werden soll
-        //         type: 'timestampInSeconds'
+        //         type: 'timestamp'
         //     },
         //     {
-        //         id: 'linux-control.0.lxc_devBroker.folders.ioBroker',                                            // id des Datenpunktes
+        //         id: 'linux-control.0.lxc_devBroker.folders.ioBroker.size',                                       // id des Datenpunktes
         //         text: 'Ordnergröße',                                                                             // text der angezeigt werden soll
         //         icon: 'folder-information',                                                                      // icon das angezeigt werden soll
         //     },
         //     {
-        //         id: 'linux-control.0.lxc_devBroker.folders.npm_cache',                                           // id des Datenpunktes
+        //         id: 'linux-control.0.lxc_devBroker.folders.npm_cache.size',                                      // id des Datenpunktes
         //         text: 'NPM Cache',                                                                               // text der angezeigt werden soll
         //         icon: 'folder-clock',                                                                            // icon das angezeigt werden soll
         //     }
@@ -758,7 +760,11 @@ function generateCustomRow(dp, table, vm) {
         }
 
         if (!dp.type) {
-            row.value = Object.assign({ html: `<div style="${styleValue}">${val} ${unit}</div>` }, valueTextLayout);
+            if (obj.common && obj.common.type === 'number') {
+                row.value = Object.assign({ html: `<div style="${styleValue}">${formatValue(val, undefined, '.,')} ${unit}</div>` }, valueTextLayout);
+            } else {
+                row.value = Object.assign({ html: `<div style="${styleValue}">${val} ${unit}</div>` }, valueTextLayout);
+            }
         } else if (dp.type === 'timestamp') {
             row.value = Object.assign({ html: `<div style="${styleValue}">${getFormattedTimeStamp(val)}</div>` }, valueTextLayout);
         } else if (dp.type === 'timestampInSeconds') {
@@ -801,11 +807,13 @@ function generateProgressBarTemperatures(idList, table, vm) {
 
         table.push(row);
 
-        if (idList[1] && existsState(idList[1])) {
-            table.push({ temp: Object.assign({ oid: idList[1], valueLabelCustom: '[#value] °C', textColor: colorTertiary, verticalAlign: 'bottom', height: `${rowHeight / idList.length}px`, cellStyleAttrs: `line-height: ${rowHeight / idList.length}px; padding-bottom: 0;` }, progressBarTemperaturLayout) });
-        } else {
-            logDpNotExist(vm.targetChannel, idList[1]);
-            table.push({ temp: Object.assign({ valueLabelCustom: 'N/A', textColor: colorTertiary, verticalAlign: 'bottom', height: `${rowHeight / idList.length}px`, cellStyleAttrs: `line-height: ${rowHeight / idList.length}px; padding-bottom: 0;` }, progressBarTemperaturLayout) });
+        if (idList.length === 2) {
+            if (idList[1] && existsState(idList[1])) {
+                table.push({ temp: Object.assign({ oid: idList[1], valueLabelCustom: '[#value] °C', textColor: colorTertiary, verticalAlign: 'bottom', height: `${rowHeight / idList.length}px`, cellStyleAttrs: `line-height: ${rowHeight / idList.length}px; padding-bottom: 0;` }, progressBarTemperaturLayout) });
+            } else {
+                logDpNotExist(vm.targetChannel, idList[1]);
+                table.push({ temp: Object.assign({ valueLabelCustom: 'N/A', textColor: colorTertiary, verticalAlign: 'bottom', height: `${rowHeight / idList.length}px`, cellStyleAttrs: `line-height: ${rowHeight / idList.length}px; padding-bottom: 0;` }, progressBarTemperaturLayout) });
+            }
         }
     }
 }
