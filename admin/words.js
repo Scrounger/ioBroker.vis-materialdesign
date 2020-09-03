@@ -9556,5 +9556,17 @@ systemDictionary = {
         "es": "establecer conjuntos de datos con",
         "pl": "ustaw zbiory danych z",
         "zh-cn": "设置数据集"
+    },
+    "textFontFamily": {
+        "en": "font",
+        "de": "Schriftart",
+        "ru": "шрифт",
+        "pt": "Fonte",
+        "nl": "lettertype",
+        "fr": "Police de caractère",
+        "it": "font",
+        "es": "fuente",
+        "pl": "czcionka",
+        "zh-cn": "字形"
     }
 };
