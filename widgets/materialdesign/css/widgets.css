@@ -8,6 +8,10 @@
   --mdc-theme-primary: #44739e;
   --mdc-theme-secondary: #44739e;
 
+
+  --materialdesign-color-checkbox-color: #44739e;
+  --materialdesign-color-checkbox-border-color: rgba(0, 0, 0, 0.54);
+
   --material-progress-circular-color: #44739e;
 
   --materialdesign-color-drawer-background: #fff;
@@ -902,9 +906,99 @@ svg.materialdesign-button__icon {
 }
 
 /* Default checkbox color */
-.mdc-checkbox {
-  --mdc-theme-secondary: #44739e;
+/* .materialdesign-widget .mdc-checkbox {
+  --mdc-theme-secondary: var(--materialdesign-color-checkbox-color);
+  --materialdesign-color-checkbox-color #44739e
+  --materialdesign-color-checkbox-border-color
+var(--materialdesign-color-checkbox-color, rgba(0, 0, 0, 0.54))
+  var(--materialdesign-color-checkbox-color, #44739e)
+} */
+
+
+
+.materialdesign-widget .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate) ~ .mdc-checkbox__background {
+  border-color: var(--materialdesign-color-checkbox-color, rgba(0, 0, 0, 0.54));
+  background-color: transparent;
 }
+
+.materialdesign-widget .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background,
+.materialdesign-widget .mdc-checkbox__native-control:enabled:indeterminate ~ .mdc-checkbox__background {
+  border-color: #44739e;
+  /* @alternate */
+  border-color: var(--materialdesign-color-checkbox-color, #44739e);
+  background-color: #44739e;
+  /* @alternate */
+  background-color: var(--materialdesign-color-checkbox-color, #44739e);
+}
+
+@-webkit-keyframes materialdesign-widget-mdc-checkbox-fade-in-background-u5n97oh {
+  0% {
+    border-color: var(--materialdesign-color-checkbox-color, rgba(0, 0, 0, 0.54));
+    background-color: transparent;
+  }
+  50% {
+    border-color: #44739e;
+    /* @alternate */
+    border-color: var(--materialdesign-color-checkbox-color, #44739e);
+    background-color: #44739e;
+    /* @alternate */
+    background-color: var(--materialdesign-color-checkbox-color, #44739e);
+  }
+}
+
+@keyframes materialdesign-widget-mdc-checkbox-fade-in-background-u5n97oh {
+  0% {
+    border-color: var(--materialdesign-color-checkbox-color, rgba(0, 0, 0, 0.54));
+    background-color: transparent;
+  }
+  50% {
+    border-color: #44739e;
+    /* @alternate */
+    border-color: var(--materialdesign-color-checkbox-color, #44739e);
+    background-color: #44739e;
+    /* @alternate */
+    background-color: var(--materialdesign-color-checkbox-color, #44739e);
+  }
+}
+@-webkit-keyframes materialdesign-widget-mdc-checkbox-fade-out-background-u5n97oh {
+  0%, 80% {
+    border-color: #44739e;
+    /* @alternate */
+    border-color: var(--materialdesign-color-checkbox-color, #44739e);
+    background-color: #44739e;
+    /* @alternate */
+    background-color: var(--materialdesign-color-checkbox-color, #44739e);
+  }
+  100% {
+    border-color: var(--materialdesign-color-checkbox-color, rgba(0, 0, 0, 0.54));
+    background-color: transparent;
+  }
+}
+@keyframes materialdesign-widget-mdc-checkbox-fade-out-background-u5n97oh {
+  0%, 80% {
+    border-color: #44739e;
+    /* @alternate */
+    border-color: var(--materialdesign-color-checkbox-color, #44739e);
+    background-color: #44739e;
+    /* @alternate */
+    background-color: var(--materialdesign-color-checkbox-color, #44739e);
+  }
+  100% {
+    border-color: var(--materialdesign-color-checkbox-color, rgba(0, 0, 0, 0.54));
+    background-color: transparent;
+  }
+}
+.materialdesign-widget .mdc-checkbox--anim-unchecked-checked .mdc-checkbox__native-control:enabled ~ .mdc-checkbox__background, .mdc-checkbox--anim-unchecked-indeterminate .mdc-checkbox__native-control:enabled ~ .mdc-checkbox__background {
+  -webkit-animation-name: materialdesign-widget-mdc-checkbox-fade-in-background-u5n97oh;
+          animation-name: materialdesign-widget-mdc-checkbox-fade-in-background-u5n97oh;
+}
+.materialdesign-widget .mdc-checkbox--anim-checked-unchecked .mdc-checkbox__native-control:enabled ~ .mdc-checkbox__background, .mdc-checkbox--anim-indeterminate-unchecked .mdc-checkbox__native-control:enabled ~ .mdc-checkbox__background {
+  -webkit-animation-name: materialdesign-widget-mdc-checkbox-fade-out-background-u5n97oh;
+          animation-name: materialdesign-widget-mdc-checkbox-fade-out-background-u5n97oh;
+}
+
+
+
 
 /* Drawer container */
 .drawer-frame-root {

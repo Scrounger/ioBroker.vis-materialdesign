@@ -59,10 +59,10 @@ vis.binds.materialdesign.checkbox = {
 
             mdcCheckbox.disabled = myMdwHelper.getBooleanFromData(data.readOnly, false);
 
-            checkboxElement.style.setProperty("--mdc-theme-secondary", myMdwHelper.getValueFromData(data.colorCheckBox, ''));
+            checkboxElement.style.setProperty("--materialdesign-color-checkbox", myMdwHelper.getValueFromData(data.colorCheckBox, '#44739e'));
 
             setCheckboxState();
-
+            
             if (!vis.editMode) {
                 $this.find('.mdc-checkbox').click(function () {
                     vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
