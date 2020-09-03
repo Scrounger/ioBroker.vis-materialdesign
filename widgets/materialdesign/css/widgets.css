@@ -1173,112 +1173,112 @@ svg.materialdesign-widget.materialdesign-button__icon {
 
 
 /* Default list color */
-.mdc-list {
+.materialdesign-widget .mdc-list {
   padding: 0;  
 }
 
-.mdc-sub-list {
+.materialdesign-widget .mdc-sub-list {
   display: none;
   background-color: var(--materialdesign-color-drawer-sub-background);
 }
 
-.mdc-list-item {
+.materialdesign-widget .mdc-list-item {
   min-height: 40px !important; 
   height: auto !important;
   background-color: var(--materialdesign-color-list-item-background);
 }
 
-.mdc-sub-list-item {
+.materialdesign-widget .mdc-sub-list-item {
   background-color: var(--materialdesign-color-sub-list-item-background);
 }
 
 
-.mdc-sub-list .mdc-list-item {
+.materialdesign-widget .mdc-sub-list .mdc-list-item {
   padding: 0 16px;
 }
 
 /* hover item -> use var*/
-:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item:hover::before {
+:not(.materialdesign-widget .mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item:hover::before {
   background-color: var(--materialdesign-color-list-item-hover);
   opacity: 0.1;
 }
-:not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item:hover::before {
+:not(.materialdesign-widget .mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item:hover::before {
   background-color: var(--materialdesign-color-sub-list-item-hover);
   opacity: 0.1;
 }
 
 /* hover item -> use var*/
-:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item:hover::after {
+:not(.materialdesign-widget .mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item:hover::after {
   background-color: var(--materialdesign-color-list-item-hover);
 }
-:not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item:hover::after {
+:not(.materialdesign-widget .mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item:hover::after {
   background-color: var(--materialdesign-color-sub-list-item-hover);
 }
 
 /* selected color */
-:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::before, :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::after{
+:not(.materialdesign-widget .mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::before, :not(.materialdesign-widget .mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::after{
   background-color: var(--materialdesign-color-list-item-selected);
 }
-:not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item::before, :not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item::after{
+:not(.materialdesign-widget .mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item::before, :not(.materialdesign-widget .mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item::after{
   background-color: var(--materialdesign-color-sub-list-item-selected);
 }
 
-:not(.mdc-list-item--disabled).mdc-list-item{
+:not(.materialdesign-widget .mdc-list-item--disabled).mdc-list-item{
   color: var(--materialdesign-color-list-item-text);
 }
-:not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item{
+:not(.materialdesign-widget .mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item{
   color: var(--materialdesign-color-sub-list-item-text);
 }
 
-:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated {
+:not(.materialdesign-widget .mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated {
   color: var(--materialdesign-color-list-item-text-activated);
 }
 
-:not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item.mdc-list-item--activated {
+:not(.materialdesign-widget .mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item.mdc-list-item--activated {
   color: var(--materialdesign-color-sub-list-item-text-activated);
 }
 
 /* backdrop container */
-:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated .materialdesign-list-item-backdrop-container {
+:not(.materialdesign-widget .mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated .materialdesign-list-item-backdrop-container {
   background-color: var( --materialdesign-color-list-item-backdrop-activated);
 }
-:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated .materialdesign-list-item-backdrop-container.isSubItem {
+:not(.materialdesign-widget .mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated .materialdesign-list-item-backdrop-container.isSubItem {
   background-color: var( --materialdesign-color-sub-list-item-backdrop-activated);
 }
 
-.mdc-list-item__secondary-text {
+.materialdesign-widget .mdc-list-item__secondary-text {
   color: var(--materialdesign-color-list-item-text-secondary);
 }
 
-.mdc-list-item__text.materialdesign-list-item-text-right {
+.materialdesign-widget .mdc-list-item__text.materialdesign-list-item-text-right {
   color: var(--materialdesign-color-list-item-text-right);
 }
 
-.mdc-list-item__primary-text.materialdesign-list-item-text-right {
+.materialdesign-widget .mdc-list-item__primary-text.materialdesign-list-item-text-right {
   color: var(--materialdesign-color-list-item-text-right);
 }
 
-.mdc-list-item__secondary-text.materialdesign-list-item-text-right {
+.materialdesign-widget .mdc-list-item__secondary-text.materialdesign-list-item-text-right {
   color: var(--materialdesign-color-list-item-text-secondary-right);
 }
 
-.mdc-list-group__subheader {
+.materialdesign-widget .mdc-list-group__subheader {
   color: var(--materialdesign-color-list-item-header);
 }
 
-.mdc-drawer .mdc-list-group__subheader {
+.materialdesign-widget .mdc-drawer .mdc-list-group__subheader {
   color: var(--materialdesign-color-list-item-header);
 }
 
-.mdc-list-divider { 
+.materialdesign-widget .mdc-list-divider { 
   border-bottom-color: var(--materialdesign-color-list-item-divider);
 }
 
-.mdc-list-item__primary-text {
+.materialdesign-widget .mdc-list-item__primary-text {
   display: flex;
 }
 
-.materialdesign-list-card{
+.materialdesign-widget.materialdesign-list-card{
   border-radius: 4px;
   background-color: #fff;
   /* @alternate */
@@ -1290,7 +1290,7 @@ svg.materialdesign-widget.materialdesign-button__icon {
   color: black;
 }
 
-.materialdesign-list-card--outlined {
+.materialdesign-widget.materialdesign-list-card--outlined {
   border-width: 1px;
   border-style: solid;
   border-color: #e0e0e0;
