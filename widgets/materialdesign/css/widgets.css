@@ -9,8 +9,9 @@
   --mdc-theme-secondary: #44739e;
 
 
-  --materialdesign-color-checkbox-color: #44739e;
-  --materialdesign-color-checkbox-border-color: rgba(0, 0, 0, 0.54);
+  --materialdesign-color-checkbox: #44739e;
+  --materialdesign-color-checkbox-border: rgba(0, 0, 0, 0.54);
+  --materialdesign-color-checkbox-hover:#000;
 
   --material-progress-circular-color: #44739e;
 
@@ -907,84 +908,133 @@ svg.materialdesign-button__icon {
 
 /* Default checkbox color */
 /* .materialdesign-widget .mdc-checkbox {
-  --mdc-theme-secondary: var(--materialdesign-color-checkbox-color);
-  --materialdesign-color-checkbox-color #44739e
-  --materialdesign-color-checkbox-border-color
-var(--materialdesign-color-checkbox-color, rgba(0, 0, 0, 0.54))
-  var(--materialdesign-color-checkbox-color, #44739e)
+  --mdc-theme-secondary: var(--materialdesign-color-checkbox);
+  --materialdesign-color-checkbox #44739e
+  --materialdesign-color-checkbox-border
+var(--materialdesign-color-checkbox, rgba(0, 0, 0, 0.54))
+  var(--materialdesign-color-checkbox, #44739e)
 } */
+.materialdesign-widget .mdc-checkbox {
+  display: inline-block;
+  position: relative;
+  flex: 0 0 18px;
+  box-sizing: content-box;
+  width: 18px;
+  height: 18px;
+  line-height: 0;
+  white-space: nowrap;
+  cursor: pointer;
+  vertical-align: bottom;
+  padding: 11px;
+}
+.materialdesign-widget .mdc-checkbox .mdc-checkbox__native-control:checked ~ .mdc-checkbox__background::before,
+.materialdesign-widget .mdc-checkbox .mdc-checkbox__native-control:indeterminate ~ .mdc-checkbox__background::before {
+  background-color: var(--materialdesign-color-checkbox, #44739e);
+}
+@supports not (-ms-ime-align: auto) {
+  .materialdesign-widget .mdc-checkbox .mdc-checkbox__native-control:checked ~ .mdc-checkbox__background::before,
+  .materialdesign-widget .mdc-checkbox .mdc-checkbox__native-control:indeterminate ~ .mdc-checkbox__background::before {
+    /* @alternate */
+    background-color: var(--materialdesign-color-checkbox, #44739e);
+  }
+}
+.materialdesign-widget .mdc-checkbox.mdc-checkbox--selected .mdc-checkbox__ripple::before, .materialdesign-widget .mdc-checkbox.mdc-checkbox--selected .mdc-checkbox__ripple::after {
+  background-color: var(--materialdesign-color-checkbox, #44739e);
+}
+@supports not (-ms-ime-align: auto) {
+  .materialdesign-widget .mdc-checkbox.mdc-checkbox--selected .mdc-checkbox__ripple::before, .materialdesign-widget .mdc-checkbox.mdc-checkbox--selected .mdc-checkbox__ripple::after {
+    /* @alternate */
+    background-color: var(--materialdesign-color-checkbox, #44739e);
+  }
+}
 
+.materialdesign-widget .mdc-checkbox.mdc-checkbox--selected:hover .mdc-checkbox__ripple::before {
+  opacity: 0.04;
+}
+.materialdesign-widget .mdc-checkbox.mdc-checkbox--selected.mdc-ripple-upgraded--background-focused .mdc-checkbox__ripple::before, .materialdesign-widget .mdc-checkbox.mdc-checkbox--selected:not(.mdc-ripple-upgraded):focus .mdc-checkbox__ripple::before {
+  transition-duration: 75ms;
+  opacity: 0.12;
+}
+.materialdesign-widget .mdc-checkbox.mdc-checkbox--selected:not(.mdc-ripple-upgraded) .mdc-checkbox__ripple::after {
+  transition: opacity 150ms linear;
+}
+.materialdesign-widget .mdc-checkbox.mdc-checkbox--selected:not(.mdc-ripple-upgraded):active .mdc-checkbox__ripple::after {
+  transition-duration: 75ms;
+  opacity: 0.12;
+}
+.materialdesign-widget .mdc-checkbox.mdc-checkbox--selected.mdc-ripple-upgraded {
+  --mdc-ripple-fg-opacity: 0.12;
+}
+.materialdesign-widget .mdc-checkbox.mdc-ripple-upgraded--background-focused.mdc-checkbox--selected .mdc-checkbox__ripple::before,
+.materialdesign-widget .mdc-checkbox.mdc-ripple-upgraded--background-focused.mdc-checkbox--selected .mdc-checkbox__ripple::after {
+  background-color: var(--materialdesign-color-checkbox, #44739e);
+}
+@supports not (-ms-ime-align: auto) {
+  .materialdesign-widget .mdc-checkbox.mdc-ripple-upgraded--background-focused.mdc-checkbox--selected .mdc-checkbox__ripple::before,
+  .materialdesign-widget .mdc-checkbox.mdc-ripple-upgraded--background-focused.mdc-checkbox--selected .mdc-checkbox__ripple::after {
+    /* @alternate */
+    background-color: var(--materialdesign-color-checkbox, #44739e);
+  }
+}
 
+.materialdesign-widget .mdc-checkbox .mdc-checkbox__ripple::before, .mdc-checkbox .mdc-checkbox__ripple::after {
+  background-color: var(--materialdesign-color-checkbox-hover, #000);
+}
+@supports not (-ms-ime-align: auto) {
+  .materialdesign-widget .mdc-checkbox .mdc-checkbox__ripple::before, .mdc-checkbox .mdc-checkbox__ripple::after {
+    /* @alternate */
+    background-color: var(--materialdesign-color-checkbox-hover, #000);
+}
 
-.materialdesign-widget .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate) ~ .mdc-checkbox__background {
-  border-color: var(--materialdesign-color-checkbox-color, rgba(0, 0, 0, 0.54));
+.materialdesign-widget .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate="true"]) ~ .mdc-checkbox__background {
+  border-color: var(--materialdesign-color-checkbox-border, rgba(0, 0, 0, 0.54));
   background-color: transparent;
 }
 
 .materialdesign-widget .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background,
 .materialdesign-widget .mdc-checkbox__native-control:enabled:indeterminate ~ .mdc-checkbox__background {
-  border-color: #44739e;
-  /* @alternate */
-  border-color: var(--materialdesign-color-checkbox-color, #44739e);
-  background-color: #44739e;
-  /* @alternate */
-  background-color: var(--materialdesign-color-checkbox-color, #44739e);
+  border-color: var(--materialdesign-color-checkbox, #44739e);
+  background-color: var(--materialdesign-color-checkbox, #44739e);
 }
 
 @-webkit-keyframes materialdesign-widget-mdc-checkbox-fade-in-background-u5n97oh {
   0% {
-    border-color: var(--materialdesign-color-checkbox-color, rgba(0, 0, 0, 0.54));
+    border-color: var(--materialdesign-color-checkbox-border, rgba(0, 0, 0, 0.54));
     background-color: transparent;
   }
   50% {
-    border-color: #44739e;
-    /* @alternate */
-    border-color: var(--materialdesign-color-checkbox-color, #44739e);
-    background-color: #44739e;
-    /* @alternate */
-    background-color: var(--materialdesign-color-checkbox-color, #44739e);
+    border-color: var(--materialdesign-color-checkbox, #44739e);
+    background-color: var(--materialdesign-color-checkbox, #44739e);
   }
 }
 
 @keyframes materialdesign-widget-mdc-checkbox-fade-in-background-u5n97oh {
   0% {
-    border-color: var(--materialdesign-color-checkbox-color, rgba(0, 0, 0, 0.54));
+    border-color: var(--materialdesign-color-checkbox-border, rgba(0, 0, 0, 0.54));
     background-color: transparent;
   }
   50% {
-    border-color: #44739e;
-    /* @alternate */
-    border-color: var(--materialdesign-color-checkbox-color, #44739e);
-    background-color: #44739e;
-    /* @alternate */
-    background-color: var(--materialdesign-color-checkbox-color, #44739e);
+    border-color: var(--materialdesign-color-checkbox, #44739e);
+    background-color: var(--materialdesign-color-checkbox, #44739e);
   }
 }
 @-webkit-keyframes materialdesign-widget-mdc-checkbox-fade-out-background-u5n97oh {
   0%, 80% {
-    border-color: #44739e;
-    /* @alternate */
-    border-color: var(--materialdesign-color-checkbox-color, #44739e);
-    background-color: #44739e;
-    /* @alternate */
-    background-color: var(--materialdesign-color-checkbox-color, #44739e);
+    border-color: var(--materialdesign-color-checkbox, #44739e);
+    background-color: var(--materialdesign-color-checkbox, #44739e);
   }
   100% {
-    border-color: var(--materialdesign-color-checkbox-color, rgba(0, 0, 0, 0.54));
+    border-color: var(--materialdesign-color-checkbox-border, rgba(0, 0, 0, 0.54));
     background-color: transparent;
   }
 }
 @keyframes materialdesign-widget-mdc-checkbox-fade-out-background-u5n97oh {
   0%, 80% {
-    border-color: #44739e;
-    /* @alternate */
-    border-color: var(--materialdesign-color-checkbox-color, #44739e);
-    background-color: #44739e;
-    /* @alternate */
-    background-color: var(--materialdesign-color-checkbox-color, #44739e);
+    border-color: var(--materialdesign-color-checkbox, #44739e);
+    background-color: var(--materialdesign-color-checkbox, #44739e);
   }
   100% {
-    border-color: var(--materialdesign-color-checkbox-color, rgba(0, 0, 0, 0.54));
+    border-color: var(--materialdesign-color-checkbox-border, rgba(0, 0, 0, 0.54));
     background-color: transparent;
   }
 }
@@ -997,6 +1047,71 @@ var(--materialdesign-color-checkbox-color, rgba(0, 0, 0, 0.54))
           animation-name: materialdesign-widget-mdc-checkbox-fade-out-background-u5n97oh;
 }
 
+/* mdc-form-field  */
+.materialdesign-widget .mdc-form-field {
+  font-family: Roboto, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.0178571429em;
+  text-decoration: inherit;
+  text-transform: inherit;
+  color: rgba(0, 0, 0, 0.87);
+  /* @alternate */
+  color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, 0.87));
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+.materialdesign-widget .mdc-form-field > label {
+  /* @noflip */
+  margin-left: 0;
+  /* @noflip */
+  margin-right: auto;
+  /* @noflip */
+  padding-left: 4px;
+  /* @noflip */
+  padding-right: 0;
+  order: 0;
+}
+[dir=rtl] .materialdesign-widget .mdc-form-field > label, .materialdesign-widget .mdc-form-field > label[dir=rtl] {
+  /* @noflip */
+  margin-left: auto;
+  /* @noflip */
+  margin-right: 0;
+}
+[dir=rtl] .materialdesign-widget .mdc-form-field > label, .materialdesign-widget .mdc-form-field > label[dir=rtl] {
+  /* @noflip */
+  padding-left: 0;
+  /* @noflip */
+  padding-right: 4px;
+}
+
+.materialdesign-widget .mdc-form-field--align-end > label {
+  /* @noflip */
+  margin-left: auto;
+  /* @noflip */
+  margin-right: 0;
+  /* @noflip */
+  padding-left: 0;
+  /* @noflip */
+  padding-right: 4px;
+  order: -1;
+}
+[dir=rtl] .materialdesign-widget .mdc-form-field--align-end > label, .materialdesign-widget .mdc-form-field--align-end > label[dir=rtl] {
+  /* @noflip */
+  margin-left: 0;
+  /* @noflip */
+  margin-right: auto;
+}
+[dir=rtl] .materialdesign-widget .mdc-form-field--align-end > label, .materialdesign-widget .mdc-form-field--align-end > label[dir=rtl] {
+  /* @noflip */
+  padding-left: 4px;
+  /* @noflip */
+  padding-right: 0;
+}
 
 
 

@@ -23,11 +23,12 @@ vis.binds.materialdesign.checkbox = {
             <div class="mdc-checkbox">
                 <input type="checkbox" class="mdc-checkbox__native-control" id="materialdesign-checkbox-${data.wid}"/>
                 <div class="mdc-checkbox__background">
-                <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-                    <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-                </svg>
-                <div class="mdc-checkbox__mixedmark"></div>
+                    <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                        <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                    </svg>
+                    <div class="mdc-checkbox__mixedmark"></div>
                 </div>
+                <div class="mdc-checkbox__ripple"></div>
             </div>
             <label id="label" for="materialdesign-checkbox-${data.wid}" style="width: 100%; cursor: pointer; ${labelClickActive}">Checkbox 1</label>
             `
@@ -55,6 +56,7 @@ vis.binds.materialdesign.checkbox = {
 
             const mdcFormField = new mdc.formField.MDCFormField($this.get(0));
             const mdcCheckbox = new mdc.checkbox.MDCCheckbox(checkboxElement);
+            
             mdcFormField.input = mdcCheckbox;
 
             mdcCheckbox.disabled = myMdwHelper.getBooleanFromData(data.readOnly, false);
