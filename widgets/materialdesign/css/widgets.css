@@ -8,7 +8,6 @@
   --mdc-theme-primary: #44739e;
   --mdc-theme-secondary: #44739e;
 
-
   --materialdesign-color-top-app-bar-background: #44739e;
 
   --materialdesign-color-checkbox: #44739e;
@@ -52,22 +51,7 @@
   --materialdesign-color-card-text-section-background: transparent;
   --materialdesign-color-card-title: #44739e;
   --materialdesign-color-card-sub-title: #a1a1a1;
-
-  --materialdesign-color-select-background: transparent;
-  --materialdesign-color-select-background-hover: rgba(0, 0, 0, 0.87);
-  --materialdesign-color-select-hint: #44739e;
-  --materialdesign-color-select-hint_selected: #44739e;
-  --materialdesign-color-select-border: rgba(0,0,0,.38);
-  --materialdesign-color-select-border-selected: #44739e;
-  --materialdesign-color-select-text: rgba(0, 0, 0, 0.87);
-  
-  --materialdesign-color-dialog-background: #fff;
-  --materialdesign-color-dialog-button-background: transparent;
-  --materialdesign-color-dialog-button-text: #44739e;
-  --materialdesign-color-dialog-button-hover: #44739e;
-  --materialdesign-color-dialog-title-background: transparent;
-  --materialdesign-color-dialog-title: #44739e;
-
+ 
   --materialdesign-color-table-background: #fff;
   --materialdesign-color-table-border: rgba(0,0,0,.12);
   --materialdesign-color-table-header-row-background: inherit;
@@ -81,11 +65,6 @@
   --materialdesign-color-switch-off: #fff;
   --materialdesign-color-switch-track: #000;
   --materialdesign-color-switch-off-hover: #44739e;
-
-  --materialdesign-color-slider-before-thumb: #44739e;
-  --materialdesign-color-slider-thumb: #44739e;
-  --materialdesign-color-slider-after-thumb: rgba(161, 161, 161, 0.26);
-  --materialdesign-color-slider-track-marker: #44739e;
 
   --materialdesign-masonry-gaps: 20px;
 
@@ -1296,106 +1275,12 @@ svg.materialdesign-widget.materialdesign-button__icon {
   border-color: #e0e0e0;
 }
 
-/* mdc-Select */
-.mdc-select__anchor {
-  width: 100%;
-}
-
-.mdc-select:not(.mdc-select--disabled) {
-  background-color: var(--materialdesign-color-select-background);
-}
-
-.mdc-select::before, .mdc-select::after{
-  background-color: var(--materialdesign-color-select-background-hover);
-}
-
-.mdc-select:not(.mdc-select--disabled) .mdc-select__native-control, 
-.mdc-select:not(.mdc-select--disabled) .mdc-select__selected-text {
-  border-color: var(--materialdesign-color-select-border);
-  background-color: var(--materialdesign-color-select-background);
-}
-
-.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-line-ripple {
-  background-color: var(--materialdesign-color-select-border-selected);
-}
-
-.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__leading, 
-.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__notch, 
-.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__trailing {
-  border-color: var(--materialdesign-color-select-border);
-}
-
-.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__native-control:hover ~ .mdc-notched-outline .mdc-notched-outline__leading,
-.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__native-control:hover ~ .mdc-notched-outline .mdc-notched-outline__notch,
-.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__native-control:hover ~ .mdc-notched-outline .mdc-notched-outline__trailing, .mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__selected-text:hover ~ .mdc-notched-outline .mdc-notched-outline__leading,
-.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__selected-text:hover ~ .mdc-notched-outline .mdc-notched-outline__notch,
-.mdc-select--outlined:not(.mdc-select--disabled):not(.mdc-select--focused) .mdc-select__selected-text:hover ~ .mdc-notched-outline .mdc-notched-outline__trailing {
-  border-color: var(--materialdesign-color-select-background-hover);
-}
-
-.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__leading, 
-.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__notch, 
-.mdc-select--outlined:not(.mdc-select--disabled).mdc-select--focused .mdc-notched-outline .mdc-notched-outline__trailing {
-  border-color: var(--materialdesign-color-select-border-selected);
-}
-
-.mdc-select--with-leading-icon.mdc-select__menu .mdc-list-item__text {
-  padding-left: 8px;
-  padding-right: 8px;
-}
-
-.mdc-select__menu .mdc-list-item .mdc-list-item__graphic {
-  margin-right: 0px;
-}
-
 .mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic{
   color: initial;
 }
 
 .mdc-list-item__graphic{
   font-size: 24px;
-}
-
-/* hint */
-.mdc-select:not(.mdc-select--disabled) .mdc-floating-label {
-  color: var(--materialdesign-color-select-hint);
-}
-
-/* hint selected */
-.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label {
-  color: var(--materialdesign-color-select-hint_selected);
-}
-
-.mdc-select:not(.mdc-select--disabled) .mdc-select__native-control,
-.mdc-select:not(.mdc-select--disabled) .mdc-select__selected-text {
-  color: var(--materialdesign-color-select-text);
-}
-
-/* Dialog */
-.mdc-dialog .mdc-dialog__surface {
-  min-width: none !important;
-  max-width: none !important;
-  min-height: none !important;
-  max-height: none !important;
-  background-color: var(--materialdesign-color-dialog-background);
-}
-
-.mdc-dialog__content {
-  padding: 0 24px;
-}
-
-.mdc-button:not(:disabled) {
-  background-color: var(--materialdesign-color-dialog-button-background);
-  color: var(--materialdesign-color-dialog-button-text);
-}
-
-.mdc-dialog .mdc-button {
-  --mdc-theme-primary: var(--materialdesign-color-dialog-button-hover);
-}
-
-.mdc-dialog__title {
-  background-color: var(--materialdesign-color-dialog-title-background);
-  color: var(--materialdesign-color-dialog-title) !important;
 }
 
 /* Table */
@@ -1617,34 +1502,6 @@ svg.materialdesign-widget.materialdesign-button__icon {
 .materialdesign-widget .mdc-switch:not(.mdc-switch--checked) .mdc-switch__track {
   background-color: var(--materialdesign-color-switch-track);
   border-color: var(--materialdesign-color-switch-track);
-}
-
-/* slider */
-
-.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track {
-  background-color: var(--materialdesign-color-slider-before-thumb);
-}
-
-.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track-container {
-  background-color: var(--materialdesign-color-slider-after-thumb);
-}
-
-.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track-marker::after,
-.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__track-marker-container::after {
-  background-color: var(--materialdesign-color-slider-track-marker);
-}
-
-.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__thumb {
-  fill: var(--materialdesign-color-slider-thumb);
-  stroke: var(--materialdesign-color-slider-thumb);
-}
-
-.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__focus-ring {
-  fill: var(--materialdesign-color-slider-thumb);
-}
-
-.mdc-slider:not(.mdc-slider--disabled) .mdc-slider__pin {
-  fill: var(--materialdesign-color-slider-thumb);
 }
 
 .materialdesign-column-views-container {
