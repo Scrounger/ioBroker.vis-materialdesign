@@ -1391,33 +1391,33 @@ svg.materialdesign-button__icon {
 
 /* switch */
 
-.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay::before, .mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay::after {
+.materialdesign-widget .mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay::before, .mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb-underlay::after {
   /* hover */
   background-color: var(--materialdesign-color-switch-off-hover);
 }
 
-.mdc-switch.mdc-switch--checked .mdc-switch__track {
+.materialdesign-widget .mdc-switch.mdc-switch--checked .mdc-switch__track {
   background-color: var(--materialdesign-color-switch-on);
   border-color: var(--materialdesign-color-switch-on);
 }
-.mdc-switch.mdc-switch--checked .mdc-switch__thumb {
+.materialdesign-widget .mdc-switch.mdc-switch--checked .mdc-switch__thumb {
   background-color: var(--materialdesign-color-switch-on);
   border-color: var(--materialdesign-color-switch-on);
 }
 
 @supports not (-ms-ime-align: auto) {
-  .mdc-switch__thumb-underlay::before, .mdc-switch__thumb-underlay::after {
+  .materialdesign-widget .mdc-switch__thumb-underlay::before, .mdc-switch__thumb-underlay::after {
     /* @alternate */
     background-color: var(--materialdesign-color-switch-on);
   }
 }
 
-.mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb {
+.materialdesign-widget .mdc-switch:not(.mdc-switch--checked) .mdc-switch__thumb {
   background-color: var(--materialdesign-color-switch-off);
   border-color: var(--materialdesign-color-switch-off);
 }
 
-.mdc-switch:not(.mdc-switch--checked) .mdc-switch__track {
+.materialdesign-widget .mdc-switch:not(.mdc-switch--checked) .mdc-switch__track {
   background-color: var(--materialdesign-color-switch-track);
   border-color: var(--materialdesign-color-switch-track);
 }
