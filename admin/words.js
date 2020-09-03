@@ -674,6 +674,30 @@ systemDictionary = {
         "pl": "aktywny kolor pola wyboru",
         "zh-cn": "活动复选框颜色"
     },
+    "colorCheckBoxHover": {
+        "en": "hover color of checkbox",
+        "de": "Farbe selektiert / hover",
+        "ru": "цвет наведения флажка",
+        "pt": "pairar cor da caixa de seleção",
+        "nl": "zweefkleur van selectievakje",
+        "fr": "survolez la couleur de la case à cocher",
+        "it": "passa il colore della casella di controllo",
+        "es": "coloque el cursor sobre el color de la casilla de verificación",
+        "pl": "najedź na kolor pola wyboru",
+        "zh-cn": "悬停复选框的颜色"
+    },
+    "colorCheckBoxBorder": {
+        "en": "border color",
+        "de": "Randfarbe",
+        "ru": "цвет границы",
+        "pt": "Cor da borda",
+        "nl": "rand kleur",
+        "fr": "couleur de la bordure",
+        "it": "colore del bordo",
+        "es": "color del borde",
+        "pl": "kolor ramki",
+        "zh-cn": "边框颜色"
+    },
     "group_drawerLabels": {
         "en": "label for navigation bar",
         "de": "Navigationsleiste: Beschriftungen",

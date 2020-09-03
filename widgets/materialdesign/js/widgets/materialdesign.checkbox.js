@@ -61,7 +61,9 @@ vis.binds.materialdesign.checkbox = {
 
             mdcCheckbox.disabled = myMdwHelper.getBooleanFromData(data.readOnly, false);
 
-            checkboxElement.style.setProperty("--materialdesign-color-checkbox", myMdwHelper.getValueFromData(data.colorCheckBox, '#44739e'));
+            checkboxElement.style.setProperty("--materialdesign-color-checkbox", myMdwHelper.getValueFromData(data.colorCheckBox, ''));
+            checkboxElement.style.setProperty("--materialdesign-color-checkbox-border", myMdwHelper.getValueFromData(data.colorCheckBoxBorder, ''));
+            checkboxElement.style.setProperty("--materialdesign-color-checkbox-hover", myMdwHelper.getValueFromData(data.colorCheckBoxHover, ''));
 
             setCheckboxState();
             
