@@ -9568,5 +9568,17 @@ systemDictionary = {
         "es": "fuente",
         "pl": "czcionka",
         "zh-cn": "字形"
+    },
+    "alignment": {
+        "en": "alignment",
+        "de": "Ausrichtung",
+        "ru": "выравнивание",
+        "pt": "alinhamento",
+        "nl": "uitlijning",
+        "fr": "alignement",
+        "it": "allineamento",
+        "es": "alineación",
+        "pl": "wyrównanie",
+        "zh-cn": "对准"
     }
 };

@@ -80,7 +80,7 @@ vis.binds.materialdesign.button = {
 
             buttonElementsList.push(`<div 
                                         class="materialdesign-button-body" 
-                                        style="display:flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; height: 100%; ">`);
+                                        style="display:flex; flex-direction: column; justify-content: center; align-items: ${myMdwHelper.getValueFromData(data.alignment, 'center')}; width: 100%; height: 100%; ">`);
 
             let imageElement = myMdwHelper.getIconElement(data.image, 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), data.imageColor);
 
