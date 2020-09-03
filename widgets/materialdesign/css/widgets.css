@@ -819,19 +819,8 @@ svg.materialdesign-widget.materialdesign-button__icon {
   --mdc-ripple-fg-opacity: 0.12;
 }
 
-/* Default progress settings */
-.mdc-linear-progress {
-  height: 100%;
-}
-
-.mdc-linear-progress__bar-inner {
-  border-top: 200px solid;
-  border-top-color: #44739e;
-}
-
-
 /* Card Layout */
-.materialdesign-html-card.mdc-card{
+.materialdesign-widget.materialdesign-html-card.mdc-card {
   border-radius: 4px;
   background-color: var(--materialdesign-color-card-background);
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
@@ -841,7 +830,7 @@ svg.materialdesign-widget.materialdesign-button__icon {
   color: black;
 }
 
-.materialdesign-html-card.card-title-section{
+.materialdesign-widget .materialdesign-html-card.card-title-section{
   visibility: visible;
   box-sizing: border-box;
   width: 100%;
@@ -851,14 +840,14 @@ svg.materialdesign-widget.materialdesign-button__icon {
   background-color: var(--materialdesign-color-card-title-section-background);
 }
 
-.materialdesign-html-card.card-text-section{
+.materialdesign-widget .materialdesign-html-card.card-text-section{
   visibility: visible;
   box-sizing: border-box;
   padding: 16px;
   background-color: var(--materialdesign-color-card-text-section-background);
 }
 
-.materialdesign-html-card.card-text-section.iconlist{
+.materialdesign-widget .materialdesign-html-card.card-text-section.iconlist{
   visibility: visible;
   box-sizing: border-box;
   padding: 0px;
@@ -866,15 +855,15 @@ svg.materialdesign-widget.materialdesign-button__icon {
 }
 
 
-.materialdesign-html-card.card-title {
+.materialdesign-widget .materialdesign-html-card.card-title {
   color: var(--materialdesign-color-card-title);
 }
 
-.materialdesign-html-card.card-subtitle {
+.materialdesign-widget .materialdesign-html-card.card-subtitle {
   color: var(--materialdesign-color-card-sub-title);
 }
 
-.materialdesign-html-card.card-custom-body {
+.materialdesign-widget .materialdesign-html-card.card-custom-body {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -886,23 +875,24 @@ svg.materialdesign-widget.materialdesign-button__icon {
   text-transform: inherit;
 }
 
-.materialdesign-html-card.mdc-card__media-content{
+.materialdesign-widget .materialdesign-html-card.mdc-card__media-content{
   display: flex;
   align-items: flex-end;
   padding-bottom: 16px
 }
 
-.materialdesign-html-card.horizontal-container{
+.materialdesign-widget .materialdesign-html-card.horizontal-container{
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
   flex-direction: row;  
 }
 
-.materialdesign-html-card.mdc-card__media--square{
+.materialdesign-widget .materialdesign-html-card.mdc-card__media--square{
   width: 100%;
 }
 
+/* Checkbox */
 .materialdesign-widget .mdc-checkbox {
   display: inline-block;
   position: relative;
