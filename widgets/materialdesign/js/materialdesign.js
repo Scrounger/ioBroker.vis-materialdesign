@@ -52,7 +52,7 @@ vis.binds.materialdesign = {
             }
         } else {
             var colorPress = (data.colorPress === undefined || data.colorPress === null || data.colorPress === '') ? '' : data.colorPress;
-            btn.style.setProperty("--mdc-theme-primary", colorPress);
+            btn.style.setProperty("--materialdesign-color-icon-button-hover", colorPress);
 
             const mdcIconButton = new mdc.iconButton.MDCIconButtonToggle(btn);
         }
