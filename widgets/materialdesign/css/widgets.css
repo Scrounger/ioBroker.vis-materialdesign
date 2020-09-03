@@ -9,6 +9,8 @@
   --mdc-theme-secondary: #44739e;
 
 
+  --materialdesign-color-top-app-bar-background: #44739e;
+
   --materialdesign-color-checkbox: #44739e;
   --materialdesign-color-checkbox-border: rgba(0, 0, 0, 0.54);
   --materialdesign-color-checkbox-hover:#000;
@@ -1095,36 +1097,48 @@ svg.materialdesign-widget.materialdesign-button__icon {
 
 
 /* Drawer container */
-.drawer-frame-root {
+.materialdesign-widget .drawer-frame-root {
     display: -ms-flexbox;
     display: flex;
     height: 100vh;
 }
 
 /* Drawer container */
-.drawer-app-content {
+.materialdesign-widget .drawer-app-content {
     -ms-flex: auto;
     flex: auto;
     overflow: auto
 }
 
 /* Drawer container */
-.drawer-main-content {
+.materialdesign-widget .drawer-main-content {
     overflow: auto;
     height: 100%;
 }
 
 /* Drawer container */
-.drawer-frame-app-content {
+.materialdesign-widget .drawer-frame-app-content {
   position: relative;
 }
 
+.materialdesign-widget .mdc-top-app-bar {
+  background-color: var(--materialdesign-color-top-app-bar-background, #44739e);
+  color: white;
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  z-index: 4;
+}
+
 /* App Top Bar Short */
-.mdc-top-app-bar--short-fixed-adjust {
+.materialdesign-widget .mdc-top-app-bar--short-fixed-adjust {
   padding-top: 0px;
 }
 
-.materialdesign-list-item-backdrop-container {
+.materialdesign-widget .materialdesign-list-item-backdrop-container {
   display: flex; 
   justify-content: center; 
   align-items: center; 
@@ -1135,30 +1149,25 @@ svg.materialdesign-widget.materialdesign-button__icon {
   padding-right: 8px;
 }
 
-.materialdesign-list-item-backdrop-container.isSubItem {
+.materialdesign-widget .materialdesign-list-item-backdrop-container.isSubItem {
   background-color: var(--materialdesign-color-sub-list-item-backdrop);
 }
 
-/* Drawer container */
-.materialdesign-topAppBar-vis-view-container{
-  position: absolute;
-}
-
-.mdc-drawer {
+.materialdesign-widget .mdc-drawer {
   background-color: var(--materialdesign-color-drawer-background);
 }
 
 
 /* Drawer Header default Color */
-.mdc-drawer__header {
+.materialdesign-widget .mdc-drawer__header {
   background-color: #44739e;
 }
 
-.mdc-drawer .mdc-drawer__title {
+.materialdesign-widget .mdc-drawer .mdc-drawer__title {
   color: white;
 }
 
-.mdc-drawer .mdc-drawer__subtitle {
+.materialdesign-widget .mdc-drawer .mdc-drawer__subtitle {
   color: white;
 }
 
