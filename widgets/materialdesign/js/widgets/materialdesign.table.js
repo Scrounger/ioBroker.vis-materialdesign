@@ -976,6 +976,8 @@ vis.binds.materialdesign.table = {
                 labelPosition: obj.labelPosition,
                 labelClickActive: obj.labelClickActive,
                 colorCheckBox: obj.colorCheckBox,
+                colorCheckBoxBorder: obj.colorCheckBoxBorder,
+                colorCheckBoxHover: obj.colorCheckBoxHover,
                 labelColorFalse: obj.labelColorFalse,
                 labelColorTrue: obj.labelColorTrue,
                 lockEnabled: obj.lockEnabled,
