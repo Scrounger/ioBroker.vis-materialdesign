@@ -24,9 +24,9 @@ vis.binds.materialdesign.table = {
 
             let tableLayout = '';
             if (data.tableLayout === 'card') {
-                tableLayout = 'materialdesign-list-card';
+                tableLayout = 'materialdesign-table-card';
             } else if (data.tableLayout === 'cardOutlined') {
-                tableLayout = 'materialdesign-list-card materialdesign-list-card--outlined';
+                tableLayout = 'materialdesign-table-card materialdesign-table-card--outlined';
             }
 
             tableElement.push(`<div class="mdc-data-table ${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'fixed-header' : ''} ${tableLayout}" style="width: 100%; height: 100%;">
