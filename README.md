@@ -5452,6 +5452,7 @@ ical2CalendarWidget();
 * (Scrounger): Chechbox Widget: option for border and hover color added
 * (Scrounger): Chechbox Widget: ripple effect bug fix
 * (Scrounger): Buttons Vertical: text alignment option added
+* (Scrounger): added URL support as source for symbols / images
 
 ### 0.3.19 (2020-07-18)
 * (Scrounger): Icon Button Widget: background color option for lock icon added
