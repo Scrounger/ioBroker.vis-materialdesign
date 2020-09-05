@@ -272,6 +272,13 @@
   --vue-progress-circular-progress-color-text-font-family: inherit;
 }
 
+/* remove clock symbol on chrome */
+.materialdesign-widget .materialdesign-vuetify-textField input[type="time"]::-webkit-calendar-picker-indicator,
+.materialdesign-widget .materialdesign-vuetify-autoComplete input[type="time"]::-webkit-calendar-picker-indicator,
+.materialdesign-widget .materialdesign-vuetify-select input[type="time"]::-webkit-calendar-picker-indicator {
+  background: none;
+}
+
 /* MaterialDesignIcons */
 .mdi:before,
 .mdi-set {
