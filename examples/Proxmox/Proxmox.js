@@ -22,6 +22,7 @@ Dieses Skript erzeugt json strings um Proxmox Informationen im VIS mit den Mater
 * 1.0.0:            Initial release
 * 1.0.1:            Number decimal format changed
 * 1.0.2:            Bug Fix wenn nur ein Datenpunkt für die Temperatur verwendet wird
+* 1.0.3:            Einstellung 'iconColor' für icon Farbe hinzugefügt
 
 ************************************************************************************************************************************************************************/
 
@@ -419,6 +420,7 @@ let colorGood = 'green';
 let colorMedium = 'gold';
 let colorBad = 'FireBrick';
 
+let iconColor = '#44739e'
 let iconAttentionColor = '#f27935';
 
 let colCount = 24;                                                                                              // Anzahl der Spalten die im Widget eingestellt sind (+1 weil 0 im VIS Editor mitzählt)
@@ -704,7 +706,7 @@ function updateVm(vm, isNode = false) {
 function generateUptimeRow(id, table, vm) {
     let row = {};
 
-    row.icon = Object.assign({ mdwIcon: "clock-check-outline" }, iconLayout)
+    row.icon = Object.assign({ mdwIcon: "clock-check-outline", mdwIconColor: iconColor }, iconLayout)
     row.text = Object.assign({ html: `<div style="${styleText}">Betriebszeit</div>` }, textLayout);
 
     if (existsState(id)) {
@@ -725,7 +727,7 @@ function generateUptimeRow(id, table, vm) {
 
 function generateCustomRow(dp, table, vm) {
     let row = {};
-    row.icon = Object.assign({ mdwIcon: dp.icon }, iconLayout);
+    row.icon = Object.assign({ mdwIcon: dp.icon, mdwIconColor: iconColor }, iconLayout);
 
     if (!dp.secondIds) {
         row.text = Object.assign({ html: `<div style="${styleText}">${dp.text}</div>` }, textLayout);
@@ -795,7 +797,7 @@ function generateProgressBarTemperatures(idList, table, vm) {
     if (idList && idList.length > 0) {
         let row = {};
 
-        row.icon = Object.assign({ mdwIcon: "thermometer", rowspan: idList.length }, iconLayout);
+        row.icon = Object.assign({ mdwIcon: "thermometer", rowspan: idList.length, mdwIconColor: iconColor }, iconLayout);
         row.text = Object.assign({ html: `<div style="${styleText}">Temperatur</div>`, rowspan: idList.length }, textLayout);
 
         if (idList[0] && existsState(idList[0])) {
@@ -820,7 +822,7 @@ function generateProgressBarTemperatures(idList, table, vm) {
 
 function generateProgressBarCpuRow(id, table, vm, isNode = false) {
     let row = {};
-    row.icon = Object.assign({ mdwIcon: "cpu-64-bit", rowspan: 2 }, iconLayout);
+    row.icon = Object.assign({ mdwIcon: "cpu-64-bit", rowspan: 2, mdwIconColor: iconColor }, iconLayout);
     row.text = Object.assign({ html: `<div style="${styleText}">CPU</div>`, rowspan: 2 }, textLayout);
 
     if (existsState(id)) {
@@ -850,7 +852,7 @@ function generateProgressBarCpuRow(id, table, vm, isNode = false) {
 
 function generateProgressBarRow(id, table, vm, icon, textOne, textTwo) {
     let row = {};
-    row.icon = Object.assign({ mdwIcon: icon }, iconLayout);
+    row.icon = Object.assign({ mdwIcon: icon, mdwIconColor: iconColor }, iconLayout);
 
     if (existsState(id)) {
         row.text = Object.assign({ html: getHtmlTwoLines(textOne, textTwo) }, textLayout);
