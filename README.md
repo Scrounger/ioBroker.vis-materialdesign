@@ -5453,6 +5453,7 @@ ical2CalendarWidget();
 * (Scrounger): Chechbox Widget: ripple effect bug fix
 * (Scrounger): Buttons Vertical: text alignment option added
 * (Scrounger): added URL support as source for symbols / images
+* (Scrounger): HTML Card Widget: option to hide title, subtitle and text added
 
 ### 0.3.19 (2020-07-18)
 * (Scrounger): Icon Button Widget: background color option for lock icon added

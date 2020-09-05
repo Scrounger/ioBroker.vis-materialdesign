@@ -22,7 +22,7 @@ vis.binds.materialdesign.card = {
 
             let labelTextHeight = myMdwHelper.getValueFromData(data.labelTextHeight, '', 'height: ', 'px;');
             let labelSubTextHeight = myMdwHelper.getValueFromData(data.labelSubTextHeight, '', 'height: ', 'px;');
-            
+
             let showImage = 'display: none;';
             if (myMdwHelper.getValueFromData(data.image, null) !== null) {
                 showImage = '';
@@ -40,47 +40,54 @@ vis.binds.materialdesign.card = {
                 htmlLayout = 'mdc-typography mdc-typography--' + data.htmlLayout;
             }
 
+            let titleSection = []
+            if (data.showTitle || data.showSubTitle) {
+                if (data.cardLayout !== 'Horizontal') {
+                    titleSection.push(`<div class="materialdesign-html-card card-title-section" style="${showTitleSection}">`)
+
+                } else {
+                    // Horizontal Layout
+                    titleSection.push(`<div class="materialdesign-html-card card-title-section">`)
+                }
+
+                if (data.showTitle) {
+                    titleSection.push(`<div class="materialdesign-html-card card-title ${titleFontSize.class}" style="${titleFontSize.style}${labelTextHeight}">${data.title}</div>`);
+                }
+                if (data.showSubTitle) {
+                    titleSection.push(`<div class="materialdesign-html-card card-subtitle ${subTitleFontSize.class}" style="${subTitleFontSize.style}${labelSubTextHeight}">${data.subtitle}</div>`);
+                }
+
+                titleSection.push(`</div>`);
+            }
+
+            let textSection = '';
+            if (data.showText) {
+                textSection = `<div class="materialdesign-html-card card-text-section">
+                                    <div class="materialdesign-html-card ${textFontSize.class}" style="${textFontSize.style}">${data.html}</div>
+                                </div>`
+            }
+
             if (data.cardLayout === 'Basic') {
                 card = `<div class="mdc-card__media mdc-card__media--16-9" style="background-image: url(${data.image});${showImage}"></div>
-                        <div class="materialdesign-html-card card-title-section" style="${showTitleSection}">
-                            <div class="materialdesign-html-card card-title ${titleFontSize.class}" style="${titleFontSize.style}${labelTextHeight}">${data.title}</div>
-                            <div class="materialdesign-html-card card-subtitle ${subTitleFontSize.class}" style="${subTitleFontSize.style}${labelSubTextHeight}">${data.subtitle}</div>
-                        </div>
-                        <div class="materialdesign-html-card card-text-section">
-                            <div class="materialdesign-html-card ${textFontSize.class}" style="${textFontSize.style}">${data.html}</div>
-                        </div>`
+                        ${titleSection.join('')}
+                        ${textSection}`
             } else if (data.cardLayout === 'BasicHeader') {
-                card = `<div class="materialdesign-html-card card-title-section" style="${showTitleSection}">
-                            <div class="materialdesign-html-card card-title ${titleFontSize.class}" style="${titleFontSize.style}${labelTextHeight}">${data.title}</div>
-                            <div class="materialdesign-html-card card-subtitle ${subTitleFontSize.class}" style="${subTitleFontSize.style}${labelSubTextHeight}">${data.subtitle}</div>
-                        </div>
+                card = `${titleSection.join('')}
                         <div class="materialdesign-html-card mdc-card__media mdc-card__media--16-9" style="background-image: url(${data.image});${showImage}"></div>
-                        <div class="materialdesign-html-card card-text-section">
-                            <div class="materialdesign-html-card ${textFontSize.class}" style="${textFontSize.style}">${data.html}</div>
-                        </div>`
+                        ${textSection}`
             } else if (data.cardLayout === 'BasicHeaderOverlay') {
                 card = `<div class="mdc-card__media mdc-card__media--16-9" style="background-image: url(${data.image});${showImage}">
                             <div class="materialdesign-html-card mdc-card__media-content">
-                                <div class="materialdesign-html-card card-title-section" style="${showTitleSection}">
-                                    <div class="materialdesign-html-card card-title ${titleFontSize.class}" style="${titleFontSize.style}${labelTextHeight}">${data.title}</div>
-                                    <div class="materialdesign-html-card card-subtitle ${subTitleFontSize.class}" style="${subTitleFontSize.style}${labelSubTextHeight}">${data.subtitle}</div>
-                                </div>
+                                ${titleSection.join('')}
                             </div>
                         </div>
-                        <div class="materialdesign-html-card card-text-section">
-                            <div class="materialdesign-html-card ${textFontSize.class}" style="${textFontSize.style}">${data.html}</div>
-                        </div>`
+                        ${textSection}`
             } else if (data.cardLayout === 'Horizontal') {
                 card = `<div class="materialdesign-html-card horizontal-container" style="${showTitleSection}">
                             <div class="materialdesign-html-card mdc-card__media mdc-card__media--square" style="background-image: url(${data.image});${showImage}"></div>
                             <div>
-                                <div class="materialdesign-html-card card-title-section">
-                                    <div class="materialdesign-html-card card-title ${titleFontSize.class}" style="${titleFontSize.style}${labelTextHeight}">${data.title}</div>
-                                    <div class="materialdesign-html-card card-subtitle ${subTitleFontSize.class}" style="${subTitleFontSize.style}${labelSubTextHeight}">${data.subtitle}</div>
-                                </div>
-                                <div class="materialdesign-html-card card-text-section">
-                                    <div class="materialdesign-html-card ${textFontSize.class}" style="${textFontSize.style}">${data.html}</div>
-                                </div>
+                                ${titleSection.join('')}
+                                ${textSection}
                             </div>
                         </div>`
             }
