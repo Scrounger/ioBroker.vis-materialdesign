@@ -104,6 +104,8 @@ vis.binds.materialdesign.card = {
 
             let card = $this.context;
 
+            // mdc.ripple.MDCRipple.attachTo($this.find('.mdc-card__primary-action').get(0));
+
             let colorBackground = myMdwHelper.getValueFromData(data.colorBackground, '');
             card.style.setProperty("--materialdesign-color-card-background", colorBackground);
             card.style.setProperty("--materialdesign-color-card-title-section-background", myMdwHelper.getValueFromData(data.colorTitleSectionBackground, colorBackground));
@@ -112,10 +114,63 @@ vis.binds.materialdesign.card = {
             card.style.setProperty("--materialdesign-color-card-title", myMdwHelper.getValueFromData(data.colorTitle, ''));
             card.style.setProperty("--materialdesign-color-card-sub-title", myMdwHelper.getValueFromData(data.colorSubtitle, ''));
 
-
+            this.backgroundImageRefresh(el, `url(${data.image}`, data.refreshInterval, data.refreshOnWakeUp, data.refreshOnViewChange, data.refreshWithNoQuery);
 
         } catch (ex) {
             console.error(`[Card - ${data.wid}] handler: error: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
+    backgroundImageRefresh: function (el, src, refreshInterval, refreshOnWakeUp, refreshOnViewChange, refreshWithNoQuery) {
+        var widgetView;
+        if (src && typeof src === 'object') {
+            widgetView = refreshInterval;
+            refreshInterval = src.refreshInterval;
+            refreshOnWakeUp = src.refreshOnWakeUp;
+            refreshOnViewChange = src.refreshOnViewChange;
+            refreshWithNoQuery = src.refreshWithNoQuery;
+            src = src.src;
+        } else if (refreshInterval && typeof refreshInterval === 'object') {
+            widgetView = refreshOnWakeUp;
+            refreshInterval = refreshInterval.refreshInterval;
+            refreshOnWakeUp = refreshInterval.refreshOnWakeUp;
+            refreshOnViewChange = refreshInterval.refreshOnViewChange;
+            refreshWithNoQuery = refreshInterval.refreshWithNoQuery;
+        }
+        refreshOnViewChange = refreshOnViewChange === true || refreshOnViewChange === 'true';
+        refreshOnWakeUp = refreshOnWakeUp === true || refreshOnWakeUp === 'true';
+        refreshWithNoQuery = refreshWithNoQuery === true || refreshWithNoQuery === 'true';
+
+        if (!vis.editMode && src) {
+            var $this = $(el).find('.mdc-card__media');
+            refreshInterval = parseInt(refreshInterval, 10) || 0;
+
+            if (refreshOnViewChange) {
+                widgetView = widgetView || vis.activeView;
+                vis.navChangeCallbacks.push(function (view) {
+                    if (view === widgetView) {
+                        $this.css('background-image', src + (refreshWithNoQuery ? '' : ((src.indexOf('?') !== -1) ? '&' : '?') + '_refts=' + ((new Date()).getTime())));
+                    }
+                });
+            }
+            if (refreshInterval > 0) {
+                setInterval(function () {
+                    if ($this.is(':visible')) {
+                        var p = $this.parents(':hidden');
+                        if (!p.length || p[0].tagName === 'BODY' || p[0].id === 'materialdesign-vuetify-container') {
+                            $this[0].css = src + (refreshWithNoQuery ? '' : ((src.indexOf('?') !== -1) ? '&' : '?') + '_refts=' + ((new Date()).getTime()));
+                        }
+                    }
+                }, refreshInterval);
+            }
+            if (refreshOnWakeUp) {
+                //console.log("refreshOnWakeUp!");
+                vis.onWakeUp(function () {
+                    // TODO this does not work. :(
+                    // console.log("wakeup refresh!");
+                    $this[0].css = src + (refreshWithNoQuery ? '' : ((src.indexOf('?') !== -1) ? '&' : '?') + '_refts=' + ((new Date()).getTime()));
+                    //console.log($this.attr('src'));
+                });
+            }
         }
     }
 };

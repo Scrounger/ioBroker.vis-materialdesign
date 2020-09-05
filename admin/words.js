@@ -386,6 +386,18 @@ systemDictionary = {
         "pl": "Ikona",
         "zh-cn": "图标"
     },
+    "group_image": {
+        "en": "image",
+        "de": "Bild",
+        "ru": "образ",
+        "pt": "imagem",
+        "nl": "beeld",
+        "fr": "image",
+        "it": "Immagine",
+        "es": "imagen",
+        "pl": "wizerunek",
+        "zh-cn": "图片"
+    },
     "group_icons": {
         "en": "icons",
         "de": "Symbole",
@@ -9150,15 +9162,15 @@ systemDictionary = {
         "zh-cn": "标题布局"
     },
     "showTitle": {
-        "en": "show title",
-        "de": "Kopfzeile anzeigen",
+        "en": "show heading",
+        "de": "Überschrift anzeigen",
         "ru": "показать заголовок",
         "pt": "mostrar título",
-        "nl": "laat de titel zien",
-        "fr": "montrer le titre",
-        "it": "mostra titolo",
-        "es": "mostrar título",
-        "pl": "Pokaż Tytuł",
+        "nl": "toon kop",
+        "fr": "montrer le cap",
+        "it": "mostra intestazione",
+        "es": "mostrar encabezado",
+        "pl": "pokaż nagłówek",
         "zh-cn": "显示标题"
     },
     "titleFontSize": {
@@ -9580,5 +9592,41 @@ systemDictionary = {
         "es": "alineación",
         "pl": "wyrównanie",
         "zh-cn": "对准"
+    },
+    "subtitle": {
+        "en": "subtitle",
+        "de": "Untertitel",
+        "ru": "подзаголовок",
+        "pt": "legenda",
+        "nl": "ondertitel",
+        "fr": "Sous-titre",
+        "it": "sottotitolo",
+        "es": "subtitular",
+        "pl": "podtytuł",
+        "zh-cn": "字幕"
+    },
+    "showText": {
+        "en": "show text",
+        "de": "Text anzeigen",
+        "ru": "показать текст",
+        "pt": "mostrar texto",
+        "nl": "toon tekst",
+        "fr": "afficher le texte",
+        "it": "mostra il testo",
+        "es": "mostrar texto",
+        "pl": "pokaż tekst",
+        "zh-cn": "显示文字"
+    },
+    "showSubTitle": {
+        "en": "show subtitle",
+        "de": "Untertitel anzeigen",
+        "ru": "показать субтитры",
+        "pt": "mostrar legenda",
+        "nl": "ondertitel weergeven",
+        "fr": "afficher le sous-titre",
+        "it": "mostra sottotitoli",
+        "es": "mostrar subtítulo",
+        "pl": "pokaż podtytuł",
+        "zh-cn": "显示字幕"
     }
 };
