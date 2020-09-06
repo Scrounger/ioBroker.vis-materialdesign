@@ -9628,5 +9628,41 @@ systemDictionary = {
         "es": "mostrar subtítulo",
         "pl": "pokaż podtytuł",
         "zh-cn": "显示字幕"
+    },
+    "refresh_oid": {
+        "en": "object id for refresh",
+        "de": "Objekt-ID zum Aktualisieren",
+        "ru": "идентификатор объекта для обновления",
+        "pt": "id do objeto para atualização",
+        "nl": "object-ID voor vernieuwen",
+        "fr": "identifiant d'objet pour actualisation",
+        "it": "ID oggetto per l'aggiornamento",
+        "es": "ID de objeto para actualizar",
+        "pl": "identyfikator obiektu do odświeżenia",
+        "zh-cn": "刷新的对象ID"
+    },
+    "refresh_oid_delay": {
+        "en": "delay of refresh through object id",
+        "de": "Verzögerung der Aktualisierung durch Objekt-ID",
+        "ru": "задержка обновления через идентификатор объекта",
+        "pt": "atraso de atualização através do id do objeto",
+        "nl": "vertraging van vernieuwen via object-ID",
+        "fr": "délai d'actualisation via l'identifiant d'objet",
+        "it": "ritardo di aggiornamento tramite ID oggetto",
+        "es": "retraso de la actualización a través de la identificación del objeto",
+        "pl": "opóźnienie odświeżania przez identyfikator obiektu",
+        "zh-cn": "通过对象ID刷新的延迟"
+    },
+    "refresh_animation_duration": {
+        "en": "animation duration of refresh through object id",
+        "de": "Animationsdauer der Aktualisierung durch Objekt-ID",
+        "ru": "продолжительность обновления анимации через идентификатор объекта",
+        "pt": "duração da animação da atualização por meio do id do objeto",
+        "nl": "animatieduur van vernieuwen via object-id",
+        "fr": "animation durée d'actualisation via l'identifiant d'objet",
+        "it": "durata dell'animazione dell'aggiornamento tramite ID oggetto",
+        "es": "duración de la animación de la actualización a través de la identificación del objeto",
+        "pl": "czas trwania animacji odświeżania przez identyfikator obiektu",
+        "zh-cn": "通过对象ID刷新的动画持续时间"
     }
 };
