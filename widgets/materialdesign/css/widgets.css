@@ -1323,51 +1323,53 @@ svg.materialdesign-widget .materialdesign-button__icon {
 }
 
 /* hover item -> use var*/
-:not(.materialdesign-widget .mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item:hover::before {
+.materialdesign-widget :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item:hover::before {
   background-color: var(--materialdesign-color-list-item-hover);
   opacity: 0.1;
 }
-:not(.materialdesign-widget .mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item:hover::before {
+.materialdesign-widget :not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item:hover::before {
   background-color: var(--materialdesign-color-sub-list-item-hover);
   opacity: 0.1;
 }
 
 /* hover item -> use var*/
-:not(.materialdesign-widget .mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item:hover::after {
+.materialdesign-widget :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item:hover::after {
   background-color: var(--materialdesign-color-list-item-hover);
 }
-:not(.materialdesign-widget .mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item:hover::after {
+.materialdesign-widget :not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item:hover::after {
   background-color: var(--materialdesign-color-sub-list-item-hover);
 }
 
 /* selected color */
-:not(.materialdesign-widget .mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::before, :not(.materialdesign-widget .mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::after{
+.materialdesign-widget :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::before, 
+.materialdesign-widget :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::after{
   background-color: var(--materialdesign-color-list-item-selected);
 }
-:not(.materialdesign-widget .mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item::before, :not(.materialdesign-widget .mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item::after{
+.materialdesign-widget :not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item::before, 
+.materialdesign-widget :not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item::after{
   background-color: var(--materialdesign-color-sub-list-item-selected);
 }
 
-:not(.materialdesign-widget .mdc-list-item--disabled).mdc-list-item{
+.materialdesign-widget :not(.mdc-list-item--disabled).mdc-list-item{
   color: var(--materialdesign-color-list-item-text);
 }
-:not(.materialdesign-widget .mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item{
+.materialdesign-widget :not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item{
   color: var(--materialdesign-color-sub-list-item-text);
 }
 
-:not(.materialdesign-widget .mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated {
+.materialdesign-widget :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated {
   color: var(--materialdesign-color-list-item-text-activated);
 }
 
-:not(.materialdesign-widget .mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item.mdc-list-item--activated {
+.materialdesign-widget :not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item.mdc-list-item--activated {
   color: var(--materialdesign-color-sub-list-item-text-activated);
 }
 
 /* backdrop container */
-:not(.materialdesign-widget .mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated .materialdesign-list-item-backdrop-container {
+.materialdesign-widget :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated .materialdesign-list-item-backdrop-container {
   background-color: var( --materialdesign-color-list-item-backdrop-activated);
 }
-:not(.materialdesign-widget .mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated .materialdesign-list-item-backdrop-container.isSubItem {
+.materialdesign-widget :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item--activated .materialdesign-list-item-backdrop-container.isSubItem {
   background-color: var( --materialdesign-color-sub-list-item-backdrop-activated);
 }
 
@@ -1423,11 +1425,13 @@ svg.materialdesign-widget .materialdesign-button__icon {
   border-color: #e0e0e0;
 }
 
-.mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic{
+.materialdesign-widget.mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic,
+.materialdesign-widget .mdc-drawer .mdc-list-item--activated .mdc-list-item__graphic {
   color: initial;
 }
 
-.mdc-list-item__graphic{
+.materialdesign-widget.mdc-list-item__graphic,
+.materialdesign-widget .mdc-list-item__graphic {
   font-size: 24px;
 }
 
