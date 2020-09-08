@@ -1274,6 +1274,7 @@ vis.binds.materialdesign.chart = {
                                                         {
                                                             displayFormats: (graph.xAxis_timeFormats) ? graph.xAxis_timeFormats : myChartHelper.defaultTimeFormats(),
                                                             tooltipFormat: (graph.xAxis_tooltip_timeFormats) ? graph.xAxis_tooltip_timeFormats : 'lll',
+                                                            unit: (graph.xAxis_time_unit) ? graph.xAxis_time_unit : undefined
                                                         }
                                                     }
                                                 );

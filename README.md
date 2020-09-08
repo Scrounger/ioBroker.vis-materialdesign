@@ -1177,6 +1177,12 @@ JSON Chart supports data that have a timestamp. To use this the data array must 
             <td>String</td>
             <td>Approved time formats must be entered according to the moment.js library, <a href="https://momentjs.com/docs/#/displaying/">see link</a></td>
         </tr>
+        <tr>
+            <td>xAxis_time_unit</td>
+            <td>force the time format for the x-axis</td>
+            <td>String</td>
+            <td>following units are allowed, <a href="https://www.chartjs.org/docs/latest/axes/cartesian/time.html#time-units">see link</a></td>
+        </tr>
     </tbody>
 </table>
 </details>
