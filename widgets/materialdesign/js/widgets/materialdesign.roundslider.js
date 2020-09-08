@@ -61,91 +61,93 @@ vis.binds.materialdesign.roundslider =
 
             let slider = $this.find('.materialdesign-round-slider-element');
 
-            slider.get(0).style.setProperty('--round-slider-path-width', myMdwHelper.getNumberFromData(data.sliderWidth, 3));
+            if (slider) {
+                slider.get(0).style.setProperty('--round-slider-path-width', myMdwHelper.getNumberFromData(data.sliderWidth, 3));
 
-            slider.get(0).style.setProperty('background', myMdwHelper.getValueFromData(data.colorSliderBg, ''));
-            slider.get(0).style.setProperty('--round-slider-path-color', myMdwHelper.getValueFromData(data.colorAfterThumb, ''));
-            slider.get(0).style.setProperty('--round-slider-bar-color', myMdwHelper.getValueFromData(data.colorBeforeThumb, '#44739e'));
-            slider.get(0).style.setProperty('--round-slider-handle-color', myMdwHelper.getValueFromData(data.colorThumb, ''));
+                slider.get(0).style.setProperty('background', myMdwHelper.getValueFromData(data.colorSliderBg, ''));
+                slider.get(0).style.setProperty('--round-slider-path-color', myMdwHelper.getValueFromData(data.colorAfterThumb, ''));
+                slider.get(0).style.setProperty('--round-slider-bar-color', myMdwHelper.getValueFromData(data.colorBeforeThumb, '#44739e'));
+                slider.get(0).style.setProperty('--round-slider-handle-color', myMdwHelper.getValueFromData(data.colorThumb, ''));
 
 
-            setSliderState();
-
-            vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                setSliderState()
-            });
-
-            vis.states.bind(workingId + '.val', function (e, newVal, oldVal) {
                 setSliderState();
-            });
 
-            slider.bind('value-changing', function (ev) {
-                setSliderState(false, ev.target.__value);
-            });
+                vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                    setSliderState()
+                });
 
-            slider.bind('value-changed', function (ev) {
-                let changedVal = parseFloat(ev.target.__value);
-
-                if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
-                    myMdwHelper.setValue(data.oid, changedVal);
+                vis.states.bind(workingId + '.val', function (e, newVal, oldVal) {
                     setSliderState();
-                }
-            });
+                });
 
-            $this.find('.materialdesign-round-slider-element').on('touchstart mousedown', function (e) {
-                myHelper.vibrate(data.vibrateOnMobilDevices);
+                slider.bind('value-changing', function (ev) {
+                    setSliderState(false, ev.target.__value);
+                });
 
-                // let posX = e.offsetX;
-                // let posY = e.offsetY;
-                // let width = window.getComputedStyle($this.context, null).width.replace('px', '') / 2;
-                // let height = window.getComputedStyle($this.context, null).height.replace('px', '') / 2;
-                // let deltaY = height - posY;
-                // let deltaX = width - posX;
-                // let deg = (Math.atan2(deltaY, deltaX) * 180) / Math.PI;
-                // deg = deg + (360 - myMdwHelper.getNumberFromData(data.startAngle, 135));
-                // console.log(deg);
-                // // deg = deg + myMdwHelper.getNumberFromData(data.startAngle, 135);
+                slider.bind('value-changed', function (ev) {
+                    let changedVal = parseFloat(ev.target.__value);
 
-
-                // // if (deg < 0 && deg >= -270) {
-                // //     deg = deg + 360;
-                // // }
-                // // console.log(deg);
-                // // this.value = deg;
-            });
-
-            function setSliderState(setVisValue = true, val = 0) {
-                if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
-
-                    if (setVisValue) {
-                        val = vis.states.attr(data.oid + '.val');
-                        slider.attr('value', val);
+                    if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
+                        myMdwHelper.setValue(data.oid, changedVal);
+                        setSliderState();
                     }
+                });
 
-                    let valPercent = parseFloat(val);
+                $this.find('.materialdesign-round-slider-element').on('touchstart mousedown', function (e) {
+                    myHelper.vibrate(data.vibrateOnMobilDevices);
 
-                    if (isNaN(valPercent)) valPercent = min;
-                    if (valPercent < min) valPercent = min;
-                    if (valPercent > max) valPercent = max;
+                    // let posX = e.offsetX;
+                    // let posY = e.offsetY;
+                    // let width = window.getComputedStyle($this.context, null).width.replace('px', '') / 2;
+                    // let height = window.getComputedStyle($this.context, null).height.replace('px', '') / 2;
+                    // let deltaY = height - posY;
+                    // let deltaX = width - posX;
+                    // let deg = (Math.atan2(deltaY, deltaX) * 180) / Math.PI;
+                    // deg = deg + (360 - myMdwHelper.getNumberFromData(data.startAngle, 135));
+                    // console.log(deg);
+                    // // deg = deg + myMdwHelper.getNumberFromData(data.startAngle, 135);
 
-                    let simRange = 100;
-                    let range = max - min;
-                    let factor = simRange / range;
-                    valPercent = Math.floor((valPercent - min) * factor);
 
-                    if (val <= min && labelMin != null) {
-                        $this.find('.labelValue').html(labelMin);
-                    } else if (val > min && val <= valueLessThan && textForValueLessThan != null) {
-                        $this.find('.labelValue').html(textForValueLessThan);
-                    } else if (val >= valueGreaterThan && val < max && textForValueGreaterThan != null) {
-                        $this.find('.labelValue').html(textForValueGreaterThan);
-                    } else if (val >= max && labelMax != null) {
-                        $this.find('.labelValue').html(labelMax);
-                    } else {
-                        if (myMdwHelper.getValueFromData(data.valueLabelStyle, "sliderValue") === 'sliderValue') {
-                            $this.find('.labelValue').html(`${val} ${unit}`);
+                    // // if (deg < 0 && deg >= -270) {
+                    // //     deg = deg + 360;
+                    // // }
+                    // // console.log(deg);
+                    // // this.value = deg;
+                });
+
+                function setSliderState(setVisValue = true, val = 0) {
+                    if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
+
+                        if (setVisValue) {
+                            val = vis.states.attr(data.oid + '.val');
+                            slider.attr('value', val);
+                        }
+
+                        let valPercent = parseFloat(val);
+
+                        if (isNaN(valPercent)) valPercent = min;
+                        if (valPercent < min) valPercent = min;
+                        if (valPercent > max) valPercent = max;
+
+                        let simRange = 100;
+                        let range = max - min;
+                        let factor = simRange / range;
+                        valPercent = Math.floor((valPercent - min) * factor);
+
+                        if (val <= min && labelMin != null) {
+                            $this.find('.labelValue').html(labelMin);
+                        } else if (val > min && val <= valueLessThan && textForValueLessThan != null) {
+                            $this.find('.labelValue').html(textForValueLessThan);
+                        } else if (val >= valueGreaterThan && val < max && textForValueGreaterThan != null) {
+                            $this.find('.labelValue').html(textForValueGreaterThan);
+                        } else if (val >= max && labelMax != null) {
+                            $this.find('.labelValue').html(labelMax);
                         } else {
-                            $this.find('.labelValue').html(`${valPercent} %`);
+                            if (myMdwHelper.getValueFromData(data.valueLabelStyle, "sliderValue") === 'sliderValue') {
+                                $this.find('.labelValue').html(`${val} ${unit}`);
+                            } else {
+                                $this.find('.labelValue').html(`${valPercent} %`);
+                            }
                         }
                     }
                 }
