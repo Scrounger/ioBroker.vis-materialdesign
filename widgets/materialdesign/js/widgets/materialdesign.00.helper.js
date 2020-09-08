@@ -616,8 +616,9 @@ vis.binds.materialdesign.helper = {
 
                     if (!event.message.includes('cannot parse json string') &&                                                  // ignore json parse errors
                         !/\b(Cannot access)\b .* \b(before initialization)\b/g.test(event.message) &&                           // ignore lib init errors
-                        !/\b(can't access lexical declaration)\b .* \b(before initialization)\b/g.test(event.message) &&        // ignore lib init errors
-                        !event.message.includes('out of memory')
+                        !/\b(can't access lexical declaration)\b .* \b(before initialization)\b/g.test(event.message) &&        // ignore lib init errors                        
+                        !event.message.includes('out of memory') &&
+                        !event.message.includes('Error in eval')
                     ) {
 
                         event.message = event.message.replace(new RegExp("( - w\\d+)", "g"), "");   // remove data.wid from message
