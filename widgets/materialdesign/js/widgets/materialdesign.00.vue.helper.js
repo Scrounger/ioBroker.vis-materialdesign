@@ -226,11 +226,12 @@ vis.binds.materialdesign.vueHelper = {
             let dataObj = vis.binds.materialdesign.vueHelper.input.getData(data, widgetHeight);
 
             let item = vis.binds.materialdesign.vueHelper.getObjectByValue(vis.states.attr(data.oid + '.val'), itemsList, inputMode);
+            let objImg = this.getIconTextField(data, item.icon, item.image);
 
             dataObj.item = item;
             dataObj.items = itemsList;
-            dataObj.icon = item.icon;
-            dataObj.image = item.image;
+            dataObj.icon = objImg.icon;
+            dataObj.image = objImg.image;
             dataObj.imageColor = item.imageColor;
             dataObj.iconColorTextField = this.getIconColorTextField(data, item.imageColor);
             dataObj.collapseIcon = myMdwHelper.getValueFromData(data.collapseIcon, undefined, 'mdi-');
@@ -311,7 +312,7 @@ vis.binds.materialdesign.vueHelper = {
                     let value = myMdwHelper.getValueFromData(data['value' + i], null)
 
                     if (value !== null) {
-                        let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(myMdwHelper.getValueFromData(data['listIcon' + i], null));
+                        let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(myMdwHelper.getValueFromData(data['listIcon' + i]));
 
                         itemsList.push(
                             {
@@ -403,7 +404,7 @@ vis.binds.materialdesign.vueHelper = {
 
                         if (typeof (states) === 'object') {
                             for (var i = 0; i <= Object.keys(states).length - 1; i++) {
-                                let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(myMdwHelper.getValueFromData(data['listIcon' + i], null));
+                                let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(myMdwHelper.getValueFromData(data['listIcon' + i]));
 
                                 itemsList.push(
                                     {
@@ -422,7 +423,7 @@ vis.binds.materialdesign.vueHelper = {
                             for (var i = 0; i <= list.length - 1; i++) {
                                 let itemSplitted = list[i].split(':');
 
-                                let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(myMdwHelper.getValueFromData(data['listIcon' + i], null));
+                                let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(myMdwHelper.getValueFromData(data['listIcon' + i]));
 
                                 itemsList.push(
                                     {
@@ -446,12 +447,25 @@ vis.binds.materialdesign.vueHelper = {
             let that = this;
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 let item = vis.binds.materialdesign.vueHelper.getObjectByValue(newVal, itemsList, inputMode);
+                let objImg = that.getIconTextField(data, item.icon, item.image);
+
                 vueInput.item = item;
-                vueInput.icon = item.icon;
-                vueInput.image = item.image;
+                vueInput.icon = objImg.icon;
+                vueInput.image = objImg.image;
                 vueInput.imageColor = item.imageColor;
                 vueInput.iconColorTextField = that.getIconColorTextField(data, item.imageColor);
             });
+        },
+        getIconTextField(data, icon, image) {
+            if (data.showSelectedIcon === 'prepend' && myMdwHelper.getValueFromData(data.prepandIcon, undefined)) {
+                return vis.binds.materialdesign.vueHelper.getIconOrImage(data.prepandIcon);
+            } else if (data.showSelectedIcon === 'prepend-inner' && myMdwHelper.getValueFromData(data.prepandInnerIcon, undefined)) {
+                return vis.binds.materialdesign.vueHelper.getIconOrImage(data.prepandInnerIcon);
+            } else if (data.showSelectedIcon === 'append-outer' && myMdwHelper.getValueFromData(data.appendOuterIcon, undefined)) {
+                return vis.binds.materialdesign.vueHelper.getIconOrImage(data.appendOuterIcon);
+            } else {
+                return { icon: icon, image: image };
+            }
         },
         getIconColorTextField(data, imageColor) {
             if (data.showSelectedIcon === 'prepend' && myMdwHelper.getValueFromData(data.prepandIconColor, undefined)) {
