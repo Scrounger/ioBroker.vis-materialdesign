@@ -203,7 +203,7 @@ vis.binds.materialdesign.vueHelper = {
                 ${(data.showSelectedIcon !== 'no') ? `
                     <template v-slot:${data.showSelectedIcon}>
                         <div  class="v-input__icon v-input__icon--${data.showSelectedIcon}">                            
-                            <v-icon v-if="icon !== ''">{{ icon }}</v-icon>
+                            <v-icon v-if="icon !== ''" :style="{color: iconColorTextField}">{{ icon }}</v-icon>
                             <img v-if="image !== ''" :src="image" />
                         </div>
                     </template>
@@ -232,6 +232,7 @@ vis.binds.materialdesign.vueHelper = {
             dataObj.icon = item.icon;
             dataObj.image = item.image;
             dataObj.imageColor = item.imageColor;
+            dataObj.iconColorTextField = this.getIconColorTextField(data, item.imageColor);
             dataObj.collapseIcon = myMdwHelper.getValueFromData(data.collapseIcon, undefined, 'mdi-');
 
             return dataObj;
@@ -442,13 +443,26 @@ vis.binds.materialdesign.vueHelper = {
             }
         },
         setIoBrokerBinding(data, vueInput, itemsList, inputMode = '') {
+            let that = this;
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 let item = vis.binds.materialdesign.vueHelper.getObjectByValue(newVal, itemsList, inputMode);
                 vueInput.item = item;
                 vueInput.icon = item.icon;
                 vueInput.image = item.image;
                 vueInput.imageColor = item.imageColor;
+                vueInput.iconColorTextField = that.getIconColorTextField(data, item.imageColor);
             });
+        },
+        getIconColorTextField(data, imageColor) {
+            if (data.showSelectedIcon === 'prepend' && myMdwHelper.getValueFromData(data.prepandIconColor, undefined)) {
+                return data.prepandIconColor;
+            } else if (data.showSelectedIcon === 'prepend-inner' && myMdwHelper.getValueFromData(data.prepandInnerIconColor, undefined)) {
+                return data.prepandInnerIconColor;
+            } else if (data.showSelectedIcon === 'append-outer' && myMdwHelper.getValueFromData(data.appendOuterIconColor, undefined)) {
+                return data.appendOuterIconColor;
+            } else {
+                return imageColor;
+            }
         },
         getMethods: function (data, $el, itemsList, $vuetifyContainer, inputMode = '') {
             return {

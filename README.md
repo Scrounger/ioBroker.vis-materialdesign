@@ -5462,6 +5462,7 @@ ical2CalendarWidget();
 * (Scrounger): HTML Card Widget: option to hide title, subtitle and text added
 * (Scrounger): HTML Card Widget: background image refresh options added
 * (Scrounger): Fixed some errors reported via Sentry
+* (Scrounger): Select & Autocomplete Widget: overriding icon color bug fix
 
 ### 0.3.19 (2020-07-18)
 * (Scrounger): Icon Button Widget: background color option for lock icon added
