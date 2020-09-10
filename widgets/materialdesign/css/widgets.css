@@ -2504,11 +2504,11 @@ svg.materialdesign-widget .materialdesign-button__icon {
   background: var(--vue-text-field-background-color);
 }
 
-.theme--light.v-text-field--outlined > .v-input__control > .v-input__slot > fieldset{
+.theme--light.v-text-field--outlined > .v-input__control > .v-input__slot > fieldset {
   background: var(--vue-text-field-background-color);
 }
 
-.theme--light.v-text-field:not(.v-input--is-focused.v-text-field--outlined) > .v-input__control > .v-input__slot:hover {
+.theme--light.v-text-field:not(.v-input--is-focused) > .v-input__control > .v-input__slot:hover {
   background: var(--vue-text-field-background-hover-color);
 }
 
@@ -2580,6 +2580,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   /* align-self: flex-start; */
   display: inline-flex;
   align-items: center;
+  z-index: 1;
   /* margin-top: 10px; */
   line-height: 1;
   -webkit-user-select: none;

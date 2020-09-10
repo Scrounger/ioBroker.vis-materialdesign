@@ -5464,6 +5464,7 @@ ical2CalendarWidget();
 * (Scrounger): Fixed some errors reported via Sentry
 * (Scrounger): Select & Autocomplete Widget: overriding icon color bug fix
 * (Scrounger): Select & Autocomplete Widget: overriding icon bug fix
+* (Scrounger): Select & Autocomplete Widget: colors bug fixes
 * (Scrounger): JSON Chart: option to force x-axis time unit added
 
 ### 0.3.19 (2020-07-18)
