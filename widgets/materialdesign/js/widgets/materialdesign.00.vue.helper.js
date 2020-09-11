@@ -233,7 +233,7 @@ vis.binds.materialdesign.vueHelper = {
             dataObj.icon = objImg.icon;
             dataObj.image = objImg.image;
             dataObj.imageColor = item.imageColor;
-            dataObj.iconColorTextField = this.getIconColorTextField(data, item.imageColor);
+            dataObj.iconColorTextField = this.getIconColorTextField(data, myMdwHelper.getValueFromData(item.imageColorSelectedTextField, item.imageColor));
             dataObj.collapseIcon = myMdwHelper.getValueFromData(data.collapseIcon, undefined, 'mdi-');
 
             return dataObj;
@@ -321,7 +321,8 @@ vis.binds.materialdesign.vueHelper = {
                                 value: myMdwHelper.getValueFromData(data['value' + i], ''),
                                 icon: imgObj.icon,
                                 image: imgObj.image,
-                                imageColor: myMdwHelper.getValueFromData(data['listIconColor' + i], '')
+                                imageColor: myMdwHelper.getValueFromData(data['listIconColor' + i], ''),
+                                imageColorSelectedTextField: myMdwHelper.getValueFromData(data['imageColorSelectedTextField' + i], '')
                             }
                         )
                     }
@@ -361,7 +362,8 @@ vis.binds.materialdesign.vueHelper = {
                                     value: jsonObj.value,
                                     icon: imgObj.icon,
                                     image: imgObj.image,
-                                    imageColor: jsonObj.iconColor
+                                    imageColor: jsonObj.iconColor,
+                                    imageColorSelectedTextField: jsonObj.iconColorSelectedTextField
                                 }
                             )
                         }
@@ -388,7 +390,8 @@ vis.binds.materialdesign.vueHelper = {
                                     value: value,
                                     icon: imgObj.icon,
                                     image: imgObj.image,
-                                    imageColor: myMdwHelper.getValueFromData(data['listIconColor' + i], '')
+                                    imageColor: myMdwHelper.getValueFromData(data['listIconColor' + i], ''),
+                                    imageColorSelectedTextField: myMdwHelper.getValueFromData(data['imageColorSelectedTextField' + i], '')
                                 }
                             )
                         }
@@ -413,7 +416,8 @@ vis.binds.materialdesign.vueHelper = {
                                         value: Object.values(states)[i],
                                         icon: imgObj.icon,
                                         image: imgObj.image,
-                                        imageColor: myMdwHelper.getValueFromData(data['listIconColor' + i], '')
+                                        imageColor: myMdwHelper.getValueFromData(data['listIconColor' + i], ''),
+                                        imageColorSelectedTextField: myMdwHelper.getValueFromData(data['imageColorSelectedTextField' + i], '')
                                     }
                                 )
                             }
@@ -432,7 +436,8 @@ vis.binds.materialdesign.vueHelper = {
                                         value: itemSplitted[0],
                                         icon: imgObj.icon,
                                         image: imgObj.image,
-                                        imageColor: myMdwHelper.getValueFromData(data['listIconColor' + i], '')
+                                        imageColor: myMdwHelper.getValueFromData(data['listIconColor' + i], ''),
+                                        imageColorSelectedTextField: myMdwHelper.getValueFromData(data['imageColorSelectedTextField' + i], '')
                                     }
                                 )
                             }
@@ -453,7 +458,7 @@ vis.binds.materialdesign.vueHelper = {
                 vueInput.icon = objImg.icon;
                 vueInput.image = objImg.image;
                 vueInput.imageColor = item.imageColor;
-                vueInput.iconColorTextField = that.getIconColorTextField(data, item.imageColor);
+                vueInput.iconColorTextField = that.getIconColorTextField(data, myMdwHelper.getValueFromData(item.imageColorSelectedTextField, item.imageColor));
             });
         },
         getIconTextField(data, icon, image) {

@@ -260,7 +260,8 @@ Settings that are not listed in the table below are self-explanatory.
 		"subText": "sub 1",
 		"value": "val1",
 		"icon": "/vis/icon/info.png",
-        "iconColor": "red"
+        "iconColor": "red",
+        "iconColorSelectedTextField": "red"
 	},
 	{
 		"text": "text 2",
@@ -5465,6 +5466,7 @@ ical2CalendarWidget();
 * (Scrounger): Select & Autocomplete Widget: overriding icon color bug fix
 * (Scrounger): Select & Autocomplete Widget: overriding icon bug fix
 * (Scrounger): Select & Autocomplete Widget: colors bug fixes
+* (Scrounger): Select & Autocomplete Widget: option to override the icon color of textfield for selected menu icon
 * (Scrounger): JSON Chart: option to force x-axis time unit added
 
 ### 0.3.19 (2020-07-18)

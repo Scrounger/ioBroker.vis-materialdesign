@@ -9664,5 +9664,17 @@ systemDictionary = {
         "es": "duración de la animación de la actualización a través de la identificación del objeto",
         "pl": "czas trwania animacji odświeżania przez identyfikator obiektu",
         "zh-cn": "通过对象ID刷新的动画持续时间"
+    },
+    "imageColorSelectedTextField": {
+        "en": "selected icon color for textfield",
+        "de": "Symbolfarbe ausgewählt für das Textfeld",
+        "ru": "выбранный цвет значка для текстового поля",
+        "pt": "cor do ícone selecionado para o campo de texto",
+        "nl": "geselecteerde pictogramkleur voor tekstveld",
+        "fr": "couleur de l'icône sélectionnée pour le champ de texte",
+        "it": "colore dell'icona selezionato per il campo di testo",
+        "es": "color de icono seleccionado para el campo de texto",
+        "pl": "wybrany kolor ikony dla pola tekstowego",
+        "zh-cn": "文本框的选定图标颜色"
     }
 };
