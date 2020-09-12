@@ -1267,7 +1267,6 @@ vis.binds.materialdesign.chart = {
                                             }
 
                                             if (isTimeAxis) {
-                                                console.log(graph.xAxis_timeFormats)
                                                 timeAxisSettings = Object.assign(timeAxisSettings,
                                                     {
                                                         type: 'time',
