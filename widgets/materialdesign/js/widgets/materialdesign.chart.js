@@ -116,7 +116,7 @@ vis.binds.materialdesign.chart = {
                                 myChartHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
                                     data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
                                     data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
-                                    data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength, data.xAxisZeroLineWidth, data.xAxisZeroLineColor, data.xAxisOffsetGridLines, data.axisValueMinDigits, data.axisValueMaxDigits, data.xAxisMinRotation, data.xAxisMaxRotation, false, data.xAxisOffset)
+                                    data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength, data.xAxisZeroLineWidth, data.xAxisZeroLineColor, data.xAxisOffsetGridLines, data.axisValueMinDigits, data.axisValueMaxDigits, data.xAxisMinRotation, data.xAxisMaxRotation, false, data.xAxisOffset, data.xAxisTicksSource)
                             ],
                         },
                         tooltips: {
@@ -444,7 +444,8 @@ vis.binds.materialdesign.chart = {
                                             callback: function (value, index, values) {
                                                 let axisId = this.id.replace('yAxis_id_', '');
                                                 return `${myMdwHelper.formatNumber(value, data.attr('yAxisValueMinDigits' + axisId), data.attr('yAxisValueMaxDigits' + axisId))}${myMdwHelper.getValueFromData(data.attr('yAxisValueAppendText' + axisId), '')}`.split('\\n');
-                                            }
+                                            },
+                                            source: myMdwHelper.getValueFromData(data.xAxisTicksSource, 'auto')
                                         },
                                         gridLines: {
                                             display: true,
@@ -1266,6 +1267,7 @@ vis.binds.materialdesign.chart = {
                                             }
 
                                             if (isTimeAxis) {
+                                                console.log(graph.xAxis_timeFormats)
                                                 timeAxisSettings = Object.assign(timeAxisSettings,
                                                     {
                                                         type: 'time',
@@ -1281,10 +1283,10 @@ vis.binds.materialdesign.chart = {
                                             }
 
                                             myXAxis.push(Object.assign(
-                                                myChartHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
-                                                    data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.xAxisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
+                                                myChartHelper.get_X_AxisObject(graph.type, data.xAxisPosition, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
+                                                    data.xAxisShowAxisLabels, undefined, undefined, undefined, data.xAxisMaxLabel, data.axisLabelAutoSkip, undefined,
                                                     data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
-                                                    data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength, data.xAxisZeroLineWidth, data.xAxisZeroLineColor, data.xAxisOffsetGridLines, undefined, undefined, data.xAxisMinRotation, data.xAxisMaxRotation, isTimeAxis, data.xAxisOffset),
+                                                    data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength, data.xAxisZeroLineWidth, data.xAxisZeroLineColor, data.xAxisOffsetGridLines, undefined, undefined, data.xAxisMinRotation, data.xAxisMaxRotation, isTimeAxis, data.xAxisOffset, data.xAxisTicksSource),
                                                 timeAxisSettings
                                             ));
 
@@ -1513,7 +1515,7 @@ vis.binds.materialdesign.chart.helper = {
     },
     get_X_AxisObject: function (chartType, xAxisPosition, xAxisTitle, xAxisTitleColor, xAxisTitleFontFamily, xAxisTitleFontSize, xAxisShowAxisLabels, axisValueMin, axisValueMax, axisValueStepSize,
         axisMaxLabel, axisLabelAutoSkip, axisValueAppendText, xAxisValueLabelColor, xAxisValueFontFamily, xAxisValueFontSize, xAxisValueDistanceToAxis, xAxisGridLinesColor, xAxisGridLinesWitdh,
-        xAxisShowAxis, xAxisShowGridLines, xAxisShowTicks, xAxisTickLength, xAxisZeroLineWidth, xAxisZeroLineColor, xAxisOffsetGridLines, axisValueMinDigits, axisValueMaxDigits, minRotation, maxRotation, isTimeAxis, xAxisOffset) {
+        xAxisShowAxis, xAxisShowGridLines, xAxisShowTicks, xAxisTickLength, xAxisZeroLineWidth, xAxisZeroLineColor, xAxisOffsetGridLines, axisValueMinDigits, axisValueMaxDigits, minRotation, maxRotation, isTimeAxis, xAxisOffset, xAxisTicksSource) {
 
         let result = {
             position: xAxisPosition,
@@ -1535,13 +1537,17 @@ vis.binds.materialdesign.chart.helper = {
                 maxRotation: parseInt(myMdwHelper.getNumberFromData(maxRotation, 0)),
                 maxTicksLimit: (chartType === 'vertical') ? myMdwHelper.getNumberFromData(axisMaxLabel, undefined) : undefined || myMdwHelper.getNumberFromData(axisMaxLabel, undefined),
                 callback: function (value, index, values) {
-                    return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                    if (isTimeAxis) {
+                        return value.split('\\n');
+                    } else {
+                        return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                    }
                 },
                 fontColor: myMdwHelper.getValueFromData(xAxisValueLabelColor, undefined),
                 fontFamily: myMdwHelper.getValueFromData(xAxisValueFontFamily, undefined),
                 fontSize: myMdwHelper.getNumberFromData(xAxisValueFontSize, undefined),
                 padding: myMdwHelper.getNumberFromData(xAxisValueDistanceToAxis, 0),
-                source: isTimeAxis ? 'data' : 'auto'
+                source: myMdwHelper.getValueFromData(xAxisTicksSource, 'auto')
             },
             gridLines: {
                 display: true,

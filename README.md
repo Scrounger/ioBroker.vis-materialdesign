@@ -5454,7 +5454,7 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
-* (Scrounger): Line History Chart: Breaking Changes !!! aggregate (display) method for every dataset configurable, see documentation for detailed infos!
+* (Scrounger): Line History Chart Widget: Breaking Changes !!! aggregate (display) method for every dataset configurable, see documentation for detailed infos!
 * (Scrounger): bug fix for compatibility issues with other widget adapters
 * (Scrounger): Chechbox Widget: option for border and hover color added
 * (Scrounger): Chechbox Widget: ripple effect bug fix
@@ -5467,7 +5467,8 @@ ical2CalendarWidget();
 * (Scrounger): Select & Autocomplete Widget: overriding icon bug fix
 * (Scrounger): Select & Autocomplete Widget: colors bug fixes
 * (Scrounger): Select & Autocomplete Widget: option to override the icon color of textfield for selected menu icon
-* (Scrounger): JSON Chart: option to force x-axis time unit added
+* (Scrounger): JSON Chart Widget: option to force x-axis time unit added
+* (Scrounger): Charts Widget: x-Axis time axis bug fixes
 
 ### 0.3.19 (2020-07-18)
 * (Scrounger): Icon Button Widget: background color option for lock icon added
