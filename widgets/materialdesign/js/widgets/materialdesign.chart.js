@@ -1557,8 +1557,8 @@ vis.binds.materialdesign.chart.helper = {
                 drawOnChartArea: xAxisShowGridLines,
                 drawTicks: xAxisShowTicks,
                 tickMarkLength: myMdwHelper.getNumberFromData(xAxisTickLength, 5),
-                zeroLineWidth: myMdwHelper.getNumberFromData(xAxisZeroLineWidth, 1),
-                zeroLineColor: myMdwHelper.getValueFromData(xAxisZeroLineColor, 'rgba(0, 0, 0, 0.25)'),
+                zeroLineWidth: myMdwHelper.getNumberFromData(xAxisZeroLineWidth, 0.1),
+                zeroLineColor: myMdwHelper.getValueFromData(xAxisZeroLineColor, 'black'),
                 offsetGridLines: myMdwHelper.getBooleanFromData(xAxisOffsetGridLines, false),
             }
         }
