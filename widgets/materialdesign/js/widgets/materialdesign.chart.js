@@ -1777,7 +1777,6 @@ vis.binds.materialdesign.chart.helper = {
         const regenerateGradient = (chart, pluginOpts) => {
             try {
                 if (chart.chartArea.bottom && !isNaN(chart.chartArea.bottom) && chart.chartArea.top && !isNaN(chart.chartArea.top)) {
-                    const gradient = chart.ctx.createLinearGradient(0, chart.chartArea.bottom, 0, chart.chartArea.top);
 
                     for (var i = 0; i <= chart.data.datasets.length - 1; i++) {
                         let graph = chart.data.datasets[i];
@@ -1785,12 +1784,12 @@ vis.binds.materialdesign.chart.helper = {
                         // Line / Bar Color
                         if (graph[pluginId] && graph[pluginId].useGradientColor) {
                             if (graph[pluginId].gradientColors && graph[pluginId].gradientColors.length > 0) {
-                                let gradient = getGradient(chart, graph, graph[pluginId].gradientColors);
+                                let gradientLine = getGradient(chart, graph, graph[pluginId].gradientColors);
 
                                 if (graph.type === 'line') {
-                                    graph.borderColor = gradient;
+                                    graph.borderColor = gradientLine;
                                 } else if (graph.type === 'bar') {
-                                    graph.backgroundColor = gradient;
+                                    graph.backgroundColor = gradientLine;
                                 }
                             }
                         } else {
@@ -1813,6 +1812,7 @@ vis.binds.materialdesign.chart.helper = {
 
                         function getGradient(chart, graph, gradientColors) {
                             const scale = chart.scales[graph.yAxisID];
+                            let gradient = chart.ctx.createLinearGradient(0, chart.chartArea.bottom, 0, chart.chartArea.top);
 
                             if (gradientColors && Array.isArray(gradientColors) && gradientColors.length > 0) {
                                 gradientColors.forEach(item => {
