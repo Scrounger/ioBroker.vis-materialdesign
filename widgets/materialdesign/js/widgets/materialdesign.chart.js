@@ -1342,9 +1342,9 @@ vis.binds.materialdesign.chart = {
                                                 let metaIndex = Object.keys(chart.datasets[datasetIndex]._meta)[0];
                                                 let currentUnit = chart.datasets[datasetIndex]._meta[metaIndex].controller._xScale._unit;
                                                 let timestamp = moment(chart.datasets[datasetIndex].data[index].t);
-    
+
                                                 let timeFormats = (myMdwHelper.getValueFromData(data.tooltipTimeFormats, null) !== null) ? JSON.parse(data.tooltipTimeFormats) : myChartHelper.defaultToolTipTimeFormats();
-    
+
                                                 return timestamp.format(timeFormats[currentUnit]);
                                             }
                                         },
@@ -1605,7 +1605,12 @@ vis.binds.materialdesign.chart.helper = {
                 filter: function (item, chart) {
                     // Logic to remove a particular legend item goes here
                     if (item && item.text) {
-                        return item.text;
+                        
+                        if (item.fillStyle === 'transparent') {
+                            item.fillStyle = chart.datasets[item.datasetIndex].datalabels.color;
+                        }
+
+                        return item;
                     }
                 }
             }
