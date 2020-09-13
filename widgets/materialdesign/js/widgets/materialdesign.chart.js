@@ -1336,7 +1336,16 @@ vis.binds.materialdesign.chart = {
                                             if (jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title) {
                                                 return jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title.split('\\n');
                                             } else {
-                                                return null;
+                                                let datasetIndex = tooltipItem[0].datasetIndex;
+
+                                                let index = tooltipItem[0].index;
+                                                let metaIndex = Object.keys(chart.datasets[datasetIndex]._meta)[0];
+                                                let currentUnit = chart.datasets[datasetIndex]._meta[metaIndex].controller._xScale._unit;
+                                                let timestamp = moment(chart.datasets[datasetIndex].data[index].t);
+    
+                                                let timeFormats = (myMdwHelper.getValueFromData(data.tooltipTimeFormats, null) !== null) ? JSON.parse(data.tooltipTimeFormats) : myChartHelper.defaultToolTipTimeFormats();
+    
+                                                return timestamp.format(timeFormats[currentUnit]);
                                             }
                                         },
                                         label: function (tooltipItem, chart) {

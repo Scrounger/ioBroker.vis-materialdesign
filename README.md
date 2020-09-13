@@ -5469,6 +5469,7 @@ ical2CalendarWidget();
 * (Scrounger): Select & Autocomplete Widget: option to override the icon color of textfield for selected menu icon
 * (Scrounger): JSON Chart Widget: option to force x-axis time unit added
 * (Scrounger): JSON Chart Widget: gradient colors for multipe dataset bug fixes
+* (Scrounger): JSON Chart: default tooltip title added
 * (Scrounger): Charts Widget: x-Axis time axis bug fixes
 
 ### 0.3.19 (2020-07-18)
