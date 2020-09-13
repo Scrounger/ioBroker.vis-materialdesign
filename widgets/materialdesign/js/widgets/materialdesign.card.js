@@ -51,10 +51,10 @@ vis.binds.materialdesign.card = {
                 }
 
                 if (data.showTitle) {
-                    titleSection.push(`<div class="materialdesign-html-card card-title ${titleFontSize.class}" style="${titleFontSize.style}${labelTextHeight}">${data.title}</div>`);
+                    titleSection.push(`<div class="materialdesign-html-card card-title ${titleFontSize.class}" style="${titleFontSize.style}${labelTextHeight}">${myMdwHelper.getValueFromData(data.title, '')}</div>`);
                 }
                 if (data.showSubTitle) {
-                    titleSection.push(`<div class="materialdesign-html-card card-subtitle ${subTitleFontSize.class}" style="${subTitleFontSize.style}${labelSubTextHeight}">${data.subtitle}</div>`);
+                    titleSection.push(`<div class="materialdesign-html-card card-subtitle ${subTitleFontSize.class}" style="${subTitleFontSize.style}${labelSubTextHeight}">${myMdwHelper.getValueFromData(data.subtitle, '')}</div>`);
                 }
 
                 titleSection.push(`</div>`);
@@ -63,7 +63,7 @@ vis.binds.materialdesign.card = {
             let textSection = '';
             if (data.showText) {
                 textSection = `<div class="materialdesign-html-card card-text-section">
-                                    <div class="materialdesign-html-card ${textFontSize.class}" style="${textFontSize.style}">${data.html}</div>
+                                    <div class="materialdesign-html-card ${textFontSize.class}" style="${textFontSize.style}">${myMdwHelper.getValueFromData(data.html, '')}</div>
                                 </div>`
             }
 
