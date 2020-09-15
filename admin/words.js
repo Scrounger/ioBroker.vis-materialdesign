@@ -9688,5 +9688,101 @@ systemDictionary = {
         "es": "color de punto",
         "pl": "kolor punktu",
         "zh-cn": "点色"
+    },
+    "inputType": {
+        "en": "input type",
+        "de": "Eingabetyp",
+        "ru": "тип ввода",
+        "pt": "tipo de entrada",
+        "nl": "invoertype",
+        "fr": "type d'entrée",
+        "it": "tipo di input",
+        "es": "tipo de entrada",
+        "pl": "typ wejścia",
+        "zh-cn": "输入类型"
+    },
+    "inputMask": {
+        "en": "input mask",
+        "de": "Eingabemaske",
+        "ru": "Маска ввода",
+        "pt": "máscara de entrada",
+        "nl": "invoermasker",
+        "fr": "masque de saisie",
+        "it": "maschera di input",
+        "es": "máscara de entrada",
+        "pl": "maska wprowadzania",
+        "zh-cn": "输入掩码"
+    },
+    "inputMaxLength": {
+        "en": "max length",
+        "de": "maximale Länge",
+        "ru": "максимальная длина",
+        "pt": "comprimento máximo",
+        "nl": "maximale lengte",
+        "fr": "longueur maximale",
+        "it": "lunghezza massima",
+        "es": "longitud máxima",
+        "pl": "maksymalna długość",
+        "zh-cn": "最长长度"
+    },
+    "exportData": {
+        "en": "export data",
+        "de": "Daten exportieren",
+        "ru": "экспорт данных",
+        "pt": "exportar dados",
+        "nl": "exportgegevens",
+        "fr": "exporter des données",
+        "it": "esportare i dati",
+        "es": "exportar datos",
+        "pl": "eksport danych",
+        "zh-cn": "汇出资料"
+    },
+    "number": {
+        "en": "number",
+        "de": "Zahl",
+        "ru": "число",
+        "pt": "número",
+        "nl": "aantal",
+        "fr": "nombre",
+        "it": "numero",
+        "es": "número",
+        "pl": "numer",
+        "zh-cn": "数"
+    },
+    "date": {
+        "en": "date",
+        "de": "Datum",
+        "ru": "Дата",
+        "pt": "encontro",
+        "nl": "datum",
+        "fr": "Date",
+        "it": "Data",
+        "es": "fecha",
+        "pl": "data",
+        "zh-cn": "日期"
+    },
+    "time": {
+        "en": "time",
+        "de": "Zeit",
+        "ru": "время",
+        "pt": "Tempo",
+        "nl": "tijd",
+        "fr": "temps",
+        "it": "tempo",
+        "es": "hora",
+        "pl": "czas",
+        "zh-cn": "时间"
+    },
+    "mask": {
+        "en": "mask",
+        "de": "Maske",
+        "ru": "маска",
+        "pt": "mascarar",
+        "nl": "masker",
+        "fr": "masque",
+        "it": "maschera",
+        "es": "máscara",
+        "pl": "maska",
+        "zh-cn": "面具"
     }
 };
