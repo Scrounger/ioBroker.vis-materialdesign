@@ -578,13 +578,19 @@ vis.binds.materialdesign.chart = {
                                             return timestamp.format(timeFormats[currentUnit]);
                                         },
                                         label: function (tooltipItem, chart) {
-
-
                                             if (tooltipItem && tooltipItem.value) {
                                                 return `${chart.datasets[tooltipItem.datasetIndex].label}: ${myMdwHelper.formatNumber(tooltipItem.value, data.tooltipValueMinDecimals, data.tooltipValueMaxDecimals)}${myMdwHelper.getValueFromData(data.tooltipBodyAppend, '')}`
                                                     .split('\\n');
                                             }
                                             return '';
+                                        },
+                                        labelColor: function (tooltipItem, chart) {
+                                            let dataSetColor = chart.config.data.datasets[tooltipItem.datasetIndex].borderColor;
+
+                                            return {
+                                                borderColor: dataSetColor,
+                                                backgroundColor: dataSetColor
+                                            };
                                         }
                                     }
                                 }
@@ -1362,6 +1368,14 @@ vis.binds.materialdesign.chart = {
                                                     .split('\\n');
                                             }
                                             return '';
+                                        },
+                                        labelColor: function (tooltipItem, chart) {
+                                            let dataSetColor = chart.config.data.datasets[tooltipItem.datasetIndex].borderColor;
+
+                                            return {
+                                                borderColor: dataSetColor,
+                                                backgroundColor: dataSetColor
+                                            };
                                         }
                                     }
                                 },
