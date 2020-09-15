@@ -9676,5 +9676,17 @@ systemDictionary = {
         "es": "color de icono seleccionado para el campo de texto",
         "pl": "wybrany kolor ikony dla pola tekstowego",
         "zh-cn": "文本框的选定图标颜色"
+    },
+    "pointColor": {
+        "en": "point color",
+        "de": "Punktfarbe",
+        "ru": "цвет точки",
+        "pt": "cor do ponto",
+        "nl": "punt kleur",
+        "fr": "couleur du point",
+        "it": "punto di colore",
+        "es": "color de punto",
+        "pl": "kolor punktu",
+        "zh-cn": "点色"
     }
 };

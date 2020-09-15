@@ -5470,6 +5470,7 @@ ical2CalendarWidget();
 * (Scrounger): JSON Chart Widget: option to force x-axis time unit added
 * (Scrounger): JSON Chart Widget: gradient colors for multipe dataset bug fixes
 * (Scrounger): JSON Chart: default tooltip title added
+* (Scrounger): Line History Chart: option for point color added
 * (Scrounger): Charts Widget: x-Axis time axis bug fixes
 
 ### 0.3.19 (2020-07-18)

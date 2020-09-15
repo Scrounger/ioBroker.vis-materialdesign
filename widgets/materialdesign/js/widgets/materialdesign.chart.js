@@ -381,14 +381,15 @@ vis.binds.materialdesign.chart = {
                                         steppedLine: myMdwHelper.getBooleanFromData(data.attr('steppedLine' + i), false),
                                         label: myMdwHelper.getValueFromData(data.attr('legendText' + i), ''),
                                         borderColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor),     // Line Color
-                                        pointBackgroundColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor),
+                                        pointBackgroundColor: myMdwHelper.getValueFromData(data.attr('pointColor' + i), myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor)),
+                                        pointBorderColor: myMdwHelper.getValueFromData(data.attr('pointColor' + i), myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor)),
                                         fill: myMdwHelper.getBooleanFromData(data.attr('useFillColor' + i), false),
                                         backgroundColor: myMdwHelper.getValueFromData(data.attr('fillColor' + i), myChartHelper.addOpacityToColor(myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor), 10)),  //Fill Background color
                                         pointRadius: myMdwHelper.getNumberFromData(data.pointSize, 3),
                                         pointHoverRadius: myMdwHelper.getNumberFromData(data.pointSizeHover, 4),
                                         pointStyle: myMdwHelper.getValueFromData(data.pointStyle, 'circle'),
-                                        pointHoverBorderColor: myMdwHelper.getValueFromData(data.attr('pointHoverColor' + i), myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor)),
                                         pointHoverBackgroundColor: myMdwHelper.getValueFromData(data.attr('pointHoverColor' + i), myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor)),
+                                        pointHoverBorderColor: myMdwHelper.getValueFromData(data.attr('pointHoverColor' + i), myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor)),
                                         yAxisID: 'yAxis_id_' + myMdwHelper.getNumberFromData(data.attr('commonYAxis' + i), i),
                                         spanGaps: data.attr('lineSpanGaps' + i),
                                         datalabels: {
@@ -1184,9 +1185,9 @@ vis.binds.materialdesign.chart = {
                                                         pointHoverRadius: myMdwHelper.getNumberFromData(graph.line_pointSizeHover, 4),
 
                                                         pointBackgroundColor: myMdwHelper.getValueFromData(graph.line_PointColor, graphColor),
-                                                        pointBorderColor: myMdwHelper.getValueFromData(graph.line_PointColorBorder, graphColor),
+                                                        pointBorderColor: myMdwHelper.getValueFromData(graph.line_PointColorBorder, myMdwHelper.getValueFromData(graph.line_PointColor, graphColor)),
                                                         pointHoverBackgroundColor: myMdwHelper.getValueFromData(graph.line_PointColorHover, graphColor),
-                                                        pointHoverBorderColor: myMdwHelper.getValueFromData(graph.line_PointColorBorderHover, graphColor),
+                                                        pointHoverBorderColor: myMdwHelper.getValueFromData(graph.line_PointColorBorderHover, myMdwHelper.getValueFromData(graph.line_PointColorHover, graphColor)),
                                                         spanGaps: myMdwHelper.getBooleanFromData(graph.line_spanGaps, true),
                                                         lineTension: myMdwHelper.getNumberFromData(graph.line_Tension, 0.4),
                                                         borderWidth: myMdwHelper.getNumberFromData(graph.line_Thickness, 2),
