@@ -1554,7 +1554,11 @@ vis.binds.materialdesign.chart.helper = {
                     if (isTimeAxis) {
                         return value.split('\\n');
                     } else {
-                        return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                        if (isNaN(value)) {
+                            return `${value}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');;
+                        } else {
+                            return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                        }
                     }
                 },
                 fontColor: myMdwHelper.getValueFromData(xAxisValueLabelColor, undefined),
