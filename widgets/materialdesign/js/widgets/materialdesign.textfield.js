@@ -21,10 +21,19 @@ vis.binds.materialdesign.textfield =
             if (inputType === 'mask') {
                 // mask needs text as input type
                 inputType = 'text';
-                inputMask = `v-mask="'${myMdwHelper.getValueFromData(data.inputMask, '')}'"`
-                placeholder = myMdwHelper.getValueFromData(data.inputMask, '');
+
+                if (data.inputMask) {
+                    if (data.inputMask.startsWith('[') && data.inputMask.endsWith(']')) {
+                        inputMask = `v-mask="${data.inputMask}"`
+                        placeholder = data.inputMask.replace('[', '').replace(']', '').replace("'", '');
+                    } else {
+                        inputMask = `v-mask="'${myMdwHelper.getValueFromData(data.inputMask, '')}'"`
+                        placeholder = data.inputMask;
+                    }
+                }
             }
 
+            console.log(inputMask)
             $this.append(`
             <div class="${containerClass}" style="width: 100%; height: 100%;">
                 <v-text-field
