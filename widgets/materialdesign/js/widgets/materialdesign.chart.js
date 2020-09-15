@@ -1341,12 +1341,17 @@ vis.binds.materialdesign.chart = {
 
                                                 let index = tooltipItem[0].index;
                                                 let metaIndex = Object.keys(chart.datasets[datasetIndex]._meta)[0];
-                                                let currentUnit = chart.datasets[datasetIndex]._meta[metaIndex].controller._xScale._unit;
-                                                let timestamp = moment(chart.datasets[datasetIndex].data[index].t);
 
-                                                let timeFormats = (myMdwHelper.getValueFromData(data.tooltipTimeFormats, null) !== null) ? JSON.parse(data.tooltipTimeFormats) : myChartHelper.defaultToolTipTimeFormats();
+                                                if (chart.datasets[datasetIndex]._meta[metaIndex].controller.chart.scales[datasetIndex]._unit) {
+                                                    let currentUnit = chart.datasets[datasetIndex]._meta[metaIndex].controller.chart.scales[datasetIndex]._unit;
+                                                    let timestamp = moment(chart.datasets[datasetIndex].data[index].t);
 
-                                                return timestamp.format(timeFormats[currentUnit]);
+                                                    let timeFormats = (myMdwHelper.getValueFromData(data.tooltipTimeFormats, null) !== null) ? JSON.parse(data.tooltipTimeFormats) : myChartHelper.defaultToolTipTimeFormats();
+
+                                                    return timestamp.format(timeFormats[currentUnit]);
+                                                } else {
+                                                    return tooltipItem[0].label;
+                                                }
                                             }
                                         },
                                         label: function (tooltipItem, chart) {
@@ -1606,7 +1611,7 @@ vis.binds.materialdesign.chart.helper = {
                 filter: function (item, chart) {
                     // Logic to remove a particular legend item goes here
                     if (item && item.text) {
-                        
+
                         if (item.fillStyle === 'transparent') {
                             item.fillStyle = chart.datasets[item.datasetIndex].datalabels.color;
                         }
