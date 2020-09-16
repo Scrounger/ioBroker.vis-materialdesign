@@ -119,6 +119,7 @@
   --vue-text-field-message-font-size: 12px;
   --vue-text-field-message-font-family: inherit;
 
+  --vue-text-field-alignment: left;
   --vue-text-field-counter-color: rgba(0,0,0,.6);
   --vue-text-field-counter-font-size: 12px;
   --vue-text-field-counter-font-family: inherit;
@@ -3052,6 +3053,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 }
 .v-input input {
   max-height: 32px;
+  text-align: var(--vue-text-field-alignment);
 }
 .v-input input:invalid,
 .v-input textarea:invalid {
@@ -3687,6 +3689,10 @@ svg.materialdesign-widget .materialdesign-button__icon {
   background-color: transparent;
   border-style: none;
   color: inherit;
+}
+
+.v-select__selection.v-select__selection--comma{
+  text-align: var(--vue-text-field-alignment);
 }
 
 .theme--light.v-select .v-select__selections {

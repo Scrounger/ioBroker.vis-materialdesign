@@ -163,6 +163,9 @@ vis.binds.materialdesign.vueHelper = {
             // Icon: prepand-inner options
             $el.get(0).style.setProperty("--vue-text-icon-prepand-inner-size", myMdwHelper.getNumberFromData(data.prepandInnerIconSize, 16) + 'px');
             $el.get(0).style.setProperty("--vue-text-icon-prepand-inner-color", myMdwHelper.getValueFromData(data.prepandInnerIconColor, ''));
+
+            // Alignment
+            $el.get(0).style.setProperty("--vue-text-field-alignment", myMdwHelper.getValueFromData(data.inputAlignment, 'left'));
         }
     },
     select: {

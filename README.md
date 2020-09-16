@@ -5469,14 +5469,16 @@ ical2CalendarWidget();
 * (Scrounger): Select & Autocomplete Widget: overriding icon bug fix
 * (Scrounger): Select & Autocomplete Widget: colors bug fixes
 * (Scrounger): Select & Autocomplete Widget: option to override the icon color of textfield for selected menu icon
+* (Scrounger): Select & Autocomplete Widget: text alignment option added
+* (Scrounger): Input Widget: text alignment option added
 * (Scrounger): JSON Chart Widget: option to force x-axis time unit added
 * (Scrounger): JSON Chart Widget: gradient colors for multipe dataset bug fixes
 * (Scrounger): JSON Chart: default tooltip title added
 * (Scrounger): Line History Chart: option for point color added
 * (Scrounger): Charts Widget: x-Axis time axis bug fixes
-* (Scrounger): Input Widget: bug fix for multiple masks
 * (Scrounger): Calendar Widget: option to show calendar week numbers in month view added
 * (Scrounger): Calendar Widget: option for custom date format added
+* (Scrounger): dependencies updated
 * (Scrounger): bug fixes
 
 ### 0.3.19 (2020-07-18)

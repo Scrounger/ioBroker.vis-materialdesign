@@ -9857,5 +9857,17 @@ systemDictionary = {
         "es": "color de fuente",
         "pl": "kolor czcionki",
         "zh-cn": "字体颜色"
+    },
+    "inputAlignment": {
+        "en": "text alignment",
+        "de": "Textausrichtung",
+        "ru": "выравнивание текста",
+        "pt": "alinhamento do texto",
+        "nl": "tekstuitlijning",
+        "fr": "Alignement du texte",
+        "it": "allineamento del testo",
+        "es": "alineación del texto",
+        "pl": "wyrównanie tekstu",
+        "zh-cn": "文字对齐"
     }
 };
