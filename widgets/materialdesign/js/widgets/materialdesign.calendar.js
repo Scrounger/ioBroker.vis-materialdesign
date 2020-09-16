@@ -110,6 +110,7 @@ vis.binds.materialdesign.calendar =
 
                     :weekdays="weekdays"
                     :event-height="eventHeight"
+                    :show-week="showWeekNumbers"
 
                     :event-overlap-mode="eventOverlapMode"
 
@@ -184,6 +185,11 @@ vis.binds.materialdesign.calendar =
             $this.context.style.setProperty("--vue-aclendar-event-font-size", myMdwHelper.getStringFromNumberData(data.calendarEventFontSize, '12px', '', 'px'));
             $this.context.style.setProperty("--vue-aclendar-event-font", myMdwHelper.getValueFromData(data.calendarEventFont, 'inherit'));
 
+            // week numbers
+            $this.context.style.setProperty('--vue-calender-weeknumber-background-color', myMdwHelper.getValueFromData(data.calendarWeeksNumbersBackground, ''));
+            $this.context.style.setProperty("--vue-calender-weeknumber-font-size", myMdwHelper.getStringFromNumberData(data.calendarWeeksNumbersFontSize, '14px', '', 'px'));
+            $this.context.style.setProperty("--vue-calender-weeknumber-font", myMdwHelper.getValueFromData(data.calendarWeeksNumbersFont, 'inherit'));
+            $this.context.style.setProperty("--vue-calendar-weeknumber-font-color", myMdwHelper.getValueFromData(data.calendarWeeksNumbersFontColor, ''));
 
             myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'Calendar', function () {
                 myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'Calendar', function () {
@@ -211,6 +217,7 @@ vis.binds.materialdesign.calendar =
                             events: jsonData,
                             eventHeight: myMdwHelper.getNumberFromData(data.calendarEventHeight, 20),
                             eventOverlapMode: data.calendarEventOverlapMode,
+                            showWeekNumbers: myMdwHelper.getBooleanFromData(data.calendarWeeksNumbersShow, true)
                         }),
                         methods: {
                             getEventColor(event) {

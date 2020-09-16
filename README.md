@@ -5475,6 +5475,7 @@ ical2CalendarWidget();
 * (Scrounger): Line History Chart: option for point color added
 * (Scrounger): Charts Widget: x-Axis time axis bug fixes
 * (Scrounger): Input Widget: bug fix for multiple masks
+* (Scrounger): Calendar Widget: option to show calendar week numbers in month view added
 * (Scrounger): bug fixes
 
 ### 0.3.19 (2020-07-18)

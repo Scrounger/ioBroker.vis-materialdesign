@@ -9784,5 +9784,78 @@ systemDictionary = {
         "es": "máscara",
         "pl": "maska",
         "zh-cn": "面具"
+    },
+
+    "group_calendarWeekNumbersLayout": {
+        "en": "calendar weeks layout",
+        "de": "Kalenderwochen Layout",
+        "ru": "макет календарных недель",
+        "pt": "layout das semanas do calendário",
+        "nl": "kalender weken lay-out",
+        "fr": "disposition des semaines calendaires",
+        "it": "layout di settimane di calendario",
+        "es": "diseño de semanas de calendario",
+        "pl": "układ tygodni kalendarza",
+        "zh-cn": "日历周布局"
+    },
+    "calendarWeeksNumbersShow": {
+        "en": "show calendar week",
+        "de": "Kalenderwoche anzeigen",
+        "ru": "показать календарную неделю",
+        "pt": "mostrar semana do calendário",
+        "nl": "toon kalenderweek",
+        "fr": "afficher la semaine du calendrier",
+        "it": "mostra la settimana del calendario",
+        "es": "mostrar la semana del calendario",
+        "pl": "pokaż tydzień kalendarzowy",
+        "zh-cn": "显示日历周"
+    },
+    "calendarWeeksNumbersBackground": {
+        "en": "background color",
+        "de": "Hintergrundfarbe",
+        "ru": "фоновый цвет",
+        "pt": "cor de fundo",
+        "nl": "Achtergrond kleur",
+        "fr": "Couleur de l'arrière plan",
+        "it": "colore di sfondo",
+        "es": "color de fondo",
+        "pl": "kolor tła",
+        "zh-cn": "背景颜色"
+    },
+    "calendarWeeksNumbersFontSize": {
+        "en": "font size",
+        "de": "Schriftgröße",
+        "ru": "размер шрифта",
+        "pt": "tamanho da fonte",
+        "nl": "lettertypegrootte",
+        "fr": "taille de police",
+        "it": "dimensione del font",
+        "es": "tamaño de fuente",
+        "pl": "rozmiar czcionki",
+        "zh-cn": "字体大小"
+    },
+    "calendarWeeksNumbersFont": {
+        "en": "font",
+        "de": "Schriftart",
+        "ru": "шрифт",
+        "pt": "Fonte",
+        "nl": "doopvont",
+        "fr": "Police de caractère",
+        "it": "font",
+        "es": "fuente",
+        "pl": "czcionka",
+        "zh-cn": "字形"
+    },
+    "calendarWeeksNumbersFontColor": {
+        "en": "font color",
+        "de": "Schriftfarbe",
+        "ru": "Цвет шрифта",
+        "pt": "cor da fonte",
+        "nl": "letterkleur",
+        "fr": "couleur de la police",
+        "it": "colore del carattere",
+        "es": "color de fuente",
+        "pl": "kolor czcionki",
+        "zh-cn": "字体颜色"
     }
 };

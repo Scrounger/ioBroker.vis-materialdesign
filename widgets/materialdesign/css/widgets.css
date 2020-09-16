@@ -201,6 +201,11 @@
 
   --vue-calender-header-background-color: transparent;
 
+  --vue-calender-weeknumber-background-color: #f7f7f7;
+  --vue-calender-weeknumber-font-size: 14px;
+  --vue-calender-weeknumber-font: inherit;
+  --vue-calendar-weeknumber-font-color: black;
+
   --vue-calendar-time-axis-background-color: transparent;
   --vue-calendar-time-axis-header-background-color: transparent;
 
@@ -5476,6 +5481,13 @@ svg.materialdesign-widget .materialdesign-button__icon {
 .theme--light.v-calendar-weekly .v-calendar-weekly__head-weekday.v-outside {
   background-color: var(--vue-calender-header-background-color);
 }
+
+.theme--light.v-calendar-weekly .v-calendar-weekly__head-weeknumber {
+  background-color: var(--vue-calender-weeknumber-background-color);
+  border-left: var(--vue-calendar-border-color) 1px solid;
+  border-top: var(--vue-calendar-border-color) 1px solid;
+}
+
 .theme--light.v-calendar-weekly .v-calendar-weekly__day {
   border: solid var(--vue-calendar-border-color);
   border-width: 1px 1px 0 1px;
@@ -5484,6 +5496,15 @@ svg.materialdesign-widget .materialdesign-button__icon {
 }
 .theme--light.v-calendar-weekly .v-calendar-weekly__day.v-outside {
   background-color: var(--vue-calender-background-outside-color);  
+}
+
+.theme--light.v-calendar-weekly .v-calendar-weekly__weeknumber {
+  background-color: var(--vue-calender-weeknumber-background-color);
+  border-left: var(--vue-calendar-border-color) 1px solid;
+  border-top: var(--vue-calendar-border-color) 1px solid;
+  color: var(--vue-calendar-weeknumber-font-color);
+  font-family: var(--vue-calender-weeknumber-font);
+  font-size: var(--vue-calender-weeknumber-font-size);
 }
 
 .theme--dark.v-calendar-weekly {
@@ -5501,6 +5522,10 @@ svg.materialdesign-widget .materialdesign-button__icon {
 .theme--dark.v-calendar-weekly .v-calendar-weekly__head-weekday.v-outside {
   background-color: #202020;
 }
+.theme--dark.v-calendar-weekly .v-calendar-weekly__head-weeknumber {
+  background-color: #202020;
+  border-right: #9e9e9e 1px solid;
+}
 .theme--dark.v-calendar-weekly .v-calendar-weekly__day {
   border-right: #9e9e9e 1px solid;
   border-bottom: #9e9e9e 1px solid;
@@ -5508,6 +5533,12 @@ svg.materialdesign-widget .materialdesign-button__icon {
 }
 .theme--dark.v-calendar-weekly .v-calendar-weekly__day.v-outside {
   background-color: #202020;
+}
+.theme--dark.v-calendar-weekly .v-calendar-weekly__weeknumber {
+  background-color: #202020;
+  border-right: #9e9e9e 1px solid;
+  border-bottom: #9e9e9e 1px solid;
+  color: #FFFFFF;
 }
 
 .v-calendar-weekly {
@@ -5541,11 +5572,28 @@ svg.materialdesign-widget .materialdesign-button__icon {
   white-space: nowrap;
 }
 
+.v-calendar-weekly__head-weeknumber {
+  position: relative;
+  flex: 0 0 24px;
+}
+
 .v-calendar-weekly__week {
   display: flex;
   flex: 1;
   height: unset;
   min-height: 0;
+}
+
+.v-calendar-weekly__weeknumber {
+  display: flex;
+  flex: 0 0 24px;
+  height: unset;
+  min-height: 0;
+  padding-top: 14.5px;
+  text-align: center;
+}
+.v-calendar-weekly__weeknumber > small {
+  width: 100% !important;
 }
 
 .v-calendar-weekly__day {
