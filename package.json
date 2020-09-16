@@ -36,7 +36,7 @@
     "@mdi/font": "^5.5.55",
     "underscore": "^1.9.2",
     "chroma-js": "^2.1.0",
-    "@sentry/node": "^5.15.5"
+    "@sentry/node": "^5.23.0"
   },
   "main": "widgets/materialdesign.html",
   "scripts": {
