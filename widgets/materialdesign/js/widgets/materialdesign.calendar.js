@@ -114,6 +114,9 @@ vis.binds.materialdesign.calendar =
 
                     :event-overlap-mode="eventOverlapMode"
 
+                    :day-format="dayFormat"
+                    :weekday-format="weekdayFormat"
+
                     @click:more="viewDay"
                     @click:date="viewDay"
                 >
@@ -246,6 +249,43 @@ vis.binds.materialdesign.calendar =
                                     this.$refs.calendar.prev()
                                 } else if (direction === 'Right') {
                                     this.$refs.calendar.next()
+                                }
+                            },
+                            dayFormat(date) {
+                                if (this.type === 'month' && myMdwHelper.getValueFromData(data.calendarMonthViewDayFormat, undefined)) {
+                                    return moment(date).format(data.calendarMonthViewDayFormat).split('\\n');
+                                }
+
+                                if (this.type === 'week' && myMdwHelper.getValueFromData(data.calendarWeekViewDayFormat, undefined)) {
+                                    return moment(date).format(data.calendarWeekViewDayFormat).split('\\n');
+                                }
+
+                                if (this.type === 'day' && myMdwHelper.getValueFromData(data.calendarDayViewDayFormat, undefined)) {
+                                    return moment(date).format(data.calendarDayViewDayFormat).split('\\n');
+                                }
+
+                                // default
+                                return date.day;           
+                            },
+                            weekdayFormat(date) {
+                                // header Date format
+                                if (this.type === 'month' && myMdwHelper.getValueFromData(data.calendarMonthViewHeaderFormat, undefined)) {
+                                    return moment(date).format(data.calendarMonthViewHeaderFormat).split('\\n');
+                                }
+
+                                if (this.type === 'week' && myMdwHelper.getValueFromData(data.calendarWeekViewHeaderFormat, undefined)) {
+                                    return moment(date).format(data.calendarWeekViewHeaderFormat).split('\\n');
+                                }
+
+                                if (this.type === 'day' && myMdwHelper.getValueFromData(data.calendarDayViewHeaderFormat, undefined)) {
+                                    return moment(date).format(data.calendarDayViewHeaderFormat).split('\\n');
+                                }
+
+                                // default
+                                if (this.shortWeekdays) {
+                                    return moment(date).format('ddd').replace('.', '');
+                                } else {
+                                    return moment(date).format('dddd');
                                 }
                             }
                         },
