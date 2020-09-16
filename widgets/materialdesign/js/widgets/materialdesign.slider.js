@@ -132,7 +132,8 @@ vis.binds.materialdesign.slider = {
                     $this.context.style.setProperty("--vue-slider-tick-after-color", myMdwHelper.getValueFromData(data.tickColorAfter, ''));
 
                     $this.context.style.setProperty("--vue-text-field-label-before-color", myMdwHelper.getValueFromData(data.prepandTextColor, ''));
-                    $this.context.style.setProperty("--vue-text-field-label-font-family", myMdwHelper.getNumberFromData(data.prepandTextFontFamily, 12) + 'px');
+                    $this.context.style.setProperty("--vue-text-field-label-font-family", myMdwHelper.getValueFromData(data.prepandTextFontFamily, 'inherit'));
+
                     $this.context.style.setProperty("--vue-text-field-label-font-size", myMdwHelper.getNumberFromData(data.prepandTextFontSize, 16) + 'px');
 
                     $this.context.style.setProperty("--vue-text-field-label-width", myMdwHelper.getStringFromNumberData(data.prepandTextWidth, 'inherit', '', 'px'));

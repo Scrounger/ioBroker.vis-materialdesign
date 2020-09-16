@@ -6302,7 +6302,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   padding-top: 0;
 }
 
-/* Progress */
+/* Progress Circular */
 .v-progress-circular {
   position: relative;
   display: inline-flex;
@@ -6312,7 +6312,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   color: var(--vue-progress-circular-progress-color);
   caret-color: var(--vue-progress-circular-progress-color);
 }
-.v-progress-circular svg {
+.v-progress-circular > svg {
   width: 100%;
   height: 100%;
   margin: auto;
@@ -6323,7 +6323,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   right: 0;
   z-index: 0;
 }
-.v-progress-circular--indeterminate svg {
+.v-progress-circular--indeterminate > svg {
   -webkit-animation: progress-circular-rotate 1.4s linear infinite;
           animation: progress-circular-rotate 1.4s linear infinite;
   transform-origin: center center;
@@ -6355,6 +6355,47 @@ svg.materialdesign-widget .materialdesign-button__icon {
   transition: all 0.6s ease-in-out;
 }
 
+@-webkit-keyframes progress-circular-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0px;
+  }
+  50% {
+    stroke-dasharray: 100, 200;
+    stroke-dashoffset: -15px;
+  }
+  100% {
+    stroke-dasharray: 100, 200;
+    stroke-dashoffset: -125px;
+  }
+}
+
+@keyframes progress-circular-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0px;
+  }
+  50% {
+    stroke-dasharray: 100, 200;
+    stroke-dashoffset: -15px;
+  }
+  100% {
+    stroke-dasharray: 100, 200;
+    stroke-dashoffset: -125px;
+  }
+}
+@-webkit-keyframes progress-circular-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes progress-circular-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Progress Linear */
 .v-progress-linear {
   background: transparent;
   overflow: hidden;
@@ -6373,6 +6414,11 @@ svg.materialdesign-widget .materialdesign-button__icon {
   z-index: 1;
 }
 
+.v-progress-linear--reverse .v-progress-linear__buffer {
+  left: auto;
+  right: 0;
+}
+
 .v-progress-linear__background {
   bottom: 0;
   left: 0;
@@ -6380,6 +6426,11 @@ svg.materialdesign-widget .materialdesign-button__icon {
   top: 0;
   transition: inherit;
   background: var(--vue-progress-progress-color-background);
+}
+
+.v-progress-linear--reverse .v-progress-linear__background {
+  left: auto;
+  right: 0;
 }
 
 .v-progress-linear__content {
@@ -6398,53 +6449,89 @@ svg.materialdesign-widget .materialdesign-button__icon {
   text-align: var(--vue-progress-progress-color-text-align);
 }
 
+.v-progress-linear--reverse .v-progress-linear__content {
+  left: auto;
+  right: 0;
+}
+
 .v-progress-linear__determinate {
   height: inherit;
   transition: inherit;
   background: var(--vue-progress-progress-color);
 }
 
-.v-progress-linear__indeterminate .long, .v-progress-linear__indeterminate .short {
+.v-progress-linear--reverse .v-progress-linear__determinate {
+  position: absolute;
+  left: auto;
+  right: 0;
+}
+
+.v-progress-linear .v-progress-linear__indeterminate .long, .v-progress-linear .v-progress-linear__indeterminate .short {
   background-color: inherit;
   bottom: 0;
   height: inherit;
   left: 0;
   position: absolute;
+  right: auto;
   top: 0;
   width: auto;
   will-change: left, right;
 }
-.v-progress-linear__indeterminate--active .long {
+.v-progress-linear .v-progress-linear__indeterminate--active .long {
   background: var(--vue-progress-progress-color);
-  -webkit-animation: indeterminate;
-          animation: indeterminate;
-  -webkit-animation-duration: 2.2s;
-          animation-duration: 2.2s;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-}
-.v-progress-linear__indeterminate--active .short {
-  background: var(--vue-progress-progress-color);
-  -webkit-animation: indeterminate-short;
-          animation: indeterminate-short;
+  -webkit-animation-name: indeterminate-ltr;
+          animation-name: indeterminate-ltr;
   -webkit-animation-duration: 2.2s;
           animation-duration: 2.2s;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
 }
 
+.v-progress-linear .v-progress-linear__indeterminate--active .short {
+  background: var(--vue-progress-progress-color);
+  -webkit-animation-name: indeterminate-short-ltr;
+          animation-name: indeterminate-short-ltr;
+  -webkit-animation-duration: 2.2s;
+          animation-duration: 2.2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+.v-progress-linear--reverse .v-progress-linear__indeterminate .long, .v-progress-linear--reverse .v-progress-linear__indeterminate .short {
+  left: auto;
+  right: 0;
+}
+
+.v-progress-linear--reverse .v-progress-linear__indeterminate--active .long {
+  -webkit-animation-name: indeterminate-rtl;
+          animation-name: indeterminate-rtl;
+}
+
+.v-progress-linear--reverse .v-progress-linear__indeterminate--active .short {
+  -webkit-animation-name: indeterminate-short-rtl;
+          animation-name: indeterminate-short-rtl;
+}
+
 .v-progress-linear__stream {
-  -webkit-animation: stream 0.25s infinite linear;
-          animation: stream 0.25s infinite linear;
+  -webkit-animation: stream-ltr 0.25s infinite linear;
+          animation: stream-ltr 0.25s infinite linear;
   border-color: currentColor;
   border-top: 4px dotted;
   bottom: 0;
+  left: auto;
+  right: -8px;
   opacity: 0.3;
   pointer-events: none;
   position: absolute;
-  right: -8px;
   top: calc(50% - 2px);
   transition: inherit;
+}
+
+.v-progress-linear--reverse .v-progress-linear__stream {
+  -webkit-animation: stream-rtl 0.25s infinite linear;
+          animation: stream-rtl 0.25s infinite linear;
+  left: -8px;
+  right: auto;
 }
 
 .v-progress-linear__wrapper {
@@ -6482,24 +6569,32 @@ svg.materialdesign-widget .materialdesign-button__icon {
 }
 
 .v-progress-linear--query .v-progress-linear__indeterminate--active .long {
-  -webkit-animation: query;
-          animation: query;
+  -webkit-animation-name: query-ltr;
+          animation-name: query-ltr;
   -webkit-animation-duration: 2s;
           animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
 }
 .v-progress-linear--query .v-progress-linear__indeterminate--active .short {
-  -webkit-animation: query-short;
-          animation: query-short;
+  -webkit-animation-name: query-short-ltr;
+          animation-name: query-short-ltr;
   -webkit-animation-duration: 2s;
           animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
 }
 
+.v-progress-linear--query.v-progress-linear--reverse .v-progress-linear__indeterminate--active .long {
+  -webkit-animation-name: query-rtl;
+          animation-name: query-rtl;
+}
+.v-progress-linear--query.v-progress-linear--reverse .v-progress-linear__indeterminate--active .short {
+  -webkit-animation-name: query-short-rtl;
+          animation-name: query-short-rtl;
+}
 
-@-webkit-keyframes indeterminate {
+@-webkit-keyframes indeterminate-ltr {
   0% {
     left: -90%;
     right: 100%;
@@ -6514,7 +6609,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   }
 }
 
-@keyframes indeterminate {
+@keyframes indeterminate-ltr {
   0% {
     left: -90%;
     right: 100%;
@@ -6528,7 +6623,35 @@ svg.materialdesign-widget .materialdesign-button__icon {
     right: -35%;
   }
 }
-@-webkit-keyframes indeterminate-short {
+@-webkit-keyframes indeterminate-rtl {
+  0% {
+    left: 100%;
+    right: -90%;
+  }
+  60% {
+    left: 100%;
+    right: -90%;
+  }
+  100% {
+    left: -35%;
+    right: 100%;
+  }
+}
+@keyframes indeterminate-rtl {
+  0% {
+    left: 100%;
+    right: -90%;
+  }
+  60% {
+    left: 100%;
+    right: -90%;
+  }
+  100% {
+    left: -35%;
+    right: 100%;
+  }
+}
+@-webkit-keyframes indeterminate-short-ltr {
   0% {
     left: -200%;
     right: 100%;
@@ -6542,7 +6665,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
     right: -8%;
   }
 }
-@keyframes indeterminate-short {
+@keyframes indeterminate-short-ltr {
   0% {
     left: -200%;
     right: 100%;
@@ -6556,7 +6679,35 @@ svg.materialdesign-widget .materialdesign-button__icon {
     right: -8%;
   }
 }
-@-webkit-keyframes query {
+@-webkit-keyframes indeterminate-short-rtl {
+  0% {
+    left: 100%;
+    right: -200%;
+  }
+  60% {
+    left: -8%;
+    right: 107%;
+  }
+  100% {
+    left: -8%;
+    right: 107%;
+  }
+}
+@keyframes indeterminate-short-rtl {
+  0% {
+    left: 100%;
+    right: -200%;
+  }
+  60% {
+    left: -8%;
+    right: 107%;
+  }
+  100% {
+    left: -8%;
+    right: 107%;
+  }
+}
+@-webkit-keyframes query-ltr {
   0% {
     right: -90%;
     left: 100%;
@@ -6570,7 +6721,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
     left: -35%;
   }
 }
-@keyframes query {
+@keyframes query-ltr {
   0% {
     right: -90%;
     left: 100%;
@@ -6584,7 +6735,35 @@ svg.materialdesign-widget .materialdesign-button__icon {
     left: -35%;
   }
 }
-@-webkit-keyframes query-short {
+@-webkit-keyframes query-rtl {
+  0% {
+    right: 100%;
+    left: -90%;
+  }
+  60% {
+    right: 100%;
+    left: -90%;
+  }
+  100% {
+    right: -35%;
+    left: 100%;
+  }
+}
+@keyframes query-rtl {
+  0% {
+    right: 100%;
+    left: -90%;
+  }
+  60% {
+    right: 100%;
+    left: -90%;
+  }
+  100% {
+    right: -35%;
+    left: 100%;
+  }
+}
+@-webkit-keyframes query-short-ltr {
   0% {
     right: -200%;
     left: 100%;
@@ -6598,7 +6777,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
     left: -8%;
   }
 }
-@keyframes query-short {
+@keyframes query-short-ltr {
   0% {
     right: -200%;
     left: 100%;
@@ -6612,13 +6791,51 @@ svg.materialdesign-widget .materialdesign-button__icon {
     left: -8%;
   }
 }
-@-webkit-keyframes stream {
+@-webkit-keyframes query-short-rtl {
+  0% {
+    right: 100%;
+    left: -200%;
+  }
+  60% {
+    right: -8%;
+    left: 107%;
+  }
+  100% {
+    right: -8%;
+    left: 107%;
+  }
+}
+@keyframes query-short-rtl {
+  0% {
+    right: 100%;
+    left: -200%;
+  }
+  60% {
+    right: -8%;
+    left: 107%;
+  }
+  100% {
+    right: -8%;
+    left: 107%;
+  }
+}
+@-webkit-keyframes stream-ltr {
   to {
     transform: translateX(-8px);
   }
 }
-@keyframes stream {
+@keyframes stream-ltr {
   to {
     transform: translateX(-8px);
+  }
+}
+@-webkit-keyframes stream-rtl {
+  to {
+    transform: translateX(8px);
+  }
+}
+@keyframes stream-rtl {
+  to {
+    transform: translateX(8px);
   }
 }

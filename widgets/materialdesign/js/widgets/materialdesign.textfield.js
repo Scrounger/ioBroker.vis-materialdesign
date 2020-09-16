@@ -33,7 +33,6 @@ vis.binds.materialdesign.textfield =
                 }
             }
 
-            console.log(inputMask)
             $this.append(`
             <div class="${containerClass}" style="width: 100%; height: 100%;">
                 <v-text-field
