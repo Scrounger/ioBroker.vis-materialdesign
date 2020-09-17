@@ -17,6 +17,7 @@ vis.binds.materialdesign.iconlist =
             let containerClass = 'materialdesign-icon-list-container';
             let oidsNeedSubscribe = false;
             let bindingTokenList = [];
+            let eventBind = {};
 
             $this.context.style.setProperty("--materialdesign-icon-list-items-per-row", myMdwHelper.getNumberFromData(data.maxItemsperRow, 1));
 
@@ -302,7 +303,7 @@ vis.binds.materialdesign.iconlist =
             }
 
             function eventListener() {
-                let iconButtons = $this.find('.materialdesign-iconList-button');
+                let iconButtons = $this.find('.materialdesign-iconList-button');                
 
                 for (var i = 0; i <= iconButtons.length - 1; i++) {
                     let listItemObj = getListItemObj(i, data, jsonData);
@@ -327,7 +328,6 @@ vis.binds.materialdesign.iconlist =
                         }
 
                         if (listItemObj.listType === 'buttonToggle') {
-                            console.log($item.attr('isLocked'))
                             if ($item.attr('isLocked') === 'false' || $item.attr('isLocked') === undefined) {
                                 let selectedValue = vis.states.attr(listItemObj.objectId + '.val');
 
@@ -383,26 +383,36 @@ vis.binds.materialdesign.iconlist =
 
                     if (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState') {
                         // on Load & bind to object ids
-                        let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
+                        let valId = listItemObj.objectId + '.val'
+                        let valOnLoading = vis.states.attr(valId);
                         setLayout(i, valOnLoading, listItemObj);
 
-                        vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
-                            let input = $this.find('div[data-oid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
+                        if (!eventBind[valId]) { 
+                            // fires event only once per objectId
+                            
+                            vis.states.bind(valId, function (e, newVal, oldVal) {
+                                let input = $this.find('div[data-oid="' + listItemObj.objectId + '"]');
+                                input.each(function (d) {
+                                    // kann mit mehreren oid verknüpft sein
+                                    let index = parseInt(input.eq(d).attr('id').replace('icon-list-item', ''));
+                                    listItemObj = getListItemObj(index, data, jsonData);
 
-                            input.each(function (d) {
-                                // kann mit mehreren oid verknüpft sein
-                                let index = parseInt(input.eq(d).attr('id').replace('icon-list-item', ''));
-                                listItemObj = getListItemObj(index, data, jsonData);
-
-                                setLayout(index, newVal, listItemObj);
+                                    setLayout(index, vis.states.attr(valId), listItemObj);
+                                });
                             });
-                        });
+
+                            // add to eventBind obj to prevent event fires multiples times if objectId is same on multiple objs
+                            eventBind[valId] = true;
+                            console.log(`[IconList - ${data.wid}] event bind for '${valId}'`);
+                        }
                     }
                 }
+
+                // console.log(vis.states.__bindEvents)
             }
 
             function setLayout(index, val, listItemObj) {
-                let $item = $this.find(`#icon-list-item${index}`);
+                let $item = $(`#icon-list-item${index}`);
 
                 $item.find('.materialdesign-icon-list-item-value').text(`${val}${listItemObj.valueAppendix}`);
 
@@ -444,8 +454,8 @@ vis.binds.materialdesign.iconlist =
                     }
                 }
 
-                $this.find(`#icon-list-item${index}`).show();
-                $this.find(`#icon-list-item${index}`).css('display', 'flex');
+                $item.show();
+                $item.css('display', 'flex');
             }
 
             function unlockButton($item) {
