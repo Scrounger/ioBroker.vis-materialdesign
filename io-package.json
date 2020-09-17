@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.3.25",
+        "version": "0.3.26",
         "news": {
             "0.3.19": {
                 "en": ": Icon Button Widget: background color option for lock icon added\n: possibility to deactivate sentry implemented -> see documentation\n: Fixed some bugs reported via Sentry\n: prevent set value in vis editor\n: Grid & Mansonry Widget: visibilty by resoltuin bug fix\n: IconList Widget: Card Background for whole icon list added\n: Table Wigdet: button link widget added\n: Table Wigdet: material design icon widget added\n: Table Wigdet: alignment option for controls added\n: materialdesignicons library updated to v5.3.45\n: Round Slider lib updated to v0.5.0\n: Round Slider Widget: readonly option added\n: Table Widget: background color hover option added\n: bug fixes",
