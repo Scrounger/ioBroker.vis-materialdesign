@@ -473,6 +473,60 @@ vis.binds.materialdesign.viseditor = {
         } catch (ex) {
             console.error(`exportData: error: ${ex.message}, stack: ${ex.stack}`);
         }
+    },
+    permissionGroupSelector: function (widAttr, data) {
+        try {
+            let that = vis;
+
+            let line = {
+                input: '<select multiple="multiple" id="inspect_' + widAttr + '" class="select-groups"></select>',
+                init: function (_wid_attr, data) {
+                    $(this).html('');
+
+                    let view = that.activeView;
+                    let viewDiv = that.activeViewDiv;
+                    let groups = that.getUserGroups();
+                    let widGroups = that.findCommonValue(view, that.activeWidgets, widAttr);
+                    if (widGroups && !(widGroups instanceof Array)) widGroups = widGroups.values;
+                    widGroups = widGroups || [];
+                    for (let g in groups) {
+                        let val = g.substring('system.group.'.length);
+                        $(this).append('<option value="' + val + '" ' + ((widGroups.indexOf(val) !== -1) ? 'selected' : '') + '>' + (groups[g] && groups[g].common ? groups[g].common.name || val : val) + '</option>');
+                    }
+
+                    $(this).multiselect({
+                        maxWidth: 180,
+                        height: 260,
+                        noneSelectedText: _('All groups'),
+                        selectedText: function (numChecked, numTotal, checkedItems) {
+                            let text = '';
+                            for (var i = 0; i < checkedItems.length; i++) {
+                                text += (!text ? '' : ',') + checkedItems[i].title;
+                            }
+                            return text;
+                        },
+                        multiple: true,
+                        checkAllText: _('Check all'),
+                        uncheckAllText: _('Uncheck all'),
+                        close: function () {
+                            if ($(this).data('changed')) {
+                                $(this).data('changed', false);
+                                that.save(viewDiv, view);
+                            }
+                        }
+                        //noneSelectedText: _("Select options")
+                    }).change(function () {
+                        $(this).data('changed', true);
+                    }).data('changed', false);
+
+                    $(this).next().css('width', '100%');
+                }
+            }
+
+            return line;
+        } catch (ex) {
+            console.error(`permissionGroupSelector: error: ${ex.message}, stack: ${ex.stack}`);
+        }
     }
 };
 
