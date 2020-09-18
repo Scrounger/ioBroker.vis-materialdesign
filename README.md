@@ -5479,6 +5479,7 @@ ical2CalendarWidget();
 * (Scrounger): JSON Chart: option to change x-axis label distance added
 * (Scrounger): Line History Chart: option for point color added
 * (Scrounger): Line History Chart: option to use Today / Yesterday for x-axis labeling added
+* (Scrounger): Line History Chart: option to use Today / Yesterday for tooltip added
 * (Scrounger): Line History Chart: tooption change x-axis label distance added
 * (Scrounger): Charts Widget: x-Axis time axis bug fixes
 * (Scrounger): Calendar Widget: option to show calendar week numbers in month view added

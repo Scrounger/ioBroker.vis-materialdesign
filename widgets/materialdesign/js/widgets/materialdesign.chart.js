@@ -598,6 +598,14 @@ vis.binds.materialdesign.chart = {
 
                                             let timeFormats = (myMdwHelper.getValueFromData(data.tooltipTimeFormats, null) !== null) ? JSON.parse(data.tooltipTimeFormats) : myChartHelper.defaultToolTipTimeFormats();
 
+                                            if (data.tooltipLabelUseTodayYesterday) {
+                                                if (timestamp.isSame(moment(), 'day')) {
+                                                    return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Today')}]`).replace('dd.', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`)).split('\\n');
+                                                } else if (timestamp.isSame(moment().subtract(1, 'day'), 'day')) {
+                                                    return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Yesterday')}]`).replace('dd.', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`)).split('\\n');
+                                                }
+                                            }
+
                                             return timestamp.format(timeFormats[currentUnit]);
                                         },
                                         label: function (tooltipItem, chart) {
