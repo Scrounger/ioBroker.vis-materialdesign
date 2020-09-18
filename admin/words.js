@@ -9917,5 +9917,17 @@ systemDictionary = {
         "es": "distancia entre etiquetado",
         "pl": "odległość między etykietami",
         "zh-cn": "标签之间的距离"
+    },
+    "tooltipLabelUseTodayYesterday": {
+        "en": "use Today / Yesterday for labeling",
+        "de": "Verwende Heute / Gestern bei Beschriftung",
+        "ru": "используйте Today / Yesterday для маркировки",
+        "pt": "use Hoje / Ontem para rotular",
+        "nl": "gebruik vandaag / gisteren voor het labelen",
+        "fr": "utiliser Aujourd'hui / Hier pour l'étiquetage",
+        "it": "utilizzare Oggi / Ieri per l'etichettatura",
+        "es": "utilizar hoy / ayer para etiquetar",
+        "pl": "użyj opcji Dzisiaj / Wczoraj do etykietowania",
+        "zh-cn": "使用今天/昨天进行标记"
     }
 };
