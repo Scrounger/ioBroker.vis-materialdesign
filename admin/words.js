@@ -2166,28 +2166,28 @@ systemDictionary = {
         "zh-cn": "轴标签字体大小"
     },
     "yAxisValueDistanceToAxis": {
-        "en": "axis label distance",
-        "de": "Achsenbeschriftung Abstand",
-        "ru": "расстояние между метками оси",
-        "pt": "distância da etiqueta do eixo",
-        "nl": "aslabelafstand",
-        "fr": "distance entre les axes",
-        "it": "distanza dell'etichetta dell'asse",
-        "es": "distancia de etiqueta del eje",
-        "pl": "odległość etykiety osi",
-        "zh-cn": "轴标签距离"
+        "en": "distance to axis",
+        "de": "Abstand zur Achse",
+        "ru": "расстояние до оси",
+        "pt": "distância ao eixo",
+        "nl": "afstand tot as",
+        "fr": "distance à l'axe",
+        "it": "distanza dall'asse",
+        "es": "distancia al eje",
+        "pl": "odległość od osi",
+        "zh-cn": "到轴的距离"
     },
     "xAxisValueDistanceToAxis": {
-        "en": "axis label distance",
-        "de": "Achsenbeschriftung Abstand",
-        "ru": "расстояние между метками оси",
-        "pt": "distância da etiqueta do eixo",
-        "nl": "aslabelafstand",
-        "fr": "distance entre les axes",
-        "it": "distanza dell'etichetta dell'asse",
-        "es": "distancia de etiqueta del eje",
-        "pl": "odległość etykiety osi",
-        "zh-cn": "轴标签距离"
+        "en": "distance to axis",
+        "de": "Abstand zur Achse",
+        "ru": "расстояние до оси",
+        "pt": "distância ao eixo",
+        "nl": "afstand tot as",
+        "fr": "distance à l'axe",
+        "it": "distanza dall'asse",
+        "es": "distancia al eje",
+        "pl": "odległość od osi",
+        "zh-cn": "到轴的距离"
     },
     "yAxisShowAxis": {
         "en": "show axis",
@@ -9905,6 +9905,17 @@ systemDictionary = {
         "es": "utilizar hoy / ayer para etiquetar",
         "pl": "użyj opcji Dzisiaj / Wczoraj do etykietowania",
         "zh-cn": "使用今天/昨天进行标记"
+    },
+    "xAxisDistanceBetweenTicks": {
+        "en": "distance between labeling",
+        "de": "Abstand zwischen Beschriftung",
+        "ru": "расстояние между маркировкой",
+        "pt": "distância entre rotulagem",
+        "nl": "afstand tussen labels",
+        "fr": "distance entre l'étiquetage",
+        "it": "distanza tra l'etichettatura",
+        "es": "distancia entre etiquetado",
+        "pl": "odległość między etykietami",
+        "zh-cn": "标签之间的距离"
     }
-
 };
