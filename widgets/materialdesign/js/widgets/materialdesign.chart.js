@@ -116,7 +116,7 @@ vis.binds.materialdesign.chart = {
                                 myChartHelper.get_X_AxisObject(data.chartType, data.xAxisPosition, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
                                     data.xAxisShowAxisLabels, data.axisValueMin, data.axisValueMax, data.axisValueStepSize, data.axisMaxLabel, data.axisLabelAutoSkip, data.axisValueAppendText,
                                     data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
-                                    data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength, data.xAxisZeroLineWidth, data.xAxisZeroLineColor, data.xAxisOffsetGridLines, data.axisValueMinDigits, data.axisValueMaxDigits, data.xAxisMinRotation, data.xAxisMaxRotation, false, data.xAxisOffset, data.xAxisTicksSource)
+                                    data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength, data.xAxisZeroLineWidth, data.xAxisZeroLineColor, data.xAxisOffsetGridLines, data.axisValueMinDigits, data.axisValueMaxDigits, data.xAxisMinRotation, data.xAxisMaxRotation, false, data.xAxisOffset, data.xAxisTicksSource, undefined, false)
                             ],
                         },
                         tooltips: {
@@ -1292,7 +1292,7 @@ vis.binds.materialdesign.chart = {
                                                 myChartHelper.get_X_AxisObject(graph.type, data.xAxisPosition, data.xAxisTitle, data.xAxisTitleColor, data.xAxisTitleFontFamily, data.xAxisTitleFontSize,
                                                     data.xAxisShowAxisLabels, undefined, undefined, undefined, data.xAxisMaxLabel, data.axisLabelAutoSkip, undefined,
                                                     data.xAxisValueLabelColor, data.xAxisValueFontFamily, data.xAxisValueFontSize, data.xAxisValueDistanceToAxis, data.xAxisGridLinesColor,
-                                                    data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength, data.xAxisZeroLineWidth, data.xAxisZeroLineColor, data.xAxisOffsetGridLines, undefined, undefined, data.xAxisMinRotation, data.xAxisMaxRotation, isTimeAxis, data.xAxisOffset, data.xAxisTicksSource),
+                                                    data.xAxisGridLinesWitdh, data.xAxisShowAxis, data.xAxisShowGridLines, data.xAxisShowTicks, data.xAxisTickLength, data.xAxisZeroLineWidth, data.xAxisZeroLineColor, data.xAxisOffsetGridLines, undefined, undefined, data.xAxisMinRotation, data.xAxisMaxRotation, isTimeAxis, data.xAxisOffset, data.xAxisTicksSource, (graph.xAxis_timeFormats) ? graph.xAxis_timeFormats : myChartHelper.defaultTimeFormats(), data.xAxisLabelUseTodayYesterday),
                                                 timeAxisSettings
                                             ));
 
@@ -1543,9 +1543,31 @@ vis.binds.materialdesign.chart.helper = {
     },
     get_X_AxisObject: function (chartType, xAxisPosition, xAxisTitle, xAxisTitleColor, xAxisTitleFontFamily, xAxisTitleFontSize, xAxisShowAxisLabels, axisValueMin, axisValueMax, axisValueStepSize,
         axisMaxLabel, axisLabelAutoSkip, axisValueAppendText, xAxisValueLabelColor, xAxisValueFontFamily, xAxisValueFontSize, xAxisValueDistanceToAxis, xAxisGridLinesColor, xAxisGridLinesWitdh,
-        xAxisShowAxis, xAxisShowGridLines, xAxisShowTicks, xAxisTickLength, xAxisZeroLineWidth, xAxisZeroLineColor, xAxisOffsetGridLines, axisValueMinDigits, axisValueMaxDigits, minRotation, maxRotation, isTimeAxis, xAxisOffset, xAxisTicksSource) {
+        xAxisShowAxis, xAxisShowGridLines, xAxisShowTicks, xAxisTickLength, xAxisZeroLineWidth, xAxisZeroLineColor, xAxisOffsetGridLines, axisValueMinDigits, axisValueMaxDigits, minRotation, maxRotation, isTimeAxis, xAxisOffset, xAxisTicksSource, displayFormats, useTodayYesterday) {
 
         let result = {
+            afterTickToLabelConversion: function (axis) {
+                if (isTimeAxis && useTodayYesterday) {
+                    for (const scaleId in axis.chart.scales) {
+                        if (!scaleId.includes('yAxis')) {
+                            if (axis.chart.scales[scaleId]._ticksToDraw) {
+                                let unit = axis.chart.scales[scaleId]._unit;
+
+                                for (const tick in axis.chart.scales[scaleId]._ticksToDraw) {
+                                    let date = moment(axis.chart.scales[scaleId]._ticksToDraw[tick].value);
+
+                                    if (date.isSame(moment(), 'day')) {
+                                        axis.chart.scales[scaleId]._ticksToDraw[tick].label = date.format(displayFormats[unit].replace('dddd', `[${_('Today')}]`).replace('dd.', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`)).split('\\n');
+                                    } else if (date.isSame(moment().subtract(1, 'day'), 'day')) {
+                                        axis.chart.scales[scaleId]._ticksToDraw[tick].label = date.format(displayFormats[unit].replace('dddd', `[${_('Yesterday')}]`).replace('dd.', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`)).split('\\n');
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             position: xAxisPosition,
             scaleLabel: {       // x-Axis title
                 display: (myMdwHelper.getValueFromData(xAxisTitle, null) !== null),
