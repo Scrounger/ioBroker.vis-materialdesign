@@ -501,6 +501,29 @@ vis.binds.materialdesign.chart = {
                                 legend: Object.assign(myChartHelper.getLegend(data), myChartHelper.getLegendClickEvent(myYAxis)),
                                 scales: {
                                     xAxes: [{
+                                        beforeCalculateTickRotation: function (axis) {
+                                            if (data.xAxisLabelUseTodayYesterday) {
+                                                for (const scaleId in axis.chart.scales) {
+
+                                                    if (!scaleId.includes('yAxis')) {
+                                                        if (axis._ticks) {
+                                                            let unit = axis._unit;
+                                                            
+                                                            for (const tick in axis._ticks) {
+                                                                let date = moment(axis._ticks[tick].value);
+
+                                                                if (date.isSame(moment(), 'day')) {
+                                                                    axis._ticks[tick].label = date.format(xAxisTimeFormats[unit].replace('dddd', `[${_('Today')}]`).replace('dd.', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`)).split('\\n');
+                                                                } else if (date.isSame(moment().subtract(1, 'day'), 'day')) {
+                                                                    axis._ticks[tick].label = date.format(xAxisTimeFormats[unit].replace('dddd', `[${_('Yesterday')}]`).replace('dd.', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`)).split('\\n');
+                                                                }
+
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
                                         type: 'time',
                                         bounds: (myMdwHelper.getValueFromData(data.xAxisBounds, '') === 'axisTicks') ? 'ticks' : 'data',
                                         time:
@@ -1546,20 +1569,20 @@ vis.binds.materialdesign.chart.helper = {
         xAxisShowAxis, xAxisShowGridLines, xAxisShowTicks, xAxisTickLength, xAxisZeroLineWidth, xAxisZeroLineColor, xAxisOffsetGridLines, axisValueMinDigits, axisValueMaxDigits, minRotation, maxRotation, isTimeAxis, xAxisOffset, xAxisTicksSource, displayFormats, useTodayYesterday) {
 
         let result = {
-            afterTickToLabelConversion: function (axis) {
+            beforeCalculateTickRotation: function (axis) {
                 if (isTimeAxis && useTodayYesterday) {
                     for (const scaleId in axis.chart.scales) {
                         if (!scaleId.includes('yAxis')) {
-                            if (axis.chart.scales[scaleId]._ticksToDraw) {
-                                let unit = axis.chart.scales[scaleId]._unit;
+                            if (axis._ticks) {
+                                let unit = axis._unit;
 
-                                for (const tick in axis.chart.scales[scaleId]._ticksToDraw) {
-                                    let date = moment(axis.chart.scales[scaleId]._ticksToDraw[tick].value);
+                                for (const tick in axis._ticks) {
+                                    let date = moment(axis._ticks[tick].value);
 
                                     if (date.isSame(moment(), 'day')) {
-                                        axis.chart.scales[scaleId]._ticksToDraw[tick].label = date.format(displayFormats[unit].replace('dddd', `[${_('Today')}]`).replace('dd.', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`)).split('\\n');
+                                        axis._ticks[tick].label = date.format(displayFormats[unit].replace('dddd', `[${_('Today')}]`).replace('dd.', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`)).split('\\n');
                                     } else if (date.isSame(moment().subtract(1, 'day'), 'day')) {
-                                        axis.chart.scales[scaleId]._ticksToDraw[tick].label = date.format(displayFormats[unit].replace('dddd', `[${_('Yesterday')}]`).replace('dd.', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`)).split('\\n');
+                                        axis._ticks[tick].label = date.format(displayFormats[unit].replace('dddd', `[${_('Yesterday')}]`).replace('dd.', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`)).split('\\n');
                                     }
 
                                 }

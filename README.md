@@ -5476,6 +5476,7 @@ ical2CalendarWidget();
 * (Scrounger): JSON Chart: default tooltip title added
 * (Scrounger): JSON Chart: option to use Today / Yesterday for x-axis labeling added
 * (Scrounger): Line History Chart: option for point color added
+* (Scrounger): Line History Chart: option to use Today / Yesterday for x-axis labeling added 
 * (Scrounger): Charts Widget: x-Axis time axis bug fixes
 * (Scrounger): Calendar Widget: option to show calendar week numbers in month view added
 * (Scrounger): Calendar Widget: option for custom date format added
