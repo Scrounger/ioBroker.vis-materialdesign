@@ -513,11 +513,12 @@ vis.binds.materialdesign.chart = {
                                                                 let date = moment(axis._ticks[tick].value);
 
                                                                 if (date.isSame(moment(), 'day')) {
-                                                                    axis._ticks[tick].label = date.format(xAxisTimeFormats[unit].replace('dddd', `[${_('Today')}]`).replace('dd.', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`)).split('\\n');
+                                                                    axis._ticks[tick].label = `${date.format(xAxisTimeFormats[unit].replace('dddd', `[${_('Today')}]`).replace('dd.', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`))}${myMdwHelper.getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
                                                                 } else if (date.isSame(moment().subtract(1, 'day'), 'day')) {
-                                                                    axis._ticks[tick].label = date.format(xAxisTimeFormats[unit].replace('dddd', `[${_('Yesterday')}]`).replace('dd.', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`)).split('\\n');
+                                                                    axis._ticks[tick].label = `${date.format(xAxisTimeFormats[unit].replace('dddd', `[${_('Yesterday')}]`).replace('dd.', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`))}${myMdwHelper.getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
+                                                                } else {
+                                                                    axis._ticks[tick].label = `${axis._ticks[tick].label}${myMdwHelper.getValueFromData(data.axisValueAppendText, '')}`.split('\\n')
                                                                 }
-
                                                             }
                                                         }
                                                     }
@@ -546,8 +547,11 @@ vis.binds.materialdesign.chart = {
                                             maxTicksLimit: myMdwHelper.getNumberFromData(data.xAxisMaxLabel, undefined),
                                             minRotation: parseInt(myMdwHelper.getNumberFromData(data.xAxisMinRotation, 0)),
                                             maxRotation: parseInt(myMdwHelper.getNumberFromData(data.xAxisMaxRotation, 0)),
-                                            callback: function (value, index, values) {                                 // only for chartType: horizontal
-                                                return `${value}${myMdwHelper.getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
+                                            callback: function (value, index, values) {
+                                                if (!data.xAxisLabelUseTodayYesterday) {                      // only for chartType: horizontal
+                                                    return `${value}${myMdwHelper.getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
+                                                }
+                                                return value;
                                             },
                                             fontColor: myMdwHelper.getValueFromData(data.xAxisValueLabelColor, undefined),
                                             fontFamily: myMdwHelper.getValueFromData(data.xAxisValueFontFamily, undefined),
@@ -562,8 +566,8 @@ vis.binds.materialdesign.chart = {
                                             drawOnChartArea: data.xAxisShowGridLines,
                                             drawTicks: data.xAxisShowTicks,
                                             tickMarkLength: myMdwHelper.getNumberFromData(data.xAxisTickLength, 5),
-                                            zeroLineWidth: myMdwHelper.getNumberFromData(data.xAxisZeroLineWidth, 1),
-                                            zeroLineColor: myMdwHelper.getValueFromData(data.xAxisZeroLineColor, 'rgba(0, 0, 0, 0.25)'),
+                                            zeroLineWidth: myMdwHelper.getNumberFromData(data.xAxisZeroLineWidth, 0.1),
+                                            zeroLineColor: myMdwHelper.getValueFromData(data.xAxisZeroLineColor, 'black'),
                                             offsetGridLines: myMdwHelper.getBooleanFromData(data.xAxisOffsetGridLines, false),
                                         }
                                     }],
@@ -1392,7 +1396,7 @@ vis.binds.materialdesign.chart = {
                                                             return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Yesterday')}]`).replace('dd.', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`)).split('\\n');
                                                         }
                                                     }
-                                                    
+
                                                     return timestamp.format(timeFormats[currentUnit]);
                                                 } else {
                                                     return tooltipItem[0].label;
@@ -1600,7 +1604,6 @@ vis.binds.materialdesign.chart.helper = {
                                     } else if (date.isSame(moment().subtract(1, 'day'), 'day')) {
                                         axis._ticks[tick].label = date.format(displayFormats[unit].replace('dddd', `[${_('Yesterday')}]`).replace('dd.', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`)).split('\\n');
                                     }
-
                                 }
                             }
                         }
