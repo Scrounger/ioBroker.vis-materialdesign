@@ -720,9 +720,9 @@
             let initTopAppBar = vis.binds.materialdesign.topappbarnav.initializeTopAppBar(data);
         %>
 
-        <div class="vis-widget materialdesign-widget materialdesign-topAppBar-with-Drawer <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>">
+        <div class="vis-widget materialdesign-widget materialdesign-topAppBar-with-Drawer <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.topappbarnav.handler(el, data) %>>
             <div class="drawer-frame-root">
-                <aside class="mdc-drawer <%= initDrawer.drawerLayout %>" <%== initDrawer.drawerStyle %> <%= (el) -> vis.binds.materialdesign.topappbarnav.handler(el, data) %>>
+                <aside class="mdc-drawer <%= initDrawer.drawerLayout %>" <%== initDrawer.drawerStyle %>>
                     <%== initDrawer.drawerHeader %>
                     <div class="mdc-drawer__content">
                         <nav class="mdc-list">

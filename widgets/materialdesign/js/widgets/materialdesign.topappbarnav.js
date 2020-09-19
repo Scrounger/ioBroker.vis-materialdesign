@@ -218,29 +218,31 @@ vis.binds.materialdesign.topappbarnav = {
     handler: function (el, data) {
         try {
             let $this = $(el);
+            let widget = $this.get(0);
+            let $mdcTopAppBar = $this.find('.mdc-top-app-bar');
+            let $topAppBarTitle = $mdcTopAppBar.find('.mdc-top-app-bar__title')
+            let mdcDrawer = $this.find('.mdc-drawer').get(0);
 
-            let widget = $this.parent().parent().get(0);
-            let mdcDrawer = $this.context;
-            let mdcTopAppBar = $this.parent().find('.mdc-top-app-bar').get(0);
-            let mdcList = $this.parent().find('.mdc-list').get(0);
+            let $drawerFrameAppContent = $this.find('.drawer-frame-app-content');
 
-            myMdwHelper.waitForElement($this.parent().parent(), '.mdc-top-app-bar__navigation-icon', data.wid, 'TopAppBar', function () {
+            let $mdcList = $this.find('.mdc-list');
+            let mdcList = $mdcList.get(0);
+
+            myMdwHelper.waitForElement($this, '.mdc-drawer__content', data.wid, 'TopAppBar', function () {
                 // Bug fix für TopAppBar, da position: fixed sein muss, deshlab zur Laufzeit width anpassen -> wird von widget genommen
-                $this.parent().parent().css('left', '0px');
-                $this.parent().parent().css('top', '0px');
+                $this.css('left', '0px');
+                $this.css('top', '0px');
 
                 // remove z-index set in css common
-                $this.parent().parent().css('z-index', '');
+                $this.css('z-index', '');
 
                 if (data.drawerLayout === 'modal') {
                     let width = window.getComputedStyle(widget, null).width;
 
                     if (data.topAppBarLayout !== 'short') {
-                        $this.parent().find('.mdc-top-app-bar').css('width', width);
+                        $mdcTopAppBar.css('width', width);
                     } else {
-                        if (vis.editMode) {
-                            $this.parent().find('.mdc-top-app-bar').css('position', 'relative');
-                        }
+                        $mdcTopAppBar.css('position', 'relative');
                     }
                 } else {
                     let width = window.getComputedStyle(widget, null).width;
@@ -248,15 +250,15 @@ vis.binds.materialdesign.topappbarnav = {
                     let barWidth = width.replace('px', '') - widthDrawer.replace('px', '');
 
                     if (data.topAppBarLayout !== 'short') {
-                        $this.parent().find('.mdc-top-app-bar').css('width', barWidth);
+                        $mdcTopAppBar.css('width', barWidth);
                     } else {
                         if (!vis.editMode) {
-                            $this.parent().find('.mdc-top-app-bar').css('left', widthDrawer);
+                            $mdcTopAppBar.css('left', widthDrawer);
                         } else {
-                            $this.parent().find('.mdc-top-app-bar').css('position', 'relative');
+                            $mdcTopAppBar.css('position', 'relative');
                         }
                     }
-                    $this.parent().find('.drawer-frame-app-content').css('left', widthDrawer);
+                    $drawerFrameAppContent.css('left', widthDrawer);
                 }
             });
 
@@ -301,15 +303,15 @@ vis.binds.materialdesign.topappbarnav = {
                 mdcList.style.setProperty("--materialdesign-color-list-item-text-disabled", myMdwHelper.getValueFromData(data.colorListItemTextDisabled, ''));
                 mdcList.style.setProperty("--materialdesign-color-list-item-icon-disabled", myMdwHelper.getValueFromData(data.colorListItemIconDisabled, ''));
 
-                mdcTopAppBar.style.setProperty("--materialdesign-color-top-app-bar-background", myMdwHelper.getValueFromData(data.colorTopAppBarBackground, ''));
+                $mdcTopAppBar.get(0).style.setProperty("--materialdesign-color-top-app-bar-background", myMdwHelper.getValueFromData(data.colorTopAppBarBackground, ''));
 
                 const drawer = new mdc.drawer.MDCDrawer(mdcDrawer);
-                const topAppBar = new mdc.topAppBar.MDCTopAppBar(mdcTopAppBar);
+                const topAppBar = new mdc.topAppBar.MDCTopAppBar($mdcTopAppBar.get(0));
                 const navList = new mdc.list.MDCList(mdcList);
 
                 const listItemRipples = navList.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
 
-                topAppBar.setScrollTarget($this.parent().find('.mdc-top-app-bar-content').get(0));
+                topAppBar.setScrollTarget($this.find('.mdc-top-app-bar-content').get(0));
 
                 topAppBar.listen('MDCTopAppBar:nav', () => {
 
@@ -321,13 +323,13 @@ vis.binds.materialdesign.topappbarnav = {
                             let widthDrawer = window.getComputedStyle(mdcDrawer, null).width;
 
                             if (data.topAppBarLayout !== 'short') {
-                                $this.parent().find('.mdc-top-app-bar').css('width', width);
+                                $mdcTopAppBar.css('width', width);
                             } else {
                                 if (!vis.editMode) {
-                                    $this.parent().find('.mdc-top-app-bar').css('left', '0px');
+                                    $mdcTopAppBar.css('left', '0px');
                                 }
                             }
-                            $this.parent().find('.drawer-frame-app-content').css('left', '0px');
+                            $drawerFrameAppContent.css('left', '0px');
 
                             drawer.open = !drawer.open;
                         } else {
@@ -339,13 +341,13 @@ vis.binds.materialdesign.topappbarnav = {
 
                             setTimeout(function () {
                                 if (data.topAppBarLayout !== 'short') {
-                                    $this.parent().find('.mdc-top-app-bar').css('width', barWidth);
+                                    $mdcTopAppBar.css('width', barWidth);
                                 } else {
                                     if (!vis.editMode) {
-                                        $this.parent().find('.mdc-top-app-bar').css('left', widthDrawer);
+                                        $mdcTopAppBar.css('left', widthDrawer);
                                     }
                                 }
-                                $this.parent().find('.drawer-frame-app-content').css('left', widthDrawer);
+                                $drawerFrameAppContent.css('left', widthDrawer);
                             }, 250);
                         }
                     } else {
@@ -357,18 +359,18 @@ vis.binds.materialdesign.topappbarnav = {
 
                 toggleSubItemByIndex(val);
 
-                navList.selectedIndex = parseInt($this.find(`.mdc-list-item[id="listItem_${val}"]`).eq(0).attr('index'));
+                navList.selectedIndex = parseInt($mdcList.find(`.mdc-list-item[id="listItem_${val}"]`).eq(0).attr('index'));
 
                 setTopAppBarWithDrawerLayout(val);
 
                 vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                     toggleSubItemByIndex(newVal);
 
-                    navList.selectedIndex = parseInt($this.find(`.mdc-list-item[id="listItem_${newVal}"]`).eq(0).attr('index'));
+                    navList.selectedIndex = parseInt($mdcList.find(`.mdc-list-item[id="listItem_${newVal}"]`).eq(0).attr('index'));
                     setTopAppBarWithDrawerLayout(newVal);
                 });
 
-                $this.find('.mdc-list-item').click(function () {
+                $mdcList.find('.mdc-list-item').click(function () {
                     let selctedIndex = parseInt($(this).eq(0).attr('id').replace('listItem_', ''));
 
                     let itemIsDisabled = $(this).eq(0).hasClass('mdc-list-item--disabled');
@@ -391,7 +393,7 @@ vis.binds.materialdesign.topappbarnav = {
 
                             $(this).next("nav.mdc-sub-list").toggle();
 
-                            navList.selectedIndex = parseInt($this.find(`.mdc-list-item[id="listItem_${selctedIndex}"]`).eq(0).attr('index'));
+                            navList.selectedIndex = parseInt($mdcList.find(`.mdc-list-item[id="listItem_${selctedIndex}"]`).eq(0).attr('index'));
                         } else {
                             // listItem
                             val = vis.states.attr(data.oid + '.val');
@@ -413,16 +415,15 @@ vis.binds.materialdesign.topappbarnav = {
                     }
                 });
 
-
                 function setTopAppBarWithDrawerLayout(index) {
                     if (data.showSelectedItemAsTitle) {
-                        let selectedName = $this.parent().find(`span[id="listItem_${index}"]`).text();
-                        $this.parent().find('.mdc-top-app-bar__title').text(selectedName)
+                        let selectedName = $mdcList.find(`span[id="listItem_${index}"]`).text();
+                        $topAppBarTitle.text(selectedName)
                     }
                 }
 
                 function toggleSubItemByIndex(index) {
-                    let selectedListItem = $this.find(`.mdc-list-item[id="listItem_${index}"]`);
+                    let selectedListItem = $mdcList.find(`.mdc-list-item[id="listItem_${index}"]`);
                     if (selectedListItem.hasClass('isSubItem')) {
                         // toggle Subitem if selected
                         let parentListItem = selectedListItem.parent().prev('.hasSubItems');
