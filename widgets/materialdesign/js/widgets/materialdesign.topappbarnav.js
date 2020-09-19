@@ -146,7 +146,7 @@ vis.binds.materialdesign.topappbarnav = {
                     // generate Item Image for Layout Standard
                     let listItemImage = ''
                     if (data.drawerItemLayout === 'standard') {
-                        listItemImage = myMdwHelper.getListIcon(itemImage, 'auto', myMdwHelper.getValueFromData(data.drawerIconHeight, '', '', 'px !important;'), data.attr('iconDrawerColor' + i));
+                        listItemImage = myMdwHelper.getListIcon(itemImage, 'auto', myMdwHelper.getValueFromData(data.drawerIconHeight, '', '', 'px !important;'), myMdwHelper.getValueFromData(data.attr('iconDrawerColor' + i), '#44739e'));
                     }
 
                     // add itemIndex to label if enabled
@@ -155,7 +155,7 @@ vis.binds.materialdesign.topappbarnav = {
                     }
 
                     // generate Item Label
-                    let listItemLabel = myMdwHelper.getListItemLabel(data.drawerItemLayout, itemIndex, itemLabelText, hasSubItems, dawerLabelFontSize, dawerLabelShow, data.colorSubItemToggleIcon, backdropLabelBackgroundHeight, false, data.listItemAlignment);
+                    let listItemLabel = myMdwHelper.getListItemLabel(data.drawerItemLayout, itemIndex, itemLabelText, hasSubItems, dawerLabelFontSize, dawerLabelShow, myMdwHelper.getValueFromData(data.colorSubItemToggleIcon, '#44739e'), backdropLabelBackgroundHeight, false, data.listItemAlignment);
 
                     // generate Item
                     navItemList.push(`${listItem}${listItemImage}${listItemLabel}</div>`);
@@ -166,7 +166,24 @@ vis.binds.materialdesign.topappbarnav = {
 
                         for (var d = 0; d <= subItemsCount - 1; d++) {
                             let subObj = subMenuObjects[d];
+
                             itemIndex++;
+
+                            // Permission group
+                            let subItemIsDisabled = false;
+                            let userGroups = subObj.userGroups;
+                            if (userGroups) {
+                                if (!vis.isUserMemberOf(vis.conn.getUser(), userGroups)) {
+                                    if (subObj.behaviorNotInUserGroup === 'hide') {
+                                        // not in group and hide option selected
+                                        continue;
+                                    } else {
+                                        // not in group and disabled option selected
+                                        subItemIsDisabled = true;
+                                    }
+                                }
+                            }
+
                             selectIndex++;
 
                             let subItemImage = myMdwHelper.getValueFromData(subObj.icon, '');
@@ -183,12 +200,12 @@ vis.binds.materialdesign.topappbarnav = {
                             }
 
                             // generate SubItem -> mdc-list-item
-                            let listSubItem = myMdwHelper.getListItem(data.drawerSubItemLayout, itemIndex, subItemImage, false, true, drawerSubItemIconHeight, '', '', '', itemIsDisabled, selectIndex);
+                            let listSubItem = myMdwHelper.getListItem(data.drawerSubItemLayout, itemIndex, subItemImage, false, true, drawerSubItemIconHeight, '', '', '', itemIsDisabled || subItemIsDisabled, selectIndex);
 
                             // generate Item Image for Layout Standard
                             let listSubItemImage = ''
                             if (data.drawerSubItemLayout === 'standard') {
-                                listSubItemImage = myMdwHelper.getListIcon(subItemImage, 'auto', myMdwHelper.getValueFromData(data.drawerSubItemIconHeight, myMdwHelper.getValueFromData(data.drawerIconHeight, ''), '', 'px !important;'), myMdwHelper.getValueFromData(subObj.iconColor, data.attr('iconDrawerColor' + i)));
+                                listSubItemImage = myMdwHelper.getListIcon(subItemImage, 'auto', myMdwHelper.getValueFromData(data.drawerSubItemIconHeight, myMdwHelper.getValueFromData(data.drawerIconHeight, ''), '', 'px !important;'), myMdwHelper.getValueFromData(subObj.iconColor, myMdwHelper.getValueFromData(data.attr('iconDrawerColor' + i), '#44739e')));
                             }
 
                             // generate Item Label
@@ -441,14 +458,16 @@ vis.binds.materialdesign.topappbarnav = {
                     } else {
                         if (item.hasClass('mdc-list-item--disabled')) {
                             // element is disabled
-                            if (item.hasClass('isSubItem')) {
-                                let parentListItem = item.parent().prev('.hasSubItems');
+                            // if (item.hasClass('isSubItem')) {
+                            //     let parentListItem = item.parent().prev('.hasSubItems');
 
-                                parentListItem.removeClass("toggled");
+                            //     if (parentListItem.hasClass('mdc-list-item--disabled')) {
+                            //         parentListItem.removeClass("toggled");
 
-                                parentListItem.find('.toggleIcon').removeClass("mdi-menu-up");
-                                parentListItem.find('.toggleIcon').addClass("mdi-menu-down");
-                            }
+                            //         parentListItem.find('.toggleIcon').removeClass("mdi-menu-up");
+                            //         parentListItem.find('.toggleIcon').addClass("mdi-menu-down");
+                            //     }
+                            // }
                             myMdwHelper.setValue(data.oid, myMdwHelper.getNumberFromData(data.navDefaultValue, 0));
                         } else {
                             navList.selectedIndex = parseInt(item.eq(0).attr('index'));
