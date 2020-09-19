@@ -189,13 +189,14 @@ vis.binds.materialdesign.helper = {
         return '';
     },
 
-    getListItem: function (layout, itemIndex, backdropImage, hasSubItems, isSubItem = false, style = '', dataOid = '', role = '', dataValue = '', isDisabled = false) {
+    getListItem: function (layout, itemIndex, backdropImage, hasSubItems, isSubItem = false, style = '', dataOid = '', role = '', dataValue = '', isDisabled = false, index = undefined) {
         if (layout === 'standard') {
             // Layout: Standard
             return `<div 
                         class="mdc-list-item${(isSubItem) ? ' mdc-sub-list-item isSubItem' : ''}${(itemIndex === 0) ? ' mdc-list-item--activated' : ''}${(hasSubItems) ? ' hasSubItems' : ''}${isDisabled ? ' mdc-list-item--disabled' : ''}" 
                         tabindex="${(itemIndex === 0) ? '0' : '-1'}" 
-                        id="listItem_${itemIndex}" 
+                        id="listItem_${itemIndex}"
+                        ${index || index === 0 ? `index="${index}"`: ''}
                         style="${style}"
                         data-value="${dataValue}" 
                         ${dataOid} 
@@ -207,6 +208,7 @@ vis.binds.materialdesign.helper = {
                         class="mdc-list-item${(isSubItem) ? ' mdc-sub-list-item isSubItem' : ''}${(itemIndex === 0) ? ' mdc-list-item--activated' : ''} mdc-card__media${(hasSubItems) ? ' hasSubItems' : ''}" 
                         tabindex="${(itemIndex === 0) ? '0' : '-1'}"
                         id="listItem_${itemIndex}"
+                        ${index || index === 0 ? `index="${index}"`: ''}
                         style="background-image: url(${backdropImage}); align-items: flex-end; padding: 0px;${style}"
                     >`
         }
@@ -252,9 +254,9 @@ vis.binds.materialdesign.helper = {
     getListItemDivider: function (showDivider, dividerLayout, isSubList = false) {
         if (showDivider === true || showDivider === 'true') {
             if (dividerLayout === 'standard') {
-                return `<hr class="mdc-${isSubList? 'sub': ''}list-divider">`
+                return `<hr class="mdc-${isSubList ? 'sub' : ''}list-divider">`
             } else {
-                return `<hr class="mdc-${isSubList? 'sub': ''}list-divider mdc-list-divider--${dividerLayout}">`
+                return `<hr class="mdc-${isSubList ? 'sub' : ''}list-divider mdc-list-divider--${dividerLayout}">`
             }
         }
         return '';

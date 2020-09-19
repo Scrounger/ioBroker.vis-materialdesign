@@ -407,18 +407,20 @@ Since version 0.4.0 the submenus must be defined by a JSON string:
 		"text": "subitem0",
 		"icon": "account",
 		"iconColor": "red"
-	},
+	}, 
 	{
 		"text": "subitem1",
 		"icon": "home",
 		"iconColor": "green",
 		"divider": "true"
-	},
+	}, 
 	{
 		"text": "subitem1",
 		"divider": "true",
-		"icon":"/vis.0/myImages/devices/lxc_iobroker.png"
-	}	
+		"icon": "/vis.0/myImages/devices/lxc_iobroker.png",
+		"userGroups": ["administrator", "user"],
+		"behaviorNotInUserGroup": "disabled"
+	}
 ]
 ```
 
@@ -455,6 +457,18 @@ Since version 0.4.0 the submenus must be defined by a JSON string:
             <td>show a divider</td>
             <td>boolean</td>
             <td>false, true</td>
+        </tr>
+        <tr>
+            <td>userGroups</td>
+            <td>user groups that are allowed to view and control this entry.</td>
+            <td>array[string]</td>
+            <td>id of user groups</td>
+        </tr>
+        <tr>
+            <td>behaviorNotInUserGroup</td>
+            <td>hide or disable entry if user is not part of user group</td>
+            <td>string</td>
+            <td>hide, disabled</td>
         </tr>
     </tbody>
 </table>
@@ -5549,6 +5563,7 @@ ical2CalendarWidget();
 * (Scrounger): Calendar Widget: option to show calendar week numbers in month view added
 * (Scrounger): Calendar Widget: option for custom date format added
 * (Scrounger): IconList Widget: bug fix for performance issue
+* (Scrounger): TopAppBar Widget: options for user groups added
 * (Scrounger): dependencies updated
 * (Scrounger): bug fixes
 

@@ -1355,7 +1355,8 @@ svg.materialdesign-widget .materialdesign-button__icon {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.materialdesign-widget :not(.mdc-list--non-interactive) > .mdc-list-item--disabled::before, .materialdesign-widget :not(.mdc-list--non-interactive) > .mdc-list-item--disabled::after {
+.materialdesign-widget :not(.mdc-list--non-interactive) > .mdc-list-item--disabled::before, 
+.materialdesign-widget :not(.mdc-list--non-interactive) > .mdc-list-item--disabled::after {
   background-color: transparent;
 }
 
@@ -1364,7 +1365,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   background-color: var(--materialdesign-color-list-item-hover);
   opacity: 0.1;
 }
-.materialdesign-widget :not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item:hover::before {
+.materialdesign-widget :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-sub-list-item:hover::before {
   background-color: var(--materialdesign-color-sub-list-item-hover);
   opacity: 0.1;
 }
@@ -1373,7 +1374,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 .materialdesign-widget :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item:hover::after {
   background-color: var(--materialdesign-color-list-item-hover);
 }
-.materialdesign-widget :not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item:hover::after {
+.materialdesign-widget :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-sub-list-item:hover::after {
   background-color: var(--materialdesign-color-sub-list-item-hover);
 }
 
@@ -1382,15 +1383,15 @@ svg.materialdesign-widget .materialdesign-button__icon {
 .materialdesign-widget :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::after{
   background-color: var(--materialdesign-color-list-item-selected);
 }
-.materialdesign-widget :not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item::before, 
-.materialdesign-widget :not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item::after{
+.materialdesign-widget :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-sub-list-item::before, 
+.materialdesign-widget :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-sub-list-item::after{
   background-color: var(--materialdesign-color-sub-list-item-selected);
 }
 
 .materialdesign-widget :not(.mdc-list-item--disabled).mdc-list-item{
   color: var(--materialdesign-color-list-item-text);
 }
-.materialdesign-widget :not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item{
+.materialdesign-widget :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-sub-list-item{
   color: var(--materialdesign-color-sub-list-item-text);
 }
 
@@ -1398,7 +1399,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   color: var(--materialdesign-color-list-item-text-activated);
 }
 
-.materialdesign-widget :not(.mdc-sub-list--non-interactive) > :not(.mdc-sub-list-item--disabled).mdc-sub-list-item.mdc-list-item--activated {
+.materialdesign-widget :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-sub-list-item.mdc-list-item--activated {
   color: var(--materialdesign-color-sub-list-item-text-activated);
 }
 

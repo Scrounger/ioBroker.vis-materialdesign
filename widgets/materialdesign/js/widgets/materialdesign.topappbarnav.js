@@ -99,22 +99,8 @@ vis.binds.materialdesign.topappbarnav = {
                 let backdropSubLabelBackgroundHeight = myMdwHelper.getValueFromData(data.backdropSubLabelBackgroundHeight, backdropLabelBackgroundHeight, 'height: ', '%;');
 
                 let itemIndex = 0;
+                let selectIndex = 0;
                 for (var i = 0; i <= data.navItemCount; i++) {
-
-                    // Permission group
-                    let itemIsDisabled = false;
-                    let userGroups = data['permissionGroupSelector' + i];
-                    if (userGroups) {
-                        if (!vis.isUserMemberOf(vis.conn.getUser(), userGroups)) {
-                            if (data['permissionVisibility' + i] === 'hide') {
-                                // not in group and hide option selected
-                                continue;
-                            } else {
-                                // not in group and disabled option selected
-                                itemIsDisabled = true;
-                            }
-                        }
-                    }
 
                     let itemHeaderText = myMdwHelper.getValueFromData(data.attr('headers' + i), null);
                     let itemLabelText = myMdwHelper.getValueFromData(data.attr('labels' + i), 'Menu Item');
@@ -134,12 +120,28 @@ vis.binds.materialdesign.topappbarnav = {
                         }
                     }
 
+                    // Permission group
+                    let itemIsDisabled = false;
+                    let userGroups = data['permissionGroupSelector' + i];
+                    if (userGroups) {
+                        if (!vis.isUserMemberOf(vis.conn.getUser(), userGroups)) {
+                            if (data['permissionVisibility' + i] === 'hide') {
+                                // not in group and hide option selected
+                                itemIndex = itemIndex + subItemsCount + 1;
+                                continue;
+                            } else {
+                                // not in group and disabled option selected
+                                itemIsDisabled = true;
+                            }
+                        }
+                    }
+
                     // generate Header
                     let header = myMdwHelper.getListItemHeader(itemHeaderText, headerFontSize);
                     navItemList.push(header);
 
                     // generate Item -> mdc-list-item
-                    let listItem = myMdwHelper.getListItem(data.drawerItemLayout, itemIndex, itemImage, hasSubItems, false, drawerIconHeight, '', '', '', itemIsDisabled);
+                    let listItem = myMdwHelper.getListItem(data.drawerItemLayout, itemIndex, itemImage, hasSubItems, false, drawerIconHeight, '', '', '', itemIsDisabled, selectIndex);
 
                     // generate Item Image for Layout Standard
                     let listItemImage = ''
@@ -165,6 +167,7 @@ vis.binds.materialdesign.topappbarnav = {
                         for (var d = 0; d <= subItemsCount - 1; d++) {
                             let subObj = subMenuObjects[d];
                             itemIndex++;
+                            selectIndex++;
 
                             let subItemImage = myMdwHelper.getValueFromData(subObj.icon, '');
 
@@ -180,7 +183,7 @@ vis.binds.materialdesign.topappbarnav = {
                             }
 
                             // generate SubItem -> mdc-list-item
-                            let listSubItem = myMdwHelper.getListItem(data.drawerSubItemLayout, itemIndex, subItemImage, false, true, drawerSubItemIconHeight);
+                            let listSubItem = myMdwHelper.getListItem(data.drawerSubItemLayout, itemIndex, subItemImage, false, true, drawerSubItemIconHeight, '', '', '', itemIsDisabled, selectIndex);
 
                             // generate Item Image for Layout Standard
                             let listSubItemImage = ''
@@ -197,7 +200,6 @@ vis.binds.materialdesign.topappbarnav = {
                             if (subObj.divider) {
                                 navItemList.push(myMdwHelper.getListItemDivider(true, data.listSubItemDividerStyle, true));
                             }
-
                         }
                         navItemList.push(`</nav>`);
                     }
@@ -206,6 +208,7 @@ vis.binds.materialdesign.topappbarnav = {
                     navItemList.push(myMdwHelper.getListItemDivider(data.attr('dividers' + i), data.listItemDividerStyle));
 
                     itemIndex++;
+                    selectIndex++;
                 }
             }
         } catch (ex) {
@@ -354,14 +357,15 @@ vis.binds.materialdesign.topappbarnav = {
 
                 toggleSubItemByIndex(val);
 
-                navList.selectedIndex = val;
-                setTopAppBarWithDrawerLayout();
+                navList.selectedIndex = parseInt($this.find(`.mdc-list-item[id="listItem_${val}"]`).eq(0).attr('index'));
+
+                setTopAppBarWithDrawerLayout(val);
 
                 vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                     toggleSubItemByIndex(newVal);
 
-                    navList.selectedIndex = newVal;
-                    setTopAppBarWithDrawerLayout();
+                    navList.selectedIndex = parseInt($this.find(`.mdc-list-item[id="listItem_${newVal}"]`).eq(0).attr('index'));
+                    setTopAppBarWithDrawerLayout(newVal);
                 });
 
                 $this.find('.mdc-list-item').click(function () {
@@ -387,7 +391,7 @@ vis.binds.materialdesign.topappbarnav = {
 
                             $(this).next("nav.mdc-sub-list").toggle();
 
-                            navList.selectedIndex = selctedIndex;
+                            navList.selectedIndex = parseInt($this.find(`.mdc-list-item[id="listItem_${selctedIndex}"]`).eq(0).attr('index'));
                         } else {
                             // listItem
                             val = vis.states.attr(data.oid + '.val');
@@ -395,7 +399,7 @@ vis.binds.materialdesign.topappbarnav = {
                             if (val != selctedIndex) {
                                 myMdwHelper.setValue(data.oid, selctedIndex);
 
-                                setTopAppBarWithDrawerLayout();
+                                setTopAppBarWithDrawerLayout(selctedIndex);
 
                                 setTimeout(function () {
                                     window.scrollTo({ top: 0, left: 0, });
@@ -410,9 +414,9 @@ vis.binds.materialdesign.topappbarnav = {
                 });
 
 
-                function setTopAppBarWithDrawerLayout() {
+                function setTopAppBarWithDrawerLayout(index) {
                     if (data.showSelectedItemAsTitle) {
-                        let selectedName = $this.parent().find(`span[id="listItem_${navList.selectedIndex}"]`).text();
+                        let selectedName = $this.parent().find(`span[id="listItem_${index}"]`).text();
                         $this.parent().find('.mdc-top-app-bar__title').text(selectedName)
                     }
                 }
