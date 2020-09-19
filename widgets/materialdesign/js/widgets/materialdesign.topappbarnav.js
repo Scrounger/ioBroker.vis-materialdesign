@@ -252,11 +252,9 @@ vis.binds.materialdesign.topappbarnav = {
                     if (data.topAppBarLayout !== 'short') {
                         $mdcTopAppBar.css('width', barWidth);
                     } else {
-                        if (!vis.editMode) {
-                            $mdcTopAppBar.css('left', widthDrawer);
-                        } else {
-                            $mdcTopAppBar.css('position', 'relative');
-                        }
+                        $mdcTopAppBar.css('left', 0);
+                        $mdcTopAppBar.css('position', 'relative');
+                        $mdcTopAppBar.css('width', 56);
                     }
                     $drawerFrameAppContent.css('left', widthDrawer);
                 }
