@@ -412,7 +412,7 @@ vis.binds.materialdesign.iconlist =
             }
 
             function setLayout(index, val, listItemObj) {
-                let $item = $(`#icon-list-item${index}`);
+                let $item = $this.find(`#icon-list-item${index}`);
 
                 $item.find('.materialdesign-icon-list-item-value').text(`${val}${listItemObj.valueAppendix}`);
 
