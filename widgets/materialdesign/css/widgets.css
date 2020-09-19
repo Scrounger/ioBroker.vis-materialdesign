@@ -42,6 +42,7 @@
 
   --materialdesign-color-list-item-header: #000;
   --materialdesign-color-list-item-divider: rgba(0, 0, 0, 0.12);
+  --materialdesign-color-sub-list-item-divider: rgba(0, 0, 0, 0.12);
 
   --materialdesign-color-list-item-backdrop: rgba(0,0,0,0.5);
   --materialdesign-color-sub-list-item-backdrop: rgba(0,0,0,0.5);
@@ -1435,6 +1436,31 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 .materialdesign-widget .mdc-list-divider { 
   border-bottom-color: var(--materialdesign-color-list-item-divider);
+}
+
+.materialdesign-widget .mdc-list-divider--padded {
+  margin: 0 16px;
+}
+
+.materialdesign-widget .mdc-sublist-divider {
+  height: 0;
+  border: none;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  margin: 0 16px;
+  border-bottom-color: var(--materialdesign-color-sub-list-item-divider);
+}
+
+.materialdesign-widget .mdc-sublist-divider.mdc-list-divider--padded {
+  margin: 0 32px;
+}
+
+.materialdesign-widget .mdc-list-divider--inset {
+  /* @noflip */
+  margin-left: 72px;
+  /* @noflip */
+  margin-right: 0;
+  width: calc(100% - 72px);
 }
 
 .materialdesign-widget .mdc-list-item__primary-text {

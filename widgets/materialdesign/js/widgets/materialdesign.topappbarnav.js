@@ -120,40 +120,19 @@ vis.binds.materialdesign.topappbarnav = {
                     let itemLabelText = myMdwHelper.getValueFromData(data.attr('labels' + i), 'Menu Item');
                     let itemImage = myMdwHelper.getValueFromData(data.attr('iconDrawer' + i), '');
 
-                    let subItemsCount = myMdwHelper.getNumberFromData(data.attr('submenuCounts_' + i), 0);
+
+                    let subMenuObjects = undefined;
+                    let subItemsCount = 0;
                     let hasSubItems = false;
-                    let subItemsTextJson = '';
-                    let subItemsImageJson = '';
-
-                    if (subItemsCount > 0) {
-                        hasSubItems = true;
-
-                        // parse Label Text for Items with subitems
-                        let labelJsonString = myMdwHelper.getValueFromData(data.attr('labels' + i), null);
-                        if (labelJsonString === null) {
-                            itemLabelText = `Menu Item`;
-                        } else {
-                            try {
-                                subItemsTextJson = JSON.parse(labelJsonString);
-                                itemLabelText = subItemsTextJson.itemText;
-                            } catch (e) {
-                                subItemsTextJson = '';
-                                itemLabelText = 'Error: wrong format!';
-                            }
-                        }
-
-                        // parse Image for SubItems
-                        let imageJsonString = myMdwHelper.getValueFromData(data.attr('iconDrawer' + i), null);
-                        if (imageJsonString !== null) {
-                            try {
-                                subItemsImageJson = JSON.parse(imageJsonString);
-                                itemImage = subItemsImageJson.itemImage;
-                            } catch (e) {
-                                subItemsImageJson = '';
-                            }
+                    if (myMdwHelper.getValueFromData(data.attr('submenus' + i), undefined)) {
+                        try {
+                            subMenuObjects = JSON.parse(data.attr('submenus' + i));
+                            subItemsCount = subMenuObjects.length;
+                            hasSubItems = true;
+                        } catch (e) {
+                            itemLabelText = _('Error in submenu JSON');
                         }
                     }
-
 
                     // generate Header
                     let header = myMdwHelper.getListItemHeader(itemHeaderText, headerFontSize);
@@ -184,17 +163,14 @@ vis.binds.materialdesign.topappbarnav = {
                         navItemList.push(`<nav class="mdc-list mdc-sub-list">`);
 
                         for (var d = 0; d <= subItemsCount - 1; d++) {
-
+                            let subObj = subMenuObjects[d];
                             itemIndex++;
 
-                            let subItemImage = '';
-                            if (subItemsImageJson && subItemsImageJson.subItems && subItemsImageJson.subItems.length > 0) {
-                                subItemImage = myMdwHelper.getValueFromData(subItemsImageJson.subItems[d], '');
-                            }
+                            let subItemImage = myMdwHelper.getValueFromData(subObj.icon, '');
 
                             let subItemText = '';
-                            if (subItemsTextJson && subItemsTextJson.subItems && subItemsTextJson.subItems.length > 0) {
-                                subItemText = myMdwHelper.getValueFromData(subItemsTextJson.subItems[d], 'Menu SubItem');
+                            if (subObj && subObj.text) {
+                                subItemText = myMdwHelper.getValueFromData(subObj.text, 'Menu SubItem');
                             } else {
                                 subItemText = 'Menu SubItem';
                             }
@@ -209,7 +185,7 @@ vis.binds.materialdesign.topappbarnav = {
                             // generate Item Image for Layout Standard
                             let listSubItemImage = ''
                             if (data.drawerSubItemLayout === 'standard') {
-                                listSubItemImage = myMdwHelper.getListIcon(subItemImage, 'auto', myMdwHelper.getValueFromData(data.drawerSubItemIconHeight, myMdwHelper.getValueFromData(data.drawerIconHeight, ''), '', 'px !important;'), data.attr('iconDrawerColor' + i));
+                                listSubItemImage = myMdwHelper.getListIcon(subItemImage, 'auto', myMdwHelper.getValueFromData(data.drawerSubItemIconHeight, myMdwHelper.getValueFromData(data.drawerIconHeight, ''), '', 'px !important;'), myMdwHelper.getValueFromData(subObj.iconColor, data.attr('iconDrawerColor' + i)));
                             }
 
                             // generate Item Label
@@ -217,6 +193,11 @@ vis.binds.materialdesign.topappbarnav = {
 
                             // generate SubItem
                             navItemList.push(`${listSubItem}${listSubItemImage}${listSubItemLabel}</div>`);
+
+                            if (subObj.divider) {
+                                navItemList.push(myMdwHelper.getListItemDivider(true, data.listSubItemDividerStyle, true));
+                            }
+
                         }
                         navItemList.push(`</nav>`);
                     }
@@ -303,6 +284,8 @@ vis.binds.materialdesign.topappbarnav = {
 
                 mdcList.style.setProperty("--materialdesign-color-list-item-header", myMdwHelper.getValueFromData(data.colorListItemHeaders, ''));
                 mdcList.style.setProperty("--materialdesign-color-list-item-divider", myMdwHelper.getValueFromData(data.colorListItemDivider, ''));
+
+                mdcList.style.setProperty("--materialdesign-color-sub-list-item-divider", myMdwHelper.getValueFromData(data.colorListSubItemDivider, ''));
 
                 let colorDrawerbackdropLabelBackground = myMdwHelper.getValueFromData(data.colorDrawerbackdropLabelBackground, '');
                 mdcList.style.setProperty("--materialdesign-color-list-item-backdrop", colorDrawerbackdropLabelBackground);

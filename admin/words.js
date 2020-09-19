@@ -3341,6 +3341,18 @@ systemDictionary = {
         "pl": "styl dzielnika",
         "zh-cn": "分隔线样式"
     },
+    "listSubItemDividerStyle": {
+        "en": "divider style",
+        "de": "Trennlinien Stil",
+        "ru": "стиль делителя",
+        "pt": "estilo divisor",
+        "nl": "scheidingsstijl",
+        "fr": "style de séparation",
+        "it": "stile divisore",
+        "es": "estilo divisor",
+        "pl": "styl dzielnika",
+        "zh-cn": "分隔线样式"
+    },
     "listLayout": {
         "en": "layout",
         "de": "Layout",
@@ -3546,6 +3558,18 @@ systemDictionary = {
         "zh-cn": "标题文字颜色"
     },
     "colorListItemDivider": {
+        "en": "divider color",
+        "de": "Trennlinie Farbe",
+        "ru": "цвет делителя",
+        "pt": "cor do divisor",
+        "nl": "scheidingskleur",
+        "fr": "couleur du séparateur",
+        "it": "colore del divisore",
+        "es": "color divisor",
+        "pl": "kolor dzielnika",
+        "zh-cn": "分隔线颜色"
+    },
+    "colorListSubItemDivider": {
         "en": "divider color",
         "de": "Trennlinie Farbe",
         "ru": "цвет делителя",
@@ -9977,5 +10001,29 @@ systemDictionary = {
         "es": "Si el usuario no está en el grupo",
         "pl": "Jeśli użytkownik nie jest w grupie",
         "zh-cn": "如果用户不在组中"
+    },
+    "submenus": {
+        "en": "submenus",
+        "de": "Untermenüs",
+        "ru": "подменю",
+        "pt": "submenus",
+        "nl": "submenu's",
+        "fr": "sous-menus",
+        "it": "sottomenu",
+        "es": "submenús",
+        "pl": "podmenu",
+        "zh-cn": "子菜单"
+    },
+    "Error in submenu JSON": {
+        "en": "Error in submenu JSON",
+        "de": "Fehler im Untermenü JSON",
+        "ru": "Ошибка в подменю JSON",
+        "pt": "Erro no submenu JSON",
+        "nl": "Fout in submenu JSON",
+        "fr": "Erreur dans le sous-menu JSON",
+        "it": "Errore nel sottomenu JSON",
+        "es": "Error en el submenú JSON",
+        "pl": "Błąd w podmenu JSON",
+        "zh-cn": "子菜单JSON中的错误"
     }
 };

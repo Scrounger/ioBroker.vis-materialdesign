@@ -398,6 +398,69 @@ Top App Bar with Navigation Drawer can be combined with the <a href="https://www
 ### Submenu 
 ![Logo](doc/en/media/drawer_subMenu.png)
 
+##### since Version 0.4.0
+Since version 0.4.0 the submenus must be defined by a JSON string:
+
+```
+[
+	{
+		"text": "subitem0",
+		"icon": "account",
+		"iconColor": "red"
+	},
+	{
+		"text": "subitem1",
+		"icon": "home",
+		"iconColor": "green",
+		"divider": "true"
+	},
+	{
+		"text": "subitem1",
+		"divider": "true",
+		"icon":"/vis.0/myImages/devices/lxc_iobroker.png"
+	}	
+]
+```
+
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>text</td>
+            <td>text of entry</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>icon</td>
+            <td>icon or image path of entry</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>iconColor</td>
+            <td>icon color (works not if image is used)</td>
+            <td>color</td>
+            <td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+        </tr>
+        <tr>
+            <td>divider</td>
+            <td>show a divider</td>
+            <td>boolean</td>
+            <td>false, true</td>
+        </tr>
+    </tbody>
+</table>
+
+##### before Version 0.4.0
+
 Settings that are not listed in the table below are self-explanatory.
 
 <table>
@@ -5456,7 +5519,8 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
-* (Scrounger): Line History Chart Widget: Breaking Changes !!! aggregate (display) method for every dataset configurable, see documentation for detailed infos!
+* (Scrounger): Line History Chart Widget: Breaking Changes !!! aggregate (display) method for every dataset configurable, [see documentation for detailed infos](#line-history-chart)!
+* (Scrounger): TopAppBar Widget: Breaking Changes !!! Submenus must now be created using JSON string, [see documentation for detailed infos](#since-Version-0.4.0)!
 * (Scrounger): bug fix for compatibility issues with other widget adapters
 * (Scrounger): Chechbox Widget: option for border and hover color added
 * (Scrounger): Chechbox Widget: ripple effect bug fix

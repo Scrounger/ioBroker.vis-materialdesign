@@ -249,12 +249,12 @@ vis.binds.materialdesign.helper = {
                     </div>`;
         }
     },
-    getListItemDivider: function (showDivider, dividerLayout) {
+    getListItemDivider: function (showDivider, dividerLayout, isSubList = false) {
         if (showDivider === true || showDivider === 'true') {
             if (dividerLayout === 'standard') {
-                return '<hr class="mdc-list-divider">'
+                return `<hr class="mdc-${isSubList? 'sub': ''}list-divider">`
             } else {
-                return `<hr class="mdc-list-divider mdc-list-divider--${dividerLayout}">`
+                return `<hr class="mdc-${isSubList? 'sub': ''}list-divider mdc-list-divider--${dividerLayout}">`
             }
         }
         return '';
