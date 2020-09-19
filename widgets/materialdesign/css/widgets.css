@@ -29,6 +29,8 @@
   --materialdesign-color-sub-list-item-selected: #000;
   
   --materialdesign-color-list-item-text: #000;
+  --materialdesign-color-list-item-text-disabled: rgba(0, 0, 0, 0.38);
+  --materialdesign-color-list-item-icon-disabled: rgba(0, 0, 0, 0.38);
   --materialdesign-color-sub-list-item-text: #000;
   --materialdesign-color-list-item-text-activated: #44739e;
   --materialdesign-color-sub-list-item-text-activated: #44739e;
@@ -1326,6 +1328,34 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 .materialdesign-widget .mdc-sub-list .mdc-list-item {
   padding: 0 16px;
+}
+
+
+.materialdesign-widget .mdc-list-item--disabled .mdc-list-item__text {
+  opacity: 1;
+}
+
+.materialdesign-widget .mdc-list-item--disabled .mdc-list-item__text {
+  color: var(--materialdesign-color-list-item-text-disabled);
+  font-style: italic;
+}
+
+.materialdesign-widget .mdc-list-item--disabled .mdc-list-item__graphic {
+  color: var(--materialdesign-color-list-item-icon-disabled) !important;
+}
+
+.materialdesign-widget :not(.mdc-list--non-interactive) > .mdc-list-item--disabled {
+  --mdc-ripple-fg-size: 0;
+  --mdc-ripple-left: 0;
+  --mdc-ripple-top: 0;
+  --mdc-ripple-fg-scale: 1;
+  --mdc-ripple-fg-translate-end: 0;
+  --mdc-ripple-fg-translate-start: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.materialdesign-widget :not(.mdc-list--non-interactive) > .mdc-list-item--disabled::before, .materialdesign-widget :not(.mdc-list--non-interactive) > .mdc-list-item--disabled::after {
+  background-color: transparent;
 }
 
 /* hover item -> use var*/

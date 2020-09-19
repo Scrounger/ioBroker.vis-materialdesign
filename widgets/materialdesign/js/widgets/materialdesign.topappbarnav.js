@@ -100,6 +100,22 @@ vis.binds.materialdesign.topappbarnav = {
 
                 let itemIndex = 0;
                 for (var i = 0; i <= data.navItemCount; i++) {
+
+                    // Permission group
+                    let itemIsDisabled = false;
+                    let userGroups = data['permissionGroupSelector' + i];
+                    if (userGroups) {
+                        if (!vis.isUserMemberOf(vis.conn.getUser(), userGroups)) {
+                            if (data['permissionVisibility' + i] === 'hide') {
+                                // not in group and hide option selected
+                                continue;
+                            } else {
+                                // not in group and disabled option selected
+                                itemIsDisabled = true;
+                            }
+                        }
+                    }
+
                     let itemHeaderText = myMdwHelper.getValueFromData(data.attr('headers' + i), null);
                     let itemLabelText = myMdwHelper.getValueFromData(data.attr('labels' + i), 'Menu Item');
                     let itemImage = myMdwHelper.getValueFromData(data.attr('iconDrawer' + i), '');
@@ -144,7 +160,7 @@ vis.binds.materialdesign.topappbarnav = {
                     navItemList.push(header);
 
                     // generate Item -> mdc-list-item
-                    let listItem = myMdwHelper.getListItem(data.drawerItemLayout, itemIndex, itemImage, hasSubItems, false, drawerIconHeight);
+                    let listItem = myMdwHelper.getListItem(data.drawerItemLayout, itemIndex, itemImage, hasSubItems, false, drawerIconHeight, '', '', '', itemIsDisabled);
 
                     // generate Item Image for Layout Standard
                     let listItemImage = ''
@@ -296,6 +312,9 @@ vis.binds.materialdesign.topappbarnav = {
                 mdcList.style.setProperty("--materialdesign-color-list-item-backdrop-activated", colorDrawerbackdropLabelBackgroundActive);
                 mdcList.style.setProperty("--materialdesign-color-sub-list-item-backdrop-activated", myMdwHelper.getValueFromData(data.colorDrawerbackdropSubLabelBackgroundActive, colorDrawerbackdropLabelBackgroundActive));
 
+                mdcList.style.setProperty("--materialdesign-color-list-item-text-disabled", myMdwHelper.getValueFromData(data.colorListItemTextDisabled, ''));
+                mdcList.style.setProperty("--materialdesign-color-list-item-icon-disabled", myMdwHelper.getValueFromData(data.colorListItemIconDisabled, ''));
+
                 mdcTopAppBar.style.setProperty("--materialdesign-color-top-app-bar-background", myMdwHelper.getValueFromData(data.colorTopAppBarBackground, ''));
 
                 const drawer = new mdc.drawer.MDCDrawer(mdcDrawer);
@@ -365,40 +384,44 @@ vis.binds.materialdesign.topappbarnav = {
                 $this.find('.mdc-list-item').click(function () {
                     let selctedIndex = parseInt($(this).eq(0).attr('id').replace('listItem_', ''));
 
+                    let itemIsDisabled = $(this).eq(0).hasClass('mdc-list-item--disabled');
+
                     vis.binds.materialdesign.helper.vibrate(data.vibrateDrawerOnMobilDevices);
 
-                    if ($(this).hasClass('hasSubItems')) {
-                        // listItem has subItems ->Toggle SubItems
-                        if ($(this).hasClass('toggled')) {
-                            $(this).removeClass("toggled");
+                    if (!itemIsDisabled) {
+                        if ($(this).hasClass('hasSubItems')) {
+                            // listItem has subItems ->Toggle SubItems
+                            if ($(this).hasClass('toggled')) {
+                                $(this).removeClass("toggled");
 
-                            $(this).find('.toggleIcon').removeClass("mdi-menu-up");
-                            $(this).find('.toggleIcon').addClass("mdi-menu-down");
+                                $(this).find('.toggleIcon').removeClass("mdi-menu-up");
+                                $(this).find('.toggleIcon').addClass("mdi-menu-down");
+                            } else {
+                                $(this).addClass("toggled");
+                                $(this).find('.toggleIcon').removeClass("mdi-menu-down");
+                                $(this).find('.toggleIcon').addClass("mdi-menu-up");
+                            }
+
+                            $(this).next("nav.mdc-sub-list").toggle();
+
+                            navList.selectedIndex = selctedIndex;
                         } else {
-                            $(this).addClass("toggled");
-                            $(this).find('.toggleIcon').removeClass("mdi-menu-down");
-                            $(this).find('.toggleIcon').addClass("mdi-menu-up");
-                        }
+                            // listItem
+                            val = vis.states.attr(data.oid + '.val');
 
-                        $(this).next("nav.mdc-sub-list").toggle();
+                            if (val != selctedIndex) {
+                                myMdwHelper.setValue(data.oid, selctedIndex);
 
-                        navList.selectedIndex = selctedIndex;
-                    } else {
-                        // listItem
-                        val = vis.states.attr(data.oid + '.val');
+                                setTopAppBarWithDrawerLayout();
 
-                        if (val != selctedIndex) {
-                            myMdwHelper.setValue(data.oid, selctedIndex);
+                                setTimeout(function () {
+                                    window.scrollTo({ top: 0, left: 0, });
+                                }, 50);
+                            }
 
-                            setTopAppBarWithDrawerLayout();
-
-                            setTimeout(function () {
-                                window.scrollTo({ top: 0, left: 0, });
-                            }, 50);
-                        }
-
-                        if (data.drawerLayout === 'modal') {
-                            drawer.open = false;
+                            if (data.drawerLayout === 'modal') {
+                                drawer.open = false;
+                            }
                         }
                     }
                 });

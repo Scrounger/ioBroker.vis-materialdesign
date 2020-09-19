@@ -1010,6 +1010,30 @@ systemDictionary = {
         "pl": "aktywna etykieta",
         "zh-cn": "活动标签"
     },
+    "colorListItemTextDisabled": {
+        "en": "disabled labeling",
+        "de": "Beschriftung deaktiviert",
+        "ru": "отключенная маркировка",
+        "pt": "rotulagem desativada",
+        "nl": "uitgeschakeld labelen",
+        "fr": "étiquetage désactivé",
+        "it": "etichettatura disabilitata",
+        "es": "etiquetado desactivado",
+        "pl": "wyłączone etykietowanie",
+        "zh-cn": "禁用标签"
+    },
+    "colorListItemIconDisabled": {
+        "en": "disabled icon",
+        "de": "deaktiviertes Symbol",
+        "ru": "отключенный значок",
+        "pt": "ícone desativado",
+        "nl": "uitgeschakeld pictogram",
+        "fr": "icône désactivée",
+        "it": "icona disabilitata",
+        "es": "icono desactivado",
+        "pl": "ikona wyłączenia",
+        "zh-cn": "禁用的图标"
+    },
     "colorListItemDivider": {
         "en": "divider color",
         "de": "Trennlinie",
@@ -9929,5 +9953,29 @@ systemDictionary = {
         "es": "utilizar hoy / ayer para etiquetar",
         "pl": "użyj opcji Dzisiaj / Wczoraj do etykietowania",
         "zh-cn": "使用今天/昨天进行标记"
+    },
+    "permissionGroupSelector": {
+        "en": "Only for groups",
+        "de": "Nur für Gruppen",
+        "ru": "Только для групп",
+        "pt": "Apenas para grupos",
+        "nl": "Alleen voor groepen",
+        "fr": "Uniquement pour les groupes",
+        "it": "Solo per gruppi",
+        "es": "Solo para grupos",
+        "pl": "Tylko dla grup",
+        "zh-cn": "只限团体"
+    },
+    "permissionVisibility": {
+        "en": "If user not in group",
+        "de": "Falls Anwender nicht in der Gruppe",
+        "ru": "Если пользователь не в группе",
+        "pt": "Se o usuário não estiver no grupo",
+        "nl": "Als de gebruiker niet in de groep zit",
+        "fr": "Si l'utilisateur n'est pas dans le groupe",
+        "it": "Se l'utente non è nel gruppo",
+        "es": "Si el usuario no está en el grupo",
+        "pl": "Jeśli użytkownik nie jest w grupie",
+        "zh-cn": "如果用户不在组中"
     }
 };
