@@ -205,7 +205,7 @@ vis.binds.materialdesign.helper = {
         } else {
             // Layout: Backdrop
             return `<div 
-                        class="mdc-list-item${(isSubItem) ? ' mdc-sub-list-item isSubItem' : ''}${(itemIndex === 0) ? ' mdc-list-item--activated' : ''} mdc-card__media${(hasSubItems) ? ' hasSubItems' : ''}" 
+                        class="mdc-list-item${(isSubItem) ? ' mdc-sub-list-item isSubItem' : ''}${(itemIndex === 0) ? ' mdc-list-item--activated' : ''} mdc-card__media${(hasSubItems) ? ' hasSubItems' : ''}${isDisabled ? ' mdc-list-item--disabled' : ''}" 
                         tabindex="${(itemIndex === 0) ? '0' : '-1'}"
                         id="listItem_${itemIndex}"
                         ${index || index === 0 ? `index="${index}"`: ''}

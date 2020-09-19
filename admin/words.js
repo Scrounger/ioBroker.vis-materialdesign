@@ -10025,5 +10025,17 @@ systemDictionary = {
         "es": "Error en el submenú JSON",
         "pl": "Błąd w podmenu JSON",
         "zh-cn": "子菜单JSON中的错误"
+    },
+    "navDefaultValue": {
+        "en": "fallback value if not in user group",
+        "de": "Fallback-Wert, wenn nicht in Benutzergruppe",
+        "ru": "резервное значение, если не в группе пользователей",
+        "pt": "valor substituto se não estiver no grupo de usuários",
+        "nl": "terugvalwaarde indien niet in gebruikersgroep",
+        "fr": "valeur de secours si pas dans le groupe d'utilisateurs",
+        "it": "valore di fallback se non nel gruppo utenti",
+        "es": "valor de reserva si no está en el grupo de usuarios",
+        "pl": "wartość rezerwowa, jeśli nie jest w grupie użytkowników",
+        "zh-cn": "后备值（如果不在用户组中）"
     }
 };
