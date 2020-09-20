@@ -564,9 +564,9 @@ vis.binds.materialdesign.chart = {
                                                                 let date = moment(axis._ticks[tick].value);
 
                                                                 if (date.isSame(moment(), 'day')) {
-                                                                    axis._ticks[tick].label = `${date.format(xAxisTimeFormats[unit].replace('dddd', `[${_('Today')}]`).replace('dd.', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`))}${myMdwHelper.getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
+                                                                    axis._ticks[tick].label = `${date.format(xAxisTimeFormats[unit].replace('dddd', `[${_('Today')}]`).replace('ddd', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`))}${myMdwHelper.getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
                                                                 } else if (date.isSame(moment().subtract(1, 'day'), 'day')) {
-                                                                    axis._ticks[tick].label = `${date.format(xAxisTimeFormats[unit].replace('dddd', `[${_('Yesterday')}]`).replace('dd.', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`))}${myMdwHelper.getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
+                                                                    axis._ticks[tick].label = `${date.format(xAxisTimeFormats[unit].replace('dddd', `[${_('Yesterday')}]`).replace('ddd', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`))}${myMdwHelper.getValueFromData(data.axisValueAppendText, '')}`.split('\\n');
                                                                 } else {
                                                                     axis._ticks[tick].label = `${axis._ticks[tick].label}${myMdwHelper.getValueFromData(data.axisValueAppendText, '')}`.split('\\n')
                                                                 }
@@ -655,9 +655,9 @@ vis.binds.materialdesign.chart = {
 
                                             if (data.tooltipLabelUseTodayYesterday) {
                                                 if (timestamp.isSame(moment(), 'day')) {
-                                                    return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Today')}]`).replace('dd.', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`)).split('\\n');
+                                                    return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Today')}]`).replace('ddd', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`)).split('\\n');
                                                 } else if (timestamp.isSame(moment().subtract(1, 'day'), 'day')) {
-                                                    return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Yesterday')}]`).replace('dd.', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`)).split('\\n');
+                                                    return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Yesterday')}]`).replace('ddd', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`)).split('\\n');
                                                 }
                                             }
 
@@ -1471,9 +1471,9 @@ vis.binds.materialdesign.chart = {
 
                                                     if (data.tooltipLabelUseTodayYesterday) {
                                                         if (timestamp.isSame(moment(), 'day')) {
-                                                            return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Today')}]`).replace('dd.', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`)).split('\\n');
+                                                            return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Today')}]`).replace('ddd', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`)).split('\\n');
                                                         } else if (timestamp.isSame(moment().subtract(1, 'day'), 'day')) {
-                                                            return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Yesterday')}]`).replace('dd.', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`)).split('\\n');
+                                                            return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Yesterday')}]`).replace('ddd', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`)).split('\\n');
                                                         }
                                                     }
 
@@ -1680,9 +1680,9 @@ vis.binds.materialdesign.chart.helper = {
                                     let date = moment(axis._ticks[tick].value);
 
                                     if (date.isSame(moment(), 'day')) {
-                                        axis._ticks[tick].label = date.format(displayFormats[unit].replace('dddd', `[${_('Today')}]`).replace('dd.', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`)).split('\\n');
+                                        axis._ticks[tick].label = date.format(displayFormats[unit].replace('dddd', `[${_('Today')}]`).replace('ddd', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`)).split('\\n');
                                     } else if (date.isSame(moment().subtract(1, 'day'), 'day')) {
-                                        axis._ticks[tick].label = date.format(displayFormats[unit].replace('dddd', `[${_('Yesterday')}]`).replace('dd.', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`)).split('\\n');
+                                        axis._ticks[tick].label = date.format(displayFormats[unit].replace('dddd', `[${_('Yesterday')}]`).replace('ddd', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`)).split('\\n');
                                     }
                                 }
                             }
