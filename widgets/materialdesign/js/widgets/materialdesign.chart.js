@@ -183,6 +183,8 @@ vis.binds.materialdesign.chart = {
                         }
                     };
 
+
+
                     if (data.disableHoverEffects) options.hover = { mode: null };
 
                     // Chart declaration:
@@ -192,6 +194,8 @@ vis.binds.materialdesign.chart = {
                         options: options,
                         plugins: [ChartDataLabels]
                     });
+
+                    console.log(myBarChart)
 
                     function onChange(e, newVal, oldVal) {
                         // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
@@ -843,7 +847,7 @@ vis.binds.materialdesign.chart = {
                             globalColor = colorScheme[i];
                         }
 
-                        let pieItem = getBarItemObj(i, data, jsonData, globalColor, globalValueTextColor);
+                        let pieItem = getPieItemObj(i, data, jsonData, globalColor, globalValueTextColor);
 
                         dataArray.push(pieItem.value);
                         labelArray.push(pieItem.label);
@@ -916,7 +920,7 @@ vis.binds.materialdesign.chart = {
                             bodyFontSize: myMdwHelper.getNumberFromData(data.tooltipBodyFontSize, undefined),
                             callbacks: {
                                 title: function (tooltipItem, chart) {
-                                    let pieItem = getBarItemObj(tooltipItem[0].index, data, jsonData, globalColor, globalValueTextColor);
+                                    let pieItem = getPieItemObj(tooltipItem[0].index, data, jsonData, globalColor, globalValueTextColor);
 
                                     if (pieItem && pieItem.tooltipTitle) {
                                         return pieItem.tooltipTitle.split('\\n');
@@ -925,7 +929,7 @@ vis.binds.materialdesign.chart = {
                                     }
                                 },
                                 label: function (tooltipItem, chart) {
-                                    let pieItem = getBarItemObj(tooltipItem.index, data, jsonData, globalColor, globalValueTextColor);
+                                    let pieItem = getPieItemObj(tooltipItem.index, data, jsonData, globalColor, globalValueTextColor);
 
                                     if (pieItem && pieItem.tooltipText) {
                                         return pieItem.tooltipText.split('\\n');
@@ -947,7 +951,7 @@ vis.binds.materialdesign.chart = {
                                 rotation: myMdwHelper.getNumberFromData(data.valuesRotation, undefined),
                                 formatter: function (value, context) {
                                     if ((value || value === 0) && context.dataIndex % myMdwHelper.getNumberFromData(data.valuesSteps, 1) === 0) {
-                                        let pieItem = getBarItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor, value);
+                                        let pieItem = getPieItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor, value);
 
                                         return `${pieItem.valueText}${pieItem.valueAppendix}`.split('\\n');
                                     }
@@ -977,63 +981,87 @@ vis.binds.materialdesign.chart = {
 
                     function onChange(e, newVal, oldVal) {
                         // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
-                        if (data.chartDataMethod === 'inputPerEditor') {
-                            let oidId = e.type.substr(0, e.type.lastIndexOf("."));
+                        try {
+                            if (data.chartDataMethod === 'inputPerEditor') {
+                                let oidId = e.type.substr(0, e.type.lastIndexOf("."));
 
-                            for (var d = 0; d <= data.dataCount; d++) {
-                                if (oidId === data.attr('oid' + d)) {
-                                    let index = d;
-                                    myPieChart.data.datasets[0].data[index] = newVal;
+                                for (var d = 0; d <= data.dataCount; d++) {
+                                    if (oidId === data.attr('oid' + d)) {
+                                        let index = d;
+                                        myPieChart.data.datasets[0].data[index] = newVal;
+                                        myPieChart.update();
+                                    }
+                                }
+                            } else {
+                                let jsonData = undefined;
+
+                                try {
+                                    jsonData = JSON.parse(newVal);
+                                } catch (errJson) {
+                                    myPieChart.options.title = {
+                                        display: true,
+                                        text: `${_("Error in JSON string")}<br>${errJson.message}`.split('<br>'),
+                                        fontColor: 'red'
+                                    };
+                                    myPieChart.update();
+
+                                    console.error(`[Pie Chart - ${data.wid}] onChange: cannot parse json string! Error: ${errJson.message}`);
+                                }
+
+                                if (jsonData && jsonData.length > 0) {
+                                    myPieChart.data.datasets[0].data = [];
+                                    myPieChart.data.datasets[0].backgroundColor = [];
+                                    myPieChart.data.labels = [];
+                                    myPieChart.data.datasets[0].hoverBackgroundColor = [];
+                                    myPieChart.options.plugins.datalabels.color = [];
+
+                                    for (var d = 0; d <= jsonData.length - 1; d++) {
+                                        if (colorScheme !== null) {
+                                            globalColor = colorScheme[d];
+                                        }
+
+                                        let pieItem = getPieItemObj(d, data, jsonData, globalColor, globalValueTextColor);
+
+                                        if (pieItem) {
+                                            myPieChart.data.datasets[0].data[d] = pieItem.value;
+                                            myPieChart.data.datasets[0].backgroundColor[d] = pieItem.dataColor;
+                                            myPieChart.data.labels[d] = pieItem.label;
+
+                                            if (myMdwHelper.getValueFromData(data.hoverColor, null) === null) {
+                                                myPieChart.data.datasets[0].hoverBackgroundColor[d] = myChartHelper.addOpacityToColor(pieItem.dataColor, 80);
+                                            } else {
+                                                myPieChart.data.datasets[0].hoverBackgroundColor[d] = data.hoverColor;
+                                            }
+
+                                            myPieChart.options.plugins.datalabels.color[d] = pieItem.valueColor;
+
+                                            myPieChart.options.plugins.datalabels.formatter = function (value, context) {
+                                                if (value) {
+                                                    let pieItem = getPieItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor, value);
+                                                    if (pieItem) {
+                                                        return `${pieItem.valueText}${pieItem.valueAppendix}`.split('\\n');
+                                                    }
+                                                }
+                                                return '';
+                                            }
+                                        }
+                                    }
                                     myPieChart.update();
                                 }
                             }
-                        } else {
-                            // TDOD: first remove old data, because count of items could changed -> gleich wie bei barChart
-                            try {
-                                let jsonData = JSON.parse(newVal);
+                        } catch (err) {
+                            myPieChart.options.title = {
+                                display: true,
+                                text: `onChange: error: ${err.message}, stack: ${err.message}`,
+                                fontColor: 'red'
+                            };
+                            myPieChart.update();
 
-                                for (var d = 0; d <= jsonData.length - 1; d++) {
-                                    if (colorScheme !== null) {
-                                        globalColor = colorScheme[d];
-                                    }
-
-                                    let barItem = getBarItemObj(d, data, jsonData, globalColor, globalValueTextColor);
-
-                                    myPieChart.data.datasets[0].data[d] = barItem.value;
-                                    myPieChart.data.datasets[0].backgroundColor[d] = barItem.dataColor;
-                                    myPieChart.data.labels[d] = barItem.label;
-
-                                    if (myMdwHelper.getValueFromData(data.hoverColor, null) === null) {
-                                        myPieChart.data.datasets[0].hoverBackgroundColor[d] = myChartHelper.addOpacityToColor(barItem.dataColor, 80);
-                                    } else {
-                                        myPieChart.data.datasets[0].hoverBackgroundColor[d] = data.hoverColor;
-                                    }
-
-                                    myPieChart.options.plugins.datalabels.color[d] = barItem.valueColor;
-
-                                    myPieChart.options.plugins.datalabels.formatter = function (value, context) {
-                                        if (value) {
-                                            let barItem = getBarItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor, value);
-                                            return `${barItem.valueText}${barItem.valueAppendix}`.split('\\n');
-                                        }
-                                        return '';
-                                    }
-                                }
-                                myPieChart.update();
-                            } catch (jsonError) {
-                                myPieChart.options.title = {
-                                    display: true,
-                                    text: `${_("Error in JSON string")}<br>${jsonError.message}`.split('<br>'),
-                                    fontColor: 'red'
-                                };
-                                myPieChart.update();
-
-                                console.error(`[Pie Chart - ${data.wid}] onChange: cannot parse json string! Error: ${jsonError.message}`);
-                            }
+                            console.error(`[Pie Chart - ${data.wid}] onChange: error: ${err.message}, stack: ${err.message}`);
                         }
                     };
 
-                    function getBarItemObj(i, data, jsonData, globalColor, globalValueTextColor, value = 0) {
+                    function getPieItemObj(i, data, jsonData, globalColor, globalValueTextColor, value = 0) {
                         if (data.chartDataMethod === 'inputPerEditor') {
                             return {
                                 label: myMdwHelper.getValueFromData(data.attr('label' + i), ''),
@@ -1046,15 +1074,19 @@ vis.binds.materialdesign.chart = {
                                 tooltipText: myMdwHelper.getValueFromData(data.attr('tooltipText' + i), undefined),
                             }
                         } else {
-                            return {
-                                label: myMdwHelper.getValueFromData(jsonData[i].label, ''),
-                                value: jsonData[i].value,
-                                dataColor: myMdwHelper.getValueFromData(jsonData[i].dataColor, globalColor),
-                                valueText: myMdwHelper.getValueFromData(jsonData[i].valueText, `${myMdwHelper.formatNumber(parseFloat(value), data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
-                                valueColor: myMdwHelper.getValueFromData(jsonData[i].valueColor, globalValueTextColor),
-                                valueAppendix: myMdwHelper.getValueFromData(jsonData[i].valueAppendix, ''),
-                                tooltipTitle: myMdwHelper.getValueFromData(jsonData[i].tooltipTitle, undefined),
-                                tooltipText: myMdwHelper.getValueFromData(jsonData[i].tooltipText, undefined),
+                            if (jsonData && jsonData[i]) {
+                                return {
+                                    label: myMdwHelper.getValueFromData(jsonData[i].label, ''),
+                                    value: jsonData[i].value,
+                                    dataColor: myMdwHelper.getValueFromData(jsonData[i].dataColor, globalColor),
+                                    valueText: myMdwHelper.getValueFromData(jsonData[i].valueText, `${myMdwHelper.formatNumber(parseFloat(value), data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
+                                    valueColor: myMdwHelper.getValueFromData(jsonData[i].valueColor, globalValueTextColor),
+                                    valueAppendix: myMdwHelper.getValueFromData(jsonData[i].valueAppendix, ''),
+                                    tooltipTitle: myMdwHelper.getValueFromData(jsonData[i].tooltipTitle, undefined),
+                                    tooltipText: myMdwHelper.getValueFromData(jsonData[i].tooltipText, undefined),
+                                }
+                            } else {
+                                return undefined;
                             }
                         }
                     }
