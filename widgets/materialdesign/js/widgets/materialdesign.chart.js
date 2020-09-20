@@ -33,6 +33,11 @@ vis.binds.materialdesign.chart = {
 
                     Chart.plugins.unregister(ChartDataLabels);
 
+                    var myBarChart = new Chart(ctx, {
+                        type: (data.chartType === 'vertical') ? 'bar' : 'horizontalBar',
+                        plugins: [ChartDataLabels]
+                    });
+
                     let dataArray = []
                     let labelArray = [];
                     let dataColorArray = [];
@@ -46,8 +51,15 @@ vis.binds.materialdesign.chart = {
                         try {
                             jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
                             countOfItems = jsonData.length - 1;
-                        } catch (err) {
-                            console.error(`[Bar Chart - ${data.wid}] cannot parse json string! Error: ${err.message}`);
+                        } catch (errJson) {
+                            myBarChart.options.title = {
+                                display: true,
+                                text: `${_("Error in JSON string")}<br>${errJson.message}`.split('<br>'),
+                                fontColor: 'red'
+                            };
+                            myBarChart.update();
+
+                            console.error(`[Bar Chart - ${data.wid}] cannot parse json string! Error: ${errJson.message}`);
                         }
 
                         vis.states.bind(data.oid + '.val', onChange);
@@ -188,14 +200,12 @@ vis.binds.materialdesign.chart = {
                     if (data.disableHoverEffects) options.hover = { mode: null };
 
                     // Chart declaration:
-                    var myBarChart = new Chart(ctx, {
+                    myBarChart = new Chart(ctx, {
                         type: (data.chartType === 'vertical') ? 'bar' : 'horizontalBar',
                         data: chartData,
                         options: options,
                         plugins: [ChartDataLabels]
                     });
-
-                    console.log(myBarChart)
 
                     function onChange(e, newVal, oldVal) {
                         // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
@@ -216,6 +226,13 @@ vis.binds.materialdesign.chart = {
                                 try {
                                     jsonData = JSON.parse(newVal);
                                 } catch (errJson) {
+                                    myBarChart.options.title = {
+                                        display: true,
+                                        text: `${_("Error in JSON string")}<br>${errJson.message}`.split('<br>'),
+                                        fontColor: 'red'
+                                    };
+                                    myBarChart.update();
+
                                     console.error(`[Bar Chart - ${data.wid}] onChange: cannot parse json string! Error: ${errJson.message}`);
                                 }
 
@@ -262,6 +279,13 @@ vis.binds.materialdesign.chart = {
                                 }
                             }
                         } catch (err) {
+                            myBarChart.options.title = {
+                                display: true,
+                                text: `onChange: error: ${err.message}, stack: ${err.message}`,
+                                fontColor: 'red'
+                            };
+                            myBarChart.update();
+
                             console.error(`[Bar Chart - ${data.wid}] onChange: error: ${err.message}, stack: ${err.message}`);
                         }
                     }
