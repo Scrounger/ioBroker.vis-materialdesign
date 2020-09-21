@@ -33,10 +33,7 @@ vis.binds.materialdesign.chart = {
 
                     Chart.plugins.unregister(ChartDataLabels);
 
-                    var myBarChart = new Chart(ctx, {
-                        type: (data.chartType === 'vertical') ? 'bar' : 'horizontalBar',
-                        plugins: [ChartDataLabels]
-                    });
+                    var myBarChart;
 
                     let dataArray = []
                     let labelArray = [];
@@ -52,11 +49,18 @@ vis.binds.materialdesign.chart = {
                             jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
                             countOfItems = jsonData.length - 1;
                         } catch (errJson) {
-                            myBarChart.options.title = {
-                                display: true,
-                                text: `${_("Error in JSON string")}<br>${errJson.message}`.split('<br>'),
-                                fontColor: 'red'
-                            };
+                            myBarChart = new Chart(ctx, {
+                                type: (data.chartType === 'vertical') ? 'bar' : 'horizontalBar',
+                                options: {
+                                    title: {
+                                        display: true,
+                                        text: `${_("Error in JSON string")}<br>${errJson.message}`.split('<br>'),
+                                        fontColor: 'red'
+                                    }
+                                },
+                                plugins: [ChartDataLabels]
+                            });
+
                             myBarChart.update();
 
                             console.error(`[Bar Chart - ${data.wid}] cannot parse json string! Error: ${errJson.message}`);
