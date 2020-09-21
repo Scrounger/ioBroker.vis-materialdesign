@@ -207,6 +207,8 @@ vis.binds.materialdesign.chart = {
                         plugins: [ChartDataLabels]
                     });
 
+                    myBarChart.update();
+
                     function onChange(e, newVal, oldVal) {
                         // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
                         try {
