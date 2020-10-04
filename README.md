@@ -5565,6 +5565,7 @@ ical2CalendarWidget();
 * (Scrounger): IconList Widget: bug fix for performance issue
 * (Scrounger): TopAppBar Widget: options for user groups added
 * (Scrounger): dependencies updated
+* (Scrounger): Masonry & Grid View Widget: default width for handy portrait and landscape view changed
 * (Scrounger): bug fixes
 
 ### 0.3.19 (2020-07-18)

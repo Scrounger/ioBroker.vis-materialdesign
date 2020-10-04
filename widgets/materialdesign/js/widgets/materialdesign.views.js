@@ -126,11 +126,11 @@ vis.binds.materialdesign.views = {
                         let desktopCols = myMdwHelper.getNumberFromData(data.countCols, 3);
                         let desktopGaps = myMdwHelper.getNumberFromData(data.desktopGaps, 0);
 
-                        let handyPortraitWidth = myMdwHelper.getNumberFromData(data.handyPortraitWidth, 360);
+                        let handyPortraitWidth = myMdwHelper.getNumberFromData(data.handyPortraitWidth, 393);
                         let handyPortraitCols = myMdwHelper.getNumberFromData(data.handyPortraitCols, 1);
                         let handyPortraitGaps = myMdwHelper.getNumberFromData(data.handyPortraitGaps, desktopGaps);
 
-                        let handyLandscapeWidth = myMdwHelper.getNumberFromData(data.handyLandscapeWidth, 672);
+                        let handyLandscapeWidth = myMdwHelper.getNumberFromData(data.handyLandscapeWidth, 754);
                         let handyLandscapeCols = myMdwHelper.getNumberFromData(data.handyLandscapeCols, 2);
                         let handyLandscapeGaps = myMdwHelper.getNumberFromData(data.handyLandscapeGaps, desktopGaps);
 
@@ -346,10 +346,10 @@ vis.binds.materialdesign.views = {
 
                         let desktopGaps = myMdwHelper.getNumberFromData(data.desktopGaps, 0);
 
-                        let handyPortraitWidth = myMdwHelper.getNumberFromData(data.handyPortraitWidth, 360);
+                        let handyPortraitWidth = myMdwHelper.getNumberFromData(data.handyPortraitWidth, 393);
                         let handyPortraitGaps = myMdwHelper.getNumberFromData(data.handyPortraitGaps, desktopGaps);
 
-                        let handyLandscapeWidth = myMdwHelper.getNumberFromData(data.handyLandscapeWidth, 672);
+                        let handyLandscapeWidth = myMdwHelper.getNumberFromData(data.handyLandscapeWidth, 754);
                         let handyLandscapeGaps = myMdwHelper.getNumberFromData(data.handyLandscapeGaps, desktopGaps);
 
                         let tabletPortraitWidth = myMdwHelper.getNumberFromData(data.tabletPortraitWidth, 768);
