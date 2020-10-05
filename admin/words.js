@@ -10037,5 +10037,17 @@ systemDictionary = {
         "es": "valor de reserva si no está en el grupo de usuarios",
         "pl": "wartość rezerwowa, jeśli nie jest w grupie użytkowników",
         "zh-cn": "后备值（如果不在用户组中）"
+    },
+    "progressIndeterminate": {
+        "en": "indeterminate - continuously animates",
+        "de": "unbestimmt - kontinuierlich animiert",
+        "ru": "неопределенный - непрерывно оживляет",
+        "pt": "indeterminado - anima continuamente",
+        "nl": "onbepaald - animeert continu",
+        "fr": "indéterminé - anime en continu",
+        "it": "indeterminato - si anima continuamente",
+        "es": "indeterminado - anima continuamente",
+        "pl": "nieokreślony - ożywia się w sposób ciągły",
+        "zh-cn": "不确定-连续动画"
     }
 };

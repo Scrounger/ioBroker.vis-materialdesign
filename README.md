@@ -2609,6 +2609,12 @@ Take a look at the animated screenshot below:
 			<td></td>
 		</tr>
 		<tr>
+			<td>progressIndeterminate</td>
+			<td>indeterminate - continuously animates</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+		<tr>
 			<td>min</td>
 			<td>min</td>
 			<td>string</td>

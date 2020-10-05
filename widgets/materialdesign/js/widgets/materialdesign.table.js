@@ -827,7 +827,8 @@ vis.binds.materialdesign.table = {
                 textColor: obj.textColor,
                 textFontSize: obj.textFontSize,
                 textFontFamily: obj.textFontFamily,
-                textAlign: obj.textAlign
+                textAlign: obj.textAlign,
+                progressIndeterminate: obj.indeterminate
             }
         } else if (obj.type === 'progress_circular') {
             return {

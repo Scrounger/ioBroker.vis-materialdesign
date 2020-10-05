@@ -19,6 +19,9 @@ vis.binds.materialdesign.progress = {
                     :rounded="rounded"
                     :striped="striped"
                     :value="value"
+                    :indeterminate="indeterminate"
+                    :reverse="reverse"
+                    :query="query"
                     >
 
                     <template v-slot="{ value }">
@@ -40,16 +43,20 @@ vis.binds.materialdesign.progress = {
                                 height: window.getComputedStyle($this.get(0), null).height.replace('px', ''),
                                 rounded: myMdwHelper.getBooleanFromData(data.progressRounded, true),
                                 striped: myMdwHelper.getBooleanFromData(data.progressStriped, false),
+                                indeterminate: myMdwHelper.getBooleanFromData(data.progressIndeterminate, false),
+                                reverse: !myMdwHelper.getBooleanFromData(data.progressIndeterminate, false) ? myMdwHelper.getBooleanFromData(data.reverse, false) : false,
+                                query: myMdwHelper.getBooleanFromData(data.progressIndeterminate, false) ? myMdwHelper.getBooleanFromData(data.reverse, false) : false
                             };
 
-                            let val = myMdwHelper.getNumberFromData(vis.states.attr(data.oid + '.val'), 0);
-                            dataObj.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label');
+                            if (!myMdwHelper.getBooleanFromData(data.progressIndeterminate, false)) {
+                                let val = myMdwHelper.getNumberFromData(vis.states.attr(data.oid + '.val'), 0);
+                                dataObj.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label');
+                            }
 
                             return dataObj;
                         },
                     });
 
-                    
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                         vueProgress.value = vis.binds.materialdesign.progress.getProgressState($this, data, newVal, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label');
                     });
@@ -60,6 +67,7 @@ vis.binds.materialdesign.progress = {
                     $this.get(0).style.setProperty("--vue-progress-progress-color-text-size", myMdwHelper.getNumberFromData(data.textFontSize, 12) + 'px');
                     $this.get(0).style.setProperty("--vue-progress-progress-color-text-font-family", myMdwHelper.getValueFromData(data.textFontFamily, 'inherit'));
                     $this.get(0).style.setProperty("--vue-progress-progress-color-text-align", myMdwHelper.getValueFromData(data.textAlign, 'end'));
+
 
                     let val = myMdwHelper.getNumberFromData(vis.states.attr(data.oid + '.val'), 0);
                     vueProgress.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label');
@@ -166,7 +174,10 @@ vis.binds.materialdesign.progress = {
         } else {
             $this.find(labelClass).html(`${myMdwHelper.getValueFromData(data.valueLabelCustom, '').replace('[#value]', myMdwHelper.formatNumber(val, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))).replace('[#percent]', myMdwHelper.formatNumber(valPercent, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0)))}`);
         }
-
-        return valPercent;
+        if (!myMdwHelper.getBooleanFromData(data.progressIndeterminate, false)) {
+            return valPercent;
+        } else {
+            return 0;
+        }
     }
 }
