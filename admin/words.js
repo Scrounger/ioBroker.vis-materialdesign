@@ -10049,5 +10049,89 @@ systemDictionary = {
         "es": "indeterminado - anima continuamente",
         "pl": "nieokreślony - ożywia się w sposób ciągły",
         "zh-cn": "不确定-连续动画"
+    },
+    "group_calendarCustomFormats": {
+        "en": "custom date formats",
+        "de": "benutzerdefinierte Datumsformate",
+        "ru": "настраиваемые форматы даты",
+        "pt": "formatos de data personalizados",
+        "nl": "aangepaste datumnotaties",
+        "fr": "formats de date personnalisés",
+        "it": "formati di data personalizzati",
+        "es": "formatos de fecha personalizados",
+        "pl": "niestandardowe formaty dat",
+        "zh-cn": "自定义日期格式"
+    },
+    "calendarMonthViewHeaderFormat": {
+        "en": "month view: header",
+        "de": "Monatsansicht: Kopfzeile",
+        "ru": "просмотр месяца: заголовок",
+        "pt": "visualização do mês: cabeçalho",
+        "nl": "maandoverzicht: koptekst",
+        "fr": "vue mensuelle: en-tête",
+        "it": "vista mensile: intestazione",
+        "es": "vista de mes: encabezado",
+        "pl": "widok miesiąca: nagłówek",
+        "zh-cn": "月视图：标题"
+    },
+    "calendarMonthViewDayFormat": {
+        "en": "month view: day",
+        "de": "Monatsansicht: Tag",
+        "ru": "вид месяца: день",
+        "pt": "visualização do mês: dia",
+        "nl": "maandweergave: dag",
+        "fr": "vue mensuelle: jour",
+        "it": "vista mensile: giorno",
+        "es": "vista de mes: día",
+        "pl": "widok miesiąca: dzień",
+        "zh-cn": "月视图：天"
+    },
+    "calendarWeekViewHeaderFormat": {
+        "en": "week view: header",
+        "de": "Wochenansicht: Kopfzeile",
+        "ru": "просмотр недели: заголовок",
+        "pt": "vista da semana: cabeçalho",
+        "nl": "weekweergave: koptekst",
+        "fr": "vue semaine: en-tête",
+        "it": "vista settimanale: intestazione",
+        "es": "vista de semana: encabezado",
+        "pl": "widok tygodnia: nagłówek",
+        "zh-cn": "周视图：标题"
+    },
+    "calendarWeekViewDayFormat": {
+        "en": "week view: day",
+        "de": "Wochenansicht: Tag",
+        "ru": "вид недели: день",
+        "pt": "vista da semana: dia",
+        "nl": "weekoverzicht: dag",
+        "fr": "vue semaine: jour",
+        "it": "vista settimanale: giorno",
+        "es": "vista de semana: día",
+        "pl": "widok tygodnia: dzień",
+        "zh-cn": "周视图：天"
+    },
+    "calendarDayViewDayFormat": {
+        "en": "day view: day",
+        "de": "Tagesansicht: Tag",
+        "ru": "вид дня: день",
+        "pt": "vista do dia: dia",
+        "nl": "dagweergave: dag",
+        "fr": "vue jour: jour",
+        "it": "vista giorno: giorno",
+        "es": "vista de día: día",
+        "pl": "widok dnia: dzień",
+        "zh-cn": "天视图：天"
+    },
+    "calendarDayViewHeaderFormat": {
+        "en": "day view: header",
+        "de": "Tagesansicht: Header",
+        "ru": "вид дня: заголовок",
+        "pt": "visualização do dia: cabeçalho",
+        "nl": "dagweergave: koptekst",
+        "fr": "vue journalière: en-tête",
+        "it": "vista giornaliera: intestazione",
+        "es": "vista de día: encabezado",
+        "pl": "widok dnia: nagłówek",
+        "zh-cn": "日视图：标题"
     }
 };
