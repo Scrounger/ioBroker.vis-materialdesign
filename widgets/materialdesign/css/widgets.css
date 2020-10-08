@@ -5448,7 +5448,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   background-color: transparent;
 }
 .theme--light.v-calendar-events .v-event-more.v-outside {
-  background-color: #f7f7f7;
+  background-color: transparent;
 }
 
 .theme--dark.v-calendar-events .v-event-timed {
@@ -5524,7 +5524,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   margin-right: -1px;
 }
 .theme--light.v-calendar-weekly {
-  background-color: #FFFFFF;
+  background-color: transparent;
 
   border: solid var(--vue-calendar-border-color);
   border-width: 0 0 1px 0;
@@ -5722,7 +5722,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   line-height: 32px;
 }
 .theme--light.v-calendar-daily {
-  background-color: #FFFFFF;
+  background-color: transparent;
 }
 .theme--light.v-calendar-daily .v-calendar-daily__intervals-head {
   border-right: var(--vue-calendar-border-color) 1px solid; 
