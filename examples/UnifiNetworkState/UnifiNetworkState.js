@@ -13,7 +13,7 @@ let dpSortMode = '0_userdata.0.vis.NetzwerkDevicesStatus.sortMode';             
 let dpFilterMode = '0_userdata.0.vis.NetzwerkDevicesStatus.filterMode';                      // Datenpunkt für Filter (Typ: Zeichenkette (String))
 
 let durationFormat = "d [Tagen] hh [Stunden] mm [Minuten]";                         // Fomate für Betriebsdauer -> siehe momentjs library
-let lastSeenFormat = "ddd DD.MM - HH:mm";                                           // Fomate für lastSeen -> siehe momentjs library      
+let lastSeenFormat = "ddd DD.MM - HH:mm";                                           // Fomate für lastSeen -> siehe momentjs library
 
 const timeDiff = 2;                                                                 // Zeitunterschied (in Minuten) zwischen jetzt und lastSeen des Gerätes, wenn größer dann 'false' (muss >= update interval des unifi Adapters sein)
 
@@ -71,7 +71,7 @@ function createList() {
 
                 // Werte die sowohl WLAN und LAN haben
                 let ip = existsState(idDevice + ".ip") ? getState(idDevice + ".ip").val : '';
-                let mac = getState(idDevice + ".mac").val;
+                let mac = idDevice;
                 let name = getName(idDevice, ip, mac);
                 let isGuest = getState(idDevice + ".is_guest").val;
                 let erlebnis = existsState(idDevice + ".satisfaction") ? getState(idDevice + ".satisfaction").val : 0;
@@ -97,8 +97,8 @@ function createList() {
 
                     // Glasfaser Port nicht berücksitigen
                     if (swPort < 25 && isWired === true) {
-                        speed = getState(`unifi.0.default.devices.${getState(idDevice + ".sw_mac").val}.port_table.Port ${swPort}.speed`).val;
-                        betriebszeit = getState(idDevice + "._uptime_by_usw").val;
+                        speed = getState(`unifi.0.default.devices.${getState(idDevice + ".sw_mac").val}.port_table.port_${swPort}.speed`).val;
+                        betriebszeit = getState(idDevice + ".uptime_by_usw").val;
 
 
 
@@ -110,8 +110,8 @@ function createList() {
                         }
                     }
                 } else {
-                    speed = (getState(idDevice + ".channel").val > 13) ? '5G' : '2G';
-                    betriebszeit = getState(idDevice + "._uptime_by_uap").val;
+                    speed = existsState(idDevice + ".channel") ? (getState(idDevice + ".channel").val > 13) ? '5G' : '2G' : '';
+                    betriebszeit = getState(idDevice + ".uptime").val;
                     wlanSignal = getState(idDevice + ".signal").val;
                     image = (note && note.image) ? `${imagePath}${note.image}.png` : `${imagePath}wlan_noImage.png`
 
@@ -134,7 +134,7 @@ function createList() {
 
                 function addToList() {
                     let statusBarColor = 'FireBrick';
-                    let isConn = isConnected(lastSeen);
+                    let isConn = isConnected(idDevice);
                     if (isConn === true) {
                         statusBarColor = 'green';
                     }
@@ -254,11 +254,14 @@ function createList() {
 
     // Functions **************************************************************************************************************************************
     function getLastSeen(idDevice, isWired) {
+        return new Date(getState(idDevice + ".last_seen").val);
+        /*
         if (isWired) {
             return getState(idDevice + "._last_seen_by_usw").val
         } else {
             return getState(idDevice + "._last_seen_by_uap").val
         }
+        */
     }
 
     function getTraffic(isWired, idDevice, isSent = false) {
@@ -326,16 +329,18 @@ function createList() {
         return deviceName;
     }
 
-    function isConnected(lastSeen) {
+    function isConnected(device) {
         // Differenz zwischen lastSeen und Now berechnen -> prüfen ob verbunden
-        let diff = new Date().getTime() - lastSeen * 1000;
+        //let diff = new Date().getTime() - lastSeen * 1000;
 
-        return (diff < timeDiff * 60000) ? true : false;
+        //return (diff < timeDiff * 60000) ? true : false;
+        let isOnline = getState(device + ".is_online").val;
+        return isOnline;
     }
 
     function isInRange(lastSeen) {
         // Differenz zwischen lastSeen und Now berechnen -> prüfen ob in angegebenen Zeitraum verbunden war
-        let diff = new Date().getTime() - lastSeen * 1000;
+        let diff = new Date().getTime() - lastSeen.getTime() * 1000;
 
         return (diff < lastDays * 86400 * 1000) ? true : false;
     }
@@ -400,8 +405,9 @@ function createList() {
             return `<span style="color: gray; font-size: ${offlineTextSize}px; line-height: 1.3; font-family: RobotoCondensed-LightItalic;">online seit ${moment.duration(betriebszeit, 'seconds').format(durationFormat, 0)}</span>`
         } else {
             let now = moment(new Date());
-            let start = moment(lastSeen * 1000);
-            return `<span style="color: gray; font-size: ${offlineTextSize}px; line-height: 1.3; font-family: RobotoCondensed-LightItalic;">offline seit ${moment.duration(betriebszeit, 'seconds').format(durationFormat, 0)}</span>`
+            let start = moment(lastSeen);
+            let offlineDuration = (moment.duration(now.diff(start)));
+            return `<span style="color: gray; font-size: ${offlineTextSize}px; line-height: 1.3; font-family: RobotoCondensed-LightItalic;">offline seit ${moment.duration(offlineDuration, 'seconds').format(durationFormat, 0)}</span>`
         }
     }
 }

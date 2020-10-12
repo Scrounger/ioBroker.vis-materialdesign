@@ -15,7 +15,7 @@ Mit diesem Skript wird ein json string erzeugt mit dem Status aller Netzwerk Ger
 
 ###### Folgende Adapter werden benötigt:
 * [Material Design Widgets](https://github.com/Scrounger/ioBroker.vis-materialdesign) >= 0.2.66
-* [UniFi Adapter](https://github.com/iobroker-community-adapters/ioBroker.unifi) == 0.3.1
+* [UniFi Adapter](https://github.com/iobroker-community-adapters/ioBroker.unifi) >= 0.5.8
 
 ###### Folgende NPM Module und Einstellung im Javascript Adapter:
 * moment
@@ -74,5 +74,9 @@ Mit diesem Skript wird ein json string erzeugt mit dem Status aller Netzwerk Ger
 
 ### Changelog
 
-### 1.0.0 (05.03.2020)
+##### 1.1.0 (15.09.2020)
+* (web4wasch) adaptions for unifi-adapter 0.5.8
+
+
+##### 1.0.0 (05.03.2020)
 * (Scrounger) intial release
