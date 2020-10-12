@@ -1,9 +1,9 @@
 ![Logo](../../admin/vis-materialdesign.png)
 # UniFi Netzwerk Status für Material Design Widgets
 
-Skript zur Anzeige des Status aller Netzwerk Geräte mit dem Unifi Adapter
+Skript zur Anzeige des Status aller Netzwerk Geräte mit dem Unifi Adapter.
 
-Das Skript funktioniert nicht 'out of the box' und benötigt ggf. Anpassungen, d.h. man sollte sich mit javascript etwas auskennen
+**Hinweis: Das Skript funktioniert nicht 'out of the box' und benötigt ggf. Anpassungen, d.h. man sollte sich mit javascript etwas auskennen.**
 
 Mit diesem Skript wird ein json string erzeugt mit dem Status aller Netzwerk Geräte mit dem Unifi Adapter. Diese Daten (Datenpunkt) kann dann im Material Design IconList Widget verwendet werden, um den Status der Skripte im VIS anzuzeigen.
 
@@ -37,10 +37,10 @@ Mit diesem Skript wird ein json string erzeugt mit dem Status aller Netzwerk Ger
   
     Bei Anmerkung (note) müsste ihr einen json string hinterlegen, der so aussieht:
 
-    ```
+    ```json
     {
-	"image": "shelly_plug_s",
-	"link": "http"
+        "image": "shelly_plug_s",
+        "link": "http"
     }
     ```
 
@@ -52,7 +52,7 @@ Mit diesem Skript wird ein json string erzeugt mit dem Status aller Netzwerk Ger
     
     Wenn ihr nur ein Image haben wollt, dann sieht der json string so aus:
   
-    ```
+    ```json
     {
         "image": "shelly_plug_s"
     }
@@ -60,8 +60,13 @@ Mit diesem Skript wird ein json string erzeugt mit dem Status aller Netzwerk Ger
 
     Standard Bilder für lan und wlan müssen folgenden Dateinamen haben:
 
-       - [`lan_noImage.png`](img/lan_noImage.png) ![lan_noImage.png](img/lan_noImage.png)
-       - [`wlan_noImage.png`](img/wlan_noImage.png) ![wlan_noImage.png](img/wlan_noImage.png)
+    - [lan_noImage.png](img/lan_noImage.png)
+
+      ![lan_noImage.png](img/lan_noImage.png)
+
+    - [wlan_noImage.png](img/wlan_noImage.png)
+
+      ![wlan_noImage.png](img/wlan_noImage.png)
 
 
 ### Links
