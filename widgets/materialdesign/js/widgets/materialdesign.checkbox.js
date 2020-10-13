@@ -16,7 +16,9 @@ vis.binds.materialdesign.checkbox = {
 
             let labelPosition = '';
             if (data.labelPosition === 'left') {
-                labelPosition = 'mdc-form-field--align-end'
+                labelPosition = 'mdc-form-field mdc-form-field--align-end'
+            } else if (data.labelPosition === 'right') {
+                labelPosition = 'mdc-form-field'
             }
 
             let element = `
@@ -30,10 +32,10 @@ vis.binds.materialdesign.checkbox = {
                 </div>
                 <div class="mdc-checkbox__ripple"></div>
             </div>
-            <label id="label" for="materialdesign-checkbox-${data.wid}" style="width: 100%; cursor: pointer; ${labelClickActive}">Checkbox 1</label>
+            ${data.labelPosition !== 'off' ? `<label id="label" for="materialdesign-checkbox-${data.wid}" style="width: 100%; cursor: pointer; ${labelClickActive}">Checkbox 1</label>` : ''}
             `
 
-            return { checkbox: element, style: labelPosition };
+            return { checkbox: element, labelPosition: labelPosition };
 
         } catch (ex) {
             console.error(`[Checkbox - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
@@ -56,7 +58,7 @@ vis.binds.materialdesign.checkbox = {
 
             const mdcFormField = new mdc.formField.MDCFormField($this.get(0));
             const mdcCheckbox = new mdc.checkbox.MDCCheckbox(checkboxElement);
-            
+
             mdcFormField.input = mdcCheckbox;
 
             mdcCheckbox.disabled = myMdwHelper.getBooleanFromData(data.readOnly, false);
@@ -66,7 +68,7 @@ vis.binds.materialdesign.checkbox = {
             checkboxElement.style.setProperty("--materialdesign-color-checkbox-hover", myMdwHelper.getValueFromData(data.colorCheckBoxHover, ''));
 
             setCheckboxState();
-            
+
             if (!vis.editMode) {
                 $this.find('.mdc-checkbox').click(function () {
                     vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);

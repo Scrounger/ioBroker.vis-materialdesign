@@ -3406,7 +3406,7 @@ Take a look at the animated screenshot below:
 			<td>labelPosition</td>
 			<td>labelPosition</td>
 			<td>string</td>
-			<td>left | right</td>
+			<td>left | right | off</td>
 		</tr>
 		<tr>
 			<td>labelClickActive</td>
