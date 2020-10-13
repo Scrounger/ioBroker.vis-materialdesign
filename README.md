@@ -1388,6 +1388,8 @@ Take a look at the animated screenshot below:
 					<li><a href="#textfield">textfield</a></li>
 					<li><a href="#select-1">select</a></li>
 					<li><a href="#autocomplete-1">autocomplete</a></li>
+                    <li><a href="#material-design-icons">Material Design Icons</a></li>
+                    <li><a href="#html">Html</a></li>
                 </ul> 
             </td>
         </tr>
@@ -5148,6 +5150,35 @@ Take a look at the animated screenshot below:
 </table>
 </details>
 
+##### Html
+
+<details>
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>html</td>
+			<td>any html element</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>oid</td>
+			<td>Object Id to use in html. In html use '[#value]' for the value</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+</details>
+
 <br>
 
 ### Editor Settings
@@ -5570,6 +5601,7 @@ ical2CalendarWidget();
 * (Scrounger): Calendar Widget: option for custom date format added
 * (Scrounger): IconList Widget: bug fix for performance issue
 * (Scrounger): TopAppBar Widget: options for user groups added
+* (Scrounger): Table Widget: html element added
 * (Scrounger): Masonry & Grid View Widget: default width for handy portrait and landscape view changed
 * (Scrounger): Progress Widget: option for indeterminate style added
 * (Scrounger): dependencies updated

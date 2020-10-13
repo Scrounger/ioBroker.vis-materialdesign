@@ -186,7 +186,7 @@ vis.binds.materialdesign.table = {
                 // row not exist -> create
                 if ($row.length === 0) {
                     if (jsonData[row]) {
-                        
+
                         tableContent.append(`<tr class="mdc-data-table__row" id="row${row}" style="height: ${(myMdwHelper.getNumberFromData(data.rowHeight, null) !== null) ? data.rowHeight + 'px' : '1px'}; ${row === 0 && !myMdwHelper.getBooleanFromData(data.showHeader, false) ? 'border-top-color: transparent' : ''};">
                                         </tr>`)
 
@@ -535,7 +535,29 @@ vis.binds.materialdesign.table = {
                         });
 
                     } else if (objValue.type === 'html') {
-                        element = objValue.html;
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-html-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important;">
+                        </div>`
+
+                        if (objValue.oid) {
+                            myMdwHelper.oidNeedSubscribe(objValue.oid, data.wid, 'Table Html', true);
+
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Html', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-html-table-row_${row}-col_${col}`, data.wid, 'Table MaterialDesignIcons', function () {
+                                    let htmlContainer = $this.find(`.materialdesign-html-table-row_${row}-col_${col}`);
+
+                                    let val = vis.states.attr(objValue.oid + '.val')
+                                    htmlContainer.html(objValue.html.replace('[#value]', val));
+
+                                    vis.states.bind(objValue.oid + '.val', function (e, newVal, oldVal) {
+                                        if (newVal !== oldVal) {
+                                            htmlContainer.html(objValue.html.replace('[#value]', newVal))
+                                        }
+                                    });
+                                });
+                            });
+                        } else {
+                            element = objValue.html;
+                        }
                     }
                 }
 
@@ -1260,7 +1282,7 @@ vis.binds.materialdesign.table = {
             }
 
         } else if (obj.type === 'html') {
-            return obj.html;
+            return obj;
         }
     },
     sortByKey: function (array, key, sortASC) {
