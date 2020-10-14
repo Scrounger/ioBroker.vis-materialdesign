@@ -3750,6 +3750,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 }
 
 .v-select__selection.v-select__selection--comma{
+  width: 100%;
   text-align: var(--vue-text-field-alignment);
 }
 
