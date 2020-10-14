@@ -394,11 +394,9 @@ function createList() {
     }
 
     function getOnOffTime(isConnected, uptime, lastSeen) {
-        if (isConnected) { /** @todo Translate online/offline texts too */
-            return `<span style="color: gray; font-size: ${offlineTextSize}px; line-height: 1.3; font-family: RobotoCondensed-LightItalic;">online ${moment().subtract(uptime, 's').fromNow()}</span>`
-        } else {
-            return `<span style="color: gray; font-size: ${offlineTextSize}px; line-height: 1.3; font-family: RobotoCondensed-LightItalic;">offline ${moment(lastSeen).fromNow()}</span>`
-        }
+        return `<span style="color: gray; font-size: ${offlineTextSize}px; line-height: 1.3; font-family: RobotoCondensed-LightItalic;">
+               ${translate(isConnected ? 'online' : 'offline')} ${(isConnected ? moment().subtract(uptime, 's') : moment(lastSeen)).fromNow()}
+               </span>`;
     }
 }
 
@@ -427,44 +425,6 @@ function resetFilterTimer() {
 }
 
 function setup() {
-    const translationMap = {
-        // Sort items
-       'Name': {de: 'Name', ru: 'имя', pt: 'Nome', nl: 'Naam', fr: 'Nom', it: 'Nome', es: 'Nombre', pl: 'Nazwa','zh-cn': '名称'},
-       'IP address': {de: 'IP Adresse', ru: 'Aйпи адрес', pt: 'Endereço de IP', nl: 'IP adres', fr: 'Adresse IP', it: 'Indirizzo IP', es: 'Dirección IP', pl: 'Adres IP','zh-cn': 'IP地址'},
-       'Connected': {de: 'Verbunden', ru: 'Связано', pt: 'Conectado', nl: 'Verbonden', fr: 'Connecté', it: 'Collegato', es: 'Conectado', pl: 'Połączony','zh-cn': '连接的'},
-       'Received data': {de: 'Daten empfangen', ru: 'Полученные данные', pt: 'Dados recebidos', nl: 'Ontvangen data', fr: 'Données reçues', it: 'Dati ricevuti', es: 'Datos recibidos', pl: 'Otrzymane dane','zh-cn': '收到资料'},
-       'Sent data': {de: 'Daten gesendet', ru: 'Отправленные данные', pt: 'Dados enviados', nl: 'Verzonden gegevens', fr: 'Données envoyées', it: 'Dati inviati', es: 'Datos enviados', pl: 'Wysłane dane','zh-cn': '发送数据'},
-       'Experience': {de: 'Erlebnis', ru: 'Опыт', pt: 'Experiência', nl: 'Ervaring', fr: 'Expérience', it: 'Esperienza', es: 'Experiencia', pl: 'Doświadczenie','zh-cn': '经验'},
-       'Uptime': {de: 'Betriebszeit', ru: 'Время безотказной работы', pt: 'Tempo de atividade', nl: 'Uptime', fr: 'Disponibilité', it: 'Disponibilità', es: 'Tiempo de actividad', pl: 'Dostępność','zh-cn': '正常运行时间'},
-        // Filter Items
-       'connected': {de: 'verbunden', ru: 'связано', pt: 'conectado', nl: 'verbonden', fr: 'connecté', it: 'collegato', es: 'conectado', pl: 'połączony','zh-cn': '连接的'},
-       'disconnected': {de: 'nicht verbunden', ru: 'отключен', pt: 'desconectado', nl: 'losgekoppeld', fr: 'débranché', it: 'disconnesso', es: 'desconectado', pl: 'niepowiązany','zh-cn': '断开连接'},
-       'LAN connection': {de: 'LAN Verbindungen', ru: 'подключение по локальной сети', pt: 'conexão LAN', nl: 'lAN-verbinding', fr: 'connexion LAN', it: 'connessione LAN', es: 'coneccion LAN', pl: 'Połączenie LAN','zh-cn': '局域网连接'},
-       'WLAN connection': {de: 'WLAN Verbindungen', ru: 'Соединение WLAN', pt: 'Conexão WLAN', nl: 'WLAN-verbinding', fr: 'Connexion WLAN', it: 'Connessione WLAN', es: 'Conexión WLAN', pl: 'Połączenie WLAN','zh-cn': 'WLAN连接'},
-        // Additional view translations
-       'Sort by': {de: 'Sortieren nach', ru: 'Сортировать по', pt: 'Ordenar por', nl: 'Sorteer op', fr: 'Trier par', it: 'Ordina per', es: 'Ordenar por', pl: 'Sortuj według', 'zh-cn': '排序方式'},
-       'Filter by': {de: 'Filtern nach', ru: 'Сортировать по', pt: 'Filtrar por', nl: 'Filteren op', fr: 'Filtrer par', it: 'Filtra per', es: 'Filtrado por', pl: 'Filtruj według','zh-cn': '过滤'},
-       'Device': {de: 'Gerät', ru: 'Устройство', pt: 'Dispositivo', nl: 'Apparaat', fr: 'Dispositif', it: 'Dispositivo', es: 'Dispositivo', pl: 'Urządzenie','zh-cn': '设备'},
-        // Relative times
-       'in %s': {de: 'in %s', ru: 'через %s', pt: 'em %s', nl: 'in %s', fr: 'en %s', it: 'in %s', es: 'en %s', pl: 'w %s','zh-cn': '在％s中'},
-       'since %s': {de: 'seit %s', ru: 'поскольку %s', pt: 'desde %s', nl: 'sinds %s', fr: 'depuis %s', it: 'da %s', es: 'desde %s', pl: 'od %s','zh-cn': '自％s'},
-       'a few seconds': {de: 'ein paar Sekunden', ru: 'несколько секунд', pt: 'alguns segundos', nl: 'een paar seconden', fr: 'quelques secondes', it: 'pochi secondi', es: 'unos pocos segundos', pl: 'kilka sekund','zh-cn': '几秒钟'},
-       '%d seconds': {de: '%d Sekunden', ru: '%d секунд', pt: '%d segundos', nl: '%d seconden', fr: '%d secondes', it: '%d secondi', es: '%d segundos', pl: '%d sekund','zh-cn': '％d秒'},
-       'a minute': {de: 'eine Minute', ru: 'минута', pt: 'um minuto', nl: 'een minuut', fr: 'une minute', it: 'un minuto', es: 'un minuto', pl: 'minutę','zh-cn': '一分钟'},
-       '%d minutes': {de: '%d Minuten', ru: '%d минут', pt: '%d minutos', nl: '%d minuten', fr: '%d minutes', it: '%d minuti', es: '%d minutos', pl: '%d minut','zh-cn': '％d分钟'},
-       'an hour': {de: 'eine Stunde', ru: 'час', pt: 'uma hora', nl: 'een uur', fr: 'une heure', it: 'un\'ora', es: 'una hora', pl: 'godzina','zh-cn': '一小时'},
-       '%d hours': {de: '%d Stunden', ru: '%d часов', pt: '%d horas', nl: '%d uur', fr: '%d heures', it: '%d ore', es: '%d horas', pl: '%d godzin','zh-cn': '％d小时'},
-       'a day': {de: 'ein Tag', ru: 'день', pt: 'um dia', nl: 'een dag', fr: 'un jour', it: 'un giorno', es: 'un día', pl: 'dzień','zh-cn': '一天'},
-       '%d days': {de: '%d Tage', ru: '%d дней', pt: '%d dias', nl: '%d dagen', fr: '%d jours', it: '%d giorni', es: '%d días', pl: '%d dni','zh-cn': '％d天'},
-       'a week': {de: 'eine Woche', ru: 'неделя', pt: 'uma semana', nl: 'een week', fr: 'une semaine', it: 'una settimana', es: 'una semana', pl: 'tydzień','zh-cn': '一周'},
-       '%d weeks': {de: '%d Wochen', ru: '%d недель', pt: '%d semanas', nl: '%d weken', fr: '%d semaines', it: '%d settimane', es: '%d semanas', pl: '%d tygodni','zh-cn': '％d周'},
-       'a month': {de: 'ein Monat', ru: 'месяц', pt: 'um mês', nl: 'een maand', fr: 'un mois', it: 'un mese', es: 'un mes', pl: 'miesiąc','zh-cn': '一个月'},
-       '%d months': {de: '%d Monate', ru: '%d месяцев', pt: '%d meses', nl: '%d maanden', fr: '%d mois', it: '%d mesi', es: '%d meses', pl: '%d miesięcy','zh-cn': '％d个月'},
-       'a year': {de: 'ein Jahr', ru: 'год', pt: 'um ano', nl: 'een jaar', fr: 'une année', it: 'un anno', es: 'un año', pl: 'rok','zh-cn': '一年'},
-       '%d years': {de: '%d Jahre', ru: '%d лет', pt: '%d anos', nl: '%d jaar', fr: '%d années', it: '%d anni', es: '%d años', pl: '%d lat','zh-cn': '％d年'}
-    };
-    const translate = enText => (translationMap[enText] || {})[locale] || enText;
-
     moment.locale(locale);
     moment.updateLocale(locale, {
         relativeTime: {
@@ -570,4 +530,48 @@ function setup() {
             createState(viewUrlState, '', {name: 'Selected device link: selectedUrl', type: 'string'});
         }
     }
+}
+
+function translate(enText) {
+    const map = {
+        // Sort items
+        'Name': {de: 'Name', ru: 'имя', pt: 'Nome', nl: 'Naam', fr: 'Nom', it: 'Nome', es: 'Nombre', pl: 'Nazwa','zh-cn': '名称'},
+        'IP address': {de: 'IP Adresse', ru: 'Aйпи адрес', pt: 'Endereço de IP', nl: 'IP adres', fr: 'Adresse IP', it: 'Indirizzo IP', es: 'Dirección IP', pl: 'Adres IP','zh-cn': 'IP地址'},
+        'Connected': {de: 'Verbunden', ru: 'Связано', pt: 'Conectado', nl: 'Verbonden', fr: 'Connecté', it: 'Collegato', es: 'Conectado', pl: 'Połączony','zh-cn': '连接的'},
+        'Received data': {de: 'Daten empfangen', ru: 'Полученные данные', pt: 'Dados recebidos', nl: 'Ontvangen data', fr: 'Données reçues', it: 'Dati ricevuti', es: 'Datos recibidos', pl: 'Otrzymane dane','zh-cn': '收到资料'},
+        'Sent data': {de: 'Daten gesendet', ru: 'Отправленные данные', pt: 'Dados enviados', nl: 'Verzonden gegevens', fr: 'Données envoyées', it: 'Dati inviati', es: 'Datos enviados', pl: 'Wysłane dane','zh-cn': '发送数据'},
+        'Experience': {de: 'Erlebnis', ru: 'Опыт', pt: 'Experiência', nl: 'Ervaring', fr: 'Expérience', it: 'Esperienza', es: 'Experiencia', pl: 'Doświadczenie','zh-cn': '经验'},
+        'Uptime': {de: 'Betriebszeit', ru: 'Время безотказной работы', pt: 'Tempo de atividade', nl: 'Uptime', fr: 'Disponibilité', it: 'Disponibilità', es: 'Tiempo de actividad', pl: 'Dostępność','zh-cn': '正常运行时间'},
+        // Filter Items
+        'connected': {de: 'verbunden', ru: 'связано', pt: 'conectado', nl: 'verbonden', fr: 'connecté', it: 'collegato', es: 'conectado', pl: 'połączony','zh-cn': '连接的'},
+        'disconnected': {de: 'nicht verbunden', ru: 'отключен', pt: 'desconectado', nl: 'losgekoppeld', fr: 'débranché', it: 'disconnesso', es: 'desconectado', pl: 'niepowiązany','zh-cn': '断开连接'},
+        'LAN connection': {de: 'LAN Verbindungen', ru: 'подключение по локальной сети', pt: 'conexão LAN', nl: 'lAN-verbinding', fr: 'connexion LAN', it: 'connessione LAN', es: 'coneccion LAN', pl: 'Połączenie LAN','zh-cn': '局域网连接'},
+        'WLAN connection': {de: 'WLAN Verbindungen', ru: 'Соединение WLAN', pt: 'Conexão WLAN', nl: 'WLAN-verbinding', fr: 'Connexion WLAN', it: 'Connessione WLAN', es: 'Conexión WLAN', pl: 'Połączenie WLAN','zh-cn': 'WLAN连接'},
+        // Additional view translations
+        'Sort by': {de: 'Sortieren nach', ru: 'Сортировать по', pt: 'Ordenar por', nl: 'Sorteer op', fr: 'Trier par', it: 'Ordina per', es: 'Ordenar por', pl: 'Sortuj według', 'zh-cn': '排序方式'},
+        'Filter by': {de: 'Filtern nach', ru: 'Сортировать по', pt: 'Filtrar por', nl: 'Filteren op', fr: 'Filtrer par', it: 'Filtra per', es: 'Filtrado por', pl: 'Filtruj według','zh-cn': '过滤'},
+        'Device': {de: 'Gerät', ru: 'Устройство', pt: 'Dispositivo', nl: 'Apparaat', fr: 'Dispositif', it: 'Dispositivo', es: 'Dispositivo', pl: 'Urządzenie','zh-cn': '设备'},
+        // On/off times
+        'online': {de: 'online', ru: 'онлайн', pt: 'conectados', nl: 'online', fr: 'en ligne', it: 'in linea', es: 'en línea', pl: 'online', 'zh-cn': "线上"},
+        'offline': {de: 'offline', ru: 'не в сети', pt: 'desligada', nl: 'offline', fr: 'hors ligne', it: 'disconnesso', es: 'desconectado', pl: 'offline', 'zh-cn': "离线"},
+        // Relative times
+        'in %s': {de: 'in %s', ru: 'через %s', pt: 'em %s', nl: 'in %s', fr: 'en %s', it: 'in %s', es: 'en %s', pl: 'w %s','zh-cn': '在％s中'},
+        'since %s': {de: 'seit %s', ru: 'поскольку %s', pt: 'desde %s', nl: 'sinds %s', fr: 'depuis %s', it: 'da %s', es: 'desde %s', pl: 'od %s','zh-cn': '自％s'},
+        'a few seconds': {de: 'ein paar Sekunden', ru: 'несколько секунд', pt: 'alguns segundos', nl: 'een paar seconden', fr: 'quelques secondes', it: 'pochi secondi', es: 'unos pocos segundos', pl: 'kilka sekund','zh-cn': '几秒钟'},
+        '%d seconds': {de: '%d Sekunden', ru: '%d секунд', pt: '%d segundos', nl: '%d seconden', fr: '%d secondes', it: '%d secondi', es: '%d segundos', pl: '%d sekund','zh-cn': '％d秒'},
+        'a minute': {de: 'eine Minute', ru: 'минута', pt: 'um minuto', nl: 'een minuut', fr: 'une minute', it: 'un minuto', es: 'un minuto', pl: 'minutę','zh-cn': '一分钟'},
+        '%d minutes': {de: '%d Minuten', ru: '%d минут', pt: '%d minutos', nl: '%d minuten', fr: '%d minutes', it: '%d minuti', es: '%d minutos', pl: '%d minut','zh-cn': '％d分钟'},
+        'an hour': {de: 'eine Stunde', ru: 'час', pt: 'uma hora', nl: 'een uur', fr: 'une heure', it: 'un\'ora', es: 'una hora', pl: 'godzina','zh-cn': '一小时'},
+        '%d hours': {de: '%d Stunden', ru: '%d часов', pt: '%d horas', nl: '%d uur', fr: '%d heures', it: '%d ore', es: '%d horas', pl: '%d godzin','zh-cn': '％d小时'},
+        'a day': {de: 'ein Tag', ru: 'день', pt: 'um dia', nl: 'een dag', fr: 'un jour', it: 'un giorno', es: 'un día', pl: 'dzień','zh-cn': '一天'},
+        '%d days': {de: '%d Tage', ru: '%d дней', pt: '%d dias', nl: '%d dagen', fr: '%d jours', it: '%d giorni', es: '%d días', pl: '%d dni','zh-cn': '％d天'},
+        'a week': {de: 'eine Woche', ru: 'неделя', pt: 'uma semana', nl: 'een week', fr: 'une semaine', it: 'una settimana', es: 'una semana', pl: 'tydzień','zh-cn': '一周'},
+        '%d weeks': {de: '%d Wochen', ru: '%d недель', pt: '%d semanas', nl: '%d weken', fr: '%d semaines', it: '%d settimane', es: '%d semanas', pl: '%d tygodni','zh-cn': '％d周'},
+        'a month': {de: 'ein Monat', ru: 'месяц', pt: 'um mês', nl: 'een maand', fr: 'un mois', it: 'un mese', es: 'un mes', pl: 'miesiąc','zh-cn': '一个月'},
+        '%d months': {de: '%d Monate', ru: '%d месяцев', pt: '%d meses', nl: '%d maanden', fr: '%d mois', it: '%d mesi', es: '%d meses', pl: '%d miesięcy','zh-cn': '％d个月'},
+        'a year': {de: 'ein Jahr', ru: 'год', pt: 'um ano', nl: 'een jaar', fr: 'une année', it: 'un anno', es: 'un año', pl: 'rok','zh-cn': '一年'},
+        '%d years': {de: '%d Jahre', ru: '%d лет', pt: '%d anos', nl: '%d jaar', fr: '%d années', it: '%d anni', es: '%d años', pl: '%d lat','zh-cn': '％d年'}
+    };
+
+    return (map[enText] || {})[locale] || enText;
 }
