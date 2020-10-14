@@ -312,29 +312,7 @@ vis.binds.materialdesign.vueHelper = {
         generateItemList(data, logPrefix, callback) {
             let itemsList = [];
 
-            if (data.listDataMethod === 'inputPerEditor') {
-                for (var i = 0; i <= data.countSelectItems; i++) {
-                    let value = myMdwHelper.getValueFromData(data['value' + i], null)
-
-                    if (value !== null) {
-                        let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(myMdwHelper.getValueFromData(data['listIcon' + i]));
-
-                        itemsList.push(
-                            {
-                                text: myMdwHelper.getValueFromData(data['label' + i], value),
-                                subText: myMdwHelper.getValueFromData(data['subLabel' + i], ''),
-                                value: myMdwHelper.getValueFromData(data['value' + i], ''),
-                                icon: imgObj.icon,
-                                image: imgObj.image,
-                                imageColor: myMdwHelper.getValueFromData(data['listIconColor' + i], ''),
-                                imageColorSelectedTextField: myMdwHelper.getValueFromData(data['imageColorSelectedTextField' + i], '')
-                            }
-                        )
-                    }
-                }
-                callback(itemsList);
-
-            } else if (data.listDataMethod === 'jsonStringObject') {
+            if (data.listDataMethod === 'jsonStringObject') {
                 let jsonData = null;
 
                 try {
@@ -451,6 +429,28 @@ vis.binds.materialdesign.vueHelper = {
                         callback(itemsList);
                     }
                 });
+            } else {
+                // inputPerEditor (Default)
+                for (var i = 0; i <= data.countSelectItems; i++) {
+                    let value = myMdwHelper.getValueFromData(data['value' + i], null)
+
+                    if (value !== null) {
+                        let imgObj = vis.binds.materialdesign.vueHelper.getIconOrImage(myMdwHelper.getValueFromData(data['listIcon' + i]));
+
+                        itemsList.push(
+                            {
+                                text: myMdwHelper.getValueFromData(data['label' + i], value),
+                                subText: myMdwHelper.getValueFromData(data['subLabel' + i], ''),
+                                value: myMdwHelper.getValueFromData(data['value' + i], ''),
+                                icon: imgObj.icon,
+                                image: imgObj.image,
+                                imageColor: myMdwHelper.getValueFromData(data['listIconColor' + i], ''),
+                                imageColorSelectedTextField: myMdwHelper.getValueFromData(data['imageColorSelectedTextField' + i], '')
+                            }
+                        )
+                    }
+                }
+                callback(itemsList);
             }
         },
         setIoBrokerBinding(data, vueInput, itemsList, inputMode = '') {
