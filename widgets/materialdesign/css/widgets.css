@@ -65,6 +65,7 @@
   --materialdesign-color-table-row-divider: rgba(0, 0, 0, 0.12);
 
   --materialdesign-color-switch-on: #44739e;
+  --materialdesign-color-switch-on-hover: #44739e;
   --materialdesign-color-switch-off: #fff;
   --materialdesign-color-switch-track: #000;
   --materialdesign-color-switch-off-hover: #44739e;
@@ -1705,7 +1706,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 @supports not (-ms-ime-align: auto) {
   .materialdesign-widget .mdc-switch__thumb-underlay::before, .mdc-switch__thumb-underlay::after {
     /* @alternate */
-    background-color: var(--materialdesign-color-switch-on);
+    background-color: var(--materialdesign-color-switch-on-hover);
   }
 }
 

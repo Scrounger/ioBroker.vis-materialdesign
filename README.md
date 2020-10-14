@@ -3439,6 +3439,12 @@ Take a look at the animated screenshot below:
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
 		</tr>
 		<tr>
+			<td>colorSwitchHoverTrue</td>
+			<td>Schalterfarbe selektiert / hover für Aktiviert</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
 			<td>labelColorFalse</td>
 			<td>Beschriftungsfarbe</td>
 			<td>string</td>

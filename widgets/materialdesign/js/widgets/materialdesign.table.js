@@ -975,6 +975,7 @@ vis.binds.materialdesign.table = {
                 colorSwitchTrack: obj.colorSwitchTrack,
                 colorSwitchTrue: obj.colorSwitchTrue,
                 colorSwitchHover: obj.colorSwitchHover,
+                colorSwitchHoverTrue: obj.colorSwitchHoverTrue,
                 labelColorFalse: obj.labelColorFalse,
                 labelColorTrue: obj.labelColorTrue,
                 lockEnabled: obj.lockEnabled,
