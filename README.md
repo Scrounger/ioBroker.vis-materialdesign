@@ -3685,6 +3685,12 @@ Take a look at the animated screenshot below:
 			<td>text | number | date | time | mask</td>
 		</tr>
 		<tr>
+			<td>inputAlignment</td>
+			<td>text alignment</td>
+			<td>string</td>
+			<td>left | center | right</td>
+		</tr>
+		<tr>
 			<td>inputMask</td>
 			<td>inputMask</td>
 			<td>string</td>
@@ -4007,6 +4013,12 @@ Take a look at the animated screenshot below:
 			<td>inputType</td>
 			<td>string</td>
 			<td>text | date | time</td>
+		</tr>
+		<tr>
+			<td>inputAlignment</td>
+			<td>text alignment</td>
+			<td>string</td>
+			<td>left | center | right</td>
 		</tr>
 		<tr>
 			<td>vibrateOnMobilDevices</td>
@@ -4564,6 +4576,12 @@ Take a look at the animated screenshot below:
 			<td>inputType</td>
 			<td>string</td>
 			<td>text | date | time</td>
+		</tr>
+		<tr>
+			<td>inputAlignment</td>
+			<td>text alignment</td>
+			<td>string</td>
+			<td>left | center | right</td>
 		</tr>
 		<tr>
 			<td>vibrateOnMobilDevices</td>
