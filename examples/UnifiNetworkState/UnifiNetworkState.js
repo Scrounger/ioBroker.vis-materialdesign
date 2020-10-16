@@ -23,9 +23,9 @@ const updateInterval = 1; // Lists update interval in minutes (modulo on current
 
 const imagePath = '/vis.0/myImages/networkDevices/'; // Path for images
 
-const sortReset = 'name';     // Value for default and reset sort
-const sortResetAfter = 120;   // Reset sort value after X seconds (0=disabled)
-const filterResetAfter = 120; // Reset filter after X seconds (0=disabled)
+const defaultSortMode = 'name'; // Value for default and reset sort
+const sortResetAfter = 120;     // Reset sort value after X seconds (0=disabled)
+const filterResetAfter = 120;   // Reset filter after X seconds (0=disabled)
 
 // Optional: display links into a separate view, instead of new navigation window (set false to disable this feature)
 const devicesView = {currentViewState: '0_userdata.0.vis.currentView', devicesViewKey: 1};
@@ -99,14 +99,14 @@ function createList() {
                 let wlanSignal = '';
 
                 if (isWired) {
-                    let swPort = getState(`${idDevice}.sw_port`).val;
+                    let switchPort = getState(`${idDevice}.sw_port`).val;
 
                     // Do not consider fiber ports
-                    if (swPort > 24) {
+                    if (switchPort > 24) {
                         continue; // Skip add
                     }
 
-                    speed = getState(`unifi.0.default.devices.${getState(`${idDevice}.sw_mac`).val}.port_table.port_${swPort}.speed`).val;
+                    speed = getState(`unifi.0.default.devices.${getState(`${idDevice}.sw_mac`).val}.port_table.port_${switchPort}.speed`).val;
                     uptime = getState(`${idDevice}.uptime_by_usw`).val;
                     image = (note && note.image) ? `${imagePath}${note.image}.png` : `${imagePath}lan_noImage.png`
                 } else {
@@ -186,26 +186,25 @@ function createList() {
         }
 
         // Sorting
-        let sortMode = existsState(`${prefix}.sortMode`) ? getState(`${prefix}.sortMode`).val : '';
+        let sortMode = existsState(`${prefix}.sortMode`) ? getState(`${prefix}.sortMode`).val : defaultSortMode;
 
-        if (sortMode === 'name') {
-            deviceList.sort(function (a, b) {
-                return a[sortMode].toLowerCase() == b[sortMode].toLowerCase() ? 0 : +(a[sortMode].toLowerCase() > b[sortMode].toLowerCase()) || -1;
-            });
-        } else if (sortMode === 'ip') {
-            deviceList.sort(function (a, b) {
-                return a[sortMode].split('.')[0] - b[sortMode].split('.')[0] || a[sortMode].split('.')[1] - b[sortMode].split('.')[1] || a[sortMode].split('.')[2] - b[sortMode].split('.')[2] || a[sortMode].split('.')[3] - b[sortMode].split('.')[3]
-            });
-        } else if (sortMode === 'connected' || sortMode === 'received' || sortMode === 'sent' || sortMode === 'experience' || sortMode === 'uptime') {
-            deviceList.sort(function (a, b) {
-                return a[sortMode] == b[sortMode] ? 0 : +(a[sortMode] < b[sortMode]) || -1;
-            });
-        } else {
-            sortMode = 'name' // Default order by name
-            deviceList.sort(function (a, b) {
-                return a[sortMode].toLowerCase() == b[sortMode].toLowerCase() ? 0 : +(a[sortMode].toLowerCase() > b[sortMode].toLowerCase()) || -1;
-            });
-        }
+        deviceList.sort((a, b) => {
+            switch (sortMode) {
+                case 'ip':
+                    const na = Number(a['ip'].split(".").map((num) => (`000${num}`).slice(-3) ).join(""));
+                    const nb = Number(b['ip'].split(".").map((num) => (`000${num}`).slice(-3) ).join(""));
+                    return na - nb;
+                case 'connected':
+                case 'received':
+                case 'sent':
+                case 'experience':
+                case 'uptime':
+                    return a[sortMode] === b[sortMode] ? 0 : +(a[sortMode] < b[sortMode]) || -1;
+                case 'name':
+                default:
+                    return a['name'].localeCompare(b['name'], locale, {sensitivity: 'base'});
+            }
+        });
 
         if (devicesView) {
             // Create links list (before filtering)
@@ -214,7 +213,7 @@ function createList() {
             deviceList.forEach(obj => {
                 if (obj.listType === 'buttonLink') {
                     linkList.push({
-                        text: obj.name, /** @todo Add some props (connected, ip, recived, sent, expirience, ...)? */
+                        text: obj.name, /** @todo Add some props (connected, ip, received, sent, experience, ...)? */
                         value: obj.buttonLink,
                         icon: obj.icon
                     });
@@ -223,8 +222,8 @@ function createList() {
                     obj['listType'] = 'buttonState';
                     obj['objectId'] = `${prefix}.selectedUrl`;
                     obj['showValueLabel'] = false;
-                    obj['buttonStateValue'] = obj.buttonLink,
-                        delete obj['buttonLink'];
+                    obj['buttonStateValue'] = obj.buttonLink;
+                    delete obj['buttonLink'];
                 }
             });
 
@@ -239,15 +238,20 @@ function createList() {
         let filterMode = existsState(`${prefix}.filterMode`) ? getState(`${prefix}.filterMode`).val : '';
 
         if (filterMode && filterMode !== '') {
-            if (filterMode === 'connected') {
-                deviceList = deviceList.filter(item => item.connected);
-            } else if (filterMode === 'disconnected') {
-                deviceList = deviceList.filter(item => !item.connected);
-            } else if (filterMode === 'lan') {
-                deviceList = deviceList.filter(item => item.isWired);
-            } else if (filterMode === 'wlan') {
-                deviceList = deviceList.filter(item => !item.isWired);
-            }
+            deviceList = deviceList.filter(item => {
+                switch (filterMode) {
+                    case 'connected':
+                        return item.connected;
+                    case 'disconnected':
+                        return !item.connected;
+                    case 'lan':
+                        return item.isWired;
+                    case 'wlan':
+                        return !item.isWired;
+                    default:
+                        return false; // Unknown filter, return no item
+                }
+            });
         }
 
         let result = JSON.stringify(deviceList);
@@ -359,17 +363,22 @@ function createList() {
     }
 
     function getExperience(experience, size, isConnected) {
-        if (!isConnected) {
-            return `<span class="mdi mdi-speedometer" style="color: gray; font-size: ${size}px;"></span>`
+        let color = 'gray';
+        let icon = 'mdi-speedometer';
+
+        if (isConnected) {
+            if (experience >= 70) {
+                color = 'green';
+            } else if (experience >= 40) {
+                color = '#ff9800';
+                icon += '-medium';
+            } else {
+                color = 'FireBrick';
+                icon += '-slow';
+            }
         }
 
-        if (experience >= 70) {
-            return `<span class="mdi mdi-speedometer" style="color: green; font-size: ${size}px;"></span>`
-        } else if (experience < 70 && experience >= 40) {
-            return `<span class="mdi mdi-speedometer-medium" style="color: #ff9800; font-size: ${size}px;"></span>`
-        } else {
-            return `<span class="mdi mdi-speedometer-slow" style="color: FireBrick; font-size: ${size}px;"></span>`
-        }
+        return `<span class="mdi ${icon}" style="color: ${color}; font-size: ${size}px;"></span>`;
     }
 
     function parseNote(idDevice, name, mac, ip) {
@@ -397,7 +406,7 @@ function resetSortTimer() {
     if (sortResetAfter > 0) {
         setTimeout(() => {
             if (existsState(`${prefix}.sortMode`) && sortMode === getState(`${prefix}.sortMode`).val) {
-                setState(`${prefix}.sortMode`, sortReset);
+                setState(`${prefix}.sortMode`, defaultSortMode);
             }
         }, sortResetAfter * 1000);
     }
@@ -508,7 +517,7 @@ function setup() {
         };
 
         createState(`${prefix}.jsonList`, '[]', {name: 'UniFi devices listing: jsonList', type: 'string'});
-        createState(`${prefix}.sortMode`, sortReset, {name: 'UniFi device listing: sortMode', type: 'string'});
+        createState(`${prefix}.sortMode`, defaultSortMode, {name: 'UniFi device listing: sortMode', type: 'string'});
         createState(`${prefix}.filterMode`, '', {name: 'UniFi device listing: filterMode', type: 'string'});
 
         // Sorters, filters and some additional translations are saved in states to permit texts localization
@@ -524,7 +533,7 @@ function setup() {
 }
 
 function translate(enText) {
-    const map = {
+    const map = { // For translations used https://translator.iobroker.in (that uses Google translator)
         // Sort items
         'Name': {de: 'Name', ru: 'имя', pt: 'Nome', nl: 'Naam', fr: 'Nom', it: 'Nome', es: 'Nombre', pl: 'Nazwa','zh-cn': '名称'},
         'IP address': {de: 'IP Adresse', ru: 'Aйпи адрес', pt: 'Endereço de IP', nl: 'IP adres', fr: 'Adresse IP', it: 'Indirizzo IP', es: 'Dirección IP', pl: 'Adres IP','zh-cn': 'IP地址'},
