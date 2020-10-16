@@ -79,7 +79,7 @@ Mit diesem Skript wird ein json string erzeugt mit dem Status aller Netzwerk Ger
 ### Changelog
 
 ##### 2.0.0 (16.10.2020)
-* (cdellasanta) Translated code and comments from to english
+* (cdellasanta) Translated code and comments to english
 * (cdellasanta) Code cleanup
 * (cdellasanta) Multi-language support for displayed texts
 * (cdellasanta) States auto creation
