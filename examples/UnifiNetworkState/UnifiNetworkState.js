@@ -191,8 +191,8 @@ function createList() {
         deviceList.sort((a, b) => {
             switch (sortMode) {
                 case 'ip':
-                    const na = Number(a['ip'].split(".").map((num) => (`000${num}`).slice(-3) ).join(""));
-                    const nb = Number(b['ip'].split(".").map((num) => (`000${num}`).slice(-3) ).join(""));
+                    const na = Number(a['ip'].split(".").map(v => `000${v}`.slice(-3)).join(''));
+                    const nb = Number(b['ip'].split(".").map(v => `000${v}`.slice(-3)).join(''));
                     return na - nb;
                 case 'connected':
                 case 'received':
