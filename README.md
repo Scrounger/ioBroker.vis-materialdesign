@@ -41,7 +41,7 @@ provided by [iobroker.click](https://iobroker.click/index.html), thanks to bluef
 * [Weather View](https://forum.iobroker.net/topic/32232/material-design-widgets-wetter-view)
 * [Skript Status](https://forum.iobroker.net/topic/30662/material-design-widgets-skript-status)
 * [Adapter Status](https://forum.iobroker.net/topic/30661/material-design-widgets-adapter-status)
-* [UniFi Netzwerk Status](https://forum.iobroker.net/topic/30875/material-design-widgets-unifi-netzwerk-status)
+* [UniFi Netzwerk Status](https://github.com/Scrounger/ioBroker.vis-materialdesign/tree/master/examples/UnifiNetworkState)
 
 ## Questions and answers about the widgets
 If you have questions about the individual widgets, then first look at the topics of the individual widgets

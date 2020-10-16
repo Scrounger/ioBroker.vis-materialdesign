@@ -74,5 +74,8 @@ Mit diesem Skript wird ein json string erzeugt mit dem Status aller Netzwerk Ger
 
 ### Changelog
 
+### 2.0.0 (16.10.2020)
+* (cdellasanta) Optimized for UniFi Adapter >= 0.5.0
+
 ### 1.0.0 (05.03.2020)
 * (Scrounger) intial release
