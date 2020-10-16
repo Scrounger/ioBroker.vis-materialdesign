@@ -15,16 +15,17 @@
  */
 
 // Script configuration
-const statePrefix = '0_userdata.0.vis.unifiNetworkState'; // If you need compatibility with original script/view, set '0_userdata.0.vis.NetzwerkDevicesStatus'
-const locale = 'de'; // On change make sure you drop all states (delete statePrefix directory)
+const prefix = '0_userdata.0.vis.NetzwerkDevicesStatus'; // Might be better to use an english prefix (e.g. '0_userdata.0.vis.unifiNetworkState'), but then remember to adapt the Views too
+const locale = 'de'; // On change make sure you drop all states (delete prefix directory)
 
 const lastDays = 7;       // Show devices that have been seen in the network within the last X days
 const updateInterval = 1; // Lists update interval in minutes (modulo on current minutes, therefore more than 30 means once per hour, more than 60 means never)
 
-const imagePath = '/vis.0/images/unifi/'; // Path for images
-const sortReset = 'name';                 // Value for default and reset sort
-const sortResetAfter = 120;               // Reset sort value after X seconds (0=disabled)
-const filterResetAfter = 120;             // Reset filter after X seconds (0=disabled)
+const imagePath = '/vis.0/myImages/networkDevices/'; // Path for images
+
+const sortReset = 'name';     // Value for default and reset sort
+const sortResetAfter = 120;   // Reset sort value after X seconds (0=disabled)
+const filterResetAfter = 120; // Reset filter after X seconds (0=disabled)
 
 // Optional: display links into a separate view, instead of new navigation window (set false to disable this feature)
 const devicesView = {currentViewState: '0_userdata.0.vis.currentView', devicesViewKey: 1};
@@ -41,16 +42,6 @@ const offlineTextSize = 14;
 const mathjs = require('mathjs');
 const moment = require('moment');
 
-// States
-const listState = statePrefix + '.jsonList';
-const sortModeState = statePrefix + '.sortMode';
-const filterModeState = statePrefix + '.filterMode';
-const sortersListState = statePrefix + '.sortersJsonList';
-const filtersListState = statePrefix + '.filtersJsonList';
-const translationsState = statePrefix + '.translations';
-const linksListState = statePrefix + '.linksJsonList';
-const viewUrlState = statePrefix + '.selectedUrl';
-
 // States are registered automatically if prefix directory does not exists (delete directory to recreate them)
 setup();
 
@@ -58,17 +49,17 @@ setup();
 createList();
 
 // Refresh lists every updateInterval minutes
-schedule('*/' + updateInterval + ' * * * *', createList);
+schedule(`*/${updateInterval} * * * *`, createList);
 
 // Change on sort mode triggers list generation and reset of sort-timer-reset
-on({id: sortModeState, change: 'any'}, () => { createList(); resetSortTimer(); });
+on({id: `${prefix}.sortMode`, change: 'any'}, () => { createList(); resetSortTimer(); });
 
 // Change on filter mode triggers list generation and reset of filter-timer-reset
-on({id: filterModeState, change: 'any'}, () => { createList(); resetFilterTimer(); });
+on({id: `${prefix}.filterMode`, change: 'any'}, () => { createList(); resetFilterTimer(); });
 
 if (devicesView) {
     // On selected device change, go to "Devices" view
-    on({id: viewUrlState, change: 'any'}, () => { setState(devicesView.currentViewState, devicesView.devicesViewKey); });
+    on({id: `${prefix}.selectedUrl`, change: 'any'}, () => { setState(devicesView.currentViewState, devicesView.devicesViewKey); });
 }
 
 function createList() {
@@ -78,17 +69,17 @@ function createList() {
 
         for (var i = 0; i <= devices.length - 1; i++) {
             let idDevice = devices[i].replace('.mac', '');
-            let isWired = getState(idDevice + '.is_wired').val;
-            let lastSeen = new Date(getState(idDevice + '.last_seen').val);
+            let isWired = getState(`${idDevice}.is_wired`).val;
+            let lastSeen = new Date(getState(`${idDevice}.last_seen`).val);
 
             if (isInRange(lastSeen)) {
                 // Values for both WLAN and LAN
-                let isConnected = getState(idDevice + '.is_online').val;
-                let ip = existsState(idDevice + '.ip') ? getState(idDevice + '.ip').val : '';
+                let isConnected = getState(`${idDevice}.is_online`).val;
+                let ip = existsState(`${idDevice}.ip`) ? getState(`${idDevice}.ip`).val : '';
                 let mac = idDevice;
                 let name = getName(idDevice, ip, mac);
-                let isGuest = getState(idDevice + '.is_guest').val;
-                let experience = (existsState(idDevice + '.satisfaction') && isConnected) ? (getState(idDevice + '.satisfaction').val || 100) : 0; // For LAN devices I got null as expirience .. file a bug?
+                let isGuest = getState(`${idDevice}.is_guest`).val;
+                let experience = (existsState(`${idDevice}.satisfaction`) && isConnected) ? (getState(`${idDevice}.satisfaction`).val || 100) : 0; // For LAN devices I got null as expirience .. file a bug?
                 let note = parseNote(idDevice, name, mac, ip);
                 let icon = (note && note.icon) || '';
 
@@ -108,20 +99,20 @@ function createList() {
                 let wlanSignal = '';
 
                 if (isWired) {
-                    let swPort = getState(idDevice + '.sw_port').val;
+                    let swPort = getState(`${idDevice}.sw_port`).val;
 
                     // Do not consider fiber ports
                     if (swPort > 24) {
                         continue; // Skip add
                     }
 
-                    speed = getState(`unifi.0.default.devices.${getState(idDevice + '.sw_mac').val}.port_table.port_${swPort}.speed`).val;
-                    uptime = getState(idDevice + '.uptime_by_usw').val;
+                    speed = getState(`unifi.0.default.devices.${getState(`${idDevice}.sw_mac`).val}.port_table.port_${swPort}.speed`).val;
+                    uptime = getState(`${idDevice}.uptime_by_usw`).val;
                     image = (note && note.image) ? `${imagePath}${note.image}.png` : `${imagePath}lan_noImage.png`
                 } else {
-                    speed = existsState(idDevice + '.channel') ? (getState(idDevice + '.channel').val > 13) ? '5G' : '2G' : '';
-                    uptime = getState(idDevice + '.uptime').val;
-                    wlanSignal = getState(idDevice + '.signal').val;
+                    speed = existsState(`${idDevice}.channel`) ? (getState(`${idDevice}.channel`).val > 13) ? '5G' : '2G' : '';
+                    uptime = getState(`${idDevice}.uptime`).val;
+                    wlanSignal = getState(`${idDevice}.signal`).val;
                     image = (note && note.image) ? `${imagePath}${note.image}.png` : `${imagePath}wlan_noImage.png`
                 }
 
@@ -195,7 +186,7 @@ function createList() {
         }
 
         // Sorting
-        let sortMode = existsState(sortModeState) ? getState(sortModeState).val : '';
+        let sortMode = existsState(`${prefix}.sortMode`) ? getState(`${prefix}.sortMode`).val : '';
 
         if (sortMode === 'name') {
             deviceList.sort(function (a, b) {
@@ -230,7 +221,7 @@ function createList() {
 
                     // Change behaviour to buttonState, a listener on the state change on objectId will trigger the jump to that view
                     obj['listType'] = 'buttonState';
-                    obj['objectId'] = viewUrlState;
+                    obj['objectId'] = `${prefix}.selectedUrl`;
                     obj['showValueLabel'] = false;
                     obj['buttonStateValue'] = obj.buttonLink,
                         delete obj['buttonLink'];
@@ -239,13 +230,13 @@ function createList() {
 
             let linkListString = JSON.stringify(linkList);
 
-            if (existsState(linksListState) && getState(linksListState).val !== linkListString) {
-                setState(linksListState, linkListString, true);
+            if (existsState(`${prefix}.linksJsonList`) && getState(`${prefix}.linksJsonList`).val !== linkListString) {
+                setState(`${prefix}.linksJsonList`, linkListString, true);
             }
         }
 
         // Filtering
-        let filterMode = existsState(filterModeState) ? getState(filterModeState).val : '';
+        let filterMode = existsState(`${prefix}.filterMode`) ? getState(`${prefix}.filterMode`).val : '';
 
         if (filterMode && filterMode !== '') {
             if (filterMode === 'connected') {
@@ -261,8 +252,8 @@ function createList() {
 
         let result = JSON.stringify(deviceList);
 
-        if (existsState(listState) && getState(listState).val !== result) {
-            setState(listState, result, true);
+        if (existsState(`${prefix}.jsonList`) && getState(`${prefix}.jsonList`).val !== result) {
+            setState(`${prefix}.jsonList`, result, true);
         }
     } catch (err) {
         console.error(`[createList] error: ${err.message}`);
@@ -274,23 +265,23 @@ function createList() {
         if (!isSent) {
             // Received
             if (isWired) {
-                if (existsState(idDevice + '.wired-tx_bytes')) {
-                    return getState(idDevice + '.wired-tx_bytes').val;
+                if (existsState(`${idDevice}.wired-tx_bytes`)) {
+                    return getState(`${idDevice}.wired-tx_bytes`).val;
                 }
             } else {
-                if (existsState(idDevice + '.tx_bytes')) {
-                    return getState(idDevice + '.tx_bytes').val;
+                if (existsState(`${idDevice}.tx_bytes`)) {
+                    return getState(`${idDevice}.tx_bytes`).val;
                 }
             }
         } else {
             // Sent
             if (isWired) {
-                if (existsState(idDevice + '.wired-rx_bytes')) {
-                    return getState(idDevice + '.wired-rx_bytes').val;
+                if (existsState(`${idDevice}.wired-rx_bytes`)) {
+                    return getState(`${idDevice}.wired-rx_bytes`).val;
                 }
             } else {
-                if (existsState(idDevice + '.rx_bytes')) {
-                    return getState(idDevice + '.rx_bytes').val;
+                if (existsState(`${idDevice}.rx_bytes`)) {
+                    return getState(`${idDevice}.rx_bytes`).val;
                 }
             }
         }
@@ -314,13 +305,13 @@ function createList() {
     function getName(idDevice, ip, mac) {
         let deviceName = '';
 
-        if (existsState(idDevice + '.name')) {
-            deviceName = getState(idDevice + '.name').val;
+        if (existsState(`${idDevice}.name`)) {
+            deviceName = getState(`${idDevice}.name`).val;
         }
 
         if (deviceName === null || deviceName === undefined || deviceName === '') {
-            if (existsState(idDevice + '.hostname')) {
-                deviceName = getState(idDevice + '.hostname').val;
+            if (existsState(`${idDevice}.hostname`)) {
+                deviceName = getState(`${idDevice}.hostname`).val;
             }
         }
 
@@ -383,8 +374,8 @@ function createList() {
 
     function parseNote(idDevice, name, mac, ip) {
         try {
-            if (existsState(idDevice + '.note')) {
-                return JSON.parse(getState(idDevice + '.note').val);
+            if (existsState(`${idDevice}.note`)) {
+                return JSON.parse(getState(`${idDevice}.note`).val);
             }
         } catch (ex) {
             console.error(`${name} (ip: ${ip}, mac: ${mac}): ${ex.message}`);
@@ -401,24 +392,24 @@ function createList() {
 }
 
 function resetSortTimer() {
-    let sortMode = existsState(sortModeState) ? getState(sortModeState).val : '';
+    let sortMode = existsState(`${prefix}.sortMode`) ? getState(`${prefix}.sortMode`).val : '';
 
     if (sortResetAfter > 0) {
         setTimeout(() => {
-            if (existsState(sortModeState) && sortMode === getState(sortModeState).val) {
-                setState(sortModeState, sortReset);
+            if (existsState(`${prefix}.sortMode`) && sortMode === getState(`${prefix}.sortMode`).val) {
+                setState(`${prefix}.sortMode`, sortReset);
             }
         }, sortResetAfter * 1000);
     }
 }
 
 function resetFilterTimer() {
-    let filterMode = existsState(filterModeState) ? getState(filterModeState).val : '';
+    let filterMode = existsState(`${prefix}.filterMode`) ? getState(`${prefix}.filterMode`).val : '';
 
     if (filterResetAfter > 0) {
         setTimeout(() => {
-            if (existsState(filterModeState) && filterMode === getState(filterModeState).val) {
-                setState(filterModeState, '');
+            if (existsState(`${prefix}.filterMode`) && filterMode === getState(`${prefix}.filterMode`).val) {
+                setState(`${prefix}.filterMode`, '');
             }
         }, filterResetAfter * 1000);
     }
@@ -448,7 +439,7 @@ function setup() {
     });
 
     // Create states
-    if (!existsState(statePrefix)) { // Check on prefix (the directory)
+    if (!existsState(prefix)) { // Check on prefix (the directory)
         const sortItems = [
             {
                 text: translate('Name'),
@@ -516,18 +507,18 @@ function setup() {
             'Device': translate('Device')
         };
 
-        createState(listState, '[]', {name: 'UniFi devices listing: jsonList', type: 'string'});
-        createState(sortModeState, sortReset, {name: 'UniFi device listing: sortMode', type: 'string'});
-        createState(filterModeState, '', {name: 'UniFi device listing: filterMode', type: 'string'});
+        createState(`${prefix}.jsonList`, '[]', {name: 'UniFi devices listing: jsonList', type: 'string'});
+        createState(`${prefix}.sortMode`, sortReset, {name: 'UniFi device listing: sortMode', type: 'string'});
+        createState(`${prefix}.filterMode`, '', {name: 'UniFi device listing: filterMode', type: 'string'});
 
         // Sorters, filters and some additional translations are saved in states to permit texts localization
-        createState(sortersListState, JSON.stringify(sortItems), {name: 'UniFi device listing: sortersJsonList', type: 'string', read: true, write: false});
-        createState(filtersListState, JSON.stringify(filterItems), {name: 'UniFi device listing: filtersJsonList', type: 'string', read: true, write: false});
-        createState(translationsState, JSON.stringify(viewTranslations), {name: 'UniFi device listing: viewTranslations', type: 'string', read: true, write: false});
+        createState(`${prefix}.sortersJsonList`, JSON.stringify(sortItems), {name: 'UniFi device listing: sortersJsonList', type: 'string', read: true, write: false});
+        createState(`${prefix}.filtersJsonList`, JSON.stringify(filterItems), {name: 'UniFi device listing: filtersJsonList', type: 'string', read: true, write: false});
+        createState(`${prefix}.translations`, JSON.stringify(viewTranslations), {name: 'UniFi device listing: viewTranslations', type: 'string', read: true, write: false});
 
         if (devicesView) {
-            createState(linksListState, '[]', {name: 'Device links listing: linksJsonList', type: 'string'});
-            createState(viewUrlState, '', {name: 'Selected device link: selectedUrl', type: 'string'});
+            createState(`${prefix}.linksJsonList`, '[]', {name: 'Device links listing: linksJsonList', type: 'string'});
+            createState(`${prefix}.selectedUrl`, '', {name: 'Selected device link: selectedUrl', type: 'string'});
         }
     }
 }
