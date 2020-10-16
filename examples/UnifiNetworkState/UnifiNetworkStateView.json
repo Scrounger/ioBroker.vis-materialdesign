@@ -7,8 +7,7 @@
     "sizex": "",
     "sizey": "",
     "gridSize": "",
-    "snapType": null,
-    "useBackground": false
+    "snapType": null
   },
   "widgets": {
     "e00001": {
@@ -81,7 +80,7 @@
         "json_string_oid": "0_userdata.0.vis.NetzwerkDevicesStatus.jsonList",
         "maxItemsperRow": "7",
         "iconItemMinWidth": "280",
-        "iconHeight": "90",
+        "iconHeight": "100",
         "buttonHeight": "",
         "labelFontSize": "22",
         "subLabelFontSize": "18",
@@ -96,9 +95,7 @@
         "lockFilterGrayscale": "30",
         "lockApplyOnlyOnImage": "true",
         "verticalIconContainerHeight": "",
-        "buttonLayout": "full",
-        "titleLayout": "headline6",
-        "itemGaps": "2"
+        "buttonLayout": "full"
       },
       "style": {
         "left": "0px",
@@ -279,10 +276,7 @@
         "listItemFont": "RobotoCondensed-Regular",
         "listItemRippleEffectColor": "",
         "inputLayoutBackgroundColorSelected": "",
-        "inputLayoutBackgroundColorHover": "",
-        "vibrateOnMobilDevices": "50",
-        "inputLabelFontSize": "",
-        "inputMessageFontSize": "-10"
+        "inputLayoutBackgroundColorHover": ""
       },
       "style": {
         "left": "10px",
@@ -396,10 +390,7 @@
         "inputLayoutBackgroundColorHover": "",
         "clearIconColor": "#ffffff",
         "listItemBackgroundColor": "",
-        "listIcon0": "wifi",
-        "vibrateOnMobilDevices": "50",
-        "listIconSize": "-1",
-        "listItemFontSize": "-1"
+        "listIcon0": "wifi"
       },
       "style": {
         "left": "calc(50% + 10px)",
@@ -411,6 +402,6 @@
       "widgetSet": "materialdesign"
     }
   },
-  "name": "UnifiNetwork",
+  "name": "UnifiNetworkState",
   "filterList": []
 }
