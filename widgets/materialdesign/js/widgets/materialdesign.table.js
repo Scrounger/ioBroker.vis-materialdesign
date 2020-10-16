@@ -186,7 +186,7 @@ vis.binds.materialdesign.table = {
                 // row not exist -> create
                 if ($row.length === 0) {
                     if (jsonData[row]) {
-                        
+
                         tableContent.append(`<tr class="mdc-data-table__row" id="row${row}" style="height: ${(myMdwHelper.getNumberFromData(data.rowHeight, null) !== null) ? data.rowHeight + 'px' : '1px'}; ${row === 0 && !myMdwHelper.getBooleanFromData(data.showHeader, false) ? 'border-top-color: transparent' : ''};">
                                         </tr>`)
 
@@ -448,7 +448,7 @@ vis.binds.materialdesign.table = {
                     } else if (objValue.type === 'switch') {
                         let init = vis.binds.materialdesign.switch.initialize(elementData);
 
-                        element = `<div class="vis-widget materialdesign-widget mdc-form-field ${init.labelPosition} materialdesign-switch materialdesign-switch-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
+                        element = `<div class="vis-widget materialdesign-widget ${init.labelPosition} materialdesign-switch materialdesign-switch-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
                                         ${init.myswitch}
                                     </div>`
 
@@ -464,7 +464,7 @@ vis.binds.materialdesign.table = {
                     } else if (objValue.type === 'checkbox') {
                         let init = vis.binds.materialdesign.checkbox.initialize(elementData);
 
-                        element = `<div class="vis-widget materialdesign-widget mdc-form-field ${init.labelPosition} materialdesign-checkbox materialdesign-checkbox-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
+                        element = `<div class="vis-widget materialdesign-widget ${init.labelPosition} materialdesign-checkbox materialdesign-checkbox-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
                                         ${init.checkbox}
                                     </div>`
 
@@ -535,7 +535,29 @@ vis.binds.materialdesign.table = {
                         });
 
                     } else if (objValue.type === 'html') {
-                        element = objValue.html;
+                        element = `<div class="vis-widget materialdesign-widget materialdesign-html-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important;">
+                        </div>`
+
+                        if (objValue.oid) {
+                            myMdwHelper.oidNeedSubscribe(objValue.oid, data.wid, 'Table Html', true);
+
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Html', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-html-table-row_${row}-col_${col}`, data.wid, 'Table MaterialDesignIcons', function () {
+                                    let htmlContainer = $this.find(`.materialdesign-html-table-row_${row}-col_${col}`);
+
+                                    let val = vis.states.attr(objValue.oid + '.val')
+                                    htmlContainer.html(objValue.html.replace('[#value]', val));
+
+                                    vis.states.bind(objValue.oid + '.val', function (e, newVal, oldVal) {
+                                        if (newVal !== oldVal) {
+                                            htmlContainer.html(objValue.html.replace('[#value]', newVal))
+                                        }
+                                    });
+                                });
+                            });
+                        } else {
+                            element = objValue.html;
+                        }
                     }
                 }
 
@@ -953,6 +975,7 @@ vis.binds.materialdesign.table = {
                 colorSwitchTrack: obj.colorSwitchTrack,
                 colorSwitchTrue: obj.colorSwitchTrue,
                 colorSwitchHover: obj.colorSwitchHover,
+                colorSwitchHoverTrue: obj.colorSwitchHoverTrue,
                 labelColorFalse: obj.labelColorFalse,
                 labelColorTrue: obj.labelColorTrue,
                 lockEnabled: obj.lockEnabled,
@@ -1003,6 +1026,7 @@ vis.binds.materialdesign.table = {
                 inputMask: obj.inputMask,
                 inputMaxLength: obj.inputMaxLength,
                 inputLayout: obj.inputLayout,
+                inputAlignment: obj.inputAlignment,                
                 inputLayoutBackgroundColor: obj.inputLayoutBackgroundColor,
                 inputLayoutBackgroundColorHover: obj.inputLayoutBackgroundColorHover,
                 inputLayoutBackgroundColorSelected: obj.inputLayoutBackgroundColorSelected,
@@ -1013,7 +1037,7 @@ vis.binds.materialdesign.table = {
                 inputTextFontSize: obj.inputTextFontSize,
                 inputTextColor: obj.inputTextColor,
                 inputLabelText: obj.inputLabelText,
-                inputLabelColor: obj.inputLabelColor,
+                inputLabelColor: obj.inputLabelColor,                
                 inputLabelColorSelected: obj.inputLabelColorSelected,
                 inputLabelFontFamily: obj.inputLabelFontFamily,
                 inputLabelFontSize: obj.inputLabelFontSize,
@@ -1058,6 +1082,7 @@ vis.binds.materialdesign.table = {
                 inputType: obj.inputType,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
                 inputLayout: obj.inputLayout,
+                inputAlignment: obj.inputAlignment,
                 inputLayoutBackgroundColor: obj.inputLayoutBackgroundColor,
                 inputLayoutBackgroundColorHover: obj.inputLayoutBackgroundColorHover,
                 inputLayoutBackgroundColorSelected: obj.inputLayoutBackgroundColorSelected,
@@ -1159,6 +1184,7 @@ vis.binds.materialdesign.table = {
                 inputType: obj.inputType,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
                 inputLayout: obj.inputLayout,
+                inputAlignment: obj.inputAlignment,
                 inputLayoutBackgroundColor: obj.inputLayoutBackgroundColor,
                 inputLayoutBackgroundColorHover: obj.inputLayoutBackgroundColorHover,
                 inputLayoutBackgroundColorSelected: obj.inputLayoutBackgroundColorSelected,
@@ -1260,7 +1286,7 @@ vis.binds.materialdesign.table = {
             }
 
         } else if (obj.type === 'html') {
-            return obj.html;
+            return obj;
         }
     },
     sortByKey: function (array, key, sortASC) {

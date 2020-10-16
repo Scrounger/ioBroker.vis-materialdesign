@@ -16,7 +16,9 @@ vis.binds.materialdesign.switch = {
 
             let labelPosition = '';
             if (data.labelPosition === 'left') {
-                labelPosition = 'mdc-form-field--align-end'
+                labelPosition = 'mdc-form-field mdc-form-field--align-end'
+            } else if (data.labelPosition === 'right') {
+                labelPosition = 'mdc-form-field'
             }
 
             let element = `
@@ -28,10 +30,10 @@ vis.binds.materialdesign.switch = {
                     </div>
                 </div>
             </div>
-            <label id="label" for="materialdesign-checkbox-switch-${data.wid}" style="width: 100%; cursor: pointer; ${labelClickActive}">Checkbox 1</label>
+            ${data.labelPosition !== 'off' ? `<label id="label" for="materialdesign-checkbox-switch-${data.wid}" style="width: 100%; cursor: pointer; ${labelClickActive}">Checkbox 1</label>` : ''}
             `
 
-            return { myswitch: element, style: labelPosition };
+            return { myswitch: element, labelPosition: labelPosition };
 
         } catch (ex) {
             console.error(`[Switch - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
@@ -61,6 +63,7 @@ vis.binds.materialdesign.switch = {
             mdcSwitch.disabled = myMdwHelper.getBooleanFromData(data.readOnly, false);
 
             switchElement.style.setProperty("--materialdesign-color-switch-on", myMdwHelper.getValueFromData(data.colorSwitchTrue, ''));
+            switchElement.style.setProperty("--materialdesign-color-switch-on-hover", myMdwHelper.getValueFromData(data.colorSwitchHoverTrue, myMdwHelper.getValueFromData(data.colorSwitchTrue, '')));
             switchElement.style.setProperty("--materialdesign-color-switch-off", myMdwHelper.getValueFromData(data.colorSwitchThumb, ''));
             switchElement.style.setProperty("--materialdesign-color-switch-track", myMdwHelper.getValueFromData(data.colorSwitchTrack, ''));
             switchElement.style.setProperty("--materialdesign-color-switch-off-hover", myMdwHelper.getValueFromData(data.colorSwitchHover, ''));

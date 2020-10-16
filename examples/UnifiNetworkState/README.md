@@ -78,7 +78,7 @@ Mit diesem Skript wird ein json string erzeugt mit dem Status aller Netzwerk Ger
 
 ### Changelog
 
-##### 2.0.0 (TBD.2020)
+##### 2.0.0 (16.10.2020)
 * (cdellasanta) Translated code and comments from to english
 * (cdellasanta) Code cleanup
 * (cdellasanta) Multi-language support for displayed texts
@@ -87,7 +87,7 @@ Mit diesem Skript wird ein json string erzeugt mit dem Status aller Netzwerk Ger
 * (cdellasanta) Optional: Additional "Display" view for listing and content display (iFrame) of devices with "links" 
 
 ##### 1.1.0 (15.09.2020)
-* (web4wasch) adaptions for unifi-adapter 0.5.8
+* (web4wasch) Optimized for UniFi Adapter >= 0.5.0
 
 ##### 1.0.0 (05.03.2020)
 * (Scrounger) intial release
