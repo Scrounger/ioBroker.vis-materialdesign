@@ -10133,5 +10133,77 @@ systemDictionary = {
         "es": "vista de día: encabezado",
         "pl": "widok dnia: nagłówek",
         "zh-cn": "日视图：标题"
+    },
+    "itemGaps": {
+        "en": "distance between items",
+        "de": "Abstand zwischen Elementen",
+        "ru": "расстояние между предметами",
+        "pt": "distância entre itens",
+        "nl": "afstand tussen items",
+        "fr": "distance entre les éléments",
+        "it": "distanza tra gli elementi",
+        "es": "distancia entre elementos",
+        "pl": "odległość między przedmiotami",
+        "zh-cn": "项目之间的距离"
+    },
+    "itemLayout": {
+        "en": "layout of elements",
+        "de": "Layout der Elemente",
+        "ru": "расположение элементов",
+        "pt": "layout de elementos",
+        "nl": "lay-out van elementen",
+        "fr": "disposition des éléments",
+        "it": "disposizione degli elementi",
+        "es": "diseño de elementos",
+        "pl": "układ elementów",
+        "zh-cn": "元素布局"
+    },
+    "buttonLayout": {
+        "en": "layout of buttons",
+        "de": "Layout der Schaltflächen",
+        "ru": "расположение кнопок",
+        "pt": "layout dos botões",
+        "nl": "lay-out van knoppen",
+        "fr": "disposition des boutons",
+        "it": "disposizione dei pulsanti",
+        "es": "diseño de botones",
+        "pl": "układ przycisków",
+        "zh-cn": "按钮的布局"
+    },
+    "round": {
+        "en": "round",
+        "de": "Rund",
+        "ru": "круглый",
+        "pt": "volta",
+        "nl": "ronde",
+        "fr": "rond",
+        "it": "il giro",
+        "es": "redondo",
+        "pl": "okrągły",
+        "zh-cn": "回合"
+    },
+    "square": {
+        "en": "square",
+        "de": "rechteckig",
+        "ru": "площадь",
+        "pt": "quadrado",
+        "nl": "vierkant",
+        "fr": "carré",
+        "it": "piazza",
+        "es": "cuadrado",
+        "pl": "kwadrat",
+        "zh-cn": "广场"
+    },
+    "full": {
+        "en": "complete",
+        "de": "Komplett",
+        "ru": "полный",
+        "pt": "completo",
+        "nl": "compleet",
+        "fr": "Achevée",
+        "it": "completare",
+        "es": "completar",
+        "pl": "kompletny",
+        "zh-cn": "完成"
     }
 };
