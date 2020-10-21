@@ -29,7 +29,7 @@
     "chart.js": "^2.9.3",
     "chartjs-plugin-datalabels": "^0.7.0",
     "material-components-web": "^4.0.0",
-    "@thomasloven/round-slider": "0.5.0",
+    "@thomasloven/round-slider": "^0.5.2",
     "vue": "^2.6.12",
     "vuetify": "^2.3.10",
     "vue-the-mask": "0.11.1",
