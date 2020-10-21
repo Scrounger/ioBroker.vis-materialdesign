@@ -276,8 +276,9 @@ vis.binds.materialdesign.iconlist =
                             showTitleSection = '';
                         }
 
+
                         $this.css('overflow', 'visible');
-                        $this.append(`<div class="materialdesign-html-card mdc-card">
+                        $this.append(`<div class="materialdesign-html-card mdc-card" style="margin-left: ${myMdwHelper.getNumberFromData(data.itemGaps, 4) + 'px'}; margin-right: ${myMdwHelper.getNumberFromData(data.itemGaps, 4) + 'px'}">
                                         <div class="materialdesign-html-card card-title-section" style="${showTitleSection}">
                                             <div class="materialdesign-html-card card-title ${titleFontSize.class}" style="${titleFontSize.style}">${data.title}</div>
                                         </div>
