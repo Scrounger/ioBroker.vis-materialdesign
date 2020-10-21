@@ -15,7 +15,7 @@ Mit diesem Skript wird ein json string erzeugt mit dem Status aller Netzwerk Ger
 
 ###### Folgende Adapter werden benötigt:
 * [Material Design Widgets](https://github.com/Scrounger/ioBroker.vis-materialdesign) >= 0.2.66
-* [UniFi Adapter](https://github.com/iobroker-community-adapters/ioBroker.unifi) == 0.3.1
+* [UniFi Adapter](https://github.com/iobroker-community-adapters/ioBroker.unifi) >= 0.5.8
 
 ###### Folgende NPM Module und Einstellung im Javascript Adapter:
 * moment
@@ -31,6 +31,7 @@ Mit diesem Skript wird ein json string erzeugt mit dem Status aller Netzwerk Ger
 1. [Skript herunterladen](UnifiNetworkState.js) und unter Skripte anlegen
 1. Skript Einstellungen anpassen, im oberen Bereich des Skriptes gibt es verschiedene Einstellungsmöglichkeiten inkl. derer Beschreibung.
 1. [View importieren](UnifiNetworkStateView.json) 
+1. (Optional) [Geräte View importieren](DevicesView.json)
 1. Bilder (pfad ist in den Skript Einstellungen zu setzen) und Link Funktion (das es als Button funktioniert) werden im Unifi Controller konfiguriert:
 
     ![UniFi Device notes](img/unifi-note.png) 
@@ -40,6 +41,7 @@ Mit diesem Skript wird ein json string erzeugt mit dem Status aller Netzwerk Ger
     ```json
     {
         "image": "shelly_plug_s",
+        "icon": "floor-lamp",   
         "link": "http"
     }
     ```
@@ -50,6 +52,8 @@ Mit diesem Skript wird ein json string erzeugt mit dem Status aller Netzwerk Ger
     
     Wenn ihr http oder https angebt, dann wird durch das skript automatisch die IP dran gehängt, z.B. bei Shelly, Sonoff sehr praktisch.
     
+    Optional: für die Geräte View könnt ihr einen "icon" aus den [material design icons](https://materialdesignicons.com>) wählen _(Hinweis: nicht alle sind im [Material Design Widgets](https://github.com/Scrounger/ioBroker.vis-materialdesign) enthalten)_
+
     Wenn ihr nur ein Image haben wollt, dann sieht der json string so aus:
   
     ```json
@@ -74,8 +78,16 @@ Mit diesem Skript wird ein json string erzeugt mit dem Status aller Netzwerk Ger
 
 ### Changelog
 
-### 2.0.0 (16.10.2020)
-* (cdellasanta) Optimized for UniFi Adapter >= 0.5.0
+##### 2.0.0 (16.10.2020)
+* (cdellasanta) Translated code and comments to english
+* (cdellasanta) Code cleanup
+* (cdellasanta) Multi-language support for displayed texts
+* (cdellasanta) States auto creation
+* (cdellasanta) Use `moment.fromNow()` for online/offline intervals
+* (cdellasanta) Optional: Additional "Display" view for listing and content display (iFrame) of devices with "links" 
 
-### 1.0.0 (05.03.2020)
+##### 1.1.0 (15.09.2020)
+* (web4wasch) Optimized for UniFi Adapter >= 0.5.0
+
+##### 1.0.0 (05.03.2020)
 * (Scrounger) intial release
