@@ -260,7 +260,7 @@ vis.binds.materialdesign.iconlist =
                 if (!replace) {
                     if (!myMdwHelper.getBooleanFromData(data.cardUse, false)) {
                         $this.append(`
-                            <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap; width: 100%;"' : ''}>
+                            <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap;"' : ''}>
                                 ${widgetElement}
                             </div>
                         `);
@@ -278,13 +278,13 @@ vis.binds.materialdesign.iconlist =
 
 
                         $this.css('overflow', 'visible');
-                        $this.append(`<div class="materialdesign-html-card mdc-card" style="margin-left: ${myMdwHelper.getNumberFromData(data.itemGaps, 4) + 'px'}; margin-right: ${myMdwHelper.getNumberFromData(data.itemGaps, 4) + 'px'}">
+                        $this.append(`<div class="materialdesign-html-card mdc-card">
                                         <div class="materialdesign-html-card card-title-section" style="${showTitleSection}">
                                             <div class="materialdesign-html-card card-title ${titleFontSize.class}" style="${titleFontSize.style}">${data.title}</div>
                                         </div>
                                         <div class="materialdesign-html-card card-text-section iconlist">
                                             <div class="materialdesign-html-card">
-                                                <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap; width: 100%;"' : ''}>
+                                                <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap;"' : ''}>
                                                     ${widgetElement}
                                                 </div>
                                             </div>
@@ -293,7 +293,7 @@ vis.binds.materialdesign.iconlist =
                     }
                 } else {
                     $this.find(`.${containerClass}`).replaceWith(`
-                        <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap; width: 100%;"' : ''}>
+                        <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap;"' : ''}>
                             ${widgetElement}
                         </div>              
                     `);

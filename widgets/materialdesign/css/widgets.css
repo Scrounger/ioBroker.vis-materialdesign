@@ -987,7 +987,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 .materialdesign-widget .materialdesign-html-card.card-text-section.iconlist{
   visibility: visible;
   box-sizing: border-box;
-  padding: 0px;
+  padding: 1px;
   background-color: var(--materialdesign-color-card-text-section-background);
 }
 
@@ -1865,71 +1865,74 @@ svg.materialdesign-widget .materialdesign-button__icon {
 }
 
 .materialdesign-grid .col-1 {
-  flex: 0 0 calc(8.3333333333% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(8.3333333333% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(8.3333333333% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(8.3333333333% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-2 {
-  flex: 0 0 calc(16.6666666667% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(16.6666666667% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(16.6666666667% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(16.6666666667% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-3 {
-  flex: 0 0 calc(25% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(25% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(25% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(25% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-4 {
-  flex: 0 0 calc(33.3333333333% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(33.3333333333% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(33.3333333333% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(33.3333333333% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-5 {
-  flex: 0 0 calc(41.6666666667% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(41.6666666667% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(41.6666666667% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(41.6666666667% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-6 {
-  flex: 0 0 calc(50% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(50% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(50% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(50% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-7 {
-  flex: 0 0 calc(58.3333333333% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(58.3333333333% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(58.3333333333% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(58.3333333333% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-8 {
-  flex: 0 0 calc(66.6666666667% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(66.6666666667% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(66.6666666667% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(66.6666666667% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-9 {
-  flex: 0 0 calc(75% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(75% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(75% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(75% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-10 {
-  flex: 0 0 calc(83.3333333333% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(83.3333333333% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(83.3333333333% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(83.3333333333% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-11 {
-  flex: 0 0 calc(91.6666666667% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(91.6666666667% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(91.6666666667% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(91.6666666667% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-12 {
-  flex: 0 0 calc(100% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(100% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(100% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(100% - 2 * var(--materialdesign-grid-gaps));
 }
 
 /* iconList */
+.materialdesign-icon-list {
+  overflow: visible !important;
+}
+
 .materialdesign-icon-list-container {
   display: flex;
   /* justify-content: center; */
-  padding: calc(-1 * var(--materialdesign-icon-list-items-gaps) + 2px);
-  width: 100%;
+  margin: calc(-1 * var(--materialdesign-icon-list-items-gaps));
 }
 
 .materialdesign-icon-list-item {
@@ -1939,7 +1942,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: var(--materialdesign-icon-list-items-gaps);
+  margin: var(--materialdesign-icon-list-items-gaps);  
 }
 
 .materialdesign-icon-list-item-standard {
