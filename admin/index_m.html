@@ -1,0 +1,116 @@
+<html>
+
+<head>
+
+	<!-- Load ioBroker scripts and styles-->
+	<link rel="stylesheet" type="text/css" href="../../css/adapter.css" />
+	<link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
+
+	<script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+
+	<script type="text/javascript" src="../../lib/js/materialize.js"></script>
+	<script type="text/javascript" src="../../lib/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../../lib/js/selectID.js"></script>
+
+	<script type="text/javascript" src="../../js/translate.js"></script>
+	<script type="text/javascript" src="../../js/adapter-settings.js"></script>
+
+	<!-- Load our own files -->
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<script type="text/javascript" src="words.js"></script>
+	<script type="text/javascript" src="index_m.js"></script>
+</head>
+
+<style>
+	.m .tabs .tab a:hover {
+		border-bottom: 2px solid #46a0e9 !important;
+		font-weight: bold !important;
+	}
+
+	/* Header section */
+	#header-area {
+		margin-top: 4px;
+		margin-bottom: 1px;
+		background: white;
+	}
+
+	#header-area #header-logo-title .logo {
+		float: left;
+		margin-right: 10px;
+	}
+
+	#header-area #header-logo-title p {
+		line-height: normal !important;
+		margin: 0 !important;
+		padding: 8px 0 0 8px;
+	}
+
+	#header-area #header-logo-title p>span.h-title {
+		font-size: 2em !important;
+		font-weight: bold !important;
+	}
+
+	#header-area #header-logo-title p>span.h-sub-title {
+		font-size: 1.1em !important;
+		font-style: italic;
+		color: #2196f3;
+	}
+</style>
+
+<body>
+
+	<div class="m adapter-container">
+		<div class="row">
+			<div class="col s12">
+				<ul class="tabs" style="height: auto;">
+					<li class="tab col s6 l2"><a href="#tab_general" class="translate active">general</a></li>
+					<li class="tab col s6 l2 myColorsTab"><a href="#tab_colors" class="translate">colors</a>
+					</li>
+				</ul>
+			</div>
+			<div id="tab_general" class="col s12 page">
+				<div class="col s12">
+					<div id="header-area" class="row">
+						<div id="header-logo-title" class="col s6">
+							<img class="logo" src="vis-materialdesign.png">
+							<p>
+								<span class="h-title">Material Design Widgets</span><br>
+								<span class="h-sub-title translate">Style Editor for your Widgets</span>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<section>
+							<div class="col s12">
+								<div class="col s12 m12 l12 input-field">
+									<input type="checkbox" class="value" id="generateGlobalScript" />
+									<label for="generateGlobalScript" class="translate">create global script</label>
+								</div>
+							</div>
+							<div class="col s12">
+								<div class="col s6 m6 l6 input-field">
+									<input type="text" class="value" id="scriptName" />
+									<label for="scriptName" class="translate">script name</label>
+								</div>
+								<div class="col s6 m6 l6 input-field">
+									<input type="text" class="value" id="variableName" />
+									<label for="variableName" class="translate">name of the variable</label>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+			<div id="tab_colors" class="col s12 page">
+				<section>
+					<div class="container_colorsTable">
+						<!-- dynamically creates table on evey change of the select values  -->
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

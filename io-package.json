@@ -291,7 +291,8 @@
         ],
         "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
         "onlyWWW": true,
-        "noConfig": true,
+        "noConfig": false,
+        "materialize": true,
         "singleton": true,
         "type": "visualization-widgets",
         "mode": "once",
@@ -300,6 +301,19 @@
         ]
     },
     "native": {
+        "scriptName": "MaterialDesignWidgetsStyles",
+        "variableName": "myMdwStyles",
+        "generateGlobalScript": false,
+        "colors": [
+            {
+                "name": "primary",
+                "value": "#44739e"
+            },
+            {
+                "name": "secondary",
+                "value": "gray"
+            }
+        ],
         "dependencies": [
             "basic"
         ]

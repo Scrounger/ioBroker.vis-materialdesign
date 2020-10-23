@@ -10205,5 +10205,53 @@ systemDictionary = {
         "es": "completar",
         "pl": "kompletny",
         "zh-cn": "完成"
+    },
+    "Style Editor for your Widgets": {
+        "en": "Style Editor for your Widgets",
+        "de": "Stileditor für Deine Widgets",
+        "ru": "Редактор стилей для ваших виджетов",
+        "pt": "Editor de estilo para seus widgets",
+        "nl": "Style Editor voor uw widgets",
+        "fr": "Éditeur de style pour vos widgets",
+        "it": "Editor di stile per i tuoi widget",
+        "es": "Editor de estilo para sus widgets",
+        "pl": "Edytor stylów dla Twoich widżetów",
+        "zh-cn": "小部件的样式编辑器"
+    },
+    "script name": {
+        "en": "script name",
+        "de": "Skriptname",
+        "ru": "Имя сценария",
+        "pt": "nome do script",
+        "nl": "scriptnaam",
+        "fr": "nom du script",
+        "it": "nome dello script",
+        "es": "nombre del guion",
+        "pl": "nazwa skryptu",
+        "zh-cn": "脚本名称"
+    },
+    "name of the variable": {
+        "en": "name of the variable",
+        "de": "Name der Variable",
+        "ru": "Имя переменной",
+        "pt": "nome da variável",
+        "nl": "naam van de variabele",
+        "fr": "nom de la variable",
+        "it": "nome della variabile",
+        "es": "nombre de la variable",
+        "pl": "nazwa zmiennej",
+        "zh-cn": "变量的名称"
+    },
+    "create global script": {
+        "en": "create global script",
+        "de": "globales Skript erstellen",
+        "ru": "создать глобальный скрипт",
+        "pt": "criar script global",
+        "nl": "maak een globaal script",
+        "fr": "créer un script global",
+        "it": "creare uno script globale",
+        "es": "crear script global",
+        "pl": "utwórz skrypt globalny",
+        "zh-cn": "创建全局脚本"
     }
 };
