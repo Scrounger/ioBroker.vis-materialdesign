@@ -43,14 +43,13 @@ function createColorsTable(data, onChange) {
     $('.container_colorsTable').empty();
 
     let element = `<div class="col s12" id="colors">
-                    <a class="btn-floating waves-effect waves-light blue table-button-add"><i
-                            class="material-icons">add</i></a>
                     <div class="table-values-div" style="margin-top: 10px;">
                         <table class="table-values" id="colorsTable">
                             <thead>
                                 <tr>
-                                    <th data-name="name" style="width: 15%;" class="translate" data-type="text">${_("Name")}</th>
-                                    <th data-name="value" style="width: 15%;" class="translate" data-type="text">${_("Value")}</th>
+                                    <th data-name="name" style="width: 30%;" class="translate" data-type="text">${_("Name")}</th>
+                                    <th data-name="pickr" style="width: 40px;" class="translate" data-type="text"></th>
+                                    <th data-name="value" style="width: auto;" class="translate" data-type="text">${_("Value")}</th>
                                 </tr>
                             </thead>
                         </table>
@@ -62,6 +61,59 @@ function createColorsTable(data, onChange) {
     values2table('colors', data, onChange);
 
     $('[data-name=name]').prop('disabled', true);
+
+    $('input[data-name=pickr]').each(function (index) {
+        let pick = Pickr.create({
+            el: this,
+            theme: 'monolith', // or 'monolith', or 'nano'
+            default: data[index].value,     // init color
+
+            swatches: [
+                'white',
+                'blue',
+                'magenta',
+                'red',
+                'yellow',
+                'green',
+                'cyan',
+                'black'
+            ],
+            outputPrecision: 0,
+            comparison: false,
+
+            components: {
+
+                // Main components
+                preview: true,
+                opacity: true,
+                hue: true,
+
+                // Input / output Options
+                interaction: {
+                    hex: true,
+                    rgba: true,
+                    input: true,
+                    cancel: true,
+                }
+            },
+            i18n: {
+                'btn:cancel': _('back')
+            }
+        }).on('hide', instance => {
+            if (instance._representation === 'HEXA') {
+                $(`input[data-index=${index}][data-name="value"]`).val(instance._color.toHEXA().toString());
+            } else {
+                $(`input[data-index=${index}][data-name="value"]`).val(instance._color.toRGBA().toString(0));
+            }
+
+            onChange();
+        });
+    });
+
+    $('#colorsTable .values-buttons[data-command="edit"]').on('click', function () {
+        let rowNum = $(this).data('index');
+        console.warn(rowNum);
+    });
 }
 
 function eventsHandler(onChange) {

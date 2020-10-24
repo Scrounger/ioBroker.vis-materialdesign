@@ -297,7 +297,8 @@
         "type": "visualization-widgets",
         "mode": "once",
         "dependencies": [
-            "vis"
+            "vis",
+            "vis-google-fonts"
         ]
     },
     "native": {
