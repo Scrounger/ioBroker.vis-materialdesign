@@ -104,11 +104,13 @@ vis.binds.materialdesign.helper = {
                 if (dataValue === undefined || dataValue === null || dataValue === '') {
                     return nullValue;
                 } else {
-                    if (vis.editMode && dataValue.startsWith('{') && dataValue.endsWith("}")) {
-                        return vis.states.attr(dataValue.substring(1, dataValue.length - 1) + '.val')
-                    } else {
-                        return prepand + dataValue + append
+                    if (vis.editMode) {
+                        let binding = vis.binds.materialdesign.helper.extractBindingVisEditor(dataValue)
+                        if (binding && binding.length === 1) {
+                            return vis.states.attr(binding[0].visOid);
+                        }
                     }
+                    return prepand + dataValue + append
                 }
             }
         } catch (err) {
@@ -564,6 +566,20 @@ vis.binds.materialdesign.helper = {
                 }
             })
         }
+    },
+    extractBindingVisEditor(format) {
+        if (!format) return null;
+        if (vis.bindingsCache[format]) return JSON.parse(JSON.stringify(vis.bindingsCache[format]));
+
+        var result = vis.extractBinding(format);
+
+        // cache bindings
+        if (result) {
+            vis.bindingsCache = vis.bindingsCache || {};
+            vis.bindingsCache[format] = JSON.parse(JSON.stringify(result));
+        }
+
+        return result;
     },
     generateUuidv4() {
         return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
