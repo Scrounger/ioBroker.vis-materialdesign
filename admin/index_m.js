@@ -39,66 +39,96 @@ function load(settings, onChange) {
 
 //#region Tab Colors
 async function createColorsTab(onChange, settings) {
-    colors = settings.colors || [];
+    try {
+        colors = settings.colors || [];
+        let defaultColorsButtons = "";
 
-    // check if all objects exist in settings
-    let jsonList = await getJsonObjects('colors');
-    for (var i = 0; i <= jsonList.length - 1; i++) {
-        if (!colors.find(o => o.id === jsonList[i].id)) {
-            // not exist -> add to settings list
-            colors.splice(i, 0, jsonList[i]);
-            onChange();
+        // check if defaultColors exist and number are equals
+        let jsonDefaultColors = await getJsonObjects('defaultColors');
+        if (settings.defaultColors.length === 0) {
+            defaultColors = jsonDefaultColors;
+        } else if (settings.defaultColors.length !== jsonDefaultColors.length) {
+            for (var i = 0; i <= jsonDefaultColors.length - 1; i++) {
+                defaultColors[i] = settings.defaultColors[i] || jsonDefaultColors[i];
+            }
+        } else {
+            defaultColors = settings.defaultColors;
         }
-    }
 
-    for (const color of colors) {
-        color.desc = _(color.desc);
-    }
+        // check if all objects exist in settings
+        let jsonList = await getJsonObjects('colors');
+        for (var i = 0; i <= jsonList.length - 1; i++) {
+            if (!colors.find(o => o.id === jsonList[i].id)) {
+                // not exist -> add to settings list
+                colors.splice(i, 0, jsonList[i]);
+                onChange();
+            }
+        }
 
-    for (var i = 1; i <= 5; i++) {
-        defaultColors[i] = settings[`color${i}`];
-        createColorPicker(`#colorPicker${i}`, settings[`color${i}`], $(`#color${i}`), onChange, i);
+        for (const color of colors) {
+            color.desc = _(color.desc);
+        }
 
-        $(`#color${i}`).change(function () {
-            // fires only on key enter or lost focus -> change colorPicker
-            let inputEl = $(this);
-            let index = inputEl.attr('id').replace('color', '');
+        for (var i = 0; i <= defaultColors.length - 1; i++) {
+            defaultColorsButtons += `${i} `;
 
-            defaultColors[index] = inputEl.val();
+            // defaultColors[i] = settings[`color${i}`];
+            $('.defaultColorsContainer').append(`
+                <div class="col s12 m6 l4 colorPickerContainer" id="colorPickerContainer${i}">
+                    <label for="color${i}" id="colorInput${i}" class="translate colorPickerLabel">${_('defaultColor')} ${i}</label>
+                    <div class="colorPicker" id="colorPicker${i}"></div>
+                    <input type="text" class="value colorPickerInput" id="color${i}" value="${defaultColors[i]}" />
+                </div>`)
 
-            let pickrEl = $(`#colorPickerContainer${index} .pickr`);
-            pickrEl.empty();
-            let pickr = createColorPicker(pickrEl.get(0), inputEl.val(), inputEl, onChange, index);
+            console.log(defaultColors[i]);
 
-            setTimeout(function () {
-                if (!inputEl.val().startsWith('#') && !inputEl.val().startsWith('rgb')) {
-                    // convert color names to hex
-                    let convertedColor = pickr._color.toHEXA().toString();
-                    inputEl.val(convertedColor);
-                    defaultColors[index] = convertedColor;
-                }
+            console.log($(`#colorPicker${i}`));
+            createColorPicker(`#colorPicker${i}`, defaultColors[i], $(`#color${i}`), onChange, i);
 
-                colors = table2values('colors');
-                for (var d in colors) {
-                    if (colors[d].defaultColor === index) {
-                        colors[d].value = inputEl.val();
+            $(`#color${i}`).change(function () {
+                // fires only on key enter or lost focus -> change colorPicker
+                let inputEl = $(this);
+                let index = inputEl.attr('id').replace('color', '');
+
+                defaultColors[index] = inputEl.val();
+
+                let pickrEl = $(`#colorPickerContainer${index} .pickr`);
+                pickrEl.empty();
+                let pickr = createColorPicker(pickrEl.get(0), inputEl.val(), inputEl, onChange, index);
+
+                setTimeout(function () {
+                    if (!inputEl.val().startsWith('#') && !inputEl.val().startsWith('rgb')) {
+                        // convert color names to hex
+                        let convertedColor = pickr._color.toHEXA().toString();
+                        inputEl.val(convertedColor);
+                        defaultColors[index] = convertedColor;
                     }
-                }
 
-                createColorsTable(colors, onChange);
-            }, 100);
-        });
+                    colors = table2values('colors');
+                    for (var d in colors) {
+                        if (colors[d].defaultColor === index) {
+                            colors[d].value = inputEl.val();
+                        }
+                    }
+
+                    createColorsTable(colors, onChange, defaultColorsButtons);
+                }, 100);
+            });
+        }
+
+        createColorsTable(colors, onChange, defaultColorsButtons);
+        eventsHandlerColorsTab(onChange, defaultColorsButtons);
+
+    } catch (err) {
+        console.error(`[createColorsTab] error: ${err.message}, stack: ${err.stack}`);
     }
-
-    createColorsTable(colors, onChange);
-
-    eventsHandlerColorsTab(onChange);
 }
 
-function createColorsTable(data, onChange) {
-    $('.container_colorsTable').empty();
+function createColorsTable(data, onChange, defaultColorsButtons) {
+    try {
+        $('.container_colorsTable').empty();
 
-    let element = `<div class="col s12" id="colors">
+        let element = `<div class="col s12" id="colors">
                     <div class="table-values-div" style="margin-top: 10px;">
                         <table class="table-values" id="colorsTable">
                             <thead>
@@ -107,7 +137,7 @@ function createColorsTable(data, onChange) {
                                     <th data-name="id" style="width: 15%;" class="translate" data-type="text">${_("datapoint")}</th>
                                     <th data-name="pickr" style="width: 30px;" data-style="text-align: center;" class="translate" data-type="text"></th>
                                     <th data-name="value" style="width: 160px;" data-style="text-align: left;" class="translate" data-type="text">${_("color")}</th>
-                                    <th style="width: 160px; text-align: center;" class="header" data-buttons="1 2 3 4 5">${_("defaultColor")}</th>
+                                    <th style="width: 1px; text-align: center;" class="header" data-buttons="${defaultColorsButtons.trim()}">${_("defaultColor")}</th>
                                     <th data-name="desc" style="width: auto;" class="translate" data-type="text">${_("description")}</th>
                                     <th data-name="defaultColor" style="display: none;" class="translate" data-type="text">${_("defaultColor")}</th>
                                 </tr>
@@ -116,72 +146,76 @@ function createColorsTable(data, onChange) {
                     </div>
                 </div>`
 
-    $('.container_colorsTable').html(element);
+        $('.container_colorsTable').html(element);
 
-    values2table('colors', data, onChange);
+        values2table('colors', data, onChange);
 
-    // Input readonly machen
-    $('#colorsTable [data-name=id]').prop('readOnly', true);
-    $('#colorsTable [data-name=desc]').prop('readOnly', true);
+        // Input readonly machen
+        $('#colorsTable [data-name=id]').prop('readOnly', true);
+        $('#colorsTable [data-name=desc]').prop('readOnly', true);
 
-    // defaultcolor ausblenden
-    $('#colorsTable [data-name=defaultColor]').closest('td').css('display', 'none');
+        // defaultcolor ausblenden
+        $('#colorsTable [data-name=defaultColor]').closest('td').css('display', 'none');
 
-    $('#colorsTable input[data-name=pickr]').each(function (i) {
-        // create ColorPicker for rows & 
-        let inpuEl = $(`#colorsTable input[data-index=${i}][data-name="value"]`);
-        createColorPicker(this, data[i].value, inpuEl, onChange);
+        $('#colorsTable input[data-name=pickr]').each(function (i) {
+            // create ColorPicker for rows & 
+            let inpuEl = $(`#colorsTable input[data-index=${i}][data-name="value"]`);
+            createColorPicker(this, data[i].value, inpuEl, onChange);
 
-        setTableSelectedDefaultColor(i, data[i].defaultColor);
-    });
-
-    for (var i = 1; i <= 5; i++) {
-        // Button Layout & Click event
-        let btn = $(`#colorsTable [data-command="${i}"]`);
-        btn.find('.material-icons').each(function (index) {
-            $(this).text(i.toString()).removeClass('material-icons');
-
+            setTableSelectedDefaultColor(i, data[i].defaultColor);
         });
 
-        btn.on('click', function () {
-            // apply default colors to row
-            let rowNum = $(this).data('index');
-            let btnNum = $(this).data('command');;
+        for (var i = 0; i <= defaultColors.length - 1; i++) {
+            // Button Layout & Click event
+            let btn = $(`#colorsTable [data-command="${i}"]`);
+            btn.find('.material-icons').each(function (index) {
+                $(this).text(i.toString()).removeClass('material-icons');
 
-            // We have to recreate the color picker
+            });
+
+            btn.on('click', function () {
+                // apply default colors to row
+                let rowNum = $(this).data('index');
+                let btnNum = $(this).data('command');;
+
+                // We have to recreate the color picker
+                let pickrEl = $(`#colorsTable tr[data-index=${rowNum}] .pickr`);
+                let inpuEl = $(`#colorsTable input[data-index=${rowNum}][data-name="value"]`);
+                pickrEl.empty();
+                createColorPicker(pickrEl.get(0), defaultColors[btnNum], inpuEl, onChange);
+                inpuEl.val(defaultColors[btnNum]);
+
+                setTableSelectedDefaultColor(rowNum, btnNum);
+
+                onChange();
+            })
+        }
+
+        $('#colorsTable input[data-name=value]').change(function () {
+            // fires only on key enter or lost focus -> change colorPicker
+            let inputEl = $(this);
+            let rowNum = inputEl.data('index');
+
             let pickrEl = $(`#colorsTable tr[data-index=${rowNum}] .pickr`);
-            let inpuEl = $(`#colorsTable input[data-index=${rowNum}][data-name="value"]`);
             pickrEl.empty();
-            createColorPicker(pickrEl.get(0), defaultColors[btnNum], inpuEl, onChange);
-            inpuEl.val(defaultColors[btnNum]);
 
-            setTableSelectedDefaultColor(rowNum, btnNum);
+            let pickr = createColorPicker(pickrEl.get(0), inputEl.val(), inputEl, onChange);
 
-            onChange();
-        })
+            setTimeout(function () {
+                if (!inputEl.val().startsWith('#') && !inputEl.val().startsWith('rgb')) {
+                    // convert color names to hex
+                    let convertedColor = pickr._color.toHEXA().toString();
+                    inputEl.val(convertedColor);
+                }
+            }, 100);
+
+            $(`#colorsTable input[data-index=${rowNum}][data-name="defaultColor"]`).val('');
+            $(`#colorsTable .values-buttons[data-index=${rowNum}]`).css('background-color', '#2196f3');
+        });
+
+    } catch (err) {
+        console.error(`[createColorsTable] error: ${err.message}, stack: ${err.stack}`);
     }
-
-    $('#colorsTable input[data-name=value]').change(function () {
-        // fires only on key enter or lost focus -> change colorPicker
-        let inputEl = $(this);
-        let rowNum = inputEl.data('index');
-
-        let pickrEl = $(`#colorsTable tr[data-index=${rowNum}] .pickr`);
-        pickrEl.empty();
-
-        let pickr = createColorPicker(pickrEl.get(0), inputEl.val(), inputEl, onChange);
-
-        setTimeout(function () {
-            if (!inputEl.val().startsWith('#') && !inputEl.val().startsWith('rgb')) {
-                // convert color names to hex
-                let convertedColor = pickr._color.toHEXA().toString();
-                inputEl.val(convertedColor);
-            }
-        }, 100);
-
-        $(`#colorsTable input[data-index=${rowNum}][data-name="defaultColor"]`).val('');
-        $(`#colorsTable .values-buttons[data-index=${rowNum}]`).css('background-color', '#2196f3');
-    });
 }
 
 function createColorPicker(el, color, inputEl, onChange, defaultColorIndex = 0) {
@@ -250,12 +284,12 @@ function setTableSelectedDefaultColor(rowNum, btnNum) {
     $(`#colorsTable .values-buttons[data-index=${rowNum}][data-command="${btnNum}"]`).css('background-color', 'green');
 }
 
-function eventsHandlerColorsTab(onChange) {
+function eventsHandlerColorsTab(onChange, defaultColorsButtons) {
     $('.myColorsTab').on('click', function () {
         //recreate Table on Tab click -> dynamically create select options
         colors = table2values('colors');
 
-        createColorsTable(colors, onChange);
+        createColorsTable(colors, onChange, defaultColorsButtons);
     });
 
     $('#resetColors').on('click', function () {
@@ -266,7 +300,6 @@ function eventsHandlerColorsTab(onChange) {
         });
     });
 }
-
 //#endregion
 
 function eventsHandler(onChange) {
@@ -300,6 +333,9 @@ function save(callback) {
 
     colors = table2values('colors');
     obj.colors = colors;
+
+
+    obj.defaultColors = defaultColors;
 
     storeStates();
 

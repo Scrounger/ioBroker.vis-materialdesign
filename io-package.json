@@ -305,12 +305,8 @@
         "scriptName": "MaterialDesignWidgetsStyles",
         "variableName": "myMdwStyles",
         "generateGlobalScript": false,
-        "color1": "#44739e",
-        "color2": "#808080",
-        "color3": "#FFFFFF",
-        "color4": "rgba(0, 0, 0, 0.54)",
-        "color5": "#B22222",
         "colors": [],
+        "defaultColors": [],
         "dependencies": [
             "basic"
         ]
