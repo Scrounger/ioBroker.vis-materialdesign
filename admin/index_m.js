@@ -56,11 +56,11 @@ async function createColorsTab(onChange, settings) {
         }
 
         // check if all objects exist in settings
-        let jsonList = await getJsonObjects('colors');
-        for (var i = 0; i <= jsonList.length - 1; i++) {
-            if (!colors.find(o => o.id === jsonList[i].id)) {
+        let jsonColorList = await getJsonObjects('colors');
+        for (var i = 0; i <= jsonColorList.length - 1; i++) {
+            if (!colors.find(o => o.id === jsonColorList[i].id)) {
                 // not exist -> add to settings list
-                colors.splice(i, 0, jsonList[i]);
+                colors.splice(i, 0, jsonColorList[i]);
                 onChange();
             }
         }
@@ -80,9 +80,6 @@ async function createColorsTab(onChange, settings) {
                     <input type="text" class="value colorPickerInput" id="color${i}" value="${defaultColors[i]}" />
                 </div>`)
 
-            console.log(defaultColors[i]);
-
-            console.log($(`#colorPicker${i}`));
             createColorPicker(`#colorPicker${i}`, defaultColors[i], $(`#color${i}`), onChange, i);
 
             $(`#color${i}`).change(function () {
@@ -292,10 +289,29 @@ function eventsHandlerColorsTab(onChange, defaultColorsButtons) {
         createColorsTable(colors, onChange, defaultColorsButtons);
     });
 
+
     $('#resetColors').on('click', function () {
-        confirmMessage(_('After the script has been generated, the javascript adapter will be restarted!<br><br><br>Do you want to continue?'), _('attention'), null, [_('Cancel'), _('OK')], function (result) {
+        confirmMessage(_('Do you want to restore the default colors?'), _('attention'), null, [_('Cancel'), _('OK')], async function (result) {
             if (result === 1) {
 
+                // reset defaultColors
+                let jsonDefaultColors = await getJsonObjects('defaultColors');
+                for (var i = 0; i <= jsonDefaultColors.length - 1; i++) {
+                    let inputEl = $(`#color${i}`);
+                    inputEl.val(jsonDefaultColors[i]);
+                    inputEl.get(0).dispatchEvent(new Event('change'));
+                }
+
+                // reset table colors
+                colors = await getJsonObjects('colors');
+
+                for (const color of colors) {
+                    color.desc = _(color.desc);
+                }
+
+                createColorsTable(colors, onChange, defaultColorsButtons);
+
+                onChange();
             }
         });
     });

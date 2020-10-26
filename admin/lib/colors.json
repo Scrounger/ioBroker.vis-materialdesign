@@ -3,35 +3,35 @@
         "id": "switch.on",
         "desc": "colorSwitchTrue",
         "value": "#44739e",
-        "defaultColor": 1,
+        "defaultColor": 0,
         "widget": "Switch"
     },
     {
         "id": "switch.on_hover",
         "desc": "colorSwitchHoverTrue",
         "value": "#44739e",
-        "defaultColor": 1,
+        "defaultColor": 0,
         "widget": "Switch"
     },
     {
         "id": "switch.off",
         "desc": "colorSwitchThumb",
         "value": "#FFFFFF",
-        "defaultColor": 3,
+        "defaultColor": 2,
         "widget": "Switch"
     },
     {
         "id": "switch.off_hover",
         "desc": "colorSwitchHover",
         "value": "#44739e",
-        "defaultColor": 1,
+        "defaultColor": 0,
         "widget": "Switch"
     },
     {
         "id": "switch.track",
         "desc": "colorSwitchTrack",
         "value": "#000000",
-        "defaultColor": "",
+        "defaultColor": "5",
         "widget": "Switch"
     }
 ]

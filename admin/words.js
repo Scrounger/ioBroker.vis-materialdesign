@@ -10397,5 +10397,17 @@ systemDictionary = {
         "es": "color predeterminado 5",
         "pl": "domyślny kolor 5",
         "zh-cn": "默认颜色5"
+    },
+    "Do you want to restore the default colors?": {
+        "en": "Do you want to restore the default colors?",
+        "de": "Möchten Sie die Standardfarben wiederherstellen?",
+        "ru": "Вы хотите восстановить цвета по умолчанию?",
+        "pt": "Você quer restaurar as cores padrão?",
+        "nl": "Wilt u de standaardkleuren herstellen?",
+        "fr": "Voulez-vous restaurer les couleurs par défaut?",
+        "it": "Vuoi ripristinare i colori di default?",
+        "es": "¿Quieres restaurar los colores predeterminados?",
+        "pl": "Czy chcesz przywrócić domyślne kolory?",
+        "zh-cn": "您要恢复默认颜色吗？"
     }
 };
