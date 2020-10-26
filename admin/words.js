@@ -10253,5 +10253,65 @@ systemDictionary = {
         "es": "crear script global",
         "pl": "utwórz skrypt globalny",
         "zh-cn": "创建全局脚本"
+    },
+    "undo": {
+        "en": "undo",
+        "de": "rückgängig",
+        "ru": "отменить",
+        "pt": "desfazer",
+        "nl": "ongedaan maken",
+        "fr": "annuler",
+        "it": "disfare",
+        "es": "deshacer",
+        "pl": "Cofnij",
+        "zh-cn": "撤消"
+    },
+    "description": {
+        "en": "description",
+        "de": "Beschreibung",
+        "ru": "описание",
+        "pt": "descrição",
+        "nl": "Omschrijving",
+        "fr": "la description",
+        "it": "descrizione",
+        "es": "descripción",
+        "pl": "opis",
+        "zh-cn": "描述"
+    },
+    "datapoint": {
+        "en": "datapoint",
+        "de": "Datenpunkt",
+        "ru": "точка данных",
+        "pt": "ponto de dados",
+        "nl": "data punt",
+        "fr": "point de données",
+        "it": "datapoint",
+        "es": "punto de datos",
+        "pl": "punkt danych",
+        "zh-cn": "数据点"
+    },
+    "color": {
+        "en": "color",
+        "de": "Farbe",
+        "ru": "цвет",
+        "pt": "cor",
+        "nl": "kleur",
+        "fr": "Couleur",
+        "it": "colore",
+        "es": "color",
+        "pl": "kolor",
+        "zh-cn": "颜色"
+    },
+    "reset": {
+        "en": "reset",
+        "de": "zurücksetzen",
+        "ru": "сброс",
+        "pt": "Redefinir",
+        "nl": "resetten",
+        "fr": "réinitialiser",
+        "it": "Ripristina",
+        "es": "Reiniciar",
+        "pl": "Resetowanie",
+        "zh-cn": "重启"
     }
 };

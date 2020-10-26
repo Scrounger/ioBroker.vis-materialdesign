@@ -1,5 +1,6 @@
 var colors = [];
 var myNamespace;
+var colorPickers = [];
 
 // This will be called by the admin adapter when the settings page loads
 function load(settings, onChange) {
@@ -8,9 +9,6 @@ function load(settings, onChange) {
 
     myNamespace = `${adapter}.${instance}`;
     colors = settings.colors || [];
-
-    console.log(adapter);
-    console.log(instance);
 
     $('.value').each(function () {
         var $key = $(this);
@@ -47,9 +45,11 @@ function createColorsTable(data, onChange) {
                         <table class="table-values" id="colorsTable">
                             <thead>
                                 <tr>
-                                    <th data-name="name" style="width: 30%;" class="translate" data-type="text">${_("Name")}</th>
-                                    <th data-name="pickr" style="width: 40px;" class="translate" data-type="text"></th>
-                                    <th data-name="value" style="width: auto;" class="translate" data-type="text">${_("Value")}</th>
+                                    <th data-name="id" style="width: 30%;" class="translate" data-type="text">${_("datapoint")}</th>                                    
+                                    <th data-name="pickr" style="width: 30px;" data-style="text-align: center;" class="translate" data-type="text"></th>
+                                    <th data-name="value" style="width: 160px;" data-style="text-align: left;" class="translate" data-type="text">${_("color")}</th>
+                                    <th data-name="desc" style="width: auto;" class="translate" data-type="text">${_("description")}</th>
+                                    <th style="width: 160px" class="header" data-buttons="1 2 3 4 5"></th>
                                 </tr>
                             </thead>
                         </table>
@@ -60,59 +60,92 @@ function createColorsTable(data, onChange) {
 
     values2table('colors', data, onChange);
 
-    $('[data-name=name]').prop('disabled', true);
+    // Input readonly machen
+    $('#colorsTable [data-name=id]').prop('readOnly', true);
+    $('#colorsTable [data-name=desc]').prop('readOnly', true);
 
-    $('input[data-name=pickr]').each(function (index) {
-        let pick = Pickr.create({
-            el: this,
-            theme: 'monolith', // or 'monolith', or 'nano'
-            default: data[index].value,     // init color
-
-            swatches: [
-                'white',
-                'blue',
-                'magenta',
-                'red',
-                'yellow',
-                'green',
-                'cyan',
-                'black'
-            ],
-            outputPrecision: 0,
-            comparison: false,
-
-            components: {
-
-                // Main components
-                preview: true,
-                opacity: true,
-                hue: true,
-
-                // Input / output Options
-                interaction: {
-                    hex: true,
-                    rgba: true,
-                    input: true,
-                    cancel: true,
-                }
-            },
-            i18n: {
-                'btn:cancel': _('back')
-            }
-        }).on('hide', instance => {
-            if (instance._representation === 'HEXA') {
-                $(`input[data-index=${index}][data-name="value"]`).val(instance._color.toHEXA().toString());
-            } else {
-                $(`input[data-index=${index}][data-name="value"]`).val(instance._color.toRGBA().toString(0));
-            }
-
-            onChange();
-        });
+    $('#colorsTable input[data-name=pickr]').each(function (i) {
+        // create ColorPicker for rows
+        createColorPicker(this, data[i].value, i, onChange);
     });
 
-    $('#colorsTable .values-buttons[data-command="edit"]').on('click', function () {
-        let rowNum = $(this).data('index');
-        console.warn(rowNum);
+    for (var i = 1; i <= 5; i++) {
+        // Button Layout & Click event
+        let btn = $(`#colorsTable [data-command="${i}"]`);
+        btn.find('.material-icons').each(function (index) {
+            $(this).text(i.toString()).removeClass('material-icons');
+        });
+
+        btn.on('click', function () {
+            let rowNum = $(this).data('index');
+            let btnNum = $(this).data('command');;
+
+            // We have to recreate the color picker
+            let pickrEl = $(`#colorsTable tr[data-index=${rowNum}] .pickr`);
+            let inpuEl = $(`#colorsTable input[data-index=${rowNum}][data-name="value"]`);
+            pickrEl.empty();
+            createColorPicker(pickrEl.get(0), 'red', rowNum, onChange);
+            inpuEl.val('red');
+        })
+    }
+
+    $('#colorsTable input[data-name=value]').change(function () {
+        // fires only on key enter or lost focus -> change colorPicker if valid
+        let that = $(this);
+        let rowNum = that.data('index');
+
+        let pickrEl = $(`#colorsTable tr[data-index=${rowNum}] .pickr`);
+        pickrEl.empty();
+        createColorPicker(pickrEl.get(0), that.val(), rowNum, onChange);
+    });
+}
+
+function createColorPicker(el, color, index, onChange) {
+    Pickr.create({
+        el: el,
+        theme: 'monolith', // or 'monolith', or 'nano'
+        default: color,     // init color
+        silent: false,
+
+        swatches: [
+            'black',
+            'white',
+            'blue',
+            'magenta',
+            'red',
+            'yellow',
+            'green',
+            'cyan',
+        ],
+        outputPrecision: 0,
+        comparison: false,
+
+        components: {
+
+            // Main components
+            preview: true,
+            opacity: true,
+            hue: true,
+
+            // Input / output Options
+            interaction: {
+                hex: true,
+                rgba: true,
+                input: true,
+                cancel: true,
+            }
+        },
+        i18n: {
+            'btn:cancel': _('undo')
+        }
+    }).on('hide', instance => {
+        if (instance._representation === 'HEXA') {
+            $(`input[data-index=${index}][data-name="value"]`).val(instance._color.toHEXA().toString());
+        } else {
+            $(`input[data-index=${index}][data-name="value"]`).val(instance._color.toRGBA().toString(0));
+        }
+
+        onChange();
     });
 }
 
@@ -126,6 +159,14 @@ function eventsHandler(onChange) {
         colors = table2values('colors');
 
         createColorsTable(colors, onChange);
+    });
+
+    $('#resetColors').on('click', function () {
+        confirmMessage(_('After the script has been generated, the javascript adapter will be restarted!<br><br><br>Do you want to continue?'), _('attention'), null, [_('Cancel'), _('OK')], function (result) {
+            if (result === 1) {
+
+            }
+        });
     });
 }
 
@@ -163,7 +204,7 @@ function save(callback) {
 async function storeStates() {
     try {
         for (const color of colors) {
-            setStateString(`${myNamespace}.colors.${color.name}`, 'Fuuu', color.value);
+            setStateString(`${myNamespace}.colors.${color.id}`, 'Fuuu', color.value);
         }
     } catch (err) {
         console.error(`[storeStates] error: ${err.message}, stack: ${err.stack}`)

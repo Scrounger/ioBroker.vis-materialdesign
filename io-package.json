@@ -307,11 +307,13 @@
         "generateGlobalScript": false,
         "colors": [
             {
-                "name": "primary",
+                "id": "primary",
+                "desc": "primary color, used in all widgets",
                 "value": "#44739e"
             },
             {
-                "name": "secondary",
+                "id": "secondary",
+                "desc": "secondary color, used in all widgets",
                 "value": "gray"
             }
         ],
