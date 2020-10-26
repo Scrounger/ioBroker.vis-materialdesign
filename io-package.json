@@ -306,24 +306,11 @@
         "variableName": "myMdwStyles",
         "generateGlobalScript": false,
         "color1": "#44739e",
-        "color2": "gray",
-        "color3": "white",
+        "color2": "#808080",
+        "color3": "#FFFFFF",
         "color4": "rgba(0, 0, 0, 0.54)",
-        "color5": "FireBrick",
-        "colors": [
-            {
-                "id": "primary",
-                "desc": "primary color, used in all widgets",
-                "value": "#44739e",
-                "defaultColor": 1
-            },
-            {
-                "id": "secondary",
-                "desc": "secondary color, used in all widgets",
-                "value": "gray",
-                "defaultColor": 2
-            }
-        ],
+        "color5": "#B22222",
+        "colors": [],
         "dependencies": [
             "basic"
         ]

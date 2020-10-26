@@ -51,6 +51,10 @@ async function createColorsTab(onChange, settings) {
         }
     }
 
+    for (const color of colors) {
+        color.desc = _(color.desc);
+    }
+
     for (var i = 1; i <= 5; i++) {
         defaultColors[i] = settings[`color${i}`];
         createColorPicker(`#colorPicker${i}`, settings[`color${i}`], $(`#color${i}`), onChange, i);
@@ -64,16 +68,25 @@ async function createColorsTab(onChange, settings) {
 
             let pickrEl = $(`#colorPickerContainer${index} .pickr`);
             pickrEl.empty();
-            createColorPicker(pickrEl.get(0), inputEl.val(), inputEl, onChange, index);
+            let pickr = createColorPicker(pickrEl.get(0), inputEl.val(), inputEl, onChange, index);
 
-            colors = table2values('colors');
-            for (var d in colors) {
-                if (colors[d].defaultColor === index) {
-                    colors[d].value = inputEl.val();
+            setTimeout(function () {
+                if (!inputEl.val().startsWith('#') && !inputEl.val().startsWith('rgb')) {
+                    // convert color names to hex
+                    let convertedColor = pickr._color.toHEXA().toString();
+                    inputEl.val(convertedColor);
+                    defaultColors[index] = convertedColor;
                 }
-            }
 
-            createColorsTable(colors, onChange);
+                colors = table2values('colors');
+                for (var d in colors) {
+                    if (colors[d].defaultColor === index) {
+                        colors[d].value = inputEl.val();
+                    }
+                }
+
+                createColorsTable(colors, onChange);
+            }, 100);
         });
     }
 
@@ -90,7 +103,8 @@ function createColorsTable(data, onChange) {
                         <table class="table-values" id="colorsTable">
                             <thead>
                                 <tr>
-                                    <th data-name="id" style="width: 30%;" class="translate" data-type="text">${_("datapoint")}</th>
+                                    <th data-name="widget" style="width: 15%;" class="translate" data-type="text">${_("Widget")}</th>
+                                    <th data-name="id" style="width: 15%;" class="translate" data-type="text">${_("datapoint")}</th>
                                     <th data-name="pickr" style="width: 30px;" data-style="text-align: center;" class="translate" data-type="text"></th>
                                     <th data-name="value" style="width: 160px;" data-style="text-align: left;" class="translate" data-type="text">${_("color")}</th>
                                     <th style="width: 160px; text-align: center;" class="header" data-buttons="1 2 3 4 5">${_("defaultColor")}</th>
@@ -154,7 +168,16 @@ function createColorsTable(data, onChange) {
 
         let pickrEl = $(`#colorsTable tr[data-index=${rowNum}] .pickr`);
         pickrEl.empty();
-        createColorPicker(pickrEl.get(0), inputEl.val(), inputEl, onChange);
+
+        let pickr = createColorPicker(pickrEl.get(0), inputEl.val(), inputEl, onChange);
+
+        setTimeout(function () {
+            if (!inputEl.val().startsWith('#') && !inputEl.val().startsWith('rgb')) {
+                // convert color names to hex
+                let convertedColor = pickr._color.toHEXA().toString();
+                inputEl.val(convertedColor);
+            }
+        }, 100);
 
         $(`#colorsTable input[data-index=${rowNum}][data-name="defaultColor"]`).val('');
         $(`#colorsTable .values-buttons[data-index=${rowNum}]`).css('background-color', '#2196f3');
@@ -162,7 +185,7 @@ function createColorsTable(data, onChange) {
 }
 
 function createColorPicker(el, color, inputEl, onChange, defaultColorIndex = 0) {
-    Pickr.create({
+    let pickr = Pickr.create({
         el: el,
         theme: 'monolith', // or 'monolith', or 'nano'
         default: color,     // init color
@@ -216,6 +239,8 @@ function createColorPicker(el, color, inputEl, onChange, defaultColorIndex = 0) 
 
         onChange();
     });
+
+    return pickr;
 }
 
 function setTableSelectedDefaultColor(rowNum, btnNum) {
@@ -284,7 +309,7 @@ function save(callback) {
 async function storeStates() {
     try {
         for (const color of colors) {
-            setStateString(`${myNamespace}.colors.${color.id}`, 'Fuuu', color.value);
+            setStateString(`${myNamespace}.colors.${color.id}`, color.desc, color.value);
         }
     } catch (err) {
         console.error(`[storeStates] error: ${err.message}, stack: ${err.stack}`)

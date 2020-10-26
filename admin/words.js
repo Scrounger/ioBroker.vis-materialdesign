@@ -602,6 +602,18 @@ systemDictionary = {
         "pl": "aktywny kolor przełącznika",
         "zh-cn": "活动开关颜色"
     },
+    "colorSwitchHoverTrue": {
+        "en": "active switch color selected / hover",
+        "de": "aktive Schalterfarbe selektiert / hover",
+        "ru": "активный цвет переключателя выбран / наведен",
+        "pt": "alternar cor ativa selecionada / pairar",
+        "nl": "actieve schakelkleur geselecteerd / zweven",
+        "fr": "couleur du commutateur actif sélectionnée / survol",
+        "it": "colore interruttore attivo selezionato / hover",
+        "es": "color del interruptor activo seleccionado / desplazarse",
+        "pl": "aktywny kolor przełącznika wybrany / najedź",
+        "zh-cn": "选择的活动开关颜色/悬停"
+    },
     "colorSlider": {
         "en": "color Slider",
         "de": "Farbe Regler",
@@ -10337,8 +10349,8 @@ systemDictionary = {
         "es": "color predeterminado 1",
         "pl": "domyślny kolor 1",
         "zh-cn": "默认颜色1"
-      },
-      "defaultColor2": {
+    },
+    "defaultColor2": {
         "en": "default color 2",
         "de": "Standard Farbe 2",
         "ru": "цвет по умолчанию 2",
@@ -10349,8 +10361,8 @@ systemDictionary = {
         "es": "color predeterminado 2",
         "pl": "domyślny kolor 2",
         "zh-cn": "默认颜色2"
-      },
-      "defaultColor3": {
+    },
+    "defaultColor3": {
         "en": "default color 3",
         "de": "Standard Farbe 3",
         "ru": "цвет по умолчанию 3",
@@ -10361,8 +10373,8 @@ systemDictionary = {
         "es": "color predeterminado 3",
         "pl": "domyślny kolor 3",
         "zh-cn": "默认颜色3"
-      },
-      "defaultColor4": {
+    },
+    "defaultColor4": {
         "en": "default color 4",
         "de": "Standard Farbe 4",
         "ru": "цвет по умолчанию 4",
@@ -10373,8 +10385,8 @@ systemDictionary = {
         "es": "color predeterminado 4",
         "pl": "domyślny kolor 4",
         "zh-cn": "默认颜色4"
-      },
-      "defaultColor5": {
+    },
+    "defaultColor5": {
         "en": "default color 5",
         "de": "Standard Farbe 5",
         "ru": "цвет по умолчанию 5",
@@ -10385,5 +10397,5 @@ systemDictionary = {
         "es": "color predeterminado 5",
         "pl": "domyślny kolor 5",
         "zh-cn": "默认颜色5"
-      }
+    }
 };
