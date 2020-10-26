@@ -305,6 +305,11 @@
         "scriptName": "MaterialDesignWidgetsStyles",
         "variableName": "myMdwStyles",
         "generateGlobalScript": false,
+        "color1": "#44739e",
+        "color2": "gray",
+        "color3": "white",
+        "color4": "rgba(0, 0, 0, 0.54)",
+        "color5": "FireBrick",
         "colors": [
             {
                 "id": "primary",

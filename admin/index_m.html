@@ -63,6 +63,22 @@
 	.pcr-app[data-theme="monolith"] {
 		width: 18.25em;
 	}
+
+	.colorPickerContainer {
+		display: flex; 
+		align-items: center;
+	}
+
+	.colorPickerLabel {
+		margin-right: 10px;
+		font-weight: bold;
+		color: #2196f3 !important;
+		font-size: 14px !important;
+	}
+
+	.colorPickerInput {
+		margin-left: 10px !important;
+	}
 </style>
 
 <body>
@@ -111,6 +127,35 @@
 			</div>
 			<div id="tab_colors" class="col s12 page">
 				<section>
+					<div class="row">
+						<div class="col s12 m12 l12">
+							<div class="col s12 m6 l4 colorPickerContainer" id="colorPickerContainer1">
+								<label for="color1" id="colorInput1" class="translate colorPickerLabel">Default color 1</label>
+								<div class="colorPicker" id="colorPicker1"></div>
+								<input type="text" class="value colorPickerInput" id="color1"/>
+							</div>
+							<div class="col s12 m6 l4 colorPickerContainer" id="colorPickerContainer2">
+								<label for="color2" id="colorInput2" class="translate colorPickerLabel">Default color 2</label>
+								<div class="colorPicker" id="colorPicker2"></div>
+								<input type="text" class="value colorPickerInput" id="color2"/>
+							</div>
+							<div class="col s12 m6 l4 colorPickerContainer" id="colorPickerContainer3">
+								<label for="color3" id="colorInput2" class="translate colorPickerLabel">Default color 3</label>
+								<div class="colorPicker" id="colorPicker3"></div>
+								<input type="text" class="value colorPickerInput" id="color3"/>
+							</div>
+							<div class="col s12 m6 l4 colorPickerContainer" id="colorPickerContainer4">
+								<label for="color4" id="colorInput2" class="translate colorPickerLabel">Default color 4</label>
+								<div class="colorPicker" id="colorPicker4"></div>
+								<input type="text" class="value colorPickerInput" id="color4"/>
+							</div>
+							<div class="col s12 m6 l4 colorPickerContainer" id="colorPickerContainer5">
+								<label for="color5" id="colorInput2" class="translate colorPickerLabel">Default color 5</label>
+								<div class="colorPicker" id="colorPicker5"></div>
+								<input type="text" class="value colorPickerInput" id="color5"/>
+							</div>				
+						</div>
+					</div>
 					<div class="col s12 m12 l12" style="margin-top: 20px">
 						<a id="resetColors" class="waves-effect waves-light btn-small"><i class="material-icons left">undo</i><span class="translate">reset</span></a>
 					</div>

@@ -1,6 +1,8 @@
 var colors = [];
 var myNamespace;
 var colorPickers = [];
+var defaultColors = [];
+
 
 // This will be called by the admin adapter when the settings page loads
 function load(settings, onChange) {
@@ -29,12 +31,33 @@ function load(settings, onChange) {
     onChange(false);
 
     globalScriptEnable();
-    createColorsTable(colors, onChange);
+    createColorsTab(colors, onChange, settings);
 
-    eventsHandler(onChange);
+    eventsHandler(onChange, settings);
 
     // reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
     if (M) M.updateTextFields();
+}
+
+function createColorsTab(data, onChange, settings) {
+    for (var i = 1; i <= 5; i++) {
+        defaultColors[i] = settings[`color${i}`];
+        createColorPicker(`#colorPicker${i}`, settings[`color${i}`], $(`#color${i}`), onChange, i);
+
+        $(`#color${i}`).change(function () {
+            // fires only on key enter or lost focus -> change colorPicker if valid
+            let inputEl = $(this);
+            let index = inputEl.attr('id').replace('color', '');
+
+            defaultColors[index] = inputEl.val();
+
+            let pickrEl = $(`#colorPickerContainer${index} .pickr`);
+            pickrEl.empty();
+            createColorPicker(pickrEl.get(0), inputEl.val(), inputEl, onChange, index);
+        });
+    }
+
+    createColorsTable(data, onChange);
 }
 
 function createColorsTable(data, onChange) {
@@ -66,7 +89,8 @@ function createColorsTable(data, onChange) {
 
     $('#colorsTable input[data-name=pickr]').each(function (i) {
         // create ColorPicker for rows
-        createColorPicker(this, data[i].value, i, onChange);
+        let inpuEl = $(`#colorsTable input[data-index=${i}][data-name="value"]`);
+        createColorPicker(this, data[i].value, inpuEl, onChange);
     });
 
     for (var i = 1; i <= 5; i++) {
@@ -77,6 +101,7 @@ function createColorsTable(data, onChange) {
         });
 
         btn.on('click', function () {
+            // apply default colors to row
             let rowNum = $(this).data('index');
             let btnNum = $(this).data('command');;
 
@@ -84,23 +109,27 @@ function createColorsTable(data, onChange) {
             let pickrEl = $(`#colorsTable tr[data-index=${rowNum}] .pickr`);
             let inpuEl = $(`#colorsTable input[data-index=${rowNum}][data-name="value"]`);
             pickrEl.empty();
-            createColorPicker(pickrEl.get(0), 'red', rowNum, onChange);
+            createColorPicker(pickrEl.get(0), 'red', inpuEl, onChange);
             inpuEl.val('red');
+
+            onChange();
         })
     }
 
     $('#colorsTable input[data-name=value]').change(function () {
         // fires only on key enter or lost focus -> change colorPicker if valid
-        let that = $(this);
-        let rowNum = that.data('index');
+        let inputEl = $(this);
+        let rowNum = inputEl.data('index');
 
         let pickrEl = $(`#colorsTable tr[data-index=${rowNum}] .pickr`);
         pickrEl.empty();
-        createColorPicker(pickrEl.get(0), that.val(), rowNum, onChange);
+        createColorPicker(pickrEl.get(0), inputEl.val(), inputEl, onChange);
     });
+
+
 }
 
-function createColorPicker(el, color, index, onChange) {
+function createColorPicker(el, color, inputEl, onChange, defaultColorIndex = 0) {
     Pickr.create({
         el: el,
         theme: 'monolith', // or 'monolith', or 'nano'
@@ -139,10 +168,17 @@ function createColorPicker(el, color, index, onChange) {
             'btn:cancel': _('undo')
         }
     }).on('hide', instance => {
+        let selectedColor = ''
         if (instance._representation === 'HEXA') {
-            $(`input[data-index=${index}][data-name="value"]`).val(instance._color.toHEXA().toString());
+            selectedColor = instance._color.toHEXA().toString();
         } else {
-            $(`input[data-index=${index}][data-name="value"]`).val(instance._color.toRGBA().toString(0));
+            selectedColor = instance._color.toRGBA().toString(0)
+        }
+
+        inputEl.val(selectedColor);
+
+        if (defaultColorIndex > 0) {
+            defaultColors[defaultColorIndex] = selectedColor;
         }
 
         onChange();
