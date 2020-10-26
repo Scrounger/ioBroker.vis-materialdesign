@@ -1,8 +1,6 @@
 var colors = [];
 var myNamespace;
-var colorPickers = [];
 var defaultColors = [];
-
 
 // This will be called by the admin adapter when the settings page loads
 function load(settings, onChange) {
@@ -10,7 +8,6 @@ function load(settings, onChange) {
     if (!settings) return;
 
     myNamespace = `${adapter}.${instance}`;
-    colors = settings.colors || [];
 
     $('.value').each(function () {
         var $key = $(this);
@@ -31,7 +28,7 @@ function load(settings, onChange) {
     onChange(false);
 
     globalScriptEnable();
-    createColorsTab(colors, onChange, settings);
+    createColorsTab(onChange, settings);
 
     eventsHandler(onChange, settings);
 
@@ -41,7 +38,19 @@ function load(settings, onChange) {
 
 
 //#region Tab Colors
-function createColorsTab(data, onChange, settings) {
+async function createColorsTab(onChange, settings) {
+    colors = settings.colors || [];
+
+    // check if all objects exist in settings
+    let jsonList = await getJsonObjects('colors');
+    for (var i = 0; i <= jsonList.length - 1; i++) {
+        if (!colors.find(o => o.id === jsonList[i].id)) {
+            // not exist -> add to settings list
+            colors.splice(i, 0, jsonList[i]);
+            onChange();
+        }
+    }
+
     for (var i = 1; i <= 5; i++) {
         defaultColors[i] = settings[`color${i}`];
         createColorPicker(`#colorPicker${i}`, settings[`color${i}`], $(`#color${i}`), onChange, i);
@@ -68,7 +77,7 @@ function createColorsTab(data, onChange, settings) {
         });
     }
 
-    createColorsTable(data, onChange);
+    createColorsTable(colors, onChange);
 
     eventsHandlerColorsTab(onChange);
 }
@@ -354,6 +363,18 @@ async function setStateAsync(id, val, ack = false) {
         socket.emit('setState', id, val, ack, function (err, res) {
             if (!err && res) {
                 resolve(res);
+            } else {
+                resolve(null);
+            }
+        });
+    });
+}
+
+async function getJsonObjects(lib) {
+    return new Promise((resolve, reject) => {
+        $.getJSON(`./lib/${lib}.json`, function (json) {
+            if (json) {
+                resolve(json);
             } else {
                 resolve(null);
             }

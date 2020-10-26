@@ -314,12 +314,14 @@
             {
                 "id": "primary",
                 "desc": "primary color, used in all widgets",
-                "value": "#44739e"
+                "value": "#44739e",
+                "defaultColor": 1
             },
             {
                 "id": "secondary",
                 "desc": "secondary color, used in all widgets",
-                "value": "gray"
+                "value": "gray",
+                "defaultColor": 2
             }
         ],
         "dependencies": [
