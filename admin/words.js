@@ -10313,5 +10313,77 @@ systemDictionary = {
         "es": "Reiniciar",
         "pl": "Resetowanie",
         "zh-cn": "重启"
-    }
+    },
+    "defaultColor": {
+        "en": "default color",
+        "de": "Standard Farbe",
+        "ru": "цвет по умолчанию",
+        "pt": "cor padrão",
+        "nl": "standaard kleur",
+        "fr": "couleur par défaut",
+        "it": "colore predefinito",
+        "es": "color predeterminado",
+        "pl": "domyślny kolor",
+        "zh-cn": "默认颜色"
+    },
+    "defaultColor1": {
+        "en": "default color 1",
+        "de": "Standard Farbe 1",
+        "ru": "цвет по умолчанию 1",
+        "pt": "cor padrão 1",
+        "nl": "standaard kleur 1",
+        "fr": "couleur par défaut 1",
+        "it": "colore predefinito 1",
+        "es": "color predeterminado 1",
+        "pl": "domyślny kolor 1",
+        "zh-cn": "默认颜色1"
+      },
+      "defaultColor2": {
+        "en": "default color 2",
+        "de": "Standard Farbe 2",
+        "ru": "цвет по умолчанию 2",
+        "pt": "cor padrão 2",
+        "nl": "standaard kleur 2",
+        "fr": "couleur par défaut 2",
+        "it": "colore predefinito 2",
+        "es": "color predeterminado 2",
+        "pl": "domyślny kolor 2",
+        "zh-cn": "默认颜色2"
+      },
+      "defaultColor3": {
+        "en": "default color 3",
+        "de": "Standard Farbe 3",
+        "ru": "цвет по умолчанию 3",
+        "pt": "cor padrão 3",
+        "nl": "standaard kleur 3",
+        "fr": "couleur par défaut 3",
+        "it": "colore predefinito 3",
+        "es": "color predeterminado 3",
+        "pl": "domyślny kolor 3",
+        "zh-cn": "默认颜色3"
+      },
+      "defaultColor4": {
+        "en": "default color 4",
+        "de": "Standard Farbe 4",
+        "ru": "цвет по умолчанию 4",
+        "pt": "cor padrão 4",
+        "nl": "standaard kleur 4",
+        "fr": "couleur par défaut 4",
+        "it": "colore predefinito 4",
+        "es": "color predeterminado 4",
+        "pl": "domyślny kolor 4",
+        "zh-cn": "默认颜色4"
+      },
+      "defaultColor5": {
+        "en": "default color 5",
+        "de": "Standard Farbe 5",
+        "ru": "цвет по умолчанию 5",
+        "pt": "cor padrão 5",
+        "nl": "standaard kleur 5",
+        "fr": "couleur par défaut 5",
+        "it": "colore predefinito 5",
+        "es": "color predeterminado 5",
+        "pl": "domyślny kolor 5",
+        "zh-cn": "默认颜色5"
+      }
 };

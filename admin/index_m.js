@@ -39,13 +39,15 @@ function load(settings, onChange) {
     if (M) M.updateTextFields();
 }
 
+
+//#region Tab Colors
 function createColorsTab(data, onChange, settings) {
     for (var i = 1; i <= 5; i++) {
         defaultColors[i] = settings[`color${i}`];
         createColorPicker(`#colorPicker${i}`, settings[`color${i}`], $(`#color${i}`), onChange, i);
 
         $(`#color${i}`).change(function () {
-            // fires only on key enter or lost focus -> change colorPicker if valid
+            // fires only on key enter or lost focus -> change colorPicker
             let inputEl = $(this);
             let index = inputEl.attr('id').replace('color', '');
 
@@ -54,10 +56,21 @@ function createColorsTab(data, onChange, settings) {
             let pickrEl = $(`#colorPickerContainer${index} .pickr`);
             pickrEl.empty();
             createColorPicker(pickrEl.get(0), inputEl.val(), inputEl, onChange, index);
+
+            colors = table2values('colors');
+            for (var d in colors) {
+                if (colors[d].defaultColor === index) {
+                    colors[d].value = inputEl.val();
+                }
+            }
+
+            createColorsTable(colors, onChange);
         });
     }
 
     createColorsTable(data, onChange);
+
+    eventsHandlerColorsTab(onChange);
 }
 
 function createColorsTable(data, onChange) {
@@ -68,11 +81,12 @@ function createColorsTable(data, onChange) {
                         <table class="table-values" id="colorsTable">
                             <thead>
                                 <tr>
-                                    <th data-name="id" style="width: 30%;" class="translate" data-type="text">${_("datapoint")}</th>                                    
+                                    <th data-name="id" style="width: 30%;" class="translate" data-type="text">${_("datapoint")}</th>
                                     <th data-name="pickr" style="width: 30px;" data-style="text-align: center;" class="translate" data-type="text"></th>
                                     <th data-name="value" style="width: 160px;" data-style="text-align: left;" class="translate" data-type="text">${_("color")}</th>
+                                    <th style="width: 160px; text-align: center;" class="header" data-buttons="1 2 3 4 5">${_("defaultColor")}</th>
                                     <th data-name="desc" style="width: auto;" class="translate" data-type="text">${_("description")}</th>
-                                    <th style="width: 160px" class="header" data-buttons="1 2 3 4 5"></th>
+                                    <th data-name="defaultColor" style="display: none;" class="translate" data-type="text">${_("defaultColor")}</th>
                                 </tr>
                             </thead>
                         </table>
@@ -87,10 +101,15 @@ function createColorsTable(data, onChange) {
     $('#colorsTable [data-name=id]').prop('readOnly', true);
     $('#colorsTable [data-name=desc]').prop('readOnly', true);
 
+    // defaultcolor ausblenden
+    $('#colorsTable [data-name=defaultColor]').closest('td').css('display', 'none');
+
     $('#colorsTable input[data-name=pickr]').each(function (i) {
-        // create ColorPicker for rows
+        // create ColorPicker for rows & 
         let inpuEl = $(`#colorsTable input[data-index=${i}][data-name="value"]`);
         createColorPicker(this, data[i].value, inpuEl, onChange);
+
+        setTableSelectedDefaultColor(i, data[i].defaultColor);
     });
 
     for (var i = 1; i <= 5; i++) {
@@ -98,6 +117,7 @@ function createColorsTable(data, onChange) {
         let btn = $(`#colorsTable [data-command="${i}"]`);
         btn.find('.material-icons').each(function (index) {
             $(this).text(i.toString()).removeClass('material-icons');
+
         });
 
         btn.on('click', function () {
@@ -109,24 +129,27 @@ function createColorsTable(data, onChange) {
             let pickrEl = $(`#colorsTable tr[data-index=${rowNum}] .pickr`);
             let inpuEl = $(`#colorsTable input[data-index=${rowNum}][data-name="value"]`);
             pickrEl.empty();
-            createColorPicker(pickrEl.get(0), 'red', inpuEl, onChange);
-            inpuEl.val('red');
+            createColorPicker(pickrEl.get(0), defaultColors[btnNum], inpuEl, onChange);
+            inpuEl.val(defaultColors[btnNum]);
+
+            setTableSelectedDefaultColor(rowNum, btnNum);
 
             onChange();
         })
     }
 
     $('#colorsTable input[data-name=value]').change(function () {
-        // fires only on key enter or lost focus -> change colorPicker if valid
+        // fires only on key enter or lost focus -> change colorPicker
         let inputEl = $(this);
         let rowNum = inputEl.data('index');
 
         let pickrEl = $(`#colorsTable tr[data-index=${rowNum}] .pickr`);
         pickrEl.empty();
         createColorPicker(pickrEl.get(0), inputEl.val(), inputEl, onChange);
+
+        $(`#colorsTable input[data-index=${rowNum}][data-name="defaultColor"]`).val('');
+        $(`#colorsTable .values-buttons[data-index=${rowNum}]`).css('background-color', '#2196f3');
     });
-
-
 }
 
 function createColorPicker(el, color, inputEl, onChange, defaultColorIndex = 0) {
@@ -176,6 +199,7 @@ function createColorPicker(el, color, inputEl, onChange, defaultColorIndex = 0) 
         }
 
         inputEl.val(selectedColor);
+        inputEl.get(0).dispatchEvent(new Event('change'));
 
         if (defaultColorIndex > 0) {
             defaultColors[defaultColorIndex] = selectedColor;
@@ -185,11 +209,14 @@ function createColorPicker(el, color, inputEl, onChange, defaultColorIndex = 0) 
     });
 }
 
-function eventsHandler(onChange) {
-    $('#generateGlobalScript').on('change', function () {
-        globalScriptEnable();
-    });
+function setTableSelectedDefaultColor(rowNum, btnNum) {
+    $(`#colorsTable input[data-index=${rowNum}][data-name="defaultColor"]`).val(btnNum);
 
+    $(`#colorsTable .values-buttons[data-index=${rowNum}]`).css('background-color', '#2196f3');
+    $(`#colorsTable .values-buttons[data-index=${rowNum}][data-command="${btnNum}"]`).css('background-color', 'green');
+}
+
+function eventsHandlerColorsTab(onChange) {
     $('.myColorsTab').on('click', function () {
         //recreate Table on Tab click -> dynamically create select options
         colors = table2values('colors');
@@ -203,6 +230,14 @@ function eventsHandler(onChange) {
 
             }
         });
+    });
+}
+
+//#endregion
+
+function eventsHandler(onChange) {
+    $('#generateGlobalScript').on('change', function () {
+        globalScriptEnable();
     });
 }
 
