@@ -110,6 +110,8 @@ async function createColorsTab(onChange, settings) {
 
                     createColorsTable(colors, onChange, defaultColorsButtons);
                 }, 100);
+
+                onChange();
             });
         }
 
@@ -131,7 +133,7 @@ function createColorsTable(data, onChange, defaultColorsButtons) {
                             <thead>
                                 <tr>
                                     <th data-name="widget" style="width: 15%;" class="translate" data-type="text">${_("Widget")}</th>
-                                    <th data-name="id" style="width: 15%;" class="translate" data-type="text">${_("datapoint")}</th>
+                                    <th data-name="id" style="width: 15%;" data-style="cursor: copy" class="translate" data-type="text">${_("datapoint")}</th>
                                     <th data-name="pickr" style="width: 30px;" data-style="text-align: center;" class="translate" data-type="text"></th>
                                     <th data-name="value" style="width: 160px;" data-style="text-align: left;" class="translate" data-type="text">${_("color")}</th>
                                     <th style="width: 1px; text-align: center;" class="header" data-buttons="${defaultColorsButtons.trim()}">${_("defaultColor")}</th>
@@ -148,7 +150,7 @@ function createColorsTable(data, onChange, defaultColorsButtons) {
         values2table('colors', data, onChange);
 
         // Input readonly machen
-        $('#colorsTable [data-name=id]').prop('readOnly', true);
+        $('#colorsTable [data-name=id]').prop('readOnly', true);        
         $('#colorsTable [data-name=desc]').prop('readOnly', true);
 
         // defaultcolor ausblenden
@@ -208,6 +210,12 @@ function createColorsTable(data, onChange, defaultColorsButtons) {
 
             $(`#colorsTable input[data-index=${rowNum}][data-name="defaultColor"]`).val('');
             $(`#colorsTable .values-buttons[data-index=${rowNum}]`).css('background-color', '#2196f3');
+        });
+
+        $('#colorsTable input[data-name=id]').click(function () {
+            clipboard.writeText(`{${myNamespace}.colors.${$(this).val()}}`);
+            M.Toast.dismissAll();
+            M.toast({ html: _('copied to clipboard'), displayLength: 700, inDuration: 0, outDuration: 0, classes: 'rounded'});
         });
 
     } catch (err) {
@@ -362,6 +370,10 @@ async function storeStates() {
     try {
         for (const color of colors) {
             setStateString(`${myNamespace}.colors.${color.id}`, color.desc, color.value);
+        }
+
+        for (var i = 0; i <= defaultColors.length - 1; i++) {
+            setStateString(`${myNamespace}.colors.default.${i}`, `${_('defaultColor')} ${i}`, defaultColors[i]);
         }
     } catch (err) {
         console.error(`[storeStates] error: ${err.message}, stack: ${err.stack}`)

@@ -33,5 +33,19 @@
         "value": "#000000",
         "defaultColor": "5",
         "widget": "Switch"
+    },
+    {
+        "id": "switch.label",
+        "desc": "labelColorFalse",
+        "value": "#44739e",
+        "defaultColor": "0",
+        "widget": "Switch"
+    },
+    {
+        "id": "switch.label_true",
+        "desc": "labelColorTrue",
+        "value": "#44739e",
+        "defaultColor": "0",
+        "widget": "Switch"
     }
 ]

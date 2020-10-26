@@ -37,7 +37,8 @@
     "underscore": "^1.9.2",
     "chroma-js": "^2.1.0",
     "@sentry/node": "^5.23.0",
-    "@simonwep/pickr": "^1.7.4"
+    "@simonwep/pickr": "^1.7.4",
+    "clipboard-polyfill": "^3.0.1"
   },
   "main": "widgets/materialdesign.html",
   "scripts": {
