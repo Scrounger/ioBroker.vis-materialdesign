@@ -118,6 +118,8 @@ async function createColorsTab(onChange, settings) {
             });
         }
 
+        $(`#colorsTableFilterClear`).hide();
+
         createColorsTable(colors, onChange, defaultColorsButtons);
         eventsHandlerColorsTab(onChange, defaultColorsButtons);
 
@@ -139,7 +141,7 @@ async function createColorsTable(data, onChange, defaultColorsButtons) {
                                     <th data-name="id" style="width: 15%;" data-style="cursor: copy" class="translate" data-type="text">${_("datapoint")}</th>
                                     <th data-name="pickr" style="width: 30px;" data-style="text-align: center;" class="translate" data-type="text"></th>
                                     <th data-name="value" style="width: 160px;" data-style="text-align: left;" class="translate" data-type="text">${_("color")}</th>
-                                    <th style="width: 1px; text-align: center;" class="header" data-buttons="${defaultColorsButtons.trim()}">${_("defaultColor")}</th>
+                                    <th style="width: 120px; text-align: center;" class="header" data-buttons="${defaultColorsButtons.trim()}">${_("defaultColor")}</th>
                                     <th data-name="desc" style="width: auto;" class="translate" data-type="text">${_("description")}</th>
                                     <th data-name="defaultColor" style="display: none;" class="translate" data-type="text">${_("defaultColor")}</th>
                                 </tr>
@@ -226,6 +228,12 @@ async function createColorsTable(data, onChange, defaultColorsButtons) {
             M.toast({ html: _('copied to clipboard'), displayLength: 700, inDuration: 0, outDuration: 0, classes: 'rounded' });
         });
 
+        // $('#colorsTable input[data-name=widget]').each(function () {
+        //     if ($(this).val() !== 'Switch') {
+        //         $(this).closest('tr').hide();
+        //     }   
+        // });
+
     } catch (err) {
         console.error(`[createColorsTable] error: ${err.message}, stack: ${err.stack}`);
     }
@@ -305,7 +313,6 @@ function eventsHandlerColorsTab(onChange, defaultColorsButtons) {
         createColorsTable(colors, onChange, defaultColorsButtons);
     });
 
-
     $('#resetColors').on('click', function () {
         confirmMessage(_('Do you want to restore the default colors?'), _('attention'), null, [_('Cancel'), _('OK')], async function (result) {
             if (result === 1) {
@@ -332,6 +339,27 @@ function eventsHandlerColorsTab(onChange, defaultColorsButtons) {
                 onChange();
             }
         });
+    });
+
+    $(`#colorsTableFilter`).keyup(function () {
+        let filter = $(this).val();
+        if (filter.length > 0) {
+            $(`#colorsTableFilterClear`).show();
+            $('#colorsTable input[data-name=widget]').each(function () {
+                if (!$(this).val().toUpperCase().includes(filter.toUpperCase())) {
+                    $(this).closest('tr').hide();
+                }
+            });
+        } else {
+            $(`#colorsTable`).find('tr:gt(0)').show(); // show all rows
+            $(`#colorsTableFilterClear`).hide(); // hide button
+        }
+    });
+
+    $(`#colorsTableFilterClear`).click(function () {
+        $(`#colorsTableFilter`).val(''); // empty field
+        $(`#colorsTable`).find('tr:gt(0)').show(); // show all rows
+        $(`#colorsTableFilterClear`).hide(); // hide button
     });
 }
 //#endregion
