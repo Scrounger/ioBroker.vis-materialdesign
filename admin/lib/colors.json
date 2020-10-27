@@ -28,6 +28,12 @@
         "desc": "labelColorTrue",
         "defaultColor": 0,
         "widget": "Checkbox"
+    },
+    {
+        "id": "material_design_icon.color",
+        "desc": "mdwIconColor",
+        "defaultColor": 0,
+        "widget": "Material Design Icon"
     },    
     {
         "id": "progress.track_background",
