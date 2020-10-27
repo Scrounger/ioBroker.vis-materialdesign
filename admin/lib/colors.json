@@ -1,86 +1,127 @@
 [  
-
     {
         "id": "checkbox.on",
         "desc": "colorCheckBox",
-        "value": "#44739e",
         "defaultColor": 0,
         "widget": "Checkbox"
     },
     {
         "id": "checkbox.border",
         "desc": "colorCheckBoxBorder",
-        "value": "rgba(0, 0, 0, 0.54)",
         "defaultColor": 3,
         "widget": "Checkbox"
     },
     {
         "id": "checkbox.hover",
         "desc": "colorCheckBoxHover",
-        "value": "#44739e",
         "defaultColor": 0,
         "widget": "Checkbox"
     },
     {
         "id": "checkbox.label_off",
         "desc": "labelColorFalse",
-        "value": "#44739e",
         "defaultColor": 0,
         "widget": "Checkbox"
     },
     {
         "id": "checkbox.label_on",
         "desc": "labelColorTrue",
-        "value": "#44739e",
         "defaultColor": 0,
         "widget": "Checkbox"
     },
     {
+        "id": "slider.background",
+        "desc": "colorSliderBg",
+        "defaultColor": 8,
+        "widget": "Slider, Slider Round"
+    },
+    {
+        "id": "slider.control",
+        "desc": "colorThumb",
+        "defaultColor": 0,
+        "widget": "Slider, Slider Round"
+    },    
+    {
+        "id": "slider.control_before",
+        "desc": "colorBeforeThumb",
+        "defaultColor": 0,
+        "widget": "Slider, Slider Round"
+    },    
+    {
+        "id": "slider.control_behind",
+        "desc": "colorAfterThumb",
+        "defaultColor": 7,
+        "widget": "Slider, Slider Round"
+    },
+    {
+        "id": "slider.label",
+        "desc": "valueLabelColor",
+        "defaultColor": 0,
+        "widget": "Slider, Slider Round"
+    },
+    {
+        "id": "slider.tick_before",
+        "desc": "tickColorBefore",
+        "defaultColor": 0,
+        "widget": "Slider"
+    },
+    {
+        "id": "slider.tick_after",
+        "desc": "tickColorAfter",
+        "defaultColor": 0,
+        "widget": "Slider"
+    },
+    {
+        "id": "slider.controlLabel",
+        "desc": "thumbBackgroundColor",
+        "defaultColor": 0,
+        "widget": "Slider"
+    },
+    {
+        "id": "slider.controlLabel_font",
+        "desc": "thumbFontColor",
+        "defaultColor": 2,
+        "widget": "Slider"
+    },
+    {
         "id": "switch.on",
         "desc": "colorSwitchTrue",
-        "value": "#44739e",
         "defaultColor": 0,
         "widget": "Switch"
     },
     {
         "id": "switch.on_hover",
         "desc": "colorSwitchHoverTrue",
-        "value": "#44739e",
         "defaultColor": 0,
         "widget": "Switch"
     },
     {
         "id": "switch.off",
         "desc": "colorSwitchThumb",
-        "value": "#FFFFFF",
         "defaultColor": 2,
         "widget": "Switch"
     },
     {
         "id": "switch.off_hover",
         "desc": "colorSwitchHover",
-        "value": "#44739e",
         "defaultColor": 0,
         "widget": "Switch"
     },
     {
         "id": "switch.track",
         "desc": "colorSwitchTrack",
-        "value": "#000000",
         "defaultColor": 6,
         "widget": "Switch"
     },
     {
         "id": "switch.label_off",
         "desc": "labelColorFalse",
-        "value": "#44739e",
         "defaultColor": 0,
         "widget": "Switch"
     },
     {
         "id": "switch.label_on",
         "desc": "labelColorTrue",
-        "value": "#44739e",
         "defaultColor": 0,
         "widget": "Switch"
     }
