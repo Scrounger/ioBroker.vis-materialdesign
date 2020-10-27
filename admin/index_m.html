@@ -92,8 +92,7 @@
 		margin-bottom: 0px !important;
 	}
 	.table-filter input { 
-		color:#2696ef !important; 
-		font-weight:bold; 
+		color:#2696ef !important;  
 		width: 200px !important; 
 		height: 2.5rem !important;		
 	}
@@ -160,18 +159,18 @@
 							<!-- dynamically creates colorPicker & input on load -->
 						</div>
 					</div>
-					<div class="table-filter input-field col s12 m6 l12">
-						<input type="text" placeholder="Filter" id="colorsTableFilter" />
-						<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="colorsTableFilterClear"><i class="material-icons">clear</i></button></span>
+					<div class="col s12 m12 l12">
+						<div class="table-filter input-field col s12 m6 l6">
+							<input type="text" placeholder="Filter Widgets" id="colorsTableFilter" />
+							<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="colorsTableFilterClear"><i class="material-icons">clear</i></button></span>
+						</div>
+						<div class="col s12 m6 l6 right-align" style="margin-top: 12px">
+							<a id="resetColors" class="waves-effect waves-light btn-small"><i class="material-icons left">undo</i><span class="translate">reset</span></a>
+						</div>
 					</div>
 					<div class="container_colorsTable">						
 						<!-- dynamically creates table on evey change of the select values  -->
 					</div>
-					<div class="row">
-						<div class="col s12 m12 l12 right-align" style="margin-top: 20px">
-							<a id="resetColors" class="waves-effect waves-light btn-small"><i class="material-icons left">undo</i><span class="translate">reset</span></a>
-						</div>
-					</div>					
 				</section>
 			</div>
 		</div>
