@@ -1,5 +1,17 @@
 [
     {
+        "id": "alerts.close_icon",
+        "desc": "closeIconColor",
+        "defaultColor": 0,
+        "widget": "Alerts"
+    },
+    {
+        "id": "alerts.close_icon_hover",
+        "desc": "closeIconPressColor",
+        "defaultColor": 0,
+        "widget": "Alerts"
+    },    
+    {
         "id": "calendar.border",
         "desc": "calendarBorderColor",
         "defaultColor": 3,
