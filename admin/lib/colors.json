@@ -1,4 +1,130 @@
-[  
+[
+    {
+        "id": "calendar.border",
+        "desc": "calendarBorderColor",
+        "defaultColor": 3,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.background_day",
+        "desc": "calendarDayBackgroundColor",
+        "defaultColor": 6,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.background_other_month",
+        "desc": "calendarDayBackgroundOutsideColor",
+        "value": "#f7f7f7",
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.button_background",
+        "desc": "calendarDayButtonColor",
+        "defaultColor": 6,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.button_background_today",
+        "desc": "calendarDayButtonTodayColor",
+        "defaultColor": 0,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.button_hover",
+        "desc": "calendarDayButtonRippleEffectColor",
+        "defaultColor": 0,
+        "widget": "Calendar"
+    }, 
+    {
+        "id": "calendar.button_text",
+        "desc": "calendarDayButtonFontColor",
+        "defaultColor": 5,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.button_text_today",
+        "desc": "calendarDayButtonTodayFontColor",
+        "defaultColor": 4,
+        "widget": "Calendar"
+    },   
+    {
+        "id": "calendar.control_panel_background",
+        "desc": "controlButtonColor",
+        "defaultColor": 6,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.control_panel_hover",
+        "desc": "controlButtonRippelEffectColor",
+        "defaultColor": 0,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.control_panel_icon",
+        "desc": "controlIconColor",
+        "defaultColor": 0,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.control_panel_text",
+        "desc": "controlTextColor",
+        "defaultColor": 5,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.header_background",
+        "desc": "calendarHeaderBackground",
+        "defaultColor": 6,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.header_text",
+        "desc": "calendarDayLabelFontColor",
+        "defaultColor": 5,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.header_text_today",
+        "desc": "calendarDayLabelTodayFontColor",
+        "defaultColor": 0,
+        "widget": "Calendar"
+    },    
+    {
+        "id": "calendar.header_text_past",
+        "desc": "calendarDayLabelPreviousFontColor",
+        "value": "rgba(0, 0, 0, 0.38)",
+        "widget": "Calendar"
+    },  
+    {
+        "id": "calendar.calendar_weeks_background",
+        "desc": "calendarWeeksNumbersBackground",
+        "value": "#f7f7f7",
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.calendar_weeks_text",
+        "desc": "calendarWeeksNumbersFontColor",
+        "defaultColor": 5,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.time_axis_background",
+        "desc": "calendarTimeAxisBackgroundColor",
+        "defaultColor": 6,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.time_axis_background_header",
+        "desc": "calendarTimeAxisHeaderBackgroundColor",
+        "defaultColor": 6,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.time_axis_text",
+        "desc": "calendarTimeAxisFontColor",
+        "defaultColor": 0,
+        "widget": "Calendar"
+    },    
     {
         "id": "checkbox.on",
         "desc": "colorCheckBox",
