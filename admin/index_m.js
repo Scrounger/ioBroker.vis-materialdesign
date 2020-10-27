@@ -60,6 +60,9 @@ async function createColorsTab(onChange, settings) {
         for (var i = 0; i <= jsonColorList.length - 1; i++) {
             if (!colors.find(o => o.id === jsonColorList[i].id)) {
                 // not exist -> add to settings list
+                if (!jsonColorList[i].value) {
+                    jsonColorList[i].value = defaultColors[jsonColorList[i].defaultColor];
+                }
                 colors.splice(i, 0, jsonColorList[i]);
                 onChange();
             }
@@ -123,7 +126,7 @@ async function createColorsTab(onChange, settings) {
     }
 }
 
-function createColorsTable(data, onChange, defaultColorsButtons) {
+async function createColorsTable(data, onChange, defaultColorsButtons) {
     try {
         $('.container_colorsTable').empty();
 
@@ -150,7 +153,8 @@ function createColorsTable(data, onChange, defaultColorsButtons) {
         values2table('colors', data, onChange);
 
         // Input readonly machen
-        $('#colorsTable [data-name=id]').prop('readOnly', true);        
+        $('#colorsTable [data-name=widget]').prop('readOnly', true);
+        $('#colorsTable [data-name=id]').prop('readOnly', true);
         $('#colorsTable [data-name=desc]').prop('readOnly', true);
 
         // defaultcolor ausblenden
@@ -159,7 +163,11 @@ function createColorsTable(data, onChange, defaultColorsButtons) {
         $('#colorsTable input[data-name=pickr]').each(function (i) {
             // create ColorPicker for rows & 
             let inpuEl = $(`#colorsTable input[data-index=${i}][data-name="value"]`);
-            createColorPicker(this, data[i].value, inpuEl, onChange);
+            if (data[i].value) {
+                createColorPicker(this, data[i].value, inpuEl, onChange);
+            } else {
+                createColorPicker(this, defaultColors[data[i].defaultColor], inpuEl, onChange);
+            }
 
             setTableSelectedDefaultColor(i, data[i].defaultColor);
         });
@@ -215,7 +223,7 @@ function createColorsTable(data, onChange, defaultColorsButtons) {
         $('#colorsTable input[data-name=id]').click(function () {
             clipboard.writeText(`{${myNamespace}.colors.${$(this).val()}}`);
             M.Toast.dismissAll();
-            M.toast({ html: _('copied to clipboard'), displayLength: 700, inDuration: 0, outDuration: 0, classes: 'rounded'});
+            M.toast({ html: _('copied to clipboard'), displayLength: 700, inDuration: 0, outDuration: 0, classes: 'rounded' });
         });
 
     } catch (err) {
@@ -303,21 +311,23 @@ function eventsHandlerColorsTab(onChange, defaultColorsButtons) {
             if (result === 1) {
 
                 // reset defaultColors
-                let jsonDefaultColors = await getJsonObjects('defaultColors');
-                for (var i = 0; i <= jsonDefaultColors.length - 1; i++) {
+                defaultColors = await getJsonObjects('defaultColors');
+                for (var i = 0; i <= defaultColors.length - 1; i++) {
                     let inputEl = $(`#color${i}`);
-                    inputEl.val(jsonDefaultColors[i]);
+                    inputEl.val(defaultColors[i]);
                     inputEl.get(0).dispatchEvent(new Event('change'));
                 }
 
                 // reset table colors
                 colors = await getJsonObjects('colors');
-
-                for (const color of colors) {
-                    color.desc = _(color.desc);
+                for (var i = 0; i <= colors.length - 1; i++) {
+                    if (!colors[i].value) {
+                        colors[i].value = defaultColors[colors[i].defaultColor];
+                    }
+                    color[i].desc = _(color[i].desc);
                 }
 
-                createColorsTable(colors, onChange, defaultColorsButtons);
+                await createColorsTable(colors, onChange, defaultColorsButtons);
 
                 onChange();
             }

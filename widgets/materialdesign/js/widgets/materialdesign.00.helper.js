@@ -93,6 +93,7 @@ vis.binds.materialdesign.helper = {
         });
     },
     getValueFromData: function (dataValue, nullValue, prepand = '', append = '') {
+        console.log(dataValue);
         try {
             if (Array.isArray(dataValue)) {
                 if (dataValue.length > 0) {
@@ -101,7 +102,7 @@ vis.binds.materialdesign.helper = {
                     return nullValue;
                 }
             } else {
-                if (dataValue === undefined || dataValue === null || dataValue === '') {
+                if (dataValue === undefined || dataValue === null || dataValue === '' || dataValue === 'undefined') {
                     return nullValue;
                 } else {
                     if (vis.editMode) {
