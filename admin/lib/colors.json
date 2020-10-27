@@ -1,4 +1,40 @@
-[    
+[  
+
+    {
+        "id": "checkbox.on",
+        "desc": "colorCheckBox",
+        "value": "#44739e",
+        "defaultColor": 0,
+        "widget": "Checkbox"
+    },
+    {
+        "id": "checkbox.border",
+        "desc": "colorCheckBoxBorder",
+        "value": "rgba(0, 0, 0, 0.54)",
+        "defaultColor": 3,
+        "widget": "Checkbox"
+    },
+    {
+        "id": "checkbox.hover",
+        "desc": "colorCheckBoxHover",
+        "value": "#44739e",
+        "defaultColor": 0,
+        "widget": "Checkbox"
+    },
+    {
+        "id": "checkbox.label_off",
+        "desc": "labelColorFalse",
+        "value": "#44739e",
+        "defaultColor": 0,
+        "widget": "Checkbox"
+    },
+    {
+        "id": "checkbox.label_on",
+        "desc": "labelColorTrue",
+        "value": "#44739e",
+        "defaultColor": 0,
+        "widget": "Checkbox"
+    },
     {
         "id": "switch.on",
         "desc": "colorSwitchTrue",
@@ -31,21 +67,21 @@
         "id": "switch.track",
         "desc": "colorSwitchTrack",
         "value": "#000000",
-        "defaultColor": "5",
+        "defaultColor": 6,
         "widget": "Switch"
     },
     {
-        "id": "switch.label",
+        "id": "switch.label_off",
         "desc": "labelColorFalse",
         "value": "#44739e",
-        "defaultColor": "0",
+        "defaultColor": 0,
         "widget": "Switch"
     },
     {
-        "id": "switch.label_true",
+        "id": "switch.label_on",
         "desc": "labelColorTrue",
         "value": "#44739e",
-        "defaultColor": "0",
+        "defaultColor": 0,
         "widget": "Switch"
     }
 ]

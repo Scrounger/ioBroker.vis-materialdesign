@@ -569,9 +569,8 @@
         data-vis-update-style="true"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,switch;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,checkboxSwitch;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;readOnly/checkbox;toggleType[boolean]/select,boolean,value;valueOff;valueOn;stateIfNotTrueValue[on]/select,on,off;vibrateOnMobilDevices[50]/number;exportData/custom,materialdesign.viseditor.exportData,switch;"
         data-vis-attrs0="group.label;labelFalse/html;labelTrue/html;labelPosition[left]/select,left,right,off;labelClickActive[true]/checkbox;"
-        data-vis-attrs1="group.color;colorSwitchThumb[{vis-materialdesign.0.colors.switch.off}]/color;colorSwitchTrack[{vis-materialdesign.0.colors.switch.track}]/color;colorSwitchTrue[{vis-materialdesign.0.colors.switch.on}]/color;colorSwitchHover[{vis-materialdesign.0.colors.switch.off_hover}]/color;colorSwitchHoverTrue[{vis-materialdesign.0.colors.switch.on_hover}]/color;labelColorFalse[{vis-materialdesign.0.colors.switch.label}]/color;labelColorTrue[{vis-materialdesign.0.colors.switch.label_true}]/color;"
+        data-vis-attrs1="group.color;colorSwitchThumb[{vis-materialdesign.0.colors.switch.off}]/color;colorSwitchTrack[{vis-materialdesign.0.colors.switch.track}]/color;colorSwitchTrue[{vis-materialdesign.0.colors.switch.on}]/color;colorSwitchHover[{vis-materialdesign.0.colors.switch.off_hover}]/color;colorSwitchHoverTrue[{vis-materialdesign.0.colors.switch.on_hover}]/color;labelColorFalse[{vis-materialdesign.0.colors.switch.label_off}]/color;labelColorTrue[{vis-materialdesign.0.colors.switch.label_on}]/color;"
         data-vis-attrs2="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materialdesign.viseditor.materialDesignIcons;lockIconTop[5]/slider,0,100,1;lockIconLeft[5]/slider,0,100,1;lockIconSize/number;lockIconColor/color;lockFilterGrayscale[30]/slider,0,100,1;">
-        
         <%
             let init = vis.binds.materialdesign.switch.initialize(data);
         %>
@@ -591,13 +590,11 @@
         data-vis-update-style="true"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,checkbox;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,checkboxSwitch;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;readOnly/checkbox;toggleType[boolean]/select,boolean,value;valueOff;valueOn;stateIfNotTrueValue[on]/select,on,off;vibrateOnMobilDevices[50]/number;exportData/custom,materialdesign.viseditor.exportData,checkbox;"
         data-vis-attrs0="group.label;labelFalse/html;labelTrue/html;labelPosition[left]/select,left,right,off;labelClickActive[true]/checkbox;"
-        data-vis-attrs1="group.color;colorCheckBox/color;colorCheckBoxBorder/color;colorCheckBoxHover/color;labelColorFalse/color;labelColorTrue/color;"
+        data-vis-attrs1="group.color;colorCheckBox[{vis-materialdesign.0.colors.checkbox.on}]/color;colorCheckBoxBorder[{vis-materialdesign.0.colors.checkbox.border}]/color;colorCheckBoxHover[{vis-materialdesign.0.colors.checkbox.hover}]/color;labelColorFalse[{vis-materialdesign.0.colors.checkbox.label_off}]/color;labelColorTrue[{vis-materialdesign.0.colors.checkbox.label_on}]/color;"
         data-vis-attrs2="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materialdesign.viseditor.materialDesignIcons;lockIconTop[5]/slider,0,100,1;lockIconLeft[5]/slider,0,100,1;lockIconSize/number;lockIconColor/color;lockFilterGrayscale[30]/slider,0,100,1;">
-
         <%
             let init = vis.binds.materialdesign.checkbox.initialize(data);
         %>
-
 
         <div class="vis-widget materialdesign-widget <%== init.labelPosition %> materialdesign-checkbox <%== this.data.attr('class') %>" style="width:80px; height:50px; overflow: visible !important;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" isLocked="<%== myMdwHelper.getBooleanFromData(this.data.attr('lockEnabled'), false) %>" <%= (el) -> vis.binds.materialdesign.checkbox.handle(el, data) %>>
             <%== init.checkbox %>
