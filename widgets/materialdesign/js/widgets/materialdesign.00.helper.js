@@ -101,13 +101,19 @@ vis.binds.materialdesign.helper = {
                     return nullValue;
                 }
             } else {
-                if (dataValue === undefined || dataValue === null || dataValue === '' || dataValue === 'undefined') {
+                if (dataValue === undefined || dataValue === 'undefined' || dataValue === null || dataValue === 'null' || dataValue === '') {
                     return nullValue;
                 } else {
                     if (vis.editMode) {
                         let binding = vis.binds.materialdesign.helper.extractBindingVisEditor(dataValue)
                         if (binding && binding.length === 1) {
-                            return vis.states.attr(binding[0].visOid);
+                            let bindingVal = vis.states.attr(binding[0].visOid)
+
+                            if (bindingVal === undefined || bindingVal === 'undefined' || bindingVal === null || bindingVal === 'null' || bindingVal === '') {
+                                return nullValue;
+                            } else {
+                                return bindingVal;
+                            }
                         }
                     }
                     return prepand + dataValue + append
