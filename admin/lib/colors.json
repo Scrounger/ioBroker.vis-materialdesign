@@ -8,7 +8,7 @@
     {
         "id": "checkbox.border",
         "desc": "colorCheckBoxBorder",
-        "defaultColor": 3,
+        "defaultColor": 2,
         "widget": "Checkbox"
     },
     {
@@ -18,13 +18,43 @@
         "widget": "Checkbox"
     },
     {
-        "id": "checkbox.label_off",
+        "id": "progress.track_background",
+        "desc": "colorProgressBackground",
+        "defaultColor": 3,
+        "widget": "Progress, Progress Circular"
+    },
+    {
+        "id": "progress.track",
+        "desc": "colorProgress",
+        "defaultColor": 0,
+        "widget": "Progress, Progress Circular"
+    },
+    {
+        "id": "progress.text",
+        "desc": "textColor",
+        "defaultColor": 0,
+        "widget": "Progress, Progress Circular"
+    },    
+    {
+        "id": "progress.track_condition1",
+        "desc": "colorOne",
+        "defaultColor": 8,
+        "widget": "Progress, Progress Circular"
+    },    
+    {
+        "id": "progress.track_condition2",
+        "desc": "colorTwo",
+        "defaultColor": 9,
+        "widget": "Progress, Progress Circular"
+    },
+    {
+        "id": "checkbox.text_off",
         "desc": "labelColorFalse",
         "defaultColor": 0,
         "widget": "Checkbox"
     },
     {
-        "id": "checkbox.label_on",
+        "id": "checkbox.text_on",
         "desc": "labelColorTrue",
         "defaultColor": 0,
         "widget": "Checkbox"
@@ -32,7 +62,7 @@
     {
         "id": "slider.background",
         "desc": "colorSliderBg",
-        "defaultColor": 8,
+        "defaultColor": 6,
         "widget": "Slider, Slider Round"
     },
     {
@@ -50,11 +80,11 @@
     {
         "id": "slider.control_behind",
         "desc": "colorAfterThumb",
-        "defaultColor": 7,
+        "defaultColor": 3,
         "widget": "Slider, Slider Round"
     },
     {
-        "id": "slider.label",
+        "id": "slider.text",
         "desc": "valueLabelColor",
         "defaultColor": 0,
         "widget": "Slider, Slider Round"
@@ -72,15 +102,15 @@
         "widget": "Slider"
     },
     {
-        "id": "slider.controlLabel",
+        "id": "slider.control_text",
         "desc": "thumbBackgroundColor",
         "defaultColor": 0,
         "widget": "Slider"
     },
     {
-        "id": "slider.controlLabel_font",
+        "id": "slider.control_text_font",
         "desc": "thumbFontColor",
-        "defaultColor": 2,
+        "defaultColor": 4,
         "widget": "Slider"
     },
     {
@@ -98,7 +128,7 @@
     {
         "id": "switch.off",
         "desc": "colorSwitchThumb",
-        "defaultColor": 2,
+        "defaultColor": 4,
         "widget": "Switch"
     },
     {
@@ -110,17 +140,17 @@
     {
         "id": "switch.track",
         "desc": "colorSwitchTrack",
-        "defaultColor": 6,
+        "defaultColor": 5,
         "widget": "Switch"
     },
     {
-        "id": "switch.label_off",
+        "id": "switch.text_off",
         "desc": "labelColorFalse",
         "defaultColor": 0,
         "widget": "Switch"
     },
     {
-        "id": "switch.label_on",
+        "id": "switch.text_on",
         "desc": "labelColorTrue",
         "defaultColor": 0,
         "widget": "Switch"

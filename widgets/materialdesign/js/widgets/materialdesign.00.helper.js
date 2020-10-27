@@ -93,7 +93,6 @@ vis.binds.materialdesign.helper = {
         });
     },
     getValueFromData: function (dataValue, nullValue, prepand = '', append = '') {
-        console.log(dataValue);
         try {
             if (Array.isArray(dataValue)) {
                 if (dataValue.length > 0) {

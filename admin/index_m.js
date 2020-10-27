@@ -77,7 +77,7 @@ async function createColorsTab(onChange, settings) {
 
             // defaultColors[i] = settings[`color${i}`];
             $('.defaultColorsContainer').append(`
-                <div class="col s12 m6 l4 colorPickerContainer" id="colorPickerContainer${i}">
+                <div class="col s12 m6 l3 colorPickerContainer" id="colorPickerContainer${i}">
                     <label for="color${i}" id="colorInput${i}" class="translate colorPickerLabel">${_('defaultColor')} ${i}</label>
                     <div class="colorPicker" id="colorPicker${i}"></div>
                     <input type="text" class="value colorPickerInput" id="color${i}" value="${defaultColors[i]}" />
