@@ -132,6 +132,36 @@
         "widget": "Calendar"
     },
     {
+        "id": "card.background",
+        "desc": "colorBackground",
+        "defaultColor": 4,
+        "widget": "HTML Card"
+    },
+    {
+        "id": "card.background_title",
+        "desc": "colorTitleSectionBackground",
+        "defaultColor": 6,
+        "widget": "HTML Card"
+    },      
+    {
+        "id": "card.background_body",
+        "desc": "colorTextSectionBackground",
+        "defaultColor": 6,
+        "widget": "HTML Card"
+    },
+    {
+        "id": "card.title",
+        "desc": "colorTitle",
+        "defaultColor": 0,
+        "widget": "HTML Card"
+    },
+    {
+        "id": "card.subTitle",
+        "desc": "colorSubtitle",
+        "defaultColor": 1,
+        "widget": "HTML Card"
+    },    
+    {
         "id": "calendar.time_axis_text",
         "desc": "calendarTimeAxisFontColor",
         "defaultColor": 0,

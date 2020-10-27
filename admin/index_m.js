@@ -327,11 +327,13 @@ function eventsHandlerColorsTab(onChange, defaultColorsButtons) {
 
                 // reset table colors
                 colors = await getJsonObjects('colors');
+                console.log(colors);
                 for (var i = 0; i <= colors.length - 1; i++) {
                     if (!colors[i].value) {
                         colors[i].value = defaultColors[colors[i].defaultColor];
                     }
-                    color[i].desc = _(color[i].desc);
+                    
+                    colors[i].desc = _(colors[i].desc);
                 }
 
                 await createColorsTable(colors, onChange, defaultColorsButtons);
