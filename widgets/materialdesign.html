@@ -649,8 +649,8 @@
         data-vis-update-style="true"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,progress;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,progress;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;progressIndeterminate/checkbox;oid;min;max;reverse/checkbox;exportData/custom,materialdesign.viseditor.exportData,progress;"
         data-vis-attrs0="group.layout;progressRounded[true]/checkbox;progressStriped/checkbox;progressStripedColor/color;"
-        data-vis-attrs1="group.color;colorProgressBackground/color;colorProgress/color;colorOneCondition;colorOne/color;colorTwoCondition;colorTwo/color;"
-        data-vis-attrs2="group.label;showValueLabel[true]/checkbox;valueLabelStyle[progressPercent]/select,progressPercent,progressValue,progressCustom;valueLabelUnit;valueMaxDecimals/number;valueLabelCustom/html;textColor/color;textFontSize/number;textFontFamily/fontname;textAlign[end]/select,start,center,end;">
+        data-vis-attrs1="group.color;colorProgressBackground[{vis-materialdesign.0.colors.progress.track_background}]/color;colorProgress[{vis-materialdesign.0.colors.progress.track}]/color;colorOneCondition;colorOne[{vis-materialdesign.0.colors.progress.track_condition1}]/color;colorTwoCondition;colorTwo[{vis-materialdesign.0.colors.progress.track_condition2}]/color;"
+        data-vis-attrs2="group.label;showValueLabel[true]/checkbox;valueLabelStyle[progressPercent]/select,progressPercent,progressValue,progressCustom;valueLabelUnit;valueMaxDecimals/number;valueLabelCustom/html;textColor[{vis-materialdesign.0.colors.progress.text}]/color;textFontSize/number;textFontFamily/fontname;textAlign[end]/select,start,center,end;">
 
         <div class="vis-widget materialdesign-widget materialdesign-progress <%== this.data.attr('class') %>" style="width: 180px; height: 50px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.progress.linear(el, data) %>>
 
@@ -667,8 +667,8 @@
         data-vis-update-style="true"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,progress;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,progress;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;oid;min;max;exportData/custom,materialdesign.viseditor.exportData,progress_circular;"
         data-vis-attrs0="group.layout;progressCircularSize/number;progressCircularWidth/number;progressCircularRotate/number;"
-        data-vis-attrs1="group.color;colorProgressBackground/color;colorProgress/color;innerColor/color;colorOneCondition/number;colorOne/color;colorTwoCondition/number;colorTwo/color;"
-        data-vis-attrs2="group.label;showValueLabel[true]/checkbox;valueLabelStyle[progressPercent]/select,progressPercent,progressValue,progressCustom;valueLabelUnit;valueMaxDecimals/number;valueLabelCustom/html;textColor/color;textFontSize/number;textFontFamily/fontname;">
+        data-vis-attrs1="group.color;colorProgressBackground[{vis-materialdesign.0.colors.progress.track_background}]/color;colorProgress[{vis-materialdesign.0.colors.progress.track}]/color;innerColor[{vis-materialdesign.0.colors.progress.circular_background}]/color;colorOneCondition/number;colorOne[{vis-materialdesign.0.colors.progress.track_condition1}]/color;colorTwoCondition/number;colorTwo[{vis-materialdesign.0.colors.progress.track_condition2}]/color;"
+        data-vis-attrs2="group.label;showValueLabel[true]/checkbox;valueLabelStyle[progressPercent]/select,progressPercent,progressValue,progressCustom;valueLabelUnit;valueMaxDecimals/number;valueLabelCustom/html;textColor[{vis-materialdesign.0.colors.progress.text}]/color;textFontSize/number;textFontFamily/fontname;">
 
         <div class="vis-widget materialdesign-widget materialdesign-progress <%== this.data.attr('class') %>" style="width: 70px; height: 70px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.progress.circular(el, data) %>>
 

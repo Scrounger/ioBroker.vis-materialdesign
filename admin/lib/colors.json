@@ -18,6 +18,18 @@
         "widget": "Checkbox"
     },
     {
+        "id": "checkbox.text_off",
+        "desc": "labelColorFalse",
+        "defaultColor": 0,
+        "widget": "Checkbox"
+    },
+    {
+        "id": "checkbox.text_on",
+        "desc": "labelColorTrue",
+        "defaultColor": 0,
+        "widget": "Checkbox"
+    },    
+    {
         "id": "progress.track_background",
         "desc": "colorProgressBackground",
         "defaultColor": 3,
@@ -48,17 +60,11 @@
         "widget": "Progress, Progress Circular"
     },
     {
-        "id": "checkbox.text_off",
-        "desc": "labelColorFalse",
-        "defaultColor": 0,
-        "widget": "Checkbox"
-    },
-    {
-        "id": "checkbox.text_on",
-        "desc": "labelColorTrue",
-        "defaultColor": 0,
-        "widget": "Checkbox"
-    },
+        "id": "progress.circular_background",
+        "desc": "innerColor",
+        "defaultColor": 6,
+        "widget": "Progress Circular"
+    },    
     {
         "id": "slider.background",
         "desc": "colorSliderBg",

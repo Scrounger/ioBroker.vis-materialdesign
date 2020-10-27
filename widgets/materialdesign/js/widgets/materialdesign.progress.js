@@ -135,9 +135,9 @@ vis.binds.materialdesign.progress = {
         let max = myMdwHelper.getNumberFromData(data.max, 100);
 
         let color = myMdwHelper.getValueFromData(data.colorProgress, '');
-        let colorOneCondition = myMdwHelper.getValueFromData(data.colorOneCondition, 0);
+        let colorOneCondition = myMdwHelper.getValueFromData(data.colorOneCondition, 1000);
         let colorOne = myMdwHelper.getValueFromData(data.colorOne, color);
-        let colorTwoCondition = myMdwHelper.getValueFromData(data.colorTwoCondition, 0);
+        let colorTwoCondition = myMdwHelper.getValueFromData(data.colorTwoCondition, 1000);
         let colorTwo = myMdwHelper.getValueFromData(data.colorTwo, color);
 
         if (val === undefined) {
