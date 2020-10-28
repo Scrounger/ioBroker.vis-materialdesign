@@ -8130,6 +8130,18 @@ systemDictionary = {
         "zh-cn": "按钮"
     },
     "itemBackgroundColor": {
+        "en": "background color of elements",
+        "de": "Hintergrundfarbe der Elemente",
+        "ru": "цвет фона элементов",
+        "pt": "cor de fundo dos elementos",
+        "nl": "achtergrondkleur van elementen",
+        "fr": "couleur de fond des éléments",
+        "it": "colore di sfondo degli elementi",
+        "es": "color de fondo de los elementos",
+        "pl": "kolor tła elementów",
+        "zh-cn": "元素的背景色"
+    },
+    "containerBackgroundColor": {
         "en": "background color",
         "de": "Hintergrundfarbe",
         "ru": "фоновый цвет",

@@ -74,6 +74,8 @@
 
   --materialdesign-grid-gaps: 0px;
 
+  --materialdesign-icon-list-background: transparent;
+
   --materialdesign-icon-list-items-per-row: 3;
   --materialdesign-icon-list-items-min-width: 50px;
   --materialdesign-icon-list-items-gaps: 4px;
@@ -1933,6 +1935,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   display: flex;
   /* justify-content: center; */
   margin: calc(-1 * var(--materialdesign-icon-list-items-gaps));
+  background: var(--materialdesign-icon-list-background);
 }
 
 .materialdesign-icon-list-item {

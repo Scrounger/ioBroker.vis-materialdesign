@@ -19,6 +19,8 @@ vis.binds.materialdesign.iconlist =
             let bindingTokenList = [];
             let eventBind = {};
 
+            $this.context.style.setProperty("--materialdesign-icon-list-background", myMdwHelper.getValueFromData(data.containerBackgroundColor, ''));
+
             $this.context.style.setProperty("--materialdesign-icon-list-items-per-row", myMdwHelper.getNumberFromData(data.maxItemsperRow, 1));
 
             $this.context.style.setProperty("--materialdesign-icon-list-items-min-width", myMdwHelper.getNumberFromData(data.iconItemMinWidth, 50) + 'px');
@@ -268,6 +270,7 @@ vis.binds.materialdesign.iconlist =
                         let colorBackground = myMdwHelper.getValueFromData(data.colorBackground, '');
                         $this.context.style.setProperty("--materialdesign-color-card-background", colorBackground);
                         $this.context.style.setProperty("--materialdesign-color-card-title-section-background", myMdwHelper.getValueFromData(data.colorTitleSectionBackground, colorBackground));
+                        $this.context.style.setProperty("--materialdesign-color-card-text-section-background", myMdwHelper.getValueFromData(data.colorTextSectionBackground, colorBackground));
                         $this.context.style.setProperty("--materialdesign-color-card-title", myMdwHelper.getValueFromData(data.colorTitle, ''));
 
                         let titleFontSize = myMdwHelper.getFontSize(data.titleLayout);
@@ -304,7 +307,7 @@ vis.binds.materialdesign.iconlist =
             }
 
             function eventListener() {
-                let iconButtons = $this.find('.materialdesign-iconList-button');                
+                let iconButtons = $this.find('.materialdesign-iconList-button');
 
                 for (var i = 0; i <= iconButtons.length - 1; i++) {
                     let listItemObj = getListItemObj(i, data, jsonData);
@@ -388,9 +391,9 @@ vis.binds.materialdesign.iconlist =
                         let valOnLoading = vis.states.attr(valId);
                         setLayout(i, valOnLoading, listItemObj);
 
-                        if (!eventBind[valId]) { 
+                        if (!eventBind[valId]) {
                             // fires event only once per objectId
-                            
+
                             vis.states.bind(valId, function (e, newVal, oldVal) {
                                 let input = $this.find('div[data-oid="' + listItemObj.objectId + '"]');
                                 input.each(function (d) {
