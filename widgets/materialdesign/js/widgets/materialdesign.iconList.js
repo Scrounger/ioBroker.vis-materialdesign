@@ -269,8 +269,8 @@ vis.binds.materialdesign.iconlist =
                     } else {
                         let colorBackground = myMdwHelper.getValueFromData(data.colorBackground, '');
                         $this.context.style.setProperty("--materialdesign-color-card-background", colorBackground);
-                        $this.context.style.setProperty("--materialdesign-color-card-title-section-background", myMdwHelper.getValueFromData(data.colorTitleSectionBackground, colorBackground));
-                        $this.context.style.setProperty("--materialdesign-color-card-text-section-background", myMdwHelper.getValueFromData(data.colorTextSectionBackground, colorBackground));
+                        $this.context.style.setProperty("--materialdesign-color-card-title-section-background", myMdwHelper.getValueFromData(data.colorTitleSectionBackground, ''));
+                        $this.context.style.setProperty("--materialdesign-color-card-text-section-background", myMdwHelper.getValueFromData(data.colorTextSectionBackground, ''));
                         $this.context.style.setProperty("--materialdesign-color-card-title", myMdwHelper.getValueFromData(data.colorTitle, ''));
 
                         let titleFontSize = myMdwHelper.getFontSize(data.titleLayout);
@@ -318,7 +318,7 @@ vis.binds.materialdesign.iconlist =
                     } else {
                         new mdc.ripple.MDCRipple(iconButtons.get(i));
                     }
-                    iconButtons.get(i).style.setProperty("--mdc-theme-primary", myMdwHelper.getValueFromData(data.buttonColorPress, ''));
+                    iconButtons.get(i).style.setProperty("--materialdesign-color-icon-button-hover", myMdwHelper.getValueFromData(data.buttonColorPress, ''));
 
                     iconButtons.eq(i).click(function () {
                         // icon button click event

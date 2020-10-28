@@ -695,6 +695,12 @@ svg.materialdesign-widget .materialdesign-button__icon {
 .materialdesign-widget .materialdesign-button::after {
   background-color: #44739e;
 }
+
+.materialdesign-widget .materialdesign-icon-list-container .materialdesign-button::before, 
+.materialdesign-widget .materialdesign-icon-list-container .materialdesign-button::after {
+  background-color: var(--materialdesign-color-icon-button-hover);
+}
+
 @supports not (-ms-ime-align: auto) {
   .materialdesign-widget.materialdesign-button::before, 
   .materialdesign-widget .materialdesign-button::before,
@@ -702,6 +708,11 @@ svg.materialdesign-widget .materialdesign-button__icon {
   .materialdesign-widget .materialdesign-button::after {
     /* @alternate */
     background-color: #44739e;
+  }
+
+  .materialdesign-widget .materialdesign-icon-list-container .materialdesign-button::before, 
+  .materialdesign-widget .materialdesign-icon-list-container .materialdesign-button::after {
+    background-color: var(--materialdesign-color-icon-button-hover);
   }
 }
 .materialdesign-widget.materialdesign-button:hover::before,
@@ -960,6 +971,16 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 /* Card Layout */
 .materialdesign-widget.materialdesign-html-card.mdc-card {
+  border-radius: 4px;
+  background-color: var(--materialdesign-color-card-background);
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  color: black;
+}
+
+.materialdesign-widget .materialdesign-html-card.mdc-card {
   border-radius: 4px;
   background-color: var(--materialdesign-color-card-background);
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
