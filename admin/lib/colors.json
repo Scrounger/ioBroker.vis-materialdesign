@@ -10,7 +10,7 @@
         "desc": "closeIconPressColor",
         "defaultColor": 0,
         "widget": "Alerts"
-    },    
+    },
     {
         "id": "calendar.border",
         "desc": "calendarBorderColor",
@@ -46,7 +46,7 @@
         "desc": "calendarDayButtonRippleEffectColor",
         "defaultColor": 0,
         "widget": "Calendar"
-    }, 
+    },
     {
         "id": "calendar.button_text",
         "desc": "calendarDayButtonFontColor",
@@ -58,7 +58,7 @@
         "desc": "calendarDayButtonTodayFontColor",
         "defaultColor": 4,
         "widget": "Calendar"
-    },   
+    },
     {
         "id": "calendar.control_panel_background",
         "desc": "controlButtonColor",
@@ -100,13 +100,13 @@
         "desc": "calendarDayLabelTodayFontColor",
         "defaultColor": 0,
         "widget": "Calendar"
-    },    
+    },
     {
         "id": "calendar.header_text_past",
         "desc": "calendarDayLabelPreviousFontColor",
         "value": "rgba(0, 0, 0, 0.38)",
         "widget": "Calendar"
-    },  
+    },
     {
         "id": "calendar.calendar_weeks_background",
         "desc": "calendarWeeksNumbersBackground",
@@ -135,38 +135,38 @@
         "id": "card.background",
         "desc": "colorBackground",
         "defaultColor": 4,
-        "widget": "HTML Card"
+        "widget": "HTML Card, Icon List"
     },
     {
         "id": "card.background_title",
         "desc": "colorTitleSectionBackground",
         "defaultColor": 6,
-        "widget": "HTML Card"
-    },      
+        "widget": "HTML Card, Icon List"
+    },
     {
         "id": "card.background_body",
         "desc": "colorTextSectionBackground",
         "defaultColor": 6,
-        "widget": "HTML Card"
+        "widget": "HTML Card, Icon List"
     },
     {
         "id": "card.title",
         "desc": "colorTitle",
         "defaultColor": 0,
-        "widget": "HTML Card"
+        "widget": "HTML Card, Icon List"
     },
     {
         "id": "card.subTitle",
         "desc": "colorSubtitle",
         "defaultColor": 1,
         "widget": "HTML Card"
-    },    
+    },
     {
         "id": "calendar.time_axis_text",
         "desc": "calendarTimeAxisFontColor",
         "defaultColor": 0,
         "widget": "Calendar"
-    },    
+    },
     {
         "id": "checkbox.on",
         "desc": "colorCheckBox",
@@ -198,11 +198,59 @@
         "widget": "Checkbox"
     },
     {
+        "id": "icon_list.background",
+        "desc": "containerBackgroundColor",
+        "defaultColor": 6,
+        "widget": "Icon List"
+    },
+    {
+        "id": "icon_list.background_items",
+        "desc": "itemBackgroundColor",
+        "defaultColor": 6,
+        "widget": "Icon List"
+    },
+    {
+        "id": "icon_list.text",
+        "desc": "labelFontColor",
+        "defaultColor": 0,
+        "widget": "Icon List"
+    },
+    {
+        "id": "icon_list.subText",
+        "desc": "subLabelFontColor",
+        "defaultColor": 0,
+        "widget": "Icon List"
+    },
+    {
+        "id": "icon_list.value_text",
+        "desc": "valueFontColor",
+        "defaultColor": 1,
+        "widget": "Icon List"
+    },    
+    {
+        "id": "icon_list.icon",
+        "desc": "listImageColor",
+        "defaultColor": 0,
+        "widget": "Icon List"
+    },    
+    {
+        "id": "icon_list.button",
+        "desc": "buttonBgColor",
+        "defaultColor": 6,
+        "widget": "Icon List"
+    },    
+    {
+        "id": "icon_list.button_hover",
+        "desc": "buttonColorPress",
+        "defaultColor": 0,
+        "widget": "Icon List"
+    },
+    {
         "id": "material_design_icon.color",
         "desc": "mdwIconColor",
         "defaultColor": 0,
         "widget": "Material Design Icon"
-    },    
+    },
     {
         "id": "progress.track_background",
         "desc": "colorProgressBackground",
@@ -220,13 +268,13 @@
         "desc": "textColor",
         "defaultColor": 0,
         "widget": "Progress, Progress Circular"
-    },    
+    },
     {
         "id": "progress.track_condition1",
         "desc": "colorOne",
         "defaultColor": 8,
         "widget": "Progress, Progress Circular"
-    },    
+    },
     {
         "id": "progress.track_condition2",
         "desc": "colorTwo",
@@ -238,7 +286,7 @@
         "desc": "innerColor",
         "defaultColor": 6,
         "widget": "Progress Circular"
-    },    
+    },
     {
         "id": "slider.background",
         "desc": "colorSliderBg",
@@ -250,13 +298,13 @@
         "desc": "colorThumb",
         "defaultColor": 0,
         "widget": "Slider, Slider Round"
-    },    
+    },
     {
         "id": "slider.control_before",
         "desc": "colorBeforeThumb",
         "defaultColor": 0,
         "widget": "Slider, Slider Round"
-    },    
+    },
     {
         "id": "slider.control_behind",
         "desc": "colorAfterThumb",
