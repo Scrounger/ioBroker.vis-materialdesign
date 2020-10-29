@@ -1,6 +1,3 @@
-var fontSizes = [];
-var defaultFontSizes = [];
-
 let themeTypesList = ['colors', 'fonts', 'fontSizes'];
 
 var myNamespace;
@@ -48,7 +45,7 @@ async function createTab(themeType, themeObject, themeDefaults, settings, onChan
         let defaultTableButtons = '';
 
         // check if defaultColors exist and number are equals
-        if (!reset) themeDefaults = await loadDefaults(themeType, settings);
+        if (!reset) themeDefaults = await loadDefaults(themeType, settings, onChange);
 
         // check if all fonts exist in settings
         if (!reset) themeObject = await checkAllObjectsExistInSettings(themeType, themeObject, themeDefaults, onChange);
@@ -73,10 +70,12 @@ async function createTab(themeType, themeObject, themeDefaults, settings, onChan
 
                 themeDefaults[index] = inputVal;
 
-                let pickrEl = $(`#colorsPickerContainer${index} .pickr`);
-                pickrEl.empty();
-                console.log(themeDefaults);
-                let pickr = createColorPicker(pickrEl.get(0), inputVal, themeDefaults, inputEl, onChange, index);
+                let pickr = null;
+                if (themeType === 'colors') {
+                    let pickrEl = $(`#colorsPickerContainer${index} .pickr`);
+                    pickrEl.empty();
+                    pickr = createColorPicker(pickrEl.get(0), inputVal, themeDefaults, inputEl, onChange, index);
+                }
 
                 setTimeout(function () {
                     if (themeType === 'colors') {
@@ -199,8 +198,6 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
             let inputEl = $(this);
             let rowNum = inputEl.data('index');
 
-            console.log(`input: row${rowNum}`);
-
             if (themeType === 'colors') {
                 let pickrEl = $(`#${themeType}Table tr[data-index=${rowNum}] .pickr`);
                 pickrEl.empty();
@@ -289,7 +286,7 @@ function eventsHandlerTab(themeType, themeObject, themeDefaults, settings, onCha
     });
 }
 
-async function loadDefaults(themeType, settings) {
+async function loadDefaults(themeType, settings, onChange) {
     try {
         let result = [];
 
@@ -301,6 +298,7 @@ async function loadDefaults(themeType, settings) {
             for (var i = 0; i <= jsonDefaults.length - 1; i++) {
                 result[i] = settings[`default${themeType}`][i] || jsonDefaults[i];
             }
+            onChange();
         } else {
             result = settings[`default${themeType}`];
         }
@@ -317,18 +315,17 @@ async function checkAllObjectsExistInSettings(themeType, themeObject, themeDefau
         let jsonList = await getJsonObjects(themeType);
         for (var i = 0; i <= jsonList.length - 1; i++) {
             if (!themeObject.find(o => o.id === jsonList[i].id)) {
+
                 // not exist -> add to settings list
                 if (!jsonList[i].value) {
                     jsonList[i].value = themeDefaults[jsonList[i].defaultValue];
                 }
+
+                jsonList[i].desc = _(jsonList[i].desc);
                 themeObject.splice(i, 0, jsonList[i]);
 
                 onChange();
             }
-        }
-
-        for (const obj of themeObject) {
-            obj.desc = _(obj.desc);
         }
 
         return themeObject;
