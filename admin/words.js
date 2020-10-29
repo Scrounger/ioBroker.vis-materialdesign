@@ -520,8 +520,7 @@ systemDictionary = {
     },
     "colorPress": {
         "en": "color pressed",
-        "de": "Farbe gedrückt",
-        "ru": "цвет нажал",
+        "de": "Farbe gedrückt", "ru": "цвет нажал",
         "pt": "cor pressionada",
         "nl": "kleur ingedrukt",
         "fr": "couleur pressée",
@@ -10432,6 +10431,42 @@ systemDictionary = {
         "it": "fontsizes",
         "es": "tamaños de fuente",
         "pl": "fontsizes",
+        "zh-cn": "字体大小"
+    },
+    "colors_table": {
+        "en": "color",
+        "de": "Farbe",
+        "ru": "цвет",
+        "pt": "cor",
+        "nl": "kleur",
+        "fr": "Couleur",
+        "it": "colore",
+        "es": "color",
+        "pl": "kolor",
+        "zh-cn": "颜色"
+    },
+    "fonts_table": {
+        "en": "font",
+        "de": "Schriftart",
+        "ru": "шрифт",
+        "pt": "Fonte",
+        "nl": "lettertype",
+        "fr": "Police de caractère",
+        "it": "font",
+        "es": "fuente",
+        "pl": "czcionka",
+        "zh-cn": "字形"
+    },
+    "fontSizes_table": {
+        "en": "font size",
+        "de": "Schriftgröße",
+        "ru": "размер шрифта",
+        "pt": "tamanho da fonte",
+        "nl": "lettertypegrootte",
+        "fr": "taille de police",
+        "it": "dimensione del font",
+        "es": "tamaño de fuente",
+        "pl": "rozmiar czcionki",
         "zh-cn": "字体大小"
     }
 };

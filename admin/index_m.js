@@ -1,11 +1,7 @@
-var colors = [];
-var defaultColors = [];
-
-var fonts = [];
-var defaultFonts = [];
-
 var fontSizes = [];
 var defaultFontSizes = [];
+
+let themeTypesList = ['colors', 'fonts', 'fontSizes'];
 
 var myNamespace;
 
@@ -34,12 +30,11 @@ async function load(settings, onChange) {
     });
     onChange(false);
 
-    colors = settings.colors || [];
-    fonts = settings.fonts || [];
-
     globalScriptEnable();
-    createColorsTab(onChange, settings);
-    createFontsTab(onChange, settings);
+
+    for (const themeType of themeTypesList) {
+        createTab(themeType, settings[themeType], [], settings, onChange);
+    }
 
     eventsHandler(onChange);
 
@@ -47,53 +42,28 @@ async function load(settings, onChange) {
     if (M) M.updateTextFields();
 }
 
-//#region Tab Fonts
-async function createFontsTab(onChange, settings) {
-    console.log('createFontsTab');
-
-    let themeType = 'fonts';
-    let defaultFontsButtons = "";
-
-    // check if defaultColors exist and number are equals
-    defaultFonts = await loadDefaults(themeType, settings);
-
-    // check if all fonts exist in settings
-    fonts = await checkAllObjectsExistInSettings(themeType, fonts, defaultFonts, onChange);
-
-    $(`.${themeType}DefaultContainer`).empty();
-    for (var i = 0; i <= defaultFonts.length - 1; i++) {
-        defaultFontsButtons += `${i} `;
-
-        // create Default elements
-        createDefaultElement(themeType, defaultFonts, i);
-    }
-}
-//#endregion
-
-
-
-
-
-//#region Tab Colors
-async function createColorsTab(onChange, settings, reset = false) {
+//#region Tabs
+async function createTab(themeType, themeObject, themeDefaults, settings, onChange, reset = false) {
     try {
-        console.log('createColorsTab');
-        let themeType = 'colors';
-        let defaultColorsButtons = "";
+        let defaultTableButtons = '';
 
         // check if defaultColors exist and number are equals
-        if (!reset) defaultColors = await loadDefaults(themeType, settings);
+        if (!reset) themeDefaults = await loadDefaults(themeType, settings);
 
-        // check if all colors exist in settings
-        if (!reset) fonts = await checkAllObjectsExistInSettings(themeType, colors, defaultColors, onChange);
+        // check if all fonts exist in settings
+        if (!reset) themeObject = await checkAllObjectsExistInSettings(themeType, themeObject, themeDefaults, onChange);
 
         $(`.${themeType}DefaultContainer`).empty();
-        for (var i = 0; i <= defaultColors.length - 1; i++) {
-            defaultColorsButtons += `${i} `;
+        for (var i = 0; i <= themeDefaults.length - 1; i++) {
+            defaultTableButtons += `${i} `;
 
             // create Default elements
-            createDefaultElement(themeType, defaultColors, i);
-            createColorPicker(`#colorsPicker${i}`, defaultColors[i], $(`#${themeType}${i}`), onChange, i);
+            createDefaultElement(themeType, themeDefaults, i);
+
+            // if colors -> create colorPicker
+            if (themeType === 'colors') {
+                createColorPicker(`#colorsPicker${i}`, themeDefaults[i], themeDefaults, $(`#${themeType}${i}`), onChange, i);
+            }
 
             $(`#${themeType}${i}`).change(function () {
                 // default input: color changed -> fires only on key enter or lost focus -> change colorPicker
@@ -101,332 +71,222 @@ async function createColorsTab(onChange, settings, reset = false) {
                 let inputVal = inputEl.val();
                 let index = inputEl.attr('id').replace(themeType, '');
 
-                console.log(`input: ${themeType}${index}`);
-
-                defaultColors[index] = inputVal;
+                themeDefaults[index] = inputVal;
 
                 let pickrEl = $(`#colorsPickerContainer${index} .pickr`);
                 pickrEl.empty();
-                let pickr = createColorPicker(pickrEl.get(0), inputVal, inputEl, onChange, index);
+                console.log(themeDefaults);
+                let pickr = createColorPicker(pickrEl.get(0), inputVal, themeDefaults, inputEl, onChange, index);
 
                 setTimeout(function () {
-                    if (!inputVal.startsWith('#') && !inputVal.startsWith('rgb')) {
-                        // convert color names to hex
-                        let convertedColor = pickr._color.toHEXA().toString();
-                        inputEl.val(convertedColor);
-                        defaultColors[index] = convertedColor;
-                    }
-
-                    colors = table2values(themeType);
-                    for (var d in colors) {
-                        if (colors[d].defaultValue === index) {
-                            colors[d].value = defaultColors[index];
+                    if (themeType === 'colors') {
+                        if (!inputVal.startsWith('#') && !inputVal.startsWith('rgb')) {
+                            // convert color names to hex
+                            let convertedColor = pickr._color.toHEXA().toString();
+                            inputEl.val(convertedColor);
+                            themeDefaults[index] = convertedColor;
                         }
                     }
 
-                    createColorsTable(colors, onChange, defaultColorsButtons);
+                    themeObject = table2values(themeType);
+                    for (var d in themeObject) {
+                        if (themeObject[d].defaultValue === index) {
+                            themeObject[d].value = themeDefaults[index];
+                        }
+                    }
+
+                    createTable(themeType, themeObject, themeDefaults, defaultTableButtons, onChange);
                 }, 100);
 
                 onChange();
             });
         }
 
-        $(`#colorsTableFilterClear`).hide();
+        $(`#${themeType}TableFilterClear`).hide();
 
-        createColorsTable(colors, onChange, defaultColorsButtons);
-        eventsHandlerColorsTab(onChange, settings);
+        createTable(themeType, themeObject, themeDefaults, defaultTableButtons, onChange);
+        eventsHandlerTab(themeType, themeObject, themeDefaults, settings, onChange)
 
     } catch (err) {
-        console.error(`[createColorsTab] error: ${err.message}, stack: ${err.stack}`);
+        console.error(`[createTab] type: ${themeType} error: ${err.message}, stack: ${err.stack}`);
     }
 }
 
-async function createColorsTable(data, onChange, defaultColorsButtons) {
+async function createTable(themeType, themeObject, themeDefaults, defaultButtons, onChange) {
     try {
-        console.log('createColorsTable');
-        $('.container_colorsTable').empty();
+        $(`.container_${themeType}Table`).empty();
 
-        let element = `<div class="col s12" id="colors">
+        let element = `<div class="col s12" id="${themeType}">
                     <div class="table-values-div" style="margin-top: 10px;">
-                        <table class="table-values" id="colorsTable">
+                        <table class="table-values" id="${themeType}Table">
                             <thead>
                                 <tr>
                                     <th data-name="widget" style="width: 15%;" class="translate" data-type="text">${_("Widget")}</th>
                                     <th data-name="id" style="width: 15%;" data-style="cursor: copy" class="translate" data-type="text">${_("datapoint")}</th>
-                                    <th data-name="pickr" style="width: 30px;" data-style="text-align: center;" class="translate" data-type="text"></th>
-                                    <th data-name="value" style="width: 160px;" data-style="text-align: left;" class="translate" data-type="text">${_("color")}</th>
-                                    <th style="width: 120px; text-align: center;" class="header" data-buttons="${defaultColorsButtons.trim()}">${_('colorDefault')}</th>
+                                    ${themeType === 'colors' ? '<th data-name="pickr" style="width: 30px;" data-style="text-align: center;" class="translate" data-type="text"></th>' : ''}
+                                    <th data-name="value" style="width: 200px;" data-style="text-align: left;" class="translate" data-type="text">${_(`${themeType}_table`)}</th>
+                                    <th style="width: 150px; text-align: center;" class="header" data-buttons="${defaultButtons.trim()}">${_(`${themeType}Default`)}</th>
                                     <th data-name="desc" style="width: auto;" class="translate" data-type="text">${_("description")}</th>
-                                    <th data-name="defaultValue" style="display: none;" class="translate" data-type="text">${_('colorDefault')}</th>
+                                    <th data-name="defaultValue" style="display: none;" class="translate" data-type="text">${_(`${themeType}Default`)}</th>
                                 </tr>
                             </thead>
                         </table>
                     </div>
                 </div>`
 
-        $('.container_colorsTable').html(element);
+        $(`.container_${themeType}Table`).html(element);
 
-        values2table('colors', data, onChange);
+        values2table(themeType, themeObject, onChange);
 
-        // Input readonly machen
-        $('#colorsTable [data-name=widget]').prop('readOnly', true);
-        $('#colorsTable [data-name=id]').prop('readOnly', true);
-        $('#colorsTable [data-name=desc]').prop('readOnly', true);
+        // Inputs readonly
+        $(`#${themeType}Table [data-name=widget]`).prop('readOnly', true);
+        $(`#${themeType}Table [data-name=id]`).prop('readOnly', true);
+        $(`#${themeType}Table [data-name=desc]`).prop('readOnly', true);
 
-        // defaultcolor ausblenden
-        $('#colorsTable [data-name=defaultValue]').closest('td').css('display', 'none');
+        // defaultValue ausblenden
+        $(`#${themeType}Table [data-name=defaultValue]`).closest('td').css('display', 'none');
 
-        $('#colorsTable input[data-name=pickr]').each(function (i) {
-            // create ColorPicker for rows & 
-            let inpuEl = $(`#colorsTable input[data-index=${i}][data-name="value"]`);
-            if (data[i].value) {
-                createColorPicker(this, data[i].value, inpuEl, onChange);
-            } else {
-                createColorPicker(this, defaultColors[data[i].defaultValue], inpuEl, onChange);
-            }
 
-            setTableSelectedDefaultColor(i, data[i].defaultValue);
-        });
+        if (themeType === 'colors') {
+            $(`#${themeType}Table input[data-name=pickr]`).each(function (i) {
+                // create ColorPicker for rows & 
+                let inpuEl = $(`#${themeType}Table input[data-index=${i}][data-name="value"]`);
+                if (themeObject[i].value) {
+                    createColorPicker(this, themeObject[i].value, themeDefaults, inpuEl, onChange);
+                } else {
+                    createColorPicker(this, themeDefaults[themeObject[i].defaultValue], themeDefaults, inpuEl, onChange);
+                }
 
-        for (var i = 0; i <= defaultColors.length - 1; i++) {
+                setTableSelectedDefault(themeType, i, themeObject[i].defaultValue);
+            });
+        } else {
+            $(`#${themeType}Table input[data-name="value"]`).each(function (i) {
+                setTableSelectedDefault(themeType, i, themeObject[i].defaultValue);
+            });
+        }
+
+        for (var i = 0; i <= themeDefaults.length - 1; i++) {
             // Button Layout & Click event
-            let btn = $(`#colorsTable [data-command="${i}"]`);
+            let btn = $(`#${themeType}Table [data-command="${i}"]`);
             btn.find('.material-icons').each(function (index) {
                 $(this).text(i.toString()).removeClass('material-icons');
-
             });
 
             btn.on('click', function () {
-                // apply default colors to row
+                // apply default value to row
                 let rowNum = $(this).data('index');
                 let btnNum = $(this).data('command');;
 
-                // We have to recreate the color picker
-                let pickrEl = $(`#colorsTable tr[data-index=${rowNum}] .pickr`);
-                let inpuEl = $(`#colorsTable input[data-index=${rowNum}][data-name="value"]`);
-                pickrEl.empty();
-                createColorPicker(pickrEl.get(0), defaultColors[btnNum], inpuEl, onChange);
-                inpuEl.val(defaultColors[btnNum]);
+                let inpuEl = $(`#${themeType}Table input[data-index=${rowNum}][data-name="value"]`);
 
-                setTableSelectedDefaultColor(rowNum, btnNum);
+
+                if (themeType === 'colors') {
+                    // We have to recreate the color picker
+                    let pickrEl = $(`#${themeType}Table tr[data-index=${rowNum}] .pickr`);
+                    pickrEl.empty();
+                    createColorPicker(pickrEl.get(0), themeDefaults[btnNum], themeDefaults, inpuEl, onChange);
+                }
+
+                inpuEl.val(themeDefaults[btnNum]);
+                setTableSelectedDefault(themeType, rowNum, btnNum);
 
                 onChange();
-            })
+            });
         }
 
-        $('#colorsTable input[data-name=value]').change(function () {
+        $(`#${themeType}Table input[data-name=value]`).change(function () {
             // fires only on key enter or lost focus -> change colorPicker            
             let inputEl = $(this);
             let rowNum = inputEl.data('index');
 
             console.log(`input: row${rowNum}`);
 
-            let pickrEl = $(`#colorsTable tr[data-index=${rowNum}] .pickr`);
-            pickrEl.empty();
+            if (themeType === 'colors') {
+                let pickrEl = $(`#${themeType}Table tr[data-index=${rowNum}] .pickr`);
+                pickrEl.empty();
 
-            let pickr = createColorPicker(pickrEl.get(0), inputEl.val(), inputEl, onChange);
+                let pickr = createColorPicker(pickrEl.get(0), inputEl.val(), themeDefaults, inputEl, onChange);
 
-            setTimeout(function () {
-                if (!inputEl.val().startsWith('#') && !inputEl.val().startsWith('rgb')) {
-                    // convert color names to hex
-                    let convertedColor = pickr._color.toHEXA().toString();
-                    inputEl.val(convertedColor);
-                }
-            }, 100);
+                setTimeout(function () {
+                    if (!inputEl.val().startsWith('#') && !inputEl.val().startsWith('rgb')) {
+                        // convert color names to hex
+                        let convertedColor = pickr._color.toHEXA().toString();
+                        inputEl.val(convertedColor);
+                    }
+                }, 100);
+            }
 
-            $(`#colorsTable input[data-index=${rowNum}][data-name="defaultValue"]`).val('');
-            $(`#colorsTable .values-buttons[data-index=${rowNum}]`).css('background-color', '#2196f3');
+            $(`#${themeType}Table input[data-index=${rowNum}][data-name="defaultValue"]`).val('');
+            $(`#${themeType}Table .values-buttons[data-index=${rowNum}]`).css('background-color', '#2196f3');
         });
 
-        $('#colorsTable input[data-name=id]').click(function () {
-            clipboard.writeText(`{${myNamespace}.colors.${$(this).val()}}`);
+        $(`#${themeType}Table input[data-name=id]`).click(function () {
+            clipboard.writeText(`{${myNamespace}.${themeType}.${$(this).val()}}`);
             M.Toast.dismissAll();
             M.toast({ html: _('copied to clipboard'), displayLength: 700, inDuration: 0, outDuration: 0, classes: 'rounded' });
         });
 
     } catch (err) {
-        console.error(`[createColorsTable] error: ${err.message}, stack: ${err.stack}`);
+        console.error(`[createTable] type: ${themeType} error: ${err.message}, stack: ${err.stack}`);
     }
 }
 
-function createColorPicker(el, color, inputEl, onChange, defaultColorIndex = 0) {
-    let pickr = Pickr.create({
-        el: el,
-        theme: 'monolith', // or 'monolith', or 'nano'
-        default: color,     // init color
-        silent: false,
+function setTableSelectedDefault(themeType, rowNum, btnNum) {
+    $(`#${themeType}Table input[data-index=${rowNum}][data-name="defaultValue"]`).val(btnNum);
 
-        swatches: [
-            'black',
-            'white',
-            'blue',
-            'magenta',
-            'red',
-            'yellow',
-            'green',
-            'cyan',
-        ],
-        outputPrecision: 0,
-        comparison: false,
-
-        components: {
-
-            // Main components
-            preview: true,
-            opacity: true,
-            hue: true,
-
-            // Input / output Options
-            interaction: {
-                hex: true,
-                rgba: true,
-                input: true,
-                cancel: true,
-            }
-        },
-        i18n: {
-            'btn:cancel': _('undo')
-        }
-    }).on('hide', instance => {
-        let selectedColor = ''
-        if (instance._representation === 'HEXA') {
-            selectedColor = instance._color.toHEXA().toString();
-        } else {
-            selectedColor = instance._color.toRGBA().toString(0)
-        }
-
-        inputEl.val(selectedColor);
-        inputEl.get(0).dispatchEvent(new Event('change'));
-
-        if (defaultColorIndex > 0) {
-            defaultColors[defaultColorIndex] = selectedColor;
-        }
-
-        onChange();
-    });
-
-    return pickr;
+    $(`#${themeType}Table .values-buttons[data-index=${rowNum}]`).css('background-color', '#2196f3');
+    $(`#${themeType}Table .values-buttons[data-index=${rowNum}][data-command="${btnNum}"]`).css('background-color', 'green');
 }
 
-function setTableSelectedDefaultColor(rowNum, btnNum) {
-    $(`#colorsTable input[data-index=${rowNum}][data-name="defaultValue"]`).val(btnNum);
-
-    $(`#colorsTable .values-buttons[data-index=${rowNum}]`).css('background-color', '#2196f3');
-    $(`#colorsTable .values-buttons[data-index=${rowNum}][data-command="${btnNum}"]`).css('background-color', 'green');
-}
-
-function eventsHandlerColorsTab(onChange, settings) {
-    $('#colorsReset').on('click', function () {
-        confirmMessage(_('Do you want to restore the default colors?'), _('attention'), null, [_('Cancel'), _('OK')], async function (result) {
-            if (result === 1) {
-
-                // reset defaultColors
-                defaultColors = await getJsonObjects('defaultcolors');
-                for (var i = 0; i <= defaultColors.length - 1; i++) {
-                    let inputEl = $(`#colors${i}`);
-                    inputEl.val(defaultColors[i]);
-                }
-
-                // reset table colors
-                colors = await getJsonObjects('colors');
-                for (var i = 0; i <= colors.length - 1; i++) {
-                    if (!colors[i].value) {
-                        colors[i].value = defaultColors[colors[i].defaultValue];
-                    }
-
-                    colors[i].desc = _(colors[i].desc);
-                }
-
-                await createColorsTab(onChange, settings, true);
-
-                onChange();
-            }
-        });
-    });
-
-    $(`#colorsTableFilter`).keyup(function () {
+function eventsHandlerTab(themeType, themeObject, themeDefaults, settings, onChange) {
+    $(`#${themeType}TableFilter`).keyup(function () {
         let filter = $(this).val();
         if (filter.length > 0) {
-            $(`#colorsTableFilterClear`).show();
-            $('#colorsTable input[data-name=widget]').each(function () {
+            $(`#${themeType}TableFilterClear`).show();
+            $(`#${themeType}Table input[data-name=widget]`).each(function () {
                 if (!$(this).val().toUpperCase().includes(filter.toUpperCase())) {
                     $(this).closest('tr').hide();
                 }
             });
         } else {
-            $(`#colorsTable`).find('tr:gt(0)').show(); // show all rows
-            $(`#colorsTableFilterClear`).hide(); // hide button
+            $(`#${themeType}Table`).find('tr:gt(0)').show(); // show all rows
+            $(`#${themeType}TableFilterClear`).hide(); // hide button
         }
     });
 
-    $(`#colorsTableFilterClear`).click(function () {
-        $(`#colorsTableFilter`).val(''); // empty field
-        $(`#colorsTable`).find('tr:gt(0)').show(); // show all rows
-        $(`#colorsTableFilterClear`).hide(); // hide button
-    });
-}
-//#endregion
-
-function eventsHandler(onChange) {
-    $('#generateGlobalScript').on('change', function () {
-        globalScriptEnable();
-    });
-}
-
-function globalScriptEnable() {
-    if ($("#generateGlobalScript").prop('checked')) {
-        $('#scriptName').prop("disabled", false);
-        $('#variableName').prop("disabled", false);
-    } else {
-        $('#scriptName').prop("disabled", true);
-        $('#variableName').prop("disabled", true);
-    }
-}
-
-// This will be called by the admin adapter when the user presses the save button
-function save(callback) {
-    // example: select elements with class=value and build settings object
-    var obj = {};
-    $('.value').each(function () {
-        var $this = $(this);
-        if ($this.attr('type') === 'checkbox') {
-            obj[$this.attr('id')] = $this.prop('checked');
-        } else {
-            obj[$this.attr('id')] = $this.val();
-        }
+    $(`#${themeType}TableFilterClear`).click(function () {
+        $(`#${themeType}TableFilter`).val(''); // empty field
+        $(`#${themeType}Table`).find('tr:gt(0)').show(); // show all rows
+        $(`#${themeType}TableFilterClear`).hide(); // hide button
     });
 
-    colors = table2values('colors');
-    obj.colors = colors;
+    $(`#${themeType}Reset`).on('click', function () {
+        confirmMessage(_(`Do you want to restore the default ${themeType}?`), _('attention'), null, [_('Cancel'), _('OK')], async function (result) {
+            if (result === 1) {
 
-    obj.defaultcolors = defaultColors;
+                // reset defaultColors
+                themeDefaults = await getJsonObjects(`default${themeType}`);
+                for (var i = 0; i <= themeDefaults.length - 1; i++) {
+                    let inputEl = $(`#${themeType}${i}`);
+                    inputEl.val(themeDefaults[i]);
+                }
 
-    storeStates();
+                // reset table colors
+                themeObject = await getJsonObjects(themeType);
+                for (var i = 0; i <= themeObject.length - 1; i++) {
+                    if (!themeObject[i].value) {
+                        themeObject[i].value = themeDefaults[themeObject[i].defaultValue];
+                    }
 
-    callback(obj);
-}
+                    themeObject[i].desc = _(themeObject[i].desc);
+                }
 
-async function storeStates() {
-    try {
-        for (const color of colors) {
-            setStateString(`${myNamespace}.colors.${color.id}`, color.desc, color.value);
-        }
+                createTab(themeType, themeObject, themeDefaults, settings, onChange, true);
 
-        for (var i = 0; i <= defaultColors.length - 1; i++) {
-            setStateString(`${myNamespace}.colors.default.${i}`, `${_('colorsDefault')} ${i}`, defaultColors[i]);
-        }
-
-        for (const font of fonts) {
-            setStateString(`${myNamespace}.fonts.${font.id}`, font.desc, font.value);
-        }
-
-        for (var i = 0; i <= defaultFonts.length - 1; i++) {
-            setStateString(`${myNamespace}.fonts.default.${i}`, `${_('fontsDefault')} ${i}`, defaultFonts[i]);
-        }
-
-    } catch (err) {
-        console.error(`[storeStates] error: ${err.message}, stack: ${err.stack}`)
-    }
+                onChange();
+            }
+        });
+    });
 }
 
 async function loadDefaults(themeType, settings) {
@@ -490,6 +350,120 @@ function createDefaultElement(themeType, themeDefaults, index) {
         console.error(`[createDefaultElement] themeType: ${themeType}, error: ${err.message}, stack: ${err.stack}`);
     }
 }
+
+
+function createColorPicker(el, color, colorDefaults, inputEl, onChange, defaultColorIndex = 0) {
+    let pickr = Pickr.create({
+        el: el,
+        theme: 'monolith', // or 'monolith', or 'nano'
+        default: color,     // init color
+        silent: false,
+
+        swatches: [
+            'black',
+            'white',
+            'blue',
+            'magenta',
+            'red',
+            'yellow',
+            'green',
+            'cyan',
+        ],
+        outputPrecision: 0,
+        comparison: false,
+
+        components: {
+
+            // Main components
+            preview: true,
+            opacity: true,
+            hue: true,
+
+            // Input / output Options
+            interaction: {
+                hex: true,
+                rgba: true,
+                input: true,
+                cancel: true,
+            }
+        },
+        i18n: {
+            'btn:cancel': _('undo')
+        }
+    }).on('hide', instance => {
+        let selectedColor = ''
+        if (instance._representation === 'HEXA') {
+            selectedColor = instance._color.toHEXA().toString();
+        } else {
+            selectedColor = instance._color.toRGBA().toString(0)
+        }
+
+        inputEl.val(selectedColor);
+        inputEl.get(0).dispatchEvent(new Event('change'));
+
+        if (defaultColorIndex > 0) {
+            colorDefaults[defaultColorIndex] = selectedColor;
+        }
+
+        onChange();
+    });
+
+    return pickr;
+}
+
+//#endregion
+
+function eventsHandler(onChange) {
+    $('#generateGlobalScript').on('change', function () {
+        globalScriptEnable();
+    });
+}
+
+function globalScriptEnable() {
+    if ($("#generateGlobalScript").prop('checked')) {
+        $('#scriptName').prop("disabled", false);
+        $('#variableName').prop("disabled", false);
+    } else {
+        $('#scriptName').prop("disabled", true);
+        $('#variableName').prop("disabled", true);
+    }
+}
+
+// This will be called by the admin adapter when the user presses the save button
+function save(callback) {
+    // example: select elements with class=value and build settings object
+    var obj = {};
+    $('.value').each(function () {
+        var $this = $(this);
+        if ($this.attr('type') === 'checkbox') {
+            obj[$this.attr('id')] = $this.prop('checked');
+        } else {
+            obj[$this.attr('id')] = $this.val();
+        }
+    });
+
+    for (const themeType of themeTypesList) {
+        obj[themeType] = table2values(themeType);
+
+        for (const themeObject of obj[themeType]) {
+            setStateString(`${myNamespace}.${themeType}.${themeObject.id}`, themeObject.desc, themeObject.value);
+        }
+
+        obj[`default${themeType}`] = [];
+        $(`.${themeType}DefaultContainer input`).each(function (i) {
+            let themeDefault = $(this).val();
+            obj[`default${themeType}`].push(themeDefault);
+            setStateString(`${myNamespace}.${themeType}.defaults.${i}`, `${_(`${themeType}Default`)} ${i}`, themeDefault);
+        });
+    }
+
+    // obj.defaultcolors = defaultColors;
+
+    // storeStates();
+
+    callback(obj);
+}
+
 
 /**
  * @param {string} id
