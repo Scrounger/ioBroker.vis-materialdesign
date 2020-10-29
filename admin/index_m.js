@@ -10,7 +10,7 @@ var defaultFontSizes = [];
 var myNamespace;
 
 // This will be called by the admin adapter when the settings page loads
-function load(settings, onChange) {
+async function load(settings, onChange) {
     // example: select elements with id=key and class=value and insert value
     if (!settings) return;
 
@@ -60,6 +60,7 @@ async function createFontsTab(onChange, settings) {
     // check if all fonts exist in settings
     fonts = await checkAllObjectsExistInSettings(themeType, fonts, defaultFonts, onChange);
 
+    $(`.${themeType}DefaultContainer`).empty();
     for (var i = 0; i <= defaultFonts.length - 1; i++) {
         defaultFontsButtons += `${i} `;
 
@@ -74,18 +75,19 @@ async function createFontsTab(onChange, settings) {
 
 
 //#region Tab Colors
-async function createColorsTab(onChange, settings) {
+async function createColorsTab(onChange, settings, reset = false) {
     try {
         console.log('createColorsTab');
         let themeType = 'colors';
         let defaultColorsButtons = "";
 
         // check if defaultColors exist and number are equals
-        defaultColors = await loadDefaults(themeType, settings);
+        if (!reset) defaultColors = await loadDefaults(themeType, settings);
 
         // check if all colors exist in settings
-        fonts = await checkAllObjectsExistInSettings(themeType, colors, defaultColors, onChange);
+        if (!reset) fonts = await checkAllObjectsExistInSettings(themeType, colors, defaultColors, onChange);
 
+        $(`.${themeType}DefaultContainer`).empty();
         for (var i = 0; i <= defaultColors.length - 1; i++) {
             defaultColorsButtons += `${i} `;
 
@@ -94,18 +96,21 @@ async function createColorsTab(onChange, settings) {
             createColorPicker(`#colorsPicker${i}`, defaultColors[i], $(`#${themeType}${i}`), onChange, i);
 
             $(`#${themeType}${i}`).change(function () {
-                // fires only on key enter or lost focus -> change colorPicker
+                // default input: color changed -> fires only on key enter or lost focus -> change colorPicker
                 let inputEl = $(this);
+                let inputVal = inputEl.val();
                 let index = inputEl.attr('id').replace(themeType, '');
 
-                defaultColors[index] = inputEl.val();
+                console.log(`input: ${themeType}${index}`);
+
+                defaultColors[index] = inputVal;
 
                 let pickrEl = $(`#colorsPickerContainer${index} .pickr`);
                 pickrEl.empty();
-                let pickr = createColorPicker(pickrEl.get(0), inputEl.val(), inputEl, onChange, index);
+                let pickr = createColorPicker(pickrEl.get(0), inputVal, inputEl, onChange, index);
 
                 setTimeout(function () {
-                    if (!inputEl.val().startsWith('#') && !inputEl.val().startsWith('rgb')) {
+                    if (!inputVal.startsWith('#') && !inputVal.startsWith('rgb')) {
                         // convert color names to hex
                         let convertedColor = pickr._color.toHEXA().toString();
                         inputEl.val(convertedColor);
@@ -115,7 +120,7 @@ async function createColorsTab(onChange, settings) {
                     colors = table2values(themeType);
                     for (var d in colors) {
                         if (colors[d].defaultValue === index) {
-                            colors[d].value = inputEl.val();
+                            colors[d].value = defaultColors[index];
                         }
                     }
 
@@ -129,7 +134,7 @@ async function createColorsTab(onChange, settings) {
         $(`#colorsTableFilterClear`).hide();
 
         createColorsTable(colors, onChange, defaultColorsButtons);
-        eventsHandlerColorsTab(onChange, defaultColorsButtons);
+        eventsHandlerColorsTab(onChange, settings);
 
     } catch (err) {
         console.error(`[createColorsTab] error: ${err.message}, stack: ${err.stack}`);
@@ -138,6 +143,7 @@ async function createColorsTab(onChange, settings) {
 
 async function createColorsTable(data, onChange, defaultColorsButtons) {
     try {
+        console.log('createColorsTable');
         $('.container_colorsTable').empty();
 
         let element = `<div class="col s12" id="colors">
@@ -209,9 +215,11 @@ async function createColorsTable(data, onChange, defaultColorsButtons) {
         }
 
         $('#colorsTable input[data-name=value]').change(function () {
-            // fires only on key enter or lost focus -> change colorPicker
+            // fires only on key enter or lost focus -> change colorPicker            
             let inputEl = $(this);
             let rowNum = inputEl.data('index');
+
+            console.log(`input: row${rowNum}`);
 
             let pickrEl = $(`#colorsTable tr[data-index=${rowNum}] .pickr`);
             pickrEl.empty();
@@ -307,15 +315,8 @@ function setTableSelectedDefaultColor(rowNum, btnNum) {
     $(`#colorsTable .values-buttons[data-index=${rowNum}][data-command="${btnNum}"]`).css('background-color', 'green');
 }
 
-function eventsHandlerColorsTab(onChange, defaultColorsButtons) {
-    $('.myColorsTab').on('click', function () {
-        //recreate Table on Tab click -> dynamically create select options
-        colors = table2values('colors');
-
-        createColorsTable(colors, onChange, defaultColorsButtons);
-    });
-
-    $('#resetColors').on('click', function () {
+function eventsHandlerColorsTab(onChange, settings) {
+    $('#colorsReset').on('click', function () {
         confirmMessage(_('Do you want to restore the default colors?'), _('attention'), null, [_('Cancel'), _('OK')], async function (result) {
             if (result === 1) {
 
@@ -324,7 +325,6 @@ function eventsHandlerColorsTab(onChange, defaultColorsButtons) {
                 for (var i = 0; i <= defaultColors.length - 1; i++) {
                     let inputEl = $(`#colors${i}`);
                     inputEl.val(defaultColors[i]);
-                    inputEl.get(0).dispatchEvent(new Event('change'));
                 }
 
                 // reset table colors
@@ -337,7 +337,7 @@ function eventsHandlerColorsTab(onChange, defaultColorsButtons) {
                     colors[i].desc = _(colors[i].desc);
                 }
 
-                await createColorsTable(colors, onChange, defaultColorsButtons);
+                await createColorsTab(onChange, settings, true);
 
                 onChange();
             }
@@ -459,7 +459,7 @@ async function checkAllObjectsExistInSettings(themeType, themeObject, themeDefau
             if (!themeObject.find(o => o.id === jsonList[i].id)) {
                 // not exist -> add to settings list
                 if (!jsonList[i].value) {
-                    jsonList[i].value = themeDefaults[jsonList[i].defaultValue];                    
+                    jsonList[i].value = themeDefaults[jsonList[i].defaultValue];
                 }
                 themeObject.splice(i, 0, jsonList[i]);
 
