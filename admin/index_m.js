@@ -49,6 +49,8 @@ function load(settings, onChange) {
 
 //#region Tab Fonts
 async function createFontsTab(onChange, settings) {
+    console.log('createFontsTab');
+
     let themeType = 'fonts';
     let defaultFontsButtons = "";
 
@@ -58,7 +60,12 @@ async function createFontsTab(onChange, settings) {
     // check if all fonts exist in settings
     fonts = await checkAllObjectsExistInSettings(themeType, fonts, defaultFonts, onChange);
 
+    for (var i = 0; i <= defaultFonts.length - 1; i++) {
+        defaultFontsButtons += `${i} `;
 
+        // create Default elements
+        createDefaultElement(themeType, defaultFonts, i);
+    }
 }
 //#endregion
 
@@ -69,6 +76,7 @@ async function createFontsTab(onChange, settings) {
 //#region Tab Colors
 async function createColorsTab(onChange, settings) {
     try {
+        console.log('createColorsTab');
         let themeType = 'colors';
         let defaultColorsButtons = "";
 
@@ -82,17 +90,17 @@ async function createColorsTab(onChange, settings) {
             defaultColorsButtons += `${i} `;
 
             // create Default elements
-            createDefaultElement('color', defaultColors, i);
-            createColorPicker(`#colorPicker${i}`, defaultColors[i], $(`#color${i}`), onChange, i);
+            createDefaultElement(themeType, defaultColors, i);
+            createColorPicker(`#colorsPicker${i}`, defaultColors[i], $(`#${themeType}${i}`), onChange, i);
 
-            $(`#color${i}`).change(function () {
+            $(`#${themeType}${i}`).change(function () {
                 // fires only on key enter or lost focus -> change colorPicker
                 let inputEl = $(this);
-                let index = inputEl.attr('id').replace('color', '');
+                let index = inputEl.attr('id').replace(themeType, '');
 
                 defaultColors[index] = inputEl.val();
 
-                let pickrEl = $(`#colorPickerContainer${index} .pickr`);
+                let pickrEl = $(`#colorsPickerContainer${index} .pickr`);
                 pickrEl.empty();
                 let pickr = createColorPicker(pickrEl.get(0), inputEl.val(), inputEl, onChange, index);
 
@@ -104,7 +112,7 @@ async function createColorsTab(onChange, settings) {
                         defaultColors[index] = convertedColor;
                     }
 
-                    colors = table2values('colors');
+                    colors = table2values(themeType);
                     for (var d in colors) {
                         if (colors[d].defaultValue === index) {
                             colors[d].value = inputEl.val();
@@ -314,7 +322,7 @@ function eventsHandlerColorsTab(onChange, defaultColorsButtons) {
                 // reset defaultColors
                 defaultColors = await getJsonObjects('defaultcolors');
                 for (var i = 0; i <= defaultColors.length - 1; i++) {
-                    let inputEl = $(`#color${i}`);
+                    let inputEl = $(`#colors${i}`);
                     inputEl.val(defaultColors[i]);
                     inputEl.get(0).dispatchEvent(new Event('change'));
                 }
@@ -405,8 +413,17 @@ async function storeStates() {
         }
 
         for (var i = 0; i <= defaultColors.length - 1; i++) {
-            setStateString(`${myNamespace}.colors.default.${i}`, `${_('colorDefault')} ${i}`, defaultColors[i]);
+            setStateString(`${myNamespace}.colors.default.${i}`, `${_('colorsDefault')} ${i}`, defaultColors[i]);
         }
+
+        for (const font of fonts) {
+            setStateString(`${myNamespace}.fonts.${font.id}`, font.desc, font.value);
+        }
+
+        for (var i = 0; i <= defaultFonts.length - 1; i++) {
+            setStateString(`${myNamespace}.fonts.default.${i}`, `${_('fontsDefault')} ${i}`, defaultFonts[i]);
+        }
+
     } catch (err) {
         console.error(`[storeStates] error: ${err.message}, stack: ${err.stack}`)
     }
@@ -442,9 +459,10 @@ async function checkAllObjectsExistInSettings(themeType, themeObject, themeDefau
             if (!themeObject.find(o => o.id === jsonList[i].id)) {
                 // not exist -> add to settings list
                 if (!jsonList[i].value) {
-                    jsonList[i].value = themeDefaults[jsonList[i].defaultValue];
+                    jsonList[i].value = themeDefaults[jsonList[i].defaultValue];                    
                 }
                 themeObject.splice(i, 0, jsonList[i]);
+
                 onChange();
             }
         }
@@ -463,9 +481,9 @@ async function checkAllObjectsExistInSettings(themeType, themeObject, themeDefau
 function createDefaultElement(themeType, themeDefaults, index) {
     try {
         $(`.${themeType}DefaultContainer`).append(`
-            <div class="col s12 m6 l3 ${themeType}PickerContainer" id="${themeType}PickerContainer${index}">
-                <label for="${themeType}${index}" id="${themeType}Input${index}" class="translate ${themeType}PickerLabel">${_(`${themeType}Default`)} ${index}</label>
-                ${themeType === 'color' ? `<div class="${themeType}Picker" id="${themeType}Picker${index}"></div>` : ''}
+            <div class="col s12 m6 l3 defaultContainer" id="${themeType}PickerContainer${index}">
+                <label for="${themeType}${index}" id="${themeType}Input${index}" class="translate defaultLabel">${_(`${themeType}Default`)} ${index}</label>
+                ${themeType === 'colors' ? `<div class="${themeType}Picker" id="${themeType}Picker${index}"></div>` : ''}
                 <input type="text" class="value ${themeType}PickerInput" id="${themeType}${index}" value="${themeDefaults[index]}" />
             </div>`);
     } catch (err) {

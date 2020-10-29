@@ -10338,7 +10338,7 @@ systemDictionary = {
         "pl": "Resetowanie",
         "zh-cn": "重启"
     },
-    "colorDefault": {
+    "colorsDefault": {
         "en": "default color",
         "de": "Standard Farbe",
         "ru": "цвет по умолчанию",
@@ -10350,7 +10350,18 @@ systemDictionary = {
         "pl": "domyślny kolor",
         "zh-cn": "默认颜色"
     },
-    
+    "fontsDefault": {
+        "en": "default font",
+        "de": "Standard Schriftart",
+        "ru": "шрифт по умолчанию",
+        "pt": "fonte padrão",
+        "nl": "standaardlettertype",
+        "fr": "police par défaut",
+        "it": "carattere predefinito",
+        "es": "fuente predeterminada",
+        "pl": "Domyślna czcionka",
+        "zh-cn": "默认字体"
+    },
     "Do you want to restore the default colors?": {
         "en": "Do you want to restore the default colors?",
         "de": "Möchten Sie die Standardfarben wiederherstellen?",
