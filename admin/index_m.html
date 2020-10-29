@@ -113,8 +113,10 @@
 		<div class="row">
 			<div class="col s12">
 				<ul class="tabs" style="height: auto;">
-					<li class="tab col s6 l2"><a href="#tab_general" class="translate active">general</a></li>
-					<li class="tab col s6 l2 myColorsTab"><a href="#tab_colors" class="translate">colors</a>
+					<li class="tab col s6 l2"><a href="#tab_general" class="translate active">config_general</a></li>
+					<li class="tab col s6 l2 myColorsTab"><a href="#tab_colors" class="translate">config_colors</a>
+					<li class="tab col s6 l2 myColorsTab"><a href="#tab_fonts" class="translate">config_fonts</a>
+					<li class="tab col s6 l2 myColorsTab"><a href="#tab_fontSizes" class="translate">config_fontSizes</a>
 					</li>
 				</ul>
 			</div>
@@ -153,9 +155,8 @@
 			</div>
 			<div id="tab_colors" class="col s12 page">
 				<section>
-
 					<div class="row">
-						<div class="col s12 m12 l12 defaultColorsContainer">
+						<div class="col s12 m12 l12 colorDefaultContainer">
 							<!-- dynamically creates colorPicker & input on load -->
 						</div>
 					</div>
@@ -173,6 +174,48 @@
 					</div>
 				</section>
 			</div>
+			<div id="tab_fonts" class="col s12 page">
+				<section>
+					<div class="row">
+						<div class="col s12 m12 l12 defaultFontsContainer">
+							<!-- dynamically creates colorPicker & input on load -->
+						</div>
+					</div>
+					<div class="col s12 m12 l12">
+						<div class="table-filter input-field col s12 m6 l6">
+							<input type="text" placeholder="Filter Widgets" id="fontsTableFilter" />
+							<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="fontsTableFilterClear"><i class="material-icons">clear</i></button></span>
+						</div>
+						<div class="col s12 m6 l6 right-align" style="margin-top: 12px">
+							<a id="resetFonts" class="waves-effect waves-light btn-small"><i class="material-icons left">undo</i><span class="translate">reset</span></a>
+						</div>
+					</div>
+					<div class="container_fontsTable">						
+						<!-- dynamically creates table on evey change of the select values  -->
+					</div>
+				</section>
+			</div>
+			<div id="tab_fontSizes" class="col s12 page">
+				<section>
+					<div class="row">
+						<div class="col s12 m12 l12 defaultFontSizesContainer">
+							<!-- dynamically creates colorPicker & input on load -->
+						</div>
+					</div>
+					<div class="col s12 m12 l12">
+						<div class="table-filter input-field col s12 m6 l6">
+							<input type="text" placeholder="Filter Widgets" id="fontSizesTableFilter" />
+							<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="fontSizesTableFilterClear"><i class="material-icons">clear</i></button></span>
+						</div>
+						<div class="col s12 m6 l6 right-align" style="margin-top: 12px">
+							<a id="resetfontSizes" class="waves-effect waves-light btn-small"><i class="material-icons left">undo</i><span class="translate">reset</span></a>
+						</div>
+					</div>
+					<div class="container_FontSizesTable">						
+						<!-- dynamically creates table on evey change of the select values  -->
+					</div>
+				</section>
+			</div>	
 		</div>
 	</div>
 </body>

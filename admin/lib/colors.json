@@ -2,25 +2,25 @@
     {
         "id": "alerts.close_icon",
         "desc": "closeIconColor",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Alerts"
     },
     {
         "id": "alerts.close_icon_hover",
         "desc": "closeIconPressColor",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Alerts"
     },
     {
         "id": "calendar.border",
         "desc": "calendarBorderColor",
-        "defaultColor": 3,
+        "defaultValue": 3,
         "widget": "Calendar"
     },
     {
         "id": "calendar.background_day",
         "desc": "calendarDayBackgroundColor",
-        "defaultColor": 6,
+        "defaultValue": 6,
         "widget": "Calendar"
     },
     {
@@ -32,73 +32,73 @@
     {
         "id": "calendar.button_background",
         "desc": "calendarDayButtonColor",
-        "defaultColor": 6,
+        "defaultValue": 6,
         "widget": "Calendar"
     },
     {
         "id": "calendar.button_background_today",
         "desc": "calendarDayButtonTodayColor",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Calendar"
     },
     {
         "id": "calendar.button_hover",
         "desc": "calendarDayButtonRippleEffectColor",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Calendar"
     },
     {
         "id": "calendar.button_text",
         "desc": "calendarDayButtonFontColor",
-        "defaultColor": 5,
+        "defaultValue": 5,
         "widget": "Calendar"
     },
     {
         "id": "calendar.button_text_today",
         "desc": "calendarDayButtonTodayFontColor",
-        "defaultColor": 4,
+        "defaultValue": 4,
         "widget": "Calendar"
     },
     {
         "id": "calendar.control_panel_background",
         "desc": "controlButtonColor",
-        "defaultColor": 6,
+        "defaultValue": 6,
         "widget": "Calendar"
     },
     {
         "id": "calendar.control_panel_hover",
         "desc": "controlButtonRippelEffectColor",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Calendar"
     },
     {
         "id": "calendar.control_panel_icon",
         "desc": "controlIconColor",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Calendar"
     },
     {
         "id": "calendar.control_panel_text",
         "desc": "controlTextColor",
-        "defaultColor": 5,
+        "defaultValue": 5,
         "widget": "Calendar"
     },
     {
         "id": "calendar.header_background",
         "desc": "calendarHeaderBackground",
-        "defaultColor": 6,
+        "defaultValue": 6,
         "widget": "Calendar"
     },
     {
         "id": "calendar.header_text",
         "desc": "calendarDayLabelFontColor",
-        "defaultColor": 5,
+        "defaultValue": 5,
         "widget": "Calendar"
     },
     {
         "id": "calendar.header_text_today",
         "desc": "calendarDayLabelTodayFontColor",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Calendar"
     },
     {
@@ -116,271 +116,271 @@
     {
         "id": "calendar.calendar_weeks_text",
         "desc": "calendarWeeksNumbersFontColor",
-        "defaultColor": 5,
+        "defaultValue": 5,
         "widget": "Calendar"
     },
     {
         "id": "calendar.time_axis_background",
         "desc": "calendarTimeAxisBackgroundColor",
-        "defaultColor": 6,
+        "defaultValue": 6,
         "widget": "Calendar"
     },
     {
         "id": "calendar.time_axis_background_header",
         "desc": "calendarTimeAxisHeaderBackgroundColor",
-        "defaultColor": 6,
+        "defaultValue": 6,
         "widget": "Calendar"
     },
     {
         "id": "card.background",
         "desc": "colorBackground",
-        "defaultColor": 4,
+        "defaultValue": 4,
         "widget": "HTML Card, Icon List"
     },
     {
         "id": "card.background_title",
         "desc": "colorTitleSectionBackground",
-        "defaultColor": 6,
+        "defaultValue": 6,
         "widget": "HTML Card, Icon List"
     },
     {
         "id": "card.background_body",
         "desc": "colorTextSectionBackground",
-        "defaultColor": 6,
+        "defaultValue": 6,
         "widget": "HTML Card, Icon List"
     },
     {
         "id": "card.title",
         "desc": "colorTitle",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "HTML Card, Icon List"
     },
     {
         "id": "card.subTitle",
         "desc": "colorSubtitle",
-        "defaultColor": 1,
+        "defaultValue": 1,
         "widget": "HTML Card"
     },
     {
         "id": "calendar.time_axis_text",
         "desc": "calendarTimeAxisFontColor",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Calendar"
     },
     {
         "id": "checkbox.on",
         "desc": "colorCheckBox",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Checkbox"
     },
     {
         "id": "checkbox.border",
         "desc": "colorCheckBoxBorder",
-        "defaultColor": 2,
+        "defaultValue": 2,
         "widget": "Checkbox"
     },
     {
         "id": "checkbox.hover",
         "desc": "colorCheckBoxHover",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Checkbox"
     },
     {
         "id": "checkbox.text_off",
         "desc": "labelColorFalse",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Checkbox"
     },
     {
         "id": "checkbox.text_on",
         "desc": "labelColorTrue",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Checkbox"
     },
     {
         "id": "icon_list.background",
         "desc": "containerBackgroundColor",
-        "defaultColor": 6,
+        "defaultValue": 6,
         "widget": "Icon List"
     },
     {
         "id": "icon_list.background_items",
         "desc": "itemBackgroundColor",
-        "defaultColor": 6,
+        "defaultValue": 6,
         "widget": "Icon List"
     },
     {
         "id": "icon_list.text",
         "desc": "labelFontColor",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Icon List"
     },
     {
         "id": "icon_list.subText",
         "desc": "subLabelFontColor",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Icon List"
     },
     {
         "id": "icon_list.value_text",
         "desc": "valueFontColor",
-        "defaultColor": 1,
+        "defaultValue": 1,
         "widget": "Icon List"
     },    
     {
         "id": "icon_list.icon",
         "desc": "listImageColor",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Icon List"
     },    
     {
         "id": "icon_list.button",
         "desc": "buttonBgColor",
-        "defaultColor": 6,
+        "defaultValue": 6,
         "widget": "Icon List"
     },    
     {
         "id": "icon_list.button_hover",
         "desc": "buttonColorPress",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Icon List"
     },
     {
         "id": "material_design_icon.color",
         "desc": "mdwIconColor",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Material Design Icon"
     },
     {
         "id": "progress.track_background",
         "desc": "colorProgressBackground",
-        "defaultColor": 3,
+        "defaultValue": 3,
         "widget": "Progress, Progress Circular"
     },
     {
         "id": "progress.track",
         "desc": "colorProgress",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Progress, Progress Circular"
     },
     {
         "id": "progress.text",
         "desc": "textColor",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Progress, Progress Circular"
     },
     {
         "id": "progress.track_condition1",
         "desc": "colorOne",
-        "defaultColor": 8,
+        "defaultValue": 8,
         "widget": "Progress, Progress Circular"
     },
     {
         "id": "progress.track_condition2",
         "desc": "colorTwo",
-        "defaultColor": 9,
+        "defaultValue": 9,
         "widget": "Progress, Progress Circular"
     },
     {
         "id": "progress.circular_background",
         "desc": "innerColor",
-        "defaultColor": 6,
+        "defaultValue": 6,
         "widget": "Progress Circular"
     },
     {
         "id": "slider.background",
         "desc": "colorSliderBg",
-        "defaultColor": 6,
+        "defaultValue": 6,
         "widget": "Slider, Slider Round"
     },
     {
         "id": "slider.control",
         "desc": "colorThumb",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Slider, Slider Round"
     },
     {
         "id": "slider.control_before",
         "desc": "colorBeforeThumb",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Slider, Slider Round"
     },
     {
         "id": "slider.control_behind",
         "desc": "colorAfterThumb",
-        "defaultColor": 3,
+        "defaultValue": 3,
         "widget": "Slider, Slider Round"
     },
     {
         "id": "slider.text",
         "desc": "valueLabelColor",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Slider, Slider Round"
     },
     {
         "id": "slider.tick_before",
         "desc": "tickColorBefore",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Slider"
     },
     {
         "id": "slider.tick_after",
         "desc": "tickColorAfter",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Slider"
     },
     {
         "id": "slider.control_text",
         "desc": "thumbBackgroundColor",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Slider"
     },
     {
         "id": "slider.control_text_font",
         "desc": "thumbFontColor",
-        "defaultColor": 4,
+        "defaultValue": 4,
         "widget": "Slider"
     },
     {
         "id": "switch.on",
         "desc": "colorSwitchTrue",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Switch"
     },
     {
         "id": "switch.on_hover",
         "desc": "colorSwitchHoverTrue",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Switch"
     },
     {
         "id": "switch.off",
         "desc": "colorSwitchThumb",
-        "defaultColor": 4,
+        "defaultValue": 4,
         "widget": "Switch"
     },
     {
         "id": "switch.off_hover",
         "desc": "colorSwitchHover",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Switch"
     },
     {
         "id": "switch.track",
         "desc": "colorSwitchTrack",
-        "defaultColor": 5,
+        "defaultValue": 5,
         "widget": "Switch"
     },
     {
         "id": "switch.text_off",
         "desc": "labelColorFalse",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Switch"
     },
     {
         "id": "switch.text_on",
         "desc": "labelColorTrue",
-        "defaultColor": 0,
+        "defaultValue": 0,
         "widget": "Switch"
     }
 ]

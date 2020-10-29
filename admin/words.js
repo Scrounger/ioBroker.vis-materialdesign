@@ -10338,7 +10338,7 @@ systemDictionary = {
         "pl": "Resetowanie",
         "zh-cn": "重启"
     },
-    "defaultColor": {
+    "colorDefault": {
         "en": "default color",
         "de": "Standard Farbe",
         "ru": "цвет по умолчанию",
@@ -10350,66 +10350,7 @@ systemDictionary = {
         "pl": "domyślny kolor",
         "zh-cn": "默认颜色"
     },
-    "defaultColor1": {
-        "en": "default color 1",
-        "de": "Standard Farbe 1",
-        "ru": "цвет по умолчанию 1",
-        "pt": "cor padrão 1",
-        "nl": "standaard kleur 1",
-        "fr": "couleur par défaut 1",
-        "it": "colore predefinito 1",
-        "es": "color predeterminado 1",
-        "pl": "domyślny kolor 1",
-        "zh-cn": "默认颜色1"
-    },
-    "defaultColor2": {
-        "en": "default color 2",
-        "de": "Standard Farbe 2",
-        "ru": "цвет по умолчанию 2",
-        "pt": "cor padrão 2",
-        "nl": "standaard kleur 2",
-        "fr": "couleur par défaut 2",
-        "it": "colore predefinito 2",
-        "es": "color predeterminado 2",
-        "pl": "domyślny kolor 2",
-        "zh-cn": "默认颜色2"
-    },
-    "defaultColor3": {
-        "en": "default color 3",
-        "de": "Standard Farbe 3",
-        "ru": "цвет по умолчанию 3",
-        "pt": "cor padrão 3",
-        "nl": "standaard kleur 3",
-        "fr": "couleur par défaut 3",
-        "it": "colore predefinito 3",
-        "es": "color predeterminado 3",
-        "pl": "domyślny kolor 3",
-        "zh-cn": "默认颜色3"
-    },
-    "defaultColor4": {
-        "en": "default color 4",
-        "de": "Standard Farbe 4",
-        "ru": "цвет по умолчанию 4",
-        "pt": "cor padrão 4",
-        "nl": "standaard kleur 4",
-        "fr": "couleur par défaut 4",
-        "it": "colore predefinito 4",
-        "es": "color predeterminado 4",
-        "pl": "domyślny kolor 4",
-        "zh-cn": "默认颜色4"
-    },
-    "defaultColor5": {
-        "en": "default color 5",
-        "de": "Standard Farbe 5",
-        "ru": "цвет по умолчанию 5",
-        "pt": "cor padrão 5",
-        "nl": "standaard kleur 5",
-        "fr": "couleur par défaut 5",
-        "it": "colore predefinito 5",
-        "es": "color predeterminado 5",
-        "pl": "domyślny kolor 5",
-        "zh-cn": "默认颜色5"
-    },
+    
     "Do you want to restore the default colors?": {
         "en": "Do you want to restore the default colors?",
         "de": "Möchten Sie die Standardfarben wiederherstellen?",
@@ -10433,5 +10374,53 @@ systemDictionary = {
         "es": "Copiado al portapapeles",
         "pl": "skopiowane do schowka",
         "zh-cn": "复制到剪贴板"
+    },
+    "config_general": {
+        "en": "general",
+        "de": "Allgemeines",
+        "ru": "Общее",
+        "pt": "geral",
+        "nl": "algemeen",
+        "fr": "général",
+        "it": "generale",
+        "es": "general",
+        "pl": "generał",
+        "zh-cn": "一般"
+    },
+    "config_colors": {
+        "en": "colors",
+        "de": "Farben",
+        "ru": "цвета",
+        "pt": "cores",
+        "nl": "kleuren",
+        "fr": "couleurs",
+        "it": "colori",
+        "es": "colores",
+        "pl": "zabarwienie",
+        "zh-cn": "颜色"
+    },
+    "config_fonts": {
+        "en": "fonts",
+        "de": "Schriftarten",
+        "ru": "шрифты",
+        "pt": "fontes",
+        "nl": "lettertypen",
+        "fr": "polices",
+        "it": "caratteri",
+        "es": "fuentes",
+        "pl": "czcionki",
+        "zh-cn": "字型"
+    },
+    "config_fontSizes": {
+        "en": "fontsizes",
+        "de": "Schriftgrößen",
+        "ru": "шрифты",
+        "pt": "tamanhos de fonte",
+        "nl": "lettertypen",
+        "fr": "tailles de police",
+        "it": "fontsizes",
+        "es": "tamaños de fuente",
+        "pl": "fontsizes",
+        "zh-cn": "字体大小"
     }
 };

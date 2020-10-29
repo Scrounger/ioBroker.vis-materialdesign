@@ -306,7 +306,11 @@
         "variableName": "myMdwStyles",
         "generateGlobalScript": false,
         "colors": [],
-        "defaultColors": [],
+        "defaultcolors": [],
+        "fonts": [],
+        "defaultfonts": [],
+        "fontSizes": [],
+        "defaultfontSizes": [],                
         "dependencies": [
             "basic"
         ]

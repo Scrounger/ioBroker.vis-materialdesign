@@ -1,6 +1,13 @@
 var colors = [];
-var myNamespace;
 var defaultColors = [];
+
+var fonts = [];
+var defaultFonts = [];
+
+var fontSizes = [];
+var defaultFontSizes = [];
+
+var myNamespace;
 
 // This will be called by the admin adapter when the settings page loads
 function load(settings, onChange) {
@@ -27,62 +34,55 @@ function load(settings, onChange) {
     });
     onChange(false);
 
+    colors = settings.colors || [];
+    fonts = settings.fonts || [];
+
     globalScriptEnable();
     createColorsTab(onChange, settings);
+    createFontsTab(onChange, settings);
 
-    eventsHandler(onChange, settings);
+    eventsHandler(onChange);
 
     // reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
     if (M) M.updateTextFields();
 }
 
+//#region Tab Fonts
+async function createFontsTab(onChange, settings) {
+    let themeType = 'fonts';
+    let defaultFontsButtons = "";
+
+    // check if defaultColors exist and number are equals
+    defaultFonts = await loadDefaults(themeType, settings);
+
+    // check if all fonts exist in settings
+    fonts = await checkAllObjectsExistInSettings(themeType, fonts, defaultFonts, onChange);
+
+
+}
+//#endregion
+
+
+
+
 
 //#region Tab Colors
 async function createColorsTab(onChange, settings) {
     try {
-        colors = settings.colors || [];
+        let themeType = 'colors';
         let defaultColorsButtons = "";
 
         // check if defaultColors exist and number are equals
-        let jsonDefaultColors = await getJsonObjects('defaultColors');
-        if (settings.defaultColors.length === 0) {
-            defaultColors = jsonDefaultColors;
-        } else if (settings.defaultColors.length !== jsonDefaultColors.length) {
-            for (var i = 0; i <= jsonDefaultColors.length - 1; i++) {
-                defaultColors[i] = settings.defaultColors[i] || jsonDefaultColors[i];
-            }
-        } else {
-            defaultColors = settings.defaultColors;
-        }
+        defaultColors = await loadDefaults(themeType, settings);
 
-        // check if all objects exist in settings
-        let jsonColorList = await getJsonObjects('colors');
-        for (var i = 0; i <= jsonColorList.length - 1; i++) {
-            if (!colors.find(o => o.id === jsonColorList[i].id)) {
-                // not exist -> add to settings list
-                if (!jsonColorList[i].value) {
-                    jsonColorList[i].value = defaultColors[jsonColorList[i].defaultColor];
-                }
-                colors.splice(i, 0, jsonColorList[i]);
-                onChange();
-            }
-        }
-
-        for (const color of colors) {
-            color.desc = _(color.desc);
-        }
+        // check if all colors exist in settings
+        fonts = await checkAllObjectsExistInSettings(themeType, colors, defaultColors, onChange);
 
         for (var i = 0; i <= defaultColors.length - 1; i++) {
             defaultColorsButtons += `${i} `;
 
-            // defaultColors[i] = settings[`color${i}`];
-            $('.defaultColorsContainer').append(`
-                <div class="col s12 m6 l3 colorPickerContainer" id="colorPickerContainer${i}">
-                    <label for="color${i}" id="colorInput${i}" class="translate colorPickerLabel">${_('defaultColor')} ${i}</label>
-                    <div class="colorPicker" id="colorPicker${i}"></div>
-                    <input type="text" class="value colorPickerInput" id="color${i}" value="${defaultColors[i]}" />
-                </div>`)
-
+            // create Default elements
+            createDefaultElement('color', defaultColors, i);
             createColorPicker(`#colorPicker${i}`, defaultColors[i], $(`#color${i}`), onChange, i);
 
             $(`#color${i}`).change(function () {
@@ -106,7 +106,7 @@ async function createColorsTab(onChange, settings) {
 
                     colors = table2values('colors');
                     for (var d in colors) {
-                        if (colors[d].defaultColor === index) {
+                        if (colors[d].defaultValue === index) {
                             colors[d].value = inputEl.val();
                         }
                     }
@@ -141,9 +141,9 @@ async function createColorsTable(data, onChange, defaultColorsButtons) {
                                     <th data-name="id" style="width: 15%;" data-style="cursor: copy" class="translate" data-type="text">${_("datapoint")}</th>
                                     <th data-name="pickr" style="width: 30px;" data-style="text-align: center;" class="translate" data-type="text"></th>
                                     <th data-name="value" style="width: 160px;" data-style="text-align: left;" class="translate" data-type="text">${_("color")}</th>
-                                    <th style="width: 120px; text-align: center;" class="header" data-buttons="${defaultColorsButtons.trim()}">${_("defaultColor")}</th>
+                                    <th style="width: 120px; text-align: center;" class="header" data-buttons="${defaultColorsButtons.trim()}">${_('colorDefault')}</th>
                                     <th data-name="desc" style="width: auto;" class="translate" data-type="text">${_("description")}</th>
-                                    <th data-name="defaultColor" style="display: none;" class="translate" data-type="text">${_("defaultColor")}</th>
+                                    <th data-name="defaultValue" style="display: none;" class="translate" data-type="text">${_('colorDefault')}</th>
                                 </tr>
                             </thead>
                         </table>
@@ -160,7 +160,7 @@ async function createColorsTable(data, onChange, defaultColorsButtons) {
         $('#colorsTable [data-name=desc]').prop('readOnly', true);
 
         // defaultcolor ausblenden
-        $('#colorsTable [data-name=defaultColor]').closest('td').css('display', 'none');
+        $('#colorsTable [data-name=defaultValue]').closest('td').css('display', 'none');
 
         $('#colorsTable input[data-name=pickr]').each(function (i) {
             // create ColorPicker for rows & 
@@ -168,10 +168,10 @@ async function createColorsTable(data, onChange, defaultColorsButtons) {
             if (data[i].value) {
                 createColorPicker(this, data[i].value, inpuEl, onChange);
             } else {
-                createColorPicker(this, defaultColors[data[i].defaultColor], inpuEl, onChange);
+                createColorPicker(this, defaultColors[data[i].defaultValue], inpuEl, onChange);
             }
 
-            setTableSelectedDefaultColor(i, data[i].defaultColor);
+            setTableSelectedDefaultColor(i, data[i].defaultValue);
         });
 
         for (var i = 0; i <= defaultColors.length - 1; i++) {
@@ -218,7 +218,7 @@ async function createColorsTable(data, onChange, defaultColorsButtons) {
                 }
             }, 100);
 
-            $(`#colorsTable input[data-index=${rowNum}][data-name="defaultColor"]`).val('');
+            $(`#colorsTable input[data-index=${rowNum}][data-name="defaultValue"]`).val('');
             $(`#colorsTable .values-buttons[data-index=${rowNum}]`).css('background-color', '#2196f3');
         });
 
@@ -227,12 +227,6 @@ async function createColorsTable(data, onChange, defaultColorsButtons) {
             M.Toast.dismissAll();
             M.toast({ html: _('copied to clipboard'), displayLength: 700, inDuration: 0, outDuration: 0, classes: 'rounded' });
         });
-
-        // $('#colorsTable input[data-name=widget]').each(function () {
-        //     if ($(this).val() !== 'Switch') {
-        //         $(this).closest('tr').hide();
-        //     }   
-        // });
 
     } catch (err) {
         console.error(`[createColorsTable] error: ${err.message}, stack: ${err.stack}`);
@@ -299,7 +293,7 @@ function createColorPicker(el, color, inputEl, onChange, defaultColorIndex = 0) 
 }
 
 function setTableSelectedDefaultColor(rowNum, btnNum) {
-    $(`#colorsTable input[data-index=${rowNum}][data-name="defaultColor"]`).val(btnNum);
+    $(`#colorsTable input[data-index=${rowNum}][data-name="defaultValue"]`).val(btnNum);
 
     $(`#colorsTable .values-buttons[data-index=${rowNum}]`).css('background-color', '#2196f3');
     $(`#colorsTable .values-buttons[data-index=${rowNum}][data-command="${btnNum}"]`).css('background-color', 'green');
@@ -318,7 +312,7 @@ function eventsHandlerColorsTab(onChange, defaultColorsButtons) {
             if (result === 1) {
 
                 // reset defaultColors
-                defaultColors = await getJsonObjects('defaultColors');
+                defaultColors = await getJsonObjects('defaultcolors');
                 for (var i = 0; i <= defaultColors.length - 1; i++) {
                     let inputEl = $(`#color${i}`);
                     inputEl.val(defaultColors[i]);
@@ -327,12 +321,11 @@ function eventsHandlerColorsTab(onChange, defaultColorsButtons) {
 
                 // reset table colors
                 colors = await getJsonObjects('colors');
-                console.log(colors);
                 for (var i = 0; i <= colors.length - 1; i++) {
                     if (!colors[i].value) {
-                        colors[i].value = defaultColors[colors[i].defaultColor];
+                        colors[i].value = defaultColors[colors[i].defaultValue];
                     }
-                    
+
                     colors[i].desc = _(colors[i].desc);
                 }
 
@@ -398,8 +391,7 @@ function save(callback) {
     colors = table2values('colors');
     obj.colors = colors;
 
-
-    obj.defaultColors = defaultColors;
+    obj.defaultcolors = defaultColors;
 
     storeStates();
 
@@ -413,10 +405,71 @@ async function storeStates() {
         }
 
         for (var i = 0; i <= defaultColors.length - 1; i++) {
-            setStateString(`${myNamespace}.colors.default.${i}`, `${_('defaultColor')} ${i}`, defaultColors[i]);
+            setStateString(`${myNamespace}.colors.default.${i}`, `${_('colorDefault')} ${i}`, defaultColors[i]);
         }
     } catch (err) {
         console.error(`[storeStates] error: ${err.message}, stack: ${err.stack}`)
+    }
+}
+
+async function loadDefaults(themeType, settings) {
+    try {
+        let result = [];
+
+        // check if default colors / fonts / sizes exist and number are equals
+        let jsonDefaults = await getJsonObjects(`default${themeType}`);
+        if (settings[`default${themeType}`].length === 0) {
+            result = jsonDefaults;
+        } else if (settings[`default${themeType}`].length !== jsonDefaults.length) {
+            for (var i = 0; i <= jsonDefaults.length - 1; i++) {
+                result[i] = settings[`default${themeType}`][i] || jsonDefaults[i];
+            }
+        } else {
+            result = settings[`default${themeType}`];
+        }
+
+        return result;
+    } catch (err) {
+        console.error(`[loadDefaults] themeType: ${themeType}, error: ${err.message}, stack: ${err.stack}`);
+    }
+}
+
+async function checkAllObjectsExistInSettings(themeType, themeObject, themeDefaults, onChange) {
+    try {
+        // check if all objects exist in settings
+        let jsonList = await getJsonObjects(themeType);
+        for (var i = 0; i <= jsonList.length - 1; i++) {
+            if (!themeObject.find(o => o.id === jsonList[i].id)) {
+                // not exist -> add to settings list
+                if (!jsonList[i].value) {
+                    jsonList[i].value = themeDefaults[jsonList[i].defaultValue];
+                }
+                themeObject.splice(i, 0, jsonList[i]);
+                onChange();
+            }
+        }
+
+        for (const obj of themeObject) {
+            obj.desc = _(obj.desc);
+        }
+
+        return themeObject;
+
+    } catch (err) {
+        console.error(`[checkAllObjectsExistInSettings] themeType: ${themeType}, error: ${err.message}, stack: ${err.stack}`);
+    }
+}
+
+function createDefaultElement(themeType, themeDefaults, index) {
+    try {
+        $(`.${themeType}DefaultContainer`).append(`
+            <div class="col s12 m6 l3 ${themeType}PickerContainer" id="${themeType}PickerContainer${index}">
+                <label for="${themeType}${index}" id="${themeType}Input${index}" class="translate ${themeType}PickerLabel">${_(`${themeType}Default`)} ${index}</label>
+                ${themeType === 'color' ? `<div class="${themeType}Picker" id="${themeType}Picker${index}"></div>` : ''}
+                <input type="text" class="value ${themeType}PickerInput" id="${themeType}${index}" value="${themeDefaults[index]}" />
+            </div>`);
+    } catch (err) {
+        console.error(`[createDefaultElement] themeType: ${themeType}, error: ${err.message}, stack: ${err.stack}`);
     }
 }
 

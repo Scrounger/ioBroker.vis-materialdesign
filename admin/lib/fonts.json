@@ -1,0 +1,8 @@
+[
+    {
+        "id": "alerts.close_icon",
+        "desc": "closeIconColor",
+        "defaultValue": 0,
+        "widget": "Alerts"
+    }    
+]
