@@ -105,9 +105,9 @@ vis.binds.materialdesign.helper = {
                     return nullValue;
                 } else {
                     if (vis.editMode) {
-                        let binding = vis.binds.materialdesign.helper.extractBindingVisEditor(dataValue)
-                        if (binding && binding.length === 1) {
-                            let bindingVal = vis.states.attr(binding[0].visOid)
+                        let binding = vis.binds.materialdesign.helper.extractBindingVisEditor(dataValue);
+                        if (binding && binding.length >= 1) {
+                            let bindingVal = vis.formatBinding(dataValue);
 
                             if (bindingVal === undefined || bindingVal === 'undefined' || bindingVal === null || bindingVal === 'null' || bindingVal === '') {
                                 return nullValue;
@@ -120,7 +120,7 @@ vis.binds.materialdesign.helper = {
                 }
             }
         } catch (err) {
-            console.error(`[Helper] getValueFromData: ${err.message}`);
+            console.error(`[Helper] getValueFromData: ${err.message}, stack: ${err.stack}`);
             return 'Error';
         }
     },
