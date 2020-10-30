@@ -1,384 +1,384 @@
 [
     {
-        "id": "light.alerts.close_icon",
+        "id": "dark.alerts.close_icon",
         "desc": "closeIconColor",
         "defaultValue": 0,
         "widget": "Alerts"
     },
     {
-        "id": "light.alerts.close_icon_hover",
+        "id": "dark.alerts.close_icon_hover",
         "desc": "closeIconPressColor",
         "defaultValue": 0,
         "widget": "Alerts"
     },
     {
-        "id": "light.calendar.border",
+        "id": "dark.calendar.border",
         "desc": "calendarBorderColor",
         "defaultValue": 3,
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.background_day",
+        "id": "dark.calendar.background_day",
         "desc": "calendarDayBackgroundColor",
         "defaultValue": 6,
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.background_other_month",
+        "id": "dark.calendar.background_other_month",
         "desc": "calendarDayBackgroundOutsideColor",
         "value": "#f7f7f7",
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.button_background",
+        "id": "dark.calendar.button_background",
         "desc": "calendarDayButtonColor",
         "defaultValue": 6,
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.button_background_today",
+        "id": "dark.calendar.button_background_today",
         "desc": "calendarDayButtonTodayColor",
         "defaultValue": 0,
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.button_hover",
+        "id": "dark.calendar.button_hover",
         "desc": "calendarDayButtonRippleEffectColor",
         "defaultValue": 0,
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.button_text",
+        "id": "dark.calendar.button_text",
         "desc": "calendarDayButtonFontColor",
         "defaultValue": 5,
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.button_text_today",
+        "id": "dark.calendar.button_text_today",
         "desc": "calendarDayButtonTodayFontColor",
         "defaultValue": 4,
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.control_panel_background",
+        "id": "dark.calendar.control_panel_background",
         "desc": "controlButtonColor",
         "defaultValue": 6,
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.control_panel_hover",
+        "id": "dark.calendar.control_panel_hover",
         "desc": "controlButtonRippelEffectColor",
         "defaultValue": 0,
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.control_panel_icon",
+        "id": "dark.calendar.control_panel_icon",
         "desc": "controlIconColor",
         "defaultValue": 0,
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.control_panel_text",
+        "id": "dark.calendar.control_panel_text",
         "desc": "controlTextColor",
         "defaultValue": 5,
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.header_background",
+        "id": "dark.calendar.header_background",
         "desc": "calendarHeaderBackground",
         "defaultValue": 6,
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.header_text",
+        "id": "dark.calendar.header_text",
         "desc": "calendarDayLabelFontColor",
         "defaultValue": 5,
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.header_text_today",
+        "id": "dark.calendar.header_text_today",
         "desc": "calendarDayLabelTodayFontColor",
         "defaultValue": 0,
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.header_text_past",
+        "id": "dark.calendar.header_text_past",
         "desc": "calendarDayLabelPreviousFontColor",
         "value": "rgba(0, 0, 0, 0.38)",
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.calendar_weeks_background",
+        "id": "dark.calendar.calendar_weeks_background",
         "desc": "calendarWeeksNumbersBackground",
         "value": "#f7f7f7",
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.calendar_weeks_text",
+        "id": "dark.calendar.calendar_weeks_text",
         "desc": "calendarWeeksNumbersFontColor",
         "defaultValue": 5,
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.time_axis_background",
+        "id": "dark.calendar.time_axis_background",
         "desc": "calendarTimeAxisBackgroundColor",
         "defaultValue": 6,
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.time_axis_background_header",
+        "id": "dark.calendar.time_axis_background_header",
         "desc": "calendarTimeAxisHeaderBackgroundColor",
         "defaultValue": 6,
         "widget": "Calendar"
     },
     {
-        "id": "light.card.background",
+        "id": "dark.card.background",
         "desc": "colorBackground",
         "defaultValue": 4,
         "widget": "HTML Card, Icon List"
     },
     {
-        "id": "light.card.background_title",
+        "id": "dark.card.background_title",
         "desc": "colorTitleSectionBackground",
         "defaultValue": 6,
         "widget": "HTML Card, Icon List"
     },
     {
-        "id": "light.card.background_body",
+        "id": "dark.card.background_body",
         "desc": "colorTextSectionBackground",
         "defaultValue": 6,
         "widget": "HTML Card, Icon List"
     },
     {
-        "id": "light.card.title",
+        "id": "dark.card.title",
         "desc": "colorTitle",
         "defaultValue": 0,
         "widget": "HTML Card, Icon List"
     },
     {
-        "id": "light.card.subTitle",
+        "id": "dark.card.subTitle",
         "desc": "colorSubtitle",
         "defaultValue": 1,
         "widget": "HTML Card"
     },
     {
-        "id": "light.calendar.time_axis_text",
+        "id": "dark.calendar.time_axis_text",
         "desc": "calendarTimeAxisFontColor",
         "defaultValue": 0,
         "widget": "Calendar"
     },
     {
-        "id": "light.checkbox.on",
+        "id": "dark.checkbox.on",
         "desc": "colorCheckBox",
         "defaultValue": 0,
         "widget": "Checkbox"
     },
     {
-        "id": "light.checkbox.border",
+        "id": "dark.checkbox.border",
         "desc": "colorCheckBoxBorder",
         "defaultValue": 2,
         "widget": "Checkbox"
     },
     {
-        "id": "light.checkbox.hover",
+        "id": "dark.checkbox.hover",
         "desc": "colorCheckBoxHover",
         "defaultValue": 0,
         "widget": "Checkbox"
     },
     {
-        "id": "light.checkbox.text_off",
+        "id": "dark.checkbox.text_off",
         "desc": "labelColorFalse",
         "defaultValue": 0,
         "widget": "Checkbox"
     },
     {
-        "id": "light.checkbox.text_on",
+        "id": "dark.checkbox.text_on",
         "desc": "labelColorTrue",
         "defaultValue": 0,
         "widget": "Checkbox"
     },
     {
-        "id": "light.icon_list.background",
+        "id": "dark.icon_list.background",
         "desc": "containerBackgroundColor",
         "defaultValue": 6,
         "widget": "Icon List"
     },
     {
-        "id": "light.icon_list.background_items",
+        "id": "dark.icon_list.background_items",
         "desc": "itemBackgroundColor",
         "defaultValue": 6,
         "widget": "Icon List"
     },
     {
-        "id": "light.icon_list.text",
+        "id": "dark.icon_list.text",
         "desc": "labelFontColor",
         "defaultValue": 0,
         "widget": "Icon List"
     },
     {
-        "id": "light.icon_list.subText",
+        "id": "dark.icon_list.subText",
         "desc": "subLabelFontColor",
         "defaultValue": 0,
         "widget": "Icon List"
     },
     {
-        "id": "light.icon_list.value_text",
+        "id": "dark.icon_list.value_text",
         "desc": "valueFontColor",
         "defaultValue": 1,
         "widget": "Icon List"
     },    
     {
-        "id": "light.icon_list.icon",
+        "id": "dark.icon_list.icon",
         "desc": "listImageColor",
         "defaultValue": 0,
         "widget": "Icon List"
     },    
     {
-        "id": "light.icon_list.button",
+        "id": "dark.icon_list.button",
         "desc": "buttonBgColor",
         "defaultValue": 6,
         "widget": "Icon List"
     },    
     {
-        "id": "light.icon_list.button_hover",
+        "id": "dark.icon_list.button_hover",
         "desc": "buttonColorPress",
         "defaultValue": 0,
         "widget": "Icon List"
     },
     {
-        "id": "light.material_design_icon.color",
+        "id": "dark.material_design_icon.color",
         "desc": "mdwIconColor",
         "defaultValue": 0,
         "widget": "Material Design Icon"
     },
     {
-        "id": "light.progress.track_background",
+        "id": "dark.progress.track_background",
         "desc": "colorProgressBackground",
         "defaultValue": 3,
         "widget": "Progress, Progress Circular"
     },
     {
-        "id": "light.progress.track",
+        "id": "dark.progress.track",
         "desc": "colorProgress",
         "defaultValue": 0,
         "widget": "Progress, Progress Circular"
     },
     {
-        "id": "light.progress.text",
+        "id": "dark.progress.text",
         "desc": "textColor",
         "defaultValue": 0,
         "widget": "Progress, Progress Circular"
     },
     {
-        "id": "light.progress.track_condition1",
+        "id": "dark.progress.track_condition1",
         "desc": "colorOne",
         "defaultValue": 8,
         "widget": "Progress, Progress Circular"
     },
     {
-        "id": "light.progress.track_condition2",
+        "id": "dark.progress.track_condition2",
         "desc": "colorTwo",
         "defaultValue": 9,
         "widget": "Progress, Progress Circular"
     },
     {
-        "id": "light.progress.circular_background",
+        "id": "dark.progress.circular_background",
         "desc": "innerColor",
         "defaultValue": 6,
         "widget": "Progress Circular"
     },
     {
-        "id": "light.slider.background",
+        "id": "dark.slider.background",
         "desc": "colorSliderBg",
         "defaultValue": 6,
         "widget": "Slider, Slider Round"
     },
     {
-        "id": "light.slider.control",
+        "id": "dark.slider.control",
         "desc": "colorThumb",
         "defaultValue": 0,
         "widget": "Slider, Slider Round"
     },
     {
-        "id": "light.slider.control_before",
+        "id": "dark.slider.control_before",
         "desc": "colorBeforeThumb",
         "defaultValue": 0,
         "widget": "Slider, Slider Round"
     },
     {
-        "id": "light.slider.control_behind",
+        "id": "dark.slider.control_behind",
         "desc": "colorAfterThumb",
         "defaultValue": 3,
         "widget": "Slider, Slider Round"
     },
     {
-        "id": "light.slider.text",
+        "id": "dark.slider.text",
         "desc": "valueLabelColor",
         "defaultValue": 0,
         "widget": "Slider, Slider Round"
     },
     {
-        "id": "light.slider.tick_before",
+        "id": "dark.slider.tick_before",
         "desc": "tickColorBefore",
         "defaultValue": 0,
         "widget": "Slider"
     },
     {
-        "id": "light.slider.tick_after",
+        "id": "dark.slider.tick_after",
         "desc": "tickColorAfter",
         "defaultValue": 0,
         "widget": "Slider"
     },
     {
-        "id": "light.slider.control_text",
+        "id": "dark.slider.control_text",
         "desc": "thumbBackgroundColor",
         "defaultValue": 0,
         "widget": "Slider"
     },
     {
-        "id": "light.slider.control_text_font",
+        "id": "dark.slider.control_text_font",
         "desc": "thumbFontColor",
         "defaultValue": 4,
         "widget": "Slider"
     },
     {
-        "id": "light.switch.on",
+        "id": "dark.switch.on",
         "desc": "colorSwitchTrue",
         "defaultValue": 0,
         "widget": "Switch"
     },
     {
-        "id": "light.switch.on_hover",
+        "id": "dark.switch.on_hover",
         "desc": "colorSwitchHoverTrue",
         "defaultValue": 0,
         "widget": "Switch"
     },
     {
-        "id": "light.switch.off",
+        "id": "dark.switch.off",
         "desc": "colorSwitchThumb",
         "defaultValue": 4,
         "widget": "Switch"
     },
     {
-        "id": "light.switch.off_hover",
+        "id": "dark.switch.off_hover",
         "desc": "colorSwitchHover",
         "defaultValue": 0,
         "widget": "Switch"
     },
     {
-        "id": "light.switch.track",
+        "id": "dark.switch.track",
         "desc": "colorSwitchTrack",
         "defaultValue": 5,
         "widget": "Switch"
     },
     {
-        "id": "light.switch.text_off",
+        "id": "dark.switch.text_off",
         "desc": "labelColorFalse",
         "defaultValue": 0,
         "widget": "Switch"
     },
     {
-        "id": "light.switch.text_on",
+        "id": "dark.switch.text_on",
         "desc": "labelColorTrue",
         "defaultValue": 0,
         "widget": "Switch"

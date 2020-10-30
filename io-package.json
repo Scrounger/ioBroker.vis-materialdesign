@@ -307,14 +307,30 @@
         "generateGlobalScript": false,
         "colors": [],
         "defaultcolors": [],
+        "colorsDark": [],
+        "defaultcolorsDark": [],
         "fonts": [],
         "defaultfonts": [],
         "fontSizes": [],
-        "defaultfontSizes": [],                
+        "defaultfontSizes": [],
         "dependencies": [
             "basic"
         ]
     },
     "objects": [],
-    "instanceObjects": []
+    "instanceObjects": [
+        {
+            "_id": "colors.darkTheme",
+            "type": "state",
+            "common": {
+                "role": "value",
+                "name": "Switch between light and dark colors",
+                "type": "boolean",
+                "read": true,
+                "write": true,
+                "def": false
+            },
+            "native": {}
+        }
+    ]
 }

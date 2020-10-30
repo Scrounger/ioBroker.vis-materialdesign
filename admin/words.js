@@ -10349,6 +10349,18 @@ systemDictionary = {
         "pl": "domyślny kolor",
         "zh-cn": "默认颜色"
     },
+    "colorsDarkDefault": {
+        "en": "default color",
+        "de": "Standard Farbe",
+        "ru": "цвет по умолчанию",
+        "pt": "cor padrão",
+        "nl": "standaard kleur",
+        "fr": "couleur par défaut",
+        "it": "colore predefinito",
+        "es": "color predeterminado",
+        "pl": "domyślny kolor",
+        "zh-cn": "默认颜色"
+    },    
     "fontsDefault": {
         "en": "default font",
         "de": "Standard Schriftart",
@@ -10409,6 +10421,18 @@ systemDictionary = {
         "pl": "zabarwienie",
         "zh-cn": "颜色"
     },
+    "config_colorsDark": {
+        "en": "colors (dark)",
+        "de": "Farben (dunkel)",
+        "ru": "цвета (темные)",
+        "pt": "cores (escuras)",
+        "nl": "kleuren (donker)",
+        "fr": "couleurs (foncées)",
+        "it": "colori (scuro)",
+        "es": "colores (oscuro)",
+        "pl": "kolory (ciemne)",
+        "zh-cn": "颜色（深色）"
+    },
     "config_fonts": {
         "en": "fonts",
         "de": "Schriftarten",
@@ -10445,6 +10469,18 @@ systemDictionary = {
         "pl": "kolor",
         "zh-cn": "颜色"
     },
+    "colorsDark_table": {
+        "en": "color",
+        "de": "Farbe",
+        "ru": "цвет",
+        "pt": "cor",
+        "nl": "kleur",
+        "fr": "Couleur",
+        "it": "colore",
+        "es": "color",
+        "pl": "kolor",
+        "zh-cn": "颜色"
+    },    
     "fonts_table": {
         "en": "font",
         "de": "Schriftart",

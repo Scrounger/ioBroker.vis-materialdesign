@@ -80,6 +80,10 @@
 	.colorsPickerInput {
 		margin-left: 10px !important;
 	}
+
+	.colorsDarkPickerInput {
+		margin-left: 10px !important;
+	}
 	
 	#toast-container {
 		z-index: 100 !important;
@@ -115,6 +119,7 @@
 				<ul class="tabs" style="height: auto;">
 					<li class="tab col s6 l2"><a href="#tab_general" class="translate active">config_general</a></li>
 					<li class="tab col s6 l2 myColorsTab"><a href="#tab_colors" class="translate">config_colors</a>
+					<li class="tab col s6 l2 myColorsTab"><a href="#tab_colorsDark" class="translate">config_colorsDark</a>
 					<li class="tab col s6 l2 myColorsTab"><a href="#tab_fonts" class="translate">config_fonts</a>
 					<li class="tab col s6 l2 myColorsTab"><a href="#tab_fontSizes" class="translate">config_fontSizes</a>
 					</li>
@@ -174,6 +179,27 @@
 					</div>
 				</section>
 			</div>
+			<div id="tab_colorsDark" class="col s12 page">
+				<section>
+					<div class="row">
+						<div class="col s12 m12 l12 colorsDarkDefaultContainer">
+							<!-- dynamically creates colorPicker & input on load -->
+						</div>
+					</div>
+					<div class="col s12 m12 l12">
+						<div class="table-filter input-field col s12 m6 l6">
+							<input type="text" placeholder="Filter Widgets" id="colorsDarkTableFilter" />
+							<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="colorsDarkTableFilterClear"><i class="material-icons">clear</i></button></span>
+						</div>
+						<div class="col s12 m6 l6 right-align" style="margin-top: 12px">
+							<a id="colorsDarkReset" class="waves-effect waves-light btn-small"><i class="material-icons left">undo</i><span class="translate">reset</span></a>
+						</div>
+					</div>
+					<div class="container_colorsDarkTable">						
+						<!-- dynamically creates table on evey change of the select values  -->
+					</div>
+				</section>
+			</div>			
 			<div id="tab_fonts" class="col s12 page">
 				<section>
 					<div class="row">

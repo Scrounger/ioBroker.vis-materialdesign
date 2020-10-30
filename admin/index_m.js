@@ -1,4 +1,4 @@
-let themeTypesList = ['colors', 'fonts', 'fontSizes'];
+let themeTypesList = ['colors', 'colorsDark', 'fonts', 'fontSizes'];
 
 var myNamespace;
 
@@ -58,8 +58,8 @@ async function createTab(themeType, themeObject, themeDefaults, settings, onChan
             createDefaultElement(themeType, themeDefaults, i);
 
             // if colors -> create colorPicker
-            if (themeType === 'colors') {
-                createColorPicker(`#colorsPicker${i}`, themeDefaults[i], themeDefaults, $(`#${themeType}${i}`), onChange, i);
+            if (themeType.includes('colors')) {
+                createColorPicker(`#${themeType}Picker${i}`, themeDefaults[i], themeDefaults, $(`#${themeType}${i}`), onChange, i);
             }
 
             $(`#${themeType}${i}`).change(function () {
@@ -71,14 +71,14 @@ async function createTab(themeType, themeObject, themeDefaults, settings, onChan
                 themeDefaults[index] = inputVal;
 
                 let pickr = null;
-                if (themeType === 'colors') {
-                    let pickrEl = $(`#colorsPickerContainer${index} .pickr`);
+                if (themeType.includes('colors')) {
+                    let pickrEl = $(`#${themeType}PickerContainer${index} .pickr`);
                     pickrEl.empty();
                     pickr = createColorPicker(pickrEl.get(0), inputVal, themeDefaults, inputEl, onChange, index);
                 }
 
                 setTimeout(function () {
-                    if (themeType === 'colors') {
+                    if (themeType.includes('colors')) {
                         if (!inputVal.startsWith('#') && !inputVal.startsWith('rgb')) {
                             // convert color names to hex
                             let convertedColor = pickr._color.toHEXA().toString();
@@ -122,7 +122,7 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
                                 <tr>
                                     <th data-name="widget" style="width: 15%;" class="translate" data-type="text">${_("Widget")}</th>
                                     <th data-name="id" style="width: 15%;" data-style="cursor: copy" class="translate" data-type="text">${_("datapoint")}</th>
-                                    ${themeType === 'colors' ? '<th data-name="pickr" style="width: 30px;" data-style="text-align: center;" class="translate" data-type="text"></th>' : ''}
+                                    ${themeType.includes('colors') ? '<th data-name="pickr" style="width: 30px;" data-style="text-align: center;" class="translate" data-type="text"></th>' : ''}
                                     <th data-name="value" style="width: 200px;" data-style="text-align: left;" class="translate" data-type="text">${_(`${themeType}_table`)}</th>
                                     <th style="width: 150px; text-align: center;" class="header" data-buttons="${defaultButtons.trim()}">${_(`${themeType}Default`)}</th>
                                     <th data-name="desc" style="width: auto;" class="translate" data-type="text">${_("description")}</th>
@@ -146,7 +146,7 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
         $(`#${themeType}Table [data-name=defaultValue]`).closest('td').css('display', 'none');
 
 
-        if (themeType === 'colors') {
+        if (themeType.includes('colors')) {
             $(`#${themeType}Table input[data-name=pickr]`).each(function (i) {
                 // create ColorPicker for rows & 
                 let inpuEl = $(`#${themeType}Table input[data-index=${i}][data-name="value"]`);
@@ -179,7 +179,7 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
                 let inpuEl = $(`#${themeType}Table input[data-index=${rowNum}][data-name="value"]`);
 
 
-                if (themeType === 'colors') {
+                if (themeType.includes('colors')) {
                     // We have to recreate the color picker
                     let pickrEl = $(`#${themeType}Table tr[data-index=${rowNum}] .pickr`);
                     pickrEl.empty();
@@ -198,7 +198,7 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
             let inputEl = $(this);
             let rowNum = inputEl.data('index');
 
-            if (themeType === 'colors') {
+            if (themeType.includes('colors')) {
                 let pickrEl = $(`#${themeType}Table tr[data-index=${rowNum}] .pickr`);
                 pickrEl.empty();
 
@@ -218,7 +218,13 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
         });
 
         $(`#${themeType}Table input[data-name=id]`).click(function () {
-            clipboard.writeText(`{${myNamespace}.${themeType}.${$(this).val()}}`);
+
+            if (themeType.includes('colors')) {
+                clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.${$(this).val().replace('dark.', 'light.')};dark:${myNamespace}.colors.${$(this).val().replace('light.', 'dark.')}; mode === "true" ? dark : light}`);
+            } else {
+                clipboard.writeText(`{${myNamespace}.${themeType}.${$(this).val()}}`);
+            }
+
             M.Toast.dismissAll();
             M.toast({ html: _('copied to clipboard'), displayLength: 700, inDuration: 0, outDuration: 0, classes: 'rounded' });
         });
@@ -340,7 +346,7 @@ function createDefaultElement(themeType, themeDefaults, index) {
         $(`.${themeType}DefaultContainer`).append(`
             <div class="col s12 m6 l3 defaultContainer" id="${themeType}PickerContainer${index}">
                 <label for="${themeType}${index}" id="${themeType}Input${index}" class="translate defaultLabel">${_(`${themeType}Default`)} ${index}</label>
-                ${themeType === 'colors' ? `<div class="${themeType}Picker" id="${themeType}Picker${index}"></div>` : ''}
+                ${themeType.includes('colors') ? `<div class="${themeType}Picker" id="${themeType}Picker${index}"></div>` : ''}
                 <input type="text" class="value ${themeType}PickerInput" id="${themeType}${index}" value="${themeDefaults[index]}" />
             </div>`);
     } catch (err) {
@@ -443,14 +449,24 @@ function save(callback) {
         obj[themeType] = table2values(themeType);
 
         for (const themeObject of obj[themeType]) {
-            setStateString(`${myNamespace}.${themeType}.${themeObject.id}`, themeObject.desc, themeObject.value);
+            if (themeType.includes('colors')) {
+                setStateString(`${myNamespace}.colors.${themeObject.id}`, themeObject.desc, themeObject.value);
+            } else {
+                setStateString(`${myNamespace}.${themeType}.${themeObject.id}`, themeObject.desc, themeObject.value);
+            }
         }
 
         obj[`default${themeType}`] = [];
         $(`.${themeType}DefaultContainer input`).each(function (i) {
             let themeDefault = $(this).val();
             obj[`default${themeType}`].push(themeDefault);
-            setStateString(`${myNamespace}.${themeType}.defaults.${i}`, `${_(`${themeType}Default`)} ${i}`, themeDefault);
+            if (themeType.includes('colors')) {
+                if (themeType === 'colorsDark') {
+                    setStateString(`${myNamespace}.colors.dark.defaults.${i}`, `${_(`${themeType}Default`)} ${i}`, themeDefault);
+                } else {
+                    setStateString(`${myNamespace}.colors.light.defaults.${i}`, `${_(`${themeType}Default`)} ${i}`, themeDefault);
+                }
+            }
         });
     }
 
