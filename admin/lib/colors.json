@@ -318,6 +318,12 @@
         "widget": "Slider, Slider Round"
     },
     {
+        "id": "light.slider.text_prepand",
+        "desc": "prepandTextColor",
+        "defaultValue": 0,
+        "widget": "Slider"
+    },    
+    {
         "id": "light.slider.tick_before",
         "desc": "tickColorBefore",
         "defaultValue": 0,

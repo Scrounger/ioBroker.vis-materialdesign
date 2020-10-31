@@ -49,7 +49,7 @@ vis.binds.materialdesign.slider = {
                         @input="inputEvent"
                     >
                     </v-slider>
-                    ${(data.showValueLabel) ? `<span class="slider-value" style="width: ${myMdwHelper.getNumberFromData(data.valueLabelWidth, 0)}px; text-align:right; white-space: nowrap;">0</span>` : ''}
+                    ${(data.showValueLabel) ? `<span class="slider-value" style="width: ${myMdwHelper.getNumberFromData(data.valueLabelWidth, 0)}px; color: ${myMdwHelper.getValueFromData(data.valueLabelColor, defaultColor)}; text-align:right; white-space: nowrap;">0</span>` : ''}
                 </div>
             </div>`);
 
