@@ -10360,7 +10360,7 @@ systemDictionary = {
         "es": "color predeterminado",
         "pl": "domyślny kolor",
         "zh-cn": "默认颜色"
-    },    
+    },
     "fontsDefault": {
         "en": "default font",
         "de": "Standard Schriftart",
@@ -10480,7 +10480,7 @@ systemDictionary = {
         "es": "color",
         "pl": "kolor",
         "zh-cn": "颜色"
-    },    
+    },
     "fonts_table": {
         "en": "font",
         "de": "Schriftart",
@@ -10504,5 +10504,17 @@ systemDictionary = {
         "es": "tamaño de fuente",
         "pl": "rozmiar czcionki",
         "zh-cn": "字体大小"
+    },
+    "colorBody": {
+        "en": "text color",
+        "de": "Textfarbe",
+        "ru": "цвет текста",
+        "pt": "cor do texto",
+        "nl": "tekst kleur",
+        "fr": "couleur du texte",
+        "it": "colore del testo",
+        "es": "color de texto",
+        "pl": "kolor tekstu",
+        "zh-cn": "文字颜色"
     }
 };

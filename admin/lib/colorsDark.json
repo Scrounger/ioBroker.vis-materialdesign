@@ -14,13 +14,13 @@
     {
         "id": "dark.calendar.border",
         "desc": "calendarBorderColor",
-        "defaultValue": 3,
+        "defaultValue": 4,
         "widget": "Calendar"
     },
     {
         "id": "dark.calendar.background_day",
         "desc": "calendarDayBackgroundColor",
-        "defaultValue": 6,
+        "defaultValue": 7,
         "widget": "Calendar"
     },
     {
@@ -32,7 +32,7 @@
     {
         "id": "dark.calendar.button_background",
         "desc": "calendarDayButtonColor",
-        "defaultValue": 6,
+        "defaultValue": 7,
         "widget": "Calendar"
     },
     {
@@ -50,19 +50,19 @@
     {
         "id": "dark.calendar.button_text",
         "desc": "calendarDayButtonFontColor",
-        "defaultValue": 5,
+        "defaultValue": 6,
         "widget": "Calendar"
     },
     {
         "id": "dark.calendar.button_text_today",
         "desc": "calendarDayButtonTodayFontColor",
-        "defaultValue": 4,
+        "defaultValue": 5,
         "widget": "Calendar"
     },
     {
         "id": "dark.calendar.control_panel_background",
         "desc": "controlButtonColor",
-        "defaultValue": 6,
+        "defaultValue": 7,
         "widget": "Calendar"
     },
     {
@@ -80,25 +80,25 @@
     {
         "id": "dark.calendar.control_panel_text",
         "desc": "controlTextColor",
-        "defaultValue": 5,
+        "defaultValue": 6,
         "widget": "Calendar"
     },
     {
         "id": "dark.calendar.header_background",
         "desc": "calendarHeaderBackground",
-        "defaultValue": 6,
+        "defaultValue": 7,
         "widget": "Calendar"
     },
     {
         "id": "dark.calendar.header_text",
         "desc": "calendarDayLabelFontColor",
-        "defaultValue": 5,
+        "defaultValue": 6,
         "widget": "Calendar"
     },
     {
         "id": "dark.calendar.header_text_today",
         "desc": "calendarDayLabelTodayFontColor",
-        "defaultValue": 0,
+        "defaultValue": 2,
         "widget": "Calendar"
     },
     {
@@ -116,49 +116,49 @@
     {
         "id": "dark.calendar.calendar_weeks_text",
         "desc": "calendarWeeksNumbersFontColor",
-        "defaultValue": 5,
+        "defaultValue": 6,
         "widget": "Calendar"
     },
     {
         "id": "dark.calendar.time_axis_background",
         "desc": "calendarTimeAxisBackgroundColor",
-        "defaultValue": 6,
+        "defaultValue": 7,
         "widget": "Calendar"
     },
     {
         "id": "dark.calendar.time_axis_background_header",
         "desc": "calendarTimeAxisHeaderBackgroundColor",
-        "defaultValue": 6,
+        "defaultValue": 7,
         "widget": "Calendar"
     },
     {
         "id": "dark.calendar.time_axis_text",
         "desc": "calendarTimeAxisFontColor",
-        "defaultValue": 0,
+        "defaultValue": 2,
         "widget": "Calendar"
     },    
     {
         "id": "dark.card.background",
         "desc": "colorBackground",
-        "defaultValue": 4,
+        "defaultValue": 5,
         "widget": "HTML Card, Icon List"
     },
     {
         "id": "dark.card.background_title",
         "desc": "colorTitleSectionBackground",
-        "defaultValue": 6,
+        "defaultValue": 7,
         "widget": "HTML Card, Icon List"
     },
     {
         "id": "dark.card.background_body",
         "desc": "colorTextSectionBackground",
-        "defaultValue": 6,
+        "defaultValue": 7,
         "widget": "HTML Card, Icon List"
     },
     {
         "id": "dark.card.title",
         "desc": "colorTitle",
-        "defaultValue": 0,
+        "defaultValue": 2,
         "widget": "HTML Card, Icon List"
     },
     {
@@ -168,6 +168,12 @@
         "widget": "HTML Card"
     },
     {
+        "id": "dark.card.text",
+        "desc": "colorBody",
+        "defaultValue": 2,
+        "widget": "HTML Card"
+    },    
+    {
         "id": "dark.checkbox.on",
         "desc": "colorCheckBox",
         "defaultValue": 0,
@@ -176,7 +182,7 @@
     {
         "id": "dark.checkbox.border",
         "desc": "colorCheckBoxBorder",
-        "defaultValue": 2,
+        "defaultValue": 3,
         "widget": "Checkbox"
     },
     {
@@ -188,37 +194,37 @@
     {
         "id": "dark.checkbox.text_off",
         "desc": "labelColorFalse",
-        "defaultValue": 0,
+        "defaultValue": 2,
         "widget": "Checkbox"
     },
     {
         "id": "dark.checkbox.text_on",
         "desc": "labelColorTrue",
-        "defaultValue": 0,
+        "defaultValue": 2,
         "widget": "Checkbox"
     },
     {
         "id": "dark.icon_list.background",
         "desc": "containerBackgroundColor",
-        "defaultValue": 6,
+        "defaultValue": 7,
         "widget": "Icon List"
     },
     {
         "id": "dark.icon_list.background_items",
         "desc": "itemBackgroundColor",
-        "defaultValue": 6,
+        "defaultValue": 7,
         "widget": "Icon List"
     },
     {
         "id": "dark.icon_list.text",
         "desc": "labelFontColor",
-        "defaultValue": 0,
+        "defaultValue": 2,
         "widget": "Icon List"
     },
     {
         "id": "dark.icon_list.subText",
         "desc": "subLabelFontColor",
-        "defaultValue": 0,
+        "defaultValue": 1,
         "widget": "Icon List"
     },
     {
@@ -236,7 +242,7 @@
     {
         "id": "dark.icon_list.button",
         "desc": "buttonBgColor",
-        "defaultValue": 6,
+        "defaultValue": 7,
         "widget": "Icon List"
     },    
     {
@@ -254,7 +260,7 @@
     {
         "id": "dark.progress.track_background",
         "desc": "colorProgressBackground",
-        "defaultValue": 3,
+        "defaultValue": 4,
         "widget": "Progress, Progress Circular"
     },
     {
@@ -266,31 +272,31 @@
     {
         "id": "dark.progress.text",
         "desc": "textColor",
-        "defaultValue": 0,
+        "defaultValue": 2,
         "widget": "Progress, Progress Circular"
     },
     {
         "id": "dark.progress.track_condition1",
         "desc": "colorOne",
-        "defaultValue": 8,
+        "defaultValue": 9,
         "widget": "Progress, Progress Circular"
     },
     {
         "id": "dark.progress.track_condition2",
         "desc": "colorTwo",
-        "defaultValue": 9,
+        "defaultValue": 10,
         "widget": "Progress, Progress Circular"
     },
     {
         "id": "dark.progress.circular_background",
         "desc": "innerColor",
-        "defaultValue": 6,
+        "defaultValue": 7,
         "widget": "Progress Circular"
     },
     {
         "id": "dark.slider.background",
         "desc": "colorSliderBg",
-        "defaultValue": 6,
+        "defaultValue": 7,
         "widget": "Slider, Slider Round"
     },
     {
@@ -308,19 +314,19 @@
     {
         "id": "dark.slider.control_behind",
         "desc": "colorAfterThumb",
-        "defaultValue": 3,
+        "defaultValue": 4,
         "widget": "Slider, Slider Round"
     },
     {
         "id": "dark.slider.text",
         "desc": "valueLabelColor",
-        "defaultValue": 0,
+        "defaultValue": 2,
         "widget": "Slider, Slider Round"
     },
     {
         "id": "dark.slider.text_prepand",
         "desc": "prepandTextColor",
-        "defaultValue": 0,
+        "defaultValue": 2,
         "widget": "Slider"
     },    
     {
@@ -336,15 +342,15 @@
         "widget": "Slider"
     },
     {
-        "id": "dark.slider.control_text",
+        "id": "dark.slider.control_background",
         "desc": "thumbBackgroundColor",
         "defaultValue": 0,
         "widget": "Slider"
     },
     {
-        "id": "dark.slider.control_text_font",
+        "id": "dark.slider.control_text",
         "desc": "thumbFontColor",
-        "defaultValue": 4,
+        "defaultValue": 5,
         "widget": "Slider"
     },
     {
@@ -362,7 +368,7 @@
     {
         "id": "dark.switch.off",
         "desc": "colorSwitchThumb",
-        "defaultValue": 4,
+        "defaultValue": 5,
         "widget": "Switch"
     },
     {
@@ -374,19 +380,19 @@
     {
         "id": "dark.switch.track",
         "desc": "colorSwitchTrack",
-        "defaultValue": 5,
+        "defaultValue": 6,
         "widget": "Switch"
     },
     {
         "id": "dark.switch.text_off",
         "desc": "labelColorFalse",
-        "defaultValue": 0,
+        "defaultValue": 2,
         "widget": "Switch"
     },
     {
         "id": "dark.switch.text_on",
         "desc": "labelColorTrue",
-        "defaultValue": 0,
+        "defaultValue": 2,
         "widget": "Switch"
     }
 ]

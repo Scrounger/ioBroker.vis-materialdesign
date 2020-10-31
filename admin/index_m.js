@@ -220,7 +220,7 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
         $(`#${themeType}Table input[data-name=id]`).click(function () {
 
             if (themeType.includes('colors')) {
-                clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.${$(this).val().replace('dark.', 'light.')};dark:${myNamespace}.colors.${$(this).val().replace('light.', 'dark.')}; mode === "true" ? dark : light}`);
+                clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.${$(this).val().replace('dark.', 'light.')};dark:${myNamespace}.colors.${$(this).val().replace('light.', 'dark.')}; mode === "true" ? dark : light}`.replace(/;/g, '§').replace(/\"/g, '^'));
             } else {
                 clipboard.writeText(`{${myNamespace}.${themeType}.${$(this).val()}}`);
             }
@@ -281,7 +281,7 @@ function eventsHandlerTab(themeType, themeObject, themeDefaults, settings, onCha
                         themeObject[i].value = themeDefaults[themeObject[i].defaultValue];
                     }
 
-                    themeObject[i].desc = _(themeObject[i].desc);
+                    // themeObject[i].desc = _(themeObject[i].desc);
                 }
 
                 createTab(themeType, themeObject, themeDefaults, settings, onChange, true);
@@ -327,7 +327,7 @@ async function checkAllObjectsExistInSettings(themeType, themeObject, themeDefau
                     jsonList[i].value = themeDefaults[jsonList[i].defaultValue];
                 }
 
-                jsonList[i].desc = _(jsonList[i].desc);
+                // jsonList[i].desc = _(jsonList[i].desc);
                 themeObject.splice(i, 0, jsonList[i]);
 
                 onChange();

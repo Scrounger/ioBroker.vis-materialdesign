@@ -54,6 +54,7 @@
   --materialdesign-color-card-text-section-background: transparent;
   --materialdesign-color-card-title: #44739e;
   --materialdesign-color-card-sub-title: #a1a1a1;
+  --materialdesign-color-card--text-section-text: #44739e;
  
   --materialdesign-color-table-background: #fff;
   --materialdesign-color-table-border: rgba(0,0,0,.12);
@@ -1005,6 +1006,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   box-sizing: border-box;
   padding: 16px;
   background-color: var(--materialdesign-color-card-text-section-background);
+  color: var(--materialdesign-color-card--text-section-text);
 }
 
 .materialdesign-widget .materialdesign-html-card.card-text-section.iconlist{
@@ -1012,6 +1014,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   box-sizing: border-box;
   padding: 1px;
   background-color: var(--materialdesign-color-card-text-section-background);
+  color: var(--materialdesign-color-card--text-section-text);
 }
 
 
