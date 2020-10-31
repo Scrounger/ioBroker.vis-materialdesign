@@ -12,6 +12,114 @@
         "widget": "Alerts"
     },
     {
+        "id": "dark.charts.bar.background",
+        "desc": "backgroundColor",
+        "defaultValue": 7,
+        "widget": "Bar Chart"
+    },
+    {
+        "id": "dark.charts.bar.background_chart",
+        "desc": "chartAreaBackgroundColor",
+        "defaultValue": 7,
+        "widget": "Bar Chart"
+    },
+    {
+        "id": "dark.charts.bar.global",
+        "desc": "globalColor",
+        "defaultValue": 0,
+        "widget": "Bar Chart"
+    },
+    {
+        "id": "dark.charts.bar.hover",
+        "desc": "hoverColor",
+        "value": "#44739E99",
+        "widget": "Bar Chart"
+    },
+    {
+        "id": "dark.charts.bar.hover_border",
+        "desc": "hoverBorderColor",
+        "value": "#44739E99",
+        "widget": "Bar Chart"
+    },
+    {
+        "id": "dark.charts.bar.value",
+        "desc": "valuesFontColor",
+        "defaultValue": 2,
+        "widget": "Bar Chart"
+    },
+    {
+        "id": "dark.charts.bar.y_axis_title",
+        "desc": "yAxisTitleColor",
+        "defaultValue": 2,
+        "widget": "Bar Chart"
+    },
+    {
+        "id": "dark.charts.bar.y_axis_values",
+        "desc": "yAxisValueLabelColor",
+        "defaultValue": 2,
+        "widget": "Bar Chart"
+    },
+    {
+        "id": "dark.charts.bar.y_axis_gridlines",
+        "desc": "yAxisGridLinesColor",
+        "defaultValue": 6,
+        "widget": "Bar Chart"
+    },
+    {
+        "id": "dark.charts.bar.y_axis_zeroline",
+        "desc": "yAxisZeroLineColor",
+        "defaultValue": 6,
+        "widget": "Bar Chart"
+    },        
+    {
+        "id": "dark.charts.bar.x_axis_title",
+        "desc": "xAxisTitleColor",
+        "defaultValue": 2,
+        "widget": "Bar Chart"
+    },
+    {
+        "id": "dark.charts.bar.x_axis_values",
+        "desc": "xAxisValueLabelColor",
+        "defaultValue": 2,
+        "widget": "Bar Chart"
+    },
+    {
+        "id": "dark.charts.bar.x_axis_gridlines",
+        "desc": "xAxisGridLinesColor",
+        "defaultValue": 6,
+        "widget": "Bar Chart"
+    },
+    {
+        "id": "dark.charts.bar.x_axis_zeroline",
+        "desc": "xAxisZeroLineColor",
+        "defaultValue": 6,
+        "widget": "Bar Chart"
+    },     
+    {
+        "id": "dark.charts.bar.legend",
+        "desc": "legendFontColor",
+        "defaultValue": 2,
+        "widget": "Bar Chart"
+    }, 
+    {
+        "id": "dark.charts.bar.tooltip_background",
+        "desc": "tooltipBackgroundColor",
+        "defaultValue": 6,
+        "widget": "Bar Chart"
+    },     
+    {
+        "id": "dark.charts.bar.tooltip_title",
+        "desc": "tooltipTitleFontColor",
+        "defaultValue": 5,
+        "widget": "Bar Chart"
+    },  
+    {
+        "id": "dark.charts.bar.tooltip_text",
+        "desc": "tooltipBodyFontColor",
+        "defaultValue": 5,
+        "widget": "Bar Chart"
+    },   
+    {
         "id": "dark.calendar.border",
         "desc": "calendarBorderColor",
         "defaultValue": 4,
