@@ -132,6 +132,12 @@
         "widget": "Calendar"
     },
     {
+        "id": "light.calendar.time_axis_text",
+        "desc": "calendarTimeAxisFontColor",
+        "defaultValue": 0,
+        "widget": "Calendar"
+    },    
+    {
         "id": "light.card.background",
         "desc": "colorBackground",
         "defaultValue": 4,
@@ -160,12 +166,6 @@
         "desc": "colorSubtitle",
         "defaultValue": 1,
         "widget": "HTML Card"
-    },
-    {
-        "id": "light.calendar.time_axis_text",
-        "desc": "calendarTimeAxisFontColor",
-        "defaultValue": 0,
-        "widget": "Calendar"
     },
     {
         "id": "light.checkbox.on",
