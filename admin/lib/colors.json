@@ -32,13 +32,13 @@
     {
         "id": "light.charts.bar.hover",
         "desc": "hoverColor",
-        "value": "#44739E99",
+        "value": "rgba(68, 115, 158, 0.8)",
         "widget": "Bar Chart"
     },
     {
         "id": "light.charts.bar.hover_border",
         "desc": "hoverBorderColor",
-        "value": "#44739E99",
+        "value": "rgba(68, 115, 158, 0.8)",
         "widget": "Bar Chart"
     },
     {
@@ -365,6 +365,72 @@
         "defaultValue": 0,
         "widget": "Material Design Icon"
     },
+    {
+        "id": "light.charts.pie.background",
+        "desc": "backgroundColor",
+        "defaultValue": 7,
+        "widget": "Pie Chart"
+    },
+    {
+        "id": "light.charts.pie.background_chart",
+        "desc": "chartAreaBackgroundColor",
+        "defaultValue": 7,
+        "widget": "Pie Chart"
+    },
+    {
+        "id": "light.charts.pie.global",
+        "desc": "globalColor",
+        "defaultValue": 0,
+        "widget": "Pie Chart"
+    },
+    {
+        "id": "light.charts.pie.hover",
+        "desc": "hoverColor",
+        "value": "rgba(68, 115, 158, 0.8)",
+        "widget": "Pie Chart"
+    },
+    {
+        "id": "light.charts.pie.border",
+        "desc": "borderColor",
+        "defaultValue": 5,
+        "widget": "Pie Chart"
+    },
+    {
+        "id": "light.charts.pie.border_hover",
+        "desc": "hoverBorderColor",
+        "defaultValue": 5,
+        "widget": "Pie Chart"
+    },
+    {
+        "id": "light.charts.pie.value",
+        "desc": "valuesFontColor",
+        "defaultValue": 5,
+        "widget": "Pie Chart"
+    },
+    {
+        "id": "light.charts.pie.legend",
+        "desc": "legendFontColor",
+        "defaultValue": 2,
+        "widget": "Pie Chart"
+    }, 
+    {
+        "id": "light.charts.pie.tooltip_background",
+        "desc": "tooltipBackgroundColor",
+        "defaultValue": 6,
+        "widget": "Pie Chart"
+    },     
+    {
+        "id": "light.charts.pie.tooltip_title",
+        "desc": "tooltipTitleFontColor",
+        "defaultValue": 5,
+        "widget": "Pie Chart"
+    },  
+    {
+        "id": "light.charts.pie.tooltip_text",
+        "desc": "tooltipBodyFontColor",
+        "defaultValue": 5,
+        "widget": "Pie Chart"
+    },   
     {
         "id": "light.progress.track_background",
         "desc": "colorProgressBackground",
