@@ -742,5 +742,53 @@
         "desc": "labelColorTrue",
         "defaultValue": 2,
         "widget": "Switch"
+    },
+    {
+        "id": "dark.table.background",
+        "desc": "colorBackground",
+        "defaultValue": 7,
+        "widget": "Table"
+    },
+    {
+        "id": "dark.table.row_header_background",
+        "desc": "colorHeaderRowBackground",
+        "defaultValue": 7,
+        "widget": "Table"
+    },
+    {
+        "id": "dark.table.row_header_text",
+        "desc": "colorHeaderRowText",
+        "defaultValue": 2,
+        "widget": "Table"
+    },
+    {
+        "id": "dark.table.row_background",
+        "desc": "colorRowBackground",
+        "defaultValue": 7,
+        "widget": "Table"
+    },
+    {
+        "id": "dark.table.row_hover",
+        "desc": "colorRowBackgroundHover",
+        "defaultValue": 4,
+        "widget": "Table"
+    },
+    {
+        "id": "dark.table.row_text",
+        "desc": "colorRowText",
+        "defaultValue": 2,
+        "widget": "Table"
+    },
+    {
+        "id": "dark.table.border",
+        "desc": "borderColor",
+        "defaultValue": 4,
+        "widget": "Table"
+    },
+    {
+        "id": "dark.table.dividers",
+        "desc": "dividers",
+        "defaultValue": 4,
+        "widget": "Table"
     }
 ]

@@ -742,5 +742,53 @@
         "desc": "labelColorTrue",
         "defaultValue": 2,
         "widget": "Switch"
+    },
+    {
+        "id": "light.table.background",
+        "desc": "colorBackground",
+        "defaultValue": 7,
+        "widget": "Table"
+    },
+    {
+        "id": "light.table.row_header_background",
+        "desc": "colorHeaderRowBackground",
+        "defaultValue": 7,
+        "widget": "Table"
+    },
+    {
+        "id": "light.table.row_header_text",
+        "desc": "colorHeaderRowText",
+        "defaultValue": 2,
+        "widget": "Table"
+    },
+    {
+        "id": "light.table.row_background",
+        "desc": "colorRowBackground",
+        "defaultValue": 7,
+        "widget": "Table"
+    },
+    {
+        "id": "light.table.row_hover",
+        "desc": "colorRowBackgroundHover",
+        "defaultValue": 4,
+        "widget": "Table"
+    },
+    {
+        "id": "light.table.row_text",
+        "desc": "colorRowText",
+        "defaultValue": 2,
+        "widget": "Table"
+    },
+    {
+        "id": "light.table.border",
+        "desc": "borderColor",
+        "defaultValue": 4,
+        "widget": "Table"
+    },
+    {
+        "id": "light.table.dividers",
+        "desc": "dividers",
+        "defaultValue": 4,
+        "widget": "Table"
     }
 ]
