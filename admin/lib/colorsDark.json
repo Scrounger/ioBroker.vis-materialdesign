@@ -285,7 +285,7 @@
         "id": "dark.checkbox.on",
         "desc": "colorCheckBox",
         "defaultValue": 0,
-        "widget": "Checkbox"
+        "widget": "Checkbox, List"
     },
     {
         "id": "dark.checkbox.border",
@@ -540,6 +540,78 @@
         "widget": "Line History Chart"
     },
     {
+        "id": "dark.charts.list.background_off",
+        "desc": "listItemBackground",
+        "defaultValue": 7,
+        "widget": "List"
+    },
+    {
+        "id": "dark.charts.list.background_on",
+        "desc": "listItemBackgroundActive",
+        "defaultValue": 7,
+        "widget": "List"
+    },
+    {
+        "id": "dark.charts.list.hover",
+        "desc": "colorListItemHover",
+        "defaultValue": 6,
+        "widget": "List"
+    }, 
+    {
+        "id": "dark.charts.list.selected",
+        "desc": "colorListItemSelected",
+        "defaultValue": 6,
+        "widget": "List"
+    },
+    {
+        "id": "dark.charts.list.text",
+        "desc": "colorListItemText",
+        "defaultValue": 2,
+        "widget": "List"
+    },
+    {
+        "id": "dark.charts.list.subText",
+        "desc": "colorListItemTextSecondary",
+        "defaultValue": 1,
+        "widget": "List"
+    },
+    {
+        "id": "dark.charts.list.text_right",
+        "desc": "colorListItemTextRight",
+        "defaultValue": 2,
+        "widget": "List"
+    },                       
+    {
+        "id": "dark.charts.list.subText_right",
+        "desc": "colorListItemTextSecondaryRight",
+        "defaultValue": 1,
+        "widget": "List"
+    },
+    {
+        "id": "dark.charts.list.header",
+        "desc": "colorListItemHeaders",
+        "defaultValue": 2,
+        "widget": "List"
+    },
+    {
+        "id": "dark.charts.list.divider",
+        "desc": "colorListItemDivider",
+        "defaultValue": 4,
+        "widget": "List"
+    },
+    {
+        "id": "dark.charts.list.icon_off",
+        "desc": "listImageColor",
+        "defaultValue": 0,
+        "widget": "List"
+    },    
+    {
+        "id": "dark.charts.list.icon_on",
+        "desc": "listImageActiveColor",
+        "defaultValue": 0,
+        "widget": "List"
+    },       
+    {
         "id": "dark.charts.pie.background",
         "desc": "backgroundColor",
         "defaultValue": 7,
@@ -705,31 +777,31 @@
         "id": "dark.switch.on",
         "desc": "colorSwitchTrue",
         "defaultValue": 0,
-        "widget": "Switch"
+        "widget": "Switch, List"
     },
     {
         "id": "dark.switch.on_hover",
         "desc": "colorSwitchHoverTrue",
         "defaultValue": 0,
-        "widget": "Switch"
+        "widget": "Switch, List"
     },
     {
         "id": "dark.switch.off",
         "desc": "colorSwitchThumb",
         "defaultValue": 5,
-        "widget": "Switch"
+        "widget": "Switch, List"
     },
     {
         "id": "dark.switch.off_hover",
         "desc": "colorSwitchHover",
         "defaultValue": 0,
-        "widget": "Switch"
+        "widget": "Switch, List"
     },
     {
         "id": "dark.switch.track",
         "desc": "colorSwitchTrack",
         "defaultValue": 6,
-        "widget": "Switch"
+        "widget": "Switch, List"
     },
     {
         "id": "dark.switch.text_off",
