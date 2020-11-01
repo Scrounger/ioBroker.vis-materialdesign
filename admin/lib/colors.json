@@ -366,6 +366,102 @@
         "widget": "Material Design Icon"
     },
     {
+        "id": "light.charts.line.background",
+        "desc": "backgroundColor",
+        "defaultValue": 7,
+        "widget": "Line History Chart"
+    },
+    {
+        "id": "light.charts.line.background_chart",
+        "desc": "chartAreaBackgroundColor",
+        "defaultValue": 7,
+        "widget": "Line History Chart"
+    },
+    {
+        "id": "light.charts.line.global",
+        "desc": "globalColor",
+        "defaultValue": 0,
+        "widget": "Line History Chart"
+    },
+    {
+        "id": "light.charts.line.value",
+        "desc": "valuesFontColor",
+        "defaultValue": 2,
+        "widget": "Line History Chart"
+    },    
+    {
+        "id": "light.charts.line.legend",
+        "desc": "legendFontColor",
+        "defaultValue": 2,
+        "widget": "Line History Chart"
+    }, 
+    {
+        "id": "light.charts.line.tooltip_background",
+        "desc": "tooltipBackgroundColor",
+        "defaultValue": 6,
+        "widget": "Line History Chart"
+    },     
+    {
+        "id": "light.charts.line.tooltip_title",
+        "desc": "tooltipTitleFontColor",
+        "defaultValue": 5,
+        "widget": "Line History Chart"
+    },  
+    {
+        "id": "light.charts.line.tooltip_text",
+        "desc": "tooltipBodyFontColor",
+        "defaultValue": 5,
+        "widget": "Line History Chart"
+    }, 
+    {
+        "id": "light.charts.line.x_axis_title",
+        "desc": "xAxisTitleColor",
+        "defaultValue": 2,
+        "widget": "Line History Chart"
+    },
+    {
+        "id": "light.charts.line.x_axis_values",
+        "desc": "xAxisValueLabelColor",
+        "defaultValue": 2,
+        "widget": "Line History Chart"
+    },
+    {
+        "id": "light.charts.line.x_axis_gridlines",
+        "desc": "xAxisGridLinesColor",
+        "defaultValue": 6,
+        "widget": "Line History Chart"
+    },
+    {
+        "id": "light.charts.line.x_axis_zeroline",
+        "desc": "xAxisZeroLineColor",
+        "defaultValue": 6,
+        "widget": "Line History Chart"
+    }, 
+    {
+        "id": "light.charts.line.y_axis_title",
+        "desc": "yAxisTitleColor",
+        "defaultValue": 2,
+        "widget": "Line History Chart"
+    },
+    {
+        "id": "light.charts.line.y_axis_values",
+        "desc": "yAxisValueLabelColor",
+        "defaultValue": 2,
+        "widget": "Line History Chart"
+    },
+    {
+        "id": "light.charts.line.y_axis_gridlines",
+        "desc": "yAxisGridLinesColor",
+        "defaultValue": 6,
+        "widget": "Line History Chart"
+    },
+    {
+        "id": "light.charts.line.y_axis_zeroline",
+        "desc": "yAxisZeroLineColor",
+        "defaultValue": 6,
+        "widget": "Line History Chart"
+    },
+    {
         "id": "light.charts.pie.background",
         "desc": "backgroundColor",
         "defaultValue": 7,
