@@ -70,7 +70,7 @@
         "desc": "yAxisZeroLineColor",
         "defaultValue": 6,
         "widget": "Bar Chart"
-    },        
+    },
     {
         "id": "light.charts.bar.x_axis_title",
         "desc": "xAxisTitleColor",
@@ -94,31 +94,31 @@
         "desc": "xAxisZeroLineColor",
         "defaultValue": 6,
         "widget": "Bar Chart"
-    },     
+    },
     {
         "id": "light.charts.bar.legend",
         "desc": "legendFontColor",
         "defaultValue": 2,
         "widget": "Bar Chart"
-    }, 
+    },
     {
         "id": "light.charts.bar.tooltip_background",
         "desc": "tooltipBackgroundColor",
         "defaultValue": 6,
         "widget": "Bar Chart"
-    },     
+    },
     {
         "id": "light.charts.bar.tooltip_title",
         "desc": "tooltipTitleFontColor",
         "defaultValue": 5,
         "widget": "Bar Chart"
-    },  
+    },
     {
         "id": "light.charts.bar.tooltip_text",
         "desc": "tooltipBodyFontColor",
         "defaultValue": 5,
         "widget": "Bar Chart"
-    },   
+    },
     {
         "id": "light.calendar.border",
         "desc": "calendarBorderColor",
@@ -244,7 +244,7 @@
         "desc": "calendarTimeAxisFontColor",
         "defaultValue": 2,
         "widget": "Calendar"
-    },    
+    },
     {
         "id": "light.card.background",
         "desc": "colorBackground",
@@ -280,7 +280,7 @@
         "desc": "colorBody",
         "defaultValue": 2,
         "widget": "HTML Card"
-    },    
+    },
     {
         "id": "light.checkbox.on",
         "desc": "colorCheckBox",
@@ -340,24 +340,102 @@
         "desc": "valueFontColor",
         "defaultValue": 1,
         "widget": "Icon List"
-    },    
+    },
     {
         "id": "light.icon_list.icon",
         "desc": "listImageColor",
         "defaultValue": 0,
         "widget": "Icon List"
-    },    
+    },
     {
         "id": "light.icon_list.button",
         "desc": "buttonBgColor",
         "defaultValue": 7,
         "widget": "Icon List"
-    },    
+    },
     {
         "id": "light.icon_list.button_hover",
         "desc": "buttonColorPress",
         "defaultValue": 0,
         "widget": "Icon List"
+    },
+    {
+        "id": "light.charts.json.background",
+        "desc": "backgroundColor",
+        "defaultValue": 7,
+        "widget": "JSON Chart"
+    },
+    {
+        "id": "light.charts.json.background_chart",
+        "desc": "chartAreaBackgroundColor",
+        "defaultValue": 7,
+        "widget": "JSON Chart"
+    },
+    {
+        "id": "light.charts.json.global",
+        "desc": "globalColor",
+        "defaultValue": 0,
+        "widget": "JSON Chart"
+    },
+    {
+        "id": "light.charts.json.x_axis_title",
+        "desc": "xAxisTitleColor",
+        "defaultValue": 2,
+        "widget": "JSON Chart"
+    },
+    {
+        "id": "light.charts.json.x_axis_values",
+        "desc": "xAxisValueLabelColor",
+        "defaultValue": 2,
+        "widget": "JSON Chart"
+    },
+    {
+        "id": "light.charts.json.x_axis_gridlines",
+        "desc": "xAxisGridLinesColor",
+        "defaultValue": 6,
+        "widget": "JSON Chart"
+    },
+    {
+        "id": "light.charts.json.x_axis_zeroline",
+        "desc": "xAxisZeroLineColor",
+        "defaultValue": 6,
+        "widget": "JSON Chart"
+    },
+    {
+        "id": "light.charts.json.y_axis_title",
+        "desc": "yAxisTitleColor",
+        "defaultValue": 2,
+        "widget": "JSON Chart"
+    },
+    {
+        "id": "light.charts.json.y_axis_values",
+        "desc": "yAxisValueLabelColor",
+        "defaultValue": 2,
+        "widget": "JSON Chart"
+    },
+    {
+        "id": "light.charts.json.legend",
+        "desc": "legendFontColor",
+        "defaultValue": 2,
+        "widget": "JSON Chart"
+    },
+    {
+        "id": "light.charts.json.tooltip_background",
+        "desc": "tooltipBackgroundColor",
+        "defaultValue": 6,
+        "widget": "JSON Chart"
+    },
+    {
+        "id": "light.charts.json.tooltip_title",
+        "desc": "tooltipTitleFontColor",
+        "defaultValue": 5,
+        "widget": "JSON Chart"
+    },
+    {
+        "id": "light.charts.json.tooltip_text",
+        "desc": "tooltipBodyFontColor",
+        "defaultValue": 5,
+        "widget": "JSON Chart"
     },
     {
         "id": "light.material_design_icon.color",
@@ -388,31 +466,31 @@
         "desc": "valuesFontColor",
         "defaultValue": 2,
         "widget": "Line History Chart"
-    },    
+    },
     {
         "id": "light.charts.line.legend",
         "desc": "legendFontColor",
         "defaultValue": 2,
         "widget": "Line History Chart"
-    }, 
+    },
     {
         "id": "light.charts.line.tooltip_background",
         "desc": "tooltipBackgroundColor",
         "defaultValue": 6,
         "widget": "Line History Chart"
-    },     
+    },
     {
         "id": "light.charts.line.tooltip_title",
         "desc": "tooltipTitleFontColor",
         "defaultValue": 5,
         "widget": "Line History Chart"
-    },  
+    },
     {
         "id": "light.charts.line.tooltip_text",
         "desc": "tooltipBodyFontColor",
         "defaultValue": 5,
         "widget": "Line History Chart"
-    }, 
+    },
     {
         "id": "light.charts.line.x_axis_title",
         "desc": "xAxisTitleColor",
@@ -436,7 +514,7 @@
         "desc": "xAxisZeroLineColor",
         "defaultValue": 6,
         "widget": "Line History Chart"
-    }, 
+    },
     {
         "id": "light.charts.line.y_axis_title",
         "desc": "yAxisTitleColor",
@@ -508,25 +586,25 @@
         "desc": "legendFontColor",
         "defaultValue": 2,
         "widget": "Pie Chart"
-    }, 
+    },
     {
         "id": "light.charts.pie.tooltip_background",
         "desc": "tooltipBackgroundColor",
         "defaultValue": 6,
         "widget": "Pie Chart"
-    },     
+    },
     {
         "id": "light.charts.pie.tooltip_title",
         "desc": "tooltipTitleFontColor",
         "defaultValue": 5,
         "widget": "Pie Chart"
-    },  
+    },
     {
         "id": "light.charts.pie.tooltip_text",
         "desc": "tooltipBodyFontColor",
         "defaultValue": 5,
         "widget": "Pie Chart"
-    },   
+    },
     {
         "id": "light.progress.track_background",
         "desc": "colorProgressBackground",
@@ -598,7 +676,7 @@
         "desc": "prepandTextColor",
         "defaultValue": 2,
         "widget": "Slider"
-    },    
+    },
     {
         "id": "light.slider.tick_before",
         "desc": "tickColorBefore",
