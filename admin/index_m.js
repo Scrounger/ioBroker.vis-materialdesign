@@ -146,6 +146,18 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
         $(`#${themeType}Table [data-name=defaultValue]`).closest('td').css('display', 'none');
 
 
+        // check if filter is set
+        let inputFilterVal = $(`#${themeType}TableFilter`).val();
+
+        if (inputFilterVal.length > 0) {
+            $(`#${themeType}TableFilterClear`).show();
+            $(`#${themeType}Table input[data-name=widget]`).each(function () {
+                if (!$(this).val().toUpperCase().includes(inputFilterVal.toUpperCase())) {
+                    $(this).closest('tr').hide();
+                }
+            });
+        }
+
         if (themeType.includes('colors')) {
             $(`#${themeType}Table input[data-name=pickr]`).each(function (i) {
                 // create ColorPicker for rows & 
@@ -226,7 +238,7 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
             }
 
             M.Toast.dismissAll();
-            M.toast({ html: _('copied to clipboard'), displayLength: 700, inDuration: 0, outDuration: 0, classes: 'rounded' });
+            M.toast({ html: _('Binding copied to clipboard'), displayLength: 700, inDuration: 0, outDuration: 0, classes: 'rounded' });
         });
 
     } catch (err) {
@@ -243,6 +255,8 @@ function setTableSelectedDefault(themeType, rowNum, btnNum) {
 
 function eventsHandlerTab(themeType, themeObject, themeDefaults, settings, onChange) {
     $(`#${themeType}TableFilter`).keyup(function () {
+        $(`#${themeType}Table`).find('tr:gt(0)').show(); // show all rows
+
         let filter = $(this).val();
         if (filter.length > 0) {
             $(`#${themeType}TableFilterClear`).show();

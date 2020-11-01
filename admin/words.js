@@ -10385,17 +10385,17 @@ systemDictionary = {
         "pl": "Czy chcesz przywrócić domyślne kolory?",
         "zh-cn": "您要恢复默认颜色吗？"
     },
-    "copied to clipboard": {
-        "en": "copied to clipboard",
-        "de": "in die Zwischenablage kopiert",
-        "ru": "скопировано в буфер обмена",
-        "pt": "Copiado para a área de transferência",
-        "nl": "gekopieerd naar het klembord",
-        "fr": "copié dans le presse-papier",
-        "it": "copiato negli appunti",
-        "es": "Copiado al portapapeles",
-        "pl": "skopiowane do schowka",
-        "zh-cn": "复制到剪贴板"
+    "Binding copied to clipboard": {
+        "en": "Binding copied to clipboard",
+        "de": "Bindung in Zwischenablage kopiert",
+        "ru": "Привязка скопирована в буфер обмена",
+        "pt": "Vinculação copiada para a área de transferência",
+        "nl": "Binding gekopieerd naar klembord",
+        "fr": "Reliure copiée dans le presse-papiers",
+        "it": "Rilegatura copiata negli appunti",
+        "es": "Encuadernación copiada al portapapeles",
+        "pl": "Oprawa skopiowana do schowka",
+        "zh-cn": "绑定复制到剪贴板"
     },
     "config_general": {
         "en": "general",
