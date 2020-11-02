@@ -556,7 +556,7 @@
         "desc": "colorListItemHover",
         "defaultValue": 6,
         "widget": "List"
-    }, 
+    },
     {
         "id": "light.charts.list.selected",
         "desc": "colorListItemSelected",
@@ -580,7 +580,7 @@
         "desc": "colorListItemTextRight",
         "defaultValue": 2,
         "widget": "List"
-    },                       
+    },
     {
         "id": "light.charts.list.subText_right",
         "desc": "colorListItemTextSecondaryRight",
@@ -604,13 +604,13 @@
         "desc": "listImageColor",
         "defaultValue": 0,
         "widget": "List"
-    },    
+    },
     {
         "id": "light.charts.list.icon_on",
         "desc": "listImageActiveColor",
         "defaultValue": 0,
         "widget": "List"
-    },       
+    },
     {
         "id": "light.charts.pie.background",
         "desc": "backgroundColor",
@@ -862,5 +862,161 @@
         "desc": "dividers",
         "defaultValue": 4,
         "widget": "Table"
+    },
+    {
+        "id": "light.top_app_bar.background",
+        "desc": "colorTopAppBarBackground",
+        "defaultValue": 0,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.title",
+        "desc": "colorTopAppBarTitle",
+        "defaultValue": 5,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.menu_background",
+        "desc": "colorDrawerBackground",
+        "defaultValue": 5,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.header_background",
+        "desc": "colorDrawerHeaderBackground",
+        "defaultValue": 7,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.header_text",
+        "desc": "colorListItemHeaders",
+        "defaultValue": 5,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_background",
+        "desc": "colorDrawerItemBackground",
+        "defaultValue": 7,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_hover",
+        "desc": "colorListItemHover",
+        "defaultValue": 6,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_selected",
+        "desc": "colorListItemSelected",
+        "defaultValue": 6,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_text",
+        "desc": "colorListItemText",
+        "defaultValue": 2,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_icon",
+        "desc": "iconDrawerColor",
+        "defaultValue": 0,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_text_selected",
+        "desc": "colorListItemTextSelected",
+        "defaultValue": 2,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_text_disabled",
+        "desc": "colorListItemTextDisabled",
+        "value": "rgba(0, 0, 0, 0.38)",
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_icon_disabled",
+        "desc": "colorListItemIconDisabled",
+        "value": "rgba(0, 0, 0, 0.38)",
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_divider",
+        "desc": "colorListItemDivider",
+        "defaultValue": 4,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_icon_toggle",
+        "desc": "colorSubItemToggleIcon",
+        "defaultValue": 0,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_backdrop_background_text_off",
+        "desc": "colorDrawerbackdropLabelBackground",
+        "value": "rgba(0,0,0,0.5)",
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_backdrop_background_text_on",
+        "desc": "colorDrawerbackdropLabelBackgroundActive",
+        "value": "#1e88e566",
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_background_all",
+        "desc": "colorDrawerSubBackground",
+        "defaultValue": 7,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_background",
+        "desc": "colorDrawerSubItemBackground",
+        "defaultValue": 7,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_hover",
+        "desc": "colorListSubItemHover",
+        "defaultValue": 6,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_selected",
+        "desc": "colorListSubItemSelected",
+        "defaultValue": 6,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_text",
+        "desc": "colorListSubItemText",
+        "defaultValue": 2,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_text_selected",
+        "desc": "colorListSubItemTextSelected",
+        "defaultValue": 2,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_divider",
+        "desc": "colorListSubItemDivider",
+        "defaultValue": 4,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_backdrop_background_text_off",
+        "desc": "colorDrawerbackdropSubLabelBackground",
+        "value": "rgba(0,0,0,0.5)",
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_backdrop_background_text_on",
+        "desc": "colorDrawerbackdropSubLabelBackgroundActive",
+        "value": "#1e88e566",
+        "widget": "Top App Bar"
     }
 ]
