@@ -384,73 +384,73 @@
         "widget": "Material Design Icon"
     },
     {
-        "id": "light.charts.list.background_off",
+        "id": "light.list.background_off",
         "desc": "listItemBackground",
         "defaultValue": 7,
         "widget": "List"
     },
     {
-        "id": "light.charts.list.background_on",
+        "id": "light.list.background_on",
         "desc": "listItemBackgroundActive",
         "defaultValue": 7,
         "widget": "List"
     },
     {
-        "id": "light.charts.list.hover",
+        "id": "light.list.hover",
         "desc": "colorListItemHover",
         "defaultValue": 6,
         "widget": "List"
     },
     {
-        "id": "light.charts.list.selected",
+        "id": "light.list.selected",
         "desc": "colorListItemSelected",
         "defaultValue": 6,
         "widget": "List"
     },
     {
-        "id": "light.charts.list.text",
+        "id": "light.list.text",
         "desc": "colorListItemText",
         "defaultValue": 2,
         "widget": "List"
     },
     {
-        "id": "light.charts.list.subText",
+        "id": "light.list.subText",
         "desc": "colorListItemTextSecondary",
         "defaultValue": 1,
         "widget": "List"
     },
     {
-        "id": "light.charts.list.text_right",
+        "id": "light.list.text_right",
         "desc": "colorListItemTextRight",
         "defaultValue": 2,
         "widget": "List"
     },
     {
-        "id": "light.charts.list.subText_right",
+        "id": "light.list.subText_right",
         "desc": "colorListItemTextSecondaryRight",
         "defaultValue": 1,
         "widget": "List"
     },
     {
-        "id": "light.charts.list.header",
+        "id": "light.list.header",
         "desc": "colorListItemHeaders",
         "defaultValue": 2,
         "widget": "List"
     },
     {
-        "id": "light.charts.list.divider",
+        "id": "light.list.divider",
         "desc": "colorListItemDivider",
         "defaultValue": 4,
         "widget": "List"
     },
     {
-        "id": "light.charts.list.icon_off",
+        "id": "light.list.icon_off",
         "desc": "listImageColor",
         "defaultValue": 0,
         "widget": "List"
     },
     {
-        "id": "light.charts.list.icon_on",
+        "id": "light.list.icon_on",
         "desc": "listImageActiveColor",
         "defaultValue": 0,
         "widget": "List"

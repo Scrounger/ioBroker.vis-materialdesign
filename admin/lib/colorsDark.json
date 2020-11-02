@@ -384,73 +384,73 @@
         "widget": "Material Design Icon"
     },
     {
-        "id": "dark.charts.list.background_off",
+        "id": "dark.list.background_off",
         "desc": "listItemBackground",
         "defaultValue": 7,
         "widget": "List"
     },
     {
-        "id": "dark.charts.list.background_on",
+        "id": "dark.list.background_on",
         "desc": "listItemBackgroundActive",
         "defaultValue": 7,
         "widget": "List"
     },
     {
-        "id": "dark.charts.list.hover",
+        "id": "dark.list.hover",
         "desc": "colorListItemHover",
         "defaultValue": 6,
         "widget": "List"
     },
     {
-        "id": "dark.charts.list.selected",
+        "id": "dark.list.selected",
         "desc": "colorListItemSelected",
         "defaultValue": 6,
         "widget": "List"
     },
     {
-        "id": "dark.charts.list.text",
+        "id": "dark.list.text",
         "desc": "colorListItemText",
         "defaultValue": 2,
         "widget": "List"
     },
     {
-        "id": "dark.charts.list.subText",
+        "id": "dark.list.subText",
         "desc": "colorListItemTextSecondary",
         "defaultValue": 1,
         "widget": "List"
     },
     {
-        "id": "dark.charts.list.text_right",
+        "id": "dark.list.text_right",
         "desc": "colorListItemTextRight",
         "defaultValue": 2,
         "widget": "List"
     },
     {
-        "id": "dark.charts.list.subText_right",
+        "id": "dark.list.subText_right",
         "desc": "colorListItemTextSecondaryRight",
         "defaultValue": 1,
         "widget": "List"
     },
     {
-        "id": "dark.charts.list.header",
+        "id": "dark.list.header",
         "desc": "colorListItemHeaders",
         "defaultValue": 2,
         "widget": "List"
     },
     {
-        "id": "dark.charts.list.divider",
+        "id": "dark.list.divider",
         "desc": "colorListItemDivider",
         "defaultValue": 4,
         "widget": "List"
     },
     {
-        "id": "dark.charts.list.icon_off",
+        "id": "dark.list.icon_off",
         "desc": "listImageColor",
         "defaultValue": 0,
         "widget": "List"
     },
     {
-        "id": "dark.charts.list.icon_on",
+        "id": "dark.list.icon_on",
         "desc": "listImageActiveColor",
         "defaultValue": 0,
         "widget": "List"
