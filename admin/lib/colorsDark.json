@@ -12,132 +12,6 @@
         "widget": "Alerts"
     },
     {
-        "id": "dark.charts.background",
-        "desc": "backgroundColor",
-        "defaultValue": 7,
-        "widget": "Chart"
-    },
-    {
-        "id": "dark.charts.background_chart",
-        "desc": "chartAreaBackgroundColor",
-        "defaultValue": 7,
-        "widget": "Chart"
-    },
-    {
-        "id": "dark.charts.global",
-        "desc": "globalColor",
-        "defaultValue": 0,
-        "widget": "Chart"
-    },
-    {
-        "id": "dark.charts.value",
-        "desc": "valuesFontColor",
-        "defaultValue": 2,
-        "widget": "Chart"
-    },
-    {
-        "id": "dark.charts.y_axis_title",
-        "desc": "yAxisTitleColor",
-        "defaultValue": 2,
-        "widget": "Chart"
-    },
-    {
-        "id": "dark.charts.y_axis_values",
-        "desc": "yAxisValueLabelColor",
-        "defaultValue": 2,
-        "widget": "Chart"
-    },
-    {
-        "id": "dark.charts.y_axis_gridlines",
-        "desc": "yAxisGridLinesColor",
-        "defaultValue": 6,
-        "widget": "Chart"
-    },
-    {
-        "id": "dark.charts.y_axis_zeroline",
-        "desc": "yAxisZeroLineColor",
-        "defaultValue": 6,
-        "widget": "Chart"
-    },
-    {
-        "id": "dark.charts.x_axis_title",
-        "desc": "xAxisTitleColor",
-        "defaultValue": 2,
-        "widget": "Chart"
-    },
-    {
-        "id": "dark.charts.x_axis_values",
-        "desc": "xAxisValueLabelColor",
-        "defaultValue": 2,
-        "widget": "Chart"
-    },
-    {
-        "id": "dark.charts.x_axis_gridlines",
-        "desc": "xAxisGridLinesColor",
-        "defaultValue": 6,
-        "widget": "Chart"
-    },
-    {
-        "id": "dark.charts.x_axis_zeroline",
-        "desc": "xAxisZeroLineColor",
-        "defaultValue": 6,
-        "widget": "Chart"
-    },
-    {
-        "id": "dark.charts.legend",
-        "desc": "legendFontColor",
-        "defaultValue": 2,
-        "widget": "Chart"
-    },
-    {
-        "id": "dark.charts.tooltip_background",
-        "desc": "tooltipBackgroundColor",
-        "defaultValue": 6,
-        "widget": "Chart"
-    },
-    {
-        "id": "dark.charts.tooltip_title",
-        "desc": "tooltipTitleFontColor",
-        "defaultValue": 5,
-        "widget": "Chart"
-    },
-    {
-        "id": "dark.charts.tooltip_text",
-        "desc": "tooltipBodyFontColor",
-        "defaultValue": 5,
-        "widget": "Chart"
-    },
-    {
-        "id": "dark.charts.bar.hover",
-        "desc": "hoverColor",
-        "value": "rgba(68, 115, 158, 0.8)",
-        "widget": "Bar Chart"
-    },
-    {
-        "id": "dark.charts.bar.hover_border",
-        "desc": "hoverBorderColor",
-        "value": "rgba(68, 115, 158, 0.8)",
-        "widget": "Bar Chart"
-    },
-    {
-        "id": "dark.charts.pie.hover",
-        "desc": "hoverColor",
-        "value": "rgba(68, 115, 158, 0.8)",
-        "widget": "Pie Chart"
-    },
-    {
-        "id": "dark.charts.pie.border",
-        "desc": "borderColor",
-        "defaultValue": 5,
-        "widget": "Pie Chart"
-    },
-    {
-        "id": "dark.charts.pie.border_hover",
-        "desc": "hoverBorderColor",
-        "defaultValue": 5,
-        "widget": "Pie Chart"
-    },    
-    {
         "id": "dark.calendar.border",
         "desc": "calendarBorderColor",
         "defaultValue": 4,
@@ -298,6 +172,132 @@
         "desc": "colorBody",
         "defaultValue": 2,
         "widget": "HTML Card"
+    },
+    {
+        "id": "dark.charts.background",
+        "desc": "backgroundColor",
+        "defaultValue": 7,
+        "widget": "Chart"
+    },
+    {
+        "id": "dark.charts.background_chart",
+        "desc": "chartAreaBackgroundColor",
+        "defaultValue": 7,
+        "widget": "Chart"
+    },
+    {
+        "id": "dark.charts.global",
+        "desc": "globalColor",
+        "defaultValue": 0,
+        "widget": "Chart"
+    },
+    {
+        "id": "dark.charts.value",
+        "desc": "valuesFontColor",
+        "defaultValue": 2,
+        "widget": "Chart"
+    },
+    {
+        "id": "dark.charts.y_axis_title",
+        "desc": "yAxisTitleColor",
+        "defaultValue": 2,
+        "widget": "Chart"
+    },
+    {
+        "id": "dark.charts.y_axis_values",
+        "desc": "yAxisValueLabelColor",
+        "defaultValue": 2,
+        "widget": "Chart"
+    },
+    {
+        "id": "dark.charts.y_axis_gridlines",
+        "desc": "yAxisGridLinesColor",
+        "defaultValue": 6,
+        "widget": "Chart"
+    },
+    {
+        "id": "dark.charts.y_axis_zeroline",
+        "desc": "yAxisZeroLineColor",
+        "defaultValue": 6,
+        "widget": "Chart"
+    },
+    {
+        "id": "dark.charts.x_axis_title",
+        "desc": "xAxisTitleColor",
+        "defaultValue": 2,
+        "widget": "Chart"
+    },
+    {
+        "id": "dark.charts.x_axis_values",
+        "desc": "xAxisValueLabelColor",
+        "defaultValue": 2,
+        "widget": "Chart"
+    },
+    {
+        "id": "dark.charts.x_axis_gridlines",
+        "desc": "xAxisGridLinesColor",
+        "defaultValue": 6,
+        "widget": "Chart"
+    },
+    {
+        "id": "dark.charts.x_axis_zeroline",
+        "desc": "xAxisZeroLineColor",
+        "defaultValue": 6,
+        "widget": "Chart"
+    },
+    {
+        "id": "dark.charts.legend",
+        "desc": "legendFontColor",
+        "defaultValue": 2,
+        "widget": "Chart"
+    },
+    {
+        "id": "dark.charts.tooltip_background",
+        "desc": "tooltipBackgroundColor",
+        "defaultValue": 6,
+        "widget": "Chart"
+    },
+    {
+        "id": "dark.charts.tooltip_title",
+        "desc": "tooltipTitleFontColor",
+        "defaultValue": 5,
+        "widget": "Chart"
+    },
+    {
+        "id": "dark.charts.tooltip_text",
+        "desc": "tooltipBodyFontColor",
+        "defaultValue": 5,
+        "widget": "Chart"
+    },
+    {
+        "id": "dark.charts.bar.hover",
+        "desc": "hoverColor",
+        "value": "rgba(68, 115, 158, 0.8)",
+        "widget": "Bar Chart"
+    },
+    {
+        "id": "dark.charts.bar.hover_border",
+        "desc": "hoverBorderColor",
+        "value": "rgba(68, 115, 158, 0.8)",
+        "widget": "Bar Chart"
+    },
+    {
+        "id": "dark.charts.pie.hover",
+        "desc": "hoverColor",
+        "value": "rgba(68, 115, 158, 0.8)",
+        "widget": "Pie Chart"
+    },
+    {
+        "id": "dark.charts.pie.border",
+        "desc": "borderColor",
+        "defaultValue": 5,
+        "widget": "Pie Chart"
+    },
+    {
+        "id": "dark.charts.pie.border_hover",
+        "desc": "hoverBorderColor",
+        "defaultValue": 5,
+        "widget": "Pie Chart"
     },
     {
         "id": "dark.checkbox.on",
