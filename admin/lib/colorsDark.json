@@ -282,6 +282,12 @@
         "widget": "Bar Chart"
     },
     {
+        "id": "dark.charts.pie.value",
+        "desc": "valuesFontColor",
+        "defaultValue": 5,
+        "widget": "Pie Chart"
+    },    
+    {
         "id": "dark.charts.pie.hover",
         "desc": "hoverColor",
         "value": "rgba(68, 115, 158, 0.8)",
