@@ -108,6 +108,8 @@ vis.binds.materialdesign.button = {
         try {
             let $this = $(el);
 
+            $this.css('background', myMdwHelper.getValueFromData(data.colorBgFalse, ''));
+
             $this.on('click', function (e) {
                 // Protect against two events
                 event.preventDefault();
@@ -126,9 +128,11 @@ vis.binds.materialdesign.button = {
     },
     handleNavigation: function (el, data) {
         try {
+            let $this = $(el);
+            $this.css('background', myMdwHelper.getValueFromData(data.colorBgFalse, ''));
+
             if (!vis.editMode && data.nav_view) {
-                var $this = $(el);
-                var moved = false;
+                let moved = false;
                 $this.on('click', function (e) {
                     // Protect against two events
                     event.preventDefault();
@@ -151,6 +155,8 @@ vis.binds.materialdesign.button = {
         try {
             let $this = $(el);
 
+            $this.css('background', myMdwHelper.getValueFromData(data.colorBgFalse, ''));
+
             $this.on('click', function (e) {
                 // Protect against two events
                 event.preventDefault();
@@ -172,6 +178,8 @@ vis.binds.materialdesign.button = {
 
             if (val === 'true') val = true;
             if (val === 'false') val = false;
+
+            $this.css('background', myMdwHelper.getValueFromData(data.colorBgFalse, ''));
 
             if ($this.attr('isLocked') === 'true') {
                 $this.css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);

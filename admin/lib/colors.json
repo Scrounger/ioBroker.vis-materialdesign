@@ -286,7 +286,7 @@
         "desc": "valuesFontColor",
         "defaultValue": 5,
         "widget": "Pie Chart"
-    },    
+    },
     {
         "id": "light.charts.pie.hover",
         "desc": "hoverColor",
@@ -334,6 +334,48 @@
         "desc": "labelColorTrue",
         "defaultValue": 2,
         "widget": "Checkbox"
+    },
+    {
+        "id": "light.button.lock_icon_background",
+        "desc": "lockIconBackground",
+        "defaultValue": 7,
+        "widget": "Button, Vertical Button, Icon Button"
+    },
+    {
+        "id": "light.button.lock_icon",
+        "desc": "lockIconColor",
+        "defaultValue": 10,
+        "widget": "Button, Vertical Button, Icon Button"
+    },
+    {
+        "id": "light.button.icon.background_off",
+        "desc": "colorBgFalse",
+        "defaultValue": 7,
+        "widget": "Icon Button"
+    },
+    {
+        "id": "light.button.icon.background_on",
+        "desc": "colorBgTrue",
+        "defaultValue": 7,
+        "widget": "Icon Button"
+    },
+    {
+        "id": "light.button.icon.pressed",
+        "desc": "colorPress",
+        "defaultValue": 0,
+        "widget": "Icon Button"
+    },
+    {
+        "id": "light.button.icon.icon_off",
+        "desc": "imageColor",
+        "defaultValue": 0,
+        "widget": "Icon Button"
+    },
+    {
+        "id": "light.button.icon.icon_on",
+        "desc": "imageTrueColor",
+        "defaultValue": 0,
+        "widget": "Icon Button"
     },
     {
         "id": "light.icon_list.background",
