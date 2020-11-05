@@ -32,37 +32,43 @@
 	}
 
 	/* Header section */
-	#header-area {
-		margin-top: 4px;
-		margin-bottom: 1px;
-		background: white;
+	.help-link {
+		order: 2 !important;
+		width: auto !important;
+		display: flex !important;
+		align-items: center !important ;
+	}
+	.help-link .btn-floating {
+		margin-top: 0 !important;
+	}
+	.card-stacked{
+		order: 1;
 	}
 
-	#header-area #header-logo-title .logo {
-		float: left;
-		margin-right: 10px;
+	.logo {
+		width: 100px;
+		height: 100px;
 	}
 
-	#header-area #header-logo-title p {
-		line-height: normal !important;
-		margin: 0 !important;
-		padding: 8px 0 0 8px;
+	.my-card-title {
+		font-size: 24px !important;
+		font-weight: 300 !important;
+		color: #2196f3 !important;
 	}
 
-	#header-area #header-logo-title p>span.h-title {
-		font-size: 2em !important;
-		font-weight: bold !important;
+	.my-card-subTitle {
+		font-size: 16px !important;
+		margin-top: 6px !important;
+		font-style: italic !important;
+		color: gray !important;
 	}
-
-	#header-area #header-logo-title p>span.h-sub-title {
-		font-size: 1.1em !important;
-		font-style: italic;
-		color: #2196f3;
-	}
-
 
 	.pcr-app[data-theme="monolith"] {
 		width: 18.25em;
+	}
+
+	.pcr-button {
+		border: 1px solid rgba(161, 161, 161, 0.26);
 	}
 
 	.defaultContainer {
@@ -105,9 +111,25 @@
 		width: 1.6em !important; 
 		height: 1.6em !important;
 	}
+
+	.table-filter input::placeholder {
+		color: gray !important;
+	}
+
 	.table-filter button i {
 		font-size: .9rem !important; 
 		line-height: 1rem !important; 
+	}
+
+	/* Card Styles */
+	.card {
+		margin: 0 !important;
+		margin-top: 6px !important;
+	}
+	
+	.card-title {
+		color: #2196f3;
+		margin-bottom: 12px !important;
 	}
 </style>
 
@@ -127,120 +149,215 @@
 			</div>
 			<div id="tab_general" class="col s12 page">
 				<div class="col s12">
-					<div id="header-area" class="row">
-						<div id="header-logo-title" class="col s6">
-							<img class="logo" src="vis-materialdesign.png">
-							<p>
-								<span class="h-title">Material Design Widgets</span><br>
-								<span class="h-sub-title translate">Style Editor for your Widgets</span>
-							</p>
-						</div>
-					</div>
 					<div class="row">
+						<div class="col s12 m12 l12 card horizontal">
+							<div class="card-image">
+								<img class="logo" src="vis-materialdesign.png">
+							</div>
+							<div class="card-stacked">
+								<div class="card-content">
+									<div>
+										<div class="my-card-title">Material Design Widgets</div>
+										<div class="my-card-subTitle translate">Theme Editor for your Widgets</div>
+									</div>
+								</div>
+							</div>
+						</div>
 						<section>
-							<div class="col s12">
-								<div class="col s12 m12 l12 input-field">
-									<input type="checkbox" class="value" id="generateGlobalScript" />
-									<label for="generateGlobalScript" class="translate">create global script</label>
+							<div class="col s12 m12 l12 card">
+								<div class="card-content">
+									<span class="card-title translate">Generate global script</span>								
+									<div class="col s12 m4 l4 input-field">
+										<input type="text" class="value" id="scriptName" />
+										<label for="scriptName" class="translate">script name</label>
+									</div>
+									<div class="col s12 m4 l4 input-field">
+										<input type="text" class="value" id="variableName" />
+										<label for="variableName" class="translate">name of the variable</label>
+									</div>
+									<div class="col s0 m1 l1"></div>
+									<div class="col s12 m3 l3 input-field right-align">
+										<a id="btnJavascript" class="waves-effect waves-light btn-small" style="width: 100%;"><i class="material-icons left">note_add</i><span class="translate">generate script</span></a>
+									</div>				
 								</div>
 							</div>
-							<div class="col s12">
-								<div class="col s6 m6 l6 input-field">
-									<input type="text" class="value" id="scriptName" />
-									<label for="scriptName" class="translate">script name</label>
-								</div>
-								<div class="col s6 m6 l6 input-field">
-									<input type="text" class="value" id="variableName" />
-									<label for="variableName" class="translate">name of the variable</label>
-								</div>
+							<div class="row" style="margin-bottom: 0px;">
+								<div class="col s12 m12 l12">
+									<p class="translate title">Documentations</p>
+								</div>								
 							</div>
+							<div class="col s12 m12 l12">
+								<div class="col s12 m2 l2">
+									<label class="translate">name of the variable</label>
+								</div>
+							</div>														
 						</section>
 					</div>
 				</div>
 			</div>
 			<div id="tab_colors" class="col s12 page">
-				<section>
-					<div class="row">
-						<div class="col s12 m12 l12 colorsDefaultContainer">
-							<!-- dynamically creates colorPicker & input on load -->
+				<div class="row">
+					<section>
+						<div class="col s12 m12 l12">
+							<div class="col s12 m12 l12 card" style="padding-bottom: 20px;">
+								<div class="card-content">
+									<div class="row card-title">
+										<div class="col s12 m9 l9">
+											<div class="translate">default light colors</div>
+										</div>
+										<div class="col s12 m3 l3 right-align">
+											<a id="colorsReset" class="waves-effect waves-light btn-small"><i class="material-icons left">undo</i><span class="translate">reset</span></a>
+										</div>
+									</div>
+									<div class="colorsDefaultContainer">
+										<!-- dynamically creates colorPicker & input on load -->
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="col s12 m12 l12">
-						<div class="table-filter input-field col s12 m6 l6">
-							<input type="text" placeholder="Filter Widgets" id="colorsTableFilter" />
-							<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="colorsTableFilterClear"><i class="material-icons">clear</i></button></span>
+						<div class="col s12 m12 l12">
+							<div class="col s12 m12 l12 card" style="padding-bottom: 20px;">
+								<div class="card-content">
+									<div class="row card-title">
+										<div class="col s12 m6 l6">
+											<div class="translate">Widget colors</div>
+										</div>
+										<div class="table-filter input-field col s12 m6 l6 right-align">
+											<input type="text" placeholder="Filter Widgets" id="colorsTableFilter" />
+											<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="colorsTableFilterClear"><i class="material-icons">clear</i></button></span>
+										</div>
+									</div>
+									<div class="container_colorsTable">						
+										<!-- dynamically creates table on evey change of the select values  -->
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="col s12 m6 l6 right-align" style="margin-top: 12px">
-							<a id="colorsReset" class="waves-effect waves-light btn-small"><i class="material-icons left">undo</i><span class="translate">reset</span></a>
-						</div>
-					</div>
-					<div class="container_colorsTable">						
-						<!-- dynamically creates table on evey change of the select values  -->
-					</div>
-				</section>
+					</section>
+				</div>
 			</div>
 			<div id="tab_colorsDark" class="col s12 page">
-				<section>
-					<div class="row">
-						<div class="col s12 m12 l12 colorsDarkDefaultContainer">
-							<!-- dynamically creates colorPicker & input on load -->
+				<div class="row">
+					<section>
+						<div class="col s12 m12 l12">
+							<div class="col s12 m12 l12 card" style="padding-bottom: 20px;">
+								<div class="card-content">
+									<div class="row card-title">
+										<div class="col s12 m9 l9">
+											<div class="translate">default dark colors</div>
+										</div>
+										<div class="col s12 m3 l3 right-align">
+											<a id="colorsDarkReset" class="waves-effect waves-light btn-small"><i class="material-icons left">undo</i><span class="translate">reset</span></a>
+										</div>
+									</div>									
+									<div class="colorsDarkDefaultContainer">
+										<!-- dynamically creates colorPicker & input on load -->
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="col s12 m12 l12">
-						<div class="table-filter input-field col s12 m6 l6">
-							<input type="text" placeholder="Filter Widgets" id="colorsDarkTableFilter" />
-							<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="colorsDarkTableFilterClear"><i class="material-icons">clear</i></button></span>
+						<div class="col s12 m12 l12">
+							<div class="col s12 m12 l12 card" style="padding-bottom: 20px;">
+								<div class="card-content">
+									<div class="row card-title">
+										<div class="col s12 m6 l6">
+											<div class="translate">Widget colors</div>
+										</div>
+										<div class="table-filter input-field col s12 m6 l6 right-align">
+											<input type="text" placeholder="Filter Widgets" id="colorsDarkTableFilter" />
+											<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="colorsDarkTableFilterClear"><i class="material-icons">clear</i></button></span>
+										</div>
+									</div>
+									<div class="container_colorsDarkTable">						
+										<!-- dynamically creates table on evey change of the select values  -->
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="col s12 m6 l6 right-align" style="margin-top: 12px">
-							<a id="colorsDarkReset" class="waves-effect waves-light btn-small"><i class="material-icons left">undo</i><span class="translate">reset</span></a>
-						</div>
-					</div>
-					<div class="container_colorsDarkTable">						
-						<!-- dynamically creates table on evey change of the select values  -->
-					</div>
-				</section>
+					</section>
+				</div>
 			</div>			
 			<div id="tab_fonts" class="col s12 page">
-				<section>
-					<div class="row">
-						<div class="col s12 m12 l12 fontsDefaultContainer">
-							<!-- dynamically creates colorPicker & input on load -->
+				<div class="row">
+					<section>
+						<div class="col s12 m12 l12">
+							<div class="col s12 m12 l12 card" style="padding-bottom: 20px;">
+								<div class="card-content">
+									<div class="row card-title">
+										<div class="col s12 m9 l9">
+											<div class="translate">config_fonts</div>
+										</div>
+										<div class="col s12 m3 l3 right-align">
+											<a id="fontsReset" class="waves-effect waves-light btn-small"><i class="material-icons left">undo</i><span class="translate">reset</span></a>
+										</div>
+									</div>																	
+									<div class="fontsDefaultContainer">
+										<!-- dynamically creates colorPicker & input on load -->
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="col s12 m12 l12">
-						<div class="table-filter input-field col s12 m6 l6">
-							<input type="text" placeholder="Filter Widgets" id="fontsTableFilter" />
-							<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="fontsTableFilterClear"><i class="material-icons">clear</i></button></span>
-						</div>
-						<div class="col s12 m6 l6 right-align" style="margin-top: 12px">
-							<a id="fontsReset" class="waves-effect waves-light btn-small"><i class="material-icons left">undo</i><span class="translate">reset</span></a>
-						</div>
-					</div>
-					<div class="container_fontsTable">						
-						<!-- dynamically creates table on evey change of the select values  -->
-					</div>
-				</section>
+						<div class="col s12 m12 l12">
+							<div class="col s12 m12 l12 card" style="padding-bottom: 20px;">
+								<div class="card-content">
+									<div class="row card-title">
+										<div class="col s12 m6 l6">
+											<div class="translate">Widget fonts</div>
+										</div>
+										<div class="table-filter input-field col s12 m6 l6 right-align">
+											<input type="text" placeholder="Filter Widgets" id="fontsTableFilter" />
+											<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="fontsTableFilterClear"><i class="material-icons">clear</i></button></span>
+										</div>
+									</div>
+									<div class="container_fontsTable">						
+										<!-- dynamically creates table on evey change of the select values  -->
+									</div>
+								</div>
+							</div>
+						</div>						
+					</section>
+				</div>
 			</div>
 			<div id="tab_fontSizes" class="col s12 page">
-				<section>
-					<div class="row">
-						<div class="col s12 m12 l12 fontSizesdefaultContainer">
-							<!-- dynamically creates colorPicker & input on load -->
+				<div class="row">
+					<section>
+						<div class="col s12 m12 l12">
+							<div class="col s12 m12 l12 card" style="padding-bottom: 20px;">
+								<div class="card-content">
+									<div class="row card-title">
+										<div class="col s12 m9 l9">
+											<div class="translate">config_fontSizes</div>
+										</div>
+										<div class="col s12 m3 l3 right-align">
+											<a id="fontSizesReset" class="waves-effect waves-light btn-small"><i class="material-icons left">undo</i><span class="translate">reset</span></a>
+										</div>
+									</div>
+									<div class="fontSizesdefaultContainer">
+										<!-- dynamically creates colorPicker & input on load -->
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="col s12 m12 l12">
-						<div class="table-filter input-field col s12 m6 l6">
-							<input type="text" placeholder="Filter Widgets" id="fontSizesTableFilter" />
-							<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="fontSizesTableFilterClear"><i class="material-icons">clear</i></button></span>
-						</div>
-						<div class="col s12 m6 l6 right-align" style="margin-top: 12px">
-							<a id="fontSizesReset" class="waves-effect waves-light btn-small"><i class="material-icons left">undo</i><span class="translate">reset</span></a>
-						</div>
-					</div>
-					<div class="container_fontSizesTable">						
-						<!-- dynamically creates table on evey change of the select values  -->
-					</div>
-				</section>
+						<div class="col s12 m12 l12">
+							<div class="col s12 m12 l12 card" style="padding-bottom: 20px;">
+								<div class="card-content">
+									<div class="row card-title">
+										<div class="col s12 m6 l6">
+											<div class="translate">Widget font sizes</div>
+										</div>
+										<div class="table-filter input-field col s12 m6 l6 right-align">
+											<input type="text" placeholder="Filter Widgets" id="fontSizesTableFilter" />
+											<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="fontSizesTableFilterClear"><i class="material-icons">clear</i></button></span>
+										</div>
+									</div>
+									<div class="container_fontSizesTable">						
+										<!-- dynamically creates table on evey change of the select values  -->
+									</div>
+								</div>
+							</div>
+						</div>	
+					</section>
+				</div>
 			</div>	
 		</div>
 	</div>

@@ -10229,17 +10229,17 @@ systemDictionary = {
         "pl": "kompletny",
         "zh-cn": "完成"
     },
-    "Style Editor for your Widgets": {
-        "en": "Style Editor for your Widgets",
-        "de": "Stileditor für Deine Widgets",
-        "ru": "Редактор стилей для ваших виджетов",
-        "pt": "Editor de estilo para seus widgets",
-        "nl": "Style Editor voor uw widgets",
-        "fr": "Éditeur de style pour vos widgets",
-        "it": "Editor di stile per i tuoi widget",
-        "es": "Editor de estilo para sus widgets",
-        "pl": "Edytor stylów dla Twoich widżetów",
-        "zh-cn": "小部件的样式编辑器"
+    "Theme Editor for your Widgets": {
+        "en": "Theme Editor for your Widgets",
+        "de": "Themeneditor für Deine Widgets",
+        "ru": "Редактор тем для ваших виджетов",
+        "pt": "Editor de temas para seus widgets",
+        "nl": "Theme Editor voor uw widgets",
+        "fr": "Éditeur de thèmes pour vos widgets",
+        "it": "Editor di temi per i tuoi widget",
+        "es": "Editor de temas para sus widgets",
+        "pl": "Edytor motywów dla swoich widżetów",
+        "zh-cn": "小部件的主题编辑器"
     },
     "script name": {
         "en": "script name",
@@ -10516,5 +10516,125 @@ systemDictionary = {
         "es": "color de texto",
         "pl": "kolor tekstu",
         "zh-cn": "文字颜色"
+    },
+    "generate script": {
+        "en": "generate script",
+        "de": "Skript generieren",
+        "ru": "Создать скрипт",
+        "pt": "gerar script",
+        "nl": "script genereren",
+        "fr": "générer un script",
+        "it": "genera script",
+        "es": "generar script",
+        "pl": "wygeneruj skrypt",
+        "zh-cn": "生成脚本"
+    },
+    "After the script has been generated, the javascript adapter will be restarted!<br><br><br>Do you want to continue?": {
+        "en": "After the script has been generated, the javascript adapter will be restarted!<br><br><br>Do you want to continue?",
+        "de": "Nachdem das Skript generiert wurde, wird der Javascript Adapter neu gestartet! <br><br><br> Möchtest Du fortfahren?",
+        "ru": "После того, как сценарий был сгенерирован, адаптер javascript будет перезапущен! <br><br><br> Вы хотите продолжить?",
+        "pt": "Depois que o script for gerado, o adaptador de javascript será reiniciado! <br><br><br> Você quer continuar?",
+        "nl": "Nadat het script is gegenereerd, wordt de JavaScript-adapter opnieuw gestart! <br><br><br> Wil je doorgaan?",
+        "fr": "Une fois le script généré, l'adaptateur javascript sera redémarré! <br><br><br> Voulez-vous continuer?",
+        "it": "Dopo che lo script è stato generato, l'adattatore javascript verrà riavviato! <br><br><br> Vuoi continuare?",
+        "es": "Después de que se haya generado el script, se reiniciará el adaptador de JavaScript. <br><br><br> ¿Quieres continuar?",
+        "pl": "Po wygenerowaniu skryptu adapter javascript zostanie ponownie uruchomiony! <br><br><br> Czy chcesz kontynuować?",
+        "zh-cn": "生成脚本后，将重新启动javascript适配器！ <br><br><br>你想继续吗？"
+    },
+    "attention": {
+        "en": "attention",
+        "de": "Achtung",
+        "ru": "Внимание",
+        "pt": "atenção",
+        "nl": "aandacht",
+        "fr": "attention",
+        "it": "Attenzione",
+        "es": "atención",
+        "pl": "Uwaga",
+        "zh-cn": "注意"
+    },
+    "Generate global script": {
+        "en": "Generate global script",
+        "de": "globales Skript erzeugen",
+        "ru": "Создать глобальный скрипт",
+        "pt": "Gerar script global",
+        "nl": "Genereer een globaal script",
+        "fr": "Générer un script global",
+        "it": "Genera script globale",
+        "es": "Generar script global",
+        "pl": "Wygeneruj skrypt globalny",
+        "zh-cn": "生成全局脚本"
+    },
+    "Documentations": {
+        "en": "Documentations",
+        "de": "Dokumentationen",
+        "ru": "Документация",
+        "pt": "Documentações",
+        "nl": "Documentaties",
+        "fr": "Documentations",
+        "it": "Documentazioni",
+        "es": "Documentaciones",
+        "pl": "Dokumentacje",
+        "zh-cn": "文件资料"
+    },
+    "default light colors": {
+        "en": "default light colors",
+        "de": "helle Standard Farben",
+        "ru": "цвета света по умолчанию",
+        "pt": "cores claras padrão",
+        "nl": "standaard lichte kleuren",
+        "fr": "couleurs claires par défaut",
+        "it": "colori chiari predefiniti",
+        "es": "colores claros predeterminados",
+        "pl": "domyślne jasne kolory",
+        "zh-cn": "默认灯光颜色"
+    },
+    "default dark colors": {
+        "en": "default dark colors",
+        "de": "dunkle Standard Farben",
+        "ru": "темные цвета по умолчанию",
+        "pt": "cores escuras padrão",
+        "nl": "standaard donkere kleuren",
+        "fr": "couleurs sombres par défaut",
+        "it": "colori scuri predefiniti",
+        "es": "colores oscuros predeterminados",
+        "pl": "domyślne ciemne kolory",
+        "zh-cn": "默认深色"
+    },
+    "Widget colors": {
+        "en": "Widget colors",
+        "de": "Widget Farben",
+        "ru": "Цвета виджета",
+        "pt": "Cores de widget",
+        "nl": "Widget kleuren",
+        "fr": "Couleurs du widget",
+        "it": "Colori widget",
+        "es": "Colores de widget",
+        "pl": "Kolory widżetów",
+        "zh-cn": "小部件颜色"
+    },
+    "Widget fonts": {
+        "en": "Widget fonts",
+        "de": "Widget Schriftarten",
+        "ru": "Шрифты для виджетов",
+        "pt": "Fontes de widget",
+        "nl": "Widget-lettertypen",
+        "fr": "Polices de widget",
+        "it": "Caratteri widget",
+        "es": "Fuentes de widget",
+        "pl": "Czcionki widżetów",
+        "zh-cn": "小部件字体"
+    },
+    "Widget font sizes": {
+        "en": "Widget font sizes",
+        "de": "Widget-Schriftgrößen",
+        "ru": "Размеры шрифта виджета",
+        "pt": "Tamanhos de fonte de widget",
+        "nl": "Widget lettergroottes",
+        "fr": "Tailles de police des widgets",
+        "it": "Dimensioni dei caratteri del widget",
+        "es": "Tamaños de fuente de widget",
+        "pl": "Rozmiary czcionek widżetów",
+        "zh-cn": "小部件字体大小"
     }
 };
