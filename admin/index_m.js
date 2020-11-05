@@ -27,8 +27,6 @@ async function load(settings, onChange) {
     });
     onChange(false);
 
-    globalScriptEnable();
-
     for (const themeType of themeTypesList) {
         createTab(themeType, settings[themeType], [], settings, onChange);
     }
@@ -101,8 +99,6 @@ async function createTab(themeType, themeObject, themeDefaults, settings, onChan
             });
         }
 
-        $(`#${themeType}TableFilterClear`).hide();
-
         createTable(themeType, themeObject, themeDefaults, defaultTableButtons, onChange);
         eventsHandlerTab(themeType, themeObject, themeDefaults, settings, onChange)
 
@@ -150,7 +146,6 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
         let inputFilterVal = $(`#${themeType}TableFilter`).val();
 
         if (inputFilterVal.length > 0) {
-            $(`#${themeType}TableFilterClear`).show();
             $(`#${themeType}Table input[data-name=widget]`).each(function () {
                 if (!$(this).val().toUpperCase().includes(inputFilterVal.toUpperCase())) {
                     $(this).closest('tr').hide();
@@ -259,7 +254,6 @@ function eventsHandlerTab(themeType, themeObject, themeDefaults, settings, onCha
 
         let filter = $(this).val();
         if (filter.length > 0) {
-            $(`#${themeType}TableFilterClear`).show();
             $(`#${themeType}Table input[data-name=widget]`).each(function () {
                 if (!$(this).val().toUpperCase().includes(filter.toUpperCase())) {
                     $(this).closest('tr').hide();
@@ -267,18 +261,16 @@ function eventsHandlerTab(themeType, themeObject, themeDefaults, settings, onCha
             });
         } else {
             $(`#${themeType}Table`).find('tr:gt(0)').show(); // show all rows
-            $(`#${themeType}TableFilterClear`).hide(); // hide button
         }
     });
 
     $(`#${themeType}TableFilterClear`).click(function () {
         $(`#${themeType}TableFilter`).val(''); // empty field
         $(`#${themeType}Table`).find('tr:gt(0)').show(); // show all rows
-        $(`#${themeType}TableFilterClear`).hide(); // hide button
     });
 
     $(`#${themeType}Reset`).on('click', function () {
-        confirmMessage(_(`Do you want to restore the default ${themeType}?`), _('attention'), null, [_('Cancel'), _('OK')], async function (result) {
+        confirmMessage(`<div style="font-size: 1.2rem; font-family: Segoe UI",Tahoma,Arial,"Courier New" !important;">${_(`Do you want to restore the default ${themeType}?`)}</div>`, `<i class="material-icons left">warning</i>${_('attention')}`, undefined, [_('Cancel'), _('OK')], async function (result) {
             if (result === 1) {
 
                 // reset defaultColors
@@ -430,21 +422,105 @@ function createColorPicker(el, color, colorDefaults, inputEl, onChange, defaultC
 
 //#endregion
 
+
+//#region global script
 function eventsHandler(onChange) {
-    $('#generateGlobalScript').on('change', function () {
-        globalScriptEnable();
+    $('#btnJavascript').on('click', function () {
+        createJavascriptConfirm();
     });
 }
 
-function globalScriptEnable() {
-    if ($("#generateGlobalScript").prop('checked')) {
-        $('#scriptName').prop("disabled", false);
-        $('#variableName').prop("disabled", false);
-    } else {
-        $('#scriptName').prop("disabled", true);
-        $('#variableName').prop("disabled", true);
-    }
+function createJavascriptConfirm() {
+    confirmMessage(`<div style="font-size: 1.2rem; font-family: Segoe UI",Tahoma,Arial,"Courier New" !important;">${_('After the script has been generated, the javascript adapter will be restarted!<br><br><br>Do you want to continue?')}</div>`, `<i class="material-icons left">warning</i>${_('attention')}`, undefined, [_('Cancel'), _('OK')], function (result) {
+        if (result === 1) {
+            createJavascript();
+        }
+    });
 }
+
+async function createJavascript() {
+    try {
+        var javascriptAdapter = await getObjectAsync("system.adapter.javascript.0");
+        if (javascriptAdapter) {
+            // javascript adapter exists
+
+            let rootName = $('#variableName').val();
+            let autoScript = `var ${rootName} = {};\n`
+
+            // get alle theme datapoints
+            let statesList = await getForeignObjectsAsync(myNamespace + '.*');
+
+            if (statesList != null && Object.keys(statesList).length > 0) {
+                let existingVarName = [];
+
+                for (var id in statesList) {
+                    if (id !== `${myNamespace}.colors.darkTheme`) {
+
+                        let idSplitted = id.replace(myNamespace + ".", "").split(".");
+                        let varName = ""
+                        if (idSplitted.length > 0) {
+                            for (var i = 0; i < idSplitted.length; i++) {
+                                if (i === 0) {
+                                    varName = `${rootName}.${idSplitted[i]}`;
+                                } else {
+                                    varName = varName.concat(`.${idSplitted[i]}`)
+                                }
+
+                                if (!existingVarName.includes(`${varName} = {};\n`)) {
+                                    autoScript = autoScript.concat(`${varName} = {};\n`);
+                                    existingVarName.push(`${varName} = {};\n`);
+                                }
+                            }
+
+                            // Funktionen den linkedObjects hinzufügen
+                            autoScript = autoScript.concat(`${varName}.getId = ${createGetFunction(id, `"${id}"`)}\n`);
+                            autoScript = autoScript.concat(`${varName}.getValue = ${createGetFunction(id, `getState("${id}").val`)}\n`);
+                        }
+
+                        autoScript = autoScript.concat("\n");
+                    }
+                }
+
+                // erste Ordner (Mappe) anlegen
+                let folder = {
+                    type: "channel",
+                    _id: "script.js.global.MaterialDesignWidgets",
+                    common: {
+                        name: "MaterialDesignWidgets",
+                        expert: true
+                    }
+                }
+
+                // Skript erstellen
+                let scriptId = `script.js.global.MaterialDesignWidgets.${myNamespace.replace(".", "")}`
+                let script = {
+                    type: "script",
+                    _id: scriptId,
+                    common: {
+                        name: $('#scriptName').val(),
+                        expert: true,
+                        engineType: "Javascript/js",
+                        engine: "system.adapter.javascript.0",
+                        source: autoScript,
+                        debug: false,
+                        verbose: false,
+                        enabled: true
+                    }
+                }
+                await setObjectAsync(scriptId, script);
+            }
+        }
+    } catch (err) {
+        showError("generate javascript:" + err)
+    }
+
+
+}
+
+function createGetFunction(id, returnStatement) {
+    return `function () { if(existsState("${id}")) { return ${returnStatement}; } else { console.warn("object '${id}' not exist!"); return '';} };`;
+}
+//#endregion
 
 // This will be called by the admin adapter when the user presses the save button
 function save(callback) {
@@ -476,10 +552,12 @@ function save(callback) {
             obj[`default${themeType}`].push(themeDefault);
             if (themeType.includes('colors')) {
                 if (themeType === 'colorsDark') {
-                    setStateString(`${myNamespace}.colors.dark.defaults.${i}`, `${_(`${themeType}Default`)} ${i}`, themeDefault);
+                    setStateString(`${myNamespace}.colors.dark.default_${i}`, `${_(`${themeType}Default`)} ${i}`, themeDefault);
                 } else {
-                    setStateString(`${myNamespace}.colors.light.defaults.${i}`, `${_(`${themeType}Default`)} ${i}`, themeDefault);
+                    setStateString(`${myNamespace}.colors.light.default_${i}`, `${_(`${themeType}Default`)} ${i}`, themeDefault);
                 }
+            } else {
+                setStateString(`${myNamespace}.${themeType}.default_${i}`, `${_(`${themeType}Default`)} ${i}`, themeDefault);
             }
         });
     }

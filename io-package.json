@@ -302,9 +302,8 @@
         ]
     },
     "native": {
-        "scriptName": "MaterialDesignWidgetsStyles",
-        "variableName": "myMdwStyles",
-        "generateGlobalScript": false,
+        "scriptName": "Theme",
+        "variableName": "myMdwTheme",
         "colors": [],
         "defaultcolors": [],
         "colorsDark": [],
