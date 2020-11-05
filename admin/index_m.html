@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="../../css/adapter.css" />
 	<link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
 	<link rel="stylesheet" type="text/css" href="./lib/monolith.min.css">
+	<link rel="stylesheet" type="text/css" href="../../files/vis/widgets/materialdesign/lib/fonts/material-design-icons/materialdesignicons.min.css">
 
 	<script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="../../socket.io/socket.io.js"></script>
@@ -18,6 +19,7 @@
 	<script type="text/javascript" src="../../js/adapter-settings.js"></script>
 	<script type="text/javascript" src="./lib/pickr.min.js"></script>
 	<script type="text/javascript" src="./lib/clipboard-polyfill.promise.js"></script>
+	
 
 	<!-- Load our own files -->
 	<link rel="stylesheet" type="text/css" href="style.css" />
@@ -29,6 +31,21 @@
 	.m .tabs .tab a:hover {
 		border-bottom: 2px solid #46a0e9 !important;
 		font-weight: bold !important;
+	}
+
+	.m .tabs .myLinkBar a {
+		border-bottom: 0px solid #46a0e9 !important;
+		font-style: normal !important;
+		text-transform: none !important;
+		font-size: 16px;
+	}
+
+	.m .tabs .myLinkBar a:hover {
+		border-bottom: 0px solid #46a0e9 !important;
+		background: rgba(161, 161, 161, 0.26);
+		font-weight: normal !important;
+		text-transform: none !important;
+		font-size: 16px;
 	}
 
 	/* Header section */
@@ -114,6 +131,7 @@
 
 	.table-filter input::placeholder {
 		color: gray !important;
+		font-style: italic !important;
 	}
 
 	.table-filter button i {
@@ -181,16 +199,22 @@
 									</div>				
 								</div>
 							</div>
-							<div class="row" style="margin-bottom: 0px;">
-								<div class="col s12 m12 l12">
-									<p class="translate title">Documentations</p>
-								</div>								
-							</div>
-							<div class="col s12 m12 l12">
-								<div class="col s12 m2 l2">
-									<label class="translate">name of the variable</label>
+							<div class="col s12 m12 l12 card">
+								<div class="card-content">
+									<span class="card-title translate">Documentations</span>
+
+									<ul class="tabs" style="height: auto;">
+										<li class="tab myLinkBar col s6 l2"><a href="https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/master/README.md" target="_blank" class="translate">widget_settings</a></li>
+										<li class="tab myLinkBar col s6 l2"><a href="https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/master/README.md#online-example-project" target="_blank" class="translate">mdw_examples</a></li>
+										<li class="tab myLinkBar col s6 l2"><a href="https://forum.iobroker.net/search?term=Material%20Design%20Widgets%3A&in=titles&matchWords=all&by%5B%5D=Scrounger&categories%5B%5D=7&sortBy=topic.title&sortDirection=desc&showAs=topics" target="_blank" class="translate">mdw_forum</a></li>
+									</ul>
 								</div>
-							</div>														
+							</div>
+							<div class="col s12 m12 l12 card">
+								<div class="card-content">
+									<div style="display: flex; align-items: center; justify-content: center;"><span class="mdi mdi-coffee" style="font-size: 20px; color: #46a0e9; margin-right: 4px;"></span><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VWAXSTS634G88&source=url" target="_blank" class="translate">buymeacoffee</a></div>								
+								</div>
+							</div>																		
 						</section>
 					</div>
 				</div>
@@ -273,7 +297,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div>						
 					</section>
 				</div>
 			</div>			
@@ -339,7 +363,7 @@
 							</div>
 						</div>
 						<div class="col s12 m12 l12">
-							<div class="col s12 m12 l12 card" style="padding-bottom: 20px;">
+							<div class="col s12 m12 l12 card">
 								<div class="card-content">
 									<div class="row card-title">
 										<div class="col s12 m6 l6">
@@ -355,7 +379,7 @@
 									</div>
 								</div>
 							</div>
-						</div>	
+						</div>									
 					</section>
 				</div>
 			</div>	

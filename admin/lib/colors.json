@@ -710,7 +710,7 @@
     {
         "id": "light.top_app_bar.header_background",
         "desc": "colorDrawerHeaderBackground",
-        "defaultValue": 7,
+        "defaultValue": 0,
         "widget": "Top App Bar"
     },
     {

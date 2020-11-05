@@ -97,7 +97,7 @@ async function createTab(themeType, themeObject, themeDefaults, settings, onChan
                                 pickrEl.empty();
                                 createColorPicker(pickrEl.get(0), themeDefaults[index], themeDefaults, targetInput, onChange);
                             }
-            
+
                             targetInput.val(themeDefaults[index]);
                         }
                     });
@@ -359,10 +359,21 @@ function createDefaultElement(themeType, themeDefaults, index) {
     try {
         $(`.${themeType}DefaultContainer`).append(`
             <div class="col s12 m6 l3 defaultContainer" id="${themeType}PickerContainer${index}">
-                <label for="${themeType}${index}" id="${themeType}Input${index}" class="translate defaultLabel">${_(`${themeType}Default`)} ${index}</label>
+                <label id="${themeType}Input${index}" class="translate defaultLabel">${_(`${themeType}Default`)} ${index}</label>
                 ${themeType.includes('colors') ? `<div class="${themeType}Picker" id="${themeType}Picker${index}"></div>` : ''}
                 <input type="text" class="value ${themeType}PickerInput" id="${themeType}${index}" value="${themeDefaults[index]}" />
             </div>`);
+
+        $(`#${themeType}Input${index}`).on('click', function () {
+            if (themeType.includes('colors')) {
+                clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.light.default_${index};dark:${myNamespace}.colors.dark.default_${index}; mode === "true" ? dark : light}`);
+            } else {
+                clipboard.writeText(`{${myNamespace}.${themeType}.default_${index}}`);
+            }
+
+            M.Toast.dismissAll();
+            M.toast({ html: _('Binding copied to clipboard'), displayLength: 700, inDuration: 0, outDuration: 0, classes: 'rounded' });
+        });
     } catch (err) {
         console.error(`[createDefaultElement] themeType: ${themeType}, error: ${err.message}, stack: ${err.stack}`);
     }

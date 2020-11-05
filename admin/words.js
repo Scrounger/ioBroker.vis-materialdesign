@@ -10387,7 +10387,7 @@ systemDictionary = {
     },
     "Binding copied to clipboard": {
         "en": "Binding copied to clipboard",
-        "de": "Bindung in Zwischenablage kopiert",
+        "de": "Binding in Zwischenablage kopiert",
         "ru": "Привязка скопирована в буфер обмена",
         "pt": "Vinculação copiada para a área de transferência",
         "nl": "Binding gekopieerd naar klembord",
@@ -10636,5 +10636,41 @@ systemDictionary = {
         "es": "Tamaños de fuente de widget",
         "pl": "Rozmiary czcionek widżetów",
         "zh-cn": "小部件字体大小"
+    },
+    "widget_settings": {
+        "en": "Widget settings",
+        "de": "Widget Einstellungen",
+        "ru": "Настройки виджета",
+        "pt": "Configurações de widget",
+        "nl": "Widget-instellingen",
+        "fr": "Paramètres du widget",
+        "it": "Impostazioni widget",
+        "es": "Configuración de widgets",
+        "pl": "Ustawienia widżetów",
+        "zh-cn": "小部件设置"
+    },
+    "mdw_examples": {
+        "en": "examples",
+        "de": "Beispiele",
+        "ru": "Примеры",
+        "pt": "exemplos",
+        "nl": "voorbeelden",
+        "fr": "exemples",
+        "it": "esempi",
+        "es": "ejemplos",
+        "pl": "przykłady",
+        "zh-cn": "例子"
+    },
+    "mdw_forum": {
+        "en": "Forum",
+        "de": "Forum",
+        "ru": "Форум",
+        "pt": "Fórum",
+        "nl": "Forum",
+        "fr": "Forum",
+        "it": "Forum",
+        "es": "Foro",
+        "pl": "Forum",
+        "zh-cn": "论坛"
     }
 };
