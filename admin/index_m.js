@@ -1,5 +1,4 @@
 let themeTypesList = ['colors', 'colorsDark', 'fonts', 'fontSizes'];
-
 var myNamespace;
 
 // This will be called by the admin adapter when the settings page loads
@@ -84,15 +83,24 @@ async function createTab(themeType, themeObject, themeDefaults, settings, onChan
                             themeDefaults[index] = convertedColor;
                         }
                     }
+                    $(`#${themeType}Table [data-name=defaultValue]`).each(function () {
+                        let defaultVal = $(this).val();
 
-                    themeObject = table2values(themeType);
-                    for (var d in themeObject) {
-                        if (themeObject[d].defaultValue === index) {
-                            themeObject[d].value = themeDefaults[index];
+                        if (defaultVal === index.toString()) {
+                            let rowNum = $(this).attr('data-index');
+
+                            let targetInput = $(`#${themeType}Table input[data-index=${rowNum}][data-name="value"]`);
+
+                            if (themeType.includes('colors')) {
+                                // We have to recreate the color picker
+                                let pickrEl = $(`#${themeType}Table tr[data-index=${rowNum}] .pickr`);
+                                pickrEl.empty();
+                                createColorPicker(pickrEl.get(0), themeDefaults[index], themeDefaults, targetInput, onChange);
+                            }
+            
+                            targetInput.val(themeDefaults[index]);
                         }
-                    }
-
-                    createTable(themeType, themeObject, themeDefaults, defaultTableButtons, onChange);
+                    });
                 }, 100);
 
                 onChange();
