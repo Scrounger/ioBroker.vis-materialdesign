@@ -6,6 +6,12 @@
         "widget": "Checkbox"
     },
     {
+        "id": "progress.text",
+        "desc": "textFontFamily",
+        "defaultValue": 2,
+        "widget": "Progress, Progress Circular"
+    },
+    {
         "id": "slider.prepand",
         "desc": "prepandTextFontFamily",
         "defaultValue": 0,
