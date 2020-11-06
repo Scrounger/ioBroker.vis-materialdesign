@@ -24,6 +24,24 @@
         "widget": "Checkbox"
     },
     {
+        "id": "icon_list.text",
+        "desc": "labelFontFamily",
+        "defaultValue": 0,
+        "widget": "Icon List"
+    },
+    {
+        "id": "icon_list.subText",
+        "desc": "subLabelFontFamily",
+        "defaultValue": 2,
+        "widget": "Icon List"
+    },
+    {
+        "id": "icon_list.value",
+        "desc": "valueFontFamily",
+        "defaultValue": 3,
+        "widget": "Icon List"
+    },
+    {
         "id": "progress.text",
         "desc": "textFontFamily",
         "defaultValue": 2,
