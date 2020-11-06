@@ -1,5 +1,23 @@
 [
     {
+        "id": "card.title",
+        "desc": "titleFontFamily",
+        "defaultValue": 0,
+        "widget": "HTML Card, Icon List"
+    },
+    {
+        "id": "card.subTitle",
+        "desc": "subTitleFontFamily",
+        "defaultValue": 3,
+        "widget": "HTML Card"
+    },
+    {
+        "id": "card.text",
+        "desc": "textFontFamily",
+        "defaultValue": 0,
+        "widget": "HTML Card"
+    },
+    {
         "id": "checkbox.value",
         "desc": "valueFontFamily",
         "defaultValue": 0,

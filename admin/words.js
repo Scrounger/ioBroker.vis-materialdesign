@@ -10696,5 +10696,29 @@ systemDictionary = {
         "es": "fuente de pasos",
         "pl": "czcionka kroków",
         "zh-cn": "步骤字体"
+    },
+    "titleFontFamily": {
+        "en": "font of title",
+        "de": "Schriftart des Titels",
+        "ru": "шрифт заголовка",
+        "pt": "fonte do título",
+        "nl": "lettertype van de titel",
+        "fr": "police du titre",
+        "it": "carattere del titolo",
+        "es": "fuente del título",
+        "pl": "czcionka tytułu",
+        "zh-cn": "标题字体"
+    },
+    "subTitleFontFamily": {
+        "en": "font of subtitle",
+        "de": "Schriftart des Untertitels",
+        "ru": "шрифт субтитров",
+        "pt": "fonte da legenda",
+        "nl": "lettertype van ondertitel",
+        "fr": "police du sous-titre",
+        "it": "carattere del sottotitolo",
+        "es": "fuente de subtítulo",
+        "pl": "czcionka napisów",
+        "zh-cn": "字幕字体"
     }
 };
