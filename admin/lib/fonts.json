@@ -21,7 +21,7 @@
         "id": "slider.value",
         "desc": "valueFontFamily",
         "defaultValue": 2,
-        "widget": "Slider"
+        "widget": "Slider, Slider Round"
     },
     {
         "id": "slider.ticks",
