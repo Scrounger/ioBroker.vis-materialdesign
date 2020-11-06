@@ -1,0 +1,8 @@
+[
+    {
+        "id": "card.title",
+        "desc": "titleLayout",
+        "defaultValue": 0,
+        "widget": "HTML Card, Icon List"
+    }
+]

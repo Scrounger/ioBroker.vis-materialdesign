@@ -1,6 +1,8 @@
 let themeTypesList = ['colors', 'colorsDark', 'fonts', 'fontSizes'];
 var myNamespace;
 
+let $progress;
+
 // This will be called by the admin adapter when the settings page loads
 async function load(settings, onChange) {
     // example: select elements with id=key and class=value and insert value
@@ -26,8 +28,11 @@ async function load(settings, onChange) {
     });
     onChange(false);
 
+    $progress = $('.progressContainer');
+
     for (const themeType of themeTypesList) {
-        createTab(themeType, settings[themeType], [], settings, onChange);
+        await createTab(themeType, settings[themeType], [], settings, onChange);
+        $progress.hide();
     }
 
     eventsHandler(onChange);
@@ -107,7 +112,7 @@ async function createTab(themeType, themeObject, themeDefaults, settings, onChan
             });
         }
 
-        createTable(themeType, themeObject, themeDefaults, defaultTableButtons, onChange);
+        await createTable(themeType, themeObject, themeDefaults, defaultTableButtons, onChange);
         eventsHandlerTab(themeType, themeObject, themeDefaults, settings, onChange)
 
     } catch (err) {
@@ -127,7 +132,7 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
                                     <th data-name="widget" style="width: 15%;" class="translate" data-type="text">${_("Widget")}</th>
                                     <th data-name="id" style="width: 15%;" data-style="cursor: copy" class="translate" data-type="text">${_("datapoint")}</th>
                                     ${themeType.includes('colors') ? '<th data-name="pickr" style="width: 30px;" data-style="text-align: center;" class="translate" data-type="text"></th>' : ''}
-                                    <th data-name="value" style="width: 200px;" data-style="text-align: left;" class="translate" data-type="text">${_(`${themeType}_table`)}</th>
+                                    <th data-name="value" style="width: ${themeType === 'fontSizes' ? '80px' : '200px'};" data-style="text-align: ${themeType === 'fontSizes' ? 'center' : 'left'};" class="translate" data-type="${themeType === 'fontSizes' ? 'number' : 'text'}">${_(`${themeType}_table`)}</th>
                                     <th style="width: 150px; text-align: center;" class="header" data-buttons="${defaultButtons.trim()}">${_(`${themeType}Default`)}</th>
                                     <th data-name="desc" style="width: auto;" class="translate" data-type="text">${_("description")}</th>
                                     <th data-name="defaultValue" style="display: none;" class="translate" data-type="text">${_(`${themeType}Default`)}</th>
@@ -278,32 +283,41 @@ function eventsHandlerTab(themeType, themeObject, themeDefaults, settings, onCha
     });
 
     $(`#${themeType}Reset`).on('click', function () {
-        confirmMessage(`<div style="font-size: 1.2rem; font-family: Segoe UI",Tahoma,Arial,"Courier New" !important;">${_(`Do you want to restore the default ${themeType}?`)}</div>`, `<i class="material-icons left">warning</i>${_('attention')}`, undefined, [_('Cancel'), _('OK')], async function (result) {
+        confirmMessage(`<div style="font-size: 1.2rem; font-family: Segoe UI",Tahoma,Arial,"Courier New" !important;">${_(`Do you want to restore the default ${themeType}?`)}</div>`, `<i class="material-icons left">warning</i>${_('attention')}`, undefined, [_('Cancel'), _('OK')], function (result) {
             if (result === 1) {
-
-                // reset defaultColors
-                themeDefaults = await getJsonObjects(`default${themeType}`);
-                for (var i = 0; i <= themeDefaults.length - 1; i++) {
-                    let inputEl = $(`#${themeType}${i}`);
-                    inputEl.val(themeDefaults[i]);
-                }
-
-                // reset table colors
-                themeObject = await getJsonObjects(themeType);
-                for (var i = 0; i <= themeObject.length - 1; i++) {
-                    if (!themeObject[i].value) {
-                        themeObject[i].value = themeDefaults[themeObject[i].defaultValue];
-                    }
-
-                    // themeObject[i].desc = _(themeObject[i].desc);
-                }
-
-                createTab(themeType, themeObject, themeDefaults, settings, onChange, true);
-
-                onChange();
+                setTimeout(function () {
+                    resetToDefault(themeType, themeObject, themeDefaults, settings, onChange);
+                }, 250);
             }
         });
     });
+}
+
+async function resetToDefault(themeType, themeObject, themeDefaults, settings, onChange) {
+    $progress.show();
+    
+    // reset defaultColors
+    themeDefaults = await getJsonObjects(`default${themeType}`);
+    for (var i = 0; i <= themeDefaults.length - 1; i++) {
+        let inputEl = $(`#${themeType}${i}`);
+        inputEl.val(themeDefaults[i]);
+    }
+
+    // reset table colors
+    themeObject = await getJsonObjects(themeType);
+    for (var i = 0; i <= themeObject.length - 1; i++) {
+        if (!themeObject[i].value) {
+            themeObject[i].value = themeDefaults[themeObject[i].defaultValue];
+        }
+
+        // themeObject[i].desc = _(themeObject[i].desc);
+    }
+
+    await createTab(themeType, themeObject, themeDefaults, settings, onChange, true);
+
+    onChange();
+
+    $progress.hide();
 }
 
 async function loadDefaults(themeType, settings, onChange) {
@@ -358,10 +372,10 @@ async function checkAllObjectsExistInSettings(themeType, themeObject, themeDefau
 function createDefaultElement(themeType, themeDefaults, index) {
     try {
         $(`.${themeType}DefaultContainer`).append(`
-            <div class="col s12 m6 l3 defaultContainer" id="${themeType}PickerContainer${index}">
-                <label id="${themeType}Input${index}" class="translate defaultLabel">${_(`${themeType}Default`)} ${index}</label>
+            <div class="col s12 m6 l3 defaultContainer center" id="${themeType}PickerContainer${index}">
+                <label id="${themeType}Input${index}" class="translate defaultLabel" style="text-align: left;">${_(`${themeType}Default`)} ${index}</label>
                 ${themeType.includes('colors') ? `<div class="${themeType}Picker" id="${themeType}Picker${index}"></div>` : ''}
-                <input type="text" class="value ${themeType}PickerInput" id="${themeType}${index}" value="${themeDefaults[index]}" />
+                <input type="${themeType === 'fontSizes' ? 'number' : 'text'}" class="value ${themeType}PickerInput" id="${themeType}${index}" value="${themeDefaults[index]}" ${themeType === 'fontSizes' ? 'style="width: 80px; text-align: center;"' : ''} />
             </div>`);
 
         $(`#${themeType}Input${index}`).on('click', function () {
@@ -450,7 +464,7 @@ function eventsHandler(onChange) {
 }
 
 function createJavascriptConfirm() {
-    confirmMessage(`<div style="font-size: 1.2rem; font-family: Segoe UI",Tahoma,Arial,"Courier New" !important;">${_('After the script has been generated, the javascript adapter will be restarted!<br><br><br>Do you want to continue?')}</div>`, `<i class="material-icons left">warning</i>${_('attention')}`, undefined, [_('Cancel'), _('OK')], function (result) {
+    confirmMessage(`<div style="font-size: 1.2rem; font-family: Segoe UI",Tahoma,Arial,"Courier New" !important;">${_('After the script has been generated, the javascript adapter will be restarted!<br><br>Do you want to continue?')}</div>`, `<i class="material-icons left">warning</i>${_('attention')}`, undefined, [_('Cancel'), _('OK')], function (result) {
         if (result === 1) {
             createJavascript();
         }
@@ -575,15 +589,13 @@ function save(callback) {
                 } else {
                     setStateString(`${myNamespace}.colors.light.default_${i}`, `${_(`${themeType}Default`)} ${i}`, themeDefault);
                 }
+            } else if (themeType === 'fontSizes') {
+                setStateNumber(`${myNamespace}.${themeType}.default_${i}`, `${_(`${themeType}Default`)} ${i}`, themeDefault);
             } else {
                 setStateString(`${myNamespace}.${themeType}.default_${i}`, `${_(`${themeType}Default`)} ${i}`, themeDefault);
             }
         });
     }
-
-    // obj.defaultcolors = defaultColors;
-
-    // storeStates();
 
     callback(obj);
 }
@@ -612,6 +624,34 @@ async function setStateString(id, name, val, ack = true) {
                     read: true,
                     write: false,
                     role: 'value'
+                },
+                native: {}
+            });
+    }
+
+    await setStateAsync(id, val, ack);
+}
+
+async function setStateNumber(id, name, val, ack = true) {
+    let obj = await this.getObjectAsync(id);
+
+    if (obj) {
+        if (obj.common.name !== _(name)) {
+            obj.common.name = _(name);
+            await this.setObjectAsync(id, obj);
+        }
+    } else {
+        await this.setObjectAsync(id,
+            {
+                type: 'state',
+                common: {
+                    name: _(name),
+                    desc: _(name),
+                    type: 'number',
+                    read: true,
+                    write: false,
+                    role: 'value',
+                    def: 14
                 },
                 native: {}
             });

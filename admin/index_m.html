@@ -50,7 +50,7 @@
 
 	/* Header section */
 	.help-link {
-		order: 2 !important;
+		order: 3 !important;
 		width: auto !important;
 		display: flex !important;
 		align-items: center !important ;
@@ -61,6 +61,30 @@
 	.card-stacked{
 		order: 1;
 	}
+
+	.progressContainer {
+		position: absolute !important;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.5);
+		z-index: 10 !important;
+	}
+
+	.myProgressCard {
+		position: absolute !important;
+		z-index: 10 !important;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 24px;
+		left: calc(50% - 44px);
+		top: 20%;
+	}
+
+	.myProgressCard .circle {
+		border-width: 4px !important;
+	}
+
 
 	.logo {
 		width: 100px;
@@ -154,6 +178,21 @@
 <body>
 
 	<div class="m adapter-container">
+		<div class="progressContainer">
+			<div class="myProgressCard card">
+				<div class="preloader-wrapper big active">
+					<div class="spinner-layer spinner-blue-only">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div><div class="gap-patch">
+						<div class="circle"></div>
+					</div><div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col s12">
 				<ul class="tabs" style="height: auto;">
@@ -177,9 +216,9 @@
 									<div>
 										<div class="my-card-title">Material Design Widgets</div>
 										<div class="my-card-subTitle translate">Theme Editor for your Widgets</div>
-									</div>
-								</div>
-							</div>
+									</div>								
+								</div>						
+							</div>	
 						</div>
 						<section>
 							<div class="col s12 m12 l12 card">
@@ -212,7 +251,7 @@
 							</div>
 							<div class="col s12 m12 l12 card">
 								<div class="card-content">
-									<div style="display: flex; align-items: center; justify-content: center;"><span class="mdi mdi-coffee" style="font-size: 20px; color: #46a0e9; margin-right: 4px;"></span><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VWAXSTS634G88&source=url" target="_blank" class="translate">buymeacoffee</a></div>								
+									<div style="display: flex; align-items: center; justify-content: center;"><span class="mdi mdi-coffee" style="font-size: 20px; color: #46a0e9; margin-right: 6px;"></span><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VWAXSTS634G88&source=url" target="_blank" class="translate">buymeacoffee</a></div>								
 								</div>
 							</div>																		
 						</section>

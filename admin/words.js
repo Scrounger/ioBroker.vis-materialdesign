@@ -10720,5 +10720,17 @@ systemDictionary = {
         "es": "fuente de subtítulo",
         "pl": "czcionka napisów",
         "zh-cn": "字幕字体"
+    },
+    "fontSizesDefault": {
+        "en": "default font size",
+        "de": "Standard Schriftgröße",
+        "ru": "размер шрифта по умолчанию",
+        "pt": "tamanho de fonte padrão",
+        "nl": "standaard lettergrootte",
+        "fr": "taille de police par défaut",
+        "it": "dimensione del carattere predefinita",
+        "es": "tamaño de fuente predeterminado",
+        "pl": "domyślny rozmiar czcionki",
+        "zh-cn": "默认字体大小"
     }
 };
