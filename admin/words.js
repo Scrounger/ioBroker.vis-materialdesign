@@ -10672,5 +10672,29 @@ systemDictionary = {
         "es": "Foro",
         "pl": "Forum",
         "zh-cn": "论坛"
+    },
+    "tickTextColor": {
+        "en": "text color of steps",
+        "de": "Textfarbe der Schritte",
+        "ru": "цвет текста шагов",
+        "pt": "cor do texto das etapas",
+        "nl": "tekstkleur van stappen",
+        "fr": "couleur du texte des étapes",
+        "it": "colore del testo dei passaggi",
+        "es": "color del texto de los pasos",
+        "pl": "kolor tekstu kroków",
+        "zh-cn": "步骤的文字颜色"
+    },
+    "tickFontFamily": {
+        "en": "font of steps",
+        "de": "Schriftart der Schritte",
+        "ru": "шрифт ступеней",
+        "pt": "fonte dos passos",
+        "nl": "lettertype van stappen",
+        "fr": "police d'étapes",
+        "it": "carattere di passaggi",
+        "es": "fuente de pasos",
+        "pl": "czcionka kroków",
+        "zh-cn": "步骤字体"
     }
 };

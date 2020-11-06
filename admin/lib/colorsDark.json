@@ -576,6 +576,12 @@
         "widget": "Slider"
     },
     {
+        "id": "dark.slider.tick",
+        "desc": "tickTextColor",
+        "defaultValue": 1,
+        "widget": "Slider"
+    },    
+    {
         "id": "dark.slider.tick_before",
         "desc": "tickColorBefore",
         "defaultValue": 0,

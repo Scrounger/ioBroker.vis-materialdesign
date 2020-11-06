@@ -103,6 +103,8 @@
   --vue-slider-thumb-label-font-size: 12px;
   --vue-slider-tick-before-color: #44739e;
   --vue-slider-tick-after-color: #44739e;
+  --vue-slider-tick-font-family: inherit;
+  --vue-slider-tick-color: #44739e;
 
   --vue-text-field-before-color: rgba(0, 0, 0, 0.2);
   --vue-text-field-hover-color: #44739e;
@@ -2322,7 +2324,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   border-radius: 0;
 }
 .v-slider__tick--filled {
-  background-color:var(--vue-slider-tick-before-color);
+  background-color: var(--vue-slider-tick-before-color);
 }
 .v-application--is-ltr .v-slider__tick:first-child .v-slider__tick-label {
   transform: none;
@@ -2344,6 +2346,8 @@ svg.materialdesign-widget .materialdesign-button__icon {
       -ms-user-select: none;
           user-select: none;
   white-space: nowrap;
+  font-family: var(--vue-slider-tick-font-family);
+  color: var(--vue-slider-tick-color);
 }
 
 .v-slider__thumb-label-container {

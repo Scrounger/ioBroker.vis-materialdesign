@@ -6,6 +6,30 @@
         "widget": "Checkbox"
     },
     {
+        "id": "slider.prepand",
+        "desc": "prepandTextFontFamily",
+        "defaultValue": 0,
+        "widget": "Slider"
+    },
+    {
+        "id": "slider.control",
+        "desc": "thumbFontFamily",
+        "defaultValue": 2,
+        "widget": "Slider"
+    },
+    {
+        "id": "slider.value",
+        "desc": "valueFontFamily",
+        "defaultValue": 2,
+        "widget": "Slider"
+    },
+    {
+        "id": "slider.ticks",
+        "desc": "tickFontFamily",
+        "defaultValue": 3,
+        "widget": "Slider"
+    },
+    {
         "id": "switch.value",
         "desc": "valueFontFamily",
         "defaultValue": 0,
