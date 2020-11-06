@@ -4770,7 +4770,7 @@ systemDictionary = {
     },
     "prepandTextFontFamily": {
         "en": "font of text prepanded",
-        "de": "Schriftartdes vorangestellten Textes",
+        "de": "Schriftart des vorangestellten Textes",
         "ru": "шрифт текста предварительно",
         "pt": "fonte do texto compactado",
         "nl": "lettertype van vooraf ingevoerde tekst",

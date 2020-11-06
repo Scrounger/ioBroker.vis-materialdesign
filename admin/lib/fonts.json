@@ -1,8 +1,14 @@
 [
     {
-        "id": "alerts.close_icon",
-        "desc": "closeIconColor",
+        "id": "checkbox.value",
+        "desc": "valueFontFamily",
         "defaultValue": 0,
-        "widget": "Alerts"
-    }    
+        "widget": "Checkbox"
+    },
+    {
+        "id": "switch.value",
+        "desc": "valueFontFamily",
+        "defaultValue": 0,
+        "widget": "Switch"
+    }
 ]
