@@ -177,97 +177,97 @@
         "id": "light.charts.background",
         "desc": "backgroundColor",
         "defaultValue": 7,
-        "widget": "Chart"
+        "widget": "Charts"
     },
     {
         "id": "light.charts.background_chart",
         "desc": "chartAreaBackgroundColor",
         "defaultValue": 7,
-        "widget": "Chart"
+        "widget": "Charts"
     },
     {
         "id": "light.charts.global",
         "desc": "globalColor",
         "defaultValue": 0,
-        "widget": "Chart"
+        "widget": "Charts"
     },
     {
         "id": "light.charts.value",
         "desc": "valuesFontColor",
         "defaultValue": 2,
-        "widget": "Chart"
+        "widget": "Charts"
     },
     {
         "id": "light.charts.y_axis_title",
         "desc": "yAxisTitleColor",
         "defaultValue": 2,
-        "widget": "Chart"
+        "widget": "Charts"
     },
     {
         "id": "light.charts.y_axis_values",
         "desc": "yAxisValueLabelColor",
         "defaultValue": 2,
-        "widget": "Chart"
+        "widget": "Charts"
     },
     {
         "id": "light.charts.y_axis_gridlines",
         "desc": "yAxisGridLinesColor",
         "defaultValue": 6,
-        "widget": "Chart"
+        "widget": "Charts"
     },
     {
         "id": "light.charts.y_axis_zeroline",
         "desc": "yAxisZeroLineColor",
         "defaultValue": 6,
-        "widget": "Chart"
+        "widget": "Charts"
     },
     {
         "id": "light.charts.x_axis_title",
         "desc": "xAxisTitleColor",
         "defaultValue": 2,
-        "widget": "Chart"
+        "widget": "Charts"
     },
     {
         "id": "light.charts.x_axis_values",
         "desc": "xAxisValueLabelColor",
         "defaultValue": 2,
-        "widget": "Chart"
+        "widget": "Charts"
     },
     {
         "id": "light.charts.x_axis_gridlines",
         "desc": "xAxisGridLinesColor",
         "defaultValue": 6,
-        "widget": "Chart"
+        "widget": "Charts"
     },
     {
         "id": "light.charts.x_axis_zeroline",
         "desc": "xAxisZeroLineColor",
         "defaultValue": 6,
-        "widget": "Chart"
+        "widget": "Charts"
     },
     {
         "id": "light.charts.legend",
         "desc": "legendFontColor",
         "defaultValue": 2,
-        "widget": "Chart"
+        "widget": "Charts"
     },
     {
         "id": "light.charts.tooltip_background",
         "desc": "tooltipBackgroundColor",
         "defaultValue": 6,
-        "widget": "Chart"
+        "widget": "Charts"
     },
     {
         "id": "light.charts.tooltip_title",
         "desc": "tooltipTitleFontColor",
         "defaultValue": 5,
-        "widget": "Chart"
+        "widget": "Charts"
     },
     {
         "id": "light.charts.tooltip_text",
         "desc": "tooltipBodyFontColor",
         "defaultValue": 5,
-        "widget": "Chart"
+        "widget": "Charts"
     },
     {
         "id": "light.charts.bar.hover",
