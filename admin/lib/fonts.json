@@ -1,5 +1,11 @@
 [
     {
+        "id": "alerts.text",
+        "desc": "alertFontFamily",
+        "defaultValue": 0,
+        "widget": "Alerts"
+    },
+    {
         "id": "card.title",
         "desc": "titleFontFamily",
         "defaultValue": 0,
@@ -76,5 +82,17 @@
         "desc": "valueFontFamily",
         "defaultValue": 0,
         "widget": "Switch"
-    }
+    },
+    {
+        "id": "table.header",
+        "desc": "headerFontFamily",
+        "defaultValue": 0,
+        "widget": "Table"
+    },
+    {
+        "id": "table.row",
+        "desc": "fontFamily",
+        "defaultValue": 0,
+        "widget": "Table"
+    }     
 ]
