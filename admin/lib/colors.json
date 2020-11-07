@@ -108,13 +108,13 @@
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.calendar_weeks_background",
+        "id": "light.calendar.weeks_background",
         "desc": "calendarWeeksNumbersBackground",
         "value": "#f7f7f7",
         "widget": "Calendar"
     },
     {
-        "id": "light.calendar.calendar_weeks_text",
+        "id": "light.calendar.weeks_text",
         "desc": "calendarWeeksNumbersFontColor",
         "defaultValue": 6,
         "widget": "Calendar"

@@ -6,6 +6,54 @@
         "widget": "Alerts"
     },
     {
+        "id": "calendar.control",
+        "desc": "controlTextFont",
+        "defaultValue": 0,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.header",
+        "desc": "calendarDayLabelFontFamily",
+        "defaultValue": 0,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.today",
+        "desc": "calendarDayLabelTodayFontFamily",
+        "defaultValue": 4,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.weeks",
+        "desc": "calendarWeeksNumbersFont",
+        "defaultValue": 3,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.button",
+        "desc": "calendarDayButtonFontFamily",
+        "defaultValue": 2,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.button_today",
+        "desc": "calendarDayButtonTodayFontFamily",
+        "defaultValue": 4,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.event",
+        "desc": "calendarEventFont",
+        "defaultValue": 2,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.time_axis",
+        "desc": "calendarTimeAxisFont",
+        "defaultValue": 3,
+        "widget": "Calendar"
+    },
+    {
         "id": "card.title",
         "desc": "titleFontFamily",
         "defaultValue": 0,
@@ -94,5 +142,5 @@
         "desc": "fontFamily",
         "defaultValue": 0,
         "widget": "Table"
-    }     
+    }
 ]
