@@ -722,7 +722,7 @@
     {
         "id": "light.top_app_bar.header_text",
         "desc": "colorListItemHeaders",
-        "defaultValue": 5,
+        "defaultValue": 6,
         "widget": "Top App Bar"
     },
     {

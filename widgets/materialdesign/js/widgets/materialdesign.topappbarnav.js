@@ -318,7 +318,18 @@ vis.binds.materialdesign.topappbarnav = {
                 mdcList.style.setProperty("--materialdesign-color-list-item-text-disabled", myMdwHelper.getValueFromData(data.colorListItemTextDisabled, ''));
                 mdcList.style.setProperty("--materialdesign-color-list-item-icon-disabled", myMdwHelper.getValueFromData(data.colorListItemIconDisabled, ''));
 
+                let itemFont = myMdwHelper.getValueFromData(data.listItemTextFont, '');
+                mdcList.style.setProperty("--materialdesign-font-top-app-bar-item", itemFont);
+
+                let itemFontDisabled = myMdwHelper.getValueFromData(data.listItemTextFontDisabled, itemFont)
+                mdcList.style.setProperty("--materialdesign-font-top-app-bar-item-disabled", itemFontDisabled);
+
+                mdcList.style.setProperty("--materialdesign-font-top-app-bar-sub-item", myMdwHelper.getValueFromData(data.listItemSubTextFont, itemFont));
+                mdcList.style.setProperty("--materialdesign-font-top-app-bar-sub-item-disabled", myMdwHelper.getValueFromData(data.listItemSubTextFontDisabled, itemFontDisabled));
+
                 $mdcTopAppBar.get(0).style.setProperty("--materialdesign-color-top-app-bar-background", myMdwHelper.getValueFromData(data.colorTopAppBarBackground, ''));
+                $mdcTopAppBar.get(0).style.setProperty("--materialdesign-font-top-app-bar-title", myMdwHelper.getValueFromData(data.titleFont, ''));
+                $mdcTopAppBar.get(0).style.setProperty("--materialdesign-font-size-top-app-bar-title", myMdwHelper.getNumberFromData(data.titleFontSize, 20) + 'px');
 
                 const drawer = new mdc.drawer.MDCDrawer(mdcDrawer);
                 const topAppBar = new mdc.topAppBar.MDCTopAppBar($mdcTopAppBar.get(0));

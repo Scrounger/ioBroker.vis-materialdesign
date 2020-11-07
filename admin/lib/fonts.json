@@ -142,5 +142,41 @@
         "desc": "fontFamily",
         "defaultValue": 0,
         "widget": "Table"
-    }
+    },
+    {
+        "id": "top_app_bar.title",
+        "desc": "titleFont",
+        "defaultValue": 0,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "top_app_bar.header",
+        "desc": "listItemHeaderFont",
+        "defaultValue": 0,
+        "widget": "Top App Bar"
+    },        
+    {
+        "id": "top_app_bar.item",
+        "desc": "listItemTextFont",
+        "defaultValue": 0,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "top_app_bar.item_disabled",
+        "desc": "listItemTextFontDisabled",
+        "defaultValue": 3,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "top_app_bar.subItem",
+        "desc": "listItemSubTextFont",
+        "defaultValue": 0,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "top_app_bar.subItem_disabled",
+        "desc": "listItemSubTextFontDisabled",
+        "defaultValue": 3,
+        "widget": "Top App Bar"
+    }        
 ]

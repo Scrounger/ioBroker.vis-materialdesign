@@ -913,18 +913,6 @@ systemDictionary = {
         "pl": "wysokość ikony elementów listy",
         "zh-cn": "列出项目图标的高度"
     },
-    "listItemTextSize": {
-        "en": "list items font size",
-        "de": "Listenelemente Schriftgröße",
-        "ru": "размер шрифта списка элементов",
-        "pt": "tamanho da fonte dos itens da lista",
-        "nl": "lijst met lettertypegrootte",
-        "fr": "liste des éléments taille de la police",
-        "it": "elenca le dimensioni del carattere degli elementi",
-        "es": "lista de elementos tamaño de fuente",
-        "pl": "rozmiar czcionki listy elementów",
-        "zh-cn": "列出项目的字体大小"
-    },
     "group_drawerColors": {
         "en": "navigation bar colors",
         "de": "Navigationsleiste: Farben",
@@ -1044,18 +1032,6 @@ systemDictionary = {
         "es": "icono desactivado",
         "pl": "ikona wyłączenia",
         "zh-cn": "禁用的图标"
-    },
-    "colorListItemDivider": {
-        "en": "divider color",
-        "de": "Trennlinie",
-        "ru": "цвет делителя",
-        "pt": "cor do divisor",
-        "nl": "scheidingskleur",
-        "fr": "couleur du séparateur",
-        "it": "colore del divisore",
-        "es": "color divisor",
-        "pl": "kolor dzielnika",
-        "zh-cn": "分隔线颜色"
     },
     "group_topAppBarLayout": {
         "en": "top app bar layout",
@@ -3592,6 +3568,42 @@ systemDictionary = {
         "pl": "kolor dzielnika",
         "zh-cn": "分隔线颜色"
     },
+    "listItemTextFont": {
+        "en": "font of list item",
+        "de": "Schriftart des Listenelements",
+        "ru": "шрифт элемента списка",
+        "pt": "fonte do item da lista",
+        "nl": "lettertype van lijstitem",
+        "fr": "police de l'élément de liste",
+        "it": "carattere dell'elemento dell'elenco",
+        "es": "fuente del elemento de la lista",
+        "pl": "czcionka elementu listy",
+        "zh-cn": "列表项的字体"
+    },
+    "listItemTextFontDisabled": {
+        "en": "font of disabled list item",
+        "de": "Schriftart des deaktivierten Listenelements",
+        "ru": "шрифт отключенного элемента списка",
+        "pt": "fonte do item da lista desativado",
+        "nl": "lettertype van uitgeschakeld lijstitem",
+        "fr": "police de l'élément de liste désactivé",
+        "it": "carattere della voce di elenco disabilitata",
+        "es": "fuente del elemento de lista deshabilitado",
+        "pl": "czcionka wyłączonej pozycji listy",
+        "zh-cn": "禁用列表项目的字体"
+    },
+    "listItemHeaderFont": {
+        "en": "font of header",
+        "de": "Schriftart des Headers",
+        "ru": "шрифт заголовка",
+        "pt": "fonte do cabeçalho",
+        "nl": "lettertype van koptekst",
+        "fr": "police de l'en-tête",
+        "it": "carattere dell'intestazione",
+        "es": "fuente del encabezado",
+        "pl": "czcionka nagłówka",
+        "zh-cn": "标头字体"
+    },
     "listItemTextSize": {
         "en": "textsize of list item",
         "de": "Textgröße des Listenelements",
@@ -4155,6 +4167,30 @@ systemDictionary = {
         "es": "alineación del texto del submenú",
         "pl": "wyrównanie tekstu w podmenu",
         "zh-cn": "子菜单文本对齐"
+    },
+    "listItemSubTextFont": {
+        "en": "submenu font",
+        "de": "Untermenü Schriftart",
+        "ru": "подменю шрифт",
+        "pt": "fonte do submenu",
+        "nl": "submenu lettertype",
+        "fr": "police de sous-menu",
+        "it": "carattere del sottomenu",
+        "es": "fuente del submenú",
+        "pl": "czcionka podmenu",
+        "zh-cn": "子菜单字体"
+    },
+    "listItemSubTextFontDisabled": {
+        "en": "disabled submenu font",
+        "de": "deaktivierte Untermenü-Schriftart",
+        "ru": "отключенный шрифт подменю",
+        "pt": "fonte do submenu desativada",
+        "nl": "lettertype van het submenu uitgeschakeld",
+        "fr": "police de sous-menu désactivée",
+        "it": "carattere del sottomenu disabilitato",
+        "es": "fuente de submenú deshabilitada",
+        "pl": "wyłączona czcionka podmenu",
+        "zh-cn": "禁用的子菜单字体"
     },
     "listSubItemTextSize": {
         "en": "submenu text size",
