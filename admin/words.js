@@ -10768,5 +10768,41 @@ systemDictionary = {
         "es": "tamaño de fuente predeterminado",
         "pl": "domyślny rozmiar czcionki",
         "zh-cn": "默认字体大小"
+    },
+    "Sentry - automatic error reporting": {
+        "en": "Sentry - automatic error reporting",
+        "de": "Sentry - automatische Fehlerberichterstattung",
+        "ru": "Sentry - автоматическое сообщение об ошибках",
+        "pt": "Sentinela - relatório automático de erros",
+        "nl": "Sentry - automatische foutrapportage",
+        "fr": "Sentry - rapport d'erreur automatique",
+        "it": "Sentry - segnalazione automatica degli errori",
+        "es": "Sentry: informe automático de errores",
+        "pl": "Sentry - automatyczne raportowanie błędów",
+        "zh-cn": "Sentry-自动错误报告"
+    },
+    "send Widget error reports": {
+        "en": "send Widget error reports",
+        "de": "Widget-Fehlerberichte senden",
+        "ru": "отправлять отчеты об ошибках виджета",
+        "pt": "enviar relatórios de erro de widget",
+        "nl": "stuur Widget-foutrapporten",
+        "fr": "envoyer des rapports d'erreurs de widget",
+        "it": "inviare rapporti sugli errori del widget",
+        "es": "enviar informes de error de widget",
+        "pl": "wysyłaj raporty o błędach widgetów",
+        "zh-cn": "发送小部件错误报告"
+    },
+    "sentryInfo": {
+        "en": "Sends anonymously VIS runtime exceptions and code errors caused by the widgets to the developers",
+        "de": "Sendet anonymisiert VIS Laufzeitfehler und Codefehler, die durch die Widgets verursacht wurden, an die Entwickler",
+        "ru": "Отправляет разработчикам анонимно исключения времени выполнения VIS и ошибки кода, вызванные виджетами.",
+        "pt": "Envia anonimamente exceções de tempo de execução VIS e erros de código causados pelos widgets para os desenvolvedores",
+        "nl": "Stuurt anoniem VIS-runtime-uitzonderingen en codefouten veroorzaakt door de widgets naar de ontwikkelaars",
+        "fr": "Envoie de manière anonyme aux développeurs les exceptions d'exécution VIS et les erreurs de code causées par les widgets",
+        "it": "Invia in modo anonimo le eccezioni di runtime VIS e gli errori di codice causati dai widget agli sviluppatori",
+        "es": "Envía de forma anónima las excepciones de tiempo de ejecución de VIS y los errores de código causados por los widgets a los desarrolladores",
+        "pl": "Wysyła anonimowo wyjątki środowiska wykonawczego VIS i błędy kodu spowodowane przez widgety do programistów",
+        "zh-cn": "将由小部件引起的VIS运行时异常和代码错误匿名发送给开发人员"
     }
 };

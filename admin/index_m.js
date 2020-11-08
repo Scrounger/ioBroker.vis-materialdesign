@@ -30,6 +30,8 @@ async function load(settings, onChange) {
 
     $progress = $('.progressContainer');
 
+    await initializeSentry();
+
     for (const themeType of themeTypesList) {
         await createTab(themeType, settings[themeType], [], settings, onChange);
         $progress.hide();
@@ -39,6 +41,57 @@ async function load(settings, onChange) {
 
     // reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
     if (M) M.updateTextFields();
+}
+
+async function initializeSentry() {
+    try {
+        let id = `${myNamespace}.sentry`;
+        let sentryObj = await getObjectAsync(id);
+
+        if (!sentryObj) {
+            // ggf. erstellen, falls nicht existiert
+            sentryObj = {
+                type: 'state',
+                common: {
+                    name: _("send Widget error reports"),
+                    desc: _("Sentry - automatic error reporting"),
+                    type: 'boolean',
+                    read: true,
+                    write: true,
+                    role: 'value',
+                    def: true,
+                    uuid: generateUuidv4()
+                },
+                native: {}
+            };
+
+            await this.setObjectAsync(id, sentryObj);
+        }
+
+        if (sentryObj && sentryObj.common) {
+            if (sentryObj.common.uuid) {
+                // uuid prop exist                
+                if (!/^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i.test(sentryObj.common.uuid)) {
+                    sentryObj.common.uuid = generateUuidv4();
+                    await setObjectAsync(id, sentryObj);
+                }
+            } else {
+                sentryObj.common.uuid = generateUuidv4();
+                await setObjectAsync(id, sentryObj);
+            }
+        }
+
+        let sentryState = await getStateAsync(id);
+        let checkEl = $('#sentryReport');
+
+        if (sentryState) {
+            checkEl.prop("checked", sentryState.val);
+        } else {
+            checkEl.prop("checked", true);
+        }
+    } catch (err) {
+        console.error(`[initializeSentry] error: ${err.message}, stack: ${err.stack}`);
+    }
 }
 
 //#region Tabs
@@ -295,7 +348,7 @@ function eventsHandlerTab(themeType, themeObject, themeDefaults, settings, onCha
 
 async function resetToDefault(themeType, themeObject, themeDefaults, settings, onChange) {
     $progress.show();
-    
+
     // reset defaultColors
     themeDefaults = await getJsonObjects(`default${themeType}`);
     for (var i = 0; i <= themeDefaults.length - 1; i++) {
@@ -568,6 +621,8 @@ function save(callback) {
         }
     });
 
+    setStateAsync(`${myNamespace}.sentry`, obj.sentryReport, true);
+
     for (const themeType of themeTypesList) {
         obj[themeType] = table2values(themeType);
 
@@ -708,6 +763,18 @@ async function setStateAsync(id, val, ack = false) {
     });
 }
 
+async function getStateAsync(id) {
+    return new Promise((resolve, reject) => {
+        socket.emit('getState', id, function (err, res) {
+            if (!err && res) {
+                resolve(res);
+            } else {
+                resolve(null);
+            }
+        });
+    });
+}
+
 async function getJsonObjects(lib) {
     return new Promise((resolve, reject) => {
         $.getJSON(`./lib/${lib}.json`, function (json) {
@@ -718,4 +785,10 @@ async function getJsonObjects(lib) {
             }
         });
     });
+}
+
+function generateUuidv4() {
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
 }

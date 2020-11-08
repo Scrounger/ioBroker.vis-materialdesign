@@ -304,6 +304,7 @@
     "native": {
         "scriptName": "Theme",
         "variableName": "myMdwTheme",
+        "sentryReport": true,
         "colors": [],
         "defaultcolors": [],
         "colorsDark": [],
@@ -328,6 +329,21 @@
                 "read": true,
                 "write": true,
                 "def": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "sentry",
+            "type": "state",
+            "common": {
+                "role": "value",
+                "name": "send Widget error reports",
+                "desc": "Sentry - automatic error reporting",
+                "type": "boolean",
+                "read": true,
+                "write": true,
+                "def": true,
+                "uuid": ""
             },
             "native": {}
         }
