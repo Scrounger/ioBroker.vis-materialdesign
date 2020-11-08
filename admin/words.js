@@ -2824,6 +2824,30 @@ systemDictionary = {
         "pl": "Ustawienia iFrame",
         "zh-cn": "iFrame设置"
     },
+    "group_font": {
+        "en": "fonts",
+        "de": "Schriftarten",
+        "ru": "шрифты",
+        "pt": "fontes",
+        "nl": "lettertypen",
+        "fr": "polices",
+        "it": "caratteri",
+        "es": "fuentes",
+        "pl": "czcionki",
+        "zh-cn": "字型"
+    },
+    "group_fontSize": {
+        "en": "font sizes",
+        "de": "Schriftgrößen",
+        "ru": "размеры шрифта",
+        "pt": "tamanhos de fonte",
+        "nl": "lettergroottes",
+        "fr": "tailles de police",
+        "it": "dimensioni dei caratteri",
+        "es": "tamaños de fuente",
+        "pl": "rozmiary czcionek",
+        "zh-cn": "字体大小"
+    },
     "colorBackground": {
         "en": "background color",
         "de": "Hintergrundfarbe",
@@ -6987,6 +7011,30 @@ systemDictionary = {
         "es": "fuente",
         "pl": "czcionka",
         "zh-cn": "字形"
+    },
+    "listItemRightFont": {
+        "en": "font of right text",
+        "de": "Schriftart des rechten Textes",
+        "ru": "шрифт правого текста",
+        "pt": "fonte do texto certo",
+        "nl": "lettertype van juiste tekst",
+        "fr": "police du texte de droite",
+        "it": "carattere del testo corretto",
+        "es": "fuente del texto correcto",
+        "pl": "czcionka odpowiedniego tekstu",
+        "zh-cn": "正确文字的字型"
+    },
+    "listItemSubRightFont": {
+        "en": "font of second right text",
+        "de": "Schriftart des zweiten rechten Textes",
+        "ru": "шрифт второго правого текста",
+        "pt": "fonte do segundo texto à direita",
+        "nl": "lettertype van tweede rechtertekst",
+        "fr": "police du deuxième texte à droite",
+        "it": "carattere del secondo testo a destra",
+        "es": "fuente del segundo texto a la derecha",
+        "pl": "czcionka drugiego prawego tekstu",
+        "zh-cn": "第二个右文字的字体"
     },
     "listItemFontColor": {
         "en": "font color",

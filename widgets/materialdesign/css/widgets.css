@@ -35,18 +35,24 @@
   --materialdesign-color-sub-list-item-selected: #000;
   
   --materialdesign-color-list-item-text: #000;
+  --materialdesign-font-list-item-text: initial;
+
   --materialdesign-color-list-item-text-disabled: rgba(0, 0, 0, 0.38);
   --materialdesign-color-list-item-icon-disabled: rgba(0, 0, 0, 0.38);
   --materialdesign-color-sub-list-item-text: #000;
   --materialdesign-color-list-item-text-activated: #44739e;
   --materialdesign-color-sub-list-item-text-activated: #44739e;
 
+  --materialdesign-font-list-item-text-secondary: initial;
   --materialdesign-color-list-item-text-secondary: rgba(0, 0, 0, 0.54);
 
   --materialdesign-color-list-item-text-right: #000;
+  --materialdesign-font-list-item-text-right: initial;
   --materialdesign-color-list-item-text-secondary-right: rgba(0, 0, 0, 0.54);
+  --materialdesign-font-list-item-text-secondary-right: initial;
 
   --materialdesign-color-list-item-header: #000;
+  --materialdesign-font-list-item-header: initial
   --materialdesign-color-list-item-divider: rgba(0, 0, 0, 0.12);
   --materialdesign-color-sub-list-item-divider: rgba(0, 0, 0, 0.12);
 
@@ -1451,6 +1457,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 .materialdesign-widget :not(.mdc-list-item--disabled).mdc-list-item{
   color: var(--materialdesign-color-list-item-text);
+  font-family: var(--materialdesign-font-list-item-text);
 }
 .materialdesign-widget :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-sub-list-item{
   color: var(--materialdesign-color-sub-list-item-text);
@@ -1474,26 +1481,32 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 .materialdesign-widget .mdc-list-item__secondary-text {
   color: var(--materialdesign-color-list-item-text-secondary);
+  font-family: var(--materialdesign-font-list-item-text-secondary);
 }
 
 .materialdesign-widget .mdc-list-item__text.materialdesign-list-item-text-right {
   color: var(--materialdesign-color-list-item-text-right);
+  font-family: var(--materialdesign-font-list-item-text-right);
 }
 
 .materialdesign-widget .mdc-list-item__primary-text.materialdesign-list-item-text-right {
   color: var(--materialdesign-color-list-item-text-right);
+  font-family: var(--materialdesign-font-list-item-text-right);
 }
 
 .materialdesign-widget .mdc-list-item__secondary-text.materialdesign-list-item-text-right {
   color: var(--materialdesign-color-list-item-text-secondary-right);
+  font-family: var(--materialdesign-font-list-item-text-secondary-right);
 }
 
 .materialdesign-widget .mdc-list-group__subheader {
   color: var(--materialdesign-color-list-item-header);
+  font-family: var(--materialdesign-font-list-item-header);
 }
 
 .materialdesign-widget .mdc-drawer .mdc-list-group__subheader {
   color: var(--materialdesign-color-list-item-header);
+  font-family: var(--materialdesign-font-list-item-header);
 }
 
 .materialdesign-widget .mdc-list-divider { 

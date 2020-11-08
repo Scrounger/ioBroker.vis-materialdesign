@@ -96,6 +96,36 @@
         "widget": "Icon List"
     },
     {
+        "id": "list.header",
+        "desc": "headerFontFamily",
+        "defaultValue": 0,
+        "widget": "List"
+    },
+    {
+        "id": "list.text",
+        "desc": "listItemFont",
+        "defaultValue": 0,
+        "widget": "List"
+    },
+    {
+        "id": "list.subText",
+        "desc": "listItemSubFont",
+        "defaultValue": 3,
+        "widget": "List"
+    },
+    {
+        "id": "list.text_right",
+        "desc": "listItemRightFont",
+        "defaultValue": 2,
+        "widget": "List"
+    },
+    {
+        "id": "list.subText_right",
+        "desc": "listItemSubRightFont",
+        "defaultValue": 3,
+        "widget": "List"
+    },
+    {
         "id": "progress.text",
         "desc": "textFontFamily",
         "defaultValue": 2,
