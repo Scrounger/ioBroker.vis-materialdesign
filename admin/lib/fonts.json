@@ -54,6 +54,54 @@
         "widget": "Calendar"
     },
     {
+        "id": "charts.value",
+        "desc": "valuesFontFamily",
+        "defaultValue": 2,
+        "widget": "Charts"
+    },
+    {
+        "id": "charts.y_axis_title",
+        "desc": "yAxisTitleFontFamily",
+        "defaultValue": 0,
+        "widget": "Charts"
+    },
+    {
+        "id": "charts.y_axis_values",
+        "desc": "yAxisValueFontFamily",
+        "defaultValue": 2,
+        "widget": "Charts"
+    },
+    {
+        "id": "charts.x_axis_title",
+        "desc": "xAxisTitleFontFamily",
+        "defaultValue": 0,
+        "widget": "Charts"
+    },
+    {
+        "id": "charts.x_axis_values",
+        "desc": "xAxisValueFontFamily",
+        "defaultValue": 2,
+        "widget": "Charts"
+    },
+    {
+        "id": "charts.legend",
+        "desc": "legendFontFamily",
+        "defaultValue": 2,
+        "widget": "Charts"
+    },
+    {
+        "id": "charts.tooltip_title",
+        "desc": "tooltipTitleFontFamily",
+        "defaultValue": 0,
+        "widget": "Charts"
+    },
+    {
+        "id": "charts.tooltip_text",
+        "desc": "tooltipBodyFontFamily",
+        "defaultValue": 2,
+        "widget": "Charts"
+    },
+    {
         "id": "card.title",
         "desc": "titleFontFamily",
         "defaultValue": 0,
@@ -184,7 +232,7 @@
         "desc": "listItemHeaderFont",
         "defaultValue": 0,
         "widget": "Top App Bar"
-    },        
+    },
     {
         "id": "top_app_bar.item",
         "desc": "listItemTextFont",
@@ -208,5 +256,5 @@
         "desc": "listItemSubTextFontDisabled",
         "defaultValue": 3,
         "widget": "Top App Bar"
-    }        
+    }
 ]
