@@ -43,6 +43,7 @@ vis.binds.materialdesign = {
 
 
         btn.style.setProperty("--materialdesign-font-button", myMdwHelper.getValueFromData(data.textFontFamily, ''));
+        btn.style.setProperty("--materialdesign-font-button-vertical-text-distance-image", myMdwHelper.getNumberFromData(data.distanceBetweenTextAndImage, 2) + 'px');
 
         if (!isIconButton) {
             mdc.ripple.MDCRipple.attachTo(btn);

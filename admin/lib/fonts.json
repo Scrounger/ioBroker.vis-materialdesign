@@ -12,6 +12,12 @@
         "widget": "Button"
     },
     {
+        "id": "button.vertical.text",
+        "desc": "textFontFamily",
+        "defaultValue": 0,
+        "widget": "Button vertical"
+    },
+    {
         "id": "calendar.control",
         "desc": "controlTextFont",
         "defaultValue": 0,

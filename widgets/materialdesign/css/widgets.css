@@ -22,6 +22,7 @@
 
 
   --materialdesign-font-button: inherit;
+  --materialdesign-font-button-vertical-text-distance-image: 2px;
 
   --material-progress-circular-color: #44739e;
 
@@ -321,6 +322,12 @@
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.materialdesign-widget.materialdesign-button.vertical .materialdesign-button__label,
+.materialdesign-widget .materialdesign-button.vertical .materialdesign-button__label {
+  margin-top: var(--materialdesign-font-button-vertical-text-distance-image);
+  margin-bottom: var(--materialdesign-font-button-vertical-text-distance-image);
 }
 
 /* Button style -> must defined here because of position bug in vis editor */
