@@ -16,6 +16,7 @@ vis.binds.materialdesign.dialog = {
             if ($(`.dialog_${data.wid}`).parent().length > 0) {
                 // bei Änderungen am Widget, wird Widget neu erzeugt. Dialog hängt aber unter vis app, deshalb zu erst entfernen damit nicht doppelt
                 $(`.dialog_${data.wid}`).parent().remove();
+                $("body").find('.v-overlay__scrim').parent().remove();
             }
 
             $this.append(`
