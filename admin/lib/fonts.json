@@ -138,6 +138,18 @@
         "widget": "Checkbox"
     },
     {
+        "id": "dialog.title",
+        "desc": "titleFont",
+        "defaultValue": 0,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "dialog.button",
+        "desc": "buttonFont",
+        "defaultValue": 0,
+        "widget": "Dialog, Dialog iFrame"
+    },    
+    {
         "id": "icon_list.text",
         "desc": "labelFontFamily",
         "defaultValue": 0,

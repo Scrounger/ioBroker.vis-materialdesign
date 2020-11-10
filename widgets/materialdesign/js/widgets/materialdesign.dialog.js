@@ -99,7 +99,8 @@ vis.binds.materialdesign.dialog = {
 
                         if (data.showDialogMethod === 'button') {
                             let button = $this;
-                            $this.context.style.setProperty("--mdc-theme-primary", myMdwHelper.getValueFromData(data.colorPress, ''));
+                            button.context.style.setProperty("--mdc-theme-primary", myMdwHelper.getValueFromData(data.colorPress, ''));
+                            button.context.style.setProperty("--materialdesign-font-button", myMdwHelper.getValueFromData(data.textFontFamily, ''));
 
                             if (data.buttonStyle === 'icon') {
                                 mdc.iconButton.MDCIconButtonToggle.attachTo(button.get(0));
