@@ -20,6 +20,9 @@
   --materialdesign-color-checkbox-border: rgba(0, 0, 0, 0.54);
   --materialdesign-color-checkbox-hover:#000;
 
+
+  --materialdesign-font-button: inherit;
+
   --material-progress-circular-color: #44739e;
 
   --materialdesign-color-drawer-background: #fff;
@@ -323,7 +326,7 @@
 /* Button style -> must defined here because of position bug in vis editor */
 .materialdesign-widget.materialdesign-button,
 .materialdesign-widget .materialdesign-button {
-  font-family: Roboto, sans-serif;
+  font-family: var(--materialdesign-font-button);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-size: 0.875rem;

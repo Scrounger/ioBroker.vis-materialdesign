@@ -10852,5 +10852,29 @@ systemDictionary = {
         "es": "Envía de forma anónima las excepciones de tiempo de ejecución de VIS y los errores de código causados por los widgets a los desarrolladores",
         "pl": "Wysyła anonimowo wyjątki środowiska wykonawczego VIS i błędy kodu spowodowane przez widgety do programistów",
         "zh-cn": "将由小部件引起的VIS运行时异常和代码错误匿名发送给开发人员"
+    },
+    "countOids": {
+        "en": "count of Object Id's",
+        "de": "Anzahl der Objekt-IDs",
+        "ru": "количество идентификаторов объекта",
+        "pt": "contagem de Ids de objeto",
+        "nl": "aantal object-id's",
+        "fr": "nombre d'identifiants d'objets",
+        "it": "conteggio degli ID oggetto",
+        "es": "recuento de ID de objeto",
+        "pl": "liczba identyfikatorów obiektów",
+        "zh-cn": "对象ID的计数"
+    },
+    "group_buttonOids": {
+        "en": "Object Id",
+        "de": "Objekt Id",
+        "ru": "Идентификатор объекта",
+        "pt": "Id do objeto",
+        "nl": "Object-id",
+        "fr": "Id d'objet",
+        "it": "ID oggetto",
+        "es": "ID de objeto",
+        "pl": "ID obiektu",
+        "zh-cn": "对象编号"
     }
 };

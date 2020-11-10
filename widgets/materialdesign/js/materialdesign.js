@@ -41,6 +41,9 @@ vis.binds.materialdesign = {
 
         let btn = $this.get(0) ? $this.get(0) : $this.context;
 
+
+        btn.style.setProperty("--materialdesign-font-button", myMdwHelper.getValueFromData(data.textFontFamily, ''));
+
         if (!isIconButton) {
             mdc.ripple.MDCRipple.attachTo(btn);
             var colorPress = (data.colorPress === undefined || data.colorPress === null || data.colorPress === '') ? '' : data.colorPress;

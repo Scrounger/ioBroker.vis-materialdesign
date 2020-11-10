@@ -6,6 +6,12 @@
         "widget": "Alerts"
     },
     {
+        "id": "button.text",
+        "desc": "textFontFamily",
+        "defaultValue": 0,
+        "widget": "Button"
+    },
+    {
         "id": "calendar.control",
         "desc": "controlTextFont",
         "defaultValue": 0,
