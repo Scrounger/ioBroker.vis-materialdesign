@@ -156,6 +156,54 @@
         "widget": "Icon List"
     },
     {
+        "id": "input.text",
+        "desc": "inputTextFontFamily",
+        "defaultValue": 0,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "input.label",
+        "desc": "inputLabelFontFamily",
+        "defaultValue": 3,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "input.appendix",
+        "desc": "inputAppendixFontFamily",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "input.message",
+        "desc": "inputMessageFontFamily",
+        "defaultValue": 3,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "input.counter",
+        "desc": "inputCounterFontFamily",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "input.dropdown.text",
+        "desc": "listItemFont",
+        "defaultValue": 0,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "input.dropdown.subText",
+        "desc": "listItemSubFont",
+        "defaultValue": 0,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "input.dropdown.value",
+        "desc": "listItemValueFont",
+        "defaultValue": 0,
+        "widget": "Select, Autocomplete"
+    },
+    {
         "id": "list.header",
         "desc": "headerFontFamily",
         "defaultValue": 0,
