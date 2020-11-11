@@ -6,6 +6,12 @@
         "widget": "Checkbox"
     },
     {
+        "id": "progress.text",
+        "desc": "textFontSize",
+        "defaultValue": 2,
+        "widget": "Progress, Progress Circular"
+    },
+    {
         "id": "switch.value",
         "desc": "valueFontSize",
         "defaultValue": 3,
