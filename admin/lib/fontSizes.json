@@ -1,8 +1,14 @@
 [
     {
-        "id": "card.title",
-        "desc": "titleLayout",
-        "defaultValue": 0,
-        "widget": "HTML Card, Icon List"
+        "id": "checkbox.value",
+        "desc": "valueFontSize",
+        "defaultValue": 3,
+        "widget": "Checkbox"
+    },
+    {
+        "id": "switch.value",
+        "desc": "valueFontSize",
+        "defaultValue": 3,
+        "widget": "Switch"
     }
 ]

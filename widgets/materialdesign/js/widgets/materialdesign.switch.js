@@ -30,7 +30,7 @@ vis.binds.materialdesign.switch = {
                     </div>
                 </div>
             </div>
-            ${data.labelPosition !== 'off' ? `<label id="label" for="materialdesign-checkbox-switch-${data.wid}" style="width: 100%; cursor: pointer; ${labelClickActive}; font-family: ${myMdwHelper.getValueFromData(data.valueFontFamily, '')};">Switch 1</label>` : ''}
+            ${data.labelPosition !== 'off' ? `<label id="label" for="materialdesign-checkbox-switch-${data.wid}" style="width: 100%; cursor: pointer; ${labelClickActive}; font-family: ${myMdwHelper.getValueFromData(data.valueFontFamily, '')}; font-size: ${myMdwHelper.getStringFromNumberData(data.valueFontSize, 'inherit', '', 'px')};">Switch 1</label>` : ''}
             `
 
             return { myswitch: element, labelPosition: labelPosition };

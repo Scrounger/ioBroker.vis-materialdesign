@@ -32,7 +32,7 @@ vis.binds.materialdesign.checkbox = {
                 </div>
                 <div class="mdc-checkbox__ripple"></div>
             </div>
-            ${data.labelPosition !== 'off' ? `<label id="label" for="materialdesign-checkbox-${data.wid}" style="width: 100%; cursor: pointer; ${labelClickActive}; font-family: ${myMdwHelper.getValueFromData(data.valueFontFamily, '')};">Checkbox 1</label>` : ''}
+            ${data.labelPosition !== 'off' ? `<label id="label" for="materialdesign-checkbox-${data.wid}" style="width: 100%; cursor: pointer; ${labelClickActive}; font-family: ${myMdwHelper.getValueFromData(data.valueFontFamily, '')}; font-size: ${myMdwHelper.getStringFromNumberData(data.valueFontSize, 'inherit', '', 'px')};">Checkbox 1</label>` : ''}
             `
 
             return { checkbox: element, labelPosition: labelPosition };
