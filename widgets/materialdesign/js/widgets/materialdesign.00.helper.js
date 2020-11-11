@@ -120,7 +120,7 @@ vis.binds.materialdesign.helper = {
                 }
             }
         } catch (err) {
-            console.error(`[Helper] getValueFromData: ${err.message}, stack: ${err.stack}`);
+            console.error(`[Helper] getValueFromData: ${dataValue} ${err.message}, stack: ${err.stack}`);
             return 'Error';
         }
     },
@@ -149,7 +149,30 @@ vis.binds.materialdesign.helper = {
     },
     getStringFromNumberData: function (dataValue, nullValue, prepand = '', append = '') {
         try {
-            return (dataValue === undefined || dataValue === null || dataValue === '' || isNaN(dataValue)) ? nullValue : prepand + parseFloat(dataValue) + append;
+            if (dataValue === undefined || dataValue === 'undefined' || dataValue === null || dataValue === 'null' || dataValue === '') {
+                return nullValue
+            } else {
+                if (vis.editMode) {
+                    let binding = vis.binds.materialdesign.helper.extractBindingVisEditor(dataValue);
+
+                    if (binding && binding.length >= 1) {
+                        let bindingVal = vis.formatBinding(dataValue);
+
+                        if (bindingVal === undefined || bindingVal === 'undefined' || bindingVal === null || bindingVal === 'null' || bindingVal === '' || isNaN(bindingVal)) {
+                            return nullValue;
+                        } else {
+                            return prepand + parseFloat(bindingVal) + append;
+                        }
+                    }
+                } else {
+                    if (isNaN(dataValue)) {
+                        return nullValue
+                    } else {
+                        return prepand + parseFloat(dataValue) + append;
+                    }
+                }
+
+            }
         } catch (err) {
             console.error(`[Helper] getStringFromNumberData: ${err.message}`);
             return 'Error';
