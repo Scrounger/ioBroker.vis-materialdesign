@@ -8380,18 +8380,6 @@ systemDictionary = {
         "pl": "wartość rozmiaru czcionki",
         "zh-cn": "值字体大小"
     },
-    "valueFontFamily": {
-        "en": "value font",
-        "de": "Wert Schriftart",
-        "ru": "значение шрифта",
-        "pt": "fonte de valor",
-        "nl": "waarde lettertype",
-        "fr": "police de valeur",
-        "it": "font di valore",
-        "es": "fuente de valor",
-        "pl": "wartość czcionki",
-        "zh-cn": "值字体"
-    },
     "valueFontColor": {
         "en": "value font color",
         "de": "Wert Schriftfarbe",
@@ -9328,6 +9316,18 @@ systemDictionary = {
         "pl": "pokaż nagłówek",
         "zh-cn": "显示标题"
     },
+    "tickFontSize": {
+        "en": "font size",
+        "de": "Schriftgröße",
+        "ru": "размер шрифта",
+        "pt": "tamanho da fonte",
+        "nl": "lettertypegrootte",
+        "fr": "taille de police",
+        "it": "dimensione del font",
+        "es": "tamaño de fuente",
+        "pl": "rozmiar czcionki",
+        "zh-cn": "字体大小"
+    },    
     "titleFontSize": {
         "en": "font size",
         "de": "Schriftgröße",

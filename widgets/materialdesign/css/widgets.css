@@ -124,6 +124,7 @@
   --vue-slider-tick-after-color: #44739e;
   --vue-slider-tick-font-family: inherit;
   --vue-slider-tick-color: #44739e;
+  --vue-slider-tick-font-size: 14px;
 
   --vue-text-field-before-color: rgba(0, 0, 0, 0.2);
   --vue-text-field-hover-color: #44739e;
@@ -2403,6 +2404,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   white-space: nowrap;
   font-family: var(--vue-slider-tick-font-family);
   color: var(--vue-slider-tick-color);
+  font-size: var(--vue-slider-tick-font-size);
 }
 
 .v-slider__thumb-label-container {

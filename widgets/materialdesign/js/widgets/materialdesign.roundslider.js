@@ -55,7 +55,8 @@ vis.binds.materialdesign.roundslider =
                                     pointer-events: none;
                                     top: ${myMdwHelper.getNumberFromData(data.valueLabelVerticalPosition, 45)}%; 
                                     color: ${myMdwHelper.getValueFromData(data.valueLabelColor, '#44739e')};
-                                    font-family: ${myMdwHelper.getValueFromData(data.valueFontFamily, '')};">
+                                    font-family: ${myMdwHelper.getValueFromData(data.valueFontFamily, '')};
+                                    font-size: ${myMdwHelper.getStringFromNumberData(data.valueFontSize, 'inherit', '', 'px')};">
                                         ${valueOnLoading} ${unit}
                                 </label>`: ''}
                             `)

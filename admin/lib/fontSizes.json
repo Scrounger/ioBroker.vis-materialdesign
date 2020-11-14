@@ -12,6 +12,30 @@
         "widget": "Progress, Progress Circular"
     },
     {
+        "id": "slider.prepand",
+        "desc": "prepandTextFontSize",
+        "defaultValue": 3,
+        "widget": "Slider"
+    },
+    {
+        "id": "slider.control",
+        "desc": "thumbFontSize",
+        "defaultValue": 2,
+        "widget": "Slider"
+    },
+    {
+        "id": "slider.value",
+        "desc": "valueFontSize",
+        "defaultValue": 3,
+        "widget": "Slider, Slider Round"
+    },
+    {
+        "id": "slider.ticks",
+        "desc": "tickFontSize",
+        "defaultValue": 2,
+        "widget": "Slider"
+    },
+    {
         "id": "switch.value",
         "desc": "valueFontSize",
         "defaultValue": 3,

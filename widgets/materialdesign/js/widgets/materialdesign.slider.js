@@ -49,7 +49,7 @@ vis.binds.materialdesign.slider = {
                         @input="inputEvent"
                     >
                     </v-slider>
-                    ${(data.showValueLabel) ? `<span class="slider-value" style="width: ${myMdwHelper.getNumberFromData(data.valueLabelWidth, 0)}px; color: ${myMdwHelper.getValueFromData(data.valueLabelColor, defaultColor)}; font-family: ${myMdwHelper.getValueFromData(data.valueFontFamily, '')}; text-align:right; white-space: nowrap;">0</span>` : ''}
+                    ${(data.showValueLabel) ? `<span class="slider-value" style="width: ${myMdwHelper.getNumberFromData(data.valueLabelWidth, 0)}px; color: ${myMdwHelper.getValueFromData(data.valueLabelColor, defaultColor)}; font-family: ${myMdwHelper.getValueFromData(data.valueFontFamily, '')}; font-size: ${myMdwHelper.getStringFromNumberData(data.valueFontSize, 'inherit', '', 'px')}; text-align:right; white-space: nowrap;">0</span>` : ''}
                 </div>
             </div>`);
 
@@ -132,6 +132,7 @@ vis.binds.materialdesign.slider = {
                     $this.context.style.setProperty("--vue-slider-tick-after-color", myMdwHelper.getValueFromData(data.tickColorAfter, ''));
                     $this.context.style.setProperty("--vue-slider-tick-color", myMdwHelper.getValueFromData(data.tickTextColor, ''));
                     $this.context.style.setProperty("--vue-slider-tick-font-family", myMdwHelper.getValueFromData(data.tickFontFamily, ''));
+                    $this.context.style.setProperty("--vue-slider-tick-font-size", myMdwHelper.getStringFromNumberData(data.tickFontSize, 'inherit', '', 'px'));
 
                     $this.context.style.setProperty("--vue-text-field-label-before-color", myMdwHelper.getValueFromData(data.prepandTextColor, ''));
                     $this.context.style.setProperty("--vue-text-field-label-font-family", myMdwHelper.getValueFromData(data.prepandTextFontFamily, 'inherit'));
@@ -139,8 +140,6 @@ vis.binds.materialdesign.slider = {
                     $this.context.style.setProperty("--vue-text-field-label-font-size", myMdwHelper.getNumberFromData(data.prepandTextFontSize, 16) + 'px');
 
                     $this.context.style.setProperty("--vue-text-field-label-width", myMdwHelper.getStringFromNumberData(data.prepandTextWidth, 'inherit', '', 'px'));
-
-
 
                     //bug fix wegen 'div.row div'
                     $this.find('.v-slider__thumb-container').css('height', '0px')
