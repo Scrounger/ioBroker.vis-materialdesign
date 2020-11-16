@@ -531,7 +531,6 @@ vis.binds.materialdesign.viseditor = {
     useTheme: function (widAttr, data) {
         try {
             var that = vis;
-            let type = data[1];
 
             // options = {min: ?,max: ?,step: ?}
             // Select
