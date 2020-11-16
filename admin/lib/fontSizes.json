@@ -5,7 +5,6 @@
         "defaultValue": 3,
         "widget": "Checkbox"
     },
-
     {
         "id": "card.title",
         "desc": "titleLayout",
@@ -17,14 +16,31 @@
         "desc": "subtitleLayout",
         "defaultValue": 2,
         "widget": "HTML Card"
-    },   
+    },
     {
         "id": "card.text",
         "desc": "textFontSize",
         "defaultValue": 3,
         "widget": "HTML Card"
     },
-
+    {
+        "id": "icon_list.text",
+        "desc": "labelFontSize",
+        "defaultValue": 3,
+        "widget": "Icon List"
+    },
+    {
+        "id": "icon_list.subText",
+        "desc": "subLabelFontSize",
+        "defaultValue": 2,
+        "widget": "Icon List"
+    },
+    {
+        "id": "icon_list.value",
+        "desc": "valueFontSize",
+        "defaultValue": 1,
+        "widget": "Icon List"
+    },
     {
         "id": "progress.text",
         "desc": "textFontSize",
