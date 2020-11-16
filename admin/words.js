@@ -9327,7 +9327,7 @@ systemDictionary = {
         "es": "tamaño de fuente",
         "pl": "rozmiar czcionki",
         "zh-cn": "字体大小"
-    },    
+    },
     "titleFontSize": {
         "en": "font size",
         "de": "Schriftgröße",
@@ -10876,5 +10876,41 @@ systemDictionary = {
         "es": "ID de objeto",
         "pl": "ID obiektu",
         "zh-cn": "对象编号"
+    },
+    "Please select only one Widget!": {
+        "en": "Please select only one Widget!",
+        "de": "Bitte nur ein Widget auswählen!",
+        "ru": "Пожалуйста, выберите только один виджет!",
+        "pt": "Selecione apenas um widget!",
+        "nl": "Selecteer slechts één widget!",
+        "fr": "Veuillez sélectionner un seul widget!",
+        "it": "Seleziona un solo widget!",
+        "es": "¡Seleccione solo un widget!",
+        "pl": "Wybierz tylko jeden widżet!",
+        "zh-cn": "请仅选择一个小部件！"
+    },
+    "all colors, fonts and font sizes of the widget will be overridden - do you want to continue?": {
+        "en": "all colors, fonts and font sizes of the widget will be overridden - do you want to continue?",
+        "de": "Alle Farben, Schriftarten und Schriftgrößen des Widgets werden überschrieben. Möchten Sie fortfahren?",
+        "ru": "все цвета, шрифты и размеры шрифта виджета будут переопределены - вы хотите продолжить?",
+        "pt": "todas as cores, fontes e tamanhos de fonte do widget serão substituídos - deseja continuar?",
+        "nl": "alle kleuren, lettertypen en lettergroottes van de widget worden overschreven - wilt u doorgaan?",
+        "fr": "toutes les couleurs, polices et tailles de police du widget seront remplacées - voulez-vous continuer?",
+        "it": "tutti i colori, i caratteri e le dimensioni dei caratteri del widget verranno sovrascritti. Vuoi continuare?",
+        "es": "Se anularán todos los colores, fuentes y tamaños de fuente del widget. ¿Desea continuar?",
+        "pl": "wszystkie kolory, czcionki i rozmiary czcionek widżetu zostaną nadpisane - czy chcesz kontynuować?",
+        "zh-cn": "小部件的所有颜色，字体和字体大小将被覆盖-您要继续吗？"
+    },
+    "useTheme": {
+        "en": "use theme",
+        "de": "Thema verwenden",
+        "ru": "использовать тему",
+        "pt": "usar tema",
+        "nl": "gebruik thema",
+        "fr": "utiliser le thème",
+        "it": "usa il tema",
+        "es": "usar tema",
+        "pl": "użyj motywu",
+        "zh-cn": "使用主题"
     }
 };
