@@ -163,6 +163,12 @@ vis.binds.materialdesign.helper = {
                         } else {
                             return prepand + parseFloat(bindingVal) + append;
                         }
+                    } else {
+                        if (isNaN(dataValue)) {
+                            return nullValue
+                        } else {
+                            return prepand + parseFloat(dataValue) + append;
+                        }
                     }
                 } else {
                     if (isNaN(dataValue)) {
