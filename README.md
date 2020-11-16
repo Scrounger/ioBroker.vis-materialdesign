@@ -22,10 +22,42 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 * [round-slider from thomasloven](https://github.com/thomasloven/round-slider)
 * [Material Design Icons](https://materialdesignicons.com/)
 
-## Sentry
-**This adapter uses Sentry libraries to automatically report exceptions and code errors anonymously to the developers.** For more details and for information how to disable the error reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-sentry#plugin-sentry)!
-<br><br>
-You can active or deactivate it in the adapter settings.
+## Adapter settings (Theme Editor)
+
+Starting with version 0.4.0 there is a settings page for the adapter. You can find it under Instances in the user interface of the admin adapter
+
+### General
+![Logo](doc/en/media/settings_general.png)
+
+|setting|description|
+|-------|-----------|
+|Documentation|Links to documentation to help you configure the widgets|
+|Generate global script|Create a global script for the [Javascript Script Engine](https://github.com/ioBroker/ioBroker.javascript) with all theme data points. This allows to use colors, fonts and font sizes comfortably in scripts.|
+|Sentry|use Sentry libraries to automatically report exceptions and code errors anonymously to the developers. For more details and for information how to disable the error reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-sentry#plugin-sentry)!|
+
+### Theme Editor
+
+With the help of the Theme Editor you can centrally set colors, fonts and font sizes for all widgets via the adapter settings. This is realized with the help of the [Bindings of the VIS adapter](https://github.com/ioBroker/ioBroker.vis#bindings-of-objects). For each widget datapoints are created with the set values. This makes it possible to use these settings in other widgets (not Material Design Widgets) via bindings.
+
+###### Datapoint structure
+
+![Logo](doc/en/media/settings_datapoints.png)
+
+#### Colors
+For colors there are two themes - light theme and dark theme. With the datapoint `vis-materialdesign.0.colors.darkTheme` you can switch between the two themes.
+
+![Logo](doc/en/media/settings_colors_light.png)
+
+![Logo](doc/en/media/settings_colors_dark.png)
+
+#### Fonts
+
+![Logo](doc/en/media/settings_fonts.png)
+
+#### Font Sizes
+
+![Logo](doc/en/media/settings_fontSizes.png)
+
 
 ## Online Example Project
 provided by [iobroker.click](https://iobroker.click/index.html), thanks to bluefox and iobroker.
