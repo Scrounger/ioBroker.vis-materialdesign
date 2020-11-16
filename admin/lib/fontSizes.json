@@ -5,6 +5,26 @@
         "defaultValue": 3,
         "widget": "Checkbox"
     },
+
+    {
+        "id": "card.title",
+        "desc": "titleLayout",
+        "defaultValue": 6,
+        "widget": "HTML Card, Icon List"
+    },
+    {
+        "id": "card.subTitle",
+        "desc": "subtitleLayout",
+        "defaultValue": 2,
+        "widget": "HTML Card"
+    },   
+    {
+        "id": "card.text",
+        "desc": "textFontSize",
+        "defaultValue": 3,
+        "widget": "HTML Card"
+    },
+
     {
         "id": "progress.text",
         "desc": "textFontSize",
