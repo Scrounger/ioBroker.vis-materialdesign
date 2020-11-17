@@ -106,5 +106,29 @@
         "desc": "colTextSize",
         "defaultValue": 3,
         "widget": "Table"
-    }
+    },
+    {
+        "id": "top_app_bar.title",
+        "desc": "titleFontSize",
+        "defaultValue": 4,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "top_app_bar.header",
+        "desc": "listItemHeaderTextSize",
+        "defaultValue": 2,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "top_app_bar.item",
+        "desc": "listItemTextSize",
+        "defaultValue": 2,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "top_app_bar.subItem",
+        "desc": "listSubItemTextSize",
+        "defaultValue": 2,
+        "widget": "Top App Bar"
+    }    
 ]

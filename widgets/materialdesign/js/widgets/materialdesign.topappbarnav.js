@@ -327,6 +327,8 @@ vis.binds.materialdesign.topappbarnav = {
                 mdcList.style.setProperty("--materialdesign-font-top-app-bar-sub-item", myMdwHelper.getValueFromData(data.listItemSubTextFont, itemFont));
                 mdcList.style.setProperty("--materialdesign-font-top-app-bar-sub-item-disabled", myMdwHelper.getValueFromData(data.listItemSubTextFontDisabled, itemFontDisabled));
 
+                mdcList.style.setProperty("--materialdesign-font-list-item-header", myMdwHelper.getValueFromData(data.listItemHeaderFont, ''));
+
                 $mdcTopAppBar.get(0).style.setProperty("--materialdesign-color-top-app-bar-background", myMdwHelper.getValueFromData(data.colorTopAppBarBackground, ''));
                 $mdcTopAppBar.get(0).style.setProperty("--materialdesign-font-top-app-bar-title", myMdwHelper.getValueFromData(data.titleFont, ''));
                 $mdcTopAppBar.get(0).style.setProperty("--materialdesign-font-size-top-app-bar-title", myMdwHelper.getNumberFromData(data.titleFontSize, 20) + 'px');
