@@ -554,10 +554,23 @@ vis.binds.materialdesign.viseditor = {
                                                 });
 
                                                 for (const obj of list) {
-                                                    if (themeType === 'colors') {
-                                                        $(`#inspect_${obj.desc}`).val(`{mode:vis-materialdesign.0.colors.darkTheme;light:vis-materialdesign.0.colors.light.${obj.id.replace('light.', '')};dark:vis-materialdesign.0.colors.dark.${obj.id.replace('light.', '')}; mode === "true" ? dark : light}`).trigger('change');
+                                                    let inspect = $(`#inspect_${obj.desc}`);
+
+                                                    if (inspect && inspect.length > 0) {
+                                                        inspect.val(generateBinding(themeType, obj.id)).trigger('change');
                                                     } else {
-                                                        $(`#inspect_${obj.desc}`).val(`{vis-materialdesign.0.${themeType}.${obj.id}}`).trigger('change');
+                                                        // wir haben ein Element mit count
+                                                        inspect = $(`input[id^='inspect_${obj.desc}']`);
+
+                                                        if (inspect && inspect.length > 0) {
+                                                            inspect.each(function (i, el) {
+
+                                                                // Prüfen ob am Ende der id wirklich nur eine number ist
+                                                                if (!isNaN(parseFloat(el.id.replace(`inspect_${obj.desc}`, '')))) {
+                                                                    $(el).val(generateBinding(themeType, obj.id)).trigger('change');
+                                                                }
+                                                            });
+                                                        }
                                                     }
                                                 }
                                             } else {
@@ -567,6 +580,15 @@ vis.binds.materialdesign.viseditor = {
                                     }
                                 }
                             });
+
+                            function generateBinding(themeType, id) {
+                                if (themeType === 'colors') {
+                                    return `{mode:vis-materialdesign.0.colors.darkTheme;light:vis-materialdesign.0.colors.light.${id.replace('light.', '')};dark:vis-materialdesign.0.colors.dark.${id.replace('light.', '')}; mode === "true" ? dark : light}`;
+                                } else {
+                                    return `{vis-materialdesign.0.${themeType}.${id}}`;
+                                }
+                            }
+
                         } else {
                             that.confirmMessage(_('Please select only one Widget!'), _('attention'), null, 400, function (result) {
                             });
