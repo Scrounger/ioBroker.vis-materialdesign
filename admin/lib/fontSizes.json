@@ -1,5 +1,11 @@
 [
     {
+        "id": "alerts.text",
+        "desc": "alertFontSize",
+        "defaultValue": 3,
+        "widget": "Alerts"
+    },
+    {
         "id": "checkbox.value",
         "desc": "valueFontSize",
         "defaultValue": 3,
@@ -76,5 +82,17 @@
         "desc": "valueFontSize",
         "defaultValue": 3,
         "widget": "Switch"
+    },
+    {
+        "id": "table.header",
+        "desc": "headerTextSize",
+        "defaultValue": 4,
+        "widget": "Table"
+    },
+    {
+        "id": "table.row",
+        "desc": "colTextSize",
+        "defaultValue": 3,
+        "widget": "Table"
     }
 ]
