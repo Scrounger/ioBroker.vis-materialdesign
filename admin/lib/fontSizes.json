@@ -6,12 +6,6 @@
         "widget": "Alerts"
     },
     {
-        "id": "checkbox.value",
-        "desc": "valueFontSize",
-        "defaultValue": 3,
-        "widget": "Checkbox"
-    },
-    {
         "id": "card.title",
         "desc": "titleLayout",
         "defaultValue": 6,
@@ -29,6 +23,24 @@
         "defaultValue": 3,
         "widget": "HTML Card"
     },
+    {
+        "id": "checkbox.value",
+        "desc": "valueFontSize",
+        "defaultValue": 3,
+        "widget": "Checkbox"
+    },
+    {
+        "id": "dialog.title",
+        "desc": "titleFontSize",
+        "defaultValue": 7,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "dialog.button",
+        "desc": "buttonFontSize",
+        "defaultValue": 3,
+        "widget": "Dialog, Dialog iFrame"
+    },      
     {
         "id": "icon_list.text",
         "desc": "labelFontSize",
