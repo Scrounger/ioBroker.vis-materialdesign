@@ -50,13 +50,22 @@ For colors there are two themes - light theme and dark theme. With the datapoint
 
 ![Logo](doc/en/media/settings_colors_dark.png)
 
+Standard colors can be defined in the upper area. These standard colors can then be assigned to the individual widgets using the buttons in the table. If you change the default color, it will also change for all widgets that use this color.
+Additionally, it is possible to assign your own colors to the widgets, independent of the standard colors.
+
 #### Fonts
 
 ![Logo](doc/en/media/settings_fonts.png)
 
+Standard fonts can be defined in the upper area. These standard fonts can then be assigned to the individual widgets using the buttons in the table. If you change the default color, it will also change for all widgets that use this color.
+Additionally, it is possible to assign your own fonts to the widgets, independent of the standard colors.
+
 #### Font Sizes
 
 ![Logo](doc/en/media/settings_fontSizes.png)
+
+Standard font sizes can be defined in the upper area. These standard font sizes can then be assigned to the individual widgets using the buttons in the table. If you change the default color, it will also change for all widgets that use this color.
+Additionally, it is possible to assign your own font sizes to the widgets, independent of the standard colors.
 
 
 ## Online Example Project
