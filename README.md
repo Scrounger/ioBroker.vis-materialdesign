@@ -39,11 +39,11 @@ Starting with version 0.4.0 there is a settings page for the adapter. You can fi
 
 With the help of the Theme Editor you can centrally set colors, fonts and font sizes for all widgets via the adapter settings. This is realized with the help of the [Bindings of the VIS adapter](https://github.com/ioBroker/ioBroker.vis#bindings-of-objects). For each widget datapoints (see screenshot below) are created with the set values. This makes it possible to use these settings in other widgets (not Material Design Widgets) via bindings.
 
-###### Datapoint structure
+##### Datapoint structure
 
 ![Logo](doc/en/media/settings_datapoints.png)
 
-###### VIS Editor (Restore / update old Widgets)
+##### VIS Editor (Restore / update old Widgets)
 
 ![Logo](doc/en/media/vis_editor_theme_restore.gif)
 
@@ -51,13 +51,13 @@ In the VIS Editor you will find a button `use theme` for each widget. With this 
 
 With the help of this button it is also possible to update your widgets from versions before 0.4.0 to use the themes.
 
-###### Use Binding for non Material Design Widgets
+##### Use Binding for non Material Design Widgets
 
 ![Logo](doc/en/media/settings_binding.gif)
 
 In the adapter settings you can copy the binding command to the clipboard by clicking on the default text or the id in the tables. This binding can then be used by copy and paste even for non Material Design Widgets.
 
-#### Colors
+#### Colors Theme
 For colors there are two themes - light theme and dark theme. With the datapoint `vis-materialdesign.0.colors.darkTheme` you can switch between the two themes.
 
 ![Logo](doc/en/media/settings_colors_light.png)
@@ -67,14 +67,14 @@ For colors there are two themes - light theme and dark theme. With the datapoint
 Standard colors can be defined in the upper area. These standard colors can then be assigned to the individual widgets using the buttons in the table. If you change the default color, it will also change for all widgets that use this color.
 Additionally, it is possible to assign your own colors to the widgets, independent of the standard colors.
 
-#### Fonts
+#### Fonts Theme
 
 ![Logo](doc/en/media/settings_fonts.png)
 
 Standard fonts can be defined in the upper area. These standard fonts can then be assigned to the individual widgets using the buttons in the table. If you change the default color, it will also change for all widgets that use this color.
 Additionally, it is possible to assign your own fonts to the widgets, independent of the standard colors.
 
-#### Font Sizes
+#### Font Sizes Theme
 
 ![Logo](doc/en/media/settings_fontSizes.png)
 
