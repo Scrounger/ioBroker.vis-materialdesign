@@ -54,6 +54,54 @@
         "widget": "Calendar"
     },
     {
+        "id": "charts.value",
+        "desc": "valuesFontSize",
+        "defaultValue": 2,
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "charts.y_axis_title",
+        "desc": "yAxisTitleFontSize",
+        "defaultValue": 3,
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "charts.y_axis_values",
+        "desc": "yAxisValueFontSize",
+        "defaultValue": 2,
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "charts.x_axis_title",
+        "desc": "xAxisTitleFontSize",
+        "defaultValue": 3,
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "charts.x_axis_values",
+        "desc": "xAxisValueFontSize",
+        "defaultValue": 2,
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "charts.legend",
+        "desc": "legendFontSize",
+        "defaultValue": 3,
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "charts.tooltip_title",
+        "desc": "tooltipTitleFontSize",
+        "defaultValue": 4,
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "charts.tooltip_text",
+        "desc": "tooltipBodyFontSize",
+        "defaultValue": 3,
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
         "id": "card.title",
         "desc": "titleLayout",
         "defaultValue": 6,

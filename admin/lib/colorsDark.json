@@ -177,97 +177,97 @@
         "id": "dark.charts.background",
         "desc": "backgroundColor",
         "defaultValue": 7,
-        "widget": "Charts"
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "dark.charts.background_chart",
         "desc": "chartAreaBackgroundColor",
         "defaultValue": 7,
-        "widget": "Charts"
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "dark.charts.global",
         "desc": "globalColor",
         "defaultValue": 0,
-        "widget": "Charts"
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "dark.charts.value",
         "desc": "valuesFontColor",
         "defaultValue": 2,
-        "widget": "Charts"
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "dark.charts.y_axis_title",
         "desc": "yAxisTitleColor",
         "defaultValue": 2,
-        "widget": "Charts"
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "dark.charts.y_axis_values",
         "desc": "yAxisValueLabelColor",
         "defaultValue": 2,
-        "widget": "Charts"
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "dark.charts.y_axis_gridlines",
         "desc": "yAxisGridLinesColor",
         "defaultValue": 6,
-        "widget": "Charts"
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "dark.charts.y_axis_zeroline",
         "desc": "yAxisZeroLineColor",
         "defaultValue": 6,
-        "widget": "Charts"
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "dark.charts.x_axis_title",
         "desc": "xAxisTitleColor",
         "defaultValue": 2,
-        "widget": "Charts"
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "dark.charts.x_axis_values",
         "desc": "xAxisValueLabelColor",
         "defaultValue": 2,
-        "widget": "Charts"
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "dark.charts.x_axis_gridlines",
         "desc": "xAxisGridLinesColor",
         "defaultValue": 6,
-        "widget": "Charts"
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "dark.charts.x_axis_zeroline",
         "desc": "xAxisZeroLineColor",
         "defaultValue": 6,
-        "widget": "Charts"
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "dark.charts.legend",
         "desc": "legendFontColor",
         "defaultValue": 2,
-        "widget": "Charts"
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "dark.charts.tooltip_background",
         "desc": "tooltipBackgroundColor",
         "defaultValue": 6,
-        "widget": "Charts"
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "dark.charts.tooltip_title",
         "desc": "tooltipTitleFontColor",
         "defaultValue": 5,
-        "widget": "Charts"
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "dark.charts.tooltip_text",
         "desc": "tooltipBodyFontColor",
         "defaultValue": 5,
-        "widget": "Charts"
+        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "dark.charts.bar.hover",
