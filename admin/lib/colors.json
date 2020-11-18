@@ -12,6 +12,18 @@
         "widget": "Alerts"
     },
     {
+        "id": "light.button.lock_icon_background",
+        "desc": "lockIconBackground",
+        "defaultValue": 7,
+        "widget": "Button, Vertical Button, Icon Button"
+    },
+    {
+        "id": "light.button.lock_icon",
+        "desc": "lockIconColor",
+        "defaultValue": 10,
+        "widget": "Button, Vertical Button, Icon Button"
+    },    
+    {
         "id": "light.calendar.border",
         "desc": "calendarBorderColor",
         "defaultValue": 4,
@@ -138,42 +150,6 @@
         "widget": "Calendar"
     },
     {
-        "id": "light.card.background",
-        "desc": "colorBackground",
-        "defaultValue": 5,
-        "widget": "HTML Card, Icon List"
-    },
-    {
-        "id": "light.card.background_title",
-        "desc": "colorTitleSectionBackground",
-        "defaultValue": 7,
-        "widget": "HTML Card, Icon List"
-    },
-    {
-        "id": "light.card.background_body",
-        "desc": "colorTextSectionBackground",
-        "defaultValue": 7,
-        "widget": "HTML Card, Icon List"
-    },
-    {
-        "id": "light.card.title",
-        "desc": "colorTitle",
-        "defaultValue": 2,
-        "widget": "HTML Card, Icon List"
-    },
-    {
-        "id": "light.card.subTitle",
-        "desc": "colorSubtitle",
-        "defaultValue": 1,
-        "widget": "HTML Card"
-    },
-    {
-        "id": "light.card.text",
-        "desc": "colorBody",
-        "defaultValue": 2,
-        "widget": "HTML Card"
-    },
-    {
         "id": "light.charts.background",
         "desc": "backgroundColor",
         "defaultValue": 7,
@@ -268,7 +244,7 @@
         "desc": "tooltipBodyFontColor",
         "defaultValue": 5,
         "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
-    },
+    },    
     {
         "id": "light.charts.bar.hover",
         "desc": "hoverColor",
@@ -306,6 +282,42 @@
         "widget": "Pie Chart"
     },
     {
+        "id": "light.card.background",
+        "desc": "colorBackground",
+        "defaultValue": 5,
+        "widget": "HTML Card, Icon List"
+    },
+    {
+        "id": "light.card.background_title",
+        "desc": "colorTitleSectionBackground",
+        "defaultValue": 7,
+        "widget": "HTML Card, Icon List"
+    },
+    {
+        "id": "light.card.background_body",
+        "desc": "colorTextSectionBackground",
+        "defaultValue": 7,
+        "widget": "HTML Card, Icon List"
+    },
+    {
+        "id": "light.card.title",
+        "desc": "colorTitle",
+        "defaultValue": 2,
+        "widget": "HTML Card, Icon List"
+    },
+    {
+        "id": "light.card.subTitle",
+        "desc": "colorSubtitle",
+        "defaultValue": 1,
+        "widget": "HTML Card"
+    },
+    {
+        "id": "light.card.text",
+        "desc": "colorBody",
+        "defaultValue": 2,
+        "widget": "HTML Card"
+    },    
+    {
         "id": "light.checkbox.on",
         "desc": "colorCheckBox",
         "defaultValue": 0,
@@ -334,18 +346,6 @@
         "desc": "labelColorTrue",
         "defaultValue": 2,
         "widget": "Checkbox"
-    },
-    {
-        "id": "light.button.lock_icon_background",
-        "desc": "lockIconBackground",
-        "defaultValue": 7,
-        "widget": "Button, Vertical Button, Icon Button"
-    },
-    {
-        "id": "light.button.lock_icon",
-        "desc": "lockIconColor",
-        "defaultValue": 10,
-        "widget": "Button, Vertical Button, Icon Button"
     },
     {
         "id": "light.button.icon.background_off",
