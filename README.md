@@ -43,6 +43,20 @@ With the help of the Theme Editor you can centrally set colors, fonts and font s
 
 ![Logo](doc/en/media/settings_datapoints.png)
 
+###### VIS Editor (Restore / update old Widgets)
+
+![Logo](doc/en/media/vis_editor_theme_restore.gif)
+
+In the VIS Editor you will find a button "use theme" for each widget. With this button you can reset the widgets to the use of the themes. That means if you have changed colors, fonts or font sizes, you can reset them with this button.
+
+With the help of this button it is also possible to update your widgets from versions before 0.4.0 to use the themes.
+
+###### Use Binding for non Material Design Widgets
+
+![Logo](doc/en/media/settings_binding.gif)
+
+In the adapter settings you can copy the binding command to the clipboard by clicking on the default text or the id in the tables. This binding can then be used by copy and paste even for non Material Design Widgets.
+
 #### Colors
 For colors there are two themes - light theme and dark theme. With the datapoint `vis-materialdesign.0.colors.darkTheme` you can switch between the two themes.
 
