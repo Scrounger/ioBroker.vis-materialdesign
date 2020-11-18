@@ -37,7 +37,7 @@ Starting with version 0.4.0 there is a settings page for the adapter. You can fi
 
 ### Theme Editor
 
-With the help of the Theme Editor you can centrally set colors, fonts and font sizes for all widgets via the adapter settings. This is realized with the help of the [Bindings of the VIS adapter](https://github.com/ioBroker/ioBroker.vis#bindings-of-objects). For each widget datapoints are created with the set values. This makes it possible to use these settings in other widgets (not Material Design Widgets) via bindings.
+With the help of the Theme Editor you can centrally set colors, fonts and font sizes for all widgets via the adapter settings. This is realized with the help of the [Bindings of the VIS adapter](https://github.com/ioBroker/ioBroker.vis#bindings-of-objects). For each widget datapoints (see screenshot below) are created with the set values. This makes it possible to use these settings in other widgets (not Material Design Widgets) via bindings.
 
 ###### Datapoint structure
 
@@ -47,7 +47,7 @@ With the help of the Theme Editor you can centrally set colors, fonts and font s
 
 ![Logo](doc/en/media/vis_editor_theme_restore.gif)
 
-In the VIS Editor you will find a button "use theme" for each widget. With this button you can reset the widgets to the use of the themes. That means if you have changed colors, fonts or font sizes, you can reset them with this button.
+In the VIS Editor you will find a button `use theme` for each widget. With this button you can reset the widgets to the use of the themes. That means if you have changed colors, fonts or font sizes, you can reset them with this button.
 
 With the help of this button it is also possible to update your widgets from versions before 0.4.0 to use the themes.
 
