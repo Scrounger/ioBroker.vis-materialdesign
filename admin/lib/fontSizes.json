@@ -40,7 +40,7 @@
         "desc": "buttonFontSize",
         "defaultValue": 3,
         "widget": "Dialog, Dialog iFrame"
-    },      
+    },
     {
         "id": "icon_list.text",
         "desc": "labelFontSize",
@@ -58,6 +58,36 @@
         "desc": "valueFontSize",
         "defaultValue": 1,
         "widget": "Icon List"
+    },
+    {
+        "id": "list.header",
+        "desc": "listItemHeaderTextSize",
+        "defaultValue": 4,
+        "widget": "List"
+    },
+    {
+        "id": "list.text",
+        "desc": "listItemTextSize",
+        "defaultValue": 3,
+        "widget": "List"
+    },
+    {
+        "id": "list.subText",
+        "desc": "listItemSubTextSize",
+        "defaultValue": 2,
+        "widget": "List"
+    },
+    {
+        "id": "list.text_right",
+        "desc": "listItemTextRightSize",
+        "defaultValue": 3,
+        "widget": "List"
+    },
+    {
+        "id": "list.subText_right",
+        "desc": "listItemSubTextRightSize",
+        "defaultValue": 2,
+        "widget": "List"
     },
     {
         "id": "progress.text",
@@ -130,5 +160,5 @@
         "desc": "listSubItemTextSize",
         "defaultValue": 2,
         "widget": "Top App Bar"
-    }    
+    }
 ]

@@ -482,7 +482,7 @@
     {
         "id": "dark.list.header",
         "desc": "colorListItemHeaders",
-        "defaultValue": 2,
+        "defaultValue": 1,
         "widget": "List"
     },
     {
