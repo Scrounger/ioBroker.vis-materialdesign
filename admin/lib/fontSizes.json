@@ -6,6 +6,54 @@
         "widget": "Alerts"
     },
     {
+        "id": "calendar.control",
+        "desc": "controlTextSize",
+        "defaultValue": 2,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.header",
+        "desc": "calendarDayLabelFontSize",
+        "defaultValue": 1,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.today",
+        "desc": "calendarDayLabelTodayFontSize",
+        "defaultValue": 2,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.weeks",
+        "desc": "calendarWeeksNumbersFontSize",
+        "defaultValue": 2,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.button",
+        "desc": "calendarDayButtonFontSize",
+        "defaultValue": 2,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.button_today",
+        "desc": "calendarDayButtonTodayFontSize",
+        "defaultValue": 3,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.event",
+        "desc": "calendarEventFontSize",
+        "defaultValue": 1,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.time_axis",
+        "desc": "calendarTimeAxisFontSize",
+        "defaultValue": 2,
+        "widget": "Calendar"
+    },
+    {
         "id": "card.title",
         "desc": "titleLayout",
         "defaultValue": 6,
