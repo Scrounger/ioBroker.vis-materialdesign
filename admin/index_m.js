@@ -30,6 +30,7 @@ async function load(settings, onChange) {
 
     $progress = $('.progressContainer');
 
+    createDatapoints();
     await initializeSentry();
 
     for (const themeType of themeTypesList) {
@@ -41,6 +42,29 @@ async function load(settings, onChange) {
 
     // reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
     if (M) M.updateTextFields();
+}
+
+async function createDatapoints() {
+    let themeId = `${myNamespace}.colors.darkTheme`;
+    let themeObj = await getObjectAsync(themeId);
+
+    if (!themeObj) {
+        themeObj = {
+            type: 'state',
+            common: {
+                name: 'Switch between light and dark colors',
+                desc: 'Switch between light and dark colors',
+                type: 'boolean',
+                read: true,
+                write: true,
+                role: 'value',
+                def: true,
+            },
+            native: {}
+        };
+
+        await this.setObjectAsync(themeId, themeObj);
+    }
 }
 
 async function initializeSentry() {
