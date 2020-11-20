@@ -156,6 +156,54 @@
         "widget": "Icon List"
     },
     {
+        "id": "input.text",
+        "desc": "inputTextFontSize",
+        "defaultValue": 3,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "input.label",
+        "desc": "inputLabelFontSize",
+        "defaultValue": 3,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "input.appendix",
+        "desc": "inputAppendixFontSize",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "input.message",
+        "desc": "inputMessageFontSize",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "input.counter",
+        "desc": "inputCounterFontSize",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "input.dropdown.text",
+        "desc": "listItemFontSize",
+        "defaultValue": 3,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "input.dropdown.subText",
+        "desc": "listItemSubFontSize",
+        "defaultValue": 2,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "input.dropdown.value",
+        "desc": "listItemValueFontSize",
+        "defaultValue": 2,
+        "widget": "Select, Autocomplete"
+    },
+    {
         "id": "list.header",
         "desc": "listItemHeaderTextSize",
         "defaultValue": 4,

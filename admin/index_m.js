@@ -83,7 +83,7 @@ async function initializeSentry() {
                     read: true,
                     write: true,
                     role: 'value',
-                    def: true,
+                    def: false,
                     uuid: generateUuidv4()
                 },
                 native: {}
