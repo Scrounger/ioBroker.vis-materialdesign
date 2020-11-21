@@ -10613,17 +10613,17 @@ systemDictionary = {
         "pl": "wygeneruj skrypt",
         "zh-cn": "生成脚本"
     },
-    "After the script has been generated, the javascript adapter will be restarted!<br><br><br>Do you want to continue?": {
-        "en": "After the script has been generated, the javascript adapter will be restarted!<br><br><br>Do you want to continue?",
-        "de": "Nachdem das Skript generiert wurde, wird der Javascript Adapter neu gestartet! <br><br><br> Möchtest Du fortfahren?",
-        "ru": "После того, как сценарий был сгенерирован, адаптер javascript будет перезапущен! <br><br><br> Вы хотите продолжить?",
-        "pt": "Depois que o script for gerado, o adaptador de javascript será reiniciado! <br><br><br> Você quer continuar?",
-        "nl": "Nadat het script is gegenereerd, wordt de JavaScript-adapter opnieuw gestart! <br><br><br> Wil je doorgaan?",
-        "fr": "Une fois le script généré, l'adaptateur javascript sera redémarré! <br><br><br> Voulez-vous continuer?",
-        "it": "Dopo che lo script è stato generato, l'adattatore javascript verrà riavviato! <br><br><br> Vuoi continuare?",
-        "es": "Después de que se haya generado el script, se reiniciará el adaptador de JavaScript. <br><br><br> ¿Quieres continuar?",
-        "pl": "Po wygenerowaniu skryptu adapter javascript zostanie ponownie uruchomiony! <br><br><br> Czy chcesz kontynuować?",
-        "zh-cn": "生成脚本后，将重新启动javascript适配器！ <br><br><br>你想继续吗？"
+    "After the script has been generated, the %s instance will be restarted!<br><br>Do you want to continue?": {
+        "en": "After the script has been generated, the %s instance will be restarted!<br><br>Do you want to continue?",
+        "de": "Nachdem das Skript generiert wurde, wird die %s Instanz neu gestartet!<br><br> Willst Du fortfahren?",
+        "ru": "После создания сценария экземпляр %s  будет перезапущен!<br><br> Вы хотите продолжить?",
+        "pt": "Depois que o script for gerado, a instância %s  será reiniciada!<br><br> Você quer continuar?",
+        "nl": "Nadat het script is gegenereerd, wordt de %s -instantie opnieuw gestart!<br><br> Wil je doorgaan?",
+        "fr": "Une fois le script généré, l'instance %s  sera redémarrée!<br><br> Voulez-vous continuer?",
+        "it": "Dopo che lo script è stato generato, l'istanza %s  verrà riavviata!<br><br> Vuoi continuare?",
+        "es": "Después de que se haya generado el script, se reiniciará la instancia %s .<br><br> ¿Quieres continuar?",
+        "pl": "Po wygenerowaniu skryptu instancja %s  zostanie zrestartowana!<br><br> Czy chcesz kontynuować?",
+        "zh-cn": "生成脚本后，%s实例将重新启动！<br><br>你想继续吗？"
     },
     "attention": {
         "en": "attention",
@@ -10912,5 +10912,29 @@ systemDictionary = {
         "es": "usar tema",
         "pl": "użyj motywu",
         "zh-cn": "使用主题"
+    },
+    "SelectJavascriptInstance": {
+        "en": "Javascript Instance",
+        "de": "Javascript Instanz",
+        "ru": "Экземпляр Javascript",
+        "pt": "Instância Javascript",
+        "nl": "Javascript-instantie",
+        "fr": "Instance Javascript",
+        "it": "Istanza Javascript",
+        "es": "Instancia de Javascript",
+        "pl": "Instancja JavaScript",
+        "zh-cn": "JavaScript实例"
+    },
+    "not installed": {
+        "en": "not installed",
+        "de": "nicht installiert",
+        "ru": "не установлено",
+        "pt": "não instalado",
+        "nl": "niet geïnstalleerd",
+        "fr": "pas installé",
+        "it": "non installato",
+        "es": "no instalado",
+        "pl": "nie zainstalowany",
+        "zh-cn": "未安装"
     }
 };

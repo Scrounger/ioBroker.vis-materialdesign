@@ -234,18 +234,26 @@
 							</div>							
 							<div class="col s12 m12 l12 card">
 								<div class="card-content">
-									<span class="card-title translate">Generate global script</span>								
-									<div class="col s12 m4 l4 input-field">
-										<input type="text" class="value" id="scriptName" />
-										<label for="scriptName" class="translate">script name</label>
+									<span class="card-title translate">Generate global script</span>
+									<div class="col s12 m2 l2 input-field">
+										<select class="value" id="javascriptInstance">
+										</select>
+										<label class="translate" for="javascriptInstance"
+											style="margin-top: 10px !important;">SelectJavascriptInstance</label>
 									</div>
-									<div class="col s12 m4 l4 input-field">
-										<input type="text" class="value" id="variableName" />
-										<label for="variableName" class="translate">name of the variable</label>
-									</div>
-									<div class="col s0 m1 l1"></div>
-									<div class="col s12 m3 l3 input-field right-align">
-										<a id="btnJavascript" class="waves-effect waves-light btn-small" style="width: 100%;"><i class="material-icons left">note_add</i><span class="translate">generate script</span></a>
+									<div class="javascriptInstanceExist">
+										<div class="col s12 m3 l3 input-field">
+											<input type="text" class="value" id="scriptName" />
+											<label for="scriptName" class="translate">script name</label>
+										</div>
+										<div class="col s12 m3 l3 input-field">
+											<input type="text" class="value" id="variableName" />
+											<label for="variableName" class="translate">name of the variable</label>
+										</div>
+										<div class="col s0 m1 l1"></div>
+										<div class="col s12 m3 l3 input-field right-align">
+											<a id="btnJavascript" class="waves-effect waves-light btn-small" style="width: 100%;"><i class="material-icons left">note_add</i><span class="translate">generate script</span></a>
+										</div>
 									</div>				
 								</div>
 							</div>

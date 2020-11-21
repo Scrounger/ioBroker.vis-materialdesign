@@ -304,6 +304,7 @@
     "native": {
         "scriptName": "Theme",
         "variableName": "myMdwTheme",
+        "javascriptInstance": "",
         "sentryReport": true,
         "colors": [],
         "defaultcolors": [],
