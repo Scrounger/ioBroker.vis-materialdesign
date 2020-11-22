@@ -9,7 +9,7 @@
         "id": "button.text",
         "desc": "textFontSize",
         "defaultValue": 2,
-        "widget": "Buttons, Button Navigation, Button Link, Button State, Button State Multi, Button Addition, Button Toggle"
+        "widget": "Buttons, Dialog, Button Navigation, Button Link, Button State, Button State Multi, Button Addition, Button Toggle, Dialog iFrame"
     },
     {
         "id": "button.vertical.text",
