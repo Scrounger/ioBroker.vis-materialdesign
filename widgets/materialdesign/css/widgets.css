@@ -22,6 +22,7 @@
 
 
   --materialdesign-font-button: inherit;
+  --materialdesign-font-size-button: 14px;
   --materialdesign-font-button-vertical-text-distance-image: 2px;
 
   --material-progress-circular-color: #44739e;
@@ -335,9 +336,9 @@
 .materialdesign-widget.materialdesign-button,
 .materialdesign-widget .materialdesign-button {
   font-family: var(--materialdesign-font-button);
+  font-size: var(--materialdesign-font-size-button);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-size: 0.875rem;
   line-height: 2.25rem;
   font-weight: 500;
   text-decoration: none;

@@ -6,6 +6,18 @@
         "widget": "Alerts"
     },
     {
+        "id": "button.text",
+        "desc": "textFontSize",
+        "defaultValue": 2,
+        "widget": "Buttons, Button Navigation, Button Link, Button State, Button State Multi, Button Addition, Button Toggle"
+    },
+    {
+        "id": "button.vertical.text",
+        "desc": "textFontSize",
+        "defaultValue": 3,
+        "widget": "Buttons, Button Navigation vertical, Button Link vertical, Button State vertical, Button State Multi vertical, Button Addition vertical, Button Toggle vertical"
+    },
+    {
         "id": "calendar.control",
         "desc": "controlTextSize",
         "defaultValue": 2,
