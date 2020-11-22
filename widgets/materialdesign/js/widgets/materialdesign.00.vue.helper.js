@@ -197,6 +197,7 @@ vis.binds.materialdesign.vueHelper = {
                 @click:clear="clearEvent"
                 @click="click"
                 @input="menuClick"
+                :open-on-clear="openOnClear"
             `
         },
         getTemplates: function (data) {
@@ -238,7 +239,8 @@ vis.binds.materialdesign.vueHelper = {
             dataObj.imageColor = item.imageColor;
             dataObj.iconColorTextField = this.getIconColorTextField(data, myMdwHelper.getValueFromData(item.imageColorSelectedTextField, item.imageColor));
             dataObj.collapseIcon = myMdwHelper.getValueFromData(data.collapseIcon, undefined, 'mdi-');
-
+            dataObj.openOnClear = myMdwHelper.getBooleanFromData(data.clearIconShow, false) ? myMdwHelper.getBooleanFromData(data.openOnClear, false) : false;
+            
             return dataObj;
         },
         setStyles: function ($el, data) {

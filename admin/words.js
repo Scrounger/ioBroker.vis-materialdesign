@@ -10936,5 +10936,17 @@ systemDictionary = {
         "es": "no instalado",
         "pl": "nie zainstalowany",
         "zh-cn": "未安装"
+    },
+    "openOnClear": {
+        "en": "open Menu at using clear button",
+        "de": "Menü auch über Schaltfläche Löschen öffnen",
+        "ru": "открыть меню с помощью кнопки очистки",
+        "pt": "Abra o Menu usando o botão Limpar",
+        "nl": "open het menu met de wistoets",
+        "fr": "ouvrir le menu à l'aide du bouton d'effacement",
+        "it": "aprire il menu utilizzando il pulsante cancella",
+        "es": "abre el menú al usar el botón borrar",
+        "pl": "Otwórz menu za pomocą przycisku wyczyść",
+        "zh-cn": "使用清除按钮打开菜单"
     }
 };
