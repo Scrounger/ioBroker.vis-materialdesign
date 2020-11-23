@@ -12,17 +12,11 @@
         "widget": "Alerts"
     },
     {
-        "id": "light.button.lock_icon_background",
-        "desc": "lockIconBackground",
-        "defaultValue": 7,
-        "widget": "Button, Vertical Button, Icon Button"
-    },
-    {
         "id": "light.button.lock_icon",
         "desc": "lockIconColor",
         "defaultValue": 10,
         "widget": "Button, Vertical Button, Icon Button"
-    },    
+    },
     {
         "id": "light.calendar.border",
         "desc": "calendarBorderColor",
@@ -244,7 +238,7 @@
         "desc": "tooltipBodyFontColor",
         "defaultValue": 5,
         "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
-    },    
+    },
     {
         "id": "light.charts.bar.hover",
         "desc": "hoverColor",
@@ -316,7 +310,7 @@
         "desc": "colorBody",
         "defaultValue": 2,
         "widget": "HTML Card"
-    },    
+    },
     {
         "id": "light.checkbox.on",
         "desc": "colorCheckBox",
@@ -352,36 +346,48 @@
         "desc": "lockIconColor",
         "defaultValue": 10,
         "widget": "Checkbox"
-    },     
+    },
     {
         "id": "light.button.icon.background_off",
         "desc": "colorBgFalse",
         "defaultValue": 7,
-        "widget": "Icon Button"
+        "widget": "Icon Buttons, Icon Button Navigation, Icon Button Link, Icon Button State, Icon Button State Multi, Icon Button Addition, Icon Button Toggle"
     },
     {
         "id": "light.button.icon.background_on",
         "desc": "colorBgTrue",
         "defaultValue": 7,
-        "widget": "Icon Button"
+        "widget": "Icon Buttons, Icon Button Toggle"
     },
     {
         "id": "light.button.icon.pressed",
         "desc": "colorPress",
         "defaultValue": 0,
-        "widget": "Icon Button"
+        "widget": "Icon Buttons, Icon Button Navigation, Icon Button Link, Icon Button State, Icon Button State Multi, Icon Button Addition, Icon Button Toggle"
     },
     {
         "id": "light.button.icon.icon_off",
         "desc": "imageColor",
         "defaultValue": 0,
-        "widget": "Icon Button"
+        "widget": "Icon Buttons, Icon Button Navigation, Icon Button Link, Icon Button State, Icon Button State Multi, Icon Button Addition, Icon Button Toggle"
     },
     {
         "id": "light.button.icon.icon_on",
         "desc": "imageTrueColor",
         "defaultValue": 0,
         "widget": "Icon Button"
+    },
+    {
+        "id": "light.button.icon.lock_icon",
+        "desc": "lockIconColor",
+        "defaultValue": 10,
+        "widget": "Icon Buttons, Icon Button State, Icon Button State Multi, Icon Button Toggle"
+    },    
+    {
+        "id": "light.button.icon.lock_icon_background",
+        "desc": "lockIconBackground",
+        "defaultValue": 7,
+        "widget": "Icon Buttons, Icon Button State, Icon Button State Multi, Icon Button Toggle"
     },
     {
         "id": "light.icon_list.background",
@@ -436,7 +442,7 @@
         "desc": "lockIconColor",
         "defaultValue": 10,
         "widget": "Icon List"
-    },        
+    },
     {
         "id": "light.material_design_icon.color",
         "desc": "mdwIconColor",
@@ -592,7 +598,7 @@
         "desc": "tickTextColor",
         "defaultValue": 1,
         "widget": "Slider"
-    },    
+    },
     {
         "id": "light.slider.tick_before",
         "desc": "tickColorBefore",
@@ -664,7 +670,7 @@
         "desc": "lockIconColor",
         "defaultValue": 10,
         "widget": "Switch"
-    },     
+    },
     {
         "id": "light.table.background",
         "desc": "colorBackground",
