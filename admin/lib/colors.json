@@ -348,6 +348,12 @@
         "widget": "Checkbox"
     },
     {
+        "id": "light.checkbox.lock_icon",
+        "desc": "lockIconColor",
+        "defaultValue": 10,
+        "widget": "Checkbox"
+    },     
+    {
         "id": "light.button.icon.background_off",
         "desc": "colorBgFalse",
         "defaultValue": 7,
@@ -425,6 +431,12 @@
         "defaultValue": 0,
         "widget": "Icon List"
     },
+    {
+        "id": "light.icon_list.lock_icon",
+        "desc": "lockIconColor",
+        "defaultValue": 10,
+        "widget": "Icon List"
+    },        
     {
         "id": "light.material_design_icon.color",
         "desc": "mdwIconColor",
@@ -647,6 +659,12 @@
         "defaultValue": 2,
         "widget": "Switch"
     },
+    {
+        "id": "light.switch.lock_icon",
+        "desc": "lockIconColor",
+        "defaultValue": 10,
+        "widget": "Switch"
+    },     
     {
         "id": "light.table.background",
         "desc": "colorBackground",

@@ -348,6 +348,12 @@
         "widget": "Checkbox"
     },
     {
+        "id": "dark.checkbox.lock_icon",
+        "desc": "lockIconColor",
+        "defaultValue": 10,
+        "widget": "Checkbox"
+    },       
+    {
         "id": "dark.button.icon.background_off",
         "desc": "colorBgFalse",
         "defaultValue": 7,
@@ -423,6 +429,12 @@
         "id": "dark.icon_list.button_hover",
         "desc": "buttonColorPress",
         "defaultValue": 0,
+        "widget": "Icon List"
+    },
+    {
+        "id": "dark.icon_list.lock_icon",
+        "desc": "lockIconColor",
+        "defaultValue": 10,
         "widget": "Icon List"
     },
     {
@@ -647,6 +659,12 @@
         "defaultValue": 2,
         "widget": "Switch"
     },
+    {
+        "id": "dark.switch.lock_icon",
+        "desc": "lockIconColor",
+        "defaultValue": 10,
+        "widget": "Switch"
+    },        
     {
         "id": "dark.table.background",
         "desc": "colorBackground",

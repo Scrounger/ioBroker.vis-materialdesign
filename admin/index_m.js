@@ -87,9 +87,9 @@ async function generateJavascriptInstancesDropDown(settings) {
                         text += '<option value="' + name + '">' + name + '</option>';
                     }
 
-                    if(settings.javascriptInstance && settings.javascriptInstance !== ''){
+                    if (settings.javascriptInstance && settings.javascriptInstance !== '') {
                         $('#javascriptInstance').append(text).val(settings.javascriptInstance).select();
-                    }else{
+                    } else {
                         $('#javascriptInstance').append(text).val(result[0]._id.substring('system.adapter.'.length)).select();
                     }
                 } else {
@@ -358,7 +358,10 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
         $(`#${themeType}Table input[data-name=id]`).click(function () {
 
             if (themeType.includes('colors')) {
-                clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.${$(this).val().replace('dark.', 'light.')};dark:${myNamespace}.colors.${$(this).val().replace('light.', 'dark.')}; mode === "true" ? dark : light}`.replace(/;/g, '§').replace(/\"/g, '^'));
+                clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.${$(this).val().replace('dark.', 'light.')};dark:${myNamespace}.colors.${$(this).val().replace('light.', 'dark.')}; mode === "true" ? dark : light}`);
+
+                // Für Entwicklung Binding aufbereitet um in *.html zu verwenden
+                // clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.${$(this).val().replace('dark.', 'light.')};dark:${myNamespace}.colors.${$(this).val().replace('light.', 'dark.')}; mode === "true" ? dark : light}`.replace(/;/g, '§').replace(/\"/g, '^'));
             } else {
                 clipboard.writeText(`{${myNamespace}.${themeType}.${$(this).val()}}`);
             }
@@ -428,7 +431,7 @@ async function resetToDefault(themeType, themeObject, themeDefaults, settings, o
             themeObject[i].value = themeDefaults[themeObject[i].defaultValue];
         }
 
-        // themeObject[i].desc = _(themeObject[i].desc);
+        themeObject[i].desc = _(themeObject[i].desc);
     }
 
     await createTab(themeType, themeObject, themeDefaults, settings, onChange, true);
@@ -473,10 +476,12 @@ async function checkAllObjectsExistInSettings(themeType, themeObject, themeDefau
                     jsonList[i].value = themeDefaults[jsonList[i].defaultValue];
                 }
 
-                // jsonList[i].desc = _(jsonList[i].desc);
+                jsonList[i].desc = _(jsonList[i].desc);
                 themeObject.splice(i, 0, jsonList[i]);
 
                 onChange();
+            } else {
+                themeObject[i].desc = _(themeObject[i].desc);
             }
         }
 
