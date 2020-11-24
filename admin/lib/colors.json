@@ -15,7 +15,7 @@
         "id": "light.button.lock_icon",
         "desc": "lockIconColor",
         "defaultValue": 10,
-        "widget": "Button, Vertical Button, Icon Button"
+        "widget": "Button State vertical, Button State Multi vertical, Button Toggle vertical, Button State, Button State Multi, Button Toggle"
     },
     {
         "id": "light.calendar.border",
@@ -147,97 +147,97 @@
         "id": "light.charts.background",
         "desc": "backgroundColor",
         "defaultValue": 7,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.charts.background_chart",
         "desc": "chartAreaBackgroundColor",
         "defaultValue": 7,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.charts.global",
         "desc": "globalColor",
         "defaultValue": 0,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.charts.value",
         "desc": "valuesFontColor",
         "defaultValue": 2,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.charts.y_axis_title",
         "desc": "yAxisTitleColor",
         "defaultValue": 2,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.charts.y_axis_values",
         "desc": "yAxisValueLabelColor",
         "defaultValue": 2,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.charts.y_axis_gridlines",
         "desc": "yAxisGridLinesColor",
         "defaultValue": 6,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.charts.y_axis_zeroline",
         "desc": "yAxisZeroLineColor",
         "defaultValue": 6,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.charts.x_axis_title",
         "desc": "xAxisTitleColor",
         "defaultValue": 2,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.charts.x_axis_values",
         "desc": "xAxisValueLabelColor",
         "defaultValue": 2,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.charts.x_axis_gridlines",
         "desc": "xAxisGridLinesColor",
         "defaultValue": 6,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.charts.x_axis_zeroline",
         "desc": "xAxisZeroLineColor",
         "defaultValue": 6,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.charts.legend",
         "desc": "legendFontColor",
         "defaultValue": 2,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.charts.tooltip_background",
         "desc": "tooltipBackgroundColor",
         "defaultValue": 6,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.charts.tooltip_title",
         "desc": "tooltipTitleFontColor",
         "defaultValue": 5,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.charts.tooltip_text",
         "desc": "tooltipBodyFontColor",
         "defaultValue": 5,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.charts.bar.hover",
@@ -382,7 +382,7 @@
         "desc": "lockIconColor",
         "defaultValue": 10,
         "widget": "Icon Buttons, Icon Button State, Icon Button State Multi, Icon Button Toggle"
-    },    
+    },
     {
         "id": "light.button.icon.lock_icon_background",
         "desc": "lockIconBackground",

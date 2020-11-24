@@ -69,49 +69,49 @@
         "id": "charts.value",
         "desc": "valuesFontFamily",
         "defaultValue": 2,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "charts.y_axis_title",
         "desc": "yAxisTitleFontFamily",
         "defaultValue": 0,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "charts.y_axis_values",
         "desc": "yAxisValueFontFamily",
         "defaultValue": 2,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "charts.x_axis_title",
         "desc": "xAxisTitleFontFamily",
         "defaultValue": 0,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "charts.x_axis_values",
         "desc": "xAxisValueFontFamily",
         "defaultValue": 2,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "charts.legend",
         "desc": "legendFontFamily",
         "defaultValue": 2,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "charts.tooltip_title",
         "desc": "tooltipTitleFontFamily",
         "defaultValue": 0,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "charts.tooltip_text",
         "desc": "tooltipBodyFontFamily",
         "defaultValue": 2,
-        "widget": "Charts, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "card.title",
@@ -148,7 +148,7 @@
         "desc": "buttonFont",
         "defaultValue": 0,
         "widget": "Dialog, Dialog iFrame"
-    },    
+    },
     {
         "id": "icon_list.text",
         "desc": "labelFontFamily",
