@@ -10,6 +10,8 @@ async function load(settings, onChange) {
 
     myNamespace = `${adapter}.${instance}`;
 
+    addVersionToAdapterTitle();
+
     $('.value').each(function () {
         var $key = $(this);
         var id = $key.attr('id');
@@ -478,6 +480,12 @@ async function checkAllObjectsExistInSettings(themeType, themeObject, themeDefau
                 onChange();
             } else {
                 themeObject[i].desc = _(themeObject[i].desc);
+
+                // widget names changed -> fire onChange
+                if (themeObject[i].widget !== jsonList[i].widget) {
+                    themeObject[i].widget = jsonList[i].widget;
+                    onChange();
+                }
             }
 
             let themeObjectWidgetList = themeObject[i].widget.split(', ');
@@ -887,5 +895,14 @@ function filterTable(themeType, inputVal) {
                 $(this).closest('tr').hide();
             }
         });
+    }
+}
+
+async function addVersionToAdapterTitle() {
+    let instanceObj = await getObjectAsync(`system.adapter.${myNamespace}`);
+
+    if (instanceObj && instanceObj.common && instanceObj.common.installedVersion) {
+        let title = $('#adapterTitle');
+        title.html(`${title.html()} <font size="3"><i>${instanceObj.common.installedVersion}</i></font>`);
     }
 }
