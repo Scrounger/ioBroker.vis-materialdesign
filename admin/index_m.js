@@ -42,6 +42,8 @@ async function load(settings, onChange) {
 
     eventsHandler(onChange);
 
+
+
     // reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
     if (M) M.updateTextFields();
 }
@@ -167,9 +169,6 @@ async function createTab(themeType, themeObject, themeDefaults, settings, onChan
         // check if defaultColors exist and number are equals
         if (!reset) themeDefaults = await loadDefaults(themeType, settings, onChange);
 
-        // check if all fonts exist in settings
-        if (!reset) themeObject = await checkAllObjectsExistInSettings(themeType, themeObject, themeDefaults, onChange);
-
         $(`.${themeType}DefaultContainer`).empty();
         for (var i = 0; i <= themeDefaults.length - 1; i++) {
             defaultTableButtons += `${i} `;
@@ -230,6 +229,9 @@ async function createTab(themeType, themeObject, themeDefaults, settings, onChan
             });
         }
 
+        // check if all properties exist in settings
+        if (!reset) themeObject = await checkAllObjectsExistInSettings(themeType, themeObject, themeDefaults, onChange);
+
         await createTable(themeType, themeObject, themeDefaults, defaultTableButtons, onChange);
         eventsHandlerTab(themeType, themeObject, themeDefaults, settings, onChange)
 
@@ -274,15 +276,7 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
 
 
         // check if filter is set
-        let inputFilterVal = $(`#${themeType}TableFilter`).val();
-
-        if (inputFilterVal.length > 0) {
-            $(`#${themeType}Table input[data-name=widget]`).each(function () {
-                if (!$(this).val().toUpperCase().includes(inputFilterVal.toUpperCase())) {
-                    $(this).closest('tr').hide();
-                }
-            });
-        }
+        filterTable(themeType, $(`#${themeType}TableFilter`).val())
 
         if (themeType.includes('colors')) {
             $(`#${themeType}Table input[data-name=pickr]`).each(function (i) {
@@ -467,6 +461,8 @@ async function loadDefaults(themeType, settings, onChange) {
 async function checkAllObjectsExistInSettings(themeType, themeObject, themeDefaults, onChange) {
     try {
         // check if all objects exist in settings
+        let widgetList = {};
+
         let jsonList = await getJsonObjects(themeType);
         for (var i = 0; i <= jsonList.length - 1; i++) {
             if (!themeObject.find(o => o.id === jsonList[i].id)) {
@@ -483,7 +479,14 @@ async function checkAllObjectsExistInSettings(themeType, themeObject, themeDefau
             } else {
                 themeObject[i].desc = _(themeObject[i].desc);
             }
+
+            let themeObjectWidgetList = themeObject[i].widget.split(', ');
+            for (const widget of themeObjectWidgetList) {
+                widgetList[widget] = null;
+            }
         }
+
+        createAutocompleteFilterElement(themeType, widgetList);
 
         return themeObject;
 
@@ -516,6 +519,18 @@ function createDefaultElement(themeType, themeDefaults, index) {
     }
 }
 
+async function createAutocompleteFilterElement(themeType, widgetList) {
+    M.Autocomplete.init($(`#${themeType}TableFilter`), {
+        data: widgetList,
+        sortFunction: function (a, b, inputString) {
+            return a.localeCompare(b);
+        },
+        onAutocomplete: function (val) {
+            // Callback function when value is autcompleted.
+            filterTable(themeType, val);
+        }
+    });
+}
 
 function createColorPicker(el, color, colorDefaults, inputEl, onChange, defaultColorIndex = 0) {
     let pickr = Pickr.create({
@@ -863,4 +878,14 @@ function generateUuidv4() {
     return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     );
+}
+
+function filterTable(themeType, inputVal) {
+    if (inputVal.length > 0) {
+        $(`#${themeType}Table input[data-name=widget]`).each(function () {
+            if (!$(this).val().toUpperCase().includes(inputVal.toUpperCase())) {
+                $(this).closest('tr').hide();
+            }
+        });
+    }
 }

@@ -141,10 +141,13 @@
 	.table-filter {
 		margin-top: 2px !important;
 		margin-bottom: 0px !important;
+		display: flex;
+		align-items: center;
+		justify-content: end;
 	}
 	.table-filter input { 
 		color:#2696ef !important;  
-		width: 200px !important; 
+		width: 50% !important; 
 		height: 2.5rem !important;		
 	}
 	.table-filter button {
@@ -172,6 +175,12 @@
 	.card-title {
 		color: #2196f3;
 		margin-bottom: 12px !important;
+	}
+
+	/* Autocomplete */
+	.dropdown-content {
+		position: absolute !important;
+		width: 50% !important; 
 	}
 </style>
 
@@ -302,11 +311,11 @@
 							<div class="col s12 m12 l12 card" style="padding-bottom: 30px;">
 								<div class="card-content">
 									<div class="row card-title">
-										<div class="col s12 m6 l6">
+										<div class="col s12 m6 l3">
 											<div class="translate">Widget colors</div>
 										</div>
-										<div class="table-filter input-field col s12 m6 l6 right-align">
-											<input type="text" placeholder="Filter Widgets" id="colorsTableFilter" />
+										<div class="table-filter input-field col s12 m6 l9">
+											<input type="text" placeholder="Filter Widgets" id="colorsTableFilter" class="autocomplete">
 											<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="colorsTableFilterClear"><i class="material-icons">clear</i></button></span>
 										</div>
 									</div>
@@ -343,11 +352,11 @@
 							<div class="col s12 m12 l12 card" style="padding-bottom: 30px;">
 								<div class="card-content">
 									<div class="row card-title">
-										<div class="col s12 m6 l6">
+										<div class="col s12 m6 l3">
 											<div class="translate">Widget colors</div>
 										</div>
-										<div class="table-filter input-field col s12 m6 l6 right-align">
-											<input type="text" placeholder="Filter Widgets" id="colorsDarkTableFilter" />
+										<div class="table-filter input-field col s12 m6 l9">
+											<input type="text" placeholder="Filter Widgets" id="colorsDarkTableFilter" class="autocomplete">
 											<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="colorsDarkTableFilterClear"><i class="material-icons">clear</i></button></span>
 										</div>
 									</div>
@@ -384,11 +393,11 @@
 							<div class="col s12 m12 l12 card" style="padding-bottom: 30px;">
 								<div class="card-content">
 									<div class="row card-title">
-										<div class="col s12 m6 l6">
+										<div class="col s12 m6 l3">
 											<div class="translate">Widget fonts</div>
 										</div>
-										<div class="table-filter input-field col s12 m6 l6 right-align">
-											<input type="text" placeholder="Filter Widgets" id="fontsTableFilter" />
+										<div class="table-filter input-field col s12 m6 l9">
+											<input type="text" placeholder="Filter Widgets" id="fontsTableFilter" class="autocomplete">
 											<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="fontsTableFilterClear"><i class="material-icons">clear</i></button></span>
 										</div>
 									</div>
@@ -425,11 +434,11 @@
 							<div class="col s12 m12 l12 card" style="padding-bottom: 30px;">
 								<div class="card-content">
 									<div class="row card-title">
-										<div class="col s12 m6 l6">
+										<div class="col s12 m6 l3">
 											<div class="translate">Widget font sizes</div>
 										</div>
-										<div class="table-filter input-field col s12 m6 l6 right-align">
-											<input type="text" placeholder="Filter Widgets" id="fontSizesTableFilter" />
+										<div class="table-filter input-field col s12 m6 l9">
+											<input type="text" placeholder="Filter Widgets" id="fontSizesTableFilter" class="autocomplete">
 											<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="fontSizesTableFilterClear"><i class="material-icons">clear</i></button></span>
 										</div>
 									</div>
