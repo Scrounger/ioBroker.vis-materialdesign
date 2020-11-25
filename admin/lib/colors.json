@@ -351,43 +351,43 @@
         "id": "light.button.icon.background_off",
         "desc": "colorBgFalse",
         "defaultValue": 7,
-        "widget": "Icon Buttons, Icon Button Navigation, Icon Button Link, Icon Button State, Icon Button State Multi, Icon Button Addition, Icon Button Toggle"
+        "widget": "Icon Button Navigation, Icon Button Link, Icon Button State, Icon Button State Multi, Icon Button Addition, Icon Button Toggle"
     },
     {
         "id": "light.button.icon.background_on",
         "desc": "colorBgTrue",
         "defaultValue": 7,
-        "widget": "Icon Buttons, Icon Button Toggle"
+        "widget": "Icon Button Toggle"
     },
     {
         "id": "light.button.icon.pressed",
         "desc": "colorPress",
         "defaultValue": 0,
-        "widget": "Icon Buttons, Icon Button Navigation, Icon Button Link, Icon Button State, Icon Button State Multi, Icon Button Addition, Icon Button Toggle"
+        "widget": "Icon Button Navigation, Icon Button Link, Icon Button State, Icon Button State Multi, Icon Button Addition, Icon Button Toggle"
     },
     {
         "id": "light.button.icon.icon_off",
         "desc": "imageColor",
         "defaultValue": 0,
-        "widget": "Icon Buttons, Icon Button Navigation, Icon Button Link, Icon Button State, Icon Button State Multi, Icon Button Addition, Icon Button Toggle"
+        "widget": "Icon Button Navigation, Icon Button Link, Icon Button State, Icon Button State Multi, Icon Button Addition, Icon Button Toggle"
     },
     {
         "id": "light.button.icon.icon_on",
         "desc": "imageTrueColor",
         "defaultValue": 0,
-        "widget": "Icon Button"
+        "widget": "Icon Button Toggle"
     },
     {
         "id": "light.button.icon.lock_icon",
         "desc": "lockIconColor",
         "defaultValue": 10,
-        "widget": "Icon Buttons, Icon Button State, Icon Button State Multi, Icon Button Toggle"
+        "widget": "Icon Button State, Icon Button State Multi, Icon Button Toggle"
     },
     {
         "id": "light.button.icon.lock_icon_background",
         "desc": "lockIconBackground",
         "defaultValue": 7,
-        "widget": "Icon Buttons, Icon Button State, Icon Button State Multi, Icon Button Toggle"
+        "widget": "Icon Button State, Icon Button State Multi, Icon Button Toggle"
     },
     {
         "id": "light.icon_list.background",

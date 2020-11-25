@@ -536,7 +536,8 @@ async function createAutocompleteFilterElement(themeType, widgetList) {
         onAutocomplete: function (val) {
             // Callback function when value is autcompleted.
             filterTable(themeType, val);
-        }
+        },
+        minLength: 0
     });
 }
 
