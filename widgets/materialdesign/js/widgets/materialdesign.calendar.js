@@ -38,47 +38,47 @@ vis.binds.materialdesign.calendar =
             $this.append(`
             <div class="${containerClass}" style="width: 100%; height: 100%;">
                 
-                ${(myMdwHelper.getValueFromData(data.controlShow, false) === 'true') ? `
+                ${(myMdwHelper.getBooleanFromData(data.controlShow, false) === 'true') ? `
                     <div class="materialdesign-vuetify-calendar-control-container"${controlContainerStyle}>
                         <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-prev" style="background: ${myMdwHelper.getValueFromData(data.controlButtonColor, '')}">
                             <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
                                 <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar-arrow-left"></span>
-                                ${(myMdwHelper.getValueFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlPrev')}</span>` : ''}
+                                ${(myMdwHelper.getBooleanFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlPrev')}</span>` : ''}
                             </div>
                         </div>
 
                         <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-today" style="background: ${myMdwHelper.getValueFromData(data.controlButtonColor, '')}">
                             <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
                                 <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar-today"></span>
-                                ${(myMdwHelper.getValueFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlToday')}</span>` : ''}
+                                ${(myMdwHelper.getBooleanFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlToday')}</span>` : ''}
                             </div>
                         </div>
 
                         <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-month" style="background: ${myMdwHelper.getValueFromData(data.controlButtonColor, '')}">
                             <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
                                 <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar-month"></span>
-                                ${(myMdwHelper.getValueFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlMonth')}</span>` : ''}
+                                ${(myMdwHelper.getBooleanFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlMonth')}</span>` : ''}
                             </div>
                         </div>
 
                         <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-week" style="background: ${myMdwHelper.getValueFromData(data.controlButtonColor, '')}">
                             <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
                                 <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar-week"></span>
-                                ${(myMdwHelper.getValueFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlWeek')}</span>` : ''}
+                                ${(myMdwHelper.getBooleanFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlWeek')}</span>` : ''}
                             </div>
                         </div>
 
                         <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-day" style="background: ${myMdwHelper.getValueFromData(data.controlButtonColor, '')}">
                             <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
                                 <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar"></span>
-                                ${(myMdwHelper.getValueFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlDay')}</span>` : ''}
+                                ${(myMdwHelper.getBooleanFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlDay')}</span>` : ''}
                             </div>
                         </div>                    
 
                         <div class="materialdesign-button materialdesign-vuetify-calendar-control-button ${buttonLayout}" id="control-next" style="background: ${myMdwHelper.getValueFromData(data.controlButtonColor, '')}">
                             <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
                                 <span class="materialdesign-vuetify-calendar-control-button-icon mdi mdi-calendar-arrow-right"></span>
-                                ${(myMdwHelper.getValueFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlNext')}</span>` : ''}
+                                ${(myMdwHelper.getBooleanFromData(data.controlShowLabel, false) === 'true') ? `<span class="materialdesign-vuetify-calendar-control-button-text">${_('calendarControlNext')}</span>` : ''}
                             </div>
                         </div>
                     </div>
