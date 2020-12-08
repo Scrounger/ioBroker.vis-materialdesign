@@ -107,7 +107,7 @@ vis.binds.materialdesign.helper = {
                     if (vis.editMode) {
                         let binding = vis.binds.materialdesign.helper.extractBindingVisEditor(dataValue);
                         if (binding && binding.length >= 1) {
-                            let bindingVal = vis.formatBinding(dataValue);
+                            let bindingVal = vis.binds.materialdesign.helper.formatBindingVis(dataValue);
 
                             if (bindingVal === undefined || bindingVal === 'undefined' || bindingVal === null || bindingVal === 'null' || bindingVal === '') {
                                 return nullValue;
@@ -156,7 +156,7 @@ vis.binds.materialdesign.helper = {
                     let binding = vis.binds.materialdesign.helper.extractBindingVisEditor(dataValue);
 
                     if (binding && binding.length >= 1) {
-                        let bindingVal = vis.formatBinding(dataValue);
+                        let bindingVal = vis.binds.materialdesign.helper.formatBindingVis(dataValue);
 
                         if (bindingVal === undefined || bindingVal === 'undefined' || bindingVal === null || bindingVal === 'null' || bindingVal === '' || isNaN(bindingVal)) {
                             return nullValue;
@@ -603,18 +603,180 @@ vis.binds.materialdesign.helper = {
         }
     },
     extractBindingVisEditor(format) {
-        if (!format) return null;
-        if (vis.bindingsCache[format]) return JSON.parse(JSON.stringify(vis.bindingsCache[format]));
+        // TODO: rauswerfen sobald PR #317 in VIs Adapter integriert ist
+        try {
+            if (!format) return null;
+            if (vis.bindingsCache[format]) return JSON.parse(JSON.stringify(vis.bindingsCache[format]));
 
-        var result = vis.extractBinding(format);
+            var result = extractBinding(format); // function from visUtils.js
 
-        // cache bindings
-        if (result) {
-            vis.bindingsCache = vis.bindingsCache || {};
-            vis.bindingsCache[format] = JSON.parse(JSON.stringify(result));
+            // cache bindings
+            if (result) {
+                vis.bindingsCache = vis.bindingsCache || {};
+                vis.bindingsCache[format] = JSON.parse(JSON.stringify(result));
+            }
+
+            return result;
+        } catch (err) {
+            console.error(`[Helper] extractBindingVisEditor: format: ${format}, error: ${err.message}, stack: ${err.stack}`);
+            return undefined;
         }
+    },
+    formatBindingVis(format, view, wid, widget) {
+        // TODO: rauswerfen sobald PR #317 in VIs Adapter integriert ist
+        var oids = vis.binds.materialdesign.helper.extractBindingVisEditor(format);
+        for (var t = 0; t < oids.length; t++) {
+            var value;
+            if (oids[t].visOid) {
+                value = vis.getSpecialValues(oids[t].visOid, view, wid, widget);
+                if (value === undefined || value === null) {
+                    value = vis.states.attr(oids[t].visOid);
+                }
+            }
+            if (oids[t].operations) {
+                for (var k = 0; k < oids[t].operations.length; k++) {
+                    switch (oids[t].operations[k].op) {
+                        case 'eval':
+                            var string = '';//'(function() {';
+                            for (var a = 0; a < oids[t].operations[k].arg.length; a++) {
+                                if (!oids[t].operations[k].arg[a].name) continue;
+                                value = vis.getSpecialValues(oids[t].operations[k].arg[a].visOid, view, wid, widget);
+                                if (value === undefined || value === null) {
+                                    value = vis.states.attr(oids[t].operations[k].arg[a].visOid);
+                                }
+                                try {
+                                    value = JSON.parse(value);
+                                    // if array or object, we format it correctly, else it should be a string
+                                    if (typeof value === 'object') {
+                                        string += 'var ' + oids[t].operations[k].arg[a].name + ' = JSON.parse("' + JSON.stringify(value).replace(/\x22/g, '\\\x22') + '");';
+                                    } else {
+                                        string += 'var ' + oids[t].operations[k].arg[a].name + ' = "' + value + '";';
+                                    }
+                                } catch (e) {
+                                    string += 'var ' + oids[t].operations[k].arg[a].name + ' = "' + value + '";';
+                                }
+                            }
+                            var formula = oids[t].operations[k].formula;
+                            if (formula && formula.indexOf('widget.') !== -1) {
+                                string += 'var widget = ' + JSON.stringify(widget) + ';';
+                            }
+                            string += 'return ' + oids[t].operations[k].formula + ';';
+                            //string += '}())';
+                            try {
+                                value = new Function(string)();
+                            } catch (e) {
+                                console.error('Error in eval[value]     : ' + format);
+                                console.error('Error in eval[script]: ' + string);
+                                console.error('Error in eval[error] : ' + e);
+                                value = 0;
+                            }
+                            break;
+                        case '*':
+                            if (oids[t].operations[k].arg !== undefined && oids[t].operations[k].arg !== null) {
+                                value = parseFloat(value) * oids[t].operations[k].arg;
+                            }
+                            break;
+                        case '/':
+                            if (oids[t].operations[k].arg !== undefined && oids[t].operations[k].arg !== null) {
+                                value = parseFloat(value) / oids[t].operations[k].arg;
+                            }
+                            break;
+                        case '+':
+                            if (oids[t].operations[k].arg !== undefined && oids[t].operations[k].arg !== null) {
+                                value = parseFloat(value) + oids[t].operations[k].arg;
+                            }
+                            break;
+                        case '-':
+                            if (oids[t].operations[k].arg !== undefined && oids[t].operations[k].arg !== null) {
+                                value = parseFloat(value) - oids[t].operations[k].arg;
+                            }
+                            break;
+                        case '%':
+                            if (oids[t].operations[k].arg !== undefined && oids[t].operations[k].arg !== null) {
+                                value = parseFloat(value) % oids[t].operations[k].arg;
+                            }
+                            break;
+                        case 'round':
+                            if (oids[t].operations[k].arg === undefined && oids[t].operations[k].arg !== null) {
+                                value = Math.round(parseFloat(value));
+                            } else {
+                                value = parseFloat(value).toFixed(oids[t].operations[k].arg);
+                            }
+                            break;
+                        case 'pow':
+                            if (oids[t].operations[k].arg === undefined && oids[t].operations[k].arg !== null) {
+                                value = Math.pow(parseFloat(value), 2);
+                            } else {
+                                value = Math.pow(parseFloat(value), oids[t].operations[k].arg);
+                            }
+                            break;
+                        case 'sqrt':
+                            value = Math.sqrt(parseFloat(value));
+                            break;
+                        case 'hex':
+                            value = Math.round(parseFloat(value)).toString(16);
+                            break;
+                        case 'hex2':
+                            value = Math.round(parseFloat(value)).toString(16);
+                            if (value.length < 2) value = '0' + value;
+                            break;
+                        case 'HEX':
+                            value = Math.round(parseFloat(value)).toString(16).toUpperCase();
+                            break;
+                        case 'HEX2':
+                            value = Math.round(parseFloat(value)).toString(16).toUpperCase();
+                            if (value.length < 2) value = '0' + value;
+                            break;
+                        case 'value':
+                            value = vis.formatValue(value, parseInt(oids[t].operations[k].arg, 10));
+                            break;
+                        case 'array':
+                            value = oids[t].operations[k].arg[~~value];
+                            break;
+                        case 'date':
+                            value = vis.formatDate(value, oids[t].operations[k].arg);
+                            break;
+                        case 'momentDate':
+                            if (oids[t].operations[k].arg !== undefined && oids[t].operations[k].arg !== null) {
+                                let params = oids[t].operations[k].arg.split(',');
 
-        return result;
+                                if (params.length === 1) {
+                                    value = vis.formatMomentDate(value, params[0]);
+                                } else if (params.length === 2) {
+                                    value = vis.formatMomentDate(value, params[0], params[1]);
+                                } else {
+                                    value = 'error';
+                                }
+                            }
+                            break;
+                        case 'min':
+                            value = parseFloat(value);
+                            value = (value < oids[t].operations[k].arg) ? oids[t].operations[k].arg : value;
+                            break;
+                        case 'max':
+                            value = parseFloat(value);
+                            value = (value > oids[t].operations[k].arg) ? oids[t].operations[k].arg : value;
+                            break;
+                        case 'random':
+                            if (oids[t].operations[k].arg === undefined && oids[t].operations[k].arg !== null) {
+                                value = Math.random();
+                            } else {
+                                value = Math.random() * oids[t].operations[k].arg;
+                            }
+                            break;
+                        case 'floor':
+                            value = Math.floor(parseFloat(value));
+                            break;
+                        case 'ceil':
+                            value = Math.ceil(parseFloat(value));
+                            break;
+                    } //switch
+                }
+            } //if for
+            format = format.replace(oids[t].token, value);
+        }//for
+        format = format.replace(/{{/g, '{').replace(/}}/g, '}');
+        return format;
     },
     generateUuidv4() {
         return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
