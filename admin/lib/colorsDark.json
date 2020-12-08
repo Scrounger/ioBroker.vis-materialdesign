@@ -398,7 +398,7 @@
     {
         "id": "dark.icon_list.background_items",
         "desc": "itemBackgroundColor",
-        "defaultValue": 7,
+        "defaultValue": 5,
         "widget": "Icon List"
     },
     {
