@@ -104,7 +104,11 @@ vis.binds.materialdesign.checkbox = {
                 if (data.toggleType === 'boolean') {
                     buttonState = val;
                 } else {
-                    if (val === parseInt(data.valueOn) || val === data.valueOn) {
+                    if (!isNaN(val) && !isNaN(data.valueOn)) {
+                        if (parseFloat(val) === parseFloat(data.valueOn)) {
+                            buttonState = true;
+                        }
+                    } else if (val === parseInt(data.valueOn) || val === data.valueOn) {
                         buttonState = true;
                     } else if (val !== parseInt(data.valueOn) && val !== data.valueOn && val !== parseInt(data.valueOff) && val !== data.valueOff && data.stateIfNotTrueValue === 'on') {
                         buttonState = true;

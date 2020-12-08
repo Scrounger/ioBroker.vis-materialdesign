@@ -27,7 +27,7 @@ vis.binds.materialdesign.button = {
                     let elementSize = myMdwHelper.getValueFromData(data.lockIconBackground, undefined) ? iconSize * myMdwHelper.getNumberFromData(data.lockBackgroundSizeFactor, 1) : iconSize;
 
                     lockIcon = `<span class="mdi mdi-${myMdwHelper.getValueFromData(data.lockIcon, 'lock-outline')} materialdesign-lock-icon" 
-                            style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; width: ${elementSize}px; height: ${elementSize}px; line-height: ${elementSize}px; text-align: center; font-size: ${iconSize}px; ${(myMdwHelper.getValueFromData(data.lockIconColor, null) !== null) ? `color: ${myMdwHelper.getValueFromData(data.lockIconColor, '')};` : ''} ${myMdwHelper.getValueFromData(data.lockIconBackground, undefined)? `background: ${myMdwHelper.getValueFromData(data.lockIconBackground, undefined)}; border-radius: ${elementSize}px`:''}"></span>`;
+                            style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; width: ${elementSize}px; height: ${elementSize}px; line-height: ${elementSize}px; text-align: center; font-size: ${iconSize}px; ${(myMdwHelper.getValueFromData(data.lockIconColor, null) !== null) ? `color: ${myMdwHelper.getValueFromData(data.lockIconColor, '')};` : ''} ${myMdwHelper.getValueFromData(data.lockIconBackground, undefined) ? `background: ${myMdwHelper.getValueFromData(data.lockIconBackground, undefined)}; border-radius: ${elementSize}px` : ''}"></span>`;
                 }
             }
 
@@ -325,7 +325,11 @@ vis.binds.materialdesign.button = {
                 if (data.toggleType === 'boolean') {
                     buttonState = val;
                 } else {
-                    if (val === parseInt(data.valueOn) || val === data.valueOn) {
+                    if (!isNaN(val) && !isNaN(data.valueOn)) {
+                        if (parseFloat(val) === parseFloat(data.valueOn)) {
+                            buttonState = true;
+                        }
+                    } else if (val === parseInt(data.valueOn) || val === data.valueOn) {
                         buttonState = true;
                     } else if (val !== parseInt(data.valueOn) && val !== data.valueOn && val !== parseInt(data.valueOff) && val !== data.valueOff && data.stateIfNotTrueValue === 'on') {
                         buttonState = true;
