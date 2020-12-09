@@ -6,6 +6,10 @@
 "use strict";
 
 vis.binds.materialdesign.progress = {
+    types: {
+        linear: 'linear',
+        circular: 'circular'
+    },
     linear: function (el, data) {
         try {
             let $this = $(el);
@@ -178,6 +182,63 @@ vis.binds.materialdesign.progress = {
             return valPercent;
         } else {
             return 0;
+        }
+    },
+    getDataFromJson(obj, widgetId, type) {
+        if (type === this.types.linear) {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                min: obj.min,
+                max: obj.max,
+                reverse: obj.reverse,
+                progressRounded: obj.progressRounded,
+                progressStriped: obj.progressStriped,
+                progressStripedColor: obj.progressStripedColor,
+                colorProgressBackground: obj.colorProgressBackground,
+                colorProgress: obj.colorProgress,
+                colorOneCondition: obj.colorOneCondition,
+                colorOne: obj.colorOne,
+                colorTwoCondition: obj.colorTwoCondition,
+                colorTwo: obj.colorTwo,
+                showValueLabel: obj.showValueLabel,
+                valueLabelStyle: obj.valueLabelStyle,
+                valueLabelUnit: obj.valueLabelUnit,
+                valueMaxDecimals: obj.valueMaxDecimals,
+                valueLabelCustom: obj.valueLabelCustom,
+                textColor: obj.textColor,
+                textFontSize: obj.textFontSize,
+                textFontFamily: obj.textFontFamily,
+                textAlign: obj.textAlign,
+                progressIndeterminate: obj.indeterminate
+            }
+        } else {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                min: obj.min,
+                max: obj.max,
+                progressCircularSize: obj.progressCircularSize,
+                progressCircularWidth: obj.progressCircularWidth,
+                progressCircularRotate: obj.progressCircularRotate,
+                colorProgressBackground: obj.colorProgressBackground,
+                colorProgress: obj.colorProgress,
+                innerColor: obj.innerColor,
+                colorOneCondition: obj.colorOneCondition,
+                colorOne: obj.colorOne,
+                colorTwoCondition: obj.colorTwoCondition,
+                colorTwo: obj.colorTwo,
+                showValueLabel: obj.showValueLabel,
+                valueLabelStyle: obj.valueLabelStyle,
+                valueLabelUnit: obj.valueLabelUnit,
+                valueMaxDecimals: obj.valueMaxDecimals,
+                valueLabelCustom: obj.valueLabelCustom,
+                textColor: obj.textColor,
+                textFontSize: obj.textFontSize,
+                textFontFamily: obj.textFontFamily
+            }
         }
     }
 }

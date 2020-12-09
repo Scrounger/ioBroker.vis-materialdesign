@@ -6,6 +6,23 @@
 "use strict";
 
 vis.binds.materialdesign.button = {
+    types: {
+        toggle: {
+            default: 'toggle_default',
+            vertical: 'toggle_vertical',
+            icon: 'toggle_icon'
+        },
+        state: {
+            default: 'state_default',
+            vertical: 'state_vertical',
+            icon: 'state_icon'
+        },
+        link: {
+            default: 'link_default',
+            vertical: 'link_vertical',
+            icon: 'link_icon'
+        }
+    },
     initializeButton: function (data, isIconButton = false) {
         try {
             let buttonElementsList = [];
@@ -370,5 +387,221 @@ vis.binds.materialdesign.button = {
         } catch (ex) {
             console.error(`[Button - ${data.wid}] handleToggle: error:: ${ex.message}, stack: ${ex.stack}`);
         }
+    },
+    getDataFromJson(obj, widgetId, type) {
+        if (type === this.types.toggle.default) {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                buttonStyle: obj.buttonStyle,
+                readOnly: obj.readOnly,
+                toggleType: obj.toggleType,
+                pushButton: obj.pushButton,
+                valueOff: obj.valueOff,
+                valueOn: obj.valueOn,
+                stateIfNotTrueValue: obj.stateIfNotTrueValue,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                buttontext: obj.buttontext,
+                labelTrue: obj.labelTrue,
+                labelColorFalse: obj.labelColorFalse,
+                labelColorTrue: obj.labelColorTrue,
+                labelWidth: obj.labelWidth,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                imageTrue: obj.imageTrue,
+                imageTrueColor: obj.imageTrueColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight,
+                colorBgFalse: obj.colorBgFalse,
+                colorBgTrue: obj.colorBgTrue,
+                colorPress: obj.colorPress,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            };
+        } else if (type === this.types.toggle.vertical) {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                buttonStyle: obj.buttonStyle,
+                readOnly: obj.readOnly,
+                toggleType: obj.toggleType,
+                pushButton: obj.pushButton,
+                valueOff: obj.valueOff,
+                valueOn: obj.valueOn,
+                stateIfNotTrueValue: obj.stateIfNotTrueValue,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                buttontext: obj.buttontext,
+                labelTrue: obj.labelTrue,
+                labelColorFalse: obj.labelColorFalse,
+                labelColorTrue: obj.labelColorTrue,
+                alignment: obj.alignment,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                imageTrue: obj.imageTrue,
+                imageTrueColor: obj.imageTrueColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight,
+                colorBgFalse: obj.colorBgFalse,
+                colorBgTrue: obj.colorBgTrue,
+                colorPress: obj.colorPress,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconTop: obj.lockIconTop,
+                lockIconLeft: obj.lockIconLeft,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+        } else if (type === this.types.toggle.icon) {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                readOnly: obj.readOnly,
+                toggleType: obj.toggleType,
+                pushButton: obj.pushButton,
+                valueOff: obj.valueOff,
+                valueOn: obj.valueOn,
+                stateIfNotTrueValue: obj.stateIfNotTrueValue,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                imageTrue: obj.imageTrue,
+                imageTrueColor: obj.imageTrueColor,
+                iconHeight: obj.iconHeight,
+                colorBgFalse: obj.colorBgFalse,
+                colorBgTrue: obj.colorBgTrue,
+                colorPress: obj.colorPress,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconTop: obj.lockIconTop,
+                lockIconLeft: obj.lockIconLeft,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockIconBackground: obj.lockIconBackground,
+                lockBackgroundSizeFactor: obj.lockBackgroundSizeFactor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+        } else if (type === this.types.state.default) {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                buttonStyle: obj.buttonStyle,
+                value: obj.value,
+                buttontext: obj.buttontext,
+                colorPress: obj.colorPress,
+                labelWidth: obj.labelWidth,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+        } else if (type === this.types.state.vertical) {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                buttonStyle: obj.buttonStyle,
+                value: obj.value,
+                buttontext: obj.buttontext,
+                colorPress: obj.colorPress,
+                alignment: obj.alignment,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconTop: obj.lockIconTop,
+                lockIconLeft: obj.lockIconLeft,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+        } else if (type === this.types.state.icon) {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                value: obj.value,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconHeight: obj.iconHeight,
+                colorPress: obj.colorPress,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconTop: obj.lockIconTop,
+                lockIconLeft: obj.lockIconLeft,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockIconBackground: obj.lockIconBackground,
+                lockBackgroundSizeFactor: obj.lockBackgroundSizeFactor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+        } else if (type === this.types.link.default) {
+            return {
+                wid: widgetId,
+
+                buttonStyle: obj.buttonStyle,
+                href: obj.href,
+                openNewWindow: obj.openNewWindow,
+                buttontext: obj.buttontext,
+                colorPress: obj.colorPress,
+                labelWidth: obj.labelWidth,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight
+            }
+        } else if (type === this.types.link.vertical) {
+            return {
+                wid: widgetId,
+
+                buttonStyle: obj.buttonStyle,
+                href: obj.href,
+                openNewWindow: obj.openNewWindow,
+                buttontext: obj.buttontext,
+                colorPress: obj.colorPress,
+                alignment: obj.alignment,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight
+            }
+        } else if (type === this.types.link.icon) {
+            return {
+                wid: widgetId,
+
+                href: obj.href,
+                openNewWindow: obj.openNewWindow,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconHeight: obj.iconHeight,
+                colorPress: obj.colorPress
+            }
+        }
     }
-};
+}

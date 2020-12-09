@@ -6,8 +6,8 @@
 "use strict";
 
 // this code can be placed directly in materialdesign.html
-vis.binds.materialdesign.textfield =
-    function (el, data) {
+vis.binds.materialdesign.textfield = {
+    initialize: function (el, data) {
         try {
             let $this = $(el);
             let vueHelper = vis.binds.materialdesign.vueHelper.input
@@ -117,4 +117,63 @@ vis.binds.materialdesign.textfield =
         } catch (ex) {
             console.error(`[TextField - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack} `);
         }
-    };
+    },
+    getDataFromJson(obj, widgetId) {
+        return {
+            wid: widgetId,
+
+            oid: obj.oid,
+            inputType: obj.inputType,
+            inputMask: obj.inputMask,
+            inputMaxLength: obj.inputMaxLength,
+            inputLayout: obj.inputLayout,
+            inputAlignment: obj.inputAlignment,
+            inputLayoutBackgroundColor: obj.inputLayoutBackgroundColor,
+            inputLayoutBackgroundColorHover: obj.inputLayoutBackgroundColorHover,
+            inputLayoutBackgroundColorSelected: obj.inputLayoutBackgroundColorSelected,
+            inputLayoutBorderColor: obj.inputLayoutBorderColor,
+            inputLayoutBorderColorHover: obj.inputLayoutBorderColorHover,
+            inputLayoutBorderColorSelected: obj.inputLayoutBorderColorSelected,
+            inputTextFontFamily: obj.inputTextFontFamily,
+            inputTextFontSize: obj.inputTextFontSize,
+            inputTextColor: obj.inputTextColor,
+            inputLabelText: obj.inputLabelText,
+            inputLabelColor: obj.inputLabelColor,
+            inputLabelColorSelected: obj.inputLabelColorSelected,
+            inputLabelFontFamily: obj.inputLabelFontFamily,
+            inputLabelFontSize: obj.inputLabelFontSize,
+            inputTranslateX: obj.inputTranslateX,
+            inputTranslateY: obj.inputTranslateY,
+            inputPrefix: obj.inputPrefix,
+            inputSuffix: obj.inputSuffix,
+            inputAppendixColor: obj.inputAppendixColor,
+            inputAppendixFontSize: obj.inputAppendixFontSize,
+            inputAppendixFontFamily: obj.inputAppendixFontFamily,
+            showInputMessageAlways: obj.showInputMessageAlways,
+            inputMessage: obj.inputMessage,
+            inputMessageFontFamily: obj.inputMessageFontFamily,
+            inputMessageFontSize: obj.inputMessageFontSize,
+            inputMessageColor: obj.inputMessageColor,
+            showInputCounter: obj.showInputCounter,
+            inputCounterColor: obj.inputCounterColor,
+            inputCounterFontSize: obj.inputCounterFontSize,
+            inputCounterFontFamily: obj.inputCounterFontFamily,
+            clearIconShow: obj.clearIconShow,
+            clearIcon: obj.clearIcon,
+            clearIconSize: obj.clearIconSize,
+            clearIconColor: obj.clearIconColor,
+            prepandIcon: obj.prepandIcon,
+            prepandIconSize: obj.prepandIconSize,
+            prepandIconColor: obj.prepandIconColor,
+            prepandInnerIcon: obj.prepandInnerIcon,
+            prepandInnerIconSize: obj.prepandInnerIconSize,
+            prepandInnerIconColor: obj.prepandInnerIconColor,
+            appendIcon: obj.appendIcon,
+            appendIconSize: obj.appendIconSize,
+            appendIconColor: obj.appendIconColor,
+            appendOuterIcon: obj.appendOuterIcon,
+            appendOuterIconSize: obj.appendOuterIconSize,
+            appendOuterIconColor: obj.appendOuterIconColor
+        }
+    }
+}

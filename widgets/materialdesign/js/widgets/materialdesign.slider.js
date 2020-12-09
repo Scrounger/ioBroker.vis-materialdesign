@@ -210,5 +210,51 @@ vis.binds.materialdesign.slider = {
         } catch (ex) {
             console.error(`[Vuetify Slider ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
+    },
+    getDataFromJson(obj, widgetId) {
+        return {
+            wid: widgetId,
+
+            oid: obj.oid,
+            "oid-working": obj["oid-working"],
+            orientation: obj.orientation,
+            reverseSlider: obj.reverseSlider,
+            knobSize: obj.knobSize,
+            readOnly: obj.readOnly,
+            min: obj.min,
+            max: obj.max,
+            step: obj.step,
+            vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+            showTicks: obj.showTicks,
+            tickSize: obj.tickSize,
+            tickLabels: obj.tickLabels,
+            tickColorBefore: obj.tickColorBefore,
+            tickColorAfter: obj.tickColorAfter,
+            colorBeforeThumb: obj.colorBeforeThumb,
+            colorThumb: obj.colorThumb,
+            colorAfterThumb: obj.colorAfterThumb,
+            prepandText: obj.prepandText,
+            prepandTextWidth: obj.prepandTextWidth,
+            prepandTextColor: obj.prepandTextColor,
+            prepandTextFontSize: obj.prepandTextFontSize,
+            prepandTextFontFamily: obj.prepandTextFontFamily,
+            showValueLabel: obj.showValueLabel,
+            valueLabelStyle: obj.valueLabelStyle,
+            valueLabelUnit: obj.valueLabelUnit,
+            valueLabelMin: obj.valueLabelMin,
+            valueLabelMax: obj.valueLabelMax,
+            valueLessThan: obj.valueLessThan,
+            textForValueLessThan: obj.textForValueLessThan,
+            valueGreaterThan: obj.valueGreaterThan,
+            textForValueGreaterThan: obj.textForValueGreaterThan,
+            valueLabelWidth: obj.valueLabelWidth,
+            showThumbLabel: obj.showThumbLabel,
+            thumbSize: obj.thumbSize,
+            thumbBackgroundColor: obj.thumbBackgroundColor,
+            thumbFontColor: obj.thumbFontColor,
+            thumbFontSize: obj.thumbFontSize,
+            thumbFontFamily: obj.thumbFontFamily,
+            useLabelRules: obj.useLabelRules
+        }
     }
 };

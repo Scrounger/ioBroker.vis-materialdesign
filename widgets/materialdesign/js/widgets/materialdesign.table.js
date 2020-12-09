@@ -293,12 +293,15 @@ vis.binds.materialdesign.table = {
                     let element = `${prefix}${objValue}${suffix}`
 
                     if (typeof (objValue) === 'object') {
-                        let elementData = vis.binds.materialdesign.table.getElementData(objValue, data.wid);
-
                         if (objValue.type === 'buttonToggle' || objValue.type === 'buttonToggle_vertical') {
+                            let init = null;
+                            let elementData = null;
 
-                            let init = vis.binds.materialdesign.button.initializeButton(elementData);
-                            if (objValue.type === 'buttonToggle_vertical') {
+                            if (objValue.type === 'buttonToggle') {
+                                elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.toggle.default);
+                                init = vis.binds.materialdesign.button.initializeButton(elementData);
+                            } else {
+                                elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.toggle.vertical);
                                 init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
                             }
 
@@ -314,6 +317,7 @@ vis.binds.materialdesign.table = {
                                 vis.binds.materialdesign.button.handleToggle(btn, elementData);
                             });
                         } else if (objValue.type === 'buttonToggle_icon') {
+                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.toggle.icon);
                             let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
 
                             element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
@@ -329,9 +333,14 @@ vis.binds.materialdesign.table = {
                             });
 
                         } else if (objValue.type === 'buttonState' || objValue.type === 'buttonState_vertical') {
+                            let init = null;
+                            let elementData = null;
 
-                            let init = vis.binds.materialdesign.button.initializeButton(elementData);
-                            if (objValue.type === 'buttonState_vertical') {
+                            if (objValue.type === 'buttonState') {
+                                elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.state.default);
+                                init = vis.binds.materialdesign.button.initializeButton(elementData);
+                            } else {
+                                elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.state.vertical);
                                 init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
                             }
 
@@ -348,6 +357,7 @@ vis.binds.materialdesign.table = {
                             });
 
                         } else if (objValue.type === 'buttonState_icon') {
+                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.state.icon);
                             let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
 
                             element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
@@ -364,9 +374,14 @@ vis.binds.materialdesign.table = {
 
 
                         } else if (objValue.type === 'buttonLink' || objValue.type === 'buttonLink_vertical') {
+                            let init = null;
+                            let elementData = null;
 
-                            let init = vis.binds.materialdesign.button.initializeButton(elementData);
-                            if (objValue.type === 'buttonLink_vertical') {
+                            if (objValue.type === 'buttonLink') {
+                                elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.link.default);
+                                init = vis.binds.materialdesign.button.initializeButton(elementData);
+                            }else{
+                                elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.link.vertical);
                                 init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
                             }
 
@@ -381,6 +396,7 @@ vis.binds.materialdesign.table = {
                             });
 
                         } else if (objValue.type === 'buttonLink_icon') {
+                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.link.icon);
                             let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
 
                             element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
@@ -394,6 +410,8 @@ vis.binds.materialdesign.table = {
                             });
 
                         } else if (objValue.type === 'progress') {
+                            let elementData = vis.binds.materialdesign.progress.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.progress.types.linear);
+
                             element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 12px;'}">
                                     </div>`
 
@@ -407,6 +425,8 @@ vis.binds.materialdesign.table = {
                                 });
                             });
                         } else if (objValue.type === 'progress_circular') {
+                            let elementData = vis.binds.materialdesign.progress.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.progress.types.circular);
+
                             element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-circular-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 60px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 60px;'}">
                                     </div>`
 
@@ -420,6 +440,8 @@ vis.binds.materialdesign.table = {
                                 });
                             });
                         } else if (objValue.type === 'slider') {
+                            let elementData = vis.binds.materialdesign.slider.getDataFromJson(objValue, data.wid);
+
                             element = `<div class="vis-widget materialdesign-widget materialdesign-slider-vertical materialdesign-slider-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${elementData["oid-working"]}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
                                     </div>`
 
@@ -434,6 +456,8 @@ vis.binds.materialdesign.table = {
                             });
 
                         } else if (objValue.type === 'slider_round') {
+                            let elementData = vis.binds.materialdesign.roundslider.getDataFromJson(objValue, data.wid);
+
                             element = `<div class="vis-widget materialdesign-widget materialdesign-slider-round materialdesign-slider-round-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${elementData["oid-working"]}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 60px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 60px;'}">
                                     </div>`
 
@@ -443,10 +467,11 @@ vis.binds.materialdesign.table = {
                                 myMdwHelper.waitForElement($this, `.materialdesign-slider-round-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
                                     let slider = $this.find(`.materialdesign-slider-round-table-row_${row}-col_${col}`);
 
-                                    vis.binds.materialdesign.roundslider(slider, elementData);
+                                    vis.binds.materialdesign.roundslider.initialize(slider, elementData);
                                 });
                             });
                         } else if (objValue.type === 'switch') {
+                            let elementData = vis.binds.materialdesign.switch.getDataFromJson(objValue, data.wid);
                             let init = vis.binds.materialdesign.switch.initialize(elementData);
 
                             element = `<div class="vis-widget materialdesign-widget ${init.labelPosition} materialdesign-switch materialdesign-switch-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
@@ -463,6 +488,7 @@ vis.binds.materialdesign.table = {
                                 });
                             });
                         } else if (objValue.type === 'checkbox') {
+                            let elementData = vis.binds.materialdesign.checkbox.getDataFromJson(objValue, data.wid);
                             let init = vis.binds.materialdesign.checkbox.initialize(elementData);
 
                             element = `<div class="vis-widget materialdesign-widget ${init.labelPosition} materialdesign-checkbox materialdesign-checkbox-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
@@ -479,6 +505,7 @@ vis.binds.materialdesign.table = {
                                 });
                             });
                         } else if (objValue.type === 'textfield') {
+                            let elementData = vis.binds.materialdesign.textfield.getDataFromJson(objValue, data.wid);
 
                             element = `<div class="vis-widget materialdesign-widget materialdesign-input materialdesign-input-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
                                     </div>`
@@ -489,11 +516,13 @@ vis.binds.materialdesign.table = {
                                 myMdwHelper.waitForElement($this, `.materialdesign-input-table-row_${row}-col_${col}`, data.wid, 'Table Textfield', function () {
                                     let input = $this.find(`.materialdesign-input-table-row_${row}-col_${col}`);
 
-                                    vis.binds.materialdesign.textfield(input, elementData);
+                                    vis.binds.materialdesign.textfield.initialize(input, elementData);
                                 });
                             });
 
                         } else if (objValue.type === 'select') {
+                            let elementData = vis.binds.materialdesign.select.getDataFromJson(objValue, data.wid);
+
                             element = `<div class="vis-widget materialdesign-widget materialdesign-select materialdesign-select-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
                                     </div>`
 
@@ -503,11 +532,13 @@ vis.binds.materialdesign.table = {
                                 myMdwHelper.waitForElement($this, `.materialdesign-select-table-row_${row}-col_${col}`, data.wid, 'Table Select', function () {
                                     let select = $this.find(`.materialdesign-select-table-row_${row}-col_${col}`);
 
-                                    vis.binds.materialdesign.select(select, elementData);
+                                    vis.binds.materialdesign.select.initialize(select, elementData);
                                 });
                             });
 
                         } else if (objValue.type === 'autocomplete') {
+                            let elementData = vis.binds.materialdesign.autocomplete.getDataFromJson(objValue, data.wid);
+
                             element = `<div class="vis-widget materialdesign-widget materialdesign-autocomplete materialdesign-autocomplete-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
                                     </div>`
 
@@ -517,11 +548,13 @@ vis.binds.materialdesign.table = {
                                 myMdwHelper.waitForElement($this, `.materialdesign-autocomplete-table-row_${row}-col_${col}`, data.wid, 'Table Autocomplete', function () {
                                     let autocomplete = $this.find(`.materialdesign-autocomplete-table-row_${row}-col_${col}`);
 
-                                    vis.binds.materialdesign.autocomplete(autocomplete, elementData);
+                                    vis.binds.materialdesign.autocomplete.initialize(autocomplete, elementData);
                                 });
                             });
 
                         } else if (objValue.type === 'materialdesignicon') {
+                            let elementData = vis.binds.materialdesign.materialdesignicons.getDataFromJson(objValue, data.wid);
+
                             element = `<div class="vis-widget materialdesign-widget materialdesign-icon materialdesign-icon-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : ''} ${objValue.height ? `height: ${objValue.height};` : ''}">
                                     </div>`
 
@@ -579,9 +612,14 @@ vis.binds.materialdesign.table = {
                                 ${element}
                         </td>`
                 } catch (err) {
-                    console.error(`[getColElement] row: ${row}, col: ${col}, objValue: ${objValue}`);
+                    console.error(`[getColElement] row: ${row}, col: ${col}, objValue: ${JSON.stringify(objValue)}`);
                     console.error(`[getColElement] error: ${err.message}, stack: ${err.stack}`);
-                    return 'Error';
+
+                    return `<td class="mdc-data-table__cell"
+                                id="cell-row${row}-col${col}"
+                                style="color: red; font-weight: bold;">
+                                    ${_('Error:')} ${err.message}
+                            </td>`
                 }
             };
         }
@@ -614,686 +652,6 @@ vis.binds.materialdesign.table = {
         }
 
         return jsonData;
-    },
-    getElementData: function (obj, widgetId) {
-        if (obj.type === 'buttonToggle') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                buttonStyle: obj.buttonStyle,
-                readOnly: obj.readOnly,
-                toggleType: obj.toggleType,
-                pushButton: obj.pushButton,
-                valueOff: obj.valueOff,
-                valueOn: obj.valueOn,
-                stateIfNotTrueValue: obj.stateIfNotTrueValue,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                buttontext: obj.buttontext,
-                labelTrue: obj.labelTrue,
-                labelColorFalse: obj.labelColorFalse,
-                labelColorTrue: obj.labelColorTrue,
-                labelWidth: obj.labelWidth,
-                image: obj.image,
-                imageColor: obj.imageColor,
-                imageTrue: obj.imageTrue,
-                imageTrueColor: obj.imageTrueColor,
-                iconPosition: obj.iconPosition,
-                iconHeight: obj.iconHeight,
-                colorBgFalse: obj.colorBgFalse,
-                colorBgTrue: obj.colorBgTrue,
-                colorPress: obj.colorPress,
-                lockEnabled: obj.lockEnabled,
-                autoLockAfter: obj.autoLockAfter,
-                lockIcon: obj.lockIcon,
-                lockIconSize: obj.lockIconSize,
-                lockIconColor: obj.lockIconColor,
-                lockFilterGrayscale: obj.lockFilterGrayscale
-            };
-        } else if (obj.type === 'buttonToggle_vertical') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                buttonStyle: obj.buttonStyle,
-                readOnly: obj.readOnly,
-                toggleType: obj.toggleType,
-                pushButton: obj.pushButton,
-                valueOff: obj.valueOff,
-                valueOn: obj.valueOn,
-                stateIfNotTrueValue: obj.stateIfNotTrueValue,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                buttontext: obj.buttontext,
-                labelTrue: obj.labelTrue,
-                labelColorFalse: obj.labelColorFalse,
-                labelColorTrue: obj.labelColorTrue,
-                alignment: obj.alignment,
-                image: obj.image,
-                imageColor: obj.imageColor,
-                imageTrue: obj.imageTrue,
-                imageTrueColor: obj.imageTrueColor,
-                iconPosition: obj.iconPosition,
-                iconHeight: obj.iconHeight,
-                colorBgFalse: obj.colorBgFalse,
-                colorBgTrue: obj.colorBgTrue,
-                colorPress: obj.colorPress,
-                lockEnabled: obj.lockEnabled,
-                autoLockAfter: obj.autoLockAfter,
-                lockIcon: obj.lockIcon,
-                lockIconTop: obj.lockIconTop,
-                lockIconLeft: obj.lockIconLeft,
-                lockIconSize: obj.lockIconSize,
-                lockIconColor: obj.lockIconColor,
-                lockFilterGrayscale: obj.lockFilterGrayscale
-            }
-
-        } else if (obj.type === 'buttonToggle_icon') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                readOnly: obj.readOnly,
-                toggleType: obj.toggleType,
-                pushButton: obj.pushButton,
-                valueOff: obj.valueOff,
-                valueOn: obj.valueOn,
-                stateIfNotTrueValue: obj.stateIfNotTrueValue,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                image: obj.image,
-                imageColor: obj.imageColor,
-                imageTrue: obj.imageTrue,
-                imageTrueColor: obj.imageTrueColor,
-                iconHeight: obj.iconHeight,
-                colorBgFalse: obj.colorBgFalse,
-                colorBgTrue: obj.colorBgTrue,
-                colorPress: obj.colorPress,
-                lockEnabled: obj.lockEnabled,
-                autoLockAfter: obj.autoLockAfter,
-                lockIcon: obj.lockIcon,
-                lockIconTop: obj.lockIconTop,
-                lockIconLeft: obj.lockIconLeft,
-                lockIconSize: obj.lockIconSize,
-                lockIconColor: obj.lockIconColor,
-                lockIconBackground: obj.lockIconBackground,
-                lockBackgroundSizeFactor: obj.lockBackgroundSizeFactor,
-                lockFilterGrayscale: obj.lockFilterGrayscale
-            }
-        } else if (obj.type === 'buttonState') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                buttonStyle: obj.buttonStyle,
-                value: obj.value,
-                buttontext: obj.buttontext,
-                colorPress: obj.colorPress,
-                labelWidth: obj.labelWidth,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                image: obj.image,
-                imageColor: obj.imageColor,
-                iconPosition: obj.iconPosition,
-                iconHeight: obj.iconHeight,
-                lockEnabled: obj.lockEnabled,
-                autoLockAfter: obj.autoLockAfter,
-                lockIcon: obj.lockIcon,
-                lockIconSize: obj.lockIconSize,
-                lockIconColor: obj.lockIconColor,
-                lockFilterGrayscale: obj.lockFilterGrayscale
-            }
-        } else if (obj.type === 'buttonState_vertical') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                buttonStyle: obj.buttonStyle,
-                value: obj.value,
-                buttontext: obj.buttontext,
-                colorPress: obj.colorPress,
-                alignment: obj.alignment,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                image: obj.image,
-                imageColor: obj.imageColor,
-                iconPosition: obj.iconPosition,
-                iconHeight: obj.iconHeight,
-                lockEnabled: obj.lockEnabled,
-                autoLockAfter: obj.autoLockAfter,
-                lockIcon: obj.lockIcon,
-                lockIconTop: obj.lockIconTop,
-                lockIconLeft: obj.lockIconLeft,
-                lockIconSize: obj.lockIconSize,
-                lockIconColor: obj.lockIconColor,
-                lockFilterGrayscale: obj.lockFilterGrayscale
-            }
-        } else if (obj.type === 'buttonState_icon') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                value: obj.value,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                image: obj.image,
-                imageColor: obj.imageColor,
-                iconHeight: obj.iconHeight,
-                colorPress: obj.colorPress,
-                lockEnabled: obj.lockEnabled,
-                autoLockAfter: obj.autoLockAfter,
-                lockIcon: obj.lockIcon,
-                lockIconTop: obj.lockIconTop,
-                lockIconLeft: obj.lockIconLeft,
-                lockIconSize: obj.lockIconSize,
-                lockIconColor: obj.lockIconColor,
-                lockIconBackground: obj.lockIconBackground,
-                lockBackgroundSizeFactor: obj.lockBackgroundSizeFactor,
-                lockFilterGrayscale: obj.lockFilterGrayscale
-            }
-        } else if (obj.type === 'buttonLink') {
-            return {
-                wid: widgetId,
-
-                buttonStyle: obj.buttonStyle,
-                href: obj.href,
-                openNewWindow: obj.openNewWindow,
-                buttontext: obj.buttontext,
-                colorPress: obj.colorPress,
-                labelWidth: obj.labelWidth,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                image: obj.image,
-                imageColor: obj.imageColor,
-                iconPosition: obj.iconPosition,
-                iconHeight: obj.iconHeight
-            }
-        } else if (obj.type === 'buttonLink_vertical') {
-            return {
-                wid: widgetId,
-
-                buttonStyle: obj.buttonStyle,
-                href: obj.href,
-                openNewWindow: obj.openNewWindow,
-                buttontext: obj.buttontext,
-                colorPress: obj.colorPress,
-                alignment: obj.alignment,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                image: obj.image,
-                imageColor: obj.imageColor,
-                iconPosition: obj.iconPosition,
-                iconHeight: obj.iconHeight
-            }
-        } else if (obj.type === 'buttonLink_icon') {
-            return {
-                wid: widgetId,
-
-                href: obj.href,
-                openNewWindow: obj.openNewWindow,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                image: obj.image,
-                imageColor: obj.imageColor,
-                iconHeight: obj.iconHeight,
-                colorPress: obj.colorPress
-            }
-        } else if (obj.type === 'progress') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                min: obj.min,
-                max: obj.max,
-                reverse: obj.reverse,
-                progressRounded: obj.progressRounded,
-                progressStriped: obj.progressStriped,
-                progressStripedColor: obj.progressStripedColor,
-                colorProgressBackground: obj.colorProgressBackground,
-                colorProgress: obj.colorProgress,
-                colorOneCondition: obj.colorOneCondition,
-                colorOne: obj.colorOne,
-                colorTwoCondition: obj.colorTwoCondition,
-                colorTwo: obj.colorTwo,
-                showValueLabel: obj.showValueLabel,
-                valueLabelStyle: obj.valueLabelStyle,
-                valueLabelUnit: obj.valueLabelUnit,
-                valueMaxDecimals: obj.valueMaxDecimals,
-                valueLabelCustom: obj.valueLabelCustom,
-                textColor: obj.textColor,
-                textFontSize: obj.textFontSize,
-                textFontFamily: obj.textFontFamily,
-                textAlign: obj.textAlign,
-                progressIndeterminate: obj.indeterminate
-            }
-        } else if (obj.type === 'progress_circular') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                min: obj.min,
-                max: obj.max,
-                progressCircularSize: obj.progressCircularSize,
-                progressCircularWidth: obj.progressCircularWidth,
-                progressCircularRotate: obj.progressCircularRotate,
-                colorProgressBackground: obj.colorProgressBackground,
-                colorProgress: obj.colorProgress,
-                innerColor: obj.innerColor,
-                colorOneCondition: obj.colorOneCondition,
-                colorOne: obj.colorOne,
-                colorTwoCondition: obj.colorTwoCondition,
-                colorTwo: obj.colorTwo,
-                showValueLabel: obj.showValueLabel,
-                valueLabelStyle: obj.valueLabelStyle,
-                valueLabelUnit: obj.valueLabelUnit,
-                valueMaxDecimals: obj.valueMaxDecimals,
-                valueLabelCustom: obj.valueLabelCustom,
-                textColor: obj.textColor,
-                textFontSize: obj.textFontSize,
-                textFontFamily: obj.textFontFamily
-            }
-        } else if (obj.type === 'slider') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                "oid-working": obj["oid-working"],
-                orientation: obj.orientation,
-                reverseSlider: obj.reverseSlider,
-                knobSize: obj.knobSize,
-                readOnly: obj.readOnly,
-                min: obj.min,
-                max: obj.max,
-                step: obj.step,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                showTicks: obj.showTicks,
-                tickSize: obj.tickSize,
-                tickLabels: obj.tickLabels,
-                tickColorBefore: obj.tickColorBefore,
-                tickColorAfter: obj.tickColorAfter,
-                colorBeforeThumb: obj.colorBeforeThumb,
-                colorThumb: obj.colorThumb,
-                colorAfterThumb: obj.colorAfterThumb,
-                prepandText: obj.prepandText,
-                prepandTextWidth: obj.prepandTextWidth,
-                prepandTextColor: obj.prepandTextColor,
-                prepandTextFontSize: obj.prepandTextFontSize,
-                prepandTextFontFamily: obj.prepandTextFontFamily,
-                showValueLabel: obj.showValueLabel,
-                valueLabelStyle: obj.valueLabelStyle,
-                valueLabelUnit: obj.valueLabelUnit,
-                valueLabelMin: obj.valueLabelMin,
-                valueLabelMax: obj.valueLabelMax,
-                valueLessThan: obj.valueLessThan,
-                textForValueLessThan: obj.textForValueLessThan,
-                valueGreaterThan: obj.valueGreaterThan,
-                textForValueGreaterThan: obj.textForValueGreaterThan,
-                valueLabelWidth: obj.valueLabelWidth,
-                showThumbLabel: obj.showThumbLabel,
-                thumbSize: obj.thumbSize,
-                thumbBackgroundColor: obj.thumbBackgroundColor,
-                thumbFontColor: obj.thumbFontColor,
-                thumbFontSize: obj.thumbFontSize,
-                thumbFontFamily: obj.thumbFontFamily,
-                useLabelRules: obj.useLabelRules
-            }
-        } else if (obj.type === 'slider_round') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                "oid-working": obj["oid-working"],
-                min: obj.min,
-                max: obj.max,
-                step: obj.step,
-                readOnly: obj.readOnly,
-                startAngle: obj.startAngle,
-                arcLength: obj.arcLength,
-                sliderWidth: obj.sliderWidth,
-                handleSize: obj.handleSize,
-                handleZoom: obj.handleZoom,
-                rtl: obj.rtl,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                colorSliderBg: obj.colorSliderBg,
-                colorBeforeThumb: obj.colorBeforeThumb,
-                colorThumb: obj.colorThumb,
-                colorAfterThumb: obj.colorAfterThumb,
-                valueLabelColor: obj.valueLabelColor,
-                showValueLabel: obj.showValueLabel,
-                valueLabelVerticalPosition: obj.valueLabelVerticalPosition,
-                valueLabelStyle: obj.valueLabelStyle,
-                valueLabelUnit: obj.valueLabelUnit,
-                valueLabelMin: obj.valueLabelMin,
-                valueLabelMax: obj.valueLabelMax,
-                valueLessThan: obj.valueLessThan,
-                textForValueLessThan: obj.textForValueLessThan,
-                valueGreaterThan: obj.valueGreaterThan,
-                textForValueGreaterThan: obj.textForValueGreaterThan
-            }
-        } else if (obj.type === 'switch') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                readOnly: obj.readOnly,
-                toggleType: obj.toggleType,
-                valueOff: obj.valueOff,
-                valueOn: obj.valueOn,
-                stateIfNotTrueValue: obj.stateIfNotTrueValue,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                labelFalse: obj.labelFalse,
-                labelTrue: obj.labelTrue,
-                labelPosition: obj.labelPosition,
-                labelClickActive: obj.labelClickActive,
-                colorSwitchThumb: obj.colorSwitchThumb,
-                colorSwitchTrack: obj.colorSwitchTrack,
-                colorSwitchTrue: obj.colorSwitchTrue,
-                colorSwitchHover: obj.colorSwitchHover,
-                colorSwitchHoverTrue: obj.colorSwitchHoverTrue,
-                labelColorFalse: obj.labelColorFalse,
-                labelColorTrue: obj.labelColorTrue,
-                lockEnabled: obj.lockEnabled,
-                autoLockAfter: obj.autoLockAfter,
-                lockIcon: obj.lockIcon,
-                lockIconTop: obj.lockIconTop,
-                lockIconLeft: obj.lockIconLeft,
-                lockIconSize: obj.lockIconSize,
-                lockIconColor: obj.lockIconColor,
-                lockFilterGrayscale: obj.lockFilterGrayscale
-            }
-        } else if (obj.type === 'checkbox') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                readOnly: obj.readOnly,
-                toggleType: obj.toggleType,
-                valueOff: obj.valueOff,
-                valueOn: obj.valueOn,
-                stateIfNotTrueValue: obj.stateIfNotTrueValue,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                labelFalse: obj.labelFalse,
-                labelTrue: obj.labelTrue,
-                labelPosition: obj.labelPosition,
-                labelClickActive: obj.labelClickActive,
-                colorCheckBox: obj.colorCheckBox,
-                colorCheckBoxBorder: obj.colorCheckBoxBorder,
-                colorCheckBoxHover: obj.colorCheckBoxHover,
-                labelColorFalse: obj.labelColorFalse,
-                labelColorTrue: obj.labelColorTrue,
-                lockEnabled: obj.lockEnabled,
-                autoLockAfter: obj.autoLockAfter,
-                lockIcon: obj.lockIcon,
-                lockIconTop: obj.lockIconTop,
-                lockIconLeft: obj.lockIconLeft,
-                lockIconSize: obj.lockIconSize,
-                lockIconColor: obj.lockIconColor,
-                lockFilterGrayscale: obj.lockFilterGrayscale
-            }
-        } else if (obj.type === 'textfield') {
-            return {
-                wid: widgetId,
-
-
-                oid: obj.oid,
-                inputType: obj.inputType,
-                inputMask: obj.inputMask,
-                inputMaxLength: obj.inputMaxLength,
-                inputLayout: obj.inputLayout,
-                inputAlignment: obj.inputAlignment,
-                inputLayoutBackgroundColor: obj.inputLayoutBackgroundColor,
-                inputLayoutBackgroundColorHover: obj.inputLayoutBackgroundColorHover,
-                inputLayoutBackgroundColorSelected: obj.inputLayoutBackgroundColorSelected,
-                inputLayoutBorderColor: obj.inputLayoutBorderColor,
-                inputLayoutBorderColorHover: obj.inputLayoutBorderColorHover,
-                inputLayoutBorderColorSelected: obj.inputLayoutBorderColorSelected,
-                inputTextFontFamily: obj.inputTextFontFamily,
-                inputTextFontSize: obj.inputTextFontSize,
-                inputTextColor: obj.inputTextColor,
-                inputLabelText: obj.inputLabelText,
-                inputLabelColor: obj.inputLabelColor,
-                inputLabelColorSelected: obj.inputLabelColorSelected,
-                inputLabelFontFamily: obj.inputLabelFontFamily,
-                inputLabelFontSize: obj.inputLabelFontSize,
-                inputTranslateX: obj.inputTranslateX,
-                inputTranslateY: obj.inputTranslateY,
-                inputPrefix: obj.inputPrefix,
-                inputSuffix: obj.inputSuffix,
-                inputAppendixColor: obj.inputAppendixColor,
-                inputAppendixFontSize: obj.inputAppendixFontSize,
-                inputAppendixFontFamily: obj.inputAppendixFontFamily,
-                showInputMessageAlways: obj.showInputMessageAlways,
-                inputMessage: obj.inputMessage,
-                inputMessageFontFamily: obj.inputMessageFontFamily,
-                inputMessageFontSize: obj.inputMessageFontSize,
-                inputMessageColor: obj.inputMessageColor,
-                showInputCounter: obj.showInputCounter,
-                inputCounterColor: obj.inputCounterColor,
-                inputCounterFontSize: obj.inputCounterFontSize,
-                inputCounterFontFamily: obj.inputCounterFontFamily,
-                clearIconShow: obj.clearIconShow,
-                clearIcon: obj.clearIcon,
-                clearIconSize: obj.clearIconSize,
-                clearIconColor: obj.clearIconColor,
-                prepandIcon: obj.prepandIcon,
-                prepandIconSize: obj.prepandIconSize,
-                prepandIconColor: obj.prepandIconColor,
-                prepandInnerIcon: obj.prepandInnerIcon,
-                prepandInnerIconSize: obj.prepandInnerIconSize,
-                prepandInnerIconColor: obj.prepandInnerIconColor,
-                appendIcon: obj.appendIcon,
-                appendIconSize: obj.appendIconSize,
-                appendIconColor: obj.appendIconColor,
-                appendOuterIcon: obj.appendOuterIcon,
-                appendOuterIconSize: obj.appendOuterIconSize,
-                appendOuterIconColor: obj.appendOuterIconColor
-            }
-        } else if (obj.type === 'select') {
-            let data = {
-                wid: widgetId,
-
-                oid: obj.oid,
-                inputType: obj.inputType,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                inputLayout: obj.inputLayout,
-                inputAlignment: obj.inputAlignment,
-                inputLayoutBackgroundColor: obj.inputLayoutBackgroundColor,
-                inputLayoutBackgroundColorHover: obj.inputLayoutBackgroundColorHover,
-                inputLayoutBackgroundColorSelected: obj.inputLayoutBackgroundColorSelected,
-                inputLayoutBorderColor: obj.inputLayoutBorderColor,
-                inputLayoutBorderColorHover: obj.inputLayoutBorderColorHover,
-                inputLayoutBorderColorSelected: obj.inputLayoutBorderColorSelected,
-                inputTextFontFamily: obj.inputTextFontFamily,
-                inputTextFontSize: obj.inputTextFontSize,
-                inputTextColor: obj.inputTextColor,
-                inputLabelText: obj.inputLabelText,
-                inputLabelColor: obj.inputLabelColor,
-                inputLabelColorSelected: obj.inputLabelColorSelected,
-                inputLabelFontFamily: obj.inputLabelFontFamily,
-                inputLabelFontSize: obj.inputLabelFontSize,
-                inputTranslateX: obj.inputTranslateX,
-                inputTranslateY: obj.inputTranslateY,
-                inputPrefix: obj.inputPrefix,
-                inputSuffix: obj.inputSuffix,
-                inputAppendixColor: obj.inputAppendixColor,
-                inputAppendixFontSize: obj.inputAppendixFontSize,
-                inputAppendixFontFamily: obj.inputAppendixFontFamily,
-                showInputMessageAlways: obj.showInputMessageAlways,
-                inputMessage: obj.inputMessage,
-                inputMessageFontFamily: obj.inputMessageFontFamily,
-                inputMessageFontSize: obj.inputMessageFontSize,
-                inputMessageColor: obj.inputMessageColor,
-                showInputCounter: obj.showInputCounter,
-                inputCounterColor: obj.inputCounterColor,
-                inputCounterFontSize: obj.inputCounterFontSize,
-                inputCounterFontFamily: obj.inputCounterFontFamily,
-                clearIconShow: obj.clearIconShow,
-                clearIcon: obj.clearIcon,
-                clearIconSize: obj.clearIconSize,
-                clearIconColor: obj.clearIconColor,
-                collapseIcon: obj.collapseIcon,
-                collapseIconSize: obj.collapseIconSize,
-                collapseIconColor: obj.collapseIconColor,
-                prepandIcon: obj.prepandIcon,
-                prepandIconSize: obj.prepandIconSize,
-                prepandIconColor: obj.prepandIconColor,
-                prepandInnerIcon: obj.prepandInnerIcon,
-                prepandInnerIconSize: obj.prepandInnerIconSize,
-                prepandInnerIconColor: obj.prepandInnerIconColor,
-                appendOuterIcon: obj.appendOuterIcon,
-                appendOuterIconSize: obj.appendOuterIconSize,
-                appendOuterIconColor: obj.appendOuterIconColor,
-                listDataMethod: obj.listDataMethod,
-                countSelectItems: obj.countSelectItems,
-                jsonStringObject: obj.jsonStringObject,
-                valueList: obj.valueList,
-                valueListLabels: obj.valueListLabels,
-                valueListIcons: obj.valueListIcons,
-                listPosition: obj.listPosition,
-                listPositionOffset: obj.listPositionOffset,
-                listItemHeight: obj.listItemHeight,
-                listItemBackgroundColor: obj.listItemBackgroundColor,
-                listItemBackgroundHoverColor: obj.listItemBackgroundHoverColor,
-                listItemBackgroundSelectedColor: obj.listItemBackgroundSelectedColor,
-                listItemRippleEffectColor: obj.listItemRippleEffectColor,
-                showSelectedIcon: obj.showSelectedIcon,
-                listIconSize: obj.listIconSize,
-                listIconColor: obj.listIconColor,
-                listIconHoverColor: obj.listIconHoverColor,
-                listIconSelectedColor: obj.listIconSelectedColor,
-                listItemFontSize: obj.listItemFontSize,
-                listItemFont: obj.listItemFont,
-                listItemFontColor: obj.listItemFontColor,
-                listItemFontHoverColor: obj.listItemFontHoverColor,
-                listItemFontSelectedColor: obj.listItemFontSelectedColor,
-                listItemSubFontSize: obj.listItemSubFontSize,
-                listItemSubFont: obj.listItemSubFont,
-                listItemSubFontColor: obj.listItemSubFontColor,
-                listItemSubFontHoverColor: obj.listItemSubFontHoverColor,
-                listItemSubFontSelectedColor: obj.listItemSubFontSelectedColor,
-                showValue: obj.showValue,
-                listItemValueFontSize: obj.listItemValueFontSize,
-                listItemValueFont: obj.listItemValueFont,
-                listItemValueFontColor: obj.listItemValueFontColor,
-                listItemValueFontHoverColor: obj.listItemValueFontHoverColor,
-                listItemValueFontSelectedColor: obj.listItemValueFontSelectedColor,
-            }
-
-            for (var i = 0; i <= obj.countSelectItems; i++) {
-                data['value' + i] = obj['value' + i];
-                data['label' + i] = obj['label' + i];
-                data['subLabel' + i] = obj['subLabel' + i];
-                data['listIcon' + i] = obj['listIcon' + i];
-                data['listIconColor' + i] = obj['listIconColor' + i];
-            }
-
-            return data;
-
-        } else if (obj.type === 'autocomplete') {
-            let data = {
-                wid: widgetId,
-
-                oid: obj.oid,
-                inputMode: obj.inputMode,
-                inputType: obj.inputType,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                inputLayout: obj.inputLayout,
-                inputAlignment: obj.inputAlignment,
-                inputLayoutBackgroundColor: obj.inputLayoutBackgroundColor,
-                inputLayoutBackgroundColorHover: obj.inputLayoutBackgroundColorHover,
-                inputLayoutBackgroundColorSelected: obj.inputLayoutBackgroundColorSelected,
-                inputLayoutBorderColor: obj.inputLayoutBorderColor,
-                inputLayoutBorderColorHover: obj.inputLayoutBorderColorHover,
-                inputLayoutBorderColorSelected: obj.inputLayoutBorderColorSelected,
-                inputTextFontFamily: obj.inputTextFontFamily,
-                inputTextFontSize: obj.inputTextFontSize,
-                inputTextColor: obj.inputTextColor,
-                inputLabelText: obj.inputLabelText,
-                inputLabelColor: obj.inputLabelColor,
-                inputLabelColorSelected: obj.inputLabelColorSelected,
-                inputLabelFontFamily: obj.inputLabelFontFamily,
-                inputLabelFontSize: obj.inputLabelFontSize,
-                inputTranslateX: obj.inputTranslateX,
-                inputTranslateY: obj.inputTranslateY,
-                inputPrefix: obj.inputPrefix,
-                inputSuffix: obj.inputSuffix,
-                inputAppendixColor: obj.inputAppendixColor,
-                inputAppendixFontSize: obj.inputAppendixFontSize,
-                inputAppendixFontFamily: obj.inputAppendixFontFamily,
-                showInputMessageAlways: obj.showInputMessageAlways,
-                inputMessage: obj.inputMessage,
-                inputMessageFontFamily: obj.inputMessageFontFamily,
-                inputMessageFontSize: obj.inputMessageFontSize,
-                inputMessageColor: obj.inputMessageColor,
-                showInputCounter: obj.showInputCounter,
-                inputCounterColor: obj.inputCounterColor,
-                inputCounterFontSize: obj.inputCounterFontSize,
-                inputCounterFontFamily: obj.inputCounterFontFamily,
-                clearIconShow: obj.clearIconShow,
-                clearIcon: obj.clearIcon,
-                clearIconSize: obj.clearIconSize,
-                clearIconColor: obj.clearIconColor,
-                collapseIcon: obj.collapseIcon,
-                collapseIconSize: obj.collapseIconSize,
-                collapseIconColor: obj.collapseIconColor,
-                prepandIcon: obj.prepandIcon,
-                prepandIconSize: obj.prepandIconSize,
-                prepandIconColor: obj.prepandIconColor,
-                prepandInnerIcon: obj.prepandInnerIcon,
-                prepandInnerIconSize: obj.prepandInnerIconSize,
-                prepandInnerIconColor: obj.prepandInnerIconColor,
-                appendOuterIcon: obj.appendOuterIcon,
-                appendOuterIconSize: obj.appendOuterIconSize,
-                appendOuterIconColor: obj.appendOuterIconColor,
-                listDataMethod: obj.listDataMethod,
-                countSelectItems: obj.countSelectItems,
-                jsonStringObject: obj.jsonStringObject,
-                valueList: obj.valueList,
-                valueListLabels: obj.valueListLabels,
-                valueListIcons: obj.valueListIcons,
-                listPosition: obj.listPosition,
-                listPositionOffset: obj.listPositionOffset,
-                listItemHeight: obj.listItemHeight,
-                listItemBackgroundColor: obj.listItemBackgroundColor,
-                listItemBackgroundHoverColor: obj.listItemBackgroundHoverColor,
-                listItemBackgroundSelectedColor: obj.listItemBackgroundSelectedColor,
-                listItemRippleEffectColor: obj.listItemRippleEffectColor,
-                showSelectedIcon: obj.showSelectedIcon,
-                listIconSize: obj.listIconSize,
-                listIconColor: obj.listIconColor,
-                listIconHoverColor: obj.listIconHoverColor,
-                listIconSelectedColor: obj.listIconSelectedColor,
-                listItemFontSize: obj.listItemFontSize,
-                listItemFont: obj.listItemFont,
-                listItemFontColor: obj.listItemFontColor,
-                listItemFontHoverColor: obj.listItemFontHoverColor,
-                listItemFontSelectedColor: obj.listItemFontSelectedColor,
-                listItemSubFontSize: obj.listItemSubFontSize,
-                listItemSubFont: obj.listItemSubFont,
-                listItemSubFontColor: obj.listItemSubFontColor,
-                listItemSubFontHoverColor: obj.listItemSubFontHoverColor,
-                listItemSubFontSelectedColor: obj.listItemSubFontSelectedColor,
-                showValue: obj.showValue,
-                listItemValueFontSize: obj.listItemValueFontSize,
-                listItemValueFont: obj.listItemValueFont,
-                listItemValueFontColor: obj.listItemValueFontColor,
-                listItemValueFontHoverColor: obj.listItemValueFontHoverColor,
-                listItemValueFontSelectedColor: obj.listItemValueFontSelectedColor,
-            }
-
-            for (var i = 0; i <= obj.countSelectItems; i++) {
-                data['value' + i] = obj['value' + i];
-                data['label' + i] = obj['label' + i];
-                data['subLabel' + i] = obj['subLabel' + i];
-                data['listIcon' + i] = obj['listIcon' + i];
-                data['listIconColor' + i] = obj['listIconColor' + i];
-            }
-
-            return data;
-        } else if (obj.type === 'materialdesignicon') {
-            return {
-                wid: widgetId,
-
-                mdwIcon: obj.mdwIcon,
-                mdwIconSize: obj.mdwIconSize,
-                mdwIconColor: obj.mdwIconColor
-            }
-
-        } else if (obj.type === 'html') {
-            return obj;
-        }
     },
     sortByKey: function (array, key, sortASC) {
         return array.sort(function (a, b) {

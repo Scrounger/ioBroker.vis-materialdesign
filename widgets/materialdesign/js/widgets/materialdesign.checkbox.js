@@ -141,5 +141,35 @@ vis.binds.materialdesign.checkbox = {
         } catch (ex) {
             console.error(`[Checkbox - ${data.wid}] handle: error: ${ex.message}, stack: ${ex.stack}`);
         }
+    },
+    getDataFromJson(obj, widgetId) {
+        return {
+            wid: widgetId,
+
+            oid: obj.oid,
+            readOnly: obj.readOnly,
+            toggleType: obj.toggleType,
+            valueOff: obj.valueOff,
+            valueOn: obj.valueOn,
+            stateIfNotTrueValue: obj.stateIfNotTrueValue,
+            vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+            labelFalse: obj.labelFalse,
+            labelTrue: obj.labelTrue,
+            labelPosition: obj.labelPosition,
+            labelClickActive: obj.labelClickActive,
+            colorCheckBox: obj.colorCheckBox,
+            colorCheckBoxBorder: obj.colorCheckBoxBorder,
+            colorCheckBoxHover: obj.colorCheckBoxHover,
+            labelColorFalse: obj.labelColorFalse,
+            labelColorTrue: obj.labelColorTrue,
+            lockEnabled: obj.lockEnabled,
+            autoLockAfter: obj.autoLockAfter,
+            lockIcon: obj.lockIcon,
+            lockIconTop: obj.lockIconTop,
+            lockIconLeft: obj.lockIconLeft,
+            lockIconSize: obj.lockIconSize,
+            lockIconColor: obj.lockIconColor,
+            lockFilterGrayscale: obj.lockFilterGrayscale
+        }
     }
 }

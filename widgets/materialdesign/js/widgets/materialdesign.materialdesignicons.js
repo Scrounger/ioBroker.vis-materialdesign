@@ -15,6 +15,15 @@ vis.binds.materialdesign.materialdesignicons = {
             console.error(`[MaterialDesignIcon - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
+    getDataFromJson(obj, widgetId) {
+        return {
+            wid: widgetId,
+
+            mdwIcon: obj.mdwIcon,
+            mdwIconSize: obj.mdwIconSize,
+            mdwIconColor: obj.mdwIconColor
+        }
+    },
     getList: function () {
         // v5.1.45
         // extract from meta.json on https://github.com/Templarian/MaterialDesign
@@ -5675,6 +5684,6 @@ vis.binds.materialdesign.materialdesignicons = {
             "zodiac-scorpio",
             "zodiac-taurus",
             "zodiac-virgo"
-          ]
+        ]
     }
 }
