@@ -5645,6 +5645,8 @@ ical2CalendarWidget();
 ## Changelog
 
 ### __WORK IN PROGRESS__
+
+### 0.4.0-beta (2020-12-09)
 * (Scrounger): Line History Chart Widget: Breaking Changes !!! aggregate (display) method for every dataset configurable, [see documentation for detailed infos](#line-history-chart)!
 * (Scrounger): TopAppBar Widget: Breaking Changes !!! Submenus must now be created using JSON string, [see documentation for detailed infos](#since-version-040)!
 * (Scrounger): Adapter settings wiht theme editor added
