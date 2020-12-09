@@ -254,314 +254,315 @@ vis.binds.materialdesign.table = {
             }
 
             function getColElement(row, col, objValue, textSize, rowData = null) {
-                let prefix = myMdwHelper.getValueFromData(data.attr('prefix' + col), '');
-                let suffix = myMdwHelper.getValueFromData(data.attr('suffix' + col), '');
+                try {
+                    let prefix = myMdwHelper.getValueFromData(data.attr('prefix' + col), '');
+                    let suffix = myMdwHelper.getValueFromData(data.attr('suffix' + col), '');
 
-                if (rowData != null) {
-                    if (prefix !== '') {
-                        prefix = getInternalTableBinding(prefix, rowData);
-                    }
+                    if (rowData != null) {
+                        if (prefix !== '') {
+                            prefix = getInternalTableBinding(prefix, rowData);
+                        }
 
-                    if (suffix !== '') {
-                        suffix = getInternalTableBinding(suffix, rowData);
-                    }
+                        if (suffix !== '') {
+                            suffix = getInternalTableBinding(suffix, rowData);
+                        }
 
-                    function getInternalTableBinding(str, rowData) {
-                        let regex = str.match(/(#\[obj\..*?\])/g);
+                        function getInternalTableBinding(str, rowData) {
+                            let regex = str.match(/(#\[obj\..*?\])/g);
 
-                        if (regex && regex.length > 0) {
-                            for (var i = 0; i <= regex.length - 1; i++) {
-                                let objName = regex[i].replace('#[obj.', '').replace(']', '');
+                            if (regex && regex.length > 0) {
+                                for (var i = 0; i <= regex.length - 1; i++) {
+                                    let objName = regex[i].replace('#[obj.', '').replace(']', '');
 
-                                if (objName && rowData[objName]) {
-                                    str = str.replace(regex[i], rowData[objName]);
-                                } else {
-                                    str = str.replace(regex[i], '');
+                                    if (objName && rowData[objName]) {
+                                        str = str.replace(regex[i], rowData[objName]);
+                                    } else {
+                                        str = str.replace(regex[i], '');
+                                    }
                                 }
                             }
-                        }
 
-                        return str;
+                            return str;
+                        }
                     }
-                }
 
-                if (data.attr('colType' + col) === 'image') {
-                    objValue = `<img src="${objValue}" style="max-height: ${(myMdwHelper.getNumberFromData(data.rowHeight, null) !== null) ? data.rowHeight + 'px' : 'auto'}; auto; vertical-align: middle; max-width: ${myMdwHelper.getValueFromData(data.attr('imageSize' + col), '', '', 'px;')}">`;
-                }
+                    if (data.attr('colType' + col) === 'image') {
+                        objValue = `<img src="${objValue}" style="max-height: ${(myMdwHelper.getNumberFromData(data.rowHeight, null) !== null) ? data.rowHeight + 'px' : 'auto'}; auto; vertical-align: middle; max-width: ${myMdwHelper.getValueFromData(data.attr('imageSize' + col), '', '', 'px;')}">`;
+                    }
 
-                let element = `${prefix}${objValue}${suffix}`
+                    let element = `${prefix}${objValue}${suffix}`
 
-                if (typeof (objValue) === 'object') {
-                    let elementData = vis.binds.materialdesign.table.getElementData(objValue, data.wid);
+                    if (typeof (objValue) === 'object') {
+                        let elementData = vis.binds.materialdesign.table.getElementData(objValue, data.wid);
 
-                    if (objValue.type === 'buttonToggle' || objValue.type === 'buttonToggle_vertical') {
+                        if (objValue.type === 'buttonToggle' || objValue.type === 'buttonToggle_vertical') {
 
-                        let init = vis.binds.materialdesign.button.initializeButton(elementData);
-                        if (objValue.type === 'buttonToggle_vertical') {
-                            init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
-                        }
+                            let init = vis.binds.materialdesign.button.initializeButton(elementData);
+                            if (objValue.type === 'buttonToggle_vertical') {
+                                init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
+                            }
 
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
                                         ${init.button}
                                     </div>`
 
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button Toggle', true);
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button Toggle', true);
 
-                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle', function () {
-                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
-                            vis.binds.materialdesign.addRippleEffect(btn, elementData);
-                            vis.binds.materialdesign.button.handleToggle(btn, elementData);
-                        });
-                    } else if (objValue.type === 'buttonToggle_icon') {
-                        let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
-
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
-                                        ${init.button}
-                                    </div>`
-
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button Toggle Icon', true);
-
-                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Icon', function () {
-                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
-                            vis.binds.materialdesign.addRippleEffect(btn, elementData, true);
-                            vis.binds.materialdesign.button.handleToggle(btn, elementData);
-                        });
-
-                    } else if (objValue.type === 'buttonState' || objValue.type === 'buttonState_vertical') {
-
-                        let init = vis.binds.materialdesign.button.initializeButton(elementData);
-                        if (objValue.type === 'buttonState_vertical') {
-                            init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
-                        }
-
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
-                                        ${init.button}
-                                    </div>`
-
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button State', true);
-
-                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button State', function () {
-                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
-                            vis.binds.materialdesign.addRippleEffect(btn.children().get(0), elementData);
-                            vis.binds.materialdesign.button.handleState(btn, elementData);
-                        });
-
-                    } else if (objValue.type === 'buttonState_icon') {
-                        let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
-
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
-                                        ${init.button}
-                                    </div>`
-
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button State Icon', true);
-
-                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button State Icon', function () {
-                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
-                            vis.binds.materialdesign.addRippleEffect(btn.children().get(0), elementData, true);
-                            vis.binds.materialdesign.button.handleState(btn, elementData);
-                        });
-
-
-                    } else if (objValue.type === 'buttonLink' || objValue.type === 'buttonLink_vertical') {
-
-                        let init = vis.binds.materialdesign.button.initializeButton(elementData);
-                        if (objValue.type === 'buttonLink_vertical') {
-                            init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
-                        }
-
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
-                                        ${init.button}
-                                    </div>`
-
-                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Link', function () {
-                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
-                            vis.binds.materialdesign.addRippleEffect(btn, elementData);
-                            vis.binds.materialdesign.button.handleLink(btn, elementData);
-                        });
-
-                    } else if (objValue.type === 'buttonLink_icon') {
-                        let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
-
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
-                                        ${init.button}
-                                    </div>`
-
-                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Link Icon', function () {
-                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
-                            vis.binds.materialdesign.addRippleEffect(btn, elementData, true);
-                            vis.binds.materialdesign.button.handleLink(btn, elementData);
-                        });
-
-                    } else if (objValue.type === 'progress') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 12px;'}">
-                                    </div>`
-
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Progress', true);
-
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Progress', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-progress-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
-                                let progress = $this.find(`.materialdesign-progress-table-row_${row}-col_${col}`);
-
-                                vis.binds.materialdesign.progress.linear(progress, elementData);
+                            myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle', function () {
+                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
+                                vis.binds.materialdesign.addRippleEffect(btn, elementData);
+                                vis.binds.materialdesign.button.handleToggle(btn, elementData);
                             });
-                        });
-                    } else if (objValue.type === 'progress_circular') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-circular-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 60px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 60px;'}">
+                        } else if (objValue.type === 'buttonToggle_icon') {
+                            let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
+                                        ${init.button}
                                     </div>`
 
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Progress Circular', true);
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button Toggle Icon', true);
 
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Progress Circular', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-progress-circular-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
-                                let progress = $this.find(`.materialdesign-progress-circular-table-row_${row}-col_${col}`);
-
-                                vis.binds.materialdesign.progress.circular(progress, elementData);
+                            myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Icon', function () {
+                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
+                                vis.binds.materialdesign.addRippleEffect(btn, elementData, true);
+                                vis.binds.materialdesign.button.handleToggle(btn, elementData);
                             });
-                        });
-                    } else if (objValue.type === 'slider') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-slider-vertical materialdesign-slider-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${elementData["oid-working"]}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
+
+                        } else if (objValue.type === 'buttonState' || objValue.type === 'buttonState_vertical') {
+
+                            let init = vis.binds.materialdesign.button.initializeButton(elementData);
+                            if (objValue.type === 'buttonState_vertical') {
+                                init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
+                            }
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
+                                        ${init.button}
                                     </div>`
 
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Slider', true);
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button State', true);
 
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Slider', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-slider-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
-                                let slider = $this.find(`.materialdesign-slider-table-row_${row}-col_${col}`);
-
-                                vis.binds.materialdesign.slider.vuetifySlider(slider, elementData);
+                            myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button State', function () {
+                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
+                                vis.binds.materialdesign.addRippleEffect(btn.children().get(0), elementData);
+                                vis.binds.materialdesign.button.handleState(btn, elementData);
                             });
-                        });
 
-                    } else if (objValue.type === 'slider_round') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-slider-round materialdesign-slider-round-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${elementData["oid-working"]}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 60px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 60px;'}">
+                        } else if (objValue.type === 'buttonState_icon') {
+                            let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
+                                        ${init.button}
                                     </div>`
 
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Slider Round', true);
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button State Icon', true);
 
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Slider Round', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-slider-round-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
-                                let slider = $this.find(`.materialdesign-slider-round-table-row_${row}-col_${col}`);
-
-                                vis.binds.materialdesign.roundslider(slider, elementData);
+                            myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button State Icon', function () {
+                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
+                                vis.binds.materialdesign.addRippleEffect(btn.children().get(0), elementData, true);
+                                vis.binds.materialdesign.button.handleState(btn, elementData);
                             });
-                        });
-                    } else if (objValue.type === 'switch') {
-                        let init = vis.binds.materialdesign.switch.initialize(elementData);
 
-                        element = `<div class="vis-widget materialdesign-widget ${init.labelPosition} materialdesign-switch materialdesign-switch-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
+
+                        } else if (objValue.type === 'buttonLink' || objValue.type === 'buttonLink_vertical') {
+
+                            let init = vis.binds.materialdesign.button.initializeButton(elementData);
+                            if (objValue.type === 'buttonLink_vertical') {
+                                init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
+                            }
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
+                                        ${init.button}
+                                    </div>`
+
+                            myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Link', function () {
+                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
+                                vis.binds.materialdesign.addRippleEffect(btn, elementData);
+                                vis.binds.materialdesign.button.handleLink(btn, elementData);
+                            });
+
+                        } else if (objValue.type === 'buttonLink_icon') {
+                            let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
+                                        ${init.button}
+                                    </div>`
+
+                            myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Link Icon', function () {
+                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
+                                vis.binds.materialdesign.addRippleEffect(btn, elementData, true);
+                                vis.binds.materialdesign.button.handleLink(btn, elementData);
+                            });
+
+                        } else if (objValue.type === 'progress') {
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 12px;'}">
+                                    </div>`
+
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Progress', true);
+
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Progress', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-progress-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
+                                    let progress = $this.find(`.materialdesign-progress-table-row_${row}-col_${col}`);
+
+                                    vis.binds.materialdesign.progress.linear(progress, elementData);
+                                });
+                            });
+                        } else if (objValue.type === 'progress_circular') {
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-circular-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 60px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 60px;'}">
+                                    </div>`
+
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Progress Circular', true);
+
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Progress Circular', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-progress-circular-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
+                                    let progress = $this.find(`.materialdesign-progress-circular-table-row_${row}-col_${col}`);
+
+                                    vis.binds.materialdesign.progress.circular(progress, elementData);
+                                });
+                            });
+                        } else if (objValue.type === 'slider') {
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-slider-vertical materialdesign-slider-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${elementData["oid-working"]}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
+                                    </div>`
+
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Slider', true);
+
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Slider', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-slider-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
+                                    let slider = $this.find(`.materialdesign-slider-table-row_${row}-col_${col}`);
+
+                                    vis.binds.materialdesign.slider.vuetifySlider(slider, elementData);
+                                });
+                            });
+
+                        } else if (objValue.type === 'slider_round') {
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-slider-round materialdesign-slider-round-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${elementData["oid-working"]}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 60px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 60px;'}">
+                                    </div>`
+
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Slider Round', true);
+
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Slider Round', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-slider-round-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
+                                    let slider = $this.find(`.materialdesign-slider-round-table-row_${row}-col_${col}`);
+
+                                    vis.binds.materialdesign.roundslider(slider, elementData);
+                                });
+                            });
+                        } else if (objValue.type === 'switch') {
+                            let init = vis.binds.materialdesign.switch.initialize(elementData);
+
+                            element = `<div class="vis-widget materialdesign-widget ${init.labelPosition} materialdesign-switch materialdesign-switch-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
                                         ${init.myswitch}
                                     </div>`
 
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Switch', true);
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Switch', true);
 
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Switch', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-switch-table-row_${row}-col_${col}`, data.wid, 'Table Switch', function () {
-                                let sw = $this.find(`.materialdesign-switch-table-row_${row}-col_${col}`);
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Switch', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-switch-table-row_${row}-col_${col}`, data.wid, 'Table Switch', function () {
+                                    let sw = $this.find(`.materialdesign-switch-table-row_${row}-col_${col}`);
 
-                                vis.binds.materialdesign.switch.handle(sw, elementData);
+                                    vis.binds.materialdesign.switch.handle(sw, elementData);
+                                });
                             });
-                        });
-                    } else if (objValue.type === 'checkbox') {
-                        let init = vis.binds.materialdesign.checkbox.initialize(elementData);
+                        } else if (objValue.type === 'checkbox') {
+                            let init = vis.binds.materialdesign.checkbox.initialize(elementData);
 
-                        element = `<div class="vis-widget materialdesign-widget ${init.labelPosition} materialdesign-checkbox materialdesign-checkbox-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
+                            element = `<div class="vis-widget materialdesign-widget ${init.labelPosition} materialdesign-checkbox materialdesign-checkbox-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
                                         ${init.checkbox}
                                     </div>`
 
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Checkbox', true);
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Checkbox', true);
 
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Checkbox', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-checkbox-table-row_${row}-col_${col}`, data.wid, 'Table Checkbox', function () {
-                                let checkbox = $this.find(`.materialdesign-checkbox-table-row_${row}-col_${col}`);
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Checkbox', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-checkbox-table-row_${row}-col_${col}`, data.wid, 'Table Checkbox', function () {
+                                    let checkbox = $this.find(`.materialdesign-checkbox-table-row_${row}-col_${col}`);
 
-                                vis.binds.materialdesign.checkbox.handle(checkbox, elementData);
-                            });
-                        });
-                    } else if (objValue.type === 'textfield') {
-
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-input materialdesign-input-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
-                                    </div>`
-
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Textfield', true);
-
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Textfield', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-input-table-row_${row}-col_${col}`, data.wid, 'Table Textfield', function () {
-                                let input = $this.find(`.materialdesign-input-table-row_${row}-col_${col}`);
-
-                                vis.binds.materialdesign.textfield(input, elementData);
-                            });
-                        });
-
-                    } else if (objValue.type === 'select') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-select materialdesign-select-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
-                                    </div>`
-
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Select', true);
-
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Select', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-select-table-row_${row}-col_${col}`, data.wid, 'Table Select', function () {
-                                let select = $this.find(`.materialdesign-select-table-row_${row}-col_${col}`);
-
-                                vis.binds.materialdesign.select(select, elementData);
-                            });
-                        });
-
-                    } else if (objValue.type === 'autocomplete') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-autocomplete materialdesign-autocomplete-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
-                                    </div>`
-
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Autocomplete', true);
-
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Autocomplete', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-autocomplete-table-row_${row}-col_${col}`, data.wid, 'Table Autocomplete', function () {
-                                let autocomplete = $this.find(`.materialdesign-autocomplete-table-row_${row}-col_${col}`);
-
-                                vis.binds.materialdesign.autocomplete(autocomplete, elementData);
-                            });
-                        });
-
-                    } else if (objValue.type === 'materialdesignicon') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-icon materialdesign-icon-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : ''} ${objValue.height ? `height: ${objValue.height};` : ''}">
-                                    </div>`
-
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table MaterialDesignIcons', true);
-
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Autocomplete', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-icon-table-row_${row}-col_${col}`, data.wid, 'Table MaterialDesignIcons', function () {
-                                let icons = $this.find(`.materialdesign-icon-table-row_${row}-col_${col}`);
-
-                                vis.binds.materialdesign.materialdesignicons.initialize(icons, elementData);
-                            });
-                        });
-
-                    } else if (objValue.type === 'html') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-html-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important;">
-                        </div>`
-
-                        if (objValue.oid) {
-                            myMdwHelper.oidNeedSubscribe(objValue.oid, data.wid, 'Table Html', true);
-
-                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Html', function () {
-                                myMdwHelper.waitForElement($this, `.materialdesign-html-table-row_${row}-col_${col}`, data.wid, 'Table MaterialDesignIcons', function () {
-                                    let htmlContainer = $this.find(`.materialdesign-html-table-row_${row}-col_${col}`);
-
-                                    let val = vis.states.attr(objValue.oid + '.val')
-                                    htmlContainer.html(objValue.html.replace('[#value]', val));
-
-                                    vis.states.bind(objValue.oid + '.val', function (e, newVal, oldVal) {
-                                        if (newVal !== oldVal) {
-                                            htmlContainer.html(objValue.html.replace('[#value]', newVal))
-                                        }
-                                    });
+                                    vis.binds.materialdesign.checkbox.handle(checkbox, elementData);
                                 });
                             });
-                        } else {
-                            element = objValue.html;
+                        } else if (objValue.type === 'textfield') {
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-input materialdesign-input-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
+                                    </div>`
+
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Textfield', true);
+
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Textfield', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-input-table-row_${row}-col_${col}`, data.wid, 'Table Textfield', function () {
+                                    let input = $this.find(`.materialdesign-input-table-row_${row}-col_${col}`);
+
+                                    vis.binds.materialdesign.textfield(input, elementData);
+                                });
+                            });
+
+                        } else if (objValue.type === 'select') {
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-select materialdesign-select-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
+                                    </div>`
+
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Select', true);
+
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Select', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-select-table-row_${row}-col_${col}`, data.wid, 'Table Select', function () {
+                                    let select = $this.find(`.materialdesign-select-table-row_${row}-col_${col}`);
+
+                                    vis.binds.materialdesign.select(select, elementData);
+                                });
+                            });
+
+                        } else if (objValue.type === 'autocomplete') {
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-autocomplete materialdesign-autocomplete-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
+                                    </div>`
+
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Autocomplete', true);
+
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Autocomplete', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-autocomplete-table-row_${row}-col_${col}`, data.wid, 'Table Autocomplete', function () {
+                                    let autocomplete = $this.find(`.materialdesign-autocomplete-table-row_${row}-col_${col}`);
+
+                                    vis.binds.materialdesign.autocomplete(autocomplete, elementData);
+                                });
+                            });
+
+                        } else if (objValue.type === 'materialdesignicon') {
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-icon materialdesign-icon-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : ''} ${objValue.height ? `height: ${objValue.height};` : ''}">
+                                    </div>`
+
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table MaterialDesignIcons', true);
+
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Autocomplete', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-icon-table-row_${row}-col_${col}`, data.wid, 'Table MaterialDesignIcons', function () {
+                                    let icons = $this.find(`.materialdesign-icon-table-row_${row}-col_${col}`);
+
+                                    vis.binds.materialdesign.materialdesignicons.initialize(icons, elementData);
+                                });
+                            });
+
+                        } else if (objValue.type === 'html') {
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-html-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important;">
+                        </div>`
+
+                            if (objValue.oid) {
+                                myMdwHelper.oidNeedSubscribe(objValue.oid, data.wid, 'Table Html', true);
+
+                                myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Html', function () {
+                                    myMdwHelper.waitForElement($this, `.materialdesign-html-table-row_${row}-col_${col}`, data.wid, 'Table MaterialDesignIcons', function () {
+                                        let htmlContainer = $this.find(`.materialdesign-html-table-row_${row}-col_${col}`);
+
+                                        let val = vis.states.attr(objValue.oid + '.val')
+                                        htmlContainer.html(objValue.html.replace('[#value]', val));
+
+                                        vis.states.bind(objValue.oid + '.val', function (e, newVal, oldVal) {
+                                            if (newVal !== oldVal) {
+                                                htmlContainer.html(objValue.html.replace('[#value]', newVal))
+                                            }
+                                        });
+                                    });
+                                });
+                            } else {
+                                element = objValue.html;
+                            }
                         }
                     }
-                }
 
-                return `<td class="mdc-data-table__cell ${textSize.class}"
+                    return `<td class="mdc-data-table__cell ${textSize.class}"
                             id="cell-row${row}-col${col}"
                             ${(objValue && objValue.rowspan) ? `rowspan="${objValue.rowspan}"` : ''}
                             ${(objValue && objValue.colspan) ? `colspan="${objValue.colspan}"` : ''}
@@ -577,6 +578,11 @@ vis.binds.materialdesign.table = {
                             ">
                                 ${element}
                         </td>`
+                } catch (err) {
+                    console.error(`[getColElement] row: ${row}, col: ${col}, objValue: ${objValue}`);
+                    console.error(`[getColElement] error: ${err.message}, stack: ${err.stack}`);
+                    return 'Error';
+                }
             };
         }
     },
@@ -1026,7 +1032,7 @@ vis.binds.materialdesign.table = {
                 inputMask: obj.inputMask,
                 inputMaxLength: obj.inputMaxLength,
                 inputLayout: obj.inputLayout,
-                inputAlignment: obj.inputAlignment,                
+                inputAlignment: obj.inputAlignment,
                 inputLayoutBackgroundColor: obj.inputLayoutBackgroundColor,
                 inputLayoutBackgroundColorHover: obj.inputLayoutBackgroundColorHover,
                 inputLayoutBackgroundColorSelected: obj.inputLayoutBackgroundColorSelected,
@@ -1037,7 +1043,7 @@ vis.binds.materialdesign.table = {
                 inputTextFontSize: obj.inputTextFontSize,
                 inputTextColor: obj.inputTextColor,
                 inputLabelText: obj.inputLabelText,
-                inputLabelColor: obj.inputLabelColor,                
+                inputLabelColor: obj.inputLabelColor,
                 inputLabelColorSelected: obj.inputLabelColorSelected,
                 inputLabelFontFamily: obj.inputLabelFontFamily,
                 inputLabelFontSize: obj.inputLabelFontSize,
