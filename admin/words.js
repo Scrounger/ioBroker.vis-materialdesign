@@ -520,7 +520,8 @@ systemDictionary = {
     },
     "colorPress": {
         "en": "color pressed",
-        "de": "Farbe gedrückt", "ru": "цвет нажал",
+        "de": "Farbe gedrückt",
+        "ru": "цвет нажал",
         "pt": "cor pressionada",
         "nl": "kleur ingedrukt",
         "fr": "couleur pressée",
@@ -10948,5 +10949,41 @@ systemDictionary = {
         "es": "abre el menú al usar el botón borrar",
         "pl": "Otwórz menu za pomocą przycisku wyczyść",
         "zh-cn": "使用清除按钮打开菜单"
+    },
+    "mdwButtonColorPress": {
+        "en": "color pressed",
+        "de": "Farbe gedrückt",
+        "ru": "цвет нажал",
+        "pt": "cor pressionada",
+        "nl": "kleur ingedrukt",
+        "fr": "couleur pressée",
+        "it": "colore premuto",
+        "es": "color presionado",
+        "pl": "kolor wciśnięty",
+        "zh-cn": "压色"
+    },
+    "mdwButtonPrimaryColor": {
+        "en": "primary color",
+        "de": "Primärfarbe",
+        "ru": "Основной цвет",
+        "pt": "cor primária",
+        "nl": "primaire kleur",
+        "fr": "couleur primaire",
+        "it": "colore primario",
+        "es": "color primario",
+        "pl": "kolor podstawowy",
+        "zh-cn": "原色"
+    },
+    "mdwButtonSecondaryColor": {
+        "en": "secondary color",
+        "de": "sekundäre Farbe",
+        "ru": "вторичный цвет",
+        "pt": "cor secundária",
+        "nl": "secundaire kleur",
+        "fr": "couleur secondaire",
+        "it": "colore secondario",
+        "es": "color secundario",
+        "pl": "kolor dodatkowy",
+        "zh-cn": "二次色"
     }
 };
