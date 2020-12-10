@@ -116,6 +116,7 @@ vis.binds.materialdesign.calendar =
 
                     :day-format="dayFormat"
                     :weekday-format="weekdayFormat"
+                    :locale-first-day-of-year="4"
 
                     @click:more="viewDay"
                     @click:date="viewDay"
