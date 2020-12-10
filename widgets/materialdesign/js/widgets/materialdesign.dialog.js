@@ -100,13 +100,17 @@ vis.binds.materialdesign.dialog = {
 
                         if (data.showDialogMethod === 'button') {
                             let button = $this;
-                            button.context.style.setProperty("--mdc-theme-primary", myMdwHelper.getValueFromData(data.colorPress, ''));
+                            button.context.style.setProperty("--materialdesign-color-primary", myMdwHelper.getValueFromData(data.mdwButtonPrimaryColor, ''));
+                            button.context.style.setProperty("--materialdesign-color-secondary", myMdwHelper.getValueFromData(data.mdwButtonSecondaryColor, ''));
+                            button.context.style.setProperty("--materialdesign-color-button-pressed", myMdwHelper.getValueFromData(data.mdwButtonColorPress, ''));
                             button.context.style.setProperty("--materialdesign-font-button", myMdwHelper.getValueFromData(data.textFontFamily, ''));
                             button.context.style.setProperty("--materialdesign-font-size-button", myMdwHelper.getStringFromNumberData(data.textFontSize, 'inherit', '', 'px'));
 
                             if (data.buttonStyle === 'icon') {
                                 mdc.iconButton.MDCIconButtonToggle.attachTo(button.get(0));
+                                button.context.style.setProperty("--materialdesign-color-icon-button-hover", myMdwHelper.getValueFromData(data.mdwButtonColorPress, ''));
                             } else {
+                                button.context.style.setProperty("--materialdesign-color-button-pressed", myMdwHelper.getValueFromData(data.mdwButtonColorPress, ''));
                                 mdc.ripple.MDCRipple.attachTo(button.get(0));
                             }
 

@@ -15,13 +15,13 @@
         "id": "light.button.default.primary",
         "desc": "mdwButtonPrimaryColor",
         "defaultValue": 0,
-        "widget": "Button Navigation, Button Link, Button State, Button State Multi, Button Addition, Button Toggle"
+        "widget": "Button Navigation, Button Link, Button State, Button State Multi, Button Addition, Button Toggle, Dialog, Dialog iFrame"
     },
     {
         "id": "light.button.default.secondary",
         "desc": "mdwButtonSecondaryColor",
         "defaultValue": 5,
-        "widget": "Button Navigation, Button Link, Button State, Button State Multi, Button Addition, Button Toggle"
+        "widget": "Button Navigation, Button Link, Button State, Button State Multi, Button Addition, Button Toggle, Dialog, Dialog iFrame"
     },
     {
         "id": "light.button.vertical.primary",
