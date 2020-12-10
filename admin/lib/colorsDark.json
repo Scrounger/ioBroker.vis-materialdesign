@@ -14,7 +14,7 @@
     {
         "id": "dark.button.default.primary",
         "desc": "mdwButtonPrimaryColor",
-        "defaultValue": 0,
+        "defaultValue": 2,
         "widget": "Button Navigation, Button Link, Button State, Button State Multi, Button Addition, Button Toggle, Dialog, Dialog iFrame"
     },
     {
@@ -26,7 +26,7 @@
     {
         "id": "dark.button.vertical.primary",
         "desc": "mdwButtonPrimaryColor",
-        "defaultValue": 0,
+        "defaultValue": 2,
         "widget": "Button Navigation vertical, Button Link vertical, Button State vertical, Button State Multi vertical, Button Addition vertical, Button Toggle vertical"
     },
     {
