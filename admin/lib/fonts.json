@@ -6,7 +6,7 @@
         "widget": "Alerts"
     },
     {
-        "id": "button.text",
+        "id": "button.default.text",
         "desc": "textFontFamily",
         "defaultValue": 0,
         "widget": "Buttons, Dialog, Button Navigation, Button Link, Button State, Button State Multi, Button Addition, Button Toggle, Dialog iFrame"
