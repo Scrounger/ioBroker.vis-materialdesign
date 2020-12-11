@@ -1,4 +1,5 @@
 let themeTypesList = ['colors', 'colorsDark', 'fonts', 'fontSizes'];
+let themeDefaultDatapointsNotExists = [];
 var myNamespace;
 
 let $progress;
@@ -484,6 +485,12 @@ async function checkAllObjectsExistInSettings(themeType, themeObject, themeDefau
                 // widget names changed -> fire onChange
                 if (themeObject[i].widget !== jsonList[i].widget) {
                     themeObject[i].widget = jsonList[i].widget;
+                    onChange();
+                }
+
+                // id changed -> fire onChange
+                if (themeObject[i].id !== jsonList[i].id) {
+                    themeObject[i].id = jsonList[i].id;
                     onChange();
                 }
             }
