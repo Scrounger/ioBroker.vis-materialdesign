@@ -154,7 +154,7 @@ vis.binds.materialdesign.dialog = {
                                 $dialog.get(0).style.setProperty("--vue-dialog-footer-background-color", myMdwHelper.getValueFromData(data.footerBackgroundColor, ''));
 
                                 // Overlay
-                                $("body").find('.v-overlay__scrim').css('opacity', myMdwHelper.getValueFromData(data.overlayOpacity, 0.46));
+                                $("body").find('.v-overlay__scrim').css('opacity', myMdwHelper.getValueFromData(data.overlayOpacity, 0.8));
                                 $("body").find('.v-overlay__scrim').css('background', myMdwHelper.getValueFromData(data.overlayColor, 'rgb(33, 33, 33)'));
 
                                 calcHeight();

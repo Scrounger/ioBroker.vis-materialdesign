@@ -372,6 +372,60 @@
         "widget": "Checkbox"
     },
     {
+        "id": "light.dialog.background",
+        "desc": "backgroundColor",
+        "defaultValue": 5,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "light.dialog.header_background",
+        "desc": "headerBackgroundColor",
+        "defaultValue": 2,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "light.dialog.header_text",
+        "desc": "titleColor",
+        "defaultValue": 5,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "light.dialog.footer_background",
+        "desc": "footerBackgroundColor",
+        "defaultValue": 5,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "light.dialog.close_button_text",
+        "desc": "buttonFontColor",
+        "defaultValue": 2,
+        "widget": "Dialog, Dialog iFrame"
+    }, 
+    {
+        "id": "light.dialog.close_button_icon",
+        "desc": "fullscreenCloseIconColor",
+        "defaultValue": 2,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "light.dialog.close_button_press",
+        "desc": "pressColor",
+        "defaultValue": 2,
+        "widget": "Dialog, Dialog iFrame"
+    },             
+    {
+        "id": "light.dialog.divider",
+        "desc": "dividerColor",
+        "defaultValue": 0,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "light.dialog.overlay",
+        "desc": "overlayColor",
+        "defaultValue": 3,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
         "id": "light.button.icon.background_off",
         "desc": "colorBgFalse",
         "defaultValue": 7,
