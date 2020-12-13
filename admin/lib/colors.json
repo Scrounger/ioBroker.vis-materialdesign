@@ -400,7 +400,7 @@
         "desc": "buttonFontColor",
         "defaultValue": 2,
         "widget": "Dialog, Dialog iFrame"
-    }, 
+    },
     {
         "id": "light.dialog.close_button_icon",
         "desc": "fullscreenCloseIconColor",
@@ -412,7 +412,7 @@
         "desc": "pressColor",
         "defaultValue": 2,
         "widget": "Dialog, Dialog iFrame"
-    },             
+    },
     {
         "id": "light.dialog.divider",
         "desc": "dividerColor",
@@ -520,6 +520,66 @@
         "desc": "lockIconColor",
         "defaultValue": 10,
         "widget": "Icon List"
+    },
+    {
+        "id": "light.input.text",
+        "desc": "inputTextColor",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.label",
+        "desc": "inputLabelColor",
+        "defaultValue": 3,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.label_selected",
+        "desc": "inputLabelColorSelected",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.appendix",
+        "desc": "inputAppendixColor",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.message",
+        "desc": "inputMessageColor",
+        "defaultValue": 3,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.counter",
+        "desc": "inputCounterColor",
+        "defaultValue": 3,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.border",
+        "desc": "inputLayoutBorderColor",
+        "defaultValue": 3,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.border_hover",
+        "desc": "inputLayoutBorderColorHover",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.border_selected",
+        "desc": "inputLayoutBorderColorSelected",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.icon_clear",
+        "desc": "clearIconColor",
+        "defaultValue": 0,
+        "widget": "Input, Select, Autocomplete"
     },
     {
         "id": "light.material_design_icon.color",

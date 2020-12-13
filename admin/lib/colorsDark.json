@@ -400,7 +400,7 @@
         "desc": "buttonFontColor",
         "defaultValue": 2,
         "widget": "Dialog, Dialog iFrame"
-    }, 
+    },
     {
         "id": "dark.dialog.close_button_icon",
         "desc": "fullscreenCloseIconColor",
@@ -412,7 +412,7 @@
         "desc": "pressColor",
         "defaultValue": 2,
         "widget": "Dialog, Dialog iFrame"
-    },      
+    },
     {
         "id": "dark.dialog.divider",
         "desc": "dividerColor",
@@ -520,6 +520,48 @@
         "desc": "lockIconColor",
         "defaultValue": 10,
         "widget": "Icon List"
+    },
+    {
+        "id": "dark.input.text",
+        "desc": "inputTextColor",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "dark.input.label",
+        "desc": "inputLabelColor",
+        "defaultValue": 3,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "dark.input.label_selected",
+        "desc": "inputLabelColorSelected",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "dark.input.appendix",
+        "desc": "inputAppendixColor",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "dark.input.message",
+        "desc": "inputMessageColor",
+        "defaultValue": 3,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "dark.input.counter",
+        "desc": "inputCounterColor",
+        "defaultValue": 3,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "dark.input.icon_clear",
+        "desc": "clearIconColor",
+        "defaultValue": 0,
+        "widget": "Input, Select, Autocomplete"
     },
     {
         "id": "dark.material_design_icon.color",
