@@ -288,7 +288,7 @@ vis.binds.materialdesign.iconlist =
                                         <div class="materialdesign-html-card card-title-section" style="${showTitleSection}">
                                             <div class="materialdesign-html-card card-title ${titleFontSize.class}" style="${titleFontSize.style}">${data.title}</div>
                                         </div>
-                                        <div class="materialdesign-html-card card-text-section iconlist" style="height: 100%; overflow-y: auto; overflow-x: hidden;">
+                                        <div class="materialdesign-html-card card-text-section iconlist" style="height: 100%; ${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'overflow-y: auto; overflow-x: hidden;' : ''} padding: ${myMdwHelper.getNumberFromData(data.borderDistance, 0)}px;">
                                             <div class="materialdesign-html-card">
                                                 <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap;"' : ''}>
                                                     ${widgetElement}

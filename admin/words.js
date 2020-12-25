@@ -10985,5 +10985,29 @@ systemDictionary = {
         "es": "color secundario",
         "pl": "kolor dodatkowy",
         "zh-cn": "二次色"
+    },
+    "showScrollbar": {
+        "en": "show scrollbar",
+        "de": "Bildlaufleiste anzeigen",
+        "ru": "показать полосу прокрутки",
+        "pt": "mostrar barra de rolagem",
+        "nl": "toon schuifbalk",
+        "fr": "afficher la barre de défilement",
+        "it": "mostra la barra di scorrimento",
+        "es": "mostrar barra de desplazamiento",
+        "pl": "pokaż pasek przewijania",
+        "zh-cn": "显示滚动条"
+    },
+    "borderDistance": {
+        "en": "distance to the edge",
+        "de": "Abstand zum Rand",
+        "ru": "расстояние до края",
+        "pt": "distância até a borda",
+        "nl": "afstand tot de rand",
+        "fr": "distance au bord",
+        "it": "distanza dal bordo",
+        "es": "distancia al borde",
+        "pl": "odległość od krawędzi",
+        "zh-cn": "到边缘的距离"
     }
 };
