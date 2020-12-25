@@ -2011,10 +2011,6 @@ svg.materialdesign-widget .materialdesign-button__icon {
 }
 
 /* iconList */
-.materialdesign-icon-list {
-  overflow: visible !important;
-}
-
 .materialdesign-icon-list-container {
   display: flex;
   /* justify-content: center; */

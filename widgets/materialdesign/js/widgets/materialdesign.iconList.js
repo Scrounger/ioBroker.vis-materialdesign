@@ -283,12 +283,12 @@ vis.binds.materialdesign.iconlist =
                         }
 
 
-                        $this.css('overflow', 'visible');
-                        $this.append(`<div class="materialdesign-html-card mdc-card">
+                        // $this.css('padding', '2px');
+                        $this.append(`<div class="materialdesign-html-card mdc-card" style="margin-top: 2px; margin-left: 2px; width: calc(100% - 4px); height: calc(100% - 10px);">
                                         <div class="materialdesign-html-card card-title-section" style="${showTitleSection}">
                                             <div class="materialdesign-html-card card-title ${titleFontSize.class}" style="${titleFontSize.style}">${data.title}</div>
                                         </div>
-                                        <div class="materialdesign-html-card card-text-section iconlist">
+                                        <div class="materialdesign-html-card card-text-section iconlist" style="height: 100%; overflow-y: auto; overflow-x: hidden;">
                                             <div class="materialdesign-html-card">
                                                 <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap;"' : ''}>
                                                     ${widgetElement}
