@@ -581,6 +581,49 @@
         "defaultValue": 0,
         "widget": "Input, Select, Autocomplete"
     },
+
+
+
+    {
+        "id": "light.input.icon_collapse",
+        "desc": "collapseIconColor",
+        "defaultValue": 0,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "light.input.menu.background",
+        "desc": "listItemBackgroundColor",
+        "defaultValue": 5,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "light.input.menu.hover",
+        "desc": "listItemBackgroundHoverColor",
+        "defaultValue": 2,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "light.input.menu.selected",
+        "desc": "listItemBackgroundSelectedColor",
+        "defaultValue": 6,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "light.input.menu.effect",
+        "desc": "listItemRippleEffectColor",
+        "defaultValue": 2,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "light.input.menu.icon",
+        "desc": "listIconColor",
+        "defaultValue": 0,
+        "widget": "Select, Autocomplete"
+    },    
+
+
+
+    
     {
         "id": "light.material_design_icon.color",
         "desc": "mdwIconColor",

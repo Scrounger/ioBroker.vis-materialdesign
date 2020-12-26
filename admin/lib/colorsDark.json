@@ -563,6 +563,46 @@
         "defaultValue": 0,
         "widget": "Input, Select, Autocomplete"
     },
+
+ 
+    {
+        "id": "dark.input.icon_collapse",
+        "desc": "collapseIconColor",
+        "defaultValue": 0,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "dark.input.menu.background",
+        "desc": "listItemBackgroundColor",
+        "defaultValue": 5,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "dark.input.menu.hover",
+        "desc": "listItemBackgroundHoverColor",
+        "defaultValue": 2,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "dark.input.menu.selected",
+        "desc": "listItemBackgroundSelectedColor",
+        "defaultValue": 6,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "dark.input.menu.effect",
+        "desc": "listItemRippleEffectColor",
+        "defaultValue": 2,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "dark.input.menu.icon",
+        "desc": "listIconColor",
+        "defaultValue": 0,
+        "widget": "Select, Autocomplete"
+    },    
+      
+
     {
         "id": "dark.material_design_icon.color",
         "desc": "mdwIconColor",
