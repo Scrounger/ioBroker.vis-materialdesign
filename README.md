@@ -5644,7 +5644,7 @@ ical2CalendarWidget();
 
 ## Changelog
 
-### __WORK IN PROGRESS__
+### 0.4.1 (2020-12-27)
 * (Scrounger): Adapter settings: theme editor implementation completed
 * (Scrounger): Progress Widget: condition binding bug fix
 * (Scrounger): minimal VIS adapter dependency set to v1.3.6
