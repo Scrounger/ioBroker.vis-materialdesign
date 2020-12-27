@@ -581,9 +581,6 @@
         "defaultValue": 0,
         "widget": "Input, Select, Autocomplete"
     },
-
-
-
     {
         "id": "light.input.icon_collapse",
         "desc": "collapseIconColor",
@@ -599,7 +596,7 @@
     {
         "id": "light.input.menu.hover",
         "desc": "listItemBackgroundHoverColor",
-        "defaultValue": 2,
+        "defaultValue": 6,
         "widget": "Select, Autocomplete"
     },
     {
@@ -611,7 +608,7 @@
     {
         "id": "light.input.menu.effect",
         "desc": "listItemRippleEffectColor",
-        "defaultValue": 2,
+        "defaultValue": 6,
         "widget": "Select, Autocomplete"
     },
     {
@@ -619,11 +616,25 @@
         "desc": "listIconColor",
         "defaultValue": 0,
         "widget": "Select, Autocomplete"
-    },    
-
-
-
-    
+    },
+    {
+        "id": "light.input.menu.text",
+        "desc": "listItemFontColor",
+        "defaultValue": 2,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "light.input.menu.subText",
+        "desc": "listItemSubFontColor",
+        "defaultValue": 1,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "light.input.menu.value",
+        "desc": "listItemValueFontColor",
+        "defaultValue": 1,
+        "widget": "Select, Autocomplete"
+    },
     {
         "id": "light.material_design_icon.color",
         "desc": "mdwIconColor",

@@ -558,13 +558,29 @@
         "widget": "Input, Select, Autocomplete"
     },
     {
+        "id": "dark.input.border",
+        "desc": "inputLayoutBorderColor",
+        "defaultValue": 3,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "dark.input.border_hover",
+        "desc": "inputLayoutBorderColorHover",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "dark.input.border_selected",
+        "desc": "inputLayoutBorderColorSelected",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
         "id": "dark.input.icon_clear",
         "desc": "clearIconColor",
         "defaultValue": 0,
         "widget": "Input, Select, Autocomplete"
     },
-
- 
     {
         "id": "dark.input.icon_collapse",
         "desc": "collapseIconColor",
@@ -580,7 +596,7 @@
     {
         "id": "dark.input.menu.hover",
         "desc": "listItemBackgroundHoverColor",
-        "defaultValue": 2,
+        "defaultValue": 6,
         "widget": "Select, Autocomplete"
     },
     {
@@ -592,7 +608,7 @@
     {
         "id": "dark.input.menu.effect",
         "desc": "listItemRippleEffectColor",
-        "defaultValue": 2,
+        "defaultValue": 6,
         "widget": "Select, Autocomplete"
     },
     {
@@ -600,9 +616,25 @@
         "desc": "listIconColor",
         "defaultValue": 0,
         "widget": "Select, Autocomplete"
-    },    
-      
-
+    },
+    {
+        "id": "dark.input.menu.text",
+        "desc": "listItemFontColor",
+        "defaultValue": 2,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "dark.input.menu.subText",
+        "desc": "listItemSubFontColor",
+        "defaultValue": 1,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "dark.input.menu.value",
+        "desc": "listItemValueFontColor",
+        "defaultValue": 1,
+        "widget": "Select, Autocomplete"
+    },
     {
         "id": "dark.material_design_icon.color",
         "desc": "mdwIconColor",
