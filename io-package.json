@@ -299,9 +299,6 @@
         "dependencies": [
             {
                 "vis": ">=1.3.6"
-            },
-            {
-                "vis-google-fonts": ">=0.1.0"
             }
         ]
     },
