@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.4.1",
+        "version": "0.4.2",
         "news": {
+            "0.4.2": {
+                "en": "vis-google-fonts dependency removed",
+                "de": "vis-google-fonts-Abhängigkeit entfernt",
+                "ru": "зависимость vis-google-fonts удалена",
+                "pt": "Dependência vis-google-fonts removida",
+                "nl": "afhankelijkheid van vis-google-fonts verwijderd",
+                "fr": "Dépendance vis-google-fonts supprimée",
+                "it": "dipendenza da vis-google-fonts rimossa",
+                "es": "Se eliminó la dependencia vis-google-fonts",
+                "pl": "Usunięto zależność vis-google-fonts",
+                "zh-cn": "vis-google-fonts依赖性已删除"
+            },
             "0.4.1": {
                 "en": ": Adapter settings: theme editor implementation completed\n: Progress Widget: condition binding bug fix\n: minimal VIS adapter dependency set to v1.3.6\n: VIS editor: image dialog bug fix\n: Color themes for buttons and dialogs widgets implemented\n: Calendar Widget: week number bug fix\n: icon list: scrollbar bug fix\n: bug fixes",
                 "de": ": Adaptereinstellungen: Implementierung des Theme-Editors abgeschlossen\n: Fortschritts-Widget: Fehlerbehebung bei der Bindungsbindung\n: Minimale Abhängigkeit des VIS-Adapters auf Version 1.3.6 festgelegt\n: VIS-Editor: Fehlerbehebung im Bilddialog\n: Farbthemen für Schaltflächen und Dialogfeld-Widgets implementiert\n: Kalender Widget: Fehlerbehebung bei der Wochennummer\n: Symbolliste: Fehlerbehebung in der Bildlaufleiste\n: Fehlerbehebung",
@@ -220,18 +232,6 @@
                 "zh-cn": "看到变更日志"
             },
             "0.2.9": {
-                "en": "see changelog",
-                "de": "siehe Changelog",
-                "ru": "см. список изменений",
-                "pt": "veja changelog",
-                "nl": "zie changelog",
-                "fr": "voir changelog",
-                "it": "vedi il log delle modifiche",
-                "es": "ver registro de cambios",
-                "pl": "patrz dziennik zmian",
-                "zh-cn": "看到变更日志"
-            },
-            "0.2.7": {
                 "en": "see changelog",
                 "de": "siehe Changelog",
                 "ru": "см. список изменений",

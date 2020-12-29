@@ -5649,7 +5649,7 @@ ical2CalendarWidget();
     ### __WORK IN PROGRESS__
 -->
 
-### __WORK IN PROGRESS__
+### 0.4.2 (2020-12-29)
 * (Scrounger) vis-google-fonts dependency removed
 
 ### 0.4.1 (2020-12-27)
