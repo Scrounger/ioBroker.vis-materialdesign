@@ -254,314 +254,348 @@ vis.binds.materialdesign.table = {
             }
 
             function getColElement(row, col, objValue, textSize, rowData = null) {
-                let prefix = myMdwHelper.getValueFromData(data.attr('prefix' + col), '');
-                let suffix = myMdwHelper.getValueFromData(data.attr('suffix' + col), '');
+                try {
+                    let prefix = myMdwHelper.getValueFromData(data.attr('prefix' + col), '');
+                    let suffix = myMdwHelper.getValueFromData(data.attr('suffix' + col), '');
 
-                if (rowData != null) {
-                    if (prefix !== '') {
-                        prefix = getInternalTableBinding(prefix, rowData);
-                    }
+                    if (rowData != null) {
+                        if (prefix !== '') {
+                            prefix = getInternalTableBinding(prefix, rowData);
+                        }
 
-                    if (suffix !== '') {
-                        suffix = getInternalTableBinding(suffix, rowData);
-                    }
+                        if (suffix !== '') {
+                            suffix = getInternalTableBinding(suffix, rowData);
+                        }
 
-                    function getInternalTableBinding(str, rowData) {
-                        let regex = str.match(/(#\[obj\..*?\])/g);
+                        function getInternalTableBinding(str, rowData) {
+                            let regex = str.match(/(#\[obj\..*?\])/g);
 
-                        if (regex && regex.length > 0) {
-                            for (var i = 0; i <= regex.length - 1; i++) {
-                                let objName = regex[i].replace('#[obj.', '').replace(']', '');
+                            if (regex && regex.length > 0) {
+                                for (var i = 0; i <= regex.length - 1; i++) {
+                                    let objName = regex[i].replace('#[obj.', '').replace(']', '');
 
-                                if (objName && rowData[objName]) {
-                                    str = str.replace(regex[i], rowData[objName]);
-                                } else {
-                                    str = str.replace(regex[i], '');
+                                    if (objName && rowData[objName]) {
+                                        str = str.replace(regex[i], rowData[objName]);
+                                    } else {
+                                        str = str.replace(regex[i], '');
+                                    }
                                 }
                             }
-                        }
 
-                        return str;
+                            return str;
+                        }
                     }
-                }
 
-                if (data.attr('colType' + col) === 'image') {
-                    objValue = `<img src="${objValue}" style="max-height: ${(myMdwHelper.getNumberFromData(data.rowHeight, null) !== null) ? data.rowHeight + 'px' : 'auto'}; auto; vertical-align: middle; max-width: ${myMdwHelper.getValueFromData(data.attr('imageSize' + col), '', '', 'px;')}">`;
-                }
+                    if (data.attr('colType' + col) === 'image') {
+                        objValue = `<img src="${objValue}" style="max-height: ${(myMdwHelper.getNumberFromData(data.rowHeight, null) !== null) ? data.rowHeight + 'px' : 'auto'}; auto; vertical-align: middle; max-width: ${myMdwHelper.getValueFromData(data.attr('imageSize' + col), '', '', 'px;')}">`;
+                    }
 
-                let element = `${prefix}${objValue}${suffix}`
+                    let element = `${prefix}${objValue}${suffix}`
 
-                if (typeof (objValue) === 'object') {
-                    let elementData = vis.binds.materialdesign.table.getElementData(objValue, data.wid);
+                    if (typeof (objValue) === 'object') {
+                        if (objValue.type === 'buttonToggle' || objValue.type === 'buttonToggle_vertical') {
+                            let init = null;
+                            let elementData = null;
 
-                    if (objValue.type === 'buttonToggle' || objValue.type === 'buttonToggle_vertical') {
+                            if (objValue.type === 'buttonToggle') {
+                                elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.toggle.default);
+                                init = vis.binds.materialdesign.button.initializeButton(elementData);
+                            } else {
+                                elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.toggle.vertical);
+                                init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
+                            }
 
-                        let init = vis.binds.materialdesign.button.initializeButton(elementData);
-                        if (objValue.type === 'buttonToggle_vertical') {
-                            init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
-                        }
-
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
                                         ${init.button}
                                     </div>`
 
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button Toggle', true);
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button Toggle', true);
 
-                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle', function () {
-                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
-                            vis.binds.materialdesign.addRippleEffect(btn, elementData);
-                            vis.binds.materialdesign.button.handleToggle(btn, elementData);
-                        });
-                    } else if (objValue.type === 'buttonToggle_icon') {
-                        let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
-
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
-                                        ${init.button}
-                                    </div>`
-
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button Toggle Icon', true);
-
-                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Icon', function () {
-                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
-                            vis.binds.materialdesign.addRippleEffect(btn, elementData, true);
-                            vis.binds.materialdesign.button.handleToggle(btn, elementData);
-                        });
-
-                    } else if (objValue.type === 'buttonState' || objValue.type === 'buttonState_vertical') {
-
-                        let init = vis.binds.materialdesign.button.initializeButton(elementData);
-                        if (objValue.type === 'buttonState_vertical') {
-                            init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
-                        }
-
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
-                                        ${init.button}
-                                    </div>`
-
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button State', true);
-
-                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button State', function () {
-                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
-                            vis.binds.materialdesign.addRippleEffect(btn.children().get(0), elementData);
-                            vis.binds.materialdesign.button.handleState(btn, elementData);
-                        });
-
-                    } else if (objValue.type === 'buttonState_icon') {
-                        let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
-
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
-                                        ${init.button}
-                                    </div>`
-
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button State Icon', true);
-
-                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button State Icon', function () {
-                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
-                            vis.binds.materialdesign.addRippleEffect(btn.children().get(0), elementData, true);
-                            vis.binds.materialdesign.button.handleState(btn, elementData);
-                        });
-
-
-                    } else if (objValue.type === 'buttonLink' || objValue.type === 'buttonLink_vertical') {
-
-                        let init = vis.binds.materialdesign.button.initializeButton(elementData);
-                        if (objValue.type === 'buttonLink_vertical') {
-                            init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
-                        }
-
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
-                                        ${init.button}
-                                    </div>`
-
-                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Link', function () {
-                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
-                            vis.binds.materialdesign.addRippleEffect(btn, elementData);
-                            vis.binds.materialdesign.button.handleLink(btn, elementData);
-                        });
-
-                    } else if (objValue.type === 'buttonLink_icon') {
-                        let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
-
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
-                                        ${init.button}
-                                    </div>`
-
-                        myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Link Icon', function () {
-                            let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
-                            vis.binds.materialdesign.addRippleEffect(btn, elementData, true);
-                            vis.binds.materialdesign.button.handleLink(btn, elementData);
-                        });
-
-                    } else if (objValue.type === 'progress') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 12px;'}">
-                                    </div>`
-
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Progress', true);
-
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Progress', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-progress-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
-                                let progress = $this.find(`.materialdesign-progress-table-row_${row}-col_${col}`);
-
-                                vis.binds.materialdesign.progress.linear(progress, elementData);
+                            myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle', function () {
+                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
+                                vis.binds.materialdesign.addRippleEffect(btn, elementData);
+                                vis.binds.materialdesign.button.handleToggle(btn, elementData);
                             });
-                        });
-                    } else if (objValue.type === 'progress_circular') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-circular-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 60px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 60px;'}">
+                        } else if (objValue.type === 'buttonToggle_icon') {
+                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.toggle.icon);
+                            let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
+                                        ${init.button}
                                     </div>`
 
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Progress Circular', true);
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button Toggle Icon', true);
 
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Progress Circular', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-progress-circular-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
-                                let progress = $this.find(`.materialdesign-progress-circular-table-row_${row}-col_${col}`);
-
-                                vis.binds.materialdesign.progress.circular(progress, elementData);
+                            myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Icon', function () {
+                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
+                                vis.binds.materialdesign.addRippleEffect(btn, elementData, true);
+                                vis.binds.materialdesign.button.handleToggle(btn, elementData);
                             });
-                        });
-                    } else if (objValue.type === 'slider') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-slider-vertical materialdesign-slider-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${elementData["oid-working"]}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
+
+                        } else if (objValue.type === 'buttonState' || objValue.type === 'buttonState_vertical') {
+                            let init = null;
+                            let elementData = null;
+
+                            if (objValue.type === 'buttonState') {
+                                elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.state.default);
+                                init = vis.binds.materialdesign.button.initializeButton(elementData);
+                            } else {
+                                elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.state.vertical);
+                                init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
+                            }
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
+                                        ${init.button}
                                     </div>`
 
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Slider', true);
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button State', true);
 
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Slider', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-slider-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
-                                let slider = $this.find(`.materialdesign-slider-table-row_${row}-col_${col}`);
-
-                                vis.binds.materialdesign.slider.vuetifySlider(slider, elementData);
+                            myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button State', function () {
+                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
+                                vis.binds.materialdesign.addRippleEffect(btn.children().get(0), elementData);
+                                vis.binds.materialdesign.button.handleState(btn, elementData);
                             });
-                        });
 
-                    } else if (objValue.type === 'slider_round') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-slider-round materialdesign-slider-round-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${elementData["oid-working"]}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 60px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 60px;'}">
+                        } else if (objValue.type === 'buttonState_icon') {
+                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.state.icon);
+                            let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
+                                        ${init.button}
                                     </div>`
 
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Slider Round', true);
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button State Icon', true);
 
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Slider Round', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-slider-round-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
-                                let slider = $this.find(`.materialdesign-slider-round-table-row_${row}-col_${col}`);
-
-                                vis.binds.materialdesign.roundslider(slider, elementData);
+                            myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button State Icon', function () {
+                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
+                                vis.binds.materialdesign.addRippleEffect(btn.children().get(0), elementData, true);
+                                vis.binds.materialdesign.button.handleState(btn, elementData);
                             });
-                        });
-                    } else if (objValue.type === 'switch') {
-                        let init = vis.binds.materialdesign.switch.initialize(elementData);
 
-                        element = `<div class="vis-widget materialdesign-widget ${init.labelPosition} materialdesign-switch materialdesign-switch-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
+
+                        } else if (objValue.type === 'buttonLink' || objValue.type === 'buttonLink_vertical') {
+                            let init = null;
+                            let elementData = null;
+
+                            if (objValue.type === 'buttonLink') {
+                                elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.link.default);
+                                init = vis.binds.materialdesign.button.initializeButton(elementData);
+                            }else{
+                                elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.link.vertical);
+                                init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
+                            }
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
+                                        ${init.button}
+                                    </div>`
+
+                            myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Link', function () {
+                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
+                                vis.binds.materialdesign.addRippleEffect(btn, elementData);
+                                vis.binds.materialdesign.button.handleLink(btn, elementData);
+                            });
+
+                        } else if (objValue.type === 'buttonLink_icon') {
+                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.link.icon);
+                            let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
+                                        ${init.button}
+                                    </div>`
+
+                            myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Link Icon', function () {
+                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
+                                vis.binds.materialdesign.addRippleEffect(btn, elementData, true);
+                                vis.binds.materialdesign.button.handleLink(btn, elementData);
+                            });
+
+                        } else if (objValue.type === 'progress') {
+                            let elementData = vis.binds.materialdesign.progress.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.progress.types.linear);
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 12px;'}">
+                                    </div>`
+
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Progress', true);
+
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Progress', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-progress-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
+                                    let progress = $this.find(`.materialdesign-progress-table-row_${row}-col_${col}`);
+
+                                    vis.binds.materialdesign.progress.linear(progress, elementData);
+                                });
+                            });
+                        } else if (objValue.type === 'progress_circular') {
+                            let elementData = vis.binds.materialdesign.progress.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.progress.types.circular);
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-circular-table-row_${row}-col_${col}" data-oid="${elementData.oid}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 60px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 60px;'}">
+                                    </div>`
+
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Progress Circular', true);
+
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Progress Circular', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-progress-circular-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
+                                    let progress = $this.find(`.materialdesign-progress-circular-table-row_${row}-col_${col}`);
+
+                                    vis.binds.materialdesign.progress.circular(progress, elementData);
+                                });
+                            });
+                        } else if (objValue.type === 'slider') {
+                            let elementData = vis.binds.materialdesign.slider.getDataFromJson(objValue, data.wid);
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-slider-vertical materialdesign-slider-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${elementData["oid-working"]}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
+                                    </div>`
+
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Slider', true);
+
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Slider', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-slider-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
+                                    let slider = $this.find(`.materialdesign-slider-table-row_${row}-col_${col}`);
+
+                                    vis.binds.materialdesign.slider.vuetifySlider(slider, elementData);
+                                });
+                            });
+
+                        } else if (objValue.type === 'slider_round') {
+                            let elementData = vis.binds.materialdesign.roundslider.getDataFromJson(objValue, data.wid);
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-slider-round materialdesign-slider-round-table-row_${row}-col_${col}" data-oid="${elementData.oid}" data-oid-working="${elementData["oid-working"]}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 60px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 60px;'}">
+                                    </div>`
+
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Slider Round', true);
+
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Slider Round', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-slider-round-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Vertical', function () {
+                                    let slider = $this.find(`.materialdesign-slider-round-table-row_${row}-col_${col}`);
+
+                                    vis.binds.materialdesign.roundslider.initialize(slider, elementData);
+                                });
+                            });
+                        } else if (objValue.type === 'switch') {
+                            let elementData = vis.binds.materialdesign.switch.getDataFromJson(objValue, data.wid);
+                            let init = vis.binds.materialdesign.switch.initialize(elementData);
+
+                            element = `<div class="vis-widget materialdesign-widget ${init.labelPosition} materialdesign-switch materialdesign-switch-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
                                         ${init.myswitch}
                                     </div>`
 
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Switch', true);
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Switch', true);
 
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Switch', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-switch-table-row_${row}-col_${col}`, data.wid, 'Table Switch', function () {
-                                let sw = $this.find(`.materialdesign-switch-table-row_${row}-col_${col}`);
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Switch', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-switch-table-row_${row}-col_${col}`, data.wid, 'Table Switch', function () {
+                                    let sw = $this.find(`.materialdesign-switch-table-row_${row}-col_${col}`);
 
-                                vis.binds.materialdesign.switch.handle(sw, elementData);
+                                    vis.binds.materialdesign.switch.handle(sw, elementData);
+                                });
                             });
-                        });
-                    } else if (objValue.type === 'checkbox') {
-                        let init = vis.binds.materialdesign.checkbox.initialize(elementData);
+                        } else if (objValue.type === 'checkbox') {
+                            let elementData = vis.binds.materialdesign.checkbox.getDataFromJson(objValue, data.wid);
+                            let init = vis.binds.materialdesign.checkbox.initialize(elementData);
 
-                        element = `<div class="vis-widget materialdesign-widget ${init.labelPosition} materialdesign-checkbox materialdesign-checkbox-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
+                            element = `<div class="vis-widget materialdesign-widget ${init.labelPosition} materialdesign-checkbox materialdesign-checkbox-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 50px;'}">
                                         ${init.checkbox}
                                     </div>`
 
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Checkbox', true);
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Checkbox', true);
 
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Checkbox', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-checkbox-table-row_${row}-col_${col}`, data.wid, 'Table Checkbox', function () {
-                                let checkbox = $this.find(`.materialdesign-checkbox-table-row_${row}-col_${col}`);
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Checkbox', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-checkbox-table-row_${row}-col_${col}`, data.wid, 'Table Checkbox', function () {
+                                    let checkbox = $this.find(`.materialdesign-checkbox-table-row_${row}-col_${col}`);
 
-                                vis.binds.materialdesign.checkbox.handle(checkbox, elementData);
-                            });
-                        });
-                    } else if (objValue.type === 'textfield') {
-
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-input materialdesign-input-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
-                                    </div>`
-
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Textfield', true);
-
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Textfield', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-input-table-row_${row}-col_${col}`, data.wid, 'Table Textfield', function () {
-                                let input = $this.find(`.materialdesign-input-table-row_${row}-col_${col}`);
-
-                                vis.binds.materialdesign.textfield(input, elementData);
-                            });
-                        });
-
-                    } else if (objValue.type === 'select') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-select materialdesign-select-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
-                                    </div>`
-
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Select', true);
-
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Select', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-select-table-row_${row}-col_${col}`, data.wid, 'Table Select', function () {
-                                let select = $this.find(`.materialdesign-select-table-row_${row}-col_${col}`);
-
-                                vis.binds.materialdesign.select(select, elementData);
-                            });
-                        });
-
-                    } else if (objValue.type === 'autocomplete') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-autocomplete materialdesign-autocomplete-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
-                                    </div>`
-
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Autocomplete', true);
-
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Autocomplete', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-autocomplete-table-row_${row}-col_${col}`, data.wid, 'Table Autocomplete', function () {
-                                let autocomplete = $this.find(`.materialdesign-autocomplete-table-row_${row}-col_${col}`);
-
-                                vis.binds.materialdesign.autocomplete(autocomplete, elementData);
-                            });
-                        });
-
-                    } else if (objValue.type === 'materialdesignicon') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-icon materialdesign-icon-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : ''} ${objValue.height ? `height: ${objValue.height};` : ''}">
-                                    </div>`
-
-                        myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table MaterialDesignIcons', true);
-
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Autocomplete', function () {
-                            myMdwHelper.waitForElement($this, `.materialdesign-icon-table-row_${row}-col_${col}`, data.wid, 'Table MaterialDesignIcons', function () {
-                                let icons = $this.find(`.materialdesign-icon-table-row_${row}-col_${col}`);
-
-                                vis.binds.materialdesign.materialdesignicons.initialize(icons, elementData);
-                            });
-                        });
-
-                    } else if (objValue.type === 'html') {
-                        element = `<div class="vis-widget materialdesign-widget materialdesign-html-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important;">
-                        </div>`
-
-                        if (objValue.oid) {
-                            myMdwHelper.oidNeedSubscribe(objValue.oid, data.wid, 'Table Html', true);
-
-                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Html', function () {
-                                myMdwHelper.waitForElement($this, `.materialdesign-html-table-row_${row}-col_${col}`, data.wid, 'Table MaterialDesignIcons', function () {
-                                    let htmlContainer = $this.find(`.materialdesign-html-table-row_${row}-col_${col}`);
-
-                                    let val = vis.states.attr(objValue.oid + '.val')
-                                    htmlContainer.html(objValue.html.replace('[#value]', val));
-
-                                    vis.states.bind(objValue.oid + '.val', function (e, newVal, oldVal) {
-                                        if (newVal !== oldVal) {
-                                            htmlContainer.html(objValue.html.replace('[#value]', newVal))
-                                        }
-                                    });
+                                    vis.binds.materialdesign.checkbox.handle(checkbox, elementData);
                                 });
                             });
-                        } else {
-                            element = objValue.html;
+                        } else if (objValue.type === 'textfield') {
+                            let elementData = vis.binds.materialdesign.textfield.getDataFromJson(objValue, data.wid);
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-input materialdesign-input-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
+                                    </div>`
+
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Textfield', true);
+
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Textfield', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-input-table-row_${row}-col_${col}`, data.wid, 'Table Textfield', function () {
+                                    let input = $this.find(`.materialdesign-input-table-row_${row}-col_${col}`);
+
+                                    vis.binds.materialdesign.textfield.initialize(input, elementData);
+                                });
+                            });
+
+                        } else if (objValue.type === 'select') {
+                            let elementData = vis.binds.materialdesign.select.getDataFromJson(objValue, data.wid);
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-select materialdesign-select-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
+                                    </div>`
+
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Select', true);
+
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Select', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-select-table-row_${row}-col_${col}`, data.wid, 'Table Select', function () {
+                                    let select = $this.find(`.materialdesign-select-table-row_${row}-col_${col}`);
+
+                                    vis.binds.materialdesign.select.initialize(select, elementData);
+                                });
+                            });
+
+                        } else if (objValue.type === 'autocomplete') {
+                            let elementData = vis.binds.materialdesign.autocomplete.getDataFromJson(objValue, data.wid);
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-autocomplete materialdesign-autocomplete-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 38px;'}">
+                                    </div>`
+
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Autocomplete', true);
+
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Autocomplete', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-autocomplete-table-row_${row}-col_${col}`, data.wid, 'Table Autocomplete', function () {
+                                    let autocomplete = $this.find(`.materialdesign-autocomplete-table-row_${row}-col_${col}`);
+
+                                    vis.binds.materialdesign.autocomplete.initialize(autocomplete, elementData);
+                                });
+                            });
+
+                        } else if (objValue.type === 'materialdesignicon') {
+                            let elementData = vis.binds.materialdesign.materialdesignicons.getDataFromJson(objValue, data.wid);
+
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-icon materialdesign-icon-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important; ${objValue.width ? `width: ${objValue.width};` : ''} ${objValue.height ? `height: ${objValue.height};` : ''}">
+                                    </div>`
+
+                            myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table MaterialDesignIcons', true);
+
+                            myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Autocomplete', function () {
+                                myMdwHelper.waitForElement($this, `.materialdesign-icon-table-row_${row}-col_${col}`, data.wid, 'Table MaterialDesignIcons', function () {
+                                    let icons = $this.find(`.materialdesign-icon-table-row_${row}-col_${col}`);
+
+                                    vis.binds.materialdesign.materialdesignicons.initialize(icons, elementData);
+                                });
+                            });
+
+                        } else if (objValue.type === 'html') {
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-html-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; overflow:visible !important;">
+                        </div>`
+
+                            if (objValue.oid) {
+                                myMdwHelper.oidNeedSubscribe(objValue.oid, data.wid, 'Table Html', true);
+
+                                myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Table Html', function () {
+                                    myMdwHelper.waitForElement($this, `.materialdesign-html-table-row_${row}-col_${col}`, data.wid, 'Table MaterialDesignIcons', function () {
+                                        let htmlContainer = $this.find(`.materialdesign-html-table-row_${row}-col_${col}`);
+
+                                        let val = vis.states.attr(objValue.oid + '.val')
+                                        htmlContainer.html(objValue.html.replace('[#value]', val));
+
+                                        vis.states.bind(objValue.oid + '.val', function (e, newVal, oldVal) {
+                                            if (newVal !== oldVal) {
+                                                htmlContainer.html(objValue.html.replace('[#value]', newVal))
+                                            }
+                                        });
+                                    });
+                                });
+                            } else {
+                                element = objValue.html;
+                            }
                         }
                     }
-                }
 
-                return `<td class="mdc-data-table__cell ${textSize.class}"
+                    return `<td class="mdc-data-table__cell ${textSize.class}"
                             id="cell-row${row}-col${col}"
                             ${(objValue && objValue.rowspan) ? `rowspan="${objValue.rowspan}"` : ''}
                             ${(objValue && objValue.colspan) ? `colspan="${objValue.colspan}"` : ''}
@@ -577,6 +611,16 @@ vis.binds.materialdesign.table = {
                             ">
                                 ${element}
                         </td>`
+                } catch (err) {
+                    console.error(`[getColElement] row: ${row}, col: ${col}, objValue: ${JSON.stringify(objValue)}`);
+                    console.error(`[getColElement] error: ${err.message}, stack: ${err.stack}`);
+
+                    return `<td class="mdc-data-table__cell"
+                                id="cell-row${row}-col${col}"
+                                style="color: red; font-weight: bold;">
+                                    ${_('Error:')} ${err.message}
+                            </td>`
+                }
             };
         }
     },
@@ -608,686 +652,6 @@ vis.binds.materialdesign.table = {
         }
 
         return jsonData;
-    },
-    getElementData: function (obj, widgetId) {
-        if (obj.type === 'buttonToggle') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                buttonStyle: obj.buttonStyle,
-                readOnly: obj.readOnly,
-                toggleType: obj.toggleType,
-                pushButton: obj.pushButton,
-                valueOff: obj.valueOff,
-                valueOn: obj.valueOn,
-                stateIfNotTrueValue: obj.stateIfNotTrueValue,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                buttontext: obj.buttontext,
-                labelTrue: obj.labelTrue,
-                labelColorFalse: obj.labelColorFalse,
-                labelColorTrue: obj.labelColorTrue,
-                labelWidth: obj.labelWidth,
-                image: obj.image,
-                imageColor: obj.imageColor,
-                imageTrue: obj.imageTrue,
-                imageTrueColor: obj.imageTrueColor,
-                iconPosition: obj.iconPosition,
-                iconHeight: obj.iconHeight,
-                colorBgFalse: obj.colorBgFalse,
-                colorBgTrue: obj.colorBgTrue,
-                colorPress: obj.colorPress,
-                lockEnabled: obj.lockEnabled,
-                autoLockAfter: obj.autoLockAfter,
-                lockIcon: obj.lockIcon,
-                lockIconSize: obj.lockIconSize,
-                lockIconColor: obj.lockIconColor,
-                lockFilterGrayscale: obj.lockFilterGrayscale
-            };
-        } else if (obj.type === 'buttonToggle_vertical') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                buttonStyle: obj.buttonStyle,
-                readOnly: obj.readOnly,
-                toggleType: obj.toggleType,
-                pushButton: obj.pushButton,
-                valueOff: obj.valueOff,
-                valueOn: obj.valueOn,
-                stateIfNotTrueValue: obj.stateIfNotTrueValue,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                buttontext: obj.buttontext,
-                labelTrue: obj.labelTrue,
-                labelColorFalse: obj.labelColorFalse,
-                labelColorTrue: obj.labelColorTrue,
-                alignment: obj.alignment,
-                image: obj.image,
-                imageColor: obj.imageColor,
-                imageTrue: obj.imageTrue,
-                imageTrueColor: obj.imageTrueColor,
-                iconPosition: obj.iconPosition,
-                iconHeight: obj.iconHeight,
-                colorBgFalse: obj.colorBgFalse,
-                colorBgTrue: obj.colorBgTrue,
-                colorPress: obj.colorPress,
-                lockEnabled: obj.lockEnabled,
-                autoLockAfter: obj.autoLockAfter,
-                lockIcon: obj.lockIcon,
-                lockIconTop: obj.lockIconTop,
-                lockIconLeft: obj.lockIconLeft,
-                lockIconSize: obj.lockIconSize,
-                lockIconColor: obj.lockIconColor,
-                lockFilterGrayscale: obj.lockFilterGrayscale
-            }
-
-        } else if (obj.type === 'buttonToggle_icon') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                readOnly: obj.readOnly,
-                toggleType: obj.toggleType,
-                pushButton: obj.pushButton,
-                valueOff: obj.valueOff,
-                valueOn: obj.valueOn,
-                stateIfNotTrueValue: obj.stateIfNotTrueValue,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                image: obj.image,
-                imageColor: obj.imageColor,
-                imageTrue: obj.imageTrue,
-                imageTrueColor: obj.imageTrueColor,
-                iconHeight: obj.iconHeight,
-                colorBgFalse: obj.colorBgFalse,
-                colorBgTrue: obj.colorBgTrue,
-                colorPress: obj.colorPress,
-                lockEnabled: obj.lockEnabled,
-                autoLockAfter: obj.autoLockAfter,
-                lockIcon: obj.lockIcon,
-                lockIconTop: obj.lockIconTop,
-                lockIconLeft: obj.lockIconLeft,
-                lockIconSize: obj.lockIconSize,
-                lockIconColor: obj.lockIconColor,
-                lockIconBackground: obj.lockIconBackground,
-                lockBackgroundSizeFactor: obj.lockBackgroundSizeFactor,
-                lockFilterGrayscale: obj.lockFilterGrayscale
-            }
-        } else if (obj.type === 'buttonState') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                buttonStyle: obj.buttonStyle,
-                value: obj.value,
-                buttontext: obj.buttontext,
-                colorPress: obj.colorPress,
-                labelWidth: obj.labelWidth,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                image: obj.image,
-                imageColor: obj.imageColor,
-                iconPosition: obj.iconPosition,
-                iconHeight: obj.iconHeight,
-                lockEnabled: obj.lockEnabled,
-                autoLockAfter: obj.autoLockAfter,
-                lockIcon: obj.lockIcon,
-                lockIconSize: obj.lockIconSize,
-                lockIconColor: obj.lockIconColor,
-                lockFilterGrayscale: obj.lockFilterGrayscale
-            }
-        } else if (obj.type === 'buttonState_vertical') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                buttonStyle: obj.buttonStyle,
-                value: obj.value,
-                buttontext: obj.buttontext,
-                colorPress: obj.colorPress,
-                alignment: obj.alignment,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                image: obj.image,
-                imageColor: obj.imageColor,
-                iconPosition: obj.iconPosition,
-                iconHeight: obj.iconHeight,
-                lockEnabled: obj.lockEnabled,
-                autoLockAfter: obj.autoLockAfter,
-                lockIcon: obj.lockIcon,
-                lockIconTop: obj.lockIconTop,
-                lockIconLeft: obj.lockIconLeft,
-                lockIconSize: obj.lockIconSize,
-                lockIconColor: obj.lockIconColor,
-                lockFilterGrayscale: obj.lockFilterGrayscale
-            }
-        } else if (obj.type === 'buttonState_icon') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                value: obj.value,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                image: obj.image,
-                imageColor: obj.imageColor,
-                iconHeight: obj.iconHeight,
-                colorPress: obj.colorPress,
-                lockEnabled: obj.lockEnabled,
-                autoLockAfter: obj.autoLockAfter,
-                lockIcon: obj.lockIcon,
-                lockIconTop: obj.lockIconTop,
-                lockIconLeft: obj.lockIconLeft,
-                lockIconSize: obj.lockIconSize,
-                lockIconColor: obj.lockIconColor,
-                lockIconBackground: obj.lockIconBackground,
-                lockBackgroundSizeFactor: obj.lockBackgroundSizeFactor,
-                lockFilterGrayscale: obj.lockFilterGrayscale
-            }
-        } else if (obj.type === 'buttonLink') {
-            return {
-                wid: widgetId,
-
-                buttonStyle: obj.buttonStyle,
-                href: obj.href,
-                openNewWindow: obj.openNewWindow,
-                buttontext: obj.buttontext,
-                colorPress: obj.colorPress,
-                labelWidth: obj.labelWidth,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                image: obj.image,
-                imageColor: obj.imageColor,
-                iconPosition: obj.iconPosition,
-                iconHeight: obj.iconHeight
-            }
-        } else if (obj.type === 'buttonLink_vertical') {
-            return {
-                wid: widgetId,
-
-                buttonStyle: obj.buttonStyle,
-                href: obj.href,
-                openNewWindow: obj.openNewWindow,
-                buttontext: obj.buttontext,
-                colorPress: obj.colorPress,
-                alignment: obj.alignment,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                image: obj.image,
-                imageColor: obj.imageColor,
-                iconPosition: obj.iconPosition,
-                iconHeight: obj.iconHeight
-            }
-        } else if (obj.type === 'buttonLink_icon') {
-            return {
-                wid: widgetId,
-
-                href: obj.href,
-                openNewWindow: obj.openNewWindow,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                image: obj.image,
-                imageColor: obj.imageColor,
-                iconHeight: obj.iconHeight,
-                colorPress: obj.colorPress
-            }
-        } else if (obj.type === 'progress') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                min: obj.min,
-                max: obj.max,
-                reverse: obj.reverse,
-                progressRounded: obj.progressRounded,
-                progressStriped: obj.progressStriped,
-                progressStripedColor: obj.progressStripedColor,
-                colorProgressBackground: obj.colorProgressBackground,
-                colorProgress: obj.colorProgress,
-                colorOneCondition: obj.colorOneCondition,
-                colorOne: obj.colorOne,
-                colorTwoCondition: obj.colorTwoCondition,
-                colorTwo: obj.colorTwo,
-                showValueLabel: obj.showValueLabel,
-                valueLabelStyle: obj.valueLabelStyle,
-                valueLabelUnit: obj.valueLabelUnit,
-                valueMaxDecimals: obj.valueMaxDecimals,
-                valueLabelCustom: obj.valueLabelCustom,
-                textColor: obj.textColor,
-                textFontSize: obj.textFontSize,
-                textFontFamily: obj.textFontFamily,
-                textAlign: obj.textAlign,
-                progressIndeterminate: obj.indeterminate
-            }
-        } else if (obj.type === 'progress_circular') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                min: obj.min,
-                max: obj.max,
-                progressCircularSize: obj.progressCircularSize,
-                progressCircularWidth: obj.progressCircularWidth,
-                progressCircularRotate: obj.progressCircularRotate,
-                colorProgressBackground: obj.colorProgressBackground,
-                colorProgress: obj.colorProgress,
-                innerColor: obj.innerColor,
-                colorOneCondition: obj.colorOneCondition,
-                colorOne: obj.colorOne,
-                colorTwoCondition: obj.colorTwoCondition,
-                colorTwo: obj.colorTwo,
-                showValueLabel: obj.showValueLabel,
-                valueLabelStyle: obj.valueLabelStyle,
-                valueLabelUnit: obj.valueLabelUnit,
-                valueMaxDecimals: obj.valueMaxDecimals,
-                valueLabelCustom: obj.valueLabelCustom,
-                textColor: obj.textColor,
-                textFontSize: obj.textFontSize,
-                textFontFamily: obj.textFontFamily
-            }
-        } else if (obj.type === 'slider') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                "oid-working": obj["oid-working"],
-                orientation: obj.orientation,
-                reverseSlider: obj.reverseSlider,
-                knobSize: obj.knobSize,
-                readOnly: obj.readOnly,
-                min: obj.min,
-                max: obj.max,
-                step: obj.step,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                showTicks: obj.showTicks,
-                tickSize: obj.tickSize,
-                tickLabels: obj.tickLabels,
-                tickColorBefore: obj.tickColorBefore,
-                tickColorAfter: obj.tickColorAfter,
-                colorBeforeThumb: obj.colorBeforeThumb,
-                colorThumb: obj.colorThumb,
-                colorAfterThumb: obj.colorAfterThumb,
-                prepandText: obj.prepandText,
-                prepandTextWidth: obj.prepandTextWidth,
-                prepandTextColor: obj.prepandTextColor,
-                prepandTextFontSize: obj.prepandTextFontSize,
-                prepandTextFontFamily: obj.prepandTextFontFamily,
-                showValueLabel: obj.showValueLabel,
-                valueLabelStyle: obj.valueLabelStyle,
-                valueLabelUnit: obj.valueLabelUnit,
-                valueLabelMin: obj.valueLabelMin,
-                valueLabelMax: obj.valueLabelMax,
-                valueLessThan: obj.valueLessThan,
-                textForValueLessThan: obj.textForValueLessThan,
-                valueGreaterThan: obj.valueGreaterThan,
-                textForValueGreaterThan: obj.textForValueGreaterThan,
-                valueLabelWidth: obj.valueLabelWidth,
-                showThumbLabel: obj.showThumbLabel,
-                thumbSize: obj.thumbSize,
-                thumbBackgroundColor: obj.thumbBackgroundColor,
-                thumbFontColor: obj.thumbFontColor,
-                thumbFontSize: obj.thumbFontSize,
-                thumbFontFamily: obj.thumbFontFamily,
-                useLabelRules: obj.useLabelRules
-            }
-        } else if (obj.type === 'slider_round') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                "oid-working": obj["oid-working"],
-                min: obj.min,
-                max: obj.max,
-                step: obj.step,
-                readOnly: obj.readOnly,
-                startAngle: obj.startAngle,
-                arcLength: obj.arcLength,
-                sliderWidth: obj.sliderWidth,
-                handleSize: obj.handleSize,
-                handleZoom: obj.handleZoom,
-                rtl: obj.rtl,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                colorSliderBg: obj.colorSliderBg,
-                colorBeforeThumb: obj.colorBeforeThumb,
-                colorThumb: obj.colorThumb,
-                colorAfterThumb: obj.colorAfterThumb,
-                valueLabelColor: obj.valueLabelColor,
-                showValueLabel: obj.showValueLabel,
-                valueLabelVerticalPosition: obj.valueLabelVerticalPosition,
-                valueLabelStyle: obj.valueLabelStyle,
-                valueLabelUnit: obj.valueLabelUnit,
-                valueLabelMin: obj.valueLabelMin,
-                valueLabelMax: obj.valueLabelMax,
-                valueLessThan: obj.valueLessThan,
-                textForValueLessThan: obj.textForValueLessThan,
-                valueGreaterThan: obj.valueGreaterThan,
-                textForValueGreaterThan: obj.textForValueGreaterThan
-            }
-        } else if (obj.type === 'switch') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                readOnly: obj.readOnly,
-                toggleType: obj.toggleType,
-                valueOff: obj.valueOff,
-                valueOn: obj.valueOn,
-                stateIfNotTrueValue: obj.stateIfNotTrueValue,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                labelFalse: obj.labelFalse,
-                labelTrue: obj.labelTrue,
-                labelPosition: obj.labelPosition,
-                labelClickActive: obj.labelClickActive,
-                colorSwitchThumb: obj.colorSwitchThumb,
-                colorSwitchTrack: obj.colorSwitchTrack,
-                colorSwitchTrue: obj.colorSwitchTrue,
-                colorSwitchHover: obj.colorSwitchHover,
-                colorSwitchHoverTrue: obj.colorSwitchHoverTrue,
-                labelColorFalse: obj.labelColorFalse,
-                labelColorTrue: obj.labelColorTrue,
-                lockEnabled: obj.lockEnabled,
-                autoLockAfter: obj.autoLockAfter,
-                lockIcon: obj.lockIcon,
-                lockIconTop: obj.lockIconTop,
-                lockIconLeft: obj.lockIconLeft,
-                lockIconSize: obj.lockIconSize,
-                lockIconColor: obj.lockIconColor,
-                lockFilterGrayscale: obj.lockFilterGrayscale
-            }
-        } else if (obj.type === 'checkbox') {
-            return {
-                wid: widgetId,
-
-                oid: obj.oid,
-                readOnly: obj.readOnly,
-                toggleType: obj.toggleType,
-                valueOff: obj.valueOff,
-                valueOn: obj.valueOn,
-                stateIfNotTrueValue: obj.stateIfNotTrueValue,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                labelFalse: obj.labelFalse,
-                labelTrue: obj.labelTrue,
-                labelPosition: obj.labelPosition,
-                labelClickActive: obj.labelClickActive,
-                colorCheckBox: obj.colorCheckBox,
-                colorCheckBoxBorder: obj.colorCheckBoxBorder,
-                colorCheckBoxHover: obj.colorCheckBoxHover,
-                labelColorFalse: obj.labelColorFalse,
-                labelColorTrue: obj.labelColorTrue,
-                lockEnabled: obj.lockEnabled,
-                autoLockAfter: obj.autoLockAfter,
-                lockIcon: obj.lockIcon,
-                lockIconTop: obj.lockIconTop,
-                lockIconLeft: obj.lockIconLeft,
-                lockIconSize: obj.lockIconSize,
-                lockIconColor: obj.lockIconColor,
-                lockFilterGrayscale: obj.lockFilterGrayscale
-            }
-        } else if (obj.type === 'textfield') {
-            return {
-                wid: widgetId,
-
-
-                oid: obj.oid,
-                inputType: obj.inputType,
-                inputMask: obj.inputMask,
-                inputMaxLength: obj.inputMaxLength,
-                inputLayout: obj.inputLayout,
-                inputAlignment: obj.inputAlignment,                
-                inputLayoutBackgroundColor: obj.inputLayoutBackgroundColor,
-                inputLayoutBackgroundColorHover: obj.inputLayoutBackgroundColorHover,
-                inputLayoutBackgroundColorSelected: obj.inputLayoutBackgroundColorSelected,
-                inputLayoutBorderColor: obj.inputLayoutBorderColor,
-                inputLayoutBorderColorHover: obj.inputLayoutBorderColorHover,
-                inputLayoutBorderColorSelected: obj.inputLayoutBorderColorSelected,
-                inputTextFontFamily: obj.inputTextFontFamily,
-                inputTextFontSize: obj.inputTextFontSize,
-                inputTextColor: obj.inputTextColor,
-                inputLabelText: obj.inputLabelText,
-                inputLabelColor: obj.inputLabelColor,                
-                inputLabelColorSelected: obj.inputLabelColorSelected,
-                inputLabelFontFamily: obj.inputLabelFontFamily,
-                inputLabelFontSize: obj.inputLabelFontSize,
-                inputTranslateX: obj.inputTranslateX,
-                inputTranslateY: obj.inputTranslateY,
-                inputPrefix: obj.inputPrefix,
-                inputSuffix: obj.inputSuffix,
-                inputAppendixColor: obj.inputAppendixColor,
-                inputAppendixFontSize: obj.inputAppendixFontSize,
-                inputAppendixFontFamily: obj.inputAppendixFontFamily,
-                showInputMessageAlways: obj.showInputMessageAlways,
-                inputMessage: obj.inputMessage,
-                inputMessageFontFamily: obj.inputMessageFontFamily,
-                inputMessageFontSize: obj.inputMessageFontSize,
-                inputMessageColor: obj.inputMessageColor,
-                showInputCounter: obj.showInputCounter,
-                inputCounterColor: obj.inputCounterColor,
-                inputCounterFontSize: obj.inputCounterFontSize,
-                inputCounterFontFamily: obj.inputCounterFontFamily,
-                clearIconShow: obj.clearIconShow,
-                clearIcon: obj.clearIcon,
-                clearIconSize: obj.clearIconSize,
-                clearIconColor: obj.clearIconColor,
-                prepandIcon: obj.prepandIcon,
-                prepandIconSize: obj.prepandIconSize,
-                prepandIconColor: obj.prepandIconColor,
-                prepandInnerIcon: obj.prepandInnerIcon,
-                prepandInnerIconSize: obj.prepandInnerIconSize,
-                prepandInnerIconColor: obj.prepandInnerIconColor,
-                appendIcon: obj.appendIcon,
-                appendIconSize: obj.appendIconSize,
-                appendIconColor: obj.appendIconColor,
-                appendOuterIcon: obj.appendOuterIcon,
-                appendOuterIconSize: obj.appendOuterIconSize,
-                appendOuterIconColor: obj.appendOuterIconColor
-            }
-        } else if (obj.type === 'select') {
-            let data = {
-                wid: widgetId,
-
-                oid: obj.oid,
-                inputType: obj.inputType,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                inputLayout: obj.inputLayout,
-                inputAlignment: obj.inputAlignment,
-                inputLayoutBackgroundColor: obj.inputLayoutBackgroundColor,
-                inputLayoutBackgroundColorHover: obj.inputLayoutBackgroundColorHover,
-                inputLayoutBackgroundColorSelected: obj.inputLayoutBackgroundColorSelected,
-                inputLayoutBorderColor: obj.inputLayoutBorderColor,
-                inputLayoutBorderColorHover: obj.inputLayoutBorderColorHover,
-                inputLayoutBorderColorSelected: obj.inputLayoutBorderColorSelected,
-                inputTextFontFamily: obj.inputTextFontFamily,
-                inputTextFontSize: obj.inputTextFontSize,
-                inputTextColor: obj.inputTextColor,
-                inputLabelText: obj.inputLabelText,
-                inputLabelColor: obj.inputLabelColor,
-                inputLabelColorSelected: obj.inputLabelColorSelected,
-                inputLabelFontFamily: obj.inputLabelFontFamily,
-                inputLabelFontSize: obj.inputLabelFontSize,
-                inputTranslateX: obj.inputTranslateX,
-                inputTranslateY: obj.inputTranslateY,
-                inputPrefix: obj.inputPrefix,
-                inputSuffix: obj.inputSuffix,
-                inputAppendixColor: obj.inputAppendixColor,
-                inputAppendixFontSize: obj.inputAppendixFontSize,
-                inputAppendixFontFamily: obj.inputAppendixFontFamily,
-                showInputMessageAlways: obj.showInputMessageAlways,
-                inputMessage: obj.inputMessage,
-                inputMessageFontFamily: obj.inputMessageFontFamily,
-                inputMessageFontSize: obj.inputMessageFontSize,
-                inputMessageColor: obj.inputMessageColor,
-                showInputCounter: obj.showInputCounter,
-                inputCounterColor: obj.inputCounterColor,
-                inputCounterFontSize: obj.inputCounterFontSize,
-                inputCounterFontFamily: obj.inputCounterFontFamily,
-                clearIconShow: obj.clearIconShow,
-                clearIcon: obj.clearIcon,
-                clearIconSize: obj.clearIconSize,
-                clearIconColor: obj.clearIconColor,
-                collapseIcon: obj.collapseIcon,
-                collapseIconSize: obj.collapseIconSize,
-                collapseIconColor: obj.collapseIconColor,
-                prepandIcon: obj.prepandIcon,
-                prepandIconSize: obj.prepandIconSize,
-                prepandIconColor: obj.prepandIconColor,
-                prepandInnerIcon: obj.prepandInnerIcon,
-                prepandInnerIconSize: obj.prepandInnerIconSize,
-                prepandInnerIconColor: obj.prepandInnerIconColor,
-                appendOuterIcon: obj.appendOuterIcon,
-                appendOuterIconSize: obj.appendOuterIconSize,
-                appendOuterIconColor: obj.appendOuterIconColor,
-                listDataMethod: obj.listDataMethod,
-                countSelectItems: obj.countSelectItems,
-                jsonStringObject: obj.jsonStringObject,
-                valueList: obj.valueList,
-                valueListLabels: obj.valueListLabels,
-                valueListIcons: obj.valueListIcons,
-                listPosition: obj.listPosition,
-                listPositionOffset: obj.listPositionOffset,
-                listItemHeight: obj.listItemHeight,
-                listItemBackgroundColor: obj.listItemBackgroundColor,
-                listItemBackgroundHoverColor: obj.listItemBackgroundHoverColor,
-                listItemBackgroundSelectedColor: obj.listItemBackgroundSelectedColor,
-                listItemRippleEffectColor: obj.listItemRippleEffectColor,
-                showSelectedIcon: obj.showSelectedIcon,
-                listIconSize: obj.listIconSize,
-                listIconColor: obj.listIconColor,
-                listIconHoverColor: obj.listIconHoverColor,
-                listIconSelectedColor: obj.listIconSelectedColor,
-                listItemFontSize: obj.listItemFontSize,
-                listItemFont: obj.listItemFont,
-                listItemFontColor: obj.listItemFontColor,
-                listItemFontHoverColor: obj.listItemFontHoverColor,
-                listItemFontSelectedColor: obj.listItemFontSelectedColor,
-                listItemSubFontSize: obj.listItemSubFontSize,
-                listItemSubFont: obj.listItemSubFont,
-                listItemSubFontColor: obj.listItemSubFontColor,
-                listItemSubFontHoverColor: obj.listItemSubFontHoverColor,
-                listItemSubFontSelectedColor: obj.listItemSubFontSelectedColor,
-                showValue: obj.showValue,
-                listItemValueFontSize: obj.listItemValueFontSize,
-                listItemValueFont: obj.listItemValueFont,
-                listItemValueFontColor: obj.listItemValueFontColor,
-                listItemValueFontHoverColor: obj.listItemValueFontHoverColor,
-                listItemValueFontSelectedColor: obj.listItemValueFontSelectedColor,
-            }
-
-            for (var i = 0; i <= obj.countSelectItems; i++) {
-                data['value' + i] = obj['value' + i];
-                data['label' + i] = obj['label' + i];
-                data['subLabel' + i] = obj['subLabel' + i];
-                data['listIcon' + i] = obj['listIcon' + i];
-                data['listIconColor' + i] = obj['listIconColor' + i];
-            }
-
-            return data;
-
-        } else if (obj.type === 'autocomplete') {
-            let data = {
-                wid: widgetId,
-
-                oid: obj.oid,
-                inputMode: obj.inputMode,
-                inputType: obj.inputType,
-                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-                inputLayout: obj.inputLayout,
-                inputAlignment: obj.inputAlignment,
-                inputLayoutBackgroundColor: obj.inputLayoutBackgroundColor,
-                inputLayoutBackgroundColorHover: obj.inputLayoutBackgroundColorHover,
-                inputLayoutBackgroundColorSelected: obj.inputLayoutBackgroundColorSelected,
-                inputLayoutBorderColor: obj.inputLayoutBorderColor,
-                inputLayoutBorderColorHover: obj.inputLayoutBorderColorHover,
-                inputLayoutBorderColorSelected: obj.inputLayoutBorderColorSelected,
-                inputTextFontFamily: obj.inputTextFontFamily,
-                inputTextFontSize: obj.inputTextFontSize,
-                inputTextColor: obj.inputTextColor,
-                inputLabelText: obj.inputLabelText,
-                inputLabelColor: obj.inputLabelColor,
-                inputLabelColorSelected: obj.inputLabelColorSelected,
-                inputLabelFontFamily: obj.inputLabelFontFamily,
-                inputLabelFontSize: obj.inputLabelFontSize,
-                inputTranslateX: obj.inputTranslateX,
-                inputTranslateY: obj.inputTranslateY,
-                inputPrefix: obj.inputPrefix,
-                inputSuffix: obj.inputSuffix,
-                inputAppendixColor: obj.inputAppendixColor,
-                inputAppendixFontSize: obj.inputAppendixFontSize,
-                inputAppendixFontFamily: obj.inputAppendixFontFamily,
-                showInputMessageAlways: obj.showInputMessageAlways,
-                inputMessage: obj.inputMessage,
-                inputMessageFontFamily: obj.inputMessageFontFamily,
-                inputMessageFontSize: obj.inputMessageFontSize,
-                inputMessageColor: obj.inputMessageColor,
-                showInputCounter: obj.showInputCounter,
-                inputCounterColor: obj.inputCounterColor,
-                inputCounterFontSize: obj.inputCounterFontSize,
-                inputCounterFontFamily: obj.inputCounterFontFamily,
-                clearIconShow: obj.clearIconShow,
-                clearIcon: obj.clearIcon,
-                clearIconSize: obj.clearIconSize,
-                clearIconColor: obj.clearIconColor,
-                collapseIcon: obj.collapseIcon,
-                collapseIconSize: obj.collapseIconSize,
-                collapseIconColor: obj.collapseIconColor,
-                prepandIcon: obj.prepandIcon,
-                prepandIconSize: obj.prepandIconSize,
-                prepandIconColor: obj.prepandIconColor,
-                prepandInnerIcon: obj.prepandInnerIcon,
-                prepandInnerIconSize: obj.prepandInnerIconSize,
-                prepandInnerIconColor: obj.prepandInnerIconColor,
-                appendOuterIcon: obj.appendOuterIcon,
-                appendOuterIconSize: obj.appendOuterIconSize,
-                appendOuterIconColor: obj.appendOuterIconColor,
-                listDataMethod: obj.listDataMethod,
-                countSelectItems: obj.countSelectItems,
-                jsonStringObject: obj.jsonStringObject,
-                valueList: obj.valueList,
-                valueListLabels: obj.valueListLabels,
-                valueListIcons: obj.valueListIcons,
-                listPosition: obj.listPosition,
-                listPositionOffset: obj.listPositionOffset,
-                listItemHeight: obj.listItemHeight,
-                listItemBackgroundColor: obj.listItemBackgroundColor,
-                listItemBackgroundHoverColor: obj.listItemBackgroundHoverColor,
-                listItemBackgroundSelectedColor: obj.listItemBackgroundSelectedColor,
-                listItemRippleEffectColor: obj.listItemRippleEffectColor,
-                showSelectedIcon: obj.showSelectedIcon,
-                listIconSize: obj.listIconSize,
-                listIconColor: obj.listIconColor,
-                listIconHoverColor: obj.listIconHoverColor,
-                listIconSelectedColor: obj.listIconSelectedColor,
-                listItemFontSize: obj.listItemFontSize,
-                listItemFont: obj.listItemFont,
-                listItemFontColor: obj.listItemFontColor,
-                listItemFontHoverColor: obj.listItemFontHoverColor,
-                listItemFontSelectedColor: obj.listItemFontSelectedColor,
-                listItemSubFontSize: obj.listItemSubFontSize,
-                listItemSubFont: obj.listItemSubFont,
-                listItemSubFontColor: obj.listItemSubFontColor,
-                listItemSubFontHoverColor: obj.listItemSubFontHoverColor,
-                listItemSubFontSelectedColor: obj.listItemSubFontSelectedColor,
-                showValue: obj.showValue,
-                listItemValueFontSize: obj.listItemValueFontSize,
-                listItemValueFont: obj.listItemValueFont,
-                listItemValueFontColor: obj.listItemValueFontColor,
-                listItemValueFontHoverColor: obj.listItemValueFontHoverColor,
-                listItemValueFontSelectedColor: obj.listItemValueFontSelectedColor,
-            }
-
-            for (var i = 0; i <= obj.countSelectItems; i++) {
-                data['value' + i] = obj['value' + i];
-                data['label' + i] = obj['label' + i];
-                data['subLabel' + i] = obj['subLabel' + i];
-                data['listIcon' + i] = obj['listIcon' + i];
-                data['listIconColor' + i] = obj['listIconColor' + i];
-            }
-
-            return data;
-        } else if (obj.type === 'materialdesignicon') {
-            return {
-                wid: widgetId,
-
-                mdwIcon: obj.mdwIcon,
-                mdwIconSize: obj.mdwIconSize,
-                mdwIconColor: obj.mdwIconColor
-            }
-
-        } else if (obj.type === 'html') {
-            return obj;
-        }
     },
     sortByKey: function (array, key, sortASC) {
         return array.sort(function (a, b) {

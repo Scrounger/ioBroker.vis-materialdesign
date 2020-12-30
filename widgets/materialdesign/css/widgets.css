@@ -5,14 +5,27 @@
 */
 
 :root{
-  --mdc-theme-primary: #44739e;
-  --mdc-theme-secondary: #44739e;
+  --materialdesign-color-primary: #44739e;
+  --materialdesign-color-secondary: #fff;
+
+  --materialdesign-color-button-pressed: initial;
 
   --materialdesign-color-top-app-bar-background: #44739e;
+  --materialdesign-font-top-app-bar-title: inherit;
+  --materialdesign-font-size-top-app-bar-title: 20px;
+  --materialdesign-font-top-app-bar-item: inherit;
+  --materialdesign-font-top-app-bar-item-disabled: inherit;
+  --materialdesign-font-top-app-bar-sub-item: inherit;
+  --materialdesign-font-top-app-bar-sub-item-disabled: inherit;
 
   --materialdesign-color-checkbox: #44739e;
   --materialdesign-color-checkbox-border: rgba(0, 0, 0, 0.54);
   --materialdesign-color-checkbox-hover:#000;
+
+
+  --materialdesign-font-button: inherit;
+  --materialdesign-font-size-button: 14px;
+  --materialdesign-font-button-vertical-text-distance-image: 2px;
 
   --material-progress-circular-color: #44739e;
 
@@ -29,18 +42,24 @@
   --materialdesign-color-sub-list-item-selected: #000;
   
   --materialdesign-color-list-item-text: #000;
+  --materialdesign-font-list-item-text: initial;
+
   --materialdesign-color-list-item-text-disabled: rgba(0, 0, 0, 0.38);
   --materialdesign-color-list-item-icon-disabled: rgba(0, 0, 0, 0.38);
   --materialdesign-color-sub-list-item-text: #000;
   --materialdesign-color-list-item-text-activated: #44739e;
   --materialdesign-color-sub-list-item-text-activated: #44739e;
 
+  --materialdesign-font-list-item-text-secondary: initial;
   --materialdesign-color-list-item-text-secondary: rgba(0, 0, 0, 0.54);
 
   --materialdesign-color-list-item-text-right: #000;
+  --materialdesign-font-list-item-text-right: initial;
   --materialdesign-color-list-item-text-secondary-right: rgba(0, 0, 0, 0.54);
+  --materialdesign-font-list-item-text-secondary-right: initial;
 
   --materialdesign-color-list-item-header: #000;
+  --materialdesign-font-list-item-header: initial
   --materialdesign-color-list-item-divider: rgba(0, 0, 0, 0.12);
   --materialdesign-color-sub-list-item-divider: rgba(0, 0, 0, 0.12);
 
@@ -53,7 +72,11 @@
   --materialdesign-color-card-title-section-background: transparent;
   --materialdesign-color-card-text-section-background: transparent;
   --materialdesign-color-card-title: #44739e;
+  --materialdesign-font-card-title: inherit;
   --materialdesign-color-card-sub-title: #a1a1a1;
+  --materialdesign-font-card-sub-title: inherit;
+  --materialdesign-color-card--text-section-text: #44739e;
+  --materialdesign-font-card--text-section-text: inherit;
  
   --materialdesign-color-table-background: #fff;
   --materialdesign-color-table-border: rgba(0,0,0,.12);
@@ -73,6 +96,8 @@
   --materialdesign-masonry-gaps: 20px;
 
   --materialdesign-grid-gaps: 0px;
+
+  --materialdesign-icon-list-background: transparent;
 
   --materialdesign-icon-list-items-per-row: 3;
   --materialdesign-icon-list-items-min-width: 50px;
@@ -100,6 +125,9 @@
   --vue-slider-thumb-label-font-size: 12px;
   --vue-slider-tick-before-color: #44739e;
   --vue-slider-tick-after-color: #44739e;
+  --vue-slider-tick-font-family: inherit;
+  --vue-slider-tick-color: #44739e;
+  --vue-slider-tick-font-size: 14px;
 
   --vue-text-field-before-color: rgba(0, 0, 0, 0.2);
   --vue-text-field-hover-color: #44739e;
@@ -300,13 +328,19 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.materialdesign-widget.materialdesign-button.vertical .materialdesign-button__label,
+.materialdesign-widget .materialdesign-button.vertical .materialdesign-button__label {
+  margin-top: var(--materialdesign-font-button-vertical-text-distance-image);
+  margin-bottom: var(--materialdesign-font-button-vertical-text-distance-image);
+}
+
 /* Button style -> must defined here because of position bug in vis editor */
 .materialdesign-widget.materialdesign-button,
 .materialdesign-widget .materialdesign-button {
-  font-family: Roboto, sans-serif;
+  font-family: var(--materialdesign-font-button);
+  font-size: var(--materialdesign-font-size-button);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-size: 0.875rem;
   line-height: 2.25rem;
   font-weight: 500;
   text-decoration: none;
@@ -381,7 +415,7 @@
 }
 .materialdesign-widget.materialdesign-button:not(:disabled),
 .materialdesign-widget .materialdesign-button:not(:disabled) {
-  color: #44739e;
+  color: var(--materialdesign-color-primary);
 }
 
 .materialdesign-widget.materialdesign-button__label + .materialdesign-widget.materialdesign-button__icon,
@@ -480,7 +514,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 .materialdesign-widget .materialdesign-button--raised:not(:disabled),
 .materialdesign-widget.materialdesign-button--unelevated:not(:disabled),
 .materialdesign-widget .materialdesign-button--unelevated:not(:disabled) {
-  background-color: #44739e;
+  background-color: var(--materialdesign-color-primary);
 }
 @supports not (-ms-ime-align: auto) {
   .materialdesign-widget.materialdesign-button--raised:not(:disabled),
@@ -488,16 +522,14 @@ svg.materialdesign-widget .materialdesign-button__icon {
 .materialdesign-widget.materialdesign-button--unelevated:not(:disabled),
 .materialdesign-widget .materialdesign-button--unelevated:not(:disabled) {
     /* @alternate */
-    background-color: #44739e;
+    background-color: var(--materialdesign-color-primary);
   }
 }
 .materialdesign-widget.materialdesign-button--raised:not(:disabled),
 .materialdesign-widget .materialdesign-button--raised:not(:disabled),
 .materialdesign-widget.materialdesign-button--unelevated:not(:disabled),
 .materialdesign-widget .materialdesign-button--unelevated:not(:disabled) {
-  color: #fff;
-  /* @alternate */
-  color: var(--mdc-theme-on-primary, #fff);
+  color: var(--materialdesign-color-secondary);
 }
 
 .materialdesign-widget.materialdesign-button--raised,
@@ -532,7 +564,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 }
 .materialdesign-widget.materialdesign-button--outlined:not(:disabled),
 .materialdesign-widget .materialdesign-button--outlined:not(:disabled) {
-  border-color: #44739e;
+  border-color: var(--materialdesign-color-primary);
 }
 
 .materialdesign-widget.materialdesign-button--dense,
@@ -691,15 +723,26 @@ svg.materialdesign-widget .materialdesign-button__icon {
 .materialdesign-widget .materialdesign-button::before, 
 .materialdesign-widget.materialdesign-button::after,
 .materialdesign-widget .materialdesign-button::after {
-  background-color: #44739e;
+  background-color: var(--materialdesign-color-button-pressed, var(--materialdesign-color-primary));
 }
+
+.materialdesign-widget .materialdesign-icon-list-container .materialdesign-button::before, 
+.materialdesign-widget .materialdesign-icon-list-container .materialdesign-button::after {
+  background-color: var(--materialdesign-color-icon-button-hover);
+}
+
 @supports not (-ms-ime-align: auto) {
   .materialdesign-widget.materialdesign-button::before, 
   .materialdesign-widget .materialdesign-button::before,
   .materialdesign-widget.materialdesign-button::after,
   .materialdesign-widget .materialdesign-button::after {
     /* @alternate */
-    background-color: #44739e;
+    background-color: var(--materialdesign-color-button-pressed, var(--materialdesign-color-primary));
+  }
+
+  .materialdesign-widget .materialdesign-icon-list-container .materialdesign-button::before, 
+  .materialdesign-widget .materialdesign-icon-list-container .materialdesign-button::after {
+    background-color: var(--materialdesign-color-icon-button-hover);
   }
 }
 .materialdesign-widget.materialdesign-button:hover::before,
@@ -747,7 +790,8 @@ svg.materialdesign-widget .materialdesign-button__icon {
 .materialdesign-widget.materialdesign-button--unelevated::after,
 .materialdesign-widget .materialdesign-button--unelevated::after {
     /* @alternate */
-    background-color: var(--mdc-theme-on-primary, #fff);
+    /* background-color: var(--mdc-theme-on-primary, #fff); */
+    background-color: var(--materialdesign-color-button-pressed, var(--materialdesign-color-secondary));
   }
 }
 .materialdesign-widget.materialdesign-button--raised:hover::before,
@@ -967,6 +1011,16 @@ svg.materialdesign-widget .materialdesign-button__icon {
   color: black;
 }
 
+.materialdesign-widget .materialdesign-html-card.mdc-card {
+  border-radius: 4px;
+  background-color: var(--materialdesign-color-card-background);
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  color: black;
+}
+
 .materialdesign-widget .materialdesign-html-card.card-title-section{
   visibility: visible;
   box-sizing: border-box;
@@ -982,22 +1036,28 @@ svg.materialdesign-widget .materialdesign-button__icon {
   box-sizing: border-box;
   padding: 16px;
   background-color: var(--materialdesign-color-card-text-section-background);
+  color: var(--materialdesign-color-card--text-section-text);
+  font-family: var(--materialdesign-font-card--text-section-text);
 }
 
 .materialdesign-widget .materialdesign-html-card.card-text-section.iconlist{
   visibility: visible;
   box-sizing: border-box;
-  padding: 0px;
+  padding: 1px;
   background-color: var(--materialdesign-color-card-text-section-background);
+  color: var(--materialdesign-color-card--text-section-text);
+  font-family: var(--materialdesign-font-card--text-section-text);
 }
 
 
 .materialdesign-widget .materialdesign-html-card.card-title {
   color: var(--materialdesign-color-card-title);
+  font-family: var(--materialdesign-font-card-title);
 }
 
 .materialdesign-widget .materialdesign-html-card.card-subtitle {
   color: var(--materialdesign-color-card-sub-title);
+  font-family: var(--materialdesign-font-card-sub-title);
 }
 
 .materialdesign-widget .materialdesign-html-card.card-custom-body {
@@ -1268,6 +1328,19 @@ svg.materialdesign-widget .materialdesign-button__icon {
   z-index: 4;
 }
 
+.materialdesign-widget .mdc-top-app-bar__title {
+  font-family: var(--materialdesign-font-top-app-bar-title);
+  font-size:  var(--materialdesign-font-size-top-app-bar-title);
+}
+
+.materialdesign-widget .mdc-drawer__content .mdc-list-item__text {
+  font-family: var(--materialdesign-font-top-app-bar-item);
+}
+
+.materialdesign-widget .mdc-drawer__content .mdc-sub-list-item .mdc-list-item__text {
+  font-family: var(--materialdesign-font-top-app-bar-sub-item);
+}
+
 /* App Top Bar Short */
 .materialdesign-widget .mdc-top-app-bar--short-fixed-adjust {
   padding-top: 0px;
@@ -1339,8 +1412,14 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 .materialdesign-widget .mdc-list-item--disabled .mdc-list-item__text {
   color: var(--materialdesign-color-list-item-text-disabled);
-  font-style: italic;
+  font-family: var(--materialdesign-font-top-app-bar-item-disabled);
+  /* font-style: italic; */
 }
+
+.materialdesign-widget .mdc-sub-list-item.mdc-list-item--disabled .mdc-list-item__text {
+  font-family: var(--materialdesign-font-top-app-bar-sub-item-disabled);
+}
+
 
 .materialdesign-widget .mdc-list-item--disabled .mdc-list-item__graphic {
   color: var(--materialdesign-color-list-item-icon-disabled) !important;
@@ -1391,6 +1470,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 .materialdesign-widget :not(.mdc-list-item--disabled).mdc-list-item{
   color: var(--materialdesign-color-list-item-text);
+  font-family: var(--materialdesign-font-list-item-text);
 }
 .materialdesign-widget :not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-sub-list-item{
   color: var(--materialdesign-color-sub-list-item-text);
@@ -1414,26 +1494,32 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 .materialdesign-widget .mdc-list-item__secondary-text {
   color: var(--materialdesign-color-list-item-text-secondary);
+  font-family: var(--materialdesign-font-list-item-text-secondary);
 }
 
 .materialdesign-widget .mdc-list-item__text.materialdesign-list-item-text-right {
   color: var(--materialdesign-color-list-item-text-right);
+  font-family: var(--materialdesign-font-list-item-text-right);
 }
 
 .materialdesign-widget .mdc-list-item__primary-text.materialdesign-list-item-text-right {
   color: var(--materialdesign-color-list-item-text-right);
+  font-family: var(--materialdesign-font-list-item-text-right);
 }
 
 .materialdesign-widget .mdc-list-item__secondary-text.materialdesign-list-item-text-right {
   color: var(--materialdesign-color-list-item-text-secondary-right);
+  font-family: var(--materialdesign-font-list-item-text-secondary-right);
 }
 
 .materialdesign-widget .mdc-list-group__subheader {
   color: var(--materialdesign-color-list-item-header);
+  font-family: var(--materialdesign-font-list-item-header);
 }
 
 .materialdesign-widget .mdc-drawer .mdc-list-group__subheader {
   color: var(--materialdesign-color-list-item-header);
+  font-family: var(--materialdesign-font-list-item-header);
 }
 
 .materialdesign-widget .mdc-list-divider { 
@@ -1865,71 +1951,71 @@ svg.materialdesign-widget .materialdesign-button__icon {
 }
 
 .materialdesign-grid .col-1 {
-  flex: 0 0 calc(8.3333333333% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(8.3333333333% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(8.3333333333% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(8.3333333333% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-2 {
-  flex: 0 0 calc(16.6666666667% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(16.6666666667% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(16.6666666667% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(16.6666666667% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-3 {
-  flex: 0 0 calc(25% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(25% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(25% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(25% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-4 {
-  flex: 0 0 calc(33.3333333333% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(33.3333333333% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(33.3333333333% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(33.3333333333% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-5 {
-  flex: 0 0 calc(41.6666666667% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(41.6666666667% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(41.6666666667% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(41.6666666667% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-6 {
-  flex: 0 0 calc(50% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(50% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(50% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(50% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-7 {
-  flex: 0 0 calc(58.3333333333% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(58.3333333333% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(58.3333333333% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(58.3333333333% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-8 {
-  flex: 0 0 calc(66.6666666667% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(66.6666666667% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(66.6666666667% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(66.6666666667% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-9 {
-  flex: 0 0 calc(75% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(75% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(75% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(75% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-10 {
-  flex: 0 0 calc(83.3333333333% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(83.3333333333% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(83.3333333333% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(83.3333333333% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-11 {
-  flex: 0 0 calc(91.6666666667% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(91.6666666667% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(91.6666666667% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(91.6666666667% - 2 * var(--materialdesign-grid-gaps));
 }
 
 .materialdesign-grid .col-12 {
-  flex: 0 0 calc(100% - 2*var(--materialdesign-grid-gaps));
-  max-width: calc(100% - 2*var(--materialdesign-grid-gaps));
+  flex: 0 0 calc(100% - 2 * var(--materialdesign-grid-gaps));
+  max-width: calc(100% - 2 * var(--materialdesign-grid-gaps));
 }
 
 /* iconList */
 .materialdesign-icon-list-container {
   display: flex;
   /* justify-content: center; */
-  padding: calc(-1 * var(--materialdesign-icon-list-items-gaps) + 2px);
-  width: 100%;
+  margin: calc(-1 * var(--materialdesign-icon-list-items-gaps));
+  background: var(--materialdesign-icon-list-background);
 }
 
 .materialdesign-icon-list-item {
@@ -1939,7 +2025,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: var(--materialdesign-icon-list-items-gaps);
+  margin: var(--materialdesign-icon-list-items-gaps);  
 }
 
 .materialdesign-icon-list-item-standard {
@@ -2292,7 +2378,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   border-radius: 0;
 }
 .v-slider__tick--filled {
-  background-color:var(--vue-slider-tick-before-color);
+  background-color: var(--vue-slider-tick-before-color);
 }
 .v-application--is-ltr .v-slider__tick:first-child .v-slider__tick-label {
   transform: none;
@@ -2314,6 +2400,9 @@ svg.materialdesign-widget .materialdesign-button__icon {
       -ms-user-select: none;
           user-select: none;
   white-space: nowrap;
+  font-family: var(--vue-slider-tick-font-family);
+  color: var(--vue-slider-tick-color);
+  font-size: var(--vue-slider-tick-font-size);
 }
 
 .v-slider__thumb-label-container {

@@ -6,6 +6,10 @@
 "use strict";
 
 vis.binds.materialdesign.progress = {
+    types: {
+        linear: 'linear',
+        circular: 'circular'
+    },
     linear: function (el, data) {
         try {
             let $this = $(el);
@@ -135,9 +139,9 @@ vis.binds.materialdesign.progress = {
         let max = myMdwHelper.getNumberFromData(data.max, 100);
 
         let color = myMdwHelper.getValueFromData(data.colorProgress, '');
-        let colorOneCondition = myMdwHelper.getValueFromData(data.colorOneCondition, 0);
+        let colorOneCondition = myMdwHelper.getNumberFromData(data.colorOneCondition, 1000);
         let colorOne = myMdwHelper.getValueFromData(data.colorOne, color);
-        let colorTwoCondition = myMdwHelper.getValueFromData(data.colorTwoCondition, 0);
+        let colorTwoCondition = myMdwHelper.getNumberFromData(data.colorTwoCondition, 1000);
         let colorTwo = myMdwHelper.getValueFromData(data.colorTwo, color);
 
         if (val === undefined) {
@@ -178,6 +182,63 @@ vis.binds.materialdesign.progress = {
             return valPercent;
         } else {
             return 0;
+        }
+    },
+    getDataFromJson(obj, widgetId, type) {
+        if (type === this.types.linear) {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                min: obj.min,
+                max: obj.max,
+                reverse: obj.reverse,
+                progressRounded: obj.progressRounded,
+                progressStriped: obj.progressStriped,
+                progressStripedColor: obj.progressStripedColor,
+                colorProgressBackground: obj.colorProgressBackground,
+                colorProgress: obj.colorProgress,
+                colorOneCondition: obj.colorOneCondition,
+                colorOne: obj.colorOne,
+                colorTwoCondition: obj.colorTwoCondition,
+                colorTwo: obj.colorTwo,
+                showValueLabel: obj.showValueLabel,
+                valueLabelStyle: obj.valueLabelStyle,
+                valueLabelUnit: obj.valueLabelUnit,
+                valueMaxDecimals: obj.valueMaxDecimals,
+                valueLabelCustom: obj.valueLabelCustom,
+                textColor: obj.textColor,
+                textFontSize: obj.textFontSize,
+                textFontFamily: obj.textFontFamily,
+                textAlign: obj.textAlign,
+                progressIndeterminate: obj.indeterminate
+            }
+        } else {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                min: obj.min,
+                max: obj.max,
+                progressCircularSize: obj.progressCircularSize,
+                progressCircularWidth: obj.progressCircularWidth,
+                progressCircularRotate: obj.progressCircularRotate,
+                colorProgressBackground: obj.colorProgressBackground,
+                colorProgress: obj.colorProgress,
+                innerColor: obj.innerColor,
+                colorOneCondition: obj.colorOneCondition,
+                colorOne: obj.colorOne,
+                colorTwoCondition: obj.colorTwoCondition,
+                colorTwo: obj.colorTwo,
+                showValueLabel: obj.showValueLabel,
+                valueLabelStyle: obj.valueLabelStyle,
+                valueLabelUnit: obj.valueLabelUnit,
+                valueMaxDecimals: obj.valueMaxDecimals,
+                valueLabelCustom: obj.valueLabelCustom,
+                textColor: obj.textColor,
+                textFontSize: obj.textFontSize,
+                textFontFamily: obj.textFontFamily
+            }
         }
     }
 }

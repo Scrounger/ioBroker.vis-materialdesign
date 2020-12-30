@@ -171,12 +171,12 @@ vis.binds.materialdesign.vueHelper = {
     select: {
         getConstructor: function (data) {
             let position = myMdwHelper.getValueFromData(data.listPosition, 'auto');
-            let menuProps = `{offsetY: ${myMdwHelper.getValueFromData(data.listPositionOffset, 'false')}}`
+            let menuProps = `{offsetY: ${myMdwHelper.getBooleanFromData(data.listPositionOffset, false)}}`
 
             if (position === 'top') {
-                menuProps = `{top: true, offsetY: ${myMdwHelper.getValueFromData(data.listPositionOffset, 'false')}}`;
+                menuProps = `{top: true, offsetY: ${myMdwHelper.getBooleanFromData(data.listPositionOffset, false)}}`;
             } else if (position === 'bottom') {
-                menuProps = `{bottom: true, offsetY: ${myMdwHelper.getValueFromData(data.listPositionOffset, 'false')}}`;
+                menuProps = `{bottom: true, offsetY: ${myMdwHelper.getBooleanFromData(data.listPositionOffset, false)}}`;
             }
 
             return `
@@ -197,6 +197,7 @@ vis.binds.materialdesign.vueHelper = {
                 @click:clear="clearEvent"
                 @click="click"
                 @input="menuClick"
+                :open-on-clear="openOnClear"
             `
         },
         getTemplates: function (data) {
@@ -238,7 +239,8 @@ vis.binds.materialdesign.vueHelper = {
             dataObj.imageColor = item.imageColor;
             dataObj.iconColorTextField = this.getIconColorTextField(data, myMdwHelper.getValueFromData(item.imageColorSelectedTextField, item.imageColor));
             dataObj.collapseIcon = myMdwHelper.getValueFromData(data.collapseIcon, undefined, 'mdi-');
-
+            dataObj.openOnClear = myMdwHelper.getBooleanFromData(data.clearIconShow, false) ? myMdwHelper.getBooleanFromData(data.openOnClear, false) : false;
+            
             return dataObj;
         },
         setStyles: function ($el, data) {

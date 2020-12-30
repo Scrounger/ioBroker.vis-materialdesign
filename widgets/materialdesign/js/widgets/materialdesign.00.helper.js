@@ -101,10 +101,26 @@ vis.binds.materialdesign.helper = {
                     return nullValue;
                 }
             } else {
-                return (dataValue === undefined || dataValue === null || dataValue === '') ? nullValue : prepand + dataValue + append;
+                if (dataValue === undefined || dataValue === 'undefined' || dataValue === null || dataValue === 'null' || dataValue === '') {
+                    return nullValue;
+                } else {
+                    if (vis.editMode) {
+                        let binding = vis.extractBinding(dataValue, true);
+                        if (binding && binding.length >= 1) {
+                            let bindingVal = vis.formatBinding(dataValue, undefined, undefined, undefined, true);
+
+                            if (bindingVal === undefined || bindingVal === 'undefined' || bindingVal === null || bindingVal === 'null' || bindingVal === '') {
+                                return nullValue;
+                            } else {
+                                return bindingVal;
+                            }
+                        }
+                    }
+                    return prepand + dataValue + append
+                }
             }
         } catch (err) {
-            console.error(`[Helper] getValueFromData: ${err.message}`);
+            console.error(`[Helper] getValueFromData: ${dataValue} ${err.message}, stack: ${err.stack}`);
             return 'Error';
         }
     },
@@ -133,7 +149,36 @@ vis.binds.materialdesign.helper = {
     },
     getStringFromNumberData: function (dataValue, nullValue, prepand = '', append = '') {
         try {
-            return (dataValue === undefined || dataValue === null || dataValue === '' || isNaN(dataValue)) ? nullValue : prepand + parseFloat(dataValue) + append;
+            if (dataValue === undefined || dataValue === 'undefined' || dataValue === null || dataValue === 'null' || dataValue === '') {
+                return nullValue
+            } else {
+                if (vis.editMode) {
+                    let binding = vis.extractBinding(dataValue, true);
+
+                    if (binding && binding.length >= 1) {
+                        let bindingVal = vis.formatBinding(dataValue, undefined, undefined, undefined, true);
+
+                        if (bindingVal === undefined || bindingVal === 'undefined' || bindingVal === null || bindingVal === 'null' || bindingVal === '' || isNaN(bindingVal)) {
+                            return nullValue;
+                        } else {
+                            return prepand + parseFloat(bindingVal) + append;
+                        }
+                    } else {
+                        if (isNaN(dataValue)) {
+                            return nullValue
+                        } else {
+                            return prepand + parseFloat(dataValue) + append;
+                        }
+                    }
+                } else {
+                    if (isNaN(dataValue)) {
+                        return nullValue
+                    } else {
+                        return prepand + parseFloat(dataValue) + append;
+                    }
+                }
+
+            }
         } catch (err) {
             console.error(`[Helper] getStringFromNumberData: ${err.message}`);
             return 'Error';
@@ -196,7 +241,7 @@ vis.binds.materialdesign.helper = {
                         class="mdc-list-item${(isSubItem) ? ' mdc-sub-list-item isSubItem' : ''}${(itemIndex === 0) ? ' mdc-list-item--activated' : ''}${(hasSubItems) ? ' hasSubItems' : ''}${isDisabled ? ' mdc-list-item--disabled' : ''}" 
                         tabindex="${(itemIndex === 0) ? '0' : '-1'}" 
                         id="listItem_${itemIndex}"
-                        ${index || index === 0 ? `index="${index}"`: ''}
+                        ${index || index === 0 ? `index="${index}"` : ''}
                         style="${style}"
                         data-value="${dataValue}" 
                         ${dataOid} 
@@ -208,7 +253,7 @@ vis.binds.materialdesign.helper = {
                         class="mdc-list-item${(isSubItem) ? ' mdc-sub-list-item isSubItem' : ''}${(itemIndex === 0) ? ' mdc-list-item--activated' : ''} mdc-card__media${(hasSubItems) ? ' hasSubItems' : ''}${isDisabled ? ' mdc-list-item--disabled' : ''}" 
                         tabindex="${(itemIndex === 0) ? '0' : '-1'}"
                         id="listItem_${itemIndex}"
-                        ${index || index === 0 ? `index="${index}"`: ''}
+                        ${index || index === 0 ? `index="${index}"` : ''}
                         style="background-image: url(${backdropImage}); align-items: flex-end; padding: 0px;${style}"
                     >`
         }
@@ -562,43 +607,27 @@ vis.binds.materialdesign.helper = {
             (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
         );
     },
-    initializeSentry(version) {
-        const fileName = 'materialdesign.sentry'
+    async initializeSentry(version) {
+        let id = 'vis-materialdesign.0.sentry';
+        let sentryState = await this.getStateAsync(id);
 
-        vis.conn.readFile(fileName, function (err, data) {
-            if (err === 'Not exists') {
-                const uuid = vis.binds.materialdesign.helper.generateUuidv4();
+        if (sentryState) {
+            if (sentryState.val) {
+                let sentryObj = await this.getObjectAsync(id);
 
-                vis.conn.writeFile(fileName, uuid, function (err) {
-                    if (!err) {
-                        vis.binds.materialdesign.helper._initializeSentry(version, uuid);
+                if (sentryObj && sentryObj.common) {
+                    if (sentryObj.common.uuid) {
+                        this._initializeSentry(version, sentryObj.common.uuid);
                     } else {
-                        vis.binds.materialdesign.helper._initializeSentry(version, 'uuid_error');
+                        this._initializeSentry(version, 'uuid_error');
                     }
-                });
-            } else {
-                if (data !== 'disabled') {
-                    // TODO: check if is uuid format
-
-                    if (/^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i.test(data)) {
-                        vis.binds.materialdesign.helper._initializeSentry(version, data)
-                    } else {
-                        console.warn('uuid is not valid -> recreate');
-                        const uuid = vis.binds.materialdesign.helper.generateUuidv4();
-
-                        vis.conn.writeFile(fileName, uuid, function (err) {
-                            if (!err) {
-                                vis.binds.materialdesign.helper._initializeSentry(version, uuid);
-                            } else {
-                                vis.binds.materialdesign.helper._initializeSentry(version, 'uuid_error');
-                            }
-                        });
-                    }
-                } else {
-                    console.log('sentry is deactivated for vis-materialdesign');
                 }
+            } else {
+                console.log(`vis-materialdesign: sentry is deactivated.`)
             }
-        })
+        } else {
+            console.warn(`vis-materialdesign: sentry datapoint '${id}' not exist! Go to the adapter settings to activate it.`)
+        }
     },
     _initializeSentry(version, uuid) {
         Sentry.init({
@@ -637,6 +666,28 @@ vis.binds.materialdesign.helper = {
         });
 
         console.log('sentry initialized for vis-materialdesign');
+    },
+    async getStateAsync(id) {
+        return new Promise((resolve, reject) => {
+            vis.conn._socket.emit('getState', id, function (err, res) {
+                if (!err && res) {
+                    resolve(res);
+                } else {
+                    resolve(null);
+                }
+            });
+        });
+    },
+    async getObjectAsync(id) {
+        return new Promise((resolve, reject) => {
+            vis.conn._socket.emit('getObject', id, function (err, res) {
+                if (!err && res) {
+                    resolve(res);
+                } else {
+                    resolve(null);
+                }
+            });
+        });
     }
 };
 

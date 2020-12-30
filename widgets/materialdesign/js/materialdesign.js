@@ -41,18 +41,17 @@ vis.binds.materialdesign = {
 
         let btn = $this.get(0) ? $this.get(0) : $this.context;
 
+        btn.style.setProperty("--materialdesign-color-primary", myMdwHelper.getValueFromData(data.mdwButtonPrimaryColor, ''));
+        btn.style.setProperty("--materialdesign-color-secondary", myMdwHelper.getValueFromData(data.mdwButtonSecondaryColor, ''));
+        btn.style.setProperty("--materialdesign-font-button", myMdwHelper.getValueFromData(data.textFontFamily, ''));
+        btn.style.setProperty("--materialdesign-font-size-button", myMdwHelper.getStringFromNumberData(data.textFontSize, 'inherit', '', 'px'));
+        btn.style.setProperty("--materialdesign-font-button-vertical-text-distance-image", myMdwHelper.getNumberFromData(data.distanceBetweenTextAndImage, 2) + 'px');
+
         if (!isIconButton) {
             mdc.ripple.MDCRipple.attachTo(btn);
-            var colorPress = (data.colorPress === undefined || data.colorPress === null || data.colorPress === '') ? '' : data.colorPress;
-
-            if (data.buttonStyle === 'text' || data.buttonStyle === 'outlined') {
-                btn.style.setProperty("--mdc-theme-primary", colorPress);
-            } else {
-                btn.style.setProperty("--mdc-theme-on-primary", colorPress);
-            }
+            btn.style.setProperty("--materialdesign-color-button-pressed", myMdwHelper.getValueFromData(data.mdwButtonColorPress, ''));
         } else {
-            var colorPress = (data.colorPress === undefined || data.colorPress === null || data.colorPress === '') ? '' : data.colorPress;
-            btn.style.setProperty("--materialdesign-color-icon-button-hover", colorPress);
+            btn.style.setProperty("--materialdesign-color-icon-button-hover", myMdwHelper.getValueFromData(data.colorPress, ''));
 
             const mdcIconButton = new mdc.iconButton.MDCIconButtonToggle(btn);
         }

@@ -1,16 +1,3 @@
-chore: release v0.3.19
+chore: release v0.4.2
 
-: Icon Button Widget: background color option for lock icon added
-: possibility to deactivate sentry implemented -> see documentation
-: Fixed some bugs reported via Sentry
-: prevent set value in vis editor
-: Grid & Mansonry Widget: visibilty by resoltuin bug fix
-: IconList Widget: Card Background for whole icon list added
-: Table Wigdet: button link widget added
-: Table Wigdet: material design icon widget added
-: Table Wigdet: alignment option for controls added
-: materialdesignicons library updated to v5.3.45
-: Round Slider lib updated to v0.5.0
-: Round Slider Widget: readonly option added
-: Table Widget: background color hover option added
-: bug fixes
+vis-google-fonts dependency removed

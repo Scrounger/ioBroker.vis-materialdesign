@@ -22,13 +22,64 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 * [round-slider from thomasloven](https://github.com/thomasloven/round-slider)
 * [Material Design Icons](https://materialdesignicons.com/)
 
-## Sentry
-This adapter uses Sentry libraries to automatically report vis runtime exceptions and code errors caused by the widgets to the developers.
+## Adapter settings (Theme Editor)
 
-When the vis runtime is first loaded, the file `./iobroker-data/files/vis.0/materialdesign.sentry` is created. This file contains an anonymized id (so-called uuid), which allows the developer to determine whether the error occurs only with one or more users.
+Starting with version 0.4.0 there is a settings page for the adapter. You can find it under Instances in the user interface of the admin adapter
 
-<b>To disable sentry</b>, the word 'disabled' must be entered in the file `/iobroker-data/files/vis.0/materialdesign.sentry`. 
-<br>To check if sentry is disabled, open the browser console and look for `sentry is deactivated for vis-materialdesign`.
+### General
+![Logo](doc/en/media/settings_general.png)
+
+|setting|description|
+|-------|-----------|
+|Documentation|Links to documentation to help you configure the widgets|
+|Generate global script|Create a global script for the [Javascript Script Engine](https://github.com/ioBroker/ioBroker.javascript) with all theme data points. This allows to use colors, fonts and font sizes comfortably in scripts.|
+|Sentry|use Sentry libraries to automatically report exceptions and code errors anonymously to the developers. For more details and for information how to disable the error reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-sentry#plugin-sentry)!|
+
+### Theme Editor
+
+With the help of the Theme Editor you can centrally set colors, fonts and font sizes for all widgets via the adapter settings. This is realized with the help of the [Bindings of the VIS adapter](https://github.com/ioBroker/ioBroker.vis#bindings-of-objects). For each widget datapoints (see screenshot below) are created with the set values. This makes it possible to use these settings in other widgets (not Material Design Widgets) via bindings.
+
+##### Datapoint structure
+
+![Logo](doc/en/media/settings_datapoints.png)
+
+##### VIS Editor (Restore / update old Widgets)
+
+![Logo](doc/en/media/vis_editor_theme_restore.gif)
+
+In the VIS Editor you will find a button `use theme` for each widget. With this button you can reset the widgets to the use of the themes. That means if you have changed colors, fonts or font sizes, you can reset them with this button.
+
+With the help of this button it is also possible to update your widgets from versions before 0.4.0 to use the themes.
+
+##### Use Binding for non Material Design Widgets
+
+![Logo](doc/en/media/settings_binding.gif)
+
+In the adapter settings you can copy the binding command to the clipboard by clicking on the default text or the id in the tables. This binding can then be used by copy and paste even for non Material Design Widgets.
+
+#### Colors Theme
+For colors there are two themes - light theme and dark theme. With the datapoint `vis-materialdesign.0.colors.darkTheme` you can switch between the two themes.
+
+![Logo](doc/en/media/settings_colors_light.png)
+
+![Logo](doc/en/media/settings_colors_dark.png)
+
+Standard colors can be defined in the upper area. These standard colors can then be assigned to the individual widgets using the buttons in the table. If you change the default color, it will also change for all widgets that use this color.
+Additionally, it is possible to assign your own colors to the widgets, independent of the standard colors.
+
+#### Fonts Theme
+
+![Logo](doc/en/media/settings_fonts.png)
+
+Standard fonts can be defined in the upper area. These standard fonts can then be assigned to the individual widgets using the buttons in the table. If you change the default color, it will also change for all widgets that use this color.
+Additionally, it is possible to assign your own fonts to the widgets, independent of the standard colors.
+
+#### Font Sizes Theme
+
+![Logo](doc/en/media/settings_fontSizes.png)
+
+Standard font sizes can be defined in the upper area. These standard font sizes can then be assigned to the individual widgets using the buttons in the table. If you change the default color, it will also change for all widgets that use this color.
+Additionally, it is possible to assign your own font sizes to the widgets, independent of the standard colors.
 
 
 ## Online Example Project
@@ -5593,9 +5644,28 @@ ical2CalendarWidget();
 
 ## Changelog
 
-### __WORK IN PROGRESS__
+<!--
+    Placeholder for the next version (at the beginning of the line):
+    ### __WORK IN PROGRESS__
+-->
+
+### 0.4.2 (2020-12-29)
+* (Scrounger) vis-google-fonts dependency removed
+
+### 0.4.1 (2020-12-27)
+* (Scrounger): Adapter settings: theme editor implementation completed
+* (Scrounger): Progress Widget: condition binding bug fix
+* (Scrounger): minimal VIS adapter dependency set to v1.3.6
+* (Scrounger): VIS editor: image dialog bug fix
+* (Scrounger): Color themes for buttons and dialogs widgets implemented
+* (Scrounger): Calendar Widget: week number bug fix
+* (Scrougner): icon list: scrollbar bug fix
+* (Scrounger): bug fixes
+
+### 0.4.0-beta (2020-12-09)
 * (Scrounger): Line History Chart Widget: Breaking Changes !!! aggregate (display) method for every dataset configurable, [see documentation for detailed infos](#line-history-chart)!
 * (Scrounger): TopAppBar Widget: Breaking Changes !!! Submenus must now be created using JSON string, [see documentation for detailed infos](#since-version-040)!
+* (Scrounger): Adapter settings wiht theme editor added
 * (Scrounger): bug fix for compatibility issues with other widget adapters
 * (Scrounger): Chechbox Widget: option for border and hover color added
 * (Scrounger): Chechbox Widget: ripple effect bug fix

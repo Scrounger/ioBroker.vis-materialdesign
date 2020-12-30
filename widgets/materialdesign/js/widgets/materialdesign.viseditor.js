@@ -249,7 +249,7 @@ vis.binds.materialdesign.viseditor = {
                             defaultPath: defPath,
                             path: current || defPath,
                             uploadDir: '/' + (that.conn.namespace ? that.conn.namespace + '/' : ''),
-                            fileFilter: myMdwHelper.getAllowedImageFileExtensions(),
+                            fileFilter: ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'],
                             folderFilter: false,
                             mode: 'open',
                             view: 'prev',
@@ -325,7 +325,7 @@ vis.binds.materialdesign.viseditor = {
             // options = {min: ?,max: ?,step: ?}
             // Select
             var line = {
-                input: '<button id="inspect_' + widAttr + '" style="width: 100%;">' + widAttr + '</button>',
+                input: '<button id="inspect_' + widAttr + '" style="width: 100%;">' + _(widAttr) + '</button>',
                 init: function (w, data) {
                     $(this).button().click(function () {
                         $(this).val(true).trigger('change');
@@ -527,7 +527,93 @@ vis.binds.materialdesign.viseditor = {
         } catch (ex) {
             console.error(`permissionGroupSelector: error: ${ex.message}, stack: ${ex.stack}`);
         }
-    }
+    },
+    useTheme: function (widAttr, data) {
+        try {
+            var that = vis;
+
+            // options = {min: ?,max: ?,step: ?}
+            // Select
+            var line = {
+                input: '<button id="inspect_' + widAttr + '" style="width: 100%;">' + _(widAttr) + '</button>',
+                init: function (w, data) {
+                    $(this).button().click(function () {
+                        let widgetName = vis.binds.materialdesign.viseditor.getWidgetDataVisName(null, that.activeWidgets[0]);
+
+                        if (that.activeWidgets.length === 1) {
+                            that.confirmMessage(_('all colors, fonts and font sizes of the widget will be overridden - do you want to continue?'), _('attention'), null, 700, function (result) {
+                                if (result) {
+                                    let themeTypesList = ['colors', 'fonts', 'fontSizes'];
+
+                                    for (const themeType of themeTypesList) {
+                                        that.conn.readFile(`/vis-materialdesign.admin/lib/${themeType}.json`, function (err, data) {
+                                            if (!err) {
+                                                let list = JSON.parse(data).filter(function (x) {
+                                                    let splitted = x.widget.split(', ');
+                                                    return splitted.includes(widgetName);
+                                                });
+
+                                                for (const obj of list) {
+                                                    let inspect = $(`#inspect_${obj.desc}`);
+
+                                                    if (inspect && inspect.length > 0) {
+                                                        inspect.val(generateBinding(themeType, obj.id)).trigger('change');
+                                                    } else {
+                                                        // wir haben ein Element mit count
+                                                        inspect = $(`input[id^='inspect_${obj.desc}']`);
+
+                                                        if (inspect && inspect.length > 0) {
+                                                            inspect.each(function (i, el) {
+
+                                                                // Prüfen ob am Ende der id wirklich nur eine number ist
+                                                                if (!isNaN(parseFloat(el.id.replace(`inspect_${obj.desc}`, '')))) {
+                                                                    $(el).val(generateBinding(themeType, obj.id)).trigger('change');
+                                                                }
+                                                            });
+                                                        }
+                                                    }
+                                                }
+                                            } else {
+                                                console.error(`useTheme: error loading ${themeType}.json, error: ${err}`);
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+
+                            function generateBinding(themeType, id) {
+                                if (themeType === 'colors') {
+                                    return `{mode:vis-materialdesign.0.colors.darkTheme;light:vis-materialdesign.0.colors.light.${id.replace('light.', '')};dark:vis-materialdesign.0.colors.dark.${id.replace('light.', '')}; mode === "true" ? dark : light}`;
+                                } else {
+                                    return `{vis-materialdesign.0.${themeType}.${id}}`;
+                                }
+                            }
+
+                        } else {
+                            that.confirmMessage(_('Please select only one Widget!'), _('attention'), null, 400, function (result) {
+                            });
+                        }
+                    });
+                }
+            };
+            return line;
+
+        } catch (ex) {
+            console.error(`useTheme: error: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
+    getWidgetDataVisName: function (view, widget) {
+        if (view && !widget) {
+            widget = view;
+            view = null;
+        }
+        if (!view || !vis.views[view]) view = vis.getViewOfWidget(widget);
+        var widgetData = vis.views[view].widgets[widget];
+        if (widgetData) {
+            return $('#' + widgetData.tpl).attr('data-vis-name');
+        }
+        return undefined;
+    },
 };
 
 if (vis.editMode) {

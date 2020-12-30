@@ -16,6 +16,7 @@ vis.binds.materialdesign.dialog = {
             if ($(`.dialog_${data.wid}`).parent().length > 0) {
                 // bei Änderungen am Widget, wird Widget neu erzeugt. Dialog hängt aber unter vis app, deshalb zu erst entfernen damit nicht doppelt
                 $(`.dialog_${data.wid}`).parent().remove();
+                $("body").find('.v-overlay__scrim').parent().remove();
             }
 
             $this.append(`
@@ -99,11 +100,17 @@ vis.binds.materialdesign.dialog = {
 
                         if (data.showDialogMethod === 'button') {
                             let button = $this;
-                            $this.context.style.setProperty("--mdc-theme-primary", myMdwHelper.getValueFromData(data.colorPress, ''));
+                            button.context.style.setProperty("--materialdesign-color-primary", myMdwHelper.getValueFromData(data.mdwButtonPrimaryColor, ''));
+                            button.context.style.setProperty("--materialdesign-color-secondary", myMdwHelper.getValueFromData(data.mdwButtonSecondaryColor, ''));
+                            button.context.style.setProperty("--materialdesign-color-button-pressed", myMdwHelper.getValueFromData(data.mdwButtonColorPress, ''));
+                            button.context.style.setProperty("--materialdesign-font-button", myMdwHelper.getValueFromData(data.textFontFamily, ''));
+                            button.context.style.setProperty("--materialdesign-font-size-button", myMdwHelper.getStringFromNumberData(data.textFontSize, 'inherit', '', 'px'));
 
                             if (data.buttonStyle === 'icon') {
                                 mdc.iconButton.MDCIconButtonToggle.attachTo(button.get(0));
+                                button.context.style.setProperty("--materialdesign-color-icon-button-hover", myMdwHelper.getValueFromData(data.mdwButtonColorPress, ''));
                             } else {
+                                button.context.style.setProperty("--materialdesign-color-button-pressed", myMdwHelper.getValueFromData(data.mdwButtonColorPress, ''));
                                 mdc.ripple.MDCRipple.attachTo(button.get(0));
                             }
 
@@ -147,7 +154,7 @@ vis.binds.materialdesign.dialog = {
                                 $dialog.get(0).style.setProperty("--vue-dialog-footer-background-color", myMdwHelper.getValueFromData(data.footerBackgroundColor, ''));
 
                                 // Overlay
-                                $("body").find('.v-overlay__scrim').css('opacity', myMdwHelper.getValueFromData(data.overlayOpacity, 0.46));
+                                $("body").find('.v-overlay__scrim').css('opacity', myMdwHelper.getValueFromData(data.overlayOpacity, 0.8));
                                 $("body").find('.v-overlay__scrim').css('background', myMdwHelper.getValueFromData(data.overlayColor, 'rgb(33, 33, 33)'));
 
                                 calcHeight();

@@ -6,6 +6,23 @@
 "use strict";
 
 vis.binds.materialdesign.button = {
+    types: {
+        toggle: {
+            default: 'toggle_default',
+            vertical: 'toggle_vertical',
+            icon: 'toggle_icon'
+        },
+        state: {
+            default: 'state_default',
+            vertical: 'state_vertical',
+            icon: 'state_icon'
+        },
+        link: {
+            default: 'link_default',
+            vertical: 'link_vertical',
+            icon: 'link_icon'
+        }
+    },
     initializeButton: function (data, isIconButton = false) {
         try {
             let buttonElementsList = [];
@@ -19,7 +36,7 @@ vis.binds.materialdesign.button = {
             if (!isIconButton) {
                 if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {
                     lockIcon = `<span class="mdi mdi-${myMdwHelper.getValueFromData(data.lockIcon, 'lock-outline')} materialdesign-lock-icon" 
-                                style="${(myMdwHelper.getNumberFromData(data.lockIconSize, undefined) !== '0') ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} ${(myMdwHelper.getValueFromData(data.lockIconColor, null) !== null) ? `color: ${data.lockIconColor};` : ''}"></span>`;
+                                style="${(myMdwHelper.getNumberFromData(data.lockIconSize, undefined) !== '0') ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} color: ${myMdwHelper.getValueFromData(data.lockIconColor, '#B22222')};"></span>`;
                 }
             } else {
                 if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {
@@ -27,7 +44,7 @@ vis.binds.materialdesign.button = {
                     let elementSize = myMdwHelper.getValueFromData(data.lockIconBackground, undefined) ? iconSize * myMdwHelper.getNumberFromData(data.lockBackgroundSizeFactor, 1) : iconSize;
 
                     lockIcon = `<span class="mdi mdi-${myMdwHelper.getValueFromData(data.lockIcon, 'lock-outline')} materialdesign-lock-icon" 
-                            style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; width: ${elementSize}px; height: ${elementSize}px; line-height: ${elementSize}px; text-align: center; font-size: ${iconSize}px; ${(myMdwHelper.getValueFromData(data.lockIconColor, null) !== null) ? `color: ${data.lockIconColor};` : ''} ${myMdwHelper.getValueFromData(data.lockIconBackground, undefined)? `background: ${myMdwHelper.getValueFromData(data.lockIconBackground, undefined)}; border-radius: ${elementSize}px`:''}"></span>`;
+                            style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; width: ${elementSize}px; height: ${elementSize}px; line-height: ${elementSize}px; text-align: center; font-size: ${iconSize}px; color: ${myMdwHelper.getValueFromData(data.lockIconColor, '#B22222')}; ${myMdwHelper.getValueFromData(data.lockIconBackground, undefined) ? `background: ${myMdwHelper.getValueFromData(data.lockIconBackground, undefined)}; border-radius: ${elementSize}px` : ''}"></span>`;
                 }
             }
 
@@ -41,7 +58,7 @@ vis.binds.materialdesign.button = {
                                         class="materialdesign-button-body" 
                                         style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">`);
 
-            let imageElement = myMdwHelper.getIconElement(data.image, 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), data.imageColor);
+            let imageElement = myMdwHelper.getIconElement(data.image, 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.imageColor, ''));
 
             let labelElement = '';
             if (myMdwHelper.getValueFromData(data.buttontext, null) != null && !isIconButton) {
@@ -70,7 +87,7 @@ vis.binds.materialdesign.button = {
             let lockIcon = '';
             if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {
                 lockIcon = `<span class="mdi mdi-${myMdwHelper.getValueFromData(data.lockIcon, 'lock-outline')} materialdesign-lock-icon" 
-                            style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; ${(myMdwHelper.getNumberFromData(data.lockIconSize, undefined) !== '0') ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} ${(myMdwHelper.getValueFromData(data.lockIconColor, null) !== null) ? `color: ${data.lockIconColor};` : ''}"></span>`;
+                            style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; ${(myMdwHelper.getNumberFromData(data.lockIconSize, undefined) !== '0') ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} color: ${myMdwHelper.getValueFromData(data.lockIconColor, '#B22222')};"></span>`;
             }
 
             let buttonStyle = '';
@@ -82,7 +99,7 @@ vis.binds.materialdesign.button = {
                                         class="materialdesign-button-body" 
                                         style="display:flex; flex-direction: column; justify-content: center; align-items: ${myMdwHelper.getValueFromData(data.alignment, 'center')}; width: 100%; height: 100%; ">`);
 
-            let imageElement = myMdwHelper.getIconElement(data.image, 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), data.imageColor);
+            let imageElement = myMdwHelper.getIconElement(data.image, 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.imageColor, ''));
 
             let labelElement = '';
             if (myMdwHelper.getValueFromData(data.buttontext, null) != null) {
@@ -108,6 +125,8 @@ vis.binds.materialdesign.button = {
         try {
             let $this = $(el);
 
+            $this.css('background', myMdwHelper.getValueFromData(data.colorBgFalse, ''));
+
             $this.on('click', function (e) {
                 // Protect against two events
                 event.preventDefault();
@@ -126,9 +145,11 @@ vis.binds.materialdesign.button = {
     },
     handleNavigation: function (el, data) {
         try {
+            let $this = $(el);
+            $this.css('background', myMdwHelper.getValueFromData(data.colorBgFalse, ''));
+
             if (!vis.editMode && data.nav_view) {
-                var $this = $(el);
-                var moved = false;
+                let moved = false;
                 $this.on('click', function (e) {
                     // Protect against two events
                     event.preventDefault();
@@ -151,6 +172,8 @@ vis.binds.materialdesign.button = {
         try {
             let $this = $(el);
 
+            $this.css('background', myMdwHelper.getValueFromData(data.colorBgFalse, ''));
+
             $this.on('click', function (e) {
                 // Protect against two events
                 event.preventDefault();
@@ -172,6 +195,8 @@ vis.binds.materialdesign.button = {
 
             if (val === 'true') val = true;
             if (val === 'false') val = false;
+
+            $this.css('background', myMdwHelper.getValueFromData(data.colorBgFalse, ''));
 
             if ($this.attr('isLocked') === 'true') {
                 $this.css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
@@ -317,7 +342,11 @@ vis.binds.materialdesign.button = {
                 if (data.toggleType === 'boolean') {
                     buttonState = val;
                 } else {
-                    if (val === parseInt(data.valueOn) || val === data.valueOn) {
+                    if (!isNaN(val) && !isNaN(data.valueOn)) {
+                        if (parseFloat(val) === parseFloat(data.valueOn)) {
+                            buttonState = true;
+                        }
+                    } else if (val === parseInt(data.valueOn) || val === data.valueOn) {
                         buttonState = true;
                     } else if (val !== parseInt(data.valueOn) && val !== data.valueOn && val !== parseInt(data.valueOff) && val !== data.valueOff && data.stateIfNotTrueValue === 'on') {
                         buttonState = true;
@@ -336,7 +365,7 @@ vis.binds.materialdesign.button = {
                     $this.parent().attr('toggled', false);
                     $this.parent().css('background', bgColor);
 
-                    myMdwHelper.changeIconElement($this.parent(), data.image, 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), data.imageColor);
+                    myMdwHelper.changeIconElement($this.parent(), data.image, 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.imageColor, ''));
 
                     $this.parent().find('.materialdesign-button__label').html(textFalse).css('color', textColorFalse);
                     $this.find('.labelRowContainer').css('background', labelBgColor);
@@ -358,5 +387,221 @@ vis.binds.materialdesign.button = {
         } catch (ex) {
             console.error(`[Button - ${data.wid}] handleToggle: error:: ${ex.message}, stack: ${ex.stack}`);
         }
+    },
+    getDataFromJson(obj, widgetId, type) {
+        if (type === this.types.toggle.default) {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                buttonStyle: obj.buttonStyle,
+                readOnly: obj.readOnly,
+                toggleType: obj.toggleType,
+                pushButton: obj.pushButton,
+                valueOff: obj.valueOff,
+                valueOn: obj.valueOn,
+                stateIfNotTrueValue: obj.stateIfNotTrueValue,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                buttontext: obj.buttontext,
+                labelTrue: obj.labelTrue,
+                labelColorFalse: obj.labelColorFalse,
+                labelColorTrue: obj.labelColorTrue,
+                labelWidth: obj.labelWidth,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                imageTrue: obj.imageTrue,
+                imageTrueColor: obj.imageTrueColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight,
+                colorBgFalse: obj.colorBgFalse,
+                colorBgTrue: obj.colorBgTrue,
+                mdwButtonColorPress: obj.colorPress,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            };
+        } else if (type === this.types.toggle.vertical) {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                buttonStyle: obj.buttonStyle,
+                readOnly: obj.readOnly,
+                toggleType: obj.toggleType,
+                pushButton: obj.pushButton,
+                valueOff: obj.valueOff,
+                valueOn: obj.valueOn,
+                stateIfNotTrueValue: obj.stateIfNotTrueValue,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                buttontext: obj.buttontext,
+                labelTrue: obj.labelTrue,
+                labelColorFalse: obj.labelColorFalse,
+                labelColorTrue: obj.labelColorTrue,
+                alignment: obj.alignment,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                imageTrue: obj.imageTrue,
+                imageTrueColor: obj.imageTrueColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight,
+                colorBgFalse: obj.colorBgFalse,
+                colorBgTrue: obj.colorBgTrue,
+                mdwButtonColorPress: obj.colorPress,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconTop: obj.lockIconTop,
+                lockIconLeft: obj.lockIconLeft,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+        } else if (type === this.types.toggle.icon) {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                readOnly: obj.readOnly,
+                toggleType: obj.toggleType,
+                pushButton: obj.pushButton,
+                valueOff: obj.valueOff,
+                valueOn: obj.valueOn,
+                stateIfNotTrueValue: obj.stateIfNotTrueValue,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                imageTrue: obj.imageTrue,
+                imageTrueColor: obj.imageTrueColor,
+                iconHeight: obj.iconHeight,
+                colorBgFalse: obj.colorBgFalse,
+                colorBgTrue: obj.colorBgTrue,
+                colorPress: obj.colorPress,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconTop: obj.lockIconTop,
+                lockIconLeft: obj.lockIconLeft,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockIconBackground: obj.lockIconBackground,
+                lockBackgroundSizeFactor: obj.lockBackgroundSizeFactor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+        } else if (type === this.types.state.default) {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                buttonStyle: obj.buttonStyle,
+                value: obj.value,
+                buttontext: obj.buttontext,
+                mdwButtonColorPress: obj.colorPress,
+                labelWidth: obj.labelWidth,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+        } else if (type === this.types.state.vertical) {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                buttonStyle: obj.buttonStyle,
+                value: obj.value,
+                buttontext: obj.buttontext,
+                mdwButtonColorPress: obj.colorPress,
+                alignment: obj.alignment,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconTop: obj.lockIconTop,
+                lockIconLeft: obj.lockIconLeft,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+        } else if (type === this.types.state.icon) {
+            return {
+                wid: widgetId,
+
+                oid: obj.oid,
+                value: obj.value,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconHeight: obj.iconHeight,
+                colorPress: obj.colorPress,
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconTop: obj.lockIconTop,
+                lockIconLeft: obj.lockIconLeft,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockIconBackground: obj.lockIconBackground,
+                lockBackgroundSizeFactor: obj.lockBackgroundSizeFactor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+        } else if (type === this.types.link.default) {
+            return {
+                wid: widgetId,
+
+                buttonStyle: obj.buttonStyle,
+                href: obj.href,
+                openNewWindow: obj.openNewWindow,
+                buttontext: obj.buttontext,
+                mdwButtonColorPress: obj.colorPress,
+                labelWidth: obj.labelWidth,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight
+            }
+        } else if (type === this.types.link.vertical) {
+            return {
+                wid: widgetId,
+
+                buttonStyle: obj.buttonStyle,
+                href: obj.href,
+                openNewWindow: obj.openNewWindow,
+                buttontext: obj.buttontext,
+                mdwButtonColorPress: obj.colorPress,
+                alignment: obj.alignment,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight
+            }
+        } else if (type === this.types.link.icon) {
+            return {
+                wid: widgetId,
+
+                href: obj.href,
+                openNewWindow: obj.openNewWindow,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconHeight: obj.iconHeight,
+                colorPress: obj.colorPress
+            }
+        }
     }
-};
+}

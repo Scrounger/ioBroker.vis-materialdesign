@@ -1,0 +1,458 @@
+<html>
+
+<head>
+
+	<!-- Load ioBroker scripts and styles-->
+	<link rel="stylesheet" type="text/css" href="../../css/adapter.css" />
+	<link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
+	<link rel="stylesheet" type="text/css" href="./lib/monolith.min.css">
+	<link rel="stylesheet" type="text/css" href="../../files/vis/widgets/materialdesign/lib/fonts/material-design-icons/materialdesignicons.min.css">
+
+	<script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+
+	<script type="text/javascript" src="../../lib/js/materialize.js"></script>
+	<script type="text/javascript" src="../../lib/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../../lib/js/selectID.js"></script>
+
+	<script type="text/javascript" src="../../js/translate.js"></script>
+	<script type="text/javascript" src="../../js/adapter-settings.js"></script>
+	<script type="text/javascript" src="./lib/pickr.min.js"></script>
+	<script type="text/javascript" src="./lib/clipboard-polyfill.promise.js"></script>
+	
+
+	<!-- Load our own files -->
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<script type="text/javascript" src="words.js"></script>
+	<script type="text/javascript" src="index_m.js"></script>
+</head>
+
+<style>
+	.m .tabs .tab a:hover {
+		border-bottom: 2px solid #46a0e9 !important;
+		font-weight: bold !important;
+	}
+
+	.m .tabs .myLinkBar a {
+		border-bottom: 0px solid #46a0e9 !important;
+		font-style: normal !important;
+		text-transform: none !important;
+		font-size: 16px;
+	}
+
+	.m .tabs .myLinkBar a:hover {
+		border-bottom: 0px solid #46a0e9 !important;
+		background: rgba(161, 161, 161, 0.26);
+		font-weight: normal !important;
+		text-transform: none !important;
+		font-size: 16px;
+	}
+
+	/* Header section */
+	.help-link {
+		order: 3 !important;
+		width: auto !important;
+		display: flex !important;
+		align-items: center !important ;
+	}
+	.help-link .btn-floating {
+		margin-top: 0 !important;
+	}
+	.card-stacked{
+		order: 1;
+	}
+
+	.progressContainer {
+		position: absolute !important;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.5);
+		z-index: 10 !important;
+	}
+
+	.myProgressCard {
+		position: absolute !important;
+		z-index: 10 !important;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 24px;
+		left: calc(50% - 44px);
+		top: 20%;
+	}
+
+	.myProgressCard .circle {
+		border-width: 4px !important;
+	}
+
+
+	.logo {
+		width: 100px;
+		height: 100px;
+	}
+
+	.my-card-title {
+		font-size: 24px !important;
+		font-weight: 300 !important;
+		color: #2196f3 !important;
+	}
+
+	.my-card-subTitle {
+		font-size: 16px !important;
+		margin-top: 6px !important;
+		font-style: italic !important;
+		color: gray !important;
+	}
+
+	.pcr-app[data-theme="monolith"] {
+		width: 18.25em;
+	}
+
+	.pcr-button {
+		border: 1px solid rgba(161, 161, 161, 0.26);
+	}
+
+	.defaultContainer {
+		display: flex; 
+		align-items: center;
+	}
+
+	.defaultLabel {
+		margin-right: 10px;
+		font-weight: bold;
+		color: #2196f3 !important;
+		font-size: 14px !important;
+	}
+
+	.colorsPickerInput {
+		margin-left: 10px !important;
+	}
+
+	.colorsDarkPickerInput {
+		margin-left: 10px !important;
+	}
+	
+	#toast-container {
+		z-index: 100 !important;
+		background: #323232 !important;
+	}
+
+	/* Filter for tables */
+	.table-filter {
+		margin-top: 2px !important;
+		margin-bottom: 0px !important;
+		display: flex;
+		align-items: center;
+		justify-content: end;
+	}
+	.table-filter input { 
+		color:#2696ef !important;  
+		width: 50% !important; 
+		height: 2.5rem !important;		
+	}
+	.table-filter button {
+		left: -27px; 
+		width: 1.6em !important; 
+		height: 1.6em !important;
+	}
+
+	.table-filter input::placeholder {
+		color: gray !important;
+		font-style: italic !important;
+	}
+
+	.table-filter button i {
+		font-size: .9rem !important; 
+		line-height: 1rem !important; 
+	}
+
+	/* Card Styles */
+	.card {
+		margin: 0 !important;
+		margin-top: 6px !important;
+	}
+	
+	.card-title {
+		color: #2196f3;
+		margin-bottom: 12px !important;
+	}
+
+	/* Autocomplete */
+	.dropdown-content {
+		position: absolute !important;
+		width: 50% !important; 
+	}
+</style>
+
+<body>
+
+	<div class="m adapter-container">
+		<div class="progressContainer">
+			<div class="myProgressCard card">
+				<div class="preloader-wrapper big active">
+					<div class="spinner-layer spinner-blue-only">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div><div class="gap-patch">
+						<div class="circle"></div>
+					</div><div class="circle-clipper right">
+						<div class="circle"></div>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12">
+				<ul class="tabs" style="height: auto;">
+					<li class="tab col s6 l2"><a href="#tab_general" class="translate active">config_general</a></li>
+					<li class="tab col s6 l2 myColorsTab"><a href="#tab_colors" class="translate">config_colors</a>
+					<li class="tab col s6 l2 myColorsTab"><a href="#tab_colorsDark" class="translate">config_colorsDark</a>
+					<li class="tab col s6 l2 myColorsTab"><a href="#tab_fonts" class="translate">config_fonts</a>
+					<li class="tab col s6 l2 myColorsTab"><a href="#tab_fontSizes" class="translate">config_fontSizes</a>
+					</li>
+				</ul>
+			</div>
+			<div id="tab_general" class="col s12 page">
+				<div class="col s12">
+					<div class="row">
+						<div class="col s12 m12 l12 card horizontal">
+							<div class="card-image">
+								<img class="logo" src="vis-materialdesign.png">
+							</div>
+							<div class="card-stacked">
+								<div class="card-content">
+									<div>
+										<div class="my-card-title" id="adapterTitle">Material Design Widgets</div>
+										<div class="my-card-subTitle translate">Theme Editor for your Widgets</div>
+									</div>								
+								</div>						
+							</div>	
+						</div>
+						<section>
+							<div class="col s12 m12 l12 card">
+								<div class="card-content">
+									<span class="card-title translate">Documentations</span>
+
+									<ul class="tabs" style="height: auto;">
+										<li class="tab myLinkBar col s6 l2"><a href="https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/master/README.md" target="_blank" class="translate">widget_settings</a></li>
+										<li class="tab myLinkBar col s6 l2"><a href="https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/master/README.md#online-example-project" target="_blank" class="translate">mdw_examples</a></li>
+										<li class="tab myLinkBar col s6 l2"><a href="https://forum.iobroker.net/search?term=Material%20Design%20Widgets%3A&in=titles&matchWords=all&by%5B%5D=Scrounger&categories%5B%5D=7&sortBy=topic.title&sortDirection=desc&showAs=topics" target="_blank" class="translate">mdw_forum</a></li>
+									</ul>
+								</div>
+							</div>							
+							<div class="col s12 m12 l12 card">
+								<div class="card-content">
+									<span class="card-title translate">Generate global script</span>
+									<div class="col s12 m2 l2 input-field">
+										<select class="value" id="javascriptInstance">
+										</select>
+										<label class="translate" for="javascriptInstance"
+											style="margin-top: 10px !important;">SelectJavascriptInstance</label>
+									</div>
+									<div class="javascriptInstanceExist">
+										<div class="col s12 m3 l3 input-field">
+											<input type="text" class="value" id="scriptName" />
+											<label for="scriptName" class="translate">script name</label>
+										</div>
+										<div class="col s12 m3 l3 input-field">
+											<input type="text" class="value" id="variableName" />
+											<label for="variableName" class="translate">name of the variable</label>
+										</div>
+										<div class="col s0 m1 l1"></div>
+										<div class="col s12 m3 l3 input-field right-align">
+											<a id="btnJavascript" class="waves-effect waves-light btn-small" style="width: 100%;"><i class="material-icons left">note_add</i><span class="translate">generate script</span></a>
+										</div>
+									</div>				
+								</div>
+							</div>
+							<div class="col s12 m12 l12 card">
+								<div class="card-content">
+									<span class="card-title translate">Sentry - automatic error reporting</span>
+									<div class="col s12 m3 l3 input-field">
+										<input type="checkbox" class="value" id="sentryReport" />
+										<label for="sentryReport" class="translate" style="color: #46a0e9;">send Widget error reports</label>
+									</div>
+									<div class="col s12 m9 l9 valign-wrapper" style="height: 25px; padding: 0 .75rem; margin-top: 1rem; margin-bottom: 1rem;">
+										<label class="translate right-align" style="width: 100%; font-size: 1rem; font-style: italic;">sentryInfo</label>
+									</div>
+								</div>
+							</div>
+							<div class="col s12 m12 l12 card">
+								<div class="card-content">
+									<div style="display: flex; align-items: center; justify-content: center;"><span class="mdi mdi-coffee" style="font-size: 20px; color: #46a0e9; margin-right: 6px;"></span><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VWAXSTS634G88&source=url" target="_blank" class="translate">buymeacoffee</a></div>								
+								</div>
+							</div>																		
+						</section>
+					</div>
+				</div>
+			</div>
+			<div id="tab_colors" class="col s12 page">
+				<div class="row">
+					<section>
+						<div class="col s12 m12 l12">
+							<div class="col s12 m12 l12 card" style="padding-bottom: 20px;">
+								<div class="card-content">
+									<div class="row card-title">
+										<div class="col s12 m9 l9">
+											<div class="translate">default light colors</div>
+										</div>
+										<div class="col s12 m3 l3 right-align">
+											<a id="colorsReset" class="waves-effect waves-light btn-small"><i class="material-icons left">undo</i><span class="translate">reset</span></a>
+										</div>
+									</div>
+									<div class="colorsDefaultContainer">
+										<!-- dynamically creates colorPicker & input on load -->
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col s12 m12 l12">
+							<div class="col s12 m12 l12 card" style="padding-bottom: 30px;">
+								<div class="card-content">
+									<div class="row card-title">
+										<div class="col s12 m6 l3">
+											<div class="translate">Widget colors</div>
+										</div>
+										<div class="table-filter input-field col s12 m6 l9">
+											<input type="text" placeholder="Filter Widgets" id="colorsTableFilter" class="autocomplete">
+											<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="colorsTableFilterClear"><i class="material-icons">clear</i></button></span>
+										</div>
+									</div>
+									<div class="container_colorsTable">						
+										<!-- dynamically creates table on evey change of the select values  -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+			<div id="tab_colorsDark" class="col s12 page">
+				<div class="row">
+					<section>
+						<div class="col s12 m12 l12">
+							<div class="col s12 m12 l12 card" style="padding-bottom: 20px;">
+								<div class="card-content">
+									<div class="row card-title">
+										<div class="col s12 m9 l9">
+											<div class="translate">default dark colors</div>
+										</div>
+										<div class="col s12 m3 l3 right-align">
+											<a id="colorsDarkReset" class="waves-effect waves-light btn-small"><i class="material-icons left">undo</i><span class="translate">reset</span></a>
+										</div>
+									</div>									
+									<div class="colorsDarkDefaultContainer">
+										<!-- dynamically creates colorPicker & input on load -->
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col s12 m12 l12">
+							<div class="col s12 m12 l12 card" style="padding-bottom: 30px;">
+								<div class="card-content">
+									<div class="row card-title">
+										<div class="col s12 m6 l3">
+											<div class="translate">Widget colors</div>
+										</div>
+										<div class="table-filter input-field col s12 m6 l9">
+											<input type="text" placeholder="Filter Widgets" id="colorsDarkTableFilter" class="autocomplete">
+											<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="colorsDarkTableFilterClear"><i class="material-icons">clear</i></button></span>
+										</div>
+									</div>
+									<div class="container_colorsDarkTable">						
+										<!-- dynamically creates table on evey change of the select values  -->
+									</div>
+								</div>
+							</div>
+						</div>						
+					</section>
+				</div>
+			</div>			
+			<div id="tab_fonts" class="col s12 page">
+				<div class="row">
+					<section>
+						<div class="col s12 m12 l12">
+							<div class="col s12 m12 l12 card" style="padding-bottom: 20px;">
+								<div class="card-content">
+									<div class="row card-title">
+										<div class="col s12 m9 l9">
+											<div class="translate">config_fonts</div>
+										</div>
+										<div class="col s12 m3 l3 right-align">
+											<a id="fontsReset" class="waves-effect waves-light btn-small"><i class="material-icons left">undo</i><span class="translate">reset</span></a>
+										</div>
+									</div>																	
+									<div class="fontsDefaultContainer">
+										<!-- dynamically creates colorPicker & input on load -->
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col s12 m12 l12">
+							<div class="col s12 m12 l12 card" style="padding-bottom: 30px;">
+								<div class="card-content">
+									<div class="row card-title">
+										<div class="col s12 m6 l3">
+											<div class="translate">Widget fonts</div>
+										</div>
+										<div class="table-filter input-field col s12 m6 l9">
+											<input type="text" placeholder="Filter Widgets" id="fontsTableFilter" class="autocomplete">
+											<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="fontsTableFilterClear"><i class="material-icons">clear</i></button></span>
+										</div>
+									</div>
+									<div class="container_fontsTable">						
+										<!-- dynamically creates table on evey change of the select values  -->
+									</div>
+								</div>
+							</div>
+						</div>						
+					</section>
+				</div>
+			</div>
+			<div id="tab_fontSizes" class="col s12 page">
+				<div class="row">
+					<section>
+						<div class="col s12 m12 l12">
+							<div class="col s12 m12 l12 card" style="padding-bottom: 20px;">
+								<div class="card-content">
+									<div class="row card-title">
+										<div class="col s12 m9 l9">
+											<div class="translate">config_fontSizes</div>
+										</div>
+										<div class="col s12 m3 l3 right-align">
+											<a id="fontSizesReset" class="waves-effect waves-light btn-small"><i class="material-icons left">undo</i><span class="translate">reset</span></a>
+										</div>
+									</div>
+									<div class="fontSizesdefaultContainer">
+										<!-- dynamically creates colorPicker & input on load -->
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col s12 m12 l12">
+							<div class="col s12 m12 l12 card" style="padding-bottom: 30px;">
+								<div class="card-content">
+									<div class="row card-title">
+										<div class="col s12 m6 l3">
+											<div class="translate">Widget font sizes</div>
+										</div>
+										<div class="table-filter input-field col s12 m6 l9">
+											<input type="text" placeholder="Filter Widgets" id="fontSizesTableFilter" class="autocomplete">
+											<button class="btn-floating waves-effect waves-light blue btn-small" title="Filter löschen" id="fontSizesTableFilterClear"><i class="material-icons">clear</i></button></span>
+										</div>
+									</div>
+									<div class="container_fontSizesTable">						
+										<!-- dynamically creates table on evey change of the select values  -->
+									</div>
+								</div>
+							</div>
+						</div>									
+					</section>
+				</div>
+			</div>	
+		</div>
+	</div>
+</body>
+
+</html>

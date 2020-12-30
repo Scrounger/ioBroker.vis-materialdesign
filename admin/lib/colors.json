@@ -1,0 +1,1070 @@
+[
+    {
+        "id": "light.alerts.close_icon",
+        "desc": "closeIconColor",
+        "defaultValue": 0,
+        "widget": "Alerts"
+    },
+    {
+        "id": "light.alerts.close_icon_hover",
+        "desc": "closeIconPressColor",
+        "defaultValue": 0,
+        "widget": "Alerts"
+    },
+    {
+        "id": "light.button.default.primary",
+        "desc": "mdwButtonPrimaryColor",
+        "defaultValue": 0,
+        "widget": "Button Navigation, Button Link, Button State, Button State Multi, Button Addition, Button Toggle, Dialog, Dialog iFrame"
+    },
+    {
+        "id": "light.button.default.secondary",
+        "desc": "mdwButtonSecondaryColor",
+        "defaultValue": 5,
+        "widget": "Button Navigation, Button Link, Button State, Button State Multi, Button Addition, Button Toggle, Dialog, Dialog iFrame"
+    },
+    {
+        "id": "light.button.vertical.primary",
+        "desc": "mdwButtonPrimaryColor",
+        "defaultValue": 0,
+        "widget": "Button Navigation vertical, Button Link vertical, Button State vertical, Button State Multi vertical, Button Addition vertical, Button Toggle vertical"
+    },
+    {
+        "id": "light.button.vertical.secondary",
+        "desc": "mdwButtonSecondaryColor",
+        "defaultValue": 5,
+        "widget": "Button Navigation vertical, Button Link vertical, Button State vertical, Button State Multi vertical, Button Addition vertical, Button Toggle vertical"
+    },
+    {
+        "id": "light.button.lock_icon",
+        "desc": "lockIconColor",
+        "defaultValue": 10,
+        "widget": "Button State vertical, Button State Multi vertical, Button Toggle vertical, Button State, Button State Multi, Button Toggle"
+    },
+    {
+        "id": "light.calendar.border",
+        "desc": "calendarBorderColor",
+        "defaultValue": 4,
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.background_day",
+        "desc": "calendarDayBackgroundColor",
+        "defaultValue": 7,
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.background_other_month",
+        "desc": "calendarDayBackgroundOutsideColor",
+        "value": "#f7f7f7",
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.button_background",
+        "desc": "calendarDayButtonColor",
+        "defaultValue": 7,
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.button_background_today",
+        "desc": "calendarDayButtonTodayColor",
+        "defaultValue": 0,
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.button_hover",
+        "desc": "calendarDayButtonRippleEffectColor",
+        "defaultValue": 0,
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.button_text",
+        "desc": "calendarDayButtonFontColor",
+        "defaultValue": 6,
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.button_text_today",
+        "desc": "calendarDayButtonTodayFontColor",
+        "defaultValue": 5,
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.control_panel_background",
+        "desc": "controlButtonColor",
+        "defaultValue": 7,
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.control_panel_hover",
+        "desc": "controlButtonRippelEffectColor",
+        "defaultValue": 0,
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.control_panel_icon",
+        "desc": "controlIconColor",
+        "defaultValue": 0,
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.control_panel_text",
+        "desc": "controlTextColor",
+        "defaultValue": 6,
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.header_background",
+        "desc": "calendarHeaderBackground",
+        "defaultValue": 7,
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.header_text",
+        "desc": "calendarDayLabelFontColor",
+        "defaultValue": 6,
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.header_text_today",
+        "desc": "calendarDayLabelTodayFontColor",
+        "defaultValue": 2,
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.header_text_past",
+        "desc": "calendarDayLabelPreviousFontColor",
+        "value": "rgba(0, 0, 0, 0.38)",
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.weeks_background",
+        "desc": "calendarWeeksNumbersBackground",
+        "value": "#f7f7f7",
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.weeks_text",
+        "desc": "calendarWeeksNumbersFontColor",
+        "defaultValue": 6,
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.time_axis_background",
+        "desc": "calendarTimeAxisBackgroundColor",
+        "defaultValue": 7,
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.time_axis_background_header",
+        "desc": "calendarTimeAxisHeaderBackgroundColor",
+        "defaultValue": 7,
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.calendar.time_axis_text",
+        "desc": "calendarTimeAxisFontColor",
+        "defaultValue": 2,
+        "widget": "Calendar"
+    },
+    {
+        "id": "light.charts.background",
+        "desc": "backgroundColor",
+        "defaultValue": 7,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "light.charts.background_chart",
+        "desc": "chartAreaBackgroundColor",
+        "defaultValue": 7,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "light.charts.global",
+        "desc": "globalColor",
+        "defaultValue": 0,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "light.charts.value",
+        "desc": "valuesFontColor",
+        "defaultValue": 2,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "light.charts.y_axis_title",
+        "desc": "yAxisTitleColor",
+        "defaultValue": 2,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "light.charts.y_axis_values",
+        "desc": "yAxisValueLabelColor",
+        "defaultValue": 2,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "light.charts.y_axis_gridlines",
+        "desc": "yAxisGridLinesColor",
+        "defaultValue": 6,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "light.charts.y_axis_zeroline",
+        "desc": "yAxisZeroLineColor",
+        "defaultValue": 6,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "light.charts.x_axis_title",
+        "desc": "xAxisTitleColor",
+        "defaultValue": 2,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "light.charts.x_axis_values",
+        "desc": "xAxisValueLabelColor",
+        "defaultValue": 2,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "light.charts.x_axis_gridlines",
+        "desc": "xAxisGridLinesColor",
+        "defaultValue": 6,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "light.charts.x_axis_zeroline",
+        "desc": "xAxisZeroLineColor",
+        "defaultValue": 6,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "light.charts.legend",
+        "desc": "legendFontColor",
+        "defaultValue": 2,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "light.charts.tooltip_background",
+        "desc": "tooltipBackgroundColor",
+        "defaultValue": 6,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "light.charts.tooltip_title",
+        "desc": "tooltipTitleFontColor",
+        "defaultValue": 5,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "light.charts.tooltip_text",
+        "desc": "tooltipBodyFontColor",
+        "defaultValue": 5,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "light.charts.bar.hover",
+        "desc": "hoverColor",
+        "value": "rgba(68, 115, 158, 0.8)",
+        "widget": "Bar Chart"
+    },
+    {
+        "id": "light.charts.bar.hover_border",
+        "desc": "hoverBorderColor",
+        "value": "rgba(68, 115, 158, 0.8)",
+        "widget": "Bar Chart"
+    },
+    {
+        "id": "light.charts.pie.value",
+        "desc": "valuesFontColor",
+        "defaultValue": 5,
+        "widget": "Pie Chart"
+    },
+    {
+        "id": "light.charts.pie.hover",
+        "desc": "hoverColor",
+        "value": "rgba(68, 115, 158, 0.8)",
+        "widget": "Pie Chart"
+    },
+    {
+        "id": "light.charts.pie.border",
+        "desc": "borderColor",
+        "defaultValue": 5,
+        "widget": "Pie Chart"
+    },
+    {
+        "id": "light.charts.pie.border_hover",
+        "desc": "hoverBorderColor",
+        "defaultValue": 5,
+        "widget": "Pie Chart"
+    },
+    {
+        "id": "light.card.background",
+        "desc": "colorBackground",
+        "defaultValue": 5,
+        "widget": "HTML Card, Icon List"
+    },
+    {
+        "id": "light.card.background_title",
+        "desc": "colorTitleSectionBackground",
+        "defaultValue": 7,
+        "widget": "HTML Card, Icon List"
+    },
+    {
+        "id": "light.card.background_body",
+        "desc": "colorTextSectionBackground",
+        "defaultValue": 7,
+        "widget": "HTML Card, Icon List"
+    },
+    {
+        "id": "light.card.title",
+        "desc": "colorTitle",
+        "defaultValue": 2,
+        "widget": "HTML Card, Icon List"
+    },
+    {
+        "id": "light.card.subTitle",
+        "desc": "colorSubtitle",
+        "defaultValue": 1,
+        "widget": "HTML Card"
+    },
+    {
+        "id": "light.card.text",
+        "desc": "colorBody",
+        "defaultValue": 2,
+        "widget": "HTML Card"
+    },
+    {
+        "id": "light.checkbox.on",
+        "desc": "colorCheckBox",
+        "defaultValue": 0,
+        "widget": "Checkbox, List"
+    },
+    {
+        "id": "light.checkbox.border",
+        "desc": "colorCheckBoxBorder",
+        "defaultValue": 3,
+        "widget": "Checkbox"
+    },
+    {
+        "id": "light.checkbox.hover",
+        "desc": "colorCheckBoxHover",
+        "defaultValue": 0,
+        "widget": "Checkbox"
+    },
+    {
+        "id": "light.checkbox.text_off",
+        "desc": "labelColorFalse",
+        "defaultValue": 2,
+        "widget": "Checkbox"
+    },
+    {
+        "id": "light.checkbox.text_on",
+        "desc": "labelColorTrue",
+        "defaultValue": 2,
+        "widget": "Checkbox"
+    },
+    {
+        "id": "light.checkbox.lock_icon",
+        "desc": "lockIconColor",
+        "defaultValue": 10,
+        "widget": "Checkbox"
+    },
+    {
+        "id": "light.dialog.background",
+        "desc": "backgroundColor",
+        "defaultValue": 5,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "light.dialog.header_background",
+        "desc": "headerBackgroundColor",
+        "defaultValue": 2,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "light.dialog.header_text",
+        "desc": "titleColor",
+        "defaultValue": 5,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "light.dialog.footer_background",
+        "desc": "footerBackgroundColor",
+        "defaultValue": 5,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "light.dialog.close_button_text",
+        "desc": "buttonFontColor",
+        "defaultValue": 2,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "light.dialog.close_button_icon",
+        "desc": "fullscreenCloseIconColor",
+        "defaultValue": 2,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "light.dialog.close_button_press",
+        "desc": "pressColor",
+        "defaultValue": 2,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "light.dialog.divider",
+        "desc": "dividerColor",
+        "defaultValue": 0,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "light.dialog.overlay",
+        "desc": "overlayColor",
+        "defaultValue": 3,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "light.button.icon.background_off",
+        "desc": "colorBgFalse",
+        "defaultValue": 7,
+        "widget": "Icon Button Navigation, Icon Button Link, Icon Button State, Icon Button State Multi, Icon Button Addition, Icon Button Toggle"
+    },
+    {
+        "id": "light.button.icon.background_on",
+        "desc": "colorBgTrue",
+        "defaultValue": 7,
+        "widget": "Icon Button Toggle"
+    },
+    {
+        "id": "light.button.icon.pressed",
+        "desc": "colorPress",
+        "defaultValue": 0,
+        "widget": "Icon Button Navigation, Icon Button Link, Icon Button State, Icon Button State Multi, Icon Button Addition, Icon Button Toggle"
+    },
+    {
+        "id": "light.button.icon.icon_off",
+        "desc": "imageColor",
+        "defaultValue": 0,
+        "widget": "Icon Button Navigation, Icon Button Link, Icon Button State, Icon Button State Multi, Icon Button Addition, Icon Button Toggle"
+    },
+    {
+        "id": "light.button.icon.icon_on",
+        "desc": "imageTrueColor",
+        "defaultValue": 0,
+        "widget": "Icon Button Toggle"
+    },
+    {
+        "id": "light.button.icon.lock_icon",
+        "desc": "lockIconColor",
+        "defaultValue": 10,
+        "widget": "Icon Button State, Icon Button State Multi, Icon Button Toggle"
+    },
+    {
+        "id": "light.button.icon.lock_icon_background",
+        "desc": "lockIconBackground",
+        "defaultValue": 7,
+        "widget": "Icon Button State, Icon Button State Multi, Icon Button Toggle"
+    },
+    {
+        "id": "light.icon_list.background",
+        "desc": "containerBackgroundColor",
+        "defaultValue": 7,
+        "widget": "Icon List"
+    },
+    {
+        "id": "light.icon_list.background_items",
+        "desc": "itemBackgroundColor",
+        "defaultValue": 5,
+        "widget": "Icon List"
+    },
+    {
+        "id": "light.icon_list.text",
+        "desc": "labelFontColor",
+        "defaultValue": 2,
+        "widget": "Icon List"
+    },
+    {
+        "id": "light.icon_list.subText",
+        "desc": "subLabelFontColor",
+        "defaultValue": 1,
+        "widget": "Icon List"
+    },
+    {
+        "id": "light.icon_list.value_text",
+        "desc": "valueFontColor",
+        "defaultValue": 1,
+        "widget": "Icon List"
+    },
+    {
+        "id": "light.icon_list.icon",
+        "desc": "listImageColor",
+        "defaultValue": 0,
+        "widget": "Icon List"
+    },
+    {
+        "id": "light.icon_list.button",
+        "desc": "buttonBgColor",
+        "defaultValue": 7,
+        "widget": "Icon List"
+    },
+    {
+        "id": "light.icon_list.button_hover",
+        "desc": "buttonColorPress",
+        "defaultValue": 0,
+        "widget": "Icon List"
+    },
+    {
+        "id": "light.icon_list.lock_icon",
+        "desc": "lockIconColor",
+        "defaultValue": 10,
+        "widget": "Icon List"
+    },
+    {
+        "id": "light.input.text",
+        "desc": "inputTextColor",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.label",
+        "desc": "inputLabelColor",
+        "defaultValue": 3,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.label_selected",
+        "desc": "inputLabelColorSelected",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.appendix",
+        "desc": "inputAppendixColor",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.message",
+        "desc": "inputMessageColor",
+        "defaultValue": 3,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.counter",
+        "desc": "inputCounterColor",
+        "defaultValue": 3,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.border",
+        "desc": "inputLayoutBorderColor",
+        "defaultValue": 3,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.border_hover",
+        "desc": "inputLayoutBorderColorHover",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.border_selected",
+        "desc": "inputLayoutBorderColorSelected",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.icon_clear",
+        "desc": "clearIconColor",
+        "defaultValue": 0,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "light.input.icon_collapse",
+        "desc": "collapseIconColor",
+        "defaultValue": 0,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "light.input.menu.background",
+        "desc": "listItemBackgroundColor",
+        "defaultValue": 5,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "light.input.menu.hover",
+        "desc": "listItemBackgroundHoverColor",
+        "defaultValue": 6,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "light.input.menu.selected",
+        "desc": "listItemBackgroundSelectedColor",
+        "defaultValue": 6,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "light.input.menu.effect",
+        "desc": "listItemRippleEffectColor",
+        "defaultValue": 6,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "light.input.menu.icon",
+        "desc": "listIconColor",
+        "defaultValue": 0,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "light.input.menu.text",
+        "desc": "listItemFontColor",
+        "defaultValue": 2,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "light.input.menu.subText",
+        "desc": "listItemSubFontColor",
+        "defaultValue": 1,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "light.input.menu.value",
+        "desc": "listItemValueFontColor",
+        "defaultValue": 1,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "light.material_design_icon.color",
+        "desc": "mdwIconColor",
+        "defaultValue": 0,
+        "widget": "Material Design Icon"
+    },
+    {
+        "id": "light.list.background_off",
+        "desc": "listItemBackground",
+        "defaultValue": 7,
+        "widget": "List"
+    },
+    {
+        "id": "light.list.background_on",
+        "desc": "listItemBackgroundActive",
+        "defaultValue": 7,
+        "widget": "List"
+    },
+    {
+        "id": "light.list.hover",
+        "desc": "colorListItemHover",
+        "defaultValue": 6,
+        "widget": "List"
+    },
+    {
+        "id": "light.list.selected",
+        "desc": "colorListItemSelected",
+        "defaultValue": 6,
+        "widget": "List"
+    },
+    {
+        "id": "light.list.text",
+        "desc": "colorListItemText",
+        "defaultValue": 2,
+        "widget": "List"
+    },
+    {
+        "id": "light.list.subText",
+        "desc": "colorListItemTextSecondary",
+        "defaultValue": 1,
+        "widget": "List"
+    },
+    {
+        "id": "light.list.text_right",
+        "desc": "colorListItemTextRight",
+        "defaultValue": 2,
+        "widget": "List"
+    },
+    {
+        "id": "light.list.subText_right",
+        "desc": "colorListItemTextSecondaryRight",
+        "defaultValue": 1,
+        "widget": "List"
+    },
+    {
+        "id": "light.list.header",
+        "desc": "colorListItemHeaders",
+        "defaultValue": 1,
+        "widget": "List"
+    },
+    {
+        "id": "light.list.divider",
+        "desc": "colorListItemDivider",
+        "defaultValue": 4,
+        "widget": "List"
+    },
+    {
+        "id": "light.list.icon_off",
+        "desc": "listImageColor",
+        "defaultValue": 0,
+        "widget": "List"
+    },
+    {
+        "id": "light.list.icon_on",
+        "desc": "listImageActiveColor",
+        "defaultValue": 0,
+        "widget": "List"
+    },
+    {
+        "id": "light.progress.track_background",
+        "desc": "colorProgressBackground",
+        "defaultValue": 4,
+        "widget": "Progress, Progress Circular"
+    },
+    {
+        "id": "light.progress.track",
+        "desc": "colorProgress",
+        "defaultValue": 0,
+        "widget": "Progress, Progress Circular"
+    },
+    {
+        "id": "light.progress.text",
+        "desc": "textColor",
+        "defaultValue": 2,
+        "widget": "Progress, Progress Circular"
+    },
+    {
+        "id": "light.progress.track_condition1",
+        "desc": "colorOne",
+        "defaultValue": 9,
+        "widget": "Progress, Progress Circular"
+    },
+    {
+        "id": "light.progress.track_condition2",
+        "desc": "colorTwo",
+        "defaultValue": 10,
+        "widget": "Progress, Progress Circular"
+    },
+    {
+        "id": "light.progress.circular_background",
+        "desc": "innerColor",
+        "defaultValue": 7,
+        "widget": "Progress Circular"
+    },
+    {
+        "id": "light.slider.background",
+        "desc": "colorSliderBg",
+        "defaultValue": 7,
+        "widget": "Slider, Slider Round"
+    },
+    {
+        "id": "light.slider.control",
+        "desc": "colorThumb",
+        "defaultValue": 0,
+        "widget": "Slider, Slider Round"
+    },
+    {
+        "id": "light.slider.control_before",
+        "desc": "colorBeforeThumb",
+        "defaultValue": 0,
+        "widget": "Slider, Slider Round"
+    },
+    {
+        "id": "light.slider.control_behind",
+        "desc": "colorAfterThumb",
+        "defaultValue": 4,
+        "widget": "Slider, Slider Round"
+    },
+    {
+        "id": "light.slider.text",
+        "desc": "valueLabelColor",
+        "defaultValue": 2,
+        "widget": "Slider, Slider Round"
+    },
+    {
+        "id": "light.slider.text_prepand",
+        "desc": "prepandTextColor",
+        "defaultValue": 2,
+        "widget": "Slider"
+    },
+    {
+        "id": "light.slider.tick",
+        "desc": "tickTextColor",
+        "defaultValue": 1,
+        "widget": "Slider"
+    },
+    {
+        "id": "light.slider.tick_before",
+        "desc": "tickColorBefore",
+        "defaultValue": 0,
+        "widget": "Slider"
+    },
+    {
+        "id": "light.slider.tick_after",
+        "desc": "tickColorAfter",
+        "defaultValue": 0,
+        "widget": "Slider"
+    },
+    {
+        "id": "light.slider.control_background",
+        "desc": "thumbBackgroundColor",
+        "defaultValue": 0,
+        "widget": "Slider"
+    },
+    {
+        "id": "light.slider.control_text",
+        "desc": "thumbFontColor",
+        "defaultValue": 5,
+        "widget": "Slider"
+    },
+    {
+        "id": "light.switch.on",
+        "desc": "colorSwitchTrue",
+        "defaultValue": 0,
+        "widget": "Switch, List"
+    },
+    {
+        "id": "light.switch.on_hover",
+        "desc": "colorSwitchHoverTrue",
+        "defaultValue": 0,
+        "widget": "Switch, List"
+    },
+    {
+        "id": "light.switch.off",
+        "desc": "colorSwitchThumb",
+        "defaultValue": 5,
+        "widget": "Switch, List"
+    },
+    {
+        "id": "light.switch.off_hover",
+        "desc": "colorSwitchHover",
+        "defaultValue": 0,
+        "widget": "Switch, List"
+    },
+    {
+        "id": "light.switch.track",
+        "desc": "colorSwitchTrack",
+        "defaultValue": 6,
+        "widget": "Switch, List"
+    },
+    {
+        "id": "light.switch.text_off",
+        "desc": "labelColorFalse",
+        "defaultValue": 2,
+        "widget": "Switch"
+    },
+    {
+        "id": "light.switch.text_on",
+        "desc": "labelColorTrue",
+        "defaultValue": 2,
+        "widget": "Switch"
+    },
+    {
+        "id": "light.switch.lock_icon",
+        "desc": "lockIconColor",
+        "defaultValue": 10,
+        "widget": "Switch"
+    },
+    {
+        "id": "light.table.background",
+        "desc": "colorBackground",
+        "defaultValue": 7,
+        "widget": "Table"
+    },
+    {
+        "id": "light.table.row_header_background",
+        "desc": "colorHeaderRowBackground",
+        "defaultValue": 7,
+        "widget": "Table"
+    },
+    {
+        "id": "light.table.row_header_text",
+        "desc": "colorHeaderRowText",
+        "defaultValue": 2,
+        "widget": "Table"
+    },
+    {
+        "id": "light.table.row_background",
+        "desc": "colorRowBackground",
+        "defaultValue": 7,
+        "widget": "Table"
+    },
+    {
+        "id": "light.table.row_hover",
+        "desc": "colorRowBackgroundHover",
+        "defaultValue": 4,
+        "widget": "Table"
+    },
+    {
+        "id": "light.table.row_text",
+        "desc": "colorRowText",
+        "defaultValue": 2,
+        "widget": "Table"
+    },
+    {
+        "id": "light.table.border",
+        "desc": "borderColor",
+        "defaultValue": 4,
+        "widget": "Table"
+    },
+    {
+        "id": "light.table.dividers",
+        "desc": "dividers",
+        "defaultValue": 4,
+        "widget": "Table"
+    },
+    {
+        "id": "light.top_app_bar.background",
+        "desc": "colorTopAppBarBackground",
+        "defaultValue": 0,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.title",
+        "desc": "colorTopAppBarTitle",
+        "defaultValue": 5,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.menu_background",
+        "desc": "colorDrawerBackground",
+        "defaultValue": 5,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.header_background",
+        "desc": "colorDrawerHeaderBackground",
+        "defaultValue": 0,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.header_text",
+        "desc": "colorListItemHeaders",
+        "defaultValue": 6,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_background",
+        "desc": "colorDrawerItemBackground",
+        "defaultValue": 7,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_hover",
+        "desc": "colorListItemHover",
+        "defaultValue": 6,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_selected",
+        "desc": "colorListItemSelected",
+        "defaultValue": 6,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_text",
+        "desc": "colorListItemText",
+        "defaultValue": 2,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_icon",
+        "desc": "iconDrawerColor",
+        "defaultValue": 0,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_text_selected",
+        "desc": "colorListItemTextSelected",
+        "defaultValue": 2,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_text_disabled",
+        "desc": "colorListItemTextDisabled",
+        "value": "rgba(0, 0, 0, 0.38)",
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_icon_disabled",
+        "desc": "colorListItemIconDisabled",
+        "value": "rgba(0, 0, 0, 0.38)",
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_divider",
+        "desc": "colorListItemDivider",
+        "defaultValue": 4,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_icon_toggle",
+        "desc": "colorSubItemToggleIcon",
+        "defaultValue": 0,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_backdrop_background_text_off",
+        "desc": "colorDrawerbackdropLabelBackground",
+        "value": "rgba(0,0,0,0.5)",
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.item_backdrop_background_text_on",
+        "desc": "colorDrawerbackdropLabelBackgroundActive",
+        "value": "#1e88e566",
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_background_all",
+        "desc": "colorDrawerSubBackground",
+        "defaultValue": 7,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_background",
+        "desc": "colorDrawerSubItemBackground",
+        "defaultValue": 7,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_hover",
+        "desc": "colorListSubItemHover",
+        "defaultValue": 6,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_selected",
+        "desc": "colorListSubItemSelected",
+        "defaultValue": 6,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_text",
+        "desc": "colorListSubItemText",
+        "defaultValue": 2,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_text_selected",
+        "desc": "colorListSubItemTextSelected",
+        "defaultValue": 2,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_divider",
+        "desc": "colorListSubItemDivider",
+        "defaultValue": 4,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_backdrop_background_text_off",
+        "desc": "colorDrawerbackdropSubLabelBackground",
+        "value": "rgba(0,0,0,0.5)",
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_backdrop_background_text_on",
+        "desc": "colorDrawerbackdropSubLabelBackgroundActive",
+        "value": "#1e88e566",
+        "widget": "Top App Bar"
+    }
+]

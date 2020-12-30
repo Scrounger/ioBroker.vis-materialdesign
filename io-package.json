@@ -1,8 +1,32 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.3.30",
+        "version": "0.4.2",
         "news": {
+            "0.4.2": {
+                "en": "vis-google-fonts dependency removed",
+                "de": "vis-google-fonts-Abhängigkeit entfernt",
+                "ru": "зависимость vis-google-fonts удалена",
+                "pt": "Dependência vis-google-fonts removida",
+                "nl": "afhankelijkheid van vis-google-fonts verwijderd",
+                "fr": "Dépendance vis-google-fonts supprimée",
+                "it": "dipendenza da vis-google-fonts rimossa",
+                "es": "Se eliminó la dependencia vis-google-fonts",
+                "pl": "Usunięto zależność vis-google-fonts",
+                "zh-cn": "vis-google-fonts依赖性已删除"
+            },
+            "0.4.1": {
+                "en": ": Adapter settings: theme editor implementation completed\n: Progress Widget: condition binding bug fix\n: minimal VIS adapter dependency set to v1.3.6\n: VIS editor: image dialog bug fix\n: Color themes for buttons and dialogs widgets implemented\n: Calendar Widget: week number bug fix\n: icon list: scrollbar bug fix\n: bug fixes",
+                "de": ": Adaptereinstellungen: Implementierung des Theme-Editors abgeschlossen\n: Fortschritts-Widget: Fehlerbehebung bei der Bindungsbindung\n: Minimale Abhängigkeit des VIS-Adapters auf Version 1.3.6 festgelegt\n: VIS-Editor: Fehlerbehebung im Bilddialog\n: Farbthemen für Schaltflächen und Dialogfeld-Widgets implementiert\n: Kalender Widget: Fehlerbehebung bei der Wochennummer\n: Symbolliste: Fehlerbehebung in der Bildlaufleiste\n: Fehlerbehebung",
+                "ru": ": Настройки адаптера: Реализация редактора тем завершена\n: Виджет прогресса: исправление ошибки привязки условий\n: минимальная зависимость адаптера VIS установлена на v1.3.6\n: Редактор VIS: исправление ошибки в диалоговом окне изображения\n: Реализованы цветовые темы для кнопок и виджетов диалогов\n: Виджет календаря: исправление ошибки с номером недели\n: список значков: исправление ошибки полосы прокрутки\n: исправление ошибок",
+                "pt": ": Configurações do adaptador: implementação do editor de tema concluída\n: Widget de progresso: correção de bug de vinculação de condição\n: dependência mínima do adaptador VIS definida para v1.3.6\n: Editor VIS: correção de bug na caixa de diálogo de imagem\n: Temas de cores para botões e widgets de diálogos implementados\n: Widget de calendário: correção de bug do número da semana\n: lista de ícones: correção de bug da barra de rolagem\n: correções de bugs",
+                "nl": ": Adapterinstellingen: implementatie van thema-editor voltooid\n: Voortgangswidget: bugfix voor toestandbinding\n: minimale VIS-adapterafhankelijkheid ingesteld op v1.3.6\n: VIS-editor: bugfixedialoogvenster\n: Kleurenthema's voor widgets voor knoppen en dialoogvensters\n: Calendar Widget: bugfix voor weeknummers\n: pictogramlijst: bugfix voor schuifbalk\n: bugfixes",
+                "fr": ": Paramètres de l'adaptateur: mise en œuvre de l'éditeur de thème terminée\n: Progress Widget: correction de bogue de liaison de condition\n: dépendance minimale de l'adaptateur VIS définie sur v1.3.6\n: Éditeur VIS: correction de bogue de la boîte de dialogue d'image\n: Thèmes de couleur pour les widgets de boutons et de boîtes de dialogue implémentés\n: Widget Calendrier: correction d'un bug sur le numéro de semaine\n: liste d'icônes: correction de bogue de la barre de défilement\n: corrections de bogues",
+                "it": ": Impostazioni adattatore: implementazione dell'editor del tema completata\n: Widget di avanzamento: correzione di bug di associazione delle condizioni\n: dipendenza minima dall'adattatore VIS impostata su v1.3.6\n: Editor VIS: correzione di bug nella finestra di dialogo dell'immagine\n: Temi di colore per i widget di pulsanti e finestre di dialogo implementati\n: Widget calendario: correzione bug del numero della settimana\n: elenco di icone: correzione di bug della barra di scorrimento\n: correzioni di bug",
+                "es": ": Configuración del adaptador: implementación del editor de temas completada\n: Widget de progreso: corrección de errores de vinculación de condiciones\n: dependencia mínima del adaptador VIS establecida en v1.3.6\n: Editor VIS: corrección de errores en el diálogo de imagen\n: Temas de colores para botones y widgets de cuadros de diálogo implementados\n: Widget de calendario: corrección de errores de número de semana\n: lista de iconos: corrección de errores de la barra de desplazamiento\n: corrección de errores",
+                "pl": ": Ustawienia adaptera: ukończono implementację edytora kompozycji\n: Widget postępu: poprawka błędu wiązania warunków\n: minimalna zależność adaptera VIS ustawiona na v1.3.6\n: Edytor VIS: poprawka błędu w oknie dialogowym obrazu\n: Zaimplementowano motywy kolorów dla przycisków i widżetów okien dialogowych\n: Widżet kalendarza: poprawka błędu numeru tygodnia\n: lista ikon: poprawka błędu paska przewijania\n: poprawki błędów",
+                "zh-cn": "：适配器设置：主题编辑器实现已完成\n：进度小部件：条件绑定错误修复\n：最小VIS适配器依赖性设置为v1.3.6\n：VIS编辑器：图像对话框错误修复\n：实现了按钮和对话框小部件的颜色主题\n：日历小部件：周数错误修复\n：图标列表：滚动条错误修复\n： bug修复"
+            },
             "0.3.19": {
                 "en": ": Icon Button Widget: background color option for lock icon added\n: possibility to deactivate sentry implemented -> see documentation\n: Fixed some bugs reported via Sentry\n: prevent set value in vis editor\n: Grid & Mansonry Widget: visibilty by resoltuin bug fix\n: IconList Widget: Card Background for whole icon list added\n: Table Wigdet: button link widget added\n: Table Wigdet: material design icon widget added\n: Table Wigdet: alignment option for controls added\n: materialdesignicons library updated to v5.3.45\n: Round Slider lib updated to v0.5.0\n: Round Slider Widget: readonly option added\n: Table Widget: background color hover option added\n: bug fixes",
                 "de": ": Symbolschaltflächen-Widget: Hintergrundfarboption für Schlosssymbol hinzugefügt\n: Möglichkeit zum Deaktivieren des implementierten Wachpostens -> siehe Dokumentation\n: Einige über Sentry gemeldete Fehler wurden behoben\n: Verhindern Sie den eingestellten Wert im vis-Editor\n: Grid & Mansonry Widget: Sichtbarkeit durch Fehlerbehebung\n: IconList Widget: Kartenhintergrund für die gesamte Symbolliste hinzugefügt\n: Table Wigdet: Button Link Widget hinzugefügt\n: Tabelle Wigdet: Widget für Materialdesignsymbole hinzugefügt\n: Tabelle Wigdet: Ausrichtungsoption für Steuerelemente hinzugefügt\n: materialdesignicons Bibliothek auf v5.3.45 aktualisiert\n: Round Slider lib wurde auf v0.5.0 aktualisiert\n: Round Slider Widget: Schreibgeschützte Option hinzugefügt\n: Tabellen-Widget: Hintergrundfarben-Hover-Option hinzugefügt\n: Fehlerbehebung",
@@ -218,30 +242,6 @@
                 "es": "ver registro de cambios",
                 "pl": "patrz dziennik zmian",
                 "zh-cn": "看到变更日志"
-            },
-            "0.2.7": {
-                "en": "see changelog",
-                "de": "siehe Changelog",
-                "ru": "см. список изменений",
-                "pt": "veja changelog",
-                "nl": "zie changelog",
-                "fr": "voir changelog",
-                "it": "vedi il log delle modifiche",
-                "es": "ver registro de cambios",
-                "pl": "patrz dziennik zmian",
-                "zh-cn": "看到变更日志"
-            },
-            "0.2.4": {
-                "en": "Round Slider Widget bug fixes. Line History Chart Widget null value bug fixes, tooltip  and translation improved",
-                "de": "Round Slider Widget Fehlerbehebung. Line History Chart Widget Fehlerbehebung (null Werte, Tooltip) und Übersetzung verbessert",
-                "ru": "Исправлены ошибки в виджете Round Slider. Исправлена ошибка с нулевым значением в виджете истории линий, улучшена подсказка и перевод",
-                "pt": "Correções de erros do Round Slider Widget. Widget do Gráfico de Histórico de Linhas Correção de erros de valor nulo, dica de ferramenta e tradução aprimoradas",
-                "nl": "Bugfixes voor Round Slider Widget. Line History Chart Widget null-waarde bugfixes, tooltip en vertaling verbeterd",
-                "fr": "Arrondi de corrections de bugs Widget Widget. Amélioration des corrections de bugs, des info-bulles et de la traduction des valeurs null pour l'historique des graphiques en ligne",
-                "it": "Correzioni di bug di Round Slider Widget. Widget del grafico della cronologia delle linee migliorate correzioni di bug valore zero, descrizione comandi e traduzione",
-                "es": "Corrección de errores del widget Slider redondo. Gráfico de historial de línea Widget valor nulo correcciones de errores, información sobre herramientas y traducción mejorada",
-                "pl": "Poprawki błędów w Round Slider Widget. Poprawki błędów wartości wykresu historii linii, poprawione podpowiedzi i tłumaczenie",
-                "zh-cn": "Round Slider Widget错误修复。线历史记录图表小部件的空值错误修复，工具提示和翻译得到改进"
             }
         },
         "title": "Material Design Widgets",
@@ -291,19 +291,63 @@
         ],
         "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
         "onlyWWW": true,
-        "noConfig": true,
+        "noConfig": false,
+        "materialize": true,
         "singleton": true,
         "type": "visualization-widgets",
         "mode": "once",
         "dependencies": [
-            "vis"
+            {
+                "vis": ">=1.3.6"
+            }
         ]
     },
     "native": {
+        "scriptName": "Theme",
+        "variableName": "myMdwTheme",
+        "javascriptInstance": "",
+        "sentryReport": true,
+        "colors": [],
+        "defaultcolors": [],
+        "colorsDark": [],
+        "defaultcolorsDark": [],
+        "fonts": [],
+        "defaultfonts": [],
+        "fontSizes": [],
+        "defaultfontSizes": [],
         "dependencies": [
             "basic"
         ]
     },
     "objects": [],
-    "instanceObjects": []
+    "instanceObjects": [
+        {
+            "_id": "colors.darkTheme",
+            "type": "state",
+            "common": {
+                "role": "value",
+                "name": "Switch between light and dark colors",
+                "type": "boolean",
+                "read": true,
+                "write": true,
+                "def": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "sentry",
+            "type": "state",
+            "common": {
+                "role": "value",
+                "name": "send Widget error reports",
+                "desc": "Sentry - automatic error reporting",
+                "type": "boolean",
+                "read": true,
+                "write": true,
+                "def": true,
+                "uuid": ""
+            },
+            "native": {}
+        }
+    ]
 }

@@ -19,6 +19,8 @@ vis.binds.materialdesign.iconlist =
             let bindingTokenList = [];
             let eventBind = {};
 
+            $this.context.style.setProperty("--materialdesign-icon-list-background", myMdwHelper.getValueFromData(data.containerBackgroundColor, ''));
+
             $this.context.style.setProperty("--materialdesign-icon-list-items-per-row", myMdwHelper.getNumberFromData(data.maxItemsperRow, 1));
 
             $this.context.style.setProperty("--materialdesign-icon-list-items-min-width", myMdwHelper.getNumberFromData(data.iconItemMinWidth, 50) + 'px');
@@ -40,6 +42,9 @@ vis.binds.materialdesign.iconlist =
 
             $this.context.style.setProperty("--materialdesign-icon-list-item-layout-horizontal-image-container-width", myMdwHelper.getStringFromNumberData(data.horizontalIconContainerWidth, 'auto', '', 'px'));
             $this.context.style.setProperty("--materialdesign-icon-list-item-layout-vertical-image-container-height", myMdwHelper.getStringFromNumberData(data.verticalIconContainerHeight, 'auto', '', 'px'));
+
+            $this.context.style.setProperty("--materialdesign-font-card-title", myMdwHelper.getValueFromData(data.titleFontFamily, ''));
+
 
             let iconHeight = myMdwHelper.getNumberFromData(data.iconHeight, 24);
 
@@ -260,14 +265,15 @@ vis.binds.materialdesign.iconlist =
                 if (!replace) {
                     if (!myMdwHelper.getBooleanFromData(data.cardUse, false)) {
                         $this.append(`
-                            <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap; width: 100%;"' : ''}>
+                            <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap;"' : ''}>
                                 ${widgetElement}
                             </div>
                         `);
                     } else {
                         let colorBackground = myMdwHelper.getValueFromData(data.colorBackground, '');
                         $this.context.style.setProperty("--materialdesign-color-card-background", colorBackground);
-                        $this.context.style.setProperty("--materialdesign-color-card-title-section-background", myMdwHelper.getValueFromData(data.colorTitleSectionBackground, colorBackground));
+                        $this.context.style.setProperty("--materialdesign-color-card-title-section-background", myMdwHelper.getValueFromData(data.colorTitleSectionBackground, ''));
+                        $this.context.style.setProperty("--materialdesign-color-card-text-section-background", myMdwHelper.getValueFromData(data.colorTextSectionBackground, ''));
                         $this.context.style.setProperty("--materialdesign-color-card-title", myMdwHelper.getValueFromData(data.colorTitle, ''));
 
                         let titleFontSize = myMdwHelper.getFontSize(data.titleLayout);
@@ -277,14 +283,14 @@ vis.binds.materialdesign.iconlist =
                         }
 
 
-                        $this.css('overflow', 'visible');
-                        $this.append(`<div class="materialdesign-html-card mdc-card" style="margin-left: ${myMdwHelper.getNumberFromData(data.itemGaps, 4) + 'px'}; margin-right: ${myMdwHelper.getNumberFromData(data.itemGaps, 4) + 'px'}">
+                        // $this.css('padding', '2px');
+                        $this.append(`<div class="materialdesign-html-card mdc-card" style="margin-top: 2px; margin-left: 2px; width: calc(100% - 4px); height: calc(100% - 10px);">
                                         <div class="materialdesign-html-card card-title-section" style="${showTitleSection}">
                                             <div class="materialdesign-html-card card-title ${titleFontSize.class}" style="${titleFontSize.style}">${data.title}</div>
                                         </div>
-                                        <div class="materialdesign-html-card card-text-section iconlist">
+                                        <div class="materialdesign-html-card card-text-section iconlist" style="height: 100%; ${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'overflow-y: auto; overflow-x: hidden;' : ''} padding: ${myMdwHelper.getNumberFromData(data.borderDistance, 0)}px;">
                                             <div class="materialdesign-html-card">
-                                                <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap; width: 100%;"' : ''}>
+                                                <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap;"' : ''}>
                                                     ${widgetElement}
                                                 </div>
                                             </div>
@@ -293,7 +299,7 @@ vis.binds.materialdesign.iconlist =
                     }
                 } else {
                     $this.find(`.${containerClass}`).replaceWith(`
-                        <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap; width: 100%;"' : ''}>
+                        <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap;"' : ''}>
                             ${widgetElement}
                         </div>              
                     `);
@@ -304,7 +310,7 @@ vis.binds.materialdesign.iconlist =
             }
 
             function eventListener() {
-                let iconButtons = $this.find('.materialdesign-iconList-button');                
+                let iconButtons = $this.find('.materialdesign-iconList-button');
 
                 for (var i = 0; i <= iconButtons.length - 1; i++) {
                     let listItemObj = getListItemObj(i, data, jsonData);
@@ -315,7 +321,7 @@ vis.binds.materialdesign.iconlist =
                     } else {
                         new mdc.ripple.MDCRipple(iconButtons.get(i));
                     }
-                    iconButtons.get(i).style.setProperty("--mdc-theme-primary", myMdwHelper.getValueFromData(data.buttonColorPress, ''));
+                    iconButtons.get(i).style.setProperty("--materialdesign-color-icon-button-hover", myMdwHelper.getValueFromData(data.buttonColorPress, ''));
 
                     iconButtons.eq(i).click(function () {
                         // icon button click event
@@ -388,9 +394,9 @@ vis.binds.materialdesign.iconlist =
                         let valOnLoading = vis.states.attr(valId);
                         setLayout(i, valOnLoading, listItemObj);
 
-                        if (!eventBind[valId]) { 
+                        if (!eventBind[valId]) {
                             // fires event only once per objectId
-                            
+
                             vis.states.bind(valId, function (e, newVal, oldVal) {
                                 let input = $this.find('div[data-oid="' + listItemObj.objectId + '"]');
                                 input.each(function (d) {

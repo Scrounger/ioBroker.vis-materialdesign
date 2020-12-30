@@ -220,14 +220,26 @@ vis.binds.materialdesign.list =
                     list.style.setProperty("--materialdesign-color-list-item-background", myMdwHelper.getValueFromData(data.listItemBackground, ''));
                     list.style.setProperty("--materialdesign-color-list-item-hover", myMdwHelper.getValueFromData(data.colorListItemHover, ''));
                     list.style.setProperty("--materialdesign-color-list-item-selected", myMdwHelper.getValueFromData(data.colorListItemSelected, ''));
+                    
                     list.style.setProperty("--materialdesign-color-list-item-text", myMdwHelper.getValueFromData(data.colorListItemText, ''));
+                    list.style.setProperty("--materialdesign-font-list-item-text", myMdwHelper.getValueFromData(data.listItemFont, ''));
+
+
                     list.style.setProperty("--materialdesign-color-list-item-text-activated", myMdwHelper.getValueFromData(data.colorListItemText, ''));
+
                     list.style.setProperty("--materialdesign-color-list-item-text-secondary", myMdwHelper.getValueFromData(data.colorListItemTextSecondary, ''));
+                    list.style.setProperty("--materialdesign-font-list-item-text-secondary", myMdwHelper.getValueFromData(data.listItemSubFont, ''));
 
                     list.style.setProperty("--materialdesign-color-list-item-text-right", myMdwHelper.getValueFromData(data.colorListItemTextRight, ''));
+                    list.style.setProperty("--materialdesign-font-list-item-text-right", myMdwHelper.getValueFromData(data.listItemRightFont, ''));
+
+
                     list.style.setProperty("--materialdesign-color-list-item-text-secondary-right", myMdwHelper.getValueFromData(data.colorListItemTextSecondaryRight, ''));
+                    list.style.setProperty("--materialdesign-font-list-item-text-secondary-right", myMdwHelper.getValueFromData(data.listItemSubRightFont, ''));
 
                     list.style.setProperty("--materialdesign-color-list-item-header", myMdwHelper.getValueFromData(data.colorListItemHeaders, ''));
+                    list.style.setProperty("--materialdesign-font-list-item-header", myMdwHelper.getValueFromData(data.headerFontFamily, ''));
+
                     list.style.setProperty("--materialdesign-color-list-item-divider", myMdwHelper.getValueFromData(data.colorListItemDivider, ''));
 
                     list.style.setProperty("--materialdesign-color-switch-on", myMdwHelper.getValueFromData(data.colorSwitchTrue, ''));

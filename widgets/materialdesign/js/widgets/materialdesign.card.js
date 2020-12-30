@@ -113,6 +113,12 @@ vis.binds.materialdesign.card = {
 
             card.style.setProperty("--materialdesign-color-card-title", myMdwHelper.getValueFromData(data.colorTitle, ''));
             card.style.setProperty("--materialdesign-color-card-sub-title", myMdwHelper.getValueFromData(data.colorSubtitle, ''));
+            card.style.setProperty("--materialdesign-color-card--text-section-text", myMdwHelper.getValueFromData(data.colorBody, ''));
+
+            card.style.setProperty("--materialdesign-font-card-title", myMdwHelper.getValueFromData(data.titleFontFamily, ''));
+            card.style.setProperty("--materialdesign-font-card-sub-title", myMdwHelper.getValueFromData(data.subTitleFontFamily, ''));
+            card.style.setProperty("--materialdesign-font-card--text-section-text", myMdwHelper.getValueFromData(data.textFontFamily, ''));
+
 
             this.backgroundImageRefresh(el, data, `url(${data.image}`, data.refreshInterval, data.refreshOnWakeUp, data.refreshOnViewChange, false);
 

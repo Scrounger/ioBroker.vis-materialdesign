@@ -1,0 +1,332 @@
+[
+    {
+        "id": "alerts.text",
+        "desc": "alertFontFamily",
+        "defaultValue": 0,
+        "widget": "Alerts"
+    },
+    {
+        "id": "button.default.text",
+        "desc": "textFontFamily",
+        "defaultValue": 0,
+        "widget": "Buttons, Dialog, Button Navigation, Button Link, Button State, Button State Multi, Button Addition, Button Toggle, Dialog iFrame"
+    },
+    {
+        "id": "button.vertical.text",
+        "desc": "textFontFamily",
+        "defaultValue": 0,
+        "widget": "Buttons, Button Navigation vertical, Button Link vertical, Button State vertical, Button State Multi vertical, Button Addition vertical, Button Toggle vertical"
+    },
+    {
+        "id": "calendar.control",
+        "desc": "controlTextFont",
+        "defaultValue": 0,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.header",
+        "desc": "calendarDayLabelFontFamily",
+        "defaultValue": 0,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.today",
+        "desc": "calendarDayLabelTodayFontFamily",
+        "defaultValue": 4,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.weeks",
+        "desc": "calendarWeeksNumbersFont",
+        "defaultValue": 3,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.button",
+        "desc": "calendarDayButtonFontFamily",
+        "defaultValue": 2,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.button_today",
+        "desc": "calendarDayButtonTodayFontFamily",
+        "defaultValue": 4,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.event",
+        "desc": "calendarEventFont",
+        "defaultValue": 2,
+        "widget": "Calendar"
+    },
+    {
+        "id": "calendar.time_axis",
+        "desc": "calendarTimeAxisFont",
+        "defaultValue": 3,
+        "widget": "Calendar"
+    },
+    {
+        "id": "charts.value",
+        "desc": "valuesFontFamily",
+        "defaultValue": 2,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "charts.y_axis_title",
+        "desc": "yAxisTitleFontFamily",
+        "defaultValue": 0,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "charts.y_axis_values",
+        "desc": "yAxisValueFontFamily",
+        "defaultValue": 2,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "charts.x_axis_title",
+        "desc": "xAxisTitleFontFamily",
+        "defaultValue": 0,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "charts.x_axis_values",
+        "desc": "xAxisValueFontFamily",
+        "defaultValue": 2,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "charts.legend",
+        "desc": "legendFontFamily",
+        "defaultValue": 2,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "charts.tooltip_title",
+        "desc": "tooltipTitleFontFamily",
+        "defaultValue": 0,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "charts.tooltip_text",
+        "desc": "tooltipBodyFontFamily",
+        "defaultValue": 2,
+        "widget": "Bar Chart, Pie Chart, Line History Chart, JSON Chart"
+    },
+    {
+        "id": "card.title",
+        "desc": "titleFontFamily",
+        "defaultValue": 0,
+        "widget": "HTML Card, Icon List"
+    },
+    {
+        "id": "card.subTitle",
+        "desc": "subTitleFontFamily",
+        "defaultValue": 3,
+        "widget": "HTML Card"
+    },
+    {
+        "id": "card.text",
+        "desc": "textFontFamily",
+        "defaultValue": 0,
+        "widget": "HTML Card"
+    },
+    {
+        "id": "checkbox.value",
+        "desc": "valueFontFamily",
+        "defaultValue": 0,
+        "widget": "Checkbox"
+    },
+    {
+        "id": "dialog.title",
+        "desc": "titleFont",
+        "defaultValue": 0,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "dialog.button",
+        "desc": "buttonFont",
+        "defaultValue": 0,
+        "widget": "Dialog, Dialog iFrame"
+    },
+    {
+        "id": "icon_list.text",
+        "desc": "labelFontFamily",
+        "defaultValue": 0,
+        "widget": "Icon List"
+    },
+    {
+        "id": "icon_list.subText",
+        "desc": "subLabelFontFamily",
+        "defaultValue": 2,
+        "widget": "Icon List"
+    },
+    {
+        "id": "icon_list.value",
+        "desc": "valueFontFamily",
+        "defaultValue": 3,
+        "widget": "Icon List"
+    },
+    {
+        "id": "input.text",
+        "desc": "inputTextFontFamily",
+        "defaultValue": 0,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "input.label",
+        "desc": "inputLabelFontFamily",
+        "defaultValue": 3,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "input.appendix",
+        "desc": "inputAppendixFontFamily",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "input.message",
+        "desc": "inputMessageFontFamily",
+        "defaultValue": 3,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "input.counter",
+        "desc": "inputCounterFontFamily",
+        "defaultValue": 2,
+        "widget": "Input, Select, Autocomplete"
+    },
+    {
+        "id": "input.dropdown.text",
+        "desc": "listItemFont",
+        "defaultValue": 0,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "input.dropdown.subText",
+        "desc": "listItemSubFont",
+        "defaultValue": 0,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "input.dropdown.value",
+        "desc": "listItemValueFont",
+        "defaultValue": 0,
+        "widget": "Select, Autocomplete"
+    },
+    {
+        "id": "list.header",
+        "desc": "headerFontFamily",
+        "defaultValue": 0,
+        "widget": "List"
+    },
+    {
+        "id": "list.text",
+        "desc": "listItemFont",
+        "defaultValue": 0,
+        "widget": "List"
+    },
+    {
+        "id": "list.subText",
+        "desc": "listItemSubFont",
+        "defaultValue": 3,
+        "widget": "List"
+    },
+    {
+        "id": "list.text_right",
+        "desc": "listItemRightFont",
+        "defaultValue": 2,
+        "widget": "List"
+    },
+    {
+        "id": "list.subText_right",
+        "desc": "listItemSubRightFont",
+        "defaultValue": 3,
+        "widget": "List"
+    },
+    {
+        "id": "progress.text",
+        "desc": "textFontFamily",
+        "defaultValue": 2,
+        "widget": "Progress, Progress Circular"
+    },
+    {
+        "id": "slider.prepand",
+        "desc": "prepandTextFontFamily",
+        "defaultValue": 0,
+        "widget": "Slider"
+    },
+    {
+        "id": "slider.control",
+        "desc": "thumbFontFamily",
+        "defaultValue": 2,
+        "widget": "Slider"
+    },
+    {
+        "id": "slider.value",
+        "desc": "valueFontFamily",
+        "defaultValue": 2,
+        "widget": "Slider, Slider Round"
+    },
+    {
+        "id": "slider.ticks",
+        "desc": "tickFontFamily",
+        "defaultValue": 3,
+        "widget": "Slider"
+    },
+    {
+        "id": "switch.value",
+        "desc": "valueFontFamily",
+        "defaultValue": 0,
+        "widget": "Switch"
+    },
+    {
+        "id": "table.header",
+        "desc": "headerFontFamily",
+        "defaultValue": 0,
+        "widget": "Table"
+    },
+    {
+        "id": "table.row",
+        "desc": "fontFamily",
+        "defaultValue": 0,
+        "widget": "Table"
+    },
+    {
+        "id": "top_app_bar.title",
+        "desc": "titleFont",
+        "defaultValue": 0,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "top_app_bar.header",
+        "desc": "listItemHeaderFont",
+        "defaultValue": 0,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "top_app_bar.item",
+        "desc": "listItemTextFont",
+        "defaultValue": 0,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "top_app_bar.item_disabled",
+        "desc": "listItemTextFontDisabled",
+        "defaultValue": 3,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "top_app_bar.subItem",
+        "desc": "listItemSubTextFont",
+        "defaultValue": 0,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "top_app_bar.subItem_disabled",
+        "desc": "listItemSubTextFontDisabled",
+        "defaultValue": 3,
+        "widget": "Top App Bar"
+    }
+]

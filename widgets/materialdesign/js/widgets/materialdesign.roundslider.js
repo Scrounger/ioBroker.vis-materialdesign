@@ -5,8 +5,8 @@
 */
 "use strict";
 
-vis.binds.materialdesign.roundslider =
-    function (el, data) {
+vis.binds.materialdesign.roundslider = {
+    initialize: function (el, data) {
         try {
             let $this = $(el);
             let workingId = $this.attr('data-oid-working');
@@ -54,7 +54,9 @@ vis.binds.materialdesign.roundslider =
                                     justify-content: center;
                                     pointer-events: none;
                                     top: ${myMdwHelper.getNumberFromData(data.valueLabelVerticalPosition, 45)}%; 
-                                    color: ${myMdwHelper.getValueFromData(data.valueLabelColor, '#44739e')};">
+                                    color: ${myMdwHelper.getValueFromData(data.valueLabelColor, '#44739e')};
+                                    font-family: ${myMdwHelper.getValueFromData(data.valueFontFamily, '')};
+                                    font-size: ${myMdwHelper.getStringFromNumberData(data.valueFontSize, 'inherit', '', 'px')};">
                                         ${valueOnLoading} ${unit}
                                 </label>`: ''}
                             `)
@@ -95,24 +97,6 @@ vis.binds.materialdesign.roundslider =
 
                 $this.find('.materialdesign-round-slider-element').on('touchstart mousedown', function (e) {
                     myHelper.vibrate(data.vibrateOnMobilDevices);
-
-                    // let posX = e.offsetX;
-                    // let posY = e.offsetY;
-                    // let width = window.getComputedStyle($this.context, null).width.replace('px', '') / 2;
-                    // let height = window.getComputedStyle($this.context, null).height.replace('px', '') / 2;
-                    // let deltaY = height - posY;
-                    // let deltaX = width - posX;
-                    // let deg = (Math.atan2(deltaY, deltaX) * 180) / Math.PI;
-                    // deg = deg + (360 - myMdwHelper.getNumberFromData(data.startAngle, 135));
-                    // console.log(deg);
-                    // // deg = deg + myMdwHelper.getNumberFromData(data.startAngle, 135);
-
-
-                    // // if (deg < 0 && deg >= -270) {
-                    // //     deg = deg + 360;
-                    // // }
-                    // // console.log(deg);
-                    // // this.value = deg;
                 });
 
                 function setSliderState(setVisValue = true, val = 0) {
@@ -155,4 +139,39 @@ vis.binds.materialdesign.roundslider =
         } catch (ex) {
             console.error(`[Round Slider - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
-    };
+    },
+    getDataFromJson(obj, widgetId) {
+        return {
+            wid: widgetId,
+
+            oid: obj.oid,
+            "oid-working": obj["oid-working"],
+            min: obj.min,
+            max: obj.max,
+            step: obj.step,
+            readOnly: obj.readOnly,
+            startAngle: obj.startAngle,
+            arcLength: obj.arcLength,
+            sliderWidth: obj.sliderWidth,
+            handleSize: obj.handleSize,
+            handleZoom: obj.handleZoom,
+            rtl: obj.rtl,
+            vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+            colorSliderBg: obj.colorSliderBg,
+            colorBeforeThumb: obj.colorBeforeThumb,
+            colorThumb: obj.colorThumb,
+            colorAfterThumb: obj.colorAfterThumb,
+            valueLabelColor: obj.valueLabelColor,
+            showValueLabel: obj.showValueLabel,
+            valueLabelVerticalPosition: obj.valueLabelVerticalPosition,
+            valueLabelStyle: obj.valueLabelStyle,
+            valueLabelUnit: obj.valueLabelUnit,
+            valueLabelMin: obj.valueLabelMin,
+            valueLabelMax: obj.valueLabelMax,
+            valueLessThan: obj.valueLessThan,
+            textForValueLessThan: obj.textForValueLessThan,
+            valueGreaterThan: obj.valueGreaterThan,
+            textForValueGreaterThan: obj.textForValueGreaterThan
+        }
+    }
+}
