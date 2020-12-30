@@ -76,7 +76,8 @@ Mit diesem Skript wird ein json string erzeugt mit dem Status aller Netzwerk Ger
 ### Changelog
 
 ##### 3.0.0 (30.12.2020)
-* (cdellasanta) Refactored script from Javascript to TypeScript, adaptions and use of own global functions for state handling, added UniFi devices to listings, updated views for theme usage (vis-materialdseign 0.4.x) 
+* (cdellasanta) Refactored script from Javascript to TypeScript, adaptions and use of own global functions for state handling, added UniFi devices to listings, updated views for theme usage (vis-materialdseign 0.4.x)
+* (cdellasanta) Update lists after each run of the unifi adapter (instead of scheduler)  
 
 ##### 2.0.0 (16.10.2020)
 * (cdellasanta) Translated code and comments to english

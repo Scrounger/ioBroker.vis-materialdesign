@@ -19,7 +19,6 @@ const statePrefix = '0_userdata.0.vis.NetzwerkDevicesStatus'; // Might be better
 const defaultLocale = 'de';
 
 const lastDays = 7;       // Show devices that have been seen in the network within the last X days
-const updateInterval = 1; // Lists update interval in minutes (modulo on current minutes, therefore more than 30 means once per hour, more than 60 means never)
 
 const byteUnits = 'SI'; // SI units use the Metric representation based on 10^3 (1'000) as a order of magnitude
                         // IEC units use 2^10 (1'024) as an order of magnitude
@@ -113,8 +112,8 @@ if (existsState('0_userdata.0.vis.locale')) {
 runAfterInitialization(() => {
     setup();
 
-    // Refresh lists every updateInterval minutes
-    schedule(`*/${updateInterval} * * * *`, updateDeviceLists);
+    // Refresh lists every time the unifi adapter has updated its data
+    on('unifi.0.info.connection','any', updateDeviceLists);
 });
 
 function setup(): void {
@@ -344,6 +343,8 @@ function updateDeviceLists() {
         console.error(`[updateDeviceLists] error: ${err.message}`);
         console.error(`[updateDeviceLists] stack: ${err.stack}`);
     }
+
+    log(`Updated lists`, 'debug');
 }
 
 let sortTimeoutID;
@@ -543,7 +544,7 @@ function getUnifiImage(deviceModel: string): string {
     // For unifi devices, there is no 'note' where an image information can be stored, but we have the
     // device 'model' that provides enough information for the choice of the correct image.
     // The images themselves are on your network, hosted by the UniFi controller for its devices grid view.
-    // Example for my 3 device models (extract using develpper console: see backround-image of element):
+    // Example for my 3 device models (extract using developer console: see backround-image of element):
     //  * US16P150: https://10.10.10.5:8443/manage/angular/g7989b19/images/devices/usw/US16/grid.png
     //  * U7LT:     https://10.10.10.5:8443/manage/angular/g7989b19/images/devices/uap/default/grid.png
     //  * UGW3:     https://10.10.10.5:8443/manage/angular/g7989b19/images/devices/ugw/UGW3/grid.png
