@@ -14,21 +14,18 @@ Mit diesem Skript wird ein json string erzeugt mit dem Status aller Netzwerk Ger
 ### Voraussetzungen
 
 ###### Folgende Adapter werden benötigt:
-* [Material Design Widgets](https://github.com/Scrounger/ioBroker.vis-materialdesign) >= 0.2.66
+* [Material Design Widgets](https://github.com/Scrounger/ioBroker.vis-materialdesign) >= 0.4.1
 * [UniFi Adapter](https://github.com/iobroker-community-adapters/ioBroker.unifi) >= 0.5.8
 
 ###### Folgende NPM Module und Einstellung im Javascript Adapter:
 * moment
-* moment-timezone
-* moment-duration-format
-* mathjs
 * Einstellung `Erlaub das Kommando "setObject"` muss aktiviert sein
 
 ![Einstellung im Javascript Adapter](img/adapter_javascript.png)
 
 ### Installation
 
-1. [Skript herunterladen](UnifiNetworkState.js) und unter Skripte anlegen
+1. [Skript herunterladen](UnifiNetworkState.ts) und unter Skripte anlegen (neue TypeScript) 
 1. Skript Einstellungen anpassen, im oberen Bereich des Skriptes gibt es verschiedene Einstellungsmöglichkeiten inkl. derer Beschreibung.
 1. [View importieren](UnifiNetworkStateView.json) 
 1. (Optional) [Geräte View importieren](DevicesView.json)
@@ -77,6 +74,9 @@ Mit diesem Skript wird ein json string erzeugt mit dem Status aller Netzwerk Ger
 * [Thema im ioBroker Forum](https://forum.iobroker.net/topic/30875/material-design-widgets-unifi-netzwerk-status)
 
 ### Changelog
+
+##### 3.0.0 (30.12.2020)
+* (cdellasanta) Refactored script from Javascript to TypeScript, adaptions and use of own global functions for state handling, added UniFi devices to listings, updated views for theme usage (vis-materialdseign 0.4.x) 
 
 ##### 2.0.0 (16.10.2020)
 * (cdellasanta) Translated code and comments to english
