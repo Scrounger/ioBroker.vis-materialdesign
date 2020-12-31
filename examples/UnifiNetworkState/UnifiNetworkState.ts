@@ -89,10 +89,10 @@ const getLocale = () => getStateValue('0_userdata.0.vis.locale') || defaultLocal
 initializeState(`${statePrefix}.jsonList`, '[]', {name: 'UniFi devices listing: jsonList', type: 'string'});
 
 // Change on sort mode triggers list generation and reset of sort-timer-reset
-initializeState(`${statePrefix}.sortMode`, defaultSortMode, {name: 'UniFi device listing: sortMode', type: 'string'}, {change: 'any'}, () => { updateDeviceLists(); resetSortTimer(); });
+initializeState(`${statePrefix}.sortMode`, defaultSortMode, {name: 'UniFi device listing: sortMode', type: 'string'}, 'any', () => { updateDeviceLists(); resetSortTimer(); });
 
 // Change on filter mode triggers list generation and reset of filter-timer-reset
-initializeState(`${statePrefix}.filterMode`, '', {name: 'UniFi device listing: filterMode', type: 'string'}, {change: 'any'}, () => { updateDeviceLists(); resetFilterTimer(); });
+initializeState(`${statePrefix}.filterMode`, '', {name: 'UniFi device listing: filterMode', type: 'string'}, 'any', () => { updateDeviceLists(); resetFilterTimer(); });
 
 // Sorters, filters and some additional translations are saved in states to permit texts localization
 initializeState(`${statePrefix}.sortersJsonList`, '{}', {name: 'UniFi device listing: sortersJsonList', type: 'string', read: true, write: false});
@@ -101,12 +101,12 @@ initializeState(`${statePrefix}.translations`, '{}', {name: 'UniFi device listin
 
 if (devicesView) {
     initializeState(`${statePrefix}.linksJsonList`, '[]', {name: 'Device links listing: linksJsonList', type: 'string'});
-    initializeState(`${statePrefix}.selectedUrl`, '', {name: 'Selected device link: selectedUrl', type: 'string'}, {change: 'any'}, () => { setState(devicesView.currentViewState, devicesView.devicesViewKey); }); // On selected device change, go to "Devices" view
+    initializeState(`${statePrefix}.selectedUrl`, '', {name: 'Selected device link: selectedUrl', type: 'string'}, 'any', () => { setState(devicesView.currentViewState, devicesView.devicesViewKey); }); // On selected device change, go to "Devices" view
 }
 
 // On locale change, setup correct listings
 if (existsState('0_userdata.0.vis.locale')) {
-    runAfterInitialization(() => on({id: '0_userdata.0.vis.locale', change: 'ne'}, setup));
+    runAfterInitialization(() => on('0_userdata.0.vis.locale', 'ne', setup));
 }
 
 runAfterInitialization(() => {
