@@ -11009,5 +11009,17 @@ systemDictionary = {
         "es": "distancia al borde",
         "pl": "odległość od krawędzi",
         "zh-cn": "到边缘的距离"
+    },
+    "valuesPositionOffset": {
+        "en": "values position offset",
+        "de": "Werte Positionsoffset",
+        "ru": "значения позиции смещение",
+        "pt": "valores posição offset",
+        "nl": "waarden positie offset",
+        "fr": "valeurs de décalage de position",
+        "it": "valori offset di posizione",
+        "es": "valores posición offset",
+        "pl": "wartości przesunięcia pozycji",
+        "zh-cn": "值位置偏移"
     }
 };
