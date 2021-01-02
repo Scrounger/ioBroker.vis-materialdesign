@@ -31,12 +31,13 @@ const imagesPath = '/vis.0/myImages/networkDevices/'; // Path for images
 
 // Optional: Path prefix for UniFi device images (see getUnifiImage function for deeper information on how to extract it for your network)
 // @todo Could take controller host and port from the unifi adapter configuration, but thene there is still the angular subdirectory that needs to be configured ..
-const unifiImagesUrlPrefix = 'https://<your-controller-ip-or-host>:<controller-port>/manage/angular/g7989b19/images/devices/';
+// const unifiImagesUrlPrefix = 'https://<your-controller-ip-or-host>:<controller-port>/manage/angular/g7989b19/images/devices/';
 // const unifiImagesUrlPrefix = null; // Use the 'lan_noImage.png' for all devices
-// const unifiImagesUrlPrefix = false; // Use '<device model>.png' from your imagesPath
+const unifiImagesUrlPrefix = false; // Use '<device model>.png' from your imagesPath
 
-// Optional: display links into a separate view, instead of new navigation window (set false to disable this feature)
-const devicesView = {currentViewState: '0_userdata.0.vis.currentView', devicesViewKey: 1};
+// Optional: display links into a separate Devices view, instead of new navigation window (set false to disable this feature)
+//const devicesView = {currentViewState: '0_userdata.0.vis.currentView', devicesViewKey: JSON.parse(getState('0_userdata.0.vis.widgetViews').val).indexOf('8_Devices')};
+const devicesView = false; // Disabled
 
 const offlineTextSize = 14;
 const infoIconSize = 20;
@@ -288,10 +289,21 @@ function updateDeviceLists() {
             deviceList.forEach(obj => {
                 if (obj.listType === 'buttonLink') {
                     linkList.push({
-                        // Visualization data (tplVis-materialdesign-Select)
                         text: obj.name,
+
+                        // Visualization data for tplVis-materialdesign-Select
                         value: obj.buttonLink,
-                        icon: obj.icon
+                        icon: obj.icon,
+
+                        // Visualization data for tplVis-materialdesign-List
+                        image: obj.icon,
+                        showDivider: true,
+                        listType: 'buttonState',
+                        objectId: `${statePrefix}.selectedUrl`,
+                        showValueLabel: false,
+                        buttonStateValue: obj.buttonLink,
+                        //imageActiveColor: "#ffffff", // Make dependant on 'vis-materialdesign.0.colors.darkTheme' ?
+                        buttonBackgroundActiveColor: "#888888" // Make dependant on 'vis-materialdesign.0.colors.darkTheme' ?
                         /** @todo Add some properties (connected, ip, received, sent, experience, ...)? */
                     });
 
@@ -351,7 +363,7 @@ let sortTimeoutID;
 
 function resetSortTimer() {
     if (sortResetAfter > 0) {
-        this.clearTimeout(sortTimeoutID); // If set then clear previous timer
+        clearTimeout(sortTimeoutID); // If set then clear previous timer
 
         sortTimeoutID = setTimeout(() => setState(`${statePrefix}.sortMode`, defaultSortMode), sortResetAfter * 1000);
     }
@@ -361,7 +373,7 @@ let filterTimeoutID;
 
 function resetFilterTimer() {
     if (filterResetAfter > 0) {
-        this.clearTimeout(filterTimeoutID); // If set then clear previous timer
+        clearTimeout(filterTimeoutID); // If set then clear previous timer
 
         filterTimeoutID = setTimeout(() => setState(`${statePrefix}.filterMode`, ''), filterResetAfter * 1000);
     }
