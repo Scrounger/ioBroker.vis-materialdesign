@@ -2110,6 +2110,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   margin-left: -4px;
   margin-right: -4px;
   margin-bottom: -4px;
+  align-self: flex-end;
 }
 
 .materialdesign-icon-list-item-layout-vertical-status-line-card {
@@ -2120,6 +2121,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   margin-left: -4px;
   margin-right: -4px;
   margin-bottom: -4px;
+  align-self: flex-end;
 }
 
 .materialdesign-icon-list-item-layout-horizontal-image-container {
@@ -2147,6 +2149,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   width: calc(100% + 8px); 
   margin-left: -4px;
   margin-right: -4px;
+  align-self: flex-end;
 }
 
 .materialdesign-icon-list-item-layout-horizontal-status-line-card {
@@ -2156,6 +2159,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   border-radius: 0 0 4px 4px;
   margin-left: -4px;
   margin-right: -4px;
+  align-self: flex-end;
 }
 
 /* Vuetify custom */
