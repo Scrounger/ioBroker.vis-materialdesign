@@ -2014,7 +2014,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 .materialdesign-icon-list-container {
   display: flex;
   /* justify-content: center; */
-  margin: calc(-1 * var(--materialdesign-icon-list-items-gaps));
+  margin: calc(-1 * var(--materialdesign-icon-list-items-gaps) + 3px);
   background: var(--materialdesign-icon-list-background);
 }
 
