@@ -866,7 +866,7 @@
     {
         "id": "dark.table.background",
         "desc": "colorBackground",
-        "defaultValue": 7,
+        "defaultValue": 5,
         "widget": "Table"
     },
     {
