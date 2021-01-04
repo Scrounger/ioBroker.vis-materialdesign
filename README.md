@@ -5649,6 +5649,9 @@ ical2CalendarWidget();
     ### __WORK IN PROGRESS__
 -->
 
+### __WORK IN PROGRESS__
+* (Scrounger) icon list: option for status bar text added
+
 ### 0.4.2 (2020-12-29)
 * (Scrounger) vis-google-fonts dependency removed
 

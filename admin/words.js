@@ -8405,6 +8405,18 @@ systemDictionary = {
         "pl": "kolor paska stanu",
         "zh-cn": "状态栏颜色"
     },
+    "statusBarText": {
+        "en": "text of status bar",
+        "de": "Text der Statusleiste",
+        "ru": "текст строки состояния",
+        "pt": "texto da barra de status",
+        "nl": "tekst van de statusbalk",
+        "fr": "texte de la barre d'état",
+        "it": "testo della barra di stato",
+        "es": "texto de la barra de estado",
+        "pl": "tekst paska stanu",
+        "zh-cn": "状态栏文字"
+    },
     "valueAppendix": {
         "en": "text to append to value",
         "de": "Text, der an den Wert angehängt werden soll",

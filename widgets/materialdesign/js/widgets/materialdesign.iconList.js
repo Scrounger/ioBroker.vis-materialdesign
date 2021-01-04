@@ -179,7 +179,7 @@ vis.binds.materialdesign.iconlist =
                                                 </div>
                                                 ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value materialdesign-icon-list-item-text-vertical" style="cursor: pointer;">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
                                                 ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText materialdesign-icon-list-item-text-vertical" style="cursor: pointer;">${listItemObj.subText}</label>` : ''}
-                                                <div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor};"></div>
+                                                <div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -195,7 +195,7 @@ vis.binds.materialdesign.iconlist =
                                     </div>
                                     ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value materialdesign-icon-list-item-text-vertical">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
                                     ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText materialdesign-icon-list-item-text-vertical">${listItemObj.subText}</label>` : ''}
-                                    <div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor};"></div>
+                                    <div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>
                                 </div>
                             `;
                         }
@@ -218,7 +218,7 @@ vis.binds.materialdesign.iconlist =
                                                 ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value" style="cursor: pointer;">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
                                             </div>
                                         </div>
-                                        <div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-horizontal-status-line-card' : 'materialdesign-icon-list-item-layout-horizontal-status-line'}" style="background: ${listItemObj.statusBarColor};"></div>
+                                        <div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-horizontal-status-line-card' : 'materialdesign-icon-list-item-layout-horizontal-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>
                                     </div>
                                 </div>
                             </div>
@@ -235,7 +235,7 @@ vis.binds.materialdesign.iconlist =
                                         ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText">${listItemObj.subText}</label>` : ''}
                                         ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
                                     </div>
-                                    <div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-horizontal-status-line-card' : 'materialdesign-icon-list-item-layout-horizontal-status-line'}" style="background: ${listItemObj.statusBarColor};"></div>
+                                    <div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-horizontal-status-line-card' : 'materialdesign-icon-list-item-layout-horizontal-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>
                                 </div>
                             `;
                         }
@@ -512,6 +512,7 @@ vis.binds.materialdesign.iconlist =
                         valueAppendix: myMdwHelper.getValueFromData(data.attr('valueAppendix' + i), ""),
                         showValueLabel: myMdwHelper.getBooleanFromData(data.attr('showValueLabel' + i), true),
                         statusBarColor: myMdwHelper.getValueFromData(data.attr('statusBarColor' + i), 'transparent'),
+                        statusBarText: myMdwHelper.getValueFromData(data.attr('statusBarText' + i), ''),
                         lockEnabled: myMdwHelper.getBooleanFromData(data.attr('lockEnabled' + i), false)
                     };
                 } else {
@@ -536,6 +537,7 @@ vis.binds.materialdesign.iconlist =
                         valueAppendix: myMdwHelper.getValueFromData(jsonData[i].valueAppendix, ""),
                         showValueLabel: myMdwHelper.getBooleanFromData(jsonData[i].showValueLabel, true),
                         statusBarColor: myMdwHelper.getValueFromData(jsonData[i].statusBarColor, 'transparent'),
+                        statusBarText: myMdwHelper.getValueFromData(jsonData[i].statusBarText, ''),
                         lockEnabled: myMdwHelper.getBooleanFromData(jsonData[i].lockEnabled, false)
                     };
                 }
