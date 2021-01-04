@@ -29,8 +29,8 @@ vis.binds.materialdesign.table = {
                 tableLayout = 'materialdesign-table-card materialdesign-table-card--outlined';
             }
 
-            tableElement.push(`<div class="mdc-data-table ${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'fixed-header' : ''} ${tableLayout}" style="width: 100%; height: 100%;">
-                                    <table class="mdc-data-table__table" aria-label="Material Design Widgets Table" style="width: 100%; height: 100%;">`)
+            tableElement.push(`<div class="mdc-data-table ${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'fixed-header' : ''} ${tableLayout}" style="${data.tableLayout === 'standard' ? 'width: 100%; height: 100%;' : 'margin: 3px; width: calc(100% - 6px); height: calc(100% - 6px);'}">
+                                    <table class="mdc-data-table__table" aria-label="Material Design Widgets Table" style="width: 100%; height: 100%;${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'display: flex; flex-direction: column;' : ''}">`)
 
             tableElement.push(`<thead style="${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'position: sticky; top: 0;' : ''}">
                                     <tr class="mdc-data-table__header-row" style="height: ${(myMdwHelper.getNumberFromData(data.headerRowHeight, null) !== null) ? data.headerRowHeight + 'px' : '1px'};">`)
@@ -56,7 +56,7 @@ vis.binds.materialdesign.table = {
             }
             tableElement.push(`</tr>
                             </thead>
-                            <tbody class="mdc-data-table__content">
+                            <tbody class="mdc-data-table__content" sytle="${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'flex-grow: 1;' : ''}">
                             </tbody>
                             </table>
                             </div>`);
@@ -78,14 +78,6 @@ vis.binds.materialdesign.table = {
                     let sortASC = true;
 
                     if (table) {
-                        let height = window.getComputedStyle($this.context, null).height
-                        $this.find('.mdc-data-table').css('height', height);
-
-                        // $this.find('.mdc-data-table__table').css('height', height);
-
-                        let heightHeader = window.getComputedStyle($this.find('.mdc-data-table__header-row').get(0), null).height;
-                        $this.find('.mdc-data-table__content').css('height', (parseInt(height.replace('px', '')) - parseInt(heightHeader.replace('px', '')) - 2) + 'px');
-
                         const mdcTable = new mdc.dataTable.MDCDataTable(table);
 
                         // adding Content

@@ -1568,8 +1568,8 @@ svg.materialdesign-widget .materialdesign-button__icon {
   color: black;
 }
 
-.materialdesign-widget.materialdesign-list-card--outlined,
-.materialdesign-widget .materialdesign-table-card--outlined {
+.materialdesign-widget.mdc-data-table.materialdesign-list-card--outlined,
+.materialdesign-widget .mdc-data-table.materialdesign-table-card--outlined {
   border-width: 1px;
   border-style: solid;
   border-color: #e0e0e0;
@@ -1593,7 +1593,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 .materialdesign-widget .mdc-data-table.fixed-header tbody {
   display: block;
-  overflow-y: auto;
+  overflow: auto;
 }
 
 .materialdesign-widget .mdc-data-table.fixed-header thead,
