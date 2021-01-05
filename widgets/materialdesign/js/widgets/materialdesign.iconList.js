@@ -265,7 +265,7 @@ vis.binds.materialdesign.iconlist =
                 if (!replace) {
                     if (!myMdwHelper.getBooleanFromData(data.cardUse, false)) {
                         $this.append(`
-                            <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap;"' : ''}>
+                            <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="height: calc(100% + 6px); flex-wrap: wrap;"' : ''}>
                                 ${widgetElement}
                             </div>
                         `);
@@ -282,15 +282,14 @@ vis.binds.materialdesign.iconlist =
                             showTitleSection = '';
                         }
 
-
                         // $this.css('padding', '2px');
                         $this.append(`<div class="materialdesign-html-card mdc-card" style="margin-top: 3px; margin-left: 3px; width: calc(100% - 6px); height: calc(100% - 6px);">
                                         <div class="materialdesign-html-card card-title-section" style="${showTitleSection}">
                                             <div class="materialdesign-html-card card-title ${titleFontSize.class}" style="${titleFontSize.style}">${data.title}</div>
                                         </div>
-                                        <div class="materialdesign-html-card card-text-section iconlist" style="height: 100%; ${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'overflow-y: auto; overflow-x: hidden;' : ''} padding: ${myMdwHelper.getNumberFromData(data.borderDistance, 0)}px;">
+                                        <div class="materialdesign-html-card card-text-section iconlist" style="height: 100%; ${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'overflow-y: auto; overflow-x: hidden;' : ''} margin: ${myMdwHelper.getNumberFromData(data.borderDistance, 0)}px;">
                                             <div class="materialdesign-html-card">
-                                                <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap;"' : ''}>
+                                                <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="height: calc(100% + 6px); flex-wrap: wrap;"' : ''}>
                                                     ${widgetElement}
                                                 </div>
                                             </div>
@@ -299,7 +298,7 @@ vis.binds.materialdesign.iconlist =
                     }
                 } else {
                     $this.find(`.${containerClass}`).replaceWith(`
-                        <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="flex-wrap: wrap;"' : ''}>
+                        <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'height: calc(100% + 6px); style="flex-wrap: wrap;"' : ''}>
                             ${widgetElement}
                         </div>              
                     `);

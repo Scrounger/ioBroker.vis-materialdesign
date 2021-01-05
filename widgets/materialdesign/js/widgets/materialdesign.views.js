@@ -57,7 +57,7 @@ vis.binds.materialdesign.views = {
             let resolutionHelper = `
                 <div 
                 class="materialdesign-masonry-item" style="height: 230px;">
-                    <div class="mdc-card my-card-container" style="width: 100%; height: 230px;">
+                    <div class="mdc-card my-card-container" style="margin: 3px; width: calc(100% - 6px); height: 230px;">
                         <div class="materialdesign-html-card card-title-section" >
                             <div class="materialdesign-html-card card-title mdc-typography--headline6" style="">${_('Resolution assistant')}</div>
                             
@@ -277,7 +277,7 @@ vis.binds.materialdesign.views = {
 
             let resolutionHelper = `
                 <div class="col col-12" id="resAssistent">
-                    <div class="mdc-card my-card-container" style="width: 100%; height: 230px;">
+                    <div class="mdc-card my-card-container" style="margin: 3px; width: calc(100% - 6px); height: 230px;">
                         <div class="materialdesign-html-card card-title-section" >
                             <div class="materialdesign-html-card card-title mdc-typography--headline6" style="">${_('Resolution assistant')}</div>
                             
