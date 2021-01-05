@@ -1001,7 +1001,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 }
 
 /* Card Layout */
-.materialdesign-widget.materialdesign-html-card.mdc-card {
+.materialdesign-widget.materialdesign-html-card .mdc-card {
   border-radius: 4px;
   background-color: var(--materialdesign-color-card-background);
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
@@ -1011,7 +1011,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   color: black;
 }
 
-.materialdesign-widget .materialdesign-html-card.mdc-card {
+.materialdesign-widget .materialdesign-html-card .mdc-card {
   border-radius: 4px;
   background-color: var(--materialdesign-color-card-background);
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);

@@ -709,8 +709,10 @@
             let initCard = vis.binds.materialdesign.card.initialize(data);
         %>
 
-        <div class="vis-widget materialdesign-widget materialdesign-html-card mdc-card <%= initCard.style %> <%== this.data.attr('class') %>" style="width: 200px; height: 130px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.card.handler(el, data) %>>
-            <%== initCard.card %>
+        <div class="vis-widget materialdesign-widget materialdesign-html-card <%== this.data.attr('class') %>" style="width: 200px; height: 130px;" id="<%= this.data.attr('wid') %>">
+            <div class="materialdesign-html-card-container mdc-card <%= initCard.style %>" style="margin: 3px; width: calc(100% - 6px); height: calc(100% - 6px);" <%= (el) -> vis.binds.materialdesign.card.handler(el, data) %>>          
+                <%== initCard.card %>
+            </div>
         </div>
 </script>
 
