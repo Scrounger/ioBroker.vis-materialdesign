@@ -135,53 +135,59 @@ vis.binds.materialdesign.progress = {
         }
     },
     getProgressState: function ($this, data, val, colorProperty, labelClass) {
-        let min = myMdwHelper.getNumberFromData(data.min, 0);
-        let max = myMdwHelper.getNumberFromData(data.max, 100);
+        try {
+            let min = myMdwHelper.getNumberFromData(data.min, 0);
+            let max = myMdwHelper.getNumberFromData(data.max, 100);
 
-        let color = myMdwHelper.getValueFromData(data.colorProgress, '');
-        let colorOneCondition = myMdwHelper.getNumberFromData(data.colorOneCondition, 1000);
-        let colorOne = myMdwHelper.getValueFromData(data.colorOne, color);
-        let colorTwoCondition = myMdwHelper.getNumberFromData(data.colorTwoCondition, 1000);
-        let colorTwo = myMdwHelper.getValueFromData(data.colorTwo, color);
+            let color = myMdwHelper.getValueFromData(data.colorProgress, '');
+            let colorOneCondition = myMdwHelper.getNumberFromData(data.colorOneCondition, 1000);
+            let colorOne = myMdwHelper.getValueFromData(data.colorOne, color);
+            let colorTwoCondition = myMdwHelper.getNumberFromData(data.colorTwoCondition, 1000);
+            let colorTwo = myMdwHelper.getValueFromData(data.colorTwo, color);
 
-        if (val === undefined) {
-            val = data.oid;
-        }
+            if (val === undefined) {
+                val = data.oid;
+            }
 
-        // Falls quellen boolean ist
-        if (val === true || val === 'true') val = max;
-        if (val === false || val === 'false') val = min;
+            // Falls quellen boolean ist
+            if (val === true || val === 'true') val = max;
+            if (val === false || val === 'false') val = min;
 
-        let valPercent = parseFloat(val);
+            let valPercent = parseFloat(val);
 
-        if (isNaN(valPercent)) valPercent = min;
-        if (valPercent < min) valPercent = min;
-        if (valPercent > max) valPercent = max;
+            if (isNaN(valPercent)) valPercent = min;
+            if (valPercent < min) valPercent = min;
+            if (valPercent > max) valPercent = max;
 
-        let simRange = 100;
-        let range = max - min;
-        let factor = simRange / range;
-        valPercent = Math.floor((valPercent - min) * factor);
+            let simRange = 100;
+            let range = max - min;
+            let factor = simRange / range;
+            valPercent = Math.floor((valPercent - min) * factor);
 
-        if (valPercent > colorOneCondition && valPercent <= colorTwoCondition) {
-            $this.get(0).style.setProperty(colorProperty, colorOne);
-        } else if (valPercent > colorTwoCondition) {
-            $this.get(0).style.setProperty(colorProperty, colorTwo);
-        } else {
-            $this.get(0).style.setProperty(colorProperty, color);
-        }
+            if (valPercent > colorOneCondition && valPercent <= colorTwoCondition) {
+                $this.get(0).style.setProperty(colorProperty, colorOne);
+            } else if (valPercent > colorTwoCondition) {
+                $this.get(0).style.setProperty(colorProperty, colorTwo);
+            } else {
+                $this.get(0).style.setProperty(colorProperty, color);
+            }
 
-        if (myMdwHelper.getValueFromData(data.valueLabelStyle, "progressPercent") === 'progressPercent') {
-            $this.find(labelClass).html(`${myMdwHelper.formatNumber(valPercent, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))} %`);
-        } else if (myMdwHelper.getValueFromData(data.valueLabelStyle, "progressPercent") === 'progressValue') {
-            $this.find(labelClass).html(`${myMdwHelper.formatNumber(val, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))}${myMdwHelper.getValueFromData(data.valueLabelUnit, '')}`);
-        } else {
-            $this.find(labelClass).html(`${myMdwHelper.getValueFromData(data.valueLabelCustom, '').replace('[#value]', myMdwHelper.formatNumber(val, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))).replace('[#percent]', myMdwHelper.formatNumber(valPercent, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0)))}`);
-        }
-        if (!myMdwHelper.getBooleanFromData(data.progressIndeterminate, false)) {
-            return valPercent;
-        } else {
-            return 0;
+            if (myMdwHelper.getValueFromData(data.valueLabelStyle, "progressPercent") === 'progressPercent') {
+                $this.find(labelClass).html(`${myMdwHelper.formatNumber(valPercent, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))} %`);
+            } else if (myMdwHelper.getValueFromData(data.valueLabelStyle, "progressPercent") === 'progressValue') {
+                $this.find(labelClass).html(`${myMdwHelper.formatNumber(val, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))}${myMdwHelper.getValueFromData(data.valueLabelUnit, '')}`);
+            } else {
+                $this.find(labelClass).html(`${myMdwHelper.getValueFromData(data.valueLabelCustom, '').replace('[#value]', myMdwHelper.formatNumber(val, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))).replace('[#percent]', myMdwHelper.formatNumber(valPercent, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0)))}`);
+            }
+
+            if (!myMdwHelper.getBooleanFromData(data.progressIndeterminate, false)) {
+                return valPercent;
+            } else {
+                return 0;
+            }
+            
+        } catch (ex) {
+            console.error(`[getProgressState - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     getDataFromJson(obj, widgetId, type) {
