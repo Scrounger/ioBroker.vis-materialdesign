@@ -565,10 +565,14 @@ vis.binds.materialdesign.button = {
                 buttonStyle: obj.buttonStyle,
                 href: obj.href,
                 openNewWindow: obj.openNewWindow,
-                buttontext: obj.buttontext,
-                mdwButtonColorPress: obj.colorPress,
-                labelWidth: obj.labelWidth,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                buttontext: obj.buttontext,
+                textFontFamily: obj.textFontFamily,
+                textFontSize: obj.textFontSize,
+                labelWidth: obj.labelWidth,
+                mdwButtonPrimaryColor: obj.mdwButtonPrimaryColor,
+                mdwButtonSecondaryColor: obj.mdwButtonSecondaryColor,
+                mdwButtonColorPress: obj.mdwButtonColorPress,
                 image: obj.image,
                 imageColor: obj.imageColor,
                 iconPosition: obj.iconPosition,
@@ -605,3 +609,17 @@ vis.binds.materialdesign.button = {
         }
     }
 }
+
+// $.initialize(".custom-html", function () {
+//     $(this).css("background", "red");
+//     let json = JSON.parse('{' + $(this).attr('mdw-data') + '}');
+
+//     // console.warn(JSON.parse('{' + $(this).attr('mdw-data') + '}'));
+//     // console.warn(this);
+
+//     let container = $(this).closest('.vis-widget[id^=w]');
+
+//     let elementData = vis.binds.materialdesign.button.getDataFromJson(json, 'custom', vis.binds.materialdesign.button.types.state.vertical);
+//     vis.binds.materialdesign.addRippleEffect($(this).children(), elementData);
+//     vis.binds.materialdesign.button.handleState($(this), elementData);
+// });

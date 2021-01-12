@@ -347,13 +347,22 @@ vis.binds.materialdesign.viseditor = {
 
                             let objectForDev = {};
                             let objectForDevString = "";
-                            let strTableForDev = `<table><thead><tr>
+                            let strTableForDev = `<details><table><thead><tr>
                                     <th>Property</th>
                                     <th>Description</th>
                                     <th>Type</th>
                                     <th>Values</th>
                                 </tr></thead><tbody>`;
+
+                            
                             for (const attr in widgetAttrs) {
+                                console.warn(attr);
+                                strTableForDev = strTableForDev +
+                                `<tr>
+                                    <td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>${_('group_' + attr)}</b></i></td>
+                                </tr>
+                                `
+
                                 for (const prop in widgetAttrs[attr]) {
                                     attrNames.push(prop);
 
@@ -379,15 +388,15 @@ vis.binds.materialdesign.viseditor = {
                                                 <td>${valExample}</td>
                                             </tr>
                                             `
-                                            objectForDevString = objectForDevString + `${prop}: obj.${prop},\n`
+                                        objectForDevString = objectForDevString + `${prop}: obj.${prop},\n`
                                     }
                                 }
                             }
-                            strTableForDev = strTableForDev + `</tbody></table>`
+                            strTableForDev = strTableForDev + `</tbody></table></details>`
                             if (Object.keys(objectForDev).length > 0) {
                                 console.log(objectForDevString);
                                 console.log(objectForDev);
-                                console.log(strTableForDev);                                
+                                console.log(strTableForDev);
                             }
 
                             let widget = that.views[view].widgets[that.activeWidgets[0]];
