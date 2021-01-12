@@ -346,6 +346,7 @@ vis.binds.materialdesign.viseditor = {
 
 
                             let objectForDev = {};
+                            let objectForDevString = "";
                             let strTableForDev = `<table><thead><tr>
                                     <th>Property</th>
                                     <th>Description</th>
@@ -357,36 +358,37 @@ vis.binds.materialdesign.viseditor = {
                                     attrNames.push(prop);
 
                                     // for documentation and object creation
-                                    // let ausnahmen = ["manual", "questionsAndAnswers", "donate", "onlineExampleProject", "exportData"]
-                                    // if (!ausnahmen.includes(prop)) {
-                                    //     objectForDev[prop] = `obj.${prop}`;
+                                    let ausnahmen = ["manual", "questionsAndAnswers", "donate", "onlineExampleProject", "exportData", "useTheme"]
+                                    if (!ausnahmen.includes(prop)) {
+                                        objectForDev[prop] = `obj.${prop}`;
 
-                                    //     let valExample = '';
-                                    //     if (widgetAttrs[attr][prop].type === 'select') {
-                                    //         valExample = widgetAttrs[attr][prop].options !== null && Array.isArray(widgetAttrs[attr][prop].options) ? widgetAttrs[attr][prop].options.join(" | ") : '';
-                                    //     } else if (widgetAttrs[attr][prop].type === 'checkbox') {
-                                    //         valExample = "false | true";
-                                    //     } else if (widgetAttrs[attr][prop].type === 'color') {
-                                    //         valExample = "hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)";
-                                    //     }
+                                        let valExample = '';
+                                        if (widgetAttrs[attr][prop].type === 'select') {
+                                            valExample = widgetAttrs[attr][prop].options !== null && Array.isArray(widgetAttrs[attr][prop].options) ? widgetAttrs[attr][prop].options.join(" | ") : '';
+                                        } else if (widgetAttrs[attr][prop].type === 'checkbox') {
+                                            valExample = "false | true";
+                                        } else if (widgetAttrs[attr][prop].type === 'color') {
+                                            valExample = "hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)";
+                                        }
 
-                                    //     strTableForDev = strTableForDev +
-                                    //         `<tr>
-                                    //             <td>${prop}</td>
-                                    //             <td>${_(prop)}</td>
-                                    //             <td>${widgetAttrs[attr][prop].type ? widgetAttrs[attr][prop].type.replace('color', 'string').replace('slider', 'number').replace('select', 'string').replace('checkbox', 'boolean').replace('id', 'string').replace('html', 'string').replace("undefined", 'string').replace("fontname", "string") : 'string'}</td>
-                                    //             <td>${valExample}</td>
-                                    //         </tr>
-                                    //         `
-                                    // }
+                                        strTableForDev = strTableForDev +
+                                            `<tr>
+                                                <td>${prop}</td>
+                                                <td>${_(prop)}</td>
+                                                <td>${widgetAttrs[attr][prop].type ? widgetAttrs[attr][prop].type.replace('color', 'string').replace('slider', 'number').replace('select', 'string').replace('checkbox', 'boolean').replace('id', 'string').replace('html', 'string').replace("undefined", 'string').replace("fontname", "string").replace("custom", "string") : 'string'}</td>
+                                                <td>${valExample}</td>
+                                            </tr>
+                                            `
+                                            objectForDevString = objectForDevString + `${prop}: obj.${prop},\n`
+                                    }
                                 }
                             }
                             strTableForDev = strTableForDev + `</tbody></table>`
                             if (Object.keys(objectForDev).length > 0) {
+                                console.log(objectForDevString);
                                 console.log(objectForDev);
-                                console.log(strTableForDev);
+                                console.log(strTableForDev);                                
                             }
-
 
                             let widget = that.views[view].widgets[that.activeWidgets[0]];
                             let style = widget.style;
