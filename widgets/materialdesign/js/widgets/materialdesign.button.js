@@ -489,6 +489,7 @@ vis.binds.materialdesign.button = {
             return {
                 wid: widgetId,
 
+                // Common
                 oid: obj.oid,
                 readOnly: obj.readOnly,
                 toggleType: obj.toggleType,
@@ -497,14 +498,20 @@ vis.binds.materialdesign.button = {
                 valueOn: obj.valueOn,
                 stateIfNotTrueValue: obj.stateIfNotTrueValue,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+
+                // icon
                 image: obj.image,
                 imageColor: obj.imageColor,
                 imageTrue: obj.imageTrue,
                 imageTrueColor: obj.imageTrueColor,
                 iconHeight: obj.iconHeight,
+
+                // colors
                 colorBgFalse: obj.colorBgFalse,
                 colorBgTrue: obj.colorBgTrue,
                 colorPress: obj.colorPress,
+
+                // Locking
                 lockEnabled: obj.lockEnabled,
                 autoLockAfter: obj.autoLockAfter,
                 lockIcon: obj.lockIcon,
@@ -593,13 +600,21 @@ vis.binds.materialdesign.button = {
             return {
                 wid: widgetId,
 
+                // Common
                 oid: obj.oid,
                 value: obj.value,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+
+                // icon
                 image: obj.image,
                 imageColor: obj.imageColor,
                 iconHeight: obj.iconHeight,
+
+                // colors
+                colorBgFalse: obj.colorBgFalse,
                 colorPress: obj.colorPress,
+
+                // Locking
                 lockEnabled: obj.lockEnabled,
                 autoLockAfter: obj.autoLockAfter,
                 lockIcon: obj.lockIcon,
@@ -670,12 +685,18 @@ vis.binds.materialdesign.button = {
             return {
                 wid: widgetId,
 
+                // Common
                 href: obj.href,
                 openNewWindow: obj.openNewWindow,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+
+                // icon
                 image: obj.image,
                 imageColor: obj.imageColor,
                 iconHeight: obj.iconHeight,
+
+                // colors
+                colorBgFalse: obj.colorBgFalse,
                 colorPress: obj.colorPress
             }
         }

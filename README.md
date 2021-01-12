@@ -124,9 +124,9 @@ not working at the moment, needs to be implemneted by app, see https://github.co
     </tbody>
 </table>
 
-## Buttons
+<br>
 
-![Logo](doc/en/media/buttons.gif)
+## Buttons
 
 ##### Button Link Properties
 
@@ -696,6 +696,12 @@ The following properties can be used as [control element in a table](#control-el
 		</tbody>
 	</table>
 </details>
+
+<br>
+
+## Buttons Vertical
+
+![Logo](doc/en/media/buttons.gif)
 
 ##### Button Vertical Link Properties
 
@@ -1302,8 +1308,458 @@ The following properties can be used as [control element in a table](#control-el
 	</table>
 </details>
 
-### Icon Button
+<br>
+
+## Buttons Icon
 ![Logo](doc/en/media/icon-button.gif)
+
+### Button Icon Link Properties
+
+The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+
+<details>
+	<table>
+		<thead>
+			<tr>
+				<th>Property</th>
+				<th>Description</th>
+				<th>Type</th>
+				<th>Values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;">
+					<i>
+						<b>Common</b>
+					</i>
+				</td>
+			</tr>
+			<tr>
+				<td>href</td>
+				<td>Link</td>
+				<td>url</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>openNewWindow</td>
+				<td>open in new window</td>
+				<td>boolean</td>
+				<td>false | true</td>
+			</tr>
+			<tr>
+				<td>vibrateOnMobilDevices</td>
+				<td>vibrate on mobil devices [s]</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;">
+					<i>
+						<b>icon</b>
+					</i>
+				</td>
+			</tr>
+			<tr>
+				<td>image</td>
+				<td>Image</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>imageColor</td>
+				<td>image color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>iconHeight</td>
+				<td>image height</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;">
+					<i>
+						<b>colors</b>
+					</i>
+				</td>
+			</tr>
+			<tr>
+				<td>colorBgFalse</td>
+				<td>background</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>colorPress</td>
+				<td>color pressed</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+		</tbody>
+	</table>
+</details>
+
+### Button Icon State Properties
+
+The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+
+<details>
+	<table>
+		<thead>
+			<tr>
+				<th>Property</th>
+				<th>Description</th>
+				<th>Type</th>
+				<th>Values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;">
+					<i>
+						<b>Common</b>
+					</i>
+				</td>
+			</tr>
+			<tr>
+				<td>oid</td>
+				<td>Object ID</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>value</td>
+				<td>value</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>vibrateOnMobilDevices</td>
+				<td>vibrate on mobil devices [s]</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;">
+					<i>
+						<b>icon</b>
+					</i>
+				</td>
+			</tr>
+			<tr>
+				<td>image</td>
+				<td>Image</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>imageColor</td>
+				<td>image color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>iconHeight</td>
+				<td>image height</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;">
+					<i>
+						<b>colors</b>
+					</i>
+				</td>
+			</tr>
+			<tr>
+				<td>colorBgFalse</td>
+				<td>background</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>colorPress</td>
+				<td>color pressed</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;">
+					<i>
+						<b>Locking</b>
+					</i>
+				</td>
+			</tr>
+			<tr>
+				<td>lockEnabled</td>
+				<td>enable Locking</td>
+				<td>boolean</td>
+				<td>false | true</td>
+			</tr>
+			<tr>
+				<td>autoLockAfter</td>
+				<td>auto Locking after [s]</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>lockIcon</td>
+				<td>icon</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>lockIconTop</td>
+				<td>symbol distance from top [%]</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>lockIconLeft</td>
+				<td>symbol distance from left [%]</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>lockIconSize</td>
+				<td>icon size</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>lockIconColor</td>
+				<td>icon color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>lockIconBackground</td>
+				<td>lockIconBackground</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>lockBackgroundSizeFactor</td>
+				<td>lockBackgroundSizeFactor</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>lockFilterGrayscale</td>
+				<td>gray filter if locked</td>
+				<td>number</td>
+				<td/>
+			</tr>
+		</tbody>
+	</table>
+</details>
+
+### Button Icon Toggle Properties
+
+The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+
+<details>
+	<table>
+		<thead>
+			<tr>
+				<th>Property</th>
+				<th>Description</th>
+				<th>Type</th>
+				<th>Values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;">
+					<i>
+						<b>Common</b>
+					</i>
+				</td>
+			</tr>
+			<tr>
+				<td>oid</td>
+				<td>Object ID</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>readOnly</td>
+				<td>read only</td>
+				<td>boolean</td>
+				<td>false | true</td>
+			</tr>
+			<tr>
+				<td>toggleType</td>
+				<td>type of toggle</td>
+				<td>string</td>
+				<td>boolean | value</td>
+			</tr>
+			<tr>
+				<td>pushButton</td>
+				<td>push button</td>
+				<td>boolean</td>
+				<td>false | true</td>
+			</tr>
+			<tr>
+				<td>valueOff</td>
+				<td>value for off</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>valueOn</td>
+				<td>value for on</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>stateIfNotTrueValue</td>
+				<td>state if value unequal to 'on' condition</td>
+				<td>string</td>
+				<td>on | off</td>
+			</tr>
+			<tr>
+				<td>vibrateOnMobilDevices</td>
+				<td>vibrate on mobil devices [s]</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;">
+					<i>
+						<b>icon</b>
+					</i>
+				</td>
+			</tr>
+			<tr>
+				<td>image</td>
+				<td>Image</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>imageColor</td>
+				<td>image color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>imageTrue</td>
+				<td>active image</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>imageTrueColor</td>
+				<td>active image color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>iconHeight</td>
+				<td>image height</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;">
+					<i>
+						<b>colors</b>
+					</i>
+				</td>
+			</tr>
+			<tr>
+				<td>colorBgFalse</td>
+				<td>background</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>colorBgTrue</td>
+				<td>active background</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>colorPress</td>
+				<td>color pressed</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;">
+					<i>
+						<b>Locking</b>
+					</i>
+				</td>
+			</tr>
+			<tr>
+				<td>lockEnabled</td>
+				<td>enable Locking</td>
+				<td>boolean</td>
+				<td>false | true</td>
+			</tr>
+			<tr>
+				<td>autoLockAfter</td>
+				<td>auto Locking after [s]</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>lockIcon</td>
+				<td>icon</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>lockIconTop</td>
+				<td>symbol distance from top [%]</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>lockIconLeft</td>
+				<td>symbol distance from left [%]</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>lockIconSize</td>
+				<td>icon size</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>lockIconColor</td>
+				<td>icon color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>lockIconBackground</td>
+				<td>lockIconBackground</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>lockBackgroundSizeFactor</td>
+				<td>lockBackgroundSizeFactor</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>lockFilterGrayscale</td>
+				<td>gray filter if locked</td>
+				<td>number</td>
+				<td/>
+			</tr>
+		</tbody>
+	</table>
+</details>
+
+<br>
 
 ## Card
 ![Logo](doc/en/media/cards.png)
@@ -2612,12 +3068,6 @@ Take a look at the animated screenshot below:
                     <li><a href="#button-icon-toggle-properties">Button Icon Toggle</a></li>
                 </ul>
                 <ul>
-                    <li><a href="#button-toggle-vertical">buttonToggle_vertical</a></li>
-                    <li><a href="#button-toggle-icon">buttonToggle_icon</a></li>                    
-                    <li><a href="#button-state-vertical">buttonState_vertical</a></li>
-                    <li><a href="#button-state-icon">buttonState_icon</a></li>
-                    <li><a href="#button-link-vertical">buttonLink_vertical</a></li>
-                    <li><a href="#button-link-icon">buttonLink_icon</a></li>
                     <li><a href="#progress-1">progress</a></li>
                     <li><a href="#progress-circular">progress_circular</a></li>
                     <li><a href="#slider-1">slider</a></li>
@@ -2682,357 +3132,6 @@ Take a look at the animated screenshot below:
         </tr>
     </tbody>
 </table>
-
-##### Button Toggle Icon
-
-<details>
-<table>
-	<thead>
-		<tr>
-			<th>Property</th>
-			<th>Description</th>
-			<th>Type</th>
-			<th>Values</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>oid</td>
-			<td>Object ID</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>readOnly</td>
-			<td>read only</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>toggleType</td>
-			<td>type of toggle</td>
-			<td>string</td>
-			<td>boolean | value</td>
-		</tr>
-		<tr>
-			<td>pushButton</td>
-			<td>push button</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>valueOff</td>
-			<td>value for off</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>valueOn</td>
-			<td>value for on</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>stateIfNotTrueValue</td>
-			<td>state if value unequal to 'on' condition</td>
-			<td>string</td>
-			<td>on | off</td>
-		</tr>
-		<tr>
-			<td>vibrateOnMobilDevices</td>
-			<td>vibrate on mobil devices [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>image</td>
-			<td>Image</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>imageColor</td>
-			<td>image color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>imageTrue</td>
-			<td>active image</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>imageTrueColor</td>
-			<td>active image color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>iconHeight</td>
-			<td>image height</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>colorBgFalse</td>
-			<td>background</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorBgTrue</td>
-			<td>active background</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorPress</td>
-			<td>color pressed</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>lockEnabled</td>
-			<td>enable Locking</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>autoLockAfter</td>
-			<td>auto Locking after [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIcon</td>
-			<td>icon</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconTop</td>
-			<td>symbol distance from top [%]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconLeft</td>
-			<td>symbol distance from left [%]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconSize</td>
-			<td>icon size</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconColor</td>
-			<td>icon color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>lockIconBackground</td>
-			<td>background color of lock icon</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>lockBackgroundSizeFactor</td>
-			<td>grow factor of background size</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockFilterGrayscale</td>
-			<td>gray filter if locked</td>
-			<td>number</td>
-			<td/>
-		</tr>
-	</tbody>
-</table>
-</details>
-
-##### Button State Icon
-
-<details>
-<table>
-	<thead>
-		<tr>
-			<th>Property</th>
-			<th>Description</th>
-			<th>Type</th>
-			<th>Values</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>oid</td>
-			<td>Object ID</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>value</td>
-			<td>value</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>vibrateOnMobilDevices</td>
-			<td>vibrate on mobil devices [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>image</td>
-			<td>Image</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>imageColor</td>
-			<td>image color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>iconHeight</td>
-			<td>image height</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>colorPress</td>
-			<td>color pressed</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>lockEnabled</td>
-			<td>enable Locking</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>autoLockAfter</td>
-			<td>auto Locking after [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIcon</td>
-			<td>icon</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconTop</td>
-			<td>symbol distance from top [%]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconLeft</td>
-			<td>symbol distance from left [%]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconSize</td>
-			<td>icon size</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconColor</td>
-			<td>icon color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>lockIconBackground</td>
-			<td>background color of lock icon</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>lockBackgroundSizeFactor</td>
-			<td>grow factor of background size</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockFilterGrayscale</td>
-			<td>gray filter if locked</td>
-			<td>number</td>
-			<td/>
-		</tr>
-	</tbody>
-</table>
-</details>
-
-##### Button Link Icon
-
-<details>
-<table>
-	<thead>
-		<tr>
-			<th>Property</th>
-			<th>Description</th>
-			<th>Type</th>
-			<th>Values</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>href</td>
-			<td>Link</td>
-			<td>url</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>openNewWindow</td>
-			<td>open in new window</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>vibrateOnMobilDevices</td>
-			<td>vibrate on mobil devices [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>image</td>
-			<td>Image</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>imageColor</td>
-			<td>image color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>iconHeight</td>
-			<td>image height</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>colorPress</td>
-			<td>color pressed</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-	</tbody>
-</table>
-</details>
 
 ##### Progress
 
@@ -6036,6 +6135,7 @@ ical2CalendarWidget();
 
 ## HTML Elements
 
+<!-- omit in toc -->
 ## Changelog
 
 <!--
@@ -6356,7 +6456,9 @@ ical2CalendarWidget();
 ### 0.0.1
 * (Scrounger) initial release
 
+<!-- omit in toc -->
 ## License
+
 MIT License
 
 Copyright (c) 2021 Scrounger <scrounger@gmx.net>
