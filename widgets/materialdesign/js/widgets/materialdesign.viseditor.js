@@ -362,7 +362,7 @@ vis.binds.materialdesign.viseditor = {
                                     <td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>${_('group_' + attr)}</b></i></td>
                                 </tr>
                                 `
-
+                                objectForDevString = objectForDevString + `\n// ${_('group_' + attr)}\n`
                                 for (const prop in widgetAttrs[attr]) {
                                     attrNames.push(prop);
 

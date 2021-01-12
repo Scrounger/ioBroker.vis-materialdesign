@@ -393,6 +393,7 @@ vis.binds.materialdesign.button = {
             return {
                 wid: widgetId,
 
+                // Common
                 oid: obj.oid,
                 buttonStyle: obj.buttonStyle,
                 readOnly: obj.readOnly,
@@ -402,20 +403,32 @@ vis.binds.materialdesign.button = {
                 valueOn: obj.valueOn,
                 stateIfNotTrueValue: obj.stateIfNotTrueValue,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+
+                // labeling
                 buttontext: obj.buttontext,
                 labelTrue: obj.labelTrue,
                 labelColorFalse: obj.labelColorFalse,
                 labelColorTrue: obj.labelColorTrue,
+                textFontFamily: obj.textFontFamily,
+                textFontSize: obj.textFontSize,
                 labelWidth: obj.labelWidth,
+
+                // colors
+                mdwButtonPrimaryColor: obj.mdwButtonPrimaryColor,
+                mdwButtonSecondaryColor: obj.mdwButtonSecondaryColor,
+                mdwButtonColorPress: obj.mdwButtonColorPress,
+                colorBgFalse: obj.colorBgFalse,
+                colorBgTrue: obj.colorBgTrue,
+
+                // icon
                 image: obj.image,
                 imageColor: obj.imageColor,
                 imageTrue: obj.imageTrue,
                 imageTrueColor: obj.imageTrueColor,
                 iconPosition: obj.iconPosition,
                 iconHeight: obj.iconHeight,
-                colorBgFalse: obj.colorBgFalse,
-                colorBgTrue: obj.colorBgTrue,
-                mdwButtonColorPress: obj.colorPress,
+
+                // Locking
                 lockEnabled: obj.lockEnabled,
                 autoLockAfter: obj.autoLockAfter,
                 lockIcon: obj.lockIcon,
@@ -427,6 +440,7 @@ vis.binds.materialdesign.button = {
             return {
                 wid: widgetId,
 
+                // Common
                 oid: obj.oid,
                 buttonStyle: obj.buttonStyle,
                 readOnly: obj.readOnly,
@@ -436,20 +450,32 @@ vis.binds.materialdesign.button = {
                 valueOn: obj.valueOn,
                 stateIfNotTrueValue: obj.stateIfNotTrueValue,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+
+                // labeling
                 buttontext: obj.buttontext,
                 labelTrue: obj.labelTrue,
                 labelColorFalse: obj.labelColorFalse,
                 labelColorTrue: obj.labelColorTrue,
+                textFontFamily: obj.textFontFamily,
+                textFontSize: obj.textFontSize,
                 alignment: obj.alignment,
+                distanceBetweenTextAndImage: obj.distanceBetweenTextAndImage,
+
+                // colors
+                mdwButtonPrimaryColor: obj.mdwButtonPrimaryColor,
+                mdwButtonSecondaryColor: obj.mdwButtonSecondaryColor,
+                colorBgFalse: obj.colorBgFalse,
+                colorBgTrue: obj.colorBgTrue,
+
+                // icon
                 image: obj.image,
                 imageColor: obj.imageColor,
                 imageTrue: obj.imageTrue,
                 imageTrueColor: obj.imageTrueColor,
                 iconPosition: obj.iconPosition,
                 iconHeight: obj.iconHeight,
-                colorBgFalse: obj.colorBgFalse,
-                colorBgTrue: obj.colorBgTrue,
-                mdwButtonColorPress: obj.colorPress,
+
+                // Locking
                 lockEnabled: obj.lockEnabled,
                 autoLockAfter: obj.autoLockAfter,
                 lockIcon: obj.lockIcon,
@@ -494,17 +520,30 @@ vis.binds.materialdesign.button = {
             return {
                 wid: widgetId,
 
+                // Common
                 oid: obj.oid,
                 buttonStyle: obj.buttonStyle,
                 value: obj.value,
-                buttontext: obj.buttontext,
-                mdwButtonColorPress: obj.colorPress,
-                labelWidth: obj.labelWidth,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+
+                // labeling
+                buttontext: obj.buttontext,
+                textFontFamily: obj.textFontFamily,
+                textFontSize: obj.textFontSize,
+                labelWidth: obj.labelWidth,
+
+                // colors
+                mdwButtonPrimaryColor: obj.mdwButtonPrimaryColor,
+                mdwButtonSecondaryColor: obj.mdwButtonSecondaryColor,
+                mdwButtonColorPress: obj.mdwButtonColorPress,
+
+                // icon
                 image: obj.image,
                 imageColor: obj.imageColor,
                 iconPosition: obj.iconPosition,
                 iconHeight: obj.iconHeight,
+
+                // Locking
                 lockEnabled: obj.lockEnabled,
                 autoLockAfter: obj.autoLockAfter,
                 lockIcon: obj.lockIcon,
@@ -516,17 +555,31 @@ vis.binds.materialdesign.button = {
             return {
                 wid: widgetId,
 
+                // Common
                 oid: obj.oid,
                 buttonStyle: obj.buttonStyle,
                 value: obj.value,
-                buttontext: obj.buttontext,
-                mdwButtonColorPress: obj.colorPress,
-                alignment: obj.alignment,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+
+                // labeling
+                buttontext: obj.buttontext,
+                textFontFamily: obj.textFontFamily,
+                textFontSize: obj.textFontSize,
+                alignment: obj.alignment,
+                distanceBetweenTextAndImage: obj.distanceBetweenTextAndImage,
+
+                // colors
+                mdwButtonPrimaryColor: obj.mdwButtonPrimaryColor,
+                mdwButtonSecondaryColor: obj.mdwButtonSecondaryColor,
+                mdwButtonColorPress: obj.mdwButtonColorPress,
+
+                // icon
                 image: obj.image,
                 imageColor: obj.imageColor,
                 iconPosition: obj.iconPosition,
                 iconHeight: obj.iconHeight,
+
+                // Locking
                 lockEnabled: obj.lockEnabled,
                 autoLockAfter: obj.autoLockAfter,
                 lockIcon: obj.lockIcon,
@@ -562,17 +615,24 @@ vis.binds.materialdesign.button = {
             return {
                 wid: widgetId,
 
+                // Common
                 buttonStyle: obj.buttonStyle,
                 href: obj.href,
                 openNewWindow: obj.openNewWindow,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+
+                // labeling
                 buttontext: obj.buttontext,
                 textFontFamily: obj.textFontFamily,
                 textFontSize: obj.textFontSize,
                 labelWidth: obj.labelWidth,
+
+                // colors
                 mdwButtonPrimaryColor: obj.mdwButtonPrimaryColor,
                 mdwButtonSecondaryColor: obj.mdwButtonSecondaryColor,
                 mdwButtonColorPress: obj.mdwButtonColorPress,
+
+                // icon
                 image: obj.image,
                 imageColor: obj.imageColor,
                 iconPosition: obj.iconPosition,
@@ -582,13 +642,25 @@ vis.binds.materialdesign.button = {
             return {
                 wid: widgetId,
 
+                // Common
                 buttonStyle: obj.buttonStyle,
                 href: obj.href,
                 openNewWindow: obj.openNewWindow,
-                buttontext: obj.buttontext,
-                mdwButtonColorPress: obj.colorPress,
-                alignment: obj.alignment,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+
+                // labeling
+                buttontext: obj.buttontext,
+                textFontFamily: obj.textFontFamily,
+                textFontSize: obj.textFontSize,
+                alignment: obj.alignment,
+                distanceBetweenTextAndImage: obj.distanceBetweenTextAndImage,
+
+                // colors
+                mdwButtonPrimaryColor: obj.mdwButtonPrimaryColor,
+                mdwButtonSecondaryColor: obj.mdwButtonSecondaryColor,
+                mdwButtonColorPress: obj.mdwButtonColorPress,
+
+                // icon
                 image: obj.image,
                 imageColor: obj.imageColor,
                 iconPosition: obj.iconPosition,
