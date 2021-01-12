@@ -1042,7 +1042,265 @@ The following properties can be used as [control element in a table](#control-el
 
 The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
 
-
+<details>
+	<table>
+		<thead>
+			<tr>
+				<th>Property</th>
+				<th>Description</th>
+				<th>Type</th>
+				<th>Values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;">
+					<i>
+						<b>Common</b>
+					</i>
+				</td>
+			</tr>
+			<tr>
+				<td>oid</td>
+				<td>Object ID</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>buttonStyle</td>
+				<td>button style</td>
+				<td>string</td>
+				<td>text | raised | unelevated | outlined</td>
+			</tr>
+			<tr>
+				<td>readOnly</td>
+				<td>read only</td>
+				<td>boolean</td>
+				<td>false | true</td>
+			</tr>
+			<tr>
+				<td>toggleType</td>
+				<td>type of toggle</td>
+				<td>string</td>
+				<td>boolean | value</td>
+			</tr>
+			<tr>
+				<td>pushButton</td>
+				<td>push button</td>
+				<td>boolean</td>
+				<td>false | true</td>
+			</tr>
+			<tr>
+				<td>valueOff</td>
+				<td>value for off</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>valueOn</td>
+				<td>value for on</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>stateIfNotTrueValue</td>
+				<td>state if value unequal to 'on' condition</td>
+				<td>string</td>
+				<td>on | off</td>
+			</tr>
+			<tr>
+				<td>vibrateOnMobilDevices</td>
+				<td>vibrate on mobil devices [s]</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;">
+					<i>
+						<b>labeling</b>
+					</i>
+				</td>
+			</tr>
+			<tr>
+				<td>buttontext</td>
+				<td>Button text</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>labelTrue</td>
+				<td>Label true</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>labelColorFalse</td>
+				<td>label color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>labelColorTrue</td>
+				<td>active label color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>textFontFamily</td>
+				<td>font</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>textFontSize</td>
+				<td>text size</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>alignment</td>
+				<td>alignment</td>
+				<td>string</td>
+				<td>flex-start | center | flex-end</td>
+			</tr>
+			<tr>
+				<td>distanceBetweenTextAndImage</td>
+				<td>distance between text and image</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;">
+					<i>
+						<b>colors</b>
+					</i>
+				</td>
+			</tr>
+			<tr>
+				<td>mdwButtonPrimaryColor</td>
+				<td>primary color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>mdwButtonSecondaryColor</td>
+				<td>secondary color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>colorBgFalse</td>
+				<td>background</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>colorBgTrue</td>
+				<td>active background</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;">
+					<i>
+						<b>icon</b>
+					</i>
+				</td>
+			</tr>
+			<tr>
+				<td>image</td>
+				<td>Image</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>imageColor</td>
+				<td>image color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>imageTrue</td>
+				<td>active image</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>imageTrueColor</td>
+				<td>active image color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>iconPosition</td>
+				<td>image position</td>
+				<td>string</td>
+				<td>top | bottom</td>
+			</tr>
+			<tr>
+				<td>iconHeight</td>
+				<td>image height</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;">
+					<i>
+						<b>Locking</b>
+					</i>
+				</td>
+			</tr>
+			<tr>
+				<td>lockEnabled</td>
+				<td>enable Locking</td>
+				<td>boolean</td>
+				<td>false | true</td>
+			</tr>
+			<tr>
+				<td>autoLockAfter</td>
+				<td>auto Locking after [s]</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>lockIcon</td>
+				<td>icon</td>
+				<td>string</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>lockIconTop</td>
+				<td>symbol distance from top [%]</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>lockIconLeft</td>
+				<td>symbol distance from left [%]</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>lockIconSize</td>
+				<td>icon size</td>
+				<td>number</td>
+				<td/>
+			</tr>
+			<tr>
+				<td>lockIconColor</td>
+				<td>icon color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			</tr>
+			<tr>
+				<td>lockFilterGrayscale</td>
+				<td>gray filter if locked</td>
+				<td>number</td>
+				<td/>
+			</tr>
+		</tbody>
+	</table>
+</details>
 
 ### Icon Button
 ![Logo](doc/en/media/icon-button.gif)
@@ -2343,15 +2601,15 @@ Take a look at the animated screenshot below:
                 </ul>
                 <b>Buttons Vertical</b>
                 <ul>
-                    <li><a href="#button-link-vertical-properties">Button Vertical Link</a></li>
-                    <li><a href="#button-state-vertical-properties">Button Vertical State</a></li>
-                    <li><a href="#button-toggle-vertical-properties">Button Vertical Toggle</a></li>
+                    <li><a href="#button-vertical-link-properties">Button Icon Link</a></li>
+                    <li><a href="#button-vertical-state-properties">Button Icon State</a></li>
+                    <li><a href="#button-vertical-toggle-properties">Button Icon Toggle</a></li>
                 </ul>
                 <b>Buttons Icons</b>
                 <ul>
-                    <li><a href="#button-link-icon-properties">Button Icon Link</a></li>
-                    <li><a href="#button-state-icon-properties">Button Icon State</a></li>
-                    <li><a href="#button-toggle-icon-properties">Button Icon Toggle</a></li>
+                    <li><a href="#button-icon-link-properties">Button Icon Link</a></li>
+                    <li><a href="#button-icon-state-properties">Button Icon State</a></li>
+                    <li><a href="#button-icon-toggle-properties">Button Icon Toggle</a></li>
                 </ul>
                 <ul>
                     <li><a href="#button-toggle-vertical">buttonToggle_vertical</a></li>
@@ -2424,394 +2682,6 @@ Take a look at the animated screenshot below:
         </tr>
     </tbody>
 </table>
-
-##### Button Toggle 
-
-<details>
-<table>
-	<thead>
-		<tr>
-			<th>Property</th>
-			<th>Description</th>
-			<th>Type</th>
-			<th>Values</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>oid</td>
-			<td>Object ID</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>buttonStyle</td>
-			<td>button style</td>
-			<td>string</td>
-			<td>text | raised | unelevated | outlined</td>
-		</tr>
-		<tr>
-			<td>readOnly</td>
-			<td>read only</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>toggleType</td>
-			<td>type of toggle</td>
-			<td>string</td>
-			<td>boolean | value</td>
-		</tr>
-		<tr>
-			<td>pushButton</td>
-			<td>push button</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>valueOff</td>
-			<td>value for off</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>valueOn</td>
-			<td>value for on</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>stateIfNotTrueValue</td>
-			<td>state if value unequal to 'on' condition</td>
-			<td>string</td>
-			<td>on | off</td>
-		</tr>
-		<tr>
-			<td>vibrateOnMobilDevices</td>
-			<td>vibrate on mobil devices [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>buttontext</td>
-			<td>Button text</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>labelTrue</td>
-			<td>Label true</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>labelColorFalse</td>
-			<td>label color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>labelColorTrue</td>
-			<td>active label color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>labelWidth</td>
-			<td>text width</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>image</td>
-			<td>Image</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>imageColor</td>
-			<td>image color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>imageTrue</td>
-			<td>active image</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>imageTrueColor</td>
-			<td>active image color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>iconPosition</td>
-			<td>image position</td>
-			<td>string</td>
-			<td>left | right</td>
-		</tr>
-		<tr>
-			<td>iconHeight</td>
-			<td>image height</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>colorBgFalse</td>
-			<td>background</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorBgTrue</td>
-			<td>active background</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorPress</td>
-			<td>color pressed</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>lockEnabled</td>
-			<td>enable Locking</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>autoLockAfter</td>
-			<td>auto Locking after [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIcon</td>
-			<td>icon</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconSize</td>
-			<td>icon size</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconColor</td>
-			<td>icon color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>lockFilterGrayscale</td>
-			<td>gray filter if locked</td>
-			<td>number</td>
-			<td/>
-		</tr>
-	</tbody>
-</table>
-</details>
-
-##### Button Toggle Vertical 
-
-<details>
-<table>
-	<thead>
-		<tr>
-			<th>Property</th>
-			<th>Description</th>
-			<th>Type</th>
-			<th>Values</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>oid</td>
-			<td>Object ID</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>buttonStyle</td>
-			<td>button style</td>
-			<td>string</td>
-			<td>text | raised | unelevated | outlined</td>
-		</tr>
-		<tr>
-			<td>readOnly</td>
-			<td>read only</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>toggleType</td>
-			<td>type of toggle</td>
-			<td>string</td>
-			<td>boolean | value</td>
-		</tr>
-		<tr>
-			<td>pushButton</td>
-			<td>push button</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>valueOff</td>
-			<td>value for off</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>valueOn</td>
-			<td>value for on</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>stateIfNotTrueValue</td>
-			<td>state if value unequal to 'on' condition</td>
-			<td>string</td>
-			<td>on | off</td>
-		</tr>
-		<tr>
-			<td>vibrateOnMobilDevices</td>
-			<td>vibrate on mobil devices [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>buttontext</td>
-			<td>Button text</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>labelTrue</td>
-			<td>Label true</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>labelColorFalse</td>
-			<td>label color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>labelColorTrue</td>
-			<td>active label color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>image</td>
-			<td>Image</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>imageColor</td>
-			<td>image color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>imageTrue</td>
-			<td>active image</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>imageTrueColor</td>
-			<td>active image color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>iconPosition</td>
-			<td>image position</td>
-			<td>string</td>
-			<td>top | bottom</td>
-		</tr>
-		<tr>
-			<td>iconHeight</td>
-			<td>image height</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>colorBgFalse</td>
-			<td>background</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorBgTrue</td>
-			<td>active background</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorPress</td>
-			<td>color pressed</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>lockEnabled</td>
-			<td>enable Locking</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>autoLockAfter</td>
-			<td>auto Locking after [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIcon</td>
-			<td>icon</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconTop</td>
-			<td>symbol distance from top [%]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconLeft</td>
-			<td>symbol distance from left [%]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconSize</td>
-			<td>icon size</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconColor</td>
-			<td>icon color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>lockFilterGrayscale</td>
-			<td>gray filter if locked</td>
-			<td>number</td>
-			<td/>
-		</tr>
-	</tbody>
-</table>
-</details>
 
 ##### Button Toggle Icon
 
@@ -2986,253 +2856,6 @@ Take a look at the animated screenshot below:
 </table>
 </details>
 
-
-##### Button State
-
-<details>
-<table>
-	<thead>
-		<tr>
-			<th>Property</th>
-			<th>Description</th>
-			<th>Type</th>
-			<th>Values</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>oid</td>
-			<td>Object ID</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>buttonStyle</td>
-			<td>button style</td>
-			<td>string</td>
-			<td>text | raised | unelevated | outlined</td>
-		</tr>
-		<tr>
-			<td>value</td>
-			<td>value</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>buttontext</td>
-			<td>Button text</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>colorPress</td>
-			<td>color pressed</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>labelWidth</td>
-			<td>text width</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>vibrateOnMobilDevices</td>
-			<td>vibrate on mobil devices [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>image</td>
-			<td>Image</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>imageColor</td>
-			<td>image color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>iconPosition</td>
-			<td>image position</td>
-			<td>string</td>
-			<td>left | right</td>
-		</tr>
-		<tr>
-			<td>iconHeight</td>
-			<td>image height</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockEnabled</td>
-			<td>enable Locking</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>autoLockAfter</td>
-			<td>auto Locking after [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIcon</td>
-			<td>icon</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconSize</td>
-			<td>icon size</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconColor</td>
-			<td>icon color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>lockFilterGrayscale</td>
-			<td>gray filter if locked</td>
-			<td>number</td>
-			<td/>
-		</tr>
-	</tbody>
-</table>
-</details>
-
-
-##### Button State Vertical 
-
-<details>
-<table>
-	<thead>
-		<tr>
-			<th>Property</th>
-			<th>Description</th>
-			<th>Type</th>
-			<th>Values</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>oid</td>
-			<td>Object ID</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>buttonStyle</td>
-			<td>button style</td>
-			<td>string</td>
-			<td>text | raised | unelevated | outlined</td>
-		</tr>
-		<tr>
-			<td>value</td>
-			<td>value</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>buttontext</td>
-			<td>Button text</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>colorPress</td>
-			<td>color pressed</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>vibrateOnMobilDevices</td>
-			<td>vibrate on mobil devices [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>image</td>
-			<td>Image</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>imageColor</td>
-			<td>image color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>iconPosition</td>
-			<td>image position</td>
-			<td>string</td>
-			<td>top | bottom</td>
-		</tr>
-		<tr>
-			<td>iconHeight</td>
-			<td>image height</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockEnabled</td>
-			<td>enable Locking</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>autoLockAfter</td>
-			<td>auto Locking after [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIcon</td>
-			<td>icon</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconTop</td>
-			<td>symbol distance from top [%]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconLeft</td>
-			<td>symbol distance from left [%]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconSize</td>
-			<td>icon size</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconColor</td>
-			<td>icon color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>lockFilterGrayscale</td>
-			<td>gray filter if locked</td>
-			<td>number</td>
-			<td/>
-		</tr>
-	</tbody>
-</table>
-</details>
-
-
 ##### Button State Icon
 
 <details>
@@ -3345,167 +2968,6 @@ Take a look at the animated screenshot below:
 		<tr>
 			<td>lockFilterGrayscale</td>
 			<td>gray filter if locked</td>
-			<td>number</td>
-			<td/>
-		</tr>
-	</tbody>
-</table>
-</details>
-
-
-##### Button Link 
-
-<details>
-<table>
-	<thead>
-		<tr>
-			<th>Property</th>
-			<th>Description</th>
-			<th>Type</th>
-			<th>Values</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>buttonStyle</td>
-			<td>button style</td>
-			<td>string</td>
-			<td>text | raised | unelevated | outlined</td>
-		</tr>
-		<tr>
-			<td>href</td>
-			<td>Link</td>
-			<td>url</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>openNewWindow</td>
-			<td>open in new window</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>buttontext</td>
-			<td>Button text</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>colorPress</td>
-			<td>color pressed</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>labelWidth</td>
-			<td>text width</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>vibrateOnMobilDevices</td>
-			<td>vibrate on mobil devices [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>image</td>
-			<td>Image</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>imageColor</td>
-			<td>image color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>iconPosition</td>
-			<td>image position</td>
-			<td>string</td>
-			<td>left | right</td>
-		</tr>
-		<tr>
-			<td>iconHeight</td>
-			<td>image height</td>
-			<td>number</td>
-			<td/>
-		</tr>
-	</tbody>
-</table>
-</details>
-
-##### Button Link Vertical
-
-<details>
-<table>
-	<thead>
-		<tr>
-			<th>Property</th>
-			<th>Description</th>
-			<th>Type</th>
-			<th>Values</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>buttonStyle</td>
-			<td>button style</td>
-			<td>string</td>
-			<td>text | raised | unelevated | outlined</td>
-		</tr>
-		<tr>
-			<td>href</td>
-			<td>Link</td>
-			<td>url</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>openNewWindow</td>
-			<td>open in new window</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>buttontext</td>
-			<td>Button text</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>colorPress</td>
-			<td>color pressed</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>vibrateOnMobilDevices</td>
-			<td>vibrate on mobil devices [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>image</td>
-			<td>Image</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>imageColor</td>
-			<td>image color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>iconPosition</td>
-			<td>image position</td>
-			<td>string</td>
-			<td>top | bottom</td>
-		</tr>
-		<tr>
-			<td>iconHeight</td>
-			<td>image height</td>
 			<td>number</td>
 			<td/>
 		</tr>
