@@ -124,7 +124,6 @@ not working at the moment, needs to be implemneted by app, see https://github.co
     </tbody>
 </table>
 
-<br>
 
 ## Buttons
 
@@ -696,8 +695,6 @@ The following properties can be used as [control element in a table](#control-el
 		</tbody>
 	</table>
 </details>
-
-<br>
 
 ## Buttons Vertical
 
@@ -1308,8 +1305,6 @@ The following properties can be used as [control element in a table](#control-el
 	</table>
 </details>
 
-<br>
-
 ## Buttons Icon
 ![Logo](doc/en/media/icon-button.gif)
 
@@ -1758,8 +1753,6 @@ The following properties can be used as [control element in a table](#control-el
 		</tbody>
 	</table>
 </details>
-
-<br>
 
 ## Card
 ![Logo](doc/en/media/cards.png)
