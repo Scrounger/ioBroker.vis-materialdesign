@@ -700,19 +700,85 @@ vis.binds.materialdesign.button = {
                 colorPress: obj.colorPress
             }
         }
+    },
+    getHtmlConstructor(widgetData, type) {
+        try {
+            if (type.includes('default')) {
+                return `<div class="vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element" 
+                        style="width: ${widgetData.width ? widgetData.width : '100%'}; height: ${widgetData.height ? widgetData.height : '100%'}; padding: 0px;" 
+                        type="${type}"
+                        mdw-data='${JSON.stringify(widgetData, null, "\t\t\t\t\t\t\t")}'></div>`;
+            }
+
+
+        } catch (ex) {
+            console.error(`[getHtmlConstructor - ${type}] handleToggle: error:: ${ex.message}, stack: ${ex.stack}`);
+        }
     }
 }
 
-// $.initialize(".custom-html", function () {
-//     $(this).css("background", "red");
-//     let json = JSON.parse('{' + $(this).attr('mdw-data') + '}');
+$.initialize(".materialdesign-button-html-element", function () {
+    let parentId = 'unknown';
+    let $this = $(this);
 
-//     // console.warn(JSON.parse('{' + $(this).attr('mdw-data') + '}'));
-//     // console.warn(this);
+    try {
+        let type = $this.attr('type');
+        let typeSplitted = type.split("_")
+        let mdwDataString = $this.attr('mdw-data');
+        let widgetName = `html element '${type}'`;
 
-//     let container = $(this).closest('.vis-widget[id^=w]');
+        let $parent = $this.closest('.vis-widget[id^=w]');
+        parentId = $parent.attr('id');
 
-//     let elementData = vis.binds.materialdesign.button.getDataFromJson(json, 'custom', vis.binds.materialdesign.button.types.state.vertical);
-//     vis.binds.materialdesign.addRippleEffect($(this).children(), elementData);
-//     vis.binds.materialdesign.button.handleState($(this), elementData);
-// });
+        console.log(`[Button - ${parentId}] initialize html element from type '${type}'`);
+        // console.log(`[Button - ${parentId}] mdw-data: '${mdwDataString}'`);
+
+        let mdwData = JSON.parse(mdwDataString);
+        if (mdwData.debug) console.log(`[Button - ${parentId}] parsed mdw-data: ${JSON.stringify(mdwData)}`);
+
+        if (mdwData) {
+            let widgetData = vis.binds.materialdesign.button.getDataFromJson(mdwData, `${parentId}`, vis.binds.materialdesign.button.types[typeSplitted[0]][typeSplitted[1]]);
+            if (mdwData.debug) console.log(`[Button - ${parentId}] widgetData: ${JSON.stringify(widgetData)}`);
+
+            if (widgetData.oid) {
+                myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, mdwData.debug);
+                myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
+                    initializeHtml()
+                });
+            } else {
+                initializeHtml()
+            }
+
+            function initializeHtml() {
+                let init;
+                if (type.includes('_default')) {
+                    init = vis.binds.materialdesign.button.initializeButton(widgetData);
+                } else if (type.includes('_vertical')) {
+                    init = vis.binds.materialdesign.button.initializeVerticalButton(widgetData);
+                } else if (type.includes('_icon')) {
+                    init = vis.binds.materialdesign.button.initializeButton(widgetData, true);
+                }
+
+                if (init) {
+                    $this.addClass(init.style);
+                    $this.append(init.button);
+
+                    vis.binds.materialdesign.addRippleEffect($this.children(), widgetData);
+
+                    if (type.includes('link_')) {
+                        vis.binds.materialdesign.button.handleLink($this, widgetData);
+                    } else if (type.includes('state_')) {
+                        vis.binds.materialdesign.button.handleState($this, widgetData);
+                    } else if (type.includes('toggle_')) {
+                        vis.binds.materialdesign.button.handleToggle($this, widgetData);
+                    }
+                } else {
+                    $this.append(`<div style="background: FireBrick; color: white;">Error in mdw-data!</div>`);
+                }
+            }
+        }
+    } catch (ex) {
+        console.error(`[Button - ${parentId}] $.initialize: error: ${ex.message}, stack: ${ex.stack}`);
+        $this.append(`<div style="background: FireBrick; color: white;">Error ${ex.message}</div>`);
+    }
+});

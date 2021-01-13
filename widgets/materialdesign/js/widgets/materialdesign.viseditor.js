@@ -322,7 +322,6 @@ vis.binds.materialdesign.viseditor = {
             var that = vis;
             let type = data[1];
 
-            // options = {min: ?,max: ?,step: ?}
             // Select
             var line = {
                 input: '<button id="inspect_' + widAttr + '" style="width: 100%;">' + _(widAttr) + '</button>',
@@ -354,11 +353,10 @@ vis.binds.materialdesign.viseditor = {
                                     <th>Values</th>
                                 </tr></thead><tbody>`;
 
-                            
+
                             for (const attr in widgetAttrs) {
-                                console.warn(attr);
                                 strTableForDev = strTableForDev +
-                                `<tr>
+                                    `<tr>
                                     <td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>${_('group_' + attr)}</b></i></td>
                                 </tr>
                                 `
@@ -411,7 +409,7 @@ vis.binds.materialdesign.viseditor = {
                                 widget.data);
 
                             for (var attr in widgetData) {
-                                if ((!attrNames.includes(attr) || attr === 'exportData') && attr !== 'type' && attr !== 'width' && attr !== 'height') {
+                                if ((!attrNames.includes(attr) || attr === 'exportData' || attr === 'generateHtmlControl') && attr !== 'type' && attr !== 'width' && attr !== 'height') {
                                     delete widgetData[attr];
                                 }
 
@@ -483,6 +481,132 @@ vis.binds.materialdesign.viseditor = {
 
         } catch (ex) {
             console.error(`exportData: error: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
+    generateHtmlControl: function (widAttr, data) {
+        try {
+            var that = vis;
+
+            let clazz = data[1];
+            let type = data[2];
+
+            // Select
+            var line = {
+                input: '<button id="inspect_' + widAttr + '" style="width: 100%;">' + _(widAttr) + '</button>',
+                init: function (w, data) {
+                    $(this).button().click(function () {
+                        $(this).val(true).trigger('change');
+
+                        var wdata = $(this).data('wdata');
+                        var data = {};
+                        if (that.config['dialog-edit-text']) {
+                            data = JSON.parse(that.config['dialog-edit-text']);
+                        }
+                        var editor = ace.edit('dialog-edit-text-textarea');
+                        var changed = false;
+
+                        var view = that.activeView;
+                        if (that.activeWidgets.length === 1) {
+                            let attrNames = []
+                            let widgetAttrs = that.findCommonAttributes(view, that.activeWidgets)
+
+                            for (const attr in widgetAttrs) {
+                                for (const prop in widgetAttrs[attr]) {
+                                    attrNames.push(prop);
+                                }
+                            }
+
+                            let widget = that.views[view].widgets[that.activeWidgets[0]];
+                            let style = widget.style;
+
+                            let widgetData = Object.assign(
+                                {
+                                    debug: false,                //TODO: auf false setzen                                    
+                                    type: type,
+                                    width: style.width,
+                                    height: style.height
+                                },
+                                widget.data);
+
+                            for (var attr in widgetData) {
+                                if ((!attrNames.includes(attr) || attr === 'exportData' || attr === 'generateHtmlControl') && attr !== 'type' && attr !== 'width' && attr !== 'height' && attr !== 'debug') {
+                                    delete widgetData[attr];
+                                }
+
+                                if ((type === 'select' || type === 'autocomplete') && attr === 'jsonStringObject' && widgetData['listDataMethod'] === 'jsonStringObject') {
+                                    if (!widgetData[attr].startsWith('{') && !widgetData[attr].endsWith("}")) {
+                                        widgetData[attr] = JSON.parse(widgetData[attr]);
+                                    }
+                                }
+                            }
+
+                            let dialogText = vis.binds.materialdesign[clazz].getHtmlConstructor(widgetData, type);
+
+                            // dialogText = dialogText +  JSON.stringify(widgetData, null, "\t");
+
+                            $('#dialog-edit-text').dialog({
+                                autoOpen: true,
+                                width: data.width || 800,
+                                height: data.height || 600,
+                                modal: true,
+                                resize: function () {
+                                    editor.resize();
+                                },
+                                open: function (event) {
+                                    $(event.target).parent().find('.ui-dialog-titlebar-close .ui-button-text').html('');
+                                    $(this).parent().css({ 'z-index': 1000 });
+                                    if (data.top !== undefined) {
+                                        if (data.top >= 0) {
+                                            $(this).parent().css({ top: data.top });
+                                        } else {
+                                            $(this).parent().css({ top: 0 });
+                                        }
+                                    }
+                                    if (data.left !== undefined) {
+                                        if (data.left >= 0) {
+                                            $(this).parent().css({ left: data.left });
+                                        } else {
+                                            $(this).parent().css({ left: 0 });
+                                        }
+                                    }
+                                    editor.getSession().setMode('ace/mode/html');
+                                    editor.setOptions({
+                                        enableBasicAutocompletion: true,
+                                        enableLiveAutocompletion: true
+                                    });
+                                    editor.$blockScrolling = Infinity;
+                                    editor.getSession().setUseWrapMode(true);
+                                    editor.setValue(dialogText);
+                                    editor.navigateFileEnd();
+                                    editor.focus();
+                                    editor.getSession().on('change', function () {
+                                        changed = false;
+                                    });
+                                },
+                                beforeClose: function () {
+                                    // dummy
+                                },
+                                buttons: [
+                                    {
+                                        text: _('Close'),
+                                        click: function () {
+                                            $(this).dialog('close');
+                                        }
+                                    }
+                                ]
+                            }).show();
+
+                        } else {
+                            that.confirmMessage(_('Please select only one Widget!'), _('attention'), null, 400, function (result) {
+                            });
+                        }
+                    });
+                }
+            };
+            return line;
+
+        } catch (ex) {
+            console.error(`generateHtmlControl: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     permissionGroupSelector: function (widAttr, data) {
