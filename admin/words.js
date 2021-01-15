@@ -11033,5 +11033,17 @@ systemDictionary = {
         "es": "valores posición offset",
         "pl": "wartości przesunięcia pozycji",
         "zh-cn": "值位置偏移"
+    },
+    "generateHtmlControl": {
+        "en": "generate Html Element",
+        "de": "HTML-Element generieren",
+        "ru": "сгенерировать элемент Html",
+        "pt": "gerar Elemento Html",
+        "nl": "genereren Html-element",
+        "fr": "générer un élément Html",
+        "it": "generare l'elemento Html",
+        "es": "generar elemento HTML",
+        "pl": "wygeneruj element HTML",
+        "zh-cn": "生成HTML元素"
     }
 };

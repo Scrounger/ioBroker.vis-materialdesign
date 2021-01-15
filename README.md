@@ -6128,6 +6128,18 @@ ical2CalendarWidget();
 
 ## HTML Elements
 
+Create an html element from the supported Material Design widgets to use it in any other widget that supports html.
+Just style your Material Design widget, press the `generate Html Element`, copy the data and paste it to any widget that supports html tags.
+Or use it in scripts to generate dynamically Widgets.
+
+![Logo](doc/en/media/html-elements.gif)
+
+More information about the supported properties can be found at the individual widgets:
+* [Buttons](#buttons)
+* [Buttons Vertical](#buttons-vertical)
+* [Buttons Icon](#buttons-icon)
+
+
 <!-- omit in toc -->
 ## Changelog
 
