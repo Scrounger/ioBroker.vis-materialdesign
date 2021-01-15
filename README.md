@@ -22,7 +22,7 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 ## Table of Content
 - [General](#general)
 	- [Online Example Project](#online-example-project)
-		- [Practical examples](#practical-examples)
+	- [Practical examples](#practical-examples)
 	- [Questions and answers about the widgets](#questions-and-answers-about-the-widgets)
 	- [Supported Browser](#supported-browser)
 	- [Supported Browser for vibrate on mobil devices function](#supported-browser-for-vibrate-on-mobil-devices-function)
@@ -76,9 +76,9 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 	- [Alerts](#alerts)
 	- [Calendar](#calendar)
 	- [HTML Elements](#html-elements)
-	- [used libraries](#used-libraries)
-	- [Changelog](#changelog)
-	- [License](#license)
+- [used libraries](#used-libraries)
+- [Changelog](#changelog)
+- [License](#license)
 
 # General
 
@@ -88,7 +88,7 @@ provided by [iobroker.click](https://iobroker.click/index.html), thanks to bluef
 * <a href="https://iobroker.click/vis/index.html?Material%20Design%20Widgets" target="_blank">VIS Runtime</a> (<a href="http://iobroker.click:8082/vis/index.html?Material%20Design%20Widgets" target="_blank">alternativ</a>)
 * <a href="https://iobroker.click/vis/edit.html?Material%20Design%20Widgets" target="_blank">VIS Editor</a> (<a href="http://iobroker.click:8082/vis/edit.html?Material%20Design%20Widgets" target="_blank">alternativ</a>)
 
-### Practical examples
+## Practical examples
 * [Weather View](https://forum.iobroker.net/topic/32232/material-design-widgets-wetter-view)
 * [Skript Status](https://forum.iobroker.net/topic/30662/material-design-widgets-skript-status)
 * [Adapter Status](https://forum.iobroker.net/topic/30661/material-design-widgets-adapter-status)
@@ -6207,7 +6207,7 @@ More information about the supported properties can be found at the individual w
 * [Buttons Icon](#buttons-icon)
 
 
-## used libraries
+# used libraries
 The adapter uses the following libraries:
 * [Google material components for the web](https://github.com/material-components/material-components-web)
 * [Vuetify](https://github.com/vuetifyjs/vuetify)
@@ -6216,7 +6216,7 @@ The adapter uses the following libraries:
 * [Material Design Icons](https://materialdesignicons.com/)
 
 
-## Changelog
+# Changelog
 
 <!--
     Placeholder for the next version (at the beginning of the line):    
@@ -6301,7 +6301,7 @@ The adapter uses the following libraries:
 * (Scrounger): bug fixes
 
 
-## License
+# License
 
 MIT License
 
