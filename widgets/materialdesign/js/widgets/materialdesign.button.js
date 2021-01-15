@@ -703,16 +703,31 @@ vis.binds.materialdesign.button = {
     },
     getHtmlConstructor(widgetData, type) {
         try {
+            let width = widgetData.width ? widgetData.width : '100%';
+            let height = widgetData.height ? widgetData.height : '100%';
+
+            delete widgetData.width;
+            delete widgetData.height;
+
             if (type.includes('default')) {
-                return `<div class="vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element" 
-                        style="width: ${widgetData.width ? widgetData.width : '100%'}; height: ${widgetData.height ? widgetData.height : '100%'}; padding: 0px;" 
-                        type="${type}"
-                        mdw-data='${JSON.stringify(widgetData, null, "\t\t\t\t\t\t\t")}'></div>`;
+
+                if (type.includes('toggle_')) {
+                    return `<div class="vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element"` + '\n' +
+                        '\t' + `style="width: ${width}; height: ${height}; position: relative; padding: 0px;"` + '\n' +
+                        '\t' + `type="${type}"` + '\n' +
+                        '\t' + `mdw-data='${JSON.stringify(widgetData, null, "\t\t\t")}'>`.replace("}'>", '\t\t' + "}'>") + '\n' +
+                        '\t' + `<div class="materialdesign-widget materialdesign-button-html-element-toogle-handler"></div>` + '\n' +
+                        `</div>`;
+                } else {
+                    return `<div class="vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element"` + '\n' +
+                        '\t' + `style="width: ${width}; height: ${height}; padding: 0px;"` + '\n' +
+                        '\t' + `type="${type}"` + '\n' +
+                        '\t' + `mdw-data='${JSON.stringify(widgetData, null, "\t\t\t")}'>`.replace("}'>", '\t\t' + "}'>") + '\n' +
+                        `</div>`;
+                }
             }
-
-
         } catch (ex) {
-            console.error(`[getHtmlConstructor - ${type}] handleToggle: error:: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[getHtmlConstructor - ${type}]handleToggle: error:: ${ex.message}, stack: ${ex.stack} `);
         }
     }
 }
@@ -731,22 +746,27 @@ $.initialize(".materialdesign-button-html-element", function () {
         parentId = $parent.attr('id');
 
         console.log(`[Button - ${parentId}] initialize html element from type '${type}'`);
-        // console.log(`[Button - ${parentId}] mdw-data: '${mdwDataString}'`);
+        // console.log(`[Button - ${ parentId }]mdw - data: '${mdwDataString}'`);
 
         let mdwData = JSON.parse(mdwDataString);
-        if (mdwData.debug) console.log(`[Button - ${parentId}] parsed mdw-data: ${JSON.stringify(mdwData)}`);
+        if (mdwData.debug) console.log(`[Button - ${parentId}] parsed mdw - data: ${JSON.stringify(mdwData)} `);
 
         if (mdwData) {
-            let widgetData = vis.binds.materialdesign.button.getDataFromJson(mdwData, `${parentId}`, vis.binds.materialdesign.button.types[typeSplitted[0]][typeSplitted[1]]);
-            if (mdwData.debug) console.log(`[Button - ${parentId}] widgetData: ${JSON.stringify(widgetData)}`);
+            let widgetData = vis.binds.materialdesign.button.getDataFromJson(mdwData, `${parentId} `, vis.binds.materialdesign.button.types[typeSplitted[0]][typeSplitted[1]]);
+            if (mdwData.debug) console.log(`[Button - ${parentId}] widgetData: ${JSON.stringify(widgetData)} `);
 
             if (widgetData.oid) {
-                myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, mdwData.debug);
-                myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
-                    initializeHtml()
-                });
+                let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, mdwData.debug);
+
+                if (oidsNeedSubscribe) {
+                    myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
+                        initializeHtml()
+                    });
+                } else {
+                    initializeHtml();
+                }
             } else {
-                initializeHtml()
+                initializeHtml();
             }
 
             function initializeHtml() {
@@ -770,15 +790,15 @@ $.initialize(".materialdesign-button-html-element", function () {
                     } else if (type.includes('state_')) {
                         vis.binds.materialdesign.button.handleState($this, widgetData);
                     } else if (type.includes('toggle_')) {
-                        vis.binds.materialdesign.button.handleToggle($this, widgetData);
+                        vis.binds.materialdesign.button.handleToggle($this.find('.materialdesign-button-html-element-toogle-handler'), widgetData);
                     }
                 } else {
-                    $this.append(`<div style="background: FireBrick; color: white;">Error in mdw-data!</div>`);
+                    $this.append(`< div style = "background: FireBrick; color: white;" > Error in mdw-data tag!</div > `);
                 }
             }
         }
     } catch (ex) {
-        console.error(`[Button - ${parentId}] $.initialize: error: ${ex.message}, stack: ${ex.stack}`);
-        $this.append(`<div style="background: FireBrick; color: white;">Error ${ex.message}</div>`);
+        console.error(`[Button - ${parentId}] $.initialize: error: ${ex.message}, stack: ${ex.stack} `);
+        $this.append(`<div style = "background: FireBrick; color: white;">Error ${ex.message}</div >`);
     }
 });
