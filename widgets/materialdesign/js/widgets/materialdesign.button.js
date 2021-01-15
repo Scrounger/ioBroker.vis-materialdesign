@@ -709,23 +709,20 @@ vis.binds.materialdesign.button = {
             delete widgetData.width;
             delete widgetData.height;
 
-            if (type.includes('default')) {
+            if (type.includes('default') || type.includes('vertical')) {
+                let html = `<div class="vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element"` + '\n' +
+                    '\t' + `style="width: ${width}; height: ${height}; position: relative; padding: 0px;"` + '\n' +
+                    '\t' + `type="${type}"` + '\n' +
+                    '\t' + `mdw-data='${JSON.stringify(widgetData, null, "\t\t\t")}'>`.replace("}'>", '\t\t' + "}'>") + '\n';
 
                 if (type.includes('toggle_')) {
-                    return `<div class="vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element"` + '\n' +
-                        '\t' + `style="width: ${width}; height: ${height}; position: relative; padding: 0px;"` + '\n' +
-                        '\t' + `type="${type}"` + '\n' +
-                        '\t' + `mdw-data='${JSON.stringify(widgetData, null, "\t\t\t")}'>`.replace("}'>", '\t\t' + "}'>") + '\n' +
-                        '\t' + `<div class="materialdesign-widget materialdesign-button-html-element-toogle-handler"></div>` + '\n' +
-                        `</div>`;
-                } else {
-                    return `<div class="vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element"` + '\n' +
-                        '\t' + `style="width: ${width}; height: ${height}; padding: 0px;"` + '\n' +
-                        '\t' + `type="${type}"` + '\n' +
-                        '\t' + `mdw-data='${JSON.stringify(widgetData, null, "\t\t\t")}'>`.replace("}'>", '\t\t' + "}'>") + '\n' +
-                        `</div>`;
+                    html = html + '\t' + `<div class="materialdesign-widget materialdesign-button-html-element-toogle-handler"></div>` + '\n';
                 }
+
+                return html + `</div>`;
             }
+
+
         } catch (ex) {
             console.error(`[getHtmlConstructor - ${type}]handleToggle: error:: ${ex.message}, stack: ${ex.stack} `);
         }
@@ -777,6 +774,10 @@ $.initialize(".materialdesign-button-html-element", function () {
                     init = vis.binds.materialdesign.button.initializeVerticalButton(widgetData);
                 } else if (type.includes('_icon')) {
                     init = vis.binds.materialdesign.button.initializeButton(widgetData, true);
+                }
+
+                if (widgetData.lockEnabled) {
+                    $this.attr('isLocked', 'true');
                 }
 
                 if (init) {
