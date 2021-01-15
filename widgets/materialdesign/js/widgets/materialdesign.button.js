@@ -703,14 +703,13 @@ vis.binds.materialdesign.button = {
     },
     getHtmlConstructor(widgetData, type) {
         try {
-            let width = widgetData.width ? widgetData.width : '100%';
-            let height = widgetData.height ? widgetData.height : '100%';
-
-            delete widgetData.width;
-            delete widgetData.height;
+            let html;
 
             if (type.includes('default') || type.includes('vertical')) {
-                let html = `<div class="vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element"` + '\n' +
+                let width = widgetData.width ? widgetData.width : '100%';
+                let height = widgetData.height ? widgetData.height : '100%';
+
+                html = `<div class="vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element"` + '\n' +
                     '\t' + `style="width: ${width}; height: ${height}; position: relative; padding: 0px;"` + '\n' +
                     '\t' + `type="${type}"` + '\n' +
                     '\t' + `mdw-data='${JSON.stringify(widgetData, null, "\t\t\t")}'>`.replace("}'>", '\t\t' + "}'>") + '\n';
@@ -718,10 +717,26 @@ vis.binds.materialdesign.button = {
                 if (type.includes('toggle_')) {
                     html = html + '\t' + `<div class="materialdesign-widget materialdesign-button-html-element-toogle-handler"></div>` + '\n';
                 }
-
-                return html + `</div>`;
             }
 
+            if (type.includes('icon')) {
+                let width = widgetData.width ? widgetData.width : '48px';
+                let height = widgetData.height ? widgetData.height : '48px';
+
+                html = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-html-element"` + '\n' +
+                    '\t' + `style="width: ${width}; height: ${height}; position: relative; padding: 0px;"` + '\n' +
+                    '\t' + `type="${type}"` + '\n' +
+                    '\t' + `mdw-data='${JSON.stringify(widgetData, null, "\t\t\t")}'>`.replace("}'>", '\t\t' + "}'>") + '\n';
+
+                if (type.includes('toggle_')) {
+                    html = html + '\t' + `<div class="materialdesign-widget materialdesign-button-html-element-toogle-handler"></div>` + '\n';
+                }
+            }
+
+            delete widgetData.width;
+            delete widgetData.height;
+
+            return html + `</div>`;
 
         } catch (ex) {
             console.error(`[getHtmlConstructor - ${type}]handleToggle: error:: ${ex.message}, stack: ${ex.stack} `);
@@ -746,6 +761,7 @@ $.initialize(".materialdesign-button-html-element", function () {
         // console.log(`[Button - ${ parentId }]mdw - data: '${mdwDataString}'`);
 
         let mdwData = JSON.parse(mdwDataString);
+        
         if (mdwData.debug) console.log(`[Button - ${parentId}] parsed mdw - data: ${JSON.stringify(mdwData)} `);
 
         if (mdwData) {
@@ -784,7 +800,7 @@ $.initialize(".materialdesign-button-html-element", function () {
                     $this.addClass(init.style);
                     $this.append(init.button);
 
-                    vis.binds.materialdesign.addRippleEffect($this.children(), widgetData);
+                    vis.binds.materialdesign.addRippleEffect($this.children(), widgetData, type.includes('_icon'));
 
                     if (type.includes('link_')) {
                         vis.binds.materialdesign.button.handleLink($this, widgetData);
