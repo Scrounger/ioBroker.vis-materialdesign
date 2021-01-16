@@ -510,11 +510,83 @@ vis.binds.materialdesign.viseditor = {
                             let attrNames = []
                             let widgetAttrs = that.findCommonAttributes(view, that.activeWidgets)
 
+                            let objectForDev = {};
+                            let objectForDevString = "";
+                            let strTableForDev = '<details>' + '\n' +
+                                '\t' + '<table>' + '\n' +
+                                '\t\t' + '<thead>' + '\n' +
+                                '\t\t\t' + '<tr>' + '\n' +
+                                '\t\t\t\t' + '<th>Property</th>' + '\n' +
+                                '\t\t\t\t' + '<th>Description</th>' + '\n' +
+                                '\t\t\t\t' + '<th>Type</th>' + '\n' +
+                                '\t\t\t\t' + '<th>Values</th>' + '\n' +
+                                '\t\t\t' + '</tr>' + '\n' +
+                                '\t\t' + '<thead>' + '\n' +
+                                '\t\t' + '<tbody>' + '\n';
+
+                            strTableForDev = strTableForDev +
+                                '\t\t\t' + '<tr>' + '\n' +
+                                '\t\t\t\t' + `<td>type</td>` + '\n' +
+                                '\t\t\t\t' + `<td>${_('mdwType')}</td>` + '\n' +
+                                '\t\t\t\t' + `<td>string</td>` + '\n' +
+                                '\t\t\t\t' + `<td>${type}</td>` + '\n' +
+                                '\t\t\t' + '</tr>' + '\n';
+
+                            strTableForDev = strTableForDev +
+                                '\t\t\t' + '<tr>' + '\n' +
+                                '\t\t\t\t' + `<td>debug</td>` + '\n' +
+                                '\t\t\t\t' + `<td>${_('mdwDebug')}</td>` + '\n' +
+                                '\t\t\t\t' + `<td>boolean</td>` + '\n' +
+                                '\t\t\t\t' + `<td>false | true</td>` + '\n' +
+                                '\t\t\t' + '</tr>' + '\n';
+
                             for (const attr in widgetAttrs) {
+                                strTableForDev = strTableForDev +
+                                    '\t\t\t' + '<tr>' + '\n' +
+                                    '\t\t\t\t' + `<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>${_('group_' + attr)}</b></i></td>` + '\n' +
+                                    '\t\t\t' + '</tr>' + '\n';
+
+                                objectForDevString = objectForDevString + `\n// ${_('group_' + attr)}\n`
                                 for (const prop in widgetAttrs[attr]) {
                                     attrNames.push(prop);
+
+                                    // for documentation and object creation
+                                    let ausnahmen = ["manual", "questionsAndAnswers", "donate", "onlineExampleProject", "exportData", "useTheme"]
+                                    if (!ausnahmen.includes(prop)) {
+                                        objectForDev[prop] = `obj.${prop}`;
+
+                                        let valExample = '';
+                                        if (widgetAttrs[attr][prop].type === 'select') {
+                                            valExample = widgetAttrs[attr][prop].options !== null && Array.isArray(widgetAttrs[attr][prop].options) ? widgetAttrs[attr][prop].options.join(" | ") : '';
+                                        } else if (widgetAttrs[attr][prop].type === 'checkbox') {
+                                            valExample = "false | true";
+                                        } else if (widgetAttrs[attr][prop].type === 'color') {
+                                            valExample = "hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)";
+                                        }
+
+                                        strTableForDev = strTableForDev +
+                                            '\t\t\t' + '<tr>' + '\n' +
+                                            '\t\t\t\t' + `<td>${prop}</td>` + '\n' +
+                                            '\t\t\t\t' + `<td>${_(prop)}</td>` + '\n' +
+                                            '\t\t\t\t' + `<td>${widgetAttrs[attr][prop].type ? widgetAttrs[attr][prop].type.replace('color', 'string').replace('slider', 'number').replace('select', 'string').replace('checkbox', 'boolean').replace('id', 'string').replace('html', 'string').replace("undefined", 'string').replace("fontname", "string").replace("custom", "string") : 'string'}</td>` + '\n' +
+                                            '\t\t\t\t' + `<td>${valExample}` + '\n' +
+                                            '\t\t\t' + '</tr>' + '\n';
+
+                                        objectForDevString = objectForDevString + `${prop}: obj.${prop},\n`
+                                    }
                                 }
                             }
+                            strTableForDev = strTableForDev +
+                                '\t\t' + '</tbody>' + '\n' +
+                                '\t' + '</table>' + '\n' +
+                                '</details>';
+
+                            if (Object.keys(objectForDev).length > 0) {
+                                console.log(objectForDevString);
+                                console.log(objectForDev);
+                                console.log(strTableForDev);
+                            }
+
 
                             let widget = that.views[view].widgets[that.activeWidgets[0]];
                             let style = widget.style;

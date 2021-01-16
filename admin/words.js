@@ -11045,5 +11045,17 @@ systemDictionary = {
         "es": "generar elemento HTML",
         "pl": "wygeneruj element HTML",
         "zh-cn": "生成HTML元素"
+    },
+    "mdwType": {
+        "en": "Widget type",
+        "de": "Widget-Typ",
+        "ru": "Тип виджета",
+        "pt": "Tipo de widget",
+        "nl": "Widgettype",
+        "fr": "Type de widget",
+        "it": "Tipo di widget",
+        "es": "Tipo de widget",
+        "pl": "Typ widżetu",
+        "zh-cn": "小部件类型"
     }
 };

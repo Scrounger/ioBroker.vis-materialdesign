@@ -757,16 +757,18 @@ $.initialize(".materialdesign-button-html-element", function () {
         let $parent = $this.closest('.vis-widget[id^=w]');
         parentId = $parent.attr('id');
 
-        console.log(`[Button - ${parentId}] initialize html element from type '${type}'`);
+        let logPrefix = `[Button HTML Element - ${parentId.replace('w', 'p')}]`;
+
+        console.log(`${logPrefix} initialize html element from type '${type}'`);
         // console.log(`[Button - ${ parentId }]mdw - data: '${mdwDataString}'`);
 
         let mdwData = JSON.parse(mdwDataString);
         
-        if (mdwData.debug) console.log(`[Button - ${parentId}] parsed mdw - data: ${JSON.stringify(mdwData)} `);
+        if (mdwData.debug) console.log(`${logPrefix} parsed mdw - data: ${JSON.stringify(mdwData)} `);
 
         if (mdwData) {
             let widgetData = vis.binds.materialdesign.button.getDataFromJson(mdwData, `${parentId} `, vis.binds.materialdesign.button.types[typeSplitted[0]][typeSplitted[1]]);
-            if (mdwData.debug) console.log(`[Button - ${parentId}] widgetData: ${JSON.stringify(widgetData)} `);
+            if (mdwData.debug) console.log(`${logPrefix} widgetData: ${JSON.stringify(widgetData)} `);
 
             if (widgetData.oid) {
                 let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, mdwData.debug);
@@ -815,7 +817,7 @@ $.initialize(".materialdesign-button-html-element", function () {
             }
         }
     } catch (ex) {
-        console.error(`[Button - ${parentId}] $.initialize: error: ${ex.message}, stack: ${ex.stack} `);
+        console.error(`${logPrefix} $.initialize: error: ${ex.message}, stack: ${ex.stack} `);
         $this.append(`<div style = "background: FireBrick; color: white;">Error ${ex.message}</div >`);
     }
 });
