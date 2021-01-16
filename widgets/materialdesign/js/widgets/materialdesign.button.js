@@ -742,7 +742,7 @@ vis.binds.materialdesign.button = {
             return html + `</div>`;
 
         } catch (ex) {
-            console.error(`[Button HTML Element: getHtmlConstructor - ${type}] error: ${ex.message}, stack: ${ex.stack} `);
+            console.error(`[Button: getHtmlConstructor - ${type}] error: ${ex.message}, stack: ${ex.stack} `);
         }
     }
 }
@@ -780,7 +780,7 @@ $.initialize(".materialdesign-button-html-element", function () {
                 if (oidsNeedSubscribe) {
                     myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
                         initializeHtml()
-                    });
+                    }, mdwData.debug);
                 } else {
                     initializeHtml();
                 }

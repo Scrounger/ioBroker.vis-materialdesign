@@ -289,7 +289,7 @@ vis.binds.materialdesign.slider = {
             return html + `</div>`;
 
         } catch (ex) {
-            console.error(`[getHtmlConstructor]: ${ex.message}, stack: ${ex.stack} `);
+            console.error(`[Slider getHtmlConstructor]: ${ex.message}, stack: ${ex.stack} `);
         }
     }
 }
@@ -306,7 +306,7 @@ $.initialize(".materialdesign-slider-html-element", function () {
         let $parent = $this.closest('.vis-widget[id^=w]');
         $parent.css('padding', '12px 32px 0 32px');
         parentId = $parent.attr('id');
-        logPrefix = `[Button HTML Element - ${parentId.replace('w', 'p')}]`;
+        logPrefix = `[Slider HTML Element - ${parentId.replace('w', 'p')}]`;
 
         console.log(`${logPrefix} initialize html element`);
 
@@ -324,7 +324,7 @@ $.initialize(".materialdesign-slider-html-element", function () {
                 if (oidsNeedSubscribe) {
                     myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
                         initializeHtml()
-                    });
+                    }, mdwData.debug);
                 } else {
                     initializeHtml();
                 }
