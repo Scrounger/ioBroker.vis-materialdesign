@@ -6784,6 +6784,7 @@ The adapter uses the following libraries:
 ### __WORK IN PROGRESS__
 * (Scrounger) icon list: option for status bar text added
 * (Scrounger) icon list: status bar position bug fix
+* (Scrounger) progress circular: auto size option added
 
 <!-- omit in toc -->
 ### 0.4.2 (2020-12-29)

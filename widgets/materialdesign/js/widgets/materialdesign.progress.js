@@ -92,7 +92,7 @@ vis.binds.materialdesign.progress = {
             <div class="${containerClass}" style="width: 100%; height: 100%; display: flex; justify-content: center;">
                 <v-progress-circular
                     :value="value"
-                    size="${myMdwHelper.getNumberFromData(data.progressCircularSize, 60)}"                    
+                    :size="size"                    
                     width="${myMdwHelper.getNumberFromData(data.progressCircularWidth, 4)}"
                     rotate="${myMdwHelper.getNumberFromData(data.progressCircularRotate, 0)}"
                     >
@@ -102,6 +102,13 @@ vis.binds.materialdesign.progress = {
 
             myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, widgetName, function () {
                 myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, widgetName, function () {
+                    let width = window.getComputedStyle($this.get(0), null).width.replace('px', '');
+                    let height = window.getComputedStyle($this.get(0), null).height.replace('px', '');
+
+                    let size = width;
+                    if (parseInt(height) < parseInt(width)) {
+                        size = height;
+                    }
 
                     Vue.use(VueTheMask);
                     let vueProgressCircular = new Vue({
@@ -110,8 +117,10 @@ vis.binds.materialdesign.progress = {
                         data() {
                             let dataObj = {};
 
+
                             let val = myMdwHelper.getNumberFromData(vis.states.attr(data.oid + '.val'), 0);
                             dataObj.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-circular-progress-color", '.materialdesign-vuetify-progress-circular-value-label');
+                            dataObj.size = myMdwHelper.getNumberFromData(data.progressCircularSize, size);
 
                             return dataObj;
                         },
@@ -185,7 +194,7 @@ vis.binds.materialdesign.progress = {
             } else {
                 return 0;
             }
-            
+
         } catch (ex) {
             console.error(`[getProgressState - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
