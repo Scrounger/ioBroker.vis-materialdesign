@@ -206,7 +206,7 @@ The following properties can be used as [control element in a table](#control-el
 				<th>Type</th>
 				<th>Values</th>
 			</tr>
-		<thead>
+		</thead>
 		<tbody>
 			<tr>
 				<td>type</td>
@@ -346,7 +346,7 @@ The following properties can be used as [control element in a table](#control-el
 				<th>Type</th>
 				<th>Values</th>
 			</tr>
-		<thead>
+		</thead>
 		<tbody>
 			<tr>
 				<td>type</td>
@@ -525,7 +525,7 @@ The following properties can be used as [control element in a table](#control-el
 				<th>Type</th>
 				<th>Values</th>
 			</tr>
-		<thead>
+		</thead>
 		<tbody>
 			<tr>
 				<td>type</td>
@@ -780,7 +780,7 @@ The following properties can be used as [control element in a table](#control-el
 				<th>Type</th>
 				<th>Values</th>
 			</tr>
-		<thead>
+		</thead>
 		<tbody>
 			<tr>
 				<td>type</td>
@@ -926,7 +926,7 @@ The following properties can be used as [control element in a table](#control-el
 				<th>Type</th>
 				<th>Values</th>
 			</tr>
-		<thead>
+		</thead>
 		<tbody>
 			<tr>
 				<td>type</td>
@@ -1123,7 +1123,7 @@ The following properties can be used as [control element in a table](#control-el
 				<th>Type</th>
 				<th>Values</th>
 			</tr>
-		<thead>
+		</thead>
 		<tbody>
 			<tr>
 				<td>type</td>
@@ -1389,7 +1389,7 @@ The following properties can be used as [control element in a table](#control-el
 				<th>Type</th>
 				<th>Values</th>
 			</tr>
-		<thead>
+		</thead>
 		<tbody>
 			<tr>
 				<td>type</td>
@@ -1484,7 +1484,7 @@ The following properties can be used as [control element in a table](#control-el
 				<th>Type</th>
 				<th>Values</th>
 			</tr>
-		<thead>
+		</thead>
 		<tbody>
 			<tr>
 				<td>type</td>
@@ -1642,7 +1642,7 @@ The following properties can be used as [control element in a table](#control-el
 				<th>Type</th>
 				<th>Values</th>
 			</tr>
-		<thead>
+		</thead>
 		<tbody>
 			<tr>
 				<td>type</td>

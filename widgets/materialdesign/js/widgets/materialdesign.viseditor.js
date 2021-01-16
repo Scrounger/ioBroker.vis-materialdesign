@@ -521,7 +521,7 @@ vis.binds.materialdesign.viseditor = {
                                 '\t\t\t\t' + '<th>Type</th>' + '\n' +
                                 '\t\t\t\t' + '<th>Values</th>' + '\n' +
                                 '\t\t\t' + '</tr>' + '\n' +
-                                '\t\t' + '<thead>' + '\n' +
+                                '\t\t' + '</thead>' + '\n' +
                                 '\t\t' + '<tbody>' + '\n';
 
                             strTableForDev = strTableForDev +
