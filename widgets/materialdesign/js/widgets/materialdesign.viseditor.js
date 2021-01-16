@@ -14,6 +14,18 @@ vis.binds.materialdesign.viseditor = {
 
             if (data) {
 
+                if (data[1] === 'button') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#buttons'
+                }
+
+                if (data[1] === 'buttonVertical') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#buttons-vertical'
+                }
+
+                if (data[1] === 'buttonIcon') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#buttons-icon'
+                }
+
                 if (data[1] === 'card') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#card'
                 }
@@ -56,6 +68,10 @@ vis.binds.materialdesign.viseditor = {
 
                 if (data[1] === 'slider') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#slider'
+                }
+
+                if (data[1] === 'sliderRound') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#slider-round'
                 }
 
                 if (data[1] === 'switch') {
