@@ -522,13 +522,17 @@ vis.binds.materialdesign.helper = {
         for (var i = 0; i < vis.subscribing.byViews[view].length; i++) {
             if (vis.subscribing.active.indexOf(vis.subscribing.byViews[view][i]) === -1) {
                 vis.subscribing.active.push(vis.subscribing.byViews[view][i]);
-                oids.push(vis.subscribing.byViews[view][i]);
+                
+                let oid = vis.subscribing.byViews[view][i];
+                oids.push(oid);
+
+                if (debug) console.log(`[subscribeStatesAtRuntime] ${widgetName} (${wid}): '${oid}' subscribed`);
             }
         }
 
         if (oids.length) {
             var that = vis;
-            console.debug('[subscribeStatesAtRuntime] [' + Date.now() + '] Request ' + oids.length + ' states.');
+            console.debug(`[subscribeStatesAtRuntime] ${widgetName} (${wid}): Request ${oids.length} states.`);
             vis.conn._socket.emit('getStates', oids, function (error, data) {
                 if (error) that.showError(error);
 
