@@ -144,6 +144,7 @@ vis.binds.materialdesign.roundslider = {
         return {
             wid: widgetId,
 
+            // Common
             oid: obj.oid,
             "oid-working": obj["oid-working"],
             min: obj.min,
@@ -157,21 +158,96 @@ vis.binds.materialdesign.roundslider = {
             handleZoom: obj.handleZoom,
             rtl: obj.rtl,
             vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+            generateHtmlControl: obj.generateHtmlControl,
+
+            // colors
             colorSliderBg: obj.colorSliderBg,
             colorBeforeThumb: obj.colorBeforeThumb,
             colorThumb: obj.colorThumb,
             colorAfterThumb: obj.colorAfterThumb,
             valueLabelColor: obj.valueLabelColor,
+
+            // labeling
             showValueLabel: obj.showValueLabel,
             valueLabelVerticalPosition: obj.valueLabelVerticalPosition,
             valueLabelStyle: obj.valueLabelStyle,
             valueLabelUnit: obj.valueLabelUnit,
+            valueFontFamily: obj.valueFontFamily,
+            valueFontSize: obj.valueFontSize,
             valueLabelMin: obj.valueLabelMin,
             valueLabelMax: obj.valueLabelMax,
             valueLessThan: obj.valueLessThan,
             textForValueLessThan: obj.textForValueLessThan,
             valueGreaterThan: obj.valueGreaterThan,
-            textForValueGreaterThan: obj.textForValueGreaterThan
+            textForValueGreaterThan: obj.textForValueGreaterThan,
+        }
+    },
+    getHtmlConstructor(widgetData, type) {
+        try {
+            let html;
+            let width = widgetData.width ? widgetData.width : '100px';
+            let height = widgetData.height ? widgetData.height : '100px';
+
+            delete widgetData.width;
+            delete widgetData.height;
+
+            html = `<div class="vis-widget materialdesign-widget materialdesign-slider-round materialdesign-roundslider-html-element"` + '\n' +
+                '\t' + `style="width: ${width}; height: ${height}; position: relative;"` + '\n' +
+                '\t' + `mdw-data='${JSON.stringify(widgetData, null, "\t\t\t")}'>`.replace("}'>", '\t\t' + "}'>") + '\n';
+
+            return html + `</div>`;
+
+        } catch (ex) {
+            console.error(`[Round Slider getHtmlConstructor]: ${ex.message}, stack: ${ex.stack} `);
         }
     }
 }
+
+$.initialize(".materialdesign-roundslider-html-element", function () {
+    let $this = $(this);
+    let parentId = 'unknown';
+    let logPrefix = `[Round Slider HTML Element - ${parentId.replace('w', 'p')}]`;
+
+    try {
+        let mdwDataString = $this.attr('mdw-data');
+        let widgetName = `Round Slider HTML Element`;
+
+        let $parent = $this.closest('.vis-widget[id^=w]');
+        parentId = $parent.attr('id');
+        logPrefix = `[Round Slider HTML Element - ${parentId.replace('w', 'p')}]`;
+
+        console.log(`${logPrefix} initialize html element`);
+
+        let mdwData = JSON.parse(mdwDataString);
+
+        if (mdwData.debug) console.log(`${logPrefix} parsed mdw - data: ${JSON.stringify(mdwData)} `);
+
+        if (mdwData) {
+            let widgetData = vis.binds.materialdesign.slider.getDataFromJson(mdwData, `${parentId} `);
+            if (mdwData.debug) console.log(`${logPrefix} widgetData: ${JSON.stringify(widgetData)} `);
+
+            if (widgetData.oid) {
+                let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, mdwData.debug);
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData["oid-working"], parentId, widgetName, oidsNeedSubscribe, false, mdwData.debug);
+
+                if (oidsNeedSubscribe) {
+                    myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
+                        initializeHtml()
+                    }, mdwData.debug);
+                } else {
+                    initializeHtml();
+                }
+            } else {
+                initializeHtml();
+            }
+
+            function initializeHtml() {
+                vis.binds.materialdesign.roundslider.initialize($this, widgetData);
+            }
+        }
+
+    } catch (ex) {
+        console.error(`${logPrefix} $.initialize: error: ${ex.message}, stack: ${ex.stack} `);
+        $this.append(`<div style = "background: FireBrick; color: white;">Error ${ex.message}</div >`);
+    }
+});
