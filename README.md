@@ -1642,13 +1642,13 @@ The following properties can be used as [control element in a table](#control-el
 				<th>Type</th>
 				<th>Values</th>
 			</tr>
-		</thead>
+		<thead>
 		<tbody>
 			<tr>
 				<td>type</td>
 				<td>Widget type</td>
 				<td>string</td>
-				<td>toggle_vertical</td>
+				<td>toggle_icon</td>
 			</tr>
 			<tr>
 				<td>debug</td>
@@ -1664,12 +1664,6 @@ The following properties can be used as [control element in a table](#control-el
 				<td>Object ID</td>
 				<td>string</td>
 				<td>
-			</tr>
-			<tr>
-				<td>buttonStyle</td>
-				<td>button style</td>
-				<td>string</td>
-				<td>text | raised | unelevated | outlined
 			</tr>
 			<tr>
 				<td>readOnly</td>
@@ -1720,84 +1714,6 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
-			</tr>
-			<tr>
-				<td>buttontext</td>
-				<td>Button text</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>labelTrue</td>
-				<td>Label true</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>labelColorFalse</td>
-				<td>label color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>labelColorTrue</td>
-				<td>active label color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>textFontFamily</td>
-				<td>font</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textFontSize</td>
-				<td>text size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>alignment</td>
-				<td>alignment</td>
-				<td>string</td>
-				<td>flex-start | center | flex-end
-			</tr>
-			<tr>
-				<td>distanceBetweenTextAndImage</td>
-				<td>distance between text and image</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
-			</tr>
-			<tr>
-				<td>mdwButtonPrimaryColor</td>
-				<td>primary color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>mdwButtonSecondaryColor</td>
-				<td>secondary color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorBgFalse</td>
-				<td>background</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorBgTrue</td>
-				<td>active background</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
 				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>icon</b></i></td>
 			</tr>
 			<tr>
@@ -1825,16 +1741,31 @@ The following properties can be used as [control element in a table](#control-el
 				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 			</tr>
 			<tr>
-				<td>iconPosition</td>
-				<td>image position</td>
-				<td>string</td>
-				<td>top | bottom
-			</tr>
-			<tr>
 				<td>iconHeight</td>
 				<td>image height</td>
 				<td>number</td>
 				<td>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+			</tr>
+			<tr>
+				<td>colorBgFalse</td>
+				<td>background</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>colorBgTrue</td>
+				<td>active background</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>colorPress</td>
+				<td>color pressed</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 			</tr>
 			<tr>
 				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Locking</b></i></td>
@@ -1882,6 +1813,18 @@ The following properties can be used as [control element in a table](#control-el
 				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 			</tr>
 			<tr>
+				<td>lockIconBackground</td>
+				<td>lockIconBackground</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>lockBackgroundSizeFactor</td>
+				<td>lockBackgroundSizeFactor</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
 				<td>lockFilterGrayscale</td>
 				<td>gray filter if locked</td>
 				<td>number</td>
@@ -1890,7 +1833,6 @@ The following properties can be used as [control element in a table](#control-el
 		</tbody>
 	</table>
 </details>
-
 
 ## Card
 ![Logo](doc/en/media/cards.png)
