@@ -215,6 +215,7 @@ vis.binds.materialdesign.slider = {
         return {
             wid: widgetId,
 
+            // Common
             oid: obj.oid,
             "oid-working": obj["oid-working"],
             orientation: obj.orientation,
@@ -225,14 +226,24 @@ vis.binds.materialdesign.slider = {
             max: obj.max,
             step: obj.step,
             vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+            generateHtmlControl: obj.generateHtmlControl,
+
+            // steps Layout
             showTicks: obj.showTicks,
             tickSize: obj.tickSize,
             tickLabels: obj.tickLabels,
+            tickTextColor: obj.tickTextColor,
+            tickFontFamily: obj.tickFontFamily,
+            tickFontSize: obj.tickFontSize,
             tickColorBefore: obj.tickColorBefore,
             tickColorAfter: obj.tickColorAfter,
+
+            // colors
             colorBeforeThumb: obj.colorBeforeThumb,
             colorThumb: obj.colorThumb,
             colorAfterThumb: obj.colorAfterThumb,
+
+            // labeling
             prepandText: obj.prepandText,
             prepandTextWidth: obj.prepandTextWidth,
             prepandTextColor: obj.prepandTextColor,
@@ -241,6 +252,9 @@ vis.binds.materialdesign.slider = {
             showValueLabel: obj.showValueLabel,
             valueLabelStyle: obj.valueLabelStyle,
             valueLabelUnit: obj.valueLabelUnit,
+            valueFontFamily: obj.valueFontFamily,
+            valueFontSize: obj.valueFontSize,
+            valueLabelColor: obj.valueLabelColor,
             valueLabelMin: obj.valueLabelMin,
             valueLabelMax: obj.valueLabelMax,
             valueLessThan: obj.valueLessThan,
@@ -248,6 +262,8 @@ vis.binds.materialdesign.slider = {
             valueGreaterThan: obj.valueGreaterThan,
             textForValueGreaterThan: obj.textForValueGreaterThan,
             valueLabelWidth: obj.valueLabelWidth,
+
+            // layout of the controller label
             showThumbLabel: obj.showThumbLabel,
             thumbSize: obj.thumbSize,
             thumbBackgroundColor: obj.thumbBackgroundColor,
@@ -256,5 +272,72 @@ vis.binds.materialdesign.slider = {
             thumbFontFamily: obj.thumbFontFamily,
             useLabelRules: obj.useLabelRules
         }
+    },
+    getHtmlConstructor(widgetData, type) {
+        try {
+            let html;
+            let width = widgetData.width ? widgetData.width : '100%';
+            let height = widgetData.height ? widgetData.height : '100%';
+
+            delete widgetData.width;
+            delete widgetData.height;
+
+            html = `<div class="vis-widget materialdesign-widget materialdesign-slider-vertical materialdesign-slider-html-element"` + '\n' +
+                '\t' + `style="width: ${width}; height: ${height}; position: relative; overflow:visible !important; display: flex; align-items: center;"` + '\n' +
+                '\t' + `mdw-data='${JSON.stringify(widgetData, null, "\t\t\t")}'>`.replace("}'>", '\t\t' + "}'>") + '\n';
+
+            return html + `</div>`;
+
+        } catch (ex) {
+            console.error(`[getHtmlConstructor]: ${ex.message}, stack: ${ex.stack} `);
+        }
     }
-};
+}
+
+$.initialize(".materialdesign-slider-html-element", function () {
+    let $this = $(this);
+    let parentId = 'unknown';
+    let logPrefix = `[Slider HTML Element - ${parentId.replace('w', 'p')}]`;
+
+    try {
+        let mdwDataString = $this.attr('mdw-data');
+        let widgetName = `Slider HTML Element`;
+
+        let $parent = $this.closest('.vis-widget[id^=w]');
+        $parent.css('padding', '12px 32px 0 32px');
+        parentId = $parent.attr('id');
+        logPrefix = `[Button HTML Element - ${parentId.replace('w', 'p')}]`;
+
+        console.log(`${logPrefix} initialize html element`);
+
+        let mdwData = JSON.parse(mdwDataString);
+
+        if (mdwData.debug) console.log(`${logPrefix} parsed mdw - data: ${JSON.stringify(mdwData)} `);
+
+        if (mdwData) {
+            let widgetData = vis.binds.materialdesign.slider.getDataFromJson(mdwData, `${parentId} `);
+            if (mdwData.debug) console.log(`${logPrefix} widgetData: ${JSON.stringify(widgetData)} `);
+
+            if (widgetData.oid) {
+                let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, mdwData.debug);
+
+                if (oidsNeedSubscribe) {
+                    myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
+                        initializeHtml()
+                    });
+                } else {
+                    initializeHtml();
+                }
+            } else {
+                initializeHtml();
+            }
+
+            function initializeHtml() {
+                vis.binds.materialdesign.slider.vuetifySlider($this, widgetData);
+            }
+        }
+    } catch (ex) {
+        console.error(`${logPrefix} $.initialize: error: ${ex.message}, stack: ${ex.stack} `);
+        $this.append(`<div style = "background: FireBrick; color: white;">Error ${ex.message}</div >`);
+    }
+});

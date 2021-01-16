@@ -43,7 +43,7 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 	- [IconList](#iconlist)
 	- [Progress](#progress)
 	- [Slider](#slider)
-	- [Round Slider](#round-slider)
+	- [Slider Round](#slider-round)
 	- [Checkbox](#checkbox)
 	- [Switch](#switch)
 	- [Input](#input)
@@ -1960,7 +1960,330 @@ Settings that are not listed in the table below are self-explanatory.
     </tbody>
 </table>
 
-## Round Slider
+##### Slider Properties
+
+The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+
+<details>
+	<table>
+		<thead>
+			<tr>
+				<th>Property</th>
+				<th>Description</th>
+				<th>Type</th>
+				<th>Values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>debug</td>
+				<td>debug mode</td>
+				<td>boolean</td>
+				<td>false | true</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+			</tr>
+			<tr>
+				<td>oid</td>
+				<td>Object ID</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>oid-working</td>
+				<td>Working Object ID</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>orientation</td>
+				<td>Orientation</td>
+				<td>string</td>
+				<td>horizontal | vertical
+			</tr>
+			<tr>
+				<td>reverseSlider</td>
+				<td>invert slider</td>
+				<td>boolean</td>
+				<td>false | true
+			</tr>
+			<tr>
+				<td>knobSize</td>
+				<td>knob size</td>
+				<td>string</td>
+				<td>knobSmall | knobMedium | knobBig
+			</tr>
+			<tr>
+				<td>readOnly</td>
+				<td>read only</td>
+				<td>boolean</td>
+				<td>false | true
+			</tr>
+			<tr>
+				<td>min</td>
+				<td>min</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>max</td>
+				<td>max</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>step</td>
+				<td>steps</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>vibrateOnMobilDevices</td>
+				<td>vibrate on mobil devices [s]</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>generateHtmlControl</td>
+				<td>generate Html Element</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>steps Layout</b></i></td>
+			</tr>
+			<tr>
+				<td>showTicks</td>
+				<td>show steps</td>
+				<td>string</td>
+				<td>no | yes | always
+			</tr>
+			<tr>
+				<td>tickSize</td>
+				<td>display size of steps</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>tickLabels</td>
+				<td>text of steps (comma separated)</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>tickTextColor</td>
+				<td>text color of steps</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>tickFontFamily</td>
+				<td>font of steps</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>tickFontSize</td>
+				<td>font size</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>tickColorBefore</td>
+				<td>color before the regulator</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>tickColorAfter</td>
+				<td>color after the regulator</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+			</tr>
+			<tr>
+				<td>colorBeforeThumb</td>
+				<td>color before regulator</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>colorThumb</td>
+				<td>color of regulator</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>colorAfterThumb</td>
+				<td>color after regulator</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+			</tr>
+			<tr>
+				<td>prepandText</td>
+				<td>text prepanded</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>prepandTextWidth</td>
+				<td>prepandTextWidth</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>prepandTextColor</td>
+				<td>color of text prepanded</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>prepandTextFontSize</td>
+				<td>size text prepanded</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>prepandTextFontFamily</td>
+				<td>font of text prepanded</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>showValueLabel</td>
+				<td>show value</td>
+				<td>boolean</td>
+				<td>false | true
+			</tr>
+			<tr>
+				<td>valueLabelStyle</td>
+				<td>value caption style</td>
+				<td>string</td>
+				<td>sliderPercent | sliderValue
+			</tr>
+			<tr>
+				<td>valueLabelUnit</td>
+				<td>unit</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>valueFontFamily</td>
+				<td>valueFontFamily</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>valueFontSize</td>
+				<td>value font size</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>valueLabelColor</td>
+				<td>text color of value</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>valueLabelMin</td>
+				<td>text for value less than min</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>valueLabelMax</td>
+				<td>text for value greater than min</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>valueLessThan</td>
+				<td>'smaller than' condition for the text of the value</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>textForValueLessThan</td>
+				<td>text for 'smaller than'</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>valueGreaterThan</td>
+				<td>'greater than' condition for the text of the value</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>textForValueGreaterThan</td>
+				<td>text for 'greater than'</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>valueLabelWidth</td>
+				<td>distance label</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>layout of the controller label</b></i></td>
+			</tr>
+			<tr>
+				<td>showThumbLabel</td>
+				<td>show label</td>
+				<td>string</td>
+				<td>no | yes | always
+			</tr>
+			<tr>
+				<td>thumbSize</td>
+				<td>label size</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>thumbBackgroundColor</td>
+				<td>background color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>thumbFontColor</td>
+				<td>font color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>thumbFontSize</td>
+				<td>font size</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>thumbFontFamily</td>
+				<td>font</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>useLabelRules</td>
+				<td>use rules of the text</td>
+				<td>boolean</td>
+				<td>false | true
+			</tr>
+		</tbody>
+	</table>
+</details>
+
+
+## Slider Round
 ![Logo](doc/en/media/round_slider.gif)
 
 ## Checkbox
@@ -3506,9 +3829,6 @@ Take a look at the animated screenshot below:
 </details>
 
 
-##### Slider
-
-<details>
 <table>
     <thead>
         <tr>
@@ -6219,6 +6539,8 @@ More information about the supported properties can be found at the individual w
 * [Buttons](#buttons)
 * [Buttons Vertical](#buttons-vertical)
 * [Buttons Icon](#buttons-icon)
+* 
+* [Slider](#slider)
 
 
 # used libraries
