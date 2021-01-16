@@ -709,6 +709,9 @@ vis.binds.materialdesign.button = {
                 let width = widgetData.width ? widgetData.width : '100%';
                 let height = widgetData.height ? widgetData.height : '100%';
 
+                delete widgetData.width;
+                delete widgetData.height;
+
                 html = `<div class="vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element"` + '\n' +
                     '\t' + `style="width: ${width}; height: ${height}; position: relative; padding: 0px;"` + '\n' +
                     '\t' + `type="${type}"` + '\n' +
@@ -723,6 +726,9 @@ vis.binds.materialdesign.button = {
                 let width = widgetData.width ? widgetData.width : '48px';
                 let height = widgetData.height ? widgetData.height : '48px';
 
+                delete widgetData.width;
+                delete widgetData.height;
+
                 html = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-html-element"` + '\n' +
                     '\t' + `style="width: ${width}; height: ${height}; position: relative; padding: 0px;"` + '\n' +
                     '\t' + `type="${type}"` + '\n' +
@@ -733,31 +739,29 @@ vis.binds.materialdesign.button = {
                 }
             }
 
-            delete widgetData.width;
-            delete widgetData.height;
-
             return html + `</div>`;
 
         } catch (ex) {
-            console.error(`[getHtmlConstructor - ${type}]handleToggle: error:: ${ex.message}, stack: ${ex.stack} `);
+            console.error(`[Button HTML Element: getHtmlConstructor - ${type}] error: ${ex.message}, stack: ${ex.stack} `);
         }
     }
 }
 
 $.initialize(".materialdesign-button-html-element", function () {
-    let parentId = 'unknown';
     let $this = $(this);
+    let parentId = 'unknown';
+    let logPrefix = `[Button HTML Element - ${parentId.replace('w', 'p')}]`;
 
     try {
         let type = $this.attr('type');
         let typeSplitted = type.split("_")
         let mdwDataString = $this.attr('mdw-data');
-        let widgetName = `html element '${type}'`;
+        let widgetName = `Button HTML Element '${type}'`;
 
         let $parent = $this.closest('.vis-widget[id^=w]');
         parentId = $parent.attr('id');
-
-        let logPrefix = `[Button HTML Element - ${parentId.replace('w', 'p')}]`;
+        logPrefix = `[Button HTML Element - ${parentId.replace('w', 'p')}]`;
+        
 
         console.log(`${logPrefix} initialize html element from type '${type}'`);
         // console.log(`[Button - ${ parentId }]mdw - data: '${mdwDataString}'`);

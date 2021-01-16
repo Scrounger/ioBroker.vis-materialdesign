@@ -524,13 +524,15 @@ vis.binds.materialdesign.viseditor = {
                                 '\t\t' + '</thead>' + '\n' +
                                 '\t\t' + '<tbody>' + '\n';
 
-                            strTableForDev = strTableForDev +
-                                '\t\t\t' + '<tr>' + '\n' +
-                                '\t\t\t\t' + `<td>type</td>` + '\n' +
-                                '\t\t\t\t' + `<td>${_('mdwType')}</td>` + '\n' +
-                                '\t\t\t\t' + `<td>string</td>` + '\n' +
-                                '\t\t\t\t' + `<td>${type}</td>` + '\n' +
-                                '\t\t\t' + '</tr>' + '\n';
+                            if (type) {
+                                strTableForDev = strTableForDev +
+                                    '\t\t\t' + '<tr>' + '\n' +
+                                    '\t\t\t\t' + `<td>type</td>` + '\n' +
+                                    '\t\t\t\t' + `<td>${_('mdwType')}</td>` + '\n' +
+                                    '\t\t\t\t' + `<td>string</td>` + '\n' +
+                                    '\t\t\t\t' + `<td>${type}</td>` + '\n' +
+                                    '\t\t\t' + '</tr>' + '\n';
+                            }
 
                             strTableForDev = strTableForDev +
                                 '\t\t\t' + '<tr>' + '\n' +
@@ -591,10 +593,17 @@ vis.binds.materialdesign.viseditor = {
                             let widget = that.views[view].widgets[that.activeWidgets[0]];
                             let style = widget.style;
 
-                            let widgetData = Object.assign(
+                            let widgetData = {};
+
+                            if (type) {
+                                widgetData.type = type;
+                            }
+
+                            widgetData = Object.assign(
+                                widgetData,
                                 {
-                                    debug: false,                //TODO: auf false setzen                                    
                                     type: type,
+                                    debug: false,                //TODO: auf false setzen   
                                     width: style.width,
                                     height: style.height
                                 },
