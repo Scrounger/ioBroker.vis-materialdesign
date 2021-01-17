@@ -148,6 +148,7 @@ vis.binds.materialdesign.checkbox = {
         return {
             wid: widgetId,
 
+            // Common
             oid: obj.oid,
             readOnly: obj.readOnly,
             toggleType: obj.toggleType,
@@ -155,15 +156,24 @@ vis.binds.materialdesign.checkbox = {
             valueOn: obj.valueOn,
             stateIfNotTrueValue: obj.stateIfNotTrueValue,
             vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+            generateHtmlControl: obj.generateHtmlControl,
+
+            // labeling
             labelFalse: obj.labelFalse,
             labelTrue: obj.labelTrue,
             labelPosition: obj.labelPosition,
             labelClickActive: obj.labelClickActive,
+            valueFontFamily: obj.valueFontFamily,
+            valueFontSize: obj.valueFontSize,
+
+            // colors
             colorCheckBox: obj.colorCheckBox,
             colorCheckBoxBorder: obj.colorCheckBoxBorder,
             colorCheckBoxHover: obj.colorCheckBoxHover,
             labelColorFalse: obj.labelColorFalse,
             labelColorTrue: obj.labelColorTrue,
+
+            // Locking
             lockEnabled: obj.lockEnabled,
             autoLockAfter: obj.autoLockAfter,
             lockIcon: obj.lockIcon,
@@ -171,7 +181,79 @@ vis.binds.materialdesign.checkbox = {
             lockIconLeft: obj.lockIconLeft,
             lockIconSize: obj.lockIconSize,
             lockIconColor: obj.lockIconColor,
-            lockFilterGrayscale: obj.lockFilterGrayscale
+            lockFilterGrayscale: obj.lockFilterGrayscale,
+        }
+    },
+    getHtmlConstructor(widgetData, type) {
+        try {
+            let html;
+            let width = widgetData.width ? widgetData.width : '100%';
+            let height = widgetData.height ? widgetData.height : '50px';
+
+            delete widgetData.width;
+            delete widgetData.height;
+
+            html = `<div class="vis-widget materialdesign-widget materialdesign-checkbox materialdesign-checkbox-html-element"` + '\n' +
+                '\t' + `style="width: ${width}; height: ${height}; position: relative; overflow: visible !important; display: flex; align-items: center;"` + '\n' +
+                '\t' + `mdw-data='${JSON.stringify(widgetData, null, "\t\t\t")}'>`.replace("}'>", '\t\t' + "}'>") + '\n';
+
+            return html + `</div>`;
+
+        } catch (ex) {
+            console.error(`[Checkbox getHtmlConstructor]: ${ex.message}, stack: ${ex.stack} `);
         }
     }
 }
+
+$.initialize(".materialdesign-checkbox-html-element", function () {
+    let $this = $(this);
+    let parentId = 'unknown';
+    let logPrefix = `[Checkbox HTML Element - ${parentId.replace('w', 'p')}]`;
+
+    try {
+        let mdwDataString = $this.attr('mdw-data');
+        let widgetName = `Checkbox HTML Element`;
+
+        let $parent = $this.closest('.vis-widget[id^=w]');
+        $parent.css('padding', '12px 32px 0 32px');
+        parentId = $parent.attr('id');
+        logPrefix = `[Checkbox HTML Element - ${parentId.replace('w', 'p')}]`;
+
+        console.log(`${logPrefix} initialize html element`);
+
+        let mdwData = JSON.parse(mdwDataString);
+
+        if (mdwData) {
+            let widgetData = vis.binds.materialdesign.checkbox.getDataFromJson(mdwData, `${parentId} `);
+            if (mdwData.debug) console.log(`${logPrefix} widgetData: ${JSON.stringify(widgetData)} `);
+
+            if (widgetData.oid) {
+                let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, mdwData.debug);
+
+                if (oidsNeedSubscribe) {
+                    myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
+                        initializeHtml()
+                    }, mdwData.debug);
+                } else {
+                    initializeHtml();
+                }
+            } else {
+                initializeHtml();
+            }
+
+            function initializeHtml() {
+                let init = vis.binds.materialdesign.checkbox.initialize(widgetData);
+
+                if (init) {
+                    $this.addClass(init.labelPosition);
+                    $this.append(init.checkbox);
+
+                    vis.binds.materialdesign.checkbox.handle($this, widgetData);
+                }
+            }
+        }
+    } catch (ex) {
+        console.error(`${logPrefix} $.initialize: error: ${ex.message}, stack: ${ex.stack} `);
+        $this.append(`<div style = "background: FireBrick; color: white;">Error ${ex.message}</div >`);
+    }
+});

@@ -2895,6 +2895,206 @@ The following properties can be used as [control element in a table](#control-el
 ## Checkbox
 ![Logo](doc/en/media/checkbox.gif)
 
+##### Checkbox Properties
+
+The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+
+<details>
+	<table>
+		<thead>
+			<tr>
+				<th>Property</th>
+				<th>Description</th>
+				<th>Type</th>
+				<th>Values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>debug</td>
+				<td>debug mode</td>
+				<td>boolean</td>
+				<td>false | true</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+			</tr>
+			<tr>
+				<td>oid</td>
+				<td>Object ID</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>readOnly</td>
+				<td>read only</td>
+				<td>boolean</td>
+				<td>false | true
+			</tr>
+			<tr>
+				<td>toggleType</td>
+				<td>type of toggle</td>
+				<td>string</td>
+				<td>boolean | value
+			</tr>
+			<tr>
+				<td>valueOff</td>
+				<td>value for off</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>valueOn</td>
+				<td>value for on</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>stateIfNotTrueValue</td>
+				<td>state if value unequal to 'on' condition</td>
+				<td>string</td>
+				<td>on | off
+			</tr>
+			<tr>
+				<td>vibrateOnMobilDevices</td>
+				<td>vibrate on mobil devices [s]</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>generateHtmlControl</td>
+				<td>generate Html Element</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+			</tr>
+			<tr>
+				<td>labelFalse</td>
+				<td>Label false</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>labelTrue</td>
+				<td>Label true</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>labelPosition</td>
+				<td>labelPosition</td>
+				<td>string</td>
+				<td>left | right | off
+			</tr>
+			<tr>
+				<td>labelClickActive</td>
+				<td>activate label click</td>
+				<td>boolean</td>
+				<td>false | true
+			</tr>
+			<tr>
+				<td>valueFontFamily</td>
+				<td>valueFontFamily</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>valueFontSize</td>
+				<td>value font size</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+			</tr>
+			<tr>
+				<td>colorCheckBox</td>
+				<td>checkbox color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>colorCheckBoxBorder</td>
+				<td>border color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>colorCheckBoxHover</td>
+				<td>hover color of checkbox</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>labelColorFalse</td>
+				<td>label color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>labelColorTrue</td>
+				<td>active label color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Locking</b></i></td>
+			</tr>
+			<tr>
+				<td>lockEnabled</td>
+				<td>enable Locking</td>
+				<td>boolean</td>
+				<td>false | true
+			</tr>
+			<tr>
+				<td>autoLockAfter</td>
+				<td>auto Locking after [s]</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>lockIcon</td>
+				<td>icon</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>lockIconTop</td>
+				<td>symbol distance from top [%]</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>lockIconLeft</td>
+				<td>symbol distance from left [%]</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>lockIconSize</td>
+				<td>icon size</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>lockIconColor</td>
+				<td>icon color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>lockFilterGrayscale</td>
+				<td>gray filter if locked</td>
+				<td>number</td>
+				<td>
+			</tr>
+		</tbody>
+	</table>
+</details>
+
+
 ## Switch
 ![Logo](doc/en/media/switch.gif)
 
@@ -4823,156 +5023,6 @@ Take a look at the animated screenshot below:
 		<tr>
 			<td>colorSwitchHoverTrue</td>
 			<td>Schalterfarbe selektiert / hover für Aktiviert</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>labelColorFalse</td>
-			<td>Beschriftungsfarbe</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>labelColorTrue</td>
-			<td>Beschriftungsfarbe f�r true</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>lockEnabled</td>
-			<td>Verriegeln aktivieren</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>autoLockAfter</td>
-			<td>automatisch Verriegeln nach [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIcon</td>
-			<td>Symbol</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconTop</td>
-			<td>Symbolabstand von oben [%]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconLeft</td>
-			<td>Symbolabstand von links [%]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconSize</td>
-			<td>Symbolgr��e</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconColor</td>
-			<td>Symbolfarbe</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>lockFilterGrayscale</td>
-			<td>Graufilter, wenn verriegelt</td>
-			<td>number</td>
-			<td/>
-		</tr>
-	</tbody>
-</table>
-</details>
-
-
-##### Checkbox
-
-<details>
-<table>
-	<thead>
-		<tr>
-			<th>Property</th>
-			<th>Description</th>
-			<th>Type</th>
-			<th>Values</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>oid</td>
-			<td>Object ID</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>readOnly</td>
-			<td>nur lesend</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>toggleType</td>
-			<td>Art der Umschaltung</td>
-			<td>string</td>
-			<td>boolean | value</td>
-		</tr>
-		<tr>
-			<td>valueOff</td>
-			<td>Wert f�r aus</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>valueOn</td>
-			<td>Wert f�r ein</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>stateIfNotTrueValue</td>
-			<td>Zustand, wenn der Wert nicht der Bedingung 'Ein' entspricht</td>
-			<td>string</td>
-			<td>on | off</td>
-		</tr>
-		<tr>
-			<td>vibrateOnMobilDevices</td>
-			<td>auf mobilen Ger�ten vibrieren [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>labelFalse</td>
-			<td>Beschriftung False</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>labelTrue</td>
-			<td>Beschriftung True</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>labelPosition</td>
-			<td>labelPosition</td>
-			<td>string</td>
-			<td>left | right</td>
-		</tr>
-		<tr>
-			<td>labelClickActive</td>
-			<td>Beschriftungs-Klick aktivieren</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>colorCheckBox</td>
-			<td>Kontrollk�stchen Farbe</td>
 			<td>string</td>
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
 		</tr>
@@ -6991,6 +7041,8 @@ More information about the supported properties can be found at the individual w
 *
 * [Progress](#progress)
 * [Progress Circular](#progress-circular)
+*
+* [Checkbox](#checkbox)
 
 # used libraries
 The adapter uses the following libraries:
