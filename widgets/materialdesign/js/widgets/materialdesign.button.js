@@ -749,18 +749,18 @@ vis.binds.materialdesign.button = {
 
 $.initialize(".materialdesign-button-html-element", function () {
     let $this = $(this);
+    let type = $this.attr('type');
     let parentId = 'unknown';
-    let logPrefix = `[Button HTML Element - ${parentId.replace('w', 'p')}]`;
+    let logPrefix = `[Button HTML Element - ${parentId.replace('w', 'p')} - ${type}]`;
 
-    try {
-        let type = $this.attr('type');
+    try {        
         let typeSplitted = type.split("_")
         let mdwDataString = $this.attr('mdw-data');
         let widgetName = `Button HTML Element '${type}'`;
 
         let $parent = $this.closest('.vis-widget[id^=w]');
         parentId = $parent.attr('id');
-        logPrefix = `[Button HTML Element - ${parentId.replace('w', 'p')}]`;
+        logPrefix = `[Button HTML Element - ${parentId.replace('w', 'p')} - ${type}]`;
         
 
         console.log(`${logPrefix} initialize html element from type '${type}'`);

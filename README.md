@@ -1938,6 +1938,369 @@ Settings that are not listed in the table below are self-explanatory.
     </tbody>
 </table>
 
+##### Progress Properties
+
+The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+
+<details>
+	<table>
+		<thead>
+			<tr>
+				<th>Property</th>
+				<th>Description</th>
+				<th>Type</th>
+				<th>Values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>type</td>
+				<td>Widget type</td>
+				<td>string</td>
+				<td>linear</td>
+			</tr>
+			<tr>
+				<td>debug</td>
+				<td>debug mode</td>
+				<td>boolean</td>
+				<td>false | true</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+			</tr>
+			<tr>
+				<td>progressIndeterminate</td>
+				<td>indeterminate - continuously animates</td>
+				<td>boolean</td>
+				<td>false | true
+			</tr>
+			<tr>
+				<td>oid</td>
+				<td>Object ID</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>min</td>
+				<td>min</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>max</td>
+				<td>max</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>reverse</td>
+				<td>Revers value</td>
+				<td>boolean</td>
+				<td>false | true
+			</tr>
+			<tr>
+				<td>generateHtmlControl</td>
+				<td>generate Html Element</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>layout</b></i></td>
+			</tr>
+			<tr>
+				<td>progressRounded</td>
+				<td>rounded corners</td>
+				<td>boolean</td>
+				<td>false | true
+			</tr>
+			<tr>
+				<td>progressStriped</td>
+				<td>striped</td>
+				<td>boolean</td>
+				<td>false | true
+			</tr>
+			<tr>
+				<td>progressStripedColor</td>
+				<td>progressStripedColor</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+			</tr>
+			<tr>
+				<td>colorProgressBackground</td>
+				<td>background color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>colorProgress</td>
+				<td>color progress</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>colorOneCondition</td>
+				<td>condition for color 1 progress [>]</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>colorOne</td>
+				<td>color 1 progress</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>colorTwoCondition</td>
+				<td>condition for color 2 progress [>]</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>colorTwo</td>
+				<td>color 2 progress</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+			</tr>
+			<tr>
+				<td>showValueLabel</td>
+				<td>show value</td>
+				<td>boolean</td>
+				<td>false | true
+			</tr>
+			<tr>
+				<td>valueLabelStyle</td>
+				<td>value caption style</td>
+				<td>string</td>
+				<td>progressPercent | progressValue | progressCustom
+			</tr>
+			<tr>
+				<td>valueLabelUnit</td>
+				<td>unit</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>valueMaxDecimals</td>
+				<td>decimal points</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>valueLabelCustom</td>
+				<td>custom label</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>textColor</td>
+				<td>Minutes text color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>textFontSize</td>
+				<td>text size</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>textFontFamily</td>
+				<td>font</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>textAlign</td>
+				<td>textAlign</td>
+				<td>string</td>
+				<td>start | center | end
+			</tr>
+		</tbody>
+	</table>
+</details>
+
+##### Progress Circular Properties
+
+The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+
+<details>
+	<table>
+		<thead>
+			<tr>
+				<th>Property</th>
+				<th>Description</th>
+				<th>Type</th>
+				<th>Values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>type</td>
+				<td>Widget type</td>
+				<td>string</td>
+				<td>circular</td>
+			</tr>
+			<tr>
+				<td>debug</td>
+				<td>debug mode</td>
+				<td>boolean</td>
+				<td>false | true</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+			</tr>
+			<tr>
+				<td>oid</td>
+				<td>Object ID</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>min</td>
+				<td>min</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>max</td>
+				<td>max</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>generateHtmlControl</td>
+				<td>generate Html Element</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>layout</b></i></td>
+			</tr>
+			<tr>
+				<td>progressCircularSize</td>
+				<td>size</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>progressCircularWidth</td>
+				<td>thickness</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>progressCircularRotate</td>
+				<td>rotate start point</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+			</tr>
+			<tr>
+				<td>colorProgressBackground</td>
+				<td>background color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>colorProgress</td>
+				<td>color progress</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>innerColor</td>
+				<td>circle background color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>colorOneCondition</td>
+				<td>condition for color 1 progress [>]</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>colorOne</td>
+				<td>color 1 progress</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>colorTwoCondition</td>
+				<td>condition for color 2 progress [>]</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>colorTwo</td>
+				<td>color 2 progress</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+			</tr>
+			<tr>
+				<td>showValueLabel</td>
+				<td>show value</td>
+				<td>boolean</td>
+				<td>false | true
+			</tr>
+			<tr>
+				<td>valueLabelStyle</td>
+				<td>value caption style</td>
+				<td>string</td>
+				<td>progressPercent | progressValue | progressCustom
+			</tr>
+			<tr>
+				<td>valueLabelUnit</td>
+				<td>unit</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>valueMaxDecimals</td>
+				<td>decimal points</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>valueLabelCustom</td>
+				<td>custom label</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>textColor</td>
+				<td>Minutes text color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>textFontSize</td>
+				<td>text size</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>textFontFamily</td>
+				<td>font</td>
+				<td>string</td>
+				<td>
+			</tr>
+		</tbody>
+	</table>
+</details>
+
+
 ## Slider
 ![Logo](doc/en/media/slider.gif)
 
@@ -3750,165 +4113,6 @@ Take a look at the animated screenshot below:
     </tbody>
 </table>
 
-##### Progress
-
-<details>
-<table>
-    <thead>
-        <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Values</th>
-        </tr>
-    </thead>
-    <tbody>
-		<tr>
-			<td>oid</td>
-			<td>Object ID</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>indeterminate</td>
-			<td>indeterminate - continuously animates</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>min</td>
-			<td>min</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>max</td>
-			<td>max</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>reverse</td>
-			<td>Revers value</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>progressRounded</td>
-			<td>rounded corners</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>progressStriped</td>
-			<td>striped</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>progressStripedColor</td>
-			<td>progressStripedColor</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorProgressBackground</td>
-			<td>background color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorProgress</td>
-			<td>color progress</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorOneCondition</td>
-			<td>condition for color 1 progress [>]</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>colorOne</td>
-			<td>color 1 progress</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorTwoCondition</td>
-			<td>condition for color 2 progress [>]</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>colorTwo</td>
-			<td>color 2 progress</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>showValueLabel</td>
-			<td>show value</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>valueLabelStyle</td>
-			<td>value caption style</td>
-			<td>string</td>
-			<td>progressPercent | progressValue | progressCustom</td>
-		</tr>
-		<tr>
-			<td>valueLabelUnit</td>
-			<td>unit</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>valueMaxDecimals</td>
-			<td>decimal points</td>
-			<td>number</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>valueLabelCustom</td>
-			<td>valueLabelCustom</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>textColor</td>
-			<td>text color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>textFontSize</td>
-			<td>text size</td>
-			<td>number</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>textFontFamily</td>
-			<td>textFontFamily</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>textAlign</td>
-			<td>textAlign</td>
-			<td>string</td>
-			<td>start | center | end</td>
-		</tr>
-    </tbody>
-</table>
-</details>
-
-
-##### Progress Circular
-
-<details>
 <table>
 	<thead>
 		<tr>
@@ -6762,7 +6966,9 @@ More information about the supported properties can be found at the individual w
 * [Buttons Icon](#buttons-icon)
 * 
 * [Slider](#slider)
-
+*
+* [Progress](#progress)
+* [Progress Circular](#progress)
 
 # used libraries
 The adapter uses the following libraries:
@@ -6785,6 +6991,7 @@ The adapter uses the following libraries:
 * (Scrounger) icon list: option for status bar text added
 * (Scrounger) icon list: status bar position bug fix
 * (Scrounger) progress circular: auto size option added
+* (Scrounger) VIS editor: html previews bug fixes
 
 <!-- omit in toc -->
 ### 0.4.2 (2020-12-29)

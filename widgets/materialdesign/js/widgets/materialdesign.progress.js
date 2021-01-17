@@ -204,19 +204,28 @@ vis.binds.materialdesign.progress = {
             return {
                 wid: widgetId,
 
+                // Common
+                progressIndeterminate: obj.progressIndeterminate,
                 oid: obj.oid,
                 min: obj.min,
                 max: obj.max,
                 reverse: obj.reverse,
+                generateHtmlControl: obj.generateHtmlControl,
+
+                // layout
                 progressRounded: obj.progressRounded,
                 progressStriped: obj.progressStriped,
                 progressStripedColor: obj.progressStripedColor,
+
+                // colors
                 colorProgressBackground: obj.colorProgressBackground,
                 colorProgress: obj.colorProgress,
                 colorOneCondition: obj.colorOneCondition,
                 colorOne: obj.colorOne,
                 colorTwoCondition: obj.colorTwoCondition,
                 colorTwo: obj.colorTwo,
+
+                // labeling
                 showValueLabel: obj.showValueLabel,
                 valueLabelStyle: obj.valueLabelStyle,
                 valueLabelUnit: obj.valueLabelUnit,
@@ -226,18 +235,24 @@ vis.binds.materialdesign.progress = {
                 textFontSize: obj.textFontSize,
                 textFontFamily: obj.textFontFamily,
                 textAlign: obj.textAlign,
-                progressIndeterminate: obj.indeterminate
+
             }
         } else {
             return {
                 wid: widgetId,
 
+                // Common
                 oid: obj.oid,
                 min: obj.min,
                 max: obj.max,
+                generateHtmlControl: obj.generateHtmlControl,
+
+                // layout
                 progressCircularSize: obj.progressCircularSize,
                 progressCircularWidth: obj.progressCircularWidth,
                 progressCircularRotate: obj.progressCircularRotate,
+
+                // colors
                 colorProgressBackground: obj.colorProgressBackground,
                 colorProgress: obj.colorProgress,
                 innerColor: obj.innerColor,
@@ -245,6 +260,8 @@ vis.binds.materialdesign.progress = {
                 colorOne: obj.colorOne,
                 colorTwoCondition: obj.colorTwoCondition,
                 colorTwo: obj.colorTwo,
+
+                // labeling
                 showValueLabel: obj.showValueLabel,
                 valueLabelStyle: obj.valueLabelStyle,
                 valueLabelUnit: obj.valueLabelUnit,
@@ -252,8 +269,83 @@ vis.binds.materialdesign.progress = {
                 valueLabelCustom: obj.valueLabelCustom,
                 textColor: obj.textColor,
                 textFontSize: obj.textFontSize,
-                textFontFamily: obj.textFontFamily
+                textFontFamily: obj.textFontFamily,
+
             }
+        }
+    },
+    getHtmlConstructor(widgetData, type) {
+        try {
+            let html;
+            let width = widgetData.width ? widgetData.width : '100%';
+            let height = widgetData.height ? widgetData.height : '100%';
+
+            delete widgetData.width;
+            delete widgetData.height;
+
+            html = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-html-element"` + '\n' +
+                '\t' + `style="width: ${width}; height: ${height}; position: relative; padding: 0px;"` + '\n' +
+                '\t' + `type="${type}"` + '\n' +
+                '\t' + `mdw-data='${JSON.stringify(widgetData, null, "\t\t\t")}'>`.replace("}'>", '\t\t' + "}'>") + '\n';
+
+            return html + `</div>`;
+
+        } catch (ex) {
+            console.error(`[Progress: getHtmlConstructor - ${type}] error: ${ex.message}, stack: ${ex.stack} `);
         }
     }
 }
+
+$.initialize(".materialdesign-progress-html-element", function () {
+    let $this = $(this);
+    let type = $this.attr('type');
+    let parentId = 'unknown';
+    let logPrefix = `[Progress HTML Element - ${parentId.replace('w', 'p')} - ${type}]`;
+
+    try {
+        let mdwDataString = $this.attr('mdw-data');
+        let widgetName = `Progress HTML Element '${type}'`;
+
+        let $parent = $this.closest('.vis-widget[id^=w]');
+        parentId = $parent.attr('id');
+        logPrefix = `[Progress HTML Element - ${parentId.replace('w', 'p')} - ${type}]`;
+
+        console.log(`${logPrefix} initialize html element from type '${type}'`);
+
+        let mdwData = JSON.parse(mdwDataString);
+
+        if (mdwData.debug) console.log(`${logPrefix} parsed mdw - data: ${JSON.stringify(mdwData)} `);
+
+        if (mdwData) {
+            let widgetData = vis.binds.materialdesign.progress.getDataFromJson(mdwData, `${parentId} `, vis.binds.materialdesign.progress.types[type]);
+            if (mdwData.debug) console.log(`${logPrefix} widgetData: ${JSON.stringify(widgetData)} `);
+
+            if (widgetData.oid) {
+                let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, mdwData.debug);
+
+                if (oidsNeedSubscribe) {
+                    myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
+                        initializeHtml()
+                    }, mdwData.debug);
+                } else {
+                    initializeHtml();
+                }
+            } else {
+                initializeHtml();
+            }
+
+            function initializeHtml() {
+                if (type === vis.binds.materialdesign.progress.types.linear) {
+                    vis.binds.materialdesign.progress.linear($this, widgetData);
+                }
+
+                if (type === vis.binds.materialdesign.progress.types.circular) {
+                    vis.binds.materialdesign.progress.circular($this, widgetData);
+                }
+            }
+        }
+    } catch (ex) {
+        console.error(`${logPrefix} $.initialize: error: ${ex.message}, stack: ${ex.stack} `);
+        $this.append(`<div style = "background: FireBrick; color: white;">Error ${ex.message}</div >`);
+    }
+});
