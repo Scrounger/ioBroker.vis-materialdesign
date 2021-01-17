@@ -70,7 +70,7 @@ vis.binds.materialdesign.checkbox = {
             setCheckboxState();
 
             if (!vis.editMode) {
-                $this.find('.mdc-checkbox').click(function () {
+                $this.find('.mdc-checkbox').on('click', function () {
                     vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
 
                     if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === undefined) {
@@ -215,7 +215,6 @@ $.initialize(".materialdesign-checkbox-html-element", function () {
         let widgetName = `Checkbox HTML Element`;
 
         let $parent = $this.closest('.vis-widget[id^=w]');
-        $parent.css('padding', '12px 32px 0 32px');
         parentId = $parent.attr('id');
         logPrefix = `[Checkbox HTML Element - ${parentId.replace('w', 'p')}]`;
 

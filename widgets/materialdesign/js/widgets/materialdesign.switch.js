@@ -43,7 +43,6 @@ vis.binds.materialdesign.switch = {
     handle: function (el, data) {
         try {
             var $this = $(el);
-            var oid = $this.data('oid');
 
             if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {
                 // Append lock icon if activated
@@ -71,7 +70,7 @@ vis.binds.materialdesign.switch = {
             setSwitchState();
 
             if (!vis.editMode) {
-                $this.find('.mdc-switch').click(function () {
+                $this.find('.mdc-switch').on('click', function () {
                     vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
 
                     if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === undefined) {
@@ -93,12 +92,12 @@ vis.binds.materialdesign.switch = {
                 });
             }
 
-            vis.states.bind(oid + '.val', function (e, newVal, oldVal) {
+            vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 setSwitchState();
             });
 
             function setSwitchState() {
-                var val = vis.states.attr(oid + '.val');
+                var val = vis.states.attr(data.oid + '.val');
 
                 let buttonState = false;
 
@@ -149,6 +148,7 @@ vis.binds.materialdesign.switch = {
         return {
             wid: widgetId,
 
+            // Common
             oid: obj.oid,
             readOnly: obj.readOnly,
             toggleType: obj.toggleType,
@@ -156,10 +156,17 @@ vis.binds.materialdesign.switch = {
             valueOn: obj.valueOn,
             stateIfNotTrueValue: obj.stateIfNotTrueValue,
             vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+            generateHtmlControl: obj.generateHtmlControl,
+
+            // labeling
             labelFalse: obj.labelFalse,
             labelTrue: obj.labelTrue,
             labelPosition: obj.labelPosition,
             labelClickActive: obj.labelClickActive,
+            valueFontFamily: obj.valueFontFamily,
+            valueFontSize: obj.valueFontSize,
+
+            // colors
             colorSwitchThumb: obj.colorSwitchThumb,
             colorSwitchTrack: obj.colorSwitchTrack,
             colorSwitchTrue: obj.colorSwitchTrue,
@@ -167,6 +174,8 @@ vis.binds.materialdesign.switch = {
             colorSwitchHoverTrue: obj.colorSwitchHoverTrue,
             labelColorFalse: obj.labelColorFalse,
             labelColorTrue: obj.labelColorTrue,
+
+            // Locking
             lockEnabled: obj.lockEnabled,
             autoLockAfter: obj.autoLockAfter,
             lockIcon: obj.lockIcon,
@@ -174,7 +183,79 @@ vis.binds.materialdesign.switch = {
             lockIconLeft: obj.lockIconLeft,
             lockIconSize: obj.lockIconSize,
             lockIconColor: obj.lockIconColor,
-            lockFilterGrayscale: obj.lockFilterGrayscale
+            lockFilterGrayscale: obj.lockFilterGrayscale,
+        }
+    },
+    getHtmlConstructor(widgetData, type) {
+        try {
+            let html;
+            let width = widgetData.width ? widgetData.width : '100%';
+            let height = widgetData.height ? widgetData.height : '50px';
+
+            delete widgetData.width;
+            delete widgetData.height;
+
+            html = `<div class="vis-widget materialdesign-widget materialdesign-switch materialdesign-switch-html-element"` + '\n' +
+                '\t' + `style="width: ${width}; height: ${height}; position: relative; overflow: visible !important; display: flex; align-items: center;"` + '\n' +
+                '\t' + `mdw-data='${JSON.stringify(widgetData, null, "\t\t\t")}'>`.replace("}'>", '\t\t' + "}'>") + '\n';
+
+            return html + `</div>`;
+
+        } catch (ex) {
+            console.error(`[Switch getHtmlConstructor]: ${ex.message}, stack: ${ex.stack} `);
         }
     }
 }
+
+$.initialize(".materialdesign-switch-html-element", function () {
+    let $this = $(this);
+    let parentId = 'unknown';
+    let logPrefix = `[Switch HTML Element - ${parentId.replace('w', 'p')}]`;
+
+    try {
+        let mdwDataString = $this.attr('mdw-data');
+        let widgetName = `Switch HTML Element`;
+
+        let $parent = $this.closest('.vis-widget[id^=w]');
+        $parent.css('padding', '0 12px 0 12px');
+        parentId = $parent.attr('id');
+        logPrefix = `[Switch HTML Element - ${parentId.replace('w', 'p')}]`;
+
+        console.log(`${logPrefix} initialize html element`);
+
+        let mdwData = JSON.parse(mdwDataString);
+
+        if (mdwData) {
+            let widgetData = vis.binds.materialdesign.switch.getDataFromJson(mdwData, `${parentId} `);
+            if (mdwData.debug) console.log(`${logPrefix} widgetData: ${JSON.stringify(widgetData)} `);
+
+            if (widgetData.oid) {
+                let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, mdwData.debug);
+
+                if (oidsNeedSubscribe) {
+                    myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
+                        initializeHtml()
+                    }, mdwData.debug);
+                } else {
+                    initializeHtml();
+                }
+            } else {
+                initializeHtml();
+            }
+
+            function initializeHtml() {
+                let init = vis.binds.materialdesign.switch.initialize(widgetData);
+
+                if (init) {
+                    $this.addClass(init.labelPosition);
+                    $this.append(init.myswitch);
+
+                    vis.binds.materialdesign.switch.handle($this, widgetData);
+                }
+            }
+        }
+    } catch (ex) {
+        console.error(`${logPrefix} $.initialize: error: ${ex.message}, stack: ${ex.stack} `);
+        $this.append(`<div style = "background: FireBrick; color: white;">Error ${ex.message}</div >`);
+    }
+});

@@ -3098,6 +3098,218 @@ The following properties can be used as [control element in a table](#control-el
 ## Switch
 ![Logo](doc/en/media/switch.gif)
 
+##### Switch Properties
+
+The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+
+<details>
+	<table>
+		<thead>
+			<tr>
+				<th>Property</th>
+				<th>Description</th>
+				<th>Type</th>
+				<th>Values</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>debug</td>
+				<td>debug mode</td>
+				<td>boolean</td>
+				<td>false | true</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+			</tr>
+			<tr>
+				<td>oid</td>
+				<td>Object ID</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>readOnly</td>
+				<td>read only</td>
+				<td>boolean</td>
+				<td>false | true
+			</tr>
+			<tr>
+				<td>toggleType</td>
+				<td>type of toggle</td>
+				<td>string</td>
+				<td>boolean | value
+			</tr>
+			<tr>
+				<td>valueOff</td>
+				<td>value for off</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>valueOn</td>
+				<td>value for on</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>stateIfNotTrueValue</td>
+				<td>state if value unequal to 'on' condition</td>
+				<td>string</td>
+				<td>on | off
+			</tr>
+			<tr>
+				<td>vibrateOnMobilDevices</td>
+				<td>vibrate on mobil devices [s]</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>generateHtmlControl</td>
+				<td>generate Html Element</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+			</tr>
+			<tr>
+				<td>labelFalse</td>
+				<td>Label false</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>labelTrue</td>
+				<td>Label true</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>labelPosition</td>
+				<td>labelPosition</td>
+				<td>string</td>
+				<td>left | right | off
+			</tr>
+			<tr>
+				<td>labelClickActive</td>
+				<td>activate label click</td>
+				<td>boolean</td>
+				<td>false | true
+			</tr>
+			<tr>
+				<td>valueFontFamily</td>
+				<td>valueFontFamily</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>valueFontSize</td>
+				<td>value font size</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+			</tr>
+			<tr>
+				<td>colorSwitchThumb</td>
+				<td>thumb color of switch</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>colorSwitchTrack</td>
+				<td>track color of switch</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>colorSwitchTrue</td>
+				<td>active switch color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>colorSwitchHover</td>
+				<td>hover color of switch</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>colorSwitchHoverTrue</td>
+				<td>active switch color selected / hover</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>labelColorFalse</td>
+				<td>label color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>labelColorTrue</td>
+				<td>active label color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Locking</b></i></td>
+			</tr>
+			<tr>
+				<td>lockEnabled</td>
+				<td>enable Locking</td>
+				<td>boolean</td>
+				<td>false | true
+			</tr>
+			<tr>
+				<td>autoLockAfter</td>
+				<td>auto Locking after [s]</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>lockIcon</td>
+				<td>icon</td>
+				<td>string</td>
+				<td>
+			</tr>
+			<tr>
+				<td>lockIconTop</td>
+				<td>symbol distance from top [%]</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>lockIconLeft</td>
+				<td>symbol distance from left [%]</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>lockIconSize</td>
+				<td>icon size</td>
+				<td>number</td>
+				<td>
+			</tr>
+			<tr>
+				<td>lockIconColor</td>
+				<td>icon color</td>
+				<td>string</td>
+				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+			</tr>
+			<tr>
+				<td>lockFilterGrayscale</td>
+				<td>gray filter if locked</td>
+				<td>number</td>
+				<td>
+			</tr>
+		</tbody>
+	</table>
+</details>
+
+
 ## Input
 
 ### Text input
@@ -4334,762 +4546,6 @@ Take a look at the animated screenshot below:
         </tr>
     </tbody>
 </table>
-
-<table>
-	<thead>
-		<tr>
-			<th>Property</th>
-			<th>Description</th>
-			<th>Type</th>
-			<th>Values</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>oid</td>
-			<td>Object ID</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>min</td>
-			<td>min</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>max</td>
-			<td>max</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>progressCircularSize</td>
-			<td>size</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>progressCircularWidth</td>
-			<td>thickness</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>progressCircularRotate</td>
-			<td>rotate start point</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>colorProgressBackground</td>
-			<td>background color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorProgress</td>
-			<td>color progress</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>innerColor</td>
-			<td>circle background color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorOneCondition</td>
-			<td>condition for color 1 progress [>]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>colorOne</td>
-			<td>color 1 progress</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorTwoCondition</td>
-			<td>condition for color 2 progress [>]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>colorTwo</td>
-			<td>color 2 progress</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>showValueLabel</td>
-			<td>show value</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>valueLabelStyle</td>
-			<td>value caption style</td>
-			<td>string</td>
-			<td>progressPercent | progressValue | progressCustom</td>
-		</tr>
-		<tr>
-			<td>valueLabelUnit</td>
-			<td>unit</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>valueMaxDecimals</td>
-			<td>decimal points</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>valueLabelCustom</td>
-			<td>valueLabelCustom</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>textColor</td>
-			<td>text color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>textFontSize</td>
-			<td>text size</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>textFontFamily</td>
-			<td>textFontFamily</td>
-			<td>string</td>
-			<td/>
-		</tr>
-	</tbody>
-</table>
-</details>
-
-
-<table>
-    <thead>
-        <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Values</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-			<td>oid</td>
-			<td>Object ID</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>oid-working</td>
-			<td>Working Object ID</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>orientation</td>
-			<td>Orientation</td>
-			<td>string</td>
-			<td>horizontal | vertical</td>
-		</tr>
-		<tr>
-			<td>reverseSlider</td>
-			<td>invert slider</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>knobSize</td>
-			<td>knob size</td>
-			<td>string</td>
-			<td>knobSmall | knobMedium | knobBig</td>
-		</tr>
-		<tr>
-			<td>readOnly</td>
-			<td>read only</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>min</td>
-			<td>min</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>max</td>
-			<td>max</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>step</td>
-			<td>steps</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>vibrateOnMobilDevices</td>
-			<td>vibrate on mobil devices [s]</td>
-			<td>number</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>showTicks</td>
-			<td>show steps</td>
-			<td>string</td>
-			<td>no | yes | always</td>
-		</tr>
-		<tr>
-			<td>tickSize</td>
-			<td>display size of steps</td>
-			<td>number</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>tickLabels</td>
-			<td>text of steps (comma separated)</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>tickColorBefore</td>
-			<td>color before the regulator</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>tickColorAfter</td>
-			<td>color after the regulator</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorBeforeThumb</td>
-			<td>color before regulator</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorThumb</td>
-			<td>color of regulator</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorAfterThumb</td>
-			<td>color after regulator</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>prepandText</td>
-			<td>text prepanded</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>prepandTextWidth</td>
-			<td>prepandTextWidth</td>
-			<td>number</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>prepandTextColor</td>
-			<td>color of text prepanded</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>prepandTextFontSize</td>
-			<td>size text prepanded</td>
-			<td>number</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>prepandTextFontFamily</td>
-			<td>font of text prepanded</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>showValueLabel</td>
-			<td>show value</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>valueLabelStyle</td>
-			<td>value caption style</td>
-			<td>string</td>
-			<td>sliderPercent | sliderValue</td>
-		</tr>
-		<tr>
-			<td>valueLabelUnit</td>
-			<td>unit</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>valueLabelMin</td>
-			<td>text for value less than min</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>valueLabelMax</td>
-			<td>text for value greater than min</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>valueLessThan</td>
-			<td>'smaller than' condition for the text of the value</td>
-			<td>number</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>textForValueLessThan</td>
-			<td>text for 'smaller than'</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>valueGreaterThan</td>
-			<td>'greater than' condition for the text of the value</td>
-			<td>number</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>textForValueGreaterThan</td>
-			<td>text for 'greater than'</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>valueLabelWidth</td>
-			<td>distance label</td>
-			<td>number</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>showThumbLabel</td>
-			<td>show label</td>
-			<td>string</td>
-			<td>no | yes | always</td>
-		</tr>
-		<tr>
-			<td>thumbSize</td>
-			<td>label size</td>
-			<td>number</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>thumbBackgroundColor</td>
-			<td>background color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>thumbFontColor</td>
-			<td>font color</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>thumbFontSize</td>
-			<td>font size</td>
-			<td>number</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>thumbFontFamily</td>
-			<td>font</td>
-			<td>string</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>useLabelRules</td>
-			<td>use rules of the text</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-    </tbody>
-</table>
-</details>
-
-
-##### Slider Round
-
-<details>
-<table>
-	<thead>
-		<tr>
-			<th>Property</th>
-			<th>Description</th>
-			<th>Type</th>
-			<th>Values</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>oid</td>
-			<td>Object ID</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>oid-working</td>
-			<td>Working Object ID</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>min</td>
-			<td>min</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>max</td>
-			<td>max</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>step</td>
-			<td>steps</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>readOnly</td>
-			<td>nur lesend</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>startAngle</td>
-			<td>start angle</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>arcLength</td>
-			<td>arc length</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>sliderWidth</td>
-			<td>slider thikness</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>handleSize</td>
-			<td>knob size</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>handleZoom</td>
-			<td>knob zoom at control</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>rtl</td>
-			<td>slider movement from right to left</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>vibrateOnMobilDevices</td>
-			<td>vibrate on mobil devices [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>colorSliderBg</td>
-			<td>background</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorBeforeThumb</td>
-			<td>color before regulator</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorThumb</td>
-			<td>color of regulator</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorAfterThumb</td>
-			<td>color after regulator</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>valueLabelColor</td>
-			<td>text color of value</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>showValueLabel</td>
-			<td>show value</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>valueLabelVerticalPosition</td>
-			<td>vertical text position of value </td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>valueLabelStyle</td>
-			<td>value caption style</td>
-			<td>string</td>
-			<td>sliderPercent | sliderValue</td>
-		</tr>
-		<tr>
-			<td>valueLabelUnit</td>
-			<td>unit</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>valueLabelMin</td>
-			<td>text for value less than min</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>valueLabelMax</td>
-			<td>text for value greater than min</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>valueLessThan</td>
-			<td>'smaller than' condition for the text of the value</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>textForValueLessThan</td>
-			<td>text for 'smaller than'</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>valueGreaterThan</td>
-			<td>'greater than' condition for the text of the value</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>textForValueGreaterThan</td>
-			<td>text for 'greater than'</td>
-			<td>string</td>
-			<td/>
-		</tr>
-	</tbody>
-</table>
-</details>
-
-
-##### Switch
-
-<details>
-<table>
-	<thead>
-		<tr>
-			<th>Property</th>
-			<th>Description</th>
-			<th>Type</th>
-			<th>Values</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>oid</td>
-			<td>Object ID</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>readOnly</td>
-			<td>nur lesend</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>toggleType</td>
-			<td>Art der Umschaltung</td>
-			<td>string</td>
-			<td>boolean | value</td>
-		</tr>
-		<tr>
-			<td>valueOff</td>
-			<td>Wert f�r aus</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>valueOn</td>
-			<td>Wert f�r ein</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>stateIfNotTrueValue</td>
-			<td>Zustand, wenn der Wert nicht der Bedingung 'Ein' entspricht</td>
-			<td>string</td>
-			<td>on | off</td>
-		</tr>
-		<tr>
-			<td>vibrateOnMobilDevices</td>
-			<td>auf mobilen Ger�ten vibrieren [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>labelFalse</td>
-			<td>Beschriftung False</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>labelTrue</td>
-			<td>Beschriftung True</td>
-			<td>string</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>labelPosition</td>
-			<td>labelPosition</td>
-			<td>string</td>
-			<td>left | right | off</td>
-		</tr>
-		<tr>
-			<td>labelClickActive</td>
-			<td>Beschriftungs-Klick aktivieren</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>colorSwitchThumb</td>
-			<td>Knopffarbe des Schalters</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorSwitchTrack</td>
-			<td>Schieberfarbe des Schalters</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorSwitchTrue</td>
-			<td>aktive Schalterfarbe</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorSwitchHover</td>
-			<td>Schalterfarbe selektiert / hover</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>colorSwitchHoverTrue</td>
-			<td>Schalterfarbe selektiert / hover für Aktiviert</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>labelColorFalse</td>
-			<td>Beschriftungsfarbe</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>labelColorTrue</td>
-			<td>Beschriftungsfarbe f�r true</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>lockEnabled</td>
-			<td>Verriegeln aktivieren</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>
-		<tr>
-			<td>autoLockAfter</td>
-			<td>automatisch Verriegeln nach [s]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIcon</td>
-			<td>Symbol</td>
-			<td>custom</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconTop</td>
-			<td>Symbolabstand von oben [%]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconLeft</td>
-			<td>Symbolabstand von links [%]</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconSize</td>
-			<td>Symbolgr��e</td>
-			<td>number</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>lockIconColor</td>
-			<td>Symbolfarbe</td>
-			<td>string</td>
-			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
-		</tr>
-		<tr>
-			<td>lockFilterGrayscale</td>
-			<td>Graufilter, wenn verriegelt</td>
-			<td>number</td>
-			<td/>
-		</tr>
-	</tbody>
-</table>
-</details>
-
 
 ##### Textfield
 
@@ -7043,6 +6499,7 @@ More information about the supported properties can be found at the individual w
 * [Progress Circular](#progress-circular)
 *
 * [Checkbox](#checkbox)
+* [Switch](#switch)
 
 # used libraries
 The adapter uses the following libraries:
