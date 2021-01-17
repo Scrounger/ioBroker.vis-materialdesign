@@ -66,6 +66,10 @@ vis.binds.materialdesign.viseditor = {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#progress'
                 }
 
+                if (data[1] === 'progressCircular') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#progress-circular'
+                }
+
                 if (data[1] === 'slider') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#slider'
                 }

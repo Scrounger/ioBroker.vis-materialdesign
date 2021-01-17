@@ -42,6 +42,7 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 	- [List](#list)
 	- [IconList](#iconlist)
 	- [Progress](#progress)
+	- [Progress Circular](#progress-circular)
 	- [Slider](#slider)
 	- [Slider Round](#slider-round)
 	- [Checkbox](#checkbox)
@@ -2124,6 +2125,27 @@ The following properties can be used as [control element in a table](#control-el
 		</tbody>
 	</table>
 </details>
+
+
+## Progress Circular
+![Logo](doc/en/media/progress.gif)
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=6><img src="doc/en/media/progress_settings.png"></td>
+            <td>custom label</td>
+            <td>For custom label you can use the property <code>[#value]</code> to show the real value of the datapoint. To show the current percent you can use <code>[#percent]</code></td>
+        </tr>
+    </tbody>
+</table>
 
 ##### Progress Circular Properties
 
@@ -6968,7 +6990,7 @@ More information about the supported properties can be found at the individual w
 * [Slider](#slider)
 *
 * [Progress](#progress)
-* [Progress Circular](#progress)
+* [Progress Circular](#progress-circular)
 
 # used libraries
 The adapter uses the following libraries:
