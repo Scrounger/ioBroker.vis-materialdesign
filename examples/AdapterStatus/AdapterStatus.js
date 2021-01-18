@@ -2,7 +2,9 @@
 Dieses Skript erzeugt einen json string um den Status aller Adapter mithilfe des Material Design IconList oder Table Widget in VIS anzuzeigen.
 created by Scrounger
 =========================================================================================================================================================================*/
-let version = '1.9.0'                                                               // hier nichts ändern! Version des Skriptes
+
+// Version des Skriptes - hier nichts ändern!
+let version = '1.9.0'                                                               
 
 // !!! Benötigte Adapter !!!                                                        // hier nichts ändern!
 let requiredAdapters = {
