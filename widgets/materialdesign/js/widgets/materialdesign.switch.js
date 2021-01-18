@@ -219,6 +219,11 @@ $.initialize(".materialdesign-switch-html-element", function () {
         let $parent = $this.closest('.vis-widget[id^=w]');
         $parent.css('padding', '0 12px 0 12px');
         parentId = $parent.attr('id');
+        if (!parentId) {
+            // Fallback if no parent id is found (e.g. MDW Dialog)            
+            parentId = Object.keys(vis.widgets)[0];
+        }
+        
         logPrefix = `[Switch HTML Element - ${parentId.replace('w', 'p')}]`;
 
         console.log(`${logPrefix} initialize html element`);

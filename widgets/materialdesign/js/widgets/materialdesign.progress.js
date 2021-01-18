@@ -308,6 +308,11 @@ $.initialize(".materialdesign-progress-html-element", function () {
 
         let $parent = $this.closest('.vis-widget[id^=w]');
         parentId = $parent.attr('id');
+        if (!parentId) {
+            // Fallback if no parent id is found (e.g. MDW Dialog)            
+            parentId = Object.keys(vis.widgets)[0];
+        }
+        
         logPrefix = `[Progress HTML Element - ${parentId.replace('w', 'p')} - ${type}]`;
 
         console.log(`${logPrefix} initialize html element from type '${type}'`);

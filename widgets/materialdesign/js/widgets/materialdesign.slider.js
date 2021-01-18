@@ -306,6 +306,11 @@ $.initialize(".materialdesign-slider-html-element", function () {
         let $parent = $this.closest('.vis-widget[id^=w]');
         $parent.css('padding', '12px 32px 0 32px');
         parentId = $parent.attr('id');
+        if (!parentId) {
+            // Fallback if no parent id is found (e.g. MDW Dialog)            
+            parentId = Object.keys(vis.widgets)[0];
+        }
+        
         logPrefix = `[Slider HTML Element - ${parentId.replace('w', 'p')}]`;
 
         console.log(`${logPrefix} initialize html element`);
