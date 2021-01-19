@@ -348,6 +348,20 @@
                 "uuid": ""
             },
             "native": {}
-        }
+        },
+        {
+            "_id": "lastchange",
+            "type": "state",
+            "common": {
+                "role": "value",
+                "name": "last theme changes",
+                "desc": "last theme changes",
+                "type": "number",
+                "read": true,
+                "write": false,
+                "def": 0
+            },
+            "native": {}
+        }        
     ]
 }

@@ -65,12 +65,33 @@ async function createDatapoints() {
                 read: true,
                 write: true,
                 role: 'value',
-                def: true,
+                def: false,
             },
             native: {}
         };
 
         await this.setObjectAsync(themeId, themeObj);
+    }
+
+    let lastChangeId = `${myNamespace}.lastchange`;
+    let lastChangeObj = await getObjectAsync(lastChangeId);
+
+    if (!lastChangeObj) {
+        lastChangeObj = {
+            type: 'state',
+            common: {
+                name: 'last theme changes',
+                desc: 'last theme changes',
+                type: 'number',
+                read: true,
+                write: false,
+                role: 'value',
+                def: 0,
+            },
+            native: {}
+        };
+
+        await this.setObjectAsync(lastChangeId, lastChangeObj);
     }
 }
 
@@ -754,6 +775,8 @@ function save(callback) {
             }
         });
     }
+
+    setStateAsync(`${myNamespace}.lastchange`, new Date().getTime(), true);
 
     callback(obj);
 }
