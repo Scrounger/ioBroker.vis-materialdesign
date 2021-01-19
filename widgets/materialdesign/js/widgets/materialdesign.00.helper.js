@@ -478,21 +478,35 @@ vis.binds.materialdesign.helper = {
             for (var b = 0; b <= bindings.length - 1; b++) {
                 result.bindingTokenList.push(bindings[b].token);
 
-                if (vis.bindings.hasOwnProperty([bindings[b].systemOid]) === false) {
+                let view = vis.binds.materialdesign.helper.getViewOfWidget(wid);
+
+                if (vis.bindings.hasOwnProperty(bindings[b].systemOid) === false) {
                     result.oidNeedSubscribe = vis.binds.materialdesign.helper.oidNeedSubscribe(bindings[b].systemOid, wid, widgetName, oidNeedSubscribe, true);
 
                     vis.bindings[[bindings[b].systemOid]] = [{
                         visOid: bindings[b].visOid,
-                        systemOid: bindings[b].visOid,
-                        token: bindings[b].visOid,
+                        systemOid: bindings[b].systemOid,
+                        token: bindings[b].token,
+                        operations: bindings[b].operations,
                         format: bindings[b].format,
                         isSeconds: bindings[b].isSeconds,
-                        operations: bindings[b].operations,
                         type: "data",
-                        attr: bindings[b].systemOid,
-                        view: vis.binds.materialdesign.helper.getViewOfWidget(wid),
-                        widget: wid
+                        view: view,
+                        widget: wid,
+                        attr: 'none'
                     }]
+                }
+
+                if (bindings[b].operations) {
+                    for (var o = 0; o <= bindings[b].operations.length - 1; o++) {
+                        if (bindings[b].operations[o].arg) {
+                            for (var a = 0; a <= bindings[b].operations[o].arg.length - 1; a++) {
+                                if (bindings[b].operations[o].arg[a].systemOid) {
+                                    result.oidNeedSubscribe = vis.binds.materialdesign.helper.oidNeedSubscribe(bindings[b].operations[o].arg[a].systemOid, wid, widgetName, oidNeedSubscribe, true);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -522,7 +536,7 @@ vis.binds.materialdesign.helper = {
         for (var i = 0; i < vis.subscribing.byViews[view].length; i++) {
             if (vis.subscribing.active.indexOf(vis.subscribing.byViews[view][i]) === -1) {
                 vis.subscribing.active.push(vis.subscribing.byViews[view][i]);
-                
+
                 let oid = vis.subscribing.byViews[view][i];
                 oids.push(oid);
 
