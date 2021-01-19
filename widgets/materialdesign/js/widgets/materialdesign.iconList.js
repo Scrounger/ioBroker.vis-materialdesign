@@ -173,7 +173,7 @@ vis.binds.materialdesign.iconlist =
                                             <div class="materialdesign-button-body" style="display:flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; height: 100%;">                            
                                             
                                                 ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text materialdesign-icon-list-item-text-vertical" style="cursor: pointer;">${listItemObj.text}</label>` : ''}
-                                                <div class="materialdesign-icon-list-item-layout-vertical-image-container">
+                                                <div class="materialdesign-icon-list-item-layout-vertical-image-container" style="flex-grow: 1;">
                                                     ${myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor)}
                                                     ${lockElement}
                                                 </div>
@@ -261,11 +261,12 @@ vis.binds.materialdesign.iconlist =
                         widgetElement = widgetElement.replace(bindingTokenList[b], vis.formatBinding(bindingTokenList[b]))
                     }
                 }
-
+                
                 if (!replace) {
                     if (!myMdwHelper.getBooleanFromData(data.cardUse, false)) {
+                        console.warn('hier');
                         $this.append(`
-                            <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="height: calc(100% + 6px); flex-wrap: wrap;"' : ''}>
+                            <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="height: 100%; flex-wrap: wrap;"' : ''}>
                                 ${widgetElement}
                             </div>
                         `);
@@ -289,7 +290,7 @@ vis.binds.materialdesign.iconlist =
                                         </div>
                                         <div class="materialdesign-html-card card-text-section iconlist" style="height: 100%; ${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'overflow-y: auto; overflow-x: hidden;' : ''} margin: ${myMdwHelper.getNumberFromData(data.borderDistance, 0)}px;">
                                             <div class="materialdesign-html-card">
-                                                <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="height: calc(100% + 6px); flex-wrap: wrap;"' : ''}>
+                                                <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="height: 100%; flex-wrap: wrap;"' : ''}>
                                                     ${widgetElement}
                                                 </div>
                                             </div>
@@ -298,7 +299,7 @@ vis.binds.materialdesign.iconlist =
                     }
                 } else {
                     $this.find(`.${containerClass}`).replaceWith(`
-                        <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'height: calc(100% + 6px); style="flex-wrap: wrap;"' : ''}>
+                        <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="height: 100%; flex-wrap: wrap;"' : ''}>
                             ${widgetElement}
                         </div>              
                     `);
