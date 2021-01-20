@@ -193,9 +193,12 @@ vis.binds.materialdesign.checkbox = {
             delete widgetData.width;
             delete widgetData.height;
 
+            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-debug="false"` + '\n',
+                vis.binds.materialdesign.checkbox.getDataFromJson(widgetData, 0));
+
             html = `<div class="vis-widget materialdesign-widget materialdesign-checkbox materialdesign-checkbox-html-element"` + '\n' +
                 '\t' + `style="width: ${width}; height: ${height}; position: relative; overflow: visible !important; display: flex; align-items: center;"` + '\n' +
-                '\t' + `mdw-data='${JSON.stringify(widgetData, null, "\t\t\t")}'>`.replace("}'>", '\t\t' + "}'>") + '\n';
+                '\t' + mdwData + ">";
 
             return html + `</div>`;
 
@@ -211,49 +214,25 @@ $.initialize(".materialdesign-checkbox-html-element", function () {
     let logPrefix = `[Checkbox HTML Element - ${parentId.replace('w', 'p')}]`;
 
     try {
-        let mdwDataString = $this.attr('mdw-data');
         let widgetName = `Checkbox HTML Element`;
 
-        let $parent = $this.closest('.vis-widget[id^=w]');
-        parentId = $parent.attr('id');
-        if (!parentId) {
-            // Fallback if no parent id is found (e.g. MDW Dialog)            
-            parentId = Object.keys(vis.widgets)[0];
-        }
-        
+        parentId = myMdwHelper.getHtmlParentId($this);
         logPrefix = `[Checkbox HTML Element - ${parentId.replace('w', 'p')}]`;
 
         console.log(`${logPrefix} initialize html element`);
 
-        let mdwData = JSON.parse(mdwDataString);
+        myMdwHelper.extractHtmlWidgetData($this,
+            vis.binds.materialdesign.checkbox.getDataFromJson({}, parentId),
+            parentId, widgetName, logPrefix, initializeHtml);
 
-        if (mdwData) {
-            let widgetData = vis.binds.materialdesign.checkbox.getDataFromJson(mdwData, `${parentId} `);
-            if (mdwData.debug) console.log(`${logPrefix} widgetData: ${JSON.stringify(widgetData)} `);
+        function initializeHtml(widgetData) {
+            let init = vis.binds.materialdesign.checkbox.initialize(widgetData);
 
-            if (widgetData.oid) {
-                let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, mdwData.debug);
+            if (init) {
+                $this.addClass(init.labelPosition);
+                $this.append(init.checkbox);
 
-                if (oidsNeedSubscribe) {
-                    myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
-                        initializeHtml()
-                    }, mdwData.debug);
-                } else {
-                    initializeHtml();
-                }
-            } else {
-                initializeHtml();
-            }
-
-            function initializeHtml() {
-                let init = vis.binds.materialdesign.checkbox.initialize(widgetData);
-
-                if (init) {
-                    $this.addClass(init.labelPosition);
-                    $this.append(init.checkbox);
-
-                    vis.binds.materialdesign.checkbox.handle($this, widgetData);
-                }
+                vis.binds.materialdesign.checkbox.handle($this, widgetData);
             }
         }
     } catch (ex) {

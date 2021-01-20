@@ -283,10 +283,13 @@ vis.binds.materialdesign.progress = {
             delete widgetData.width;
             delete widgetData.height;
 
+            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-type="${type}"` + '\n' + '\t' + `mdw-debug="false"` + '\n',
+                vis.binds.materialdesign.progress.getDataFromJson(widgetData, 0, vis.binds.materialdesign.progress.types[type]))
+
             html = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-html-element"` + '\n' +
                 '\t' + `style="width: ${width}; height: ${height}; position: relative; padding: 0px;"` + '\n' +
                 '\t' + `type="${type}"` + '\n' +
-                '\t' + `mdw-data='${JSON.stringify(widgetData, null, "\t\t\t")}'>`.replace("}'>", '\t\t' + "}'>") + '\n';
+                '\t' + mdwData + ">";
 
             return html + `</div>`;
 
@@ -303,50 +306,24 @@ $.initialize(".materialdesign-progress-html-element", function () {
     let logPrefix = `[Progress HTML Element - ${parentId.replace('w', 'p')} - ${type}]`;
 
     try {
-        let mdwDataString = $this.attr('mdw-data');
         let widgetName = `Progress HTML Element '${type}'`;
 
-        let $parent = $this.closest('.vis-widget[id^=w]');
-        parentId = $parent.attr('id');
-        if (!parentId) {
-            // Fallback if no parent id is found (e.g. MDW Dialog)            
-            parentId = Object.keys(vis.widgets)[0];
-        }
-        
+        parentId = myMdwHelper.getHtmlParentId($this);
         logPrefix = `[Progress HTML Element - ${parentId.replace('w', 'p')} - ${type}]`;
 
         console.log(`${logPrefix} initialize html element from type '${type}'`);
 
-        let mdwData = JSON.parse(mdwDataString);
+        myMdwHelper.extractHtmlWidgetData($this,
+            vis.binds.materialdesign.progress.getDataFromJson({}, parentId, vis.binds.materialdesign.progress.types[type]),
+            parentId, widgetName, logPrefix, initializeHtml);
 
-        if (mdwData.debug) console.log(`${logPrefix} parsed mdw - data: ${JSON.stringify(mdwData)} `);
-
-        if (mdwData) {
-            let widgetData = vis.binds.materialdesign.progress.getDataFromJson(mdwData, `${parentId} `, vis.binds.materialdesign.progress.types[type]);
-            if (mdwData.debug) console.log(`${logPrefix} widgetData: ${JSON.stringify(widgetData)} `);
-
-            if (widgetData.oid) {
-                let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, mdwData.debug);
-
-                if (oidsNeedSubscribe) {
-                    myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
-                        initializeHtml()
-                    }, mdwData.debug);
-                } else {
-                    initializeHtml();
-                }
-            } else {
-                initializeHtml();
+        function initializeHtml(widgetData) {
+            if (type === vis.binds.materialdesign.progress.types.linear) {
+                vis.binds.materialdesign.progress.linear($this, widgetData);
             }
 
-            function initializeHtml() {
-                if (type === vis.binds.materialdesign.progress.types.linear) {
-                    vis.binds.materialdesign.progress.linear($this, widgetData);
-                }
-
-                if (type === vis.binds.materialdesign.progress.types.circular) {
-                    vis.binds.materialdesign.progress.circular($this, widgetData);
-                }
+            if (type === vis.binds.materialdesign.progress.types.circular) {
+                vis.binds.materialdesign.progress.circular($this, widgetData);
             }
         }
     } catch (ex) {

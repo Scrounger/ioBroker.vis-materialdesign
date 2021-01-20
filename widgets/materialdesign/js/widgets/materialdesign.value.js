@@ -92,9 +92,12 @@ vis.binds.materialdesign.value = {
             delete widgetData.width;
             delete widgetData.height;
 
+            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-debug="false"` + '\n',
+                vis.binds.materialdesign.value.getDataFromJson(widgetData, 0));
+
             html = `<div class="vis-widget materialdesign-widget materialdesign-value materialdesign-value-html-element"` + '\n' +
                 '\t' + `style="width: ${width}; height: ${height}; position: relative; display: flex; align-items: center;"` + '\n' +
-                '\t' + `mdw-data='${JSON.stringify(widgetData, null, "\t\t\t")}'>`.replace("}'>", '\t\t' + "}'>") + '\n';
+                '\t' + mdwData + ">";
 
             return html + `</div>`;
 
@@ -110,45 +113,19 @@ $.initialize(".materialdesign-value-html-element", function () {
     let logPrefix = `[Value HTML Element - ${parentId.replace('w', 'p')}]`;
 
     try {
-        let mdwDataString = $this.attr('mdw-data');
         let widgetName = `Value HTML Element`;
 
-        let $parent = $this.closest('.vis-widget[id^=w]');
-        parentId = $parent.attr('id');
-        if (!parentId) {
-            // Fallback if no parent id is found (e.g. MDW Dialog)            
-            parentId = Object.keys(vis.widgets)[0];
-        }
-
+        parentId = myMdwHelper.getHtmlParentId($this);
         logPrefix = `[Value HTML Element - ${parentId.replace('w', 'p')}]`;
 
         console.log(`${logPrefix} initialize html element`);
 
-        let mdwData = JSON.parse(mdwDataString);
+        myMdwHelper.extractHtmlWidgetData($this,
+            vis.binds.materialdesign.value.getDataFromJson({}, parentId),
+            parentId, widgetName, logPrefix, initializeHtml);
 
-        if (mdwData.debug) console.log(`${logPrefix} parsed mdw - data: ${JSON.stringify(mdwData)} `);
-
-        if (mdwData) {
-            let widgetData = vis.binds.materialdesign.value.getDataFromJson(mdwData, `${parentId} `);
-            if (mdwData.debug) console.log(`${logPrefix} widgetData: ${JSON.stringify(widgetData)} `);
-
-            if (widgetData.oid) {
-                let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, mdwData.debug);
-
-                if (oidsNeedSubscribe) {
-                    myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
-                        initializeHtml()
-                    }, mdwData.debug);
-                } else {
-                    initializeHtml();
-                }
-            } else {
-                initializeHtml();
-            }
-
-            function initializeHtml() {
-                vis.binds.materialdesign.value.initialize($this, widgetData);
-            }
+        function initializeHtml(widgetData) {
+            vis.binds.materialdesign.value.initialize($this, widgetData);
         }
     } catch (ex) {
         console.error(`${logPrefix} $.initialize: error: ${ex.message}, stack: ${ex.stack} `);

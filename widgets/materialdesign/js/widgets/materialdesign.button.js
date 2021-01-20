@@ -392,6 +392,7 @@ vis.binds.materialdesign.button = {
         if (type === this.types.toggle.default) {
             return {
                 wid: widgetId,
+                debug: obj.debug,
 
                 // Common
                 oid: obj.oid,
@@ -439,6 +440,7 @@ vis.binds.materialdesign.button = {
         } else if (type === this.types.toggle.vertical) {
             return {
                 wid: widgetId,
+                debug: obj.debug,
 
                 // Common
                 oid: obj.oid,
@@ -488,6 +490,7 @@ vis.binds.materialdesign.button = {
         } else if (type === this.types.toggle.icon) {
             return {
                 wid: widgetId,
+                debug: obj.debug,
 
                 // Common
                 oid: obj.oid,
@@ -526,6 +529,7 @@ vis.binds.materialdesign.button = {
         } else if (type === this.types.state.default) {
             return {
                 wid: widgetId,
+                debug: obj.debug,
 
                 // Common
                 oid: obj.oid,
@@ -561,6 +565,7 @@ vis.binds.materialdesign.button = {
         } else if (type === this.types.state.vertical) {
             return {
                 wid: widgetId,
+                debug: obj.debug,
 
                 // Common
                 oid: obj.oid,
@@ -599,6 +604,7 @@ vis.binds.materialdesign.button = {
         } else if (type === this.types.state.icon) {
             return {
                 wid: widgetId,
+                debug: obj.debug,
 
                 // Common
                 oid: obj.oid,
@@ -629,12 +635,14 @@ vis.binds.materialdesign.button = {
         } else if (type === this.types.link.default) {
             return {
                 wid: widgetId,
+                debug: obj.debug,
 
                 // Common
                 buttonStyle: obj.buttonStyle,
                 href: obj.href,
                 openNewWindow: obj.openNewWindow,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                generateHtmlControl: obj.generateHtmlControl,
 
                 // labeling
                 buttontext: obj.buttontext,
@@ -651,11 +659,12 @@ vis.binds.materialdesign.button = {
                 image: obj.image,
                 imageColor: obj.imageColor,
                 iconPosition: obj.iconPosition,
-                iconHeight: obj.iconHeight
+                iconHeight: obj.iconHeight,
             }
         } else if (type === this.types.link.vertical) {
             return {
                 wid: widgetId,
+                debug: obj.debug,
 
                 // Common
                 buttonStyle: obj.buttonStyle,
@@ -684,6 +693,7 @@ vis.binds.materialdesign.button = {
         } else if (type === this.types.link.icon) {
             return {
                 wid: widgetId,
+                debug: obj.debug,
 
                 // Common
                 href: obj.href,
@@ -704,6 +714,19 @@ vis.binds.materialdesign.button = {
     getHtmlConstructor(widgetData, type) {
         try {
             let html;
+            let typeSplitted = type.split("_")
+
+            let mdwData = `mdw-type="${type}"` + '\n' +
+                '\t' + `mdw-debug="false"` + '\n';
+
+            let properties = vis.binds.materialdesign.button.getDataFromJson(widgetData, 0, vis.binds.materialdesign.button.types[typeSplitted[0]][typeSplitted[1]]);
+            for (const key of Object.keys(properties)) {
+                // let prop = properties[i];
+
+                if (properties[key] && key !== 'wid') {
+                    mdwData += '\t' + `mdw-${key}='${properties[key]}'` + '\n';
+                }
+            }
 
             if (type.includes('default') || type.includes('vertical')) {
                 let width = widgetData.width ? widgetData.width : '100%';
@@ -714,8 +737,7 @@ vis.binds.materialdesign.button = {
 
                 html = `<div class="vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element"` + '\n' +
                     '\t' + `style="width: ${width}; height: ${height}; position: relative; padding: 0px;"` + '\n' +
-                    '\t' + `type="${type}"` + '\n' +
-                    '\t' + `mdw-data='${JSON.stringify(widgetData, null, "\t\t\t")}'>`.replace("}'>", '\t\t' + "}'>") + '\n';
+                    '\t' + mdwData + ">";
 
                 if (type.includes('toggle_')) {
                     html = html + '\t' + `<div class="materialdesign-widget materialdesign-button-html-element-toogle-handler"></div>` + '\n';
@@ -731,8 +753,7 @@ vis.binds.materialdesign.button = {
 
                 html = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-html-element"` + '\n' +
                     '\t' + `style="width: ${width}; height: ${height}; position: relative; padding: 0px;"` + '\n' +
-                    '\t' + `type="${type}"` + '\n' +
-                    '\t' + `mdw-data='${JSON.stringify(widgetData, null, "\t\t\t")}'>`.replace("}'>", '\t\t' + "}'>") + '\n';
+                    '\t' + mdwData + ">";
 
                 if (type.includes('toggle_')) {
                     html = html + '\t' + `<div class="materialdesign-widget materialdesign-button-html-element-toogle-handler"></div>` + '\n';
@@ -749,80 +770,52 @@ vis.binds.materialdesign.button = {
 
 $.initialize(".materialdesign-button-html-element", function () {
     let $this = $(this);
-    let type = $this.attr('type');
+    let type = $this.attr('mdw-type');
     let parentId = 'unknown';
     let logPrefix = `[Button HTML Element - ${parentId.replace('w', 'p')} - ${type}]`;
 
-    try {        
+    try {
         let typeSplitted = type.split("_")
-        let mdwDataString = $this.attr('mdw-data');
         let widgetName = `Button HTML Element '${type}'`;
 
-        let $parent = $this.closest('.vis-widget[id^=w]');
-        parentId = $parent.attr('id');
-        if (!parentId) {
-            // Fallback if no parent id is found (e.g. MDW Dialog)            
-            parentId = Object.keys(vis.widgets)[0];
-        }
-        
+        parentId = myMdwHelper.getHtmlParentId($this);
         logPrefix = `[Button HTML Element - ${parentId.replace('w', 'p')} - ${type}]`;
-        
 
         console.log(`${logPrefix} initialize html element from type '${type}'`);
-        // console.log(`[Button - ${ parentId }]mdw - data: '${mdwDataString}'`);
 
-        let mdwData = JSON.parse(mdwDataString);
-        
-        if (mdwData.debug) console.log(`${logPrefix} parsed mdw - data: ${JSON.stringify(mdwData)} `);
+        myMdwHelper.extractHtmlWidgetData($this,
+            vis.binds.materialdesign.button.getDataFromJson({}, `${parentId}`, vis.binds.materialdesign.button.types[typeSplitted[0]][typeSplitted[1]]),
+            parentId, widgetName, logPrefix, initializeHtml);
 
-        if (mdwData) {
-            let widgetData = vis.binds.materialdesign.button.getDataFromJson(mdwData, `${parentId} `, vis.binds.materialdesign.button.types[typeSplitted[0]][typeSplitted[1]]);
-            if (mdwData.debug) console.log(`${logPrefix} widgetData: ${JSON.stringify(widgetData)} `);
-
-            if (widgetData.oid) {
-                let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, mdwData.debug);
-
-                if (oidsNeedSubscribe) {
-                    myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
-                        initializeHtml()
-                    }, mdwData.debug);
-                } else {
-                    initializeHtml();
-                }
-            } else {
-                initializeHtml();
+        function initializeHtml(widgetData) {
+            let init;
+            if (type.includes('_default')) {
+                init = vis.binds.materialdesign.button.initializeButton(widgetData);
+            } else if (type.includes('_vertical')) {
+                init = vis.binds.materialdesign.button.initializeVerticalButton(widgetData);
+            } else if (type.includes('_icon')) {
+                init = vis.binds.materialdesign.button.initializeButton(widgetData, true);
             }
 
-            function initializeHtml() {
-                let init;
-                if (type.includes('_default')) {
-                    init = vis.binds.materialdesign.button.initializeButton(widgetData);
-                } else if (type.includes('_vertical')) {
-                    init = vis.binds.materialdesign.button.initializeVerticalButton(widgetData);
-                } else if (type.includes('_icon')) {
-                    init = vis.binds.materialdesign.button.initializeButton(widgetData, true);
+            if (widgetData.lockEnabled) {
+                $this.attr('isLocked', 'true');
+            }
+
+            if (init) {
+                $this.addClass(init.style);
+                $this.append(init.button);
+
+                vis.binds.materialdesign.addRippleEffect($this.children(), widgetData, type.includes('_icon'));
+
+                if (type.includes('link_')) {
+                    vis.binds.materialdesign.button.handleLink($this, widgetData);
+                } else if (type.includes('state_')) {
+                    vis.binds.materialdesign.button.handleState($this, widgetData);
+                } else if (type.includes('toggle_')) {
+                    vis.binds.materialdesign.button.handleToggle($this.find('.materialdesign-button-html-element-toogle-handler'), widgetData);
                 }
-
-                if (widgetData.lockEnabled) {
-                    $this.attr('isLocked', 'true');
-                }
-
-                if (init) {
-                    $this.addClass(init.style);
-                    $this.append(init.button);
-
-                    vis.binds.materialdesign.addRippleEffect($this.children(), widgetData, type.includes('_icon'));
-
-                    if (type.includes('link_')) {
-                        vis.binds.materialdesign.button.handleLink($this, widgetData);
-                    } else if (type.includes('state_')) {
-                        vis.binds.materialdesign.button.handleState($this, widgetData);
-                    } else if (type.includes('toggle_')) {
-                        vis.binds.materialdesign.button.handleToggle($this.find('.materialdesign-button-html-element-toogle-handler'), widgetData);
-                    }
-                } else {
-                    $this.append(`< div style = "background: FireBrick; color: white;" > Error in mdw-data tag!</div > `);
-                }
+            } else {
+                $this.append(`< div style = "background: FireBrick; color: white;" > Error in mdw-data tag!</div > `);
             }
         }
     } catch (ex) {

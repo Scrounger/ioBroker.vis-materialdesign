@@ -601,6 +601,59 @@ vis.binds.materialdesign.helper = {
             }
         });
     },
+    getHtmlmdwData(mdwData, properties){
+        for (const key of Object.keys(properties)) {
+            // let prop = properties[i];
+
+            if (properties[key] && key !== 'wid') {
+                mdwData += '\t' + `mdw-${key}='${properties[key]}'` + '\n';
+            }
+        }
+
+        return mdwData;
+    },
+    getHtmlParentId(el) {
+        let parentId = 'unknown';
+        let $parent = el.closest('.vis-widget[id^=w]');
+        parentId = $parent.attr('id');
+        if (!parentId) {
+            // Fallback if no parent id is found (e.g. MDW Dialog)            
+            parentId = Object.keys(vis.widgets)[0];
+        }
+
+        return parentId;
+    },
+    extractHtmlWidgetData(el, widgetData, parentId, widgetName, logPrefix, callBack) {
+        for (const key of Object.keys(widgetData)) {
+            if (key !== 'wid') {
+                if (key === 'debug') {
+                    widgetData[key] = el.attr(`mdw-debug`) === 'true';
+                } else if (el.attr(`mdw-${key}`)) {
+                    widgetData[key] = el.attr(`mdw-${key}`);
+                } else if (el.attr(`mdw-${key.toLowerCase()}`)) {
+                    widgetData[key] = el.attr(`mdw-${key.toLowerCase()}`);
+                } else {
+                    delete widgetData[key];
+                }
+            }
+        }
+
+        if (widgetData.debug) console.log(`${logPrefix} widgetData: ${JSON.stringify(widgetData)} `);
+
+        if (widgetData.oid) {
+            let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, widgetData.debug);
+
+            if (oidsNeedSubscribe) {
+                myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
+                    callBack(widgetData);
+                }, widgetData.debug);
+            } else {
+                callBack(widgetData);
+            }
+        } else {
+            callBack(widgetData);
+        }
+    },
     setValue(id, value) {
         if (!vis.editMode) {
             vis.binds.materialdesign.helper.getObject(id, function (obj) {

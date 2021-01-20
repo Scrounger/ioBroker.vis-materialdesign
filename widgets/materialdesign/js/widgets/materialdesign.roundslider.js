@@ -191,9 +191,12 @@ vis.binds.materialdesign.roundslider = {
             delete widgetData.width;
             delete widgetData.height;
 
+            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-debug="false"` + '\n',
+                vis.binds.materialdesign.roundslider.getDataFromJson(widgetData, 0));
+
             html = `<div class="vis-widget materialdesign-widget materialdesign-slider-round materialdesign-roundslider-html-element"` + '\n' +
                 '\t' + `style="width: ${width}; height: ${height}; position: relative;"` + '\n' +
-                '\t' + `mdw-data='${JSON.stringify(widgetData, null, "\t\t\t")}'>`.replace("}'>", '\t\t' + "}'>") + '\n';
+                '\t' + mdwData + ">";
 
             return html + `</div>`;
 
@@ -209,46 +212,19 @@ $.initialize(".materialdesign-roundslider-html-element", function () {
     let logPrefix = `[Round Slider HTML Element - ${parentId.replace('w', 'p')}]`;
 
     try {
-        let mdwDataString = $this.attr('mdw-data');
         let widgetName = `Round Slider HTML Element`;
 
-        let $parent = $this.closest('.vis-widget[id^=w]');
-        parentId = $parent.attr('id');
-        if (!parentId) {
-            // Fallback if no parent id is found (e.g. MDW Dialog)            
-            parentId = Object.keys(vis.widgets)[0];
-        }
-        
+        parentId = myMdwHelper.getHtmlParentId($this);
         logPrefix = `[Round Slider HTML Element - ${parentId.replace('w', 'p')}]`;
 
         console.log(`${logPrefix} initialize html element`);
 
-        let mdwData = JSON.parse(mdwDataString);
+        myMdwHelper.extractHtmlWidgetData($this,
+            vis.binds.materialdesign.roundslider.getDataFromJson({}, parentId),
+            parentId, widgetName, logPrefix, initializeHtml);
 
-        if (mdwData.debug) console.log(`${logPrefix} parsed mdw - data: ${JSON.stringify(mdwData)} `);
-
-        if (mdwData) {
-            let widgetData = vis.binds.materialdesign.slider.getDataFromJson(mdwData, `${parentId} `);
-            if (mdwData.debug) console.log(`${logPrefix} widgetData: ${JSON.stringify(widgetData)} `);
-
-            if (widgetData.oid) {
-                let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, mdwData.debug);
-                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData["oid-working"], parentId, widgetName, oidsNeedSubscribe, false, mdwData.debug);
-
-                if (oidsNeedSubscribe) {
-                    myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
-                        initializeHtml()
-                    }, mdwData.debug);
-                } else {
-                    initializeHtml();
-                }
-            } else {
-                initializeHtml();
-            }
-
-            function initializeHtml() {
-                vis.binds.materialdesign.roundslider.initialize($this, widgetData);
-            }
+        function initializeHtml(widgetData) {
+            vis.binds.materialdesign.roundslider.initialize($this, widgetData);
         }
 
     } catch (ex) {
