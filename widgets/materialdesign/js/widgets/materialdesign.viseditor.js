@@ -563,12 +563,24 @@ vis.binds.materialdesign.viseditor = {
                                 '\t\t\t' + '</tr>' + '\n';
 
                             for (const attr in widgetAttrs) {
-                                strTableForDev = strTableForDev +
-                                    '\t\t\t' + '<tr>' + '\n' +
-                                    '\t\t\t\t' + `<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>${_('group_' + attr)}</b></i></td>` + '\n' +
-                                    '\t\t\t' + '</tr>' + '\n';
+
+                                if (!attr.includes('_§')) {
+                                    strTableForDev = strTableForDev +
+                                        '\t\t\t' + '<tr>' + '\n' +
+                                        '\t\t\t\t' + `<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>${_('group_' + attr)}</b></i></td>` + '\n' +
+                                        '\t\t\t' + '</tr>' + '\n';
+                                } else {
+                                    if (attr.includes('_§0')) {
+                                        strTableForDev = strTableForDev +
+                                            '\t\t\t' + '<tr>' + '\n' +
+                                            '\t\t\t\t' + `<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>${_('group_' + attr.replace('_§0', ''))} [x]</b></i></td>` + '\n' +
+                                            '\t\t\t' + '</tr>' + '\n';
+                                    }
+                                }
 
                                 objectForDevString = objectForDevString + `\n// ${_('group_' + attr)}\n`
+
+
                                 for (const prop in widgetAttrs[attr]) {
                                     attrNames.push(prop);
 
@@ -586,13 +598,25 @@ vis.binds.materialdesign.viseditor = {
                                             valExample = "hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)";
                                         }
 
-                                        strTableForDev = strTableForDev +
-                                            '\t\t\t' + '<tr>' + '\n' +
-                                            '\t\t\t\t' + `<td>${prop}</td>` + '\n' +
-                                            '\t\t\t\t' + `<td>${_(prop)}</td>` + '\n' +
-                                            '\t\t\t\t' + `<td>${widgetAttrs[attr][prop].type ? widgetAttrs[attr][prop].type.replace('color', 'string').replace('slider', 'number').replace('select', 'string').replace('checkbox', 'boolean').replace('id', 'string').replace('html', 'string').replace("undefined", 'string').replace("fontname", "string").replace("custom", "string") : 'string'}</td>` + '\n' +
-                                            '\t\t\t\t' + `<td>${valExample}` + '\n' +
-                                            '\t\t\t' + '</tr>' + '\n';
+                                        if (isNaN(prop.slice(-1))) {
+                                            strTableForDev = strTableForDev +
+                                                '\t\t\t' + '<tr>' + '\n' +
+                                                '\t\t\t\t' + `<td>${prop}</td>` + '\n' +
+                                                '\t\t\t\t' + `<td>${_(prop)}</td>` + '\n' +
+                                                '\t\t\t\t' + `<td>${widgetAttrs[attr][prop].type ? widgetAttrs[attr][prop].type.replace('color', 'string').replace('slider', 'number').replace('select', 'string').replace('checkbox', 'boolean').replace('id', 'string').replace('html', 'string').replace("undefined", 'string').replace("fontname", "string").replace("custom", "string") : 'string'}</td>` + '\n' +
+                                                '\t\t\t\t' + `<td>${valExample}` + '\n' +
+                                                '\t\t\t' + '</tr>' + '\n';
+                                        } else {
+                                            if (parseInt(prop.slice(-1)) === 0) {
+                                                strTableForDev = strTableForDev +
+                                                    '\t\t\t' + '<tr>' + '\n' +
+                                                    '\t\t\t\t' + `<td>${prop.replace('0', '')}[x]</td>` + '\n' +
+                                                    '\t\t\t\t' + `<td>${_(prop.replace('0', ''))}</td>` + '\n' +
+                                                    '\t\t\t\t' + `<td>${widgetAttrs[attr][prop].type ? widgetAttrs[attr][prop].type.replace('color', 'string').replace('slider', 'number').replace('select', 'string').replace('checkbox', 'boolean').replace('id', 'string').replace('html', 'string').replace("undefined", 'string').replace("fontname", "string").replace("custom", "string") : 'string'}</td>` + '\n' +
+                                                    '\t\t\t\t' + `<td>${valExample}` + '\n' +
+                                                    '\t\t\t' + '</tr>' + '\n';
+                                            }
+                                        }
 
                                         objectForDevString = objectForDevString + `${prop}: obj.${prop},\n`
                                     }
