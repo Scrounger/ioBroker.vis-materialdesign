@@ -70,11 +70,16 @@ vis.binds.materialdesign.autocomplete = {
     getDataFromJson(obj, widgetId) {
         let data = {
             wid: widgetId,
+            debug: obj.debug,
 
+            // Common
             oid: obj.oid,
             inputMode: obj.inputMode,
             inputType: obj.inputType,
             vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+            generateHtmlControl: obj.generateHtmlControl,
+
+            // layout input 
             inputLayout: obj.inputLayout,
             inputAlignment: obj.inputAlignment,
             inputLayoutBackgroundColor: obj.inputLayoutBackgroundColor,
@@ -86,6 +91,8 @@ vis.binds.materialdesign.autocomplete = {
             inputTextFontFamily: obj.inputTextFontFamily,
             inputTextFontSize: obj.inputTextFontSize,
             inputTextColor: obj.inputTextColor,
+
+            // label of input 
             inputLabelText: obj.inputLabelText,
             inputLabelColor: obj.inputLabelColor,
             inputLabelColorSelected: obj.inputLabelColorSelected,
@@ -93,20 +100,28 @@ vis.binds.materialdesign.autocomplete = {
             inputLabelFontSize: obj.inputLabelFontSize,
             inputTranslateX: obj.inputTranslateX,
             inputTranslateY: obj.inputTranslateY,
+
+            // appendixs of the input
             inputPrefix: obj.inputPrefix,
             inputSuffix: obj.inputSuffix,
             inputAppendixColor: obj.inputAppendixColor,
             inputAppendixFontSize: obj.inputAppendixFontSize,
             inputAppendixFontFamily: obj.inputAppendixFontFamily,
+
+            // sub text of input
             showInputMessageAlways: obj.showInputMessageAlways,
             inputMessage: obj.inputMessage,
             inputMessageFontFamily: obj.inputMessageFontFamily,
             inputMessageFontSize: obj.inputMessageFontSize,
             inputMessageColor: obj.inputMessageColor,
+
+            // counter layout
             showInputCounter: obj.showInputCounter,
             inputCounterColor: obj.inputCounterColor,
             inputCounterFontSize: obj.inputCounterFontSize,
             inputCounterFontFamily: obj.inputCounterFontFamily,
+
+            // Icons
             clearIconShow: obj.clearIconShow,
             clearIcon: obj.clearIcon,
             clearIconSize: obj.clearIconSize,
@@ -123,14 +138,19 @@ vis.binds.materialdesign.autocomplete = {
             appendOuterIcon: obj.appendOuterIcon,
             appendOuterIconSize: obj.appendOuterIconSize,
             appendOuterIconColor: obj.appendOuterIconColor,
+
+            // data of menu
             listDataMethod: obj.listDataMethod,
             countSelectItems: obj.countSelectItems,
             jsonStringObject: obj.jsonStringObject,
             valueList: obj.valueList,
             valueListLabels: obj.valueListLabels,
             valueListIcons: obj.valueListIcons,
+
+            // menu layout
             listPosition: obj.listPosition,
             listPositionOffset: obj.listPositionOffset,
+            openOnClear: obj.openOnClear,
             listItemHeight: obj.listItemHeight,
             listItemBackgroundColor: obj.listItemBackgroundColor,
             listItemBackgroundHoverColor: obj.listItemBackgroundHoverColor,
@@ -156,7 +176,7 @@ vis.binds.materialdesign.autocomplete = {
             listItemValueFont: obj.listItemValueFont,
             listItemValueFontColor: obj.listItemValueFontColor,
             listItemValueFontHoverColor: obj.listItemValueFontHoverColor,
-            listItemValueFontSelectedColor: obj.listItemValueFontSelectedColor,
+            listItemValueFontSelectedColor: obj.listItemValueFontSelectedColor
         }
 
         for (var i = 0; i <= obj.countSelectItems; i++) {
@@ -165,8 +185,56 @@ vis.binds.materialdesign.autocomplete = {
             data['subLabel' + i] = obj['subLabel' + i];
             data['listIcon' + i] = obj['listIcon' + i];
             data['listIconColor' + i] = obj['listIconColor' + i];
+            data['imageColorSelectedTextField' + i] = obj['imageColorSelectedTextField' + i];
         }
 
         return data;
+    },
+    getHtmlConstructor(widgetData, type) {
+        try {
+            let html;
+            let width = widgetData.width ? widgetData.width : '100%';
+            let height = widgetData.height ? widgetData.height : '38px';
+
+            delete widgetData.width;
+            delete widgetData.height;
+
+            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-debug="false"` + '\n',
+                vis.binds.materialdesign.autocomplete.getDataFromJson(widgetData, 0));
+
+            html = `<div class="vis-widget materialdesign-widget materialdesign-autocomplete materialdesign-autocomplete-html-element"` + '\n' +
+                '\t' + `style="width: ${width}; height: ${height}; position: relative; overflow: visible; display: flex; align-items: center;"` + '\n' +
+                '\t' + mdwData + ">";
+
+            return html + `</div>`;
+        } catch (ex) {
+            console.error(`[AutoComplete getHtmlConstructor]: ${ex.message}, stack: ${ex.stack} `);
+        }
     }
 }
+
+$.initialize(".materialdesign-autocomplete-html-element", function () {
+    let $this = $(this);
+    let parentId = 'unknown';
+    let logPrefix = `[AutoComplete HTML Element - ${parentId.replace('w', 'p')}]`;
+
+    try {
+        let widgetName = `AutoComplete HTML Element`;
+
+        parentId = myMdwHelper.getHtmlParentId($this);
+        logPrefix = `[AutoComplete HTML Element - ${parentId.replace('w', 'p')}]`;
+
+        console.log(`${logPrefix} initialize html element`);
+
+        myMdwHelper.extractHtmlWidgetData($this,
+            vis.binds.materialdesign.autocomplete.getDataFromJson({}, parentId),
+            parentId, widgetName, logPrefix, initializeHtml);
+
+        function initializeHtml(widgetData) {
+            vis.binds.materialdesign.autocomplete.initialize($this, widgetData);
+        }
+    } catch (ex) {
+        console.error(`${logPrefix} $.initialize: error: ${ex.message}, stack: ${ex.stack} `);
+        $this.append(`<div style = "background: FireBrick; color: white;">Error ${ex.message}</div >`);
+    }
+});
