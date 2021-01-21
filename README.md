@@ -3696,7 +3696,7 @@ submenus must be defined by a JSON string:
 #### Example
 
 <details>
-```
+<pre><code>
 [
 	{
 		"text": "subitem0",
@@ -3717,7 +3717,7 @@ submenus must be defined by a JSON string:
 		"behaviorNotInUserGroup": "disabled"
 	}
 ]
-```
+</code></pre>
 </details>
 
 
