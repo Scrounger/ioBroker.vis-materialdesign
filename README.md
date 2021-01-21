@@ -55,17 +55,18 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 		- [Autocomplete](#autocomplete)
 	- [Top App Bar](#top-app-bar)
 		- [Submenu](#submenu)
+			- [JSON Properties](#json-properties-1)
 	- [Charts](#charts)
 		- [Bar Chart](#bar-chart)
 			- [Editor Settings](#editor-settings-1)
-			- [JSON Properties](#json-properties-1)
+			- [JSON Properties](#json-properties-2)
 		- [Pie Chart](#pie-chart)
 			- [Editor Settings](#editor-settings-2)
-			- [JSON Properties](#json-properties-2)
+			- [JSON Properties](#json-properties-3)
 		- [Line History Chart:](#line-history-chart)
 			- [Editor Settings](#editor-settings-3)
 		- [JSON Chart](#json-chart)
-			- [JSON Properties](#json-properties-3)
+			- [JSON Properties](#json-properties-4)
 	- [Table](#table)
 		- [Input Data](#input-data)
 			- [Control Elements](#control-elements)
@@ -3638,31 +3639,9 @@ Top App Bar with Navigation Drawer can be combined with the <a href="https://www
 ### Submenu 
 ![Logo](doc/en/media/drawer_subMenu.png)
 
-##### since Version 0.4.0
-Since version 0.4.0 the submenus must be defined by a JSON string:
+submenus must be defined by a JSON string:
 
-```
-[
-	{
-		"text": "subitem0",
-		"icon": "account",
-		"iconColor": "red"
-	}, 
-	{
-		"text": "subitem1",
-		"icon": "home",
-		"iconColor": "green",
-		"divider": "true"
-	}, 
-	{
-		"text": "subitem1",
-		"divider": "true",
-		"icon": "/vis.0/myImages/devices/lxc_iobroker.png",
-		"userGroups": ["administrator", "user"],
-		"behaviorNotInUserGroup": "disabled"
-	}
-]
-```
+#### JSON Properties
 
 <table>
     <thead>
@@ -3712,6 +3691,34 @@ Since version 0.4.0 the submenus must be defined by a JSON string:
         </tr>
     </tbody>
 </table>
+
+<!-- omit in toc -->
+#### Example
+
+<details>
+```
+[
+	{
+		"text": "subitem0",
+		"icon": "account",
+		"iconColor": "red"
+	}, 
+	{
+		"text": "subitem1",
+		"icon": "home",
+		"iconColor": "green",
+		"divider": "true"
+	}, 
+	{
+		"text": "subitem1",
+		"divider": "true",
+		"icon": "/vis.0/myImages/devices/lxc_iobroker.png",
+		"userGroups": ["administrator", "user"],
+		"behaviorNotInUserGroup": "disabled"
+	}
+]
+```
+</details>
 
 
 ## Charts
