@@ -63,20 +63,13 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 			- [Editor Settings](#editor-settings-2)
 			- [JSON Properties](#json-properties-2)
 		- [Line History Chart:](#line-history-chart)
+			- [Editor Settings](#editor-settings-3)
 		- [JSON Chart](#json-chart)
-			- [General](#general-2)
-			- [graph](#graph)
-			- [graph line chart spfeicifc](#graph-line-chart-spfeicifc)
-			- [graph bar chart spfeicifc](#graph-bar-chart-spfeicifc)
-			- [graph y-Axis](#graph-y-axis)
-			- [gradientColor](#gradientcolor)
-		- [Chart with time axis](#chart-with-time-axis)
-			- [values with timestamp](#values-with-timestamp)
-			- [x-axis settings for data with timestamp](#x-axis-settings-for-data-with-timestamp)
+			- [JSON Properties](#json-properties-3)
 	- [Table](#table)
 		- [Input Data](#input-data)
 			- [Control Elements](#control-elements)
-		- [Editor Settings](#editor-settings-3)
+		- [Editor Settings](#editor-settings-4)
 	- [Responsive Layout](#responsive-layout)
 		- [Masonry Views](#masonry-views)
 		- [Grid Views](#grid-views)
@@ -3878,11 +3871,11 @@ Settings that are not listed in the table below are self-explanatory.
         <tr>
             <td rowspan=3><img src="doc/en/media/piechart_settings_common.png"></td>
             <td>set datasets with</td>
-            <td>The data for the BarChart can be entered via the editor or a JSON string can be used</td>
+            <td>The data for the PieChart can be entered via the editor or a JSON string can be used</td>
         </tr>
         <tr>
             <td>number of items</td>
-            <td>number of bars using vis editor for the data of list</td>
+            <td>number of pies pieces using vis editor for the data of list</td>
         </tr>
         <tr>
             <td>Object Id</td>
@@ -3891,7 +3884,7 @@ Settings that are not listed in the table below are self-explanatory.
         <tr>
             <td rowspan=><img src="doc/en/media/barchart_settings_dataset.png"></td>
             <td>Object ID[x]</td>
-            <td>object id for the single bars using vis editor</td>
+            <td>object id for the single pies pieces using vis editor</td>
         </tr>		 
 	</tbody>
 </table>
@@ -3907,6 +3900,9 @@ JSON string must be an array of objects with the following properties:
 > Required Adapter: [SQL](https://github.com/ioBroker/ioBroker.sql), [History](https://github.com/ioBroker/ioBroker.history) or [InfluxDb](https://github.com/ioBroker/ioBroker.influxdb)!
 
 ![Logo](doc/en/media/line_history_chart.gif)
+
+
+#### Editor Settings
 
 Settings that are not listed in the table below are self-explanatory.
 
@@ -3942,23 +3938,23 @@ Settings that are not listed in the table below are self-explanatory.
         </tr>
         <tr>
             <td rowspan=5><img src="doc/en/media/line_hostory_chart_dataset.png"></td>
-            <td>Object Id</td>
-            <td>datapoint id with activated instance for the sql or history adapter</td>
+            <td>Object Id[x]</td>
+            <td>id of datapoint with activated history instance</td>
         </tr>
         <tr>
-            <td>display method</td>
-            <td><a href="https://www.iobroker.net/docu/index-195.htm?page_id=198&lang=en#Aggregation">link</a></td>
+            <td>display method[x]</td>
+            <td><a href="https://www.iobroker.net/docu/index-195.htm?page_id=198&lang=en#Aggregation">aggregation method</a></td>
         </tr>
         <tr>
-            <td>max. number of data points to be displayed</td>
+            <td>max. number of data points to be displayed[x]</td>
             <td>Number of maximum data points to display</td>
         </tr>
         <tr>
-            <td>time interval between the data points in [s]</td>
+            <td>time interval between the data points in [s][x]</td>
             <td>Optional setting, overrides the 'count' setting.<br>Distance between the individual data points in seconds.<br>For example, if you want to display data points every minute, you have to enter 60 here</td>
         </tr>
         <tr>
-            <td>data multiply with</td>
+            <td>data multiply with[x]</td>
             <td>Optional setting, multiply every datapoint with the given value</td>
         </tr>
         <tr>
@@ -3976,7 +3972,14 @@ Settings that are not listed in the table below are self-explanatory.
 
 ### JSON Chart
 
-#### General
+With the JSON chart you have the maximum freedom to create a mixed chart (line, bars and stacked bars) by script.
+
+![Logo](doc/en/media/jsonChart.png) ![Logo](doc/en/media/jsonChart2.png)
+
+#### JSON Properties
+
+<!-- omit in toc -->
+##### General
 
 <table>
     <thead>
@@ -3997,13 +4000,14 @@ Settings that are not listed in the table below are self-explanatory.
         <tr>
             <td>graphs</td>
             <td>data of graphs</td>
-            <td>array[<a href="#graph">graph</a>]</td>
+            <td>array<<a href="#graph">graph</a>></td>
             <td>see graph</td>
         </tr>
     </tbody>
 </table>
 
-#### graph
+<!-- omit in toc -->
+##### graph
 
 <details>
 <table>
@@ -4194,8 +4198,8 @@ Settings that are not listed in the table below are self-explanatory.
 </table>
 </details>
 
-
-#### graph line chart spfeicifc
+<!-- omit in toc -->
+##### graph line chart spfeicifc
 
 <details>
 <table>
@@ -4308,8 +4312,8 @@ Settings that are not listed in the table below are self-explanatory.
 </table>
 </details>
 
-
-#### graph bar chart spfeicifc
+<!-- omit in toc -->
+##### graph bar chart spfeicifc
 
 <details>
 <table>
@@ -4368,7 +4372,8 @@ Settings that are not listed in the table below are self-explanatory.
 </table>
 </details>
 
-#### graph y-Axis
+<!-- omit in toc -->
+##### graph y-Axis
 
 <details>
 <table>
@@ -4541,7 +4546,8 @@ Settings that are not listed in the table below are self-explanatory.
 </table>
 </details>
 
-#### gradientColor
+<!-- omit in toc -->
+##### gradientColor
 
 <details>
 <table>
@@ -4570,10 +4576,11 @@ Settings that are not listed in the table below are self-explanatory.
 </table>
 </details>
 
-### Chart with time axis
+<!-- omit in toc -->
+##### Chart with time axis
 JSON Chart supports data that have a timestamp. To use this the data array must have values for timestamp (x-axis value) and value (y-axis value).
 
-#### values with timestamp
+###### values with timestamp
 
 <details>
 <table>
@@ -4602,7 +4609,7 @@ JSON Chart supports data that have a timestamp. To use this the data array must 
 </table>
 </details>
 
-#### x-axis settings for data with timestamp
+###### x-axis settings for data with timestamp
 
 <details>
 <table>
@@ -4641,6 +4648,131 @@ JSON Chart supports data that have a timestamp. To use this the data array must 
         </tr>
     </tbody>
 </table>
+</details>
+
+<!-- omit in toc -->
+#### Example
+
+<details>
+<pre><code>
+{
+	"axisLabels": ["1h", "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "10h", "11h", "12h", "13h", "14h", "17h", "18h", "19h", "20h", "21h", "22h", "23h", "24h"],
+	"graphs": [
+		{
+			"data": [19, 19, 18, 19, 19, 20, 20, 21, 22, 24, 24, 24, 23, 22, 23, 23, 24, 23, 23, 22, 22, 21, 20, 20],
+			"type": "line",
+			"color": "gray",
+			"legendText": "Temperatur",
+			"line_pointSizeHover": 5,
+			"line_pointSize": 0,
+			"line_Tension": 0.3,
+			"yAxis_show": false,
+			"yAxis_gridLines_show": false,
+			"yAxis_gridLines_ticks_length": 5,
+			"yAxis_min": 0,
+			"yAxis_max": 30,
+			"yAxis_step": 5,
+			"yAxis_position": "left",
+			"yAxis_appendix": " °C",
+			"yAxis_zeroLineWidth": 0.1,
+			"yAxis_zeroLineColor": "black",
+			"displayOrder": 0,
+			"tooltip_AppendText": " °C",
+			"datalabel_backgroundColor": ["#2b9a44", "#2b9a44", "#3aa35b", "#2b9a44", "#2b9a44", "#1d922e", "#1d922e", "#0e8917", "#008000", "#668f00", "#668f00", "#668f00", "#338700", "#008000", "#338700", "#338700", "#668f00", "#338700", "#338700", "#008000", "#008000", "#0e8917", "#1d922e", "#1d922e"],
+			"datalabel_color": "white",
+			"datalabel_offset": -10,
+			"datalabel_fontFamily": "RobotoCondensed-Light",
+			"datalabel_fontSize": 12,
+			"datalabel_borderRadius": 6,
+			"datalabel_show": "auto",
+			"line_PointColor": ["#2b9a44", "#2b9a44", "#3aa35b", "#2b9a44", "#2b9a44", "#1d922e", "#1d922e", "#0e8917", "#008000", "#668f00", "#668f00", "#668f00", "#338700", "#008000", "#338700", "#338700", "#668f00", "#338700", "#338700", "#008000", "#008000", "#0e8917", "#1d922e", "#1d922e"],
+			"line_PointColorBorder": ["#2b9a44", "#2b9a44", "#3aa35b", "#2b9a44", "#2b9a44", "#1d922e", "#1d922e", "#0e8917", "#008000", "#668f00", "#668f00", "#668f00", "#338700", "#008000", "#338700", "#338700", "#668f00", "#338700", "#338700", "#008000", "#008000", "#0e8917", "#1d922e", "#1d922e"],
+			"line_PointColorHover": ["#2b9a44", "#2b9a44", "#3aa35b", "#2b9a44", "#2b9a44", "#1d922e", "#1d922e", "#0e8917", "#008000", "#668f00", "#668f00", "#668f00", "#338700", "#008000", "#338700", "#338700", "#668f00", "#338700", "#338700", "#008000", "#008000", "#0e8917", "#1d922e", "#1d922e"],
+			"line_PointColorBorderHover": ["#2b9a44", "#2b9a44", "#3aa35b", "#2b9a44", "#2b9a44", "#1d922e", "#1d922e", "#0e8917", "#008000", "#668f00", "#668f00", "#668f00", "#338700", "#008000", "#338700", "#338700", "#668f00", "#338700", "#338700", "#008000", "#008000", "#0e8917", "#1d922e", "#1d922e"],
+			"use_gradient_color": true,
+			"gradient_color": [{
+					"value": -20,
+					"color": "#5b2c6f66"
+				}, {
+					"value": 0,
+					"color": "#2874a666"
+				}, {
+					"value": 14,
+					"color": "#73c6b666"
+				}, {
+					"value": 22,
+					"color": "#00800066"
+				}, {
+					"value": 27,
+					"color": "#ffa50066"
+				}, {
+					"value": 35,
+					"color": "#ff000066"
+				}
+			],
+			"use_line_gradient_fill_color": true,
+			"line_gradient_fill_color": [{
+					"value": -20,
+					"color": "#5b2c6f66"
+				}, {
+					"value": 0,
+					"color": "#2874a666"
+				}, {
+					"value": 14,
+					"color": "#73c6b666"
+				}, {
+					"value": 22,
+					"color": "#00800066"
+				}, {
+					"value": 27,
+					"color": "#ffa50066"
+				}, {
+					"value": 35,
+					"color": "#ff000066"
+				}
+			]
+		}, {
+			"data": [50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 19, 33, 36, 23, 14, 16, 34, 46, 40, 24, 22],
+			"type": "line",
+			"color": "#0d47a1",
+			"legendText": "Regenwahrscheinlichkeit",
+			"line_UseFillColor": true,
+			"line_pointSize": 0,
+			"line_pointSizeHover": 5,
+			"yAxis_min": 0,
+			"yAxis_max": 100,
+			"yAxis_maxSteps": 10,
+			"yAxis_position": "left",
+			"yAxis_gridLines_show": false,
+			"yAxis_gridLines_border_show": false,
+			"yAxis_zeroLineWidth": 0.1,
+			"yAxis_zeroLineColor": "black",
+			"yAxis_appendix": " %",
+			"displayOrder": 1,
+			"tooltip_AppendText": " %",
+			"datalabel_show": false
+		}, {
+			"data": ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1.3", "2.5", 0, 1.9, 1.17, 0, 0, 0, 0.18, 0.7, 0.2, 0, 0],
+			"type": "bar",
+			"color": "#6dd600",
+			"legendText": "Niederschlag",
+			"yAxis_min": 0,
+			"yAxis_max": 5,
+			"yAxis_maxSteps": 10,
+			"yAxis_position": "right",
+			"yAxis_gridLines_show": false,
+			"yAxis_appendix": " mm",
+			"yAxis_gridLines_border_show": false,
+			"yAxis_zeroLineWidth": 0.1,
+			"yAxis_zeroLineColor": "black",
+			"displayOrder": 1,
+			"tooltip_AppendText": " mm",
+			"datalabel_show": false
+		}
+	]
+}
+  
+</pre></code>
 </details>
 
 ## Table
