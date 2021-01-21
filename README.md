@@ -41,6 +41,8 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 	- [Card](#card)
 	- [List](#list)
 	- [IconList](#iconlist)
+		- [Editor Settings](#editor-settings)
+		- [JSON Properties](#json-properties)
 	- [Progress](#progress)
 	- [Progress Circular](#progress-circular)
 	- [Slider](#slider)
@@ -51,11 +53,15 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 		- [Text input](#text-input)
 		- [Select](#select)
 		- [Autocomplete](#autocomplete)
-	- [Top App Bar with Navigation Drawer](#top-app-bar-with-navigation-drawer)
+	- [Top App Bar](#top-app-bar)
 		- [Submenu](#submenu)
 	- [Charts](#charts)
 		- [Bar Chart](#bar-chart)
+			- [Editor Settings](#editor-settings-1)
+			- [JSON Properties](#json-properties-1)
 		- [Pie Chart](#pie-chart)
+			- [Editor Settings](#editor-settings-2)
+			- [JSON Properties](#json-properties-2)
 		- [Line History Chart:](#line-history-chart)
 		- [JSON Chart](#json-chart)
 			- [General](#general-2)
@@ -70,7 +76,7 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 	- [Table](#table)
 		- [Input Data](#input-data)
 			- [Control Elements](#control-elements)
-		- [Editor Settings](#editor-settings)
+		- [Editor Settings](#editor-settings-3)
 	- [Responsive Layout](#responsive-layout)
 		- [Masonry Views](#masonry-views)
 		- [Grid Views](#grid-views)
@@ -119,11 +125,11 @@ Starting with version 0.4.0 there is a settings page for the adapter. You can fi
 ## General
 ![Logo](doc/en/media/settings_general.png)
 
-|setting|description|
-|-------|-----------|
-|Documentation|Links to documentation to help you configure the widgets|
-|Generate global script|Create a global script for the [Javascript Script Engine](https://github.com/ioBroker/ioBroker.javascript) with all theme data points. This allows to use colors, fonts and font sizes comfortably in scripts.|
-|Sentry|use Sentry libraries to automatically report exceptions and code errors anonymously to the developers. For more details and for information how to disable the error reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-sentry#plugin-sentry)!|
+| setting                | description                                                                                                                                                                                                                                                                |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Documentation          | Links to documentation to help you configure the widgets                                                                                                                                                                                                                   |
+| Generate global script | Create a global script for the [Javascript Script Engine](https://github.com/ioBroker/ioBroker.javascript) with all theme data points. This allows to use colors, fonts and font sizes comfortably in scripts.                                                             |
+| Sentry                 | use Sentry libraries to automatically report exceptions and code errors anonymously to the developers. For more details and for information how to disable the error reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-sentry#plugin-sentry)! |
 
 ## Theme Editor
 
@@ -1845,6 +1851,8 @@ The following properties can be used as [control element in a table](#control-el
 
 ![Logo](doc/en/media/iconList.gif)
 
+### Editor Settings
+
 Settings that are not listed in the table below are self-explanatory.
 
 <table>
@@ -1857,14 +1865,163 @@ Settings that are not listed in the table below are self-explanatory.
     </thead>
     <tbody>
         <tr>
-            <td rowspan=6><img src="doc/en/media/iconList_settings_common.png"></td>
+            <td rowspan=6><img src="doc/en/media/iconlist_settings_data.png"></td>
             <td>input method for the list data</td>
             <td>The data for the IconList can be entered via the editor or a JSON string can be used</td>
         </tr>
         <tr>
+            <td>Editor: count of list items</td>
+            <td>number of list items using vis editor for the data of list</td>
+        </tr>
+        <tr>
             <td>JSON-String: object id</td>
-            <td>Object Id of datapoint with JSON string. The JSON string must have the following format:
-            <pre><code>
+            <td>object id of datapoint containing json string. Allowed properties are described below</td>
+        </tr> 		        
+    </tbody>
+</table>
+
+### JSON Properties
+
+JSON string must be an array of objects with the following properties:
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>listType</td>
+			<td>type of list</td>
+			<td>string</td>
+			<td>text | buttonState | buttonToggle | buttonToggleValueTrue | buttonToggleValueFalse | buttonNav | buttonLink</td>
+		</tr>
+		<tr>
+			<td>objectId</td>
+			<td>object id for button</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>buttonStateValue</td>
+			<td>value for button state</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>buttonNavView</td>
+			<td>view to navigate</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>buttonLink</td>
+			<td>url to navigate</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>buttonToggleValueTrue</td>
+			<td>true value for button toggle</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>buttonToggleValueFalse</td>
+			<td>false value for button toggle</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>showValueLabel</td>
+			<td>show value as text</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>valueAppendix</td>
+			<td>append text to value</td>
+			<td>string</td>
+			<td/>
+		</tr>		
+		<tr>
+			<td>background</td>
+			<td>background color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>background</td>
+			<td>text</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>subText</td>
+			<td>second text</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>image</td>
+			<td>image path or name of Material Design Icons</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>imageColor</td>
+			<td>color of Material Design Icons</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>imageActive</td>
+			<td>image path or name of Material Design Icons for active button</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>buttonBackgroundColor</td>
+			<td>background color of button</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>buttonBackgroundActiveColor</td>
+			<td>background color of button for active button</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>		
+		<tr>
+			<td>statusBarColor</td>
+			<td>color of status bar</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>		
+		<tr>
+			<td>statusBarText</td>
+			<td>text of status bar</td>
+			<td>string</td>
+			<td/>
+		</tr>		
+		<tr>
+			<td>lockEnabled</td>
+			<td>enable Locking</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+#### Example
+
+<details>
+<pre><code>
 [
 	{
 		"background": "red",
@@ -1911,13 +2068,9 @@ Settings that are not listed in the table below are self-explanatory.
 		"lockEnabled": "false"
 	}
 ]
-            </code></pre>
-            Property <code>listType</code> can have the following values:<br>
-            <code>text, buttonState, buttonToggle, buttonToggleValueTrue, buttonToggleValueFalse, buttonNav, buttonLink</code>
-            </td>
-        </tr>        
-    </tbody>
-</table>
+</code></pre>
+</details>
+
 
 ## Progress
 ![Logo](doc/en/media/progress.gif)
@@ -3452,7 +3605,7 @@ Settings that are not listed in the table below are self-explanatory.
     </tbody>
 </table>
 
-## Top App Bar with Navigation Drawer
+## Top App Bar
 
 Top App Bar with Navigation Drawer can be combined with the <a href="https://www.iobroker.net/#en/documentation/viz/basic.md">view in widget 8</a>.
 
@@ -3567,7 +3720,14 @@ Since version 0.4.0 the submenus must be defined by a JSON string:
     </tbody>
 </table>
 
-##### before Version 0.4.0
+
+## Charts
+
+### Bar Chart
+
+![Logo](doc/en/media/barChart.png)
+
+#### Editor Settings
 
 Settings that are not listed in the table below are self-explanatory.
 
@@ -3581,44 +3741,166 @@ Settings that are not listed in the table below are self-explanatory.
     </thead>
     <tbody>
         <tr>
-            <td rowspan=1><img src="doc/en/media/drawer_subMenu_views.png"></td>
-            <td>count of sub menus[x]</td>
-            <td>Define if the navigation item has submenus and the count of submenus.</td>
+            <td rowspan=3><img src="doc/en/media/barchart_settings_common.png"></td>
+            <td>set datasets with</td>
+            <td>The data for the BarChart can be entered via the editor or a JSON string can be used</td>
         </tr>
         <tr>
-            <td rowspan=1><img src="doc/en/media/drawer_subMenu_labels.png"></td>
-            <td>label[x]</td>
-            <td>To change the text of the items, you have to put a json object into the label field with the index of the view field.<br>
-                Example:<br>
-
-`{"itemText": "Item with Subitems", "subItems": ["subItem1", "subItem2"]}`
-
-Result: see screenshot</td>
+            <td>number of items</td>
+            <td>number of bars using vis editor for the data of list</td>
         </tr>
         <tr>
-            <td rowspan=1><img src="doc/en/media/drawer_subMenu_icons.png"></td>
-            <td>icon[x]</td>
-            <td>To change the icons of the items, you have to put a json object into the icons field with the index of the view field.<br>
-                Example:<br>
-
-`{"itemImage": "/icons-material-svg/hardware/ic_computer_48px.svg", "subItems": ["/vis/widgets/materialdesign/img/IoBroker_Logo.png", "/icons-material-svg/action/ic_android_48px.svg"]}`
-
-Result: see screenshot</td>
+            <td>Object Id</td>
+            <td>object id of datapoint containing json string. Allowed properties are described below</td>
         </tr>
-    </tbody>
+        <tr>
+            <td rowspan=><img src="doc/en/media/barchart_settings_dataset.png"></td>
+            <td>Object ID[x]</td>
+            <td>object id for the single bars using vis editor</td>
+        </tr>		 
+	</tbody>
+</table>	
+
+#### JSON Properties
+
+JSON string must be an array of objects with the following properties:
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>label</td>
+			<td>axis label of bar</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>bar value</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>dataColor</td>
+			<td>bar color</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>valueText</td>
+			<td>override text of bar</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>valueColor</td>
+			<td>color of value text</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>valueAppendix</td>
+			<td>appendix of value text</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>tooltipTitle</td>
+			<td>tooltip title</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>tooltipText</td>
+			<td>tooltip text</td>
+			<td>string</td>
+			<td/>
+		</tr>		
+	</tbody>
 </table>
 
-## Charts
+<!-- omit in toc -->
+#### Example
 
-### Bar Chart
-
-![Logo](doc/en/media/barChart.png)
-
-TODO
+<details>
+<pre><code>
+[
+	{
+		"label": "val0",
+		"value": "30",
+		"valueColor": "#ffffff"
+	}, {
+		"label": "val1",
+		"value": "12.54645646",
+		"tooltipTitle": "myTitle"
+	}, {
+		"label": "val2",
+		"value": "48",
+		"dataColor": "#c2c2c2",
+		"valueAppendix": "\n extra"
+	}, {
+		"label": "val3",
+		"value": "97",
+		"valueColor": "#ffffff"
+	}, {
+		"label": "val4",
+		"value": "32",
+		"valueText": "text"
+	}
+]
+</pre></code>
+</details>
 
 ### Pie Chart
 
-TODO
+![Logo](doc/en/media/pieChart.png)
+
+#### Editor Settings
+
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=3><img src="doc/en/media/piechart_settings_common.png"></td>
+            <td>set datasets with</td>
+            <td>The data for the BarChart can be entered via the editor or a JSON string can be used</td>
+        </tr>
+        <tr>
+            <td>number of items</td>
+            <td>number of bars using vis editor for the data of list</td>
+        </tr>
+        <tr>
+            <td>Object Id</td>
+            <td>object id of datapoint containing json string. Allowed properties are described below</td>
+        </tr>
+        <tr>
+            <td rowspan=><img src="doc/en/media/barchart_settings_dataset.png"></td>
+            <td>Object ID[x]</td>
+            <td>object id for the single bars using vis editor</td>
+        </tr>		 
+	</tbody>
+</table>
+
+#### JSON Properties
+
+JSON string must be an array of objects with the following properties:
+
+
 
 ### Line History Chart:
 

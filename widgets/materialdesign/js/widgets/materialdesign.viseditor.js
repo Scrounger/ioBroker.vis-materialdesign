@@ -31,7 +31,7 @@ vis.binds.materialdesign.viseditor = {
                 }
 
                 if (data[1] === 'topAppBar') {
-                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#top-app-bar-with-navigation-drawer'
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#top-app-bar'
                 }
 
                 if (data[1] === 'topAppBarSubMenu') {
