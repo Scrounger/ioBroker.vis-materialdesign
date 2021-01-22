@@ -105,6 +105,7 @@ vis.binds.materialdesign.helper = {
                     return nullValue;
                 } else {
                     if (vis.editMode) {
+                        console.warn(dataValue);
                         let binding = vis.extractBinding(dataValue, true);
                         if (binding && binding.length >= 1) {
                             let bindingVal = vis.formatBinding(dataValue, undefined, undefined, undefined, true);
@@ -629,9 +630,9 @@ vis.binds.materialdesign.helper = {
                 if (key === 'debug') {
                     widgetData[key] = el.attr(`mdw-debug`) === 'true';
                 } else if (el.attr(`mdw-${key}`)) {
-                    widgetData[key] = el.attr(`mdw-${key}`);
+                    widgetData[key] = el.attr(`mdw-${key}`).replace(/\\"/g, '"').replace(/&x22;/g,'"');
                 } else if (el.attr(`mdw-${key.toLowerCase()}`)) {
-                    widgetData[key] = el.attr(`mdw-${key.toLowerCase()}`);
+                    widgetData[key] = el.attr(`mdw-${key.toLowerCase()}`).replace(/\\"/g, '"').replace(/&x22;/g,'"');
                 } else {
                     delete widgetData[key];
                 }
