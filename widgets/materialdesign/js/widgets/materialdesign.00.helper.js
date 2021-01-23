@@ -28,7 +28,41 @@ vis.binds.materialdesign.helper = {
                 }
             }, 1)
         } else {
-            if (debug) console.log(`[waitForVisConnected] stop waiting for vis connection after 100 retries`);
+            console.warn(`[waitForVisConnected] stop waiting for vis connection after ${counter} retries`);
+            callBack();
+        }
+    },
+    waitForViews: function (callBack, counter = 0, debug = false) {
+        if (counter < 500) {
+
+            setTimeout(function () {
+                if (vis.views && vis.views !== null && Object.keys(vis.views).length > 0) {
+                    callBack();
+                } else {
+                    if (debug) console.log(`[waitForViews] wait for views`);
+                    counter++
+                    vis.binds.materialdesign.helper.waitForViews(callBack, counter);
+                }
+            }, 1)
+        } else {
+            console.warn(`[waitForViews] stop waiting for vis views after ${counter} retries`);
+            callBack();
+        }
+    },
+    waitForWidgets: function (callBack, counter = 0, debug = false) {
+        if (counter < 500) {
+
+            setTimeout(function () {
+                if (vis.widgets && vis.widgets !== null && Object.keys(vis.widgets).length > 0) {
+                    callBack();
+                } else {
+                    if (debug) console.log(`[waitForWidgets] wait for widgets`);
+                    counter++
+                    vis.binds.materialdesign.helper.waitForWidgets(callBack, counter);
+                }
+            }, 1)
+        } else {
+            console.warn(`[waitForWidgets] stop waiting for vis widgets after ${counter} retries`);
             callBack();
         }
     },
@@ -45,7 +79,7 @@ vis.binds.materialdesign.helper = {
                 }
             }, 50)
         } else {
-            if (debug) console.log(`[${widgetName} ${wid}] stop waiting after 100 retries`);
+            console.warn(`[${widgetName} ${wid}] stop waiting after ${counter} retries`);
             callBack();
         }
     },
@@ -773,3 +807,20 @@ vis.binds.materialdesign.helper = {
 
 let myMdwHelper = vis.binds.materialdesign.helper;
 vis.binds.materialdesign.showVersion();
+
+myMdwHelper.waitForVisConnected(async function () {
+    myMdwHelper.waitForViews(async function () {
+        myMdwHelper.waitForWidgets(async function () {
+            // subscribe Theme states that needs as listener
+            if (vis.widgets && Object.keys(vis.widgets).length > 0) {
+                let dummyWid = Object.keys(vis.widgets)[0];
+                let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.lastchange', dummyWid, 'MDW Theme', false, false, false);
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.colors.darkTheme', dummyWid, 'MDW Theme', oidsNeedSubscribe, false, false);
+
+                if (oidsNeedSubscribe) {
+                    myMdwHelper.subscribeStatesAtRuntime(dummyWid, 'MDW Theme', function () { }, true);
+                }
+            }            
+        });
+    });
+});
