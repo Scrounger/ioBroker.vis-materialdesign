@@ -605,24 +605,18 @@ vis.binds.materialdesign.helper = {
         for (const key of Object.keys(properties)) {
             if (properties[key] && key !== 'wid') {
                 let value = properties[key];
-                let data;
-                try {
-                    if (key === 'jsonStringObject') {
-                        // nested json string: autoComplete
-                        data = JSON.stringify(JSON.parse(value)).replace(/\"/g, '\\"');
-                    } else {
-                        data = JSON.stringify(value);
-                    }
 
-                    data = data.replace(/^\"/, "").replace(/\"$/, "").replace(/\\n/g, ' ').replace(/\\t/g, '');
-                } catch (ex) {
-                    data = value
+                if (key === 'jsonStringObject') {
+                    // nested json string: autoComplete, select
+                    value = he.encode(value.toString());
+                } else {
+                    value = JSON.stringify(value);
+                    value = value.replace(/^\"/, "").replace(/\"$/, "").replace(/\\n/g, ' ').replace(/\\t/g, '');
                 }
 
-                mdwData += '\t' + `mdw-${key}='${data}'` + '\n';
+                mdwData += '\t' + `mdw-${key}='${value}'` + '\n';
             }
         }
-
         return mdwData;
     },
     getHtmlParentId(el) {

@@ -92,11 +92,11 @@ vis.binds.materialdesign.value = {
             delete widgetData.width;
             delete widgetData.height;
 
-            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-debug="false"` + '\n',
+            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-debug='false'` + '\n',
                 vis.binds.materialdesign.value.getDataFromJson(widgetData, 0));
 
-            html = `<div class="vis-widget materialdesign-widget materialdesign-value materialdesign-value-html-element"` + '\n' +
-                '\t' + `style="width: ${width}; height: ${height}; position: relative; display: flex; align-items: center;"` + '\n' +
+            html = `<div class='vis-widget materialdesign-widget materialdesign-value materialdesign-value-html-element'` + '\n' +
+                '\t' + `style='width: ${width}; height: ${height}; position: relative; display: flex; align-items: center;'` + '\n' +
                 '\t' + mdwData + ">";
 
             return html + `</div>`;

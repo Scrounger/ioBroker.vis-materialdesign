@@ -283,12 +283,12 @@ vis.binds.materialdesign.progress = {
             delete widgetData.width;
             delete widgetData.height;
 
-            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-type="${type}"` + '\n' + '\t' + `mdw-debug="false"` + '\n',
+            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-type='${type}'` + '\n' + '\t' + `mdw-debug='false'` + '\n',
                 vis.binds.materialdesign.progress.getDataFromJson(widgetData, 0, vis.binds.materialdesign.progress.types[type]))
 
-            html = `<div class="vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-html-element"` + '\n' +
-                '\t' + `style="width: ${width}; height: ${height}; position: relative; padding: 0px;"` + '\n' +
-                '\t' + `type="${type}"` + '\n' +
+            html = `<div class='vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-html-element'` + '\n' +
+                '\t' + `style='width: ${width}; height: ${height}; position: relative; padding: 0px;'` + '\n' +
+                '\t' + `type='${type}'` + '\n' +
                 '\t' + mdwData + ">";
 
             return html + `</div>`;

@@ -179,11 +179,11 @@ vis.binds.materialdesign.select = {
             delete widgetData.width;
             delete widgetData.height;
 
-            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-debug="false"` + '\n',
+            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-debug='false'` + '\n',
                 vis.binds.materialdesign.select.getDataFromJson(widgetData, 0));
 
-            html = `<div class="vis-widget materialdesign-widget materialdesign-select materialdesign-select-html-element"` + '\n' +
-                '\t' + `style="width: ${width}; height: ${height}; position: relative; overflow: visible; display: flex; align-items: center;"` + '\n' +
+            html = `<div class='vis-widget materialdesign-widget materialdesign-select materialdesign-select-html-element'` + '\n' +
+                '\t' + `style='width: ${width}; height: ${height}; position: relative; overflow: visible; display: flex; align-items: center;'` + '\n' +
                 '\t' + mdwData + ">";
 
             return html + `</div>`;

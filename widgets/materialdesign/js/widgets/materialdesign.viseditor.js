@@ -562,6 +562,9 @@ vis.binds.materialdesign.viseditor = {
                                 '\t\t\t\t' + `<td>false | true</td>` + '\n' +
                                 '\t\t\t' + '</tr>' + '\n';
 
+                            objectForDevString = objectForDevString + `wid: widgetId,\n`;
+                            objectForDevString = objectForDevString + `debug: obj.debug,\n`;
+
                             for (const attr in widgetAttrs) {
 
                                 if (!attr.includes('_§')) {
@@ -629,7 +632,7 @@ vis.binds.materialdesign.viseditor = {
 
                             if (Object.keys(objectForDev).length > 0) {
                                 console.log(objectForDevString);
-                                console.log(objectForDev);
+                                // console.log(objectForDev);
                                 console.log(strTableForDev);
                             }
 
