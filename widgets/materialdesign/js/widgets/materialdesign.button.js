@@ -716,17 +716,8 @@ vis.binds.materialdesign.button = {
             let html;
             let typeSplitted = type.split("_")
 
-            let mdwData = `mdw-type='${type}'` + '\n' +
-                '\t' + `mdw-debug='false'` + '\n';
-
-            let properties = vis.binds.materialdesign.button.getDataFromJson(widgetData, 0, vis.binds.materialdesign.button.types[typeSplitted[0]][typeSplitted[1]]);
-            for (const key of Object.keys(properties)) {
-                // let prop = properties[i];
-
-                if (properties[key] && key !== 'wid') {
-                    mdwData += '\t' + `mdw-${key}='${properties[key].replace(/\"/g, '\\"')}'` + '\n';
-                }
-            }
+            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-type='${type}'` + '\n' + '\t' + `mdw-debug='false'` + '\n',
+                vis.binds.materialdesign.button.getDataFromJson(widgetData, 0, type));
 
             if (type.includes('default') || type.includes('vertical')) {
                 let width = widgetData.width ? widgetData.width : '100%';
@@ -742,7 +733,7 @@ vis.binds.materialdesign.button = {
                 if (type.includes('toggle_')) {
                     html = html + '\t' + `<div class='materialdesign-widget materialdesign-button-html-element-toogle-handler'></div>` + '\n';
                 }
-            }            
+            }
 
             if (type.includes('icon')) {
                 let width = widgetData.width ? widgetData.width : '48px';

@@ -326,11 +326,10 @@ vis.binds.materialdesign.vueHelper = {
                             jsonData = JSON.parse(vis.states.attr(data.jsonStringObject.substring(1, data.jsonStringObject.length - 1) + '.val'));
                         } else {
                             jsonData = JSON.parse(data.jsonStringObject);
-
                         }
                     }
                 } catch (err) {
-                    console.error(`[${logPrefix}] generateItemList: cannot parse json string! Error: ${err.message}`);
+                    console.error(`[${logPrefix}] generateItemList: cannot parse json string! json: ${jsonData}, Error: ${err.message}`);
                 }
 
                 if (jsonData) {

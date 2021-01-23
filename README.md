@@ -6907,6 +6907,13 @@ Create an html element from the supported Material Design widgets to use it in a
 Just style your Material Design widget, press the `generate Html Element`, copy the data and paste it to any widget that supports html tags.
 Or use it in scripts to generate dynamically Widgets.
 
+> Attention: 
+> * attributes of html tags must surrounded by `'` (single quote)
+> * double quotes `"` used in attributes must be escaped like `\"`
+> 
+> compare this with the shown examples of the diffrent widgets
+
+
 ![Logo](doc/en/media/html-elements.gif)
 
 More information about the supported properties can be found at the individual widgets:

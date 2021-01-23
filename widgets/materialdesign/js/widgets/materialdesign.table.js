@@ -621,11 +621,8 @@ vis.binds.materialdesign.table = {
 
         if (input && typeof input === 'string') {
             try {
-                if (vis.editMode) {
-                    input = input.replace(/\n/g, ' ').replace(/\t/g, '').replace(/\\"/g, '&x22;').replace(/'/g, '\\"');
-                } else {
-                    input = input.replace(/\n/g, ' ').replace(/\t/g, '').replace(/'/g, '\\"');
-                }
+                input = input.replace(/\n/g, ' ').replace(/\t/g, '');
+                 
                 jsonData = JSON.parse(input);
             } catch (err) {
                 console.error(`[Table - ${data.wid}] getJsonData: cannot parse json string! input: ${input}, error: ${err.message}`);

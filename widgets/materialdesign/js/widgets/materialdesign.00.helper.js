@@ -105,7 +105,6 @@ vis.binds.materialdesign.helper = {
                     return nullValue;
                 } else {
                     if (vis.editMode) {
-                        console.warn(dataValue);
                         let binding = vis.extractBinding(dataValue, true);
                         if (binding && binding.length >= 1) {
                             let bindingVal = vis.formatBinding(dataValue, undefined, undefined, undefined, true);
@@ -602,12 +601,25 @@ vis.binds.materialdesign.helper = {
             }
         });
     },
-    getHtmlmdwData(mdwData, properties){
+    getHtmlmdwData(mdwData, properties) {
         for (const key of Object.keys(properties)) {
-            // let prop = properties[i];
-
             if (properties[key] && key !== 'wid') {
-                mdwData += '\t' + `mdw-${key}='${properties[key]}'` + '\n';
+                let value = properties[key];
+                let data;
+                try {
+                    if (key === 'jsonStringObject') {
+                        // nested json string: autoComplete
+                        data = JSON.stringify(JSON.parse(value)).replace(/\"/g, '\\"');
+                    } else {
+                        data = JSON.stringify(value);
+                    }
+
+                    data = data.replace(/^\"/, "").replace(/\"$/, "").replace(/\\n/g, ' ').replace(/\\t/g, '');
+                } catch (ex) {
+                    data = value
+                }
+
+                mdwData += '\t' + `mdw-${key}='${data}'` + '\n';
             }
         }
 
@@ -630,9 +642,11 @@ vis.binds.materialdesign.helper = {
                 if (key === 'debug') {
                     widgetData[key] = el.attr(`mdw-debug`) === 'true';
                 } else if (el.attr(`mdw-${key}`)) {
-                    widgetData[key] = el.attr(`mdw-${key}`).replace(/\\"/g, '"').replace(/&x22;/g,'"');
+                    // widgetData[key] = el.attr(`mdw-${key}`).replace(/\\"/g, '"').replace(/&x22;/g, '"');
+                    widgetData[key] = el.attr(`mdw-${key}`);
                 } else if (el.attr(`mdw-${key.toLowerCase()}`)) {
-                    widgetData[key] = el.attr(`mdw-${key.toLowerCase()}`).replace(/\\"/g, '"').replace(/&x22;/g,'"');
+                    // widgetData[key] = el.attr(`mdw-${key.toLowerCase()}`).replace(/\\"/g, '"').replace(/&x22;/g, '"');
+                    widgetData[key] = el.attr(`mdw-${key.toLowerCase()}`);
                 } else {
                     delete widgetData[key];
                 }
