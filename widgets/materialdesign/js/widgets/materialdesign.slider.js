@@ -7,10 +7,11 @@
 
 vis.binds.materialdesign.slider = {
     vuetifySlider: function (el, data) {
+        let widgetName = 'Slider';
+
         try {
             let $this = $(el);
             let containerClass = 'materialdesign-vuetifySlider';
-            let widgetName = 'Slider';
 
             myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, function () {
                 init();
@@ -238,7 +239,7 @@ vis.binds.materialdesign.slider = {
                 });
             }
         } catch (ex) {
-            console.error(`[Vuetify Slider ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[${widgetName} ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     getDataFromJson(obj, widgetId) {
