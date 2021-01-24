@@ -150,7 +150,23 @@ vis.binds.materialdesign.helper = {
                             }
                         }
                     }
-                    return prepand + dataValue + append
+
+                    if (dataValue.includes('#mdwTheme:')) {
+                        let darkTheme = vis.states.attr('vis-materialdesign.0.colors.darkTheme.val');
+                        let id = dataValue.replace('#mdwTheme:', '');
+
+                        if (id.includes('.colors.')) {
+                            if (!darkTheme) {
+                                return prepand + vis.states.attr(id.replace('.colors.', '.colors.light.') + '.val') + append;
+                            } else {
+                                return prepand + vis.states.attr(id.replace('.colors.', '.colors.dark.') + '.val') + append;
+                            }
+                        } else {
+                            return prepand + vis.states.attr(id + '.val') + append;
+                        }
+                    } else {
+                        return prepand + dataValue + append;
+                    }
                 }
             }
         } catch (err) {
@@ -175,7 +191,16 @@ vis.binds.materialdesign.helper = {
     },
     getNumberFromData: function (dataValue, nullValue) {
         try {
-            return (dataValue === undefined || dataValue === null || dataValue === '' || isNaN(dataValue)) ? nullValue : parseFloat(dataValue);
+            if (dataValue === undefined || dataValue === null || dataValue === '' || isNaN(dataValue)) {
+                if (dataValue && dataValue !== null && dataValue.includes('#mdwTheme:')) {
+                    let id = dataValue.replace('#mdwTheme:', '');
+                    return parseFloat(vis.states.attr(id + '.val'));
+                } else {
+                    return nullValue;
+                }
+            } else {
+                return parseFloat(dataValue);
+            }
         } catch (err) {
             console.error(`[Helper] getNumberFromData: ${err.message}`);
             return 'Error';
@@ -547,6 +572,33 @@ vis.binds.materialdesign.helper = {
 
         return result;
     },
+    subscribeThemesAtRuntimee(data, widgetName, callBack) {
+        let oidsNeedSubscribe = false;
+
+        const usedThemeIds = Object.fromEntries(Object.entries(data).filter(([key, value]) => value.toString().includes('#mdwTheme:')));
+
+        for (const [key, value] of Object.entries(usedThemeIds)) {
+            let id = value.replace('#mdwTheme:', '');
+
+            if (id.includes('.colors.')) {
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id.replace('.colors.', '.colors.light.'), data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id.replace('.colors.', '.colors.dark.'), data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+            } else {
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id, data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+            }
+        }
+
+        oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.lastchange', data.wid, widgetName, oidsNeedSubscribe, false, false);
+        oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.colors.darkTheme', data.wid, widgetName, oidsNeedSubscribe, false, false);
+
+        if (oidsNeedSubscribe) {
+            myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
+                callBack();
+            }, data.debug);
+        } else {
+            callBack();
+        }
+    },
     subscribeStatesAtRuntime(wid, widgetName, callback, debug = false) {
         // modified from vis.js -> https://github.com/ioBroker/ioBroker.vis/blob/2a08ee6da626a65b9d0b42b8679563e74272bfc6/www/js/vis.js#L2710
 
@@ -808,19 +860,19 @@ vis.binds.materialdesign.helper = {
 let myMdwHelper = vis.binds.materialdesign.helper;
 vis.binds.materialdesign.showVersion();
 
-myMdwHelper.waitForVisConnected(async function () {
-    myMdwHelper.waitForViews(async function () {
-        myMdwHelper.waitForWidgets(async function () {
-            // subscribe Theme states that needs as listener
-            if (vis.widgets && Object.keys(vis.widgets).length > 0) {
-                let dummyWid = Object.keys(vis.widgets)[0];
-                let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.lastchange', dummyWid, 'MDW Theme', false, false, false);
-                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.colors.darkTheme', dummyWid, 'MDW Theme', oidsNeedSubscribe, false, false);
+// myMdwHelper.waitForVisConnected(async function () {
+//     myMdwHelper.waitForViews(async function () {
+//         myMdwHelper.waitForWidgets(async function () {
+//             // subscribe Theme states that needs as listener
+//             if (vis.widgets && Object.keys(vis.widgets).length > 0) {
+//                 let dummyWid = Object.keys(vis.widgets)[0];
+//                 let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.lastchange', dummyWid, 'MDW Theme', false, false, false);
+//                 oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.colors.darkTheme', dummyWid, 'MDW Theme', oidsNeedSubscribe, false, false);
 
-                if (oidsNeedSubscribe) {
-                    myMdwHelper.subscribeStatesAtRuntime(dummyWid, 'MDW Theme', function () { }, true);
-                }
-            }            
-        });
-    });
-});
+//                 if (oidsNeedSubscribe) {
+//                     myMdwHelper.subscribeStatesAtRuntime(dummyWid, 'MDW Theme', function () { }, true);
+//                 }
+//             }
+//         });
+//     });
+// });

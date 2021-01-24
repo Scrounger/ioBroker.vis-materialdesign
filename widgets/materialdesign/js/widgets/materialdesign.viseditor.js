@@ -820,7 +820,7 @@ vis.binds.materialdesign.viseditor = {
                                                     let inspect = $(`#inspect_${obj.desc}`);
 
                                                     if (inspect && inspect.length > 0) {
-                                                        inspect.val(generateBinding(themeType, obj.id)).trigger('change');
+                                                        inspect.val(generateMdwThemeOid(themeType, obj.id)).trigger('change');
                                                     } else {
                                                         // wir haben ein Element mit count
                                                         inspect = $(`input[id^='inspect_${obj.desc}']`);
@@ -830,7 +830,7 @@ vis.binds.materialdesign.viseditor = {
 
                                                                 // Prüfen ob am Ende der id wirklich nur eine number ist
                                                                 if (!isNaN(parseFloat(el.id.replace(`inspect_${obj.desc}`, '')))) {
-                                                                    $(el).val(generateBinding(themeType, obj.id)).trigger('change');
+                                                                    $(el).val(generateMdwThemeOid(themeType, obj.id)).trigger('change');
                                                                 }
                                                             });
                                                         }
@@ -852,6 +852,13 @@ vis.binds.materialdesign.viseditor = {
                                 }
                             }
 
+                            function generateMdwThemeOid(themeType, id) {
+                                if (themeType === 'colors') {
+                                    return `#mdwTheme:vis-materialdesign.0.${themeType}.${id.replace('light.', '')}`;
+                                } else {
+                                    return `#mdwTheme:vis-materialdesign.0.${themeType}.${id}`;
+                                }
+                            }
                         } else {
                             that.confirmMessage(_('Please select only one Widget!'), _('attention'), null, 400, function (result) {
                             });

@@ -776,7 +776,9 @@ function save(callback) {
         });
     }
 
-    setStateAsync(`${myNamespace}.lastchange`, new Date().getTime(), true);
+    setTimeout(function () {
+        setStateAsync(`${myNamespace}.lastchange`, new Date().getTime(), true);
+    }, 500);
 
     callback(obj);
 }
