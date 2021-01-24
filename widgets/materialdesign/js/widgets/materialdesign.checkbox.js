@@ -42,106 +42,130 @@ vis.binds.materialdesign.checkbox = {
         }
     },
     handle: function (el, data) {
+        let widgetName = 'Checkbox';
+
         try {
             let $this = $(el);
 
-            if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {
-                // Append lock icon if activated
-                $this.append(`<span class="mdi mdi-${myMdwHelper.getValueFromData(data.lockIcon, 'lock-outline')} materialdesign-lock-icon" 
-                            style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; ${(myMdwHelper.getNumberFromData(data.lockIconSize, undefined) !== '0') ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} color: ${myMdwHelper.getValueFromData(data.lockIconColor, '#B22222')};"></span>`);
-
-                $this.attr('isLocked', true);
-                $this.css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
-            }
-
-            let checkboxElement = $this.find('.mdc-checkbox').get(0);
-
-            const mdcFormField = new mdc.formField.MDCFormField($this.get(0));
-            const mdcCheckbox = new mdc.checkbox.MDCCheckbox(checkboxElement);
-
-            mdcFormField.input = mdcCheckbox;
-
-            mdcCheckbox.disabled = myMdwHelper.getBooleanFromData(data.readOnly, false);
-
-            checkboxElement.style.setProperty("--materialdesign-color-checkbox", myMdwHelper.getValueFromData(data.colorCheckBox, ''));
-            checkboxElement.style.setProperty("--materialdesign-color-checkbox-border", myMdwHelper.getValueFromData(data.colorCheckBoxBorder, ''));
-            checkboxElement.style.setProperty("--materialdesign-color-checkbox-hover", myMdwHelper.getValueFromData(data.colorCheckBoxHover, ''));
-
-            setCheckboxState();
-
-            if (!vis.editMode) {
-                $this.find('.mdc-checkbox').on('click', function () {
-                    vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
-
-                    if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === undefined) {
-                        if (data.toggleType === 'boolean') {
-                            myMdwHelper.setValue(data.oid, mdcCheckbox.checked);
-                        } else {
-                            if (!mdcCheckbox.checked === true) {
-                                myMdwHelper.setValue(data.oid, data.valueOff);
-                            } else {
-                                myMdwHelper.setValue(data.oid, data.valueOn);
-                            }
-                        }
-                    } else {
-                        mdcCheckbox.checked = !mdcCheckbox.checked;
-                        unlockCheckbox();
-                    }
-
-                    setCheckboxState();
-                });
-            }
-
-            vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                setCheckboxState();
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, function () {
+                init();
             });
 
-            function setCheckboxState() {
-                var val = vis.states.attr(data.oid + '.val');
+            function init() {
+                if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {
+                    // Append lock icon if activated
+                    $this.append(`<span class="mdi mdi-${myMdwHelper.getValueFromData(data.lockIcon, 'lock-outline')} materialdesign-lock-icon" 
+                            style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; ${(myMdwHelper.getNumberFromData(data.lockIconSize, undefined) !== '0') ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} color: ${myMdwHelper.getValueFromData(data.lockIconColor, '#B22222')};"></span>`);
 
-                let buttonState = false;
+                    $this.attr('isLocked', true);
+                    $this.find('.mdc-checkbox').css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
+                }
 
-                if (data.toggleType === 'boolean') {
-                    buttonState = val;
-                } else {
-                    if (!isNaN(val) && !isNaN(data.valueOn)) {
-                        if (parseFloat(val) === parseFloat(data.valueOn)) {
+                let checkboxElement = $this.find('.mdc-checkbox').get(0);
+
+                const mdcFormField = new mdc.formField.MDCFormField($this.get(0));
+                const mdcCheckbox = new mdc.checkbox.MDCCheckbox(checkboxElement);
+
+                mdcFormField.input = mdcCheckbox;
+
+                mdcCheckbox.disabled = myMdwHelper.getBooleanFromData(data.readOnly, false);
+
+                if (!vis.editMode) {
+                    $this.find('.mdc-checkbox').on('click', function () {
+                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+
+                        if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === undefined) {
+                            if (data.toggleType === 'boolean') {
+                                myMdwHelper.setValue(data.oid, mdcCheckbox.checked);
+                            } else {
+                                if (!mdcCheckbox.checked === true) {
+                                    myMdwHelper.setValue(data.oid, data.valueOff);
+                                } else {
+                                    myMdwHelper.setValue(data.oid, data.valueOn);
+                                }
+                            }
+                        } else {
+                            mdcCheckbox.checked = !mdcCheckbox.checked;
+                            unlockCheckbox();
+                        }
+
+                        setCheckboxState();
+                    });
+                }
+
+                vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                    setCheckboxState();
+                });
+
+                vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
+                    setLayout();
+                });
+
+                vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
+                    setLayout();
+                });
+
+                setLayout();
+                function setLayout() {
+                    checkboxElement.style.setProperty("--materialdesign-color-checkbox", myMdwHelper.getValueFromData(data.colorCheckBox, ''));
+                    checkboxElement.style.setProperty("--materialdesign-color-checkbox-border", myMdwHelper.getValueFromData(data.colorCheckBoxBorder, ''));
+                    checkboxElement.style.setProperty("--materialdesign-color-checkbox-hover", myMdwHelper.getValueFromData(data.colorCheckBoxHover, ''));
+
+                    $this.find('.materialdesign-lock-icon').css('color', myMdwHelper.getValueFromData(data.lockIconColor, '#B22222'));
+
+                    $this.find('label[id="label"]').css('font-family', myMdwHelper.getValueFromData(data.valueFontFamily, ''))
+                        .css('font-size', myMdwHelper.getStringFromNumberData(data.valueFontSize, 'inherit', '', 'px'));
+
+                    setCheckboxState();
+                }
+
+                function setCheckboxState() {
+                    var val = vis.states.attr(data.oid + '.val');
+
+                    let buttonState = false;
+
+                    if (data.toggleType === 'boolean') {
+                        buttonState = val;
+                    } else {
+                        if (!isNaN(val) && !isNaN(data.valueOn)) {
+                            if (parseFloat(val) === parseFloat(data.valueOn)) {
+                                buttonState = true;
+                            } else if (parseFloat(val) !== parseFloat(data.valueOn) && parseFloat(val) !== parseFloat(data.valueOff) && data.stateIfNotTrueValue === 'on') {
+                                buttonState = true;
+                            }
+                        } else if (val === parseInt(data.valueOn) || val === data.valueOn) {
                             buttonState = true;
-                        } else if (parseFloat(val) !== parseFloat(data.valueOn) && parseFloat(val) !== parseFloat(data.valueOff) && data.stateIfNotTrueValue === 'on') {
+                        } else if (data.stateIfNotTrueValue === 'on' && val !== data.valueOn && val !== data.valueOff) {
                             buttonState = true;
                         }
-                    } else if (val === parseInt(data.valueOn) || val === data.valueOn) {
-                        buttonState = true;
-                    } else if (data.stateIfNotTrueValue === 'on' && val !== data.valueOn && val !== data.valueOff) {
-                        buttonState = true;
+                    }
+
+                    mdcCheckbox.checked = buttonState;
+
+                    let label = $this.find('label[id="label"]');
+                    if (buttonState) {
+                        label.css('color', myMdwHelper.getValueFromData(data.labelColorTrue, ''));
+                        label.html(myMdwHelper.getValueFromData(data.labelTrue, ''));
+                    } else {
+                        label.css('color', myMdwHelper.getValueFromData(data.labelColorFalse, ''));
+                        label.html(myMdwHelper.getValueFromData(data.labelFalse, ''));
                     }
                 }
 
-                mdcCheckbox.checked = buttonState;
+                function unlockCheckbox() {
+                    $this.find('.materialdesign-lock-icon').fadeOut();
+                    $this.attr('isLocked', false);
+                    $this.find('.mdc-checkbox').css('filter', 'grayscale(0%)');
 
-                let label = $this.find('label[id="label"]');
-                if (buttonState) {
-                    label.css('color', myMdwHelper.getValueFromData(data.labelColorTrue, ''));
-                    label.html(myMdwHelper.getValueFromData(data.labelTrue, ''));
-                } else {
-                    label.css('color', myMdwHelper.getValueFromData(data.labelColorFalse, ''));
-                    label.html(myMdwHelper.getValueFromData(data.labelFalse, ''));
+                    setTimeout(function () {
+                        $this.attr('isLocked', true);
+                        $this.find('.materialdesign-lock-icon').show();
+                        $this.find('.mdc-checkbox').css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
+                    }, myMdwHelper.getNumberFromData(data.autoLockAfter, 10) * 1000);
                 }
             }
-
-            function unlockCheckbox() {
-                $this.find('.materialdesign-lock-icon').fadeOut();
-                $this.attr('isLocked', false);
-                $this.css('filter', 'grayscale(0%)');
-
-                setTimeout(function () {
-                    $this.attr('isLocked', true);
-                    $this.find('.materialdesign-lock-icon').show();
-                    $this.css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
-                }, myMdwHelper.getNumberFromData(data.autoLockAfter, 10) * 1000);
-            }
         } catch (ex) {
-            console.error(`[Checkbox - ${data.wid}] handle: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[${widgetName} - ${data.wid}] handle: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     getDataFromJson(obj, widgetId) {
