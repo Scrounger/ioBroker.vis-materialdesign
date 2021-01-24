@@ -211,6 +211,11 @@ vis.binds.materialdesign.helper = {
             if (dataValue === undefined || dataValue === 'undefined' || dataValue === null || dataValue === 'null' || dataValue === '') {
                 return nullValue
             } else {
+                if (dataValue && dataValue !== null && dataValue.includes('#mdwTheme:')) {
+                    let id = dataValue.replace('#mdwTheme:', '');
+                    return prepand + parseFloat(vis.states.attr(id + '.val')) + append;
+                }
+
                 if (vis.editMode) {
                     let binding = vis.extractBinding(dataValue, true);
 
@@ -236,7 +241,6 @@ vis.binds.materialdesign.helper = {
                         return prepand + parseFloat(dataValue) + append;
                     }
                 }
-
             }
         } catch (err) {
             console.error(`[Helper] getStringFromNumberData: ${err.message}`);
@@ -737,6 +741,10 @@ vis.binds.materialdesign.helper = {
 
         if (widgetData.oid) {
             let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, widgetData.debug);
+
+            if (widgetData["oid-working"]) {
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData["oid-working"], parentId, widgetName, false, false, widgetData.debug);
+            }
 
             if (oidsNeedSubscribe) {
                 myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {

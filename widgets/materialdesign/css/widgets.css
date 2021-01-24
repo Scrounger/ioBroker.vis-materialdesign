@@ -128,6 +128,7 @@
   --vue-slider-tick-font-family: inherit;
   --vue-slider-tick-color: #44739e;
   --vue-slider-tick-font-size: 14px;
+  --vue-slider-thumb-before: initial;
 
   --vue-text-field-before-color: rgba(0, 0, 0, 0.2);
   --vue-text-field-hover-color: #44739e;
@@ -2361,7 +2362,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: currentColor;
+  background: var(--vue-slider-thumb-before, currentColor);
   opacity: 0.3;
   position: absolute;
   left: -12px;
