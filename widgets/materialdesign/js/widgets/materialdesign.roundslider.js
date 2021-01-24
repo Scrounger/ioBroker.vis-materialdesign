@@ -8,12 +8,13 @@
 vis.binds.materialdesign.roundslider = {
     initialize: function (el, data) {
         let widgetName = 'Round Slider';
+        let themeTriggerClass = '.materialdesign-widget.materialdesign-slider-round'
 
         try {
             let $this = $(el);
             let containerClass = 'materialdesign-round-slider-element';
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, function () {
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
                 init();
             });
 
@@ -86,6 +87,11 @@ vis.binds.materialdesign.roundslider = {
                     });
 
                     vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
+                        setLayout();
+                    });
+
+                    $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
+                        if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
                         setLayout();
                     });
 

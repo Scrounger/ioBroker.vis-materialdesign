@@ -8,12 +8,13 @@
 vis.binds.materialdesign.slider = {
     vuetifySlider: function (el, data) {
         let widgetName = 'Slider';
+        let themeTriggerClass = '.materialdesign-widget.materialdesign-slider-vertical'
 
         try {
             let $this = $(el);
             let containerClass = 'materialdesign-vuetifySlider';
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, function () {
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
                 init();
             });
 
@@ -81,7 +82,6 @@ vis.binds.materialdesign.slider = {
                 myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, widgetName, function () {
                     myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, widgetName, function () {
                         // wait for Vuetify v-app application container is loaded
-
                         let vueSlider = new Vue({
                             el: $this.find(`.${containerClass}`).get(0),
                             vuetify: new Vuetify({ rtl: data.reverseSlider }),
@@ -159,6 +159,11 @@ vis.binds.materialdesign.slider = {
                             setLayout();
                         });
 
+                        $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
+                            if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
+                            setLayout();
+                        });
+
                         setLayout();
                         function setLayout() {
                             $this.find('.v-slider__thumb').css('background-color', myMdwHelper.getValueFromData(data.colorThumb, defaultColor)).css('border-color', myMdwHelper.getValueFromData(data.colorThumb, defaultColor));
@@ -179,7 +184,7 @@ vis.binds.materialdesign.slider = {
                             $this.context.style.setProperty("--vue-slider-tick-after-color", myMdwHelper.getValueFromData(data.tickColorAfter, ''));
                             $this.context.style.setProperty("--vue-slider-tick-color", myMdwHelper.getValueFromData(data.tickTextColor, ''));
                             $this.context.style.setProperty("--vue-slider-tick-font-family", myMdwHelper.getValueFromData(data.tickFontFamily, ''));
-                            
+
                             $this.context.style.setProperty("--vue-slider-tick-font-size", myMdwHelper.getStringFromNumberData(data.tickFontSize, 'inherit', '', 'px'));
 
                             $this.context.style.setProperty("--vue-text-field-label-before-color", myMdwHelper.getValueFromData(data.prepandTextColor, ''));

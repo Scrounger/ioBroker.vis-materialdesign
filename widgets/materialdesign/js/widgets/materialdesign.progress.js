@@ -11,12 +11,14 @@ vis.binds.materialdesign.progress = {
         circular: 'circular'
     },
     linear: function (el, data) {
+        let widgetName = 'Progress';
+        let themeTriggerClass = '.materialdesign-widget .materialdesign-vuetify-progress';
+
         try {
             let $this = $(el);
             let containerClass = 'materialdesign-vuetify-progress';
-            let widgetName = 'Progress';
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, function () {
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
                 init();
             });
 
@@ -78,6 +80,11 @@ vis.binds.materialdesign.progress = {
                             setLayout();
                         });
 
+                        $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
+                            if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
+                            setLayout();
+                        });
+
                         setLayout();
                         function setLayout() {
                             $this.get(0).style.setProperty("--vue-progress-progress-color-background", myMdwHelper.getValueFromData(data.colorProgressBackground, ''));
@@ -94,16 +101,18 @@ vis.binds.materialdesign.progress = {
                 });
             }
         } catch (ex) {
-            console.error(`[Progress - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[${widgetName} - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     circular: function (el, data) {
+        let widgetName = 'Progress Circular';
+        let themeTriggerClass = '.materialdesign-widget .materialdesign-vuetify-progress-circular';
+
         try {
             let $this = $(el);
             let containerClass = 'materialdesign-vuetify-progress-circular';
-            let widgetName = 'Progress Circular';
-
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, function () {
+            
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
                 init();
             });
 
@@ -160,6 +169,11 @@ vis.binds.materialdesign.progress = {
                             setLayout();
                         });
 
+                        $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
+                            if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
+                            setLayout();
+                        });
+
                         setLayout();
                         function setLayout() {
                             $this.get(0).style.setProperty("--vue-progress-circular-progress-color-background", myMdwHelper.getValueFromData(data.colorProgressBackground, ''));
@@ -176,7 +190,7 @@ vis.binds.materialdesign.progress = {
                 });
             }
         } catch (ex) {
-            console.error(`[Progress Circular - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[${widgetName} - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     getProgressState: function ($this, data, val, colorProperty, labelClass) {

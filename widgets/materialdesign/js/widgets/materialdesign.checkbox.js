@@ -43,11 +43,12 @@ vis.binds.materialdesign.checkbox = {
     },
     handle: function (el, data) {
         let widgetName = 'Checkbox';
+        let themeTriggerClass = '.materialdesign-widget.materialdesign-checkbox'
 
         try {
             let $this = $(el);
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, function () {
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
                 init();
             });
 
@@ -102,6 +103,11 @@ vis.binds.materialdesign.checkbox = {
                 });
 
                 vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
+                    setLayout();
+                });
+
+                $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
+                    if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
                     setLayout();
                 });
 

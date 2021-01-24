@@ -576,7 +576,7 @@ vis.binds.materialdesign.helper = {
 
         return result;
     },
-    subscribeThemesAtRuntimee(data, widgetName, callBack) {
+    subscribeThemesAtRuntimee(data, widgetName, triggerClass, callBack) {
         let oidsNeedSubscribe = false;
 
         const usedThemeIds = Object.fromEntries(Object.entries(data).filter(([key, value]) => value.toString().includes('#mdwTheme:')));
@@ -597,6 +597,11 @@ vis.binds.materialdesign.helper = {
 
         if (oidsNeedSubscribe) {
             myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
+                // if other widgets use same states -> inform that state is subscribed, because widget can be created before subscribing is finished 
+                let eventName = widgetName.replace(/ /g, '_');
+                if(data.debug) console.log(`[subscribeThemesAtRuntimee - ${data.wid}] fire event: mdwTheme_subscribe_${eventName}`);
+                $(triggerClass).trigger(`mdwTheme_subscribe_${eventName}`);
+                
                 callBack();
             }, data.debug);
         } else {
