@@ -227,7 +227,7 @@ The following properties can be used as [HTML element](#html-elements).
 	</thead>
 	<tbody>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-mdwIcon</td>
@@ -303,7 +303,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>false | true</td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
 			</tr>
 			<tr>
 				<td>buttonStyle</td>
@@ -336,7 +336,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
 			</tr>
 			<tr>
 				<td>buttontext</td>
@@ -363,7 +363,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
 			</tr>
 			<tr>
 				<td>mdwButtonPrimaryColor</td>
@@ -384,7 +384,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>icon</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
 			</tr>
 			<tr>
 				<td>image</td>
@@ -443,7 +443,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>false | true</td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
 			</tr>
 			<tr>
 				<td>oid</td>
@@ -476,7 +476,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
 			</tr>
 			<tr>
 				<td>buttontext</td>
@@ -503,7 +503,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
 			</tr>
 			<tr>
 				<td>mdwButtonPrimaryColor</td>
@@ -524,7 +524,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>icon</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
 			</tr>
 			<tr>
 				<td>image</td>
@@ -551,7 +551,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Locking</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
 			</tr>
 			<tr>
 				<td>lockEnabled</td>
@@ -622,7 +622,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>false | true</td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
 			</tr>
 			<tr>
 				<td>oid</td>
@@ -685,7 +685,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
 			</tr>
 			<tr>
 				<td>buttontext</td>
@@ -730,7 +730,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
 			</tr>
 			<tr>
 				<td>mdwButtonPrimaryColor</td>
@@ -763,7 +763,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>icon</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
 			</tr>
 			<tr>
 				<td>image</td>
@@ -802,7 +802,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Locking</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
 			</tr>
 			<tr>
 				<td>lockEnabled</td>
@@ -877,7 +877,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>false | true</td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
 			</tr>
 			<tr>
 				<td>buttonStyle</td>
@@ -910,7 +910,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
 			</tr>
 			<tr>
 				<td>buttontext</td>
@@ -943,7 +943,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
 			</tr>
 			<tr>
 				<td>mdwButtonPrimaryColor</td>
@@ -964,7 +964,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>icon</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
 			</tr>
 			<tr>
 				<td>image</td>
@@ -1023,7 +1023,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>false | true</td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
 			</tr>
 			<tr>
 				<td>oid</td>
@@ -1056,7 +1056,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
 			</tr>
 			<tr>
 				<td>buttontext</td>
@@ -1089,7 +1089,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
 			</tr>
 			<tr>
 				<td>mdwButtonPrimaryColor</td>
@@ -1110,7 +1110,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>icon</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
 			</tr>
 			<tr>
 				<td>image</td>
@@ -1137,7 +1137,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Locking</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
 			</tr>
 			<tr>
 				<td>lockEnabled</td>
@@ -1220,7 +1220,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>false | true</td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
 			</tr>
 			<tr>
 				<td>oid</td>
@@ -1283,7 +1283,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
 			</tr>
 			<tr>
 				<td>buttontext</td>
@@ -1334,7 +1334,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
 			</tr>
 			<tr>
 				<td>mdwButtonPrimaryColor</td>
@@ -1361,7 +1361,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>icon</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
 			</tr>
 			<tr>
 				<td>image</td>
@@ -1400,7 +1400,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Locking</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
 			</tr>
 			<tr>
 				<td>lockEnabled</td>
@@ -1486,7 +1486,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>false | true</td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
 			</tr>
 			<tr>
 				<td>href</td>
@@ -1513,7 +1513,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>icon</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
 			</tr>
 			<tr>
 				<td>image</td>
@@ -1534,7 +1534,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
 			</tr>
 			<tr>
 				<td>colorBgFalse</td>
@@ -1581,7 +1581,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>false | true</td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
 			</tr>
 			<tr>
 				<td>oid</td>
@@ -1608,7 +1608,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>icon</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
 			</tr>
 			<tr>
 				<td>image</td>
@@ -1629,7 +1629,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
 			</tr>
 			<tr>
 				<td>colorBgFalse</td>
@@ -1644,7 +1644,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Locking</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
 			</tr>
 			<tr>
 				<td>lockEnabled</td>
@@ -1739,7 +1739,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>false | true</td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
 			</tr>
 			<tr>
 				<td>oid</td>
@@ -1796,7 +1796,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>icon</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
 			</tr>
 			<tr>
 				<td>image</td>
@@ -1829,7 +1829,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
 			</tr>
 			<tr>
 				<td>colorBgFalse</td>
@@ -1850,7 +1850,7 @@ The following properties can be used as [control element in a table](#control-el
 				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 			</tr>
 			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Locking</b></i></td>
+				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
 			</tr>
 			<tr>
 				<td>lockEnabled</td>
@@ -2742,7 +2742,7 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>linear</td>
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-oid</td>
@@ -2781,7 +2781,7 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>false | true
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>layout</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>layout</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-progressRounded</td>
@@ -2802,7 +2802,7 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-colorProgressBackground</td>
@@ -2841,7 +2841,7 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-showValueLabel</td>
@@ -2983,7 +2983,7 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>circular</td>
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-oid</td>
@@ -3016,7 +3016,7 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>false | true
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>layout</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>layout</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-progressCircularSize</td>
@@ -3037,7 +3037,7 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-colorProgressBackground</td>
@@ -3082,7 +3082,7 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-showValueLabel</td>
@@ -3180,7 +3180,7 @@ The following properties can be used as [HTML element](#html-elements).
 	</thead>
 	<tbody>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-oid</td>
@@ -3249,7 +3249,7 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>false | true
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>steps Layout</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>steps Layout</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-showTicks</td>
@@ -3300,7 +3300,7 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-colorBeforeThumb</td>
@@ -3321,7 +3321,7 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-prepandText</td>
@@ -3432,7 +3432,7 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>layout of the controller label</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>layout of the controller label</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-showThumbLabel</td>
@@ -3633,7 +3633,7 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>false | true
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-colorSliderBg</td>
@@ -3666,7 +3666,7 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-showValueLabel</td>
