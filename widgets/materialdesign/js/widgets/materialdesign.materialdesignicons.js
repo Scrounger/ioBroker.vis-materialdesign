@@ -8,7 +8,7 @@
 vis.binds.materialdesign.materialdesignicons = {
     initialize: function (el, data) {
         let widgetName = 'MaterialDesignIcon';
-        let themeTriggerClass = '.materialdesign-widget.materialdesign-switch'
+        let themeTriggerClass = '.materialdesign-widget.materialdesign-icon'
 
         try {
             let $this = $(el);
@@ -18,6 +18,7 @@ vis.binds.materialdesign.materialdesignicons = {
             });
 
             function init() {
+
                 $this.append(myMdwHelper.getIconElement(myMdwHelper.getValueFromData(data.mdwIcon, 'material-design'), 'auto', myMdwHelper.getNumberFromData(data.mdwIconSize, 50) + 'px', myMdwHelper.getValueFromData(data.mdwIconColor, '#44739e')));
 
                 vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
@@ -46,9 +47,34 @@ vis.binds.materialdesign.materialdesignicons = {
         return {
             wid: widgetId,
 
+            // Common
             mdwIcon: obj.mdwIcon,
             mdwIconSize: obj.mdwIconSize,
-            mdwIconColor: obj.mdwIconColor
+            mdwIconColor: obj.mdwIconColor,
+            generateHtmlControl: obj.generateHtmlControl,
+            debug: obj.debug,
+        }
+    },
+    getHtmlConstructor(widgetData, type) {
+        try {
+            let html;
+            let width = widgetData.width ? widgetData.width : '50px';
+            let height = widgetData.height ? widgetData.height : '50px';
+
+            delete widgetData.width;
+            delete widgetData.height;
+
+            let mdwData = myMdwHelper.getHtmlmdwData('',
+                vis.binds.materialdesign.materialdesignicons.getDataFromJson(widgetData, 0));
+
+            html = `<div class='vis-widget materialdesign-widget materialdesign-icon materialdesign-materialdesignicons-html-element'` + '\n' +
+                '\t' + `style='width: ${width}; height: ${height}; position: relative; display: flex; align-items: center;'` + '\n' +
+                '\t' + mdwData + ">";
+
+            return html + `</div>`;
+
+        } catch (ex) {
+            console.error(`[MaterialDesignIcon getHtmlConstructor]: ${ex.message}, stack: ${ex.stack} `);
         }
     },
     getList: function () {
@@ -5714,3 +5740,31 @@ vis.binds.materialdesign.materialdesignicons = {
         ]
     }
 }
+
+$.initialize(".materialdesign-materialdesignicons-html-element", function () {
+    let $this = $(this);
+    let parentId = 'unknown';
+    let logPrefix = `[MaterialDesignIcon HTML Element - ${parentId.replace('w', 'p')}]`;
+
+    try {
+        let widgetName = `MaterialDesignIcon HTML Element`;
+
+        parentId = myMdwHelper.getHtmlParentId($this);
+        logPrefix = `[MaterialDesignIcon HTML Element - ${parentId.replace('w', 'p')}]`;
+
+        console.log(`${logPrefix} initialize html element`);
+
+        myMdwHelper.extractHtmlWidgetData($this,
+            vis.binds.materialdesign.materialdesignicons.getDataFromJson({}, parentId),
+            parentId, widgetName, logPrefix, initializeHtml);
+
+        function initializeHtml(widgetData) {
+            if (widgetData.debug) console.log(`${logPrefix} initialize widget`);
+
+            vis.binds.materialdesign.materialdesignicons.initialize($this, widgetData);
+        }
+    } catch (ex) {
+        console.error(`${logPrefix} $.initialize: error: ${ex.message}, stack: ${ex.stack} `);
+        $this.append(`<div style = "background: FireBrick; color: white;">Error ${ex.message}</div >`);
+    }
+});
