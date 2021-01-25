@@ -35,13 +35,15 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 		- [Font Sizes Theme](#font-sizes-theme)
 - [Widgets](#widgets)
 	- [Material Design Icons and Images](#material-design-icons-and-images)
+		- [Editor Settings](#editor-settings)
+		- [HTML Properties](#html-properties)
 	- [Buttons](#buttons)
 	- [Buttons Vertical](#buttons-vertical)
 	- [Buttons Icon](#buttons-icon)
 	- [Card](#card)
 	- [List](#list)
 	- [IconList](#iconlist)
-		- [Editor Settings](#editor-settings)
+		- [Editor Settings](#editor-settings-1)
 		- [JSON Properties](#json-properties)
 	- [Progress](#progress)
 	- [Progress Circular](#progress-circular)
@@ -58,19 +60,19 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 			- [JSON Properties](#json-properties-1)
 	- [Charts](#charts)
 		- [Bar Chart](#bar-chart)
-			- [Editor Settings](#editor-settings-1)
+			- [Editor Settings](#editor-settings-2)
 			- [JSON Properties](#json-properties-2)
 		- [Pie Chart](#pie-chart)
-			- [Editor Settings](#editor-settings-2)
+			- [Editor Settings](#editor-settings-3)
 			- [JSON Properties](#json-properties-3)
 		- [Line History Chart:](#line-history-chart)
-			- [Editor Settings](#editor-settings-3)
+			- [Editor Settings](#editor-settings-4)
 		- [JSON Chart](#json-chart)
 			- [JSON Properties](#json-properties-4)
 	- [Table](#table)
 		- [Input Data](#input-data)
 			- [Control Elements](#control-elements)
-		- [Editor Settings](#editor-settings-4)
+		- [Editor Settings](#editor-settings-5)
 	- [Responsive Layout](#responsive-layout)
 		- [Masonry Views](#masonry-views)
 		- [Grid Views](#grid-views)
@@ -176,6 +178,11 @@ Additionally, it is possible to assign your own font sizes to the widgets, indep
 
 
 ## Material Design Icons and Images
+
+![Logo](doc/en/media/materialdesignicons.png)
+
+### Editor Settings
+
 <table>
     <thead>
         <tr>
@@ -191,6 +198,72 @@ Additionally, it is possible to assign your own font sizes to the widgets, indep
     </tbody>
 </table>
 
+### HTML Properties
+
+The following properties can be used as [HTML element](#html-elements).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-mdwIcon</td>
+			<td>icon</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-mdwIconSize</td>
+			<td>icon size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-mdwIconColor</td>
+			<td>icon color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-generateHtmlControl</td>
+			<td>generate Html Element</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+#### HTML Properties - Example
+
+<details>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-icon materialdesign-materialdesignicons-html-element'
+	style='width: 50px; height: 50px; position: relative; display: flex; align-items: center;'
+	mdw-mdwIcon='iobroker'
+	mdw-mdwIconSize='30'
+	mdw-mdwIconColor='#mdwTheme:vis-materialdesign.0.colors.material_design_icon.color'
+	mdw-debug='true'
+></div>
+```
+
+</details>
 
 ## Buttons
 

@@ -599,9 +599,9 @@ vis.binds.materialdesign.helper = {
             myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
                 // if other widgets use same states -> inform that state is subscribed, because widget can be created before subscribing is finished 
                 let eventName = widgetName.replace(/ /g, '_');
-                if(data.debug) console.log(`[subscribeThemesAtRuntimee - ${data.wid}] fire event: mdwTheme_subscribe_${eventName}`);
+                if (data.debug) console.log(`[subscribeThemesAtRuntimee - ${data.wid}] fire event: mdwTheme_subscribe_${eventName}`);
                 $(triggerClass).trigger(`mdwTheme_subscribe_${eventName}`);
-                
+
                 callBack();
             }, data.debug);
         } else {
@@ -709,7 +709,11 @@ vis.binds.materialdesign.helper = {
                     value = value.replace(/^\"/, "").replace(/\"$/, "").replace(/\\n/g, ' ').replace(/\\t/g, '');
                 }
 
-                mdwData += '\t' + `mdw-${key}='${value}'` + '\n';
+                if (mdwData === '') {
+                    mdwData += `mdw-${key}='${value}'` + '\n';
+                } else {
+                    mdwData += '\t' + `mdw-${key}='${value}'` + '\n';
+                }
             }
         }
         return mdwData;
@@ -728,9 +732,7 @@ vis.binds.materialdesign.helper = {
     extractHtmlWidgetData(el, widgetData, parentId, widgetName, logPrefix, callBack) {
         for (const key of Object.keys(widgetData)) {
             if (key !== 'wid') {
-                if (key === 'debug') {
-                    widgetData[key] = el.attr(`mdw-debug`) === 'true';
-                } else if (el.attr(`mdw-${key}`)) {
+                if (el.attr(`mdw-${key}`)) {
                     // widgetData[key] = el.attr(`mdw-${key}`).replace(/\\"/g, '"').replace(/&x22;/g, '"');
                     widgetData[key] = el.attr(`mdw-${key}`);
                 } else if (el.attr(`mdw-${key.toLowerCase()}`)) {
@@ -742,7 +744,7 @@ vis.binds.materialdesign.helper = {
             }
         }
 
-        if (widgetData.debug) console.log(`${logPrefix} widgetData: ${JSON.stringify(widgetData)} `);
+        if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] widgetData: ${JSON.stringify(widgetData)} `);
 
         if (widgetData.oid) {
             let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, widgetData.debug);
@@ -753,12 +755,15 @@ vis.binds.materialdesign.helper = {
 
             if (oidsNeedSubscribe) {
                 myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
+                    if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] oid subscribed -> fire callback()`);
                     callBack(widgetData);
                 }, widgetData.debug);
             } else {
+                if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] nothing to subscribed -> fire callback()`);
                 callBack(widgetData);
             }
         } else {
+            if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] no oid exist, nothing to subscribed -> fire callback()`);
             callBack(widgetData);
         }
     },

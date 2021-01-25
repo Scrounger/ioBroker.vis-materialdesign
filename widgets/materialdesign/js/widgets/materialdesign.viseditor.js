@@ -536,52 +536,42 @@ vis.binds.materialdesign.viseditor = {
 
                             let objectForDev = {};
                             let objectForDevString = "";
-                            let strTableForDev = '<details>' + '\n' +
-                                '\t' + '<table>' + '\n' +
-                                '\t\t' + '<thead>' + '\n' +
-                                '\t\t\t' + '<tr>' + '\n' +
-                                '\t\t\t\t' + '<th>Property</th>' + '\n' +
-                                '\t\t\t\t' + '<th>Description</th>' + '\n' +
-                                '\t\t\t\t' + '<th>Type</th>' + '\n' +
-                                '\t\t\t\t' + '<th>Values</th>' + '\n' +
-                                '\t\t\t' + '</tr>' + '\n' +
-                                '\t\t' + '</thead>' + '\n' +
-                                '\t\t' + '<tbody>' + '\n';
+                            let strTableForDev = '<table>' + '\n' +
+                                '\t' + '<thead>' + '\n' +
+                                '\t\t' + '<tr>' + '\n' +
+                                '\t\t\t' + '<th>Property</th>' + '\n' +
+                                '\t\t\t' + '<th>Description</th>' + '\n' +
+                                '\t\t\t' + '<th>Type</th>' + '\n' +
+                                '\t\t\t' + '<th>Values</th>' + '\n' +
+                                '\t\t' + '</tr>' + '\n' +
+                                '\t' + '</thead>' + '\n' +
+                                '\t' + '<tbody>' + '\n';
 
                             if (type) {
                                 strTableForDev = strTableForDev +
-                                    '\t\t\t' + '<tr>' + '\n' +
-                                    '\t\t\t\t' + `<td>type</td>` + '\n' +
-                                    '\t\t\t\t' + `<td>${_('mdwType')}</td>` + '\n' +
-                                    '\t\t\t\t' + `<td>string</td>` + '\n' +
-                                    '\t\t\t\t' + `<td>${type}</td>` + '\n' +
-                                    '\t\t\t' + '</tr>' + '\n';
+                                    '\t\t' + '<tr>' + '\n' +
+                                    '\t\t\t' + `<td>type</td>` + '\n' +
+                                    '\t\t\t' + `<td>${_('mdwType')}</td>` + '\n' +
+                                    '\t\t\t' + `<td>string</td>` + '\n' +
+                                    '\t\t\t' + `<td>${type}</td>` + '\n' +
+                                    '\t\t' + '</tr>' + '\n';
                             }
 
-                            strTableForDev = strTableForDev +
-                                '\t\t\t' + '<tr>' + '\n' +
-                                '\t\t\t\t' + `<td>debug</td>` + '\n' +
-                                '\t\t\t\t' + `<td>${_('mdwDebug')}</td>` + '\n' +
-                                '\t\t\t\t' + `<td>boolean</td>` + '\n' +
-                                '\t\t\t\t' + `<td>false | true</td>` + '\n' +
-                                '\t\t\t' + '</tr>' + '\n';
-
                             objectForDevString = objectForDevString + `wid: widgetId,\n`;
-                            objectForDevString = objectForDevString + `debug: obj.debug,\n`;
 
                             for (const attr in widgetAttrs) {
 
                                 if (!attr.includes('_§')) {
                                     strTableForDev = strTableForDev +
-                                        '\t\t\t' + '<tr>' + '\n' +
-                                        '\t\t\t\t' + `<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>${_('group_' + attr)}</b></i></td>` + '\n' +
-                                        '\t\t\t' + '</tr>' + '\n';
+                                        '\t\t' + '<tr>' + '\n' +
+                                        '\t\t\t' + `<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>${_('group_' + attr)}</b></i></td>` + '\n' +
+                                        '\t\t' + '</tr>' + '\n';
                                 } else {
                                     if (attr.includes('_§0')) {
                                         strTableForDev = strTableForDev +
-                                            '\t\t\t' + '<tr>' + '\n' +
-                                            '\t\t\t\t' + `<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>${_('group_' + attr.replace('_§0', ''))} [x]</b></i></td>` + '\n' +
-                                            '\t\t\t' + '</tr>' + '\n';
+                                            '\t\t' + '<tr>' + '\n' +
+                                            '\t\t\t' + `<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>${_('group_' + attr.replace('_§0', ''))} [x]</b></i></td>` + '\n' +
+                                            '\t\t' + '</tr>' + '\n';
                                     }
                                 }
 
@@ -607,21 +597,21 @@ vis.binds.materialdesign.viseditor = {
 
                                         if (isNaN(prop.slice(-1))) {
                                             strTableForDev = strTableForDev +
-                                                '\t\t\t' + '<tr>' + '\n' +
-                                                '\t\t\t\t' + `<td>${prop}</td>` + '\n' +
-                                                '\t\t\t\t' + `<td>${_(prop)}</td>` + '\n' +
-                                                '\t\t\t\t' + `<td>${widgetAttrs[attr][prop].type ? widgetAttrs[attr][prop].type.replace('color', 'string').replace('slider', 'number').replace('select', 'string').replace('checkbox', 'boolean').replace('id', 'string').replace('html', 'string').replace("undefined", 'string').replace("fontname", "string").replace("custom", "string") : 'string'}</td>` + '\n' +
-                                                '\t\t\t\t' + `<td>${valExample}` + '\n' +
-                                                '\t\t\t' + '</tr>' + '\n';
+                                                '\t\t' + '<tr>' + '\n' +
+                                                '\t\t\t' + `<td>mdw-${prop}</td>` + '\n' +
+                                                '\t\t\t' + `<td>${_(prop)}</td>` + '\n' +
+                                                '\t\t\t' + `<td>${widgetAttrs[attr][prop].type ? widgetAttrs[attr][prop].type.replace('color', 'string').replace('slider', 'number').replace('select', 'string').replace('checkbox', 'boolean').replace('id', 'string').replace('html', 'string').replace("undefined", 'string').replace("fontname", "string").replace("custom", "string") : 'string'}</td>` + '\n' +
+                                                '\t\t\t' + `<td>${valExample}` + '\n' +
+                                                '\t\t' + '</tr>' + '\n';
                                         } else {
                                             if (parseInt(prop.slice(-1)) === 0) {
                                                 strTableForDev = strTableForDev +
-                                                    '\t\t\t' + '<tr>' + '\n' +
-                                                    '\t\t\t\t' + `<td>${prop.replace('0', '')}[x]</td>` + '\n' +
-                                                    '\t\t\t\t' + `<td>${_(prop.replace('0', ''))}</td>` + '\n' +
-                                                    '\t\t\t\t' + `<td>${widgetAttrs[attr][prop].type ? widgetAttrs[attr][prop].type.replace('color', 'string').replace('slider', 'number').replace('select', 'string').replace('checkbox', 'boolean').replace('id', 'string').replace('html', 'string').replace("undefined", 'string').replace("fontname", "string").replace("custom", "string") : 'string'}</td>` + '\n' +
-                                                    '\t\t\t\t' + `<td>${valExample}` + '\n' +
-                                                    '\t\t\t' + '</tr>' + '\n';
+                                                    '\t\t' + '<tr>' + '\n' +
+                                                    '\t\t\t' + `<td>mdw-${prop.replace('0', '')}[x]</td>` + '\n' +
+                                                    '\t\t\t' + `<td>${_(prop.replace('0', ''))}</td>` + '\n' +
+                                                    '\t\t\t' + `<td>${widgetAttrs[attr][prop].type ? widgetAttrs[attr][prop].type.replace('color', 'string').replace('slider', 'number').replace('select', 'string').replace('checkbox', 'boolean').replace('id', 'string').replace('html', 'string').replace("undefined", 'string').replace("fontname", "string").replace("custom", "string") : 'string'}</td>` + '\n' +
+                                                    '\t\t\t' + `<td>${valExample}` + '\n' +
+                                                    '\t\t' + '</tr>' + '\n';
                                             }
                                         }
 
@@ -630,16 +620,14 @@ vis.binds.materialdesign.viseditor = {
                                 }
                             }
                             strTableForDev = strTableForDev +
-                                '\t\t' + '</tbody>' + '\n' +
-                                '\t' + '</table>' + '\n' +
-                                '</details>';
+                                '\t' + '</tbody>' + '\n' +
+                                '</table>';
 
                             if (Object.keys(objectForDev).length > 0) {
                                 console.log(objectForDevString);
                                 // console.log(objectForDev);
                                 console.log(strTableForDev);
                             }
-
 
                             let widget = that.views[view].widgets[that.activeWidgets[0]];
                             let style = widget.style;
@@ -654,14 +642,13 @@ vis.binds.materialdesign.viseditor = {
                                 widgetData,
                                 {
                                     type: type,
-                                    debug: false,                //TODO: auf false setzen   
                                     width: style.width,
                                     height: style.height
                                 },
                                 widget.data);
 
                             for (var attr in widgetData) {
-                                if ((!attrNames.includes(attr) || attr === 'exportData' || attr === 'generateHtmlControl') && attr !== 'type' && attr !== 'width' && attr !== 'height' && attr !== 'debug') {
+                                if ((!attrNames.includes(attr) || attr === 'exportData' || attr === 'generateHtmlControl') && attr !== 'type' && attr !== 'width' && attr !== 'height') {
                                     delete widgetData[attr];
                                 }
 
