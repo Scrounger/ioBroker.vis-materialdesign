@@ -263,7 +263,8 @@ vis.binds.materialdesign.slider = {
             step: obj.step,
             vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
             generateHtmlControl: obj.generateHtmlControl,
-
+            debug: obj.debug,
+            
             // steps Layout
             showTicks: obj.showTicks,
             tickSize: obj.tickSize,
@@ -273,12 +274,12 @@ vis.binds.materialdesign.slider = {
             tickFontSize: obj.tickFontSize,
             tickColorBefore: obj.tickColorBefore,
             tickColorAfter: obj.tickColorAfter,
-
+            
             // colors
             colorBeforeThumb: obj.colorBeforeThumb,
             colorThumb: obj.colorThumb,
             colorAfterThumb: obj.colorAfterThumb,
-
+            
             // labeling
             prepandText: obj.prepandText,
             prepandTextWidth: obj.prepandTextWidth,
@@ -298,7 +299,7 @@ vis.binds.materialdesign.slider = {
             valueGreaterThan: obj.valueGreaterThan,
             textForValueGreaterThan: obj.textForValueGreaterThan,
             valueLabelWidth: obj.valueLabelWidth,
-
+            
             // layout of the controller label
             showThumbLabel: obj.showThumbLabel,
             thumbSize: obj.thumbSize,
@@ -306,7 +307,7 @@ vis.binds.materialdesign.slider = {
             thumbFontColor: obj.thumbFontColor,
             thumbFontSize: obj.thumbFontSize,
             thumbFontFamily: obj.thumbFontFamily,
-            useLabelRules: obj.useLabelRules
+            useLabelRules: obj.useLabelRules            
         }
     },
     getHtmlConstructor(widgetData, type) {
@@ -318,7 +319,7 @@ vis.binds.materialdesign.slider = {
             delete widgetData.width;
             delete widgetData.height;
 
-            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-debug='false'` + '\n',
+            let mdwData = myMdwHelper.getHtmlmdwData('',
                 vis.binds.materialdesign.slider.getDataFromJson(widgetData, 0));
 
             html = `<div class='vis-widget materialdesign-widget materialdesign-slider-vertical materialdesign-slider-html-element'` + '\n' +
@@ -351,6 +352,8 @@ $.initialize(".materialdesign-slider-html-element", function () {
             parentId, widgetName, logPrefix, initializeHtml);
 
         function initializeHtml(widgetData) {
+            if (widgetData.debug) console.log(`${logPrefix} initialize widget`);
+
             vis.binds.materialdesign.slider.vuetifySlider($this, widgetData);
         }
 

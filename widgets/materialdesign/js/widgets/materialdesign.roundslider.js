@@ -189,6 +189,7 @@ vis.binds.materialdesign.roundslider = {
             rtl: obj.rtl,
             vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
             generateHtmlControl: obj.generateHtmlControl,
+            debug: obj.debug,
 
             // colors
             colorSliderBg: obj.colorSliderBg,
@@ -209,7 +210,7 @@ vis.binds.materialdesign.roundslider = {
             valueLessThan: obj.valueLessThan,
             textForValueLessThan: obj.textForValueLessThan,
             valueGreaterThan: obj.valueGreaterThan,
-            textForValueGreaterThan: obj.textForValueGreaterThan,
+            textForValueGreaterThan: obj.textForValueGreaterThan
         }
     },
     getHtmlConstructor(widgetData, type) {
@@ -221,7 +222,7 @@ vis.binds.materialdesign.roundslider = {
             delete widgetData.width;
             delete widgetData.height;
 
-            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-debug="false"` + '\n',
+            let mdwData = myMdwHelper.getHtmlmdwData('',
                 vis.binds.materialdesign.roundslider.getDataFromJson(widgetData, 0));
 
             html = `<div class="vis-widget materialdesign-widget materialdesign-slider-round materialdesign-roundslider-html-element"` + '\n' +
@@ -254,6 +255,8 @@ $.initialize(".materialdesign-roundslider-html-element", function () {
             parentId, widgetName, logPrefix, initializeHtml);
 
         function initializeHtml(widgetData) {
+            if (widgetData.debug) console.log(`${logPrefix} initialize widget`);
+
             vis.binds.materialdesign.roundslider.initialize($this, widgetData);
         }
 

@@ -615,7 +615,11 @@ vis.binds.materialdesign.viseditor = {
                                             }
                                         }
 
-                                        objectForDevString = objectForDevString + `${prop}: obj.${prop},\n`
+                                        if (prop.includes("-")) {
+                                            objectForDevString = objectForDevString + `"${prop}": obj["${prop}"],\n`
+                                        } else {
+                                            objectForDevString = objectForDevString + `${prop}: obj.${prop},\n`
+                                        }
                                     }
                                 }
                             }

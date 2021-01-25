@@ -58,7 +58,9 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 		- [Editor Settings](#editor-settings-5)
 		- [HTML Properties](#html-properties-4)
 	- [Slider](#slider)
+		- [HTML Properties](#html-properties-5)
 	- [Slider Round](#slider-round)
+		- [HTML Properties](#html-properties-6)
 	- [Input](#input)
 		- [Text input](#text-input)
 		- [Select](#select)
@@ -3191,571 +3193,625 @@ The following properties can be used as [HTML element](#html-elements).
 ## Slider
 ![Logo](doc/en/media/slider.gif)
 
-Settings that are not listed in the table below are self-explanatory.
+### HTML Properties
+
+The following properties can be used as [HTML element](#html-elements).
 
 <table>
-    <thead>
-        <tr>
-            <th>Screenshot</th>
-            <th>Setting</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td rowspan=6><img src="doc/en/media/slider.png"></td>
-            <td>initDelay</td>
-            <td>If the slider is not visible or operable after loading the runtime, then this value must be increased. Entry is made in milliseconds.<br>For example, increase by 250 steps until the slider works.</td>
-        </tr>
-    </tbody>
-</table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-oid-working</td>
+			<td>Working Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-orientation</td>
+			<td>Orientation</td>
+			<td>string</td>
+			<td>horizontal | vertical
+		</tr>
+		<tr>
+			<td>mdw-reverseSlider</td>
+			<td>invert slider</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-knobSize</td>
+			<td>knob size</td>
+			<td>string</td>
+			<td>knobSmall | knobMedium | knobBig
+		</tr>
+		<tr>
+			<td>mdw-readOnly</td>
+			<td>read only</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-min</td>
+			<td>min</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-max</td>
+			<td>max</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-step</td>
+			<td>steps</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-generateHtmlControl</td>
+			<td>generate Html Element</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>steps Layout</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-showTicks</td>
+			<td>show steps</td>
+			<td>string</td>
+			<td>no | yes | always
+		</tr>
+		<tr>
+			<td>mdw-tickSize</td>
+			<td>display size of steps</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-tickLabels</td>
+			<td>text of steps (comma separated)</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-tickTextColor</td>
+			<td>text color of steps</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-tickFontFamily</td>
+			<td>font of steps</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-tickFontSize</td>
+			<td>font size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-tickColorBefore</td>
+			<td>color before the regulator</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-tickColorAfter</td>
+			<td>color after the regulator</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-colorBeforeThumb</td>
+			<td>color before regulator</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorThumb</td>
+			<td>color of regulator</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorAfterThumb</td>
+			<td>color after regulator</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-prepandText</td>
+			<td>text prepanded</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-prepandTextWidth</td>
+			<td>prepandTextWidth</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-prepandTextColor</td>
+			<td>color of text prepanded</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-prepandTextFontSize</td>
+			<td>size text prepanded</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-prepandTextFontFamily</td>
+			<td>font of text prepanded</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-showValueLabel</td>
+			<td>show value</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-valueLabelStyle</td>
+			<td>value caption style</td>
+			<td>string</td>
+			<td>sliderPercent | sliderValue
+		</tr>
+		<tr>
+			<td>mdw-valueLabelUnit</td>
+			<td>unit</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueFontFamily</td>
+			<td>valueFontFamily</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueFontSize</td>
+			<td>value font size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueLabelColor</td>
+			<td>text color of value</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-valueLabelMin</td>
+			<td>text for value less than min</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueLabelMax</td>
+			<td>text for value greater than min</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueLessThan</td>
+			<td>'smaller than' condition for the text of the value</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textForValueLessThan</td>
+			<td>text for 'smaller than'</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueGreaterThan</td>
+			<td>'greater than' condition for the text of the value</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textForValueGreaterThan</td>
+			<td>text for 'greater than'</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueLabelWidth</td>
+			<td>distance label</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>layout of the controller label</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-showThumbLabel</td>
+			<td>show label</td>
+			<td>string</td>
+			<td>no | yes | always
+		</tr>
+		<tr>
+			<td>mdw-thumbSize</td>
+			<td>label size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-thumbBackgroundColor</td>
+			<td>background color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-thumbFontColor</td>
+			<td>font color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-thumbFontSize</td>
+			<td>font size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-thumbFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-useLabelRules</td>
+			<td>use rules of the text</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+	</tbody>
+</table> 
 
-##### Slider Properties
-
-The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+<!-- omit in toc -->
+#### HTML Properties - Example
 
 <details>
-	<table>
-		<thead>
-			<tr>
-				<th>Property</th>
-				<th>Description</th>
-				<th>Type</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>debug</td>
-				<td>debug mode</td>
-				<td>boolean</td>
-				<td>false | true</td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
-			</tr>
-			<tr>
-				<td>oid</td>
-				<td>Object ID</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>oid-working</td>
-				<td>Working Object ID</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>orientation</td>
-				<td>Orientation</td>
-				<td>string</td>
-				<td>horizontal | vertical
-			</tr>
-			<tr>
-				<td>reverseSlider</td>
-				<td>invert slider</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>knobSize</td>
-				<td>knob size</td>
-				<td>string</td>
-				<td>knobSmall | knobMedium | knobBig
-			</tr>
-			<tr>
-				<td>readOnly</td>
-				<td>read only</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>min</td>
-				<td>min</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>max</td>
-				<td>max</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>step</td>
-				<td>steps</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>vibrateOnMobilDevices</td>
-				<td>vibrate on mobil devices [s]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>generateHtmlControl</td>
-				<td>generate Html Element</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>steps Layout</b></i></td>
-			</tr>
-			<tr>
-				<td>showTicks</td>
-				<td>show steps</td>
-				<td>string</td>
-				<td>no | yes | always
-			</tr>
-			<tr>
-				<td>tickSize</td>
-				<td>display size of steps</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>tickLabels</td>
-				<td>text of steps (comma separated)</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>tickTextColor</td>
-				<td>text color of steps</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>tickFontFamily</td>
-				<td>font of steps</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>tickFontSize</td>
-				<td>font size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>tickColorBefore</td>
-				<td>color before the regulator</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>tickColorAfter</td>
-				<td>color after the regulator</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
-			</tr>
-			<tr>
-				<td>colorBeforeThumb</td>
-				<td>color before regulator</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorThumb</td>
-				<td>color of regulator</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorAfterThumb</td>
-				<td>color after regulator</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
-			</tr>
-			<tr>
-				<td>prepandText</td>
-				<td>text prepanded</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>prepandTextWidth</td>
-				<td>prepandTextWidth</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>prepandTextColor</td>
-				<td>color of text prepanded</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>prepandTextFontSize</td>
-				<td>size text prepanded</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>prepandTextFontFamily</td>
-				<td>font of text prepanded</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>showValueLabel</td>
-				<td>show value</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>valueLabelStyle</td>
-				<td>value caption style</td>
-				<td>string</td>
-				<td>sliderPercent | sliderValue
-			</tr>
-			<tr>
-				<td>valueLabelUnit</td>
-				<td>unit</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueFontFamily</td>
-				<td>valueFontFamily</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueFontSize</td>
-				<td>value font size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueLabelColor</td>
-				<td>text color of value</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>valueLabelMin</td>
-				<td>text for value less than min</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueLabelMax</td>
-				<td>text for value greater than min</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueLessThan</td>
-				<td>'smaller than' condition for the text of the value</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textForValueLessThan</td>
-				<td>text for 'smaller than'</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueGreaterThan</td>
-				<td>'greater than' condition for the text of the value</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textForValueGreaterThan</td>
-				<td>text for 'greater than'</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueLabelWidth</td>
-				<td>distance label</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>layout of the controller label</b></i></td>
-			</tr>
-			<tr>
-				<td>showThumbLabel</td>
-				<td>show label</td>
-				<td>string</td>
-				<td>no | yes | always
-			</tr>
-			<tr>
-				<td>thumbSize</td>
-				<td>label size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>thumbBackgroundColor</td>
-				<td>background color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>thumbFontColor</td>
-				<td>font color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>thumbFontSize</td>
-				<td>font size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>thumbFontFamily</td>
-				<td>font</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>useLabelRules</td>
-				<td>use rules of the text</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-		</tbody>
-	</table>
-</details>
 
+```
+<div class='vis-widget materialdesign-widget materialdesign-slider-vertical materialdesign-slider-html-element'
+	style='width: 342px; height: 100px; position: relative; overflow:visible !important; display: flex; align-items: center;'
+	mdw-debug='false'
+	mdw-oid='0_userdata.0.MDW.Slider.val0'
+	mdw-oid-working='0_userdata.0.MDW.Slider.working'
+	mdw-orientation='horizontal'
+	mdw-knobSize='knobSmall'
+	mdw-min='0'
+	mdw-max='100'
+	mdw-step='10'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-showTicks='always'
+	mdw-tickSize='5'
+	mdw-tickLabels='1,2,3,4,5,6,7,8,9,10,11'
+	mdw-tickTextColor='#mdwTheme:vis-materialdesign.0.colors.slider.tick'
+	mdw-tickFontFamily='#mdwTheme:vis-materialdesign.0.fonts.slider.ticks'
+	mdw-tickFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.slider.ticks'
+	mdw-tickColorBefore='#mdwTheme:vis-materialdesign.0.colors.slider.tick_before'
+	mdw-tickColorAfter='#mdwTheme:vis-materialdesign.0.colors.slider.tick_after'
+	mdw-colorBeforeThumb='#mdwTheme:vis-materialdesign.0.colors.slider.control_before'
+	mdw-colorThumb='#mdwTheme:vis-materialdesign.0.colors.slider.control'
+	mdw-colorAfterThumb='#mdwTheme:vis-materialdesign.0.colors.slider.control_behind'
+	mdw-prepandText='prepand'
+	mdw-prepandTextWidth='60'
+	mdw-prepandTextColor='#mdwTheme:vis-materialdesign.0.colors.slider.text_prepand'
+	mdw-prepandTextFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.slider.prepand'
+	mdw-prepandTextFontFamily='#mdwTheme:vis-materialdesign.0.fonts.slider.prepand'
+	mdw-showValueLabel='true'
+	mdw-valueLabelStyle='sliderPercent'
+	mdw-valueFontFamily='#mdwTheme:vis-materialdesign.0.fonts.slider.value'
+	mdw-valueFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.slider.value'
+	mdw-valueLabelColor='#mdwTheme:vis-materialdesign.0.colors.slider.text'
+	mdw-valueLabelWidth='50'
+	mdw-showThumbLabel='always'
+	mdw-thumbBackgroundColor='#mdwTheme:vis-materialdesign.0.colors.slider.control_background'
+	mdw-thumbFontColor='#mdwTheme:vis-materialdesign.0.colors.slider.control_text'
+	mdw-thumbFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.slider.control'
+	mdw-thumbFontFamily='#mdwTheme:vis-materialdesign.0.fonts.slider.control'
+></div>
+```
+
+</details>
 
 ## Slider Round
 ![Logo](doc/en/media/round_slider.gif)
 
-##### Slider Round Properties
+### HTML Properties
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+The following properties can be used as [HTML element](#html-elements).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-oid-working</td>
+			<td>Working Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-min</td>
+			<td>min</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-max</td>
+			<td>max</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-step</td>
+			<td>steps</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-readOnly</td>
+			<td>read only</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-startAngle</td>
+			<td>start angle</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-arcLength</td>
+			<td>arc length</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-sliderWidth</td>
+			<td>slider thikness</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-handleSize</td>
+			<td>knob size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-handleZoom</td>
+			<td>knob zoom at control</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-rtl</td>
+			<td>slider movement from right to left</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-generateHtmlControl</td>
+			<td>generate Html Element</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-colorSliderBg</td>
+			<td>background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorBeforeThumb</td>
+			<td>color before regulator</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorThumb</td>
+			<td>color of regulator</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorAfterThumb</td>
+			<td>color after regulator</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-valueLabelColor</td>
+			<td>text color of value</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-showValueLabel</td>
+			<td>show value</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-valueLabelVerticalPosition</td>
+			<td>vertical text position of value </td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueLabelStyle</td>
+			<td>value caption style</td>
+			<td>string</td>
+			<td>sliderPercent | sliderValue
+		</tr>
+		<tr>
+			<td>mdw-valueLabelUnit</td>
+			<td>unit</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueFontFamily</td>
+			<td>valueFontFamily</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueFontSize</td>
+			<td>value font size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueLabelMin</td>
+			<td>text for value less than min</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueLabelMax</td>
+			<td>text for value greater than min</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueLessThan</td>
+			<td>'smaller than' condition for the text of the value</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textForValueLessThan</td>
+			<td>text for 'smaller than'</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueGreaterThan</td>
+			<td>'greater than' condition for the text of the value</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textForValueGreaterThan</td>
+			<td>text for 'greater than'</td>
+			<td>string</td>
+			<td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+#### HTML Properties - Example
 
 <details>
-	<table>
-		<thead>
-			<tr>
-				<th>Property</th>
-				<th>Description</th>
-				<th>Type</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>debug</td>
-				<td>debug mode</td>
-				<td>boolean</td>
-				<td>false | true</td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
-			</tr>
-			<tr>
-				<td>oid</td>
-				<td>Object ID</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>oid-working</td>
-				<td>Working Object ID</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>min</td>
-				<td>min</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>max</td>
-				<td>max</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>step</td>
-				<td>steps</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>readOnly</td>
-				<td>read only</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>startAngle</td>
-				<td>start angle</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>arcLength</td>
-				<td>arc length</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>sliderWidth</td>
-				<td>slider thikness</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>handleSize</td>
-				<td>knob size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>handleZoom</td>
-				<td>knob zoom at control</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>rtl</td>
-				<td>slider movement from right to left</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>vibrateOnMobilDevices</td>
-				<td>vibrate on mobil devices [s]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>generateHtmlControl</td>
-				<td>generate Html Element</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
-			</tr>
-			<tr>
-				<td>colorSliderBg</td>
-				<td>background</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorBeforeThumb</td>
-				<td>color before regulator</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorThumb</td>
-				<td>color of regulator</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorAfterThumb</td>
-				<td>color after regulator</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>valueLabelColor</td>
-				<td>text color of value</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
-			</tr>
-			<tr>
-				<td>showValueLabel</td>
-				<td>show value</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>valueLabelVerticalPosition</td>
-				<td>vertical text position of value </td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueLabelStyle</td>
-				<td>value caption style</td>
-				<td>string</td>
-				<td>sliderPercent | sliderValue
-			</tr>
-			<tr>
-				<td>valueLabelUnit</td>
-				<td>unit</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueFontFamily</td>
-				<td>valueFontFamily</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueFontSize</td>
-				<td>value font size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueLabelMin</td>
-				<td>text for value less than min</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueLabelMax</td>
-				<td>text for value greater than min</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueLessThan</td>
-				<td>'smaller than' condition for the text of the value</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textForValueLessThan</td>
-				<td>text for 'smaller than'</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueGreaterThan</td>
-				<td>'greater than' condition for the text of the value</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textForValueGreaterThan</td>
-				<td>text for 'greater than'</td>
-				<td>string</td>
-				<td>
-			</tr>
-		</tbody>
-	</table>
-</details>
 
+```
+<div class="vis-widget materialdesign-widget materialdesign-slider-round materialdesign-roundslider-html-element"
+	style="width: 100px; height: 100px; position: relative;"
+	mdw-debug="false"
+	mdw-oid='0_userdata.0.MDW.Slider.val0'
+	mdw-oid-working='0_userdata.0.MDW.Slider.working'
+	mdw-step='1'
+	mdw-startAngle='135'
+	mdw-arcLength='270'
+	mdw-handleZoom='1.5'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-colorSliderBg='#mdwTheme:vis-materialdesign.0.colors.slider.background'
+	mdw-colorBeforeThumb='#mdwTheme:vis-materialdesign.0.colors.slider.control_before'
+	mdw-colorThumb='#mdwTheme:vis-materialdesign.0.colors.slider.control'
+	mdw-colorAfterThumb='#mdwTheme:vis-materialdesign.0.colors.slider.control_behind'
+	mdw-valueLabelColor='#mdwTheme:vis-materialdesign.0.colors.slider.text'
+	mdw-showValueLabel='true'
+	mdw-valueLabelStyle='sliderValue'
+	mdw-valueFontFamily='#mdwTheme:vis-materialdesign.0.fonts.slider.value'
+	mdw-valueFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.slider.value'
+></div>
+```
+
+</details> 
 
 ## Input
 
