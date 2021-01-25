@@ -99,31 +99,70 @@ vis.binds.materialdesign.card = {
         }
     },
     handler: function (el, data) {
+        let widgetName = 'HTML Card';
+        let themeTriggerClass = '.materialdesign-widget.materialdesign-html-card'
+
         try {
             let $this = $(el);
 
-            let card = $this.context;
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
+                init();
+            });
 
-            // mdc.ripple.MDCRipple.attachTo($this.find('.mdc-card__primary-action').get(0));
+            function init() {
+                let card = $this.context;
 
-            let colorBackground = myMdwHelper.getValueFromData(data.colorBackground, '');
-            card.style.setProperty("--materialdesign-color-card-background", colorBackground);
-            card.style.setProperty("--materialdesign-color-card-title-section-background", myMdwHelper.getValueFromData(data.colorTitleSectionBackground, colorBackground));
-            card.style.setProperty("--materialdesign-color-card-text-section-background", myMdwHelper.getValueFromData(data.colorTextSectionBackground, colorBackground));
-
-            card.style.setProperty("--materialdesign-color-card-title", myMdwHelper.getValueFromData(data.colorTitle, ''));
-            card.style.setProperty("--materialdesign-color-card-sub-title", myMdwHelper.getValueFromData(data.colorSubtitle, ''));
-            card.style.setProperty("--materialdesign-color-card--text-section-text", myMdwHelper.getValueFromData(data.colorBody, ''));
-
-            card.style.setProperty("--materialdesign-font-card-title", myMdwHelper.getValueFromData(data.titleFontFamily, ''));
-            card.style.setProperty("--materialdesign-font-card-sub-title", myMdwHelper.getValueFromData(data.subTitleFontFamily, ''));
-            card.style.setProperty("--materialdesign-font-card--text-section-text", myMdwHelper.getValueFromData(data.textFontFamily, ''));
+                // mdc.ripple.MDCRipple.attachTo($this.find('.mdc-card__primary-action').get(0));
 
 
-            this.backgroundImageRefresh(el, data, `url(${data.image}`, data.refreshInterval, data.refreshOnWakeUp, data.refreshOnViewChange, false);
+                vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
+                    setLayout();
+                });
 
+                vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
+                    setLayout();
+                });
+
+                $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
+                    if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
+                    setLayout();
+                });
+
+                setLayout();
+                function setLayout() {
+                    let colorBackground = myMdwHelper.getValueFromData(data.colorBackground, '');
+                    card.style.setProperty("--materialdesign-color-card-background", colorBackground);
+                    card.style.setProperty("--materialdesign-color-card-title-section-background", myMdwHelper.getValueFromData(data.colorTitleSectionBackground, colorBackground));
+                    card.style.setProperty("--materialdesign-color-card-text-section-background", myMdwHelper.getValueFromData(data.colorTextSectionBackground, colorBackground));
+
+                    card.style.setProperty("--materialdesign-color-card-title", myMdwHelper.getValueFromData(data.colorTitle, ''));
+                    card.style.setProperty("--materialdesign-color-card-sub-title", myMdwHelper.getValueFromData(data.colorSubtitle, ''));
+                    card.style.setProperty("--materialdesign-color-card--text-section-text", myMdwHelper.getValueFromData(data.colorBody, ''));
+
+                    card.style.setProperty("--materialdesign-font-card-title", myMdwHelper.getValueFromData(data.titleFontFamily, ''));
+                    card.style.setProperty("--materialdesign-font-card-sub-title", myMdwHelper.getValueFromData(data.subTitleFontFamily, ''));
+                    card.style.setProperty("--materialdesign-font-card--text-section-text", myMdwHelper.getValueFromData(data.textFontFamily, ''));
+
+                    let titleFontSize = myMdwHelper.getFontSize(data.titleLayout);
+                    if (titleFontSize && titleFontSize.style) {
+                        $this.find('.card-title').css('font-size', myMdwHelper.getStringFromNumberData(data.titleLayout, 'inherit', '', 'px'));
+                    }
+
+                    let subTitleFontSize = myMdwHelper.getFontSize(data.subtitleLayout);
+                    if (subTitleFontSize && subTitleFontSize.style) {
+                        $this.find('.card-subtitle').css('font-size', myMdwHelper.getStringFromNumberData(data.subtitleLayout, 'inherit', '', 'px'));
+                    }
+
+                    let textFontSize = myMdwHelper.getFontSize(data.textFontSize);
+                    if (textFontSize && textFontSize.style) {
+                        $this.find('.card-text-section').css('font-size', myMdwHelper.getStringFromNumberData(data.textFontSize, 'inherit', '', 'px'));
+                    }
+
+                    vis.binds.materialdesign.card.backgroundImageRefresh(el, data, `url(${data.image}`, data.refreshInterval, data.refreshOnWakeUp, data.refreshOnViewChange, false);
+                }
+            }
         } catch (ex) {
-            console.error(`[Card - ${data.wid}] handler: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[${widgetName} - ${data.wid}] handler: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     backgroundImageRefresh: function (el, data, src, refreshInterval, refreshOnWakeUp, refreshOnViewChange, refreshWithNoQuery) {
