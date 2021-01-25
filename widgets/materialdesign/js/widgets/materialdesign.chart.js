@@ -333,7 +333,7 @@ vis.binds.materialdesign.chart = {
     },
     lineHistory: function (el, data) {
         try {
-            let debug = myMdwHelper.getBooleanFromData(data.mdwDebug, false);
+            let debug = myMdwHelper.getBooleanFromData(data.debug, false);
             if (debug) console.log(`[Line History Chart ${data.wid}] widget setting: ${JSON.stringify(data)}`);
 
             setTimeout(function () {
@@ -1128,7 +1128,7 @@ vis.binds.materialdesign.chart = {
     },
     json: function (el, data) {
         try {
-            let debug = myMdwHelper.getBooleanFromData(data.mdwDebug, false);
+            let debug = myMdwHelper.getBooleanFromData(data.debug, false);
             if (debug) console.log(`[JSON Chart ${data.wid}] widget setting: ${JSON.stringify(data)}`);
 
             setTimeout(function () {
