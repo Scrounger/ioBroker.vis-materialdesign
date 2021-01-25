@@ -248,12 +248,6 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 		</tr>
 		<tr>
-			<td>mdw-generateHtmlControl</td>
-			<td>generate Html Element</td>
-			<td>string</td>
-			<td>
-		</tr>
-		<tr>
 			<td>mdw-debug</td>
 			<td>debug</td>
 			<td>boolean</td>
@@ -1977,7 +1971,7 @@ The following properties can be used as [HTML element](#html-elements).
 	</thead>
 	<tbody>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-oid</td>
@@ -2022,19 +2016,13 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>
 		</tr>
 		<tr>
-			<td>mdw-generateHtmlControl</td>
-			<td>generate Html Element</td>
-			<td>string</td>
-			<td>
-		</tr>
-		<tr>
 			<td>mdw-debug</td>
 			<td>debug</td>
 			<td>boolean</td>
 			<td>false | true
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-labelFalse</td>
@@ -2073,7 +2061,7 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-colorCheckBox</td>
@@ -2106,7 +2094,7 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Locking</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-lockEnabled</td>
@@ -2246,7 +2234,7 @@ The following properties can be used as [HTML element](#html-elements).
 	</thead>
 	<tbody>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-oid</td>
@@ -2291,19 +2279,13 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>
 		</tr>
 		<tr>
-			<td>mdw-generateHtmlControl</td>
-			<td>generate Html Element</td>
-			<td>string</td>
-			<td>
-		</tr>
-		<tr>
 			<td>mdw-debug</td>
 			<td>debug</td>
 			<td>boolean</td>
 			<td>false | true
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-labelFalse</td>
@@ -2342,7 +2324,7 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-colorSwitchThumb</td>
@@ -2387,7 +2369,7 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
 		</tr>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Locking</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-lockEnabled</td>
@@ -2793,12 +2775,6 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>false | true
 		</tr>
 		<tr>
-			<td>mdw-generateHtmlControl</td>
-			<td>generate Html Element</td>
-			<td>string</td>
-			<td>
-		</tr>
-		<tr>
 			<td>mdw-debug</td>
 			<td>debug</td>
 			<td>boolean</td>
@@ -3034,12 +3010,6 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>false | true
 		</tr>
 		<tr>
-			<td>mdw-generateHtmlControl</td>
-			<td>generate Html Element</td>
-			<td>string</td>
-			<td>
-		</tr>
-		<tr>
 			<td>mdw-debug</td>
 			<td>debug</td>
 			<td>boolean</td>
@@ -3270,12 +3240,6 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>mdw-vibrateOnMobilDevices</td>
 			<td>vibrate on mobil devices [s]</td>
 			<td>number</td>
-			<td>
-		</tr>
-		<tr>
-			<td>mdw-generateHtmlControl</td>
-			<td>generate Html Element</td>
-			<td>string</td>
 			<td>
 		</tr>
 		<tr>
@@ -3582,7 +3546,7 @@ The following properties can be used as [HTML element](#html-elements).
 	</thead>
 	<tbody>
 		<tr>
-			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
 		</tr>
 		<tr>
 			<td>mdw-oid</td>
@@ -3660,12 +3624,6 @@ The following properties can be used as [HTML element](#html-elements).
 			<td>mdw-vibrateOnMobilDevices</td>
 			<td>vibrate on mobil devices [s]</td>
 			<td>number</td>
-			<td>
-		</tr>
-		<tr>
-			<td>mdw-generateHtmlControl</td>
-			<td>generate Html Element</td>
-			<td>string</td>
 			<td>
 		</tr>
 		<tr>

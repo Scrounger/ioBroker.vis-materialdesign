@@ -564,13 +564,13 @@ vis.binds.materialdesign.viseditor = {
                                 if (!attr.includes('_§')) {
                                     strTableForDev = strTableForDev +
                                         '\t\t' + '<tr>' + '\n' +
-                                        '\t\t\t' + `<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>${_('group_' + attr)}</b></i></td>` + '\n' +
+                                        '\t\t\t' + `<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>${_('group_' + attr)}</b></i></td>` + '\n' +
                                         '\t\t' + '</tr>' + '\n';
                                 } else {
                                     if (attr.includes('_§0')) {
                                         strTableForDev = strTableForDev +
                                             '\t\t' + '<tr>' + '\n' +
-                                            '\t\t\t' + `<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>${_('group_' + attr.replace('_§0', ''))} [x]</b></i></td>` + '\n' +
+                                            '\t\t\t' + `<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>${_('group_' + attr.replace('_§0', ''))} [x]</b></i></td>` + '\n' +
                                             '\t\t' + '</tr>' + '\n';
                                     }
                                 }
@@ -582,7 +582,7 @@ vis.binds.materialdesign.viseditor = {
                                     attrNames.push(prop);
 
                                     // for documentation and object creation
-                                    let ausnahmen = ["manual", "questionsAndAnswers", "donate", "onlineExampleProject", "exportData", "useTheme"]
+                                    let ausnahmen = ["manual", "questionsAndAnswers", "donate", "onlineExampleProject", "exportData", "useTheme", "generateHtmlControl"]
                                     if (!ausnahmen.includes(prop)) {
                                         objectForDev[prop] = `obj.${prop}`;
 
