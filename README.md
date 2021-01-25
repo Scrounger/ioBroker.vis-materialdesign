@@ -85,7 +85,9 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 		- [Editor Settings](#editor-settings-9)
 	- [Responsive Layout](#responsive-layout)
 		- [Masonry Views](#masonry-views)
+			- [Editor Settings](#editor-settings-10)
 		- [Grid Views](#grid-views)
+		- [Editor Settings](#editor-settings-11)
 	- [Alerts](#alerts)
 	- [Calendar](#calendar)
 	- [HTML Elements](#html-elements)
@@ -6928,14 +6930,15 @@ There are two widgets - Masonry Views and Grid Views - with which it is possible
 
 ### Masonry Views
 
+![Logo](doc/en/media/masnory.gif)
+
 Masonry Views has multiple `view in widget` integrated, that will be ordered automatically depending of the width of the widget. With this widget it is possible to create a responsive layout (one layout for desktop, tablet and mobil).
 Masonry views are especially useful if the views included have different heights.
 
 
 <b>Take a look at the [Material Design Widgets example project](https://github.com/Scrounger/ioBroker.vis-materialdesign#online-example-project)</b> to understand how it works.
 
-![Logo](doc/en/media/masnory.gif)
-
+#### Editor Settings 
 
 <table>
     <thead>
@@ -6969,6 +6972,8 @@ Masonry views are especially useful if the views included have different heights
 
 ### Grid Views
 
+![Logo](doc/en/media/grid.gif)
+
 Grid Views has multiple `view in widget` integrated, that will be ordered automatically depending of the width of the widget. With this widget it is possible to create a responsive layout (one layout for desktop, tablet and mobil).
 Grid views are especially useful if the views included have the same heights.
 
@@ -6976,7 +6981,7 @@ Grid views are especially useful if the views included have the same heights.
 
 <b>Take a look at the [Material Design Widgets example project](https://github.com/Scrounger/ioBroker.vis-materialdesign#online-example-project)</b> to understand how it works.
 
-![Logo](doc/en/media/grid.gif)
+### Editor Settings 
 
 <table>
     <thead>
