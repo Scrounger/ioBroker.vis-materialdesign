@@ -2952,7 +2952,7 @@ The following properties can be used as [HTML element](#html-elements).
 </details>
 
 ## Progress Circular
-![Logo](doc/en/media/progress.gif)
+![Logo](doc/en/media/progress_circular.gif)
 
 ### Editor Settings 
 
