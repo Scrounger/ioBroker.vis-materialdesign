@@ -187,6 +187,7 @@ vis.binds.materialdesign.checkbox = {
             stateIfNotTrueValue: obj.stateIfNotTrueValue,
             vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
             generateHtmlControl: obj.generateHtmlControl,
+            debug: obj.debug,
 
             // labeling
             labelFalse: obj.labelFalse,
@@ -211,7 +212,7 @@ vis.binds.materialdesign.checkbox = {
             lockIconLeft: obj.lockIconLeft,
             lockIconSize: obj.lockIconSize,
             lockIconColor: obj.lockIconColor,
-            lockFilterGrayscale: obj.lockFilterGrayscale,
+            lockFilterGrayscale: obj.lockFilterGrayscale
         }
     },
     getHtmlConstructor(widgetData, type) {
@@ -223,7 +224,7 @@ vis.binds.materialdesign.checkbox = {
             delete widgetData.width;
             delete widgetData.height;
 
-            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-debug='false'` + '\n',
+            let mdwData = myMdwHelper.getHtmlmdwData('',
                 vis.binds.materialdesign.checkbox.getDataFromJson(widgetData, 0));
 
             html = `<div class='vis-widget materialdesign-widget materialdesign-checkbox materialdesign-checkbox-html-element'` + '\n' +
@@ -256,6 +257,8 @@ $.initialize(".materialdesign-checkbox-html-element", function () {
             parentId, widgetName, logPrefix, initializeHtml);
 
         function initializeHtml(widgetData) {
+            if (widgetData.debug) console.log(`${logPrefix} initialize widget`);
+
             let init = vis.binds.materialdesign.checkbox.initialize(widgetData);
 
             if (init) {

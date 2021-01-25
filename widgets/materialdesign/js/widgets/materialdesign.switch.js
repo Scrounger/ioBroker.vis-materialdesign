@@ -187,7 +187,8 @@ vis.binds.materialdesign.switch = {
             stateIfNotTrueValue: obj.stateIfNotTrueValue,
             vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
             generateHtmlControl: obj.generateHtmlControl,
-
+            debug: obj.debug,
+            
             // labeling
             labelFalse: obj.labelFalse,
             labelTrue: obj.labelTrue,
@@ -195,7 +196,7 @@ vis.binds.materialdesign.switch = {
             labelClickActive: obj.labelClickActive,
             valueFontFamily: obj.valueFontFamily,
             valueFontSize: obj.valueFontSize,
-
+            
             // colors
             colorSwitchThumb: obj.colorSwitchThumb,
             colorSwitchTrack: obj.colorSwitchTrack,
@@ -204,7 +205,7 @@ vis.binds.materialdesign.switch = {
             colorSwitchHoverTrue: obj.colorSwitchHoverTrue,
             labelColorFalse: obj.labelColorFalse,
             labelColorTrue: obj.labelColorTrue,
-
+            
             // Locking
             lockEnabled: obj.lockEnabled,
             autoLockAfter: obj.autoLockAfter,
@@ -213,7 +214,7 @@ vis.binds.materialdesign.switch = {
             lockIconLeft: obj.lockIconLeft,
             lockIconSize: obj.lockIconSize,
             lockIconColor: obj.lockIconColor,
-            lockFilterGrayscale: obj.lockFilterGrayscale,
+            lockFilterGrayscale: obj.lockFilterGrayscale            
         }
     },
     getHtmlConstructor(widgetData, type) {
@@ -225,7 +226,7 @@ vis.binds.materialdesign.switch = {
             delete widgetData.width;
             delete widgetData.height;
 
-            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-debug='false'` + '\n',
+            let mdwData = myMdwHelper.getHtmlmdwData('',
                 vis.binds.materialdesign.switch.getDataFromJson(widgetData, 0));
 
             html = `<div class='vis-widget materialdesign-widget materialdesign-switch materialdesign-switch-html-element'` + '\n' +
@@ -258,6 +259,8 @@ $.initialize(".materialdesign-switch-html-element", function () {
             parentId, widgetName, logPrefix, initializeHtml);
 
         function initializeHtml(widgetData) {
+            if (widgetData.debug) console.log(`${logPrefix} initialize widget`);
+
             let init = vis.binds.materialdesign.switch.initialize(widgetData);
 
             if (init) {
