@@ -535,6 +535,15 @@ vis.binds.materialdesign.iconlist =
                     if (data.listItemDataMethod === 'inputPerEditor') {
                         // Data from Editor
                         return {
+                            listType: myMdwHelper.getValueFromData(data.attr('listType' + i), 'text'),
+                            objectId: data.attr('oid' + i),
+                            buttonStateValue: data.attr('listTypeButtonStateValue' + i),
+                            buttonNavView: data.attr('listTypeButtonNav' + i),
+                            buttonLink: data.attr('listTypeButtonLink' + i),
+                            buttonToggleValueTrue: data.attr('typeButtonToggleValueTrue' + i),
+                            buttonToggleValueFalse: data.attr('typeButtonToggleValueFalse' + i),
+                            showValueLabel: myMdwHelper.getBooleanFromData(data.attr('showValueLabel' + i), true),
+                            valueAppendix: myMdwHelper.getValueFromData(data.attr('valueAppendix' + i), ""),
                             background: myMdwHelper.getValueFromData(data.attr('itemBackgroundColor' + i), myMdwHelper.getValueFromData(data.itemBackgroundColor, '')),
                             text: myMdwHelper.getValueFromData(data.attr('label' + i), ''),
                             subText: myMdwHelper.getValueFromData(data.attr('subLabel' + i), ''),
@@ -544,15 +553,6 @@ vis.binds.materialdesign.iconlist =
                             imageActiveColor: myMdwHelper.getValueFromData(data.attr('listImageActiveColor' + i), myMdwHelper.getValueFromData(data.attr('listImageColor' + i), "#44739e")),
                             buttonBackgroundColor: myMdwHelper.getValueFromData(data.attr('buttonBgColor' + i), ''),
                             buttonBackgroundActiveColor: myMdwHelper.getValueFromData(data.attr('buttonBgColorActive' + i), myMdwHelper.getValueFromData(data.attr('buttonBgColor' + i), '')),
-                            listType: myMdwHelper.getValueFromData(data.attr('listType' + i), 'text'),
-                            objectId: data.attr('oid' + i),
-                            buttonStateValue: data.attr('listTypeButtonStateValue' + i),
-                            buttonNavView: data.attr('listTypeButtonNav' + i),
-                            buttonLink: data.attr('listTypeButtonLink' + i),
-                            buttonToggleValueTrue: data.attr('typeButtonToggleValueTrue' + i),
-                            buttonToggleValueFalse: data.attr('typeButtonToggleValueFalse' + i),
-                            valueAppendix: myMdwHelper.getValueFromData(data.attr('valueAppendix' + i), ""),
-                            showValueLabel: myMdwHelper.getBooleanFromData(data.attr('showValueLabel' + i), true),
                             statusBarColor: myMdwHelper.getValueFromData(data.attr('statusBarColor' + i), 'transparent'),
                             statusBarText: myMdwHelper.getValueFromData(data.attr('statusBarText' + i), ''),
                             lockEnabled: myMdwHelper.getBooleanFromData(data.attr('lockEnabled' + i), false)
@@ -560,6 +560,15 @@ vis.binds.materialdesign.iconlist =
                     } else {
                         // Data from json
                         return {
+                            listType: myMdwHelper.getValueFromData(jsonData[i].listType, 'text'),
+                            objectId: jsonData[i].objectId,
+                            buttonStateValue: jsonData[i].buttonStateValue,
+                            buttonNavView: jsonData[i].buttonNavView,
+                            buttonLink: jsonData[i].buttonLink,
+                            buttonToggleValueTrue: jsonData[i].buttonToggleValueTrue,
+                            buttonToggleValueFalse: jsonData[i].buttonToggleValueFalse,
+                            showValueLabel: myMdwHelper.getBooleanFromData(jsonData[i].showValueLabel, true),
+                            valueAppendix: myMdwHelper.getValueFromData(jsonData[i].valueAppendix, ""),
                             background: myMdwHelper.getValueFromData(jsonData[i].background, myMdwHelper.getValueFromData(data.itemBackgroundColor, '')),
                             text: myMdwHelper.getValueFromData(jsonData[i].text, ''),
                             subText: myMdwHelper.getValueFromData(jsonData[i].subText, ''),
@@ -569,15 +578,6 @@ vis.binds.materialdesign.iconlist =
                             imageActiveColor: myMdwHelper.getValueFromData(jsonData[i].imageActiveColor, myMdwHelper.getValueFromData(jsonData[i].imageColor, "#44739e")),
                             buttonBackgroundColor: myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundColor, ''),
                             buttonBackgroundActiveColor: myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundActiveColor, myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundColor, '')),
-                            listType: myMdwHelper.getValueFromData(jsonData[i].listType, 'text'),
-                            objectId: jsonData[i].objectId,
-                            buttonStateValue: jsonData[i].buttonStateValue,
-                            buttonNavView: jsonData[i].buttonNavView,
-                            buttonLink: jsonData[i].buttonLink,
-                            buttonToggleValueTrue: jsonData[i].buttonToggleValueTrue,
-                            buttonToggleValueFalse: jsonData[i].buttonToggleValueFalse,
-                            valueAppendix: myMdwHelper.getValueFromData(jsonData[i].valueAppendix, ""),
-                            showValueLabel: myMdwHelper.getBooleanFromData(jsonData[i].showValueLabel, true),
                             statusBarColor: myMdwHelper.getValueFromData(jsonData[i].statusBarColor, 'transparent'),
                             statusBarText: myMdwHelper.getValueFromData(jsonData[i].statusBarText, ''),
                             lockEnabled: myMdwHelper.getBooleanFromData(jsonData[i].lockEnabled, false)

@@ -2573,7 +2573,7 @@ JSON string must be an array of objects with the following properties:
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
 		</tr>
 		<tr>
-			<td>background</td>
+			<td>text</td>
 			<td>text</td>
 			<td>string</td>
 			<td/>
@@ -2598,6 +2598,12 @@ JSON string must be an array of objects with the following properties:
 		</tr>
 		<tr>
 			<td>imageActive</td>
+			<td>image path or name of Material Design Icons</td>
+			<td>string</td>
+			<td/>
+		</tr>		
+		<tr>
+			<td>imageActiveColor</td>
 			<td>image path or name of Material Design Icons for active button</td>
 			<td>string</td>
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
@@ -2636,7 +2642,7 @@ JSON string must be an array of objects with the following properties:
 </table>
 
 <!-- omit in toc -->
-#### Example
+#### JSON Properties - Example
 
 <details>
 <pre><code>
