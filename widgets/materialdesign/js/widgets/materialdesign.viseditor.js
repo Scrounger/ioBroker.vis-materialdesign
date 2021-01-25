@@ -14,6 +14,10 @@ vis.binds.materialdesign.viseditor = {
 
             if (data) {
 
+                if (data[1] === 'materialdesignicon') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#material-design-icons-and-images'
+                }
+
                 if (data[1] === 'button') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#buttons'
                 }
