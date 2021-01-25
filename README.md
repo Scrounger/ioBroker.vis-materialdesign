@@ -52,7 +52,11 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 		- [Editor Settings](#editor-settings-3)
 		- [JSON Properties](#json-properties)
 	- [Progress](#progress)
+		- [Editor Settings](#editor-settings-4)
+		- [HTML Properties](#html-properties-3)
 	- [Progress Circular](#progress-circular)
+		- [Editor Settings](#editor-settings-5)
+		- [HTML Properties](#html-properties-4)
 	- [Slider](#slider)
 	- [Slider Round](#slider-round)
 	- [Input](#input)
@@ -64,19 +68,19 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 			- [JSON Properties](#json-properties-1)
 	- [Charts](#charts)
 		- [Bar Chart](#bar-chart)
-			- [Editor Settings](#editor-settings-4)
+			- [Editor Settings](#editor-settings-6)
 			- [JSON Properties](#json-properties-2)
 		- [Pie Chart](#pie-chart)
-			- [Editor Settings](#editor-settings-5)
+			- [Editor Settings](#editor-settings-7)
 			- [JSON Properties](#json-properties-3)
 		- [Line History Chart:](#line-history-chart)
-			- [Editor Settings](#editor-settings-6)
+			- [Editor Settings](#editor-settings-8)
 		- [JSON Chart](#json-chart)
 			- [JSON Properties](#json-properties-4)
 	- [Table](#table)
 		- [Input Data](#input-data)
 			- [Control Elements](#control-elements)
-		- [Editor Settings](#editor-settings-7)
+		- [Editor Settings](#editor-settings-9)
 	- [Responsive Layout](#responsive-layout)
 		- [Masonry Views](#masonry-views)
 		- [Grid Views](#grid-views)
@@ -2703,6 +2707,8 @@ JSON string must be an array of objects with the following properties:
 ## Progress
 ![Logo](doc/en/media/progress.gif)
 
+### Editor Settings
+
 <table>
     <thead>
         <tr>
@@ -2713,204 +2719,243 @@ JSON string must be an array of objects with the following properties:
     </thead>
     <tbody>
         <tr>
-            <td rowspan=6><img src="doc/en/media/progress_settings.png"></td>
+            <td rowspan=2><img src="doc/en/media/progress_settings_colors.png"></td>
+            <td>condition for color 1 progress [>]</td>
+            <td>Condition from when color 1 should be used. The value of the condition must be in percent</td>
+        </tr>
+        <tr>
+            <td>condition for color 2 progress [>]</td>
+            <td>Condition from when color 2 should be used. The value of the condition must be in percent</td>
+        </tr>				
+        <tr>
+            <td rowspan=1><img src="doc/en/media/progress_settings.png"></td>
             <td>custom label</td>
             <td>For custom label you can use the property <code>[#value]</code> to show the real value of the datapoint. To show the current percent you can use <code>[#percent]</code></td>
         </tr>
     </tbody>
 </table>
 
-##### Progress Properties
+### HTML Properties
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+The following properties can be used as [HTML element](#html-elements).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>linear</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-min</td>
+			<td>min</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-max</td>
+			<td>max</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-progressIndeterminate</td>
+			<td>indeterminate - continuously animates</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-reverse</td>
+			<td>Revers value</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-generateHtmlControl</td>
+			<td>generate Html Element</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>layout</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-progressRounded</td>
+			<td>rounded corners</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-progressStriped</td>
+			<td>striped</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-progressStripedColor</td>
+			<td>progressStripedColor</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-colorProgressBackground</td>
+			<td>background color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorProgress</td>
+			<td>color progress</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorOneCondition</td>
+			<td>condition for color 1 progress [>]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-colorOne</td>
+			<td>color 1 progress</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorTwoCondition</td>
+			<td>condition for color 2 progress [>]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-colorTwo</td>
+			<td>color 2 progress</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-showValueLabel</td>
+			<td>show value</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-valueLabelStyle</td>
+			<td>value caption style</td>
+			<td>string</td>
+			<td>progressPercent | progressValue | progressCustom
+		</tr>
+		<tr>
+			<td>mdw-valueLabelUnit</td>
+			<td>unit</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueMaxDecimals</td>
+			<td>decimal points</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueLabelCustom</td>
+			<td>custom label</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textColor</td>
+			<td>Minutes text color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-textFontSize</td>
+			<td>text size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textAlign</td>
+			<td>textAlign</td>
+			<td>string</td>
+			<td>start | center | end
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+#### HTML Properties - Example
 
 <details>
-	<table>
-		<thead>
-			<tr>
-				<th>Property</th>
-				<th>Description</th>
-				<th>Type</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>type</td>
-				<td>Widget type</td>
-				<td>string</td>
-				<td>linear</td>
-			</tr>
-			<tr>
-				<td>debug</td>
-				<td>debug mode</td>
-				<td>boolean</td>
-				<td>false | true</td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
-			</tr>
-			<tr>
-				<td>progressIndeterminate</td>
-				<td>indeterminate - continuously animates</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>oid</td>
-				<td>Object ID</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>min</td>
-				<td>min</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>max</td>
-				<td>max</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>reverse</td>
-				<td>Revers value</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>generateHtmlControl</td>
-				<td>generate Html Element</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>layout</b></i></td>
-			</tr>
-			<tr>
-				<td>progressRounded</td>
-				<td>rounded corners</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>progressStriped</td>
-				<td>striped</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>progressStripedColor</td>
-				<td>progressStripedColor</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
-			</tr>
-			<tr>
-				<td>colorProgressBackground</td>
-				<td>background color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorProgress</td>
-				<td>color progress</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorOneCondition</td>
-				<td>condition for color 1 progress [>]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>colorOne</td>
-				<td>color 1 progress</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorTwoCondition</td>
-				<td>condition for color 2 progress [>]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>colorTwo</td>
-				<td>color 2 progress</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
-			</tr>
-			<tr>
-				<td>showValueLabel</td>
-				<td>show value</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>valueLabelStyle</td>
-				<td>value caption style</td>
-				<td>string</td>
-				<td>progressPercent | progressValue | progressCustom
-			</tr>
-			<tr>
-				<td>valueLabelUnit</td>
-				<td>unit</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueMaxDecimals</td>
-				<td>decimal points</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueLabelCustom</td>
-				<td>custom label</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textColor</td>
-				<td>Minutes text color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>textFontSize</td>
-				<td>text size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textFontFamily</td>
-				<td>font</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textAlign</td>
-				<td>textAlign</td>
-				<td>string</td>
-				<td>start | center | end
-			</tr>
-		</tbody>
-	</table>
-</details>
 
+```
+<div class='vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-html-element'
+	style='width: 100%; height: 100%; position: relative; padding: 0px;'
+	mdw-type='linear'
+	mdw-oid='0_userdata.0.MDW.Progress.val0'
+	mdw-debug='true'
+	mdw-progressRounded='true'
+	mdw-colorProgressBackground='#mdwTheme:vis-materialdesign.0.colors.progress.track_background'
+	mdw-colorProgress='#mdwTheme:vis-materialdesign.0.colors.progress.track'
+	mdw-colorOneCondition='50'
+	mdw-colorOne='#mdwTheme:vis-materialdesign.0.colors.progress.track_condition1'
+	mdw-colorTwoCondition='70'
+	mdw-colorTwo='#mdwTheme:vis-materialdesign.0.colors.progress.track_condition2'
+	mdw-showValueLabel='true'
+	mdw-valueLabelStyle='progressPercent'
+	mdw-textColor='#mdwTheme:vis-materialdesign.0.colors.progress.text'
+	mdw-textFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.progress.text'
+	mdw-textFontFamily='#mdwTheme:vis-materialdesign.0.fonts.progress.text'
+	mdw-textAlign='end'
+></div>
+```
+
+</details>
 
 ## Progress Circular
 ![Logo](doc/en/media/progress.gif)
 
+### Editor Settings 
+
+Settings that are not listed in the table below are self-explanatory.
+
 <table>
     <thead>
         <tr>
@@ -2921,6 +2966,15 @@ The following properties can be used as [control element in a table](#control-el
     </thead>
     <tbody>
         <tr>
+            <td rowspan=2><img src="doc/en/media/progress_circular_settings_colors.png"></td>
+            <td>condition for color 1 progress [>]</td>
+            <td>Condition from when color 1 should be used. The value of the condition must be in percent</td>
+        </tr>
+        <tr>
+            <td>condition for color 2 progress [>]</td>
+            <td>Condition from when color 2 should be used. The value of the condition must be in percent</td>
+        </tr>	
+        <tr>
             <td rowspan=6><img src="doc/en/media/progress_settings.png"></td>
             <td>custom label</td>
             <td>For custom label you can use the property <code>[#value]</code> to show the real value of the datapoint. To show the current percent you can use <code>[#percent]</code></td>
@@ -2928,181 +2982,211 @@ The following properties can be used as [control element in a table](#control-el
     </tbody>
 </table>
 
-##### Progress Circular Properties
+### HTML Properties
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+The following properties can be used as [HTML element](#html-elements).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>circular</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-min</td>
+			<td>min</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-max</td>
+			<td>max</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-progressIndeterminate</td>
+			<td>indeterminate - continuously animates</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-generateHtmlControl</td>
+			<td>generate Html Element</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>layout</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-progressCircularSize</td>
+			<td>size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-progressCircularWidth</td>
+			<td>thickness</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-progressCircularRotate</td>
+			<td>rotate start point</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-colorProgressBackground</td>
+			<td>background color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorProgress</td>
+			<td>color progress</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-innerColor</td>
+			<td>circle background color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorOneCondition</td>
+			<td>condition for color 1 progress [>]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-colorOne</td>
+			<td>color 1 progress</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorTwoCondition</td>
+			<td>condition for color 2 progress [>]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-colorTwo</td>
+			<td>color 2 progress</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-showValueLabel</td>
+			<td>show value</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-valueLabelStyle</td>
+			<td>value caption style</td>
+			<td>string</td>
+			<td>progressPercent | progressValue | progressCustom
+		</tr>
+		<tr>
+			<td>mdw-valueLabelUnit</td>
+			<td>unit</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueMaxDecimals</td>
+			<td>decimal points</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueLabelCustom</td>
+			<td>custom label</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textColor</td>
+			<td>Minutes text color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-textFontSize</td>
+			<td>text size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+#### HTML Properties - Example
 
 <details>
-	<table>
-		<thead>
-			<tr>
-				<th>Property</th>
-				<th>Description</th>
-				<th>Type</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>type</td>
-				<td>Widget type</td>
-				<td>string</td>
-				<td>circular</td>
-			</tr>
-			<tr>
-				<td>debug</td>
-				<td>debug mode</td>
-				<td>boolean</td>
-				<td>false | true</td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>Common</b></i></td>
-			</tr>
-			<tr>
-				<td>oid</td>
-				<td>Object ID</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>min</td>
-				<td>min</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>max</td>
-				<td>max</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>generateHtmlControl</td>
-				<td>generate Html Element</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>layout</b></i></td>
-			</tr>
-			<tr>
-				<td>progressCircularSize</td>
-				<td>size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>progressCircularWidth</td>
-				<td>thickness</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>progressCircularRotate</td>
-				<td>rotate start point</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>colors</b></i></td>
-			</tr>
-			<tr>
-				<td>colorProgressBackground</td>
-				<td>background color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorProgress</td>
-				<td>color progress</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>innerColor</td>
-				<td>circle background color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorOneCondition</td>
-				<td>condition for color 1 progress [>]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>colorOne</td>
-				<td>color 1 progress</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorTwoCondition</td>
-				<td>condition for color 2 progress [>]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>colorTwo</td>
-				<td>color 2 progress</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b>labeling</b></i></td>
-			</tr>
-			<tr>
-				<td>showValueLabel</td>
-				<td>show value</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>valueLabelStyle</td>
-				<td>value caption style</td>
-				<td>string</td>
-				<td>progressPercent | progressValue | progressCustom
-			</tr>
-			<tr>
-				<td>valueLabelUnit</td>
-				<td>unit</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueMaxDecimals</td>
-				<td>decimal points</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueLabelCustom</td>
-				<td>custom label</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textColor</td>
-				<td>Minutes text color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>textFontSize</td>
-				<td>text size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textFontFamily</td>
-				<td>font</td>
-				<td>string</td>
-				<td>
-			</tr>
-		</tbody>
-	</table>
-</details>
 
+```
+<div class='vis-widget materialdesign-widget materialdesign-progress materialdesign-progress-html-element'
+	style='width: 100%; height: 100%; position: relative; padding: 0px;'
+	mdw-type='circular'
+	mdw-oid='0_userdata.0.MDW.Progress.val1'
+	mdw-colorProgressBackground='#mdwTheme:vis-materialdesign.0.colors.progress.track_background'
+	mdw-colorProgress='#mdwTheme:vis-materialdesign.0.colors.progress.track'
+	mdw-innerColor='#mdwTheme:vis-materialdesign.0.colors.progress.circular_background'
+	mdw-colorOneCondition='50'
+	mdw-colorOne='#mdwTheme:vis-materialdesign.0.colors.progress.track_condition1'
+	mdw-colorTwoCondition='70'
+	mdw-colorTwo='#mdwTheme:vis-materialdesign.0.colors.progress.track_condition2'
+	mdw-showValueLabel='true'
+	mdw-valueLabelStyle='progressPercent'
+	mdw-textColor='#mdwTheme:vis-materialdesign.0.colors.progress.text'
+	mdw-textFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.progress.text'
+	mdw-textFontFamily='#mdwTheme:vis-materialdesign.0.fonts.progress.text'
+></div>
+```
+
+</details>
 
 ## Slider
 ![Logo](doc/en/media/slider.gif)

@@ -550,7 +550,7 @@ vis.binds.materialdesign.viseditor = {
                             if (type) {
                                 strTableForDev = strTableForDev +
                                     '\t\t' + '<tr>' + '\n' +
-                                    '\t\t\t' + `<td>type</td>` + '\n' +
+                                    '\t\t\t' + `<td>mdw-type</td>` + '\n' +
                                     '\t\t\t' + `<td>${_('mdwType')}</td>` + '\n' +
                                     '\t\t\t' + `<td>string</td>` + '\n' +
                                     '\t\t\t' + `<td>${type}</td>` + '\n' +
