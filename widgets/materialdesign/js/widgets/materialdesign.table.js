@@ -11,15 +11,6 @@ vis.binds.materialdesign.table = {
             let $this = $(el);
             let tableElement = []
 
-            $this.get(0).style.setProperty("--materialdesign-color-table-background", myMdwHelper.getValueFromData(data.colorBackground, ''));
-            $this.get(0).style.setProperty("--materialdesign-color-table-border", myMdwHelper.getValueFromData(data.borderColor, ''));
-            $this.get(0).style.setProperty("--materialdesign-color-table-header-row-background", myMdwHelper.getValueFromData(data.colorHeaderRowBackground, ''));
-            $this.get(0).style.setProperty("--materialdesign-color-table-header-row-text-color", myMdwHelper.getValueFromData(data.colorHeaderRowText, ''));
-            $this.get(0).style.setProperty("--materialdesign-color-table-row-background", myMdwHelper.getValueFromData(data.colorRowBackground, ''));
-            $this.get(0).style.setProperty("--materialdesign-color-table-row-background-hover", myMdwHelper.getValueFromData(data.colorRowBackgroundHover, ''));
-            $this.get(0).style.setProperty("--materialdesign-color-table-row-text-color", myMdwHelper.getValueFromData(data.colorRowText, ''));
-            $this.get(0).style.setProperty("--materialdesign-color-table-row-divider", myMdwHelper.getValueFromData(data.dividers, ''));
-
             let headerFontSize = myMdwHelper.getFontSize(data.headerTextSize);
 
             let tableLayout = '';
@@ -67,78 +58,134 @@ vis.binds.materialdesign.table = {
         }
     },
     handle: function (el, data) {
+        let widgetName = 'Table';
+        let themeTriggerClass = '.materialdesign-widget.materialdesign-table'
+
         try {
             let $this = $(el);
-            $this.append(this.initialize(el, data));
 
-            myMdwHelper.waitForElement($this, `.mdc-data-table`, data.wid, 'Table', function () {
-                myMdwHelper.waitForRealHeight($this.context, data.wid, 'Table', function () {
-                    let table = $this.find('.mdc-data-table').get(0);
-                    let sortByKey = undefined;
-                    let sortASC = true;
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
+                init();
+            });
 
-                    if (table) {
-                        const mdcTable = new mdc.dataTable.MDCDataTable(table);
+            function init() {
+                $this.append(vis.binds.materialdesign.table.initialize(el, data));
 
-                        // adding Content
-                        if (myMdwHelper.getValueFromData(data.oid, null) !== null && myMdwHelper.getValueFromData(data.oid, null) !== 'nothing_selected' && vis.states.attr(data.oid + '.val') !== null) {
-                            vis.binds.materialdesign.table.getContentElements($this, vis.states.attr(data.oid + '.val'), data);
-                        } else {
-                            if (data.dataJson) {
-                                vis.binds.materialdesign.table.getContentElements($this, data.dataJson, data);
-                            }
-                        }
+                myMdwHelper.waitForElement($this, `.mdc-data-table`, data.wid, 'Table', function () {
+                    myMdwHelper.waitForRealHeight($this.context, data.wid, 'Table', function () {
+                        let table = $this.find('.mdc-data-table').get(0);
+                        let sortByKey = undefined;
+                        let sortASC = true;
 
-                        // Content changed
-                        vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                            vis.binds.materialdesign.table.getContentElements($this, newVal, data, null, oldVal, sortByKey, sortASC);
-                        });
+                        if (table) {
+                            const mdcTable = new mdc.dataTable.MDCDataTable(table);
 
-                        $this.find('.mdc-data-table__header-cell').click(function (obj) {
-                            let colIndex = $(this).attr('colIndex');
-
-                            let jsonData = [];
-                            if (myMdwHelper.getValueFromData(data.oid, null) !== null && vis.states.attr(data.oid + '.val') !== null) {
-                                jsonData = vis.binds.materialdesign.table.getJsonData(vis.states.attr(data.oid + '.val'), data);
+                            // adding Content
+                            if (myMdwHelper.getValueFromData(data.oid, null) !== null && myMdwHelper.getValueFromData(data.oid, null) !== 'nothing_selected' && vis.states.attr(data.oid + '.val') !== null) {
+                                vis.binds.materialdesign.table.getContentElements($this, vis.states.attr(data.oid + '.val'), data);
                             } else {
-                                jsonData = JSON.parse(data.dataJson)
+                                if (data.dataJson) {
+                                    vis.binds.materialdesign.table.getContentElements($this, data.dataJson, data);
+                                }
                             }
 
-                            if (jsonData && jsonData.length > 0) {
-                                sortByKey = (myMdwHelper.getValueFromData(data.attr('sortKey' + colIndex), null) !== null) ? data.attr('sortKey' + colIndex) : Object.keys(jsonData[0])[colIndex];
+                            // Content changed
+                            vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                                vis.binds.materialdesign.table.getContentElements($this, newVal, data, null, oldVal, sortByKey, sortASC);
+                            });
 
-                                if ($(this).attr('sort')) {
-                                    if ($(this).attr('sort') === 'ASC') {
-                                        sortASC = false;
-                                        $(this).attr('sort', 'DESC');
-                                        $(this).find('.materialdesign-table-header-sort').removeClass('materialdesign-table-header-sort-hidden').removeClass('mdi-rotate-180').css('opacity', '1')
-                                    } else {
-                                        sortASC = true;
-                                        $(this).attr('sort', 'ASC');
-                                        $(this).find('.materialdesign-table-header-sort').removeClass('materialdesign-table-header-sort-hidden').addClass('mdi-rotate-180').css('opacity', '1')
-                                    }
-                                } else {
-                                    // sort order is not defined -> sortASC
-                                    sortASC = true;
-                                    $(this).attr('sort', 'ASC');
-                                    $(this).find('.materialdesign-table-header-sort').removeClass('materialdesign-table-header-sort-hidden').addClass('mdi-rotate-180').css('opacity', '1');
+                            vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
+                                setLayout(true);
+                            });
+
+                            vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
+                                setLayout(true);
+                            });
+
+                            $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
+                                if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
+                                setLayout(true);
+                            });
+
+                            setLayout();
+                            function setLayout(changed) {
+                                $this.get(0).style.setProperty("--materialdesign-color-table-background", myMdwHelper.getValueFromData(data.colorBackground, ''));
+                                $this.get(0).style.setProperty("--materialdesign-color-table-border", myMdwHelper.getValueFromData(data.borderColor, ''));
+                                $this.get(0).style.setProperty("--materialdesign-color-table-header-row-background", myMdwHelper.getValueFromData(data.colorHeaderRowBackground, ''));
+                                $this.get(0).style.setProperty("--materialdesign-color-table-header-row-text-color", myMdwHelper.getValueFromData(data.colorHeaderRowText, ''));
+                                $this.get(0).style.setProperty("--materialdesign-color-table-row-background", myMdwHelper.getValueFromData(data.colorRowBackground, ''));
+                                $this.get(0).style.setProperty("--materialdesign-color-table-row-background-hover", myMdwHelper.getValueFromData(data.colorRowBackgroundHover, ''));
+                                $this.get(0).style.setProperty("--materialdesign-color-table-row-text-color", myMdwHelper.getValueFromData(data.colorRowText, ''));
+                                $this.get(0).style.setProperty("--materialdesign-color-table-row-divider", myMdwHelper.getValueFromData(data.dividers, ''));
+
+                                let $headerRow = $this.find('.mdc-data-table__header-cell');
+                                $headerRow.css('font-family', myMdwHelper.getValueFromData(data.headerFontFamily, ''));
+
+                                let headerFontSize = myMdwHelper.getFontSize(data.headerTextSize);
+                                if (headerFontSize && headerFontSize.style) {
+                                    $headerRow.css('font-size', myMdwHelper.getStringFromNumberData(data.headerTextSize, 'inherit', '', 'px'));
                                 }
 
+                                if (changed) {
+                                    for (var col = 0; col <= data.countCols; col++) {
+                                        let $colCells = $this.find(`.mdc-data-table__cell[id*='col${col}']`)
+                                        $colCells.css('font-family', myMdwHelper.getValueFromData(data.attr('fontFamily' + col), ''));
 
-                                $('.mdc-data-table__header-cell').each(function () {
-                                    if ($(this).attr('colIndex') !== colIndex) {
-                                        $(this).find('.materialdesign-table-header-sort').css('opacity', '0').addClass('materialdesign-table-header-sort-hidden');
+                                        let textSize = myMdwHelper.getFontSize(data.attr('colTextSize' + col));
+
+                                        if (textSize && textSize.style) {
+                                            $colCells.css('font-size', myMdwHelper.getStringFromNumberData(data.attr('colTextSize' + col), 'inherit', '', 'px'));
+                                        }
                                     }
-                                });
-
-                                vis.binds.materialdesign.table.getContentElements($this, null, data, vis.binds.materialdesign.table.sortByKey(jsonData, sortByKey, sortASC));      //TODO: sort key by user defined
+                                }
                             }
-                        });
-                    }
+
+                            $this.find('.mdc-data-table__header-cell').click(function (obj) {
+                                let colIndex = $(this).attr('colIndex');
+
+                                let jsonData = [];
+                                if (myMdwHelper.getValueFromData(data.oid, null) !== null && vis.states.attr(data.oid + '.val') !== null) {
+                                    jsonData = vis.binds.materialdesign.table.getJsonData(vis.states.attr(data.oid + '.val'), data);
+                                } else {
+                                    jsonData = JSON.parse(data.dataJson)
+                                }
+
+                                if (jsonData && jsonData.length > 0) {
+                                    sortByKey = (myMdwHelper.getValueFromData(data.attr('sortKey' + colIndex), null) !== null) ? data.attr('sortKey' + colIndex) : Object.keys(jsonData[0])[colIndex];
+
+                                    if ($(this).attr('sort')) {
+                                        if ($(this).attr('sort') === 'ASC') {
+                                            sortASC = false;
+                                            $(this).attr('sort', 'DESC');
+                                            $(this).find('.materialdesign-table-header-sort').removeClass('materialdesign-table-header-sort-hidden').removeClass('mdi-rotate-180').css('opacity', '1')
+                                        } else {
+                                            sortASC = true;
+                                            $(this).attr('sort', 'ASC');
+                                            $(this).find('.materialdesign-table-header-sort').removeClass('materialdesign-table-header-sort-hidden').addClass('mdi-rotate-180').css('opacity', '1')
+                                        }
+                                    } else {
+                                        // sort order is not defined -> sortASC
+                                        sortASC = true;
+                                        $(this).attr('sort', 'ASC');
+                                        $(this).find('.materialdesign-table-header-sort').removeClass('materialdesign-table-header-sort-hidden').addClass('mdi-rotate-180').css('opacity', '1');
+                                    }
+
+
+                                    $('.mdc-data-table__header-cell').each(function () {
+                                        if ($(this).attr('colIndex') !== colIndex) {
+                                            $(this).find('.materialdesign-table-header-sort').css('opacity', '0').addClass('materialdesign-table-header-sort-hidden');
+                                        }
+                                    });
+
+                                    vis.binds.materialdesign.table.getContentElements($this, null, data, vis.binds.materialdesign.table.sortByKey(jsonData, sortByKey, sortASC));      //TODO: sort key by user defined
+                                }
+                            });
+                        }
+                    });
                 });
-            });
+            }
         } catch (ex) {
-            console.error(`[Table - ${data.wid}] handle: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[${widgetName} - ${data.wid}] handle: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     getContentElements: function ($this, input, data, jsonData = null, oldVal = null, sortByKey = undefined, sortASC = true) {
@@ -622,7 +669,7 @@ vis.binds.materialdesign.table = {
         if (input && typeof input === 'string') {
             try {
                 input = input.replace(/\n/g, ' ').replace(/\t/g, '');
-                 
+
                 jsonData = JSON.parse(input);
             } catch (err) {
                 console.error(`[Table - ${data.wid}] getJsonData: cannot parse json string! input: ${input}, error: ${err.message}`);
