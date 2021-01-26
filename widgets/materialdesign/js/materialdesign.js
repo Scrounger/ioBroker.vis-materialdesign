@@ -41,22 +41,13 @@ vis.binds.materialdesign = {
 
         let btn = $this.get(0) ? $this.get(0) : $this.context;
 
-        btn.style.setProperty("--materialdesign-color-primary", myMdwHelper.getValueFromData(data.mdwButtonPrimaryColor, ''));
-        btn.style.setProperty("--materialdesign-color-secondary", myMdwHelper.getValueFromData(data.mdwButtonSecondaryColor, ''));
-        btn.style.setProperty("--materialdesign-font-button", myMdwHelper.getValueFromData(data.textFontFamily, ''));
-        btn.style.setProperty("--materialdesign-font-size-button", myMdwHelper.getStringFromNumberData(data.textFontSize, 'inherit', '', 'px'));
-        btn.style.setProperty("--materialdesign-font-button-vertical-text-distance-image", myMdwHelper.getNumberFromData(data.distanceBetweenTextAndImage, 2) + 'px');
-
         if (!isIconButton) {
             mdc.ripple.MDCRipple.attachTo(btn);
-            btn.style.setProperty("--materialdesign-color-button-pressed", myMdwHelper.getValueFromData(data.mdwButtonColorPress, ''));
         } else {
-            btn.style.setProperty("--materialdesign-color-icon-button-hover", myMdwHelper.getValueFromData(data.colorPress, ''));
-
             const mdcIconButton = new mdc.iconButton.MDCIconButtonToggle(btn);
         }
 
-        $(el).click(function () {
+        $(el).on('click', function () {
             vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
         });
     },

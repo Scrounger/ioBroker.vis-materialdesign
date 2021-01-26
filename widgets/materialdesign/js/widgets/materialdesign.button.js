@@ -121,73 +121,74 @@ vis.binds.materialdesign.button = {
             console.error(`[Button - ${data.wid}] vertical initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    handleLink: function (el, data) {
+    handleLink: function (el, data, isIconButton = false) {
         try {
             let $this = $(el);
 
-            $this.css('background', myMdwHelper.getValueFromData(data.colorBgFalse, ''));
+            this.useTheme(el, data, isIconButton, function () {
+                $this.on('click', function (e) {
+                    // Protect against two events
+                    event.preventDefault();
 
-            $this.on('click', function (e) {
-                // Protect against two events
-                event.preventDefault();
-
-                if (!vis.editMode && data.href) {
-                    if (data.openNewWindow) {
-                        window.open(data.href);
-                    } else {
-                        window.location.href = data.href;
+                    if (!vis.editMode && data.href) {
+                        if (data.openNewWindow) {
+                            window.open(data.href);
+                        } else {
+                            window.location.href = data.href;
+                        }
                     }
-                }
+                });
             });
         } catch (ex) {
             console.error(`[Button - ${data.wid}] handleLink: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    handleNavigation: function (el, data) {
+    handleNavigation: function (el, data, isIconButton = false) {
         try {
             let $this = $(el);
-            $this.css('background', myMdwHelper.getValueFromData(data.colorBgFalse, ''));
 
-            if (!vis.editMode && data.nav_view) {
-                let moved = false;
-                $this.on('click', function (e) {
-                    // Protect against two events
-                    event.preventDefault();
+            this.useTheme(el, data, isIconButton, function () {
+                if (!vis.editMode && data.nav_view) {
+                    let moved = false;
+                    $this.on('click', function (e) {
+                        // Protect against two events
+                        event.preventDefault();
 
-                    if (moved) return;
-                    vis.changeView(data.nav_view, data.nav_view);
-                    //e.preventDefault();
-                    //return false;
-                }).on('touchmove', function (e) {
-                    moved = true;
-                }).on('touchstart', function (e) {
-                    moved = false;
-                });
-            }
+                        if (moved) return;
+                        vis.changeView(data.nav_view, data.nav_view);
+                        //e.preventDefault();
+                        //return false;
+                    }).on('touchmove', function (e) {
+                        moved = true;
+                    }).on('touchstart', function (e) {
+                        moved = false;
+                    });
+                }
+            });
         } catch (ex) {
             console.error(`[Button - ${data.wid}] handleNavigation: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    handleAddition: function (el, data) {
+    handleAddition: function (el, data, isIconButton = false) {
         try {
             let $this = $(el);
 
-            $this.css('background', myMdwHelper.getValueFromData(data.colorBgFalse, ''));
+            this.useTheme(el, data, isIconButton, function () {
+                $this.on('click', function (e) {
+                    // Protect against two events
+                    event.preventDefault();
 
-            $this.on('click', function (e) {
-                // Protect against two events
-                event.preventDefault();
-
-                let val = vis.states.attr(data.oid + '.val');
-                if (!data.minmax || val != data.minmax) {
-                    myMdwHelper.setValue(data.oid, parseFloat(val) + parseFloat(data.value));
-                }
+                    let val = vis.states.attr(data.oid + '.val');
+                    if (!data.minmax || val != data.minmax) {
+                        myMdwHelper.setValue(data.oid, parseFloat(val) + parseFloat(data.value));
+                    }
+                });
             });
         } catch (ex) {
             console.error(`[Button - ${data.wid}] handleAddition: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    handleState: function (el, data, isMulti = false) {
+    handleState: function (el, data, isMulti = false, isIconButton = false) {
         try {
             // modified from vis adapter -> https://github.com/ioBroker/ioBroker.vis/blob/2a08ee6da626a65b9d0b42b8679563e74272bfc6/www/widgets/basic.html#L480
             var $this = $(el);
@@ -196,196 +197,249 @@ vis.binds.materialdesign.button = {
             if (val === 'true') val = true;
             if (val === 'false') val = false;
 
-            $this.css('background', myMdwHelper.getValueFromData(data.colorBgFalse, ''));
-
-            if ($this.attr('isLocked') === 'true') {
-                $this.css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
-            }
-            if (!vis.editMode) {
-                var moved = false;
-                $this.on('click', function (e) {
-                    // Protect against two events
-                    event.preventDefault();
-
-                    if (moved) return;
-
-                    if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === undefined) {
-                        var oid = data.oid;
-                        if (!isMulti) {
-                            setValue(data.oid, data.value);
-                        } else {
-                            for (var i = 0; i <= data.countOids; i++) {
-                                let oid = data['oid' + i]
-                                let value = data['value' + i];
-
-                                setTimeout(function () {
-                                    setValue(oid, value);
-                                }, myMdwHelper.getNumberFromData(data['delayInMs' + i], 0));
-                            }
-                        }
-                    } else {
-                        unlockButton();
-                    }
-                }).on('touchmove', function (e) {
-                    moved = true;
-                }).on('touchstart', function (e) {
-                    moved = false;
-                });
-
-                function unlockButton() {
-                    $this.find('.materialdesign-lock-icon').fadeOut();
-                    $this.attr('isLocked', false);
-                    $this.css('filter', 'grayscale(0%)');
-
-                    setTimeout(function () {
-                        $this.attr('isLocked', true);
-                        $this.find('.materialdesign-lock-icon').show();
-                        $this.css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
-                    }, myMdwHelper.getNumberFromData(data.autoLockAfter, 10) * 1000);
+            this.useTheme(el, data, isIconButton, function () {
+                if ($this.attr('isLocked') === 'true') {
+                    $this.css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
                 }
-
-                function setValue(oid, value) {
-                    if (oid) {
-                        var val = value;
-                        if (val === undefined || val === null) val = false;
-                        if (val === 'true') val = true;
-                        if (val === 'false') val = false;
-                        if (parseFloat(val).toString() == val) val = parseFloat(val);
-
-                        if (oid) myMdwHelper.setValue(oid, val);
-                    }
-                }
-            }
-        } catch (ex) {
-            console.error(`[Button - ${data.wid}] handleState: error:: ${ex.message}, stack: ${ex.stack}`);
-        }
-    },
-    handleToggle: function (el, data) {
-        try {
-            var $this = $(el);
-
-            if ($this.parent().attr('isLocked') === 'true') {
-                $this.parent().css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
-            }
-
-            let bgColor = myMdwHelper.getValueFromData(data.colorBgFalse, '');
-            let bgColorTrue = myMdwHelper.getValueFromData(data.colorBgTrue, bgColor);
-
-            let labelBgColor = myMdwHelper.getValueFromData(data.labelColorBgFalse, '');
-            let labelBgColorTrue = myMdwHelper.getValueFromData(data.labelColorBgTrue, labelBgColor);
-
-            let textFalse = myMdwHelper.getValueFromData(data.buttontext, '');
-            let textTrue = myMdwHelper.getValueFromData(data.labelTrue, textFalse);
-
-            let textColorFalse = myMdwHelper.getValueFromData(data.labelColorFalse, '');
-            let textColorTrue = myMdwHelper.getValueFromData(data.labelColorTrue, textColorFalse);
-
-            setButtonState();
-
-            if (data.readOnly && !vis.editMode) {
-                $this.parent().css('pointer-events', 'none');
-            }
-
-            vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                setButtonState();
-            });
-
-            if (!vis.editMode) {
-                if (myMdwHelper.getBooleanFromData(data.pushButton, false) === false) {
-                    $this.parent().on('click', function (e) {
+                if (!vis.editMode) {
+                    var moved = false;
+                    $this.on('click', function (e) {
                         // Protect against two events
                         event.preventDefault();
 
-                        if ($this.parent().attr('isLocked') === 'false' || $this.parent().attr('isLocked') === undefined) {
-                            if (myMdwHelper.getValueFromData(data.toggleType, 'boolean') === 'boolean') {
-                                myMdwHelper.setValue(data.oid, !vis.states.attr(data.oid + '.val'));
+                        if (moved) return;
+
+                        if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === undefined) {
+                            var oid = data.oid;
+                            if (!isMulti) {
+                                setValue(data.oid, data.value);
                             } else {
-                                if ($this.parent().attr('toggled') === true || $this.parent().attr('toggled') === 'true') {
-                                    myMdwHelper.setValue(data.oid, data.valueOff);
-                                } else {
-                                    myMdwHelper.setValue(data.oid, data.valueOn);
+                                for (var i = 0; i <= data.countOids; i++) {
+                                    let oid = data['oid' + i]
+                                    let value = data['value' + i];
+
+                                    setTimeout(function () {
+                                        setValue(oid, value);
+                                    }, myMdwHelper.getNumberFromData(data['delayInMs' + i], 0));
                                 }
                             }
                         } else {
                             unlockButton();
                         }
-                    });
-                } else {
-                    // Button from type push (Taster)                   
-                    $this.parent().on('mousedown touchstart', function (e) {
-                        if ($this.parent().attr('isLocked') === 'false' || $this.parent().attr('isLocked') === undefined) {
-                            if (data.toggleType === 'boolean') {
-                                myMdwHelper.setValue(data.oid, true);
-                            } else {
-                                myMdwHelper.setValue(data.oid, data.valueOn);
-                            }
-                        } else {
-                            unlockButton();
-                        }
+                    }).on('touchmove', function (e) {
+                        moved = true;
+                    }).on('touchstart', function (e) {
+                        moved = false;
                     });
 
-                    $this.parent().on('mouseup touchend', function (e) {
-                        if (data.toggleType === 'boolean') {
-                            myMdwHelper.setValue(data.oid, false);
-                        } else {
-                            myMdwHelper.setValue(data.oid, data.valueOff);
+                    function unlockButton() {
+                        $this.find('.materialdesign-lock-icon').fadeOut();
+                        $this.attr('isLocked', false);
+                        $this.css('filter', 'grayscale(0%)');
+
+                        setTimeout(function () {
+                            $this.attr('isLocked', true);
+                            $this.find('.materialdesign-lock-icon').show();
+                            $this.css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
+                        }, myMdwHelper.getNumberFromData(data.autoLockAfter, 10) * 1000);
+                    }
+
+                    function setValue(oid, value) {
+                        if (oid) {
+                            var val = value;
+                            if (val === undefined || val === null) val = false;
+                            if (val === 'true') val = true;
+                            if (val === 'false') val = false;
+                            if (parseFloat(val).toString() == val) val = parseFloat(val);
+
+                            if (oid) myMdwHelper.setValue(oid, val);
                         }
-                    });
+                    }
                 }
-            }
+            });
+        } catch (ex) {
+            console.error(`[Button - ${data.wid}] handleState: error:: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
+    handleToggle: function (el, data, isIconButton = false) {
+        try {
+            var $this = $(el);
 
-            function setButtonState() {
-                var val = vis.states.attr(data.oid + '.val');
+            this.useTheme(el, data, isIconButton, function () {
+                if ($this.parent().attr('isLocked') === 'true') {
+                    $this.parent().css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
+                }
 
-                let buttonState = false;
+                let bgColor = myMdwHelper.getValueFromData(data.colorBgFalse, '');
+                let bgColorTrue = myMdwHelper.getValueFromData(data.colorBgTrue, bgColor);
 
-                if (data.toggleType === 'boolean') {
-                    buttonState = val;
-                } else {
-                    if (!isNaN(val) && !isNaN(data.valueOn)) {
-                        if (parseFloat(val) === parseFloat(data.valueOn)) {
-                            buttonState = true;
-                        }
-                    } else if (val === parseInt(data.valueOn) || val === data.valueOn) {
-                        buttonState = true;
-                    } else if (val !== parseInt(data.valueOn) && val !== data.valueOn && val !== parseInt(data.valueOff) && val !== data.valueOff && data.stateIfNotTrueValue === 'on') {
-                        buttonState = true;
+                let labelBgColor = myMdwHelper.getValueFromData(data.labelColorBgFalse, '');
+                let labelBgColorTrue = myMdwHelper.getValueFromData(data.labelColorBgTrue, labelBgColor);
+
+                let textFalse = myMdwHelper.getValueFromData(data.buttontext, '');
+                let textTrue = myMdwHelper.getValueFromData(data.labelTrue, textFalse);
+
+                let textColorFalse = myMdwHelper.getValueFromData(data.labelColorFalse, '');
+                let textColorTrue = myMdwHelper.getValueFromData(data.labelColorTrue, textColorFalse);
+
+                setButtonState();
+
+                if (data.readOnly && !vis.editMode) {
+                    $this.parent().css('pointer-events', 'none');
+                }
+
+                vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                    setButtonState();
+                });
+
+                if (!vis.editMode) {
+                    if (myMdwHelper.getBooleanFromData(data.pushButton, false) === false) {
+                        $this.parent().on('click', function (e) {
+                            // Protect against two events
+                            event.preventDefault();
+
+                            if ($this.parent().attr('isLocked') === 'false' || $this.parent().attr('isLocked') === undefined) {
+                                if (myMdwHelper.getValueFromData(data.toggleType, 'boolean') === 'boolean') {
+                                    myMdwHelper.setValue(data.oid, !vis.states.attr(data.oid + '.val'));
+                                } else {
+                                    if ($this.parent().attr('toggled') === true || $this.parent().attr('toggled') === 'true') {
+                                        myMdwHelper.setValue(data.oid, data.valueOff);
+                                    } else {
+                                        myMdwHelper.setValue(data.oid, data.valueOn);
+                                    }
+                                }
+                            } else {
+                                unlockButton();
+                            }
+                        });
+                    } else {
+                        // Button from type push (Taster)                   
+                        $this.parent().on('mousedown touchstart', function (e) {
+                            if ($this.parent().attr('isLocked') === 'false' || $this.parent().attr('isLocked') === undefined) {
+                                if (data.toggleType === 'boolean') {
+                                    myMdwHelper.setValue(data.oid, true);
+                                } else {
+                                    myMdwHelper.setValue(data.oid, data.valueOn);
+                                }
+                            } else {
+                                unlockButton();
+                            }
+                        });
+
+                        $this.parent().on('mouseup touchend', function (e) {
+                            if (data.toggleType === 'boolean') {
+                                myMdwHelper.setValue(data.oid, false);
+                            } else {
+                                myMdwHelper.setValue(data.oid, data.valueOff);
+                            }
+                        });
                     }
                 }
 
-                if (buttonState) {
-                    $this.parent().attr('toggled', true);
-                    $this.parent().css('background', bgColorTrue);
+                function setButtonState() {
+                    var val = vis.states.attr(data.oid + '.val');
 
-                    myMdwHelper.changeIconElement($this.parent(), myMdwHelper.getValueFromData(data.imageTrue, myMdwHelper.getValueFromData(data.image, '')), 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.imageTrueColor, myMdwHelper.getValueFromData(data.imageColor, '')));
+                    let buttonState = false;
 
-                    $this.parent().find('.materialdesign-button__label').html(textTrue).css('color', textColorTrue);
-                    $this.find('.labelRowContainer').css('background', labelBgColorTrue);
+                    if (data.toggleType === 'boolean') {
+                        buttonState = val;
+                    } else {
+                        if (!isNaN(val) && !isNaN(data.valueOn)) {
+                            if (parseFloat(val) === parseFloat(data.valueOn)) {
+                                buttonState = true;
+                            }
+                        } else if (val === parseInt(data.valueOn) || val === data.valueOn) {
+                            buttonState = true;
+                        } else if (val !== parseInt(data.valueOn) && val !== data.valueOn && val !== parseInt(data.valueOff) && val !== data.valueOff && data.stateIfNotTrueValue === 'on') {
+                            buttonState = true;
+                        }
+                    }
+
+                    if (buttonState) {
+                        $this.parent().attr('toggled', true);
+                        $this.parent().css('background', bgColorTrue);
+
+                        myMdwHelper.changeIconElement($this.parent(), myMdwHelper.getValueFromData(data.imageTrue, myMdwHelper.getValueFromData(data.image, '')), 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.imageTrueColor, myMdwHelper.getValueFromData(data.imageColor, '')));
+
+                        $this.parent().find('.materialdesign-button__label').html(textTrue).css('color', textColorTrue);
+                        $this.find('.labelRowContainer').css('background', labelBgColorTrue);
+                    } else {
+                        $this.parent().attr('toggled', false);
+                        $this.parent().css('background', bgColor);
+
+                        myMdwHelper.changeIconElement($this.parent(), data.image, 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.imageColor, ''));
+
+                        $this.parent().find('.materialdesign-button__label').html(textFalse).css('color', textColorFalse);
+                        $this.find('.labelRowContainer').css('background', labelBgColor);
+                    }
+                }
+
+                function unlockButton() {
+                    $this.parent().find('.materialdesign-lock-icon').fadeOut();
+                    $this.parent().attr('isLocked', false);
+                    $this.parent().css('filter', 'grayscale(0%)');
+
+                    setTimeout(function () {
+                        $this.parent().attr('isLocked', true);
+                        $this.parent().find('.materialdesign-lock-icon').show();
+                        $this.parent().css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
+                    }, myMdwHelper.getNumberFromData(data.autoLockAfter, 10) * 1000);
+                }
+            });
+        } catch (ex) {
+            console.error(`[Button - ${data.wid}] handleToggle: error:: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
+    useTheme: function (el, data, isIconButton = false, callback) {
+        let widgetName = 'Button';
+        let themeTriggerClass = '.materialdesign-widget.materialdesign-button'
+
+        if (isIconButton) {
+            widgetName = 'Icon Button';
+            themeTriggerClass = '.materialdesign-widget.materialdesign-icon-button'
+        }
+
+        var $this = $(el);
+        let btn = $this.parent().get(0) ? $this.parent().get(0) : $this.parent().context;
+
+        myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
+            init();
+        });
+
+        function init() {
+            vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
+                setLayout();
+            });
+
+            vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
+                setLayout();
+            });
+
+            $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
+                if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
+                setLayout();
+            });
+
+            setLayout();
+            function setLayout() {
+                btn.style.setProperty("--materialdesign-color-primary", myMdwHelper.getValueFromData(data.mdwButtonPrimaryColor, '#44739e'));
+                btn.style.setProperty("--materialdesign-color-secondary", myMdwHelper.getValueFromData(data.mdwButtonSecondaryColor, '#fff'));
+                btn.style.setProperty("--materialdesign-font-button", myMdwHelper.getValueFromData(data.textFontFamily, ''));
+                btn.style.setProperty("--materialdesign-font-size-button", myMdwHelper.getStringFromNumberData(data.textFontSize, 'inherit', '', 'px'));
+                btn.style.setProperty("--materialdesign-font-button-vertical-text-distance-image", myMdwHelper.getNumberFromData(data.distanceBetweenTextAndImage, 2) + 'px');
+
+                $this.find('.materialdesign-lock-icon').css('color', myMdwHelper.getValueFromData(data.lockIconColor, '#B22222'));
+
+                if (!isIconButton) {
+                    btn.style.setProperty("--materialdesign-color-button-pressed", myMdwHelper.getValueFromData(data.mdwButtonColorPress, ''));
                 } else {
-                    $this.parent().attr('toggled', false);
-                    $this.parent().css('background', bgColor);
-
-                    myMdwHelper.changeIconElement($this.parent(), data.image, 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.imageColor, ''));
-
-                    $this.parent().find('.materialdesign-button__label').html(textFalse).css('color', textColorFalse);
-                    $this.find('.labelRowContainer').css('background', labelBgColor);
+                    $this.css('background', myMdwHelper.getValueFromData(data.colorBgFalse, ''));
+                    $this.find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.imageColor, '#44739e'));
+                    btn.style.setProperty("--materialdesign-color-icon-button-hover", myMdwHelper.getValueFromData(data.colorPress, ''));
                 }
             }
 
-            function unlockButton() {
-                $this.parent().find('.materialdesign-lock-icon').fadeOut();
-                $this.parent().attr('isLocked', false);
-                $this.parent().css('filter', 'grayscale(0%)');
-
-                setTimeout(function () {
-                    $this.parent().attr('isLocked', true);
-                    $this.parent().find('.materialdesign-lock-icon').show();
-                    $this.parent().css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
-                }, myMdwHelper.getNumberFromData(data.autoLockAfter, 10) * 1000);
-            }
-
-        } catch (ex) {
-            console.error(`[Button - ${data.wid}] handleToggle: error:: ${ex.message}, stack: ${ex.stack}`);
+            callback();
         }
     },
     getDataFromJson(obj, widgetId, type) {
