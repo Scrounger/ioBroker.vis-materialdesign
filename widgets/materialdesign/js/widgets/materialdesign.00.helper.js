@@ -152,14 +152,24 @@ vis.binds.materialdesign.helper = {
                     }
 
                     if (dataValue.includes('#mdwTheme:')) {
-                        let darkTheme = vis.states.attr('vis-materialdesign.0.colors.darkTheme.val');
+                        let darkTheme = vis.states.attr('vis-materialdesign.0.colors.darkTheme.val') || false;
                         let id = dataValue.replace('#mdwTheme:', '');
 
-                        if (id.includes('.colors.')) {
+                        if (id.includes('vis-materialdesign.0.colors.')) {
                             if (!darkTheme) {
-                                return prepand + vis.states.attr(id.replace('.colors.', '.colors.light.') + '.val') + append;
+                                let val = vis.states.attr(id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.light.') + '.val');
+                                if (val) {
+                                    return prepand + val + append;
+                                } else {
+                                    return nullValue;
+                                }
                             } else {
-                                return prepand + vis.states.attr(id.replace('.colors.', '.colors.dark.') + '.val') + append;
+                                let val = vis.states.attr(id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.dark.') + '.val');
+                                if (val) {
+                                    return prepand + val + append;
+                                } else {
+                                    return nullValue;
+                                }
                             }
                         } else {
                             return prepand + vis.states.attr(id + '.val') + append;
@@ -194,7 +204,13 @@ vis.binds.materialdesign.helper = {
             if (dataValue === undefined || dataValue === null || dataValue === '' || isNaN(dataValue)) {
                 if (dataValue && dataValue !== null && dataValue.includes('#mdwTheme:')) {
                     let id = dataValue.replace('#mdwTheme:', '');
-                    return parseFloat(vis.states.attr(id + '.val'));
+                    let val = vis.states.attr(id + '.val');
+
+                    if (val) {
+                        return parseFloat(vis.states.attr(id + '.val'));
+                    } else {
+                        return nullValue;
+                    }
                 } else {
                     return nullValue;
                 }
@@ -213,7 +229,13 @@ vis.binds.materialdesign.helper = {
             } else {
                 if (dataValue && dataValue !== null && dataValue.includes('#mdwTheme:')) {
                     let id = dataValue.replace('#mdwTheme:', '');
-                    return prepand + parseFloat(vis.states.attr(id + '.val')) + append;
+                    let val = vis.states.attr(id + '.val');
+
+                    if (val) {
+                        return prepand + parseFloat(vis.states.attr(id + '.val')) + append;
+                    } else {
+                        return nullValue;
+                    }
                 }
 
                 if (vis.editMode) {
@@ -584,9 +606,9 @@ vis.binds.materialdesign.helper = {
         for (const [key, value] of Object.entries(usedThemeIds)) {
             let id = value.replace('#mdwTheme:', '');
 
-            if (id.includes('.colors.')) {
-                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id.replace('.colors.', '.colors.light.'), data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
-                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id.replace('.colors.', '.colors.dark.'), data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+            if (id.includes('vis-materialdesign.0.colors.')) {
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.light.'), data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.dark.'), data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
             } else {
                 oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id, data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
             }

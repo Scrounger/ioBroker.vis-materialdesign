@@ -150,10 +150,10 @@ vis.binds.materialdesign.switch = {
 
                     let label = $this.find('label[id="label"]');
                     if (buttonState) {
-                        label.css('color', myMdwHelper.getValueFromData(data.labelColorTrue, ''));
+                        label.css('color', myMdwHelper.getValueFromData(data.labelColorTrue, '#44739e'));
                         label.html(myMdwHelper.getValueFromData(data.labelTrue, ''));
                     } else {
-                        label.css('color', myMdwHelper.getValueFromData(data.labelColorFalse, ''));
+                        label.css('color', myMdwHelper.getValueFromData(data.labelColorFalse, '#44739e'));
                         label.html(myMdwHelper.getValueFromData(data.labelFalse, ''));
                     }
                 }

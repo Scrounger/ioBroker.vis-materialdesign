@@ -168,7 +168,7 @@ vis.binds.materialdesign.slider = {
                         function setLayout() {
                             $this.find('.v-slider__thumb').css('background-color', myMdwHelper.getValueFromData(data.colorThumb, defaultColor)).css('border-color', myMdwHelper.getValueFromData(data.colorThumb, defaultColor));
                             $this.find('.v-slider__track-fill').css('background-color', myMdwHelper.getValueFromData(data.colorBeforeThumb, defaultColor)).css('border-color', myMdwHelper.getValueFromData(data.colorBeforeThumb, defaultColor));
-                            $this.find('.v-slider__track-background').css('background-color', myMdwHelper.getValueFromData(data.colorAfterThumb, defaultColor)).css('border-color', myMdwHelper.getValueFromData(data.colorAfterThumb, defaultColor));
+                            $this.find('.v-slider__track-background').css('background-color', myMdwHelper.getValueFromData(data.colorAfterThumb, 'rgba(161, 161, 161, 0.26)')).css('border-color', myMdwHelper.getValueFromData(data.colorAfterThumb, 'rgba(161, 161, 161, 0.26)'));
                             $this.context.style.setProperty("--vue-slider-thumb-before", myMdwHelper.getValueFromData(data.colorThumb, defaultColor));
 
                             $this.find('.slider-value').css('color', myMdwHelper.getValueFromData(data.valueLabelColor, defaultColor))

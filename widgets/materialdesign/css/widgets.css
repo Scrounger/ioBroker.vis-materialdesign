@@ -86,7 +86,7 @@
   --materialdesign-color-table-header-row-text-color: #44739e;
   --materialdesign-color-table-row-background: inherit;
   --materialdesign-color-table-row-background-hover: rgba(0, 0, 0, 0.04);
-  --materialdesign-color-table-row-text-color: rgba(0, 0, 0, 0.87);
+  --materialdesign-color-table-row-text-color: #44739e;
   --materialdesign-color-table-row-divider: rgba(0, 0, 0, 0.12);
 
   --materialdesign-color-switch-on: #44739e;
@@ -128,7 +128,7 @@
   --vue-slider-tick-before-color: #44739e;
   --vue-slider-tick-after-color: #44739e;
   --vue-slider-tick-font-family: inherit;
-  --vue-slider-tick-color: #44739e;
+  --vue-slider-tick-color: #808080;
   --vue-slider-tick-font-size: 14px;
   --vue-slider-thumb-before: initial;
 

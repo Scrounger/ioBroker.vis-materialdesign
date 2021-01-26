@@ -202,7 +202,7 @@ vis.binds.materialdesign.iconlist =
                         let lockElement = '';
                         if (listItemObj.listType !== 'text' && listItemObj.lockEnabled === true) {
                             lockElement = `<span class="mdi mdi-${myMdwHelper.getValueFromData(data.lockIcon, 'lock-outline')} materialdesign-lock-icon" 
-                            style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; ${(myMdwHelper.getNumberFromData(data.lockIconSize, undefined) !== '0') ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} color: ${myMdwHelper.getValueFromData(data.lockIconColor, '')};"></span>`;
+                            style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; ${(myMdwHelper.getNumberFromData(data.lockIconSize, undefined) !== '0') ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} color: ${myMdwHelper.getValueFromData(data.lockIconColor, '#B22222')};"></span>`;
                         }
 
                         let element = ''
@@ -460,7 +460,7 @@ vis.binds.materialdesign.iconlist =
                     $item.css('background', listItemObj.background);
 
                     $item.find('.materialdesign-icon-list-item-value').text(`${val}${listItemObj.valueAppendix}`);
-                    $item.find('.materialdesign-lock-icon').css('color', myMdwHelper.getValueFromData(data.lockIconColor, ''));
+                    $item.find('.materialdesign-lock-icon').css('color', myMdwHelper.getValueFromData(data.lockIconColor, '#B22222'));
 
                     let iconButtons = $this.find('.materialdesign-iconList-button');
                     iconButtons.get(index).style.setProperty("--materialdesign-color-icon-button-hover", myMdwHelper.getValueFromData(data.buttonColorPress, ''));
