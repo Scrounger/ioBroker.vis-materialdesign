@@ -27,7 +27,7 @@ vis.binds.materialdesign.topappbarnav = {
             if (data.drawerLayout === 'modal') {
                 headerButtonShow = `<button 
                                         class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon mdc-ripple-upgraded--unbounded mdc-ripple-upgraded" 
-                                        style="--mdc-ripple-fg-size:28px; --mdc-ripple-fg-scale:1.7142857142857142; --mdc-ripple-left:10px; --mdc-ripple-top:10px;${myMdwHelper.getValueFromData(data.colorTopAppBarTitle, '', 'color: ', ';')}">
+                                        style="--mdc-ripple-fg-size:28px; --mdc-ripple-fg-scale:1.7142857142857142; --mdc-ripple-left:10px; --mdc-ripple-top:10px;">
                                             menu
                                         </button>`;
             }
@@ -39,6 +39,9 @@ vis.binds.materialdesign.topappbarnav = {
         }
     },
     initializeDrawer: function (data) {
+        let widgetName = 'TopAppBar';
+        let themeTriggerClass = '.materialdesign-widget.materialdesign-topAppBar-with-Drawer'
+
         try {
             let viewsList = [];
             let navItemList = [];
@@ -76,10 +79,8 @@ vis.binds.materialdesign.topappbarnav = {
 
             function initHeader() {
                 if (data.attr('showHeader') === true || data.attr('showHeader') === 'true') {
-                    drawerHeader = `<div 
-                                        class="mdc-drawer__header" 
-                                        ${myMdwHelper.getValueFromData(data.colorDrawerHeaderBackground, '', 'style="background: ', '"')}>
-                                            ${data.headerLabel}
+                    drawerHeader = `<div class="mdc-drawer__header">
+                                        ${data.headerLabel}
                                     </div>`;
                 }
             }
@@ -146,7 +147,7 @@ vis.binds.materialdesign.topappbarnav = {
                     // generate Item Image for Layout Standard
                     let listItemImage = ''
                     if (data.drawerItemLayout === 'standard') {
-                        listItemImage = myMdwHelper.getListIcon(itemImage, 'auto', myMdwHelper.getValueFromData(data.drawerIconHeight, '', '', 'px !important;'), myMdwHelper.getValueFromData(data.attr('iconDrawerColor' + i), '#44739e'));
+                        listItemImage = myMdwHelper.getListIcon(itemImage, 'auto', myMdwHelper.getValueFromData(data.drawerIconHeight, '', '', 'px !important;'), data.attr('iconDrawerColor' + i));
                     }
 
                     // add itemIndex to label if enabled
@@ -155,7 +156,7 @@ vis.binds.materialdesign.topappbarnav = {
                     }
 
                     // generate Item Label
-                    let listItemLabel = myMdwHelper.getListItemLabel(data.drawerItemLayout, itemIndex, itemLabelText, hasSubItems, dawerLabelFontSize, dawerLabelShow, myMdwHelper.getValueFromData(data.colorSubItemToggleIcon, '#44739e'), backdropLabelBackgroundHeight, false, data.listItemAlignment);
+                    let listItemLabel = myMdwHelper.getListItemLabel(data.drawerItemLayout, itemIndex, itemLabelText, hasSubItems, dawerLabelFontSize, dawerLabelShow, data.colorSubItemToggleIcon, backdropLabelBackgroundHeight, false, data.listItemAlignment);
 
                     // generate Item
                     navItemList.push(`${listItem}${listItemImage}${listItemLabel}</div>`);
@@ -233,265 +234,322 @@ vis.binds.materialdesign.topappbarnav = {
         }
     },
     handler: function (el, data) {
+        let widgetName = 'TopAppBar';
+        let themeTriggerClass = '.materialdesign-widget.materialdesign-topAppBar-with-Drawer'
+
         try {
             let $this = $(el);
-            let widget = $this.get(0);
-            let $mdcTopAppBar = $this.find('.mdc-top-app-bar');
-            let $topAppBarTitle = $mdcTopAppBar.find('.mdc-top-app-bar__title')
-            let mdcDrawer = $this.find('.mdc-drawer').get(0);
 
-            let $drawerFrameAppContent = $this.find('.drawer-frame-app-content');
-
-            let $mdcList = $this.find('.mdc-list');
-            let mdcList = $mdcList.get(0);
-
-            myMdwHelper.waitForElement($this, '.mdc-drawer__content', data.wid, 'TopAppBar', function () {
-                // Bug fix für TopAppBar, da position: fixed sein muss, deshlab zur Laufzeit width anpassen -> wird von widget genommen
-                $this.css('left', '0px');
-                $this.css('top', '0px');
-
-                // remove z-index set in css common
-                $this.css('z-index', '');
-
-                if (data.drawerLayout === 'modal') {
-                    let width = window.getComputedStyle(widget, null).width;
-
-                    if (data.topAppBarLayout !== 'short') {
-                        $mdcTopAppBar.css('width', width);
-                    } else {
-                        $mdcTopAppBar.css('position', 'relative');
-                    }
-                } else {
-                    let width = window.getComputedStyle(widget, null).width;
-                    let widthDrawer = window.getComputedStyle(mdcDrawer, null).width;
-                    let barWidth = width.replace('px', '') - widthDrawer.replace('px', '');
-
-                    if (data.topAppBarLayout !== 'short') {
-                        $mdcTopAppBar.css('width', barWidth);
-                    } else {
-                        $mdcTopAppBar.css('left', 0);
-                        $mdcTopAppBar.css('position', 'relative');
-                        $mdcTopAppBar.css('width', 56);
-                    }
-                    $drawerFrameAppContent.css('left', widthDrawer);
-                }
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
+                init();
             });
 
-            if (mdcList) {
-                let colorDrawerBackground = myMdwHelper.getValueFromData(data.colorDrawerBackground, '');
-                mdcDrawer.style.setProperty("--materialdesign-color-drawer-background", colorDrawerBackground);
-                mdcList.style.setProperty("--materialdesign-color-drawer-sub-background", myMdwHelper.getValueFromData(data.colorDrawerSubBackground, colorDrawerBackground));
+            function init() {
+                let widget = $this.get(0);
+                let $mdcTopAppBar = $this.find('.mdc-top-app-bar');
+                let $topAppBarTitle = $mdcTopAppBar.find('.mdc-top-app-bar__title')
+                let mdcDrawer = $this.find('.mdc-drawer').get(0);
 
-                let colorDrawerItemBackground = myMdwHelper.getValueFromData(data.colorDrawerItemBackground, colorDrawerBackground);
-                mdcList.style.setProperty("--materialdesign-color-list-item-background", colorDrawerItemBackground);
-                mdcList.style.setProperty("--materialdesign-color-sub-list-item-background", myMdwHelper.getValueFromData(data.colorDrawerSubItemBackground, colorDrawerItemBackground));
+                let $drawerFrameAppContent = $this.find('.drawer-frame-app-content');
 
-                let colorListItemSelected = myMdwHelper.getValueFromData(data.colorListItemSelected, '');
-                mdcList.style.setProperty("--materialdesign-color-list-item-selected", colorListItemSelected);
-                mdcList.style.setProperty("--materialdesign-color-sub-list-item-selected", myMdwHelper.getValueFromData(data.colorListSubItemSelected, colorListItemSelected));
+                let $mdcList = $this.find('.mdc-list');
+                let mdcList = $mdcList.get(0);
 
-                let colorListItemHover = myMdwHelper.getValueFromData(data.colorListItemHover, '');
-                mdcList.style.setProperty("--materialdesign-color-list-item-hover", colorListItemHover);
-                mdcList.style.setProperty("--materialdesign-color-sub-list-item-hover", myMdwHelper.getValueFromData(data.colorListSubItemHover, colorListItemHover));
+                myMdwHelper.waitForElement($this, '.mdc-drawer__content', data.wid, 'TopAppBar', function () {
+                    // Bug fix für TopAppBar, da position: fixed sein muss, deshlab zur Laufzeit width anpassen -> wird von widget genommen
+                    $this.css('left', '0px');
+                    $this.css('top', '0px');
 
-                let colorListItemText = myMdwHelper.getValueFromData(data.colorListItemText, '');
-                mdcList.style.setProperty("--materialdesign-color-list-item-text", colorListItemText);
-                mdcList.style.setProperty("--materialdesign-color-sub-list-item-text", myMdwHelper.getValueFromData(data.colorListSubItemText, colorListItemText));
+                    // remove z-index set in css common
+                    $this.css('z-index', '');
 
-                let colorListItemTextSelected = myMdwHelper.getValueFromData(data.colorListItemTextSelected, '');
-                mdcList.style.setProperty("--materialdesign-color-list-item-text-activated", colorListItemTextSelected);
-                mdcList.style.setProperty("--materialdesign-color-sub-list-item-text-activated", myMdwHelper.getValueFromData(data.colorListSubItemTextSelected, colorListItemTextSelected));
+                    if (data.drawerLayout === 'modal') {
+                        let width = window.getComputedStyle(widget, null).width;
 
-                mdcList.style.setProperty("--materialdesign-color-list-item-header", myMdwHelper.getValueFromData(data.colorListItemHeaders, ''));
-                mdcList.style.setProperty("--materialdesign-color-list-item-divider", myMdwHelper.getValueFromData(data.colorListItemDivider, ''));
-
-                mdcList.style.setProperty("--materialdesign-color-sub-list-item-divider", myMdwHelper.getValueFromData(data.colorListSubItemDivider, ''));
-
-                let colorDrawerbackdropLabelBackground = myMdwHelper.getValueFromData(data.colorDrawerbackdropLabelBackground, '');
-                mdcList.style.setProperty("--materialdesign-color-list-item-backdrop", colorDrawerbackdropLabelBackground);
-                mdcList.style.setProperty("--materialdesign-color-sub-list-item-backdrop", myMdwHelper.getValueFromData(data.colorDrawerbackdropSubLabelBackground, colorDrawerbackdropLabelBackground));
-
-                let colorDrawerbackdropLabelBackgroundActive = myMdwHelper.getValueFromData(data.colorDrawerbackdropLabelBackgroundActive, '');
-                mdcList.style.setProperty("--materialdesign-color-list-item-backdrop-activated", colorDrawerbackdropLabelBackgroundActive);
-                mdcList.style.setProperty("--materialdesign-color-sub-list-item-backdrop-activated", myMdwHelper.getValueFromData(data.colorDrawerbackdropSubLabelBackgroundActive, colorDrawerbackdropLabelBackgroundActive));
-
-                mdcList.style.setProperty("--materialdesign-color-list-item-text-disabled", myMdwHelper.getValueFromData(data.colorListItemTextDisabled, ''));
-                mdcList.style.setProperty("--materialdesign-color-list-item-icon-disabled", myMdwHelper.getValueFromData(data.colorListItemIconDisabled, ''));
-
-                let itemFont = myMdwHelper.getValueFromData(data.listItemTextFont, '');
-                mdcList.style.setProperty("--materialdesign-font-top-app-bar-item", itemFont);
-
-                let itemFontDisabled = myMdwHelper.getValueFromData(data.listItemTextFontDisabled, itemFont)
-                mdcList.style.setProperty("--materialdesign-font-top-app-bar-item-disabled", itemFontDisabled);
-
-                mdcList.style.setProperty("--materialdesign-font-top-app-bar-sub-item", myMdwHelper.getValueFromData(data.listItemSubTextFont, itemFont));
-                mdcList.style.setProperty("--materialdesign-font-top-app-bar-sub-item-disabled", myMdwHelper.getValueFromData(data.listItemSubTextFontDisabled, itemFontDisabled));
-
-                mdcList.style.setProperty("--materialdesign-font-list-item-header", myMdwHelper.getValueFromData(data.listItemHeaderFont, ''));
-
-                $mdcTopAppBar.get(0).style.setProperty("--materialdesign-color-top-app-bar-background", myMdwHelper.getValueFromData(data.colorTopAppBarBackground, ''));
-                $mdcTopAppBar.get(0).style.setProperty("--materialdesign-font-top-app-bar-title", myMdwHelper.getValueFromData(data.titleFont, ''));
-                $mdcTopAppBar.get(0).style.setProperty("--materialdesign-font-size-top-app-bar-title", myMdwHelper.getNumberFromData(data.titleFontSize, 20) + 'px');
-
-                const drawer = new mdc.drawer.MDCDrawer(mdcDrawer);
-                const topAppBar = new mdc.topAppBar.MDCTopAppBar($mdcTopAppBar.get(0));
-                const navList = new mdc.list.MDCList(mdcList);
-
-                const listItemRipples = navList.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
-
-                topAppBar.setScrollTarget($this.find('.mdc-top-app-bar-content').get(0));
-
-                topAppBar.listen('MDCTopAppBar:nav', () => {
-
-                    vis.binds.materialdesign.helper.vibrate(data.vibrateTopAppBarOnMobilDevices);
-
-                    if (data.drawerLayout === 'dismissible') {
-                        if (drawer.open) {
-                            let width = window.getComputedStyle(widget, null).width;
-                            let widthDrawer = window.getComputedStyle(mdcDrawer, null).width;
-
-                            if (data.topAppBarLayout !== 'short') {
-                                $mdcTopAppBar.css('width', width);
-                            } else {
-                                if (!vis.editMode) {
-                                    $mdcTopAppBar.css('left', '0px');
-                                }
-                            }
-                            $drawerFrameAppContent.css('left', '0px');
-
-                            drawer.open = !drawer.open;
+                        if (data.topAppBarLayout !== 'short') {
+                            $mdcTopAppBar.css('width', width);
                         } else {
-                            let width = window.getComputedStyle(widget, null).width;
-                            let widthDrawer = window.getComputedStyle(mdcDrawer, null).width;
-                            let barWidth = width.replace('px', '') - widthDrawer.replace('px', '');
+                            $mdcTopAppBar.css('position', 'relative');
+                        }
+                    } else {
+                        let width = window.getComputedStyle(widget, null).width;
+                        let widthDrawer = window.getComputedStyle(mdcDrawer, null).width;
+                        let barWidth = width.replace('px', '') - widthDrawer.replace('px', '');
 
-                            drawer.open = !drawer.open;
+                        if (data.topAppBarLayout !== 'short') {
+                            $mdcTopAppBar.css('width', barWidth);
+                        } else {
+                            $mdcTopAppBar.css('left', 0);
+                            $mdcTopAppBar.css('position', 'relative');
+                            $mdcTopAppBar.css('width', 56);
+                        }
+                        $drawerFrameAppContent.css('left', widthDrawer);
+                    }
+                });
 
-                            setTimeout(function () {
+                if (mdcList) {
+
+                    setLayout();
+                    function setLayout() {
+                        let colorDrawerBackground = myMdwHelper.getValueFromData(data.colorDrawerBackground, '');
+                        mdcDrawer.style.setProperty("--materialdesign-color-drawer-background", colorDrawerBackground);
+                        mdcList.style.setProperty("--materialdesign-color-drawer-sub-background", myMdwHelper.getValueFromData(data.colorDrawerSubBackground, colorDrawerBackground));
+
+                        let colorDrawerItemBackground = myMdwHelper.getValueFromData(data.colorDrawerItemBackground, colorDrawerBackground);
+                        mdcList.style.setProperty("--materialdesign-color-list-item-background", colorDrawerItemBackground);
+                        mdcList.style.setProperty("--materialdesign-color-sub-list-item-background", myMdwHelper.getValueFromData(data.colorDrawerSubItemBackground, colorDrawerItemBackground));
+
+                        let colorListItemSelected = myMdwHelper.getValueFromData(data.colorListItemSelected, '');
+                        mdcList.style.setProperty("--materialdesign-color-list-item-selected", colorListItemSelected);
+                        mdcList.style.setProperty("--materialdesign-color-sub-list-item-selected", myMdwHelper.getValueFromData(data.colorListSubItemSelected, colorListItemSelected));
+
+                        let colorListItemHover = myMdwHelper.getValueFromData(data.colorListItemHover, '');
+                        mdcList.style.setProperty("--materialdesign-color-list-item-hover", colorListItemHover);
+                        mdcList.style.setProperty("--materialdesign-color-sub-list-item-hover", myMdwHelper.getValueFromData(data.colorListSubItemHover, colorListItemHover));
+
+                        let colorListItemText = myMdwHelper.getValueFromData(data.colorListItemText, '');
+                        mdcList.style.setProperty("--materialdesign-color-list-item-text", colorListItemText);
+                        mdcList.style.setProperty("--materialdesign-color-sub-list-item-text", myMdwHelper.getValueFromData(data.colorListSubItemText, colorListItemText));
+
+                        let colorListItemTextSelected = myMdwHelper.getValueFromData(data.colorListItemTextSelected, '');
+                        mdcList.style.setProperty("--materialdesign-color-list-item-text-activated", colorListItemTextSelected);
+                        mdcList.style.setProperty("--materialdesign-color-sub-list-item-text-activated", myMdwHelper.getValueFromData(data.colorListSubItemTextSelected, colorListItemTextSelected));
+
+
+
+                        mdcList.style.setProperty("--materialdesign-color-list-item-header", myMdwHelper.getValueFromData(data.colorListItemHeaders, ''));
+                        mdcList.style.setProperty("--materialdesign-color-list-item-divider", myMdwHelper.getValueFromData(data.colorListItemDivider, ''));
+
+                        mdcList.style.setProperty("--materialdesign-color-sub-list-item-divider", myMdwHelper.getValueFromData(data.colorListSubItemDivider, ''));
+
+                        let colorDrawerbackdropLabelBackground = myMdwHelper.getValueFromData(data.colorDrawerbackdropLabelBackground, '');
+                        mdcList.style.setProperty("--materialdesign-color-list-item-backdrop", colorDrawerbackdropLabelBackground);
+                        mdcList.style.setProperty("--materialdesign-color-sub-list-item-backdrop", myMdwHelper.getValueFromData(data.colorDrawerbackdropSubLabelBackground, colorDrawerbackdropLabelBackground));
+
+                        let colorDrawerbackdropLabelBackgroundActive = myMdwHelper.getValueFromData(data.colorDrawerbackdropLabelBackgroundActive, '');
+                        mdcList.style.setProperty("--materialdesign-color-list-item-backdrop-activated", colorDrawerbackdropLabelBackgroundActive);
+                        mdcList.style.setProperty("--materialdesign-color-sub-list-item-backdrop-activated", myMdwHelper.getValueFromData(data.colorDrawerbackdropSubLabelBackgroundActive, colorDrawerbackdropLabelBackgroundActive));
+
+                        mdcList.style.setProperty("--materialdesign-color-list-item-text-disabled", myMdwHelper.getValueFromData(data.colorListItemTextDisabled, ''));
+                        mdcList.style.setProperty("--materialdesign-color-list-item-icon-disabled", myMdwHelper.getValueFromData(data.colorListItemIconDisabled, ''));
+
+                        let itemFont = myMdwHelper.getValueFromData(data.listItemTextFont, '');
+                        mdcList.style.setProperty("--materialdesign-font-top-app-bar-item", itemFont);
+
+                        let itemFontDisabled = myMdwHelper.getValueFromData(data.listItemTextFontDisabled, itemFont)
+                        mdcList.style.setProperty("--materialdesign-font-top-app-bar-item-disabled", itemFontDisabled);
+
+                        mdcList.style.setProperty("--materialdesign-font-top-app-bar-sub-item", myMdwHelper.getValueFromData(data.listItemSubTextFont, itemFont));
+                        mdcList.style.setProperty("--materialdesign-font-top-app-bar-sub-item-disabled", myMdwHelper.getValueFromData(data.listItemSubTextFontDisabled, itemFontDisabled));
+
+                        mdcList.style.setProperty("--materialdesign-font-list-item-header", myMdwHelper.getValueFromData(data.listItemHeaderFont, ''));
+
+                        mdcDrawer.style.setProperty("--materialdesign-color-top-app-bar-header-background", myMdwHelper.getValueFromData(data.colorDrawerHeaderBackground, ''));
+
+                        let headerFontSize = myMdwHelper.getFontSize(data.listItemHeaderTextSize);
+                        if (headerFontSize && headerFontSize.style) {
+                            $this.find('.mdc-list-group__subheader').css('font-size', myMdwHelper.getStringFromNumberData(data.listItemHeaderTextSize, 'inherit', '', 'px'));
+                        }
+
+                        let dawerLabelFontSize = myMdwHelper.getFontSize(data.listItemTextSize);
+                        if (dawerLabelFontSize && dawerLabelFontSize.style) {
+                            $this.find('.mdc-list-item__text').css('font-size', myMdwHelper.getStringFromNumberData(data.listItemTextSize, 'inherit', '', 'px'));
+                        }
+
+                        let dawerSubItemLabelFontSize = myMdwHelper.getFontSize(data.listSubItemTextSize);
+                        if (dawerSubItemLabelFontSize && dawerSubItemLabelFontSize.style) {
+                            $this.find('.isSubItem .mdc-list-item__text').css('font-size', myMdwHelper.getStringFromNumberData(data.listSubItemTextSize, 'inherit', '', 'px'));
+                        }
+
+                        // Top Bar
+                        $mdcTopAppBar.get(0).style.setProperty("--materialdesign-color-top-app-bar-background", myMdwHelper.getValueFromData(data.colorTopAppBarBackground, ''));
+                        $mdcTopAppBar.get(0).style.setProperty("--materialdesign-font-top-app-bar-title", myMdwHelper.getValueFromData(data.titleFont, ''));
+                        $mdcTopAppBar.get(0).style.setProperty("--materialdesign-font-size-top-app-bar-title", myMdwHelper.getNumberFromData(data.titleFontSize, 20) + 'px');
+                        $mdcTopAppBar.get(0).style.setProperty("--materialdesign-color-top-app-bar-title", myMdwHelper.getValueFromData(data.colorTopAppBarTitle, ''));
+
+
+                        for (var i = 0; i <= data.navItemCount; i++) {
+                            let $item = $this.find(`.mdc-list-item[id='listItem_${i}']`);
+
+                            $item.find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.attr('iconDrawerColor' + i), '#44739e'));
+                            $item.find('.toggleIcon').css('color', myMdwHelper.getValueFromData(data.colorSubItemToggleIcon, '#44739e'));
+                        }
+                    }
+
+                    const drawer = new mdc.drawer.MDCDrawer(mdcDrawer);
+                    const topAppBar = new mdc.topAppBar.MDCTopAppBar($mdcTopAppBar.get(0));
+                    const navList = new mdc.list.MDCList(mdcList);
+
+                    const listItemRipples = navList.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
+
+                    topAppBar.setScrollTarget($this.find('.mdc-top-app-bar-content').get(0));
+
+                    topAppBar.listen('MDCTopAppBar:nav', () => {
+
+                        vis.binds.materialdesign.helper.vibrate(data.vibrateTopAppBarOnMobilDevices);
+
+                        if (data.drawerLayout === 'dismissible') {
+                            if (drawer.open) {
+                                let width = window.getComputedStyle(widget, null).width;
+                                let widthDrawer = window.getComputedStyle(mdcDrawer, null).width;
+
                                 if (data.topAppBarLayout !== 'short') {
-                                    $mdcTopAppBar.css('width', barWidth);
+                                    $mdcTopAppBar.css('width', width);
                                 } else {
                                     if (!vis.editMode) {
-                                        $mdcTopAppBar.css('left', widthDrawer);
+                                        $mdcTopAppBar.css('left', '0px');
                                     }
                                 }
-                                $drawerFrameAppContent.css('left', widthDrawer);
-                            }, 250);
-                        }
-                    } else {
-                        drawer.open = !drawer.open;
-                    }
-                });
+                                $drawerFrameAppContent.css('left', '0px');
 
-                let val = vis.states.attr(data.oid + '.val');
-
-                navListSelect(val);
-                setTopAppBarWithDrawerLayout(val);
-
-                vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                    navListSelect(newVal);
-                    setTopAppBarWithDrawerLayout(newVal);
-                });
-
-                $mdcList.find('.mdc-list-item').click(function () {
-                    let selctedIndex = parseInt($(this).eq(0).attr('id').replace('listItem_', ''));
-
-                    let itemIsDisabled = $(this).eq(0).hasClass('mdc-list-item--disabled');
-
-                    vis.binds.materialdesign.helper.vibrate(data.vibrateDrawerOnMobilDevices);
-
-                    if (!itemIsDisabled) {
-                        if ($(this).hasClass('hasSubItems')) {
-                            // listItem has subItems ->Toggle SubItems
-                            if ($(this).hasClass('toggled')) {
-                                $(this).removeClass("toggled");
-
-                                $(this).find('.toggleIcon').removeClass("mdi-menu-up");
-                                $(this).find('.toggleIcon').addClass("mdi-menu-down");
+                                drawer.open = !drawer.open;
                             } else {
-                                $(this).addClass("toggled");
-                                $(this).find('.toggleIcon').removeClass("mdi-menu-down");
-                                $(this).find('.toggleIcon').addClass("mdi-menu-up");
-                            }
+                                let width = window.getComputedStyle(widget, null).width;
+                                let widthDrawer = window.getComputedStyle(mdcDrawer, null).width;
+                                let barWidth = width.replace('px', '') - widthDrawer.replace('px', '');
 
-                            $(this).next("nav.mdc-sub-list").toggle();
-
-                            navList.selectedIndex = parseInt($mdcList.find(`.mdc-list-item[id="listItem_${selctedIndex}"]`).eq(0).attr('index'));
-                        } else {
-                            // listItem
-                            val = vis.states.attr(data.oid + '.val');
-
-                            if (val != selctedIndex) {
-                                myMdwHelper.setValue(data.oid, selctedIndex);
-
-                                setTopAppBarWithDrawerLayout(selctedIndex);
+                                drawer.open = !drawer.open;
 
                                 setTimeout(function () {
-                                    window.scrollTo({ top: 0, left: 0, });
-                                }, 50);
+                                    if (data.topAppBarLayout !== 'short') {
+                                        $mdcTopAppBar.css('width', barWidth);
+                                    } else {
+                                        if (!vis.editMode) {
+                                            $mdcTopAppBar.css('left', widthDrawer);
+                                        }
+                                    }
+                                    $drawerFrameAppContent.css('left', widthDrawer);
+                                }, 250);
                             }
+                        } else {
+                            drawer.open = !drawer.open;
+                        }
+                    });
 
-                            if (data.drawerLayout === 'modal') {
-                                drawer.open = false;
+                    let val = vis.states.attr(data.oid + '.val');
+
+                    navListSelect(val);
+                    setTopAppBarWithDrawerLayout(val);
+
+                    vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                        navListSelect(newVal);
+                        setTopAppBarWithDrawerLayout(newVal);
+                    });
+
+                    vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
+                        setLayout();
+                    });
+
+                    vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
+                        setLayout();
+                    });
+
+                    $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
+                        if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
+                        setLayout();
+                    });
+
+
+                    $mdcList.find('.mdc-list-item').click(function () {
+                        let selctedIndex = parseInt($(this).eq(0).attr('id').replace('listItem_', ''));
+
+                        let itemIsDisabled = $(this).eq(0).hasClass('mdc-list-item--disabled');
+
+                        vis.binds.materialdesign.helper.vibrate(data.vibrateDrawerOnMobilDevices);
+
+                        if (!itemIsDisabled) {
+                            if ($(this).hasClass('hasSubItems')) {
+                                // listItem has subItems ->Toggle SubItems
+                                if ($(this).hasClass('toggled')) {
+                                    $(this).removeClass("toggled");
+
+                                    $(this).find('.toggleIcon').removeClass("mdi-menu-up");
+                                    $(this).find('.toggleIcon').addClass("mdi-menu-down");
+                                } else {
+                                    $(this).addClass("toggled");
+                                    $(this).find('.toggleIcon').removeClass("mdi-menu-down");
+                                    $(this).find('.toggleIcon').addClass("mdi-menu-up");
+                                }
+
+                                $(this).next("nav.mdc-sub-list").toggle();
+
+                                navList.selectedIndex = parseInt($mdcList.find(`.mdc-list-item[id="listItem_${selctedIndex}"]`).eq(0).attr('index'));
+                            } else {
+                                // listItem
+                                val = vis.states.attr(data.oid + '.val');
+
+                                if (val != selctedIndex) {
+                                    myMdwHelper.setValue(data.oid, selctedIndex);
+
+                                    setTopAppBarWithDrawerLayout(selctedIndex);
+
+                                    setTimeout(function () {
+                                        window.scrollTo({ top: 0, left: 0, });
+                                    }, 50);
+                                }
+
+                                if (data.drawerLayout === 'modal') {
+                                    drawer.open = false;
+                                }
+                            }
+                        }
+                    });
+
+                    function setTopAppBarWithDrawerLayout(index) {
+                        if (data.showSelectedItemAsTitle) {
+                            let selectedName = $mdcList.find(`span[id="listItem_${index}"]`).text();
+                            $topAppBarTitle.text(selectedName)
+                        }
+                    }
+
+                    function toggleSubItemByIndex(index) {
+                        let selectedListItem = $mdcList.find(`.mdc-list-item[id="listItem_${index}"]`);
+                        if (selectedListItem.hasClass('isSubItem')) {
+                            // toggle Subitem if selected
+                            let parentListItem = selectedListItem.parent().prev('.hasSubItems');
+
+                            if (!parentListItem.hasClass("toggled")) {
+                                parentListItem.addClass("toggled");
+
+                                parentListItem.find('.toggleIcon').removeClass("mdi-menu-down");
+                                parentListItem.find('.toggleIcon').addClass("mdi-menu-up");
+
+                                parentListItem.next("nav.mdc-sub-list").toggle();
                             }
                         }
                     }
-                });
 
-                function setTopAppBarWithDrawerLayout(index) {
-                    if (data.showSelectedItemAsTitle) {
-                        let selectedName = $mdcList.find(`span[id="listItem_${index}"]`).text();
-                        $topAppBarTitle.text(selectedName)
-                    }
-                }
+                    function navListSelect(val) {
+                        let item = $mdcList.find(`.mdc-list-item[id="listItem_${val}"]`);
 
-                function toggleSubItemByIndex(index) {
-                    let selectedListItem = $mdcList.find(`.mdc-list-item[id="listItem_${index}"]`);
-                    if (selectedListItem.hasClass('isSubItem')) {
-                        // toggle Subitem if selected
-                        let parentListItem = selectedListItem.parent().prev('.hasSubItems');
-
-                        if (!parentListItem.hasClass("toggled")) {
-                            parentListItem.addClass("toggled");
-
-                            parentListItem.find('.toggleIcon').removeClass("mdi-menu-down");
-                            parentListItem.find('.toggleIcon').addClass("mdi-menu-up");
-
-                            parentListItem.next("nav.mdc-sub-list").toggle();
-                        }
-                    }
-                }
-
-                function navListSelect(val) {
-                    let item = $mdcList.find(`.mdc-list-item[id="listItem_${val}"]`);
-
-                    if (item.length === 0) {
-                        // Element is hidden
-                        myMdwHelper.setValue(data.oid, myMdwHelper.getNumberFromData(data.navDefaultValue, 0));
-                    } else {
-                        if (item.hasClass('mdc-list-item--disabled')) {
-                            // element is disabled
-                            // if (item.hasClass('isSubItem')) {
-                            //     let parentListItem = item.parent().prev('.hasSubItems');
-
-                            //     if (parentListItem.hasClass('mdc-list-item--disabled')) {
-                            //         parentListItem.removeClass("toggled");
-
-                            //         parentListItem.find('.toggleIcon').removeClass("mdi-menu-up");
-                            //         parentListItem.find('.toggleIcon').addClass("mdi-menu-down");
-                            //     }
-                            // }
+                        if (item.length === 0) {
+                            // Element is hidden
                             myMdwHelper.setValue(data.oid, myMdwHelper.getNumberFromData(data.navDefaultValue, 0));
                         } else {
-                            navList.selectedIndex = parseInt(item.eq(0).attr('index'));
-                            toggleSubItemByIndex(val);
-                            setTopAppBarWithDrawerLayout(val);
+                            if (item.hasClass('mdc-list-item--disabled')) {
+                                // element is disabled
+                                // if (item.hasClass('isSubItem')) {
+                                //     let parentListItem = item.parent().prev('.hasSubItems');
+
+                                //     if (parentListItem.hasClass('mdc-list-item--disabled')) {
+                                //         parentListItem.removeClass("toggled");
+
+                                //         parentListItem.find('.toggleIcon').removeClass("mdi-menu-up");
+                                //         parentListItem.find('.toggleIcon').addClass("mdi-menu-down");
+                                //     }
+                                // }
+                                myMdwHelper.setValue(data.oid, myMdwHelper.getNumberFromData(data.navDefaultValue, 0));
+                            } else {
+                                navList.selectedIndex = parseInt(item.eq(0).attr('index'));
+                                toggleSubItemByIndex(val);
+                                setTopAppBarWithDrawerLayout(val);
+                            }
                         }
                     }
                 }
             }
         } catch (ex) {
-            console.error(`[TopAppBar - ${data.wid}] handle: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[${widgetName} - ${data.wid}] handle: error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };

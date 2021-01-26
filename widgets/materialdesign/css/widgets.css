@@ -14,9 +14,11 @@
   --materialdesign-font-top-app-bar-title: inherit;
   --materialdesign-font-size-top-app-bar-title: 20px;
   --materialdesign-font-top-app-bar-item: inherit;
+  --materialdesign-color-top-app-bar-title: #fff;
   --materialdesign-font-top-app-bar-item-disabled: inherit;
   --materialdesign-font-top-app-bar-sub-item: inherit;
   --materialdesign-font-top-app-bar-sub-item-disabled: inherit;
+  --materialdesign-color-top-app-bar-header-background: #44739e;
 
   --materialdesign-color-checkbox: #44739e;
   --materialdesign-color-checkbox-border: rgba(0, 0, 0, 0.54);
@@ -1332,6 +1334,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 .materialdesign-widget .mdc-top-app-bar__title {
   font-family: var(--materialdesign-font-top-app-bar-title);
   font-size:  var(--materialdesign-font-size-top-app-bar-title);
+  color: var(--materialdesign-color-top-app-bar-title)
 }
 
 .materialdesign-widget .mdc-drawer__content .mdc-list-item__text {
@@ -1369,7 +1372,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 /* Drawer Header default Color */
 .materialdesign-widget .mdc-drawer__header {
-  background-color: #44739e;
+  background-color: var(--materialdesign-color-top-app-bar-header-background);
 }
 
 .materialdesign-widget .mdc-drawer .mdc-drawer__title {
