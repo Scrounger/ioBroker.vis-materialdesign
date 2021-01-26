@@ -11057,5 +11057,17 @@ systemDictionary = {
         "es": "Tipo de widget",
         "pl": "Typ widżetu",
         "zh-cn": "小部件类型"
+    },
+    "Material Design Widget datapoint binding copied to clipboard": {
+        "en": "Material Design Widget datapoint binding copied to clipboard",
+        "de": "Material Design Widget Datenpunkt-Binding in die Zwischenablage kopiert",
+        "ru": "Привязка точек данных виджета Material Design скопирована в буфер обмена",
+        "pt": "Vinculação do ponto de dados do widget do Material Design copiada para a área de transferência",
+        "nl": "Material Design Widget datapunt binding gekopieerd naar klembord",
+        "fr": "Liaison de point de données du widget Material Design copiée dans le presse-papiers",
+        "it": "Binding del punto dati del widget di Material Design copiato negli appunti",
+        "es": "Enlace de punto de datos del widget de diseño de materiales copiado al portapapeles",
+        "pl": "Powiązanie punktu danych widgetu Material Design skopiowane do schowka",
+        "zh-cn": "物料设计小部件数据点绑定已复制到剪贴板"
     }
 };

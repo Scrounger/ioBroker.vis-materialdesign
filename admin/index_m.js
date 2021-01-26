@@ -273,12 +273,13 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
                         <table class="table-values" id="${themeType}Table">
                             <thead>
                                 <tr>
-                                    <th data-name="widget" style="width: 15%;" class="translate" data-type="text">${_("Widget")}</th>
-                                    <th data-name="id" style="width: 15%;" data-style="cursor: copy" class="translate" data-type="text">${_("datapoint")}</th>
-                                    ${themeType.includes('colors') ? '<th data-name="pickr" style="width: 30px;" data-style="text-align: center;" class="translate" data-type="text"></th>' : ''}
-                                    <th data-name="value" style="width: ${themeType === 'fontSizes' ? '80px' : '200px'};" data-style="text-align: ${themeType === 'fontSizes' ? 'center' : 'left'};" class="translate" data-type="${themeType === 'fontSizes' ? 'number' : 'text'}">${_(`${themeType}_table`)}</th>
-                                    <th style="width: 150px; text-align: center;" class="header" data-buttons="${defaultButtons.trim()}">${_(`${themeType}Default`)}</th>
+                                    <th data-name="widget" style="width: 10%;" class="translate" data-type="text">${_("Widget")}</th>                                    
                                     <th data-name="desc" style="width: auto;" class="translate" data-type="text">${_("description")}</th>
+                                    ${themeType.includes('colors') ? '<th data-name="pickr" style="width: 30px;" data-style="text-align: center;" class="translate" data-type="text"></th>' : ''}
+                                    <th data-name="value" style="width: ${themeType === 'fontSizes' ? '65px' : '180px'};" data-style="text-align: ${themeType === 'fontSizes' ? 'center' : 'left'};" class="translate" data-type="${themeType === 'fontSizes' ? 'number' : 'text'}">${_(`${themeType}_table`)}</th>
+                                    <th style="width: 150px; text-align: center;" class="header" data-buttons="${defaultButtons.trim()}">${_(`${themeType}Default`)}</th>
+                                    <th data-name="id" style="width: 15%;" class="translate" data-type="text">${_("datapoint")}</th>
+                                    <th style="width: 50px; text-align: center;" class="header" data-buttons="M B"></th>
                                     <th data-name="defaultValue" style="display: none;" class="translate" data-type="text">${_(`${themeType}Default`)}</th>
                                 </tr>
                             </thead>
@@ -330,7 +331,7 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
             btn.on('click', function () {
                 // apply default value to row
                 let rowNum = $(this).data('index');
-                let btnNum = $(this).data('command');;
+                let btnNum = $(this).data('command');
 
                 let inpuEl = $(`#${themeType}Table input[data-index=${rowNum}][data-name="value"]`);
 
@@ -348,6 +349,41 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
                 onChange();
             });
         }
+
+        // link copy buttons
+        let btnBindingLink = $(`#${themeType}Table [data-command="B"]`);
+        btnBindingLink.find('.material-icons').removeClass('material-icons').text('').addClass('mdi mdi-iobroker').css('font-size', '26px').css('font-weight', '100');
+        btnBindingLink.on('click', function () {
+            let rowNum = $(this).data('index');
+
+            let inputId = $(`#${themeType}Table input[data-index=${rowNum}][data-name="id"]`);
+
+            if (themeType.includes('colors')) {
+                // clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.${inputId.val().replace('dark.', 'light.')};dark:${myNamespace}.colors.${inputId.val().replace('light.', 'dark.')}; mode === "true" ? dark : light}`);
+
+                // Für Entwicklung Binding aufbereitet um in *.html zu verwenden
+                clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.${inputId.val().replace('dark.', 'light.')};dark:${myNamespace}.colors.${inputId.val().replace('light.', 'dark.')}; mode === "true" ? dark : light}`.replace(/;/g, '§').replace(/\"/g, '^'));                
+            } else {
+                clipboard.writeText(`{${myNamespace}.${themeType}.${inputId.val()}}`);
+            }
+
+            M.Toast.dismissAll();
+            M.toast({ html: _('Binding copied to clipboard'), displayLength: 1000, inDuration: 0, outDuration: 0, classes: 'rounded' });
+        });
+
+        let btnMdwLink = $(`#${themeType}Table [data-command="M"]`);
+        btnMdwLink.find('.material-icons').removeClass('material-icons').text('').addClass('mdi mdi-material-design').css('font-size', '26px').css('font-weight', '100');
+        btnMdwLink.on('click', function () {
+            let rowNum = $(this).data('index');
+
+            let inputId = $(`#${themeType}Table input[data-index=${rowNum}][data-name="id"]`);
+
+            clipboard.writeText(`#mdwTheme:${myNamespace}.${themeType}.${inputId.val().replace('light.', '').replace('dark.', '')}`);
+
+            M.Toast.dismissAll();
+            M.toast({ html: _('Material Design Widget datapoint binding copied to clipboard'), displayLength: 1000, inDuration: 0, outDuration: 0, classes: 'rounded' });
+        });
+
 
         $(`#${themeType}Table input[data-name=value]`).change(function () {
             // fires only on key enter or lost focus -> change colorPicker            
@@ -371,21 +407,6 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
 
             $(`#${themeType}Table input[data-index=${rowNum}][data-name="defaultValue"]`).val('');
             $(`#${themeType}Table .values-buttons[data-index=${rowNum}]`).css('background-color', '#2196f3');
-        });
-
-        $(`#${themeType}Table input[data-name=id]`).click(function () {
-
-            if (themeType.includes('colors')) {
-                clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.${$(this).val().replace('dark.', 'light.')};dark:${myNamespace}.colors.${$(this).val().replace('light.', 'dark.')}; mode === "true" ? dark : light}`);
-
-                // Für Entwicklung Binding aufbereitet um in *.html zu verwenden
-                // clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.${$(this).val().replace('dark.', 'light.')};dark:${myNamespace}.colors.${$(this).val().replace('light.', 'dark.')}; mode === "true" ? dark : light}`.replace(/;/g, '§').replace(/\"/g, '^'));
-            } else {
-                clipboard.writeText(`{${myNamespace}.${themeType}.${$(this).val()}}`);
-            }
-
-            M.Toast.dismissAll();
-            M.toast({ html: _('Binding copied to clipboard'), displayLength: 700, inDuration: 0, outDuration: 0, classes: 'rounded' });
         });
 
     } catch (err) {
@@ -449,7 +470,7 @@ async function resetToDefault(themeType, themeObject, themeDefaults, settings, o
             themeObject[i].value = themeDefaults[themeObject[i].defaultValue];
         }
 
-        themeObject[i].desc = _(themeObject[i].desc);
+        // themeObject[i].desc = _(themeObject[i].desc);
     }
 
     await createTab(themeType, themeObject, themeDefaults, settings, onChange, true);
@@ -496,12 +517,12 @@ async function checkAllObjectsExistInSettings(themeType, themeObject, themeDefau
                     jsonList[i].value = themeDefaults[jsonList[i].defaultValue];
                 }
 
-                jsonList[i].desc = _(jsonList[i].desc);
+                // jsonList[i].desc = _(jsonList[i].desc);
                 themeObject.splice(i, 0, jsonList[i]);
 
                 onChange();
             } else {
-                themeObject[i].desc = _(themeObject[i].desc);
+                // themeObject[i].desc = _(themeObject[i].desc);
 
                 // widget names changed -> fire onChange
                 if (themeObject[i].widget !== jsonList[i].widget) {
