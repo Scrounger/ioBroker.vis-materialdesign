@@ -510,7 +510,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 .materialdesign-widget .materialdesign-button--raised,
 .materialdesign-widget.materialdesign-button--unelevated,
 .materialdesign-widget .materialdesign-button--unelevated {
-  padding: 0 16px 0 16px;
+  padding: 0;
 }
 .materialdesign-widget.materialdesign-button--raised:disabled,
 .materialdesign-widget .materialdesign-button--raised:disabled,

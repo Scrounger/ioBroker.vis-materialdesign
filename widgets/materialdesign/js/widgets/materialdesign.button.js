@@ -816,7 +816,6 @@ vis.binds.materialdesign.button = {
     getHtmlConstructor(widgetData, type) {
         try {
             let html;
-            let typeSplitted = type.split("_")
 
             let mdwData = myMdwHelper.getHtmlmdwData(`mdw-type='${type}'` + '\n' + '\t' + `mdw-debug='false'` + '\n',
                 vis.binds.materialdesign.button.getDataFromJson(widgetData, 0, type));
@@ -831,10 +830,6 @@ vis.binds.materialdesign.button = {
                 html = `<div class='vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element'` + '\n' +
                     '\t' + `style='width: ${width}; height: ${height}; position: relative; padding: 0px;'` + '\n' +
                     '\t' + mdwData + ">";
-
-                if (type.includes('toggle_')) {
-                    html = html + '\t' + `<div class='materialdesign-widget materialdesign-button-html-element-toogle-handler'></div>` + '\n';
-                }
             }
 
             if (type.includes('icon')) {
@@ -847,10 +842,6 @@ vis.binds.materialdesign.button = {
                 html = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-html-element"` + '\n' +
                     '\t' + `style="width: ${width}; height: ${height}; position: relative; padding: 0px;"` + '\n' +
                     '\t' + mdwData + ">";
-
-                if (type.includes('toggle_')) {
-                    html = html + '\t' + `<div class="materialdesign-widget materialdesign-button-html-element-toogle-handler"></div>` + '\n';
-                }
             }
 
             return html + `</div>`;
@@ -881,35 +872,8 @@ $.initialize(".materialdesign-button-html-element", function () {
             parentId, widgetName, logPrefix, initializeHtml);
 
         function initializeHtml(widgetData) {
-            let init;
-            if (type.includes('_default')) {
-                init = vis.binds.materialdesign.button.initializeButton(widgetData);
-            } else if (type.includes('_vertical')) {
-                init = vis.binds.materialdesign.button.initializeVerticalButton(widgetData);
-            } else if (type.includes('_icon')) {
-                init = vis.binds.materialdesign.button.initializeButton(widgetData, true);
-            }
-
-            if (widgetData.lockEnabled) {
-                $this.attr('isLocked', 'true');
-            }
-
-            if (init) {
-                $this.addClass(init.style);
-                $this.append(init.button);
-
-                vis.binds.materialdesign.addRippleEffect($this.children(), widgetData, type.includes('_icon'));
-
-                if (type.includes('link_')) {
-                    vis.binds.materialdesign.button.handleLink($this, widgetData);
-                } else if (type.includes('state_')) {
-                    vis.binds.materialdesign.button.handleState($this, widgetData);
-                } else if (type.includes('toggle_')) {
-                    vis.binds.materialdesign.button.handleToggle($this.find('.materialdesign-button-html-element-toogle-handler'), widgetData);
-                }
-            } else {
-                $this.append(`< div style = "background: FireBrick; color: white;" > Error in mdw-data tag!</div > `);
-            }
+            vis.binds.materialdesign.addRippleEffect($this.children(), widgetData, type.includes('_icon'));
+            vis.binds.materialdesign.button.initialize($this, widgetData, type);
         }
     } catch (ex) {
         console.error(`${logPrefix} $.initialize: error: ${ex.message}, stack: ${ex.stack} `);
