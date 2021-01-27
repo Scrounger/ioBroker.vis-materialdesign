@@ -811,13 +811,293 @@ vis.binds.materialdesign.button = {
                 colorBgFalse: obj.colorBgFalse,
                 colorPress: obj.colorPress
             }
+        } else if (type === this.types.navigation.vertical) {
+            return {
+                wid: widgetId,
+
+                // Common
+                buttonStyle: obj.buttonStyle,
+                nav_view: obj.nav_view,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                debug: obj.debug,
+
+                // labeling
+                buttontext: obj.buttontext,
+                textFontFamily: obj.textFontFamily,
+                textFontSize: obj.textFontSize,
+                alignment: obj.alignment,
+                distanceBetweenTextAndImage: obj.distanceBetweenTextAndImage,
+
+                // colors
+                mdwButtonPrimaryColor: obj.mdwButtonPrimaryColor,
+                mdwButtonSecondaryColor: obj.mdwButtonSecondaryColor,
+                mdwButtonColorPress: obj.mdwButtonColorPress,
+
+                // icon
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight,
+            }
+        } else if (type === this.types.navigation.default) {
+            return {
+                wid: widgetId,
+
+                // Common
+                buttonStyle: obj.buttonStyle,
+                nav_view: obj.nav_view,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                debug: obj.debug,
+
+                // labeling
+                buttontext: obj.buttontext,
+                textFontFamily: obj.textFontFamily,
+                textFontSize: obj.textFontSize,
+                labelWidth: obj.labelWidth,
+
+                // colors
+                mdwButtonPrimaryColor: obj.mdwButtonPrimaryColor,
+                mdwButtonSecondaryColor: obj.mdwButtonSecondaryColor,
+                mdwButtonColorPress: obj.mdwButtonColorPress,
+
+                // icon
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight
+            }
+        } else if (type === this.types.navigation.icon) {
+            return {
+                wid: widgetId,
+
+                // Common
+                nav_view: obj.nav_view,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                debug: obj.debug,
+
+                // icon
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconHeight: obj.iconHeight,
+
+                // colors
+                colorBgFalse: obj.colorBgFalse,
+                colorPress: obj.colorPress
+            }
+        } else if (type === this.types.multiState.vertical) {
+            let data = {
+                wid: widgetId,
+
+                // Common
+                countOids: obj.countOids,
+                buttonStyle: obj.buttonStyle,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                debug: obj.debug,
+
+                // labeling
+                buttontext: obj.buttontext,
+                textFontFamily: obj.textFontFamily,
+                textFontSize: obj.textFontSize,
+                alignment: obj.alignment,
+                distanceBetweenTextAndImage: obj.distanceBetweenTextAndImage,
+
+                // colors
+                mdwButtonPrimaryColor: obj.mdwButtonPrimaryColor,
+                mdwButtonSecondaryColor: obj.mdwButtonSecondaryColor,
+                mdwButtonColorPress: obj.mdwButtonColorPress,
+
+                // icon
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight,
+
+                // Locking
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconTop: obj.lockIconTop,
+                lockIconLeft: obj.lockIconLeft,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+
+            for (var i = 0; i <= obj.countOids; i++) {
+                data['oid' + i] = obj['oid' + i];
+                data['value' + i] = obj['value' + i];
+                data['delayInMs' + i] = obj['delayInMs' + i];
+            }
+
+            return data;
+        } else if (type === this.types.multiState.default) {
+            let data = {
+                wid: widgetId,
+
+                // Common
+                countOids: obj.countOids,
+                buttonStyle: obj.buttonStyle,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                debug: obj.debug,
+
+                // labeling
+                buttontext: obj.buttontext,
+                textFontFamily: obj.textFontFamily,
+                textFontSize: obj.textFontSize,
+                labelWidth: obj.labelWidth,
+
+                // colors
+                mdwButtonPrimaryColor: obj.mdwButtonPrimaryColor,
+                mdwButtonSecondaryColor: obj.mdwButtonSecondaryColor,
+                mdwButtonColorPress: obj.mdwButtonColorPress,
+
+                // icon
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight,
+
+                // Locking
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+
+            for (var i = 0; i <= obj.countOids; i++) {
+                data['oid' + i] = obj['oid' + i];
+                data['value' + i] = obj['value' + i];
+                data['delayInMs' + i] = obj['delayInMs' + i];
+            }
+
+            return data;
+        } else if (type === this.types.multiState.icon) {
+            let data = {
+                wid: widgetId,
+
+                // Common
+                countOids: obj.countOids,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                debug: obj.debug,
+
+                // icon
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconHeight: obj.iconHeight,
+
+                // colors
+                colorBgFalse: obj.colorBgFalse,
+                colorPress: obj.colorPress,
+
+                // Locking
+                lockEnabled: obj.lockEnabled,
+                autoLockAfter: obj.autoLockAfter,
+                lockIcon: obj.lockIcon,
+                lockIconTop: obj.lockIconTop,
+                lockIconLeft: obj.lockIconLeft,
+                lockIconSize: obj.lockIconSize,
+                lockIconColor: obj.lockIconColor,
+                lockIconBackground: obj.lockIconBackground,
+                lockBackgroundSizeFactor: obj.lockBackgroundSizeFactor,
+                lockFilterGrayscale: obj.lockFilterGrayscale
+            }
+
+            for (var i = 0; i <= obj.countOids; i++) {
+                data['oid' + i] = obj['oid' + i];
+                data['value' + i] = obj['value' + i];
+                data['delayInMs' + i] = obj['delayInMs' + i];
+            }
+
+            return data;
+        } else if (type === this.types.addition.vertical) {
+            return {
+                wid: widgetId,
+
+                // Common
+                oid: obj.oid,
+                buttonStyle: obj.buttonStyle,
+                value: obj.value,
+                minmax: obj.minmax,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                debug: obj.debug,
+
+                // labeling
+                buttontext: obj.buttontext,
+                textFontFamily: obj.textFontFamily,
+                textFontSize: obj.textFontSize,
+                alignment: obj.alignment,
+                distanceBetweenTextAndImage: obj.distanceBetweenTextAndImage,
+
+                // colors
+                mdwButtonPrimaryColor: obj.mdwButtonPrimaryColor,
+                mdwButtonSecondaryColor: obj.mdwButtonSecondaryColor,
+                mdwButtonColorPress: obj.mdwButtonColorPress,
+
+                // icon
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight,
+
+            }
+        } else if (type === this.types.addition.default) {
+            return {
+                wid: widgetId,
+
+                // Common
+                oid: obj.oid,
+                buttonStyle: obj.buttonStyle,
+                value: obj.value,
+                minmax: obj.minmax,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                debug: obj.debug,
+
+                // labeling
+                buttontext: obj.buttontext,
+                textFontFamily: obj.textFontFamily,
+                textFontSize: obj.textFontSize,
+                labelWidth: obj.labelWidth,
+
+                // colors
+                mdwButtonPrimaryColor: obj.mdwButtonPrimaryColor,
+                mdwButtonSecondaryColor: obj.mdwButtonSecondaryColor,
+                mdwButtonColorPress: obj.mdwButtonColorPress,
+
+                // icon
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconPosition: obj.iconPosition,
+                iconHeight: obj.iconHeight
+            }
+        } else if (type === this.types.addition.icon) {
+            return {
+                wid: widgetId,
+
+                // Common
+                oid: obj.oid,
+                value: obj.value,
+                minmax: obj.minmax,
+                vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                debug: obj.debug,
+
+                // icon
+                image: obj.image,
+                imageColor: obj.imageColor,
+                iconHeight: obj.iconHeight,
+
+                // colors
+                colorBgFalse: obj.colorBgFalse,
+                colorPress: obj.colorPress
+            }
         }
     },
     getHtmlConstructor(widgetData, type) {
         try {
             let html;
 
-            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-type='${type}'` + '\n' + '\t' + `mdw-debug='false'` + '\n',
+            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-type='${type}'` + '\n',
                 vis.binds.materialdesign.button.getDataFromJson(widgetData, 0, type));
 
             if (type.includes('default') || type.includes('vertical')) {
