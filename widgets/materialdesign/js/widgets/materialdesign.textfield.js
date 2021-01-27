@@ -21,8 +21,6 @@ vis.binds.materialdesign.textfield = {
             });
 
             function init() {
-
-
                 let inputType = myMdwHelper.getValueFromData(data.inputType, 'text');
                 let inputMask = '';
                 let placeholder = ''
@@ -255,7 +253,7 @@ $.initialize(".materialdesign-input-html-element", function () {
             parentId, widgetName, logPrefix, initializeHtml);
 
         function initializeHtml(widgetData) {
-            console.error(`${logPrefix} $.initialize: error: ${ex.message}, stack: ${ex.stack} `);
+            if (widgetData.debug) console.log(`${logPrefix} initialize widget`);
             vis.binds.materialdesign.textfield.initialize($this, widgetData);
         }
     } catch (ex) {

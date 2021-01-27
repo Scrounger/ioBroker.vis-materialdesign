@@ -7,14 +7,23 @@
 
 vis.binds.materialdesign.select = {
     initialize: function (el, data) {
+        let widgetName = 'Select';
+        let themeTriggerClass = '.materialdesign-widget.materialdesign-select';
+
         try {
             let $this = $(el);
             let vueHelper = vis.binds.materialdesign.vueHelper.select
             let containerClass = 'materialdesign-vuetify-select';
 
-            vueHelper.generateItemList(data, `Select - ${data.wid}`, function (itemsList) {
 
-                $this.append(`
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
+                init();
+            });
+
+            function init() {
+                vueHelper.generateItemList(data, `Select - ${data.wid}`, function (itemsList) {
+
+                    $this.append(`
                     <div class="${containerClass}" style="width: 100%; height: 100%;">
                         <v-select
                             ${vueHelper.getConstructor(data)}
@@ -25,28 +34,42 @@ vis.binds.materialdesign.select = {
                         </v-select>
                     </div>`);
 
-                myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'Select', function () {
-                    myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'Select', function () {
+                    myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'Select', function () {
+                        myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'Select', function () {
 
-                        let $vuetifyContainer = $("body").find('#materialdesign-vuetify-container');
-                        let widgetHeight = window.getComputedStyle($this.get(0), null).height.replace('px', '');
+                            let $vuetifyContainer = $("body").find('#materialdesign-vuetify-container');
+                            let widgetHeight = window.getComputedStyle($this.get(0), null).height.replace('px', '');
 
-                        let vueSelect = new Vue({
-                            el: $this.find(`.${containerClass}`).get(0),
-                            vuetify: new Vuetify(),
-                            data() {
-                                return vueHelper.getData(data, widgetHeight, itemsList);
-                            },
-                            methods: vueHelper.getMethods(data, $this, itemsList, $vuetifyContainer)
+                            let vueSelect = new Vue({
+                                el: $this.find(`.${containerClass}`).get(0),
+                                vuetify: new Vuetify(),
+                                data() {
+                                    return vueHelper.getData(data, widgetHeight, itemsList);
+                                },
+                                methods: vueHelper.getMethods(data, $this, itemsList, $vuetifyContainer)
+                            });
+
+                            vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
+                                vueHelper.setStyles($this, data);
+                            });
+    
+                            vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
+                                vueHelper.setStyles($this, data);
+                            });
+    
+                            $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
+                                if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
+                                vueHelper.setStyles($this, data);
+                            });
+
+                            vueHelper.setStyles($this, data);
+                            vueHelper.setIoBrokerBinding(data, vueSelect, itemsList);
                         });
-
-                        vueHelper.setStyles($this, data);
-                        vueHelper.setIoBrokerBinding(data, vueSelect, itemsList);
                     });
                 });
-            });
+            }
         } catch (ex) {
-            console.error(`[Select - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack} `);
+            console.error(`[${widgetName} - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack} `);
         }
     },
     getDataFromJson(obj, widgetId) {
@@ -179,7 +202,7 @@ vis.binds.materialdesign.select = {
             delete widgetData.width;
             delete widgetData.height;
 
-            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-debug='false'` + '\n',
+            let mdwData = myMdwHelper.getHtmlmdwData('',
                 vis.binds.materialdesign.select.getDataFromJson(widgetData, 0));
 
             html = `<div class='vis-widget materialdesign-widget materialdesign-select materialdesign-select-html-element'` + '\n' +
@@ -211,6 +234,7 @@ $.initialize(".materialdesign-select-html-element", function () {
             parentId, widgetName, logPrefix, initializeHtml);
 
         function initializeHtml(widgetData) {
+            if (widgetData.debug) console.log(`${logPrefix} initialize widget`);
             vis.binds.materialdesign.select.initialize($this, widgetData);
         }
     } catch (ex) {
