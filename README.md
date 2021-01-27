@@ -8619,6 +8619,8 @@ Alerts widget can be used e.g. to display messages in the VIS, like it works wit
 
 ### Editor Settings
 
+Settings that are not listed in the table below are self-explanatory.
+
 <table>
     <thead>
         <tr>
