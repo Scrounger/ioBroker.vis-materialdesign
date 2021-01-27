@@ -8,20 +8,29 @@
 // this code can be placed directly in materialdesign.html
 vis.binds.materialdesign.autocomplete = {
     initialize: function (el, data) {
+        let widgetName = 'AutoComplete';
+        let themeTriggerClass = '.materialdesign-widget.materialdesign-autocomplete';
+
         try {
             let $this = $(el);
             let vueHelper = vis.binds.materialdesign.vueHelper.select
             let containerClass = 'materialdesign-vuetify-autoComplete';
-            let widgetName = 'AutoComplete';
 
-            let inputMode = 'combobox'
-            if (data.inputMode === 'select') {
-                inputMode = 'autocomplete';
-            }
 
-            vueHelper.generateItemList(data, `AutoComplete - ${data.wid}`, function (itemsList) {
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
+                init();
+            });
 
-                $this.append(`
+            function init() {
+
+                let inputMode = 'combobox'
+                if (data.inputMode === 'select') {
+                    inputMode = 'autocomplete';
+                }
+
+                vueHelper.generateItemList(data, `AutoComplete - ${data.wid}`, function (itemsList) {
+
+                    $this.append(`
                     <div class="${containerClass}" style="width: 100%; height: 100%;">
                         <v-${inputMode}
                             ${vueHelper.getConstructor(data)}
@@ -32,39 +41,53 @@ vis.binds.materialdesign.autocomplete = {
                         </v-${inputMode}>
                     </div>`);
 
-                if (myMdwHelper.oidNeedSubscribe(data.oid, data.wid, widgetName, false)) {
-                    // ggf subscribing notwendig, wenn z.B. Binding als ObjektId verwendet wird und eine oid übergeben wird
-                    myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
-                        handler();
-                    });
-                } else {
-                    handler();
-                }
-
-                function handler() {
-                    myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'AutoComplete', function () {
-                        myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'AutoComplete', function () {
-
-                            let $vuetifyContainer = $("body").find('#materialdesign-vuetify-container');
-                            let widgetHeight = window.getComputedStyle($this.get(0), null).height.replace('px', '');
-
-                            let vueAutoComplete = new Vue({
-                                el: $this.find(`.${containerClass}`).get(0),
-                                vuetify: new Vuetify(),
-                                data() {
-                                    return vueHelper.getData(data, widgetHeight, itemsList, inputMode);
-                                },
-                                methods: vueHelper.getMethods(data, $this, itemsList, $vuetifyContainer, inputMode)
-                            });
-
-                            vueHelper.setStyles($this, data);
-                            vueHelper.setIoBrokerBinding(data, vueAutoComplete, itemsList, inputMode);
+                    if (myMdwHelper.oidNeedSubscribe(data.oid, data.wid, widgetName, false)) {
+                        // ggf subscribing notwendig, wenn z.B. Binding als ObjektId verwendet wird und eine oid übergeben wird
+                        myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
+                            handler();
                         });
-                    });
-                }
-            });
+                    } else {
+                        handler();
+                    }
+
+                    function handler() {
+                        myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'AutoComplete', function () {
+                            myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'AutoComplete', function () {
+
+                                let $vuetifyContainer = $("body").find('#materialdesign-vuetify-container');
+                                let widgetHeight = window.getComputedStyle($this.get(0), null).height.replace('px', '');
+
+                                let vueAutoComplete = new Vue({
+                                    el: $this.find(`.${containerClass}`).get(0),
+                                    vuetify: new Vuetify(),
+                                    data() {
+                                        return vueHelper.getData(data, widgetHeight, itemsList, inputMode);
+                                    },
+                                    methods: vueHelper.getMethods(data, $this, itemsList, $vuetifyContainer, inputMode)
+                                });
+
+                                vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
+                                    vueHelper.setStyles($this, data);
+                                });
+        
+                                vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
+                                    vueHelper.setStyles($this, data);
+                                });
+        
+                                $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
+                                    if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
+                                    vueHelper.setStyles($this, data);
+                                });
+
+                                vueHelper.setStyles($this, data);
+                                vueHelper.setIoBrokerBinding(data, vueAutoComplete, itemsList, inputMode);
+                            });
+                        });
+                    }
+                });
+            }
         } catch (ex) {
-            console.error(`[AutoComplete - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack} `);
+            console.error(`[${widgetName} - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack} `);
         }
     },
     getDataFromJson(obj, widgetId) {
@@ -199,7 +222,7 @@ vis.binds.materialdesign.autocomplete = {
             delete widgetData.width;
             delete widgetData.height;
 
-            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-debug='false'` + '\n',
+            let mdwData = myMdwHelper.getHtmlmdwData('',
                 vis.binds.materialdesign.autocomplete.getDataFromJson(widgetData, 0));
 
             html = `<div class='vis-widget materialdesign-widget materialdesign-autocomplete materialdesign-autocomplete-html-element'` + '\n' +
@@ -231,6 +254,7 @@ $.initialize(".materialdesign-autocomplete-html-element", function () {
             parentId, widgetName, logPrefix, initializeHtml);
 
         function initializeHtml(widgetData) {
+            if (widgetData.debug) console.log(`${logPrefix} initialize widget`);
             vis.binds.materialdesign.autocomplete.initialize($this, widgetData);
         }
     } catch (ex) {
