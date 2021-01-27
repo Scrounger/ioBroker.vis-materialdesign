@@ -62,10 +62,11 @@ vis.binds.materialdesign.button = {
 
                 if (type.includes('vertical')) {
                     $this.append(vis.binds.materialdesign.button.initializeVerticalButton($this, data));
+                } else if (type.includes('default')) {
+                    $this.append(vis.binds.materialdesign.button.initializeButton($this, data));
                 }
 
                 myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, widgetName, function () {
-
                     if (type.includes('navigation')) {
                         vis.binds.materialdesign.button.handleNavigation(el, data);
                     } else if (type.includes('link')) {
@@ -87,7 +88,7 @@ vis.binds.materialdesign.button = {
             console.error(`[${widgetName} ${type} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    initializeButton: function (data, isIconButton = false) {
+    initializeButton: function ($this, data, isIconButton = false) {
         try {
             let buttonElementsList = [];
 
@@ -114,12 +115,6 @@ vis.binds.materialdesign.button = {
                 }
             }
 
-
-            let buttonStyle = '';
-            if (data.buttonStyle !== 'text') {
-                buttonStyle = 'materialdesign-button--' + data.buttonStyle;
-            }
-
             buttonElementsList.push(`<div 
                                         class="materialdesign-button-body" 
                                         style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">`);
@@ -140,8 +135,7 @@ vis.binds.materialdesign.button = {
                 buttonElementsList.push(`${lockIcon} ${labelElement} ${imageElement}</div>`);
             }
 
-            return { button: buttonElementsList.join(''), style: buttonStyle }
-
+            return buttonElementsList.join('');
         } catch (ex) {
             console.error(`[Button - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
@@ -181,7 +175,6 @@ vis.binds.materialdesign.button = {
             buttonElementsList.push(lockIcon);
 
             return buttonElementsList.join('')
-
         } catch (ex) {
             console.error(`[Button - ${data.wid}] vertical initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }

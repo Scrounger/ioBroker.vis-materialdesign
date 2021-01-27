@@ -252,16 +252,12 @@
         data-vis-type="navigation"
         data-vis-name="Button Navigation"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,button;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;useTheme/custom,materialdesign.viseditor.useTheme;buttonStyle[raised]/select,text,raised,unelevated,outlined;nav_view;vibrateOnMobilDevices[50]/number;debug/checkbox;"
-        data-vis-attrs0="group.label;buttontext[&nbsp;Navigation]/html;textFontFamily[{vis-materialdesign.0.fonts.button.default.text}]/fontname;textFontSize[{vis-materialdesign.0.fontSizes.button.default.text}]/number;labelWidth/slider,0,100,1;"
+        data-vis-attrs0="group.label;buttontext[&nbsp;Navigation]/html;textFontFamily[#mdwTheme:vis-materialdesign.0.fonts.button.default.text]/fontname;textFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.button.default.text]/number;labelWidth/slider,0,100,1;"
         data-vis-attrs1="group.color;mdwButtonPrimaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.primary]/color;mdwButtonSecondaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.secondary]/color;mdwButtonColorPress/color;"
         data-vis-attrs2="group.icon;image[navigation]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;">
         
-        <%
-            let init = vis.binds.materialdesign.button.initializeButton(data);
-        %>
+        <div class="vis-widget materialdesign-widget materialdesign-button <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'navigation_default'); vis.binds.materialdesign.addRippleEffect(el, data) %>>
 
-        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.handleNavigation(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
-            <%== init.button %>
         </div>
 </script>
 
@@ -274,16 +270,12 @@
         data-vis-type="static"
         data-vis-name="Button Link"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,button;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;useTheme/custom,materialdesign.viseditor.useTheme;buttonStyle[raised]/select,text,raised,unelevated,outlined;href/url;openNewWindow/checkbox;vibrateOnMobilDevices[50]/number;exportData/custom,materialdesign.viseditor.exportData,buttonLink;generateHtmlControl/custom,materialdesign.viseditor.generateHtmlControl,button,link_default;debug/checkbox;"
-        data-vis-attrs0="group.label;buttontext[&nbsp;Link]/html;textFontFamily[{vis-materialdesign.0.fonts.button.default.text}]/fontname;textFontSize[{vis-materialdesign.0.fontSizes.button.default.text}]/number;labelWidth/slider,0,100,1;"
+        data-vis-attrs0="group.label;buttontext[&nbsp;Link]/html;textFontFamily[#mdwTheme:vis-materialdesign.0.fonts.button.default.text]/fontname;textFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.button.default.text]/number;labelWidth/slider,0,100,1;"
         data-vis-attrs1="group.color;mdwButtonPrimaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.primary]/color;mdwButtonSecondaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.secondary]/color;mdwButtonColorPress/color;"
         data-vis-attrs2="group.icon;image[link]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;">
 
-        <%
-            let init = vis.binds.materialdesign.button.initializeButton(data);
-        %>
+        <div class="vis-widget materialdesign-widget materialdesign-button <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-vis-link="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'link_default'); vis.binds.materialdesign.addRippleEffect(el, data) %>>
 
-        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-vis-link="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleLink(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
-            <%== init.button %>
         </div>
 </script>
 
@@ -295,17 +287,13 @@
         data-vis-type="ctrl"
         data-vis-name="Button State"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,button;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;useTheme/custom,materialdesign.viseditor.useTheme;oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;value;vibrateOnMobilDevices[50]/number;exportData/custom,materialdesign.viseditor.exportData,buttonState;generateHtmlControl/custom,materialdesign.viseditor.generateHtmlControl,button,state_default;debug/checkbox;"
-        data-vis-attrs0="group.label;buttontext[&nbsp;State]/html;textFontFamily[{vis-materialdesign.0.fonts.button.default.text}]/fontname;textFontSize[{vis-materialdesign.0.fontSizes.button.default.text}]/number;labelWidth/slider,0,100,1;"
+        data-vis-attrs0="group.label;buttontext[&nbsp;State]/html;textFontFamily[#mdwTheme:vis-materialdesign.0.fonts.button.default.text]/fontname;textFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.button.default.text]/number;labelWidth/slider,0,100,1;"
         data-vis-attrs1="group.color;mdwButtonPrimaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.primary]/color;mdwButtonSecondaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.secondary]/color;mdwButtonColorPress/color;"
         data-vis-attrs2="group.icon;image[pencil]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;"
         data-vis-attrs3="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materialdesign.viseditor.materialDesignIcons;lockIconSize/number;lockIconColor[#mdwTheme:vis-materialdesign.0.colors.button.lock_icon]/color;lockFilterGrayscale[30]/slider,0,100,1;">
         
-        <%
-            let init = vis.binds.materialdesign.button.initializeButton(data);
-        %>
+        <div class="vis-widget materialdesign-widget materialdesign-button <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'state_default'); vis.binds.materialdesign.addRippleEffect(el, data) %>>
 
-        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" isLocked="<%== myMdwHelper.getBooleanFromData(this.data.attr('lockEnabled'), false) %>" <%= (el) -> vis.binds.materialdesign.button.handleState(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
-            <%== init.button %>
         </div>
 </script>
 
@@ -318,17 +306,13 @@
         data-vis-name="Button State Multi"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,button;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;useTheme/custom,materialdesign.viseditor.useTheme;countOids[1]/number;buttonStyle[raised]/select,text,raised,unelevated,outlined;vibrateOnMobilDevices[50]/number;debug/checkbox;"
         data-vis-attrs0="group.buttonOids/byindex;oid(0-countOids);value(0-countOids);delayInMs(0-countOids)[0]/number;"
-        data-vis-attrs1="group.label;buttontext[&nbsp;Multi State]/html;textFontFamily[{vis-materialdesign.0.fonts.button.default.text}]/fontname;textFontSize[{vis-materialdesign.0.fontSizes.button.default.text}]/number;labelWidth/slider,0,100,1;"
+        data-vis-attrs1="group.label;buttontext[&nbsp;Multi State]/html;textFontFamily[#mdwTheme:vis-materialdesign.0.fonts.button.default.text]/fontname;textFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.button.default.text]/number;labelWidth/slider,0,100,1;"
         data-vis-attrs2="group.color;mdwButtonPrimaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.primary]/color;mdwButtonSecondaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.secondary]/color;mdwButtonColorPress/color;"
         data-vis-attrs3="group.icon;image[pencil-box-multiple]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;"
         data-vis-attrs4="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materialdesign.viseditor.materialDesignIcons;lockIconSize/number;lockIconColor[#mdwTheme:vis-materialdesign.0.colors.button.lock_icon]/color;lockFilterGrayscale[30]/slider,0,100,1;">
         
-        <%
-            let init = vis.binds.materialdesign.button.initializeButton(data);
-        %>
+        <div class="vis-widget materialdesign-widget materialdesign-button <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'multiState_default'); vis.binds.materialdesign.addRippleEffect(el, data) %>>
 
-        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" isLocked="<%== myMdwHelper.getBooleanFromData(this.data.attr('lockEnabled'), false) %>" <%= (el) -> vis.binds.materialdesign.button.handleState(el, data, true); vis.binds.materialdesign.addRippleEffect(el, data) %>>
-            <%== init.button %>
         </div>
 </script>
 
@@ -340,16 +324,12 @@
         data-vis-type="ctrl"
         data-vis-name="Button Addition"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,button;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;useTheme/custom,materialdesign.viseditor.useTheme;oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;value;minmax;vibrateOnMobilDevices[50]/number;debug/checkbox;"
-        data-vis-attrs0="group.label;buttontext[&nbsp;Addition]/html;textFontFamily[{vis-materialdesign.0.fonts.button.default.text}]/fontname;textFontSize[{vis-materialdesign.0.fontSizes.button.default.text}]/number;labelWidth/slider,0,100,1;"
+        data-vis-attrs0="group.label;buttontext[&nbsp;Addition]/html;textFontFamily[#mdwTheme:vis-materialdesign.0.fonts.button.default.text]/fontname;textFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.button.default.text]/number;labelWidth/slider,0,100,1;"
         data-vis-attrs1="group.color;mdwButtonPrimaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.primary]/color;mdwButtonSecondaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.secondary]/color;mdwButtonColorPress/color;"
         data-vis-attrs2="group.icon;image[plus]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;">
-        
-        <%
-            let init = vis.binds.materialdesign.button.initializeButton(data);
-        %>
 
-        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleAddition(el, data); vis.binds.materialdesign.addRippleEffect(el, data) %>>
-            <%== init.button %>
+        <div class="vis-widget materialdesign-widget materialdesign-button <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'addition_default'); vis.binds.materialdesign.addRippleEffect(el, data) %>>
+
         </div>
 </script>
 
@@ -361,18 +341,13 @@
         data-vis-type="ctrl,state,val,bool"
         data-vis-name="Button Toggle"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,button;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;useTheme/custom,materialdesign.viseditor.useTheme;oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;readOnly/checkbox;toggleType[boolean]/select,boolean,value;pushButton/checkbox;valueOff;valueOn;stateIfNotTrueValue[on]/select,on,off;vibrateOnMobilDevices[50]/number;exportData/custom,materialdesign.viseditor.exportData,buttonToggle;generateHtmlControl/custom,materialdesign.viseditor.generateHtmlControl,button,toggle_default;debug/checkbox;"
-        data-vis-attrs0="group.label;buttontext[&nbsp;Toggle]/html;labelTrue/html;labelColorFalse/color;labelColorTrue/color;textFontFamily[{vis-materialdesign.0.fonts.button.default.text}]/fontname;textFontSize[{vis-materialdesign.0.fontSizes.button.default.text}]/number;labelWidth/slider,0,100,1;"
+        data-vis-attrs0="group.label;buttontext[&nbsp;Toggle]/html;labelTrue/html;labelColorFalse/color;labelColorTrue/color;textFontFamily[#mdwTheme:vis-materialdesign.0.fonts.button.default.text]/fontname;textFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.button.default.text]/number;labelWidth/slider,0,100,1;"
         data-vis-attrs1="group.color;mdwButtonPrimaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.primary]/color;mdwButtonSecondaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.secondary]/color;mdwButtonColorPress/color;colorBgFalse/color;colorBgTrue/color;"
         data-vis-attrs2="group.icon;image[checkbox-marked]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;imageTrue/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageTrueColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;"        
         data-vis-attrs3="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materialdesign.viseditor.materialDesignIcons;lockIconSize/number;lockIconColor[#mdwTheme:vis-materialdesign.0.colors.button.lock_icon]/color;lockFilterGrayscale[30]/slider,0,100,1;">
+       
+        <div class="vis-widget materialdesign-widget materialdesign-button <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'toggle_default'); vis.binds.materialdesign.addRippleEffect(el, data) %>>
 
-        <%
-            let init = vis.binds.materialdesign.button.initializeButton(data);
-        %> 
-        
-        <div class="vis-widget materialdesign-widget materialdesign-button <%== init.style %> <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.addRippleEffect(el, data) %> isLocked="<%== myMdwHelper.getBooleanFromData(this.data.attr('lockEnabled'), false) %>" >
-            <%== init.button %>
-            <div <%= (el) -> vis.binds.materialdesign.button.handleToggle(el, this.data) %>></div>
         </div>
 </script>
 
@@ -928,7 +903,7 @@
         data-vis-name="Dialog"
         data-vis-update-style="true"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,dialogView;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,dialogView;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;useTheme/custom,materialdesign.viseditor.useTheme;showDialogMethod[button]/select,button,datapoint;showDialogOid/id;contains_view/views;fullscreenResolutionLower[360]/number;vibrateOnMobilDevices[50]/number;debug/checkbox;"
-        data-vis-attrs0="group.buttonLayout;buttonStyle[raised]/select,text,raised,unelevated,outlined,icon;buttontext/html;mdwButtonPrimaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.primary]/color;mdwButtonSecondaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.secondary]/color;mdwButtonColorPress/color;textFontFamily[{vis-materialdesign.0.fonts.button.default.text}]/fontname;textFontSize[{vis-materialdesign.0.fontSizes.button.default.text}]/number;labelWidth/slider,0,100,1;image/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;"
+        data-vis-attrs0="group.buttonLayout;buttonStyle[raised]/select,text,raised,unelevated,outlined,icon;buttontext/html;mdwButtonPrimaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.primary]/color;mdwButtonSecondaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.secondary]/color;mdwButtonColorPress/color;textFontFamily[#mdwTheme:vis-materialdesign.0.fonts.button.default.text]/fontname;textFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.button.default.text]/number;labelWidth/slider,0,100,1;image/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;"
         data-vis-attrs1="group.layoutDialog;dialogMaxWidth;viewHeight/number;closingClickOutside[true]/checkbox;viewDistanceToBorder/number;backgroundColor/color;headerHeight/number;headerBackgroundColor/color;footerHeight/number;footerBackgroundColor/color;showDivider/checkbox;dividerColor/color;overlayColor/color;overlayOpacity/slider,0,1,0.1;"
         data-vis-attrs2="group.layoutTitle;showTitle[true]/checkbox;title/html;titleFontSize[{vis-materialdesign.0.fontSizes.dialog.title}]/number;titleFont[{vis-materialdesign.0.fonts.dialog.title}]/fontname;titleColor[{mode:vis-materialdesign.0.colors.darkTheme§light:vis-materialdesign.0.colors.light.dialog.header_text§dark:vis-materialdesign.0.colors.dark.dialog.header_text§ mode === ^true^ ? dark : light}]/color;"
         data-vis-attrs3="group.layoutdialogCloseButton;buttonPosition[flex-end]/select,flex-start,center,flex-end;buttonSize[medium]/select,small,medium,large;buttonFullWidth/checkbox;buttonText;buttonFontSize/number;buttonFont[{vis-materialdesign.0.fonts.dialog.button}]/fontname;buttonFontColor[{mode:vis-materialdesign.0.colors.darkTheme§light:vis-materialdesign.0.colors.light.dialog.close_button_text§dark:vis-materialdesign.0.colors.dark.dialog.close_button_text§ mode === ^true^ ? dark : light}]/color;fullscreenCloseIcon[{mode:vis-materialdesign.0.colors.darkTheme§light:vis-materialdesign.0.colors.light.dialog.close_button_icon§dark:vis-materialdesign.0.colors.dark.dialog.close_button_icon§ mode === ^true^ ? dark : light}]/custom,materialdesign.viseditor.materialDesignIcons;fullscreenCloseIconColor/color;pressColor[{mode:vis-materialdesign.0.colors.darkTheme§light:vis-materialdesign.0.colors.light.dialog.close_button_press§dark:vis-materialdesign.0.colors.dark.dialog.close_button_press§ mode === ^true^ ? dark : light}]/color;">
@@ -965,7 +940,7 @@
         data-vis-update-style="true"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,dialogView;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,dialogView;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;useTheme/custom,materialdesign.viseditor.useTheme;showDialogMethod[button]/select,button,datapoint;showDialogOid/id;fullscreenResolutionLower[360]/number;vibrateOnMobilDevices[50]/number;debug/checkbox;"
         data-vis-attrs0="group.iFrame;src;refreshInterval[0]/slider,0,180000,100;noSandbox/checkbox;refreshOnWakeUp/checkbox;refreshOnViewChange/checkbox;refreshWithNoQuery/checkbox;scrollX/checkbox;scrollY/checkbox;seamless[true]/checkbox;"
-        data-vis-attrs1="group.buttonLayout;buttonStyle[raised]/select,text,raised,unelevated,outlined,icon;buttontext/html;mdwButtonPrimaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.primary]/color;mdwButtonSecondaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.secondary]/color;mdwButtonColorPress/color;textFontFamily[{vis-materialdesign.0.fonts.button.default.text}]/fontname;textFontSize[{vis-materialdesign.0.fontSizes.button.default.text}]/number;labelWidth/slider,0,100,1;image/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;"
+        data-vis-attrs1="group.buttonLayout;buttonStyle[raised]/select,text,raised,unelevated,outlined,icon;buttontext/html;mdwButtonPrimaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.primary]/color;mdwButtonSecondaryColor[#mdwTheme:vis-materialdesign.0.colors.button.default.secondary]/color;mdwButtonColorPress/color;textFontFamily[#mdwTheme:vis-materialdesign.0.fonts.button.default.text]/fontname;textFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.button.default.text]/number;labelWidth/slider,0,100,1;image/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;"
         data-vis-attrs2="group.layoutDialog;dialogMaxWidth;viewHeight/number;closingClickOutside[true]/checkbox;viewDistanceToBorder/number;backgroundColor[{mode:vis-materialdesign.0.colors.darkTheme§light:vis-materialdesign.0.colors.light.dialog.background§dark:vis-materialdesign.0.colors.dark.dialog.background§ mode === ^true^ ? dark : light}]/color;headerHeight/number;headerBackgroundColor[{mode:vis-materialdesign.0.colors.darkTheme§light:vis-materialdesign.0.colors.light.dialog.header_background§dark:vis-materialdesign.0.colors.dark.dialog.header_background§ mode === ^true^ ? dark : light}]/color;footerHeight/number;footerBackgroundColor[{mode:vis-materialdesign.0.colors.darkTheme§light:vis-materialdesign.0.colors.light.dialog.footer_background§dark:vis-materialdesign.0.colors.dark.dialog.footer_background§ mode === ^true^ ? dark : light}]/color;showDivider/checkbox;dividerColor[{mode:vis-materialdesign.0.colors.darkTheme§light:vis-materialdesign.0.colors.light.dialog.divider§dark:vis-materialdesign.0.colors.dark.dialog.divider§ mode === ^true^ ? dark : light}]/color;overlayColor[{mode:vis-materialdesign.0.colors.darkTheme§light:vis-materialdesign.0.colors.light.dialog.overlay§dark:vis-materialdesign.0.colors.dark.dialog.overlay§ mode === ^true^ ? dark : light}]/color;overlayOpacity/slider,0,1,0.1;"
         data-vis-attrs3="group.layoutTitle;showTitle[true]/checkbox;title/html;titleFontSize[{vis-materialdesign.0.fontSizes.dialog.title}]/number;titleFont[{vis-materialdesign.0.fonts.dialog.title}]/fontname;titleColor[{mode:vis-materialdesign.0.colors.darkTheme§light:vis-materialdesign.0.colors.light.dialog.header_text§dark:vis-materialdesign.0.colors.dark.dialog.header_text§ mode === ^true^ ? dark : light}]/color;"
         data-vis-attrs4="group.layoutdialogCloseButton;buttonPosition[flex-end]/select,flex-start,center,flex-end;buttonSize[medium]/select,small,medium,large;buttonFullWidth/checkbox;buttonText;buttonFontSize[{vis-materialdesign.0.fontSizes.dialog.button}]/number;buttonFont[{vis-materialdesign.0.fonts.dialog.button}]/fontname;buttonFontColor[{mode:vis-materialdesign.0.colors.darkTheme§light:vis-materialdesign.0.colors.light.dialog.close_button_text§dark:vis-materialdesign.0.colors.dark.dialog.close_button_text§ mode === ^true^ ? dark : light}]/color;fullscreenCloseIcon[{mode:vis-materialdesign.0.colors.darkTheme§light:vis-materialdesign.0.colors.light.dialog.close_button_icon§dark:vis-materialdesign.0.colors.dark.dialog.close_button_icon§ mode === ^true^ ? dark : light}]/custom,materialdesign.viseditor.materialDesignIcons;fullscreenCloseIconColor/color;pressColor[{mode:vis-materialdesign.0.colors.darkTheme§light:vis-materialdesign.0.colors.light.dialog.close_button_press§dark:vis-materialdesign.0.colors.dark.dialog.close_button_press§ mode === ^true^ ? dark : light}]/color;">
