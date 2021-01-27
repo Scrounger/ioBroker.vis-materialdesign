@@ -64,23 +64,23 @@ vis.binds.materialdesign.button = {
                     $this.append(vis.binds.materialdesign.button.initializeVerticalButton($this, data));
                 } else if (type.includes('default')) {
                     $this.append(vis.binds.materialdesign.button.initializeButton($this, data));
+                } else if (type.includes('icon')) {
+                    $this.append(vis.binds.materialdesign.button.initializeButton($this, data, true));
                 }
 
                 myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, widgetName, function () {
                     if (type.includes('navigation')) {
-                        vis.binds.materialdesign.button.handleNavigation(el, data);
+                        vis.binds.materialdesign.button.handleNavigation(el, data, type.includes('icon'));
                     } else if (type.includes('link')) {
-                        vis.binds.materialdesign.button.handleLink(el, data);
+                        vis.binds.materialdesign.button.handleLink(el, data, type.includes('icon'));
                     } else if (type.includes('state')) {
-                        vis.binds.materialdesign.button.handleState(el, data);
-                    } else if (type.includes('state')) {
-                        vis.binds.materialdesign.button.handleState(el, data);
+                        vis.binds.materialdesign.button.handleState(el, data, false, type.includes('icon'));
                     } else if (type.includes('multiState')) {
-                        vis.binds.materialdesign.button.handleState(el, data, true);
+                        vis.binds.materialdesign.button.handleState(el, data, true, type.includes('icon'));
                     } else if (type.includes('addition')) {
-                        vis.binds.materialdesign.button.handleAddition(el, data);
+                        vis.binds.materialdesign.button.handleAddition(el, data, type.includes('icon'));
                     } else if (type.includes('toggle')) {
-                        vis.binds.materialdesign.button.handleToggle(el, data);
+                        vis.binds.materialdesign.button.handleToggle(el, data, type.includes('icon'));
                     }
                 });
             }
@@ -108,10 +108,10 @@ vis.binds.materialdesign.button = {
             } else {
                 if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {
                     let iconSize = myMdwHelper.getNumberFromData(data.lockIconSize, 16);
-                    let elementSize = myMdwHelper.getValueFromData(data.lockIconBackground, undefined) ? iconSize * myMdwHelper.getNumberFromData(data.lockBackgroundSizeFactor, 1) : iconSize;
+                    let elementSize = iconSize * myMdwHelper.getNumberFromData(data.lockBackgroundSizeFactor, 1);
 
                     lockIcon = `<span class="mdi mdi-${myMdwHelper.getValueFromData(data.lockIcon, 'lock-outline')} materialdesign-lock-icon" 
-                            style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; width: ${elementSize}px; height: ${elementSize}px; line-height: ${elementSize}px; text-align: center; font-size: ${iconSize}px; color: ${myMdwHelper.getValueFromData(data.lockIconColor, '#B22222')}; ${myMdwHelper.getValueFromData(data.lockIconBackground, undefined) ? `background: ${myMdwHelper.getValueFromData(data.lockIconBackground, undefined)}; border-radius: ${elementSize}px` : ''}"></span>`;
+                            style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; width: ${elementSize}px; height: ${elementSize}px; line-height: ${elementSize}px; text-align: center; font-size: ${iconSize}px; color: ${myMdwHelper.getValueFromData(data.lockIconColor, '#B22222')}; background: ${myMdwHelper.getValueFromData(data.lockIconBackground, '')}; border-radius: ${elementSize}px;"></span>`;
                 }
             }
 
@@ -411,7 +411,12 @@ vis.binds.materialdesign.button = {
 
                 if (buttonState) {
                     $this.attr('toggled', true);
-                    $this.find('.materialdesign-button-body').css('background', bgColorTrue);
+
+                    if (isIconButton) {
+                        $this.css('background', bgColorTrue);
+                    } else {
+                        $this.find('.materialdesign-button-body').css('background', bgColorTrue);
+                    }
 
                     myMdwHelper.changeIconElement($this, myMdwHelper.getValueFromData(data.imageTrue, myMdwHelper.getValueFromData(data.image, '')), 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.imageTrueColor, myMdwHelper.getValueFromData(data.imageColor, '')));
 
@@ -419,7 +424,12 @@ vis.binds.materialdesign.button = {
                     $this.find('.labelRowContainer').css('background', labelBgColorTrue);
                 } else {
                     $this.attr('toggled', false);
-                    $this.find('.materialdesign-button-body').css('background', bgColor);
+
+                    if (isIconButton) {
+                        $this.css('background', bgColor);
+                    } else {
+                        $this.find('.materialdesign-button-body').css('background', bgColor);
+                    }
 
                     myMdwHelper.changeIconElement($this, data.image, 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.imageColor, ''));
 
@@ -474,6 +484,8 @@ vis.binds.materialdesign.button = {
             } else {
                 $this.css('background', myMdwHelper.getValueFromData(data.colorBgFalse, ''));
                 $this.find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.imageColor, '#44739e'));
+                $this.find('.materialdesign-lock-icon').css('background', myMdwHelper.getValueFromData(data.lockIconBackground, '')).css('color', myMdwHelper.getValueFromData(data.lockIconColor, '#B22222'));
+
                 btn.style.setProperty("--materialdesign-color-icon-button-hover", myMdwHelper.getValueFromData(data.colorPress, ''));
             }
         }

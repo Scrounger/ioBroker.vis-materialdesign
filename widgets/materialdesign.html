@@ -362,12 +362,8 @@
         data-vis-attrs0="group.icon;image[navigation]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor[#mdwTheme:vis-materialdesign.0.colors.button.icon.icon_off]/color;iconHeight/slider,0,200,1;"
         data-vis-attrs1="group.color;colorBgFalse[#mdwTheme:vis-materialdesign.0.colors.button.icon.background_off]/color;colorPress[#mdwTheme:vis-materialdesign.0.colors.button.icon.pressed]/color">
 
-        <%
-            let init = vis.binds.materialdesign.button.initializeButton(data, true);
-        %>
+        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'navigation_icon'); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
 
-        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.handleNavigation(el, data, true); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
-            <%== init.button %>
         </div>
 </script>
 
@@ -383,12 +379,8 @@
         data-vis-attrs0="group.icon;image[link]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor[#mdwTheme:vis-materialdesign.0.colors.button.icon.icon_off]/color;iconHeight/slider,0,200,1;"
         data-vis-attrs1="group.color;colorBgFalse[#mdwTheme:vis-materialdesign.0.colors.button.icon.background_off]/color;colorPress[#mdwTheme:vis-materialdesign.0.colors.button.icon.pressed]/color">
 
-        <%
-            let init = vis.binds.materialdesign.button.initializeButton(data, true);
-        %>
+        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'link_icon'); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
 
-        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleLink(el, data, true); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
-            <%== init.button %>
         </div>
 </script>
 
@@ -404,12 +396,8 @@
         data-vis-attrs1="group.color;colorBgFalse[#mdwTheme:vis-materialdesign.0.colors.button.icon.background_off]/color;colorPress[#mdwTheme:vis-materialdesign.0.colors.button.icon.pressed]/color;"
         data-vis-attrs2="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materialdesign.viseditor.materialDesignIcons;lockIconTop[45]/slider,0,100,1;lockIconLeft[55]/slider,0,100,1;lockIconSize[20]/number;lockIconColor[#mdwTheme:vis-materialdesign.0.colors.button.icon.lock_icon]/color;lockIconBackground[#mdwTheme:vis-materialdesign.0.colors.button.icon.lock_icon_background]/color;lockBackgroundSizeFactor[1]/number,1,10,0.1;lockFilterGrayscale[30]/slider,0,100,1;">
 
-        <%
-            let init = vis.binds.materialdesign.button.initializeButton(data, true);
-        %>
+        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'state_icon'); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
 
-        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" isLocked="<%== myMdwHelper.getBooleanFromData(this.data.attr('lockEnabled'), false) %>" <%= (el) -> vis.binds.materialdesign.button.handleState(el, data, false, true); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
-            <%== init.button %>
         </div>        
 </script>
 
@@ -426,13 +414,9 @@
         data-vis-attrs2="group.color;colorBgFalse[#mdwTheme:vis-materialdesign.0.colors.button.icon.background_off]/color;colorPress[#mdwTheme:vis-materialdesign.0.colors.button.icon.pressed]/color;"
         data-vis-attrs3="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materialdesign.viseditor.materialDesignIcons;lockIconTop[45]/slider,0,100,1;lockIconLeft[55]/slider,0,100,1;lockIconSize[20]/number;lockIconColor[#mdwTheme:vis-materialdesign.0.colors.button.icon.lock_icon]/color;lockIconBackground[#mdwTheme:vis-materialdesign.0.colors.button.icon.lock_icon_background]/color;lockBackgroundSizeFactor[1]/number,1,10,0.1;lockFilterGrayscale[30]/slider,0,100,1;">
 
-        <%
-            let init = vis.binds.materialdesign.button.initializeButton(data, true);
-        %>
+        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'multiState_icon'); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
 
-        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" isLocked="<%== myMdwHelper.getBooleanFromData(this.data.attr('lockEnabled'), false) %>" <%= (el) -> vis.binds.materialdesign.button.handleState(el, data, true, true); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
-            <%== init.button %>
-        </div>        
+        </div>
 </script>
 
 <script id="tplVis-materialdesign-Icon-Button-Adition"
@@ -446,13 +430,9 @@
         data-vis-attrs0="group.icon;image[plus]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor[#mdwTheme:vis-materialdesign.0.colors.button.icon.icon_off]/color;iconHeight/slider,0,200,1;"
         data-vis-attrs1="group.color;colorBgFalse[#mdwTheme:vis-materialdesign.0.colors.button.icon.background_off]/color;colorPress[#mdwTheme:vis-materialdesign.0.colors.button.icon.pressed]/color">
 
-        <%
-            let init = vis.binds.materialdesign.button.initializeButton(data, true);
-        %>
+        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'addition_icon'); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
 
-        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.handleAddition(el, data, true); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
-            <%== init.button %>
-        </div>        
+        </div>
 </script>
 
 <script id="tplVis-materialdesign-Icon-Button-Toggle"
@@ -467,13 +447,8 @@
         data-vis-attrs1="group.color;colorBgFalse[#mdwTheme:vis-materialdesign.0.colors.button.icon.background_off]/color;colorBgTrue[#mdwTheme:vis-materialdesign.0.colors.button.icon.background_on]/color;colorPress[#mdwTheme:vis-materialdesign.0.colors.button.icon.pressed]/color;"
         data-vis-attrs2="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materialdesign.viseditor.materialDesignIcons;lockIconTop[45]/slider,0,100,1;lockIconLeft[55]/slider,0,100,1;lockIconSize[20]/number;lockIconColor[#mdwTheme:vis-materialdesign.0.colors.button.icon.lock_icon]/color;lockIconBackground[#mdwTheme:vis-materialdesign.0.colors.button.icon.lock_icon_background]/color;lockBackgroundSizeFactor[1]/number,1,10,0.1;lockFilterGrayscale[30]/slider,0,100,1;">
 
-        <%
-            let init = vis.binds.materialdesign.button.initializeButton(data, true);
-        %>
+        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'toggle_icon'); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
 
-        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %> <%= (el) -> vis.binds.materialdesign.addRippleEffect(el, data, true) %>" isLocked="<%== myMdwHelper.getBooleanFromData(this.data.attr('lockEnabled'), false) %>" >
-            <%== init.button %>
-            <div <%= (el) -> vis.binds.materialdesign.button.handleToggle(el, this.data, true) %>></div>
         </div>
 </script>
 
