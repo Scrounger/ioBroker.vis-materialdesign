@@ -29,6 +29,8 @@
   --materialdesign-font-size-button: 14px;
   --materialdesign-font-button-vertical-text-distance-image: 2px;
 
+  --materialdesign-button-lockicon-color: #B22222;
+
   --material-progress-circular-color: #44739e;
 
   --materialdesign-color-drawer-background: #fff;
@@ -337,6 +339,10 @@
   margin-bottom: var(--materialdesign-font-button-vertical-text-distance-image);
 }
 
+.materialdesign-widget.materialdesign-button .materialdesign-lock-icon{
+  color: var(--materialdesign-button-lockicon-color);
+}
+
 /* Button style -> must defined here because of position bug in vis editor */
 .materialdesign-widget.materialdesign-button,
 .materialdesign-widget .materialdesign-button {
@@ -416,8 +422,8 @@
   /* @noflip */
   margin-right: 0;
 }
-.materialdesign-widget.materialdesign-button:not(:disabled),
-.materialdesign-widget .materialdesign-button:not(:disabled) {
+.materialdesign-widget.materialdesign-button .materialdesign-button-body:not(:disabled),
+.materialdesign-widget .materialdesign-button .materialdesign-button-body:not(:disabled) {
   color: var(--materialdesign-color-primary);
 }
 
@@ -513,25 +519,25 @@ svg.materialdesign-widget .materialdesign-button__icon {
   background-color: rgba(0, 0, 0, 0.12);
   color: rgba(0, 0, 0, 0.37);
 }
-.materialdesign-widget.materialdesign-button--raised:not(:disabled),
-.materialdesign-widget .materialdesign-button--raised:not(:disabled),
-.materialdesign-widget.materialdesign-button--unelevated:not(:disabled),
-.materialdesign-widget .materialdesign-button--unelevated:not(:disabled) {
+.materialdesign-widget.materialdesign-button--raised .materialdesign-button-body:not(:disabled),
+.materialdesign-widget .materialdesign-button--raised .materialdesign-button-body:not(:disabled),
+.materialdesign-widget.materialdesign-button--unelevated .materialdesign-button-body:not(:disabled),
+.materialdesign-widget .materialdesign-button--unelevated .materialdesign-button-body:not(:disabled) {
   background-color: var(--materialdesign-color-primary);
 }
 @supports not (-ms-ime-align: auto) {
-  .materialdesign-widget.materialdesign-button--raised:not(:disabled),
-  .materialdesign-widget .materialdesign-button--raised:not(:disabled),
-.materialdesign-widget.materialdesign-button--unelevated:not(:disabled),
-.materialdesign-widget .materialdesign-button--unelevated:not(:disabled) {
+  .materialdesign-widget.materialdesign-button--raised .materialdesign-button-body:not(:disabled),
+  .materialdesign-widget .materialdesign-button--raised .materialdesign-button-body:not(:disabled),
+.materialdesign-widget.materialdesign-button--unelevated .materialdesign-button-body:not(:disabled),
+.materialdesign-widget .materialdesign-button--unelevated .materialdesign-button-body:not(:disabled) {
     /* @alternate */
     background-color: var(--materialdesign-color-primary);
   }
 }
-.materialdesign-widget.materialdesign-button--raised:not(:disabled),
-.materialdesign-widget .materialdesign-button--raised:not(:disabled),
-.materialdesign-widget.materialdesign-button--unelevated:not(:disabled),
-.materialdesign-widget .materialdesign-button--unelevated:not(:disabled) {
+.materialdesign-widget.materialdesign-button--raised .materialdesign-button-body:not(:disabled),
+.materialdesign-widget .materialdesign-button--raised .materialdesign-button-body:not(:disabled),
+.materialdesign-widget.materialdesign-button--unelevated .materialdesign-button-body:not(:disabled),
+.materialdesign-widget .materialdesign-button--unelevated .materialdesign-button-body:not(:disabled) {
   color: var(--materialdesign-color-secondary);
 }
 
@@ -784,14 +790,14 @@ svg.materialdesign-widget .materialdesign-button__icon {
   background-color: #fff;
 }
 @supports not (-ms-ime-align: auto) {
-  .materialdesign-widget.materialdesign-button--raised::before, 
-  .materialdesign-widget .materialdesign-button--raised::before, 
-  .materialdesign-widget.materialdesign-button--raised::after,
-  .materialdesign-widget .materialdesign-button--raised::after,
-.materialdesign-widget.materialdesign-button--unelevated::before,
-.materialdesign-widget .materialdesign-button--unelevated::before,
-.materialdesign-widget.materialdesign-button--unelevated::after,
-.materialdesign-widget .materialdesign-button--unelevated::after {
+  .materialdesign-widget.materialdesign-button--raised .materialdesign-button-body::before, 
+  .materialdesign-widget .materialdesign-button--raised .materialdesign-button-body::before, 
+  .materialdesign-widget.materialdesign-button--raised .materialdesign-button-body::after,
+  .materialdesign-widget .materialdesign-button--raised .materialdesign-button-body::after,
+.materialdesign-widget.materialdesign-button--unelevated .materialdesign-button-body::before,
+.materialdesign-widget .materialdesign-button--unelevated .materialdesign-button-body::before,
+.materialdesign-widget.materialdesign-button--unelevated .materialdesign-button-body::after,
+.materialdesign-widget .materialdesign-button--unelevated .materialdesign-button-body::after {
     /* @alternate */
     /* background-color: var(--mdc-theme-on-primary, #fff); */
     background-color: var(--materialdesign-color-button-pressed, var(--materialdesign-color-secondary));
