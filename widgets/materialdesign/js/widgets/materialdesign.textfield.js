@@ -9,7 +9,7 @@
 vis.binds.materialdesign.textfield = {
     initialize: function (el, data) {
         let widgetName = 'TextField';
-        let themeTriggerClass = '.materialdesign-widget .materialdesign-input';
+        let themeTriggerClass = '.materialdesign-widget.materialdesign-input';
 
         try {
             let $this = $(el);
@@ -223,7 +223,7 @@ vis.binds.materialdesign.textfield = {
             delete widgetData.width;
             delete widgetData.height;
 
-            let mdwData = myMdwHelper.getHtmlmdwData(`mdw-debug='false'` + '\n',
+            let mdwData = myMdwHelper.getHtmlmdwData('',
                 vis.binds.materialdesign.textfield.getDataFromJson(widgetData, 0));
 
             html = `<div class='vis-widget materialdesign-widget materialdesign-input materialdesign-input-html-element'` + '\n' +
@@ -255,6 +255,7 @@ $.initialize(".materialdesign-input-html-element", function () {
             parentId, widgetName, logPrefix, initializeHtml);
 
         function initializeHtml(widgetData) {
+            console.error(`${logPrefix} $.initialize: error: ${ex.message}, stack: ${ex.stack} `);
             vis.binds.materialdesign.textfield.initialize($this, widgetData);
         }
     } catch (ex) {

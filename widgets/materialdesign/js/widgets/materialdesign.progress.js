@@ -12,7 +12,7 @@ vis.binds.materialdesign.progress = {
     },
     linear: function (el, data) {
         let widgetName = 'Progress';
-        let themeTriggerClass = '.materialdesign-widget .materialdesign-vuetify-progress';
+        let themeTriggerClass = '.materialdesign-widget.materialdesign-vuetify-progress';
 
         try {
             let $this = $(el);
@@ -106,7 +106,7 @@ vis.binds.materialdesign.progress = {
     },
     circular: function (el, data) {
         let widgetName = 'Progress Circular';
-        let themeTriggerClass = '.materialdesign-widget .materialdesign-vuetify-progress-circular';
+        let themeTriggerClass = '.materialdesign-widget.materialdesign-vuetify-progress-circular';
 
         try {
             let $this = $(el);
