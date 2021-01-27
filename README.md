@@ -91,8 +91,11 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 		- [Masonry Views](#masonry-views)
 			- [Editor Settings](#editor-settings-10)
 		- [Grid Views](#grid-views)
-		- [Editor Settings](#editor-settings-11)
+			- [Editor Settings](#editor-settings-11)
 	- [Alerts](#alerts)
+		- [Editor Settings](#editor-settings-12)
+		- [JSON Properties](#json-properties-3)
+		- [Script: send alert to widget](#script-send-alert-to-widget)
 	- [Calendar](#calendar)
 	- [HTML Elements](#html-elements)
 - [used libraries](#used-libraries)
@@ -8579,7 +8582,7 @@ Grid views are especially useful if the views included have the same heights.
 
 <b>Take a look at the [Material Design Widgets example project](https://github.com/Scrounger/ioBroker.vis-materialdesign#online-example-project)</b> to understand how it works.
 
-### Editor Settings 
+#### Editor Settings 
 
 <table>
     <thead>
@@ -8614,7 +8617,89 @@ Alerts widget can be used e.g. to display messages in the VIS, like it works wit
 
 ![Logo](doc/en/media/alerts.gif)
 
-The Alerts widget requires a JSON string as object, which must be structured as follows:
+### Editor Settings
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=3><img src="doc/en/media/alerts_settings.png"></td>
+            <td>number of columns</td>
+            <td>define number of columns</td>
+        </tr>
+        <tr>
+            <td>Object ID</td>
+            <td>Object must be a json string. Allowed properties are described below</td>
+        </tr>
+        <tr>
+            <td>max. Alerts</td>
+            <td>max number of Alerts that should be shown.</td>
+        </tr>
+    </tbody>
+</table>
+
+### JSON Properties
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>text</td>
+			<td>text of menu item</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>backgroundColor</td>
+			<td>background color of alert item</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>borderColor</td>
+			<td>border color of alert item</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>icon</td>
+			<td>material design icon or image path for menu item</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>iconColor</td>
+			<td>color of material design icon</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>fontColor</td>
+			<td>font color of alert item</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+#### JSON Properties - Example
+
+<details>
+
 ```
 [
        {
@@ -8642,30 +8727,9 @@ The Alerts widget requires a JSON string as object, which must be structured as 
 ]
 ```
 
-<table>
-    <thead>
-        <tr>
-            <th>Screenshot</th>
-            <th>Setting</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td rowspan=3><img src="doc/en/media/alerts_settings.png"></td>
-            <td>number of columns</td>
-            <td>define number of columns</td>
-        </tr>
-        <tr>
-            <td>Object ID</td>
-            <td>Object must be a json string, which must be structured as described above</td>
-        </tr>
-        <tr>
-            <td>max. Alerts</td>
-            <td>max number of Alerts that should be shown.</td>
-        </tr>
-    </tbody>
-</table>
+</details>
+
+### Script: send alert to widget
 
 With the following script you can send easy messages to datapoint that is used by the Alerts Widget.
 The script must put into global scripts. Then it is possible to send message with the following command
