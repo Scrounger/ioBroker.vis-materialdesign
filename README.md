@@ -3884,6 +3884,68 @@ Settings that are not listed in the table below are self-explanatory.
 	</tbody>
 </table>
 
+<!-- omit in toc -->
+##### Menu JSON Properties - Example
+
+<details>
+
+```
+[   {
+		"text": "1 Tag",
+		"subText": "sub",
+		"value": "1 day",
+		"icon": "home"
+	}, 
+	{
+		"text": "3 Tage",
+		"subText": "sub",		
+		"value": "3 days",
+		"icon": "home"
+	}, 
+	{
+		"text": "1 Woche",
+		"subText": "sub",		
+		"value": "7 days",
+		"icon": "home"
+	}, 
+	{
+		"text": "2 Wochen",
+		"subText": "sub",		
+		"value": "14 days",
+		"icon": "home"
+	}, 
+	{
+		"text": "1 Monat",
+		"subText": "sub",		
+		"value": "1 month",
+		"icon": "/vis.0/myImages/hard-drive.png"
+	}, 
+	{
+		"text": "2 Monate",
+		"subText": "sub",		
+		"value": "2 months",
+		"icon": "home",
+		"iconColor": "blue",
+		"iconColorSelectedTextField": "purple"
+	}, 
+	{
+		"text": "3 Monate",
+		"value": "3 months"
+	}, 
+	{
+		"text": "6 Monate",
+		"value": "6 months"
+	}, 
+	{
+		"text": "1 Jahr",
+		"value": "1 year"
+	}
+]
+```
+
+</details>
+
+
 #### HTML Properties
 
 The following properties can be used as [HTML element](#html-elements).
@@ -4705,6 +4767,68 @@ Settings that are not listed in the table below are self-explanatory.
 		</tr>
 	</tbody>
 </table>
+
+<!-- omit in toc -->
+##### Menu JSON Properties - Example
+
+<details>
+
+```
+[   {
+		"text": "1 Tag",
+		"subText": "sub",
+		"value": "1 day",
+		"icon": "home"
+	}, 
+	{
+		"text": "3 Tage",
+		"subText": "sub",		
+		"value": "3 days",
+		"icon": "home"
+	}, 
+	{
+		"text": "1 Woche",
+		"subText": "sub",		
+		"value": "7 days",
+		"icon": "home"
+	}, 
+	{
+		"text": "2 Wochen",
+		"subText": "sub",		
+		"value": "14 days",
+		"icon": "home"
+	}, 
+	{
+		"text": "1 Monat",
+		"subText": "sub",		
+		"value": "1 month",
+		"icon": "/vis.0/myImages/hard-drive.png"
+	}, 
+	{
+		"text": "2 Monate",
+		"subText": "sub",		
+		"value": "2 months",
+		"icon": "home",
+		"iconColor": "blue",
+		"iconColorSelectedTextField": "purple"
+	}, 
+	{
+		"text": "3 Monate",
+		"value": "3 months"
+	}, 
+	{
+		"text": "6 Monate",
+		"value": "6 months"
+	}, 
+	{
+		"text": "1 Jahr",
+		"value": "1 year"
+	}
+]
+```
+
+</details>
+
 
 #### HTML Properties
 
