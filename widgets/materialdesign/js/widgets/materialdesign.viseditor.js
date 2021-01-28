@@ -566,17 +566,18 @@ vis.binds.materialdesign.viseditor = {
                                         '\t\t' + '<tr>' + '\n' +
                                         '\t\t\t' + `<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>${_('group_' + attr)}</b></i></td>` + '\n' +
                                         '\t\t' + '</tr>' + '\n';
+
+                                    objectForDevString = objectForDevString + `\n// ${_('group_' + attr)}\n`
                                 } else {
                                     if (attr.includes('_§0')) {
                                         strTableForDev = strTableForDev +
                                             '\t\t' + '<tr>' + '\n' +
                                             '\t\t\t' + `<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>${_('group_' + attr.replace('_§0', ''))} [x]</b></i></td>` + '\n' +
                                             '\t\t' + '</tr>' + '\n';
+
+                                        objectForDevString = objectForDevString + `\n// ${_('group_' + attr.replace('_§0', ''))} [x]\n`
                                     }
                                 }
-
-                                objectForDevString = objectForDevString + `\n// ${_('group_' + attr)}\n`
-
 
                                 for (const prop in widgetAttrs[attr]) {
                                     attrNames.push(prop);
