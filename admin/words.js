@@ -11069,5 +11069,17 @@ systemDictionary = {
         "es": "Enlace de punto de datos del widget de diseño de materiales copiado al portapapeles",
         "pl": "Powiązanie punktu danych widgetu Material Design skopiowane do schowka",
         "zh-cn": "物料设计小部件数据点绑定已复制到剪贴板"
+    },
+    "dialogUsingDatapoint": {
+        "en": "dialog use datapoint to show",
+        "de": "Dialog verwendet Datenpunkt zum Anzeigen",
+        "ru": "диалог использовать точку данных, чтобы показать",
+        "pt": "diálogo use ponto de dados para mostrar",
+        "nl": "dialoogvenster gebruik datapunt om te tonen",
+        "fr": "boîte de dialogue utiliser le point de données pour afficher",
+        "it": "finestra di dialogo usa il punto dati per mostrare",
+        "es": "diálogo usar punto de datos para mostrar",
+        "pl": "w oknie dialogowym użyj punktu danych do wyświetlenia",
+        "zh-cn": "对话框使用数据点显示"
     }
 };

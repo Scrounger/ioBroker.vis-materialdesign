@@ -404,7 +404,7 @@
     {
         "id": "light.dialog.close_button_icon",
         "desc": "fullscreenCloseIconColor",
-        "defaultValue": 2,
+        "defaultValue": 5,
         "widget": "Dialog, Dialog iFrame"
     },
     {
@@ -447,7 +447,7 @@
         "id": "light.button.icon.icon_off",
         "desc": "imageColor",
         "defaultValue": 0,
-        "widget": "Icon Button Navigation, Icon Button Link, Icon Button State, Icon Button State Multi, Icon Button Addition, Icon Button Toggle"
+        "widget": "Icon Button Navigation, Icon Button Link, Icon Button State, Icon Button State Multi, Icon Button Addition, Icon Button Toggle, Dialog, Dialog iFrame"
     },
     {
         "id": "light.button.icon.icon_on",
