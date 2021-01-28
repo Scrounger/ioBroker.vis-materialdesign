@@ -766,6 +766,8 @@ vis.binds.materialdesign.helper = {
             }
         }
 
+        widgetData.debug = widgetData.debug === true || widgetData.debug === 'true' ? true : false;
+
         if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] widgetData: ${JSON.stringify(widgetData)} `);
 
         if (widgetData.oid) {

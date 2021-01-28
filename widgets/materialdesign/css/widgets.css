@@ -296,6 +296,10 @@
 
   --vue-toolbar-background-color: #44739e;
 
+  --dialog-footer-button-text-color: #44739e;
+  --dialog-footer-button-text-font: inherit;
+  --dialog-footer-button-text-font-size: 20px;
+
 
   --vue-overlay-scrim-opacity: 0.46;
   --vue-overlay-scrim-background-color: rgb(33, 33, 33);    
@@ -6348,6 +6352,12 @@ svg.materialdesign-widget .materialdesign-button__icon {
   padding: 4px;
   width: 100%;
   height: 100%;
+}
+
+.materialdesign-dialog-footer-button.v-btn {
+  color: var(--dialog-footer-button-text-color);
+  font-family: var(--dialog-footer-button-text-font);
+  font-size: var(--dialog-footer-button-text-font-size);
 }
 
 /* v-toolbar */

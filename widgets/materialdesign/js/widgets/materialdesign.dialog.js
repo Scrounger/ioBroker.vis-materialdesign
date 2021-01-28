@@ -86,13 +86,12 @@ vis.binds.materialdesign.dialog = {
                                 <div class="v-dialog-footer" v-show="!showToolbar" style="height: ${myMdwHelper.getNumberFromData(data.footerHeight, myMdwHelper.getBooleanFromData(data.showTitle, false) ? 61 : 56)}px">
                                     ${myMdwHelper.getBooleanFromData(data.showDivider, false) ? `<div class="dialog-footer-divider" style="width: 100%; height: 1px; background: ${myMdwHelper.getValueFromData(data.dividerColor, 'lightgray')}; margin-top: 4px;"></div>` : ''}
                                     <v-card-actions class="v-dialog-my-card-actions" style="justify-content: ${data.buttonPosition};">
-                                        <v-btn color="primary"
+                                        <v-btn color="primary" class="materialdesign-dialog-footer-button"
                                             text
                                             ${(data.buttonSize !== 'medium') ? data.buttonSize : ''}
                                             ${(myMdwHelper.getBooleanFromData(data.buttonFullWidth, false)) ? 'block ' : ''}
-                                            @click="closeButton" 
-                                            v-html="closeText"                                    
-                                            style="color: ${myMdwHelper.getValueFromData(data.buttonFontColor, '#44739e')}; font-family: ${myMdwHelper.getValueFromData(data.buttonFont, 'inherit')}; font-size: ${myMdwHelper.getNumberFromData(data.buttonFontSize, 20)}px;"
+                                            @click="closeButton"
+                                            v-html="closeText"
                                             ></v-btn>
                                     </v-card-actions>
                                 </div>
@@ -213,7 +212,14 @@ vis.binds.materialdesign.dialog = {
                                         }
 
                                         $dialog.css('background', myMdwHelper.getValueFromData(data.backgroundColor, ''));
-                                        $dialog.find('.v-btn').css('color', myMdwHelper.getValueFromData(data.buttonFontColor, '#44739e'));
+                                        
+                                        $dialog.find('.v-card').css('background', myMdwHelper.getValueFromData(data.backgroundColor, ''));
+
+
+                                        $dialog.get(0).style.setProperty("--dialog-footer-button-text-color", myMdwHelper.getValueFromData(data.buttonFontColor, ''));
+                                        $dialog.get(0).style.setProperty("--dialog-footer-button-text-font", myMdwHelper.getValueFromData(data.buttonFont, 'inherit'));
+                                        $dialog.get(0).style.setProperty("--dialog-footer-button-text-font-size", myMdwHelper.getNumberFromData(data.buttonFontSize, 20) + 'px');
+
                                         $dialog.find('.dialog-footer-divider').css('background', myMdwHelper.getValueFromData(data.dividerColor, 'lightgray'));
 
                                         // Overlay
