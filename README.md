@@ -65,37 +65,39 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 		- [HTML Properties](#html-properties-6)
 	- [Input](#input)
 		- [Text input](#text-input)
+			- [Editor Settings](#editor-settings-7)
+			- [HTML Properties](#html-properties-7)
 		- [Select](#select)
 			- [Menu JSON Properties](#menu-json-properties)
-			- [HTML Properties](#html-properties-7)
+			- [HTML Properties](#html-properties-8)
 		- [Autocomplete](#autocomplete)
 			- [Menu JSON Properties](#menu-json-properties-1)
-			- [HTML Properties](#html-properties-8)
+			- [HTML Properties](#html-properties-9)
 	- [Top App Bar](#top-app-bar)
 		- [Submenu](#submenu)
 			- [JSON Properties](#json-properties)
 	- [Charts](#charts)
 		- [Bar Chart](#bar-chart)
-			- [Editor Settings](#editor-settings-7)
+			- [Editor Settings](#editor-settings-8)
 			- [Dataset JSON Properties](#dataset-json-properties)
 		- [Pie Chart](#pie-chart)
-			- [Editor Settings](#editor-settings-8)
+			- [Editor Settings](#editor-settings-9)
 			- [Dataset JSON Properties](#dataset-json-properties-1)
 		- [Line History Chart:](#line-history-chart)
-			- [Editor Settings](#editor-settings-9)
+			- [Editor Settings](#editor-settings-10)
 		- [JSON Chart](#json-chart)
 			- [JSON Properties](#json-properties-1)
 	- [Table](#table)
 		- [Input Data](#input-data)
 			- [Control Elements](#control-elements)
-		- [Editor Settings](#editor-settings-10)
+		- [Editor Settings](#editor-settings-11)
 	- [Responsive Layout](#responsive-layout)
 		- [Masonry Views](#masonry-views)
-			- [Editor Settings](#editor-settings-11)
-		- [Grid Views](#grid-views)
 			- [Editor Settings](#editor-settings-12)
+		- [Grid Views](#grid-views)
+			- [Editor Settings](#editor-settings-13)
 	- [Alerts](#alerts)
-		- [Editor Settings](#editor-settings-13)
+		- [Editor Settings](#editor-settings-14)
 		- [JSON Properties](#json-properties-2)
 		- [Script: send alert to widget](#script-send-alert-to-widget)
 	- [Calendar](#calendar)
@@ -4009,7 +4011,396 @@ The following properties can be used as [HTML element](#html-elements).
 ### Text input
 ![Logo](doc/en/media/input.gif)
 
-TODO
+#### Editor Settings
+
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=4><img src="doc/en/media/input_settings_common.png"></td>
+            <td>Object ID</td>
+            <td>id of datapoint</td>
+        </tr>
+        <tr>
+            <td>input type</td>
+            <td>input type of textfield</td>
+        </tr>	
+        <tr>
+            <td>input mask</td>
+            <td>if using input type mask, you can define a mask. Allowed properties are describe in the <a href="https://vuejs-tips.github.io/vue-the-mask/" target="_blank">vue the mask documentation</a></td>
+        </tr>
+        <tr>
+            <td>max length</td>
+            <td>max input length of textfield</a></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+#### HTML Properties
+
+The following properties can be used as [HTML element](#html-elements).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-inputType</td>
+			<td>input type</td>
+			<td>string</td>
+			<td>text | number | date | time | mask
+		</tr>
+		<tr>
+			<td>mdw-inputMask</td>
+			<td>input mask</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-inputMaxLength</td>
+			<td>max length</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>layout input </b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-inputLayout</td>
+			<td>layout</td>
+			<td>string</td>
+			<td>regular | solo | solo-rounded | solo-shaped | filled | filled-rounded | filled-shaped | outlined | outlined-rounded | outlined-shaped
+		</tr>
+		<tr>
+			<td>mdw-inputAlignment</td>
+			<td>text alignment</td>
+			<td>string</td>
+			<td>left | center | right
+		</tr>
+		<tr>
+			<td>mdw-inputLayoutBackgroundColor</td>
+			<td>background color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-inputLayoutBackgroundColorHover</td>
+			<td>background color hover</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-inputLayoutBackgroundColorSelected</td>
+			<td>background color selected</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-inputLayoutBorderColor</td>
+			<td>border color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-inputLayoutBorderColorHover</td>
+			<td>border color hover</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-inputLayoutBorderColorSelected</td>
+			<td>border color selected</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-inputTextFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-inputTextFontSize</td>
+			<td>font size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-inputTextColor</td>
+			<td>text color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>label of input </b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-inputLabelText</td>
+			<td>text</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-inputLabelColor</td>
+			<td>text color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-inputLabelColorSelected</td>
+			<td>text color selected</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-inputLabelFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-inputLabelFontSize</td>
+			<td>font size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-inputTranslateX</td>
+			<td>offset x</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-inputTranslateY</td>
+			<td>offset y</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>appendixs of the input</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-inputPrefix</td>
+			<td>prepended text</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-inputSuffix</td>
+			<td>appended text</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-inputAppendixColor</td>
+			<td>text color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-inputAppendixFontSize</td>
+			<td>font size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-inputAppendixFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>sub text of input</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-showInputMessageAlways</td>
+			<td>always show</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-inputMessage</td>
+			<td>text</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-inputMessageFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-inputMessageFontSize</td>
+			<td>font size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-inputMessageColor</td>
+			<td>text color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>counter layout</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-showInputCounter</td>
+			<td>show counter</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-inputCounterColor</td>
+			<td>font color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-inputCounterFontSize</td>
+			<td>font size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-inputCounterFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Icons</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-clearIconShow</td>
+			<td>show text delete icon </td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-clearIcon</td>
+			<td>text delete icon </td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-clearIconSize</td>
+			<td>size of text delete icon </td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-clearIconColor</td>
+			<td>color of text delete icon </td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-prepandIcon</td>
+			<td>prefixed icon</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-prepandIconSize</td>
+			<td>size of prefixed icon</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-prepandIconColor</td>
+			<td>color of prefixed icon</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-prepandInnerIcon</td>
+			<td>inner prefixed symbol</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-prepandInnerIconSize</td>
+			<td>size of inner prefixed symbol</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-prepandInnerIconColor</td>
+			<td>color of inner prefixed symbol</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-appendIcon</td>
+			<td>appended symbol</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-appendIconSize</td>
+			<td>size of appended symbol</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-appendIconColor</td>
+			<td>color of appended symbol</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-appendOuterIcon</td>
+			<td>outer appended symbol</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-appendOuterIconSize</td>
+			<td>size of outer appended symbol</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-appendOuterIconColor</td>
+			<td>color of outer appended symbol</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+	</tbody>
+</table>
 
 ### Select
 ![Logo](doc/en/media/select.gif)
@@ -4531,7 +4922,7 @@ The following properties can be used as [HTML element](#html-elements).
 		</tr>
 		<tr>
 			<td>mdw-jsonStringObject</td>
-			<td>JSON string. Must be html escaped! Hint: use <a href="https://github.com/mathiasbynens/he#heencodetext-options">he library</a> in your scripts to encode to htmle</td>
+			<td>JSON string. Must be html escaped! Hint: use <a href="https://github.com/mathiasbynens/he#heencodetext-options" target="_blank">he library</a> in your scripts to encode to htmle</td>
 			<td>string</td>
 			<td>
 		</tr>
@@ -5421,7 +5812,7 @@ The following properties can be used as [HTML element](#html-elements).
 		</tr>
 		<tr>
 			<td>mdw-jsonStringObject</td>
-			<td>JSON string. Must be html escaped! Hint: use <a href="https://github.com/mathiasbynens/he#heencodetext-options">he library</a> in your scripts to encode to htmle</td>
+			<td>JSON string. Must be html escaped! Hint: use <a href="https://github.com/mathiasbynens/he#heencodetext-options" target="_blank">he library</a> in your scripts to encode to htmle</td>
 			<td>string</td>
 			<td>
 		</tr>
@@ -5778,7 +6169,7 @@ The following properties can be used as [HTML element](#html-elements).
 
 ## Top App Bar
 
-Top App Bar with Navigation Drawer can be combined with the <a href="https://www.iobroker.net/#en/documentation/viz/basic.md">view in widget 8</a>.
+Top App Bar with Navigation Drawer can be combined with the <a href="https://www.iobroker.net/#en/documentation/viz/basic.md" target="_blank">view in widget 8</a>.
 
 <b>Take a look at the [Material Design Widgets example project](https://github.com/Scrounger/ioBroker.vis-materialdesign#online-example-project)</b> to understand how it works.
 
@@ -5800,11 +6191,11 @@ Top App Bar with Navigation Drawer can be combined with the <a href="https://www
         <tr>
             <td rowspan=3><img src="doc/en/media/topappbar_settings.png"></td>
             <td>Object ID</td>
-            <td>must be set to a datapoint from typ number. For example this datapoint can be used by <a href="https://www.iobroker.net/#en/documentation/viz/basic.md">view in widget 8</a></td>
+            <td>must be set to a datapoint from typ number. For example this datapoint can be used by <a href="https://www.iobroker.net/#en/documentation/viz/basic.md" target="_blank">view in widget 8</a></td>
         </tr>
         <tr>
             <td>show index of navigation items</td>
-            <td>shows the index of navigation before the item label. This number can be used in <a href="https://www.iobroker.net/#en/documentation/viz/basic.md">view in widget 8</a> to define the view that should be shown if the item is selected</td>
+            <td>shows the index of navigation before the item label. This number can be used in <a href="https://www.iobroker.net/#en/documentation/viz/basic.md" target="_blank">view in widget 8</a> to define the view that should be shown if the item is selected</td>
         </tr>
         <tr>
             <td>count of navigation items</td>
