@@ -48,14 +48,16 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 		- [HTML Properties](#html-properties-2)
 	- [Card](#card)
 	- [List](#list)
-	- [IconList](#iconlist)
 		- [Editor Settings](#editor-settings-3)
-		- [JSON Properties](#json-properties)
-	- [Progress](#progress)
+		- [Data JSON Properties](#data-json-properties)
+	- [IconList](#iconlist)
 		- [Editor Settings](#editor-settings-4)
+		- [Data JSON Properties](#data-json-properties-1)
+	- [Progress](#progress)
+		- [Editor Settings](#editor-settings-5)
 		- [HTML Properties](#html-properties-3)
 	- [Progress Circular](#progress-circular)
-		- [Editor Settings](#editor-settings-5)
+		- [Editor Settings](#editor-settings-6)
 		- [HTML Properties](#html-properties-4)
 	- [Slider](#slider)
 		- [HTML Properties](#html-properties-5)
@@ -71,30 +73,30 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 			- [HTML Properties](#html-properties-8)
 	- [Top App Bar](#top-app-bar)
 		- [Submenu](#submenu)
-			- [JSON Properties](#json-properties-1)
+			- [JSON Properties](#json-properties)
 	- [Charts](#charts)
 		- [Bar Chart](#bar-chart)
-			- [Editor Settings](#editor-settings-6)
+			- [Editor Settings](#editor-settings-7)
 			- [Dataset JSON Properties](#dataset-json-properties)
 		- [Pie Chart](#pie-chart)
-			- [Editor Settings](#editor-settings-7)
+			- [Editor Settings](#editor-settings-8)
 			- [Dataset JSON Properties](#dataset-json-properties-1)
 		- [Line History Chart:](#line-history-chart)
-			- [Editor Settings](#editor-settings-8)
+			- [Editor Settings](#editor-settings-9)
 		- [JSON Chart](#json-chart)
-			- [JSON Properties](#json-properties-2)
+			- [JSON Properties](#json-properties-1)
 	- [Table](#table)
 		- [Input Data](#input-data)
 			- [Control Elements](#control-elements)
-		- [Editor Settings](#editor-settings-9)
+		- [Editor Settings](#editor-settings-10)
 	- [Responsive Layout](#responsive-layout)
 		- [Masonry Views](#masonry-views)
-			- [Editor Settings](#editor-settings-10)
-		- [Grid Views](#grid-views)
 			- [Editor Settings](#editor-settings-11)
+		- [Grid Views](#grid-views)
+			- [Editor Settings](#editor-settings-12)
 	- [Alerts](#alerts)
-		- [Editor Settings](#editor-settings-12)
-		- [JSON Properties](#json-properties-3)
+		- [Editor Settings](#editor-settings-13)
+		- [JSON Properties](#json-properties-2)
 		- [Script: send alert to widget](#script-send-alert-to-widget)
 	- [Calendar](#calendar)
 	- [HTML Elements](#html-elements)
@@ -2472,6 +2474,222 @@ The following properties can be used as [HTML element](#html-elements).
 ## List
 ![Logo](doc/en/media/list.gif)
 
+### Editor Settings
+
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=4><img src="doc/en/media/list_settings_layout.png"></td>
+            <td>type of list</td>
+            <td>control type of list like checkbox, button state, button toggle, etc.</td>
+        </tr>
+        <tr>
+            <td>divider style</td>
+            <td>style of the divider</td>
+        </tr>
+        <tr>
+            <td>layout</td>
+            <td>standard or card layout</td>
+        </tr>
+        <tr>
+            <td>show scollbar</td>
+            <td>show scrollbar if necessary</td>
+        </tr>
+        <tr>
+            <td rowspan=4><img src="doc/en/media/list_settings_data.png"></td>
+            <td>input method for the list data</td>
+            <td>use the editor or a json string to define the items</td>
+        </tr>
+        <tr>
+            <td>Editor: count of list items</td>
+            <td>count of list items using the editor</td>
+        </tr>
+        <tr>
+            <td>JSON string</td>
+            <td>using a JSON string for the list items. Allowed properties are described below</td>
+        </tr>						 			 		        
+    </tbody>
+</table>
+
+### Data JSON Properties
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>objectId</td>
+			<td>id of datapoint</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>buttonStateValue</td>
+			<td>value for button if list is from type button state</td>
+			<td>string</td>
+			<td></td>
+		</tr>		
+		<tr>
+			<td>buttonNavView</td>
+			<td>view for button if list is from type button navigation</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>buttonLink</td>
+			<td>link adresse for button if list is from type button link</td>
+			<td>string</td>
+			<td></td>
+		</tr>		
+		<tr>
+			<td>header</td>
+			<td>header text of item</td>
+			<td>string</td>
+			<td></td>
+		</tr>	
+		<tr>
+			<td>text</td>
+			<td>primary text</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>subText</td>
+			<td>secondary text</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>rightText</td>
+			<td>primary right text</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>rightSubText</td>
+			<td>secondary right text</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>image</td>
+			<td>material design icon or image path</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>imageColor</td>
+			<td>color of material design icon</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>imageActive</td>
+			<td>material design icon or image path if datapoint is active</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>imageActiveColor</td>
+			<td>color of material design icon if datapoint is active</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>			
+		<tr>
+			<td>showDivider</td>
+			<td>show divider</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>
+	</tbody>
+</table> 
+
+<!-- omit in toc -->
+#### JSON Properties - Example
+
+<details>
+<pre><code>
+[
+	{
+		"text": "item0",
+		"subText": "{0_userdata.0.MDW.list.bind0}",
+		"rightText": "right",
+		"rightSubText": "",
+		"image": "clock-check-outline",
+		"imageColor": "#44739e",
+		"imageActive": "",
+		"imageActiveColor": "",
+		"header": "JSON",
+		"showDivider": "false",
+		"objectId": "0_userdata.0.MDW.list.bool.val0",
+		"buttonStateValue": "",
+		"buttonNavView": "",
+		"buttonLink": ""
+	}, {
+		"text": "item1",
+		"subText": "{0_userdata.0.MDW.list.bind1}",
+		"rightText": "right",
+		"rightSubText": "",
+		"image": "clock-check-outline",
+		"imageColor": "#44739e",
+		"imageActive": "",
+		"imageActiveColor": "",
+		"header": "",
+		"showDivider": "false",
+		"objectId": "0_userdata.0.MDW.list.bool.val1",
+		"buttonStateValue": "",
+		"buttonNavView": "",
+		"buttonLink": ""
+	}, {
+		"text": "item2",
+		"subText": "",
+		"rightText": "right",
+		"rightSubText": "",
+		"image": "clock-check-outline",
+		"imageColor": "#44739e",
+		"imageActive": "",
+		"imageActiveColor": "",
+		"header": "",
+		"showDivider": "false",
+		"objectId": "0_userdata.0.MDW.list.bool.val2",
+		"buttonStateValue": "",
+		"buttonNavView": "",
+		"buttonLink": ""
+	}, {
+		"text": "item3",
+		"subText": "fuuuu",
+		"rightText": "right",
+		"rightSubText": "",
+		"image": "clock-check-outline",
+		"imageColor": "#44739e",
+		"imageActive": "",
+		"imageActiveColor": "",
+		"header": "",
+		"showDivider": "false",
+		"objectId": "0_userdata.0.MDW.list.bool.val3",
+		"buttonStateValue": "",
+		"buttonNavView": "",
+		"buttonLink": ""
+	}
+]
+</code></pre>
+</details>
+
 ## IconList
 
 ![Logo](doc/en/media/iconList.gif)
@@ -2505,7 +2723,7 @@ Settings that are not listed in the table below are self-explanatory.
     </tbody>
 </table>
 
-### JSON Properties
+### Data JSON Properties
 
 JSON string must be an array of objects with the following properties:
 
