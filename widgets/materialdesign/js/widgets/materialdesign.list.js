@@ -194,19 +194,19 @@ vis.binds.materialdesign.list =
 
                             $this.append(`
                             <div class="${listLayout}">
-                                <ul class="mdc-list ${nonInteractive} ${containerClass}">   
+                                <ul class="mdc-list ${nonInteractive} ${containerClass}" ${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'style="overflow-y: auto"' : ''}>   
                                     ${widgetElement}
                                 </ul>
                             </div>`);
                         } else {
                             $this.append(`
-                                <ul class="mdc-list ${nonInteractive} ${containerClass}">   
+                                <ul class="mdc-list ${nonInteractive} ${containerClass}" ${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'style="overflow-y: auto"' : ''}>   
                                     ${widgetElement}
                                 </ul>`);
                         }
                     } else {
                         $this.find(`.${containerClass}`).replaceWith(`
-                        <ul class="mdc-list ${nonInteractive} ${containerClass}">   
+                        <ul class="mdc-list ${nonInteractive} ${containerClass}" ${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'style="overflow-y: auto"' : ''}>   
                             ${widgetElement}
                         </ul>`);
                     }

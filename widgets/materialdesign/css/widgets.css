@@ -1582,7 +1582,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   color: black;
   margin: 3px; 
   width: calc(100% - 6px); 
-  /* height: calc(100% - 6px); */
+  max-height: calc(100% - 6px);
 }
 
 .materialdesign-widget .materialdesign-list-card--outlined,
