@@ -1569,7 +1569,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   display: flex;
 }
 
-.materialdesign-widget.materialdesign-list-card, 
+.materialdesign-widget .materialdesign-list-card, 
 .materialdesign-widget .materialdesign-table-card {
   border-radius: 4px;
   background-color: #fff;
@@ -1580,9 +1580,12 @@ svg.materialdesign-widget .materialdesign-button__icon {
   flex-direction: column;
   box-sizing: border-box;
   color: black;
+  margin: 3px; 
+  width: calc(100% - 6px); 
+  /* height: calc(100% - 6px); */
 }
 
-.materialdesign-widget.mdc-data-table.materialdesign-list-card--outlined,
+.materialdesign-widget .materialdesign-list-card--outlined,
 .materialdesign-widget .mdc-data-table.materialdesign-table-card--outlined {
   border-width: 1px;
   border-style: solid;

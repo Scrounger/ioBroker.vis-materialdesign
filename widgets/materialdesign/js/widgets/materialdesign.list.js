@@ -19,7 +19,6 @@ vis.binds.materialdesign.list =
 
             function init() {
 
-                let listLayout = '';
                 let itemList = [];
                 let nonInteractive = '';
                 let jsonData = null;
@@ -43,7 +42,6 @@ vis.binds.materialdesign.list =
 
 
                 function generateContent() {
-                    listLayout = '';
                     itemList = [];
                     nonInteractive = '';
                     bindingTokenList = [];
@@ -51,7 +49,6 @@ vis.binds.materialdesign.list =
 
                     if (data.listItemDataMethod === 'jsonStringObject') {
                         try {
-
                             if (vis.editMode && data.jsonStringObject && data.jsonStringObject.startsWith('{') && data.jsonStringObject.endsWith("}")) {
                                 // show in Editor if json is Binding
                                 jsonData = JSON.parse(vis.states.attr(data.jsonStringObject.substring(1, data.jsonStringObject.length - 1) + '.val'));
@@ -99,15 +96,10 @@ vis.binds.materialdesign.list =
                         itemRole = 'role="checkbox"';
                     }
 
-                    if (data.listLayout === 'card') {
-                        listLayout = 'materialdesign-list-card';
-                    } else if (data.listLayout === 'cardOutlined') {
-                        listLayout = 'materialdesign-list-card materialdesign-list-card--outlined';
-                    }
-
                     if ((data.listItemDataMethod === 'jsonStringObject' && jsonData !== null) || data.listItemDataMethod === 'inputPerEditor') {
                         for (var i = 0; i <= countOfItems; i++) {
                             let listItemObj = getListItemObj(i, data, jsonData);
+
 
                             // generate Header
                             itemList.push(myMdwHelper.getListItemHeader(listItemObj.header, headerFontSize));
@@ -197,18 +189,26 @@ vis.binds.materialdesign.list =
                     }
 
                     if (!replace) {
-                        $this.addClass(listLayout)
-                        $this.append(`
-                        <ul class="mdc-list ${nonInteractive} ${containerClass}">   
-                            ${widgetElement}
-                        </ul>                            
-                    `);
+                        if (data.listLayout === 'card' || data.listLayout === 'cardOutlined') {
+                            let listLayout = data.listLayout === 'card' ? 'materialdesign-list-card' : 'materialdesign-list-card materialdesign-list-card--outlined';
+
+                            $this.append(`
+                            <div class="${listLayout}">
+                                <ul class="mdc-list ${nonInteractive} ${containerClass}">   
+                                    ${widgetElement}
+                                </ul>
+                            </div>`);
+                        } else {
+                            $this.append(`
+                                <ul class="mdc-list ${nonInteractive} ${containerClass}">   
+                                    ${widgetElement}
+                                </ul>`);
+                        }
                     } else {
                         $this.find(`.${containerClass}`).replaceWith(`
                         <ul class="mdc-list ${nonInteractive} ${containerClass}">   
                             ${widgetElement}
-                        </ul>            
-                    `);
+                        </ul>`);
                     }
 
                     $this.scrollTop(scrollTop);
