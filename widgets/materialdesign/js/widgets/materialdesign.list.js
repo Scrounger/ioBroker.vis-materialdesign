@@ -40,6 +40,23 @@ vis.binds.materialdesign.list =
                     eventListener();
                 }
 
+                vis.states.bind(data.json_string_oid + '.val', function (e, newVal, oldVal) {
+                    // json Object changed
+                    let scrollTop = $this.scrollTop();
+                    let scrollLeft = $this.scrollLeft();
+                    generateContent();
+
+                    if (oidsNeedSubscribe) {
+                        myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
+                            appendContent(true, scrollTop, scrollLeft);
+                            eventListener();
+                        });
+                    } else {
+                        // json: hat keine objectIds / bindings bzw. bereits subscribed
+                        appendContent(true, scrollTop, scrollLeft);
+                        eventListener();
+                    }
+                });
 
                 function generateContent() {
                     itemList = [];
@@ -48,15 +65,9 @@ vis.binds.materialdesign.list =
                     oidsNeedSubscribe = false;
 
                     if (data.listItemDataMethod === 'jsonStringObject') {
-                        try {
-                            if (vis.editMode && data.jsonStringObject && data.jsonStringObject.startsWith('{') && data.jsonStringObject.endsWith("}")) {
-                                // show in Editor if json is Binding
-                                jsonData = JSON.parse(vis.states.attr(data.jsonStringObject.substring(1, data.jsonStringObject.length - 1) + '.val'));
-                                countOfItems = jsonData.length - 1;
-                            } else {
-                                jsonData = JSON.parse(data.jsonStringObject);
-                                countOfItems = jsonData.length - 1;
-                            }
+                        try {                            
+                            jsonData = JSON.parse(vis.states.attr(data.json_string_oid + '.val'));
+                            countOfItems = jsonData.length - 1;
                         } catch (err) {
                             jsonData = [
                                 {

@@ -2516,8 +2516,8 @@ Settings that are not listed in the table below are self-explanatory.
             <td>count of list items using the editor</td>
         </tr>
         <tr>
-            <td>JSON string</td>
-            <td>using a JSON string for the list items. Allowed properties are described below</td>
+            <td>JSON-String: object id</td>
+            <td>object id of datapoint containing json string. Allowed properties are described below</td>
         </tr>						 			 		        
     </tbody>
 </table>
