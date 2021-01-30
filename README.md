@@ -101,7 +101,7 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 		- [JSON Properties](#json-properties-2)
 		- [Script: send alert to widget](#script-send-alert-to-widget)
 	- [Calendar](#calendar)
-		- [Dialog](#dialog)
+	- [Dialog](#dialog)
 		- [Editor Settings](#editor-settings-15)
 	- [HTML Elements](#html-elements)
 - [used libraries](#used-libraries)
@@ -9536,7 +9536,7 @@ function ical2CalendarWidget() {
 ical2CalendarWidget();
 ```
 
-### Dialog
+## Dialog
 
 ![Logo](doc/en/media/dialog.png)
 
