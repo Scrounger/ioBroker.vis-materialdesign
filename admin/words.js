@@ -11081,5 +11081,17 @@ systemDictionary = {
         "es": "diálogo usar punto de datos para mostrar",
         "pl": "w oknie dialogowym użyj punktu danych do wyświetlenia",
         "zh-cn": "对话框使用数据点显示"
+    },
+    "showDialogMethod": {
+        "en": "method to show dialog",
+        "de": "Methode zum Anzeigen des Dialogs",
+        "ru": "способ показать диалог",
+        "pt": "método para mostrar o diálogo",
+        "nl": "methode om dialoog weer te geven",
+        "fr": "méthode pour afficher la boîte de dialogue",
+        "it": "metodo per mostrare la finestra di dialogo",
+        "es": "método para mostrar el diálogo",
+        "pl": "metoda, aby wyświetlić okno dialogowe",
+        "zh-cn": "显示对话框的方法"
     }
 };
