@@ -601,7 +601,7 @@ vis.binds.materialdesign.helper = {
     subscribeThemesAtRuntimee(data, widgetName, triggerClass, callBack) {
         let oidsNeedSubscribe = false;
 
-        const usedThemeIds = Object.fromEntries(Object.entries(data).filter(([key, value]) => value.toString().startsWith('#mdwTheme:')));
+        const usedThemeIds = Object.fromEntries(Object.entries(data).filter(([key, value]) => value ? value.toString().startsWith('#mdwTheme:') : false));
 
         for (const [key, value] of Object.entries(usedThemeIds)) {
             let id = value.replace('#mdwTheme:', '');

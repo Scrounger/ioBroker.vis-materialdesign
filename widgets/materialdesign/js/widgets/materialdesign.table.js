@@ -333,119 +333,94 @@ vis.binds.materialdesign.table = {
 
                     if (typeof (objValue) === 'object') {
                         if (objValue.type === 'buttonToggle' || objValue.type === 'buttonToggle_vertical') {
-                            let init = null;
-                            let elementData = null;
+                            let type = objValue.type === 'buttonToggle' ? vis.binds.materialdesign.button.types.toggle.default : vis.binds.materialdesign.button.types.toggle.vertical;
+                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, type);
 
-                            if (objValue.type === 'buttonToggle') {
-                                elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.toggle.default);
-                                init = vis.binds.materialdesign.button.initializeButton(elementData);
-                            } else {
-                                elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.toggle.vertical);
-                                init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
-                            }
-
-                            element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
-                                        ${init.button}
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
                                     </div>`
 
                             myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button Toggle', true);
 
                             myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle', function () {
-                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
-                                vis.binds.materialdesign.addRippleEffect(btn, elementData);
-                                vis.binds.materialdesign.button.handleToggle(btn, elementData);
+                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
+
+                                vis.binds.materialdesign.addRippleEffect($(btn.get(0)).children(), elementData);
+                                vis.binds.materialdesign.button.initialize(btn, elementData, type);
                             });
                         } else if (objValue.type === 'buttonToggle_icon') {
-                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.toggle.icon);
-                            let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
+                            let type = vis.binds.materialdesign.button.types.toggle.icon;
+                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid,type);
 
                             element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
-                                        ${init.button}
                                     </div>`
 
                             myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button Toggle Icon', true);
 
                             myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Toggle Icon', function () {
-                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
-                                vis.binds.materialdesign.addRippleEffect(btn, elementData, true);
-                                vis.binds.materialdesign.button.handleToggle(btn, elementData);
+                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
+
+                                vis.binds.materialdesign.addRippleEffect($(btn.get(0)).children(), elementData, true);
+                                vis.binds.materialdesign.button.initialize(btn, elementData, type);
                             });
 
                         } else if (objValue.type === 'buttonState' || objValue.type === 'buttonState_vertical') {
-                            let init = null;
-                            let elementData = null;
+                            let type = objValue.type === 'buttonToggle' ? vis.binds.materialdesign.button.types.state.default : vis.binds.materialdesign.button.types.state.vertical;
+                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, type);
 
-                            if (objValue.type === 'buttonState') {
-                                elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.state.default);
-                                init = vis.binds.materialdesign.button.initializeButton(elementData);
-                            } else {
-                                elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.state.vertical);
-                                init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
-                            }
-
-                            element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
-                                        ${init.button}
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
                                     </div>`
 
                             myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button State', true);
 
                             myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button State', function () {
                                 let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
-                                vis.binds.materialdesign.addRippleEffect(btn.children().get(0), elementData);
-                                vis.binds.materialdesign.button.handleState(btn, elementData);
+
+                                vis.binds.materialdesign.addRippleEffect($(btn.get(0)).children(), elementData);
+                                vis.binds.materialdesign.button.initialize(btn, elementData, type);
                             });
 
                         } else if (objValue.type === 'buttonState_icon') {
-                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.state.icon);
-                            let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
+                            let type = vis.binds.materialdesign.button.types.state.icon;
+                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid,type);
 
                             element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
-                                        ${init.button}
                                     </div>`
 
                             myMdwHelper.oidNeedSubscribe(elementData.oid, data.wid, 'Table Button State Icon', true);
 
                             myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button State Icon', function () {
                                 let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
-                                vis.binds.materialdesign.addRippleEffect(btn.children().get(0), elementData, true);
-                                vis.binds.materialdesign.button.handleState(btn, elementData);
+
+                                vis.binds.materialdesign.addRippleEffect($(btn.get(0)).children(), elementData, true);
+                                vis.binds.materialdesign.button.initialize(btn, elementData, type);
                             });
 
-
                         } else if (objValue.type === 'buttonLink' || objValue.type === 'buttonLink_vertical') {
-                            let init = null;
-                            let elementData = null;
+                            let type = objValue.type === 'buttonToggle' ? vis.binds.materialdesign.button.types.link.default : vis.binds.materialdesign.button.types.link.vertical;
+                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, type);
 
-                            if (objValue.type === 'buttonLink') {
-                                elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.link.default);
-                                init = vis.binds.materialdesign.button.initializeButton(elementData);
-                            } else {
-                                elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.link.vertical);
-                                init = vis.binds.materialdesign.button.initializeVerticalButton(elementData);
-                            }
-
-                            element = `<div class="vis-widget materialdesign-widget materialdesign-button ${init.style} materialdesign-button-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
-                                        ${init.button}
+                            element = `<div class="vis-widget materialdesign-widget materialdesign-button materialdesign-button-table-row_${row}-col_${col}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 80%;'} ${objValue.height ? `height: ${objValue.height};` : ''}">
                                     </div>`
 
                             myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Link', function () {
-                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
-                                vis.binds.materialdesign.addRippleEffect(btn, elementData);
-                                vis.binds.materialdesign.button.handleLink(btn, elementData);
+                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
+
+                                vis.binds.materialdesign.addRippleEffect($(btn.get(0)).children(), elementData);
+                                vis.binds.materialdesign.button.initialize(btn, elementData, type);
                             });
 
                         } else if (objValue.type === 'buttonLink_icon') {
-                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, vis.binds.materialdesign.button.types.link.icon);
-                            let init = vis.binds.materialdesign.button.initializeButton(elementData, true);
+                            let type = vis.binds.materialdesign.button.types.link.icon;
+                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid,type);
 
                             element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
-                                        ${init.button}
                                     </div>`
 
                             myMdwHelper.waitForElement($this, `.materialdesign-button-table-row_${row}-col_${col}`, data.wid, 'Table Button Link Icon', function () {
-                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`).children().get(0);
-                                vis.binds.materialdesign.addRippleEffect(btn, elementData, true);
-                                vis.binds.materialdesign.button.handleLink(btn, elementData);
+                                let btn = $this.find(`.materialdesign-button-table-row_${row}-col_${col}`);
+
+                                vis.binds.materialdesign.addRippleEffect($(btn.get(0)).children(), elementData, true);
+                                vis.binds.materialdesign.button.initialize(btn, elementData, type);
                             });
 
                         } else if (objValue.type === 'progress') {
