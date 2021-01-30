@@ -35,6 +35,7 @@ vis.binds.materialdesign.vueHelper = {
                     :prefix="prefix"
                     :suffix="suffix"
                     :placeholder="placeholder"
+                    :autofocus="autofocus"
                     ${(data.showInputMessageAlways) ? 'persistent-hint' : ''}
                     ${(shaped) ? 'shaped' : ''}
                     ${(rounded) ? 'rounded' : ''}
@@ -85,6 +86,7 @@ vis.binds.materialdesign.vueHelper = {
                 prefix: myMdwHelper.getValueFromData(data.inputPrefix, ''),
                 suffix: myMdwHelper.getValueFromData(data.inputSuffix, ''),
                 placeholder: placeholder,
+                autofocus: myMdwHelper.getBooleanFromData(data.autoFocus, false),
                 clearIcon: myMdwHelper.getValueFromData(data.clearIcon, 'mdi-close', 'mdi-'),
                 prepandIcon: (myMdwHelper.getAllowedImageFileExtensions().some(el => myMdwHelper.getValueFromData(data.prepandIcon, '').includes(el))) ? undefined : myMdwHelper.getValueFromData(data.prepandIcon, undefined, 'mdi-'),
                 prepandImage: (myMdwHelper.getAllowedImageFileExtensions().some(el => myMdwHelper.getValueFromData(data.prepandIcon, '').includes(el))) ? myMdwHelper.getValueFromData(data.prepandIcon, undefined) : undefined,

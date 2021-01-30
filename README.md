@@ -9696,6 +9696,7 @@ The adapter uses the following libraries:
 * (Scrounger) icon list: status bar position bug fix
 * (Scrounger) progress circular: auto size option added
 * (Scrounger) VIS editor: html previews bug fixes
+* (Scrounger) input, autocomplete, select: autofocus option added
 
 <!-- omit in toc -->
 ### 0.4.2 (2020-12-29)
