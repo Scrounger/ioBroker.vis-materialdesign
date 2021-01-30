@@ -91,6 +91,7 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 		- [Editor Settings](#editor-settings-11)
 		- [Data - JSON Stucture](#data---json-stucture)
 		- [internal object binding](#internal-object-binding)
+		- [HTML Control Widgets](#html-control-widgets)
 			- [Control Elements - **deprecated** since v0.5.0](#control-elements---deprecated-since-v050)
 	- [Responsive Layout](#responsive-layout)
 		- [Masonry Views](#masonry-views)
@@ -107,7 +108,7 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 		- [Script: ical conversion](#script-ical-conversion)
 	- [Dialog](#dialog)
 		- [Editor Settings](#editor-settings-16)
-	- [HTML Elements](#html-elements)
+	- [HTML Widgets](#html-widgets)
 - [used libraries](#used-libraries)
 - [Changelog](#changelog)
 - [License](#license)
@@ -231,7 +232,7 @@ Settings that are not listed in the table below are self-explanatory.
 
 ### HTML Properties
 
-The following properties can be used as [HTML element](#html-elements).
+The following properties can be used as [HTML Widgets](#html-widgets).
 
 <table>
 	<thead>
@@ -294,7 +295,7 @@ The following properties can be used as [HTML element](#html-elements).
 
 ##### Button Link Properties
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+The following properties can be used as [control element in a table](#control-elements) or as [HTML Widgets](#html-widgets)
 
 <details>
 	<table>
@@ -434,7 +435,7 @@ The following properties can be used as [control element in a table](#control-el
 
 ##### Button State Properties
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+The following properties can be used as [control element in a table](#control-elements) or as [HTML Widgets](#html-widgets)
 
 <details>
 	<table>
@@ -613,7 +614,7 @@ The following properties can be used as [control element in a table](#control-el
 
 ##### Button Toggle Properties
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+The following properties can be used as [control element in a table](#control-elements) or as [HTML Widgets](#html-widgets)
 
 <details>
 	<table>
@@ -868,7 +869,7 @@ The following properties can be used as [control element in a table](#control-el
 
 ##### Button Vertical Link Properties
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+The following properties can be used as [control element in a table](#control-elements) or as [HTML Widgets](#html-widgets)
 
 <details>
 	<table>
@@ -1014,7 +1015,7 @@ The following properties can be used as [control element in a table](#control-el
 
 ##### Button Vertical State Properties
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+The following properties can be used as [control element in a table](#control-elements) or as [HTML Widgets](#html-widgets)
 
 <details>
 	<table>
@@ -1211,7 +1212,7 @@ The following properties can be used as [control element in a table](#control-el
 
 ##### Button Vertical Toggle Properties
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+The following properties can be used as [control element in a table](#control-elements) or as [HTML Widgets](#html-widgets)
 
 <details>
 	<table>
@@ -1477,7 +1478,7 @@ The following properties can be used as [control element in a table](#control-el
 
 ##### Button Icon Link Properties
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+The following properties can be used as [control element in a table](#control-elements) or as [HTML Widgets](#html-widgets)
 
 <details>
 	<table>
@@ -1572,7 +1573,7 @@ The following properties can be used as [control element in a table](#control-el
 
 ##### Button Icon State Properties
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+The following properties can be used as [control element in a table](#control-elements) or as [HTML Widgets](#html-widgets)
 
 <details>
 	<table>
@@ -1730,7 +1731,7 @@ The following properties can be used as [control element in a table](#control-el
 
 ##### Button Icon Toggle Properties
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML element](#html-elements)
+The following properties can be used as [control element in a table](#control-elements) or as [HTML Widgets](#html-widgets)
 
 <details>
 	<table>
@@ -1975,7 +1976,7 @@ Settings that are not listed in the table below are self-explanatory.
 
 ### HTML Properties
 
-The following properties can be used as [HTML element](#html-elements).
+The following properties can be used as [HTML Widgets](#html-widgets).
 
 <table>
 	<thead>
@@ -2238,7 +2239,7 @@ Settings that are not listed in the table below are self-explanatory.
 
 ### HTML Properties
 
-The following properties can be used as [HTML element](#html-elements).
+The following properties can be used as [HTML Widgets](#html-widgets).
 
 <table>
 	<thead>
@@ -2962,7 +2963,7 @@ JSON string must be an array of objects with the following properties:
 
 ### HTML Properties
 
-The following properties can be used as [HTML element](#html-elements).
+The following properties can be used as [HTML Widgets](#html-widgets).
 
 <table>
 	<thead>
@@ -3203,7 +3204,7 @@ Settings that are not listed in the table below are self-explanatory.
 
 ### HTML Properties
 
-The following properties can be used as [HTML element](#html-elements).
+The following properties can be used as [HTML Widgets](#html-widgets).
 
 <table>
 	<thead>
@@ -3406,7 +3407,7 @@ The following properties can be used as [HTML element](#html-elements).
 
 ### HTML Properties
 
-The following properties can be used as [HTML element](#html-elements).
+The following properties can be used as [HTML Widgets](#html-widgets).
 
 <table>
 	<thead>
@@ -3772,7 +3773,7 @@ The following properties can be used as [HTML element](#html-elements).
 
 ### HTML Properties
 
-The following properties can be used as [HTML element](#html-elements).
+The following properties can be used as [HTML Widgets](#html-widgets).
 
 <table>
 	<thead>
@@ -4054,7 +4055,7 @@ Settings that are not listed in the table below are self-explanatory.
 
 #### HTML Properties
 
-The following properties can be used as [HTML element](#html-elements).
+The following properties can be used as [HTML Widgets](#html-widgets).
 
 <table>
 	<thead>
@@ -4566,7 +4567,7 @@ Settings that are not listed in the table below are self-explanatory.
 
 #### HTML Properties
 
-The following properties can be used as [HTML element](#html-elements).
+The following properties can be used as [HTML Widgets](#html-widgets).
 
 <table>
 	<thead>
@@ -5450,7 +5451,7 @@ Settings that are not listed in the table below are self-explanatory.
 
 #### HTML Properties
 
-The following properties can be used as [HTML element](#html-elements).
+The following properties can be used as [HTML Widgets](#html-widgets).
 
 <table>
 	<thead>
@@ -7443,9 +7444,65 @@ Working Widget Example can be found
 * [ical Adapter](https://forum.iobroker.net/topic/29658/material-design-widgets-table-widget/2)
 
 
+### HTML Control Widgets
+
+You can use the [HTML Widgets](#html-widgets) directly in the json string. If you would like to customize the cell that conatins the widget, use the following container.
+
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Properties</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>rowspan</td>
+            <td>cell that spans x rows</td>
+            <td>number</td>
+            <td>
+                1, 2, 3, ... 
+            </td>
+        </tr>
+        <tr>
+            <td>colspan</td>
+            <td>cell that spans x columns</td>
+            <td>number</td>
+            <td>
+                1, 2, 3, ... 
+            </td>
+        </tr>
+        <tr>
+            <td>cellStyleAttrs</td>
+            <td>css style attributes for cell</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>html</td>
+            <td>any html element, eg. html widget</td>
+            <td>string</td>
+            <td></td>
+        </tr>		
+    </tbody>
+</table>
+
+<!-- omit in toc -->
+#### HTML Control Widgets - Example
+
+<details>
+
+```
+
+```
+
+</details>
+
 #### Control Elements - **deprecated** since v0.5.0
 
-> **deprecated** Use [HTML element](#html-elements) instead!
+> **deprecated** Use [HTML Widgets](#html-widgets) instead!
 
 To generate a control element (button, checkbox, etc.) in cell of the table you must create an object instead of a string.
 
@@ -8094,9 +8151,9 @@ Settings that are not listed in the table below are self-explanatory.
 </table>
 
 
-## HTML Elements
+## HTML Widgets
 
-Create an html element from the supported Material Design widgets to use it in any other widget that supports html.
+Create a html widget from the supported Material Design widgets to use it in any other widget that supports html.
 Just style your Material Design widget, press the `generate Html Element`, copy the data and paste it to any widget that supports html tags.
 Or use it in scripts to generate dynamically Widgets.
 

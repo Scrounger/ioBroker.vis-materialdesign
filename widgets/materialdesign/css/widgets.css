@@ -1608,13 +1608,21 @@ svg.materialdesign-widget .materialdesign-button__icon {
   border-color: var(--materialdesign-color-table-border)
 }
 
-.materialdesign-widget .mdc-data-table.fixed-header tbody {
-  display: block;
+.materialdesign-widget .mdc-data-table.fixed-header {
+  height: 100%;
   overflow: auto;
 }
 
+.materialdesign-widget .mdc-data-table.fixed-header .mdc-data-table__table {
+  overflow: auto;
+}
+
+.materialdesign-widget .mdc-data-table.fixed-header thead {
+  z-index: 1;
+}
+
 .materialdesign-widget .mdc-data-table.fixed-header thead,
-.materialdesign-widget .mdc-data-table.fixed-header tbody tr {
+.materialdesign-widget .mdc-data-table.fixed-header tbody {
   display: table;
   width: 100%;
   table-layout: fixed;

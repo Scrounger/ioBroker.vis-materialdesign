@@ -21,7 +21,7 @@ vis.binds.materialdesign.table = {
             }
 
             tableElement.push(`<div class="mdc-data-table ${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'fixed-header' : ''} ${tableLayout}">
-                                    <table class="mdc-data-table__table" aria-label="Material Design Widgets Table" style="width: 100%; height: 100%;${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'display: flex; flex-direction: column;' : ''}">`)
+                                    <table class="mdc-data-table__table" aria-label="Material Design Widgets Table" style="width: 100%; height: 100%;">`)
 
             tableElement.push(`<thead style="${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'position: sticky; top: 0;' : ''}">
                                     <tr class="mdc-data-table__header-row" style="height: ${(myMdwHelper.getNumberFromData(data.headerRowHeight, null) !== null) ? data.headerRowHeight + 'px' : '1px'};">`)
@@ -47,7 +47,7 @@ vis.binds.materialdesign.table = {
             }
             tableElement.push(`</tr>
                             </thead>
-                            <tbody class="mdc-data-table__content" sytle="${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'flex-grow: 1;' : ''}">
+                            <tbody class="mdc-data-table__content">
                             </tbody>
                             </table>
                             </div>`);
@@ -140,14 +140,14 @@ vis.binds.materialdesign.table = {
                                 }
                             }
 
-                            $this.find('.mdc-data-table__header-cell').click(function (obj) {
+                            $this.find('.mdc-data-table__header-cell').on('click', function (obj) {
                                 let colIndex = $(this).attr('colIndex');
 
                                 let jsonData = [];
                                 if (myMdwHelper.getValueFromData(data.oid, null) !== null && vis.states.attr(data.oid + '.val') !== null) {
                                     jsonData = vis.binds.materialdesign.table.getJsonData(vis.states.attr(data.oid + '.val'), data);
                                 } else {
-                                    jsonData = JSON.parse(data.dataJson)
+                                    jsonData = vis.binds.materialdesign.table.getJsonData(data.dataJson, data);
                                 }
 
                                 if (jsonData && jsonData.length > 0) {
@@ -349,7 +349,7 @@ vis.binds.materialdesign.table = {
                             });
                         } else if (objValue.type === 'buttonToggle_icon') {
                             let type = vis.binds.materialdesign.button.types.toggle.icon;
-                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid,type);
+                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, type);
 
                             element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
                                     </div>`
@@ -381,7 +381,7 @@ vis.binds.materialdesign.table = {
 
                         } else if (objValue.type === 'buttonState_icon') {
                             let type = vis.binds.materialdesign.button.types.state.icon;
-                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid,type);
+                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, type);
 
                             element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
                                     </div>`
@@ -411,7 +411,7 @@ vis.binds.materialdesign.table = {
 
                         } else if (objValue.type === 'buttonLink_icon') {
                             let type = vis.binds.materialdesign.button.types.link.icon;
-                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid,type);
+                            let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, type);
 
                             element = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-table-row_${row}-col_${col}" data-oid="${elementData.oid}" isLocked="${myMdwHelper.getBooleanFromData(elementData.lockEnabled, false)}" style="display: inline-block; position: relative; vertical-align: ${myMdwHelper.getValueFromData(objValue.verticalAlign, 'middle')}; ${objValue.width ? `width: ${objValue.width};` : 'width: 48px;'} ${objValue.height ? `height: ${objValue.height};` : 'height: 48px;'}">
                                     </div>`
@@ -606,6 +606,8 @@ vis.binds.materialdesign.table = {
                             } else {
                                 element = objValue.html;
                             }
+                        } else {
+                            element = objValue.html
                         }
                     }
 
@@ -613,7 +615,7 @@ vis.binds.materialdesign.table = {
                             id="cell-row${row}-col${col}"
                             ${(objValue && objValue.rowspan) ? `rowspan="${objValue.rowspan}"` : ''}
                             ${(objValue && objValue.colspan) ? `colspan="${objValue.colspan}"` : ''}
-                            style="
+                            style="                           
                             text-align: ${data.attr('textAlign' + col)};${textSize.style}; 
                             padding-left: ${myMdwHelper.getNumberFromData(data.attr('padding_left' + col), 8)}px; 
                             padding-right: ${myMdwHelper.getNumberFromData(data.attr('padding_right' + col), 8)}px; 
