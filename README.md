@@ -9581,6 +9581,11 @@ The adapter uses the following libraries:
 
 <!-- omit in toc -->
 ### __WORK IN PROGRESS__
+* (Scrounger) HTML Element support for control widgets added
+* (Scrounger) Table: Control Elements removed, using new HTML Elements -> breaking changes !!!
+* (Scrounger) Documentation revised
+* (Scrounger) Card layout bug fixes for HTML Card, IconList, List and Table Widget
+* (Scrounger) list: using object id for json string added -> breaking changes !!!
 * (Scrounger) icon list: option for status bar text added
 * (Scrounger) icon list: status bar position bug fix
 * (Scrounger) progress circular: auto size option added
