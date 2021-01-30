@@ -225,8 +225,8 @@ vis.binds.materialdesign.roundslider = {
             let mdwData = myMdwHelper.getHtmlmdwData('',
                 vis.binds.materialdesign.roundslider.getDataFromJson(widgetData, 0));
 
-            html = `<div class="vis-widget materialdesign-widget materialdesign-slider-round materialdesign-roundslider-html-element"` + '\n' +
-                '\t' + `style="width: ${width}; height: ${height}; position: relative;"` + '\n' +
+            html = `<div class='vis-widget materialdesign-widget materialdesign-slider-round materialdesign-roundslider-html-element'` + '\n' +
+                '\t' + `style='width: ${width}; height: ${height}; position: relative;'` + '\n' +
                 '\t' + mdwData + ">";
 
             return html + `</div>`;

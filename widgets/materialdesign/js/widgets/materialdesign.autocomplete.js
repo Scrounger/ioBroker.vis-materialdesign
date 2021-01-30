@@ -69,11 +69,11 @@ vis.binds.materialdesign.autocomplete = {
                                 vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
                                     vueHelper.setStyles($this, data);
                                 });
-        
+
                                 vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
                                     vueHelper.setStyles($this, data);
                                 });
-        
+
                                 $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
                                     if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
                                     vueHelper.setStyles($this, data);
@@ -90,7 +90,7 @@ vis.binds.materialdesign.autocomplete = {
             console.error(`[${widgetName} - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack} `);
         }
     },
-    getDataFromJson(obj, widgetId) {
+    getDataFromJson(obj, widgetId, itemCounter = 0) {
         let data = {
             wid: widgetId,
             debug: obj.debug,
@@ -202,7 +202,8 @@ vis.binds.materialdesign.autocomplete = {
             listItemValueFontSelectedColor: obj.listItemValueFontSelectedColor
         }
 
-        for (var i = 0; i <= obj.countSelectItems; i++) {
+        let counter = itemCounter === 0 ? obj.countSelectItems : itemCounter;
+        for (var i = 0; i <= itemCounter; i++) {
             data['value' + i] = obj['value' + i];
             data['label' + i] = obj['label' + i];
             data['subLabel' + i] = obj['subLabel' + i];
@@ -250,7 +251,7 @@ $.initialize(".materialdesign-autocomplete-html-element", function () {
         console.log(`${logPrefix} initialize html element`);
 
         myMdwHelper.extractHtmlWidgetData($this,
-            vis.binds.materialdesign.autocomplete.getDataFromJson({}, parentId),
+            vis.binds.materialdesign.autocomplete.getDataFromJson({}, parentId, $this.attr('mdw-countSelectItems')),
             parentId, widgetName, logPrefix, initializeHtml);
 
         function initializeHtml(widgetData) {

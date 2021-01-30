@@ -490,7 +490,7 @@ vis.binds.materialdesign.button = {
             }
         }
     },
-    getDataFromJson(obj, widgetId, type) {
+    getDataFromJson(obj, widgetId, type, itemCounter = 0) {
         if (type === this.types.toggle.default) {
             return {
                 wid: widgetId,
@@ -923,7 +923,8 @@ vis.binds.materialdesign.button = {
                 lockFilterGrayscale: obj.lockFilterGrayscale
             }
 
-            for (var i = 0; i <= obj.countOids; i++) {
+            let counter = itemCounter === 0 ? obj.countOids : itemCounter;
+            for (var i = 0; i <= counter; i++) {
                 data['oid' + i] = obj['oid' + i];
                 data['value' + i] = obj['value' + i];
                 data['delayInMs' + i] = obj['delayInMs' + i];
@@ -966,7 +967,8 @@ vis.binds.materialdesign.button = {
                 lockFilterGrayscale: obj.lockFilterGrayscale
             }
 
-            for (var i = 0; i <= obj.countOids; i++) {
+            let counter = itemCounter === 0 ? obj.countOids : itemCounter;
+            for (var i = 0; i <= counter; i++) {
                 data['oid' + i] = obj['oid' + i];
                 data['value' + i] = obj['value' + i];
                 data['delayInMs' + i] = obj['delayInMs' + i];
@@ -1004,7 +1006,8 @@ vis.binds.materialdesign.button = {
                 lockFilterGrayscale: obj.lockFilterGrayscale
             }
 
-            for (var i = 0; i <= obj.countOids; i++) {
+            let counter = itemCounter === 0 ? obj.countOids : itemCounter;
+            for (var i = 0; i <= counter; i++) {
                 data['oid' + i] = obj['oid' + i];
                 data['value' + i] = obj['value' + i];
                 data['delayInMs' + i] = obj['delayInMs' + i];
@@ -1119,8 +1122,8 @@ vis.binds.materialdesign.button = {
                 delete widgetData.width;
                 delete widgetData.height;
 
-                html = `<div class="vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-html-element"` + '\n' +
-                    '\t' + `style="width: ${width}; height: ${height}; position: relative; padding: 0px;"` + '\n' +
+                html = `<div class='vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-html-element'` + '\n' +
+                    '\t' + `style='width: ${width}; height: ${height}; position: relative; padding: 0px;'` + '\n' +
                     '\t' + mdwData + ">";
             }
 
@@ -1148,7 +1151,7 @@ $.initialize(".materialdesign-button-html-element", function () {
         console.log(`${logPrefix} initialize html element from type '${type}'`);
 
         myMdwHelper.extractHtmlWidgetData($this,
-            vis.binds.materialdesign.button.getDataFromJson({}, `${parentId}`, vis.binds.materialdesign.button.types[typeSplitted[0]][typeSplitted[1]]),
+            vis.binds.materialdesign.button.getDataFromJson({}, `${parentId}`, vis.binds.materialdesign.button.types[typeSplitted[0]][typeSplitted[1]], $this.attr('mdw-countOids')),
             parentId, widgetName, logPrefix, initializeHtml);
 
         function initializeHtml(widgetData) {
