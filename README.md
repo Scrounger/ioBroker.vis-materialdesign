@@ -98,11 +98,14 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 			- [Editor Settings](#editor-settings-13)
 	- [Alerts](#alerts)
 		- [Editor Settings](#editor-settings-14)
-		- [JSON Properties](#json-properties-2)
+		- [Datapoint JSON Properties](#datapoint-json-properties)
 		- [Script: send alert to widget](#script-send-alert-to-widget)
 	- [Calendar](#calendar)
-	- [Dialog](#dialog)
 		- [Editor Settings](#editor-settings-15)
+		- [Datapoint JSON Properties](#datapoint-json-properties-1)
+		- [Script: ical conversion](#script-ical-conversion)
+	- [Dialog](#dialog)
+		- [Editor Settings](#editor-settings-16)
 	- [HTML Elements](#html-elements)
 - [used libraries](#used-libraries)
 - [Changelog](#changelog)
@@ -9257,7 +9260,7 @@ Settings that are not listed in the table below are self-explanatory.
     </tbody>
 </table>
 
-### JSON Properties
+### Datapoint JSON Properties
 
 <table>
 	<thead>
@@ -9309,7 +9312,7 @@ Settings that are not listed in the table below are self-explanatory.
 </table>
 
 <!-- omit in toc -->
-#### JSON Properties - Example
+#### Datapoint JSON Properties - Example
 
 <details>
 
@@ -9387,7 +9390,100 @@ materialDesignWidgets.sendTo = function (id, text, backgroundColor = '', borderC
 
 ![Logo](doc/en/media/calendar.gif)
 
-The Calendar widget requires a JSON string as object, which must be structured as follows:
+### Editor Settings
+
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=1><img src="doc/en/media/calendar_common.png"></td>
+            <td>Object Id</td>
+            <td>id of datapoint. Datapoint must contains a json string. Allowed json properties are desribed below</td>
+        </tr>	
+        <tr>
+            <td rowspan=2><img src="doc/en/media/calendar_layout.png"></td>
+            <td>days of the week to be shown</td>
+            <td>Specifies which days of the week to display. To display Monday through Friday only, a value of <code>1, 2, 3, 4, 5</code> can be used. To display a week starting on Monday a value of <code>1, 2, 3, 4, 5, 6, 0</code> can be used.</td>
+        </tr>
+        <tr>
+            <td>Object ID</td>
+            <td>Object must be a json string, which must be structured as described above</td>
+        </tr>
+        <tr>
+            <td rowspan=2><img src="doc/en/media/calendar_timeaxis.png"></td>
+            <td>start hour</td>
+            <td>The hour from which appointments should be displayed in the week and day view.</td>
+        </tr>
+        <tr>
+            <td>end hour</td>
+            <td>The hour until which appointments should be displayed in the week and day view</td>
+        </tr>
+        <tr>
+            <td rowspan=2><img src="doc/en/media/calendar_custom_date.png"></td>
+            <td colspan=2>Override the default date formats. Allowed formats are described in the documentation of <a href="https://momentjs.com/docs/#/displaying/">momentjs</a></td></td>
+        </tr>		        
+    </tbody>
+</table>
+
+
+### Datapoint JSON Properties
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>name</td>
+			<td>name of Event</td>
+			<td>string</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>color</td>
+			<td>background color of event</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>colorText</td>
+			<td>text color of event</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>start</td>
+			<td>start date and time of event. For all day events use only a date without time.</td>
+			<td>string</td>
+			<td>YYYY-MM-DD | YYYY-MM-DD HH:mm</td>
+		</tr>
+		<tr>
+			<td>end</td>
+			<td>end date and time of event. For all day events use only a date without time</td>
+			<td>string</td>
+			<td>YYYY-MM-DD | YYYY-MM-DD HH:mm</td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+#### Datapoint JSON Properties - Example
+
+<details>
+
 ```
 [
 	{
@@ -9406,41 +9502,14 @@ The Calendar widget requires a JSON string as object, which must be structured a
 	}
 ]
 ```
-Only hex and rgba can be used as colors!
 
-Settings that are not listed in the table below are self-explanatory.
+</details>
 
-<table>
-    <thead>
-        <tr>
-            <th>Screenshot</th>
-            <th>Setting</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td rowspan=2><img src="doc/en/media/calendar_layout.png"></td>
-            <td>days of the week to be shown</td>
-            <td>Specifies which days of the week to display. To display Monday through Friday only, a value of <code>1, 2, 3, 4, 5</code> can be used. To display a week starting on Monday a value of <code>1, 2, 3, 4, 5, 6, 0</code> can be used.</td>
-        </tr>
-        <tr>
-            <td>Object ID</td>
-            <td>Object must be a json string, which must be structured as described above</td>
-        </tr>
-        <tr>
-            <td rowspan=2><img src="doc/en/media/calendar_timeaxis.png"></td>
-            <td>start hour</td>
-            <td>The hour from which appointments should be displayed in the week and day view.</td>
-        </tr>
-        <tr>
-            <td>end hour</td>
-            <td>The hour until which appointments should be displayed in the week and day view</td>
-        </tr>        
-    </tbody>
-</table>
+### Script: ical conversion
 
 If you want to use the widget with the [ical adapter](https://github.com/iobroker-community-adapters/ioBroker.ical), you can use the following script to convert the ical object to work with the widget.
+
+<details>
 
 ```
 // momentjs is required as dependecies in javascript adapter
@@ -9535,6 +9604,8 @@ function ical2CalendarWidget() {
 
 ical2CalendarWidget();
 ```
+
+</details>
 
 ## Dialog
 
