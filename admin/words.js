@@ -11035,16 +11035,16 @@ systemDictionary = {
         "zh-cn": "值位置偏移"
     },
     "generateHtmlControl": {
-        "en": "generate Html Element",
-        "de": "HTML-Element generieren",
-        "ru": "сгенерировать элемент Html",
-        "pt": "gerar Elemento Html",
-        "nl": "genereren Html-element",
-        "fr": "générer un élément Html",
-        "it": "generare l'elemento Html",
-        "es": "generar elemento HTML",
-        "pl": "wygeneruj element HTML",
-        "zh-cn": "生成HTML元素"
+        "en": "generate Html Widget",
+        "de": "HTML-Widget generieren",
+        "ru": "создать виджет Html",
+        "pt": "gerar widget Html",
+        "nl": "genereren Html Widget",
+        "fr": "générer un widget Html",
+        "it": "generare Widget Html",
+        "es": "generar widget HTML",
+        "pl": "wygeneruj widżet HTML",
+        "zh-cn": "生成HTML小部件"
     },
     "mdwType": {
         "en": "Widget type",

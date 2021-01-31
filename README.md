@@ -92,7 +92,7 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 		- [Data - JSON Stucture](#data---json-stucture)
 		- [internal object binding](#internal-object-binding)
 		- [HTML Control Widgets](#html-control-widgets)
-			- [Control Elements - **deprecated** since v0.5.0](#control-elements---deprecated-since-v050)
+		- [Control Elements - **deprecated since v0.5.0**](#control-elements---deprecated-since-v050)
 	- [Responsive Layout](#responsive-layout)
 		- [Masonry Views](#masonry-views)
 			- [Editor Settings](#editor-settings-12)
@@ -8022,9 +8022,9 @@ You can use the [HTML Widgets](#html-widgets) directly in the json string. If yo
 
 </details>
 
-#### Control Elements - **deprecated** since v0.5.0
+### Control Elements - **deprecated since v0.5.0**
 
-> **deprecated** Use [HTML Widgets](#html-widgets) instead!
+> **deprecated Use [HTML Widgets](#html-widgets) instead!**
 
 To generate a control element (button, checkbox, etc.) in cell of the table you must create an object instead of a string.
 
@@ -8719,11 +8719,11 @@ The adapter uses the following libraries:
 
 <!-- omit in toc -->
 ### __WORK IN PROGRESS__
-* (Scrounger) HTML Element support for control widgets added
+* (Scrounger) HTML Widgets added - use Material Design Widgets in any html element
 * (Scrounger) Table: Control Elements removed, using new HTML Elements -> breaking changes !!!
+* (Scrounger) list: using object id for json string added -> breaking changes !!!
 * (Scrounger) Documentation revised
 * (Scrounger) Card layout bug fixes for HTML Card, IconList, List and Table Widget
-* (Scrounger) list: using object id for json string added -> breaking changes !!!
 * (Scrounger) icon list: option for status bar text added
 * (Scrounger) icon list: status bar position bug fix
 * (Scrounger) progress circular: auto size option added
