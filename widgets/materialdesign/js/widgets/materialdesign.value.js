@@ -80,10 +80,20 @@ vis.binds.materialdesign.value = {
 
                     let result = '';
                     if (type === 'number') {
-                        value = myMdwHelper.formatNumber(value, data.minDecimals, data.maxDecimals)
-                        let unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
+                        if (myMdwHelper.getValueFromData(data.convertToDuration, undefined)) {
+                            value = parseFloat(value);
 
-                        result = `${value} ${unit}`;
+                            if (data.convertToDuration === 'humanize') {
+                                result = moment.duration(value, "seconds").humanize();
+                            } else {
+                                result = moment.utc(moment.duration(value, "seconds").as('milliseconds')).format(data.convertToDuration)
+                            }
+                        } else {
+                            value = myMdwHelper.formatNumber(value, data.minDecimals, data.maxDecimals)
+                            let unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
+
+                            result = `${value} ${unit}`;
+                        }
                     } else if (type === 'boolean') {
                         if (value === true || value === 'true') {
                             result = myMdwHelper.getValueFromData(data.textOnTrue, value);
@@ -132,6 +142,7 @@ vis.binds.materialdesign.value = {
             valueLabelUnit: obj.valueLabelUnit,
             minDecimals: obj.minDecimals,
             maxDecimals: obj.maxDecimals,
+            convertToDuration: obj.convertToDuration,
             
             // Logikwert Formatierung
             textOnTrue: obj.textOnTrue,
@@ -141,7 +152,7 @@ vis.binds.materialdesign.value = {
             image: obj.image,
             imageColor: obj.imageColor,
             iconPosition: obj.iconPosition,
-            iconHeight: obj.iconHeight,            
+            iconHeight: obj.iconHeight            
         }
     },
     getHtmlConstructor(widgetData, type) {
