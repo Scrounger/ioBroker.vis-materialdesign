@@ -11178,18 +11178,6 @@ systemDictionary = {
         "pl": "rozmiar czcionki dołączanego tekstu",
         "zh-cn": "附加文字的字体大小"
     },
-    "customUnit": {
-        "en": "custom unit",
-        "de": "benutzerdefinierte Einheit",
-        "ru": "нестандартная единица",
-        "pt": "unidade personalizada",
-        "nl": "aangepaste eenheid",
-        "fr": "unité personnalisée",
-        "it": "unità personalizzata",
-        "es": "unidad personalizada",
-        "pl": "jednostka niestandardowa",
-        "zh-cn": "定制单位"
-    },
     "minDecimals": {
         "en": "minimal decimals",
         "de": "minimale Nachkommastellen",

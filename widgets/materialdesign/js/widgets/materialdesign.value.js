@@ -22,9 +22,9 @@ vis.binds.materialdesign.value = {
 
                 $this.html(`
                     ${data.iconPosition === 'left' ? imageElement : ''}
-                    <div class="materialdesign-value prepand-text" style="margin: 0 2px 0 2px;"></div>
-                    <div class="materialdesign-value value-text" style="margin: 0 2px 0 2px; flex: 1;text-align: ${myMdwHelper.getValueFromData(data.textAlign, 'start')}"></div>
-                    <div class="materialdesign-value append-text" style="margin: 0 2px 0 2px;"></div>
+                    <div class="materialdesign-value prepand-text"></div>
+                    <div class="materialdesign-value value-text" style="margin: 0 4px 0 4px; flex: 1;text-align: ${myMdwHelper.getValueFromData(data.textAlign, 'start')}"></div>
+                    <div class="materialdesign-value append-text"></div>
                     ${data.iconPosition === 'right' ? imageElement : ''}
                 `);
 
@@ -32,82 +32,74 @@ vis.binds.materialdesign.value = {
                 let $valueText = $this.find('.value-text');
                 let $appendText = $this.find('.append-text');
 
-                myMdwHelper.getObject(data.oid, function (obj) {
-                    if (obj && obj.common && obj.common['type']) {
-                        let val = vis.states.attr(data.oid + '.val');
 
-                        let type = obj.common['type'];
-                        let unit = obj.common.unit ? obj.common.unit : '';
+                let val = vis.states.attr(data.oid + '.val');
+                let type = typeof (val);
 
-                        setValue(val, type);
+                if (data.debug) console.log(`[Value - ${data.wid}] type: ${type}`);
 
-                        vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                            setValue(newVal, type);
-                        });
-
-                        vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
-                            setLayout();
-                        });
-
-                        vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
-                            setLayout();
-                        });
-
-                        $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
-                            if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
-                            setLayout();
-                        });
-
-                        setLayout();
-                        function setLayout() {
-                            $this.get(0).style.setProperty("--value-color-text", myMdwHelper.getValueFromData(data.valuesFontColor, ''));
-                            $this.get(0).style.setProperty("--value-font-text", myMdwHelper.getValueFromData(data.valuesFontFamily, ''));
-                            $this.get(0).style.setProperty("--value-font-size-text", myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px'));
-
-                            $this.get(0).style.setProperty("--value-color-prepand", myMdwHelper.getValueFromData(data.prepandTextColor, ''));
-                            $this.get(0).style.setProperty("--value-font-prepand", myMdwHelper.getValueFromData(data.prepandTextFontFamily, ''));
-                            $this.get(0).style.setProperty("--value-font-size-prepand", myMdwHelper.getStringFromNumberData(data.prepandTextFontSize, 14, '', 'px'));
-
-                            $this.get(0).style.setProperty("--value-color-append", myMdwHelper.getValueFromData(data.appendTextColor, ''));
-                            $this.get(0).style.setProperty("--value-font-append", myMdwHelper.getValueFromData(data.appendTextFontFamily, ''));
-                            $this.get(0).style.setProperty("--value-font-size-append", myMdwHelper.getStringFromNumberData(data.appendTextFontSize, 14, '', 'px'));
-
-                            $this.find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.imageColor, '#44739e'));
-                        }
-
-                        function setValue(value, type) {
-                            $prepandText.html(myMdwHelper.getValueFromData(data.prepandText, ''));
-                            $appendText.html(myMdwHelper.getValueFromData(data.appendText, ''));
-
-                            let result = '';
-                            if (type === 'number') {
-                                value = myMdwHelper.formatNumber(value, data.minDecimals, data.maxDecimals)
-                                unit = myMdwHelper.getValueFromData(data.customUnit, unit);
-
-                                result = `${value} ${unit}`;
-                            } else if (type === 'boolean') {
-                                if (value === true || value === 'true') {
-                                    result = myMdwHelper.getValueFromData(data.textOnTrue, value);
-                                } else {
-                                    result = myMdwHelper.getValueFromData(data.textOnFalse, value);
-                                }
-                            } else if (type === 'string') {
-                                result = value
-                            }
-
-                            if (myMdwHelper.getValueFromData(data.overrideText, undefined)) {
-                                $valueText.html(data.overrideText.replace('#value', result));
-                            } else {
-                                $valueText.html(result);
-                            }
-                        }
-                    } else {
-                        if (data.oid !== 'nothing_selected') {
-                            $valueText.html(`Error '${data.oid}' not exist!`);
-                            $this.css('color', 'FireBrick');
-                        }
-                    }
+                vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                    setValue(newVal, type);
                 });
+
+                vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
+                    setLayout();
+                });
+
+                vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
+                    setLayout();
+                });
+
+                $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
+                    if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
+                    setLayout();
+                });
+
+                setLayout();
+                setValue(val, type);
+
+                function setLayout() {
+                    $this.get(0).style.setProperty("--value-color-text", myMdwHelper.getValueFromData(data.valuesFontColor, ''));
+                    $this.get(0).style.setProperty("--value-font-text", myMdwHelper.getValueFromData(data.valuesFontFamily, ''));
+                    $this.get(0).style.setProperty("--value-font-size-text", myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px'));
+
+                    $this.get(0).style.setProperty("--value-color-prepand", myMdwHelper.getValueFromData(data.prepandTextColor, ''));
+                    $this.get(0).style.setProperty("--value-font-prepand", myMdwHelper.getValueFromData(data.prepandTextFontFamily, ''));
+                    $this.get(0).style.setProperty("--value-font-size-prepand", myMdwHelper.getStringFromNumberData(data.prepandTextFontSize, 14, '', 'px'));
+
+                    $this.get(0).style.setProperty("--value-color-append", myMdwHelper.getValueFromData(data.appendTextColor, ''));
+                    $this.get(0).style.setProperty("--value-font-append", myMdwHelper.getValueFromData(data.appendTextFontFamily, ''));
+                    $this.get(0).style.setProperty("--value-font-size-append", myMdwHelper.getStringFromNumberData(data.appendTextFontSize, 14, '', 'px'));
+
+                    $this.find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.imageColor, '#44739e'));
+                }
+
+                function setValue(value, type) {
+                    $prepandText.html(myMdwHelper.getValueFromData(data.prepandText, ''));
+                    $appendText.html(myMdwHelper.getValueFromData(data.appendText, ''));
+
+                    let result = '';
+                    if (type === 'number') {
+                        value = myMdwHelper.formatNumber(value, data.minDecimals, data.maxDecimals)
+                        let unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
+
+                        result = `${value} ${unit}`;
+                    } else if (type === 'boolean') {
+                        if (value === true || value === 'true') {
+                            result = myMdwHelper.getValueFromData(data.textOnTrue, value);
+                        } else {
+                            result = myMdwHelper.getValueFromData(data.textOnFalse, value);
+                        }
+                    } else if (type === 'string') {
+                        result = value
+                    }
+
+                    if (myMdwHelper.getValueFromData(data.overrideText, undefined)) {
+                        $valueText.html(data.overrideText.replace('#value', result));
+                    } else {
+                        $valueText.html(result);
+                    }
+                }
             }
         } catch (ex) {
             console.error(`[${widgetName} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
@@ -137,7 +129,7 @@ vis.binds.materialdesign.value = {
             appendTextFontSize: obj.appendTextFontSize,
             
             // Zahlenformatierung
-            customUnit: obj.customUnit,
+            valueLabelUnit: obj.valueLabelUnit,
             minDecimals: obj.minDecimals,
             maxDecimals: obj.maxDecimals,
             
@@ -149,7 +141,7 @@ vis.binds.materialdesign.value = {
             image: obj.image,
             imageColor: obj.imageColor,
             iconPosition: obj.iconPosition,
-            iconHeight: obj.iconHeight            
+            iconHeight: obj.iconHeight,            
         }
     },
     getHtmlConstructor(widgetData, type) {
