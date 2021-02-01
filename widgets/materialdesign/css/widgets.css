@@ -313,6 +313,18 @@
   --vue-progress-circular-progress-color-text: #44739e;
   --vue-progress-circular-progress-color-text-size: initial;
   --vue-progress-circular-progress-color-text-font-family: inherit;
+
+  --value-color-text: #44739e;
+  --value-font-text: inherit;
+  --value-font-size-text: 14px;
+
+  --value-color-prepand: #44739e;
+  --value-font-prepand: inherit;
+  --value-font-size-prepand: 14px;
+
+  --value-color-append: #44739e;
+  --value-font-append: inherit;
+  --value-font-size-append: 14px;  
 }
 
 /* remove clock symbol on chrome */
@@ -321,6 +333,27 @@
 .materialdesign-widget .materialdesign-vuetify-select input[type="time"]::-webkit-calendar-picker-indicator {
   background: none;
 }
+
+
+/* Value */
+.materialdesign-widget.materialdesign-value .value-text {
+  color: var(--value-color-text);
+  font-family: var(--value-font-text);
+  font-size: var(--value-font-size-text);
+}
+
+.materialdesign-widget.materialdesign-value .prepand-text {
+  color: var(--value-color-prepand);
+  font-family: var(--value-font-prepand);
+  font-size: var(--value-font-size-prepand);
+}
+
+.materialdesign-widget.materialdesign-value .append-text {
+  color: var(--value-color-append);
+  font-family: var(--value-font-append);
+  font-size: var(--value-font-size-append);
+}
+
 
 /* MaterialDesignIcons */
 .mdi:before,

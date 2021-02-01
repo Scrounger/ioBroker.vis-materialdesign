@@ -406,8 +406,13 @@ vis.binds.materialdesign.helper = {
                         style="width: ${width}; height: ${height}; ${style};" />`;
             } else {
                 // is material-icons
+
+                // return `<span class="mdi mdi-${icon} ${className}" 
+                //             style="width: ${height}; height: ${height}; font-size: ${height}; color: ${color}; ${style};"></span>`
+
+                // 01.02.2021 -> width & height rausgenommen
                 return `<span class="mdi mdi-${icon} ${className}" 
-                            style="width: ${height}; height: ${height}; font-size: ${height}; color: ${color}; ${style};"></span>`
+                            style="width: auto; height: auto; font-size: ${height}; color: ${color}; ${style};"></span>`
             }
         }
 
