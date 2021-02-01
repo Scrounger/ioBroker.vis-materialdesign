@@ -300,10 +300,6 @@
   --dialog-footer-button-text-font: inherit;
   --dialog-footer-button-text-font-size: 20px;
 
-
-  --vue-overlay-scrim-opacity: 0.46;
-  --vue-overlay-scrim-background-color: rgb(33, 33, 33);    
-
   --vue-progress-progress-color: #44739e;
   --vue-progress-progress-color-background: #e6e6e6;
   --vue-progress-progress-color-striped: rgba(255,255,255,0.25);
@@ -6346,7 +6342,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   top: 0;
   transition: inherit;
   width: 100%;
-  will-change: opacity;
+  /* will-change: opacity; */
 }
 
 .v-overlay--absolute {

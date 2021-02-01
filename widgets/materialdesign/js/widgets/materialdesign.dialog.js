@@ -53,7 +53,8 @@ vis.binds.materialdesign.dialog = {
                 if ($(`.dialog_${data.wid}`).parent().length > 0) {
                     // bei Änderungen am Widget, wird Widget neu erzeugt. Dialog hängt aber unter vis app, deshalb zu erst entfernen damit nicht doppelt
                     $(`.dialog_${data.wid}`).parent().remove();
-                    $("body").find('.v-overlay').not(':last').remove();
+                    $("body").find('.v-overlay__scrim').not(':last').off().remove();
+                    $("body").find('.v-overlay').not(':last').off().remove();
                 }
 
                 $this.append(`
@@ -63,6 +64,8 @@ vis.binds.materialdesign.dialog = {
                             max-width="${myMdwHelper.getValueFromData(data.dialogMaxWidth, undefined) ? data.dialogMaxWidth : 'auto'}"
                             :fullscreen="fullscreen"
                             :transition="transition"
+                            :overlay-color="overlayColor"
+                            :overlay-opacity="overlayOpacity"
                             content-class="dialog_${data.wid}"
                             eager
                             ${myMdwHelper.getBooleanFromData(data.closingClickOutside, false) ? '' : 'persistent'}
@@ -116,7 +119,9 @@ vis.binds.materialdesign.dialog = {
                                         closeText: myMdwHelper.getValueFromData(data.buttonText, _('close')),
                                         showToolbar: fullscreen,
                                         fullscreen: fullscreen,
-                                        transition: (fullscreen) ? 'dialog-bottom-transition' : 'dialog-transition'
+                                        transition: (fullscreen) ? 'dialog-bottom-transition' : 'dialog-transition',
+                                        overlayColor: myMdwHelper.getValueFromData(data.overlayColor, ''),
+                                        overlayOpacity: myMdwHelper.getNumberFromData(data.overlayOpacity, 0.6)
                                     }
                                 },
                                 methods: {
@@ -212,7 +217,7 @@ vis.binds.materialdesign.dialog = {
                                         }
 
                                         $dialog.css('background', myMdwHelper.getValueFromData(data.backgroundColor, ''));
-                                        
+
                                         $dialog.find('.v-card').css('background', myMdwHelper.getValueFromData(data.backgroundColor, ''));
 
 
@@ -222,10 +227,12 @@ vis.binds.materialdesign.dialog = {
 
                                         $dialog.find('.dialog-footer-divider').css('background', myMdwHelper.getValueFromData(data.dividerColor, 'lightgray'));
 
+                                        vueDialog.overlayColor = myMdwHelper.getValueFromData(data.overlayColor, '');
+                                        vueDialog.overlayOpacity = myMdwHelper.getNumberFromData(data.overlayOpacity, 0.6);
+
                                         // Overlay
-                                        $("body").find('.v-overlay').not(':last').remove();
-                                        $("body").find('.v-overlay__scrim').css('opacity', myMdwHelper.getValueFromData(data.overlayOpacity, 0.8));
-                                        $("body").find('.v-overlay__scrim').css('background', myMdwHelper.getValueFromData(data.overlayColor, 'rgb(33, 33, 33)'));
+                                        $("body").find('.v-overlay__scrim').not(':last').off().remove();
+                                        $("body").find('.v-overlay').not(':last').off().remove();
                                     }
 
                                     calcHeight();
