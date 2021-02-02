@@ -2084,7 +2084,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 .materialdesign-icon-list-item-standard {
   background: #fff;
-  padding: 4px;
+  /* padding: 4px; */
 }
 
 .materialdesign-icon-list-item-card {
@@ -2093,7 +2093,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
   color: black;
-  padding: 4px;
+  /* padding: 4px; */
 }
 
 .materialdesign-icon-list-item-card-layout-full {
@@ -2122,24 +2122,25 @@ svg.materialdesign-widget .materialdesign-button__icon {
 }
 
 .materialdesign-icon-list-item-text{
-  width: 100%;
+  width: calc(100% - 8px);
   font-size: var(--materialdesign-icon-list-items-text-font-size);
   font-family: var(--materialdesign-icon-list-items-text-font-family);
   color: var(--materialdesign-icon-list-items-text-font-color);
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  padding: 4px 4px 0 4px;
 }
 
 .materialdesign-icon-list-item-subText{
-  width: 100%;
+  width: calc(100% - 8px);
   font-size: var(--materialdesign-icon-list-items-subText-font-size);
   font-family: var(--materialdesign-icon-list-items-subText-font-family);
   color: var(--materialdesign-icon-list-items-subText-font-color);
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  padding-top: 2px;
+  padding: 2px 4px 4px 4px;
 }
 
 .materialdesign-icon-list-item-value{
@@ -2160,21 +2161,21 @@ svg.materialdesign-widget .materialdesign-button__icon {
 .materialdesign-icon-list-item-layout-vertical-status-line {
   background: transparent;
   min-height: 4px; 
-  width: calc(100% + 8px); 
-  margin-left: -4px;
+  width: 100%; 
+  /* margin-left: -4px;
   margin-right: -4px;
-  margin-bottom: -4px;
+  margin-bottom: -4px; */
   align-self: flex-end;
 }
 
 .materialdesign-icon-list-item-layout-vertical-status-line-card {
   background: transparent;
   min-height: 4px; 
-  width: calc(100% + 8px); 
+  width: 100%; 
   border-radius: 0 0 4px 4px;
-  margin-left: -4px;
+  /* margin-left: -4px;
   margin-right: -4px;
-  margin-bottom: -4px;
+  margin-bottom: -4px; */
   align-self: flex-end;
 }
 
@@ -2200,19 +2201,21 @@ svg.materialdesign-widget .materialdesign-button__icon {
 .materialdesign-icon-list-item-layout-horizontal-status-line {
   background: transparent;
   min-height: 4px; 
-  width: calc(100% + 8px); 
-  margin-left: -4px;
+  width: 100%; 
+  /* margin-left: -4px;
   margin-right: -4px;
+  margin-bottom: -4px; */
   align-self: flex-end;
 }
 
 .materialdesign-icon-list-item-layout-horizontal-status-line-card {
   background: transparent;
   min-height: 4px; 
-  width: calc(100% + 8px); 
+  width: 100%; 
   border-radius: 0 0 4px 4px;
-  margin-left: -4px;
+  /* margin-left: -4px;
   margin-right: -4px;
+  margin-bottom: -4px; */
   align-self: flex-end;
 }
 
