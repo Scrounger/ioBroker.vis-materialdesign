@@ -39,7 +39,7 @@ vis.binds.materialdesign.value = {
                 if (data.debug) console.log(`[Value - ${data.wid}] type: ${type}`);
 
                 vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                    setValue(newVal, type);
+                    setValue(newVal, type, oldVal);
                 });
 
                 vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
@@ -56,7 +56,7 @@ vis.binds.materialdesign.value = {
                 });
 
                 setLayout();
-                setValue(val, type);
+                setValue(val, type, val);
 
                 function setLayout() {
                     $this.get(0).style.setProperty("--value-color-text", myMdwHelper.getValueFromData(data.valuesFontColor, ''));
@@ -74,34 +74,38 @@ vis.binds.materialdesign.value = {
                     $this.find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.imageColor, '#44739e'));
                 }
 
-                function setValue(value, type) {
+                function setValue(value, type, oldVal) {
                     $prepandText.html(myMdwHelper.getValueFromData(data.prepandText, ''));
                     $appendText.html(myMdwHelper.getValueFromData(data.appendText, ''));
 
                     let result = '';
-                    if (type === 'number') {
-                        if (myMdwHelper.getValueFromData(data.convertToDuration, undefined)) {
-                            value = parseFloat(value);
+                    if (value !== undefined && value !== null) {
+                        if (type === 'number') {
+                            if (myMdwHelper.getValueFromData(data.convertToDuration, undefined)) {
+                                value = parseFloat(value);
 
-                            if (data.convertToDuration === 'humanize') {
-                                result = moment.duration(value, "seconds").humanize();
+                                if (data.convertToDuration === 'humanize') {
+                                    result = moment.duration(value, "seconds").humanize();
+                                } else {
+                                    result = moment.utc(moment.duration(value, "seconds").as('milliseconds')).format(data.convertToDuration)
+                                }
                             } else {
-                                result = moment.utc(moment.duration(value, "seconds").as('milliseconds')).format(data.convertToDuration)
-                            }
-                        } else {
-                            value = myMdwHelper.formatNumber(value, data.minDecimals, data.maxDecimals)
-                            let unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
+                                value = myMdwHelper.formatNumber(value, data.minDecimals, data.maxDecimals)
+                                let unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
 
-                            result = `${value} ${unit}`;
+                                result = `${value} ${unit}`;
+                            }
+                        } else if (type === 'boolean') {
+                            if (value === true || value === 'true') {
+                                result = myMdwHelper.getValueFromData(data.textOnTrue, value);
+                            } else {
+                                result = myMdwHelper.getValueFromData(data.textOnFalse, value);
+                            }
+                        } else if (type === 'string') {
+                            result = value
                         }
-                    } else if (type === 'boolean') {
-                        if (value === true || value === 'true') {
-                            result = myMdwHelper.getValueFromData(data.textOnTrue, value);
-                        } else {
-                            result = myMdwHelper.getValueFromData(data.textOnFalse, value);
-                        }
-                    } else if (type === 'string') {
-                        result = value
+                    } else {
+                        if (data.debug) console.warn(`value is '${value}' oid: ${data.oid}`);
                     }
 
                     if (myMdwHelper.getValueFromData(data.overrideText, undefined)) {
@@ -123,7 +127,7 @@ vis.binds.materialdesign.value = {
             oid: obj.oid,
             overrideText: obj.overrideText,
             debug: obj.debug,
-            
+
             // Layout
             textAlign: obj.textAlign,
             valuesFontColor: obj.valuesFontColor,
@@ -137,22 +141,22 @@ vis.binds.materialdesign.value = {
             appendTextColor: obj.appendTextColor,
             appendTextFontFamily: obj.appendTextFontFamily,
             appendTextFontSize: obj.appendTextFontSize,
-            
+
             // Zahlenformatierung
             valueLabelUnit: obj.valueLabelUnit,
             minDecimals: obj.minDecimals,
             maxDecimals: obj.maxDecimals,
             convertToDuration: obj.convertToDuration,
-            
+
             // Logikwert Formatierung
             textOnTrue: obj.textOnTrue,
             textOnFalse: obj.textOnFalse,
-            
+
             // Symbol
             image: obj.image,
             imageColor: obj.imageColor,
             iconPosition: obj.iconPosition,
-            iconHeight: obj.iconHeight            
+            iconHeight: obj.iconHeight
         }
     },
     getHtmlConstructor(widgetData, type) {
