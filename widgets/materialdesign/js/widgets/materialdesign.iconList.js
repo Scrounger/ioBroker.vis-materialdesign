@@ -80,6 +80,7 @@ vis.binds.materialdesign.iconlist =
                     $this.context.style.setProperty("--materialdesign-icon-list-items-per-row", myMdwHelper.getNumberFromData(data.maxItemsperRow, 1));
 
                     $this.context.style.setProperty("--materialdesign-icon-list-items-min-width", myMdwHelper.getNumberFromData(data.iconItemMinWidth, 50) + 'px');
+                    $this.context.style.setProperty("--materialdesign-icon-list-items-min-height", myMdwHelper.getNumberFromData(data.iconItemMinHeight, 0) + 'px');
                     $this.context.style.setProperty("--materialdesign-icon-list-items-gaps", myMdwHelper.getNumberFromData(data.itemGaps, 4) + 'px');
 
                     $this.context.style.setProperty("--materialdesign-icon-list-items-text-font-size", myMdwHelper.getNumberFromData(data.labelFontSize, 14) + 'px');

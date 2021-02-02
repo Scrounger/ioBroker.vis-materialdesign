@@ -8249,6 +8249,18 @@ systemDictionary = {
         "pl": "minimalna szerokość",
         "zh-cn": "最小宽度"
     },
+    "iconItemMinHeight": {
+        "en": "minimal height",
+        "de": "minimale Höhe",
+        "ru": "минимальная высота",
+        "pt": "altura mínima",
+        "nl": "minimale hoogte",
+        "fr": "hauteur minimale",
+        "it": "altezza minima",
+        "es": "altura mínima",
+        "pl": "minimalna wysokość",
+        "zh-cn": "最小高度"
+    },
     "json_string_oid": {
         "en": "JSON-String: object id",
         "de": "JSON-String: Objekt-ID",
