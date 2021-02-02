@@ -8720,7 +8720,8 @@ The adapter uses the following libraries:
 <!-- omit in toc -->
 ### __WORK IN PROGRESS__
 * (Scrounger) HTML Widgets added - use Material Design Widgets in any html element
-* (Scrounger) Table: Control Elements removed, using new HTML Elements -> breaking changes !!!
+* (Scrounger) Table: Control Elements removed, using new HTML Widgets -> breaking changes !!!
+* (Scrounger) new Value Widget added
 * (Scrounger) list: using object id for json string added -> breaking changes !!!
 * (Scrounger) Documentation revised
 * (Scrounger) Card layout bug fixes for HTML Card, IconList, List and Table Widget

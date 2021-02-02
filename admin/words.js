@@ -11309,5 +11309,17 @@ systemDictionary = {
         "es": "duración del efecto",
         "pl": "czas trwania efektu",
         "zh-cn": "效果持续时间"
+    },
+    "calculate": {
+        "en": "calculate",
+        "de": "Berechnung",
+        "ru": "вычислить",
+        "pt": "calcular",
+        "nl": "berekenen",
+        "fr": "calculer",
+        "it": "calcolare",
+        "es": "calcular",
+        "pl": "Oblicz",
+        "zh-cn": "计算"
     }
 };

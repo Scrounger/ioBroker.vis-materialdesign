@@ -105,10 +105,18 @@ vis.binds.materialdesign.value = {
                                     result = moment.utc(moment.duration(value, "seconds").as('milliseconds')).format(data.convertToDuration)
                                 }
                             } else {
-                                value = myMdwHelper.formatNumber(value, data.minDecimals, data.maxDecimals)
-                                let unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
+                                try {
+                                    if (myMdwHelper.getValueFromData(data.calculate, undefined) && data.calculate.includes('#value')) {
+                                        value = math.evaluate(data.calculate.replace(/#value/g, value));
+                                    }
 
-                                result = `${value} ${unit}`;
+                                    value = myMdwHelper.formatNumber(value, data.minDecimals, data.maxDecimals);
+                                    let unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
+
+                                    result = `${value} ${unit}`;
+                                } catch (e) {
+                                    result = `Error: ${e.message}`;
+                                }
                             }
                         } else if (type === 'boolean') {
                             if (value === true || value === 'true') {
@@ -161,6 +169,7 @@ vis.binds.materialdesign.value = {
             valueLabelUnit: obj.valueLabelUnit,
             minDecimals: obj.minDecimals,
             maxDecimals: obj.maxDecimals,
+            calculate: obj.calculate,
             convertToDuration: obj.convertToDuration,
 
             // Logikwert Formatierung
@@ -173,7 +182,7 @@ vis.binds.materialdesign.value = {
             iconPosition: obj.iconPosition,
             iconHeight: obj.iconHeight,
 
-            // group_changeEffect
+            // Wertänderungseffekt
             changeEffectEnabled: obj.changeEffectEnabled,
             effectFontColor: obj.effectFontColor,
             effectFontFamily: obj.effectFontFamily,
