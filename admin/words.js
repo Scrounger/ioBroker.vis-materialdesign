@@ -11237,5 +11237,77 @@ systemDictionary = {
         "es": "texto si es falso",
         "pl": "tekst, jeśli fałsz",
         "zh-cn": "文字为假"
+    },
+    "group_changeEffect": {
+        "en": "value change effect",
+        "de": "Wertänderungseffekt",
+        "ru": "эффект изменения стоимости",
+        "pt": "efeito de mudança de valor",
+        "nl": "waarde verandering effect",
+        "fr": "effet de changement de valeur",
+        "it": "effetto di cambio di valore",
+        "es": "efecto de cambio de valor",
+        "pl": "efekt zmiany wartości",
+        "zh-cn": "价值变化效应"
+    },
+    "changeEffectEnabled": {
+        "en": "enabled",
+        "de": "aktiviert",
+        "ru": "включен",
+        "pt": "ativado",
+        "nl": "ingeschakeld",
+        "fr": "activée",
+        "it": "abilitato",
+        "es": "habilitado",
+        "pl": "włączone",
+        "zh-cn": "已启用"
+    },
+    "effectFontColor": {
+        "en": "font color",
+        "de": "Schriftfarbe",
+        "ru": "Цвет шрифта",
+        "pt": "cor da fonte",
+        "nl": "lettertype kleur",
+        "fr": "couleur de la police",
+        "it": "colore del carattere",
+        "es": "color de fuente",
+        "pl": "kolor czcionki",
+        "zh-cn": "字体颜色"
+    },
+    "effectFontFamily": {
+        "en": "font",
+        "de": "Schriftart",
+        "ru": "шрифт",
+        "pt": "Fonte",
+        "nl": "lettertype",
+        "fr": "Police de caractère",
+        "it": "font",
+        "es": "fuente",
+        "pl": "czcionka",
+        "zh-cn": "字形"
+    },
+    "effectFontSize": {
+        "en": "font size",
+        "de": "Schriftgröße",
+        "ru": "размер шрифта",
+        "pt": "tamanho da fonte",
+        "nl": "lettertypegrootte",
+        "fr": "taille de police",
+        "it": "dimensione del font",
+        "es": "tamaño de fuente",
+        "pl": "rozmiar czcionki",
+        "zh-cn": "字体大小"
+    },
+    "effectDuration": {
+        "en": "effect duration",
+        "de": "Effektdauer",
+        "ru": "продолжительность эффекта",
+        "pt": "duração do efeito",
+        "nl": "effect duur",
+        "fr": "durée de l'effet",
+        "it": "durata dell'effetto",
+        "es": "duración del efecto",
+        "pl": "czas trwania efektu",
+        "zh-cn": "效果持续时间"
     }
 };

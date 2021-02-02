@@ -80,6 +80,21 @@ vis.binds.materialdesign.value = {
 
                     let result = '';
                     if (value !== undefined && value !== null) {
+
+                        if (myMdwHelper.getBooleanFromData(data.changeEffectEnabled, false)) {
+                            if (value !== oldVal || parseFloat(value) !== parseFloat(oldVal)) {
+                                $this.get(0).style.setProperty("--value-color-text", myMdwHelper.getValueFromData(data.effectFontColor, myMdwHelper.getValueFromData(data.valuesFontColor, '')));
+                                $this.get(0).style.setProperty("--value-font-text", myMdwHelper.getValueFromData(data.effectFontFamily, myMdwHelper.getValueFromData(data.valuesFontFamily, '')));
+                                $this.get(0).style.setProperty("--value-font-size-text", myMdwHelper.getStringFromNumberData(data.effectFontSize, myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px'), '', 'px'));
+
+                                setTimeout(function () {
+                                    $this.get(0).style.setProperty("--value-color-text", myMdwHelper.getValueFromData(data.valuesFontColor, ''));
+                                    $this.get(0).style.setProperty("--value-font-text", myMdwHelper.getValueFromData(data.valuesFontFamily, ''));
+                                    $this.get(0).style.setProperty("--value-font-size-text", myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px'));
+                                }, myMdwHelper.getNumberFromData(data.effectDuration, 750));
+                            }
+                        }
+
                         if (type === 'number') {
                             if (myMdwHelper.getValueFromData(data.convertToDuration, undefined)) {
                                 value = parseFloat(value);
@@ -156,7 +171,14 @@ vis.binds.materialdesign.value = {
             image: obj.image,
             imageColor: obj.imageColor,
             iconPosition: obj.iconPosition,
-            iconHeight: obj.iconHeight
+            iconHeight: obj.iconHeight,
+
+            // group_changeEffect
+            changeEffectEnabled: obj.changeEffectEnabled,
+            effectFontColor: obj.effectFontColor,
+            effectFontFamily: obj.effectFontFamily,
+            effectFontSize: obj.effectFontSize,
+            effectDuration: obj.effectDuration
         }
     },
     getHtmlConstructor(widgetData, type) {
