@@ -58,7 +58,7 @@ vis.binds.materialdesign.dialog = {
                 }
 
                 $this.append(`
-                    <div class="${containerClass}" style="width: 100%; height: 100%;">
+                    <div class="${containerClass}" style="width: 100%; height: 100%; z-index: ${myMdwHelper.getNumberFromData(data.z_index - 2, 202)}">
                         <v-dialog
                             v-model="showDialog"
                             max-width="${myMdwHelper.getValueFromData(data.dialogMaxWidth, undefined) ? data.dialogMaxWidth : 'auto'}"
