@@ -103,7 +103,7 @@ vis.binds.materialdesign.value = {
 
                                     value = myMdwHelper.formatNumber(value, data.minDecimals, data.maxDecimals);
                                     oldVal = myMdwHelper.formatNumber(oldVal, data.minDecimals, data.maxDecimals);
-                                    
+
                                     let unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
 
                                     result = `${value} ${unit}`;
@@ -138,15 +138,17 @@ vis.binds.materialdesign.value = {
 
                     if (myMdwHelper.getBooleanFromData(data.changeEffectEnabled, false)) {
                         if (value !== oldVal) {
-                            $this.get(0).style.setProperty("--value-color-text", myMdwHelper.getValueFromData(data.effectFontColor, myMdwHelper.getValueFromData(data.valuesFontColor, '')));
-                            $this.get(0).style.setProperty("--value-font-text", myMdwHelper.getValueFromData(data.effectFontFamily, myMdwHelper.getValueFromData(data.valuesFontFamily, '')));
-                            $this.get(0).style.setProperty("--value-font-size-text", myMdwHelper.getStringFromNumberData(data.effectFontSize, myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px'), '', 'px'));
+                            $valueText.animate({
+                                color: myMdwHelper.getValueFromData(data.effectFontColor, myMdwHelper.getValueFromData(data.valuesFontColor, '')),
+                                "font-family": myMdwHelper.getValueFromData(data.effectFontFamily, myMdwHelper.getValueFromData(data.valuesFontFamily, '')),
+                                "font-size": myMdwHelper.getStringFromNumberData(data.effectFontSize, myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px'), '', 'px')
+                            }, myMdwHelper.getNumberFromData(data.effectDuration, 750 / 2) / 3 * 2);
 
-                            setTimeout(function () {
-                                $this.get(0).style.setProperty("--value-color-text", myMdwHelper.getValueFromData(data.valuesFontColor, ''));
-                                $this.get(0).style.setProperty("--value-font-text", myMdwHelper.getValueFromData(data.valuesFontFamily, ''));
-                                $this.get(0).style.setProperty("--value-font-size-text", myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px'));
-                            }, myMdwHelper.getNumberFromData(data.effectDuration, 750));
+                            $valueText.animate({
+                                color: myMdwHelper.getValueFromData(myMdwHelper.getValueFromData(data.valuesFontColor, '')),
+                                "font-family": myMdwHelper.getValueFromData(data.valuesFontFamily, ''),
+                                "font-size": myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px')
+                            }, myMdwHelper.getNumberFromData(data.effectDuration, 750) / 3);
                         }
                     }
 
