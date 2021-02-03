@@ -9,6 +9,7 @@ vis.binds.materialdesign.value = {
     initialize: async function (el, data) {
         let widgetName = 'Value';
         let themeTriggerClass = '.materialdesign-widget.materialdesign-value'
+        let logPrefix = `[Value - ${data.wid}] initialize:`;
 
         try {
             let $this = $(el);
@@ -32,11 +33,11 @@ vis.binds.materialdesign.value = {
                 let $valueText = $this.find('.value-text');
                 let $appendText = $this.find('.append-text');
 
-
                 let val = vis.states.attr(data.oid + '.val');
-                let type = typeof (val);
+                let datapointType = myMdwHelper.getValueFromData(data.datapointType, 'auto');
+                let type = datapointType === 'auto' ? typeof (val) : datapointType;
 
-                if (data.debug) console.log(`[Value - ${data.wid}] type: ${type}`);
+                if (data.debug) console.log(`${logPrefix} type: '${type}', datapointType: '${datapointType}'`);
 
                 vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                     setValue(newVal, type, oldVal);
@@ -107,7 +108,10 @@ vis.binds.materialdesign.value = {
                             } else {
                                 try {
                                     if (myMdwHelper.getValueFromData(data.calculate, undefined) && data.calculate.includes('#value')) {
-                                        value = math.evaluate(data.calculate.replace(/#value/g, value));
+                                        let calc = data.calculate.replace(/#value/g, value);
+                                        value = math.evaluate(calc);
+
+                                        if (data.debug) console.log(`${logPrefix} type: '${type}', evaluate: '${calc}', result: '${value}'`);
                                     }
 
                                     value = myMdwHelper.formatNumber(value, data.minDecimals, data.maxDecimals);
@@ -115,20 +119,31 @@ vis.binds.materialdesign.value = {
 
                                     result = `${value} ${unit}`;
                                 } catch (e) {
-                                    result = `Error: ${e.message}`;
+                                    result = `Error: type: '${type}' - ${e.message}`;
                                 }
                             }
                         } else if (type === 'boolean') {
-                            if (value === true || value === 'true') {
-                                result = myMdwHelper.getValueFromData(data.textOnTrue, value);
-                            } else {
-                                result = myMdwHelper.getValueFromData(data.textOnFalse, value);
+                            try {
+                                if (myMdwHelper.getValueFromData(data.condition, undefined) && data.condition.includes('#value')) {
+                                    let cond = data.condition.replace(/#value/g, value);
+                                    value = math.evaluate(cond);
+
+                                    if (data.debug) console.log(`${logPrefix} type: '${type}', evaluate: '${cond}', result: '${value}'`);
+                                }
+
+                                if (value === true || value === 'true') {
+                                    result = myMdwHelper.getValueFromData(data.textOnTrue, value);
+                                } else {
+                                    result = myMdwHelper.getValueFromData(data.textOnFalse, value.toString());
+                                }
+                            } catch (e) {
+                                result = `Error: type: '${type}' - ${e.message}`;
                             }
                         } else if (type === 'string') {
                             result = value
                         }
                     } else {
-                        if (data.debug) console.warn(`value is '${value}' oid: ${data.oid}`);
+                        if (data.debug) console.warn(`${logPrefix} value is '${value}' oid: ${data.oid}`);
                     }
 
                     if (myMdwHelper.getValueFromData(data.overrideText, undefined)) {
@@ -148,6 +163,7 @@ vis.binds.materialdesign.value = {
 
             // Allgemein
             oid: obj.oid,
+            datapointType: obj.datapointType,
             overrideText: obj.overrideText,
             debug: obj.debug,
 
@@ -175,6 +191,7 @@ vis.binds.materialdesign.value = {
             // Logikwert Formatierung
             textOnTrue: obj.textOnTrue,
             textOnFalse: obj.textOnFalse,
+            condition: obj.condition,
 
             // Symbol
             image: obj.image,
