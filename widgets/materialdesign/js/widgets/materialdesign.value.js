@@ -81,24 +81,10 @@ vis.binds.materialdesign.value = {
 
                     let result = '';
                     if (value !== undefined && value !== null) {
-
-                        if (myMdwHelper.getBooleanFromData(data.changeEffectEnabled, false)) {
-                            if (value !== oldVal || parseFloat(value) !== parseFloat(oldVal)) {
-                                $this.get(0).style.setProperty("--value-color-text", myMdwHelper.getValueFromData(data.effectFontColor, myMdwHelper.getValueFromData(data.valuesFontColor, '')));
-                                $this.get(0).style.setProperty("--value-font-text", myMdwHelper.getValueFromData(data.effectFontFamily, myMdwHelper.getValueFromData(data.valuesFontFamily, '')));
-                                $this.get(0).style.setProperty("--value-font-size-text", myMdwHelper.getStringFromNumberData(data.effectFontSize, myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px'), '', 'px'));
-
-                                setTimeout(function () {
-                                    $this.get(0).style.setProperty("--value-color-text", myMdwHelper.getValueFromData(data.valuesFontColor, ''));
-                                    $this.get(0).style.setProperty("--value-font-text", myMdwHelper.getValueFromData(data.valuesFontFamily, ''));
-                                    $this.get(0).style.setProperty("--value-font-size-text", myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px'));
-                                }, myMdwHelper.getNumberFromData(data.effectDuration, 750));
-                            }
-                        }
-
                         if (type === 'number') {
                             if (myMdwHelper.getValueFromData(data.convertToDuration, undefined)) {
                                 value = parseFloat(value);
+                                oldVal = parseFloat(oldVal);
 
                                 if (data.convertToDuration === 'humanize') {
                                     result = moment.duration(value, "seconds").humanize();
@@ -108,13 +94,16 @@ vis.binds.materialdesign.value = {
                             } else {
                                 try {
                                     if (myMdwHelper.getValueFromData(data.calculate, undefined) && data.calculate.includes('#value')) {
-                                        let calc = data.calculate.replace(/#value/g, value);
+                                        let calc = replaceValue(data.calculate, value);
                                         value = math.evaluate(calc);
+                                        oldVal = math.evaluate(replaceValue(data.calculate, oldVal));
 
                                         if (data.debug) console.log(`${logPrefix} type: '${type}', evaluate: '${calc}', result: '${value}'`);
                                     }
 
                                     value = myMdwHelper.formatNumber(value, data.minDecimals, data.maxDecimals);
+                                    oldVal = myMdwHelper.formatNumber(oldVal, data.minDecimals, data.maxDecimals);
+                                    
                                     let unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
 
                                     result = `${value} ${unit}`;
@@ -125,8 +114,9 @@ vis.binds.materialdesign.value = {
                         } else if (type === 'boolean') {
                             try {
                                 if (myMdwHelper.getValueFromData(data.condition, undefined) && data.condition.includes('#value')) {
-                                    let cond = data.condition.replace(/#value/g, value);
+                                    let cond = replaceValue(data.condition, value);
                                     value = math.evaluate(cond);
+                                    oldVal = math.evaluate(replaceValue(data.condition, oldVal));
 
                                     if (data.debug) console.log(`${logPrefix} type: '${type}', evaluate: '${cond}', result: '${value}'`);
                                 }
@@ -146,10 +136,28 @@ vis.binds.materialdesign.value = {
                         if (data.debug) console.warn(`${logPrefix} value is '${value}' oid: ${data.oid}`);
                     }
 
+                    if (myMdwHelper.getBooleanFromData(data.changeEffectEnabled, false)) {
+                        if (value !== oldVal) {
+                            $this.get(0).style.setProperty("--value-color-text", myMdwHelper.getValueFromData(data.effectFontColor, myMdwHelper.getValueFromData(data.valuesFontColor, '')));
+                            $this.get(0).style.setProperty("--value-font-text", myMdwHelper.getValueFromData(data.effectFontFamily, myMdwHelper.getValueFromData(data.valuesFontFamily, '')));
+                            $this.get(0).style.setProperty("--value-font-size-text", myMdwHelper.getStringFromNumberData(data.effectFontSize, myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px'), '', 'px'));
+
+                            setTimeout(function () {
+                                $this.get(0).style.setProperty("--value-color-text", myMdwHelper.getValueFromData(data.valuesFontColor, ''));
+                                $this.get(0).style.setProperty("--value-font-text", myMdwHelper.getValueFromData(data.valuesFontFamily, ''));
+                                $this.get(0).style.setProperty("--value-font-size-text", myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px'));
+                            }, myMdwHelper.getNumberFromData(data.effectDuration, 750));
+                        }
+                    }
+
                     if (myMdwHelper.getValueFromData(data.overrideText, undefined)) {
                         $valueText.html(data.overrideText.replace('#value', result));
                     } else {
                         $valueText.html(result);
+                    }
+
+                    function replaceValue(str, data) {
+                        return str.replace(/#value/g, data);
                     }
                 }
             }
