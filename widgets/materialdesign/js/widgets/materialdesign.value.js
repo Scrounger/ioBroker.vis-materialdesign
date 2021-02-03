@@ -76,6 +76,8 @@ vis.binds.materialdesign.value = {
                 }
 
                 function setValue(value, type, oldVal) {
+                    let changed = false;
+
                     $prepandText.html(myMdwHelper.getValueFromData(data.prepandText, ''));
                     $appendText.html(myMdwHelper.getValueFromData(data.appendText, ''));
 
@@ -138,24 +140,34 @@ vis.binds.materialdesign.value = {
 
                     if (myMdwHelper.getBooleanFromData(data.changeEffectEnabled, false)) {
                         if (value !== oldVal) {
+                            changed = true;
+
                             $valueText.animate({
                                 color: myMdwHelper.getValueFromData(data.effectFontColor, myMdwHelper.getValueFromData(data.valuesFontColor, '')),
-                                "font-family": myMdwHelper.getValueFromData(data.effectFontFamily, myMdwHelper.getValueFromData(data.valuesFontFamily, '')),
-                                "font-size": myMdwHelper.getStringFromNumberData(data.effectFontSize, myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px'), '', 'px')
-                            }, myMdwHelper.getNumberFromData(data.effectDuration, 750 / 2) / 3 * 2);
+                                fontSize: myMdwHelper.getStringFromNumberData(data.effectFontSize, myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px'), '', 'px')
+                            }, myMdwHelper.getNumberFromData(data.effectDuration, 750) / 3 * 2);
+
+                            setTimeout(function () {
+                                if (myMdwHelper.getValueFromData(data.overrideText, undefined)) {
+                                    $valueText.html(data.overrideText.replace('#value', result));
+                                } else {
+                                    $valueText.html(result);
+                                }
+                            }, myMdwHelper.getNumberFromData(data.effectDuration, 750) / 3);
 
                             $valueText.animate({
                                 color: myMdwHelper.getValueFromData(myMdwHelper.getValueFromData(data.valuesFontColor, '')),
-                                "font-family": myMdwHelper.getValueFromData(data.valuesFontFamily, ''),
-                                "font-size": myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px')
+                                fontSize: myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px')
                             }, myMdwHelper.getNumberFromData(data.effectDuration, 750) / 3);
                         }
                     }
 
-                    if (myMdwHelper.getValueFromData(data.overrideText, undefined)) {
-                        $valueText.html(data.overrideText.replace('#value', result));
-                    } else {
-                        $valueText.html(result);
+                    if (!changed) {
+                        if (myMdwHelper.getValueFromData(data.overrideText, undefined)) {
+                            $valueText.html(data.overrideText.replace('#value', result));
+                        } else {
+                            $valueText.html(result);
+                        }
                     }
 
                     function replaceValue(str, data) {
@@ -212,9 +224,8 @@ vis.binds.materialdesign.value = {
             // Wertänderungseffekt
             changeEffectEnabled: obj.changeEffectEnabled,
             effectFontColor: obj.effectFontColor,
-            effectFontFamily: obj.effectFontFamily,
             effectFontSize: obj.effectFontSize,
-            effectDuration: obj.effectDuration
+            effectDuration: obj.effectDuration,
         }
     },
     getHtmlConstructor(widgetData, type) {
