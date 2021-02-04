@@ -13,9 +13,16 @@ vis.binds.materialdesign.chart = {
                 myChartHelper.registerChartAreaPlugin();
 
                 let $this = $(el);
-                var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
 
-                $(el).find('.materialdesign-chart-container').css('background-color', myMdwHelper.getValueFromData(data.backgroundColor, ''));
+                if (myMdwHelper.getBooleanFromData(data.cardUse, false)) {
+                    $this.html(vis.binds.materialdesign.chart.helper.getCardBackground(data));
+                } else {
+                    $this.html('<canvas class="materialdesign-chart-container"></canvas>');
+                }
+
+                var chartContainer = $this.find('.materialdesign-chart-container').get(0);
+
+                $this.find('.materialdesign-chart-container').css('background-color', myMdwHelper.getValueFromData(data.backgroundColor, ''));
                 let globalColor = myMdwHelper.getValueFromData(data.globalColor, '#44739e');
 
                 let colorScheme = myMdwHelper.getValueFromData(data.colorScheme, null);
@@ -2030,5 +2037,23 @@ vis.binds.materialdesign.chart.helper = {
             beforeDatasetsUpdate: regenerateGradient,
             resize: (chart, newSize, opts) => regenerateGradient(chart, opts),
         }
+    },
+    getCardBackground(data) {
+        let titleFontSize = myMdwHelper.getFontSize(data.titleLayout);
+        let showTitleSection = 'display: none;';
+        if (myMdwHelper.getValueFromData(data.title, null) != null) {
+            showTitleSection = '';
+        }
+
+        return `<div class="materialdesign-html-card mdc-card" style="margin-top: 3px; margin-left: 3px; width: calc(100% - 6px); height: calc(100% - 6px);">
+                    <div class="materialdesign-html-card card-title-section" style="${showTitleSection}">
+                        <div class="materialdesign-html-card card-title ${titleFontSize.class}" style="${titleFontSize.style}">${data.title}</div>
+                    </div>
+                    <div class="materialdesign-html-card card-text-section iconlist" style="height: 100%; ${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'overflow-y: auto; overflow-x: hidden;' : ''} margin: ${myMdwHelper.getNumberFromData(data.borderDistance, 10)}px;">
+                        <div class="materialdesign-html-card" style="height: 100%">
+                            <canvas class="materialdesign-chart-container"></canvas>
+                        </div>
+                    </div>
+                </div>`
     }
 }
