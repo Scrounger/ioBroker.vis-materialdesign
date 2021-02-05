@@ -158,14 +158,14 @@ vis.binds.materialdesign.helper = {
                         if (id.includes('vis-materialdesign.0.colors.')) {
                             if (!darkTheme) {
                                 let val = vis.states.attr(id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.light.') + '.val');
-                                if (val) {
+                                if (val && val !== null && val !== 'null') {
                                     return prepand + val + append;
                                 } else {
                                     return nullValue;
                                 }
                             } else {
                                 let val = vis.states.attr(id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.dark.') + '.val');
-                                if (val) {
+                                if (val && val !== null && val !== 'null') {
                                     return prepand + val + append;
                                 } else {
                                     return nullValue;
@@ -206,8 +206,8 @@ vis.binds.materialdesign.helper = {
                     let id = dataValue.replace('#mdwTheme:', '');
                     let val = vis.states.attr(id + '.val');
 
-                    if (val) {
-                        return parseFloat(vis.states.attr(id + '.val'));
+                    if (val && val !== null && val !== 'null') {
+                        return parseFloat(val);
                     } else {
                         return nullValue;
                     }
@@ -231,8 +231,8 @@ vis.binds.materialdesign.helper = {
                     let id = dataValue.replace('#mdwTheme:', '');
                     let val = vis.states.attr(id + '.val');
 
-                    if (val) {
-                        return prepand + parseFloat(vis.states.attr(id + '.val')) + append;
+                    if (val && val !== null && val !== 'null') {
+                        return prepand + parseFloat(val) + append;
                     } else {
                         return nullValue;
                     }
