@@ -25,7 +25,7 @@ vis.binds.materialdesign.chart = {
 
                     if (myMdwHelper.getBooleanFromData(data.cardUse, false)) {
                         // Card Layout
-                        $this.html(vis.binds.materialdesign.chart.helper.getCardBackground(data));
+                        $this.html(myChartHelper.getCardBackground(data));
                     } else {
                         $this.html('<canvas class="materialdesign-chart-container"></canvas>');
                     }
@@ -393,11 +393,23 @@ vis.binds.materialdesign.chart = {
                 let myChartHelper = vis.binds.materialdesign.chart.helper;
                 myChartHelper.registerChartAreaPlugin();
 
-                var myChart;
-
+                let $this = $(el);
+                let myChart;
                 let errorsOnDataLoading = [];
 
-                let $this = $(el);
+                if (myMdwHelper.getBooleanFromData(data.cardUse, false)) {
+                    // Card Layout
+                    $this.html(`<div class="material-progress-circular-container">
+                                    <progress class="material-progress-circular"/>
+                                </div>
+                                ${myChartHelper.getCardBackground(data)}`);
+                } else {
+                    $this.html(`<div class="material-progress-circular-container">
+                                    <progress class="material-progress-circular"/>
+                                </div>
+                                <canvas class="materialdesign-chart-container"></canvas>`);
+                }
+
                 var chartContainer = $this.find('.materialdesign-chart-container').get(0);
 
                 var progressBar = $this.find('.material-progress-circular-container');
