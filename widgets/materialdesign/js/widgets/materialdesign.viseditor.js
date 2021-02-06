@@ -802,10 +802,19 @@ vis.binds.materialdesign.viseditor = {
                         if (that.activeWidgets.length === 1) {
                             that.confirmMessage(_('all colors, fonts and font sizes of the widget will be overridden - do you want to continue?'), _('attention'), null, 700, function (result) {
                                 if (result) {
+
+                                    // prevent too much recursion
+                                    let oidToRestore = undefined;
+                                    let $oid = $(`#inspect_oid`);                                    
+                                    if ($oid.length > 0) {
+                                        oidToRestore = $oid.val();
+                                        $oid.val('').trigger('change');
+                                    }
+
                                     let themeTypesList = ['colors', 'fonts', 'fontSizes'];
 
                                     for (const themeType of themeTypesList) {
-                                        that.conn.readFile(`/vis-materialdesign.admin/lib/${themeType}.json`, function (err, data) {
+                                        that.conn.readFile(`/vis-materialdesign.admin/lib/${themeType}.json`, async function (err, data) {
                                             if (!err) {
                                                 let list = JSON.parse(data).filter(function (x) {
                                                     let splitted = x.widget.split(', ');
@@ -816,7 +825,11 @@ vis.binds.materialdesign.viseditor = {
                                                     let inspect = $(`#inspect_${obj.desc}`);
 
                                                     if (inspect && inspect.length > 0) {
-                                                        inspect.val(generateMdwThemeOid(themeType, obj.id)).trigger('change');
+                                                        let mdwThemeOid = generateMdwThemeOid(themeType, obj.id);
+
+                                                        if (inspect.val() !== mdwThemeOid) {
+                                                            inspect.val(mdwThemeOid).trigger('change');
+                                                        }
                                                     } else {
                                                         // wir haben ein Element mit count
                                                         inspect = $(`input[id^='inspect_${obj.desc}']`);
@@ -826,7 +839,12 @@ vis.binds.materialdesign.viseditor = {
 
                                                                 // Prüfen ob am Ende der id wirklich nur eine number ist
                                                                 if (!isNaN(parseFloat(el.id.replace(`inspect_${obj.desc}`, '')))) {
-                                                                    $(el).val(generateMdwThemeOid(themeType, obj.id)).trigger('change');
+                                                                    let $el = $(el);
+                                                                    let mdwThemeOid = generateMdwThemeOid(themeType, obj.id);
+
+                                                                    if ($el.val() !== mdwThemeOid) {
+                                                                        $el.val(mdwThemeOid).trigger('change');
+                                                                    }
                                                                 }
                                                             });
                                                         }
@@ -834,6 +852,12 @@ vis.binds.materialdesign.viseditor = {
                                                 }
                                             } else {
                                                 console.error(`useTheme: error loading ${themeType}.json, error: ${err}`);
+                                            }
+
+                                            if (themeType === themeTypesList[themeTypesList.length - 1]) {
+                                                if (oidToRestore) {
+                                                    $(`#inspect_oid`).val(oidToRestore).trigger('change');
+                                                }
                                             }
                                         });
                                     }
