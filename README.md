@@ -6365,7 +6365,7 @@ JSON string must be an array of objects with the following properties:
 		<tr>
 			<td>dataColor</td>
 			<td>bar color</td>
-			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
 			<td/>
 		</tr>
 		<tr>
@@ -6402,7 +6402,7 @@ JSON string must be an array of objects with the following properties:
 </table>
 
 <!-- omit in toc -->
-#### Example
+#### Dataset JSON Properties - Example
 
 <details>
 <pre><code>
@@ -6475,6 +6475,97 @@ Settings that are not listed in the table below are self-explanatory.
 
 JSON string must be an array of objects with the following properties:
 
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>label</td>
+			<td>axis label of pie</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>pie value</td>
+			<td>number</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>dataColor</td>
+			<td>pie color</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>valueText</td>
+			<td>override text of pie</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>valueColor</td>
+			<td>color of value text</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>valueAppendix</td>
+			<td>appendix of value text</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>tooltipTitle</td>
+			<td>tooltip title</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>tooltipText</td>
+			<td>tooltip text</td>
+			<td>string</td>
+			<td/>
+		</tr>		
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+#### Dataset JSON Properties - Example
+
+<details>
+<pre><code>
+[
+	{
+		"label": "val0",
+		"value": "30",
+		"valueColor": "#ffffff"
+	}, {
+		"label": "val1",
+		"value": "12.54645646"
+	}, {
+		"label": "val2",
+		"value": "48",
+		"dataColor": "#c2c2c2",
+		"valueAppendix": "\nextra"
+	}, {
+		"label": "val3",
+		"value": "97",
+		"valueColor": "#ffffff"
+	}, {
+		"label": "val4",
+		"value": "32",
+		"valueText": "text"
+	}
+]
+</pre></code>
+</details>
 
 
 ### Line History Chart:
