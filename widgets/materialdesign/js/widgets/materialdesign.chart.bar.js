@@ -45,7 +45,6 @@ vis.binds.materialdesign.chart = {
 
                     setLayout();
                     function setLayout(changed = false) {
-                        console.warn('setLayout');
                         $this.context.style.setProperty("--materialdesign-font-card-title", myMdwHelper.getValueFromData(data.titleFontFamily, ''));
 
                         $this.context.style.setProperty("--materialdesign-color-card-background", myMdwHelper.getValueFromData(data.colorBackground, ''));
