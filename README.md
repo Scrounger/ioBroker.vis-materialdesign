@@ -8802,15 +8802,16 @@ The adapter uses the following libraries:
 ### __WORK IN PROGRESS__
 * (Scrounger) HTML Widgets added - use Material Design Widgets in any html element
 * (Scrounger) Table: Control Elements removed, using new HTML Widgets -> breaking changes !!!
+* * (Scrounger) list: using object id for json string added -> breaking changes !!!
 * (Scrounger) new Value Widget added
-* (Scrounger) list: using object id for json string added -> breaking changes !!!
-* (Scrounger) Documentation revised
 * (Scrounger) Card layout bug fixes for HTML Card, IconList, List and Table Widget
 * (Scrounger) icon list: option for status bar text added
 * (Scrounger) icon list: status bar position bug fix
 * (Scrounger) progress circular: auto size option added
 * (Scrounger) VIS editor: html previews bug fixes
 * (Scrounger) input, autocomplete, select: autofocus option added
+* (Scrounger) Documentation revised
+* (Scrounger): bug fixes
 
 <!-- omit in toc -->
 ### 0.4.2 (2020-12-29)

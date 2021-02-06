@@ -15,6 +15,20 @@ vis.binds.materialdesign.chart.json = function (el, data) {
             myChartHelper.registerChartAreaPlugin();
 
             let $this = $(el);
+
+            if (myMdwHelper.getBooleanFromData(data.cardUse, false)) {
+                // Card Layout
+                $this.html(`<div class="material-progress-circular-container">
+                                <progress class="material-progress-circular"/>
+                            </div>
+                            ${myChartHelper.getCardBackground(data)}`);
+            } else {
+                $this.html(`<div class="material-progress-circular-container">
+                                <progress class="material-progress-circular"/>
+                            </div>
+                            <canvas class="materialdesign-chart-container"></canvas>`);
+            }
+
             var chartContainer = $this.find('.materialdesign-chart-container').get(0);
 
             var progressBar = $this.find('.material-progress-circular-container');
