@@ -7438,6 +7438,80 @@ JSON Chart supports data that have a timestamp. To use this the data array must 
 </pre></code>
 </details>
 
+<details>
+<pre><code>
+{
+	"axisLabels": ["Jan", "Feb", "Mrz", "Apr"],
+	"graphs": [{
+			"type": "line",
+			"data": [40, 22, 160, 92],
+			"yAxis_id": 0,
+			"barIsStacked": true,
+			"datalabel_show": false,
+			"line_UseFillColor": true
+
+		}, {
+			"type": "bar",
+			"barIsStacked": true,
+			"data": [30, 69, 91, 35],
+			"yAxis_id": 0,
+			"barStackId": 0,
+			"color": "#6dd600",
+			"datalabel_color": "#FFFFFF",
+			"datalabel_align": "start",
+			"use_gradient_color": true,
+			"gradient_color": [{
+					"value": 60,
+					"color": "#6dd600"
+				}, {
+					"value": 0,
+					"color": "lightgray"
+				}
+			]
+		}, {
+			"type": "bar",
+			"barIsStacked": true,
+			"data": [17, 68, 83, 49],
+			"yAxis_id": 0,
+			"barStackId": 1,
+			"color": "#ff9800",
+			"datalabel_color": "#FFFFFF",
+			"datalabel_align": "start"
+		}, {
+			"type": "bar",
+			"barIsStacked": true,
+			"data": [95, 42, 34, 31],
+			"yAxis_id": 0,
+			"barStackId": 1,
+			"color": "#8e24aa",
+			"datalabel_color": "#FFFFFF",
+			"datalabel_align": "start"
+		}, {
+			"type": "bar",
+			"barIsStacked": true,
+			"data": [33, 44, 22, 34],
+			"yAxis_id": 0,
+			"barStackId": 2,
+			"color": "#a65628",
+			"datalabel_color": "#FFFFFF",
+			"datalabel_align": "start"
+		}, {
+			"type": "bar",
+			"barIsStacked": true,
+			"data": [28, 34, 45, 23],
+			"yAxis_id": 0,
+			"yAxis_max": "180",
+			"barStackId": 2,
+			"color": "#d32f2f",
+			"datalabel_color": "#FFFFFF",
+			"datalabel_align": "start"
+		}
+	]
+}
+  
+</pre></code>
+</details>
+
 ## Table
 ![Logo](doc/en/media/table.gif)
 
