@@ -12,6 +12,14 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
             myChartHelper.registerChartAreaPlugin();
 
             let $this = $(el);
+
+            if (myMdwHelper.getBooleanFromData(data.cardUse, false)) {
+                // Card Layout
+                $this.html(myChartHelper.getCardBackground(data));
+            } else {
+                $this.html('<canvas class="materialdesign-chart-container"></canvas>');
+            }
+
             var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
 
             $(el).find('.materialdesign-chart-container').css('background-color', myMdwHelper.getValueFromData(data.backgroundColor, ''));
