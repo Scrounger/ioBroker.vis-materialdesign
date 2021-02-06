@@ -30,9 +30,7 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 - [Adapter settings](#adapter-settings)
 	- [General](#general-1)
 	- [Theme Editor](#theme-editor)
-		- [Colors Theme](#colors-theme)
-		- [Fonts Theme](#fonts-theme)
-		- [Font Sizes Theme](#font-sizes-theme)
+		- [Theme Settings](#theme-settings)
 - [Widgets](#widgets)
 	- [Material Design Icons and Images](#material-design-icons-and-images)
 		- [Editor Settings](#editor-settings)
@@ -159,7 +157,7 @@ Starting with version 0.4.0 there is a settings page for the adapter. You can fi
 
 ## Theme Editor
 
-With the help of the Theme Editor you can centrally set colors, fonts and font sizes for all widgets via the adapter settings. This is realized with the help of the [Bindings of the VIS adapter](https://github.com/ioBroker/ioBroker.vis#bindings-of-objects). For each widget datapoints (see screenshot below) are created with the set values. This makes it possible to use these settings in other widgets (not Material Design Widgets) via bindings.
+With the help of the Theme Editor you can centrally set colors, fonts and font sizes for all widgets via the adapter settings. For each widget datapoints (see screenshot below) are created with the set values. This makes it also possible to use these settings in other widgets (not Material Design Widgets) via bindings.
 
 ##### Datapoint structure
 
@@ -173,39 +171,30 @@ In the VIS Editor you will find a button `use theme` for each widget. With this 
 
 With the help of this button it is also possible to update your widgets from versions before 0.4.0 to use the themes.
 
+##### Change Datapoint Binding for Material Design Widgets
+
+![Logo](doc/en/media/settings_mdw_binding.gif)
+
+If you would like to change the using of others colors that are defined for other widgets, you can copy the datapoint binding by pressing the button with the material design icon. Just paste this in any color, fonts or font sizes field of a material design widget. For example a color "state binding" looks like `#mdwTheme:vis-materialdesign.0.colors.card.background`
+
 ##### Use Binding for non Material Design Widgets
 
 ![Logo](doc/en/media/settings_binding.gif)
 
-In the adapter settings you can copy the binding command to the clipboard by clicking on the default text or the id in the tables. This binding can then be used by copy and paste even for non Material Design Widgets.
+In the adapter settings you can copy the binding command to the clipboard by clicking on the button with iobroker icon. This binding can then be used by copy and paste even for non Material Design Widgets. For example a color binding looks like `{mode:vis-materialdesign.0.colors.darkTheme;light:vis-materialdesign.0.colors.light.card.background;dark:vis-materialdesign.0.colors.dark.card.background; mode === "true" ? dark : light}`
 
-### Colors Theme
-For colors there are two themes - light theme and dark theme. With the datapoint `vis-materialdesign.0.colors.darkTheme` you can switch between the two themes.
+### Theme Settings
 
 ![Logo](doc/en/media/settings_colors_light.png)
 
-![Logo](doc/en/media/settings_colors_dark.png)
+Every settings page for colors, colors dark, font and font sizes look likes show in the screenshot above.
 
-Standard colors can be defined in the upper area. These standard colors can then be assigned to the individual widgets using the buttons in the table. If you change the default color, it will also change for all widgets that use this color.
-Additionally, it is possible to assign your own colors to the widgets, independent of the standard colors.
+Standard colors / fonts /font sizes can be defined in the upper area. These standard colors / fonts /font sizes can then be assigned to the individual widgets using the buttons in the table. If you change the default colors / fonts /font sizes, it will also change for all widgets that use this colors / fonts /font sizes.
+Additionally, it is possible to assign your own colors / fonts /font sizes to the widgets, independent of the standard colors.
 
-### Fonts Theme
-
-![Logo](doc/en/media/settings_fonts.png)
-
-Standard fonts can be defined in the upper area. These standard fonts can then be assigned to the individual widgets using the buttons in the table. If you change the default color, it will also change for all widgets that use this color.
-Additionally, it is possible to assign your own fonts to the widgets, independent of the standard colors.
-
-### Font Sizes Theme
-
-![Logo](doc/en/media/settings_fontSizes.png)
-
-Standard font sizes can be defined in the upper area. These standard font sizes can then be assigned to the individual widgets using the buttons in the table. If you change the default color, it will also change for all widgets that use this color.
-Additionally, it is possible to assign your own font sizes to the widgets, independent of the standard colors.
-
+For colors there are two themes - light theme and dark theme. With the datapoint `vis-materialdesign.0.colors.darkTheme` you can switch between the two themes. For example this datapoint can be used in a script to switch between lights and dark colors on sunrise and sunset. 
 
 # Widgets
-
 
 ## Material Design Icons and Images
 
