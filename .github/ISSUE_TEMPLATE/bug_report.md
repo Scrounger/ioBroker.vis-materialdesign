@@ -1,9 +1,8 @@
 ---
 name: Bug report
 about: Something is not working as it should
-title: ''
-labels: ''
-assignees: ''
+title: '[widget name]'
+labels: '[short description]'
 ---
 
 **Describe the bug**  
