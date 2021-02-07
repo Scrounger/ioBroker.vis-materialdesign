@@ -57,7 +57,6 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
                     }
 
                     if (changed) {
-                        myPieChart.destroy();
                         createChart();
                     }
                 }
@@ -86,6 +85,7 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
                         Chart.plugins.unregister(ChartDataLabels);
 
                         // Chart declaration:
+                        if (myPieChart) myPieChart.destroy();
                         myPieChart = new Chart(ctx, {
                             type: (data.chartType === 'pie') ? 'pie' : 'doughnut',
                             plugins: (data.showValues) ? [ChartDataLabels] : undefined     // show value labels
@@ -249,6 +249,7 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
                         if (data.disableHoverEffects) options.hover = { mode: null };
 
                         // Chart declaration:
+                        if (myPieChart) myPieChart.destroy();
                         myPieChart = new Chart(ctx, {
                             type: (data.chartType === 'pie') ? 'pie' : 'doughnut',
                             data: chartData,

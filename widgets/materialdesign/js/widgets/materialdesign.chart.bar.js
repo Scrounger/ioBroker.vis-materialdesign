@@ -58,7 +58,6 @@ vis.binds.materialdesign.chart = {
                         }
 
                         if (changed) {
-                            myBarChart.destroy();
                             createChart();
                         }
                     }
@@ -99,6 +98,8 @@ vis.binds.materialdesign.chart = {
                                     jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
                                     countOfItems = jsonData.length - 1;
                                 } catch (errJson) {
+                                    if (myBarChart) myBarChart.destroy();
+
                                     myBarChart = new Chart(ctx, {
                                         type: (data.chartType === 'vertical') ? 'bar' : 'horizontalBar',
                                         options: {
@@ -254,6 +255,8 @@ vis.binds.materialdesign.chart = {
                             if (data.disableHoverEffects) options.hover = { mode: null };
 
                             // Chart declaration:
+                            if (myBarChart) myBarChart.destroy();
+
                             myBarChart = new Chart(ctx, {
                                 type: (data.chartType === 'vertical') ? 'bar' : 'horizontalBar',
                                 data: chartData,

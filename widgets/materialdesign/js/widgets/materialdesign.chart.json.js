@@ -68,7 +68,6 @@ vis.binds.materialdesign.chart.json = function (el, data) {
                     }
 
                     if (changed) {
-                        myChart.destroy();
                         createChart();
                     }
                 }
@@ -86,6 +85,7 @@ vis.binds.materialdesign.chart.json = function (el, data) {
                         var ctx = chartContainer.getContext('2d');
 
                         // intialize chart -> some parameters needed
+                        if (myChart) myChart.destroy();
                         myChart = new Chart(ctx, {
                             type: myMdwHelper.getValueFromData(data.chartType, 'bar'),
                             plugins: [ChartDataLabels, myChartHelper.getMyGradientPlugin(data)]     // show value labels
