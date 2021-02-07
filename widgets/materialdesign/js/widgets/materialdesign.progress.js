@@ -82,6 +82,7 @@ vis.binds.materialdesign.progress = {
 
                         $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
                             if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
+                            $(themeTriggerClass).off(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`);
                             setLayout();
                         });
 
@@ -171,6 +172,7 @@ vis.binds.materialdesign.progress = {
 
                         $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
                             if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
+                            $(themeTriggerClass).off(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`);
                             setLayout();
                         });
 
@@ -262,12 +264,12 @@ vis.binds.materialdesign.progress = {
                 reverse: obj.reverse,
                 generateHtmlControl: obj.generateHtmlControl,
                 debug: obj.debug,
-                
+
                 // layout
                 progressRounded: obj.progressRounded,
                 progressStriped: obj.progressStriped,
                 progressStripedColor: obj.progressStripedColor,
-                
+
                 // colors
                 colorProgressBackground: obj.colorProgressBackground,
                 colorProgress: obj.colorProgress,
@@ -275,7 +277,7 @@ vis.binds.materialdesign.progress = {
                 colorOne: obj.colorOne,
                 colorTwoCondition: obj.colorTwoCondition,
                 colorTwo: obj.colorTwo,
-                
+
                 // labeling
                 showValueLabel: obj.showValueLabel,
                 valueLabelStyle: obj.valueLabelStyle,
@@ -285,7 +287,7 @@ vis.binds.materialdesign.progress = {
                 textColor: obj.textColor,
                 textFontSize: obj.textFontSize,
                 textFontFamily: obj.textFontFamily,
-                textAlign: obj.textAlign                
+                textAlign: obj.textAlign
             }
         } else {
             return {
@@ -298,12 +300,12 @@ vis.binds.materialdesign.progress = {
                 progressIndeterminate: obj.progressIndeterminate,
                 generateHtmlControl: obj.generateHtmlControl,
                 debug: obj.debug,
-                
+
                 // layout
                 progressCircularSize: obj.progressCircularSize,
                 progressCircularWidth: obj.progressCircularWidth,
                 progressCircularRotate: obj.progressCircularRotate,
-                
+
                 // colors
                 colorProgressBackground: obj.colorProgressBackground,
                 colorProgress: obj.colorProgress,
@@ -312,7 +314,7 @@ vis.binds.materialdesign.progress = {
                 colorOne: obj.colorOne,
                 colorTwoCondition: obj.colorTwoCondition,
                 colorTwo: obj.colorTwo,
-                
+
                 // labeling
                 showValueLabel: obj.showValueLabel,
                 valueLabelStyle: obj.valueLabelStyle,
@@ -321,7 +323,7 @@ vis.binds.materialdesign.progress = {
                 valueLabelCustom: obj.valueLabelCustom,
                 textColor: obj.textColor,
                 textFontSize: obj.textFontSize,
-                textFontFamily: obj.textFontFamily                
+                textFontFamily: obj.textFontFamily
             }
         }
     },

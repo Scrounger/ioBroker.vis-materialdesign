@@ -112,13 +112,14 @@ vis.binds.materialdesign.textfield = {
                             vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
                                 vueHelper.setStyles($this, data);
                             });
-    
+
                             vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
                                 vueHelper.setStyles($this, data);
                             });
-    
+
                             $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
                                 if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
+                                $(themeTriggerClass).off(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`);
                                 vueHelper.setStyles($this, data);
                             });
 

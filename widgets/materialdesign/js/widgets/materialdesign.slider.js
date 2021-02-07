@@ -161,6 +161,7 @@ vis.binds.materialdesign.slider = {
 
                         $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
                             if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
+                            $(themeTriggerClass).off(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`);
                             setLayout();
                         });
 
@@ -264,7 +265,7 @@ vis.binds.materialdesign.slider = {
             vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
             generateHtmlControl: obj.generateHtmlControl,
             debug: obj.debug,
-            
+
             // steps Layout
             showTicks: obj.showTicks,
             tickSize: obj.tickSize,
@@ -274,12 +275,12 @@ vis.binds.materialdesign.slider = {
             tickFontSize: obj.tickFontSize,
             tickColorBefore: obj.tickColorBefore,
             tickColorAfter: obj.tickColorAfter,
-            
+
             // colors
             colorBeforeThumb: obj.colorBeforeThumb,
             colorThumb: obj.colorThumb,
             colorAfterThumb: obj.colorAfterThumb,
-            
+
             // labeling
             prepandText: obj.prepandText,
             prepandTextWidth: obj.prepandTextWidth,
@@ -299,7 +300,7 @@ vis.binds.materialdesign.slider = {
             valueGreaterThan: obj.valueGreaterThan,
             textForValueGreaterThan: obj.textForValueGreaterThan,
             valueLabelWidth: obj.valueLabelWidth,
-            
+
             // layout of the controller label
             showThumbLabel: obj.showThumbLabel,
             thumbSize: obj.thumbSize,
@@ -307,7 +308,7 @@ vis.binds.materialdesign.slider = {
             thumbFontColor: obj.thumbFontColor,
             thumbFontSize: obj.thumbFontSize,
             thumbFontFamily: obj.thumbFontFamily,
-            useLabelRules: obj.useLabelRules            
+            useLabelRules: obj.useLabelRules
         }
     },
     getHtmlConstructor(widgetData, type) {

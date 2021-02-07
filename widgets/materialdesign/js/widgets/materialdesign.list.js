@@ -65,7 +65,7 @@ vis.binds.materialdesign.list =
                     oidsNeedSubscribe = false;
 
                     if (data.listItemDataMethod === 'jsonStringObject') {
-                        try {                            
+                        try {
                             jsonData = JSON.parse(vis.states.attr(data.json_string_oid + '.val'));
                             countOfItems = jsonData.length - 1;
                         } catch (err) {
@@ -246,6 +246,7 @@ vis.binds.materialdesign.list =
 
                         $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
                             if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
+                            $(themeTriggerClass).off(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`);
                             setStyle();
                         });
 

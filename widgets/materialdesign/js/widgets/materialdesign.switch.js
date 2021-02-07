@@ -106,6 +106,7 @@ vis.binds.materialdesign.switch = {
 
                 $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
                     if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
+                    $(themeTriggerClass).off(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`);
                     setLayout();
                 });
 
@@ -188,7 +189,7 @@ vis.binds.materialdesign.switch = {
             vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
             generateHtmlControl: obj.generateHtmlControl,
             debug: obj.debug,
-            
+
             // labeling
             labelFalse: obj.labelFalse,
             labelTrue: obj.labelTrue,
@@ -196,7 +197,7 @@ vis.binds.materialdesign.switch = {
             labelClickActive: obj.labelClickActive,
             valueFontFamily: obj.valueFontFamily,
             valueFontSize: obj.valueFontSize,
-            
+
             // colors
             colorSwitchThumb: obj.colorSwitchThumb,
             colorSwitchTrack: obj.colorSwitchTrack,
@@ -205,7 +206,7 @@ vis.binds.materialdesign.switch = {
             colorSwitchHoverTrue: obj.colorSwitchHoverTrue,
             labelColorFalse: obj.labelColorFalse,
             labelColorTrue: obj.labelColorTrue,
-            
+
             // Locking
             lockEnabled: obj.lockEnabled,
             autoLockAfter: obj.autoLockAfter,
@@ -214,7 +215,7 @@ vis.binds.materialdesign.switch = {
             lockIconLeft: obj.lockIconLeft,
             lockIconSize: obj.lockIconSize,
             lockIconColor: obj.lockIconColor,
-            lockFilterGrayscale: obj.lockFilterGrayscale            
+            lockFilterGrayscale: obj.lockFilterGrayscale
         }
     },
     getHtmlConstructor(widgetData, type) {
