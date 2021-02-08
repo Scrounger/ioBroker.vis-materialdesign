@@ -303,25 +303,25 @@
         "id": "light.card.background",
         "desc": "colorBackground",
         "defaultValue": 5,
-        "widget": "HTML Card, Icon List"
+        "widget": "HTML Card, Icon List, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.card.background_title",
         "desc": "colorTitleSectionBackground",
         "defaultValue": 7,
-        "widget": "HTML Card, Icon List"
+        "widget": "HTML Card, Icon List, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.card.background_body",
         "desc": "colorTextSectionBackground",
         "defaultValue": 7,
-        "widget": "HTML Card, Icon List"
+        "widget": "HTML Card, Icon List, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.card.title",
         "desc": "colorTitle",
         "defaultValue": 2,
-        "widget": "HTML Card, Icon List"
+        "widget": "HTML Card, Icon List, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "light.card.subTitle",
@@ -422,7 +422,7 @@
     {
         "id": "light.dialog.overlay",
         "desc": "overlayColor",
-        "defaultValue": 3,
+        "defaultValue": 6,
         "widget": "Dialog, Dialog iFrame"
     },
     {
@@ -1066,5 +1066,115 @@
         "desc": "colorDrawerbackdropSubLabelBackgroundActive",
         "value": "#1e88e566",
         "widget": "Top App Bar"
+    },
+    {
+        "id": "light.value.text",
+        "desc": "valuesFontColor",
+        "defaultValue": 2,
+        "widget": "Value"
+    },
+    {
+        "id": "light.value.prepand",
+        "desc": "prepandTextColor",
+        "defaultValue": 2,
+        "widget": "Value"
+    },
+    {
+        "id": "light.value.append",
+        "desc": "appendTextColor",
+        "defaultValue": 2,
+        "widget": "Value"
+    },    
+    {
+        "id": "light.value.icon",
+        "desc": "imageColor",
+        "defaultValue": 0,
+        "widget": "Value"
+    },
+
+    {
+        "id": "light.scripts.adapterStatus.title",
+        "desc": "title color",
+        "defaultValue": 2,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "light.scripts.adapterStatus.subTitle",
+        "desc": "instance color",
+        "defaultValue": 1,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "light.scripts.adapterStatus.datapoints.desc",
+        "desc": "description color",
+        "defaultValue": 2,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "light.scripts.adapterStatus.datapoints.value",
+        "desc": "value color",
+        "defaultValue": 1,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "light.scripts.adapterStatus.datapoints.icon",
+        "desc": "icon color",
+        "defaultValue": 0,
+        "widget": "AdapterStatus [Script]"
+    },    
+
+    {
+        "id": "light.scripts.adapterStatus.statusBar.active",
+        "desc": "statusbar: adapter is active",
+        "defaultValue": 8,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "light.scripts.adapterStatus.statusBar.notActive",
+        "desc": "statusbar: adapter is not active",
+        "defaultValue": 10,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "light.scripts.adapterStatus.statusBar.notConnected",
+        "desc": "statusbar: adapter is notConnected",
+        "defaultValue": 9,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "light.scripts.adapterStatus.statusBar.deactivated",
+        "desc": "statusbar: adapter is deactivated",
+        "value": "#A9A9A9",
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "light.scripts.adapterStatus.statusBar.schedule",
+        "desc": "statusbar: adapter is from type schedule",
+        "value": "#90EE90",
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "light.scripts.adapterStatus.statusBar.extension",
+        "desc": "statusbar: adapter is from type extension",
+        "value": "#44739e",
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "light.scripts.adapterStatus.statusBar.once",
+        "desc": "statusbar: adapter is from type once",
+        "value": "#44739e",
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "light.scripts.adapterStatus.icons.logParser.warn",
+        "desc": "logParser warn icon",
+        "defaultValue": 9,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "light.scripts.adapterStatus.icons.logParser.error",
+        "desc": "logParser error icon",
+        "defaultValue": 10,
+        "widget": "AdapterStatus [Script]"
     }
 ]

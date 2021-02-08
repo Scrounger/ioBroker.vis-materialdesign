@@ -117,7 +117,7 @@
         "id": "card.title",
         "desc": "titleLayout",
         "defaultValue": 6,
-        "widget": "HTML Card, Icon List"
+        "widget": "HTML Card, Icon List, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "card.subTitle",
@@ -316,5 +316,57 @@
         "desc": "listSubItemTextSize",
         "defaultValue": 2,
         "widget": "Top App Bar"
+    },
+    {
+        "id": "value.text",
+        "desc": "valuesFontSize",
+        "defaultValue": 2,
+        "widget": "Value"
+    },
+    {
+        "id": "value.prepand",
+        "desc": "prepandTextFontSize",
+        "defaultValue": 2,
+        "widget": "Value"
+    },
+    {
+        "id": "value.append",
+        "desc": "appendTextFontSize",
+        "defaultValue": 2,
+        "widget": "Value"
+    },
+
+
+    
+    {
+        "id": "scripts.adapterStatus.title",
+        "desc": "title text size",
+        "defaultValue": 4,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "scripts.adapterStatus.subTitle",
+        "desc": "instance text size",
+        "defaultValue": 3,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "scripts.adapterStatus.datapoints.desc",
+        "desc": "description text size",
+        "defaultValue": 2,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "scripts.adapterStatus.datapoints.value",
+        "desc": "value text size",
+        "defaultValue": 2,
+        "widget": "AdapterStatus [Script]"
+    },
+
+    {
+        "id": "scripts.adapterStatus.icons.upgradeable",
+        "desc": "upgradeable icon size",
+        "defaultValue": 7,
+        "widget": "AdapterStatus [Script]"
     }
 ]

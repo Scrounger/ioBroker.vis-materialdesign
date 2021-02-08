@@ -30,6 +30,10 @@ vis.binds.materialdesign.viseditor = {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#buttons-icon'
                 }
 
+                if (data[1] === 'value') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#value'
+                }
+
                 if (data[1] === 'card') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#card'
                 }

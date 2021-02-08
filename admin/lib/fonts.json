@@ -117,7 +117,7 @@
         "id": "card.title",
         "desc": "titleFontFamily",
         "defaultValue": 0,
-        "widget": "HTML Card, Icon List"
+        "widget": "HTML Card, Icon List, Bar Chart, Pie Chart, Line History Chart, JSON Chart"
     },
     {
         "id": "card.subTitle",
@@ -328,5 +328,50 @@
         "desc": "listItemSubTextFontDisabled",
         "defaultValue": 3,
         "widget": "Top App Bar"
-    }
+    },
+    {
+        "id": "value.text",
+        "desc": "valuesFontFamily",
+        "defaultValue": 0,
+        "widget": "Value"
+    },
+    {
+        "id": "value.prepand",
+        "desc": "prepandTextFontFamily",
+        "defaultValue": 0,
+        "widget": "Value"
+    },
+    {
+        "id": "value.append",
+        "desc": "appendTextFontFamily",
+        "defaultValue": 0,
+        "widget": "Value"
+    },
+
+
+
+    {
+        "id": "scripts.adapterStatus.title",
+        "desc": "title text font",
+        "defaultValue": 0,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "scripts.adapterStatus.subTitle",
+        "desc": "instance text font",
+        "defaultValue": 3,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "scripts.adapterStatus.datapoints.desc",
+        "desc": "description text font",
+        "defaultValue": 2,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "scripts.adapterStatus.datapoints.value",
+        "desc": "value text font",
+        "defaultValue": 2,
+        "widget": "AdapterStatus [Script]"
+    }         
 ]
