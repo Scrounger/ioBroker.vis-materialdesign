@@ -11321,5 +11321,29 @@ systemDictionary = {
         "es": "calcular",
         "pl": "Oblicz",
         "zh-cn": "计算"
+    },
+    "convertToDuration": {
+        "en": "convert to duration",
+        "de": "in Dauer umwandeln",
+        "ru": "преобразовать в продолжительность",
+        "pt": "converter para duração",
+        "nl": "converteren naar duur",
+        "fr": "convertir en durée",
+        "it": "converti in durata",
+        "es": "convertir a duración",
+        "pl": "przekonwertować na czas trwania",
+        "zh-cn": "转换为持续时间"
+    },
+    "targetType": {
+        "en": "target type",
+        "de": "Zieltyp",
+        "ru": "тип цели",
+        "pt": "tipo de alvo",
+        "nl": "doeltype",
+        "fr": "type de cible",
+        "it": "tipo di destinazione",
+        "es": "tipo de objetivo",
+        "pl": "typ celu",
+        "zh-cn": "目标类型"
     }
 };

@@ -2491,8 +2491,8 @@ Settings that are not listed in the table below are self-explanatory.
     <tbody>
         <tr>
             <td rowspan=2><img src="doc/en/media/value_settings_common.png"></td>
-            <td>datapoint type</td>
-            <td>datapoint type is detected automatically. If you would like to convert to an other type, choose the target type to convert to.</td>
+            <td>target type</td>
+            <td>If you would like to convert to an other type, choose the target type to convert to.</td>
         </tr>
         <tr>
             <td>override text</td>
@@ -2539,8 +2539,8 @@ The following properties can be used as [HTML Widgets](#html-widgets).
 			<td>
 		</tr>
 		<tr>
-			<td>mdw-datapointType</td>
-			<td>datapointType</td>
+			<td>mdw-targetType</td>
+			<td>target type</td>
 			<td>string</td>
 			<td>auto | number | string | boolean
 		</tr>
@@ -2660,7 +2660,7 @@ The following properties can be used as [HTML Widgets](#html-widgets).
 		</tr>
 		<tr>
 			<td>mdw-convertToDuration</td>
-			<td>convertToDuration</td>
+			<td>convert to duration</td>
 			<td>text</td>
 			<td>
 		</tr>
@@ -2752,7 +2752,7 @@ The following properties can be used as [HTML Widgets](#html-widgets).
 	style='width: 218px; height: 30px; position: relative; display: flex; align-items: center;'
 	mdw-debug='false'
 	mdw-oid='0_userdata.0.MDW.Value.number'
-	mdw-datapointType='auto'
+	mdw-targetType='auto'
 	mdw-textAlign='start'
 	mdw-valuesFontColor='#mdwTheme:vis-materialdesign.0.colors.value.text'
 	mdw-valuesFontFamily='#mdwTheme:vis-materialdesign.0.fonts.value.text'

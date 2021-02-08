@@ -34,10 +34,10 @@ vis.binds.materialdesign.value = {
                 let $appendText = $this.find('.append-text');
 
                 let val = vis.states.attr(data.oid + '.val');
-                let datapointType = myMdwHelper.getValueFromData(data.datapointType, 'auto');
-                let type = datapointType === 'auto' ? typeof (val) : datapointType;
+                let targetType = myMdwHelper.getValueFromData(data.targetType, 'auto');
+                let type = targetType === 'auto' ? typeof (val) : targetType;
 
-                if (data.debug) console.log(`${logPrefix} type: '${type}', datapointType: '${datapointType}'`);
+                if (data.debug) console.log(`${logPrefix} type: '${type}', targetType: '${targetType}'`);
 
                 vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                     setValue(newVal, type, oldVal);
@@ -184,13 +184,13 @@ vis.binds.materialdesign.value = {
         return {
             wid: widgetId,
 
-            // Allgemein
+            // Common
             oid: obj.oid,
-            datapointType: obj.datapointType,
+            targetType: obj.targetType,
             overrideText: obj.overrideText,
             debug: obj.debug,
 
-            // Layout
+            // layout
             textAlign: obj.textAlign,
             valuesFontColor: obj.valuesFontColor,
             valuesFontFamily: obj.valuesFontFamily,
@@ -204,29 +204,29 @@ vis.binds.materialdesign.value = {
             appendTextFontFamily: obj.appendTextFontFamily,
             appendTextFontSize: obj.appendTextFontSize,
 
-            // Zahlenformatierung
+            // number formatting
             valueLabelUnit: obj.valueLabelUnit,
             minDecimals: obj.minDecimals,
             maxDecimals: obj.maxDecimals,
             calculate: obj.calculate,
             convertToDuration: obj.convertToDuration,
 
-            // Logikwert Formatierung
+            // boolean formatting
             textOnTrue: obj.textOnTrue,
             textOnFalse: obj.textOnFalse,
             condition: obj.condition,
 
-            // Symbol
+            // icon
             image: obj.image,
             imageColor: obj.imageColor,
             iconPosition: obj.iconPosition,
             iconHeight: obj.iconHeight,
 
-            // Wertänderungseffekt
+            // value change effect
             changeEffectEnabled: obj.changeEffectEnabled,
             effectFontColor: obj.effectFontColor,
             effectFontSize: obj.effectFontSize,
-            effectDuration: obj.effectDuration,
+            effectDuration: obj.effectDuration
         }
     },
     getHtmlConstructor(widgetData, type) {
