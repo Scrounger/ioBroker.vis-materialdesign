@@ -9153,18 +9153,7 @@ Or use it in scripts to generate dynamically Widgets.
 
 ![Logo](doc/en/media/html-elements.gif)
 
-More information about the supported properties can be found at the individual widgets:
-* [Buttons](#buttons)
-* [Buttons Vertical](#buttons-vertical)
-* [Buttons Icon](#buttons-icon)
-* 
-* [Slider](#slider)
-*
-* [Progress](#progress)
-* [Progress Circular](#progress-circular)
-*
-* [Checkbox](#checkbox)
-* [Switch](#switch)
+More information about the supported properties can be found in the chapter HTML Properties of the individual widgets
 
 # used libraries
 The adapter uses the following libraries:
