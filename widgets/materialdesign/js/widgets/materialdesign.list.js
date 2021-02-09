@@ -111,18 +111,19 @@ vis.binds.materialdesign.list =
                         for (var i = 0; i <= countOfItems; i++) {
                             let listItemObj = getListItemObj(i, data, jsonData);
 
+                            let itemStyle = listItemObj.listOverflow ? listItemStyle + 'overflow: visible;' : listItemStyle
 
                             // generate Header
                             itemList.push(myMdwHelper.getListItemHeader(listItemObj.header, headerFontSize));
 
                             // generate Item -> mdc-list-item
-                            let listItem = myMdwHelper.getListItem('standard', i, '', false, false, listItemStyle, `data-oid="${listItemObj.objectId}"`, itemRole)
+                            let listItem = myMdwHelper.getListItem('standard', i, '', false, false, itemStyle, `data-oid="${listItemObj.objectId}"`, itemRole)
                                 .replace(' mdc-list-item--activated', '');   // selected object not needed in list
 
                             // generate Item Label
                             let itemLabel = '';
                             if (listItemObj.subText === '') {
-                                itemLabel = myMdwHelper.getListItemLabel('standard', i, listItemObj.text, false, labelFontSize, '', '', '', false, data.listItemAlignment);
+                                itemLabel = myMdwHelper.getListItemLabel('standard', i, listItemObj.text, false, labelFontSize, '', '', '', false, data.listItemAlignment, listItemObj.listOverflow );
                             } else {
                                 itemLabel = myMdwHelper.getListItemTextElement(listItemObj.text, listItemObj.subText, labelFontSize, subLabelFontSize, data.listItemAlignment);
                             }
@@ -130,7 +131,7 @@ vis.binds.materialdesign.list =
                             // generate right Item Label
                             let rightItemLabel = '';
                             if (listItemObj.rightSubText === '') {
-                                rightItemLabel = myMdwHelper.getListItemLabel('standard', i, listItemObj.rightText, false, rightLabelFontSize, '', '', '');
+                                rightItemLabel = myMdwHelper.getListItemLabel('standard', i, listItemObj.rightText, false, rightLabelFontSize, '', '', '', false, 'left', listItemObj.listOverflow);
 
                                 rightItemLabel = $($.parseHTML(rightItemLabel));
                                 rightItemLabel.addClass('materialdesign-list-item-text-right').addClass('mdc-list-item__meta');
@@ -205,19 +206,19 @@ vis.binds.materialdesign.list =
 
                             $this.append(`
                             <div class="${listLayout}">
-                                <ul class="mdc-list ${nonInteractive} ${containerClass}" ${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'style="overflow-y: auto"' : ''}>   
+                                <ul class="mdc-list ${nonInteractive} ${containerClass}" ${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'style="overflow-y: auto; overflow-x: hidden;"' : ''}>   
                                     ${widgetElement}
                                 </ul>
                             </div>`);
                         } else {
                             $this.append(`
-                                <ul class="mdc-list ${nonInteractive} ${containerClass}" ${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'style="overflow-y: auto"' : ''}>   
+                                <ul class="mdc-list ${nonInteractive} ${containerClass}" ${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'style="overflow-y: auto; overflow-x: hidden;"' : ''}>   
                                     ${widgetElement}
                                 </ul>`);
                         }
                     } else {
                         $this.find(`.${containerClass}`).replaceWith(`
-                        <ul class="mdc-list ${nonInteractive} ${containerClass}" ${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'style="overflow-y: auto"' : ''}>   
+                        <ul class="mdc-list ${nonInteractive} ${containerClass}" ${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'style="overflow-y: auto; overflow-x: hidden;"' : ''}>   
                             ${widgetElement}
                         </ul>`);
                     }
@@ -406,7 +407,8 @@ vis.binds.materialdesign.list =
                             objectId: data.attr('oid' + i),
                             buttonStateValue: data.attr('listTypeButtonStateValue' + i),
                             buttonNavView: data.attr('listTypeButtonNav' + i),
-                            buttonLink: data.attr('listTypeButtonLink' + i)
+                            buttonLink: data.attr('listTypeButtonLink' + i),
+                            listOverflow: data.attr('listOverflow' + i),
                         };
                     } else {
                         // Data from json
@@ -424,7 +426,8 @@ vis.binds.materialdesign.list =
                             objectId: jsonData[i].objectId,
                             buttonStateValue: jsonData[i].buttonStateValue,
                             buttonNavView: jsonData[i].buttonNavView,
-                            buttonLink: jsonData[i].buttonLink
+                            buttonLink: jsonData[i].buttonLink,
+                            listOverflow: jsonData[i].listOverflow,
                         };
                     }
                 }

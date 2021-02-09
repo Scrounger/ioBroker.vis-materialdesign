@@ -11345,5 +11345,17 @@ systemDictionary = {
         "es": "tipo de objetivo",
         "pl": "typ celu",
         "zh-cn": "目标类型"
+    },
+    "listOverflow": {
+        "en": "enable overflow ",
+        "de": "overflow aktivieren",
+        "ru": "разрешить переполнение",
+        "pt": "habilitar estouro",
+        "nl": "overloop inschakelen",
+        "fr": "activer le débordement",
+        "it": "abilitare l'overflow",
+        "es": "habilitar desbordamiento",
+        "pl": "włącz przepełnienie",
+        "zh-cn": "启用溢出"
     }
 };

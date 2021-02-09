@@ -343,7 +343,7 @@ vis.binds.materialdesign.helper = {
                     >`
         }
     },
-    getListItemLabel: function (layout, itemIndex, text, hasSubItems, fontSize, showLabel, toggleIconColor, backdropLabelHeight, isSubItem = false, align = 'left') {
+    getListItemLabel: function (layout, itemIndex, text, hasSubItems, fontSize, showLabel, toggleIconColor, backdropLabelHeight, isSubItem = false, align = 'left', overflow = false) {
 
         let subItemToggleIcon = '';
         if (hasSubItems) {
@@ -357,7 +357,7 @@ vis.binds.materialdesign.helper = {
             let listItemLabel = `<span 
                                     class="mdc-list-item__text ${fontSize.class}"
                                     id="listItem_${itemIndex}"
-                                    style="width: 100%; text-align: ${align}; ${fontSize.style}${showLabel}">
+                                    style="width: 100%; text-align: ${align};${overflow ? 'overflow: visible;' : ''} ${fontSize.style}${showLabel}">
                                         ${text}
                                 </span>`;
 
