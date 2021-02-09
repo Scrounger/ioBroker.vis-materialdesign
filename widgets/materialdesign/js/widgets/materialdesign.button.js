@@ -401,6 +401,8 @@ vis.binds.materialdesign.button = {
                     if (!isNaN(val) && !isNaN(data.valueOn)) {
                         if (parseFloat(val) === parseFloat(data.valueOn)) {
                             buttonState = true;
+                        } else if (parseFloat(val) !== parseFloat(data.valueOn) && parseFloat(val) !== parseFloat(data.valueOff) && data.stateIfNotTrueValue === 'on') {
+                            buttonState = true;
                         }
                     } else if (val === parseInt(data.valueOn) || val === data.valueOn) {
                         buttonState = true;
