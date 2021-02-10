@@ -27,7 +27,11 @@ vis.binds.materialdesign.alerts =
 
                 let jsonData = null;
                 try {
-                    jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
+                    let jsonString = vis.states.attr(data.oid + '.val');
+
+                    if (jsonString && jsonString.length > 0) {
+                        jsonData = JSON.parse(jsonString);
+                    }
 
                     if (vis.editMode && jsonData.length === 0) {
                         jsonData = jsonHasNoAlerts();
@@ -73,7 +77,11 @@ vis.binds.materialdesign.alerts =
                         vueAlertElements = [];
 
                         try {
-                            jsonData = JSON.parse(vis.states.attr(data.oid + '.val'));
+                            let jsonString = vis.states.attr(data.oid + '.val');
+
+                            if (jsonString && jsonString.length > 0) {
+                                jsonData = JSON.parse(jsonString);
+                            }
                         } catch (err) {
                             jsonData = jsonHasErrorAlert();
                             console.error(`[Vuetify Alerts 2 - ${data.wid}] cannot parse json string! Error: ${err.message}`);
