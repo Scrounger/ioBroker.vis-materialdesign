@@ -33,18 +33,18 @@ vis.binds.materialdesign.viseditor = {
                 if (data[1] === vis.binds.materialdesign.button.types.state.default) {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#state'
                 }
-                
+
                 if (data[1] === vis.binds.materialdesign.button.types.multiState.default) {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#multi-state'
-                }                
-                
+                }
+
                 if (data[1] === vis.binds.materialdesign.button.types.addition.default) {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#addition'
                 }
 
                 if (data[1] === vis.binds.materialdesign.button.types.toggle.default) {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#toggle'
-                } 
+                }
 
                 if (data[1] === vis.binds.materialdesign.button.types.navigation.vertical) {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#navigation-1'
@@ -57,18 +57,18 @@ vis.binds.materialdesign.viseditor = {
                 if (data[1] === vis.binds.materialdesign.button.types.state.vertical) {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#state-1'
                 }
-                
+
                 if (data[1] === vis.binds.materialdesign.button.types.multiState.vertical) {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#multi-state-1'
-                }                
-                
+                }
+
                 if (data[1] === vis.binds.materialdesign.button.types.addition.vertical) {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#addition-1'
                 }
 
                 if (data[1] === vis.binds.materialdesign.button.types.toggle.vertical) {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#toggle-1'
-                } 
+                }
 
                 if (data[1] === vis.binds.materialdesign.button.types.navigation.icon) {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#navigation-2'
@@ -81,18 +81,18 @@ vis.binds.materialdesign.viseditor = {
                 if (data[1] === vis.binds.materialdesign.button.types.state.icon) {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#state-2'
                 }
-                
+
                 if (data[1] === vis.binds.materialdesign.button.types.multiState.icon) {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#multi-state-2'
-                }                
-                
+                }
+
                 if (data[1] === vis.binds.materialdesign.button.types.addition.icon) {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#addition-2'
                 }
 
                 if (data[1] === vis.binds.materialdesign.button.types.toggle.icon) {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#toggle-2'
-                } 
+                }
 
                 if (data[1] === 'card') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#card'
@@ -150,6 +150,14 @@ vis.binds.materialdesign.viseditor = {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#switch'
                 }
 
+                if (data[1] === 'checkbox') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#checkbox'
+                }
+
+                if (data[1] === 'input') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#text-input'
+                }
+
                 if (data[1] === 'select') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#select'
                 }
@@ -180,6 +188,10 @@ vis.binds.materialdesign.viseditor = {
 
                 if (data[1] === 'calendar') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#calendar'
+                }
+
+                if (data[1] === 'dialogView') {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#dialog'
                 }
             }
 
