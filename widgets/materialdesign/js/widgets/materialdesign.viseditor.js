@@ -18,21 +18,81 @@ vis.binds.materialdesign.viseditor = {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#material-design-icons-and-images'
                 }
 
-                if (data[1] === 'button') {
-                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#buttons'
-                }
-
-                if (data[1] === 'buttonVertical') {
-                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#buttons-vertical'
-                }
-
-                if (data[1] === 'buttonIcon') {
-                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#buttons-icon'
-                }
-
                 if (data[1] === 'value') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#value'
                 }
+
+                if (data[1] === vis.binds.materialdesign.button.types.navigation.default) {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#navigation'
+                }
+
+                if (data[1] === vis.binds.materialdesign.button.types.link.default) {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#link'
+                }
+
+                if (data[1] === vis.binds.materialdesign.button.types.state.default) {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#state'
+                }
+                
+                if (data[1] === vis.binds.materialdesign.button.types.multiState.default) {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#multi-state'
+                }                
+                
+                if (data[1] === vis.binds.materialdesign.button.types.addition.default) {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#addition'
+                }
+
+                if (data[1] === vis.binds.materialdesign.button.types.toggle.default) {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#toggle'
+                } 
+
+                if (data[1] === vis.binds.materialdesign.button.types.navigation.vertical) {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#navigation-1'
+                }
+
+                if (data[1] === vis.binds.materialdesign.button.types.link.vertical) {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#link-1'
+                }
+
+                if (data[1] === vis.binds.materialdesign.button.types.state.vertical) {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#state-1'
+                }
+                
+                if (data[1] === vis.binds.materialdesign.button.types.multiState.vertical) {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#multi-state-1'
+                }                
+                
+                if (data[1] === vis.binds.materialdesign.button.types.addition.vertical) {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#addition-1'
+                }
+
+                if (data[1] === vis.binds.materialdesign.button.types.toggle.vertical) {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#toggle-1'
+                } 
+
+                if (data[1] === vis.binds.materialdesign.button.types.navigation.icon) {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#navigation-2'
+                }
+
+                if (data[1] === vis.binds.materialdesign.button.types.link.icon) {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#link-2'
+                }
+
+                if (data[1] === vis.binds.materialdesign.button.types.state.icon) {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#state-2'
+                }
+                
+                if (data[1] === vis.binds.materialdesign.button.types.multiState.icon) {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#multi-state-2'
+                }                
+                
+                if (data[1] === vis.binds.materialdesign.button.types.addition.icon) {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#addition-2'
+                }
+
+                if (data[1] === vis.binds.materialdesign.button.types.toggle.icon) {
+                    url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#toggle-2'
+                } 
 
                 if (data[1] === 'card') {
                     url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#card'
