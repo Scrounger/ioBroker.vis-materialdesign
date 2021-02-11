@@ -36,79 +36,133 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 		- [Editor Settings](#editor-settings)
 		- [HTML Properties](#html-properties)
 	- [Buttons](#buttons)
+		- [Navigation](#navigation)
+			- [Editor Settings](#editor-settings-1)
+			- [HTML Properties](#html-properties-1)
+		- [Link](#link)
+			- [Editor Settings](#editor-settings-2)
+			- [HTML Properties](#html-properties-2)
+		- [State](#state)
+			- [Editor Settings](#editor-settings-3)
+			- [HTML Properties](#html-properties-3)
+		- [Multi State](#multi-state)
+			- [Editor Settings](#editor-settings-4)
+			- [HTML Properties](#html-properties-4)
+		- [Addition](#addition)
+			- [Editor Settings](#editor-settings-5)
+			- [HTML Properties](#html-properties-5)
+		- [Toggle](#toggle)
+			- [Editor Settings](#editor-settings-6)
+			- [HTML Properties](#html-properties-6)
 	- [Buttons Vertical](#buttons-vertical)
-	- [Buttons Icon](#buttons-icon)
-	- [Checkbox](#checkbox)
-		- [Editor Settings](#editor-settings-1)
-		- [HTML Properties](#html-properties-1)
-	- [Switch](#switch)
-		- [Editor Settings](#editor-settings-2)
-		- [HTML Properties](#html-properties-2)
-	- [Value](#value)
-		- [Editor Settings](#editor-settings-3)
-		- [HTML Properties](#html-properties-3)
-	- [HTML Card](#html-card)
-	- [List](#list)
-		- [Editor Settings](#editor-settings-4)
-		- [Data JSON Properties](#data-json-properties)
-	- [IconList](#iconlist)
-		- [Editor Settings](#editor-settings-5)
-		- [Data JSON Properties](#data-json-properties-1)
-	- [Progress](#progress)
-		- [Editor Settings](#editor-settings-6)
-		- [HTML Properties](#html-properties-4)
-	- [Progress Circular](#progress-circular)
-		- [Editor Settings](#editor-settings-7)
-		- [HTML Properties](#html-properties-5)
-	- [Slider](#slider)
-		- [HTML Properties](#html-properties-6)
-	- [Slider Round](#slider-round)
-		- [HTML Properties](#html-properties-7)
-	- [Input](#input)
-		- [Text input](#text-input)
+		- [Navigation](#navigation-1)
+			- [Editor Settings](#editor-settings-7)
+			- [HTML Properties](#html-properties-7)
+		- [Link](#link-1)
 			- [Editor Settings](#editor-settings-8)
 			- [HTML Properties](#html-properties-8)
+		- [State](#state-1)
+			- [Editor Settings](#editor-settings-9)
+			- [HTML Properties](#html-properties-9)
+		- [Multi State](#multi-state-1)
+			- [Editor Settings](#editor-settings-10)
+			- [HTML Properties](#html-properties-10)
+		- [Addition](#addition-1)
+			- [Editor Settings](#editor-settings-11)
+			- [HTML Properties](#html-properties-11)
+		- [Toggle](#toggle-1)
+			- [Editor Settings](#editor-settings-12)
+			- [HTML Properties](#html-properties-12)
+	- [Icon Buttons](#icon-buttons)
+		- [Navigation](#navigation-2)
+			- [Editor Settings](#editor-settings-13)
+			- [HTML Properties](#html-properties-13)
+		- [Link](#link-2)
+			- [Editor Settings](#editor-settings-14)
+			- [HTML Properties](#html-properties-14)
+		- [State](#state-2)
+			- [Editor Settings](#editor-settings-15)
+			- [HTML Properties](#html-properties-15)
+		- [Multi State](#multi-state-2)
+			- [Editor Settings](#editor-settings-16)
+			- [HTML Properties](#html-properties-16)
+		- [Addition](#addition-2)
+			- [Editor Settings](#editor-settings-17)
+			- [HTML Properties](#html-properties-17)
+		- [Toggle](#toggle-2)
+			- [Editor Settings](#editor-settings-18)
+			- [HTML Properties](#html-properties-18)
+	- [Checkbox](#checkbox)
+		- [Editor Settings](#editor-settings-19)
+		- [HTML Properties](#html-properties-19)
+	- [Switch](#switch)
+		- [Editor Settings](#editor-settings-20)
+		- [HTML Properties](#html-properties-20)
+	- [Value](#value)
+		- [Editor Settings](#editor-settings-21)
+		- [HTML Properties](#html-properties-21)
+	- [HTML Card](#html-card)
+	- [List](#list)
+		- [Editor Settings](#editor-settings-22)
+		- [Data JSON Properties](#data-json-properties)
+	- [IconList](#iconlist)
+		- [Editor Settings](#editor-settings-23)
+		- [Data JSON Properties](#data-json-properties-1)
+	- [Progress](#progress)
+		- [Editor Settings](#editor-settings-24)
+		- [HTML Properties](#html-properties-22)
+	- [Progress Circular](#progress-circular)
+		- [Editor Settings](#editor-settings-25)
+		- [HTML Properties](#html-properties-23)
+	- [Slider](#slider)
+		- [HTML Properties](#html-properties-24)
+	- [Slider Round](#slider-round)
+		- [HTML Properties](#html-properties-25)
+	- [Input](#input)
+		- [Text input](#text-input)
+			- [Editor Settings](#editor-settings-26)
+			- [HTML Properties](#html-properties-26)
 		- [Select](#select)
 			- [Menu JSON Properties](#menu-json-properties)
-			- [HTML Properties](#html-properties-9)
+			- [HTML Properties](#html-properties-27)
 		- [Autocomplete](#autocomplete)
 			- [Menu JSON Properties](#menu-json-properties-1)
-			- [HTML Properties](#html-properties-10)
+			- [HTML Properties](#html-properties-28)
 	- [Top App Bar](#top-app-bar)
 		- [Submenu](#submenu)
 			- [JSON Properties](#json-properties)
 	- [Charts](#charts)
 		- [Bar Chart](#bar-chart)
-			- [Editor Settings](#editor-settings-9)
+			- [Editor Settings](#editor-settings-27)
 			- [Dataset JSON Properties](#dataset-json-properties)
 		- [Pie Chart](#pie-chart)
-			- [Editor Settings](#editor-settings-10)
+			- [Editor Settings](#editor-settings-28)
 			- [Dataset JSON Properties](#dataset-json-properties-1)
 		- [Line History Chart:](#line-history-chart)
-			- [Editor Settings](#editor-settings-11)
+			- [Editor Settings](#editor-settings-29)
 		- [JSON Chart](#json-chart)
 			- [JSON Properties](#json-properties-1)
 	- [Table](#table)
-		- [Editor Settings](#editor-settings-12)
+		- [Editor Settings](#editor-settings-30)
 		- [Data - JSON Stucture](#data---json-stucture)
 		- [internal object binding](#internal-object-binding)
 		- [Control Elements using HTML Widgets](#control-elements-using-html-widgets)
 		- [Control Elements - **deprecated since v0.5.0**](#control-elements---deprecated-since-v050)
 	- [Responsive Layout](#responsive-layout)
 		- [Masonry Views](#masonry-views)
-			- [Editor Settings](#editor-settings-13)
+			- [Editor Settings](#editor-settings-31)
 		- [Grid Views](#grid-views)
-			- [Editor Settings](#editor-settings-14)
+			- [Editor Settings](#editor-settings-32)
 	- [Alerts](#alerts)
-		- [Editor Settings](#editor-settings-15)
+		- [Editor Settings](#editor-settings-33)
 		- [Datapoint JSON Properties](#datapoint-json-properties)
 		- [Script: send alert to widget](#script-send-alert-to-widget)
 	- [Calendar](#calendar)
-		- [Editor Settings](#editor-settings-16)
+		- [Editor Settings](#editor-settings-34)
 		- [Datapoint JSON Properties](#datapoint-json-properties-1)
 		- [Script: ical conversion](#script-ical-conversion)
 	- [Dialog](#dialog)
-		- [Editor Settings](#editor-settings-17)
+		- [Editor Settings](#editor-settings-35)
 	- [HTML Widgets](#html-widgets)
 		- [Examples](#examples)
 - [used libraries](#used-libraries)
@@ -287,1649 +341,3759 @@ The following properties can be used as [HTML Widgets](#html-widgets).
 
 ## Buttons
 
-##### Button Link Properties
+### Navigation
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML Widgets](#html-widgets)
+#### Editor Settings
 
-<details>
-	<table>
-		<thead>
-			<tr>
-				<th>Property</th>
-				<th>Description</th>
-				<th>Type</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>type</td>
-				<td>Widget type</td>
-				<td>string</td>
-				<td>link_default</td>
-			</tr>
-			<tr>
-				<td>debug</td>
-				<td>debug mode</td>
-				<td>boolean</td>
-				<td>false | true</td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
-			</tr>
-			<tr>
-				<td>buttonStyle</td>
-				<td>button style</td>
-				<td>string</td>
-				<td>text | raised | unelevated | outlined
-			</tr>
-			<tr>
-				<td>href</td>
-				<td>Link</td>
-				<td>url</td>
-				<td>
-			</tr>
-			<tr>
-				<td>openNewWindow</td>
-				<td>open in new window</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>vibrateOnMobilDevices</td>
-				<td>vibrate on mobil devices [s]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>generateHtmlControl</td>
-				<td>generate Html Element</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
-			</tr>
-			<tr>
-				<td>buttontext</td>
-				<td>Button text</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textFontFamily</td>
-				<td>font</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textFontSize</td>
-				<td>text size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>labelWidth</td>
-				<td>text width</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
-			</tr>
-			<tr>
-				<td>mdwButtonPrimaryColor</td>
-				<td>primary color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>mdwButtonSecondaryColor</td>
-				<td>secondary color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>mdwButtonColorPress</td>
-				<td>color pressed</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
-			</tr>
-			<tr>
-				<td>image</td>
-				<td>Image</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>imageColor</td>
-				<td>image color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>iconPosition</td>
-				<td>image position</td>
-				<td>string</td>
-				<td>left | right
-			</tr>
-			<tr>
-				<td>iconHeight</td>
-				<td>image height</td>
-				<td>number</td>
-				<td>
-			</tr>
-		</tbody>
-	</table>
-</details>
+Settings that are not listed in the table below are self-explanatory.
 
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=1><img src="doc/en/media/button_navigation_common.png"></td>
+            <td>View to navigate</td>
+			<td>name of view to navigate</td>
+        </tr>	
+    </tbody>
+</table>
 
-##### Button State Properties
+#### HTML Properties
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML Widgets](#html-widgets)
+The following properties can be used as [HTML Widgets](#html-widgets).
 
-<details>
-	<table>
-		<thead>
-			<tr>
-				<th>Property</th>
-				<th>Description</th>
-				<th>Type</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>type</td>
-				<td>Widget type</td>
-				<td>string</td>
-				<td>state_default</td>
-			</tr>
-			<tr>
-				<td>debug</td>
-				<td>debug mode</td>
-				<td>boolean</td>
-				<td>false | true</td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
-			</tr>
-			<tr>
-				<td>oid</td>
-				<td>Object ID</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>buttonStyle</td>
-				<td>button style</td>
-				<td>string</td>
-				<td>text | raised | unelevated | outlined
-			</tr>
-			<tr>
-				<td>value</td>
-				<td>value</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>vibrateOnMobilDevices</td>
-				<td>vibrate on mobil devices [s]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>generateHtmlControl</td>
-				<td>generate Html Element</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
-			</tr>
-			<tr>
-				<td>buttontext</td>
-				<td>Button text</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textFontFamily</td>
-				<td>font</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textFontSize</td>
-				<td>text size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>labelWidth</td>
-				<td>text width</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
-			</tr>
-			<tr>
-				<td>mdwButtonPrimaryColor</td>
-				<td>primary color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>mdwButtonSecondaryColor</td>
-				<td>secondary color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>mdwButtonColorPress</td>
-				<td>color pressed</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
-			</tr>
-			<tr>
-				<td>image</td>
-				<td>Image</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>imageColor</td>
-				<td>image color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>iconPosition</td>
-				<td>image position</td>
-				<td>string</td>
-				<td>left | right
-			</tr>
-			<tr>
-				<td>iconHeight</td>
-				<td>image height</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
-			</tr>
-			<tr>
-				<td>lockEnabled</td>
-				<td>enable Locking</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>autoLockAfter</td>
-				<td>auto Locking after [s]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIcon</td>
-				<td>icon</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconSize</td>
-				<td>icon size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconColor</td>
-				<td>icon color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>lockFilterGrayscale</td>
-				<td>gray filter if locked</td>
-				<td>number</td>
-				<td>
-			</tr>
-		</tbody>
-	</table>
-</details>
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>navigation_default</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-buttonStyle</td>
+			<td>button style</td>
+			<td>string</td>
+			<td>text | raised | unelevated | outlined
+		</tr>
+		<tr>
+			<td>mdw-nav_view</td>
+			<td>View to navigate</td>
+			<td>views</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-buttontext</td>
+			<td>Button text</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontSize</td>
+			<td>text size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-labelWidth</td>
+			<td>text width</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonPrimaryColor</td>
+			<td>primary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonSecondaryColor</td>
+			<td>secondary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonColorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-image</td>
+			<td>Image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-iconPosition</td>
+			<td>image position</td>
+			<td>string</td>
+			<td>left | right
+		</tr>
+		<tr>
+			<td>mdw-iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td>
+		</tr>
+	</tbody>
+</table>
 
-
-##### Button Toggle Properties
-
-The following properties can be used as [control element in a table](#control-elements) or as [HTML Widgets](#html-widgets)
+<!-- omit in toc -->
+##### HTML Properties - Example
 
 <details>
-	<table>
-		<thead>
-			<tr>
-				<th>Property</th>
-				<th>Description</th>
-				<th>Type</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>type</td>
-				<td>Widget type</td>
-				<td>string</td>
-				<td>toggle_default</td>
-			</tr>
-			<tr>
-				<td>debug</td>
-				<td>debug mode</td>
-				<td>boolean</td>
-				<td>false | true</td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
-			</tr>
-			<tr>
-				<td>oid</td>
-				<td>Object ID</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>buttonStyle</td>
-				<td>button style</td>
-				<td>string</td>
-				<td>text | raised | unelevated | outlined
-			</tr>
-			<tr>
-				<td>readOnly</td>
-				<td>read only</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>toggleType</td>
-				<td>type of toggle</td>
-				<td>string</td>
-				<td>boolean | value
-			</tr>
-			<tr>
-				<td>pushButton</td>
-				<td>push button</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>valueOff</td>
-				<td>value for off</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueOn</td>
-				<td>value for on</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>stateIfNotTrueValue</td>
-				<td>state if value unequal to 'on' condition</td>
-				<td>string</td>
-				<td>on | off
-			</tr>
-			<tr>
-				<td>vibrateOnMobilDevices</td>
-				<td>vibrate on mobil devices [s]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>generateHtmlControl</td>
-				<td>generate Html Element</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
-			</tr>
-			<tr>
-				<td>buttontext</td>
-				<td>Button text</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>labelTrue</td>
-				<td>Label true</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>labelColorFalse</td>
-				<td>label color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>labelColorTrue</td>
-				<td>active label color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>textFontFamily</td>
-				<td>font</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textFontSize</td>
-				<td>text size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>labelWidth</td>
-				<td>text width</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
-			</tr>
-			<tr>
-				<td>mdwButtonPrimaryColor</td>
-				<td>primary color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>mdwButtonSecondaryColor</td>
-				<td>secondary color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>mdwButtonColorPress</td>
-				<td>color pressed</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorBgFalse</td>
-				<td>background</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorBgTrue</td>
-				<td>active background</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
-			</tr>
-			<tr>
-				<td>image</td>
-				<td>Image</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>imageColor</td>
-				<td>image color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>imageTrue</td>
-				<td>active image</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>imageTrueColor</td>
-				<td>active image color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>iconPosition</td>
-				<td>image position</td>
-				<td>string</td>
-				<td>left | right
-			</tr>
-			<tr>
-				<td>iconHeight</td>
-				<td>image height</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
-			</tr>
-			<tr>
-				<td>lockEnabled</td>
-				<td>enable Locking</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>autoLockAfter</td>
-				<td>auto Locking after [s]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIcon</td>
-				<td>icon</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconSize</td>
-				<td>icon size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconColor</td>
-				<td>icon color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>lockFilterGrayscale</td>
-				<td>gray filter if locked</td>
-				<td>number</td>
-				<td>
-			</tr>
-		</tbody>
-	</table>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element'
+	style='width: 100%; height: 100%; position: relative; padding: 0px;'
+	mdw-type='navigation_default'
+	mdw-buttonStyle='raised'
+	mdw-nav_view='value'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-buttontext=' Navigation'
+	mdw-textFontFamily='#mdwTheme:vis-materialdesign.0.fonts.button.default.text'
+	mdw-textFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.button.default.text'
+	mdw-mdwButtonPrimaryColor='#mdwTheme:vis-materialdesign.0.colors.button.default.primary'
+	mdw-mdwButtonSecondaryColor='#mdwTheme:vis-materialdesign.0.colors.button.default.secondary'
+	mdw-image='navigation'
+	mdw-iconPosition='left'
+></div>
+```
+
 </details>
 
+### Link
+
+#### Editor Settings
+
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=2><img src="doc/en/media/button_link_common.png"></td>
+            <td>Link</td>
+			<td>url to open</td>
+        </tr>
+        <tr>
+            <td>open in new window</td>
+			<td>open link in new window / tab</td>
+        </tr>			
+    </tbody>
+</table>
+
+#### HTML Properties
+
+The following properties can be used as [HTML Widgets](#html-widgets).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>link_default</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-buttonStyle</td>
+			<td>button style</td>
+			<td>string</td>
+			<td>text | raised | unelevated | outlined
+		</tr>
+		<tr>
+			<td>mdw-href</td>
+			<td>Link</td>
+			<td>url</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-openNewWindow</td>
+			<td>open in new window</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-buttontext</td>
+			<td>Button text</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontSize</td>
+			<td>text size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-labelWidth</td>
+			<td>text width</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonPrimaryColor</td>
+			<td>primary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonSecondaryColor</td>
+			<td>secondary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonColorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-image</td>
+			<td>Image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-iconPosition</td>
+			<td>image position</td>
+			<td>string</td>
+			<td>left | right
+		</tr>
+		<tr>
+			<td>mdw-iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+##### HTML Properties - Example
+
+<details>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element'
+	style='width: 100px; height: 30px; position: relative; padding: 0px;'
+	mdw-type='link_default'
+	mdw-buttonStyle='raised'
+	mdw-href='https://github.com/Scrounger/ioBroker.vis-materialdesign'
+	mdw-openNewWindow='true'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-buttontext=' Link'
+	mdw-textFontFamily='#mdwTheme:vis-materialdesign.0.fonts.button.default.text'
+	mdw-textFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.button.default.text'
+	mdw-mdwButtonPrimaryColor='#mdwTheme:vis-materialdesign.0.colors.button.default.primary'
+	mdw-mdwButtonSecondaryColor='#mdwTheme:vis-materialdesign.0.colors.button.default.secondary'
+	mdw-image='link'
+	mdw-iconPosition='left'
+></div>
+```
+
+</details>
+
+### State
+
+#### Editor Settings
+
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=1><img src="doc/en/media/button_state_common.png"></td>
+            <td>value</td>
+			<td>value to set</td>
+        </tr>		
+    </tbody>
+</table>
+
+#### HTML Properties
+
+The following properties can be used as [HTML Widgets](#html-widgets).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>state_default</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-buttonStyle</td>
+			<td>button style</td>
+			<td>string</td>
+			<td>text | raised | unelevated | outlined
+		</tr>
+		<tr>
+			<td>mdw-value</td>
+			<td>value</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-buttontext</td>
+			<td>Button text</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontSize</td>
+			<td>text size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-labelWidth</td>
+			<td>text width</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonPrimaryColor</td>
+			<td>primary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonSecondaryColor</td>
+			<td>secondary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonColorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-image</td>
+			<td>Image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-iconPosition</td>
+			<td>image position</td>
+			<td>string</td>
+			<td>left | right
+		</tr>
+		<tr>
+			<td>mdw-iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-lockEnabled</td>
+			<td>enable Locking</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-autoLockAfter</td>
+			<td>auto Locking after [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIcon</td>
+			<td>icon</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconSize</td>
+			<td>icon size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconColor</td>
+			<td>icon color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-lockFilterGrayscale</td>
+			<td>gray filter if locked</td>
+			<td>number</td>
+			<td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+##### HTML Properties - Example
+
+<details>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element'
+	style='width: 100%; height: 100%; position: relative; padding: 0px;'
+	mdw-type='state_default'
+	mdw-oid='0_userdata.0.number'
+	mdw-buttonStyle='raised'
+	mdw-value='22'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-buttontext=' State'
+	mdw-textFontFamily='#mdwTheme:vis-materialdesign.0.fonts.button.default.text'
+	mdw-textFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.button.default.text'
+	mdw-mdwButtonPrimaryColor='#mdwTheme:vis-materialdesign.0.colors.button.default.primary'
+	mdw-mdwButtonSecondaryColor='#mdwTheme:vis-materialdesign.0.colors.button.default.secondary'
+	mdw-image='pencil'
+	mdw-iconPosition='left'
+	mdw-autoLockAfter='10'
+	mdw-lockIconColor='#mdwTheme:vis-materialdesign.0.colors.button.lock_icon'
+	mdw-lockFilterGrayscale='30'
+></div>
+```
+
+</details>
+
+### Multi State
+
+#### Editor Settings
+
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=3><img src="doc/en/media/button_multiState_Objeckt_id_x.png"></td>
+            <td>Object ID[x]</td>
+			<td>id of the object from which the value is to be set</td>
+        </tr>
+        <tr>
+            <td>value[x]</td>
+			<td>value to be set</td>
+        </tr>
+        <tr>
+            <td>delay [ms][x]</td>
+			<td>delay until value is set</td>
+        </tr>						
+    </tbody>
+</table>
+
+#### HTML Properties
+
+The following properties can be used as [HTML Widgets](#html-widgets).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>multiState_default</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-countOids</td>
+			<td>count of Object Id's</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-buttonStyle</td>
+			<td>button style</td>
+			<td>string</td>
+			<td>text | raised | unelevated | outlined
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Object Id [x]</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-oid[x]</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-value[x]</td>
+			<td>value</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-delayInMs[x]</td>
+			<td>delay [ms]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-buttontext</td>
+			<td>Button text</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontSize</td>
+			<td>text size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-labelWidth</td>
+			<td>text width</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonPrimaryColor</td>
+			<td>primary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonSecondaryColor</td>
+			<td>secondary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonColorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-image</td>
+			<td>Image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-iconPosition</td>
+			<td>image position</td>
+			<td>string</td>
+			<td>left | right
+		</tr>
+		<tr>
+			<td>mdw-iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-lockEnabled</td>
+			<td>enable Locking</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-autoLockAfter</td>
+			<td>auto Locking after [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIcon</td>
+			<td>icon</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconSize</td>
+			<td>icon size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconColor</td>
+			<td>icon color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-lockFilterGrayscale</td>
+			<td>gray filter if locked</td>
+			<td>number</td>
+			<td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+##### HTML Properties - Example
+
+<details>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element'
+	style='width: 100%; height: 100%; position: relative; padding: 0px;'
+	mdw-type='multiState_default'
+	mdw-countOids='1'
+	mdw-buttonStyle='raised'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-buttontext=' Multi State'
+	mdw-textFontFamily='#mdwTheme:vis-materialdesign.0.fonts.button.default.text'
+	mdw-textFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.button.default.text'
+	mdw-mdwButtonPrimaryColor='#mdwTheme:vis-materialdesign.0.colors.button.default.primary'
+	mdw-mdwButtonSecondaryColor='#mdwTheme:vis-materialdesign.0.colors.button.default.secondary'
+	mdw-image='pencil-box-multiple'
+	mdw-iconPosition='left'
+	mdw-autoLockAfter='10'
+	mdw-lockIconColor='#mdwTheme:vis-materialdesign.0.colors.button.lock_icon'
+	mdw-lockFilterGrayscale='30'
+	mdw-oid0='0_userdata.0.MDW.Buttons.multiState.bool'
+	mdw-value0='true'
+	mdw-delayInMs0='0'
+	mdw-oid1='0_userdata.0.MDW.Buttons.number'
+	mdw-value1='66'
+	mdw-delayInMs1='0'
+></div>
+```
+
+</details>
+
+### Addition
+
+#### Editor Settings
+
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=2><img src="doc/en/media/button_addition_common.png"></td>
+            <td>value</td>
+			<td>value to be added or subtracted</td>
+        </tr>
+        <tr>
+            <td>minmax</td>
+			<td>minimum / maximum value up to which adding or subtracting can take place</td>
+        </tr>		
+    </tbody>
+</table>
+
+#### HTML Properties
+
+The following properties can be used as [HTML Widgets](#html-widgets).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>addition_default</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-buttonStyle</td>
+			<td>button style</td>
+			<td>string</td>
+			<td>text | raised | unelevated | outlined
+		</tr>
+		<tr>
+			<td>mdw-value</td>
+			<td>value</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-minmax</td>
+			<td>minmax</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-buttontext</td>
+			<td>Button text</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontSize</td>
+			<td>text size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-labelWidth</td>
+			<td>text width</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonPrimaryColor</td>
+			<td>primary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonSecondaryColor</td>
+			<td>secondary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonColorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-image</td>
+			<td>Image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-iconPosition</td>
+			<td>image position</td>
+			<td>string</td>
+			<td>left | right
+		</tr>
+		<tr>
+			<td>mdw-iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+##### HTML Properties - Example
+
+<details>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element'
+	style='width: 100%; height: 100%; position: relative; padding: 0px;'
+	mdw-type='addition_default'
+	mdw-oid='0_userdata.0.MDW.Buttons.number'
+	mdw-buttonStyle='raised'
+	mdw-value='1'
+	mdw-minmax='100'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-buttontext=' Addition'
+	mdw-textFontFamily='#mdwTheme:vis-materialdesign.0.fonts.button.default.text'
+	mdw-textFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.button.default.text'
+	mdw-mdwButtonPrimaryColor='#mdwTheme:vis-materialdesign.0.colors.button.default.primary'
+	mdw-mdwButtonSecondaryColor='#mdwTheme:vis-materialdesign.0.colors.button.default.secondary'
+	mdw-image='plus'
+	mdw-iconPosition='left'
+></div>
+```
+
+</details>
+
+### Toggle
+
+#### Editor Settings
+
+Settings that are not listed in the table below are self-explanatory.
+
+tbd
+
+#### HTML Properties
+
+The following properties can be used as [HTML Widgets](#html-widgets).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>toggle_default</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-buttonStyle</td>
+			<td>button style</td>
+			<td>string</td>
+			<td>text | raised | unelevated | outlined
+		</tr>
+		<tr>
+			<td>mdw-readOnly</td>
+			<td>read only</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-toggleType</td>
+			<td>type of toggle</td>
+			<td>string</td>
+			<td>boolean | value
+		</tr>
+		<tr>
+			<td>mdw-pushButton</td>
+			<td>push button</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-valueOff</td>
+			<td>value for off</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueOn</td>
+			<td>value for on</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-stateIfNotTrueValue</td>
+			<td>state if value unequal to 'on' condition</td>
+			<td>string</td>
+			<td>on | off
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-buttontext</td>
+			<td>Button text</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-labelTrue</td>
+			<td>Label true</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-labelColorFalse</td>
+			<td>label color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-labelColorTrue</td>
+			<td>active label color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-textFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontSize</td>
+			<td>text size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-labelWidth</td>
+			<td>text width</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonPrimaryColor</td>
+			<td>primary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonSecondaryColor</td>
+			<td>secondary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonColorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorBgFalse</td>
+			<td>background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorBgTrue</td>
+			<td>active background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-image</td>
+			<td>Image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-imageTrue</td>
+			<td>active image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageTrueColor</td>
+			<td>active image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-iconPosition</td>
+			<td>image position</td>
+			<td>string</td>
+			<td>left | right
+		</tr>
+		<tr>
+			<td>mdw-iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-lockEnabled</td>
+			<td>enable Locking</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-autoLockAfter</td>
+			<td>auto Locking after [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIcon</td>
+			<td>icon</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconSize</td>
+			<td>icon size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconColor</td>
+			<td>icon color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-lockFilterGrayscale</td>
+			<td>gray filter if locked</td>
+			<td>number</td>
+			<td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+##### HTML Properties - Example
+
+<details>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element'
+	style='width: 100%; height: 100%; position: relative; padding: 0px;'
+	mdw-type='toggle_default'
+	mdw-oid='0_userdata.0.MDW.Buttons.multiState.bool'
+	mdw-buttonStyle='raised'
+	mdw-toggleType='boolean'
+	mdw-stateIfNotTrueValue='on'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-buttontext='off'
+	mdw-labelTrue='on'
+	mdw-textFontFamily='#mdwTheme:vis-materialdesign.0.fonts.button.default.text'
+	mdw-textFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.button.default.text'
+	mdw-mdwButtonPrimaryColor='#mdwTheme:vis-materialdesign.0.colors.button.default.primary'
+	mdw-mdwButtonSecondaryColor='#mdwTheme:vis-materialdesign.0.colors.button.default.secondary'
+	mdw-colorBgTrue='green'
+	mdw-image='checkbox-blank-outline'
+	mdw-imageTrue='checkbox-marked'
+	mdw-iconPosition='left'
+	mdw-autoLockAfter='4'
+	mdw-lockIconColor='#mdwTheme:vis-materialdesign.0.colors.button.lock_icon'
+	mdw-lockFilterGrayscale='30'
+></div>
+```
+
+</details>
 
 ## Buttons Vertical
 
-![Logo](doc/en/media/buttons.gif)
+### Navigation
 
-##### Button Vertical Link Properties
+#### Editor Settings
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML Widgets](#html-widgets)
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=1><img src="doc/en/media/button_navigation_common.png"></td>
+            <td>View to navigate</td>
+			<td>name of view to navigate</td>
+        </tr>	
+    </tbody>
+</table>
+
+#### HTML Properties
+
+The following properties can be used as [HTML Widgets](#html-widgets).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>navigation_vertical</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-buttonStyle</td>
+			<td>button style</td>
+			<td>string</td>
+			<td>text | raised | unelevated | outlined
+		</tr>
+		<tr>
+			<td>mdw-nav_view</td>
+			<td>View to navigate</td>
+			<td>views</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-buttontext</td>
+			<td>Button text</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontSize</td>
+			<td>text size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-alignment</td>
+			<td>alignment</td>
+			<td>string</td>
+			<td>flex-start | center | flex-end
+		</tr>
+		<tr>
+			<td>mdw-distanceBetweenTextAndImage</td>
+			<td>distance between text and image</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonPrimaryColor</td>
+			<td>primary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonSecondaryColor</td>
+			<td>secondary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonColorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-image</td>
+			<td>Image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-iconPosition</td>
+			<td>image position</td>
+			<td>string</td>
+			<td>top | bottom
+		</tr>
+		<tr>
+			<td>mdw-iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+##### HTML Properties - Example
 
 <details>
-	<table>
-		<thead>
-			<tr>
-				<th>Property</th>
-				<th>Description</th>
-				<th>Type</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>type</td>
-				<td>Widget type</td>
-				<td>string</td>
-				<td>link_vertical</td>
-			</tr>
-			<tr>
-				<td>debug</td>
-				<td>debug mode</td>
-				<td>boolean</td>
-				<td>false | true</td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
-			</tr>
-			<tr>
-				<td>buttonStyle</td>
-				<td>button style</td>
-				<td>string</td>
-				<td>text | raised | unelevated | outlined
-			</tr>
-			<tr>
-				<td>href</td>
-				<td>Link</td>
-				<td>url</td>
-				<td>
-			</tr>
-			<tr>
-				<td>openNewWindow</td>
-				<td>open in new window</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>vibrateOnMobilDevices</td>
-				<td>vibrate on mobil devices [s]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>generateHtmlControl</td>
-				<td>generate Html Element</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
-			</tr>
-			<tr>
-				<td>buttontext</td>
-				<td>Button text</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textFontFamily</td>
-				<td>font</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textFontSize</td>
-				<td>text size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>alignment</td>
-				<td>alignment</td>
-				<td>string</td>
-				<td>flex-start | center | flex-end
-			</tr>
-			<tr>
-				<td>distanceBetweenTextAndImage</td>
-				<td>distance between text and image</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
-			</tr>
-			<tr>
-				<td>mdwButtonPrimaryColor</td>
-				<td>primary color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>mdwButtonSecondaryColor</td>
-				<td>secondary color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>mdwButtonColorPress</td>
-				<td>color pressed</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
-			</tr>
-			<tr>
-				<td>image</td>
-				<td>Image</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>imageColor</td>
-				<td>image color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>iconPosition</td>
-				<td>image position</td>
-				<td>string</td>
-				<td>top | bottom
-			</tr>
-			<tr>
-				<td>iconHeight</td>
-				<td>image height</td>
-				<td>number</td>
-				<td>
-			</tr>
-		</tbody>
-	</table>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element'
+	style='width: 100%; height: 100%; position: relative; padding: 0px;'
+	mdw-type='navigation_vertical'
+	mdw-buttonStyle='raised'
+	mdw-nav_view='progress'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-buttontext='Navigation'
+	mdw-textFontFamily='#mdwTheme:vis-materialdesign.0.fonts.button.vertical.text'
+	mdw-textFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.button.vertical.text'
+	mdw-alignment='center'
+	mdw-mdwButtonPrimaryColor='#mdwTheme:vis-materialdesign.0.colors.button.vertical.primary'
+	mdw-mdwButtonSecondaryColor='#mdwTheme:vis-materialdesign.0.colors.button.vertical.secondary'
+	mdw-image='navigation'
+	mdw-iconPosition='top'
+	mdw-iconHeight='26'
+></div>
+```
+
+</details>
+
+### Link
+
+#### Editor Settings
+
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=2><img src="doc/en/media/button_link_common.png"></td>
+            <td>Link</td>
+			<td>url to open</td>
+        </tr>
+        <tr>
+            <td>open in new window</td>
+			<td>open link in new window / tab</td>
+        </tr>			
+    </tbody>
+</table>
+
+#### HTML Properties
+
+The following properties can be used as [HTML Widgets](#html-widgets).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>link_vertical</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-buttonStyle</td>
+			<td>button style</td>
+			<td>string</td>
+			<td>text | raised | unelevated | outlined
+		</tr>
+		<tr>
+			<td>mdw-href</td>
+			<td>Link</td>
+			<td>url</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-openNewWindow</td>
+			<td>open in new window</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-buttontext</td>
+			<td>Button text</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontSize</td>
+			<td>text size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-alignment</td>
+			<td>alignment</td>
+			<td>string</td>
+			<td>flex-start | center | flex-end
+		</tr>
+		<tr>
+			<td>mdw-distanceBetweenTextAndImage</td>
+			<td>distance between text and image</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonPrimaryColor</td>
+			<td>primary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonSecondaryColor</td>
+			<td>secondary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonColorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-image</td>
+			<td>Image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-iconPosition</td>
+			<td>image position</td>
+			<td>string</td>
+			<td>top | bottom
+		</tr>
+		<tr>
+			<td>mdw-iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+##### HTML Properties - Example
+
+<details>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element'
+	style='width: 100%; height: 100%; position: relative; padding: 0px;'
+	mdw-type='link_vertical'
+	mdw-debug='true'
+	mdw-buttonStyle='raised'
+	mdw-href='https://github.com/Scrounger/ioBroker.vis-materialdesign'
+	mdw-openNewWindow='true'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-buttontext='Link'
+	mdw-textFontFamily='#mdwTheme:vis-materialdesign.0.fonts.button.vertical.text'
+	mdw-textFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.button.vertical.text'
+	mdw-alignment='center'
+	mdw-mdwButtonPrimaryColor='#mdwTheme:vis-materialdesign.0.colors.button.vertical.primary'
+	mdw-mdwButtonSecondaryColor='#mdwTheme:vis-materialdesign.0.colors.button.vertical.secondary'
+	mdw-image='link'
+	mdw-iconPosition='top'
+	mdw-iconHeight='26'
+></div>
+```
+
+</details>
+
+### State
+
+#### Editor Settings
+
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=1><img src="doc/en/media/button_state_common.png"></td>
+            <td>value</td>
+			<td>value to set</td>
+        </tr>		
+    </tbody>
+</table>
+
+#### HTML Properties
+
+The following properties can be used as [HTML Widgets](#html-widgets).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>state_vertical</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-buttonStyle</td>
+			<td>button style</td>
+			<td>string</td>
+			<td>text | raised | unelevated | outlined
+		</tr>
+		<tr>
+			<td>mdw-value</td>
+			<td>value</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-buttontext</td>
+			<td>Button text</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontSize</td>
+			<td>text size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-alignment</td>
+			<td>alignment</td>
+			<td>string</td>
+			<td>flex-start | center | flex-end
+		</tr>
+		<tr>
+			<td>mdw-distanceBetweenTextAndImage</td>
+			<td>distance between text and image</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonPrimaryColor</td>
+			<td>primary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonSecondaryColor</td>
+			<td>secondary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonColorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-image</td>
+			<td>Image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-iconPosition</td>
+			<td>image position</td>
+			<td>string</td>
+			<td>top | bottom
+		</tr>
+		<tr>
+			<td>mdw-iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-lockEnabled</td>
+			<td>enable Locking</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-autoLockAfter</td>
+			<td>auto Locking after [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIcon</td>
+			<td>icon</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconTop</td>
+			<td>symbol distance from top [%]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconLeft</td>
+			<td>symbol distance from left [%]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconSize</td>
+			<td>icon size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconColor</td>
+			<td>icon color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-lockFilterGrayscale</td>
+			<td>gray filter if locked</td>
+			<td>number</td>
+			<td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+##### HTML Properties - Example
+
+<details>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element'
+	style='width: 100%; height: 100%; position: relative; padding: 0px;'
+	mdw-type='state_vertical'
+	mdw-oid='0_userdata.0.MDW.Buttons.number'
+	mdw-buttonStyle='raised'
+	mdw-value='41'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-buttontext='State'
+	mdw-textFontFamily='#mdwTheme:vis-materialdesign.0.fonts.button.vertical.text'
+	mdw-textFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.button.vertical.text'
+	mdw-alignment='center'
+	mdw-mdwButtonPrimaryColor='#mdwTheme:vis-materialdesign.0.colors.button.vertical.primary'
+	mdw-mdwButtonSecondaryColor='#mdwTheme:vis-materialdesign.0.colors.button.vertical.secondary'
+	mdw-image='pencil'
+	mdw-iconPosition='top'
+	mdw-iconHeight='26'
+	mdw-autoLockAfter='10'
+	mdw-lockIconTop='5'
+	mdw-lockIconLeft='5'
+	mdw-lockIconColor='#mdwTheme:vis-materialdesign.0.colors.button.lock_icon'
+	mdw-lockFilterGrayscale='30'
+></div>
+```
+
 </details>
 
 
-##### Button Vertical State Properties
+### Multi State
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML Widgets](#html-widgets)
+#### Editor Settings
+
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=3><img src="doc/en/media/button_multiState_Objeckt_id_x.png"></td>
+            <td>Object ID[x]</td>
+			<td>id of the object from which the value is to be set</td>
+        </tr>
+        <tr>
+            <td>value[x]</td>
+			<td>value to be set</td>
+        </tr>
+        <tr>
+            <td>delay [ms][x]</td>
+			<td>delay until value is set</td>
+        </tr>						
+    </tbody>
+</table>
+
+#### HTML Properties
+
+The following properties can be used as [HTML Widgets](#html-widgets).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>multiState_vertical</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-countOids</td>
+			<td>count of Object Id's</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-buttonStyle</td>
+			<td>button style</td>
+			<td>string</td>
+			<td>text | raised | unelevated | outlined
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Object Id [x]</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-oid[x]</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-value[x]</td>
+			<td>value</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-delayInMs[x]</td>
+			<td>delay [ms]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-buttontext</td>
+			<td>Button text</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontSize</td>
+			<td>text size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-alignment</td>
+			<td>alignment</td>
+			<td>string</td>
+			<td>flex-start | center | flex-end
+		</tr>
+		<tr>
+			<td>mdw-distanceBetweenTextAndImage</td>
+			<td>distance between text and image</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonPrimaryColor</td>
+			<td>primary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonSecondaryColor</td>
+			<td>secondary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonColorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-image</td>
+			<td>Image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-iconPosition</td>
+			<td>image position</td>
+			<td>string</td>
+			<td>top | bottom
+		</tr>
+		<tr>
+			<td>mdw-iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-lockEnabled</td>
+			<td>enable Locking</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-autoLockAfter</td>
+			<td>auto Locking after [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIcon</td>
+			<td>icon</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconTop</td>
+			<td>symbol distance from top [%]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconLeft</td>
+			<td>symbol distance from left [%]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconSize</td>
+			<td>icon size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconColor</td>
+			<td>icon color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-lockFilterGrayscale</td>
+			<td>gray filter if locked</td>
+			<td>number</td>
+			<td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+##### HTML Properties - Example
 
 <details>
-	<table>
-		<thead>
-			<tr>
-				<th>Property</th>
-				<th>Description</th>
-				<th>Type</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>type</td>
-				<td>Widget type</td>
-				<td>string</td>
-				<td>state_vertical</td>
-			</tr>
-			<tr>
-				<td>debug</td>
-				<td>debug mode</td>
-				<td>boolean</td>
-				<td>false | true</td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
-			</tr>
-			<tr>
-				<td>oid</td>
-				<td>Object ID</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>buttonStyle</td>
-				<td>button style</td>
-				<td>string</td>
-				<td>text | raised | unelevated | outlined
-			</tr>
-			<tr>
-				<td>value</td>
-				<td>value</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>vibrateOnMobilDevices</td>
-				<td>vibrate on mobil devices [s]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>generateHtmlControl</td>
-				<td>generate Html Element</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
-			</tr>
-			<tr>
-				<td>buttontext</td>
-				<td>Button text</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textFontFamily</td>
-				<td>font</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textFontSize</td>
-				<td>text size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>alignment</td>
-				<td>alignment</td>
-				<td>string</td>
-				<td>flex-start | center | flex-end
-			</tr>
-			<tr>
-				<td>distanceBetweenTextAndImage</td>
-				<td>distance between text and image</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
-			</tr>
-			<tr>
-				<td>mdwButtonPrimaryColor</td>
-				<td>primary color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>mdwButtonSecondaryColor</td>
-				<td>secondary color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>mdwButtonColorPress</td>
-				<td>color pressed</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
-			</tr>
-			<tr>
-				<td>image</td>
-				<td>Image</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>imageColor</td>
-				<td>image color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>iconPosition</td>
-				<td>image position</td>
-				<td>string</td>
-				<td>top | bottom
-			</tr>
-			<tr>
-				<td>iconHeight</td>
-				<td>image height</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
-			</tr>
-			<tr>
-				<td>lockEnabled</td>
-				<td>enable Locking</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>autoLockAfter</td>
-				<td>auto Locking after [s]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIcon</td>
-				<td>icon</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconTop</td>
-				<td>symbol distance from top [%]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconLeft</td>
-				<td>symbol distance from left [%]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconSize</td>
-				<td>icon size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconColor</td>
-				<td>icon color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>lockFilterGrayscale</td>
-				<td>gray filter if locked</td>
-				<td>number</td>
-				<td>
-			</tr>
-		</tbody>
-	</table>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element'
+	style='width: 100%; height: 100%; position: relative; padding: 0px;'
+	mdw-type='multiState_vertical'
+	mdw-countOids='1'
+	mdw-buttonStyle='raised'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-buttontext='Multi State'
+	mdw-textFontFamily='#mdwTheme:vis-materialdesign.0.fonts.button.vertical.text'
+	mdw-textFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.button.vertical.text'
+	mdw-alignment='center'
+	mdw-mdwButtonPrimaryColor='#mdwTheme:vis-materialdesign.0.colors.button.vertical.primary'
+	mdw-mdwButtonSecondaryColor='#mdwTheme:vis-materialdesign.0.colors.button.vertical.secondary'
+	mdw-image='pencil-box-multiple'
+	mdw-iconPosition='top'
+	mdw-iconHeight='26'
+	mdw-autoLockAfter='10'
+	mdw-lockIconTop='5'
+	mdw-lockIconLeft='5'
+	mdw-lockIconColor='#mdwTheme:vis-materialdesign.0.colors.button.lock_icon'
+	mdw-lockFilterGrayscale='30'
+	mdw-oid0='0_userdata.0.MDW.Buttons.multiState.bool'
+	mdw-value0='true'
+	mdw-delayInMs0='0'
+	mdw-oid1='0_userdata.0.MDW.Buttons.number'
+	mdw-value1='33'
+	mdw-delayInMs1='0'
+></div>
+```
+
+</details>
+
+### Addition
+
+#### Editor Settings
+
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=2><img src="doc/en/media/button_addition_common.png"></td>
+            <td>value</td>
+			<td>value to be added or subtracted</td>
+        </tr>
+        <tr>
+            <td>minmax</td>
+			<td>minimum / maximum value up to which adding or subtracting can take place</td>
+        </tr>		
+    </tbody>
+</table>
+
+#### HTML Properties
+
+The following properties can be used as [HTML Widgets](#html-widgets).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>addition_vertical</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-buttonStyle</td>
+			<td>button style</td>
+			<td>string</td>
+			<td>text | raised | unelevated | outlined
+		</tr>
+		<tr>
+			<td>mdw-value</td>
+			<td>value</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-minmax</td>
+			<td>minmax</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-buttontext</td>
+			<td>Button text</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontSize</td>
+			<td>text size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-alignment</td>
+			<td>alignment</td>
+			<td>string</td>
+			<td>flex-start | center | flex-end
+		</tr>
+		<tr>
+			<td>mdw-distanceBetweenTextAndImage</td>
+			<td>distance between text and image</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonPrimaryColor</td>
+			<td>primary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonSecondaryColor</td>
+			<td>secondary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonColorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-image</td>
+			<td>Image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-iconPosition</td>
+			<td>image position</td>
+			<td>string</td>
+			<td>top | bottom
+		</tr>
+		<tr>
+			<td>mdw-iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+##### HTML Properties - Example
+
+<details>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element'
+	style='width: 100%; height: 100%; position: relative; padding: 0px;'
+	mdw-type='addition_vertical'
+	mdw-oid='0_userdata.0.MDW.Buttons.number'
+	mdw-buttonStyle='raised'
+	mdw-value='-1'
+	mdw-minmax='0'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-buttontext='Addition'
+	mdw-textFontFamily='#mdwTheme:vis-materialdesign.0.fonts.button.vertical.text'
+	mdw-textFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.button.vertical.text'
+	mdw-alignment='center'
+	mdw-mdwButtonPrimaryColor='#mdwTheme:vis-materialdesign.0.colors.button.vertical.primary'
+	mdw-mdwButtonSecondaryColor='#mdwTheme:vis-materialdesign.0.colors.button.vertical.secondary'
+	mdw-image='minus'
+	mdw-iconPosition='top'
+	mdw-iconHeight='26'
+></div>
+```
+
+</details>
+
+### Toggle
+
+#### Editor Settings
+
+Settings that are not listed in the table below are self-explanatory.
+
+tbd
+
+#### HTML Properties
+
+The following properties can be used as [HTML Widgets](#html-widgets).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>toggle_vertical</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-buttonStyle</td>
+			<td>button style</td>
+			<td>string</td>
+			<td>text | raised | unelevated | outlined
+		</tr>
+		<tr>
+			<td>mdw-readOnly</td>
+			<td>read only</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-toggleType</td>
+			<td>type of toggle</td>
+			<td>string</td>
+			<td>boolean | value
+		</tr>
+		<tr>
+			<td>mdw-pushButton</td>
+			<td>push button</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-valueOff</td>
+			<td>value for off</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueOn</td>
+			<td>value for on</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-stateIfNotTrueValue</td>
+			<td>state if value unequal to 'on' condition</td>
+			<td>string</td>
+			<td>on | off
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-buttontext</td>
+			<td>Button text</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-labelTrue</td>
+			<td>Label true</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-labelColorFalse</td>
+			<td>label color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-labelColorTrue</td>
+			<td>active label color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-textFontFamily</td>
+			<td>font</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-textFontSize</td>
+			<td>text size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-alignment</td>
+			<td>alignment</td>
+			<td>string</td>
+			<td>flex-start | center | flex-end
+		</tr>
+		<tr>
+			<td>mdw-distanceBetweenTextAndImage</td>
+			<td>distance between text and image</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonPrimaryColor</td>
+			<td>primary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-mdwButtonSecondaryColor</td>
+			<td>secondary color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorBgFalse</td>
+			<td>background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorBgTrue</td>
+			<td>active background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-image</td>
+			<td>Image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-imageTrue</td>
+			<td>active image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageTrueColor</td>
+			<td>active image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-iconPosition</td>
+			<td>image position</td>
+			<td>string</td>
+			<td>top | bottom
+		</tr>
+		<tr>
+			<td>mdw-iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-lockEnabled</td>
+			<td>enable Locking</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-autoLockAfter</td>
+			<td>auto Locking after [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIcon</td>
+			<td>icon</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconTop</td>
+			<td>symbol distance from top [%]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconLeft</td>
+			<td>symbol distance from left [%]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconSize</td>
+			<td>icon size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconColor</td>
+			<td>icon color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-lockFilterGrayscale</td>
+			<td>gray filter if locked</td>
+			<td>number</td>
+			<td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+##### HTML Properties - Example
+
+<details>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element'
+	style='width: 100%; height: 100%; position: relative; padding: 0px;'
+	mdw-type='toggle_vertical'
+	mdw-oid='0_userdata.0.MDW.Buttons.multiState.bool'
+	mdw-buttonStyle='raised'
+	mdw-toggleType='boolean'
+	mdw-pushButton='true'
+	mdw-stateIfNotTrueValue='on'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-buttontext='off push'
+	mdw-labelTrue='on push'
+	mdw-textFontFamily='#mdwTheme:vis-materialdesign.0.fonts.button.vertical.text'
+	mdw-textFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.button.vertical.text'
+	mdw-alignment='center'
+	mdw-mdwButtonPrimaryColor='#mdwTheme:vis-materialdesign.0.colors.button.vertical.primary'
+	mdw-mdwButtonSecondaryColor='#mdwTheme:vis-materialdesign.0.colors.button.vertical.secondary'
+	mdw-colorBgTrue='green'
+	mdw-image='checkbox-blank-outline'
+	mdw-imageTrue='checkbox-marked'
+	mdw-iconPosition='top'
+	mdw-iconHeight='26'
+	mdw-autoLockAfter='4'
+	mdw-lockIconTop='5'
+	mdw-lockIconLeft='5'
+	mdw-lockIconSize='24'
+	mdw-lockIconColor='#mdwTheme:vis-materialdesign.0.colors.button.lock_icon'
+	mdw-lockFilterGrayscale='100'
+></div>
+```
+
 </details>
 
 
-##### Button Vertical Toggle Properties
+## Icon Buttons
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML Widgets](#html-widgets)
+### Navigation
 
-<details>
-	<table>
-		<thead>
-			<tr>
-				<th>Property</th>
-				<th>Description</th>
-				<th>Type</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>type</td>
-				<td>Widget type</td>
-				<td>string</td>
-				<td>toggle_vertical</td>
-			</tr>
-			<tr>
-				<td>debug</td>
-				<td>debug mode</td>
-				<td>boolean</td>
-				<td>false | true</td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
-			</tr>
-			<tr>
-				<td>oid</td>
-				<td>Object ID</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>buttonStyle</td>
-				<td>button style</td>
-				<td>string</td>
-				<td>text | raised | unelevated | outlined
-			</tr>
-			<tr>
-				<td>readOnly</td>
-				<td>read only</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>toggleType</td>
-				<td>type of toggle</td>
-				<td>string</td>
-				<td>boolean | value
-			</tr>
-			<tr>
-				<td>pushButton</td>
-				<td>push button</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>valueOff</td>
-				<td>value for off</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueOn</td>
-				<td>value for on</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>stateIfNotTrueValue</td>
-				<td>state if value unequal to 'on' condition</td>
-				<td>string</td>
-				<td>on | off
-			</tr>
-			<tr>
-				<td>vibrateOnMobilDevices</td>
-				<td>vibrate on mobil devices [s]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>generateHtmlControl</td>
-				<td>generate Html Element</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>labeling</b></i></td>
-			</tr>
-			<tr>
-				<td>buttontext</td>
-				<td>Button text</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>labelTrue</td>
-				<td>Label true</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>labelColorFalse</td>
-				<td>label color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>labelColorTrue</td>
-				<td>active label color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>textFontFamily</td>
-				<td>font</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>textFontSize</td>
-				<td>text size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>alignment</td>
-				<td>alignment</td>
-				<td>string</td>
-				<td>flex-start | center | flex-end
-			</tr>
-			<tr>
-				<td>distanceBetweenTextAndImage</td>
-				<td>distance between text and image</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
-			</tr>
-			<tr>
-				<td>mdwButtonPrimaryColor</td>
-				<td>primary color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>mdwButtonSecondaryColor</td>
-				<td>secondary color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorBgFalse</td>
-				<td>background</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorBgTrue</td>
-				<td>active background</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
-			</tr>
-			<tr>
-				<td>image</td>
-				<td>Image</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>imageColor</td>
-				<td>image color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>imageTrue</td>
-				<td>active image</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>imageTrueColor</td>
-				<td>active image color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>iconPosition</td>
-				<td>image position</td>
-				<td>string</td>
-				<td>top | bottom
-			</tr>
-			<tr>
-				<td>iconHeight</td>
-				<td>image height</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
-			</tr>
-			<tr>
-				<td>lockEnabled</td>
-				<td>enable Locking</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>autoLockAfter</td>
-				<td>auto Locking after [s]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIcon</td>
-				<td>icon</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconTop</td>
-				<td>symbol distance from top [%]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconLeft</td>
-				<td>symbol distance from left [%]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconSize</td>
-				<td>icon size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconColor</td>
-				<td>icon color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>lockFilterGrayscale</td>
-				<td>gray filter if locked</td>
-				<td>number</td>
-				<td>
-			</tr>
-		</tbody>
-	</table>
-</details>
+#### Editor Settings
 
+Settings that are not listed in the table below are self-explanatory.
 
-## Buttons Icon
-![Logo](doc/en/media/icon-button.gif)
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=1><img src="doc/en/media/button_navigation_common.png"></td>
+            <td>View to navigate</td>
+			<td>name of view to navigate</td>
+        </tr>	
+    </tbody>
+</table>
 
-##### Button Icon Link Properties
+#### HTML Properties
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML Widgets](#html-widgets)
+The following properties can be used as [HTML Widgets](#html-widgets).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>navigation_icon</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-nav_view</td>
+			<td>View to navigate</td>
+			<td>views</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-image</td>
+			<td>Image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-colorBgFalse</td>
+			<td>background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+##### HTML Properties - Example
 
 <details>
-	<table>
-		<thead>
-			<tr>
-				<th>Property</th>
-				<th>Description</th>
-				<th>Type</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>type</td>
-				<td>Widget type</td>
-				<td>string</td>
-				<td>link_icon</td>
-			</tr>
-			<tr>
-				<td>debug</td>
-				<td>debug mode</td>
-				<td>boolean</td>
-				<td>false | true</td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
-			</tr>
-			<tr>
-				<td>href</td>
-				<td>Link</td>
-				<td>url</td>
-				<td>
-			</tr>
-			<tr>
-				<td>openNewWindow</td>
-				<td>open in new window</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>vibrateOnMobilDevices</td>
-				<td>vibrate on mobil devices [s]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>generateHtmlControl</td>
-				<td>generate Html Element</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
-			</tr>
-			<tr>
-				<td>image</td>
-				<td>Image</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>imageColor</td>
-				<td>image color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>iconHeight</td>
-				<td>image height</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
-			</tr>
-			<tr>
-				<td>colorBgFalse</td>
-				<td>background</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorPress</td>
-				<td>color pressed</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-		</tbody>
-	</table>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-html-element'
+	style='width: 48px; height: 48px; position: relative; padding: 0px;'
+	mdw-type='navigation_icon'
+	mdw-nav_view='progress'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-image='navigation'
+	mdw-imageColor='#mdwTheme:vis-materialdesign.0.colors.button.icon.icon_off'
+	mdw-colorBgFalse='#mdwTheme:vis-materialdesign.0.colors.button.icon.background_off'
+	mdw-colorPress='#mdwTheme:vis-materialdesign.0.colors.button.icon.pressed'
+></div>
+```
+
 </details>
 
+### Link
 
-##### Button Icon State Properties
+#### Editor Settings
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML Widgets](#html-widgets)
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=2><img src="doc/en/media/button_link_common.png"></td>
+            <td>Link</td>
+			<td>url to open</td>
+        </tr>
+        <tr>
+            <td>open in new window</td>
+			<td>open link in new window / tab</td>
+        </tr>			
+    </tbody>
+</table>
+
+#### HTML Properties
+
+The following properties can be used as [HTML Widgets](#html-widgets).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>link_icon</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-href</td>
+			<td>Link</td>
+			<td>url</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-openNewWindow</td>
+			<td>open in new window</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-image</td>
+			<td>Image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-colorBgFalse</td>
+			<td>background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+##### HTML Properties - Example
 
 <details>
-	<table>
-		<thead>
-			<tr>
-				<th>Property</th>
-				<th>Description</th>
-				<th>Type</th>
-				<th>Values</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>type</td>
-				<td>Widget type</td>
-				<td>string</td>
-				<td>state_icon</td>
-			</tr>
-			<tr>
-				<td>debug</td>
-				<td>debug mode</td>
-				<td>boolean</td>
-				<td>false | true</td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
-			</tr>
-			<tr>
-				<td>oid</td>
-				<td>Object ID</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>value</td>
-				<td>value</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>vibrateOnMobilDevices</td>
-				<td>vibrate on mobil devices [s]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>generateHtmlControl</td>
-				<td>generate Html Element</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
-			</tr>
-			<tr>
-				<td>image</td>
-				<td>Image</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>imageColor</td>
-				<td>image color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>iconHeight</td>
-				<td>image height</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
-			</tr>
-			<tr>
-				<td>colorBgFalse</td>
-				<td>background</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorPress</td>
-				<td>color pressed</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
-			</tr>
-			<tr>
-				<td>lockEnabled</td>
-				<td>enable Locking</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>autoLockAfter</td>
-				<td>auto Locking after [s]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIcon</td>
-				<td>icon</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconTop</td>
-				<td>symbol distance from top [%]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconLeft</td>
-				<td>symbol distance from left [%]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconSize</td>
-				<td>icon size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconColor</td>
-				<td>icon color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>lockIconBackground</td>
-				<td>lockIconBackground</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>lockBackgroundSizeFactor</td>
-				<td>lockBackgroundSizeFactor</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockFilterGrayscale</td>
-				<td>gray filter if locked</td>
-				<td>number</td>
-				<td>
-			</tr>
-		</tbody>
-	</table>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-html-element'
+	style='width: 48px; height: 48px; position: relative; padding: 0px;'
+	mdw-type='link_icon'
+	mdw-href='https://github.com/Scrounger/ioBroker.vis-materialdesign'
+	mdw-openNewWindow='true'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-image='link'
+	mdw-imageColor='#mdwTheme:vis-materialdesign.0.colors.button.icon.icon_off'
+	mdw-colorBgFalse='#mdwTheme:vis-materialdesign.0.colors.button.icon.background_off'
+	mdw-colorPress='#mdwTheme:vis-materialdesign.0.colors.button.icon.pressed'
+></div>
+```
+
 </details>
 
+### State
 
-##### Button Icon Toggle Properties
+#### Editor Settings
 
-The following properties can be used as [control element in a table](#control-elements) or as [HTML Widgets](#html-widgets)
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=1><img src="doc/en/media/button_state_common.png"></td>
+            <td>value</td>
+			<td>value to set</td>
+        </tr>		
+    </tbody>
+</table>
+
+#### HTML Properties
+
+The following properties can be used as [HTML Widgets](#html-widgets).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>state_icon</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-value</td>
+			<td>value</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-image</td>
+			<td>Image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-colorBgFalse</td>
+			<td>background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-lockEnabled</td>
+			<td>enable Locking</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-autoLockAfter</td>
+			<td>auto Locking after [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIcon</td>
+			<td>icon</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconTop</td>
+			<td>symbol distance from top [%]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconLeft</td>
+			<td>symbol distance from left [%]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconSize</td>
+			<td>icon size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconColor</td>
+			<td>icon color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-lockIconBackground</td>
+			<td>lockIconBackground</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-lockBackgroundSizeFactor</td>
+			<td>lockBackgroundSizeFactor</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockFilterGrayscale</td>
+			<td>gray filter if locked</td>
+			<td>number</td>
+			<td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+##### HTML Properties - Example
 
 <details>
-	<table>
-		<thead>
-			<tr>
-				<th>Property</th>
-				<th>Description</th>
-				<th>Type</th>
-				<th>Values</th>
-			</tr>
-		<thead>
-		<tbody>
-			<tr>
-				<td>type</td>
-				<td>Widget type</td>
-				<td>string</td>
-				<td>toggle_icon</td>
-			</tr>
-			<tr>
-				<td>debug</td>
-				<td>debug mode</td>
-				<td>boolean</td>
-				<td>false | true</td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
-			</tr>
-			<tr>
-				<td>oid</td>
-				<td>Object ID</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>readOnly</td>
-				<td>read only</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>toggleType</td>
-				<td>type of toggle</td>
-				<td>string</td>
-				<td>boolean | value
-			</tr>
-			<tr>
-				<td>pushButton</td>
-				<td>push button</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>valueOff</td>
-				<td>value for off</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>valueOn</td>
-				<td>value for on</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>stateIfNotTrueValue</td>
-				<td>state if value unequal to 'on' condition</td>
-				<td>string</td>
-				<td>on | off
-			</tr>
-			<tr>
-				<td>vibrateOnMobilDevices</td>
-				<td>vibrate on mobil devices [s]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>generateHtmlControl</td>
-				<td>generate Html Element</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
-			</tr>
-			<tr>
-				<td>image</td>
-				<td>Image</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>imageColor</td>
-				<td>image color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>imageTrue</td>
-				<td>active image</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>imageTrueColor</td>
-				<td>active image color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>iconHeight</td>
-				<td>image height</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
-			</tr>
-			<tr>
-				<td>colorBgFalse</td>
-				<td>background</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorBgTrue</td>
-				<td>active background</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>colorPress</td>
-				<td>color pressed</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
-			</tr>
-			<tr>
-				<td>lockEnabled</td>
-				<td>enable Locking</td>
-				<td>boolean</td>
-				<td>false | true
-			</tr>
-			<tr>
-				<td>autoLockAfter</td>
-				<td>auto Locking after [s]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIcon</td>
-				<td>icon</td>
-				<td>string</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconTop</td>
-				<td>symbol distance from top [%]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconLeft</td>
-				<td>symbol distance from left [%]</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconSize</td>
-				<td>icon size</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockIconColor</td>
-				<td>icon color</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>lockIconBackground</td>
-				<td>lockIconBackground</td>
-				<td>string</td>
-				<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
-			</tr>
-			<tr>
-				<td>lockBackgroundSizeFactor</td>
-				<td>lockBackgroundSizeFactor</td>
-				<td>number</td>
-				<td>
-			</tr>
-			<tr>
-				<td>lockFilterGrayscale</td>
-				<td>gray filter if locked</td>
-				<td>number</td>
-				<td>
-			</tr>
-		</tbody>
-	</table>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-html-element'
+	style='width: 48px; height: 48px; position: relative; padding: 0px;'
+	mdw-type='state_icon'
+	mdw-oid='0_userdata.0.MDW.Buttons.number'
+	mdw-value='77'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-image='pencil'
+	mdw-imageColor='#mdwTheme:vis-materialdesign.0.colors.button.icon.icon_off'
+	mdw-colorBgFalse='#mdwTheme:vis-materialdesign.0.colors.button.icon.background_off'
+	mdw-colorPress='#mdwTheme:vis-materialdesign.0.colors.button.icon.pressed'
+	mdw-lockEnabled='true'
+	mdw-autoLockAfter='10'
+	mdw-lockIconTop='45'
+	mdw-lockIconLeft='55'
+	mdw-lockIconSize='20'
+	mdw-lockIconColor='#mdwTheme:vis-materialdesign.0.colors.button.icon.lock_icon'
+	mdw-lockIconBackground='#mdwTheme:vis-materialdesign.0.colors.button.icon.lock_icon_background'
+	mdw-lockBackgroundSizeFactor='1'
+	mdw-lockFilterGrayscale='30'
+></div>
+```
+
 </details>
 
+### Multi State
 
+#### Editor Settings
 
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=3><img src="doc/en/media/button_multiState_Objeckt_id_x.png"></td>
+            <td>Object ID[x]</td>
+			<td>id of the object from which the value is to be set</td>
+        </tr>
+        <tr>
+            <td>value[x]</td>
+			<td>value to be set</td>
+        </tr>
+        <tr>
+            <td>delay [ms][x]</td>
+			<td>delay until value is set</td>
+        </tr>						
+    </tbody>
+</table>
+
+#### HTML Properties
+
+The following properties can be used as [HTML Widgets](#html-widgets).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>multiState_icon</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-countOids</td>
+			<td>count of Object Id's</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Object Id [x]</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-oid[x]</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-value[x]</td>
+			<td>value</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-delayInMs[x]</td>
+			<td>delay [ms]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-image</td>
+			<td>Image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-colorBgFalse</td>
+			<td>background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-lockEnabled</td>
+			<td>enable Locking</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-autoLockAfter</td>
+			<td>auto Locking after [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIcon</td>
+			<td>icon</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconTop</td>
+			<td>symbol distance from top [%]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconLeft</td>
+			<td>symbol distance from left [%]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconSize</td>
+			<td>icon size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconColor</td>
+			<td>icon color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-lockIconBackground</td>
+			<td>lockIconBackground</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-lockBackgroundSizeFactor</td>
+			<td>lockBackgroundSizeFactor</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockFilterGrayscale</td>
+			<td>gray filter if locked</td>
+			<td>number</td>
+			<td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+##### HTML Properties - Example
+
+<details>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-html-element'
+	style='width: 48px; height: 48px; position: relative; padding: 0px;'
+	mdw-type='multiState_icon'
+	mdw-countOids='1'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-image='pencil-box-multiple'
+	mdw-imageColor='#mdwTheme:vis-materialdesign.0.colors.button.icon.icon_off'
+	mdw-colorBgFalse='#mdwTheme:vis-materialdesign.0.colors.button.icon.background_off'
+	mdw-colorPress='#mdwTheme:vis-materialdesign.0.colors.button.icon.pressed'
+	mdw-autoLockAfter='10'
+	mdw-lockIconTop='45'
+	mdw-lockIconLeft='55'
+	mdw-lockIconSize='20'
+	mdw-lockIconColor='#mdwTheme:vis-materialdesign.0.colors.button.icon.lock_icon'
+	mdw-lockIconBackground='#mdwTheme:vis-materialdesign.0.colors.button.icon.lock_icon_background'
+	mdw-lockBackgroundSizeFactor='1'
+	mdw-lockFilterGrayscale='30'
+	mdw-oid0='0_userdata.0.MDW.Buttons.number'
+	mdw-value0='22'
+	mdw-delayInMs0='0'
+	mdw-oid1='0_userdata.0.MDW.Buttons.multiState.bool'
+	mdw-value1='true'
+	mdw-delayInMs1='0'
+></div>
+```
+
+</details>
+
+### Addition
+
+#### Editor Settings
+
+Settings that are not listed in the table below are self-explanatory.
+
+<table>
+    <thead>
+        <tr>
+            <th>Screenshot</th>
+            <th>Setting</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=2><img src="doc/en/media/button_addition_common.png"></td>
+            <td>value</td>
+			<td>value to be added or subtracted</td>
+        </tr>
+        <tr>
+            <td>minmax</td>
+			<td>minimum / maximum value up to which adding or subtracting can take place</td>
+        </tr>		
+    </tbody>
+</table>
+
+#### HTML Properties
+
+The following properties can be used as [HTML Widgets](#html-widgets).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>addition_icon</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-value</td>
+			<td>value</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-minmax</td>
+			<td>minmax</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-image</td>
+			<td>Image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-colorBgFalse</td>
+			<td>background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+##### HTML Properties - Example
+
+<details>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-html-element'
+	style='width: 48px; height: 48px; position: relative; padding: 0px;'
+	mdw-type='addition_icon'
+	mdw-oid='0_userdata.0.MDW.Buttons.number'
+	mdw-value='1'
+	mdw-minmax='100'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-image='plus'
+	mdw-imageColor='#mdwTheme:vis-materialdesign.0.colors.button.icon.icon_off'
+	mdw-colorBgFalse='#mdwTheme:vis-materialdesign.0.colors.button.icon.background_off'
+	mdw-colorPress='#mdwTheme:vis-materialdesign.0.colors.button.icon.pressed'
+></div>
+```
+
+</details>
+
+### Toggle
+
+#### Editor Settings
+
+Settings that are not listed in the table below are self-explanatory.
+
+tbd
+
+#### HTML Properties
+
+The following properties can be used as [HTML Widgets](#html-widgets).
+
+<table>
+	<thead>
+		<tr>
+			<th>Property</th>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Values</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>mdw-type</td>
+			<td>Widget type</td>
+			<td>string</td>
+			<td>toggle_icon</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Common</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-oid</td>
+			<td>Object ID</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-readOnly</td>
+			<td>read only</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-toggleType</td>
+			<td>type of toggle</td>
+			<td>string</td>
+			<td>boolean | value
+		</tr>
+		<tr>
+			<td>mdw-pushButton</td>
+			<td>push button</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-valueOff</td>
+			<td>value for off</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-valueOn</td>
+			<td>value for on</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-stateIfNotTrueValue</td>
+			<td>state if value unequal to 'on' condition</td>
+			<td>string</td>
+			<td>on | off
+		</tr>
+		<tr>
+			<td>mdw-vibrateOnMobilDevices</td>
+			<td>vibrate on mobil devices [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-debug</td>
+			<td>debug</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>icon</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-image</td>
+			<td>Image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageColor</td>
+			<td>image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-imageTrue</td>
+			<td>active image</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-imageTrueColor</td>
+			<td>active image color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-iconHeight</td>
+			<td>image height</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>colors</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-colorBgFalse</td>
+			<td>background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorBgTrue</td>
+			<td>active background</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-colorPress</td>
+			<td>color pressed</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td colspan="4" style="background: #44739e; color: white; border-color: #44739e;"><i><b><br>Locking</b></i></td>
+		</tr>
+		<tr>
+			<td>mdw-lockEnabled</td>
+			<td>enable Locking</td>
+			<td>boolean</td>
+			<td>false | true
+		</tr>
+		<tr>
+			<td>mdw-autoLockAfter</td>
+			<td>auto Locking after [s]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIcon</td>
+			<td>icon</td>
+			<td>string</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconTop</td>
+			<td>symbol distance from top [%]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconLeft</td>
+			<td>symbol distance from left [%]</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconSize</td>
+			<td>icon size</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockIconColor</td>
+			<td>icon color</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-lockIconBackground</td>
+			<td>lockIconBackground</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)
+		</tr>
+		<tr>
+			<td>mdw-lockBackgroundSizeFactor</td>
+			<td>lockBackgroundSizeFactor</td>
+			<td>number</td>
+			<td>
+		</tr>
+		<tr>
+			<td>mdw-lockFilterGrayscale</td>
+			<td>gray filter if locked</td>
+			<td>number</td>
+			<td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- omit in toc -->
+##### HTML Properties - Example
+
+<details>
+
+```
+<div class='vis-widget materialdesign-widget materialdesign-icon-button materialdesign-button-html-element'
+	style='width: 48px; height: 48px; position: relative; padding: 0px;'
+	mdw-type='toggle_icon'
+	mdw-oid='0_userdata.0.MDW.Buttons.multiState.bool'
+	mdw-toggleType='boolean'
+	mdw-stateIfNotTrueValue='on'
+	mdw-vibrateOnMobilDevices='50'
+	mdw-image='checkbox-blank-outline'
+	mdw-imageColor='#mdwTheme:vis-materialdesign.0.colors.button.icon.icon_off'
+	mdw-imageTrue='checkbox-marked'
+	mdw-imageTrueColor='#mdwTheme:vis-materialdesign.0.colors.button.icon.icon_on'
+	mdw-colorBgFalse='#mdwTheme:vis-materialdesign.0.colors.button.icon.background_off'
+	mdw-colorBgTrue='lightgreen'
+	mdw-colorPress='#mdwTheme:vis-materialdesign.0.colors.button.icon.pressed'
+	mdw-autoLockAfter='10'
+	mdw-lockIconTop='45'
+	mdw-lockIconLeft='55'
+	mdw-lockIconSize='20'
+	mdw-lockIconColor='#mdwTheme:vis-materialdesign.0.colors.button.icon.lock_icon'
+	mdw-lockIconBackground='#mdwTheme:vis-materialdesign.0.colors.button.icon.lock_icon_background'
+	mdw-lockBackgroundSizeFactor='1'
+	mdw-lockFilterGrayscale='30'
+></div>
+```
+
+</details>
 
 ## Checkbox
 
@@ -9087,7 +11251,7 @@ The adapter uses the following libraries:
 ### __WORK IN PROGRESS__
 * (Scrounger) HTML Widgets added - use Material Design Widgets in any html element
 * (Scrounger) Table: Control Elements removed, using new HTML Widgets -> breaking changes !!!
-* * (Scrounger) list: using object id for json string added -> breaking changes !!!
+* (Scrounger) list: using object id for json string added -> breaking changes !!!
 * (Scrounger) new Value Widget added
 * (Scrounger) Card layout bug fixes for HTML Card, IconList, List and Table Widget
 * (Scrounger) icon list: option for status bar text added

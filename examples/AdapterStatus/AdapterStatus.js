@@ -44,6 +44,26 @@ let scriptUrl = "https://raw.githubusercontent.com/Scrounger/ioBroker.vis-materi
 let idDatenpunktPrefix = '0_userdata.0'                                             // '0_userdata.0' or 'javascript.x'
 let idDatenPunktStrukturPrefix = 'vis.MaterialDesignWidgets.AdapterStatus'          // Struktur unter Prefix
 
+let datapointIDs = {
+    action: 'action',
+    filter: 'filter',
+    iconList: 'iconList',
+    sort: 'sort',
+    table: 'table',
+    updateInfo: 'updateInfo',
+    upgradeable: 'upgradeable',
+    dialog: {
+        adapter: 'dialog.adapter',
+        show: 'dialog.show',
+        subtitle: 'dialog.subtitle',
+        table: 'dialog.table',
+        title: 'dialog.title'
+    },
+    chart: {
+        json: 'chart.json'
+    }
+}
+
 let adminUpdatesListId = 'admin.0.info.updatesList';                                // Datenpunkt Admin Adapter für verfübare Updates der Adapter
 
 let language = await getLanguage();                                                 // wird automatisch vom System übernommen, bei Abweichung Kürzel Sprache angeben, z.B. 'en', 'de', ect.
@@ -70,7 +90,11 @@ async function getLayout() {
                 schedule: await getMdwTheme('vis-materialdesign.0.colors.light.scripts.adapterStatus.statusBar.schedule')
             },
             icons: {
-                upgradeable: await getMdwTheme('vis-materialdesign.0.colors.light.scripts.adapterStatus.icons.upgradeable')
+                upgradeable: await getMdwTheme('vis-materialdesign.0.colors.light.scripts.adapterStatus.icons.upgradeable'),
+                logParser: {
+                    warn: await getMdwTheme('vis-materialdesign.0.colors.light.scripts.adapterStatus.icons.logParser.warn'),
+                    error: await getMdwTheme('vis-materialdesign.0.colors.light.scripts.adapterStatus.icons.logParser.error')
+                },
             },
             datapoints: {
                 desc: await getMdwTheme('vis-materialdesign.0.colors.light.scripts.adapterStatus.datapoints.desc'),
@@ -108,52 +132,59 @@ async function getLayout() {
             logParser: {
                 warn: 'alert',
                 error: 'alert-box'
+            },
+            buttons: {
+                start: 'play',
+                stop: 'stop',
+                restart: 'restart'
             }
         }
     }
 }
 
 async function getValueLayout(id, icon, title, unit = '', convertToDuration = '') {
-    if (await existsStateAsync(id)) {
-        return `<div class='vis-widget materialdesign-widget materialdesign-value materialdesign-value-html-element'
-                    style='width: 100%; height: auto; position: relative; display: flex; align-items: center;'
-                    mdw-debug='false'
-                    mdw-oid='${id}'
-                    mdw-textAlign='end'
-                    mdw-valuesFontColor='${myLayout.colors.datapoints.value}'
-                    mdw-valuesFontFamily='${myLayout.fonts.datapoints.value}'
-                    mdw-valuesFontSize='${myLayout.fontSizes.datapoints.value}'
-                    mdw-prepandText='${title}'
-                    mdw-prepandTextColor='${myLayout.colors.datapoints.desc}'
-                    mdw-prepandTextFontFamily='${myLayout.fonts.datapoints.desc}'
-                    mdw-prepandTextFontSize='${myLayout.fontSizes.datapoints.desc}'
-                    mdw-valueLabelUnit='${unit}'
-                    mdw-image='${icon}'
-                    mdw-imageColor='${myLayout.colors.datapoints.icon}'
-                    mdw-iconPosition='left'
-                    mdw-iconHeight='20'
-                    mdw-convertToDuration='${convertToDuration}'
-                    mdw-minDecimals='2'
-                ></div>`;
-    } else {
-        return ''
-    }
+    let idExists = await existsStateAsync(id);
+
+    return `<div class='vis-widget materialdesign-widget materialdesign-value materialdesign-value-html-element'
+                style='width: 100%; height: auto; position: relative; display: flex; align-items: center;'
+                mdw-debug='false'
+                mdw-oid='${idExists ? id : ''}'
+                mdw-overrideText='${!idExists ? '-' : ''}'
+                mdw-textAlign='end'
+                mdw-valuesFontColor='${myLayout.colors.datapoints.value}'
+                mdw-valuesFontFamily='${myLayout.fonts.datapoints.value}'
+                mdw-valuesFontSize='${myLayout.fontSizes.datapoints.value}'
+                mdw-prepandText='${title}'
+                mdw-prepandTextColor='${myLayout.colors.datapoints.desc}'
+                mdw-prepandTextFontFamily='${myLayout.fonts.datapoints.desc}'
+                mdw-prepandTextFontSize='${myLayout.fontSizes.datapoints.desc}'
+                mdw-valueLabelUnit='${unit}'
+                mdw-image='${icon}'
+                mdw-imageColor='${myLayout.colors.datapoints.icon}'
+                mdw-iconPosition='left'
+                mdw-iconHeight='20'
+                mdw-convertToDuration='${convertToDuration}'
+                mdw-minDecimals='2'
+                mdw-changeEffectEnabled='true'
+                mdw-effectFontColor='#00e640'
+                mdw-effectDuration='1500'
+            ></div>`;
 }
 
-async function getButtonLayout(){
+async function getButtonLayout(id, value, title, icon) {
     return `<div class='vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element'
                 style='width: 100%; height: 30px; position: relative; padding: 0px; border-radius: 4px 4px 0 0;'
                 mdw-type='state_default'
-                mdw-oid='nothing_selected'
+                mdw-oid='${id}'
                 mdw-buttonStyle='text'
-                mdw-value='true'
+                mdw-value='${value}'
                 mdw-vibrateOnMobilDevices='50'
-                mdw-buttontext=' State'
+                mdw-buttontext='${title}'
                 mdw-textFontFamily='#mdwTheme:vis-materialdesign.0.fonts.button.default.text'
                 mdw-textFontSize='#mdwTheme:vis-materialdesign.0.fontSizes.button.default.text'
                 mdw-mdwButtonPrimaryColor='#mdwTheme:vis-materialdesign.0.colors.button.default.primary'
                 mdw-mdwButtonSecondaryColor='#mdwTheme:vis-materialdesign.0.colors.button.default.secondary'
-                mdw-image='pencil'
+                mdw-image='${icon}'
                 mdw-iconPosition='left'
                 mdw-autoLockAfter='10'
                 mdw-lockIconColor='#mdwTheme:vis-materialdesign.0.colors.button.lock_icon'
@@ -174,11 +205,10 @@ const request = require('request');
 moment.locale(language.toString());
 
 // vars
-let aliveSelector = `[id=system.adapter*.alive]`;
-let adapterAliveList = $(aliveSelector);
 let logParserList = undefined;                                  //TODO: update / listener, Graph mit Error / Warn pro Instanz
 
 // listener
+
 
 startScript();
 async function startScript() {
@@ -186,12 +216,16 @@ async function startScript() {
         if (await dependeciesCheck()) {
             console.debug(`[startScript] Dependecies check successful.`);
 
-            await myCreateState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.iconList`, '', 'string', 'JSON for Icon List Widget');
-            await myCreateState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.table`, '', 'string', 'JSON for Table Widget');
-            await myCreateState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.sort`, '', 'string', 'sort mode');
-            await myCreateState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.filter`, '', 'string', 'filter mode');
-            await myCreateState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.upgradeable`, false, 'boolean', 'script update is available');
-            await myCreateState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.updateInfo`, '', 'string', 'JSON for Alarm Widget');
+            await myCreateState(createId(datapointIDs.iconList), '', 'string', 'JSON for Icon List Widget');
+            await myCreateState(createId(datapointIDs.table), '', 'string', 'JSON for Table Widget');
+            await myCreateState(createId(datapointIDs.sort), '', 'string', 'sort mode');
+            await myCreateState(createId(datapointIDs.filter), '', 'string', 'filter mode');
+            await myCreateState(createId(datapointIDs.upgradeable), false, 'boolean', 'script update is available');
+            await myCreateState(createId(datapointIDs.updateInfo), '', 'string', 'JSON for Alarm Widget');
+            await myCreateState(createId(datapointIDs.action), '', 'string', 'Button action');
+
+            on({ id: createId(datapointIDs.action), change: 'any' }, adapterAction);
+
 
             if (checkScriptUpdates) {
                 checkUpdateAvailable();
@@ -200,15 +234,20 @@ async function startScript() {
 
             useLogParser = await checkLogParser();
             if (useLogParser) {
-                await myCreateState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.dialog.show`, false, 'boolean', 'show Dialog Widget');
-                await myCreateState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.dialog.adapter`, '', 'string', 'used adpater for dialog');
-                await myCreateState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.dialog.table`, '', 'string', 'JSON for table used in dialog');
-                await myCreateState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.dialog.title`, '', 'string', 'dialog title');
-                await myCreateState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.dialog.subtitle`, '', 'string', 'dialog subtitle');
+                await myCreateState(createId(datapointIDs.dialog.show), false, 'boolean', 'show Dialog Widget');
+                await myCreateState(createId(datapointIDs.dialog.adapter), '', 'string', 'used adpater for dialog');
+                await myCreateState(createId(datapointIDs.dialog.table), '', 'string', 'JSON for table used in dialog');
+                await myCreateState(createId(datapointIDs.dialog.title), '', 'string', 'dialog title');
+                await myCreateState(createId(datapointIDs.dialog.subtitle), '', 'string', 'dialog subtitle');
 
-                on({ id: `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.dialog.adapter`, change: 'any' }, showDialog);
+                await myCreateState(createId(datapointIDs.chart.json), '', 'string', 'JSON for JSON Chart');
+
+                on({ id: createId(datapointIDs.dialog.adapter), change: 'any' }, showDialog);
             }
 
+            // auf .alive Änderungen hören
+            let aliveSelector = `[id=system.adapter*.alive]`;
+            let adapterAliveList = $(aliveSelector);
             if (adapterAliveList.length > 0) {
                 refreshAdapterStatus();
                 adapterAliveList.on(refreshAdapterStatus);
@@ -262,6 +301,33 @@ async function refreshAdapterStatus(obj) {
         console.debug(`[refreshAdapterStatus] using LogParser Adapter is ${useLogParser ? 'activated' : 'deactivated'}`);
 
         let iconList = [];
+        let chart = {
+            graphs: [
+                {
+                    data: [],
+                    type: 'bar',
+                    barIsStacked: true,
+                    yAxis_show: false,
+                    barStackId: 1,
+                    yAxis_id: 1,
+                    color: myLayout.colors.icons.logParser.warn,
+                    datalabel_show: true,
+                    legendText: _('Warnings')
+                },
+                {
+                    data: [],
+                    type: 'bar',
+                    barIsStacked: true,
+                    yAxis_show: false,
+                    barStackId: 2,
+                    yAxis_id: 1,
+                    color: myLayout.colors.icons.logParser.error,
+                    datalabel_show: true,
+                    legendText: _('Errors')
+                }
+            ],
+            axisLabels: []
+        };
 
         if (obj && (obj.id === 'vis-materialdesign.0.lastchange' || obj.id === 'vis-materialdesign.0.colors.darkTheme')) {
             console.debug(`[refreshAdapterStatus] theme has changed`);
@@ -282,51 +348,48 @@ async function refreshAdapterStatus(obj) {
                 let warnCounts = 0;
                 let errorCounts = 0;
                 let logParserElement = '';
+                let status = await getStatusColor(idAdapter, objAdapter);
 
                 if (useLogParser) {
                     let result = await filterLogParserList(idAdapter);
                     warnCounts = result.warnCounts;
                     errorCounts = result.errorCounts;
                     logParserElement = result.element;
+
+                    if (warnCounts > 0 || errorCounts > 0) {
+                        chart.axisLabels.push(`${objAdapter.common.title}\\n${instance}`);
+                        chart.graphs[0].data.push(warnCounts);
+                        chart.graphs[1].data.push(errorCounts);
+                    }
                 }
-
-                let status = await getStatusColor(idAdapter, objAdapter);
-                let subText = `<div style="margin-top: 10px;">
-                                    ${logParserElement}
-                                    ${await getValueLayout(idAdapter + '.cpu', myLayout.icons.cpu, _('CPU'), '%')}
-                                    ${await getValueLayout(idAdapter + '.memHeapTotal', myLayout.icons.ram_total, _('RAM total'), 'MB')}
-                                    ${await getValueLayout(idAdapter + '.memHeapUsed', myLayout.icons.ram_total, _('RAM used'), 'MB')}
-                                    ${await getValueLayout(idAdapter + '.memRss', myLayout.icons.ram_reserved, _('RAM reserved'), 'MB')}
-                                    ${((objAdapter.common.mode === 'daemon' || objAdapter.common.mode === 'once') && objAdapter.common.enabled) ? `${await getValueLayout(idAdapter + '.uptime', myLayout.icons.uptime, _("runtime"), '', 'humanize')}` : '<br>'}
-                                </div>`
-
-                let statusBar = `<div style="display: flex;">
-                                    ${await getButtonLayout()} 
-                                    ${await getButtonLayout()}
-                                </div>
-                                <div style="width: 100%; background: ${status.color}; height: 4px; border-radius: 0 0 4px 4px;"></div>`
 
                 iconList.push({
                     listType: (useLogParser && (warnCounts > 0 || errorCounts > 0)) ? "buttonState" : "text",
-                    objectId: `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.dialog.adapter`,
+                    objectId: createId(datapointIDs.dialog.adapter),
                     buttonStateValue: `${idAdapter.replace('system.adapter.', '')}|${objAdapter.common.title}`,
                     showValueLabel: false,
                     text: await getTitle(idAdapter, instance, objAdapter, updateList),
-                    subText: subText,
+                    subText: await getSubTitle(idAdapter, objAdapter, logParserElement),
                     image: await getImage(objAdapter, idAdapter),
                     status: status.status,
                     // statusBarColor: status.color,
-                    statusBarText: statusBar
+                    statusBarText: await getStatusBar(status, instance)
                 });
+
+
             } else {
                 console.error(`[refreshAdapterStatus] Adapter object '${idAdapter}' has no common properties!`);
             }
         }
 
         let newVal = JSON.stringify(iconList);
-        let oldState = await getMyState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.iconList`);
+        let oldState = await getMyState(createId(datapointIDs.iconList));
         if (oldState.val !== newVal) {
-            await setMyState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.iconList`, newVal);
+            await setMyState(createId(datapointIDs.iconList), newVal);
+        }
+
+        if (useLogParser) {
+            await setMyState(createId(datapointIDs.chart.json), JSON.stringify(chart));
         }
 
     } catch (err) {
@@ -334,7 +397,29 @@ async function refreshAdapterStatus(obj) {
     }
 }
 
+async function adapterAction(obj) {
+    // start, restart, stop adapter
 
+    if (obj && obj.state && obj.state.val) {
+        let instance = obj.state.val.split('|')[0];
+        let action = obj.state.val.split('|')[1];
+        let adapterObj = await getObjectAsync('system.adapter.' + instance);
+
+        if (adapterObj && adapterObj.common) {
+            console.debug(`[adapterAction] ${action} '${instance}'`);
+
+            if (action === 'restart') {
+                adapterObj.common.enabled = true;
+            } else if (action === 'start') {
+                adapterObj.common.enabled = true;
+            } else if (action === 'stop') {
+                adapterObj.common.enabled = false;
+            }
+        }
+
+        setObject('system.adapter.' + instance, adapterObj);
+    }
+}
 
 async function showDialog(obj) {
     if (logParserList) {
@@ -343,10 +428,11 @@ async function showDialog(obj) {
 
         let filteredList = logParserList.filter(e => e.from === instance);
 
-        await setMyState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.dialog.table`, JSON.stringify(filteredList));
-        await setMyState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.dialog.show`, true);
-        await setMyState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.dialog.title`, name);
-        await setMyState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.dialog.subtitle`, instance);
+        await setMyState(createId(datapointIDs.dialog.table), JSON.stringify(filteredList));        
+        await setMyState(createId(datapointIDs.dialog.title), name);
+        await setMyState(createId(datapointIDs.dialog.subtitle), instance);
+
+        await setMyState(createId(datapointIDs.dialog.show), true);
     }
 }
 
@@ -420,7 +506,7 @@ async function filterLogParserList(idAdapter) {
     }
 
     let element = `<div style="display: flex; justify-content: end; align-items: center;">
-                        <span style="flex: 1; color: ${myLayout.colors.datapoints.desc}; font-family: ${myLayout.fonts.datapoints.desc}; font-size: ${myLayout.fontSizes.datapoints.desc};">Log</span>`
+                        <span style="flex: 1; text-align: left; color: ${myLayout.colors.datapoints.desc}; font-family: ${myLayout.fonts.datapoints.desc}; font-size: ${myLayout.fontSizes.datapoints.desc};">Log</span>`
 
     if (warns > 0 || errors > 0) {
         if (warns > 0) {
@@ -433,7 +519,7 @@ async function filterLogParserList(idAdapter) {
                         <span style="margin-right: 4px; color: ${myLayout.colors.datapoints.value}; font-family: ${myLayout.fonts.datapoints.value}; font-size: ${myLayout.fontSizes.datapoints.value};">${errors}</span>`
         }
     } else {
-        element += `<span style="margin-right: 4px; color: ${myLayout.colors.datapoints.value}; font-family: ${myLayout.fonts.datapoints.value}; font-size: ${myLayout.fontSizes.datapoints.value};">keine</span>`
+        element += `<span style="margin-right: 4px; color: ${myLayout.colors.datapoints.value}; font-family: ${myLayout.fonts.datapoints.value}; font-size: ${myLayout.fontSizes.datapoints.value};">-</span>`
     }
 
     element += '</div>';
@@ -514,12 +600,12 @@ async function checkUpdateAvailable(obj) {
 
                             if (compareVersions(version, availableVersion)) {
                                 console.debug(`[checkUpdateAvailable] no new script version is available (installed: ${version})`);
-                                await setMyState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.upgradeable`, false);
+                                await setMyState(createId(datapointIDs.upgradeable), false);
 
-                                await setMyState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.updateInfo`, '');
+                                await setMyState(createId(datapointIDs.updateInfo), '');
                             } else {
                                 console.warn(`[checkUpdateAvailable] new version '${availableVersion}' of script is available (installed: ${version})`);
-                                await setMyState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.upgradeable`, true);
+                                await setMyState(createId(datapointIDs.upgradeable), true);
 
                                 let alarmMessage = [{
                                     text: `new version ${availableVersion} of script is available`,
@@ -529,7 +615,7 @@ async function checkUpdateAvailable(obj) {
                                     fontColor: "#44739e",
                                 }]
 
-                                await setMyState(`${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.updateInfo`, JSON.stringify(alarmMessage));
+                                await setMyState(createId(datapointIDs.updateInfo), JSON.stringify(alarmMessage));
                             }
                         }
                     }
@@ -555,6 +641,17 @@ async function getTitle(idAdapter, instance, objAdapter, updateList) {
                     </div>
                     ${upgradeable}
                 </div>`
+}
+
+async function getSubTitle(idAdapter, objAdapter, logParserElement) {
+    return `<div style="margin-top: 10px;">
+                ${logParserElement}
+                ${await getValueLayout(idAdapter + '.cpu', myLayout.icons.cpu, _('CPU'), '%')}
+                ${await getValueLayout(idAdapter + '.memHeapTotal', myLayout.icons.ram_total, _('RAM total'), 'MB')}
+                ${await getValueLayout(idAdapter + '.memHeapUsed', myLayout.icons.ram_total, _('RAM used'), 'MB')}
+                ${await getValueLayout(idAdapter + '.memRss', myLayout.icons.ram_reserved, _('RAM reserved'), 'MB')}
+                ${((objAdapter.common.mode === 'daemon' || objAdapter.common.mode === 'once') && objAdapter.common.enabled) ? `${await getValueLayout(idAdapter + '.uptime', myLayout.icons.uptime, _("runtime"), '', 'humanize')}` : '<br>'}
+            </div>`
 }
 
 async function getImage(obj, idAdapter) {
@@ -616,6 +713,27 @@ async function getStatusColor(idAdapter, objAdapter) {
     return { color: color, status: status }
 }
 
+async function getStatusBar(status, instance) {
+    let id = createId(datapointIDs.action)
+    let buttonOne = '';
+    let buttonTwo = '';
+
+    console.debug(`[getStatusBar] ${instance}: ${status.status}`);
+
+    if (status.status === 'deactivated') {
+        buttonOne = await getButtonLayout(id, `${instance}|start`, '&nbsp;' + _('start'), myLayout.icons.buttons.start);
+    } else {
+        buttonOne = await getButtonLayout(id, `${instance}|restart`, '&nbsp;' + _('restart'), myLayout.icons.buttons.restart);
+        buttonTwo = await getButtonLayout(id, `${instance}|stop`, '&nbsp;' + _('stop'), myLayout.icons.buttons.stop);
+    }
+
+    return `<div style="display: flex;">
+                ${buttonOne} 
+                ${buttonTwo}
+            </div>
+            <div style="width: 100%; background: ${status.color}; height: 4px; border-radius: 0 0 4px 4px;"></div>`
+}
+
 async function getLanguage() {
     try {
         let sysConfig = await getObjectAsync('system.config');
@@ -662,6 +780,10 @@ async function getMdwTheme(id) {
     } else {
         console.error(`[getMdwTheme] datapoint '${id}' is not a valid Material Design Widget theme datapoint! Check your script settings!`);
     }
+}
+
+function createId(id) {
+    return `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.${id}`;
 }
 
 async function myCreateState(id, val, type, name, write = false) {
@@ -814,6 +936,66 @@ let dictionary = {
         "es": "UPC",
         "pl": "procesor",
         "zh-cn": "中央处理器"
+    },
+    "start": {
+        "en": "start",
+        "de": "starten",
+        "ru": "Начните",
+        "pt": "começar",
+        "nl": "begin",
+        "fr": "début",
+        "it": "inizio",
+        "es": "comienzo",
+        "pl": "początek",
+        "zh-cn": "开始"
+    },
+    "restart": {
+        "en": "restart",
+        "de": "neu starten",
+        "ru": "рестарт",
+        "pt": "reiniciar",
+        "nl": "herstarten",
+        "fr": "redémarrer",
+        "it": "ricomincia",
+        "es": "Reanudar",
+        "pl": "uruchom ponownie",
+        "zh-cn": "重新开始"
+    },
+    "stop": {
+        "en": "stop",
+        "de": "stoppen",
+        "ru": "Стоп",
+        "pt": "Pare",
+        "nl": "hou op",
+        "fr": "Arrêtez",
+        "it": "fermare",
+        "es": "alto",
+        "pl": "zatrzymać",
+        "zh-cn": "停"
+    },
+    "Warnings": {
+        "en": "Warnings",
+        "de": "Warnungen",
+        "ru": "Предупреждения",
+        "pt": "Avisos",
+        "nl": "Waarschuwingen",
+        "fr": "Avertissements",
+        "it": "Avvertenze",
+        "es": "Advertencias",
+        "pl": "Ostrzeżenia",
+        "zh-cn": "警告事项"
+    },
+    "Errors": {
+        "en": "Errors",
+        "de": "Fehler",
+        "ru": "Ошибки",
+        "pt": "Erros",
+        "nl": "Fouten",
+        "fr": "les erreurs",
+        "it": "Errori",
+        "es": "Errores",
+        "pl": "Błędy",
+        "zh-cn": "失误"
     }
 }
 //#endregion
