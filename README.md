@@ -341,6 +341,8 @@ The following properties can be used as [HTML Widgets](#html-widgets).
 
 ## Buttons
 
+![Logo](doc/en/media/buttons_default.gif)
+
 ### Navigation
 
 #### Editor Settings
@@ -1639,6 +1641,8 @@ The following properties can be used as [HTML Widgets](#html-widgets).
 </details>
 
 ## Buttons Vertical
+
+![Logo](doc/en/media/buttons_vertical.gif)
 
 ### Navigation
 
@@ -3027,6 +3031,8 @@ The following properties can be used as [HTML Widgets](#html-widgets).
 
 
 ## Icon Buttons
+
+![Logo](doc/en/media/buttons_icons.gif)
 
 ### Navigation
 
@@ -11260,7 +11266,7 @@ The adapter uses the following libraries:
 * (Scrounger) VIS editor: html previews bug fixes
 * (Scrounger) input, autocomplete, select: autofocus option added
 * (Scrounger) Documentation revised
-* (Scrounger): bug fixes
+* (Scrounger) bug fixes
 
 <!-- omit in toc -->
 ### 0.4.2 (2020-12-29)
