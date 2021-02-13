@@ -209,6 +209,10 @@ vis.binds.materialdesign.viseditor = {
                 url = 'https://forum.iobroker.net/topic/29663/material-design-widgets-alerts-widget'
             }
 
+            if (data[1] === 'card') {
+                url = 'https://forum.iobroker.net/topic/42176/material-design-widgets-html-card-widget'
+            }
+
             if (data[1] === 'buttons') {
                 url = 'https://forum.iobroker.net/topic/29664/material-design-widgets-buttons-widget'
             }
@@ -223,6 +227,14 @@ vis.binds.materialdesign.viseditor = {
 
             if (data[1] === 'input') {
                 url = 'https://forum.iobroker.net/topic/29666/material-design-widgets-input-select-autocompl'
+            }
+
+            if (data[1] === 'barChart') {
+                url = 'https://forum.iobroker.net/topic/42177/material-design-widgets-bar-chart-widget'
+            }
+
+            if (data[1] === 'pieChart') {
+                url = 'https://forum.iobroker.net/topic/42178/material-design-widgets-pie-chart-widget'
             }
 
             if (data[1] === 'lineHistoryChart') {
