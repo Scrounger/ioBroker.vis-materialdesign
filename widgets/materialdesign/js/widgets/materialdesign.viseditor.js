@@ -229,6 +229,10 @@ vis.binds.materialdesign.viseditor = {
                 url = 'https://forum.iobroker.net/topic/29666/material-design-widgets-input-select-autocompl'
             }
 
+            if (data[1] === 'value') {
+                url = 'https://forum.iobroker.net/topic/42181/material-design-widgets-value-widget'
+            }
+
             if (data[1] === 'barChart') {
                 url = 'https://forum.iobroker.net/topic/42177/material-design-widgets-bar-chart-widget'
             }
