@@ -555,13 +555,27 @@ async function checkAllObjectsExistInSettings(themeType, themeObject, themeDefau
 function createDefaultElement(themeType, themeDefaults, index) {
     try {
         $(`.${themeType}DefaultContainer`).append(`
-            <div class="col s12 m6 l3 defaultContainer center" id="${themeType}PickerContainer${index}">
-                <label id="${themeType}Input${index}" class="translate defaultLabel" style="text-align: left;">${_(`${themeType}Default`)} ${index}</label>
-                ${themeType.includes('colors') ? `<div class="${themeType}Picker" id="${themeType}Picker${index}"></div>` : ''}
-                <input type="${themeType === 'fontSizes' ? 'number' : 'text'}" class="value ${themeType}PickerInput" id="${themeType}${index}" value="${themeDefaults[index]}" ${themeType === 'fontSizes' ? 'style="width: 80px; text-align: center;"' : ''} />
+            <div class="col s12 m6 l3 center" id="${themeType}PickerContainer${index}">
+                <label id="${themeType}Input${index}" class="translate defaultLabel" style="text-align: left; display: block; margin-top: 5px;">${_(`${themeType}Default`)} ${index}</label>
+                <div style="display: flex; align-items: center; margin-top: -10px;">
+                    ${themeType.includes('colors') ? `<div class="${themeType}Picker" id="${themeType}Picker${index}"></div>` : ''}
+                    <input type="${themeType === 'fontSizes' ? 'number' : 'text'}" class="value ${themeType}PickerInput" id="${themeType}${index}" value="${themeDefaults[index]}" ${themeType === 'fontSizes' ? 'style="width: 80px; text-align: center;"' : ''} />                
+                    <div style="margin-left: 4px; margin-right: 4px; display: flex;">
+                        <a class="btn-floating btn-small waves-effect waves-light" id="btn-mdw-${themeType}-${index}" style="width: 32px; height: 32px;"><i class="mdi mdi-material-design" style="font-size: 26px; font-weight: 100;"></i></a>
+                        <a class="btn-floating btn-small waves-effect waves-light" id="btn-binding-${themeType}-${index}" style="width: 32px; height: 32px; margin-left: 2px;"><i class="mdi mdi-iobroker" style="font-size: 26px; font-weight: 100;"></i></a>
+                    </div>
+                </div>
             </div>`);
 
-        $(`#${themeType}Input${index}`).on('click', function () {
+        $(`#btn-mdw-${themeType}-${index}`).on('click', function () {
+
+            clipboard.writeText(`#mdwTheme:${myNamespace}.${themeType}.default_${index}`);
+
+            M.Toast.dismissAll();
+            M.toast({ html: _('Material Design Widget datapoint binding copied to clipboard'), displayLength: 700, inDuration: 0, outDuration: 0, classes: 'rounded' });
+        });
+
+        $(`#btn-binding-${themeType}-${index}`).on('click', function () {
             if (themeType.includes('colors')) {
                 clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.light.default_${index};dark:${myNamespace}.colors.dark.default_${index}; mode === "true" ? dark : light}`);
             } else {
@@ -571,6 +585,7 @@ function createDefaultElement(themeType, themeDefaults, index) {
             M.Toast.dismissAll();
             M.toast({ html: _('Binding copied to clipboard'), displayLength: 700, inDuration: 0, outDuration: 0, classes: 'rounded' });
         });
+
     } catch (err) {
         console.error(`[createDefaultElement] themeType: ${themeType}, error: ${err.message}, stack: ${err.stack}`);
     }
