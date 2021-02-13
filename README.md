@@ -11254,7 +11254,7 @@ The adapter uses the following libraries:
 -->
 
 <!-- omit in toc -->
-### __WORK IN PROGRESS__
+### 0.5.0-beta (2021-02-13)
 * (Scrounger) HTML Widgets added - use Material Design Widgets in any html element
 * (Scrounger) Table: Control Elements removed, using new HTML Widgets -> breaking changes !!!
 * (Scrounger) list: using object id for json string added -> breaking changes !!!
