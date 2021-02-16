@@ -494,12 +494,11 @@ vis.binds.materialdesign.vueHelper = {
         getMethods: function (data, $el, itemsList, $vuetifyContainer, inputMode = '') {
             return {
                 click(item) {
+                    console.warn(item);
                     myMdwHelper.vibrate(data.vibrateOnMobilDevices);
                 },
                 menuClick(item) {
                     myMdwHelper.vibrate(data.vibrateOnMobilDevices);
-                },
-                changeEvent(item) {
                     if (item) {
                         if (item.value) {
                             myMdwHelper.setValue(data.oid, item.value);
@@ -514,6 +513,22 @@ vis.binds.materialdesign.vueHelper = {
                         this.image = obj.image;
                         this.imageColor = obj.imageColor;
                     }
+                },
+                changeEvent(item) {
+                    // if (item) {
+                    //     if (item.value) {
+                    //         myMdwHelper.setValue(data.oid, item.value);
+                    //     } else {
+                    //         // only if combobox (is writeable)
+                    //         myMdwHelper.setValue(data.oid, item);
+                    //     }
+                    // } else {
+                    //     let obj = vis.binds.materialdesign.vueHelper.getObjectByValue(vis.states.attr(data.oid + '.val'), itemsList, inputMode);
+                    //     this.item = obj;
+                    //     this.icon = obj.icon;
+                    //     this.image = obj.image;
+                    //     this.imageColor = obj.imageColor;
+                    // }
                 },
                 focusEvent(value) {
                     // select object will first time created after item is focused. select object is created under vue app container
