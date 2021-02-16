@@ -314,7 +314,7 @@ vis.binds.materialdesign.iconlist =
                     if (!replace) {
                         if (!myMdwHelper.getBooleanFromData(data.cardUse, false)) {
                             $this.append(`
-                            <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="height: 100%; flex-wrap: wrap;"' : ''}>
+                            <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="height: auto; flex-wrap: wrap;"' : ''}>
                                 ${widgetElement}
                             </div>
                         `);
@@ -332,7 +332,7 @@ vis.binds.materialdesign.iconlist =
                                         </div>
                                         <div class="materialdesign-html-card card-text-section iconlist" style="height: 100%; ${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'overflow-y: auto; overflow-x: hidden;' : ''} margin: ${myMdwHelper.getNumberFromData(data.borderDistance, 0)}px;">
                                             <div class="materialdesign-html-card">
-                                                <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="height: 100%; flex-wrap: wrap;"' : ''}>
+                                                <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="height: auto; flex-wrap: wrap;"' : ''}>
                                                     ${widgetElement}
                                                 </div>
                                             </div>
@@ -341,7 +341,7 @@ vis.binds.materialdesign.iconlist =
                         }
                     } else {
                         $this.find(`.${containerClass}`).replaceWith(`
-                        <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="height: 100%; flex-wrap: wrap;"' : ''}>
+                        <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="height: auto; flex-wrap: wrap;"' : ''}>
                             ${widgetElement}
                         </div>              
                     `);
