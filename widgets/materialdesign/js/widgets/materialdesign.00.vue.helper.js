@@ -173,12 +173,12 @@ vis.binds.materialdesign.vueHelper = {
     select: {
         getConstructor: function (data) {
             let position = myMdwHelper.getValueFromData(data.listPosition, 'auto');
-            let menuProps = `{offsetY: ${myMdwHelper.getBooleanFromData(data.listPositionOffset, false)}}`
+            let menuProps = `{auto: true, offsetY: ${myMdwHelper.getBooleanFromData(data.listPositionOffset, false)}}`
 
             if (position === 'top') {
-                menuProps = `{top: true, offsetY: ${myMdwHelper.getBooleanFromData(data.listPositionOffset, false)}}`;
+                menuProps = `{auto: true, top: true, offsetY: ${myMdwHelper.getBooleanFromData(data.listPositionOffset, false)}}`;
             } else if (position === 'bottom') {
-                menuProps = `{bottom: true, offsetY: ${myMdwHelper.getBooleanFromData(data.listPositionOffset, false)}}`;
+                menuProps = `{auto: true, bottom: true, offsetY: ${myMdwHelper.getBooleanFromData(data.listPositionOffset, false)}}`;
             }
 
             return `
