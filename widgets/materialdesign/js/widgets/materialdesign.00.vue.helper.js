@@ -494,7 +494,6 @@ vis.binds.materialdesign.vueHelper = {
         getMethods: function (data, $el, itemsList, $vuetifyContainer, inputMode = '') {
             return {
                 click(item) {
-                    console.warn(item);
                     myMdwHelper.vibrate(data.vibrateOnMobilDevices);
                 },
                 menuClick(item) {
