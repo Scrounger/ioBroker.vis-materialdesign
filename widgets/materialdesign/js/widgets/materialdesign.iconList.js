@@ -21,7 +21,10 @@ vis.binds.materialdesign.iconlist =
 
                 let itemList = [];
                 let jsonData = null;
+                let oldJsonData = null;
+                let changedItems = [];
                 let countOfItems = 0;
+                let countOfOldItems = 0;
                 let containerClass = 'materialdesign-icon-list-container';
                 let oidsNeedSubscribe = false;
                 let bindingTokenList = [];
@@ -46,7 +49,7 @@ vis.binds.materialdesign.iconlist =
                     // json Object changed
                     let scrollTop = $this.scrollTop();
                     let scrollLeft = $this.scrollLeft();
-                    generateContent();
+                    generateContent(oldVal);
 
                     if (oidsNeedSubscribe) {
                         myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
@@ -124,15 +127,23 @@ vis.binds.materialdesign.iconlist =
                     }
                 }
 
-                function generateContent() {
+                function generateContent(oldVal = undefined) {
                     itemList = [];
                     bindingTokenList = [];
                     oidsNeedSubscribe = false;
+                    oldJsonData = null;
+                    changedItems = []
+                    countOfOldItems = 0;
 
                     if (data.listItemDataMethod === 'jsonStringObject') {
                         if (vis.states.attr(data.json_string_oid + '.val') && vis.states.attr(data.json_string_oid + '.val') !== 'null') {
                             try {
                                 jsonData = JSON.parse(vis.states.attr(data.json_string_oid + '.val'));
+                                if (oldVal) {
+                                    oldJsonData = JSON.parse(oldVal);
+                                    countOfOldItems = oldJsonData.length - 1;
+                                }
+
                                 countOfItems = jsonData.length - 1;
                             } catch (err) {
                                 jsonData = [
@@ -159,6 +170,21 @@ vis.binds.materialdesign.iconlist =
 
                     for (var i = 0; i <= countOfItems; i++) {
                         let listItemObj = getListItemObj(i, data, jsonData);
+
+                        if (oldVal) {
+                            let oldListItemObj = getListItemObj(i, data, oldJsonData);
+
+                            if (oldListItemObj === undefined) {
+                                // item not exist in old data
+                                changedItems.push(0);
+                            } else if (!myUnderscore.isEqual(listItemObj, oldListItemObj)) {
+                                // item changed compare to old data
+                                changedItems.push(1);
+                            } else {
+                                // item not changed
+                                changedItems.push(2);
+                            }
+                        }
 
                         let listLayout = 'materialdesign-icon-list-item-standard';
                         if (data.listLayout === 'card') {
@@ -230,8 +256,7 @@ vis.binds.materialdesign.iconlist =
                                         </div>
                                         <div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>
                                     </div>
-                                </div>                                
-                            `;
+                                </div>`;
                             } else {
                                 element = `
                                 <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''}" >
@@ -243,8 +268,7 @@ vis.binds.materialdesign.iconlist =
                                     ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value materialdesign-icon-list-item-text-vertical">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
                                     ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText materialdesign-icon-list-item-text-vertical">${listItemObj.subText}</label>` : ''}
                                     <div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>
-                                </div>
-                            `;
+                                </div>`;
                             }
 
                         } else {
@@ -303,15 +327,15 @@ vis.binds.materialdesign.iconlist =
                 }
 
                 function appendContent(replace = false, scrollTop = 0, scrollLeft = 0) {
-                    let widgetElement = itemList.join("");
-
-                    if (bindingTokenList.length > 0) {
-                        for (var b = 0; b <= bindingTokenList.length - 1; b++) {
-                            widgetElement = widgetElement.replace(bindingTokenList[b], vis.formatBinding(bindingTokenList[b]))
-                        }
-                    }
-
                     if (!replace) {
+                        let widgetElement = itemList.join("");
+
+                        if (bindingTokenList.length > 0) {
+                            for (var b = 0; b <= bindingTokenList.length - 1; b++) {
+                                widgetElement = widgetElement.replace(bindingTokenList[b], vis.formatBinding(bindingTokenList[b]))
+                            }
+                        }
+
                         if (!myMdwHelper.getBooleanFromData(data.cardUse, false)) {
                             $this.append(`
                             <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="height: auto; flex-wrap: wrap;"' : ''}>
@@ -340,11 +364,37 @@ vis.binds.materialdesign.iconlist =
                                     </div>`);
                         }
                     } else {
-                        $this.find(`.${containerClass}`).replaceWith(`
-                        <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="height: auto; flex-wrap: wrap;"' : ''}>
-                            ${widgetElement}
-                        </div>              
-                    `);
+                        // $this.find(`.${containerClass}`).replaceWith(`
+                        // <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="height: auto; flex-wrap: wrap;"' : ''}>
+                        //     ${widgetElement}
+                        // </div>`);
+
+                        for (var i = 0; i <= changedItems.length - 1; i++) {
+                            let widgetElement = itemList[i];
+
+                            if (bindingTokenList.length > 0) {
+                                for (var b = 0; b <= bindingTokenList.length - 1; b++) {
+                                    widgetElement = widgetElement.replace(bindingTokenList[b], vis.formatBinding(bindingTokenList[b]))
+                                }
+                            }
+
+                            if (changedItems[i] === 0) {
+                                if (data.debug) console.log(`[appendContent]: list item ${i} added!`);
+                                $this.find(`.${containerClass}`).append(widgetElement);
+                            } else if (changedItems[i] === 1) {
+                                if (data.debug) console.log(`[appendContent]: list item ${i} changed!`);
+                                $this.find(`#icon-list-item${i}`).replaceWith(widgetElement);
+                            }
+                        }
+
+                        if (countOfItems < countOfOldItems) {
+                            // count old data items is higher -> remove items
+                            for (var i = 0; i <= countOfOldItems - countOfItems; i++) {
+                                let index = i + countOfItems + 1;
+                                if (data.debug) console.log(`[appendContent]: list item ${index} deleted!`);
+                                $this.find(`#icon-list-item${index}`).remove();
+                            }
+                        }
                     }
 
                     $this.scrollTop(scrollTop);
@@ -356,6 +406,7 @@ vis.binds.materialdesign.iconlist =
 
                     for (var i = 0; i <= iconButtons.length - 1; i++) {
                         let listItemObj = getListItemObj(i, data, jsonData);
+
 
                         // set ripple effect to icon buttons
                         if (data.buttonLayout === 'round') {
@@ -459,8 +510,6 @@ vis.binds.materialdesign.iconlist =
                             }
                         }
                     }
-
-                    // console.log(vis.states.__bindEvents)
                 }
 
                 function setItemLayout(index, val, listItemObj) {
@@ -571,29 +620,33 @@ vis.binds.materialdesign.iconlist =
                         };
                     } else {
                         // Data from json
-                        return {
-                            listType: myMdwHelper.getValueFromData(jsonData[i].listType, 'text'),
-                            objectId: jsonData[i].objectId,
-                            buttonStateValue: jsonData[i].buttonStateValue,
-                            buttonNavView: jsonData[i].buttonNavView,
-                            buttonLink: jsonData[i].buttonLink,
-                            buttonToggleValueTrue: jsonData[i].buttonToggleValueTrue,
-                            buttonToggleValueFalse: jsonData[i].buttonToggleValueFalse,
-                            showValueLabel: myMdwHelper.getBooleanFromData(jsonData[i].showValueLabel, true),
-                            valueAppendix: myMdwHelper.getValueFromData(jsonData[i].valueAppendix, ""),
-                            background: myMdwHelper.getValueFromData(jsonData[i].background, myMdwHelper.getValueFromData(data.itemBackgroundColor, '')),
-                            text: myMdwHelper.getValueFromData(jsonData[i].text, ''),
-                            subText: myMdwHelper.getValueFromData(jsonData[i].subText, ''),
-                            image: myMdwHelper.getValueFromData(jsonData[i].image, ""),
-                            imageColor: myMdwHelper.getValueFromData(jsonData[i].imageColor, "#44739e"),
-                            imageActive: myMdwHelper.getValueFromData(jsonData[i].imageActive, myMdwHelper.getValueFromData(jsonData[i].image, "")),
-                            imageActiveColor: myMdwHelper.getValueFromData(jsonData[i].imageActiveColor, myMdwHelper.getValueFromData(jsonData[i].imageColor, "#44739e")),
-                            buttonBackgroundColor: myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundColor, ''),
-                            buttonBackgroundActiveColor: myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundActiveColor, myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundColor, '')),
-                            statusBarColor: myMdwHelper.getValueFromData(jsonData[i].statusBarColor, 'transparent'),
-                            statusBarText: myMdwHelper.getValueFromData(jsonData[i].statusBarText, ''),
-                            lockEnabled: myMdwHelper.getBooleanFromData(jsonData[i].lockEnabled, false)
-                        };
+                        if (jsonData[i]) {
+                            return {
+                                listType: myMdwHelper.getValueFromData(jsonData[i].listType, 'text'),
+                                objectId: jsonData[i].objectId,
+                                buttonStateValue: jsonData[i].buttonStateValue,
+                                buttonNavView: jsonData[i].buttonNavView,
+                                buttonLink: jsonData[i].buttonLink,
+                                buttonToggleValueTrue: jsonData[i].buttonToggleValueTrue,
+                                buttonToggleValueFalse: jsonData[i].buttonToggleValueFalse,
+                                showValueLabel: myMdwHelper.getBooleanFromData(jsonData[i].showValueLabel, true),
+                                valueAppendix: myMdwHelper.getValueFromData(jsonData[i].valueAppendix, ""),
+                                background: myMdwHelper.getValueFromData(jsonData[i].background, myMdwHelper.getValueFromData(data.itemBackgroundColor, '')),
+                                text: myMdwHelper.getValueFromData(jsonData[i].text, ''),
+                                subText: myMdwHelper.getValueFromData(jsonData[i].subText, ''),
+                                image: myMdwHelper.getValueFromData(jsonData[i].image, ""),
+                                imageColor: myMdwHelper.getValueFromData(jsonData[i].imageColor, "#44739e"),
+                                imageActive: myMdwHelper.getValueFromData(jsonData[i].imageActive, myMdwHelper.getValueFromData(jsonData[i].image, "")),
+                                imageActiveColor: myMdwHelper.getValueFromData(jsonData[i].imageActiveColor, myMdwHelper.getValueFromData(jsonData[i].imageColor, "#44739e")),
+                                buttonBackgroundColor: myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundColor, ''),
+                                buttonBackgroundActiveColor: myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundActiveColor, myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundColor, '')),
+                                statusBarColor: myMdwHelper.getValueFromData(jsonData[i].statusBarColor, 'transparent'),
+                                statusBarText: myMdwHelper.getValueFromData(jsonData[i].statusBarText, ''),
+                                lockEnabled: myMdwHelper.getBooleanFromData(jsonData[i].lockEnabled, false)
+                            };
+                        } else {
+                            return undefined
+                        }
                     }
                 }
             }
