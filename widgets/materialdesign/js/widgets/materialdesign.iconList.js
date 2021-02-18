@@ -402,113 +402,117 @@ vis.binds.materialdesign.iconlist =
                 }
 
                 function eventListener() {
-                    let iconButtons = $this.find('.materialdesign-iconList-button');
+                    try {
+                        let iconButtons = $this.find('.materialdesign-iconList-button');
 
-                    for (var i = 0; i <= iconButtons.length - 1; i++) {
-                        let listItemObj = getListItemObj(i, data, jsonData);
+                        for (var i = 0; i <= iconButtons.length - 1; i++) {
+                            let itemIndex = $(iconButtons[i]).attr('index');
+                            let listItemObj = getListItemObj(itemIndex, data, jsonData);
 
+                            // set ripple effect to icon buttons
+                            if (data.buttonLayout === 'round') {
+                                new mdc.iconButton.MDCIconButtonToggle(iconButtons.get(i));
+                            } else {
+                                new mdc.ripple.MDCRipple(iconButtons.get(i));
+                            }
 
-                        // set ripple effect to icon buttons
-                        if (data.buttonLayout === 'round') {
-                            new mdc.iconButton.MDCIconButtonToggle(iconButtons.get(i));
-                        } else {
-                            new mdc.ripple.MDCRipple(iconButtons.get(i));
-                        }
+                            if (iconButtons && iconButtons.get(i)) {
+                                iconButtons.get(i).style.setProperty("--materialdesign-color-icon-button-hover", myMdwHelper.getValueFromData(data.buttonColorPress, ''));
 
-                        if (iconButtons && iconButtons.get(i)) {
-                            iconButtons.get(i).style.setProperty("--materialdesign-color-icon-button-hover", myMdwHelper.getValueFromData(data.buttonColorPress, ''));
+                                iconButtons.eq(i).on('click', function () {
+                                    // icon button click event
+                                    let index = $(this).attr('index');
+                                    let $item = $this.find(`#icon-list-item${index}`);
 
-                            iconButtons.eq(i).on('click', function () {
-                                // icon button click event
-                                let index = $(this).attr('index');
-                                let $item = $this.find(`#icon-list-item${index}`);
+                                    listItemObj = getListItemObj(index, data, jsonData);
 
-                                listItemObj = getListItemObj(index, data, jsonData);
-
-                                if (listItemObj.listType !== 'text') {
-                                    vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
-                                }
-
-                                if (listItemObj.listType === 'buttonToggle') {
-                                    if ($item.attr('isLocked') === 'false' || $item.attr('isLocked') === undefined) {
-                                        let selectedValue = vis.states.attr(listItemObj.objectId + '.val');
-
-                                        myMdwHelper.setValue(listItemObj.objectId, !selectedValue);
-
-                                        setItemLayout(index, !selectedValue, listItemObj);
-                                    } else {
-                                        unlockButton($item);
+                                    if (listItemObj.listType !== 'text') {
+                                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                                     }
-                                } else if (listItemObj.listType === 'buttonState') {
-                                    if ($item.attr('isLocked') === 'false' || $item.attr('isLocked') === undefined) {
-                                        let valueToSet = listItemObj.buttonStateValue;
-                                        myMdwHelper.setValue(listItemObj.objectId, valueToSet);
 
-                                        setItemLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
-                                    } else {
-                                        unlockButton($item);
-                                    }
-                                } else if (listItemObj.listType === 'buttonToggleValueTrue') {
-                                    if ($item.attr('isLocked') === 'false' || $item.attr('isLocked') === undefined) {
-                                        let val = vis.states.attr(listItemObj.objectId + '.val');
+                                    if (listItemObj.listType === 'buttonToggle') {
+                                        if ($item.attr('isLocked') === 'false' || $item.attr('isLocked') === undefined) {
+                                            let selectedValue = vis.states.attr(listItemObj.objectId + '.val');
 
-                                        if (val === listItemObj.buttonToggleValueTrue || parseFloat(val) === parseFloat(listItemObj.buttonToggleValueTrue)) {
-                                            myMdwHelper.setValue(listItemObj.objectId, listItemObj.buttonToggleValueFalse);
+                                            myMdwHelper.setValue(listItemObj.objectId, !selectedValue);
+
+                                            setItemLayout(index, !selectedValue, listItemObj);
                                         } else {
-                                            myMdwHelper.setValue(listItemObj.objectId, listItemObj.buttonToggleValueTrue);
+                                            unlockButton($item);
                                         }
+                                    } else if (listItemObj.listType === 'buttonState') {
+                                        if ($item.attr('isLocked') === 'false' || $item.attr('isLocked') === undefined) {
+                                            let valueToSet = listItemObj.buttonStateValue;
+                                            myMdwHelper.setValue(listItemObj.objectId, valueToSet);
 
-                                        setItemLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
-                                    } else {
-                                        unlockButton($item);
-                                    }
-                                } else if (listItemObj.listType === 'buttonToggleValueFalse') {
-                                    if ($item.attr('isLocked') === 'false' || $item.attr('isLocked') === undefined) {
-                                        let val = vis.states.attr(listItemObj.objectId + '.val');
-
-                                        if (val === listItemObj.buttonToggleValueFalse || parseFloat(val) === parseFloat(listItemObj.buttonToggleValueFalse)) {
-                                            myMdwHelper.setValue(listItemObj.objectId, listItemObj.buttonToggleValueTrue);
+                                            setItemLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
                                         } else {
-                                            myMdwHelper.setValue(listItemObj.objectId, listItemObj.buttonToggleValueFalse);
+                                            unlockButton($item);
                                         }
+                                    } else if (listItemObj.listType === 'buttonToggleValueTrue') {
+                                        if ($item.attr('isLocked') === 'false' || $item.attr('isLocked') === undefined) {
+                                            let val = vis.states.attr(listItemObj.objectId + '.val');
 
-                                        setItemLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
-                                    } else {
-                                        unlockButton($item);
+                                            if (val === listItemObj.buttonToggleValueTrue || parseFloat(val) === parseFloat(listItemObj.buttonToggleValueTrue)) {
+                                                myMdwHelper.setValue(listItemObj.objectId, listItemObj.buttonToggleValueFalse);
+                                            } else {
+                                                myMdwHelper.setValue(listItemObj.objectId, listItemObj.buttonToggleValueTrue);
+                                            }
+
+                                            setItemLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
+                                        } else {
+                                            unlockButton($item);
+                                        }
+                                    } else if (listItemObj.listType === 'buttonToggleValueFalse') {
+                                        if ($item.attr('isLocked') === 'false' || $item.attr('isLocked') === undefined) {
+                                            let val = vis.states.attr(listItemObj.objectId + '.val');
+
+                                            if (val === listItemObj.buttonToggleValueFalse || parseFloat(val) === parseFloat(listItemObj.buttonToggleValueFalse)) {
+                                                myMdwHelper.setValue(listItemObj.objectId, listItemObj.buttonToggleValueTrue);
+                                            } else {
+                                                myMdwHelper.setValue(listItemObj.objectId, listItemObj.buttonToggleValueFalse);
+                                            }
+
+                                            setItemLayout(index, vis.states.attr(listItemObj.objectId + '.val'), listItemObj);
+                                        } else {
+                                            unlockButton($item);
+                                        }
+                                    } else if (listItemObj.listType === 'buttonNav') {
+                                        vis.changeView(listItemObj.buttonNavView);
+                                    } else if (listItemObj.listType === 'buttonLink') {
+                                        window.open(listItemObj.buttonLink);
                                     }
-                                } else if (listItemObj.listType === 'buttonNav') {
-                                    vis.changeView(listItemObj.buttonNavView);
-                                } else if (listItemObj.listType === 'buttonLink') {
-                                    window.open(listItemObj.buttonLink);
-                                }
-                            });
-                        }
-
-                        if (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState') {
-                            // on Load & bind to object ids
-                            let valId = listItemObj.objectId + '.val'
-                            let valOnLoading = vis.states.attr(valId);
-                            setItemLayout(i, valOnLoading, listItemObj);
-
-                            if (!eventBind[valId]) {
-                                // fires event only once per objectId
-
-                                vis.states.bind(valId, function (e, newVal, oldVal) {
-                                    let input = $this.find('div[data-oid="' + listItemObj.objectId + '"]');
-                                    input.each(function (d) {
-                                        // kann mit mehreren oid verknüpft sein
-                                        let index = parseInt(input.eq(d).attr('id').replace('icon-list-item', ''));
-                                        listItemObj = getListItemObj(index, data, jsonData);
-
-                                        setItemLayout(index, vis.states.attr(valId), listItemObj);
-                                    });
                                 });
+                            }
 
-                                // add to eventBind obj to prevent event fires multiples times if objectId is same on multiple objs
-                                eventBind[valId] = true;
-                                console.log(`[IconList - ${data.wid}] event bind for '${valId}'`);
+                            if (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState') {
+                                // on Load & bind to object ids
+                                let valId = listItemObj.objectId + '.val'
+                                let valOnLoading = vis.states.attr(valId);
+                                setItemLayout(itemIndex, valOnLoading, listItemObj);
+
+                                if (!eventBind[valId]) {
+                                    // fires event only once per objectId
+
+                                    vis.states.bind(valId, function (e, newVal, oldVal) {
+                                        let input = $this.find('div[data-oid="' + listItemObj.objectId + '"]');
+                                        input.each(function (d) {
+                                            // kann mit mehreren oid verknüpft sein
+                                            let index = parseInt(input.eq(d).attr('id').replace('icon-list-item', ''));
+                                            listItemObj = getListItemObj(index, data, jsonData);
+
+                                            setItemLayout(index, vis.states.attr(valId), listItemObj);
+                                        });
+                                    });
+
+                                    // add to eventBind obj to prevent event fires multiples times if objectId is same on multiple objs
+                                    eventBind[valId] = true;
+                                    console.log(`[IconList - ${data.wid}] event bind for '${valId}'`);
+                                }
                             }
                         }
+                    } catch (ex) {
+                        console.error(`[${widgetName} - ${data.wid}] eventListener: error: ${ex.message}, stack: ${ex.stack}`);
                     }
                 }
 
