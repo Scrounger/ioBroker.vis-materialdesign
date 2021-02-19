@@ -11323,16 +11323,28 @@ systemDictionary = {
         "zh-cn": "计算"
     },
     "convertToDuration": {
-        "en": "convert to duration",
-        "de": "in Dauer umwandeln",
-        "ru": "преобразовать в продолжительность",
-        "pt": "converter para duração",
-        "nl": "converteren naar duur",
-        "fr": "convertir en durée",
-        "it": "converti in durata",
-        "es": "convertir a duración",
-        "pl": "przekonwertować na czas trwania",
-        "zh-cn": "转换为持续时间"
+        "en": "convert seconds to duration",
+        "de": "Sekunden in Dauer umwandeln",
+        "ru": "конвертировать секунды в продолжительность",
+        "pt": "converter segundos em duração",
+        "nl": "zet seconden om in duur",
+        "fr": "convertir les secondes en durée",
+        "it": "convertire i secondi in durata",
+        "es": "convertir segundos en duración",
+        "pl": "zamień sekundy na czas trwania",
+        "zh-cn": "将秒转换为持续时间"
+    },
+    "convertToTimestamp": {
+        "en": "convert timestamp to datetime",
+        "de": "Zeitstempel in Datum / Uhrzeit konvertieren",
+        "ru": "преобразовать метку времени в дату и время",
+        "pt": "converter timestamp em datetime",
+        "nl": "converteer tijdstempel naar datetime",
+        "fr": "convertir l'horodatage en datetime",
+        "it": "convertire il timestamp in datetime",
+        "es": "convertir la marca de tiempo en fecha y hora",
+        "pl": "przekonwertuj znacznik czasu na datę i godzinę",
+        "zh-cn": "将时间戳转换为日期时间"
     },
     "targetType": {
         "en": "target type",

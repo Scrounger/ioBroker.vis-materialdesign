@@ -4676,7 +4676,8 @@ Settings that are not listed in the table below are self-explanatory.
         </tr>
         <tr>
             <td>convert to duration</td>
-            <td>convert a duration in seconds to a readable string. Approved formats must be entered according to the moment.js library, <a href="https://momentjs.com/docs/#/durations/">see link</a>. You can also use <code>humanize</code></td>
+            <td>convert a duration in seconds to a readable string. Approved formats must be entered according to the <a href="https://github.com/jsmreese/moment-duration-format#template-string">moment-duration-format</a> library. You can also use <code>humanize</code>.<br><br>
+			It's also possible to combine this with the calculation, e.g. if the source value is in minutes, you can convert it to seconds by using calculation</td>
         </tr>
         <tr>
             <td rowspan=1><img src="doc/en/media/value_settings_boolean_formatting.png"></td>
@@ -11254,7 +11255,7 @@ The adapter uses the following libraries:
 -->
 
 <!-- omit in toc -->
-### 0.5.0-beta (2021-02-13)
+### __WORK IN PROGRESS__
 * (Scrounger) HTML Widgets added - use Material Design Widgets in any html element
 * (Scrounger) Table: Control Elements removed, using new HTML Widgets -> breaking changes !!!
 * (Scrounger) list: using object id for json string added -> breaking changes !!!

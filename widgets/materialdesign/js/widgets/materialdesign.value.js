@@ -85,34 +85,34 @@ vis.binds.materialdesign.value = {
                     let result = '';
                     if (value !== undefined && value !== null) {
                         if (type === 'number') {
-                            if (myMdwHelper.getValueFromData(data.convertToDuration, undefined)) {
-                                value = parseFloat(value);
-                                oldVal = parseFloat(oldVal);
+                            try {
+                                if (myMdwHelper.getValueFromData(data.calculate, undefined) && data.calculate.includes('#value')) {
+                                    let calc = replaceValue(data.calculate, value);
+                                    value = math.evaluate(calc);
+                                    oldVal = math.evaluate(replaceValue(data.calculate, oldVal));
 
-                                if (data.convertToDuration === 'humanize') {
-                                    result = moment.duration(value, "seconds").humanize();
-                                } else {
-                                    result = moment.utc(moment.duration(value, "seconds").as('milliseconds')).format(data.convertToDuration)
+                                    if (data.debug) console.log(`${logPrefix} type: '${type}', evaluate: '${calc}', result: '${value}'`);
                                 }
-                            } else {
-                                try {
-                                    if (myMdwHelper.getValueFromData(data.calculate, undefined) && data.calculate.includes('#value')) {
-                                        let calc = replaceValue(data.calculate, value);
-                                        value = math.evaluate(calc);
-                                        oldVal = math.evaluate(replaceValue(data.calculate, oldVal));
 
-                                        if (data.debug) console.log(`${logPrefix} type: '${type}', evaluate: '${calc}', result: '${value}'`);
+                                if (myMdwHelper.getValueFromData(data.convertToDuration, undefined)) {
+                                    if (data.convertToDuration === 'humanize') {
+                                        result = moment.duration(value, "seconds").humanize();
+                                    } else {
+                                        let duration = moment.duration(value, "seconds")
+                                        result = duration.format(data.convertToDuration)
                                     }
 
+                                    if (data.debug) console.log(`${logPrefix} type: '${type}' convert to duration, evaluate: '${data.convertToDuration}', result: '${result}'`);
+                                } else {
                                     value = myMdwHelper.formatNumber(value, data.minDecimals, data.maxDecimals);
                                     oldVal = myMdwHelper.formatNumber(oldVal, data.minDecimals, data.maxDecimals);
 
                                     let unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
 
                                     result = `${value} ${unit}`;
-                                } catch (e) {
-                                    result = `Error: type: '${type}' - ${e.message}`;
                                 }
+                            } catch (e) {
+                                result = `Error: type: '${type}' - ${e.message}`;
                             }
                         } else if (type === 'boolean') {
                             try {

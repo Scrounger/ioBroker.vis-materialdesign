@@ -395,6 +395,48 @@ vis.binds.materialdesign.iconlist =
                                 $this.find(`#icon-list-item${index}`).remove();
                             }
                         }
+
+                        // // Mit Animation -> geht noch nicht
+                        // for (var i = 0; i <= changedItems.length - 1; i++) {
+                        //     let widgetElement = itemList[i];
+
+                        //     if (bindingTokenList.length > 0) {
+                        //         for (var b = 0; b <= bindingTokenList.length - 1; b++) {
+                        //             widgetElement = widgetElement.replace(bindingTokenList[b], vis.formatBinding(bindingTokenList[b]))
+                        //         }
+                        //     }
+
+                        //     if (changedItems[i] === 0) {
+                        //         if (data.debug) console.log(`[appendContent]: list item ${i} added!`);
+                        //         // $this.find(`.${containerClass}`).append(widgetElement);
+
+                        //         $(widgetElement).hide().appendTo(`.${containerClass}`).fadeIn('slow');
+
+                        //     } else if (changedItems[i] === 1) {
+                        //         if (data.debug) console.log(`[appendContent]: list item ${i} changed!`);
+                        //         // $this.find(`#icon-list-item${i}`).replaceWith(widgetElement);
+
+                        //         let $target = $this.find(`#icon-list-item${i}`);
+                        //         $target.children().fadeOut(100, function () {
+                        //             $target.replaceWith(function () {
+                        //                 return $(widgetElement).hide().fadeIn(100).css('display', 'flex');
+                        //             });
+                        //         });
+                        //     }
+                        // }
+
+                        // if (countOfItems < countOfOldItems) {
+                        //     // count old data items is higher -> remove items
+                        //     for (var i = 0; i <= countOfOldItems - countOfItems; i++) {
+                        //         let index = i + countOfItems + 1;
+                        //         if (data.debug) console.log(`[appendContent]: list item ${index} deleted!`);
+                        //         // $this.find(`#icon-list-item${index}`).remove();
+
+                        //         $this.find(`#icon-list-item${index}`).fadeOut('fast', function () {
+                        //             $(this).remove();
+                        //         });
+                        //     }
+                        // }
                     }
 
                     $this.scrollTop(scrollTop);
