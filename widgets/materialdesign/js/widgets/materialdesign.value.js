@@ -103,6 +103,8 @@ vis.binds.materialdesign.value = {
                                     }
 
                                     if (data.debug) console.log(`${logPrefix} type: '${type}' convert to duration, evaluate: '${data.convertToDuration}', result: '${result}'`);
+                                } else if (myMdwHelper.getValueFromData(data.convertToTimestamp, undefined)) {
+                                    result = moment.unix(value).format(data.convertToTimestamp);
                                 } else {
                                     value = myMdwHelper.formatNumber(value, data.minDecimals, data.maxDecimals);
                                     oldVal = myMdwHelper.formatNumber(oldVal, data.minDecimals, data.maxDecimals);
