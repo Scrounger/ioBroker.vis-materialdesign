@@ -9173,7 +9173,7 @@ With the JSON chart you have the maximum freedom to create a mixed chart (line, 
         <tr>
             <td>data</td>
             <td>data of graph or data with timestamp</td>
-            <td>Array[numbers] | Array[<a href="#data-with-time-axis">values with timestamp</a>]</td>
+            <td>Array[numbers] | Array[<a href="#values-with-timestamp">values with timestamp</a>]</td>
             <td>number</td>
         </tr>
         <tr>
