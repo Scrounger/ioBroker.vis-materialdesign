@@ -372,6 +372,12 @@
         "widget": "Checkbox"
     },
     {
+        "id": "light.dialog.button_icon",
+        "desc": "imageColor",
+        "defaultValue": 5,
+        "widget": "Dialog, Dialog iFrame"
+    },    
+    {
         "id": "light.dialog.background",
         "desc": "backgroundColor",
         "defaultValue": 5,
@@ -447,7 +453,7 @@
         "id": "light.button.icon.icon_off",
         "desc": "imageColor",
         "defaultValue": 0,
-        "widget": "Icon Button Navigation, Icon Button Link, Icon Button State, Icon Button State Multi, Icon Button Addition, Icon Button Toggle, Dialog, Dialog iFrame"
+        "widget": "Icon Button Navigation, Icon Button Link, Icon Button State, Icon Button State Multi, Icon Button Addition, Icon Button Toggle"
     },
     {
         "id": "light.button.icon.icon_on",
