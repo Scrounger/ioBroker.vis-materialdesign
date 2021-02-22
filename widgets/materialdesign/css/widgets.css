@@ -37,6 +37,7 @@
   --materialdesign-color-drawer-sub-background: #fff;
   --materialdesign-color-list-item-background: #fff;
   --materialdesign-color-sub-list-item-background: #fff;
+  --materialdesign-color-list-background: transparent;
   
   --materialdesign-color-icon-button-hover: #44739e;
 
@@ -1427,7 +1428,8 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 /* Default list color */
 .materialdesign-widget .mdc-list {
-  padding: 0;  
+  padding: 0;
+  background-color: var(--materialdesign-color-list-background);  
 }
 
 .materialdesign-widget .mdc-sub-list {
@@ -1605,7 +1607,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   border-radius: 4px;
   background-color: #fff;
   /* @alternate */
-  background-color: var(--mdc-theme-surface, #fff);
+  background-color: var(--materialdesign-color-card-background, #fff);
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;

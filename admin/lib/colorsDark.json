@@ -642,6 +642,12 @@
         "widget": "Material Design Icon"
     },
     {
+        "id": "dark.list.background",
+        "desc": "listBackground",
+        "defaultValue": 5,
+        "widget": "List"
+    },
+    {
         "id": "dark.list.background_off",
         "desc": "listItemBackground",
         "defaultValue": 7,
@@ -872,7 +878,7 @@
     {
         "id": "dark.table.row_header_background",
         "desc": "colorHeaderRowBackground",
-        "defaultValue": 7,
+        "defaultValue": 5,
         "widget": "Table"
     },
     {
@@ -1084,15 +1090,13 @@
         "desc": "appendTextColor",
         "defaultValue": 2,
         "widget": "Value"
-    },    
+    },
     {
         "id": "dark.value.icon",
         "desc": "imageColor",
         "defaultValue": 0,
         "widget": "Value"
     },
-
-
     {
         "id": "dark.scripts.adapterStatus.title",
         "desc": "title color",
@@ -1122,8 +1126,7 @@
         "desc": "icon color",
         "defaultValue": 0,
         "widget": "AdapterStatus [Script]"
-    }, 
-
+    },
     {
         "id": "dark.scripts.adapterStatus.statusBar.active",
         "desc": "statusbar: adapter is active",
@@ -1179,15 +1182,57 @@
         "widget": "AdapterStatus [Script]"
     },
     {
-        "id": "light.scripts.adapterStatus.icons.logParser.warn",
+        "id": "dark.scripts.adapterStatus.icons.logParser.warn",
         "desc": "logParser warn icon",
         "defaultValue": 9,
         "widget": "AdapterStatus [Script]"
     },
     {
-        "id": "light.scripts.adapterStatus.icons.logParser.error",
+        "id": "dark.scripts.adapterStatus.icons.logParser.error",
         "desc": "logParser error icon",
         "defaultValue": 10,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "dark.scripts.adapterStatus.select.background",
+        "desc": "Select: background",
+        "defaultValue": 0,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "dark.scripts.adapterStatus.select.border",
+        "desc": "Select: border",
+        "value": "#a1a1a1",
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "dark.scripts.adapterStatus.select.border_hover",
+        "desc": "Select: border hover",
+        "defaultValue": 5,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "dark.scripts.adapterStatus.select.border_selected",
+        "desc": "Select: border selected",
+        "defaultValue": 5,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "dark.scripts.adapterStatus.select.text",
+        "desc": "Select: text",
+        "defaultValue": 5,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "dark.scripts.adapterStatus.select.label",
+        "desc": "Select: label text",
+        "defaultValue": 5,
+        "widget": "AdapterStatus [Script]"
+    },
+    {
+        "id": "dark.scripts.adapterStatus.select.icon",
+        "desc": "Select: icons",
+        "defaultValue": 5,
         "widget": "AdapterStatus [Script]"
     }
 ]

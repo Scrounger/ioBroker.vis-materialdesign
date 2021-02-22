@@ -11369,5 +11369,17 @@ systemDictionary = {
         "es": "habilitar desbordamiento",
         "pl": "włącz przepełnienie",
         "zh-cn": "启用溢出"
+    },
+    "listBackground": {
+        "en": "background",
+        "de": "Hintergrund",
+        "ru": "фон",
+        "pt": "fundo",
+        "nl": "achtergrond",
+        "fr": "Contexte",
+        "it": "sfondo",
+        "es": "antecedentes",
+        "pl": "tło",
+        "zh-cn": "背景"
     }
 };

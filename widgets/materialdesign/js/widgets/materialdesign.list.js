@@ -123,7 +123,7 @@ vis.binds.materialdesign.list =
                             // generate Item Label
                             let itemLabel = '';
                             if (listItemObj.subText === '') {
-                                itemLabel = myMdwHelper.getListItemLabel('standard', i, listItemObj.text, false, labelFontSize, '', '', '', false, data.listItemAlignment, listItemObj.listOverflow );
+                                itemLabel = myMdwHelper.getListItemLabel('standard', i, listItemObj.text, false, labelFontSize, '', '', '', false, data.listItemAlignment, listItemObj.listOverflow);
                             } else {
                                 itemLabel = myMdwHelper.getListItemTextElement(listItemObj.text, listItemObj.subText, labelFontSize, subLabelFontSize, data.listItemAlignment);
                             }
@@ -253,6 +253,14 @@ vis.binds.materialdesign.list =
 
                         setStyle();
                         function setStyle() {
+
+                            if (data.listLayout === 'card' || data.listLayout === 'cardOutlined') {
+                                list.style.setProperty("--materialdesign-color-card-background", myMdwHelper.getValueFromData(data.listBackground, ''));
+                            } else {
+                                list.style.setProperty("--materialdesign-color-list-background", myMdwHelper.getValueFromData(data.listBackground, ''));
+                            }
+
+
                             list.style.setProperty("--materialdesign-color-list-item-background", myMdwHelper.getValueFromData(data.listItemBackground, ''));
                             list.style.setProperty("--materialdesign-color-list-item-hover", myMdwHelper.getValueFromData(data.colorListItemHover, ''));
                             list.style.setProperty("--materialdesign-color-list-item-selected", myMdwHelper.getValueFromData(data.colorListItemSelected, ''));
