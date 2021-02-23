@@ -788,8 +788,17 @@ vis.binds.materialdesign.helper = {
                     callBack(widgetData);
                 }, widgetData.debug);
             } else {
-                if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] nothing to subscribed -> fire callback()`);
-                callBack(widgetData);
+                let val = vis.states.attr(widgetData.oid + '.val');
+
+                if (val === undefined || val === null) {
+                    myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
+                        if (widgetData.debug) console.warn(`${logPrefix} [extractHtmlWidgetData] second try: oid subscribed -> fire callback()`);
+                        callBack(widgetData);
+                    }, widgetData.debug);
+                } else {
+                    if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] nothing to subscribed -> fire callback()`);
+                    callBack(widgetData);
+                }
             }
         } else {
             if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] no oid exist, nothing to subscribed -> fire callback()`);
