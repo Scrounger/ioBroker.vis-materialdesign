@@ -62,7 +62,7 @@ vis.binds.materialdesign.card = {
 
             let textSection = '';
             if (data.showText) {
-                textSection = `<div class="materialdesign-html-card card-text-section" style="overflow: auto;">
+                textSection = `<div class="materialdesign-html-card card-text-section" style="${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'overflow: auto;': ''}">
                                     <div class="materialdesign-html-card ${textFontSize.class}" style="${textFontSize.style}${labelTextHeight}">${myMdwHelper.getValueFromData(data.html, '')}</div>
                                 </div>`
             }
