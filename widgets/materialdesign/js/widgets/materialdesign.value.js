@@ -33,14 +33,10 @@ vis.binds.materialdesign.value = {
                 let $valueText = $this.find('.value-text');
                 let $appendText = $this.find('.append-text');
 
-                let val = vis.states.attr(data.oid + '.val');
                 let targetType = myMdwHelper.getValueFromData(data.targetType, 'auto');
-                let type = targetType === 'auto' ? typeof (val) : targetType;
-
-                if (data.debug) console.log(`${logPrefix} type: '${type}', targetType: '${targetType}'`);
 
                 vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                    setValue(newVal, type, oldVal);
+                    setValue(newVal, oldVal);
                 });
 
                 vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
@@ -58,8 +54,6 @@ vis.binds.materialdesign.value = {
                 });
 
                 setLayout();
-                setValue(val, type, val);
-
                 function setLayout() {
                     $this.get(0).style.setProperty("--value-color-text", myMdwHelper.getValueFromData(data.valuesFontColor, ''));
                     $this.get(0).style.setProperty("--value-font-text", myMdwHelper.getValueFromData(data.valuesFontFamily, ''));
@@ -74,10 +68,16 @@ vis.binds.materialdesign.value = {
                     $this.get(0).style.setProperty("--value-font-size-append", myMdwHelper.getStringFromNumberData(data.appendTextFontSize, 14, '', 'px'));
 
                     $this.find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.imageColor, '#44739e'));
+
+                    let val = vis.states.attr(data.oid + '.val');
+                    setValue(val, val);
                 }
 
-                function setValue(value, type, oldVal) {
+                function setValue(value, oldVal) {
+                    let type = targetType === 'auto' ? typeof (value) : targetType;
                     let changed = false;
+
+                    if (data.debug) console.log(`${logPrefix} type: '${type}', targetType: '${targetType}'`);
 
                     $prepandText.html(myMdwHelper.getValueFromData(data.prepandText, ''));
                     $appendText.html(myMdwHelper.getValueFromData(data.appendText, ''));
@@ -169,7 +169,7 @@ vis.binds.materialdesign.value = {
                         return str.replace(/#value/g, data);
                     }
 
-                    function changeValue(){
+                    function changeValue() {
                         if (myMdwHelper.getValueFromData(data.overrideText, undefined)) {
                             if (result.includes('|')) {
                                 result = result.split('|');
