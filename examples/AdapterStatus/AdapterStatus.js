@@ -1,13 +1,24 @@
 /************************************************************************************************************************************************************************
-Dieses Skript erzeugt einen json string um den Status aller Adapter mithilfe des Material Design IconList oder Table Widget in VIS anzuzeigen.
+This script creates a json string to display the status of all adapters using the Material Design IconList or Table Widget in VIS.
 
-created by Scrounger
-=========================================================================================================================================================================*/
+created by Scrounger        https://forum.iobroker.net/user/scrounger
+=========================================================================================================================================================================
 
-// Version des Skriptes - hier nichts ändern!
-let version = '1.8.0'
+--- Links ---
+* Support:                  https://forum.iobroker.net/topic/30661/material-design-widgets-adapter-status
+* Github:                   https://github.com/Scrounger/ioBroker.vis-materialdesign/tree/master/examples/AdapterStatus
 
-// !!! Benötigte Adapter !!!                                                                                                                    // hier nichts ändern!
+=========================================================================================================================================================================
+
+--- Changelog ---
+* 2.0.0:                    Complete revision of the script
+
+************************************************************************************************************************************************************************/
+
+// Version of the script - do not change anything here!
+let version = '1.7.0'
+
+// Required adapters - do not change anything here!
 let requiredAdapters = {
     vis: '1.3.7',
     "vis-materialdesign": '0.4.2',
@@ -15,69 +26,41 @@ let requiredAdapters = {
     logparser: '1.1.0'
 }
 
-// !!! Benötigte Javascript Adapter NPM Module !!!                                                                                              // hier nichts ändern!
+// Required Javascript Adapter NPM Module - do not change anything here!
 let javascriptModules = [
     'moment',
     'moment-timezone'
 ]
 
-let scriptUrl = "https://raw.githubusercontent.com/Scrounger/ioBroker.vis-materialdesign/master/examples/AdapterStatus/AdapterStatus.js"        // hier nichts ändern!
-
-/*=========================================================================================================================================================================
-
---- Links ---
-* Support:          https://forum.iobroker.net/topic/30661/material-design-widgets-adapter-status
-* Github:           https://github.com/Scrounger/ioBroker.vis-materialdesign/tree/master/examples/AdapterStatus
-
-=========================================================================================================================================================================
-
---- Changelog ---
-* 1.0.0:            Initial release
-* 1.0.1:            Verriegeln Funktion hinzugefügt, Einstellung Farbe Werte von bommel_30 hinzugefügt, Fehlerbehebung
-* 1.0.2:            Fehlerbehebung falls Texte zu lang
-* 2.0.0:            Komplette Überarbeitung des Skriptes
-
-************************************************************************************************************************************************************************/
+// Skript Update URL - do not change anything here!
+let scriptUrl = "https://raw.githubusercontent.com/Scrounger/ioBroker.vis-materialdesign/master/examples/AdapterStatus/AdapterStatus.js"
 
 
-// Skript Einstellungen *************************************************************************************************************************************************
-let idDatenpunktPrefix = '0_userdata.0'                                             // '0_userdata.0' or 'javascript.x'
-let idDatenPunktStrukturPrefix = 'vis.MaterialDesignWidgets.AdapterStatus'          // Struktur unter Prefix
+// Script Settings *************************************************************************************************************************************************
+let debug = false;                                                                   // debug Modus
 
-let datapointIDs = {
-    action: 'action',
-    filter: 'filter',
-    iconList: 'iconList',
-    sort: 'sort',
-    table: 'table',
-    updateInfo: 'updateInfo',
-    upgradeable: 'upgradeable',
-    dialog: {
-        adapter: 'dialog.adapter',
-        show: 'dialog.show',
-        subtitle: 'dialog.subtitle',
-        table: 'dialog.table',
-        title: 'dialog.title'
-    },
-    chart: {
-        json: 'chart.json'
-    }
-}
-
-let adminUpdatesListId = 'admin.0.info.updatesList';                                // Datenpunkt Admin Adapter für verfübare Updates der Adapter
-
-let language = await getLanguage();                                                 // wird automatisch vom System übernommen, bei Abweichung Kürzel Sprache angeben, z.B. 'en', 'de', ect.
-
-let checkScriptUpdates = true;                                                      // Prüft bei jedem skript start ob eine neuere Version vorhanden ist (Internetverbindung wird benötigt)                        
+// show hosts
+let showHosts = true;
 
 // Adpater LogParser
-let useLogParser = true;                                                            // Verwendung Adpater LogParser aktivieren / deaktivieren
-let warnAndErrorId = 'logparser.0.filters.WarnAndError.json'                        // Id des JSON Datenpunktes für alle Warn und Error Meldungen
+let useLogParser = true;                                                            // Enable / disable use of the Adpater LogParser
+let warnAndErrorId = 'logparser.0.filters.WarnAndError.json'                        // Id of the JSON datapoint for all warning and error messages
+
+// Check for Script Updates
+let checkScriptUpdates = true;                                                      // Checks at script start and cyclically if a newer version is available (internet connection required)
+
+// Language
+let language = await getLanguage();                                                 // is automatically taken over by the system, in case of deviation specify abbreviation language, e.g. 'en', 'de', ect.
+
+// layout settings ******************************************************************************************************************************************************
+// All layout settings (color, font and font size) can be configured with the Theme Editor in the Adapter Settings. 
+
+let showValueIcons = false;                                                                                                                     // show icons before values description                                            
 
 let myLayout = await getLayout();
 async function getLayout() {
     return {
-        colors: {
+        colors: {                                                                                                                               // colors
             title: await getMdwTheme('vis-materialdesign.0.colors.light.scripts.adapterStatus.title'),
             subTitle: await getMdwTheme('vis-materialdesign.0.colors.light.scripts.adapterStatus.subTitle'),
             statusBar: {
@@ -102,7 +85,7 @@ async function getLayout() {
                 icon: await getMdwTheme('vis-materialdesign.0.colors.light.scripts.adapterStatus.datapoints.icon'),
             }
         },
-        fonts: {
+        fonts: {                                                                                                                                // fonts
             title: await getMdwTheme('vis-materialdesign.0.fonts.scripts.adapterStatus.title'),
             subTitle: await getMdwTheme('vis-materialdesign.0.fonts.scripts.adapterStatus.subTitle'),
             datapoints: {
@@ -110,7 +93,7 @@ async function getLayout() {
                 value: await getMdwTheme('vis-materialdesign.0.fonts.scripts.adapterStatus.datapoints.value')
             }
         },
-        fontSizes: {
+        fontSizes: {                                                                                                                            // font sizes
             title: await getMdwTheme('vis-materialdesign.0.fontSizes.scripts.adapterStatus.title'),
             subTitle: await getMdwTheme('vis-materialdesign.0.fontSizes.scripts.adapterStatus.subTitle'),
             datapoints: {
@@ -121,14 +104,13 @@ async function getLayout() {
                 upgradeable: await getMdwTheme('vis-materialdesign.0.fontSizes.scripts.adapterStatus.icons.upgradeable')
             }
         },
-        icons: {
+        icons: {                                                                                                                                // icons
             upgradeable: 'update',
-            cpu: '',
-            ram_total: '',
-            ram_used: '',
-            ram_reserved: '',
-            uptime: '',
-            mode: '',
+            cpu: 'cpu-64-bit',
+            ram_total: 'memory',
+            ram_used: 'memory',
+            ram_reserved: 'memory',
+            uptime: 'clock-check-outline',
             logParser: {
                 warn: 'alert',
                 error: 'alert-box'
@@ -137,11 +119,25 @@ async function getLayout() {
                 start: 'play',
                 stop: 'stop',
                 restart: 'restart'
-            }
+            },
+            sort: {
+                adapterName: 'sort-alphabetical-variant',
+                adapterInstance: 'sort-numeric-variant',
+                status: 'information-variant',
+                upgradeable: 'update'
+            },
+            filter: {
+                activated: 'checkbox-marked',
+                deactivated: 'checkbox-blank-outline',
+                notActive: 'checkbox-blank-off-outline',
+                notConnected: 'network-off'
+            },
+            host: 'iobroker'
         }
     }
 }
 
+// Values layout
 async function getValueLayout(id, icon, title, unit = '', convertToDuration = '') {
     let idExists = await existsStateAsync(id);
 
@@ -162,7 +158,7 @@ async function getValueLayout(id, icon, title, unit = '', convertToDuration = ''
                 mdw-image='${icon}'
                 mdw-imageColor='${myLayout.colors.datapoints.icon}'
                 mdw-iconPosition='left'
-                mdw-iconHeight='20'
+                mdw-iconHeight='14'
                 mdw-convertToDuration='${convertToDuration}'
                 mdw-minDecimals='2'
                 mdw-changeEffectEnabled='true'
@@ -171,6 +167,7 @@ async function getValueLayout(id, icon, title, unit = '', convertToDuration = ''
             ></div>`;
 }
 
+// Buttons Layout
 async function getButtonLayout(id, value, title, icon) {
     return `<div class='vis-widget materialdesign-widget materialdesign-button materialdesign-button-html-element'
                 style='width: 100%; height: 30px; position: relative; padding: 0px; border-radius: 4px 4px 0 0;'
@@ -192,8 +189,37 @@ async function getButtonLayout(id, value, title, icon) {
             ></div>`
 }
 
-let logParserWarnIconColor = 'gold'
-let logParserErrorIconColor = 'FireBrick'
+// datapoints settings (experts only!) ***********************************************************************************************************************************
+let idDatenpunktPrefix = '0_userdata.0';                                            // '0_userdata.0' or 'javascript.x'
+let idDatenPunktStrukturPrefix = 'vis.MaterialDesignWidgets.AdapterStatus';         // Datapoint structure under prefix
+
+let adminUpdatesListId = 'admin.0.info.updatesList';                                // Datapoint of the Admin Adapter with info about available updates of the single adapters
+
+let datapointIDs = {                                                                // used datapoints of the script where all data are stored                             
+    action: 'action',
+    iconList: 'iconList',
+    table: 'table',
+    updateInfo: 'updateInfo',
+    upgradeable: 'upgradeable',
+    dialog: {
+        adapter: 'dialog.adapter',
+        show: 'dialog.show',
+        subtitle: 'dialog.subtitle',
+        table: 'dialog.table',
+        title: 'dialog.title',
+        image: 'dialog.image'
+    },
+    select: {
+        sort: 'select.sort',
+        sortJson: 'select.sortJson',
+        progress: 'select.progress',
+        filter: 'select.filter',
+        filterJson: 'select.filterJson'
+    },
+    hosts: {
+        iconList: 'hosts.iconList'
+    }
+}
 
 //************************************************************************************************************************************************************************
 
@@ -205,6 +231,12 @@ const request = require('request');
 moment.locale(language.toString());
 
 // vars
+let aliveSelector = `[id=system.adapter*.alive]`;
+let adapterAliveList = $(aliveSelector);
+
+let aliveHostSelector = `[id=system.host.*.alive]`;
+let hostAliveList = $(aliveSelector);
+
 let logParserList = undefined;                                  //TODO: update / listener, Graph mit Error / Warn pro Instanz
 
 // listener
@@ -214,18 +246,29 @@ startScript();
 async function startScript() {
     try {
         if (await dependeciesCheck()) {
-            console.debug(`[startScript] Dependecies check successful.`);
+            if (debug) console.debug(`[startScript] Dependecies check successful.`);
 
-            await myCreateState(createId(datapointIDs.iconList), '', 'string', 'JSON for Icon List Widget');
-            await myCreateState(createId(datapointIDs.table), '', 'string', 'JSON for Table Widget');
-            await myCreateState(createId(datapointIDs.sort), '', 'string', 'sort mode');
-            await myCreateState(createId(datapointIDs.filter), '', 'string', 'filter mode');
-            await myCreateState(createId(datapointIDs.upgradeable), false, 'boolean', 'script update is available');
-            await myCreateState(createId(datapointIDs.updateInfo), '', 'string', 'JSON for Alarm Widget');
-            await myCreateState(createId(datapointIDs.action), '', 'string', 'Button action');
+            // AdapterStatus Datapoints
+            await myCreateStateAsync(createId(datapointIDs.iconList), '', 'string', 'JSON for Icon List Widget');
+            await myCreateStateAsync(createId(datapointIDs.table), '', 'string', 'JSON for Table Widget');
+
+            await myCreateStateAsync(createId(datapointIDs.select.progress), false, 'boolean', 'show progress bar');
+
+            await myCreateStateAsync(createId(datapointIDs.select.sort), '', 'string', 'sort mode');
+            await myCreateStateAsync(createId(datapointIDs.select.sortJson), '', 'string', 'json string for Select Widget');
+            await generateSortJson();
+            on({ id: createId(datapointIDs.select.sort), change: 'any' }, refreshAdapterStatus);
+
+            await myCreateStateAsync(createId(datapointIDs.select.filter), '', 'string', 'filter mode');
+            await myCreateStateAsync(createId(datapointIDs.select.filterJson), '', 'string', 'json string for Select Widget');
+            await generateFilterJson()
+            on({ id: createId(datapointIDs.select.filter), change: 'any' }, refreshAdapterStatus);
+
+            await myCreateStateAsync(createId(datapointIDs.upgradeable), false, 'boolean', 'script update is available');
+            await myCreateStateAsync(createId(datapointIDs.updateInfo), '', 'string', 'JSON for Alarm Widget');
+            await myCreateStateAsync(createId(datapointIDs.action), '', 'string', 'Button action');
 
             on({ id: createId(datapointIDs.action), change: 'any' }, adapterAction);
-
 
             if (checkScriptUpdates) {
                 checkUpdateAvailable();
@@ -234,20 +277,17 @@ async function startScript() {
 
             useLogParser = await checkLogParser();
             if (useLogParser) {
-                await myCreateState(createId(datapointIDs.dialog.show), false, 'boolean', 'show Dialog Widget');
-                await myCreateState(createId(datapointIDs.dialog.adapter), '', 'string', 'used adpater for dialog');
-                await myCreateState(createId(datapointIDs.dialog.table), '', 'string', 'JSON for table used in dialog');
-                await myCreateState(createId(datapointIDs.dialog.title), '', 'string', 'dialog title');
-                await myCreateState(createId(datapointIDs.dialog.subtitle), '', 'string', 'dialog subtitle');
-
-                await myCreateState(createId(datapointIDs.chart.json), '', 'string', 'JSON for JSON Chart');
+                await myCreateStateAsync(createId(datapointIDs.dialog.show), false, 'boolean', 'show Dialog Widget');
+                await myCreateStateAsync(createId(datapointIDs.dialog.adapter), '', 'string', 'used adpater for dialog');
+                await myCreateStateAsync(createId(datapointIDs.dialog.table), '', 'string', 'JSON for table used in dialog');
+                await myCreateStateAsync(createId(datapointIDs.dialog.title), '', 'string', 'dialog title');
+                await myCreateStateAsync(createId(datapointIDs.dialog.subtitle), '', 'string', 'dialog subtitle');
+                await myCreateStateAsync(createId(datapointIDs.dialog.image), '', 'string', 'dialog image');
 
                 on({ id: createId(datapointIDs.dialog.adapter), change: 'any' }, showDialog);
             }
 
-            // auf .alive Änderungen hören
-            let aliveSelector = `[id=system.adapter*.alive]`;
-            let adapterAliveList = $(aliveSelector);
+            // Adapter: auf .alive Änderungen hören
             if (adapterAliveList.length > 0) {
                 refreshAdapterStatus();
                 adapterAliveList.on(refreshAdapterStatus);
@@ -256,7 +296,7 @@ async function startScript() {
                 console.error(`no result for selector '${aliveSelector}'`);
             }
 
-            // auf .connection Änderungen hören
+            // Adapter: auf .connection Änderungen hören
             let connectionSelector = `[id=*.info.connection]`;
             let adapterConnectionList = $(connectionSelector);
             if (adapterConnectionList.length > 0) {
@@ -267,13 +307,23 @@ async function startScript() {
                 console.error(`no result for selector '${connectionSelector}'`)
             }
 
-            // auf .connected Änderungen hören
+            // Adapter: auf .connected Änderungen hören
             let connectedSelector = `[id=system.adapter.*.connected]`;
             let adapterConnectedList = $(connectedSelector);
             if (adapterConnectedList.length > 0) {
                 adapterConnectedList.on(refreshAdapterStatus);
             } else {
                 console.error(`no result for selector '${connectedSelector}'`)
+            }
+
+            if (showHosts) {
+                // Adapter: auf .alive Änderungen hören
+                if (hostAliveList.length > 0) {
+                    hostAliveList.on(refreshAdapterStatus);
+                } else {
+                    // listener nur für Änderung bei alive
+                    console.error(`no result for selector '${aliveHostSelector}'`);
+                }
             }
 
             // MDW-Theme changes listener
@@ -290,47 +340,25 @@ async function startScript() {
 
 async function refreshAdapterStatus(obj) {
     if (obj) {
-        console.debug(`[refreshAdapterStatus] triggered by '${obj.id}'`);
+        if (debug) console.debug(`[refreshAdapterStatus] triggered by '${obj.id}'`);
     } else {
-        console.debug(`[refreshAdapterStatus] triggered by script start`);
+        if (debug) console.debug(`[refreshAdapterStatus] triggered by script start`);
     }
 
-    let updateList = await getMyState(adminUpdatesListId);
+    await setMyStateAsync(createId(datapointIDs.select.progress), true, true);
+
+    let updateList = await getMyStateAsync(adminUpdatesListId);
+
+    // ggf. wurden neuer Adapter installiert ohne das das skript neu gestartet wurde -> adapter liste refreshen
+    adapterAliveList = $(aliveSelector);
 
     try {
-        console.debug(`[refreshAdapterStatus] using LogParser Adapter is ${useLogParser ? 'activated' : 'deactivated'}`);
+        if (debug) console.debug(`[refreshAdapterStatus] using LogParser Adapter is ${useLogParser ? 'activated' : 'deactivated'}`);
 
         let iconList = [];
-        let chart = {
-            graphs: [
-                {
-                    data: [],
-                    type: 'bar',
-                    barIsStacked: true,
-                    yAxis_show: false,
-                    barStackId: 1,
-                    yAxis_id: 1,
-                    color: myLayout.colors.icons.logParser.warn,
-                    datalabel_show: true,
-                    legendText: _('Warnings')
-                },
-                {
-                    data: [],
-                    type: 'bar',
-                    barIsStacked: true,
-                    yAxis_show: false,
-                    barStackId: 2,
-                    yAxis_id: 1,
-                    color: myLayout.colors.icons.logParser.error,
-                    datalabel_show: true,
-                    legendText: _('Errors')
-                }
-            ],
-            axisLabels: []
-        };
 
         if (obj && (obj.id === 'vis-materialdesign.0.lastchange' || obj.id === 'vis-materialdesign.0.colors.darkTheme')) {
-            console.debug(`[refreshAdapterStatus] theme has changed`);
+            if (debug) console.debug(`[refreshAdapterStatus] theme has changed`);
             myLayout = await getLayout();
         }
 
@@ -338,11 +366,10 @@ async function refreshAdapterStatus(obj) {
             await getAndFormatLogParser();
         }
 
-        // Fehlermeldung ausgeben, wenn selector kein result liefert
         for (const adapter of adapterAliveList) {
             let idAdapter = replaceLast(adapter, '.alive', '');
             let instance = idAdapter.replace('system.adapter.', '');
-            let objAdapter = await getMyObject(idAdapter);
+            let objAdapter = await getMyObjectAsync(idAdapter);
 
             if (objAdapter && objAdapter.common) {
                 let warnCounts = 0;
@@ -357,43 +384,312 @@ async function refreshAdapterStatus(obj) {
                     logParserElement = result.element;
 
                     if (warnCounts > 0 || errorCounts > 0) {
-                        chart.axisLabels.push(`${objAdapter.common.title}\\n${instance}`);
-                        chart.graphs[0].data.push(warnCounts);
-                        chart.graphs[1].data.push(errorCounts);
+                        let title = objAdapter.common.title;
+                        let index = objAdapter.common.title.indexOf(' ', objAdapter.common.title.indexOf(' ') + 1);
+                        if (index > 0) {
+                            title = title.substring(0, index) + '\\n' + title.substring(index + 1)
+                        }
                     }
                 }
+
+                let titleObj = await getTitle(idAdapter, instance, objAdapter, updateList);
+                let valuesObj = await getValues(idAdapter);
+                let imagePath = await getImage(objAdapter, idAdapter);
 
                 iconList.push({
                     listType: (useLogParser && (warnCounts > 0 || errorCounts > 0)) ? "buttonState" : "text",
                     objectId: createId(datapointIDs.dialog.adapter),
-                    buttonStateValue: `${idAdapter.replace('system.adapter.', '')}|${objAdapter.common.title}`,
+                    buttonStateValue: `${idAdapter.replace('system.adapter.', '')}|${objAdapter.common.title}|${imagePath}`,
                     showValueLabel: false,
-                    text: await getTitle(idAdapter, instance, objAdapter, updateList),
+                    text: titleObj.element,
                     subText: await getSubTitle(idAdapter, objAdapter, logParserElement),
-                    image: await getImage(objAdapter, idAdapter),
+                    image: imagePath,
                     status: status.status,
-                    // statusBarColor: status.color,
-                    statusBarText: await getStatusBar(status, instance)
+                    statusBarText: await getStatusBar(status, instance),
+                    adapterName: titleObj.adapterName,
+                    instance: instance,
+                    upgradeable: titleObj.upgradeable,
+                    warnings: warnCounts,
+                    errors: errorCounts,
+                    cpu: valuesObj.cpu,
+                    memHeapTotal: valuesObj.memHeapTotal,
+                    memHeapUsed: valuesObj.memHeapUsed,
+                    memRss: valuesObj.memRss,
+                    uptime: valuesObj.uptime
                 });
-
 
             } else {
                 console.error(`[refreshAdapterStatus] Adapter object '${idAdapter}' has no common properties!`);
             }
         }
 
-        let newVal = JSON.stringify(iconList);
-        let oldState = await getMyState(createId(datapointIDs.iconList));
-        if (oldState.val !== newVal) {
-            await setMyState(createId(datapointIDs.iconList), newVal);
-        }
+        if (showHosts) await refreshHostStatus(obj, iconList);
 
-        if (useLogParser) {
-            await setMyState(createId(datapointIDs.chart.json), JSON.stringify(chart));
+        iconList = await filterList(obj, iconList);
+        await sortList(obj, iconList);
+
+        await setMyStateAsync(createId(datapointIDs.select.progress), false, true);
+
+        let newVal = JSON.stringify(iconList);
+        let oldState = await getMyStateAsync(createId(datapointIDs.iconList));
+        if (oldState.val !== newVal) {
+            await setMyStateAsync(createId(datapointIDs.iconList), newVal);
         }
 
     } catch (err) {
         console.error(`[refreshAdapterStatus] error: ${err.message}, stack: ${err.stack}`);
+    }
+}
+
+async function refreshHostStatus(obj, iconList) {
+    let updateList = await getMyStateAsync(adminUpdatesListId);
+
+    // ggf. wurden neuer Host installiert ohne das das skript neu gestartet wurde -> adapter liste refreshen
+    hostAliveList = $(aliveHostSelector);
+
+    try {
+        if (debug) console.debug(`[refreshHostStatus] using LogParser Adapter is ${useLogParser ? 'activated' : 'deactivated'}`);
+
+        if (obj && (obj.id === 'vis-materialdesign.0.lastchange' || obj.id === 'vis-materialdesign.0.colors.darkTheme')) {
+            if (debug) console.debug(`[refreshHostStatus] theme has changed`);
+            myLayout = await getLayout();
+        }
+
+        if (useLogParser) {
+            await getAndFormatLogParser();
+        }
+
+        for (const host of hostAliveList) {
+            let idHost = replaceLast(host, '.alive', '');
+            let objHost = await getMyObjectAsync(idHost);
+
+            if (objHost && objHost.common) {
+                let hostName = objHost.common.hostname
+                let warnCounts = 0;
+                let errorCounts = 0;
+                let logParserElement = '';
+                let status = await getStatusColor(idHost, undefined);
+
+                if (useLogParser) {
+                    let result = await filterLogParserList(idHost);
+                    warnCounts = result.warnCounts;
+                    errorCounts = result.errorCounts;
+                    logParserElement = result.element;
+                }
+
+                let titleObj = await getTitle(idHost, undefined, undefined, updateList, hostName);
+                let valuesObj = await getValues(idHost);
+
+                iconList.push({
+                    listType: (useLogParser && (warnCounts > 0 || errorCounts > 0)) ? "buttonState" : "text",
+                    objectId: createId(datapointIDs.dialog.adapter),
+                    buttonStateValue: `${idHost.replace('system.', '')}|${hostName}`,
+                    showValueLabel: false,
+                    text: titleObj.element,
+                    subText: await getSubTitle(idHost, undefined, logParserElement),
+                    image: myLayout.icons.host,
+                    status: status.status,
+                    statusBarColor: status.color,
+                    adapterName: titleObj.adapterName,
+                    instance: titleObj.adapterName,
+                    upgradeable: titleObj.upgradeable,
+                    warnings: warnCounts,
+                    errors: errorCounts,
+                    cpu: valuesObj.cpu,
+                    memHeapTotal: valuesObj.memHeapTotal,
+                    memHeapUsed: valuesObj.memHeapUsed,
+                    memRss: valuesObj.memRss,
+                    uptime: valuesObj.uptime
+                });
+            } else {
+                console.error(`[refreshAdapterStatus] Host object '${idHost}' has no common properties!`);
+            }
+        }
+
+    } catch (err) {
+        console.error(`[refreshHostStatus] error: ${err.message}, stack: ${err.stack}`);
+    }
+}
+
+async function generateSortJson() {
+    let list = [
+        {
+            text: _('adapter name'),
+            value: 'adapterName',
+            icon: myLayout.icons.sort.adapterName
+        },
+        {
+            text: _('adapter instance'),
+            value: 'instance',
+            icon: myLayout.icons.sort.adapterInstance
+        },
+        {
+            text: _('status'),
+            value: 'status',
+            icon: myLayout.icons.sort.status
+        },
+        {
+            text: _('updates available'),
+            value: 'upgradeable',
+            icon: myLayout.icons.sort.upgradeable
+        },
+        {
+            text: _('CPU'),
+            value: "cpu",
+            icon: myLayout.icons.cpu
+        },
+        {
+            text: _("RAM total"),
+            value: "memHeapTotal",
+            icon: myLayout.icons.ram_total
+        },
+        {
+            text: _("RAM used"),
+            value: "memHeapUsed",
+            icon: myLayout.icons.ram_used
+        },
+        {
+            text: _("RAM reserved"),
+            value: "memRss",
+            icon: myLayout.icons.ram_reserved
+        },
+        {
+            text: _("runtime"),
+            value: "uptime",
+            icon: myLayout.icons.uptime
+        }
+    ];
+
+    if (useLogParser) {
+        list.push(
+            {
+                text: _('Warnings'),
+                value: 'warnings',
+                icon: myLayout.icons.logParser.warn
+            },
+            {
+                text: _('Errors'),
+                value: 'errors',
+                icon: myLayout.icons.logParser.error
+            }
+        );
+    }
+
+    await setMyStateAsync(createId(datapointIDs.select.sortJson), JSON.stringify(list), true);
+}
+
+async function generateFilterJson() {
+    let list = [
+        {
+            text: _('updates available'),
+            value: 'upgradeable',
+            icon: myLayout.icons.sort.upgradeable
+        },
+        {
+            text: _('activated'),
+            value: 'activated',
+            icon: myLayout.icons.filter.activated
+        },
+        {
+            text: _('deactivated'),
+            value: 'deactivated',
+            icon: myLayout.icons.filter.deactivated
+        },
+        {
+            text: _('not active'),
+            value: 'notActive',
+            icon: myLayout.icons.filter.notActive
+        },
+        {
+            text: _('not connected'),
+            value: 'notConnected',
+            icon: myLayout.icons.filter.notConnected
+        },
+    ]
+
+    if (useLogParser) {
+        list.push(
+            {
+                text: _('Warnings'),
+                value: 'warnings',
+                icon: myLayout.icons.logParser.warn
+            },
+            {
+                text: _('Errors'),
+                value: 'errors',
+                icon: myLayout.icons.logParser.error
+            }
+        );
+    }
+
+    await setMyStateAsync(createId(datapointIDs.select.filterJson), JSON.stringify(list), true);
+}
+
+async function filterList(obj, list) {
+    let filterState;
+    let filterMode = undefined;
+
+    if (obj && obj.id === createId(datapointIDs.select.filter)) {
+        filterState = obj.state;
+    } else {
+        filterState = await getMyStateAsync(createId(datapointIDs.select.filter));
+    }
+
+    if (filterState && filterState.val) {
+        filterMode = filterState.val;
+
+        if (filterMode && filterMode !== '') {
+            if (filterMode === 'notActive' || filterMode === 'activated' || filterMode === 'deactivated' || filterMode === 'notConnected') {
+                list = list.filter(function (item) {
+                    return item.status === filterMode;
+                });
+            } else if (filterMode === 'warnings' || filterMode === 'errors') {
+                list = list.filter(function (item) {
+                    return item[filterMode] > 0;
+                });
+            } else if (filterMode === 'upgradeable') {
+                list = list.filter(function (item) {
+                    return item.upgradeable === true;
+                });
+            }
+        }
+    }
+
+    return list;
+}
+
+let reverseSort = 1;
+async function sortList(obj, list) {
+    let sortState;
+    let sortMode = 'Adaptername';
+
+    if (obj && obj.id === createId(datapointIDs.select.sort)) {
+        sortState = obj.state;
+        if (obj.state.val === obj.oldState.val) {
+            reverseSort = reverseSort * (-1);
+        } else {
+            reverseSort = 1;
+        }
+    } else {
+        sortState = await getMyStateAsync(createId(datapointIDs.select.sort));
+    }
+
+    // console.warn(reverseSort);
+
+    if (sortState && sortState.val) {
+        sortMode = sortState.val;
+
+        if (debug) console.debug(`[sortList] sort list, sortMode '${sortMode}'`);
+
+        if (sortMode === 'adapterName' || sortMode === 'instance' || sortMode === 'status') {
+            list.sort(function (a, b) {
+                return (a[sortMode].toLowerCase() == b[sortMode].toLowerCase() ? 0 : +(a[sortMode].toLowerCase() > b[sortMode].toLowerCase()) || -1) * reverseSort;
+            });
+        } else if (sortMode === 'upgradeable' || sortMode === 'cpu' || sortMode === 'memHeapTotal' || sortMode === 'memHeapUsed' || sortMode === 'memRss' || sortMode === 'uptime' || sortMode === 'warnings' || sortMode === 'errors') {
+            list.sort(function (a, b) {
+                return (a[sortMode] == b[sortMode] ? 0 : +(a[sortMode] < b[sortMode]) || -1) * reverseSort;
+            });
+        }
     }
 }
 
@@ -406,7 +702,7 @@ async function adapterAction(obj) {
         let adapterObj = await getObjectAsync('system.adapter.' + instance);
 
         if (adapterObj && adapterObj.common) {
-            console.debug(`[adapterAction] ${action} '${instance}'`);
+            if (debug) console.debug(`[adapterAction] ${action} '${instance}'`);
 
             if (action === 'restart') {
                 adapterObj.common.enabled = true;
@@ -423,16 +719,19 @@ async function adapterAction(obj) {
 
 async function showDialog(obj) {
     if (logParserList) {
-        let instance = obj.state.val.split("|")[0];
-        let name = obj.state.val.split("|")[1];
+        let objSplitted = obj.state.val.split("|");
+        let instance = objSplitted[0];
+        let name = objSplitted[1];
+        let image = objSplitted[2];
 
         let filteredList = logParserList.filter(e => e.from === instance);
 
-        await setMyState(createId(datapointIDs.dialog.table), JSON.stringify(filteredList));        
-        await setMyState(createId(datapointIDs.dialog.title), name);
-        await setMyState(createId(datapointIDs.dialog.subtitle), instance);
+        await setMyStateAsync(createId(datapointIDs.dialog.table), JSON.stringify(filteredList));
+        await setMyStateAsync(createId(datapointIDs.dialog.title), name);
+        await setMyStateAsync(createId(datapointIDs.dialog.subtitle), instance);
+        await setMyStateAsync(createId(datapointIDs.dialog.image), image);
 
-        await setMyState(createId(datapointIDs.dialog.show), true);
+        await setMyStateAsync(createId(datapointIDs.dialog.show), true);
     }
 }
 
@@ -440,7 +739,7 @@ async function showDialog(obj) {
 async function checkLogParser() {
     try {
         if (useLogParser) {
-            console.debug(`[checkLogParser] Adapter LogParser is activated, using datapoint '${warnAndErrorId}'`);
+            if (debug) console.debug(`[checkLogParser] Adapter LogParser is activated, using datapoint '${warnAndErrorId}'`);
 
             if (!await existsStateAsync(warnAndErrorId)) {
                 console.error(`[checkLogParser] datapoint '${warnAndErrorId}' not exist! Check your settings of LogParser Adapter`);
@@ -458,7 +757,7 @@ async function checkLogParser() {
 async function getAndFormatLogParser() {
     try {
         // refresh log parser data
-        let obj = await getMyState(warnAndErrorId);
+        let obj = await getMyStateAsync(warnAndErrorId);
         if (obj && obj.val) {
             let rawData = JSON.parse(obj.val);
             logParserList = [];
@@ -470,9 +769,9 @@ async function getAndFormatLogParser() {
                     if (data.severity.includes('>warn<') || data.severity.includes('>error<')) {
                         logParserList.push({
                             date: data.date,
-                            severity: data.severity.includes('>warn<') ? `<span class="mdi mdi-${myLayout.icons.logParser.warn}" style="color: ${logParserWarnIconColor};"></span>` : `<span class="mdi mdi-${myLayout.icons.logParser.error}" style="color: ${logParserErrorIconColor};"></span>`,
-                            from: data.from,
+                            severity: data.severity.includes('>warn<') ? `<span class="mdi mdi-${myLayout.icons.logParser.warn}" style="color: ${myLayout.colors.icons.logParser.warn};"></span>` : `<span class="mdi mdi-${myLayout.icons.logParser.error}" style="color: ${myLayout.colors.icons.logParser.error};"></span>`,
                             message: data.message,
+                            from: data.from,
                             level: data.severity.includes('>warn<') ? 'warn' : 'error',
                             ts: data.ts
                         });
@@ -487,19 +786,24 @@ async function getAndFormatLogParser() {
     }
 }
 
-async function filterLogParserList(idAdapter) {
-    idAdapter = idAdapter.replace('system.adapter.', '');
+async function filterLogParserList(id) {
+    if (id.includes('.host.')) {
+        id = id.replace('system.', '');
+    } else {
+        id = id.replace('system.adapter.', '');
+    }
+
     let warns = 0;
     let errors = 0;
 
     try {
-        let filtered = logParserList.filter(e => e.from === idAdapter);
+        let filtered = logParserList.filter(e => e.from === id);
 
 
         if (filtered && filtered.length > 0) {
             warns = filtered.filter(e => e.level.includes('warn')).length;
             errors = filtered.filter(e => e.level.includes('error')).length;
-            console.debug(`[filterLogParserList] instance '${idAdapter}' has ${warns} warn and ${errors} error messages`);
+            if (debug) console.debug(`[filterLogParserList] instance '${id}' has ${warns} warn and ${errors} error messages`);
         }
     } catch (err) {
         console.error(`[filterLogParserList] error: ${err.message}, stack: ${err.stack}`);
@@ -510,12 +814,12 @@ async function filterLogParserList(idAdapter) {
 
     if (warns > 0 || errors > 0) {
         if (warns > 0) {
-            element += `<span class="mdi mdi-${myLayout.icons.logParser.warn}" style="font-size: ${myLayout.fontSizes.datapoints.value}; margin-right: 2px; color: ${logParserWarnIconColor};"></span>
+            element += `<span class="mdi mdi-${myLayout.icons.logParser.warn}" style="font-size: ${myLayout.fontSizes.datapoints.value}; margin-right: 2px; color: ${myLayout.colors.icons.logParser.warn};"></span>
                         <span style="margin-right: 4px; color: ${myLayout.colors.datapoints.value}; font-family: ${myLayout.fonts.datapoints.value}; font-size: ${myLayout.fontSizes.datapoints.value};">${warns}</span>`;
         }
 
         if (errors > 0) {
-            element += `<span class="mdi mdi-${myLayout.icons.logParser.error}" style="font-size: ${myLayout.fontSizes.datapoints.value}; margin-right: 2px; color: ${logParserErrorIconColor};"></span>
+            element += `<span class="mdi mdi-${myLayout.icons.logParser.error}" style="font-size: ${myLayout.fontSizes.datapoints.value}; margin-right: 2px; color: ${myLayout.colors.icons.logParser.error};"></span>
                         <span style="margin-right: 4px; color: ${myLayout.colors.datapoints.value}; font-family: ${myLayout.fonts.datapoints.value}; font-size: ${myLayout.fontSizes.datapoints.value};">${errors}</span>`
         }
     } else {
@@ -542,7 +846,7 @@ async function dependeciesCheck() {
                         let adapterVersion = adapter.common.version;
 
                         if (compareVersions(adapterVersion, requiredVersion)) {
-                            console.debug(`[dependeciesCheck] Adapter '${adapterName}' ${adapterVersion} is installed`);
+                            if (debug) console.debug(`[dependeciesCheck] Adapter '${adapterName}' ${adapterVersion} is installed`);
                         } else {
                             console.error(`newer version of Adapter '${adapterName}' is required - installed: ${adapterVersion}, required ${requiredVersion}`)
                             return false;
@@ -564,7 +868,7 @@ async function dependeciesCheck() {
 
                 for (const module of javascriptModules) {
                     if (installedModules.includes(module)) {
-                        console.debug(`[dependeciesCheck] NPM Module '${module}' is installed for 'javascript.${instance}' instance`);
+                        if (debug) console.debug(`[dependeciesCheck] NPM Module '${module}' is installed for 'javascript.${instance}' instance`);
                     } else {
                         console.error(`NPM Module '${module}' is not installed for 'javascript.${instance}' instance. Please install the npm module!`)
                         return false;
@@ -583,7 +887,7 @@ async function dependeciesCheck() {
 
 async function checkUpdateAvailable(obj) {
     try {
-        console.debug(`[startScript] looking for new script versions is ${checkScriptUpdates ? 'activated' : 'deactivated'}`);
+        if (debug) console.debug(`[startScript] looking for new script versions is ${checkScriptUpdates ? 'activated' : 'deactivated'}`);
 
         if (checkScriptUpdates) {
             var options = { url: scriptUrl, method: 'GET', headers: { 'User-Agent': 'request' } };
@@ -599,23 +903,23 @@ async function checkUpdateAvailable(obj) {
                             availableVersion = availableVersion[0];
 
                             if (compareVersions(version, availableVersion)) {
-                                console.debug(`[checkUpdateAvailable] no new script version is available (installed: ${version})`);
-                                await setMyState(createId(datapointIDs.upgradeable), false);
+                                if (debug) console.debug(`[checkUpdateAvailable] no new script version is available (installed: ${version})`);
+                                await setMyStateAsync(createId(datapointIDs.upgradeable), false);
 
-                                await setMyState(createId(datapointIDs.updateInfo), '');
+                                await setMyStateAsync(createId(datapointIDs.updateInfo), '');
                             } else {
                                 console.warn(`[checkUpdateAvailable] new version '${availableVersion}' of script is available (installed: ${version})`);
-                                await setMyState(createId(datapointIDs.upgradeable), true);
+                                await setMyStateAsync(createId(datapointIDs.upgradeable), true);
 
                                 let alarmMessage = [{
-                                    text: `new version ${availableVersion} of script is available`,
+                                    text: _('new version %s of script is available').replace('%s', availableVersion),
                                     icon: 'information-variant',
                                     iconColor: "#44739e",
                                     backgroundColor: "#fafafa",
                                     fontColor: "#44739e",
                                 }]
 
-                                await setMyState(createId(datapointIDs.updateInfo), JSON.stringify(alarmMessage));
+                                await setMyStateAsync(createId(datapointIDs.updateInfo), JSON.stringify(alarmMessage));
                             }
                         }
                     }
@@ -632,53 +936,75 @@ async function checkUpdateAvailable(obj) {
 
 //#region Helper Functions
 
-async function getTitle(idAdapter, instance, objAdapter, updateList) {
-    let upgradeable = (await isAdapterUpgradeable(updateList, idAdapter)) ? `<span class="mdi mdi-${myLayout.icons.upgradeable}" style="color: ${myLayout.colors.icons.upgradeable}; font-size: ${myLayout.fontSizes.icons.upgradeable}px;"></span>` : '';
-    return `<div style="display: flex; flex-direction: row; line-height: 1.1; padding-right: 8px;">
+async function getTitle(idAdapter, instance, objAdapter, updateList, hostName = undefined) {
+    let upgradeable = await isAdapterUpgradeable(updateList, idAdapter);
+    let adapterName = !hostName ? objAdapter.common.title : hostName
+
+    return {
+        adapterName: adapterName,
+        upgradeable: upgradeable,
+        element: `<div style="display: flex; flex-direction: row; line-height: 1.1; padding-right: 8px;">
                     <div style="flex: 1; width: 1px; display: block; margin-right: 10px;">
-                        <div style="color: ${myLayout.colors.title}; font-family: ${myLayout.fonts.title}; font-size: ${myLayout.fontSizes.title}px; text-overflow: ellipsis; overflow: hidden;">${objAdapter.common.title}</div>
-                        <div style="color: ${myLayout.colors.subTitle}; font-family: ${myLayout.fonts.subTitle}; font-size: ${myLayout.fontSizes.subTitle}px; text-overflow: ellipsis; overflow: hidden;">${instance}</div>
+                        <div style="color: ${myLayout.colors.title}; font-family: ${myLayout.fonts.title}; font-size: ${myLayout.fontSizes.title}px; text-overflow: ellipsis; overflow: hidden;">${adapterName}</div>
+                        ${!hostName ? `<div style="color: ${myLayout.colors.subTitle}; font-family: ${myLayout.fonts.subTitle}; font-size: ${myLayout.fontSizes.subTitle}px; text-overflow: ellipsis; overflow: hidden;">${instance}</div>` : ''}
                     </div>
-                    ${upgradeable}
+                    ${upgradeable ? `<span class="mdi mdi-${myLayout.icons.upgradeable}" style="color: ${myLayout.colors.icons.upgradeable}; font-size: ${myLayout.fontSizes.icons.upgradeable}px;"></span>` : ''}
                 </div>`
+    }
 }
 
-async function getSubTitle(idAdapter, objAdapter, logParserElement) {
+async function getSubTitle(id, objAdapter, logParserElement) {
     return `<div style="margin-top: 10px;">
                 ${logParserElement}
-                ${await getValueLayout(idAdapter + '.cpu', myLayout.icons.cpu, _('CPU'), '%')}
-                ${await getValueLayout(idAdapter + '.memHeapTotal', myLayout.icons.ram_total, _('RAM total'), 'MB')}
-                ${await getValueLayout(idAdapter + '.memHeapUsed', myLayout.icons.ram_total, _('RAM used'), 'MB')}
-                ${await getValueLayout(idAdapter + '.memRss', myLayout.icons.ram_reserved, _('RAM reserved'), 'MB')}
-                ${((objAdapter.common.mode === 'daemon' || objAdapter.common.mode === 'once') && objAdapter.common.enabled) ? `${await getValueLayout(idAdapter + '.uptime', myLayout.icons.uptime, _("runtime"), '', 'humanize')}` : '<br>'}
+                ${await getValueLayout(id + '.cpu', showValueIcons ? myLayout.icons.cpu : '', _('CPU'), '%')}
+                ${await getValueLayout(id + '.memHeapTotal', showValueIcons ? myLayout.icons.ram_total : '', _('RAM total'), 'MB')}
+                ${await getValueLayout(id + '.memHeapUsed', showValueIcons ? myLayout.icons.ram_total : '', _('RAM used'), 'MB')}
+                ${await getValueLayout(id + '.memRss', showValueIcons ? myLayout.icons.ram_reserved : '', _('RAM reserved'), 'MB')}
+                ${id.includes('.host.') || (objAdapter && (objAdapter.common.mode === 'daemon' || objAdapter.common.mode === 'once') && objAdapter.common.enabled) ? `${await getValueLayout(id + '.uptime', showValueIcons ? myLayout.icons.uptime : '', _("runtime"), '', 'humanize')}` : '<br>'}
             </div>`
+}
+
+async function getValues(id) {
+    let cpu = await getMyStateAsync(id + '.cpu', true);
+    let memHeapTotal = await getMyStateAsync(id + '.memHeapTotal', true);
+    let memHeapUsed = await getMyStateAsync(id + '.memHeapUsed', true);
+    let memRss = await getMyStateAsync(id + '.memRss', true);
+    let uptime = await getMyStateAsync(id + '.uptime', true);
+
+    return {
+        cpu: cpu ? cpu.val : 0,
+        memHeapTotal: memHeapTotal ? memHeapTotal.val : 0,
+        memHeapUsed: memHeapUsed ? memHeapUsed.val : 0,
+        memRss: memRss ? memRss.val : 0,
+        uptime: uptime ? uptime.val : 0,
+    }
 }
 
 async function getImage(obj, idAdapter) {
     if (obj.common.icon) {
         let path = `/${idAdapter.replace('system.adapter.', '').split('.')[0]}.admin/${obj.common.icon}`;
 
-        console.debug(`[getImage] '${idAdapter}' image path: ${path}`);
+        if (debug) console.debug(`[getImage] '${idAdapter}' image path: ${path}`);
         return path
     }
 }
 
-async function getStatusColor(idAdapter, objAdapter) {
+async function getStatusColor(id, objAdapter) {
     let color = myLayout.colors.statusBar.notActive;
     let status = 'notActive';
 
-    let alive = await getMyState(`${idAdapter}.alive`, true);
+    let alive = await getMyStateAsync(`${id}.alive`, true);
 
     if (alive && alive.val) {
         color = myLayout.colors.statusBar.active;
         status = 'activated';
 
-        let connection = await getMyState(`${idAdapter.replace('system.adapter.', '')}.info.connection`, true);
+        let connection = await getMyStateAsync(`${id.replace('system.adapter.', '')}.info.connection`, true);
         if (connection && !connection.val) {
             color = myLayout.colors.statusBar.notConnected;
             status = 'notConnected';
         } else {
-            let connected = await getMyState(`${idAdapter}.connected`, true);
+            let connected = await getMyStateAsync(`${id}.connected`, true);
             if (connected && !connected.val) {
                 color = myLayout.colors.statusBar.notConnected;
                 status = 'notConnected';
@@ -686,25 +1012,25 @@ async function getStatusColor(idAdapter, objAdapter) {
         }
     }
 
-    if (objAdapter.common.mode === 'schedule') {
+    if (objAdapter && objAdapter.common.mode === 'schedule') {
         // Adapter ist zeitgesteuert
         color = myLayout.colors.statusBar.schedule;
         status = 'schedule';
     }
 
-    if (objAdapter.common.mode === 'extension') {
+    if (objAdapter && objAdapter.common.mode === 'extension') {
         // Adapter ist Extension
         color = myLayout.colors.statusBar.extension;
         status = 'extension';
     }
 
-    if (objAdapter.common.mode === 'once') {
+    if (objAdapter && objAdapter.common.mode === 'once') {
         // Adapter wird mit System gestartet
         color = myLayout.colors.statusBar.once;
         status = 'once';
     }
 
-    if (!objAdapter.common.enabled) {
+    if (objAdapter && !objAdapter.common.enabled) {
         // Adapter ist deaktiviert
         color = myLayout.colors.statusBar.deactivated;
         status = 'deactivated';
@@ -718,7 +1044,7 @@ async function getStatusBar(status, instance) {
     let buttonOne = '';
     let buttonTwo = '';
 
-    console.debug(`[getStatusBar] ${instance}: ${status.status}`);
+    if (debug) console.debug(`[getStatusBar] ${instance}: ${status.status}`);
 
     if (status.status === 'deactivated') {
         buttonOne = await getButtonLayout(id, `${instance}|start`, '&nbsp;' + _('start'), myLayout.icons.buttons.start);
@@ -739,7 +1065,7 @@ async function getLanguage() {
         let sysConfig = await getObjectAsync('system.config');
 
         if (sysConfig && sysConfig.common && sysConfig.common.language) {
-            console.debug(`[getLanguage] using language '${sysConfig.common.language}'`);
+            if (debug) console.debug(`[getLanguage] using language '${sysConfig.common.language}'`);
             return sysConfig.common.language;
         } else {
             console.warn(`system language could not be read -> Fallback to 'en`);
@@ -750,10 +1076,15 @@ async function getLanguage() {
     }
 }
 
-async function isAdapterUpgradeable(updateList, idAdapter) {
+async function isAdapterUpgradeable(updateList, id) {
     if (updateList) {
         let val = updateList.val;
-        return val && val.includes(idAdapter.replace('system.adapter.', '').split(".")[0]);
+
+        if (id.includes('.host.')) {
+            return val && val.includes('js-controller');
+        } else {
+            return val && val.includes(id.replace('system.adapter.', '').split(".")[0]);
+        }
     }
 
     return false;
@@ -786,10 +1117,10 @@ function createId(id) {
     return `${idDatenpunktPrefix}.${idDatenPunktStrukturPrefix}.${id}`;
 }
 
-async function myCreateState(id, val, type, name, write = false) {
+async function myCreateStateAsync(id, val, type, name, write = false) {
     try {
         if (!await existsStateAsync(id)) {
-            console.debug(`[myCreateState] creating state '${id}'`);
+            if (debug) console.debug(`[myCreateStateAsync] creating state '${id}'`);
             await createStateAsync(id, {
                 'name': name,
                 'type': type,
@@ -800,11 +1131,11 @@ async function myCreateState(id, val, type, name, write = false) {
             await setStateAsync(id, val, true);
         }
     } catch (err) {
-        console.error(`[myCreateState] error: ${err.message}, stack: ${err.stack}`);
+        console.error(`[myCreateStateAsync] error: ${err.message}, stack: ${err.stack}`);
     }
 }
 
-async function setMyState(id, val, ack = true) {
+async function setMyStateAsync(id, val, ack = true) {
     try {
         if (await existsStateAsync(id)) {
             await setStateAsync(id, val, ack);
@@ -816,7 +1147,7 @@ async function setMyState(id, val, ack = true) {
     }
 }
 
-async function getMyState(id, ignoreWarnings = false) {
+async function getMyStateAsync(id, ignoreWarnings = false) {
     try {
         if (await existsStateAsync(id)) {
             return await getStateAsync(id);
@@ -829,7 +1160,7 @@ async function getMyState(id, ignoreWarnings = false) {
     }
 }
 
-async function getMyObject(id) {
+async function getMyObjectAsync(id) {
     try {
         if (await existsObjectAsync(id)) {
             return await getObjectAsync(id);
@@ -996,6 +1327,114 @@ let dictionary = {
         "es": "Errores",
         "pl": "Błędy",
         "zh-cn": "失误"
+    },
+    "new version %s of script is available": {
+        "en": "new version %s of script is available",
+        "de": "Neue Version %s des Skripts ist verfügbar",
+        "ru": "доступна новая версия %s  скрипта",
+        "pt": "nova versão %s  do script está disponível",
+        "nl": "nieuwe versie %s  van het script is beschikbaar",
+        "fr": "la nouvelle version %s  du script est disponible",
+        "it": "è disponibile la nuova versione %s  dello script",
+        "es": "nueva versión %s  del script está disponible",
+        "pl": "dostępna jest nowa wersja %s  skryptu",
+        "zh-cn": "新版本的脚本％s可用"
+    },
+    "updates available": {
+        "en": "updates available",
+        "de": "Updates verfügbar",
+        "ru": "доступны обновления",
+        "pt": "atualizações disponíveis",
+        "nl": "updates beschikbaar",
+        "fr": "mises à jour disponibles",
+        "it": "aggiornamenti disponibili",
+        "es": "actualizaciones disponibles",
+        "pl": "Dostępne aktualizacje",
+        "zh-cn": "可用更新"
+    },
+    "status": {
+        "en": "status",
+        "de": "Status",
+        "ru": "положение дел",
+        "pt": "status",
+        "nl": "toestand",
+        "fr": "statut",
+        "it": "stato",
+        "es": "estado",
+        "pl": "status",
+        "zh-cn": "状态"
+    },
+    "adapter name": {
+        "en": "adapter name",
+        "de": "Adaptername",
+        "ru": "имя адаптера",
+        "pt": "nome do adaptador",
+        "nl": "adapter naam",
+        "fr": "nom de l'adaptateur",
+        "it": "nome dell'adattatore",
+        "es": "nombre del adaptador",
+        "pl": "nazwa adaptera",
+        "zh-cn": "适配器名称"
+    },
+    "adapter instance": {
+        "en": "adapter instance",
+        "de": "Adapterinstanz",
+        "ru": "экземпляр адаптера",
+        "pt": "instância do adaptador",
+        "nl": "adapter instantie",
+        "fr": "instance d'adaptateur",
+        "it": "istanza dell'adattatore",
+        "es": "instancia de adaptador",
+        "pl": "instancja adaptera",
+        "zh-cn": "适配器实例"
+    },
+    "not active": {
+        "en": "not active",
+        "de": "nicht aktiv",
+        "ru": "не активный",
+        "pt": "não ativo",
+        "nl": "niet actief",
+        "fr": "pas actif",
+        "it": "non attivo",
+        "es": "no activo",
+        "pl": "nieaktywny",
+        "zh-cn": "不活跃"
+    },
+    "activated": {
+        "en": "activated",
+        "de": "aktiviert",
+        "ru": "активирован",
+        "pt": "ativado",
+        "nl": "geactiveerd",
+        "fr": "activé",
+        "it": "attivato",
+        "es": "activado",
+        "pl": "aktywowany",
+        "zh-cn": "活性"
+    },
+    "deactivated": {
+        "en": "deactivated",
+        "de": "deaktiviert",
+        "ru": "деактивирован",
+        "pt": "desativado",
+        "nl": "gedeactiveerd",
+        "fr": "désactivé",
+        "it": "disattivato",
+        "es": "desactivado",
+        "pl": "dezaktywowany",
+        "zh-cn": "停用"
+    },
+    "not connected": {
+        "en": "not connected",
+        "de": "nicht verbunden",
+        "ru": "Не подключен",
+        "pt": "não conectado",
+        "nl": "niet verbonden",
+        "fr": "pas connecté",
+        "it": "non collegato",
+        "es": "no conectado",
+        "pl": "nie połączony",
+        "zh-cn": "未连接"
     }
 }
 //#endregion

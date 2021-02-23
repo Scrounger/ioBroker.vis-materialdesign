@@ -24,7 +24,7 @@ vis.binds.materialdesign.progress = {
 
             function init() {
                 $this.append(`
-                <div class="${containerClass}" style="width: 100%; height: 100%; display: flex; justify-content: center;">
+                <div class="${containerClass}" style="width: 100%;">
                     <v-progress-linear
                         :height="height"
                         :rounded="rounded"
@@ -51,7 +51,7 @@ vis.binds.materialdesign.progress = {
                             vuetify: new Vuetify(),
                             data() {
                                 let dataObj = {
-                                    height: window.getComputedStyle($this.get(0), null).height.replace('px', ''),
+
                                     rounded: myMdwHelper.getBooleanFromData(data.progressRounded, true),
                                     striped: myMdwHelper.getBooleanFromData(data.progressStriped, false),
                                     indeterminate: myMdwHelper.getBooleanFromData(data.progressIndeterminate, false),
@@ -62,6 +62,12 @@ vis.binds.materialdesign.progress = {
                                 if (!myMdwHelper.getBooleanFromData(data.progressIndeterminate, false)) {
                                     let val = myMdwHelper.getNumberFromData(vis.states.attr(data.oid + '.val'), 0);
                                     dataObj.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label');
+                                }
+
+                                if (data.progressRotate === 'no') {
+                                    dataObj.height = window.getComputedStyle($this.get(0), null).height.replace('px', '');
+                                } else {
+                                    dataObj.height = window.getComputedStyle($this.get(0), null).width.replace('px', '');
                                 }
 
                                 return dataObj;
@@ -97,6 +103,11 @@ vis.binds.materialdesign.progress = {
 
                             let val = myMdwHelper.getNumberFromData(vis.states.attr(data.oid + '.val'), 0);
                             vueProgress.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label');
+
+                            if (data.progressRotate !== 'no') {
+                                $this.find(`.${containerClass}`).css('transform', 'rotate(90deg)');
+                                $this.find('.v-progress-linear').css('width', window.getComputedStyle($this.get(0), null).height.replace('px', ''));
+                            }
                         }
                     });
                 });
@@ -269,6 +280,7 @@ vis.binds.materialdesign.progress = {
                 progressRounded: obj.progressRounded,
                 progressStriped: obj.progressStriped,
                 progressStripedColor: obj.progressStripedColor,
+                progressRotate: obj.progressRotate,
 
                 // colors
                 colorProgressBackground: obj.colorProgressBackground,
