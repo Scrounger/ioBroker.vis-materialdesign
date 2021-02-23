@@ -151,11 +151,7 @@ vis.binds.materialdesign.value = {
                             }, myMdwHelper.getNumberFromData(data.effectDuration, 750) / 3 * 2);
 
                             setTimeout(function () {
-                                if (myMdwHelper.getValueFromData(data.overrideText, undefined)) {
-                                    $valueText.html(data.overrideText.replace('#value', result));
-                                } else {
-                                    $valueText.html(result);
-                                }
+                                changeValue();
                             }, myMdwHelper.getNumberFromData(data.effectDuration, 750) / 3);
 
                             $valueText.animate({
@@ -166,15 +162,28 @@ vis.binds.materialdesign.value = {
                     }
 
                     if (!changed) {
-                        if (myMdwHelper.getValueFromData(data.overrideText, undefined)) {
-                            $valueText.html(data.overrideText.replace('#value', result));
-                        } else {
-                            $valueText.html(result);
-                        }
+                        changeValue();
                     }
 
                     function replaceValue(str, data) {
                         return str.replace(/#value/g, data);
+                    }
+
+                    function changeValue(){
+                        if (myMdwHelper.getValueFromData(data.overrideText, undefined)) {
+                            if (result.includes('|')) {
+                                result = result.split('|');
+                                let text = data.overrideText;
+                                for (var i = 0; i <= result.length - 1; i++) {
+                                    text = text.replace(`#value[${i}]`, result[i]);
+                                }
+                                $valueText.html(text);
+                            } else {
+                                $valueText.html(data.overrideText.replace(/#value/g, result));
+                            }
+                        } else {
+                            $valueText.html(result);
+                        }
                     }
                 }
             }
