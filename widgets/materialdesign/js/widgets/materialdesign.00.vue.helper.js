@@ -242,7 +242,7 @@ vis.binds.materialdesign.vueHelper = {
             dataObj.iconColorTextField = this.getIconColorTextField(data, myMdwHelper.getValueFromData(item.imageColorSelectedTextField, item.imageColor));
             dataObj.collapseIcon = myMdwHelper.getValueFromData(data.collapseIcon, undefined, 'mdi-');
             dataObj.openOnClear = myMdwHelper.getBooleanFromData(data.clearIconShow, false) ? myMdwHelper.getBooleanFromData(data.openOnClear, false) : false;
-            
+
             return dataObj;
         },
         setStyles: function ($el, data) {
@@ -498,8 +498,9 @@ vis.binds.materialdesign.vueHelper = {
                 },
                 menuClick(item) {
                     myMdwHelper.vibrate(data.vibrateOnMobilDevices);
-                    if (item) {
-                        if (item.value) {
+                    console.log(item);
+                    if (item || item === 0) {
+                        if (item.value || item.value === 0) {
                             myMdwHelper.setValue(data.oid, item.value);
                         } else {
                             // only if combobox (is writeable)
