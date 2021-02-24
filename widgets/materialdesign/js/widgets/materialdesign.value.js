@@ -70,10 +70,10 @@ vis.binds.materialdesign.value = {
                     $this.find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.imageColor, '#44739e'));
 
                     let val = vis.states.attr(data.oid + '.val');
-                    setValue(val, val);
+                    setValue(val);
                 }
 
-                function setValue(value, oldVal) {
+                function setValue(value, oldVal = undefined) {
                     let type = targetType === 'auto' ? typeof (value) : targetType;
                     let changed = false;
 
@@ -89,7 +89,7 @@ vis.binds.materialdesign.value = {
                                 if (myMdwHelper.getValueFromData(data.calculate, undefined) && data.calculate.includes('#value')) {
                                     let calc = replaceValue(data.calculate, value);
                                     value = math.evaluate(calc);
-                                    oldVal = math.evaluate(replaceValue(data.calculate, oldVal));
+                                    if (oldVal !== undefined && oldVal !== null) oldVal = math.evaluate(replaceValue(data.calculate, oldVal));
 
                                     if (data.debug) console.log(`${logPrefix} type: '${type}', evaluate: '${calc}', result: '${value}'`);
                                 }
@@ -107,21 +107,24 @@ vis.binds.materialdesign.value = {
                                     result = moment.unix(value).format(data.convertToTimestamp);
                                 } else {
                                     value = myMdwHelper.formatNumber(value, data.minDecimals, data.maxDecimals);
-                                    oldVal = myMdwHelper.formatNumber(oldVal, data.minDecimals, data.maxDecimals);
+                                    if (oldVal !== undefined && oldVal !== null) oldVal = myMdwHelper.formatNumber(oldVal, data.minDecimals, data.maxDecimals);
 
                                     let unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
 
                                     result = `${value} ${unit}`;
                                 }
-                            } catch (e) {
-                                result = `Error: type: '${type}' - ${e.message}`;
+                            } catch (ex) {
+                                console.error(`[${widgetName} - ${data.wid}] initialize - number: value: ${value}, error: ${ex.message}, stack: ${ex.stack}`);
+                                $valueText.html(`<div style="color: FireBrick;">Error: type: '${type}' - ${ex.message}</div>`);
+
+                                result = undefined;
                             }
                         } else if (type === 'boolean') {
                             try {
                                 if (myMdwHelper.getValueFromData(data.condition, undefined) && data.condition.includes('#value')) {
                                     let cond = replaceValue(data.condition, value);
                                     value = math.evaluate(cond);
-                                    oldVal = math.evaluate(replaceValue(data.condition, oldVal));
+                                    if (oldVal !== undefined && oldVal !== null) oldVal = math.evaluate(replaceValue(data.condition, oldVal));
 
                                     if (data.debug) console.log(`${logPrefix} type: '${type}', evaluate: '${cond}', result: '${value}'`);
                                 }
@@ -131,8 +134,11 @@ vis.binds.materialdesign.value = {
                                 } else {
                                     result = myMdwHelper.getValueFromData(data.textOnFalse, value.toString());
                                 }
-                            } catch (e) {
-                                result = `Error: type: '${type}' - ${e.message}`;
+                            } catch (ex) {
+                                console.error(`[${widgetName} - ${data.wid}] initialize - boolean: value: ${value}, error: ${ex.message}, stack: ${ex.stack}`);
+                                $valueText.html(`<div style="color: FireBrick;">Error: type: '${type}' - ${ex.message}</div>`);
+
+                                result = undefined;
                             }
                         } else if (type === 'string') {
                             result = value
@@ -170,19 +176,21 @@ vis.binds.materialdesign.value = {
                     }
 
                     function changeValue() {
-                        if (myMdwHelper.getValueFromData(data.overrideText, undefined)) {
-                            if (result.includes('|')) {
-                                result = result.split('|');
-                                let text = data.overrideText;
-                                for (var i = 0; i <= result.length - 1; i++) {
-                                    text = text.replace(`#value[${i}]`, result[i]);
+                        if (result) {
+                            if (myMdwHelper.getValueFromData(data.overrideText, undefined)) {
+                                if (result.includes('|')) {
+                                    result = result.split('|');
+                                    let text = data.overrideText;
+                                    for (var i = 0; i <= result.length - 1; i++) {
+                                        text = text.replace(`#value[${i}]`, result[i]);
+                                    }
+                                    $valueText.html(text);
+                                } else {
+                                    $valueText.html(data.overrideText.replace(/#value/g, result));
                                 }
-                                $valueText.html(text);
                             } else {
-                                $valueText.html(data.overrideText.replace(/#value/g, result));
+                                $valueText.html(result);
                             }
-                        } else {
-                            $valueText.html(result);
                         }
                     }
                 }
