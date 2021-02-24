@@ -20,11 +20,12 @@ vis.binds.materialdesign.value = {
 
             function init() {
                 let imageElement = myMdwHelper.getIconElement(data.image, 'auto', myMdwHelper.getValueFromData(data.iconHeight, '24px', '', 'px'), myMdwHelper.getValueFromData(data.imageColor, '#44739e'));
+                let valueLabelWidth = myMdwHelper.getNumberFromData(data.valueLabelWidth, 4)
 
                 $this.html(`
                     ${data.iconPosition === 'left' ? imageElement : ''}
                     <div class="materialdesign-value prepand-text"></div>
-                    <div class="materialdesign-value value-text" style="margin: 0 4px 0 4px; flex: 1;text-align: ${myMdwHelper.getValueFromData(data.textAlign, 'start')}"></div>
+                    <div class="materialdesign-value value-text" style="margin: 0 ${valueLabelWidth}px 0 ${valueLabelWidth}px; flex: 1;text-align: ${myMdwHelper.getValueFromData(data.textAlign, 'start')}"></div>
                     <div class="materialdesign-value append-text"></div>
                     ${data.iconPosition === 'right' ? imageElement : ''}
                 `);
@@ -211,6 +212,7 @@ vis.binds.materialdesign.value = {
 
             // layout
             textAlign: obj.textAlign,
+            valueLabelWidth: obj.valueLabelWidth,
             valuesFontColor: obj.valuesFontColor,
             valuesFontFamily: obj.valuesFontFamily,
             valuesFontSize: obj.valuesFontSize,
