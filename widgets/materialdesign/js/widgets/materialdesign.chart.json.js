@@ -435,7 +435,11 @@ vis.binds.materialdesign.chart.json = function (el, data) {
                                             },
                                             label: function (tooltipItem, chart) {
                                                 if (jsonData.graphs[tooltipItem.datasetIndex].tooltip_text) {
-                                                    return jsonData.graphs[tooltipItem.datasetIndex].tooltip_text.split('\\n');
+                                                    if (Array.isArray(jsonData.graphs[tooltipItem.datasetIndex].tooltip_text)) {
+                                                        return jsonData.graphs[tooltipItem.datasetIndex].tooltip_text[tooltipItem.index].split('\\n');
+                                                    } else {
+                                                        return jsonData.graphs[tooltipItem.datasetIndex].tooltip_text.split('\\n');
+                                                    }
                                                 } else if (tooltipItem && tooltipItem.value) {
                                                     return `${chart.datasets[tooltipItem.datasetIndex].label}: ${myMdwHelper.formatNumber(tooltipItem.value, jsonData.graphs[tooltipItem.datasetIndex].tooltip_MinDigits, jsonData.graphs[tooltipItem.datasetIndex].tooltip_MaxDigits)}${myMdwHelper.getValueFromData(jsonData.graphs[tooltipItem.datasetIndex].tooltip_AppendText, '')}`
                                                         .split('\\n');
