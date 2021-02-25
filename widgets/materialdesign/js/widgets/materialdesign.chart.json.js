@@ -89,7 +89,7 @@ vis.binds.materialdesign.chart.json = function (el, data) {
                         if (myChart) myChart.destroy();
                         myChart = new Chart(ctx, {
                             type: myMdwHelper.getValueFromData(data.chartType, 'bar'),
-                            plugins: [ChartDataLabels, myChartHelper.getMyGradientPlugin(data)]     // show value labels
+                            plugins: [ChartDataLabels, myChartHelper.getMyGradientPlugin(data), myChartHelper.myDistanceLegendPlugin(data)]     // show value labels
                         });
 
                         // Global Options:

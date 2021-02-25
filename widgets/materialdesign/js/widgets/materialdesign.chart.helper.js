@@ -410,7 +410,19 @@ vis.binds.materialdesign.chart.helper = {
             beforeDatasetsUpdate: regenerateGradient,
             resize: (chart, newSize, opts) => regenerateGradient(chart, opts),
         }
-    },    
+    },
+    myDistanceLegendPlugin(data) {
+        const pluginId = "myDistanceLegendPlugin";
+
+        return {
+            id: 'myDistanceLegendPlugin',
+            beforeInit: function (chart, options) {
+                chart.legend.afterFit = function () {
+                    this.height = this.height + myMdwHelper.getNumberFromData(data.legendDistanceToChart, 0);
+                };
+            }
+        }
+    },
     getCardBackground(data) {
         let titleFontSize = myMdwHelper.getFontSize(data.titleLayout);
         let showTitleSection = 'display: none;';

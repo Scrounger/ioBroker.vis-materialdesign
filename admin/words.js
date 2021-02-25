@@ -11381,5 +11381,17 @@ systemDictionary = {
         "es": "antecedentes",
         "pl": "tło",
         "zh-cn": "背景"
+    },
+    "legendDistanceToChart": {
+        "en": "distnce to bottom",
+        "de": "Abstand nach unten",
+        "ru": "расстояние до дна",
+        "pt": "distância ao fundo",
+        "nl": "distnce to bottom",
+        "fr": "distnce vers le bas",
+        "it": "distnce al fondo",
+        "es": "distnce hasta el fondo",
+        "pl": "odległość do dołu",
+        "zh-cn": "到底部的距离"
     }
 };
