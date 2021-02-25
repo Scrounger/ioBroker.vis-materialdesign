@@ -436,7 +436,13 @@ vis.binds.materialdesign.chart.json = function (el, data) {
                                             label: function (tooltipItem, chart) {
                                                 if (jsonData.graphs[tooltipItem.datasetIndex].tooltip_text) {
                                                     if (Array.isArray(jsonData.graphs[tooltipItem.datasetIndex].tooltip_text)) {
-                                                        return jsonData.graphs[tooltipItem.datasetIndex].tooltip_text[tooltipItem.index].split('\\n');
+                                                        if (jsonData.graphs[tooltipItem.datasetIndex].tooltip_text[tooltipItem.index]) {
+                                                            return jsonData.graphs[tooltipItem.datasetIndex].tooltip_text[tooltipItem.index].split('\\n');
+                                                        } else {
+                                                            if (tooltipItem && tooltipItem.value) {
+                                                                return chart.datasets[tooltipItem.datasetIndex].label;
+                                                            }
+                                                        }
                                                     } else {
                                                         return jsonData.graphs[tooltipItem.datasetIndex].tooltip_text.split('\\n');
                                                     }
