@@ -205,15 +205,19 @@ vis.binds.materialdesign.chart.json = function (el, data) {
                                                         clamp: true,
                                                         rotation: myMdwHelper.getNumberFromData(graph.datalabel_rotation, undefined),
                                                         formatter: function (value, context) {
-                                                            if (!isTimeAxis) {
-                                                                if ((value || value === 0) && context.dataIndex % myMdwHelper.getNumberFromData(graph.datalabel_steps, 1) === 0) {
-                                                                    return `${myMdwHelper.formatNumber(value, graph.datalabel_minDigits, graph.datalabel_maxDigits)}${myMdwHelper.getValueFromData(graph.datalabel_append, '')}`
-                                                                        .split('\\n');
-                                                                }
+                                                            if (myMdwHelper.getValueFromData(graph.datalabel_override, undefined)) {
+                                                                return graph.datalabel_override;
                                                             } else {
-                                                                if ((value.y || value.y === 0) && context.dataIndex % myMdwHelper.getNumberFromData(graph.datalabel_steps, 1) === 0) {
-                                                                    return `${myMdwHelper.formatNumber(value.y, graph.datalabel_minDigits, graph.datalabel_maxDigits)}${myMdwHelper.getValueFromData(graph.datalabel_append, '')}`
-                                                                        .split('\\n');
+                                                                if (!isTimeAxis) {
+                                                                    if ((value || value === 0) && context.dataIndex % myMdwHelper.getNumberFromData(graph.datalabel_steps, 1) === 0) {
+                                                                        return `${myMdwHelper.formatNumber(value, graph.datalabel_minDigits, graph.datalabel_maxDigits)}${myMdwHelper.getValueFromData(graph.datalabel_append, '')}`
+                                                                            .split('\\n');
+                                                                    }
+                                                                } else {
+                                                                    if ((value.y || value.y === 0) && context.dataIndex % myMdwHelper.getNumberFromData(graph.datalabel_steps, 1) === 0) {
+                                                                        return `${myMdwHelper.formatNumber(value.y, graph.datalabel_minDigits, graph.datalabel_maxDigits)}${myMdwHelper.getValueFromData(graph.datalabel_append, '')}`
+                                                                            .split('\\n');
+                                                                    }
                                                                 }
                                                             }
                                                             return null;

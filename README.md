@@ -9297,6 +9297,12 @@ With the JSON chart you have the maximum freedom to create a mixed chart (line, 
             <td>0, 1, 2, ...</td>
         </tr>
         <tr>
+            <td>datalabel_override</td>
+            <td>ovveride text of data label</td>
+            <td>string</td>
+            <td></td>
+        </tr>		
+        <tr>
             <td>datalabel_append</td>
             <td>append text to data label</td>
             <td>string</td>
