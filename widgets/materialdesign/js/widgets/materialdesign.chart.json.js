@@ -206,7 +206,7 @@ vis.binds.materialdesign.chart.json = function (el, data) {
                                                         rotation: myMdwHelper.getNumberFromData(graph.datalabel_rotation, undefined),
                                                         formatter: function (value, context) {
                                                             if (myMdwHelper.getValueFromData(graph.datalabel_override, undefined)) {
-                                                                return graph.datalabel_override[context.dataIndex];
+                                                                return graph.datalabel_override[context.dataIndex].split('\\n');
                                                             } else {
                                                                 if (!isTimeAxis) {
                                                                     if ((value || value === 0) && context.dataIndex % myMdwHelper.getNumberFromData(graph.datalabel_steps, 1) === 0) {
@@ -429,7 +429,7 @@ vis.binds.materialdesign.chart.json = function (el, data) {
 
                                                         return timestamp.format(timeFormats[currentUnit]);
                                                     } else {
-                                                        return tooltipItem[0].label;
+                                                        return tooltipItem[0].label.split('\\n');
                                                     }
                                                 }
                                             },
