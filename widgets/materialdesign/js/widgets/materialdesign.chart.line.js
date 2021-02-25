@@ -439,7 +439,7 @@ vis.binds.materialdesign.chart.lineHistory = function (el, data) {
                                     type: 'line',
                                     data: chartData,
                                     options: options,
-                                    plugins: [ChartDataLabels]     // show value labels
+                                    plugins: [ChartDataLabels, myChartHelper.myDistanceLegendPlugin(data)]     // show value labels
                                 });
 
                                 progressBar.hide();

@@ -110,7 +110,7 @@ vis.binds.materialdesign.chart = {
                                                 fontColor: 'red'
                                             }
                                         },
-                                        plugins: [ChartDataLabels]
+                                        plugins: [ChartDataLabels, myChartHelper.myDistanceLegendPlugin(data)]
                                     });
 
                                     myBarChart.update();
@@ -262,7 +262,7 @@ vis.binds.materialdesign.chart = {
                                 type: (data.chartType === 'vertical') ? 'bar' : 'horizontalBar',
                                 data: chartData,
                                 options: options,
-                                plugins: [ChartDataLabels]
+                                plugins: [ChartDataLabels, myChartHelper.myDistanceLegendPlugin(data)]
                             });
 
                             myBarChart.update();

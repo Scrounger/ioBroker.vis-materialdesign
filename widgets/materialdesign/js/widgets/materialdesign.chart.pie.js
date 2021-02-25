@@ -89,7 +89,7 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
                         if (myPieChart) myPieChart.destroy();
                         myPieChart = new Chart(ctx, {
                             type: (data.chartType === 'pie') ? 'pie' : 'doughnut',
-                            plugins: (data.showValues) ? [ChartDataLabels] : undefined     // show value labels
+                            plugins: (data.showValues) ? [ChartDataLabels, myChartHelper.myDistanceLegendPlugin(data)] : [myChartHelper.myDistanceLegendPlugin(data)]     // show value labels
                         });
 
                         let dataArray = []
@@ -255,7 +255,7 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
                             type: (data.chartType === 'pie') ? 'pie' : 'doughnut',
                             data: chartData,
                             options: options,
-                            plugins: [ChartDataLabels]
+                            plugins: [ChartDataLabels, myChartHelper.myDistanceLegendPlugin(data)]
                         });
 
                         myPieChart.update();
