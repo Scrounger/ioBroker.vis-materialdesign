@@ -1176,6 +1176,12 @@
         "widget": "AdapterStatus [Script]"
     },
     {
+        "id": "light.scripts.adapterStatus.icons.upgradeable",
+        "desc": "icon upgradeable",
+        "value": "#ec0909",
+        "widget": "AdapterStatus [Script]"
+    },    
+    {
         "id": "light.scripts.adapterStatus.icons.logParser.warn",
         "desc": "logParser warn icon",
         "defaultValue": 9,

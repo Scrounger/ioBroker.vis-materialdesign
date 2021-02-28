@@ -33,7 +33,7 @@ async function load(settings, onChange) {
 
     $progress = $('.progressContainer');
 
-    createDatapoints();
+    createDatapoints(onChange);
     generateJavascriptInstancesDropDown(settings);
 
     await initializeSentry();
@@ -51,7 +51,7 @@ async function load(settings, onChange) {
     if (M) M.updateTextFields();
 }
 
-async function createDatapoints() {
+async function createDatapoints(onChange) {
     let themeId = `${myNamespace}.colors.darkTheme`;
     let themeObj = await getObjectAsync(themeId);
 
@@ -71,6 +71,8 @@ async function createDatapoints() {
         };
 
         await this.setObjectAsync(themeId, themeObj);
+
+        onChange();
     }
 
     let lastChangeId = `${myNamespace}.lastchange`;
@@ -92,6 +94,8 @@ async function createDatapoints() {
         };
 
         await this.setObjectAsync(lastChangeId, lastChangeObj);
+
+        onChange();
     }
 }
 
@@ -510,36 +514,41 @@ async function checkAllObjectsExistInSettings(themeType, themeObject, themeDefau
 
         let jsonList = await getJsonObjects(themeType);
         for (var i = 0; i <= jsonList.length - 1; i++) {
-            if (!themeObject.find(o => o.id === jsonList[i].id)) {
+            try {
+                if (!themeObject.find(o => o.id === jsonList[i].id)) {
 
-                // not exist -> add to settings list
-                if (!jsonList[i].value) {
-                    jsonList[i].value = themeDefaults[jsonList[i].defaultValue];
-                }
+                    // not exist -> add to settings list
+                    if (!jsonList[i].value) {
+                        jsonList[i].value = themeDefaults[jsonList[i].defaultValue];
+                    }
 
-                jsonList[i].desc = _(jsonList[i].desc);
-                themeObject.splice(i, 0, jsonList[i]);
+                    jsonList[i].desc = _(jsonList[i].desc);
+                    themeObject.splice(i, 0, jsonList[i]);
 
-                onChange();
-            } else {
-                themeObject[i].desc = _(themeObject[i].desc);
-
-                // widget names changed -> fire onChange
-                if (themeObject[i].widget !== jsonList[i].widget) {
-                    themeObject[i].widget = jsonList[i].widget;
                     onChange();
+                } else {
+                    themeObject[i].desc = _(themeObject[i].desc);
+
+                    // widget names changed -> fire onChange
+                    if (themeObject[i].widget !== jsonList[i].widget) {
+                        themeObject[i].widget = jsonList[i].widget;
+                        onChange();
+                    }
+
+                    // id changed -> fire onChange
+                    if (themeObject[i].id !== jsonList[i].id) {
+                        themeObject[i].id = jsonList[i].id;
+                        onChange();
+                    }
                 }
 
-                // id changed -> fire onChange
-                if (themeObject[i].id !== jsonList[i].id) {
-                    themeObject[i].id = jsonList[i].id;
-                    onChange();
+                let themeObjectWidgetList = themeObject[i].widget.split(', ');
+                for (const widget of themeObjectWidgetList) {
+                    widgetList[widget] = null;
                 }
-            }
 
-            let themeObjectWidgetList = themeObject[i].widget.split(', ');
-            for (const widget of themeObjectWidgetList) {
-                widgetList[widget] = null;
+            } catch (err) {
+                console.error(`[checkAllObjectsExistInSettings] themeType: ${themeType}, number: ${themeObject[i]}, error: ${err.message}, stack: ${err.stack}`);
             }
         }
 

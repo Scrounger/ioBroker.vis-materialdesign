@@ -1182,12 +1182,6 @@
         "widget": "AdapterStatus [Script]"
     },
     {
-        "id": "dark.scripts.adapterStatus.icons.upgradeable",
-        "desc": "logParser warn icon",
-        "value": "#ec0909",
-        "widget": "AdapterStatus [Script]"
-    },
-    {
         "id": "dark.scripts.adapterStatus.icons.logParser.warn",
         "desc": "logParser warn icon",
         "defaultValue": 9,
