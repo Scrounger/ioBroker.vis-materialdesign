@@ -102,7 +102,7 @@ async function createDatapoints(onChange) {
 async function generateJavascriptInstancesDropDown(settings) {
     socket.emit('getObjectView', 'system', 'instance', { startkey: 'system.adapter.javascript.', endkey: 'system.adapter.javascript.\u9999' }, function (err, doc) {
         if (err) {
-            console.error(err);
+            reportError(`[generateJavascriptInstancesDropDown] error: ${err}`);
         } else {
             if (doc.rows.length) {
                 var result = [];
@@ -185,7 +185,7 @@ async function initializeSentry() {
             checkEl.prop("checked", true);
         }
     } catch (err) {
-        console.error(`[initializeSentry] error: ${err.message}, stack: ${err.stack}`);
+        reportError(`[initializeSentry] error: ${err.message}, stack: ${err.stack}`);
     }
 }
 
@@ -264,7 +264,7 @@ async function createTab(themeType, themeObject, themeDefaults, settings, onChan
         eventsHandlerTab(themeType, themeObject, themeDefaults, settings, onChange)
 
     } catch (err) {
-        console.error(`[createTab] type: ${themeType} error: ${err.message}, stack: ${err.stack}`);
+        reportError(`[createTab] type: ${themeType} error: ${err.message}, stack: ${err.stack}`);
     }
 }
 
@@ -414,7 +414,7 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
         });
 
     } catch (err) {
-        console.error(`[createTable] type: ${themeType} error: ${err.message}, stack: ${err.stack}`);
+        reportError(`[createTable] type: ${themeType} error: ${err.message}, stack: ${err.stack}`);
     }
 }
 
@@ -503,7 +503,7 @@ async function loadDefaults(themeType, settings, onChange) {
 
         return result;
     } catch (err) {
-        console.error(`[loadDefaults] themeType: ${themeType}, error: ${err.message}, stack: ${err.stack}`);
+        reportError(`[loadDefaults] themeType: ${themeType}, error: ${err.message}, stack: ${err.stack}`);
     }
 }
 
@@ -548,7 +548,7 @@ async function checkAllObjectsExistInSettings(themeType, themeObject, themeDefau
                 }
 
             } catch (err) {
-                console.error(`[checkAllObjectsExistInSettings] themeType: ${themeType}, number: ${themeObject[i]}, error: ${err.message}, stack: ${err.stack}`);
+                reportError(`[checkAllObjectsExistInSettings] themeType: ${themeType}, objNr.: ${i}, error: ${err.message}, stack: ${err.stack}`);
             }
         }
 
@@ -557,7 +557,7 @@ async function checkAllObjectsExistInSettings(themeType, themeObject, themeDefau
         return themeObject;
 
     } catch (err) {
-        console.error(`[checkAllObjectsExistInSettings] themeType: ${themeType}, error: ${err.message}, stack: ${err.stack}`);
+        reportError(`[checkAllObjectsExistInSettings] themeType: ${themeType}, error: ${err.message}, stack: ${err.stack}`);
     }
 }
 
@@ -596,7 +596,7 @@ function createDefaultElement(themeType, themeDefaults, index) {
         });
 
     } catch (err) {
-        console.error(`[createDefaultElement] themeType: ${themeType}, error: ${err.message}, stack: ${err.stack}`);
+        reportError(`[createDefaultElement] themeType: ${themeType}, error: ${err.message}, stack: ${err.stack}`);
     }
 }
 
@@ -983,4 +983,14 @@ async function addVersionToAdapterTitle() {
         let title = $('#adapterTitle');
         title.html(`${title.html()} <font size="3"><i>${instanceObj.common.installedVersion}</i></font>`);
     }
+}
+
+function reportError(msg) {
+    console.error(msg);
+    showMessage(`
+    <div style="display: flex; align-items: center; flex-direction: row;">
+        <i class="medium material-icons" style="color: FireBrick;">error_outline</i>
+        <div style="margin-left: 12px; font-weight: 700; font-size: 16px;">An error has occurred.<br>Please report this to the developer</div>
+    </div>
+    <textarea class="materialdesign-settings-error-msg" readonly="readonly" style="background: #e9e9e9; margin-top: 20px; height: calc(100% - 160px);">${msg.replace(', error:', ',\nerror:').replace(', stack:', ',\nstack:')}</textarea>`, 'Error', undefined);
 }
