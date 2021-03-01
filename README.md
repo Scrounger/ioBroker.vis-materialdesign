@@ -9215,7 +9215,7 @@ With the JSON chart you have the maximum freedom to create a mixed chart (line, 
         <tr>
             <td>tooltip_title</td>
             <td>title of tooltip</td>
-            <td>string</td>
+            <td>string | array[string]</td>
             <td></td>
         </tr>
         <tr>
