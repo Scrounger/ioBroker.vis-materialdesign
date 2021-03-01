@@ -408,32 +408,38 @@ vis.binds.materialdesign.chart.json = function (el, data) {
                                         bodyFontSize: myMdwHelper.getNumberFromData(data.tooltipBodyFontSize, undefined),
                                         callbacks: {
                                             title: function (tooltipItem, chart) {
+                                                let index = tooltipItem[0].index;
+
                                                 if (jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title) {
-                                                    return jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title.split('\\n');
-                                                } else {
-                                                    let datasetIndex = tooltipItem[0].datasetIndex;
-
-                                                    let index = tooltipItem[0].index;
-                                                    let metaIndex = Object.keys(chart.datasets[datasetIndex]._meta)[0];
-
-                                                    if (chart.datasets[datasetIndex]._meta[metaIndex].controller.chart.scales[datasetIndex]._unit) {
-                                                        let currentUnit = chart.datasets[datasetIndex]._meta[metaIndex].controller.chart.scales[datasetIndex]._unit;
-                                                        let timestamp = moment(chart.datasets[datasetIndex].data[index].t);
-
-                                                        let timeFormats = (myMdwHelper.getValueFromData(data.tooltipTimeFormats, null) !== null) ? JSON.parse(data.tooltipTimeFormats) : myChartHelper.defaultToolTipTimeFormats();
-
-                                                        if (data.tooltipLabelUseTodayYesterday) {
-                                                            if (timestamp.isSame(moment(), 'day')) {
-                                                                return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Today')}]`).replace('ddd', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`)).split('\\n');
-                                                            } else if (timestamp.isSame(moment().subtract(1, 'day'), 'day')) {
-                                                                return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Yesterday')}]`).replace('ddd', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`)).split('\\n');
-                                                            }
+                                                    if (Array.isArray(jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title)) {
+                                                        if (jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title[index]) {
+                                                            return jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title[index].split('\\n');
                                                         }
-
-                                                        return timestamp.format(timeFormats[currentUnit]);
                                                     } else {
-                                                        return tooltipItem[0].label.split('\\n');
+                                                        return jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title.split('\\n');
                                                     }
+                                                }
+
+                                                let datasetIndex = tooltipItem[0].datasetIndex;
+                                                let metaIndex = Object.keys(chart.datasets[datasetIndex]._meta)[0];
+
+                                                if (chart.datasets[datasetIndex]._meta[metaIndex].controller.chart.scales[datasetIndex]._unit) {
+                                                    let currentUnit = chart.datasets[datasetIndex]._meta[metaIndex].controller.chart.scales[datasetIndex]._unit;
+                                                    let timestamp = moment(chart.datasets[datasetIndex].data[index].t);
+
+                                                    let timeFormats = (myMdwHelper.getValueFromData(data.tooltipTimeFormats, null) !== null) ? JSON.parse(data.tooltipTimeFormats) : myChartHelper.defaultToolTipTimeFormats();
+
+                                                    if (data.tooltipLabelUseTodayYesterday) {
+                                                        if (timestamp.isSame(moment(), 'day')) {
+                                                            return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Today')}]`).replace('ddd', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`)).split('\\n');
+                                                        } else if (timestamp.isSame(moment().subtract(1, 'day'), 'day')) {
+                                                            return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Yesterday')}]`).replace('ddd', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`)).split('\\n');
+                                                        }
+                                                    }
+
+                                                    return timestamp.format(timeFormats[currentUnit]);
+                                                } else {
+                                                    return tooltipItem[0].label.split('\\n');
                                                 }
                                             },
                                             label: function (tooltipItem, chart) {
