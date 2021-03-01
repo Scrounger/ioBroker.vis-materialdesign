@@ -149,7 +149,7 @@ vis.binds.materialdesign.dialog = {
 
                                 console.warn($this.find('.materialdesign-icon-image'));
                                 $this.find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.imageColor, '#44739e'));
-                                
+
                                 if (data.buttonStyle === 'icon') {
                                     mdc.iconButton.MDCIconButtonToggle.attachTo(button.get(0));
                                     button.context.style.setProperty("--materialdesign-color-icon-button-hover", myMdwHelper.getValueFromData(data.mdwButtonColorPress, ''));
@@ -268,20 +268,29 @@ vis.binds.materialdesign.dialog = {
 
                             function calcHeight() {
                                 let $dialog = $("body").find(`#dialog_card_${data.wid}`);
+                                let windowHeight = $(window).height();
 
-                                wishHeight = myMdwHelper.getNumberFromData(data.viewHeight, 5000);
+                                wishHeight = myMdwHelper.getValueFromData(data.viewHeight, '100%');
+
+                                if (wishHeight.indexOf('%') >= 0) {
+                                    wishHeight = windowHeight * parseFloat(wishHeight.replace('%', '')) / 100;
+                                } else {
+                                    wishHeight = parseFloat(wishHeight.replace('px', ''));
+                                }
 
                                 if (fullscreen) {
                                     let toolBarHeight = $dialog.find('.v-toolbar__content').height();
-                                    wishHeight = Math.floor($(window).height() - toolBarHeight - 1);
+                                    wishHeight = Math.floor(windowHeight - toolBarHeight - 1);
 
                                 } else {
                                     let titleHeight = $dialog.find('.v-card__title').outerHeight();
                                     let footerHeight = $dialog.find('.v-dialog-footer').height();
 
-                                    if (wishHeight > $(window).height() * 0.9 || (wishHeight + titleHeight + footerHeight) > $(window).height() * 0.9) {
+                                    wishHeight = wishHeight - titleHeight - footerHeight - 5;
+
+                                    if (wishHeight > windowHeight * 0.9 || (wishHeight + titleHeight + footerHeight) > windowHeight * 0.9) {
                                         // wenn höhe größer als screen -> dann auf screen begrenzen um responsiv zu sein
-                                        wishHeight = Math.floor($(window).height() * 0.9 - footerHeight - titleHeight - 5);
+                                        wishHeight = Math.floor(windowHeight * 0.9 - footerHeight - titleHeight - 5);
                                     }
                                 }
 
