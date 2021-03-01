@@ -11405,5 +11405,29 @@ systemDictionary = {
         "es": "bordes redondeados",
         "pl": "zaokrąglone kanty",
         "zh-cn": "圆边"
+    },
+    "tooltipMode": {
+        "en": "mode",
+        "de": "Modus",
+        "ru": "Режим",
+        "pt": "modo",
+        "nl": "modus",
+        "fr": "mode",
+        "it": "modalità",
+        "es": "modo",
+        "pl": "tryb",
+        "zh-cn": "模式"
+    },
+    "tooltipPosition": {
+        "en": "position",
+        "de": "Position",
+        "ru": "позиция",
+        "pt": "posição",
+        "nl": "positie",
+        "fr": "positionner",
+        "it": "posizione",
+        "es": "posición",
+        "pl": "pozycja",
+        "zh-cn": "位置"
     }
 };

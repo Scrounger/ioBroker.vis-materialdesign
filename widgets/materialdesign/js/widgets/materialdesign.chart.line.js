@@ -361,7 +361,8 @@ vis.binds.materialdesign.chart.lineHistory = function (el, data) {
                                         yAxes: myYAxis,
                                     },
                                     tooltips: {
-                                        mode: 'nearest',
+                                        position: data.tooltipPosition,
+                                        mode: data.tooltipMode,
                                         enabled: data.showTooltip,
                                         backgroundColor: myMdwHelper.getValueFromData(data.tooltipBackgroundColor, 'black'),
                                         caretSize: myMdwHelper.getNumberFromData(data.tooltipArrowSize, 5),
