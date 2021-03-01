@@ -12783,10 +12783,17 @@ The adapter uses the following libraries:
 * (Scrounger) Card layout bug fixes for HTML Card, IconList, List and Table Widget
 * (Scrounger) icon list: option for status bar text added
 * (Scrounger) icon list: status bar position bug fix
+* (Scrounger) dialog: option to set height in percent added
+* (Scrounger) json chart: option to override tooltip for every dataset added
+* (Scrounger) json chart: tooltip mode x / y added
+* (Scrounger) json chart: option to override data label added
+* (Scrounger) progress: rotate option added
+* (Scrounger) list: background color option added
 * (Scrounger) progress circular: auto size option added
 * (Scrounger) VIS editor: html previews bug fixes
 * (Scrounger) input, autocomplete, select: autofocus option added
 * (Scrounger) Documentation revised
+* (Scrounger) materialdesignicons library updated to v5.9.55
 * (Scrounger) bug fixes
 
 <!-- omit in toc -->
