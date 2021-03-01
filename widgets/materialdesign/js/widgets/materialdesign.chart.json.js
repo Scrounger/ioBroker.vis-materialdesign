@@ -389,6 +389,7 @@ vis.binds.materialdesign.chart.json = function (el, data) {
                                     },
                                     legend: Object.assign(myChartHelper.getLegend(data), myChartHelper.getLegendClickEvent(myYAxis)),
                                     tooltips: {
+                                        position: data.tooltipPosition,
                                         mode: data.tooltipMode,
                                         enabled: data.showTooltip,
                                         backgroundColor: myMdwHelper.getValueFromData(data.tooltipBackgroundColor, 'black'),
