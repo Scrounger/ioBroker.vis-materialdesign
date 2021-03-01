@@ -11393,5 +11393,17 @@ systemDictionary = {
         "es": "distnce hasta el fondo",
         "pl": "odległość do dołu",
         "zh-cn": "到底部的距离"
+    },
+    "roundBorder": {
+        "en": "rounded edges",
+        "de": "abgerundeten Ecken",
+        "ru": "закругленные края",
+        "pt": "bordas arredondadas",
+        "nl": "afgeronde hoeken",
+        "fr": "des bords arrondis",
+        "it": "bordi arrotondati",
+        "es": "bordes redondeados",
+        "pl": "zaokrąglone kanty",
+        "zh-cn": "圆边"
     }
 };

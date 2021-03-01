@@ -20,7 +20,7 @@ vis.binds.materialdesign.table = {
                 tableLayout = 'materialdesign-table-card materialdesign-table-card--outlined';
             }
 
-            tableElement.push(`<div class="mdc-data-table ${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'fixed-header' : ''} ${tableLayout}">
+            tableElement.push(`<div class="mdc-data-table ${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'fixed-header' : ''} ${tableLayout}" ${myMdwHelper.getBooleanFromData(data.roundBorder, true) ? '' : 'style="border-radius: 0;"'}>
                                     <table class="mdc-data-table__table" aria-label="Material Design Widgets Table" style="width: 100%; height: 100%;">`)
 
             tableElement.push(`<thead style="${myMdwHelper.getBooleanFromData(data.fixedHeader, false) ? 'position: sticky; top: 0;' : ''}">
