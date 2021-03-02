@@ -406,6 +406,7 @@ vis.binds.materialdesign.chart.json = function (el, data) {
                                         bodyFontColor: myMdwHelper.getValueFromData(data.tooltipBodyFontColor, 'white'),
                                         bodyFontFamily: myMdwHelper.getValueFromData(data.tooltipBodyFontFamily, undefined),
                                         bodyFontSize: myMdwHelper.getNumberFromData(data.tooltipBodyFontSize, undefined),
+                                        bodyAlign : myMdwHelper.getValueFromData(data.tooltipBodyAlignment, 'left'),
                                         callbacks: {
                                             title: function (tooltipItem, chart) {
                                                 let index = tooltipItem[0].index;
