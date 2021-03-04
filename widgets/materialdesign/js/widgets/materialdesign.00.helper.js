@@ -138,7 +138,7 @@ vis.binds.materialdesign.helper = {
                 if (dataValue === undefined || dataValue === 'undefined' || dataValue === null || dataValue === 'null' || dataValue === '') {
                     return nullValue;
                 } else {
-                    if (vis.editMode) {
+                    if (vis.editMode && isNaN(dataValue)) {
                         let binding = vis.extractBinding(dataValue, true);
                         if (binding && binding.length >= 1) {
                             let bindingVal = vis.formatBinding(dataValue, undefined, undefined, undefined, true);
@@ -238,7 +238,7 @@ vis.binds.materialdesign.helper = {
                     }
                 }
 
-                if (vis.editMode) {
+                if (vis.editMode  && isNaN(dataValue)) {
                     let binding = vis.extractBinding(dataValue, true);
 
                     if (binding && binding.length >= 1) {
