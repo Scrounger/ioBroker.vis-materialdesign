@@ -151,7 +151,7 @@ vis.binds.materialdesign.helper = {
                         }
                     }
 
-                    if (dataValue.startsWith('#mdwTheme:')) {
+                    if (dataValue.toString().startsWith('#mdwTheme:')) {
                         let darkTheme = vis.states.attr('vis-materialdesign.0.colors.darkTheme.val') || false;
                         let id = dataValue.replace('#mdwTheme:', '');
 
@@ -202,7 +202,7 @@ vis.binds.materialdesign.helper = {
     getNumberFromData: function (dataValue, nullValue) {
         try {
             if (dataValue === undefined || dataValue === null || dataValue === '' || isNaN(dataValue)) {
-                if (dataValue && dataValue !== null && dataValue.startsWith('#mdwTheme:')) {
+                if (dataValue && dataValue !== null && dataValue.toString().startsWith('#mdwTheme:')) {
                     let id = dataValue.replace('#mdwTheme:', '');
                     let val = vis.states.attr(id + '.val');
 
@@ -227,7 +227,7 @@ vis.binds.materialdesign.helper = {
             if (dataValue === undefined || dataValue === 'undefined' || dataValue === null || dataValue === 'null' || dataValue === '') {
                 return nullValue
             } else {
-                if (dataValue && dataValue !== null && dataValue.startsWith('#mdwTheme:')) {
+                if (dataValue && dataValue !== null && dataValue.toString().startsWith('#mdwTheme:')) {
                     let id = dataValue.replace('#mdwTheme:', '');
                     let val = vis.states.attr(id + '.val');
 
