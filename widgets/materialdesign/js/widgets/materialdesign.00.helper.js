@@ -180,8 +180,8 @@ vis.binds.materialdesign.helper = {
                 }
             }
         } catch (err) {
-            console.error(`[Helper] getValueFromData: ${dataValue} ${err.message}, stack: ${err.stack}`);
-            return 'Error';
+            console.error(`[Helper] getValueFromData: val: ${dataValue} error: ${err.message}, stack: ${err.stack}`);
+            return `[Helper] getValueFromData: val: ${dataValue} error: ${err.message}, stack: ${err.stack}`;
         }
     },
     getBooleanFromData: function (dataValue, nullValue) {
@@ -195,8 +195,8 @@ vis.binds.materialdesign.helper = {
             }
 
         } catch (err) {
-            console.error(`[Helper] getBooleanFromData: ${err.message}`);
-            return 'Error';
+            console.error(`[Helper] getBooleanFromData: val: ${dataValue} error: ${err.message}, stack: ${err.stack}`);
+            return `[Helper] getBooleanFromData: val: ${dataValue} error: ${err.message}, stack: ${err.stack}`;
         }
     },
     getNumberFromData: function (dataValue, nullValue) {
@@ -218,8 +218,8 @@ vis.binds.materialdesign.helper = {
                 return parseFloat(dataValue);
             }
         } catch (err) {
-            console.error(`[Helper] getNumberFromData: ${err.message}`);
-            return 'Error';
+            console.error(`[Helper] getNumberFromData: val: ${dataValue} error: ${err.message}, stack: ${err.stack}`);
+            return `[Helper] getNumberFromData: val: ${dataValue} error: ${err.message}, stack: ${err.stack}`;
         }
     },
     getStringFromNumberData: function (dataValue, nullValue, prepand = '', append = '') {
@@ -265,8 +265,8 @@ vis.binds.materialdesign.helper = {
                 }
             }
         } catch (err) {
-            console.error(`[Helper] getStringFromNumberData: ${err.message}`);
-            return 'Error';
+            console.error(`[Helper] getStringFromNumberData: val: ${dataValue} error: ${err.message}, stack: ${err.stack}`);
+            return `[Helper] getStringFromNumberData: val: ${dataValue} error: ${err.message}, stack: ${err.stack}`;
         }
     },
     getFontSize: function (fontSizeValue) {
