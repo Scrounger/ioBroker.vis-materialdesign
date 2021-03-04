@@ -30,7 +30,15 @@ vis.binds.materialdesign.chart.helper = {
                 autoSkip: (chartType === 'horizontal' && (myMdwHelper.getNumberFromData(axisMaxLabel, undefined) > 0) || myMdwHelper.getBooleanFromData(axisLabelAutoSkip, false)),
                 maxTicksLimit: (chartType === 'horizontal') ? myMdwHelper.getNumberFromData(axisMaxLabel, undefined) : undefined,
                 callback: function (value, index, values) {
-                    return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                    if (isNaN(value)) {
+                        return `${value}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');;
+                    } else {
+                        if (axisValueMinDigits || axisValueMaxDigits) {
+                            return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                        } else {
+                            return `${value}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                        }
+                    }
                 },
                 fontColor: myMdwHelper.getValueFromData(yAxisValueLabelColor, undefined),
                 fontFamily: myMdwHelper.getValueFromData(yAxisValueFontFamily, undefined),
@@ -101,7 +109,11 @@ vis.binds.materialdesign.chart.helper = {
                         if (isNaN(value)) {
                             return `${value}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');;
                         } else {
-                            return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                            if (axisValueMinDigits || axisValueMaxDigits) {
+                                return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                            } else {
+                                return `${value}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                            }
                         }
                     }
                 },
