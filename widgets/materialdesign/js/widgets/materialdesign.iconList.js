@@ -254,7 +254,7 @@ vis.binds.materialdesign.iconlist =
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>
+                                        ${listItemObj.statusBarColor || listItemObj.statusBarText ? `<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>` : ''}
                                     </div>
                                 </div>`;
                             } else {
@@ -267,7 +267,7 @@ vis.binds.materialdesign.iconlist =
                                     </div>
                                     ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value materialdesign-icon-list-item-text-vertical">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
                                     ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText materialdesign-icon-list-item-text-vertical">${listItemObj.subText}</label>` : ''}
-                                    <div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>
+                                    ${listItemObj.statusBarColor || listItemObj.statusBarText ? `<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>` : ''}
                                 </div>`;
                             }
 
@@ -292,7 +292,7 @@ vis.binds.materialdesign.iconlist =
                                                 </div>                                        
                                             </div>                                    
                                         </div>
-                                        <div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-horizontal-status-line-card' : 'materialdesign-icon-list-item-layout-horizontal-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>
+                                        ${listItemObj.statusBarColor || listItemObj.statusBarText ? `<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-horizontal-status-line-card' : 'materialdesign-icon-list-item-layout-horizontal-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>` : ''}
                                     </div>
                                 </div>`;
                             } else {
@@ -309,7 +309,7 @@ vis.binds.materialdesign.iconlist =
                                             ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
                                         </div>
                                     </div>
-                                    <div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-horizontal-status-line-card' : 'materialdesign-icon-list-item-layout-horizontal-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>
+                                    ${listItemObj.statusBarColor || listItemObj.statusBarText ? `<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-horizontal-status-line-card' : 'materialdesign-icon-list-item-layout-horizontal-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>` : ''}
                                 </div>`;
                             }
                         }
@@ -660,7 +660,7 @@ vis.binds.materialdesign.iconlist =
                             imageActiveColor: myMdwHelper.getValueFromData(data.attr('listImageActiveColor' + i), myMdwHelper.getValueFromData(data.attr('listImageColor' + i), "#44739e")),
                             buttonBackgroundColor: myMdwHelper.getValueFromData(data.attr('buttonBgColor' + i), ''),
                             buttonBackgroundActiveColor: myMdwHelper.getValueFromData(data.attr('buttonBgColorActive' + i), myMdwHelper.getValueFromData(data.attr('buttonBgColor' + i), '')),
-                            statusBarColor: myMdwHelper.getValueFromData(data.attr('statusBarColor' + i), 'transparent'),
+                            statusBarColor: myMdwHelper.getValueFromData(data.attr('statusBarColor' + i), undefined),
                             statusBarText: myMdwHelper.getValueFromData(data.attr('statusBarText' + i), ''),
                             lockEnabled: myMdwHelper.getBooleanFromData(data.attr('lockEnabled' + i), false)
                         };
@@ -686,7 +686,7 @@ vis.binds.materialdesign.iconlist =
                                 imageActiveColor: myMdwHelper.getValueFromData(jsonData[i].imageActiveColor, myMdwHelper.getValueFromData(jsonData[i].imageColor, "#44739e")),
                                 buttonBackgroundColor: myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundColor, ''),
                                 buttonBackgroundActiveColor: myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundActiveColor, myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundColor, '')),
-                                statusBarColor: myMdwHelper.getValueFromData(jsonData[i].statusBarColor, 'transparent'),
+                                statusBarColor: myMdwHelper.getValueFromData(jsonData[i].statusBarColor, undefined),
                                 statusBarText: myMdwHelper.getValueFromData(jsonData[i].statusBarText, ''),
                                 lockEnabled: myMdwHelper.getBooleanFromData(jsonData[i].lockEnabled, false)
                             };
