@@ -821,9 +821,11 @@ function save(callback) {
         });
     }
 
-    setTimeout(function () {
-        setStateAsync(`${myNamespace}.lastchange`, new Date().getTime(), true);
-    }, 500);
+    for(var i = 0; i <= 3; i++){
+        setTimeout(function () {
+            setStateAsync(`${myNamespace}.lastchange`, new Date().getTime(), true);
+        }, 500 * i);
+    }
 
     callback(obj);
 }
