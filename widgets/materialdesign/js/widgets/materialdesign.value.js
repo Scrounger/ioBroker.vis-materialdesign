@@ -19,7 +19,8 @@ vis.binds.materialdesign.value = {
             });
 
             function init() {
-                let imageElement = myMdwHelper.getIconElement(data.image, 'auto', myMdwHelper.getValueFromData(data.iconHeight, '24px', '', 'px'), myMdwHelper.getValueFromData(data.imageColor, '#44739e'));
+                let val = vis.states.attr(data.oid + '.val');
+                let imageElement = myMdwHelper.getIconElement(getValueWithCondition(data.image, val), 'auto', myMdwHelper.getValueFromData(data.iconHeight, '24px', '', 'px'), myMdwHelper.getValueFromData(getValueWithCondition(data.imageColor, val), '#44739e'));
                 let valueLabelWidth = myMdwHelper.getNumberFromData(data.valueLabelWidth, 4)
 
                 $this.html(`
@@ -37,7 +38,7 @@ vis.binds.materialdesign.value = {
                 let targetType = myMdwHelper.getValueFromData(data.targetType, 'auto');
 
                 vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                    setValue(newVal, oldVal);
+                    setLayout(newVal, oldVal);
                 });
 
                 vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
@@ -48,37 +49,40 @@ vis.binds.materialdesign.value = {
                     setLayout();
                 });
 
-                $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
+                $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function (e) {
                     if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
                     // $(themeTriggerClass).off(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`);
                     setLayout();
                 });
 
                 setLayout();
-                function setLayout() {
-                    $this.get(0).style.setProperty("--value-color-text", myMdwHelper.getValueFromData(data.valuesFontColor, ''));
+                function setLayout(val, oldVal = undefined) {
+                    if (val === undefined) {
+                        val = vis.states.attr(data.oid + '.val');
+                    }
+
+                    $this.get(0).style.setProperty("--value-color-text", myMdwHelper.getValueFromData(getValueWithCondition(data.valuesFontColor, val), ''));
                     $this.get(0).style.setProperty("--value-font-text", myMdwHelper.getValueFromData(data.valuesFontFamily, ''));
                     $this.get(0).style.setProperty("--value-font-size-text", myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px'));
 
-                    $this.get(0).style.setProperty("--value-color-prepand", myMdwHelper.getValueFromData(data.prepandTextColor, ''));
+                    $this.get(0).style.setProperty("--value-color-prepand", myMdwHelper.getValueFromData(getValueWithCondition(data.prepandTextColor, val), ''));
                     $this.get(0).style.setProperty("--value-font-prepand", myMdwHelper.getValueFromData(data.prepandTextFontFamily, ''));
                     $this.get(0).style.setProperty("--value-font-size-prepand", myMdwHelper.getStringFromNumberData(data.prepandTextFontSize, 14, '', 'px'));
 
-                    $this.get(0).style.setProperty("--value-color-append", myMdwHelper.getValueFromData(data.appendTextColor, ''));
+                    $this.get(0).style.setProperty("--value-color-append", myMdwHelper.getValueFromData(getValueWithCondition(data.appendTextColor, val), ''));
                     $this.get(0).style.setProperty("--value-font-append", myMdwHelper.getValueFromData(data.appendTextFontFamily, ''));
                     $this.get(0).style.setProperty("--value-font-size-append", myMdwHelper.getStringFromNumberData(data.appendTextFontSize, 14, '', 'px'));
 
-                    $this.find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.imageColor, '#44739e'));
+                    $this.find('.materialdesign-icon-image').replaceWith(myMdwHelper.getIconElement(getValueWithCondition(data.image, val), 'auto', myMdwHelper.getValueFromData(data.iconHeight, '24px', '', 'px'), myMdwHelper.getValueFromData(getValueWithCondition(data.imageColor, val), '#44739e')))
 
-                    let val = vis.states.attr(data.oid + '.val');
-                    setValue(val);
+                    setValue(val, oldVal);
                 }
 
                 function setValue(value, oldVal = undefined) {
                     let type = targetType === 'auto' ? typeof (value) : targetType;
                     let changed = false;
 
-                    if (data.debug) console.log(`${logPrefix} type: '${type}', targetType: '${targetType}'`);
+                    if (data.debug) console.log(`${logPrefix} - setValue, type: '${type}', targetType: '${targetType}'`);
 
                     $prepandText.html(myMdwHelper.getValueFromData(data.prepandText, ''));
                     $appendText.html(myMdwHelper.getValueFromData(data.appendText, ''));
@@ -149,7 +153,7 @@ vis.binds.materialdesign.value = {
                     }
 
                     if (myMdwHelper.getBooleanFromData(data.changeEffectEnabled, false)) {
-                        if (value !== oldVal) {
+                        if (value !== oldVal && oldVal !== undefined) {
                             changed = true;
 
                             $valueText.animate({
@@ -172,10 +176,6 @@ vis.binds.materialdesign.value = {
                         changeValue();
                     }
 
-                    function replaceValue(str, data) {
-                        return str.replace(/#value/g, data);
-                    }
-
                     function changeValue() {
                         if (result) {
                             if (myMdwHelper.getValueFromData(data.overrideText, undefined)) {
@@ -193,6 +193,28 @@ vis.binds.materialdesign.value = {
                                 $valueText.html(result);
                             }
                         }
+                    }
+                }
+
+                function replaceValue(str, data) {
+                    return str.replace(/#value/g, data);
+                }
+
+                function getValueWithCondition(data, val) {
+                    if (data && data.includes('#value')) {
+                        try {
+                            let cond = replaceValue(data, val)
+                            let evaluate = math.evaluate(cond);
+
+                            if (data.debug) console.log(`${logPrefix} - cond: '${cond}', result: '${evaluate}'`);
+
+                            return evaluate;
+                        } catch (ex) {
+                            console.error(`[${widgetName} - ${data.wid}] getValueWithCondition: error: ${ex.message}, stack: ${ex.stack}`);
+                            return `[${widgetName} - ${data.wid}] getValueWithCondition: error: ${ex.message}, stack: ${ex.stack}`;
+                        }
+                    } else {
+                        return data;
                     }
                 }
             }
