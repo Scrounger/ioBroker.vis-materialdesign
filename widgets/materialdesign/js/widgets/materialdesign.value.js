@@ -201,7 +201,7 @@ vis.binds.materialdesign.value = {
                 }
 
                 function getValueWithCondition(data, val) {
-                    if (data && data.includes('#value')) {
+                    if (data && data !== null && data.includes('#value') && (val || val === 0)) {
                         try {
                             let cond = replaceValue(data, val)
                             let evaluate = math.evaluate(cond);
