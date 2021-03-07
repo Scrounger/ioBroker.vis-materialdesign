@@ -56,8 +56,8 @@ vis.binds.materialdesign.value = {
                 });
 
                 setLayout();
-                function setLayout(val, oldVal = undefined) {
-                    if (val === undefined) {
+                function setLayout(val = undefined, oldVal = undefined) {
+                    if (!val) {
                         val = vis.states.attr(data.oid + '.val');
                     }
 
@@ -196,25 +196,25 @@ vis.binds.materialdesign.value = {
                     }
                 }
 
-                function replaceValue(str, data) {
-                    return str.replace(/#value/g, data);
+                function replaceValue(str, value) {
+                    return str.replace(/#value/g, value);
                 }
 
-                function getValueWithCondition(data, val) {
-                    if (data && data !== null && data.includes('#value') && (val || val === 0)) {
+                function getValueWithCondition(prop, value) {
+                    if (prop && prop !== null && prop.includes('#value') && ((value && value !== null && value !== 'null') || value === 0)) {
                         try {
-                            let cond = replaceValue(data, val)
+                            let cond = replaceValue(prop, value);
                             let evaluate = math.evaluate(cond);
 
                             if (data.debug) console.log(`${logPrefix} - cond: '${cond}', result: '${evaluate}'`);
 
                             return evaluate;
                         } catch (ex) {
-                            console.error(`[${widgetName} - ${data.wid}] getValueWithCondition: error: ${ex.message}, stack: ${ex.stack}`);
-                            return `[${widgetName} - ${data.wid}] getValueWithCondition: error: ${ex.message}, stack: ${ex.stack}`;
+                            console.error(`[${widgetName} - ${prop.wid}] getValueWithCondition: error: ${ex.message}, stack: ${ex.stack}`);
+                            return `[${widgetName} - ${prop.wid}] getValueWithCondition: error: ${ex.message}, stack: ${ex.stack}`;
                         }
                     } else {
-                        return data;
+                        return prop;
                     }
                 }
             }

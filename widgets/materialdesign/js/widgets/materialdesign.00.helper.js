@@ -539,12 +539,12 @@ vis.binds.materialdesign.helper = {
             }
         }
     },
-    oidNeedSubscribe(oid, wid, widgetName, oidNeedSubscribe, isBinding = false, debug = false) {
+    oidNeedSubscribe(oid, wid, widgetName, oidNeedSubscribe, isBinding = false, debug = false, force = false) {
         let view = vis.binds.materialdesign.helper.getViewOfWidget(wid);
 
         if (oid !== undefined) {
             // Check if Oid is subscribed and put to vis subscribing object
-            if (!vis.editMode && (!vis.subscribing.byViews[view].includes(oid) || !vis.states.attr(oid + '.val') || vis.states.attr(oid + '.val') === null)) {
+            if (!vis.editMode && (!vis.subscribing.byViews[view].includes(oid) || force)) {
                 vis.subscribing.byViews[view].push(oid)
 
                 if (!isBinding) {
@@ -672,10 +672,11 @@ vis.binds.materialdesign.helper = {
         // subscribe
         var oids = [];
         for (var i = 0; i < vis.subscribing.byViews[view].length; i++) {
-            if (vis.subscribing.active.indexOf(vis.subscribing.byViews[view][i]) === -1) {
-                vis.subscribing.active.push(vis.subscribing.byViews[view][i]);
+            let oid = vis.subscribing.byViews[view][i];
 
-                let oid = vis.subscribing.byViews[view][i];
+            if (vis.subscribing.active.indexOf(oid) === -1 || !vis.states.attr(oid + '.val') || vis.states.attr(oid + '.val') === null) {
+                vis.subscribing.active.push(oid);
+                
                 oids.push(oid);
 
                 if (debug) console.log(`[subscribeStatesAtRuntime] ${widgetName} (${wid}): '${oid}' subscribed`);
@@ -792,10 +793,10 @@ vis.binds.materialdesign.helper = {
         if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] widgetData: ${JSON.stringify(widgetData)} `);
 
         if (widgetData.oid) {
-            let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, widgetData.debug);
+            let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, widgetData.debug, true);
 
             if (widgetData["oid-working"]) {
-                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData["oid-working"], parentId, widgetName, false, false, widgetData.debug);
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData["oid-working"], parentId, widgetName, false, false, widgetData.debug, true);
             }
 
             if (oidsNeedSubscribe) {
