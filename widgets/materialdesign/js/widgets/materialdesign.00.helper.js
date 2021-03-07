@@ -544,7 +544,7 @@ vis.binds.materialdesign.helper = {
 
         if (oid !== undefined) {
             // Check if Oid is subscribed and put to vis subscribing object
-            if (!vis.editMode && !vis.subscribing.byViews[view].includes(oid)) {
+            if (!vis.editMode && (!vis.subscribing.byViews[view].includes(oid) || !vis.states.attr(oid + '.val') || vis.states.attr(oid + '.val') === null)) {
                 vis.subscribing.byViews[view].push(oid)
 
                 if (!isBinding) {
