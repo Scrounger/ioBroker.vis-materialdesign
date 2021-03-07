@@ -238,7 +238,7 @@ vis.binds.materialdesign.helper = {
                     }
                 }
 
-                if (vis.editMode  && isNaN(dataValue)) {
+                if (vis.editMode && isNaN(dataValue)) {
                     let binding = vis.extractBinding(dataValue, true);
 
                     if (binding && binding.length >= 1) {
@@ -606,16 +606,21 @@ vis.binds.materialdesign.helper = {
     subscribeThemesAtRuntimee(data, widgetName, triggerClass, callBack) {
         let oidsNeedSubscribe = false;
 
-        const usedThemeIds = Object.fromEntries(Object.entries(data).filter(([key, value]) => value ? value.toString().startsWith('#mdwTheme:') : false));
-
-        for (const [key, value] of Object.entries(usedThemeIds)) {
-            let id = value.replace('#mdwTheme:', '');
-
-            if (id.includes('vis-materialdesign.0.colors.')) {
-                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.light.'), data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
-                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.dark.'), data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+        for (const [key, value] of Object.entries(data)) {
+            if (value.toString().startsWith('#mdwTheme:')) {
+                let id = value.replace('#mdwTheme:', '');
+                oidsNeedSubscribe = needsSubscribe(id, oidsNeedSubscribe);
             } else {
-                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id, data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+                if (value.toString().includes('#mdwTheme:')) {
+                    let extractIds = value.match(/#mdwTheme:*[^*?"'`´,;:<>#/{}ß\[\]\s]*/g);
+
+                    if (extractIds && extractIds !== null && extractIds.length > 0) {
+                        for (const str of extractIds) {
+                            let id = str.replace('#mdwTheme:', '');
+                            oidsNeedSubscribe = needsSubscribe(id, oidsNeedSubscribe);
+                        }
+                    }
+                }
             }
         }
 
@@ -633,6 +638,17 @@ vis.binds.materialdesign.helper = {
             }, data.debug);
         } else {
             callBack();
+        }
+
+        function needsSubscribe(id, oidsNeedSubscribe) {
+            if (id.includes('vis-materialdesign.0.colors.')) {
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.light.'), data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.dark.'), data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+            } else {
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id, data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+            }
+
+            return oidsNeedSubscribe;
         }
     },
     subscribeStatesAtRuntime(wid, widgetName, callback, debug = false) {
