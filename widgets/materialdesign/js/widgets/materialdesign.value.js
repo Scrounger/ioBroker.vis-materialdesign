@@ -179,7 +179,7 @@ vis.binds.materialdesign.value = {
                     function changeValue() {
                         if (result) {
                             if (myMdwHelper.getValueFromData(data.overrideText, undefined)) {
-                                if (result.includes('|')) {
+                                if (result.toString().includes('|')) {
                                     result = result.split('|');
                                     let text = data.overrideText;
                                     for (var i = 0; i <= result.length - 1; i++) {
@@ -201,7 +201,7 @@ vis.binds.materialdesign.value = {
                 }
 
                 function getValueWithCondition(prop, value) {
-                    if (prop && prop !== null && prop.includes('#value') && ((value && value !== null && value !== 'null') || value === 0)) {
+                    if (prop && prop !== null && prop.includes('#value') && ((value && value !== null && value !== 'null') || value === 0 || value === false)) {
                         try {
                             let cond = replaceValue(prop, value);
                             let evaluate = math.evaluate(cond);
