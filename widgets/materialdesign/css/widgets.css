@@ -2660,8 +2660,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 /* v-row */
 .v-row {
   display: flex;
-  margin-right: -12px;
-  margin-left: -12px;
+  align-items: center;
   width: 100%;
   height: 100%;
 }

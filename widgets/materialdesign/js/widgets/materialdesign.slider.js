@@ -35,7 +35,7 @@ vis.binds.materialdesign.slider = {
 
                 $this.append(`
                     <div class="${containerClass}" style="width: 100%; height: 100%;">
-                        <div class="v-row" style="align-items: center">
+                        <div class="v-row">
                             <v-slider
                                 v-model="value"
                                 :vertical="vertical"
