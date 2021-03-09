@@ -256,6 +256,12 @@ vis.binds.materialdesign.button = {
                 $this.find('.materialdesign-button-body').css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
             }
 
+            if (!isMulti) {
+                vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                    setLayout(newVal);
+                });
+            }
+
             if (!vis.editMode) {
                 var moved = false;
                 $this.on('click', function (e) {
@@ -269,6 +275,7 @@ vis.binds.materialdesign.button = {
                         var oid = data.oid;
                         if (!isMulti) {
                             setValue(data.oid, data.value);
+                            setLayout(formatInputValue(data.value));
                         } else {
                             for (var i = 0; i <= data.countOids; i++) {
                                 let oid = data['oid' + i]
@@ -302,16 +309,45 @@ vis.binds.materialdesign.button = {
 
                 function setValue(oid, value) {
                     if (oid) {
-                        var val = value;
-                        if (val === undefined || val === null) val = false;
-                        if (val === 'true') val = true;
-                        if (val === 'false') val = false;
-                        if (parseFloat(val).toString() == val) val = parseFloat(val);
-
+                        let val = formatInputValue(value);
                         if (oid) myMdwHelper.setValue(oid, val);
                     }
                 }
             }
+
+            if (!isMulti) {
+                setLayout(vis.states.attr(data.oid + '.val'));
+            }
+
+            function setLayout(val) {
+                var formatVal = formatInputValue(data.value);
+
+                if (val === formatVal) {
+                    if (!isIconButton) {
+                        $this.find('.materialdesign-button-body').css('background', myMdwHelper.getValueFromData(data.colorBgTrue, ''));
+                    } else {
+                        $this.css('background', myMdwHelper.getValueFromData(data.colorBgTrue, ''));
+                    }
+                } else {
+                    if (!isIconButton) {
+                        $this.find('.materialdesign-button-body').css('background', '');
+                    } else {
+                        $this.css('background', myMdwHelper.getValueFromData(data.colorBgFalse, ''));
+                    }
+                }
+            }
+
+            function formatInputValue(value) {
+                // format data.value to correct format
+                var val = value;
+                if (val === undefined || val === null) val = false;
+                if (val === 'true') val = true;
+                if (val === 'false') val = false;
+                if (parseFloat(val).toString() == val) val = parseFloat(val);
+
+                return val;
+            }
+
         } catch (ex) {
             console.error(`[Button - ${data.wid}] handleState: error:: ${ex.message}, stack: ${ex.stack}`);
         }
