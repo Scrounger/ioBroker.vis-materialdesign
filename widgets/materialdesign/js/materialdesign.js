@@ -46,9 +46,5 @@ vis.binds.materialdesign = {
         } else {
             const mdcIconButton = new mdc.iconButton.MDCIconButtonToggle(btn);
         }
-
-        $(el).on('click', function () {
-            vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
-        });
     },
 };
