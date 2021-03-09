@@ -67,6 +67,8 @@ vis.binds.materialdesign.dialog = {
                             :overlay-color="overlayColor"
                             :overlay-opacity="overlayOpacity"
                             content-class="dialog_${data.wid}"
+                            :persistent="persistent"
+                            :no-click-animation="persistentClickAnimation"
                             eager
                             ${myMdwHelper.getBooleanFromData(data.closingClickOutside, false) ? '' : 'persistent'}
                             >
@@ -120,12 +122,15 @@ vis.binds.materialdesign.dialog = {
                                         showToolbar: fullscreen,
                                         fullscreen: fullscreen,
                                         transition: (fullscreen) ? 'dialog-bottom-transition' : 'dialog-transition',
+                                        persistent: fullscreen ? true : false,
+                                        persistentClickAnimation: fullscreen ? true : false,
                                         overlayColor: myMdwHelper.getValueFromData(data.overlayColor, ''),
                                         overlayOpacity: myMdwHelper.getNumberFromData(data.overlayOpacity, 0.6)
                                     }
                                 },
                                 methods: {
                                     closeButton(value) {
+                                        console.warn(value);
                                         vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                                         this.showDialog = false;
                                     }
