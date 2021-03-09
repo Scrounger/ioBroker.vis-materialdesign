@@ -12787,6 +12787,9 @@ The adapter uses the following libraries:
 * (Scrounger) json chart: option to override tooltip for every dataset added
 * (Scrounger) json chart: tooltip mode x / y added
 * (Scrounger) json chart: option to override data label added
+* (Scrounger) charts: legend distance to bottom option added
+* (Scrounger) button state: active background color option added
+* (Scrounger) buttons: vibrate on mobil devices bug fix
 * (Scrounger) progress: rotate option added
 * (Scrounger) list: background color option added
 * (Scrounger) progress circular: auto size option added
