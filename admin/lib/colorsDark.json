@@ -408,15 +408,21 @@
         "widget": "Dialog, Dialog iFrame"
     },
     {
+        "id": "dark.dialog.close_button_press",
+        "desc": "pressColor",
+        "defaultValue": 2,
+        "widget": "Dialog, Dialog iFrame"
+    },    
+    {
         "id": "dark.dialog.close_button_icon",
         "desc": "fullscreenCloseIconColor",
         "defaultValue": 5,
         "widget": "Dialog, Dialog iFrame"
     },
     {
-        "id": "dark.dialog.close_button_press",
-        "desc": "pressColor",
-        "defaultValue": 2,
+        "id": "dark.dialog.close_button_icon",
+        "desc": "fullscreenCloseIconColor",
+        "defaultValue": 5,
         "widget": "Dialog, Dialog iFrame"
     },
     {

@@ -76,7 +76,7 @@ vis.binds.materialdesign.dialog = {
                                 <v-toolbar flat v-show="showToolbar" height="${myMdwHelper.getNumberFromData(data.headerHeight, 64)}">
                                     <v-toolbar-title class="v-dialog-toolbar-my-title-layout" v-html="title"></v-toolbar-title>    
                                     <v-btn class="v-dialog-toolbar-my-btn-layout" icon @click="closeButton" style="text-indent: 0;">
-                                        <v-icon style="color: ${myMdwHelper.getValueFromData(data.fullscreenCloseIconColor, '#ffffff')};">mdi-${myMdwHelper.getValueFromData(data.fullscreenCloseIcon, 'close')}</v-icon>
+                                        <v-icon class="dialog-fullscreen-close-icon">mdi-${myMdwHelper.getValueFromData(data.fullscreenCloseIcon, 'close')}</v-icon>
                                     </v-btn>
                                 </v-toolbar>
 
@@ -147,7 +147,6 @@ vis.binds.materialdesign.dialog = {
                                 button.context.style.setProperty("--materialdesign-font-button", myMdwHelper.getValueFromData(data.textFontFamily, ''));
                                 button.context.style.setProperty("--materialdesign-font-size-button", myMdwHelper.getStringFromNumberData(data.textFontSize, 'inherit', '', 'px'));
 
-                                console.warn($this.find('.materialdesign-icon-image'));
                                 $this.find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.imageColor, '#44739e'));
 
                                 if (data.buttonStyle === 'icon') {
@@ -214,7 +213,8 @@ vis.binds.materialdesign.dialog = {
 
                                         if (fullscreen) {
                                             $dialog.get(0).style.setProperty("--vue-toolbar-background-color", myMdwHelper.getValueFromData(data.headerBackgroundColor, '#44739e'));
-                                            $dialog.get(0).style.setProperty("--vue-ripple-effect-color", myMdwHelper.getValueFromData(data.pressColor, '#ffffff'));
+                                            $dialog.get(0).style.setProperty("--vue-ripple-effect-color", myMdwHelper.getValueFromData(data.fullscreenCloseIconPressColor, '#ffffff'));                                            
+                                            $dialog.get(0).style.setProperty("--vue-dialog-fullscreen-color-icon", myMdwHelper.getValueFromData(data.fullscreenCloseIconColor, '#ffffff'));
                                         } else {
                                             $dialog.get(0).style.setProperty("--vue-toolbar-background-color", myMdwHelper.getValueFromData(data.headerBackgroundColor, 'initial'));
                                             $dialog.get(0).style.setProperty("--vue-ripple-effect-color", myMdwHelper.getValueFromData(data.pressColor, ''));
@@ -296,7 +296,7 @@ vis.binds.materialdesign.dialog = {
 
                                 if (fullscreen) {
                                     $dialog.get(0).style.setProperty("--vue-toolbar-background-color", myMdwHelper.getValueFromData(data.headerBackgroundColor, '#44739e'));
-                                    $dialog.get(0).style.setProperty("--vue-ripple-effect-color", myMdwHelper.getValueFromData(data.pressColor, '#ffffff'));
+                                    $dialog.get(0).style.setProperty("--vue-ripple-effect-color", myMdwHelper.getValueFromData(data.fullscreenCloseIconPressColor, '#ffffff'));
                                 } else {
                                     $dialog.get(0).style.setProperty("--vue-toolbar-background-color", myMdwHelper.getValueFromData(data.headerBackgroundColor, 'initial'));
                                     $dialog.get(0).style.setProperty("--vue-ripple-effect-color", myMdwHelper.getValueFromData(data.pressColor, ''));

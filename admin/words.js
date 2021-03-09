@@ -9678,7 +9678,7 @@ systemDictionary = {
         "zh-cn": "全屏关闭图标"
     },
     "fullscreenCloseIconColor": {
-        "en": "color of fullscreen close icon ",
+        "en": "color of fullscreen close icon",
         "de": "Farbe des Vollbildsymbols zum Schließen",
         "ru": "цвет полноэкранного значка закрытия",
         "pt": "cor do ícone fechar tela cheia",
@@ -9688,6 +9688,18 @@ systemDictionary = {
         "es": "color del icono de cierre de pantalla completa",
         "pl": "kolor ikony zamykania na pełnym ekranie",
         "zh-cn": "全屏关闭图标的颜色"
+    },
+    "fullscreenCloseIconPressColor": {
+        "en": "Color pressed of the fullscreen close button",
+        "de": "Farbe gedrückt des Vollbildsymbols zum Schließen",
+        "ru": "Цвет нажатой кнопки закрытия полноэкранного режима",
+        "pt": "Cor pressionada do botão Fechar de tela inteira",
+        "nl": "Kleur ingedrukt van de sluitknop op volledig scherm",
+        "fr": "Couleur enfoncée du bouton de fermeture plein écran",
+        "it": "Colore premuto del pulsante di chiusura a schermo intero",
+        "es": "Color presionado del botón de cierre de pantalla completa",
+        "pl": "Naciśnięto kolor przycisku zamykania pełnego ekranu",
+        "zh-cn": "全屏关闭按钮的按下颜色"
     },
     "pressColor": {
         "en": "press color",

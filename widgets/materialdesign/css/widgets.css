@@ -327,7 +327,9 @@
 
   --value-color-append: #44739e;
   --value-font-append: inherit;
-  --value-font-size-append: 14px;  
+  --value-font-size-append: 14px;
+  
+  --vue-dialog-fullscreen-color-icon: #fff;
 }
 
 /* remove clock symbol on chrome */
@@ -4901,6 +4903,10 @@ svg.materialdesign-widget .materialdesign-button__icon {
   position: absolute;
   top: 0;
   transform: translate(100%, 0);
+}
+
+.v-dialog__content .dialog-fullscreen-close-icon {
+  color: var(--vue-dialog-fullscreen-color-icon) !important;
 }
 
 .dialog-transition-enter, .dialog-transition-leave-to {
