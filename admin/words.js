@@ -11441,5 +11441,17 @@ systemDictionary = {
         "es": "posición",
         "pl": "pozycja",
         "zh-cn": "位置"
+    },
+    "invertValue": {
+        "en": "invert value",
+        "de": "Wert invertieren",
+        "ru": "инвертировать значение",
+        "pt": "inverter valor",
+        "nl": "waarde omkeren",
+        "fr": "valeur inversée",
+        "it": "valore invertito",
+        "es": "invertir valor",
+        "pl": "odwróć wartość",
+        "zh-cn": "反转价值"
     }
 };

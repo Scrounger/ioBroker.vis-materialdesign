@@ -244,6 +244,8 @@ vis.binds.materialdesign.progress = {
                 $this.get(0).style.setProperty(colorProperty, color);
             }
 
+
+
             if (myMdwHelper.getValueFromData(data.valueLabelStyle, "progressPercent") === 'progressPercent') {
                 $this.find(labelClass).html(`${myMdwHelper.formatNumber(valPercent, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))} %`);
             } else if (myMdwHelper.getValueFromData(data.valueLabelStyle, "progressPercent") === 'progressValue') {
@@ -253,7 +255,11 @@ vis.binds.materialdesign.progress = {
             }
 
             if (!myMdwHelper.getBooleanFromData(data.progressIndeterminate, false)) {
-                return valPercent;
+                if (myMdwHelper.getBooleanFromData(data.invertValue, false)) {
+                    return simRange - valPercent;
+                } else {
+                    return valPercent;
+                }
             } else {
                 return 0;
             }
