@@ -11453,5 +11453,41 @@ systemDictionary = {
         "es": "invertir valor",
         "pl": "odwróć wartość",
         "zh-cn": "反转价值"
+    },
+    "progressRotate": {
+        "en": "rotate 90 degress",
+        "de": "90 Grad drehen",
+        "ru": "повернуть на 90 градусов",
+        "pt": "girar 90 graus",
+        "nl": "draai 90 graden",
+        "fr": "faire pivoter de 90 degrés",
+        "it": "ruotare di 90 gradi",
+        "es": "rotar 90 grados",
+        "pl": "obróć o 90 stopni",
+        "zh-cn": "旋转90度"
+    },
+    "noRotate": {
+        "en": "no",
+        "de": "Nein",
+        "ru": "нет",
+        "pt": "não",
+        "nl": "Nee",
+        "fr": "non",
+        "it": "no",
+        "es": "No",
+        "pl": "Nie",
+        "zh-cn": "不"
+    },
+    "yesRotate": {
+        "en": "yes",
+        "de": "Ja",
+        "ru": "да",
+        "pt": "sim",
+        "nl": "Ja",
+        "fr": "Oui",
+        "it": "sì",
+        "es": "sí",
+        "pl": "tak",
+        "zh-cn": "是的"
     }
 };

@@ -64,7 +64,7 @@ vis.binds.materialdesign.progress = {
                                     dataObj.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label');
                                 }
 
-                                if (data.progressRotate === 'no') {
+                                if (data.progressRotate === 'noRotate') {
                                     dataObj.height = window.getComputedStyle($this.get(0), null).height.replace('px', '');
                                 } else {
                                     dataObj.height = window.getComputedStyle($this.get(0), null).width.replace('px', '');
@@ -101,10 +101,16 @@ vis.binds.materialdesign.progress = {
                             $this.get(0).style.setProperty("--vue-progress-progress-color-text-font-family", myMdwHelper.getValueFromData(data.textFontFamily, 'inherit'));
                             $this.get(0).style.setProperty("--vue-progress-progress-color-text-align", myMdwHelper.getValueFromData(data.textAlign, 'end'));
 
+                            $this.get(0).style.setProperty("--vue-progress-progress-striped-angle", myMdwHelper.getNumberFromData(data.stripAngle, 135) + 'deg');
+
+                            $this.get(0).style.setProperty("--vue-progress-progress-striped-width1", myMdwHelper.getNumberFromData(data.stipWidth1, 25) + '%');
+                            $this.get(0).style.setProperty("--vue-progress-progress-striped-width2", myMdwHelper.getNumberFromData(data.stipWidth2, 50) + '%');
+                            $this.get(0).style.setProperty("--vue-progress-progress-striped-width3", myMdwHelper.getNumberFromData(data.stipWidth3, 75) + '%');
+
                             let val = myMdwHelper.getNumberFromData(vis.states.attr(data.oid + '.val'), 0);
                             vueProgress.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label');
 
-                            if (data.progressRotate !== 'no') {
+                            if (data.progressRotate !== 'noRotate') {
                                 $this.find(`.${containerClass}`).css('transform', 'rotate(90deg)');
                                 $this.find('.v-progress-linear').css('width', window.getComputedStyle($this.get(0), null).height.replace('px', ''));
                             }
