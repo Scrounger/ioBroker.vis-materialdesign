@@ -205,11 +205,21 @@ vis.binds.materialdesign.chart.json = function (el, data) {
                                                         clamp: true,
                                                         rotation: myMdwHelper.getNumberFromData(graph.datalabel_rotation, undefined),
                                                         formatter: function (value, context) {
-                                                            if (myMdwHelper.getValueFromData(graph.datalabel_override, undefined)) {
-                                                                if (graph.datalabel_override[context.dataIndex]) {
-                                                                    return graph.datalabel_override[context.dataIndex].split('\\n');
+                                                            try {
+                                                                if (myMdwHelper.getValueFromData(graph.datalabel_override, undefined)) {
+                                                                    // Datalabel override
+                                                                    if (Array.isArray(graph.datalabel_override)) {
+                                                                        // Datalabel override is array -> override every single datalabel, undefined -> use default rules for datalabel
+                                                                        if (graph.datalabel_override[context.dataIndex]) {
+                                                                            
+                                                                            return graph.datalabel_override[context.dataIndex].split('\\n');
+                                                                        }
+                                                                    } else {
+                                                                        // Datalabel ovveride is string -> override all datalabels
+                                                                        return graph.datalabel_override.split('\\n');
+                                                                    }
                                                                 }
-                                                            } else {
+
                                                                 if (!isTimeAxis) {
                                                                     if ((value || value === 0) && context.dataIndex % myMdwHelper.getNumberFromData(graph.datalabel_steps, 1) === 0) {
                                                                         return `${myMdwHelper.formatNumber(value, graph.datalabel_minDigits, graph.datalabel_maxDigits)}${myMdwHelper.getValueFromData(graph.datalabel_append, '')}`
@@ -221,8 +231,11 @@ vis.binds.materialdesign.chart.json = function (el, data) {
                                                                             .split('\\n');
                                                                     }
                                                                 }
+
+                                                                return null;
+                                                            } catch (ex) {
+                                                                console.error(`[${widgetName} - ${data.wid}] [datalabels format] error: ${ex.message}, stack: ${ex.stack}`);
                                                             }
-                                                            return null;
                                                         },
                                                         font: {
                                                             family: myMdwHelper.getValueFromData(graph.datalabel_fontFamily, undefined),
@@ -406,69 +419,81 @@ vis.binds.materialdesign.chart.json = function (el, data) {
                                         bodyFontColor: myMdwHelper.getValueFromData(data.tooltipBodyFontColor, 'white'),
                                         bodyFontFamily: myMdwHelper.getValueFromData(data.tooltipBodyFontFamily, undefined),
                                         bodyFontSize: myMdwHelper.getNumberFromData(data.tooltipBodyFontSize, undefined),
-                                        bodyAlign : myMdwHelper.getValueFromData(data.tooltipBodyAlignment, 'left'),
+                                        bodyAlign: myMdwHelper.getValueFromData(data.tooltipBodyAlignment, 'left'),
                                         callbacks: {
                                             title: function (tooltipItem, chart) {
-                                                let index = tooltipItem[0].index;
+                                                try {
+                                                    let index = tooltipItem[0].index;
 
-                                                if (jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title) {
-                                                    if (Array.isArray(jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title)) {
-                                                        if (jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title[index]) {
-                                                            return jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title[index].split('\\n');
+                                                    if (jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title) {
+                                                        if (Array.isArray(jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title)) {
+                                                            if (jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title[index]) {
+                                                                return jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title[index].split('\\n');
+                                                            }
+                                                        } else {
+                                                            return jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title.split('\\n');
                                                         }
+                                                    }
+
+                                                    let datasetIndex = tooltipItem[0].datasetIndex;
+                                                    let metaIndex = Object.keys(chart.datasets[datasetIndex]._meta)[0];
+
+                                                    if (chart.datasets[datasetIndex]._meta[metaIndex].controller.chart.scales[datasetIndex]._unit) {
+                                                        let currentUnit = chart.datasets[datasetIndex]._meta[metaIndex].controller.chart.scales[datasetIndex]._unit;
+                                                        let timestamp = moment(chart.datasets[datasetIndex].data[index].t);
+
+                                                        let timeFormats = (myMdwHelper.getValueFromData(data.tooltipTimeFormats, null) !== null) ? JSON.parse(data.tooltipTimeFormats) : myChartHelper.defaultToolTipTimeFormats();
+
+                                                        if (data.tooltipLabelUseTodayYesterday) {
+                                                            if (timestamp.isSame(moment(), 'day')) {
+                                                                return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Today')}]`).replace('ddd', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`)).split('\\n');
+                                                            } else if (timestamp.isSame(moment().subtract(1, 'day'), 'day')) {
+                                                                return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Yesterday')}]`).replace('ddd', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`)).split('\\n');
+                                                            }
+                                                        }
+
+                                                        return timestamp.format(timeFormats[currentUnit]);
                                                     } else {
-                                                        return jsonData.graphs[tooltipItem[0].datasetIndex].tooltip_title.split('\\n');
+                                                        return tooltipItem[0].label.split('\\n');
                                                     }
-                                                }
-
-                                                let datasetIndex = tooltipItem[0].datasetIndex;
-                                                let metaIndex = Object.keys(chart.datasets[datasetIndex]._meta)[0];
-
-                                                if (chart.datasets[datasetIndex]._meta[metaIndex].controller.chart.scales[datasetIndex]._unit) {
-                                                    let currentUnit = chart.datasets[datasetIndex]._meta[metaIndex].controller.chart.scales[datasetIndex]._unit;
-                                                    let timestamp = moment(chart.datasets[datasetIndex].data[index].t);
-
-                                                    let timeFormats = (myMdwHelper.getValueFromData(data.tooltipTimeFormats, null) !== null) ? JSON.parse(data.tooltipTimeFormats) : myChartHelper.defaultToolTipTimeFormats();
-
-                                                    if (data.tooltipLabelUseTodayYesterday) {
-                                                        if (timestamp.isSame(moment(), 'day')) {
-                                                            return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Today')}]`).replace('ddd', `[${_('Today')}]`).replace('dd', `[${_('Today')}]`)).split('\\n');
-                                                        } else if (timestamp.isSame(moment().subtract(1, 'day'), 'day')) {
-                                                            return timestamp.format(timeFormats[currentUnit].replace('dddd', `[${_('Yesterday')}]`).replace('ddd', `[${_('Yesterday')}]`).replace('dd', `[${_('Yesterday')}]`)).split('\\n');
-                                                        }
-                                                    }
-
-                                                    return timestamp.format(timeFormats[currentUnit]);
-                                                } else {
-                                                    return tooltipItem[0].label.split('\\n');
+                                                } catch (ex) {
+                                                    console.error(`[${widgetName} - ${data.wid}] [tooltip title] error: ${ex.message}, stack: ${ex.stack}`);
                                                 }
                                             },
                                             label: function (tooltipItem, chart) {
-                                                if (jsonData.graphs[tooltipItem.datasetIndex].tooltip_text) {
-                                                    if (Array.isArray(jsonData.graphs[tooltipItem.datasetIndex].tooltip_text)) {
-                                                        if (jsonData.graphs[tooltipItem.datasetIndex].tooltip_text[tooltipItem.index]) {
-                                                            return jsonData.graphs[tooltipItem.datasetIndex].tooltip_text[tooltipItem.index].split('\\n');
-                                                        } else {
-                                                            if (tooltipItem && tooltipItem.value) {
-                                                                return chart.datasets[tooltipItem.datasetIndex].label;
+                                                try {
+                                                    if (jsonData.graphs[tooltipItem.datasetIndex].tooltip_text) {
+                                                        if (Array.isArray(jsonData.graphs[tooltipItem.datasetIndex].tooltip_text)) {
+                                                            if (jsonData.graphs[tooltipItem.datasetIndex].tooltip_text[tooltipItem.index]) {
+                                                                return jsonData.graphs[tooltipItem.datasetIndex].tooltip_text[tooltipItem.index].split('\\n');
+                                                            } else {
+                                                                if (tooltipItem && tooltipItem.value) {
+                                                                    return chart.datasets[tooltipItem.datasetIndex].label;
+                                                                }
                                                             }
+                                                        } else {
+                                                            return jsonData.graphs[tooltipItem.datasetIndex].tooltip_text.split('\\n');
                                                         }
-                                                    } else {
-                                                        return jsonData.graphs[tooltipItem.datasetIndex].tooltip_text.split('\\n');
+                                                    } else if (tooltipItem && tooltipItem.value) {
+                                                        return `${chart.datasets[tooltipItem.datasetIndex].label}: ${myMdwHelper.formatNumber(tooltipItem.value, jsonData.graphs[tooltipItem.datasetIndex].tooltip_MinDigits, jsonData.graphs[tooltipItem.datasetIndex].tooltip_MaxDigits)}${myMdwHelper.getValueFromData(jsonData.graphs[tooltipItem.datasetIndex].tooltip_AppendText, '')}`
+                                                            .split('\\n');
                                                     }
-                                                } else if (tooltipItem && tooltipItem.value) {
-                                                    return `${chart.datasets[tooltipItem.datasetIndex].label}: ${myMdwHelper.formatNumber(tooltipItem.value, jsonData.graphs[tooltipItem.datasetIndex].tooltip_MinDigits, jsonData.graphs[tooltipItem.datasetIndex].tooltip_MaxDigits)}${myMdwHelper.getValueFromData(jsonData.graphs[tooltipItem.datasetIndex].tooltip_AppendText, '')}`
-                                                        .split('\\n');
+                                                    return '';
+                                                } catch (ex) {
+                                                    console.error(`[${widgetName} - ${data.wid}] [tooltip label] error: ${ex.message}, stack: ${ex.stack}`);
                                                 }
-                                                return '';
                                             },
                                             labelColor: function (tooltipItem, chart) {
-                                                let dataSetColor = chart.config.data.datasets[tooltipItem.datasetIndex].borderColor;
+                                                try {
+                                                    let dataSetColor = chart.config.data.datasets[tooltipItem.datasetIndex].borderColor;
 
-                                                return {
-                                                    borderColor: dataSetColor,
-                                                    backgroundColor: dataSetColor
-                                                };
+                                                    return {
+                                                        borderColor: dataSetColor,
+                                                        backgroundColor: dataSetColor
+                                                    };
+                                                } catch (ex) {
+                                                    console.error(`[${widgetName} - ${data.wid}] [labelColor] error: ${ex.message}, stack: ${ex.stack}`);
+                                                }
                                             }
                                         }
                                     },
