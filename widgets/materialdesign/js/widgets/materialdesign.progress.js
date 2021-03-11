@@ -283,16 +283,22 @@ vis.binds.materialdesign.progress = {
                 oid: obj.oid,
                 min: obj.min,
                 max: obj.max,
-                progressIndeterminate: obj.progressIndeterminate,
                 reverse: obj.reverse,
-                generateHtmlControl: obj.generateHtmlControl,
+                invertValue: obj.invertValue,
                 debug: obj.debug,
 
                 // layout
                 progressRounded: obj.progressRounded,
+                progressIndeterminate: obj.progressIndeterminate,
+                progressRotate: obj.progressRotate,
+
+                // group_layoutStriped
                 progressStriped: obj.progressStriped,
                 progressStripedColor: obj.progressStripedColor,
-                progressRotate: obj.progressRotate,
+                stripAngle: obj.stripAngle,
+                stipWidth1: obj.stipWidth1,
+                stipWidth2: obj.stipWidth2,
+                stipWidth3: obj.stipWidth3,
 
                 // colors
                 colorProgressBackground: obj.colorProgressBackground,
@@ -311,7 +317,7 @@ vis.binds.materialdesign.progress = {
                 textColor: obj.textColor,
                 textFontSize: obj.textFontSize,
                 textFontFamily: obj.textFontFamily,
-                textAlign: obj.textAlign
+                textAlign: obj.textAlign,
             }
         } else {
             return {
