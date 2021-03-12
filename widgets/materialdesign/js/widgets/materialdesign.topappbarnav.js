@@ -552,5 +552,5 @@ vis.binds.materialdesign.topappbarnav = {
         } catch (ex) {
             console.error(`[${widgetName} - ${data.wid}] handle: error: ${ex.message}, stack: ${ex.stack}`);
         }
-    }
+    }    
 };

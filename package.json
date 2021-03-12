@@ -22,7 +22,7 @@
     "@alcalzone/release-script": "^1.8.3",
     "@iobroker/testing": "^2.3.0",
     "@mdi/font": "^5.9.55",
-    "@sentry/node": "^5.23.0",
+    "@sentry/browser": "^6.2.2",
     "@simonwep/pickr": "^1.7.4",
     "@thomasloven/round-slider": "^0.5.2",
     "@types/gulp": "^4.0.6",
