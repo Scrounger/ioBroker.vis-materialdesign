@@ -367,13 +367,13 @@ vis.binds.materialdesign.topappbarnav = {
                         $mdcTopAppBar.get(0).style.setProperty("--materialdesign-font-size-top-app-bar-title", myMdwHelper.getNumberFromData(data.titleFontSize, 20) + 'px');
                         $mdcTopAppBar.get(0).style.setProperty("--materialdesign-color-top-app-bar-title", myMdwHelper.getValueFromData(data.colorTopAppBarTitle, ''));
 
+                        let item = 0;
+                        $this.find(`.mdc-list-item`).not(".mdc-list-item.isSubItem ").each(function () {
+                            $(this).find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.attr('iconDrawerColor' + item), '#44739e'));
+                            $(this).find('.toggleIcon').css('color', myMdwHelper.getValueFromData(data.colorSubItemToggleIcon, '#44739e'));
 
-                        for (var i = 0; i <= data.navItemCount; i++) {
-                            let $item = $this.find(`.mdc-list-item[id='listItem_${i}']`);
-
-                            $item.find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.attr('iconDrawerColor' + i), '#44739e'));
-                            $item.find('.toggleIcon').css('color', myMdwHelper.getValueFromData(data.colorSubItemToggleIcon, '#44739e'));
-                        }
+                            item++;
+                        });
                     }
 
                     const drawer = new mdc.drawer.MDCDrawer(mdcDrawer);
@@ -552,5 +552,5 @@ vis.binds.materialdesign.topappbarnav = {
         } catch (ex) {
             console.error(`[${widgetName} - ${data.wid}] handle: error: ${ex.message}, stack: ${ex.stack}`);
         }
-    }    
+    }
 };
