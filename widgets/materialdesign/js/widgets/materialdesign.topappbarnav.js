@@ -484,7 +484,7 @@ vis.binds.materialdesign.topappbarnav = {
                                 if (val != selctedIndex) {
                                     myMdwHelper.setValue(data.oid, selctedIndex);
 
-                                    setTopAppBarWithDrawerLayout(selctedIndex);
+                                    // setTopAppBarWithDrawerLayout(selctedIndex);
 
                                     setTimeout(function () {
                                         window.scrollTo({ top: 0, left: 0, });
@@ -557,7 +557,7 @@ vis.binds.materialdesign.topappbarnav = {
                             } else {
                                 navList.selectedIndex = parseInt(item.eq(0).attr('index'));
                                 toggleSubItemByIndex(val);
-                                setTopAppBarWithDrawerLayout(val);
+                                // setTopAppBarWithDrawerLayout(val);
                             }
                         }
                     }
