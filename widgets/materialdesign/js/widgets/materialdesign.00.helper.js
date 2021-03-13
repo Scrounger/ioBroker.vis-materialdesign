@@ -624,10 +624,10 @@ vis.binds.materialdesign.helper = {
                         }
                     }
 
-                    if (key === 'oid' || key.includes('_oid') || key.includes('Oid') || key === 'manualRefreshTrigger') {
-                        // Fallback subscribtion for oids that are Bindings and are nested 
-                        oidsNeedSubscribe = needsSubscribe(value, oidsNeedSubscribe);
-                    }
+                    // if (key === 'oid' || key.includes('_oid') || key.includes('Oid') || key === 'manualRefreshTrigger') {
+                    //     // Fallback subscribtion for oids that are Bindings and are nested 
+                    //     oidsNeedSubscribe = needsSubscribe(value, oidsNeedSubscribe);
+                    // }
                 }
             }
         }
@@ -659,7 +659,7 @@ vis.binds.materialdesign.helper = {
             return oidsNeedSubscribe;
         }
     },
-    subscribeStatesAtRuntime(wid, widgetName, callback, debug = false, force = false) {
+    subscribeStatesAtRuntime(wid, widgetName, callback, debug = false) {
         // modified from vis.js -> https://github.com/ioBroker/ioBroker.vis/blob/2a08ee6da626a65b9d0b42b8679563e74272bfc6/www/js/vis.js#L2710
 
         if (debug) console.log(`[subscribeStatesAtRuntime] ${widgetName} (${wid}) subscribe states at runtime`);
@@ -682,7 +682,7 @@ vis.binds.materialdesign.helper = {
         for (var i = 0; i < vis.subscribing.byViews[view].length; i++) {
             let oid = vis.subscribing.byViews[view][i];
 
-            if (vis.subscribing.active.indexOf(oid) === -1 || !vis.states.attr(oid + '.val') || vis.states.attr(oid + '.val') === null || force) {
+            if (vis.subscribing.active.indexOf(oid) === -1) {
                 vis.subscribing.active.push(oid);
 
                 oids.push(oid);
@@ -811,7 +811,7 @@ vis.binds.materialdesign.helper = {
                 myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
                     if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] oid subscribed -> fire callback()`);
                     callBack(widgetData);
-                }, widgetData.debug, true);
+                }, widgetData.debug);
             } else {
                 if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] nothing to subscribed -> fire callback()`);
                 callBack(widgetData);
