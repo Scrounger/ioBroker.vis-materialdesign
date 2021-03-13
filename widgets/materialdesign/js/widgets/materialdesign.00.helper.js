@@ -623,6 +623,11 @@ vis.binds.materialdesign.helper = {
                             }
                         }
                     }
+
+                    if (key === 'oid' || key.includes('_oid') || key.includes('Oid') || key === 'manualRefreshTrigger') {
+                        // Fallback subscribtion for oids that are Bindings and are nested 
+                        oidsNeedSubscribe = needsSubscribe(value, oidsNeedSubscribe);
+                    }
                 }
             }
         }
