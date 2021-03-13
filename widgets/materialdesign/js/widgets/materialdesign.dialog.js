@@ -130,7 +130,6 @@ vis.binds.materialdesign.dialog = {
                                 },
                                 methods: {
                                     closeButton(value) {
-                                        console.warn(value);
                                         vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                                         this.showDialog = false;
                                     }
