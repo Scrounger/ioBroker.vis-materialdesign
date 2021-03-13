@@ -164,6 +164,7 @@ vis.binds.materialdesign.topappbarnav = {
                     // generate SubItems
                     if (hasSubItems) {
                         navItemList.push(`<nav class="mdc-list mdc-sub-list">`);
+                        let parentIndex = itemIndex;
 
                         for (var d = 0; d <= subItemsCount - 1; d++) {
                             let subObj = subMenuObjects[d];
@@ -201,7 +202,7 @@ vis.binds.materialdesign.topappbarnav = {
                             }
 
                             // generate SubItem -> mdc-list-item
-                            let listSubItem = myMdwHelper.getListItem(data.drawerSubItemLayout, itemIndex, subItemImage, false, true, drawerSubItemIconHeight, '', '', '', itemIsDisabled || subItemIsDisabled, selectIndex);
+                            let listSubItem = myMdwHelper.getListItem(data.drawerSubItemLayout, itemIndex, subItemImage, false, true, drawerSubItemIconHeight, '', '', '', itemIsDisabled || subItemIsDisabled, selectIndex, parentIndex);
 
                             // generate Item Image for Layout Standard
                             let listSubItemImage = ''
@@ -451,10 +452,11 @@ vis.binds.materialdesign.topappbarnav = {
                     });
 
 
-                    $mdcList.find('.mdc-list-item').click(function () {
-                        let selctedIndex = parseInt($(this).eq(0).attr('id').replace('listItem_', ''));
+                    $mdcList.find('.mdc-list-item').on('click', function () {
+                        let $selectedItem = $(this).eq(0);
+                        let selctedIndex = parseInt($selectedItem.attr('id').replace('listItem_', ''));
 
-                        let itemIsDisabled = $(this).eq(0).hasClass('mdc-list-item--disabled');
+                        let itemIsDisabled = $selectedItem.hasClass('mdc-list-item--disabled');
 
                         vis.binds.materialdesign.helper.vibrate(data.vibrateDrawerOnMobilDevices);
 
@@ -500,6 +502,18 @@ vis.binds.materialdesign.topappbarnav = {
                         if (data.showSelectedItemAsTitle) {
                             let selectedName = $mdcList.find(`span[id="listItem_${index}"]`).text();
                             $topAppBarTitle.text(selectedName)
+
+                            if (data.selectedItemName_oid) {
+                                let $selectedItem = $mdcList.find(`div[id="listItem_${index}"]`);
+                                let parentIndex = $selectedItem.attr('parentIndex');
+
+                                if (parentIndex) {
+                                    let parentName = $mdcList.find(`span[id="listItem_${parentIndex}"]`).text();
+                                    myMdwHelper.setValue(data.selectedItemName_oid, `${parentName.replace(`[${parentIndex}] `, '').trim()}.${selectedName.replace(`[${index}] `, '').trim()}`);
+                                } else {
+                                    myMdwHelper.setValue(data.selectedItemName_oid, selectedName.replace(`[${index}] `, '').trim());
+                                }
+                            }
                         }
                     }
 
