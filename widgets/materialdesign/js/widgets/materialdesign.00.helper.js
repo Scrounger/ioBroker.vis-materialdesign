@@ -545,16 +545,42 @@ vis.binds.materialdesign.helper = {
 
         if (oid !== undefined) {
             // Check if Oid is subscribed and put to vis subscribing object
-            if (!vis.editMode && (!vis.subscribing.byViews[view].includes(oid) || force)) {
-                vis.subscribing.byViews[view].push(oid)
+            if (!vis.editMode) {
+                // if (force) {
+                //     vis.subscribing.byViews[view].push(oid);
 
-                if (!isBinding) {
-                    if (debug) console.log(`[oidNeedSubscribe] ${widgetName} (${wid}): oid '${oid}' need subscribe`);
-                } else {
-                    if (debug) console.log(`[oidNeedSubscribe] ${widgetName} (${wid}): binding '${oid}' need subscribe`);
+                //     if (!isBinding) {
+                //         if (debug) console.log(`[oidNeedSubscribe] ${widgetName} (${wid}): oid '${oid}' need subscribe (force: true)`);
+                //     } else {
+                //         if (debug) console.log(`[oidNeedSubscribe] ${widgetName} (${wid}): binding '${oid}' need subscribe (force: true)`);
+                //     }
+
+                //     return true;
+                // }
+
+                if (!vis.subscribing.byViews[view].includes(oid)) {
+                    vis.subscribing.byViews[view].push(oid);
+
+                    if (!isBinding) {
+                        if (debug) console.log(`[oidNeedSubscribe] ${widgetName} (${wid}): oid '${oid}' need subscribe (view)`);
+                    } else {
+                        if (debug) console.log(`[oidNeedSubscribe] ${widgetName} (${wid}): binding '${oid}' need subscribe ${force ? '(force: true)' : ''}`);
+                    }
+
+                    return true;
                 }
 
-                return true;
+                if (!vis.subscribing.IDs.includes(oid)) {
+                    vis.subscribing.byViews[view].push(oid);
+
+                    if (!isBinding) {
+                        if (debug) console.log(`[oidNeedSubscribe] ${widgetName} (${wid}): oid '${oid}' need subscribe (ID)`);
+                    } else {
+                        if (debug) console.log(`[oidNeedSubscribe] ${widgetName} (${wid}): binding '${oid}' need subscribe (ID)`);
+                    }
+
+                    return true;
+                }
             }
         }
 
@@ -650,8 +676,11 @@ vis.binds.materialdesign.helper = {
 
         function needsSubscribe(id, oidsNeedSubscribe) {
             if (id.includes('vis-materialdesign.0.colors.')) {
-                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.light.'), data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
-                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.dark.'), data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+                let idLight = id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.light.');
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(idLight, data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+
+                let idDark = id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.dark.');
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(idDark, data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
             } else {
                 oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id, data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
             }
@@ -679,27 +708,41 @@ vis.binds.materialdesign.helper = {
 
         // subscribe
         var oids = [];
+        let oidIds = [];
         for (var i = 0; i < vis.subscribing.byViews[view].length; i++) {
             let oid = vis.subscribing.byViews[view][i];
 
-            if (vis.subscribing.active.indexOf(oid) === -1) {
+            if (!vis.subscribing.IDs.includes(oid)) {
+                vis.subscribing.active.push(oid);
+
+                oids.push(oid);
+                oidIds.push(oid);
+
+                if (debug) console.log(`[subscribeStatesAtRuntime] ${widgetName} (${wid}): '${oid}' subscribed (ID)`);
+
+                continue;
+            }
+
+            if (!vis.subscribing.active.includes(oid)) {
                 vis.subscribing.active.push(oid);
 
                 oids.push(oid);
 
-                if (debug) console.log(`[subscribeStatesAtRuntime] ${widgetName} (${wid}): '${oid}' subscribed`);
+                if (debug) console.log(`[subscribeStatesAtRuntime] ${widgetName} (${wid}): '${oid}' subscribed (View)`);
             }
         }
 
-        if (oids.length) {
+        if (oids.length > 0) {
             var that = vis;
-            console.debug(`[subscribeStatesAtRuntime] ${widgetName} (${wid}): Request ${oids.length} states.`);
+            if (debug) console.log(`[subscribeStatesAtRuntime] ${widgetName} (${wid}): Request ${oids.length} states.`);
             vis.conn._socket.emit('getStates', oids, function (error, data) {
                 if (error) that.showError(error);
 
                 that.updateStates(data);
-                that.conn.subscribe(oids);
-                if (callback) callback();
+                that.conn.subscribe(oids, function () {
+                    that.subscribing.IDs.push(...oidIds);
+                    if (callback) callback();
+                });
             });
         } else {
             if (callback) callback();
@@ -801,15 +844,18 @@ vis.binds.materialdesign.helper = {
         if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] widgetData: ${JSON.stringify(widgetData)} `);
 
         if (widgetData.oid) {
-            let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, widgetData.debug, true);
+
+            // TODO: 'true' gegen !vis.subscribing.IDs.includes(id) tauschen, sobald Problem mit callback gelöst
+            let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, widgetData.debug, !vis.subscribing.IDs.includes(widgetData.oid));
 
             if (widgetData["oid-working"]) {
-                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData["oid-working"], parentId, widgetName, false, false, widgetData.debug, true);
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData["oid-working"], parentId, widgetName, false, false, widgetData.debug, !vis.subscribing.IDs.includes(widgetData["oid-working"]));
             }
 
             if (oidsNeedSubscribe) {
                 myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
                     if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] oid subscribed -> fire callback()`);
+
                     callBack(widgetData);
                 }, widgetData.debug);
             } else {
