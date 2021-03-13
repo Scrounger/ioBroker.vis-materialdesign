@@ -211,8 +211,10 @@ vis.binds.materialdesign.chart.json = function (el, data) {
                                                                     if (Array.isArray(graph.datalabel_override)) {
                                                                         // Datalabel override is array -> override every single datalabel, undefined -> use default rules for datalabel
                                                                         if (graph.datalabel_override[context.dataIndex]) {
-                                                                            
                                                                             return graph.datalabel_override[context.dataIndex].split('\\n');
+                                                                        } else if (graph.datalabel_override[context.dataIndex] === '') {
+                                                                            // empty string set by user -> remove datalabel
+                                                                            return null;
                                                                         }
                                                                     } else {
                                                                         // Datalabel ovveride is string -> override all datalabels
