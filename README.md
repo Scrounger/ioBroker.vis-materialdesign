@@ -9099,7 +9099,8 @@ Settings that are not listed in the table below are self-explanatory.
         </tr>
         <tr>
             <td>controlling time interval using object</td>
-            <td>Id of a datapoint to change the time interval of the chart.<br><br>If the datapoint is from type 'string' it must contain <a href="https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/235530e4e54346b5527333ca06ce596519954c67/widgets/materialdesign/js/materialdesign.chart.js#L802">one of the linked values</a><br>If the datapoint is from type 'number', it must contain the starting timestamp of the graph.<br><br>For example, you can use a button here to change the display of the chart during runtime</td>
+            <td>Id of a datapoint to change the time interval of the chart. By default, the end date of the interval is the current time (Date.now()) <br><br>If the datapoint is from type 'string' it must contain <a href="https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/235530e4e54346b5527333ca06ce596519954c67/widgets/materialdesign/js/materialdesign.chart.js#L802">one of the linked values</a>  or format string like  <b>startTimeStamp;endTimeStamp</b>  where <b>startTimeStamp</b> and <b>endTimeStamp</b> are  the  start and end timestamps of the interval.  This can be used to implement zooming and scrolling of the displayed data.<br><br>
+If the datapoint is from type 'number', it must contain the starting timestamp of the graph.<br><br>For example, you can use a button here to change the display of the chart during runtime</td>
         </tr>
         <tr>
             <td>boolean object for update</td>
