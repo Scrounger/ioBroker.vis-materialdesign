@@ -608,17 +608,19 @@ vis.binds.materialdesign.helper = {
         let oidsNeedSubscribe = false;
 
         for (const [key, value] of Object.entries(data)) {
-            if (value.toString().startsWith('#mdwTheme:')) {
-                let id = value.replace('#mdwTheme:', '');
-                oidsNeedSubscribe = needsSubscribe(id, oidsNeedSubscribe);
-            } else {
-                if (value.toString().includes('#mdwTheme:')) {
-                    let extractIds = value.match(/#mdwTheme:*[^*?"'`´,;:<>#/{}ß\[\]\s]*/g);
+            if (value) {
+                if (value.toString().startsWith('#mdwTheme:')) {
+                    let id = value.replace('#mdwTheme:', '');
+                    oidsNeedSubscribe = needsSubscribe(id, oidsNeedSubscribe);
+                } else {
+                    if (value.toString().includes('#mdwTheme:')) {
+                        let extractIds = value.match(/#mdwTheme:*[^*?"'`´,;:<>#/{}ß\[\]\s]*/g);
 
-                    if (extractIds && extractIds !== null && extractIds.length > 0) {
-                        for (const str of extractIds) {
-                            let id = str.replace('#mdwTheme:', '');
-                            oidsNeedSubscribe = needsSubscribe(id, oidsNeedSubscribe);
+                        if (extractIds && extractIds !== null && extractIds.length > 0) {
+                            for (const str of extractIds) {
+                                let id = str.replace('#mdwTheme:', '');
+                                oidsNeedSubscribe = needsSubscribe(id, oidsNeedSubscribe);
+                            }
                         }
                     }
                 }
