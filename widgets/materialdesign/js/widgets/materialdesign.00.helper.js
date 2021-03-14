@@ -630,7 +630,7 @@ vis.binds.materialdesign.helper = {
 
         return result;
     },
-    subscribeThemesAtRuntimee(data, widgetName, triggerClass, callback) {
+    subscribeThemesAtRuntimee(data, widgetName, triggerClass, callBack) {
         let oidsNeedSubscribe = false;
 
         for (const [key, value] of Object.entries(data)) {
@@ -668,10 +668,10 @@ vis.binds.materialdesign.helper = {
                 if (data.debug) console.log(`[subscribeThemesAtRuntimee - ${data.wid}] fire event: mdwTheme_subscribe_${eventName}`);
                 $(triggerClass).trigger(`mdwTheme_subscribe_${eventName}`);
 
-                if (callback) callback();
+                callBack();
             }, data.debug);
         } else {
-            if (callback) callback();
+            callBack();
         }
 
         function needsSubscribe(id, oidsNeedSubscribe) {
@@ -855,9 +855,8 @@ vis.binds.materialdesign.helper = {
                 myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
                     if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] oid subscribed -> fire callback()`);
 
-                    
+                    callBack(widgetData);
                 }, widgetData.debug);
-                callBack(widgetData);
             } else {
                 if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] nothing to subscribed -> fire callback()`);
                 callBack(widgetData);
