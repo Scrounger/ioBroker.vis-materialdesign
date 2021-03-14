@@ -658,8 +658,8 @@ vis.binds.materialdesign.helper = {
             }
         }
 
-        oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.lastchange', data.wid, widgetName, oidsNeedSubscribe, false, false);
-        oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.colors.darkTheme', data.wid, widgetName, oidsNeedSubscribe, false, false);
+        oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.lastchange', data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+        oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.colors.darkTheme', data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
 
         if (oidsNeedSubscribe) {
             myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
@@ -845,11 +845,10 @@ vis.binds.materialdesign.helper = {
 
         if (widgetData.oid) {
 
-            // TODO: 'true' gegen !vis.subscribing.IDs.includes(id) tauschen, sobald Problem mit callback gelöst
-            let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, widgetData.debug, !vis.subscribing.IDs.includes(widgetData.oid));
+            let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, widgetData.debug);
 
             if (widgetData["oid-working"]) {
-                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData["oid-working"], parentId, widgetName, false, false, widgetData.debug, !vis.subscribing.IDs.includes(widgetData["oid-working"]));
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData["oid-working"], parentId, widgetName, false, false, widgetData.debug);
             }
 
             if (oidsNeedSubscribe) {
