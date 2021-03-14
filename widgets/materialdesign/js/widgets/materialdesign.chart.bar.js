@@ -16,7 +16,7 @@ vis.binds.materialdesign.chart = {
             myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
                 init();
             });
-
+            
             function init() {
                 setTimeout(function () {
                     var myBarChart;
@@ -40,7 +40,7 @@ vis.binds.materialdesign.chart = {
 
                     $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
                         if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
-                        // $(themeTriggerClass).off(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`);
+                        $(themeTriggerClass).off(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`);
                         setLayout(true);
                     });
 
