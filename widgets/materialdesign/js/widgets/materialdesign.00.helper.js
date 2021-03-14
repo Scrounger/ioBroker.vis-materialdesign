@@ -630,7 +630,7 @@ vis.binds.materialdesign.helper = {
 
         return result;
     },
-    subscribeThemesAtRuntimee(data, widgetName, triggerClass, callBack) {
+    subscribeThemesAtRuntimee(data, widgetName, triggerClass, callback) {
         let oidsNeedSubscribe = false;
 
         for (const [key, value] of Object.entries(data)) {
@@ -668,10 +668,10 @@ vis.binds.materialdesign.helper = {
                 if (data.debug) console.log(`[subscribeThemesAtRuntimee - ${data.wid}] fire event: mdwTheme_subscribe_${eventName}`);
                 $(triggerClass).trigger(`mdwTheme_subscribe_${eventName}`);
 
-                callBack();
+                if (callback) callback();
             }, data.debug);
         } else {
-            callBack();
+            if (callback) callback();
         }
 
         function needsSubscribe(id, oidsNeedSubscribe) {
@@ -824,7 +824,7 @@ vis.binds.materialdesign.helper = {
 
         return parentId;
     },
-    extractHtmlWidgetData(el, widgetData, parentId, widgetName, logPrefix, callBack) {
+    extractHtmlWidgetData(el, widgetData, parentId, widgetName, logPrefix, callback) {
         for (const key of Object.keys(widgetData)) {
             if (key !== 'wid') {
                 if (el.attr(`mdw-${key}`)) {
@@ -855,15 +855,15 @@ vis.binds.materialdesign.helper = {
                 myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
                     if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] oid subscribed -> fire callback()`);
 
-                    callBack(widgetData);
+                    if (callback) callback(widgetData);                    
                 }, widgetData.debug);
             } else {
                 if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] nothing to subscribed -> fire callback()`);
-                callBack(widgetData);
+                if (callback) callback(widgetData);
             }
         } else {
             if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] no oid exist, nothing to subscribed -> fire callback()`);
-            callBack(widgetData);
+            if (callback) callback(widgetData);
         }
     },
     setValue(id, value) {
