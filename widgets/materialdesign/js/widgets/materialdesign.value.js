@@ -24,11 +24,11 @@ vis.binds.materialdesign.value = {
                 let valueLabelWidth = myMdwHelper.getNumberFromData(data.valueLabelWidth, 4)
 
                 $this.html(`
-                    ${data.iconPosition === 'left' ? imageElement : ''}
+                    ${data.iconPosition === 'left' ? `<div class="materialdesign-value-icon">${imageElement}</div>` : ''}
                     <div class="materialdesign-value prepand-text"></div>
                     <div class="materialdesign-value value-text" style="margin: 0 ${valueLabelWidth}px 0 ${valueLabelWidth}px; flex: 1;text-align: ${myMdwHelper.getValueFromData(data.textAlign, 'start')}"></div>
                     <div class="materialdesign-value append-text"></div>
-                    ${data.iconPosition === 'right' ? imageElement : ''}
+                    ${data.iconPosition === 'right' ? `<div class="materialdesign-value-icon">${imageElement}</div>` : ''}
                 `);
 
                 let $prepandText = $this.find('.prepand-text');
@@ -73,7 +73,7 @@ vis.binds.materialdesign.value = {
                     $this.get(0).style.setProperty("--value-font-append", myMdwHelper.getValueFromData(data.appendTextFontFamily, ''));
                     $this.get(0).style.setProperty("--value-font-size-append", myMdwHelper.getStringFromNumberData(data.appendTextFontSize, 14, '', 'px'));
 
-                    $this.find('.materialdesign-icon-image').replaceWith(myMdwHelper.getIconElement(getValueWithCondition(data.image, val), 'auto', myMdwHelper.getValueFromData(data.iconHeight, '24px', '', 'px'), myMdwHelper.getValueFromData(getValueWithCondition(data.imageColor, val), '#44739e')))
+                    $this.find('.materialdesign-value-icon').html(myMdwHelper.getIconElement(getValueWithCondition(data.image, val), 'auto', myMdwHelper.getValueFromData(data.iconHeight, '24px', '', 'px'), myMdwHelper.getValueFromData(getValueWithCondition(data.imageColor, val), '#44739e')))
 
                     setValue(val, oldVal);
                 }
