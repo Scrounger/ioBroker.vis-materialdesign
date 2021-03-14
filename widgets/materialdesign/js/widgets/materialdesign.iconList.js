@@ -13,9 +13,8 @@ vis.binds.materialdesign.iconlist =
         try {
             let $this = $(el);
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function(){
-                init();
-            });
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+            init();
 
             function init() {
 
@@ -36,8 +35,10 @@ vis.binds.materialdesign.iconlist =
 
                 if (oidsNeedSubscribe) {
                     myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
+                        
                         appendContent();
                         eventListener();
+                        setLayout();
                     });
                 } else {
                     // json: hat keine objectIds / bindings bzw. bereits subscribed
@@ -55,11 +56,13 @@ vis.binds.materialdesign.iconlist =
                         myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
                             appendContent(true, scrollTop, scrollLeft);
                             eventListener();
+                            setLayout();
                         });
                     } else {
                         // json: hat keine objectIds / bindings bzw. bereits subscribed
                         appendContent(true, scrollTop, scrollLeft);
                         eventListener();
+                        setLayout();
                     }
                 });
 
@@ -78,7 +81,7 @@ vis.binds.materialdesign.iconlist =
                 });
 
                 setLayout();
-                function setLayout(changed) {
+                function setLayout(changed = false) {
                     $this.context.style.setProperty("--materialdesign-icon-list-background", myMdwHelper.getValueFromData(data.containerBackgroundColor, ''));
 
                     $this.context.style.setProperty("--materialdesign-icon-list-items-per-row", myMdwHelper.getNumberFromData(data.maxItemsperRow, 1));
