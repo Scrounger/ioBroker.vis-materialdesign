@@ -241,9 +241,8 @@ vis.binds.materialdesign.topappbarnav = {
         try {
             let $this = $(el);
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
-                init();
-            });
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+            init();
 
             function init() {
                 let widget = $this.get(0);

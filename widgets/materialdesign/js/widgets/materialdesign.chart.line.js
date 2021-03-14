@@ -15,9 +15,8 @@ vis.binds.materialdesign.chart.lineHistory = function (el, data) {
 
         let $this = $(el);
 
-        myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
-            init();
-        });
+        myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+        init();
 
         function init() {
 

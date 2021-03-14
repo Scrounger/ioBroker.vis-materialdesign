@@ -107,9 +107,8 @@ vis.binds.materialdesign.card = {
         try {
             let $this = $(el);
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
-                init();
-            });
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+            init();
 
             function init() {
                 let card = $this.context;

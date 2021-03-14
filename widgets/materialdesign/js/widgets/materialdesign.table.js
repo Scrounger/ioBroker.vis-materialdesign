@@ -64,9 +64,8 @@ vis.binds.materialdesign.table = {
         try {
             let $this = $(el);
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
-                init();
-            });
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+            init();
 
             function init() {
                 $this.append(vis.binds.materialdesign.table.initialize(el, data));

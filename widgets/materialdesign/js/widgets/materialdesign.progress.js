@@ -18,9 +18,8 @@ vis.binds.materialdesign.progress = {
             let $this = $(el);
             let containerClass = 'materialdesign-vuetify-progress';
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
-                init();
-            });
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+            init();
 
             function init() {
                 $this.append(`
@@ -130,9 +129,8 @@ vis.binds.materialdesign.progress = {
             let $this = $(el);
             let containerClass = 'materialdesign-vuetify-progress-circular';
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
-                init();
-            });
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+            init();
 
             function init() {
                 $this.append(`

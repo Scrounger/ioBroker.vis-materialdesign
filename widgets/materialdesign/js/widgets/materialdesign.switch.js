@@ -47,9 +47,8 @@ vis.binds.materialdesign.switch = {
         try {
             var $this = $(el);
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
-                init();
-            });
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+            init();
 
             function init() {
                 if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {

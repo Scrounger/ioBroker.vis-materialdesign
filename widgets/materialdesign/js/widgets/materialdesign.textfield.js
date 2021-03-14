@@ -16,9 +16,8 @@ vis.binds.materialdesign.textfield = {
             let vueHelper = vis.binds.materialdesign.vueHelper.input
             let containerClass = 'materialdesign-vuetify-textField';
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
-                init();
-            });
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+            init();
 
             function init() {
                 let inputType = myMdwHelper.getValueFromData(data.inputType, 'text');

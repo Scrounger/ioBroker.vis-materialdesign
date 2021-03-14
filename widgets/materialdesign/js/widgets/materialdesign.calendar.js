@@ -14,9 +14,8 @@ vis.binds.materialdesign.calendar =
             let $this = $(el);
             let containerClass = 'materialdesign-vuetify-calendar';
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
-                init();
-            });
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+            init();
 
             function init() {
 

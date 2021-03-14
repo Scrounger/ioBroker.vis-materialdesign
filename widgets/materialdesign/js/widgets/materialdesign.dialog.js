@@ -14,9 +14,8 @@ vis.binds.materialdesign.dialog = {
             let $this = $(el);
             let containerClass = 'materialdesign-vuetify-dialog';
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function () {
-                init();
-            });
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+            init();
 
             function init() {
 
