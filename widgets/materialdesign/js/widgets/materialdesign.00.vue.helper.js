@@ -498,7 +498,6 @@ vis.binds.materialdesign.vueHelper = {
                 },
                 menuClick(item) {
                     myMdwHelper.vibrate(data.vibrateOnMobilDevices);
-                    console.log(item);
                     if (item || item === 0) {
                         if (item.value || item.value === 0) {
                             myMdwHelper.setValue(data.oid, item.value);
