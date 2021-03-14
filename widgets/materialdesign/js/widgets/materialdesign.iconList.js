@@ -13,8 +13,9 @@ vis.binds.materialdesign.iconlist =
         try {
             let $this = $(el);
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
-            init();
+            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass, function(){
+                init();
+            });
 
             function init() {
 
