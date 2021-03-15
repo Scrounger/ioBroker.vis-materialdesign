@@ -9,7 +9,6 @@
 vis.binds.materialdesign.autocomplete = {
     initialize: function (el, data) {
         let widgetName = 'AutoComplete';
-        let themeTriggerClass = '.materialdesign-widget.materialdesign-autocomplete';
 
         try {
             let $this = $(el);
@@ -18,18 +17,15 @@ vis.binds.materialdesign.autocomplete = {
 
 
             myMdwHelper.subscribeThemesAtRuntime(data, widgetName);
-            init();
 
-            function init() {
+            let inputMode = 'combobox'
+            if (data.inputMode === 'select') {
+                inputMode = 'autocomplete';
+            }
 
-                let inputMode = 'combobox'
-                if (data.inputMode === 'select') {
-                    inputMode = 'autocomplete';
-                }
+            vueHelper.generateItemList(data, `AutoComplete - ${data.wid}`, function (itemsList) {
 
-                vueHelper.generateItemList(data, `AutoComplete - ${data.wid}`, function (itemsList) {
-
-                    $this.append(`
+                $this.append(`
                     <div class="${containerClass}" style="width: 100%; height: 100%;">
                         <v-${inputMode}
                             ${vueHelper.getConstructor(data)}
@@ -40,52 +36,47 @@ vis.binds.materialdesign.autocomplete = {
                         </v-${inputMode}>
                     </div>`);
 
-                    if (myMdwHelper.oidNeedSubscribe(data.oid, data.wid, widgetName, false)) {
-                        // ggf subscribing notwendig, wenn z.B. Binding als ObjektId verwendet wird und eine oid übergeben wird
-                        myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
-                            handler();
-                        });
-                    } else {
+                if (myMdwHelper.oidNeedSubscribe(data.oid, data.wid, widgetName, false)) {
+                    // ggf subscribing notwendig, wenn z.B. Binding als ObjektId verwendet wird und eine oid übergeben wird
+                    myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
                         handler();
-                    }
+                    });
+                } else {
+                    handler();
+                }
 
-                    function handler() {
-                        myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'AutoComplete', function () {
-                            myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'AutoComplete', function () {
+                function handler() {
+                    myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'AutoComplete', function () {
+                        myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'AutoComplete', function () {
 
-                                let $vuetifyContainer = $("body").find('#materialdesign-vuetify-container');
-                                let widgetHeight = window.getComputedStyle($this.get(0), null).height.replace('px', '');
+                            let $vuetifyContainer = $("body").find('#materialdesign-vuetify-container');
+                            let widgetHeight = window.getComputedStyle($this.get(0), null).height.replace('px', '');
 
-                                let vueAutoComplete = new Vue({
-                                    el: $this.find(`.${containerClass}`).get(0),
-                                    vuetify: new Vuetify(),
-                                    data() {
-                                        return vueHelper.getData(data, widgetHeight, itemsList, inputMode);
-                                    },
-                                    methods: vueHelper.getMethods(data, $this, itemsList, $vuetifyContainer, inputMode)
-                                });
-
-                                vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
-                                    vueHelper.setStyles($this, data);
-                                });
-
-                                vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
-                                    vueHelper.setStyles($this, data);
-                                });
-
-                                $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
-                                    if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
-                                    $(themeTriggerClass).off(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`);
-                                    vueHelper.setStyles($this, data);
-                                });
-
-                                vueHelper.setStyles($this, data);
-                                vueHelper.setIoBrokerBinding(data, vueAutoComplete, itemsList, inputMode);
+                            let vueAutoComplete = new Vue({
+                                el: $this.find(`.${containerClass}`).get(0),
+                                vuetify: new Vuetify(),
+                                data() {
+                                    return vueHelper.getData(data, widgetHeight, itemsList, inputMode);
+                                },
+                                methods: vueHelper.getMethods(data, $this, itemsList, $vuetifyContainer, inputMode)
                             });
+
+                            vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
+                                vueHelper.setStyles($this, data);
+                            });
+
+                            vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
+                                vueHelper.setStyles($this, data);
+                            });
+
+
+
+                            vueHelper.setStyles($this, data);
+                            vueHelper.setIoBrokerBinding(data, vueAutoComplete, itemsList, inputMode);
                         });
-                    }
-                });
-            }
+                    });
+                }
+            });
         } catch (ex) {
             console.error(`[${widgetName} - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack} `);
         }

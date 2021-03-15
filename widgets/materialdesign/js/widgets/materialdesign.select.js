@@ -8,21 +8,17 @@
 vis.binds.materialdesign.select = {
     initialize: function (el, data) {
         let widgetName = 'Select';
-        let themeTriggerClass = '.materialdesign-widget.materialdesign-select';
 
         try {
             let $this = $(el);
             let vueHelper = vis.binds.materialdesign.vueHelper.select
             let containerClass = 'materialdesign-vuetify-select';
 
-
             myMdwHelper.subscribeThemesAtRuntime(data, widgetName);
-            init();
 
-            function init() {
-                vueHelper.generateItemList(data, `Select - ${data.wid}`, function (itemsList) {
+            vueHelper.generateItemList(data, `Select - ${data.wid}`, function (itemsList) {
 
-                    $this.append(`
+                $this.append(`
                     <div class="${containerClass}" style="width: 100%; height: 100%;">
                         <v-select
                             ${vueHelper.getConstructor(data)}
@@ -33,41 +29,34 @@ vis.binds.materialdesign.select = {
                         </v-select>
                     </div>`);
 
-                    myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'Select', function () {
-                        myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'Select', function () {
+                myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'Select', function () {
+                    myMdwHelper.waitForElement($("body"), '#materialdesign-vuetify-container', data.wid, 'Select', function () {
 
-                            let $vuetifyContainer = $("body").find('#materialdesign-vuetify-container');
-                            let widgetHeight = window.getComputedStyle($this.get(0), null).height.replace('px', '');
+                        let $vuetifyContainer = $("body").find('#materialdesign-vuetify-container');
+                        let widgetHeight = window.getComputedStyle($this.get(0), null).height.replace('px', '');
 
-                            let vueSelect = new Vue({
-                                el: $this.find(`.${containerClass}`).get(0),
-                                vuetify: new Vuetify(),
-                                data() {
-                                    return vueHelper.getData(data, widgetHeight, itemsList);
-                                },
-                                methods: vueHelper.getMethods(data, $this, itemsList, $vuetifyContainer)
-                            });
-
-                            vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
-                                vueHelper.setStyles($this, data);
-                            });
-
-                            vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
-                                vueHelper.setStyles($this, data);
-                            });
-
-                            $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
-                                if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
-                                $(themeTriggerClass).off(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`);
-                                vueHelper.setStyles($this, data);
-                            });
-
-                            vueHelper.setStyles($this, data);
-                            vueHelper.setIoBrokerBinding(data, vueSelect, itemsList);
+                        let vueSelect = new Vue({
+                            el: $this.find(`.${containerClass}`).get(0),
+                            vuetify: new Vuetify(),
+                            data() {
+                                return vueHelper.getData(data, widgetHeight, itemsList);
+                            },
+                            methods: vueHelper.getMethods(data, $this, itemsList, $vuetifyContainer)
                         });
+
+                        vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
+                            vueHelper.setStyles($this, data);
+                        });
+
+                        vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
+                            vueHelper.setStyles($this, data);
+                        });
+
+                        vueHelper.setStyles($this, data);
+                        vueHelper.setIoBrokerBinding(data, vueSelect, itemsList);
                     });
                 });
-            }
+            });
         } catch (ex) {
             console.error(`[${widgetName} - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack} `);
         }

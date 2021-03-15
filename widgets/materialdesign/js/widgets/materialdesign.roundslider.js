@@ -8,39 +8,36 @@
 vis.binds.materialdesign.roundslider = {
     initialize: function (el, data) {
         let widgetName = 'Round Slider';
-        let themeTriggerClass = '.materialdesign-widget.materialdesign-slider-round'
 
         try {
             let $this = $(el);
             let containerClass = 'materialdesign-round-slider-element';
 
             myMdwHelper.subscribeThemesAtRuntime(data, widgetName);
-            init();
 
-            function init() {
-                let workingId = data["oid-working"];
-                let myHelper = vis.binds.materialdesign.helper;
+            let workingId = data["oid-working"];
+            let myHelper = vis.binds.materialdesign.helper;
 
-                let valueOnLoading = vis.states.attr(data.oid + '.val');
+            let valueOnLoading = vis.states.attr(data.oid + '.val');
 
 
-                let min = myMdwHelper.getNumberFromData(data.min, 0);
-                let labelMin = myMdwHelper.getValueFromData(data.valueLabelMin, null);
-                let max = myMdwHelper.getNumberFromData(data.max, 100);
-                let labelMax = myMdwHelper.getValueFromData(data.valueLabelMax, null);
-                let unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
+            let min = myMdwHelper.getNumberFromData(data.min, 0);
+            let labelMin = myMdwHelper.getValueFromData(data.valueLabelMin, null);
+            let max = myMdwHelper.getNumberFromData(data.max, 100);
+            let labelMax = myMdwHelper.getValueFromData(data.valueLabelMax, null);
+            let unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
 
-                let valueLessThan = myMdwHelper.getNumberFromData(data.valueLessThan, min);
-                let textForValueLessThan = myMdwHelper.getValueFromData(data.textForValueLessThan, null);
-                let valueGreaterThan = myMdwHelper.getNumberFromData(data.valueGreaterThan, max);
-                let textForValueGreaterThan = myMdwHelper.getValueFromData(data.textForValueGreaterThan, null);
+            let valueLessThan = myMdwHelper.getNumberFromData(data.valueLessThan, min);
+            let textForValueLessThan = myMdwHelper.getValueFromData(data.textForValueLessThan, null);
+            let valueGreaterThan = myMdwHelper.getNumberFromData(data.valueGreaterThan, max);
+            let textForValueGreaterThan = myMdwHelper.getValueFromData(data.textForValueGreaterThan, null);
 
-                let labelWitdh = 0;
-                if (data.showValueLabel === true || data.showValueLabel === 'true') {
-                    labelWitdh = data.valueLabelWidth;
-                }
+            let labelWitdh = 0;
+            if (data.showValueLabel === true || data.showValueLabel === 'true') {
+                labelWitdh = data.valueLabelWidth;
+            }
 
-                $this.append(`<round-slider class="${containerClass}"
+            $this.append(`<round-slider class="${containerClass}"
                             value=${valueOnLoading} 
                             max="${max}" 
                             min="${min}"
@@ -55,7 +52,7 @@ vis.binds.materialdesign.roundslider = {
                             </round-slider>
                             
                             ${(data.showValueLabel) ?
-                        `<label class="labelValue" 
+                    `<label class="labelValue" 
                                     style="position: absolute; 
                                     width: 100%;
                                     text-align: center;
@@ -70,97 +67,90 @@ vis.binds.materialdesign.roundslider = {
                                 </label>`: ''}
                             `)
 
-                let slider = $this.find(`.${containerClass}`);
+            let slider = $this.find(`.${containerClass}`);
 
-                if (slider) {
-                    vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                        setSliderState()
-                    });
+            if (slider) {
+                vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                    setSliderState()
+                });
 
-                    vis.states.bind(workingId + '.val', function (e, newVal, oldVal) {
-                        setSliderState();
-                    });
+                vis.states.bind(workingId + '.val', function (e, newVal, oldVal) {
+                    setSliderState();
+                });
 
-                    vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
-                        setLayout();
-                    });
-
-                    vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
-                        setLayout();
-                    });
-
-                    $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
-                        if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
-                        $(themeTriggerClass).off(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`);
-                        setLayout();
-                    });
-
-                    slider.bind('value-changing', function (ev) {
-                        setSliderState(false, ev.target.__value);
-                    });
-
-                    slider.bind('value-changed', function (ev) {
-                        let changedVal = parseFloat(ev.target.__value);
-
-                        if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
-                            myMdwHelper.setValue(data.oid, changedVal);
-                            setSliderState();
-                        }
-                    });
-
-                    $this.find(`.${containerClass}`).on('touchstart mousedown', function (e) {
-                        myHelper.vibrate(data.vibrateOnMobilDevices);
-                    });
-
+                vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
                     setLayout();
-                    function setLayout() {
-                        slider.get(0).style.setProperty('--round-slider-path-width', myMdwHelper.getNumberFromData(data.sliderWidth, 3));
+                });
 
-                        slider.get(0).style.setProperty('background', myMdwHelper.getValueFromData(data.colorSliderBg, ''));
-                        slider.get(0).style.setProperty('--round-slider-path-color', myMdwHelper.getValueFromData(data.colorAfterThumb, ''));
-                        slider.get(0).style.setProperty('--round-slider-bar-color', myMdwHelper.getValueFromData(data.colorBeforeThumb, '#44739e'));
-                        slider.get(0).style.setProperty('--round-slider-handle-color', myMdwHelper.getValueFromData(data.colorThumb, ''));
+                vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
+                    setLayout();
+                });
 
-                        $this.find('.labelValue').css('color', myMdwHelper.getValueFromData(data.valueLabelColor, '#44739e'))
-                            .css('font-family', myMdwHelper.getValueFromData(data.valueFontFamily, ''))
-                            .css('font-size', myMdwHelper.getStringFromNumberData(data.valueFontSize, 'inherit', '', 'px'));
+                slider.bind('value-changing', function (ev) {
+                    setSliderState(false, ev.target.__value);
+                });
 
+                slider.bind('value-changed', function (ev) {
+                    let changedVal = parseFloat(ev.target.__value);
+
+                    if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
+                        myMdwHelper.setValue(data.oid, changedVal);
                         setSliderState();
                     }
+                });
 
-                    function setSliderState(setVisValue = true, val = 0) {
-                        if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
+                $this.find(`.${containerClass}`).on('touchstart mousedown', function (e) {
+                    myHelper.vibrate(data.vibrateOnMobilDevices);
+                });
 
-                            if (setVisValue) {
-                                val = vis.states.attr(data.oid + '.val');
-                                slider.attr('value', val);
-                            }
+                setLayout();
+                function setLayout() {
+                    slider.get(0).style.setProperty('--round-slider-path-width', myMdwHelper.getNumberFromData(data.sliderWidth, 3));
 
-                            let valPercent = parseFloat(val);
+                    slider.get(0).style.setProperty('background', myMdwHelper.getValueFromData(data.colorSliderBg, ''));
+                    slider.get(0).style.setProperty('--round-slider-path-color', myMdwHelper.getValueFromData(data.colorAfterThumb, ''));
+                    slider.get(0).style.setProperty('--round-slider-bar-color', myMdwHelper.getValueFromData(data.colorBeforeThumb, '#44739e'));
+                    slider.get(0).style.setProperty('--round-slider-handle-color', myMdwHelper.getValueFromData(data.colorThumb, ''));
 
-                            if (isNaN(valPercent)) valPercent = min;
-                            if (valPercent < min) valPercent = min;
-                            if (valPercent > max) valPercent = max;
+                    $this.find('.labelValue').css('color', myMdwHelper.getValueFromData(data.valueLabelColor, '#44739e'))
+                        .css('font-family', myMdwHelper.getValueFromData(data.valueFontFamily, ''))
+                        .css('font-size', myMdwHelper.getStringFromNumberData(data.valueFontSize, 'inherit', '', 'px'));
 
-                            let simRange = 100;
-                            let range = max - min;
-                            let factor = simRange / range;
-                            valPercent = Math.floor((valPercent - min) * factor);
+                    setSliderState();
+                }
 
-                            if (val <= min && labelMin != null) {
-                                $this.find('.labelValue').html(labelMin);
-                            } else if (val > min && val <= valueLessThan && textForValueLessThan != null) {
-                                $this.find('.labelValue').html(textForValueLessThan);
-                            } else if (val >= valueGreaterThan && val < max && textForValueGreaterThan != null) {
-                                $this.find('.labelValue').html(textForValueGreaterThan);
-                            } else if (val >= max && labelMax != null) {
-                                $this.find('.labelValue').html(labelMax);
+                function setSliderState(setVisValue = true, val = 0) {
+                    if (vis.states.attr(workingId + '.val') === false || vis.states.attr(workingId + '.val') === 'false' || !vis.states.attr(workingId + '.val')) {
+
+                        if (setVisValue) {
+                            val = vis.states.attr(data.oid + '.val');
+                            slider.attr('value', val);
+                        }
+
+                        let valPercent = parseFloat(val);
+
+                        if (isNaN(valPercent)) valPercent = min;
+                        if (valPercent < min) valPercent = min;
+                        if (valPercent > max) valPercent = max;
+
+                        let simRange = 100;
+                        let range = max - min;
+                        let factor = simRange / range;
+                        valPercent = Math.floor((valPercent - min) * factor);
+
+                        if (val <= min && labelMin != null) {
+                            $this.find('.labelValue').html(labelMin);
+                        } else if (val > min && val <= valueLessThan && textForValueLessThan != null) {
+                            $this.find('.labelValue').html(textForValueLessThan);
+                        } else if (val >= valueGreaterThan && val < max && textForValueGreaterThan != null) {
+                            $this.find('.labelValue').html(textForValueGreaterThan);
+                        } else if (val >= max && labelMax != null) {
+                            $this.find('.labelValue').html(labelMax);
+                        } else {
+                            if (myMdwHelper.getValueFromData(data.valueLabelStyle, "sliderValue") === 'sliderValue') {
+                                $this.find('.labelValue').html(`${val} ${unit}`);
                             } else {
-                                if (myMdwHelper.getValueFromData(data.valueLabelStyle, "sliderValue") === 'sliderValue') {
-                                    $this.find('.labelValue').html(`${val} ${unit}`);
-                                } else {
-                                    $this.find('.labelValue').html(`${valPercent} %`);
-                                }
+                                $this.find('.labelValue').html(`${valPercent} %`);
                             }
                         }
                     }

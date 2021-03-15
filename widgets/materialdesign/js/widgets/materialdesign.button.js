@@ -40,11 +40,9 @@ vis.binds.materialdesign.button = {
     },
     initialize: function (el, data, type) {
         let widgetName = 'Button';
-        let themeTriggerClass = '.materialdesign-widget.materialdesign-button'
 
         if (type.includes('icon')) {
             widgetName = 'Icon Button';
-            themeTriggerClass = '.materialdesign-widget.materialdesign-icon-button'
         }
 
         try {
@@ -52,37 +50,35 @@ vis.binds.materialdesign.button = {
             let containerClass = 'materialdesign-button-body';
 
             myMdwHelper.subscribeThemesAtRuntime(data, widgetName);
-            init();
 
-            function init() {
-                vis.binds.materialdesign.button.useTheme(el, data, type, widgetName, themeTriggerClass);
+            vis.binds.materialdesign.button.useTheme(el, data, type, widgetName);
 
-                $this.addClass(data.buttonStyle !== 'text' ? 'materialdesign-button--' + data.buttonStyle : '');
+            $this.addClass(data.buttonStyle !== 'text' ? 'materialdesign-button--' + data.buttonStyle : '');
 
-                if (type.includes('vertical')) {
-                    $this.append(vis.binds.materialdesign.button.initializeVerticalButton($this, data));
-                } else if (type.includes('default')) {
-                    $this.append(vis.binds.materialdesign.button.initializeButton($this, data));
-                } else if (type.includes('icon')) {
-                    $this.append(vis.binds.materialdesign.button.initializeButton($this, data, true));
-                }
-
-                myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, widgetName, function () {
-                    if (type.includes('navigation')) {
-                        vis.binds.materialdesign.button.handleNavigation(el, data, type.includes('icon'));
-                    } else if (type.includes('link')) {
-                        vis.binds.materialdesign.button.handleLink(el, data, type.includes('icon'));
-                    } else if (type.includes('state')) {
-                        vis.binds.materialdesign.button.handleState(el, data, false, type.includes('icon'));
-                    } else if (type.includes('multiState')) {
-                        vis.binds.materialdesign.button.handleState(el, data, true, type.includes('icon'));
-                    } else if (type.includes('addition')) {
-                        vis.binds.materialdesign.button.handleAddition(el, data, type.includes('icon'));
-                    } else if (type.includes('toggle')) {
-                        vis.binds.materialdesign.button.handleToggle(el, data, type.includes('icon'));
-                    }
-                });
+            if (type.includes('vertical')) {
+                $this.append(vis.binds.materialdesign.button.initializeVerticalButton($this, data));
+            } else if (type.includes('default')) {
+                $this.append(vis.binds.materialdesign.button.initializeButton($this, data));
+            } else if (type.includes('icon')) {
+                $this.append(vis.binds.materialdesign.button.initializeButton($this, data, true));
             }
+
+            myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, widgetName, function () {
+                if (type.includes('navigation')) {
+                    vis.binds.materialdesign.button.handleNavigation(el, data, type.includes('icon'));
+                } else if (type.includes('link')) {
+                    vis.binds.materialdesign.button.handleLink(el, data, type.includes('icon'));
+                } else if (type.includes('state')) {
+                    vis.binds.materialdesign.button.handleState(el, data, false, type.includes('icon'));
+                } else if (type.includes('multiState')) {
+                    vis.binds.materialdesign.button.handleState(el, data, true, type.includes('icon'));
+                } else if (type.includes('addition')) {
+                    vis.binds.materialdesign.button.handleAddition(el, data, type.includes('icon'));
+                } else if (type.includes('toggle')) {
+                    vis.binds.materialdesign.button.handleToggle(el, data, type.includes('icon'));
+                }
+            });
+
         } catch (ex) {
             console.error(`[${widgetName} ${type} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
@@ -495,7 +491,7 @@ vis.binds.materialdesign.button = {
             console.error(`[Button - ${data.wid}] handleToggle: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    useTheme: function (el, data, type, widgetName, themeTriggerClass) {
+    useTheme: function (el, data, type, widgetName) {
         var $this = $(el);
         let btn = $this.parent().get(0) ? $this.parent().get(0) : $this.parent().context;
 
@@ -504,12 +500,6 @@ vis.binds.materialdesign.button = {
         });
 
         vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
-            setLayout();
-        });
-
-        $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
-            if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
-            $(themeTriggerClass).off(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`);
             setLayout();
         });
 

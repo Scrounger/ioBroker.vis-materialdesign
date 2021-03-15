@@ -42,133 +42,124 @@ vis.binds.materialdesign.switch = {
     },
     handle: function (el, data) {
         let widgetName = 'Switch';
-        let themeTriggerClass = '.materialdesign-widget.materialdesign-switch'
+
 
         try {
             var $this = $(el);
 
             myMdwHelper.subscribeThemesAtRuntime(data, widgetName);
-            init();
 
-            function init() {
-                if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {
-                    // Append lock icon if activated
-                    $this.append(`<span class="mdi mdi-${myMdwHelper.getValueFromData(data.lockIcon, 'lock-outline')} materialdesign-lock-icon" 
+            if (myMdwHelper.getBooleanFromData(data.lockEnabled) === true) {
+                // Append lock icon if activated
+                $this.append(`<span class="mdi mdi-${myMdwHelper.getValueFromData(data.lockIcon, 'lock-outline')} materialdesign-lock-icon" 
                         style="position: absolute; left: ${myMdwHelper.getNumberFromData(data.lockIconLeft, 5)}%; top: ${myMdwHelper.getNumberFromData(data.lockIconTop, 5)}%; ${(myMdwHelper.getNumberFromData(data.lockIconSize, undefined) !== '0') ? `width: ${data.lockIconSize}px; height: ${data.lockIconSize}px; font-size: ${data.lockIconSize}px;` : ''} color: ${myMdwHelper.getValueFromData(data.lockIconColor, '#B22222')};"></span>`);
 
-                    $this.attr('isLocked', true);
-                    $this.find('.mdc-switch').css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
-                }
+                $this.attr('isLocked', true);
+                $this.find('.mdc-switch').css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
+            }
 
-                let switchElement = $this.find('.mdc-switch').get(0);
+            let switchElement = $this.find('.mdc-switch').get(0);
 
-                const mdcFormField = new mdc.formField.MDCFormField($this.get(0));
-                const mdcSwitch = new mdc.switchControl.MDCSwitch(switchElement);
-                mdcFormField.input = mdcSwitch;
+            const mdcFormField = new mdc.formField.MDCFormField($this.get(0));
+            const mdcSwitch = new mdc.switchControl.MDCSwitch(switchElement);
+            mdcFormField.input = mdcSwitch;
 
-                mdcSwitch.disabled = myMdwHelper.getBooleanFromData(data.readOnly, false);
+            mdcSwitch.disabled = myMdwHelper.getBooleanFromData(data.readOnly, false);
 
-                if (!vis.editMode) {
-                    $this.find('.mdc-switch').on('click', function () {
-                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+            if (!vis.editMode) {
+                $this.find('.mdc-switch').on('click', function () {
+                    vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
 
-                        if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === undefined) {
-                            if (data.toggleType === 'boolean') {
-                                myMdwHelper.setValue(data.oid, mdcSwitch.checked);
-                            } else {
-                                if (!mdcSwitch.checked === true) {
-                                    myMdwHelper.setValue(data.oid, data.valueOff);
-                                } else {
-                                    myMdwHelper.setValue(data.oid, data.valueOn);
-                                }
-                            }
+                    if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === undefined) {
+                        if (data.toggleType === 'boolean') {
+                            myMdwHelper.setValue(data.oid, mdcSwitch.checked);
                         } else {
-                            mdcSwitch.checked = !mdcSwitch.checked;
-                            unlockSwitch();
-                        }
-
-                        setSwitchState();
-                    });
-                }
-
-                vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                    setSwitchState();
-                });
-
-                vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
-                    setLayout();
-                });
-
-                vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
-                    setLayout();
-                });
-
-                $(themeTriggerClass).on(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`, function () {
-                    if (data.debug) console.log(`[${widgetName} - ${data.wid}] event received: 'mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}'`);
-                    $(themeTriggerClass).off(`mdwTheme_subscribe_${widgetName.replace(/ /g, '_')}`);
-                    setLayout();
-                });
-
-                setLayout();
-                function setLayout() {
-                    switchElement.style.setProperty("--materialdesign-color-switch-on", myMdwHelper.getValueFromData(data.colorSwitchTrue, ''));
-                    switchElement.style.setProperty("--materialdesign-color-switch-on-hover", myMdwHelper.getValueFromData(data.colorSwitchHoverTrue, myMdwHelper.getValueFromData(data.colorSwitchTrue, '')));
-                    switchElement.style.setProperty("--materialdesign-color-switch-off", myMdwHelper.getValueFromData(data.colorSwitchThumb, ''));
-                    switchElement.style.setProperty("--materialdesign-color-switch-track", myMdwHelper.getValueFromData(data.colorSwitchTrack, ''));
-                    switchElement.style.setProperty("--materialdesign-color-switch-off-hover", myMdwHelper.getValueFromData(data.colorSwitchHover, ''));
-
-                    $this.find('.materialdesign-lock-icon').css('color', myMdwHelper.getValueFromData(data.lockIconColor, '#B22222'));
-
-                    $this.find('label[id="label"]').css('font-family', myMdwHelper.getValueFromData(data.valueFontFamily, ''))
-                        .css('font-size', myMdwHelper.getStringFromNumberData(data.valueFontSize, 'inherit', '', 'px'));
-
-                    setSwitchState();
-                }
-
-                function setSwitchState() {
-                    var val = vis.states.attr(data.oid + '.val');
-
-                    let buttonState = false;
-
-                    if (data.toggleType === 'boolean') {
-                        buttonState = val;
-                    } else {
-                        if (!isNaN(val) && !isNaN(data.valueOn)) {
-                            if (parseFloat(val) === parseFloat(data.valueOn)) {
-                                buttonState = true;
-                            } else if (parseFloat(val) !== parseFloat(data.valueOn) && parseFloat(val) !== parseFloat(data.valueOff) && data.stateIfNotTrueValue === 'on') {
-                                buttonState = true;
+                            if (!mdcSwitch.checked === true) {
+                                myMdwHelper.setValue(data.oid, data.valueOff);
+                            } else {
+                                myMdwHelper.setValue(data.oid, data.valueOn);
                             }
-                        } else if (val === parseInt(data.valueOn) || val === data.valueOn) {
+                        }
+                    } else {
+                        mdcSwitch.checked = !mdcSwitch.checked;
+                        unlockSwitch();
+                    }
+
+                    setSwitchState();
+                });
+            }
+
+            vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                setSwitchState();
+            });
+
+            vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
+                setLayout();
+            });
+
+            vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
+                setLayout();
+            });
+
+            setLayout();
+            function setLayout() {
+                switchElement.style.setProperty("--materialdesign-color-switch-on", myMdwHelper.getValueFromData(data.colorSwitchTrue, ''));
+                switchElement.style.setProperty("--materialdesign-color-switch-on-hover", myMdwHelper.getValueFromData(data.colorSwitchHoverTrue, myMdwHelper.getValueFromData(data.colorSwitchTrue, '')));
+                switchElement.style.setProperty("--materialdesign-color-switch-off", myMdwHelper.getValueFromData(data.colorSwitchThumb, ''));
+                switchElement.style.setProperty("--materialdesign-color-switch-track", myMdwHelper.getValueFromData(data.colorSwitchTrack, ''));
+                switchElement.style.setProperty("--materialdesign-color-switch-off-hover", myMdwHelper.getValueFromData(data.colorSwitchHover, ''));
+
+                $this.find('.materialdesign-lock-icon').css('color', myMdwHelper.getValueFromData(data.lockIconColor, '#B22222'));
+
+                $this.find('label[id="label"]').css('font-family', myMdwHelper.getValueFromData(data.valueFontFamily, ''))
+                    .css('font-size', myMdwHelper.getStringFromNumberData(data.valueFontSize, 'inherit', '', 'px'));
+
+                setSwitchState();
+            }
+
+            function setSwitchState() {
+                var val = vis.states.attr(data.oid + '.val');
+
+                let buttonState = false;
+
+                if (data.toggleType === 'boolean') {
+                    buttonState = val;
+                } else {
+                    if (!isNaN(val) && !isNaN(data.valueOn)) {
+                        if (parseFloat(val) === parseFloat(data.valueOn)) {
                             buttonState = true;
-                        } else if (data.stateIfNotTrueValue === 'on' && val !== data.valueOn && val !== data.valueOff) {
+                        } else if (parseFloat(val) !== parseFloat(data.valueOn) && parseFloat(val) !== parseFloat(data.valueOff) && data.stateIfNotTrueValue === 'on') {
                             buttonState = true;
                         }
-                    }
-
-                    mdcSwitch.checked = buttonState;
-
-                    let label = $this.find('label[id="label"]');
-                    if (buttonState) {
-                        label.css('color', myMdwHelper.getValueFromData(data.labelColorTrue, '#44739e'));
-                        label.html(myMdwHelper.getValueFromData(data.labelTrue, ''));
-                    } else {
-                        label.css('color', myMdwHelper.getValueFromData(data.labelColorFalse, '#44739e'));
-                        label.html(myMdwHelper.getValueFromData(data.labelFalse, ''));
+                    } else if (val === parseInt(data.valueOn) || val === data.valueOn) {
+                        buttonState = true;
+                    } else if (data.stateIfNotTrueValue === 'on' && val !== data.valueOn && val !== data.valueOff) {
+                        buttonState = true;
                     }
                 }
 
-                function unlockSwitch() {
-                    $this.find('.materialdesign-lock-icon').fadeOut();
-                    $this.attr('isLocked', false);
-                    $this.find('.mdc-switch').css('filter', 'grayscale(0%)');
+                mdcSwitch.checked = buttonState;
 
-                    setTimeout(function () {
-                        $this.attr('isLocked', true);
-                        $this.find('.materialdesign-lock-icon').show();
-                        $this.find('.mdc-switch').css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
-                    }, myMdwHelper.getNumberFromData(data.autoLockAfter, 10) * 1000);
+                let label = $this.find('label[id="label"]');
+                if (buttonState) {
+                    label.css('color', myMdwHelper.getValueFromData(data.labelColorTrue, '#44739e'));
+                    label.html(myMdwHelper.getValueFromData(data.labelTrue, ''));
+                } else {
+                    label.css('color', myMdwHelper.getValueFromData(data.labelColorFalse, '#44739e'));
+                    label.html(myMdwHelper.getValueFromData(data.labelFalse, ''));
                 }
+            }
+
+            function unlockSwitch() {
+                $this.find('.materialdesign-lock-icon').fadeOut();
+                $this.attr('isLocked', false);
+                $this.find('.mdc-switch').css('filter', 'grayscale(0%)');
+
+                setTimeout(function () {
+                    $this.attr('isLocked', true);
+                    $this.find('.materialdesign-lock-icon').show();
+                    $this.find('.mdc-switch').css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
+                }, myMdwHelper.getNumberFromData(data.autoLockAfter, 10) * 1000);
             }
         } catch (ex) {
             console.error(`[${widgetName} - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
