@@ -546,17 +546,6 @@ vis.binds.materialdesign.helper = {
         if (oid !== undefined) {
             // Check if Oid is subscribed and put to vis subscribing object
             if (!vis.editMode) {
-                // if (force) {
-                //     vis.subscribing.byViews[view].push(oid);
-
-                //     if (!isBinding) {
-                //         if (debug) console.log(`[oidNeedSubscribe] ${widgetName} (${wid}): oid '${oid}' need subscribe (force: true)`);
-                //     } else {
-                //         if (debug) console.log(`[oidNeedSubscribe] ${widgetName} (${wid}): binding '${oid}' need subscribe (force: true)`);
-                //     }
-
-                //     return true;
-                // }
 
                 if (!vis.subscribing.byViews[view].includes(oid)) {
                     vis.subscribing.byViews[view].push(oid);
@@ -630,8 +619,11 @@ vis.binds.materialdesign.helper = {
 
         return result;
     },
-    subscribeThemesAtRuntimee(data, widgetName, triggerClass, callback) {
+    subscribeThemesAtRuntime(data, widgetName) {
         let oidsNeedSubscribe = false;
+
+        oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.lastchange', data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+        oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.colors.darkTheme', data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
 
         for (const [key, value] of Object.entries(data)) {
             if (value) {
@@ -649,29 +641,12 @@ vis.binds.materialdesign.helper = {
                             }
                         }
                     }
-
-                    // if (key === 'oid' || key.includes('_oid') || key.includes('Oid') || key === 'manualRefreshTrigger') {
-                    //     // Fallback subscribtion for oids that are Bindings and are nested 
-                    //     oidsNeedSubscribe = needsSubscribe(value, oidsNeedSubscribe);
-                    // }
                 }
             }
         }
 
-        oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.lastchange', data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
-        oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.colors.darkTheme', data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
-
         if (oidsNeedSubscribe) {
-            myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
-                // if other widgets use same states -> inform that state is subscribed, because widget can be created before subscribing is finished 
-                let eventName = widgetName.replace(/ /g, '_');
-                if (data.debug) console.log(`[subscribeThemesAtRuntimee - ${data.wid}] fire event: mdwTheme_subscribe_${eventName}`);
-                $(triggerClass).trigger(`mdwTheme_subscribe_${eventName}`);
-
-                if (callback) callback();
-            }, data.debug);
-        } else {
-            if (callback) callback();
+            myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, undefined, data.debug);
         }
 
         function needsSubscribe(id, oidsNeedSubscribe) {
@@ -708,20 +683,8 @@ vis.binds.materialdesign.helper = {
 
         // subscribe
         var oids = [];
-        let oidIds = [];
         for (var i = 0; i < vis.subscribing.byViews[view].length; i++) {
             let oid = vis.subscribing.byViews[view][i];
-
-            if (!vis.subscribing.IDs.includes(oid)) {
-                vis.subscribing.active.push(oid);
-
-                oids.push(oid);
-                oidIds.push(oid);
-
-                if (debug) console.log(`[subscribeStatesAtRuntime] ${widgetName} (${wid}): '${oid}' subscribed (ID)`);
-
-                continue;
-            }
 
             if (!vis.subscribing.active.includes(oid)) {
                 vis.subscribing.active.push(oid);
@@ -729,6 +692,11 @@ vis.binds.materialdesign.helper = {
                 oids.push(oid);
 
                 if (debug) console.log(`[subscribeStatesAtRuntime] ${widgetName} (${wid}): '${oid}' subscribed (View)`);
+            }
+
+            if (!vis.subscribing.IDs.includes(oid)) {
+                vis.subscribing.IDs.push(oid);
+                if (debug) console.log(`[subscribeStatesAtRuntime] ${widgetName} (${wid}): '${oid}' add to subscribing.IDs`);
             }
         }
 
@@ -740,14 +708,16 @@ vis.binds.materialdesign.helper = {
 
                 that.updateStates(data);
                 that.conn.subscribe(oids, function () {
-                    that.subscribing.IDs.push(...oidIds);
-                    if (callback) callback();
+                    vis.setValue('vis-materialdesign.0.lastchange', new Date().getTime());
                 });
+
+                if (callback) callback();
             });
         } else {
             if (callback) callback();
         }
     },
+
     calcChecker(prop, wid, widgetName, debug = false) {
         if (prop.includes("calc")) {
             console.error(`${widgetName} (${wid}) not supoort calc()! Use px or % instead! (${prop})`);
@@ -855,7 +825,7 @@ vis.binds.materialdesign.helper = {
                 myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
                     if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] oid subscribed -> fire callback()`);
 
-                    if (callback) callback(widgetData);                    
+                    if (callback) callback(widgetData);
                 }, widgetData.debug);
             } else {
                 if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] nothing to subscribed -> fire callback()`);

@@ -51,7 +51,7 @@ vis.binds.materialdesign.button = {
             let $this = $(el);
             let containerClass = 'materialdesign-button-body';
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+            myMdwHelper.subscribeThemesAtRuntime(data, widgetName);
             init();
 
             function init() {

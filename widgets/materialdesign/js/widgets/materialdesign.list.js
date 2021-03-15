@@ -13,7 +13,7 @@ vis.binds.materialdesign.list =
         try {
             let $this = $(el);
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+            myMdwHelper.subscribeThemesAtRuntime(data, widgetName);
             init();
 
             function init() {

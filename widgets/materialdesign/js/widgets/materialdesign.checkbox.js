@@ -48,7 +48,7 @@ vis.binds.materialdesign.checkbox = {
         try {
             let $this = $(el);
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+            myMdwHelper.subscribeThemesAtRuntime(data, widgetName);
             init();
 
             function init() {

@@ -13,7 +13,7 @@ vis.binds.materialdesign.iconlist =
         try {
             let $this = $(el);
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+            myMdwHelper.subscribeThemesAtRuntime(data, widgetName);
             init();
 
             function init() {
@@ -35,7 +35,7 @@ vis.binds.materialdesign.iconlist =
 
                 if (oidsNeedSubscribe) {
                     myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
-                        
+
                         appendContent();
                         eventListener();
                         setLayout();

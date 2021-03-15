@@ -17,7 +17,7 @@ vis.binds.materialdesign.autocomplete = {
             let containerClass = 'materialdesign-vuetify-autoComplete';
 
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+            myMdwHelper.subscribeThemesAtRuntime(data, widgetName);
             init();
 
             function init() {

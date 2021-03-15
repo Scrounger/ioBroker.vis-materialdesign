@@ -14,7 +14,7 @@ vis.binds.materialdesign.slider = {
             let $this = $(el);
             let containerClass = 'materialdesign-vuetifySlider';
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+            myMdwHelper.subscribeThemesAtRuntime(data, widgetName);
             init();
 
             function init() {

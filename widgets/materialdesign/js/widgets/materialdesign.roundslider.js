@@ -14,7 +14,7 @@ vis.binds.materialdesign.roundslider = {
             let $this = $(el);
             let containerClass = 'materialdesign-round-slider-element';
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+            myMdwHelper.subscribeThemesAtRuntime(data, widgetName);
             init();
 
             function init() {

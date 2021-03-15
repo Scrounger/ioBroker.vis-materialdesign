@@ -16,7 +16,7 @@ vis.binds.materialdesign.select = {
             let containerClass = 'materialdesign-vuetify-select';
 
 
-            myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+            myMdwHelper.subscribeThemesAtRuntime(data, widgetName);
             init();
 
             function init() {

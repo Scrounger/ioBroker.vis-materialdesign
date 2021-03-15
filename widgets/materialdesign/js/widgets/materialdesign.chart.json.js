@@ -15,7 +15,7 @@ vis.binds.materialdesign.chart.json = function (el, data) {
 
         let $this = $(el);
 
-        myMdwHelper.subscribeThemesAtRuntimee(data, widgetName, themeTriggerClass);
+        myMdwHelper.subscribeThemesAtRuntime(data, widgetName);
         init();
         
         function init() {
