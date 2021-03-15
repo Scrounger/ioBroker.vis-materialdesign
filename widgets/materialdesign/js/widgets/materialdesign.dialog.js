@@ -8,6 +8,7 @@
 vis.binds.materialdesign.dialog = {
     vue: function (el, data, isIFrame = false) {
         let widgetName = 'Dialog';
+        let dialogClassName = data.wid;
 
         try {
             let $this = $(el);
@@ -35,6 +36,7 @@ vis.binds.materialdesign.dialog = {
                     vis.binds.materialdesign.addRippleEffect($btn.children(), data, false);
                 }
             } else {
+                dialogClassName = data.showDialogOid.replace(/\./g,'_')
                 if (vis.editMode) {
                     $this.append(_('dialogUsingDatapoint'));
                 } else {
@@ -45,9 +47,9 @@ vis.binds.materialdesign.dialog = {
             let wishHeight = 0;
             let fullscreen = false;
 
-            if ($(`.dialog_${data.wid}`).parent().length > 0) {
+            if ($(`.dialog_${dialogClassName}`).parent().length > 0) {
                 // bei Änderungen am Widget, wird Widget neu erzeugt. Dialog hängt aber unter vis app, deshalb zu erst entfernen damit nicht doppelt
-                $(`.dialog_${data.wid}`).parent().remove();
+                $(`.dialog_${dialogClassName}`).parent().remove();
                 $("body").find('.v-overlay__scrim').not(':last').off().remove();
                 $("body").find('.v-overlay').not(':last').off().remove();
             }
@@ -61,14 +63,14 @@ vis.binds.materialdesign.dialog = {
                             :transition="transition"
                             :overlay-color="overlayColor"
                             :overlay-opacity="overlayOpacity"
-                            content-class="dialog_${data.wid}"
+                            content-class="dialog_${dialogClassName}"
                             :persistent="persistent"
                             :no-click-animation="persistentClickAnimation"
                             eager
                             ${myMdwHelper.getBooleanFromData(data.closingClickOutside, false) ? '' : 'persistent'}
                             >
 
-                            <v-card id="dialog_card_${data.wid}" height="auto" style="background: ${myMdwHelper.getValueFromData(data.backgroundColor, '')}">
+                            <v-card id="dialog_card_${dialogClassName}" height="auto" style="background: ${myMdwHelper.getValueFromData(data.backgroundColor, '')}">
 
                                 <v-toolbar flat v-show="showToolbar" height="${myMdwHelper.getNumberFromData(data.headerHeight, 64)}">
                                     <v-toolbar-title class="v-dialog-toolbar-my-title-layout" v-html="title"></v-toolbar-title>    
@@ -79,7 +81,7 @@ vis.binds.materialdesign.dialog = {
 
                                 ${myMdwHelper.getBooleanFromData(data.showTitle, false) ? `<v-card-title class="v-dialog-my-title-layout" v-html="title" v-show="!showToolbar" style="height: ${myMdwHelper.getNumberFromData(data.headerHeight, 50)}px;"></v-card-title>` : ''} 
 
-                                <v-card-text class="v-dialog-view-container" id="viewContainer_${data.wid}">
+                                <v-card-text class="v-dialog-view-container" id="viewContainer_${dialogClassName}">
                                     ${(isIFrame) ? `<iframe class="iFrame_container" src="${data.src}" ${(data.noSandbox) ? '' : 'sandbox="allow-modals allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts"'} style="position: relative; border: 0; padding: 0; margin: 0; width: 100%; height: 100%; ${(data.scrollX) ? 'overflow-x: scroll;' : 'overflow-x: hidden;'} ${(data.scrollY) ? 'overflow-y: scroll;' : 'overflow-y: hidden;'}" ${(data.seamless) ? 'seamless' : ''}></iframe>` : ''}
                                 </v-card-text>
 
@@ -183,8 +185,8 @@ vis.binds.materialdesign.dialog = {
                             setLayout();
                             vueDialog.showDialog = show;
 
-                            myMdwHelper.waitForElement($("body"), `#dialog_card_${data.wid}`, data.wid, 'Dialog', function () {
-                                let $dialog = $("body").find(`#dialog_card_${data.wid}`);
+                            myMdwHelper.waitForElement($("body"), `#dialog_card_${dialogClassName}`, data.wid, 'Dialog', function () {
+                                let $dialog = $("body").find(`#dialog_card_${dialogClassName}`);
 
                                 vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
                                     setStyle();
@@ -239,7 +241,7 @@ vis.binds.materialdesign.dialog = {
                                     if (!isIFrame) {
                                         if (vis.views[view]) {
                                             vis.renderView(view, view, true, function (_view) {
-                                                $('#visview_' + _view).css('position', 'relative').css('height', wishHeight + 'px').appendTo($dialog.find(`#viewContainer_${data.wid}`)).show().data('persistent', true);
+                                                $('#visview_' + _view).css('position', 'relative').css('height', wishHeight + 'px').appendTo($dialog.find(`#viewContainer_${dialogClassName}`)).show().data('persistent', true);
                                             });
                                         }
                                     } else {
@@ -260,7 +262,7 @@ vis.binds.materialdesign.dialog = {
                         }
 
                         function calcHeight() {
-                            let $dialog = $("body").find(`#dialog_card_${data.wid}`);
+                            let $dialog = $("body").find(`#dialog_card_${dialogClassName}`);
                             let windowHeight = $(window).height();
 
                             wishHeight = myMdwHelper.getValueFromData(data.viewHeight, '100%');

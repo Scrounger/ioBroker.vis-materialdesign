@@ -544,7 +544,7 @@ vis.binds.materialdesign.iconlist =
 
                                 // add to eventBind obj to prevent event fires multiples times if objectId is same on multiple objs
                                 eventBind[valId] = true;
-                                console.log(`[IconList - ${data.wid}] event bind for '${valId}'`);
+                                if(data.debug) console.log(`[IconList - ${data.wid}] event bind for '${valId}'`);
                             }
                         }
                     }
