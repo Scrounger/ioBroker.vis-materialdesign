@@ -664,31 +664,32 @@ vis.binds.materialdesign.button = {
         } else if (type === this.types.state.default) {
             return {
                 wid: widgetId,
-                debug: obj.debug,
 
                 // Common
                 oid: obj.oid,
                 buttonStyle: obj.buttonStyle,
                 value: obj.value,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-
+                debug: obj.debug,
+                
                 // labeling
                 buttontext: obj.buttontext,
                 textFontFamily: obj.textFontFamily,
                 textFontSize: obj.textFontSize,
                 labelWidth: obj.labelWidth,
-
+                
                 // colors
                 mdwButtonPrimaryColor: obj.mdwButtonPrimaryColor,
                 mdwButtonSecondaryColor: obj.mdwButtonSecondaryColor,
                 mdwButtonColorPress: obj.mdwButtonColorPress,
-
+                colorBgTrue: obj.colorBgTrue,
+                
                 // icon
                 image: obj.image,
                 imageColor: obj.imageColor,
                 iconPosition: obj.iconPosition,
                 iconHeight: obj.iconHeight,
-
+                
                 // Locking
                 lockEnabled: obj.lockEnabled,
                 autoLockAfter: obj.autoLockAfter,
@@ -696,36 +697,38 @@ vis.binds.materialdesign.button = {
                 lockIconSize: obj.lockIconSize,
                 lockIconColor: obj.lockIconColor,
                 lockFilterGrayscale: obj.lockFilterGrayscale
+                
             }
         } else if (type === this.types.state.vertical) {
             return {
                 wid: widgetId,
-                debug: obj.debug,
 
                 // Common
                 oid: obj.oid,
                 buttonStyle: obj.buttonStyle,
                 value: obj.value,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
-
+                debug: obj.debug,
+                
                 // labeling
                 buttontext: obj.buttontext,
                 textFontFamily: obj.textFontFamily,
                 textFontSize: obj.textFontSize,
                 alignment: obj.alignment,
                 distanceBetweenTextAndImage: obj.distanceBetweenTextAndImage,
-
+                
                 // colors
                 mdwButtonPrimaryColor: obj.mdwButtonPrimaryColor,
                 mdwButtonSecondaryColor: obj.mdwButtonSecondaryColor,
                 mdwButtonColorPress: obj.mdwButtonColorPress,
-
+                colorBgTrue: obj.colorBgTrue,
+                
                 // icon
                 image: obj.image,
                 imageColor: obj.imageColor,
                 iconPosition: obj.iconPosition,
                 iconHeight: obj.iconHeight,
-
+                
                 // Locking
                 lockEnabled: obj.lockEnabled,
                 autoLockAfter: obj.autoLockAfter,
@@ -734,7 +737,7 @@ vis.binds.materialdesign.button = {
                 lockIconLeft: obj.lockIconLeft,
                 lockIconSize: obj.lockIconSize,
                 lockIconColor: obj.lockIconColor,
-                lockFilterGrayscale: obj.lockFilterGrayscale
+                lockFilterGrayscale: obj.lockFilterGrayscale                
             }
         } else if (type === this.types.state.icon) {
             return {
