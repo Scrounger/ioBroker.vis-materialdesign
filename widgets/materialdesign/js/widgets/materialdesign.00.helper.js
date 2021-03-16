@@ -708,7 +708,14 @@ vis.binds.materialdesign.helper = {
 
                 that.updateStates(data);
                 that.conn.subscribe(oids, function () {
-                    vis.setValue('vis-materialdesign.0.lastchange', new Date().getTime());
+
+                    if (data && Object.keys(data).length > 0) {
+                        if (debug) console.log(`[subscribeStatesAtRuntime] ${widgetName} (${wid}): inform widgets ${Object.keys(data).length} states subscribed`);
+
+                        $(document).trigger("mdwSubscribe", data);
+                    }
+
+                    // vis.setValue('vis-materialdesign.0.lastchange', new Date().getTime());
                 });
 
                 if (callback) callback();
@@ -717,7 +724,39 @@ vis.binds.materialdesign.helper = {
             if (callback) callback();
         }
     },
+    isLayoutRefreshNeeded(widgetName, data, oids, debug) {
+        let subscribedOids = Object.keys(myUnderscore.pick(oids, myUnderscore.identity));
 
+        if (debug) console.log(`[isLayoutRefreshNeeded] ${widgetName} (${data.wid}): subscribed oids: ${JSON.stringify(subscribedOids)}`);
+
+        for (const key of Object.keys(data)) {
+            if (typeof (data[key]) === 'string') {
+                if (subscribedOids.includes(data[key].replace('#mdwTheme:', ''))) {
+                    if (debug) console.log(`[isLayoutRefreshNeeded] ${widgetName} (${data.wid}): refresh needed!`);
+                    return true;
+                }
+
+                if (data[key].includes('#mdwTheme:')) {
+                    let extractIds = data[key].match(/#mdwTheme:*[^*?"'`´,;:<>#/{}ß\[\]\s]*/g);
+
+                    if (extractIds && extractIds !== null && extractIds.length > 0) {
+                        for (const str of extractIds) {
+                            let id = str.replace('#mdwTheme:', '');
+                            if (subscribedOids.includes(id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.light.'))) {
+                                if (debug) console.log(`[isLayoutRefreshNeeded] ${widgetName} (${data.wid}): refresh needed!`);
+                                return true;
+                            } else if (subscribedOids.includes(id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.dark.'))) {
+                                if (debug) console.log(`[isLayoutRefreshNeeded] ${widgetName} (${data.wid}): refresh needed!`);
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
+    },
     calcChecker(prop, wid, widgetName, debug = false) {
         if (prop.includes("calc")) {
             console.error(`${widgetName} (${wid}) not supoort calc()! Use px or % instead! (${prop})`);

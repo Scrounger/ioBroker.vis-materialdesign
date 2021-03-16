@@ -188,6 +188,12 @@ vis.binds.materialdesign.dialog = {
                             myMdwHelper.waitForElement($("body"), `#dialog_card_${dialogClassName}`, data.wid, 'Dialog', function () {
                                 let $dialog = $("body").find(`#dialog_card_${dialogClassName}`);
 
+                                $(document).on("mdwSubscribe", function (e, oids) {
+                                    if (myMdwHelper.isLayoutRefreshNeeded(widgetName, data, oids, data.debug)) {
+                                        setStyle();
+                                    }
+                                });
+
                                 vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
                                     setStyle();
                                 });

@@ -16,6 +16,12 @@ vis.binds.materialdesign.materialdesignicons = {
 
             $this.append(myMdwHelper.getIconElement(myMdwHelper.getValueFromData(data.mdwIcon, 'material-design'), 'auto', myMdwHelper.getNumberFromData(data.mdwIconSize, 50) + 'px', myMdwHelper.getValueFromData(data.mdwIconColor, '#44739e')));
 
+            $(document).on("mdwSubscribe", function (e, oids) {
+                if (myMdwHelper.isLayoutRefreshNeeded(widgetName, data, oids, data.debug)) {
+                    setLayout();
+                }
+            });
+
             vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
                 setLayout();
             });

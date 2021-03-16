@@ -25,6 +25,12 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
                 $this.html('<canvas class="materialdesign-chart-container"></canvas>');
             }
 
+            $(document).on("mdwSubscribe", function (e, oids) {
+                if (myMdwHelper.isLayoutRefreshNeeded(widgetName, data, oids, data.debug)) {
+                    setLayout(true);
+                }
+            });
+
             vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
                 setLayout(true);
             });

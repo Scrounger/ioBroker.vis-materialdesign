@@ -74,6 +74,12 @@ vis.binds.materialdesign.progress = {
                         vueProgress.value = vis.binds.materialdesign.progress.getProgressState($this, data, newVal, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label');
                     });
 
+                    $(document).on("mdwSubscribe", function (e, oids) {
+                        if (myMdwHelper.isLayoutRefreshNeeded(widgetName, data, oids, data.debug)) {
+                            setLayout();
+                        }
+                    });
+
                     vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
                         setLayout();
                     });
@@ -162,6 +168,12 @@ vis.binds.materialdesign.progress = {
 
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                         vueProgressCircular.value = vis.binds.materialdesign.progress.getProgressState($this, data, newVal, "--vue-progress-circular-progress-color", '.materialdesign-vuetify-progress-circular-value-label');
+                    });
+
+                    $(document).on("mdwSubscribe", function (e, oids) {
+                        if (myMdwHelper.isLayoutRefreshNeeded(widgetName, data, oids, data.debug)) {
+                            setLayout();
+                        }
                     });
 
                     vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {

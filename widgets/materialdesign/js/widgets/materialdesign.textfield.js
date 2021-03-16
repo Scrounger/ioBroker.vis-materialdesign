@@ -105,6 +105,12 @@ vis.binds.materialdesign.textfield = {
                             }
                         });
 
+                        $(document).on("mdwSubscribe", function (e, oids) {
+                            if (myMdwHelper.isLayoutRefreshNeeded(widgetName, data, oids, data.debug)) {
+                                vueHelper.setStyles($this, data);
+                            }
+                        });
+
                         vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
                             vueHelper.setStyles($this, data);
                         });

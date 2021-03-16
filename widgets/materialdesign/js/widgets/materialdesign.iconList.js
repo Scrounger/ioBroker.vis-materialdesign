@@ -62,6 +62,13 @@ vis.binds.materialdesign.iconlist =
                 }
             });
 
+            
+            $(document).on("mdwSubscribe", function (e, oids) {
+                if (myMdwHelper.isLayoutRefreshNeeded(widgetName, data, oids, data.debug)) {
+                    setLayout(true);
+                }
+            });
+
             vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
                 setLayout(true);
             });

@@ -232,6 +232,13 @@ vis.binds.materialdesign.list =
                     const mdcListAdapter = mdcList.getDefaultFoundation().adapter_;
                     const listItemRipples = mdcList.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
 
+
+                    $(document).on("mdwSubscribe", function (e, oids) {
+                        if (myMdwHelper.isLayoutRefreshNeeded(widgetName, data, oids, data.debug)) {
+                            setStyle();
+                        }
+                    });
+
                     vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
                         setStyle();
                     });

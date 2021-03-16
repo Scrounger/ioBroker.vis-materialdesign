@@ -61,6 +61,12 @@ vis.binds.materialdesign.autocomplete = {
                                 methods: vueHelper.getMethods(data, $this, itemsList, $vuetifyContainer, inputMode)
                             });
 
+                            $(document).on("mdwSubscribe", function (e, oids) {
+                                if (myMdwHelper.isLayoutRefreshNeeded(widgetName, data, oids, data.debug)) {
+                                    vueHelper.setStyles($this, data);
+                                }
+                            });
+
                             vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
                                 vueHelper.setStyles($this, data);
                             });
@@ -68,8 +74,6 @@ vis.binds.materialdesign.autocomplete = {
                             vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
                                 vueHelper.setStyles($this, data);
                             });
-
-
 
                             vueHelper.setStyles($this, data);
                             vueHelper.setIoBrokerBinding(data, vueAutoComplete, itemsList, inputMode);

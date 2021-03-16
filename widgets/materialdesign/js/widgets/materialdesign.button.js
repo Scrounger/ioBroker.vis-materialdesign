@@ -495,6 +495,12 @@ vis.binds.materialdesign.button = {
         var $this = $(el);
         let btn = $this.parent().get(0) ? $this.parent().get(0) : $this.parent().context;
 
+        $(document).on("mdwSubscribe", function (e, oids) {
+            if (myMdwHelper.isLayoutRefreshNeeded(widgetName, data, oids, data.debug)) {
+                setLayout();
+            }
+        });
+
         vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
             setLayout();
         });

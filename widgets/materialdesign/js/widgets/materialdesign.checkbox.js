@@ -88,10 +88,16 @@ vis.binds.materialdesign.checkbox = {
 
                     setCheckboxState();
                 });
-            }
+            }            
 
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 setCheckboxState();
+            });
+
+            $(document).on("mdwSubscribe", function (e, oids) {
+                if (myMdwHelper.isLayoutRefreshNeeded(widgetName, data, oids, data.debug)) {
+                    setLayout();
+                }
             });
 
             vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
