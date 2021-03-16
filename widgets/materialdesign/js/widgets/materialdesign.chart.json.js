@@ -321,8 +321,12 @@ vis.binds.materialdesign.chart.json = function (el, data) {
                                                         fontSize: myMdwHelper.getNumberFromData(graph.yAxis_fontSize, myMdwHelper.getNumberFromData(data.yAxisValueFontSize, undefined)),
                                                         padding: myMdwHelper.getNumberFromData(graph.yAxis_distance, myMdwHelper.getNumberFromData(data.yAxisValueDistanceToAxis, 0)),
                                                         callback: function (value, index, values) {
-                                                            let axisId = this.id.replace('yAxis_id_', '');
-                                                            return `${myMdwHelper.formatNumber(value, myMdwHelper.getNumberFromData(jsonData.graphs[axisId].yAxis_minimumDigits, 0), myMdwHelper.getNumberFromData(jsonData.graphs[axisId].yAxis_maximumDigits, 0))}${myMdwHelper.getValueFromData(jsonData.graphs[axisId].yAxis_appendix, '')}`.split('\\n');
+                                                            try {
+                                                                let axisId = this.id.replace('yAxis_id_', '');
+                                                                return `${myMdwHelper.formatNumber(value, myMdwHelper.getNumberFromData(jsonData.graphs[axisId].yAxis_minimumDigits, 0), myMdwHelper.getNumberFromData(jsonData.graphs[axisId].yAxis_maximumDigits, 0))}${myMdwHelper.getValueFromData(jsonData.graphs[axisId].yAxis_appendix, '')}`.split('\\n');
+                                                            } catch (ex) {
+                                                                console.error(`[${widgetName} - ${data.wid}] [ticks callback] error: ${ex.message}, stack: ${ex.stack}`);
+                                                            }
                                                         }
                                                     },
                                                     gridLines: {

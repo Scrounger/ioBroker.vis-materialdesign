@@ -30,14 +30,18 @@ vis.binds.materialdesign.chart.helper = {
                 autoSkip: (chartType === 'horizontal' && (myMdwHelper.getNumberFromData(axisMaxLabel, undefined) > 0) || myMdwHelper.getBooleanFromData(axisLabelAutoSkip, false)),
                 maxTicksLimit: (chartType === 'horizontal') ? myMdwHelper.getNumberFromData(axisMaxLabel, undefined) : undefined,
                 callback: function (value, index, values) {
-                    if (isNaN(value)) {
-                        return `${value}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');;
-                    } else {
-                        if (axisValueMinDigits || axisValueMaxDigits) {
-                            return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                    try {
+                        if (isNaN(value)) {
+                            return `${value}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');;
                         } else {
-                            return `${value}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                            if (axisValueMinDigits || axisValueMaxDigits) {
+                                return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                            } else {
+                                return `${value}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                            }
                         }
+                    } catch (ex) {
+                        console.error(`[chart helper] [ticks callback] error: ${ex.message}, stack: ${ex.stack}`);
                     }
                 },
                 fontColor: myMdwHelper.getValueFromData(yAxisValueLabelColor, undefined),

@@ -219,8 +219,12 @@ vis.binds.materialdesign.chart.lineHistory = function (el, data) {
                                             fontSize: myMdwHelper.getNumberFromData(data.yAxisValueFontSize, undefined),
                                             padding: myMdwHelper.getNumberFromData(data.yAxisValueDistanceToAxis, 0),
                                             callback: function (value, index, values) {
-                                                let axisId = this.id.replace('yAxis_id_', '');
-                                                return `${myMdwHelper.formatNumber(value, data.attr('yAxisValueMinDigits' + axisId), data.attr('yAxisValueMaxDigits' + axisId))}${myMdwHelper.getValueFromData(data.attr('yAxisValueAppendText' + axisId), '')}`.split('\\n');
+                                                try {
+                                                    let axisId = this.id.replace('yAxis_id_', '');
+                                                    return `${myMdwHelper.formatNumber(value, data.attr('yAxisValueMinDigits' + axisId), data.attr('yAxisValueMaxDigits' + axisId))}${myMdwHelper.getValueFromData(data.attr('yAxisValueAppendText' + axisId), '')}`.split('\\n');
+                                                } catch (ex) {
+                                                    console.error(`[${widgetName} - ${data.wid}] [ticks callback] error: ${ex.message}, stack: ${ex.stack}`);
+                                                }
                                             },
                                             source: myMdwHelper.getValueFromData(data.xAxisTicksSource, 'auto')
                                         },
