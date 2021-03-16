@@ -146,7 +146,7 @@ vis.binds.materialdesign.topappbarnav = {
                     // generate Item Image for Layout Standard
                     let listItemImage = ''
                     if (data.drawerItemLayout === 'standard') {
-                        listItemImage = myMdwHelper.getListIcon(itemImage, 'auto', myMdwHelper.getValueFromData(data.drawerIconHeight, '', '', 'px !important;'), data.attr('iconDrawerColor' + i));
+                        listItemImage = myMdwHelper.getListIcon(itemImage, 'auto', myMdwHelper.getValueFromData(data.drawerIconHeight, '', '', 'px !important;'), myMdwHelper.getValueFromData(data.attr('iconDrawerColor' + i), '#44739e'));
                     }
 
                     // add itemIndex to label if enabled
@@ -206,7 +206,7 @@ vis.binds.materialdesign.topappbarnav = {
                             // generate Item Image for Layout Standard
                             let listSubItemImage = ''
                             if (data.drawerSubItemLayout === 'standard') {
-                                listSubItemImage = myMdwHelper.getListIcon(subItemImage, 'auto', myMdwHelper.getValueFromData(data.drawerSubItemIconHeight, myMdwHelper.getValueFromData(data.drawerIconHeight, ''), '', 'px !important;'), myMdwHelper.getValueFromData(subObj.iconColor, myMdwHelper.getValueFromData(data.attr('iconDrawerColor' + i), '#44739e')));
+                                listSubItemImage = myMdwHelper.getListIcon(subItemImage, 'auto', myMdwHelper.getValueFromData(data.drawerSubItemIconHeight, myMdwHelper.getValueFromData(data.drawerIconHeight, ''), '', 'px !important;'), myMdwHelper.getValueFromData(subObj.iconColor, myMdwHelper.getValueFromData(data.attr('subIconDrawerColor' + i), '#44739e')));
                             }
 
                             // generate Item Label
@@ -363,12 +363,20 @@ vis.binds.materialdesign.topappbarnav = {
                     $mdcTopAppBar.get(0).style.setProperty("--materialdesign-font-size-top-app-bar-title", myMdwHelper.getNumberFromData(data.titleFontSize, 20) + 'px');
                     $mdcTopAppBar.get(0).style.setProperty("--materialdesign-color-top-app-bar-title", myMdwHelper.getValueFromData(data.colorTopAppBarTitle, ''));
 
-                    let item = 0;
-                    $this.find(`.mdc-list-item`).not(".mdc-list-item.isSubItem ").each(function () {
-                        $(this).find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.attr('iconDrawerColor' + item), '#44739e'));
+
+                    $this.find(`.mdc-list-item`).not(".mdc-list-item.isSubItem").each(function (itemIndex) {
+                        $(this).find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.attr('iconDrawerColor' + itemIndex), '#44739e'));
                         $(this).find('.toggleIcon').css('color', myMdwHelper.getValueFromData(data.colorSubItemToggleIcon, '#44739e'));
 
-                        item++;
+                        let realIndex = parseInt($(this).attr('index'));
+                        if ($(this).hasClass('hasSubItems')) {
+                            let subMenuObjects = JSON.parse(data.attr('submenus' + itemIndex));
+
+                            for (var subIndex = 0; subIndex <= subMenuObjects.length - 1; subIndex++) {
+                                $this.find(`.isSubItem[index="${realIndex + 1 + subIndex}"] .materialdesign-icon-image`)
+                                    .css('color', myMdwHelper.getValueFromData(subMenuObjects[subIndex].iconColor, myMdwHelper.getValueFromData(data.attr('subIconDrawerColor' + itemIndex), '#44739e')));
+                            }
+                        }
                     });
                 }
 

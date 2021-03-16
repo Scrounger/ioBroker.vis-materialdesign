@@ -990,6 +990,12 @@
         "widget": "Top App Bar"
     },
     {
+        "id": "dark.top_app_bar.subItem_icon",
+        "desc": "subIconDrawerColor",
+        "defaultValue": 0,
+        "widget": "Top App Bar"
+    },    
+    {
         "id": "dark.top_app_bar.item_text_selected",
         "desc": "colorListItemTextSelected",
         "defaultValue": 2,

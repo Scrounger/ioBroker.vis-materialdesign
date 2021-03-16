@@ -11489,5 +11489,29 @@ systemDictionary = {
         "es": "sí",
         "pl": "tak",
         "zh-cn": "是的"
+    },
+    "iconDrawerColor": {
+        "en": "icon color",
+        "de": "Symbolfarbe",
+        "ru": "цвет значка",
+        "pt": "cor do ícone",
+        "nl": "pictogram kleur",
+        "fr": "couleur de l'icône",
+        "it": "colore dell'icona",
+        "es": "color del icono",
+        "pl": "kolor ikony",
+        "zh-cn": "图标颜色"
+    },
+    "subIconDrawerColor": {
+        "en": "sub menu icon color",
+        "de": "Farbe des Untermenüsymbols",
+        "ru": "цвет значка подменю",
+        "pt": "cor do ícone do submenu",
+        "nl": "submenu pictogram kleur",
+        "fr": "couleur de l'icône du sous-menu",
+        "it": "colore dell'icona del sottomenu",
+        "es": "color del icono del submenú",
+        "pl": "kolor ikony podmenu",
+        "zh-cn": "子菜单图标颜色"
     }
 };
