@@ -62,7 +62,7 @@ vis.binds.materialdesign.iconlist =
                 }
             });
 
-            
+
             $(document).on("mdwSubscribe", function (e, oids) {
                 if (myMdwHelper.isLayoutRefreshNeeded(widgetName, data, oids, data.debug)) {
                     setLayout(true);
@@ -136,15 +136,14 @@ vis.binds.materialdesign.iconlist =
                 countOfOldItems = 0;
 
                 if (data.listItemDataMethod === 'jsonStringObject') {
-                    if (vis.states.attr(data.json_string_oid + '.val') && vis.states.attr(data.json_string_oid + '.val') !== 'null') {
+                    let val = vis.states.attr(data.json_string_oid + '.val');
+                    if (val && val !== null && val !== 'null') {
                         try {
-                            jsonData = JSON.parse(vis.states.attr(data.json_string_oid + '.val'));
+                            jsonData = JSON.parse(val);
                             if (oldVal) {
                                 oldJsonData = JSON.parse(oldVal);
                                 countOfOldItems = oldJsonData.length - 1;
                             }
-
-                            countOfItems = jsonData.length - 1;
                         } catch (err) {
                             jsonData = [
                                 {
@@ -152,9 +151,10 @@ vis.binds.materialdesign.iconlist =
                                     subText: `<label style="word-wrap: break-word; white-space: normal;">${err.message}</label>`
                                 }
                             ];
-                            countOfItems = jsonData.length - 1;
-                            console.error(`[IconList - ${data.wid}] cannot parse json string! Error: ${err.message}`);
+                            console.error(`[IconList - ${data.wid}] cannot parse json string! value: '${val}' Error: ${err.message}`);
                         }
+
+                        countOfItems = jsonData.length - 1;
                     } else {
                         jsonData = [
                             {
@@ -551,7 +551,7 @@ vis.binds.materialdesign.iconlist =
 
                                 // add to eventBind obj to prevent event fires multiples times if objectId is same on multiple objs
                                 eventBind[valId] = true;
-                                if(data.debug) console.log(`[IconList - ${data.wid}] event bind for '${valId}'`);
+                                if (data.debug) console.log(`[IconList - ${data.wid}] event bind for '${valId}'`);
                             }
                         }
                     }

@@ -60,17 +60,29 @@ vis.binds.materialdesign.list =
                 oidsNeedSubscribe = false;
 
                 if (data.listItemDataMethod === 'jsonStringObject') {
-                    try {
-                        jsonData = JSON.parse(vis.states.attr(data.json_string_oid + '.val'));
+                    let val = vis.states.attr(data.json_string_oid + '.val');
+                    if (val && val !== null && val !== 'null') {
+                        try {
+                            jsonData = JSON.parse(val);
+                        } catch (err) {
+                            jsonData = [
+                                {
+                                    text: `<font color=\"red\"><b>${_("Error in JSON string")}</b></font>`,
+                                    subText: `<label style="word-wrap: break-word; white-space: normal;">${err.message}</label>`
+                                }
+                            ];
+                            console.error(`[IconList - ${data.wid}] cannot parse json string! value: '${val}' Error: ${err.message}`);
+                        }
+                        
                         countOfItems = jsonData.length - 1;
-                    } catch (err) {
+                    } else {
                         jsonData = [
                             {
-                                text: `<font color=\"red\"><b>${_("Error in JSON string")}</b></font>`,
-                                subText: `<label style="word-wrap: break-word; white-space: normal;">${err.message}</label>`
+                                text: `<font color=\"red\"><b>${_("datapoint '{0}' not exist!").replace('{0}', data.json_string_oid)}</b></font>`,
                             }
                         ];
-                        console.error(`[List - ${data.wid}] cannot parse json string! Error: ${err.message}`);
+                        countOfItems = jsonData.length - 1;
+                        console.warn(`[IconList - ${data.wid}] ${_("datapoint '{0}' not exist!").replace('{0}', data.json_string_oid)}`);
                     }
                 } else {
                     countOfItems = data.countListItems;
