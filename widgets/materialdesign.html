@@ -1014,7 +1014,7 @@
         data-vis-name="Material Design Icon"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,materialdesignicon;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;useTheme/custom,materialdesign.viseditor.useTheme;mdwIcon/custom,materialdesign.viseditor.materialDesignIcons;mdwIconSize/number;mdwIconColor[#mdwTheme:vis-materialdesign.0.colors.material_design_icon.color]/color;generateHtmlControl/custom,materialdesign.viseditor.generateHtmlControl,materialdesignicons;debug/checkbox;">
 
-        <div class="vis-widget materialdesign-widget materialdesign-icon <%== this.data.attr('class') %>" style="width: 50px; height: 50px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.materialdesignicons.initialize(el, data) %> > 
+        <div class="vis-widget materialdesign-widget materialdesign-icon <%== this.data.attr('class') %>" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.materialdesignicons.initialize(el, data) %> > 
             
         </div>
 </script>

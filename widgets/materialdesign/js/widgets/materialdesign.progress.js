@@ -228,14 +228,14 @@ vis.binds.materialdesign.progress = {
                 $this.get(0).style.setProperty(colorProperty, color);
             }
 
-
-
-            if (myMdwHelper.getValueFromData(data.valueLabelStyle, "progressPercent") === 'progressPercent') {
-                $this.find(labelClass).html(`${myMdwHelper.formatNumber(valPercent, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))} %`);
-            } else if (myMdwHelper.getValueFromData(data.valueLabelStyle, "progressPercent") === 'progressValue') {
-                $this.find(labelClass).html(`${myMdwHelper.formatNumber(val, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))}${myMdwHelper.getValueFromData(data.valueLabelUnit, '')}`);
-            } else {
-                $this.find(labelClass).html(`${myMdwHelper.getValueFromData(data.valueLabelCustom, '').replace('[#value]', myMdwHelper.formatNumber(val, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))).replace('[#percent]', myMdwHelper.formatNumber(valPercent, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0)))}`);
+            if(myMdwHelper.getBooleanFromData(data.showValueLabel, true)){
+                if (myMdwHelper.getValueFromData(data.valueLabelStyle, "progressPercent") === 'progressPercent') {
+                    $this.find(labelClass).html(`${myMdwHelper.formatNumber(valPercent, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))} %`);
+                } else if (myMdwHelper.getValueFromData(data.valueLabelStyle, "progressPercent") === 'progressValue') {
+                    $this.find(labelClass).html(`${myMdwHelper.formatNumber(val, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))}${myMdwHelper.getValueFromData(data.valueLabelUnit, '')}`);
+                } else {
+                    $this.find(labelClass).html(`${myMdwHelper.getValueFromData(data.valueLabelCustom, '').replace('[#value]', myMdwHelper.formatNumber(val, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))).replace('[#percent]', myMdwHelper.formatNumber(valPercent, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0)))}`);
+                }
             }
 
             if (!myMdwHelper.getBooleanFromData(data.progressIndeterminate, false)) {
