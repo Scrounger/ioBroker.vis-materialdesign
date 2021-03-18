@@ -2163,7 +2163,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  padding-top: 2px;
+  padding: 2px 4px 0 4px;
 }
 
 .materialdesign-icon-list-item-text-vertical {
