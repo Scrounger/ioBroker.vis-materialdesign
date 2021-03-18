@@ -60,7 +60,7 @@ vis.binds.materialdesign.progress = {
                                 dataObj.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label');
                             }
 
-                            if (data.progressRotate === 'noRotate') {
+                            if (myMdwHelper.getValueFromData(data.progressRotate, 'noRotate') === 'noRotate') {
                                 dataObj.height = window.getComputedStyle($this.get(0), null).height.replace('px', '');
                             } else {
                                 dataObj.height = window.getComputedStyle($this.get(0), null).width.replace('px', '');
@@ -106,7 +106,7 @@ vis.binds.materialdesign.progress = {
                         let val = myMdwHelper.getNumberFromData(vis.states.attr(data.oid + '.val'), 0);
                         vueProgress.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label');
 
-                        if (data.progressRotate !== 'noRotate') {
+                        if (myMdwHelper.getValueFromData(data.progressRotate, 'noRotate') !== 'noRotate') {
                             $this.find(`.${containerClass}`).css('transform', 'rotate(90deg)');
                             $this.find('.v-progress-linear').css('width', window.getComputedStyle($this.get(0), null).height.replace('px', ''));
                         }
@@ -240,7 +240,7 @@ vis.binds.materialdesign.progress = {
                 $this.get(0).style.setProperty(colorProperty, color);
             }
 
-            if(myMdwHelper.getBooleanFromData(data.showValueLabel, true)){
+            if (myMdwHelper.getBooleanFromData(data.showValueLabel, true)) {
                 if (myMdwHelper.getValueFromData(data.valueLabelStyle, "progressPercent") === 'progressPercent') {
                     $this.find(labelClass).html(`${myMdwHelper.formatNumber(valPercent, 0, myMdwHelper.getNumberFromData(data.valueMaxDecimals, 0))} %`);
                 } else if (myMdwHelper.getValueFromData(data.valueLabelStyle, "progressPercent") === 'progressValue') {
