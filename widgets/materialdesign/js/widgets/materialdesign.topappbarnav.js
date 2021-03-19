@@ -501,22 +501,50 @@ vis.binds.materialdesign.topappbarnav = {
                 });
 
                 function setTopAppBarWithDrawerLayout(index) {
-                    if (data.showSelectedItemAsTitle) {
-                        let selectedName = $mdcList.find(`span[id="listItem_${index}"]`).text();
-                        $topAppBarTitle.text(selectedName)
+                    let $selectedItem = $mdcList.find(`div[id="listItem_${index}"]`);
+                    let selectedName = $selectedItem.find(`.mdc-list-item__text`).text();
 
-                        if (data.selectedItemName_oid) {
-                            let $selectedItem = $mdcList.find(`div[id="listItem_${index}"]`);
-                            let parentIndex = $selectedItem.attr('parentIndex');
+                    if (myMdwHelper.getBooleanFromData(data.showSelectedItemAsTitle, true)) {
+                        if (myMdwHelper.getBooleanFromData(data.showSelectedItemIconInTitle, true)) {
+                            let $icon = $selectedItem.find('.materialdesign-icon-image');
 
-                            if (parentIndex) {
-                                let parentName = $mdcList.find(`span[id="listItem_${parentIndex}"]`).text();
-                                myMdwHelper.setValue(data.selectedItemName_oid, `${parentName.replace(`[${parentIndex}] `, '').trim()}.${selectedName.replace(`[${index}] `, '').trim()}`);
+                            if ($icon.length > 0 && $icon[0]) {
+                                let iconOrImage = undefined;
+                                let iconHtml = undefined;
+                                if ($icon.attr('src')) {
+                                    iconOrImage = $icon.attr('src');
+                                    iconHtml = myMdwHelper.getIconElement(iconOrImage, 'auto', myMdwHelper.getValueFromData(data.iconTitleHeight, '30px'), '', 'margin-right: 10px;');
+                                } else {
+                                    if ($icon[0].classList && $icon[0].classList[1] && $icon[0].classList[1].startsWith('mdi-')) {
+                                        iconOrImage = $icon[0].classList[1].replace('mdi-', '');
+                                        iconHtml = myMdwHelper.getIconElement(iconOrImage, 'auto', myMdwHelper.getValueFromData(data.iconTitleHeight, '30px'), '', 'margin-right: 10px;');
+                                    }
+                                }
+
+                                if (iconHtml) {
+                                    $topAppBarTitle.html(`${iconHtml}${selectedName}`);
+                                } else {
+                                    $topAppBarTitle.text(selectedName);
+                                }
                             } else {
-                                myMdwHelper.setValue(data.selectedItemName_oid, selectedName.replace(`[${index}] `, '').trim());
+                                $topAppBarTitle.text(selectedName);
                             }
+                        } else {
+                            $topAppBarTitle.text(selectedName);
                         }
                     }
+
+                    if (data.selectedItemName_oid) {
+                        let parentIndex = $selectedItem.attr('parentIndex');
+
+                        if (parentIndex) {
+                            let parentName = $mdcList.find(`span[id="listItem_${parentIndex}"]`).text();
+                            myMdwHelper.setValue(data.selectedItemName_oid, `${parentName.replace(`[${parentIndex}] `, '').trim()}.${selectedName.replace(`[${index}] `, '').trim()}`);
+                        } else {
+                            myMdwHelper.setValue(data.selectedItemName_oid, selectedName.replace(`[${index}] `, '').trim());
+                        }
+                    }
+
                 }
 
                 function toggleSubItemByIndex(index) {

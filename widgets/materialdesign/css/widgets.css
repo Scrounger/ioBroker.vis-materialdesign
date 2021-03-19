@@ -1381,9 +1381,12 @@ svg.materialdesign-widget .materialdesign-button__icon {
 }
 
 .materialdesign-widget .mdc-top-app-bar__title {
+  display: flex;
+  align-items: center;
+  height: 100%;
   font-family: var(--materialdesign-font-top-app-bar-title);
   font-size:  var(--materialdesign-font-size-top-app-bar-title);
-  color: var(--materialdesign-color-top-app-bar-title)
+  color: var(--materialdesign-color-top-app-bar-title)  
 }
 
 .materialdesign-widget .mdc-drawer__content .mdc-list-item__text {

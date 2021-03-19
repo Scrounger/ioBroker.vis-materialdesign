@@ -1094,6 +1094,18 @@ systemDictionary = {
         "pl": "pokaż tytuł wybranego elementu paska nawigacji",
         "zh-cn": "显示所选导航栏项目的标题"
     },
+    "showSelectedItemIconInTitle": {
+        "en": "show icon of selected navigation bar item",
+        "de": "Symbol des ausgewählten Navigationsleistenelements anzeigen",
+        "ru": "показать значок выбранного элемента панели навигации",
+        "pt": "mostrar o ícone do item da barra de navegação selecionado",
+        "nl": "toon het pictogram van het geselecteerde navigatiebalkitem",
+        "fr": "afficher l'icône de l'élément de la barre de navigation sélectionné",
+        "it": "mostra l'icona dell'elemento selezionato nella barra di navigazione",
+        "es": "mostrar el icono del elemento de la barra de navegación seleccionado",
+        "pl": "pokaż ikonę wybranego elementu paska nawigacji",
+        "zh-cn": "显示所选导航栏项目的图标"
+    },
     "invertImage": {
         "en": "invert image color",
         "de": "Bildfarbe umkehren",
