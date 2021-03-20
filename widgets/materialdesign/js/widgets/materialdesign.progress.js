@@ -375,6 +375,7 @@ vis.binds.materialdesign.progress = {
 $.initialize(".materialdesign-progress-html-element", function () {
     let $this = $(this);
     let type = $this.attr('mdw-type');
+    let debug = myMdwHelper.getBooleanFromData($this.attr('mdw-debug'), false);
     let parentId = 'unknown';
     let logPrefix = `[Progress HTML Element - ${parentId.replace('w', 'p')} - ${type}]`;
 
@@ -384,7 +385,7 @@ $.initialize(".materialdesign-progress-html-element", function () {
         parentId = myMdwHelper.getHtmlParentId($this);
         logPrefix = `[Progress HTML Element - ${parentId.replace('w', 'p')} - ${type}]`;
 
-        console.log(`${logPrefix} initialize html element from type '${type}'`);
+        if (debug) console.log(`${logPrefix} initialize html element from type '${type}'`);
 
         myMdwHelper.extractHtmlWidgetData($this,
             vis.binds.materialdesign.progress.getDataFromJson({}, parentId, vis.binds.materialdesign.progress.types[type]),

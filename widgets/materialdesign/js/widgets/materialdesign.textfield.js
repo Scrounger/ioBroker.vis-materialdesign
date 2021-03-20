@@ -233,6 +233,7 @@ vis.binds.materialdesign.textfield = {
 
 $.initialize(".materialdesign-input-html-element", function () {
     let $this = $(this);
+    let debug = myMdwHelper.getBooleanFromData($this.attr('mdw-debug'), false);
     let parentId = 'unknown';
     let logPrefix = `[Input HTML Element - ${parentId.replace('w', 'p')}]`;
 
@@ -242,7 +243,7 @@ $.initialize(".materialdesign-input-html-element", function () {
         parentId = myMdwHelper.getHtmlParentId($this);
         logPrefix = `[Input HTML Element - ${parentId.replace('w', 'p')}]`;
 
-        console.log(`${logPrefix} initialize html element`);
+        if (debug) console.log(`${logPrefix} initialize html element`);
 
         myMdwHelper.extractHtmlWidgetData($this,
             vis.binds.materialdesign.textfield.getDataFromJson({}, parentId),

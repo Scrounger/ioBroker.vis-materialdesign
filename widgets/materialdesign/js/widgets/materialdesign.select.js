@@ -214,6 +214,7 @@ vis.binds.materialdesign.select = {
 
 $.initialize(".materialdesign-select-html-element", function () {
     let $this = $(this);
+    let debug = myMdwHelper.getBooleanFromData($this.attr('mdw-debug'), false);
     let parentId = 'unknown';
     let logPrefix = `[Select HTML Element - ${parentId.replace('w', 'p')}]`;
 
@@ -223,7 +224,7 @@ $.initialize(".materialdesign-select-html-element", function () {
         parentId = myMdwHelper.getHtmlParentId($this);
         logPrefix = `[Select HTML Element - ${parentId.replace('w', 'p')}]`;
 
-        console.log(`${logPrefix} initialize html element`);
+        if (debug) console.log(`${logPrefix} initialize html element`);
 
         myMdwHelper.extractHtmlWidgetData($this,
             vis.binds.materialdesign.select.getDataFromJson({}, parentId, $this.attr('mdw-countSelectItems')),

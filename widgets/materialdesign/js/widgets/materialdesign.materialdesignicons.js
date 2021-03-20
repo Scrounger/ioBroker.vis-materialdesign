@@ -6045,6 +6045,7 @@ vis.binds.materialdesign.materialdesignicons = {
 
 $.initialize(".materialdesign-materialdesignicons-html-element", function () {
     let $this = $(this);
+    let debug = myMdwHelper.getBooleanFromData($this.attr('mdw-debug'), false);
     let parentId = 'unknown';
     let logPrefix = `[MaterialDesignIcon HTML Element - ${parentId.replace('w', 'p')}]`;
 
@@ -6054,7 +6055,7 @@ $.initialize(".materialdesign-materialdesignicons-html-element", function () {
         parentId = myMdwHelper.getHtmlParentId($this);
         logPrefix = `[MaterialDesignIcon HTML Element - ${parentId.replace('w', 'p')}]`;
 
-        console.log(`${logPrefix} initialize html element`);
+        if (debug) console.log(`${logPrefix} initialize html element`);
 
         myMdwHelper.extractHtmlWidgetData($this,
             vis.binds.materialdesign.materialdesignicons.getDataFromJson({}, parentId),

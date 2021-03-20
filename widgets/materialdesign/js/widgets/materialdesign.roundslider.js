@@ -235,6 +235,7 @@ vis.binds.materialdesign.roundslider = {
 
 $.initialize(".materialdesign-roundslider-html-element", function () {
     let $this = $(this);
+    let debug = myMdwHelper.getBooleanFromData($this.attr('mdw-debug'), false);
     let parentId = 'unknown';
     let logPrefix = `[Round Slider HTML Element - ${parentId.replace('w', 'p')}]`;
 
@@ -244,7 +245,7 @@ $.initialize(".materialdesign-roundslider-html-element", function () {
         parentId = myMdwHelper.getHtmlParentId($this);
         logPrefix = `[Round Slider HTML Element - ${parentId.replace('w', 'p')}]`;
 
-        console.log(`${logPrefix} initialize html element`);
+        if (debug) console.log(`${logPrefix} initialize html element`);
 
         myMdwHelper.extractHtmlWidgetData($this,
             vis.binds.materialdesign.roundslider.getDataFromJson({}, parentId),
