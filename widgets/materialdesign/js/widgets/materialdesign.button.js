@@ -255,6 +255,12 @@ vis.binds.materialdesign.button = {
                 vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                     setLayout(newVal);
                 });
+
+                $(document).on("mdwSubscribe", function (e, oids) {
+                    if (myMdwHelper.isLayoutRefreshNeeded('Button', data, oids, data.debug)) {
+                        setLayout(vis.states.attr(data.oid + '.val'));
+                    }
+                });
             }
 
             if (!vis.editMode) {
@@ -267,7 +273,6 @@ vis.binds.materialdesign.button = {
                     if (moved) return;
 
                     if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === undefined) {
-                        var oid = data.oid;
                         if (!isMulti) {
                             setValue(data.oid, data.value);
                             setLayout(formatInputValue(data.value));
