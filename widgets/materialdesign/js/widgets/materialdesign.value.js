@@ -153,7 +153,7 @@ vis.binds.materialdesign.value = {
                         changed = true;
 
                         $valueText.animate({
-                            color: myMdwHelper.getValueFromData(data.effectFontColor, myMdwHelper.getValueFromData(data.valuesFontColor, '')),
+                            color: myMdwHelper.getValueFromData(data.effectFontColor, myMdwHelper.getValueFromData(getValueWithCondition(data.valuesFontColor, value), '')),
                             fontSize: myMdwHelper.getStringFromNumberData(data.effectFontSize, myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px'), '', 'px')
                         }, myMdwHelper.getNumberFromData(data.effectDuration, 750) / 3 * 2);
 
@@ -162,7 +162,7 @@ vis.binds.materialdesign.value = {
                         }, myMdwHelper.getNumberFromData(data.effectDuration, 750) / 3);
 
                         $valueText.animate({
-                            color: myMdwHelper.getValueFromData(myMdwHelper.getValueFromData(data.valuesFontColor, '')),
+                            color: myMdwHelper.getValueFromData(myMdwHelper.getValueFromData(getValueWithCondition(data.valuesFontColor, value), '')),
                             fontSize: myMdwHelper.getStringFromNumberData(data.valuesFontSize, 14, '', 'px')
                         }, myMdwHelper.getNumberFromData(data.effectDuration, 750) / 3);
                     }
