@@ -85,37 +85,38 @@ vis.binds.materialdesign.value = {
 
                 let result = '';
                 if (value !== undefined && value !== null) {
+                    let valTmp = value;
                     if (type === 'number') {
                         try {
                             if (myMdwHelper.getValueFromData(data.calculate, undefined) && data.calculate.includes('#value')) {
-                                let calc = replaceValue(data.calculate, value);
-                                value = math.evaluate(calc);
-                                if (oldVal !== undefined && oldVal !== null) oldVal = math.evaluate(replaceValue(data.calculate, oldVal));
+                                let calc = replaceValue(data.calculate, valTmp);
+                                valTmp = math.evaluate(calc);
+                                // if (oldVal !== undefined && oldVal !== null) oldVal = math.evaluate(replaceValue(data.calculate, oldVal));
 
-                                if (data.debug) console.log(`${logPrefix} type: '${type}', evaluate: '${calc}', result: '${value}'`);
+                                if (data.debug) console.log(`${logPrefix} type: '${type}', evaluate: '${calc}', result: '${valTmp}'`);
                             }
 
                             if (myMdwHelper.getValueFromData(data.convertToDuration, undefined)) {
                                 if (data.convertToDuration === 'humanize') {
-                                    result = moment.duration(value, "seconds").humanize();
+                                    result = moment.duration(valTmp, "seconds").humanize();
                                 } else {
-                                    let duration = moment.duration(value, "seconds")
+                                    let duration = moment.duration(valTmp, "seconds")
                                     result = duration.format(data.convertToDuration)
                                 }
 
                                 if (data.debug) console.log(`${logPrefix} type: '${type}' convert to duration, evaluate: '${data.convertToDuration}', result: '${result}'`);
                             } else if (myMdwHelper.getValueFromData(data.convertToTimestamp, undefined)) {
-                                result = moment.unix(value).format(data.convertToTimestamp);
+                                result = moment.unix(valTmp).format(data.convertToTimestamp);
                             } else {
-                                value = myMdwHelper.formatNumber(value, data.minDecimals, data.maxDecimals);
-                                if (oldVal !== undefined && oldVal !== null) oldVal = myMdwHelper.formatNumber(oldVal, data.minDecimals, data.maxDecimals);
+                                // valTmp = myMdwHelper.formatNumber(valTmp, data.minDecimals, data.maxDecimals);
+                                // if (oldVal !== undefined && oldVal !== null) oldVal = myMdwHelper.formatNumber(oldVal, data.minDecimals, data.maxDecimals);
 
                                 let unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
 
-                                result = `${value} ${unit}`;
+                                result = `${myMdwHelper.formatNumber(valTmp, data.minDecimals, data.maxDecimals)} ${unit}`;
                             }
                         } catch (ex) {
-                            console.error(`[${widgetName} - ${data.wid}] initialize - number: value: ${value}, error: ${ex.message}, stack: ${ex.stack}`);
+                            console.error(`[${widgetName} - ${data.wid}] initialize - number: value: ${valTmp}, error: ${ex.message}, stack: ${ex.stack}`);
                             $valueText.html(`<div style="color: FireBrick;">Error: type: '${type}' - ${ex.message}</div>`);
 
                             result = undefined;
@@ -123,26 +124,26 @@ vis.binds.materialdesign.value = {
                     } else if (type === 'boolean') {
                         try {
                             if (myMdwHelper.getValueFromData(data.condition, undefined) && data.condition.includes('#value')) {
-                                let cond = replaceValue(data.condition, value);
-                                value = math.evaluate(cond);
-                                if (oldVal !== undefined && oldVal !== null) oldVal = math.evaluate(replaceValue(data.condition, oldVal));
+                                let cond = replaceValue(data.condition, valTmp);
+                                valTmp = math.evaluate(cond);
+                                // if (oldVal !== undefined && oldVal !== null) oldVal = math.evaluate(replaceValue(data.condition, oldVal));
 
-                                if (data.debug) console.log(`${logPrefix} type: '${type}', evaluate: '${cond}', result: '${value}'`);
+                                if (data.debug) console.log(`${logPrefix} type: '${type}', evaluate: '${cond}', result: '${valTmp}'`);
                             }
 
-                            if (value === true || value === 'true') {
-                                result = myMdwHelper.getValueFromData(data.textOnTrue, value);
+                            if (valTmp === true || valTmp === 'true') {
+                                result = myMdwHelper.getValueFromData(data.textOnTrue, valTmp);
                             } else {
-                                result = myMdwHelper.getValueFromData(data.textOnFalse, value.toString());
+                                result = myMdwHelper.getValueFromData(data.textOnFalse, valTmp.toString());
                             }
                         } catch (ex) {
-                            console.error(`[${widgetName} - ${data.wid}] initialize - boolean: value: ${value}, error: ${ex.message}, stack: ${ex.stack}`);
+                            console.error(`[${widgetName} - ${data.wid}] initialize - boolean: value: ${valTmp}, error: ${ex.message}, stack: ${ex.stack}`);
                             $valueText.html(`<div style="color: FireBrick;">Error: type: '${type}' - ${ex.message}</div>`);
 
                             result = undefined;
                         }
                     } else if (type === 'string') {
-                        result = value
+                        result = valTmp
                     }
                 } else {
                     if (data.debug) console.warn(`${logPrefix} value is '${value}' oid: ${data.oid}`);
@@ -193,7 +194,13 @@ vis.binds.materialdesign.value = {
             }
 
             function replaceValue(str, value) {
-                return str.replace(/#value/g, value);
+                let val = parseFloat(value);
+
+                if (isNaN(val)) {
+                    return str.replace(/#value/g, value);
+                } else {
+                    return str.replace(/#value/g, val);
+                }
             }
 
             function getValueWithCondition(prop, value) {
