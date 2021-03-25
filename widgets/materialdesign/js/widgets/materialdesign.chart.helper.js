@@ -172,12 +172,13 @@ vis.binds.materialdesign.chart.helper = {
                 boxWidth: myMdwHelper.getNumberFromData(data.legendBoxWidth, 10),
                 usePointStyle: data.legendPointStyle,
                 padding: myMdwHelper.getNumberFromData(data.legendPadding, 10),
+                
                 filter: function (item, chart) {
                     // Logic to remove a particular legend item goes here
                     if (item && item.text) {
 
                         if (item.fillStyle === 'transparent') {
-                            item.fillStyle = chart.datasets[item.datasetIndex].datalabels.color;
+                            item.fillStyle = chart.datasets[item.datasetIndex].borderColor;
                         }
 
                         return item;
