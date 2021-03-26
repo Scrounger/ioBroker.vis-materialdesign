@@ -14,7 +14,7 @@ vis.binds.materialdesign.list =
 
             myMdwHelper.subscribeThemesAtRuntime(data, widgetName);
 
-            setTimeout(function () {
+            myMdwHelper.waitForOid(data.json_string_oid, data.wid, widgetName, function () {
                 let itemList = [];
                 let nonInteractive = '';
                 let jsonData = null;
@@ -448,7 +448,7 @@ vis.binds.materialdesign.list =
                         };
                     }
                 }
-            }, 1)
+            }, 100, data.debug);
         } catch (ex) {
             console.error(`[${widgetName} - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }

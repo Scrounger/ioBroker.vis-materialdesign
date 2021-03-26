@@ -15,16 +15,38 @@ vis.binds.materialdesign.helper = {
             console.error(`vibrate [${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
+    waitForOid: function (oid, wid, widgetName, callBack, counter = 0, debug = false) {
+        if (oid === undefined || oid === null) {
+            if (debug) console.warn(`[${widgetName} ${wid}] [waitForOid] oid is '${oid}'`);
+            callBack();
+            return;
+        }
+
+        if (counter < 500) {
+            setTimeout(function () {
+                let val = vis.states.attr(oid + '.val');
+                if (val !== undefined && val !== 'undefined' && val !== null && val !== 'null') {
+                    callBack(val);
+                } else {
+                    if (debug) console.warn(`[${widgetName} ${wid}] [waitForOid] wait for value of oid '${oid}'`);
+                    counter++
+                    vis.binds.materialdesign.helper.waitForOid(oid, wid, widgetName, callBack, counter, debug);
+                }
+            }, 1)
+        } else {
+            console.warn(`[${widgetName} ${wid}] [waitForOid] stop waiting for value of oid '${oid}' after ${counter} retries`);
+            callBack();
+        }
+    },
     waitForVisConnected: function (callBack, counter = 0, debug = false) {
         if (counter < 500) {
-
             setTimeout(function () {
                 if (vis.conn && vis.conn.getIsConnected()) {
                     callBack();
                 } else {
                     if (debug) console.log(`[waitForVisConnected] wait for vis connection`);
                     counter++
-                    vis.binds.materialdesign.helper.waitForVisConnected(callBack, counter);
+                    vis.binds.materialdesign.helper.waitForVisConnected(callBack, counter, debug);
                 }
             }, 1)
         } else {
@@ -41,7 +63,7 @@ vis.binds.materialdesign.helper = {
                 } else {
                     if (debug) console.log(`[waitForViews] wait for views`);
                     counter++
-                    vis.binds.materialdesign.helper.waitForViews(callBack, counter);
+                    vis.binds.materialdesign.helper.waitForViews(callBack, counter, debug);
                 }
             }, 1)
         } else {
@@ -58,7 +80,7 @@ vis.binds.materialdesign.helper = {
                 } else {
                     if (debug) console.log(`[waitForWidgets] wait for widgets`);
                     counter++
-                    vis.binds.materialdesign.helper.waitForWidgets(callBack, counter);
+                    vis.binds.materialdesign.helper.waitForWidgets(callBack, counter, debug);
                 }
             }, 1)
         } else {
@@ -75,7 +97,7 @@ vis.binds.materialdesign.helper = {
                 } else {
                     if (debug) console.log(`[${widgetName} ${wid}] wait for elements`);
                     counter++
-                    vis.binds.materialdesign.helper.waitForElement(parent, elementPath, wid, widgetName, callBack, counter);
+                    vis.binds.materialdesign.helper.waitForElement(parent, elementPath, wid, widgetName, callBack, counter, debug);
                 }
             }, 50)
         } else {
@@ -93,7 +115,7 @@ vis.binds.materialdesign.helper = {
                 } else {
                     if (debug) console.log(`[${widgetName} ${wid}] wait for real width`);
                     counter++
-                    vis.binds.materialdesign.helper.waitForRealWidth(element, wid, widgetName, callBack, counter);
+                    vis.binds.materialdesign.helper.waitForRealWidth(element, wid, widgetName, callBack, counter, debug);
                 }
             }, 50);
         } else {
@@ -111,7 +133,7 @@ vis.binds.materialdesign.helper = {
                 } else {
                     if (debug) console.log(`[${widgetName} ${wid}] wait for real height`);
                     counter++
-                    vis.binds.materialdesign.helper.waitForRealHeight(element, wid, widgetName, callBack, counter);
+                    vis.binds.materialdesign.helper.waitForRealHeight(element, wid, widgetName, callBack, counter, debug);
                 }
             }, 50);
         } else {

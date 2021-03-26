@@ -14,7 +14,7 @@ vis.binds.materialdesign.iconlist =
 
             myMdwHelper.subscribeThemesAtRuntime(data, widgetName);
 
-            setTimeout(function () {
+            myMdwHelper.waitForOid(data.json_string_oid, data.wid, widgetName, function () {
                 let itemList = [];
                 let jsonData = null;
                 let oldJsonData = null;
@@ -698,7 +698,7 @@ vis.binds.materialdesign.iconlist =
                         }
                     }
                 }
-            })
+            }, 100, data.debug);
         } catch (ex) {
             console.error(`[${widgetName} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
