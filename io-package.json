@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.5.1-beta",
+        "version": "0.5.2-beta",
         "news": {
             "0.4.2": {
                 "en": "vis-google-fonts dependency removed",
