@@ -653,8 +653,16 @@ vis.binds.materialdesign.helper = {
                     let id = value.replace('#mdwTheme:', '');
                     oidsNeedSubscribe = needsSubscribe(id, oidsNeedSubscribe);
                 } else {
-                    if (value.toString().includes('#mdwTheme:')) {
-                        let extractIds = value.match(/#mdwTheme:*[^*?"'`´,;:<>#/{}ß\[\]\s]*/g);
+                    if (value.toString().includes('#mdwTheme:') || key === 'json_string_oid') {
+                        let extractIds;
+
+                        if (key !== 'json_string_oid') {
+                            extractIds = value.match(/#mdwTheme:*[^*?"'`´,;:<>#/{}ß\[\]\s]*/g);
+                        } else {
+                            // jsonString can includes theme attributes
+                            let val = vis.states.attr(value + '.val');
+                            extractIds = val.match(/#mdwTheme:*[^*?"'`´,;:<>#/{}ß\[\]\s]*/g);
+                        }
 
                         if (extractIds && extractIds !== null && extractIds.length > 0) {
                             for (const str of extractIds) {
