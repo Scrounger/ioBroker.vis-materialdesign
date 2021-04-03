@@ -656,7 +656,7 @@ vis.binds.materialdesign.helper = {
                     if (value.toString().includes('#mdwTheme:') || key === 'json_string_oid') {
                         let extractIds;
 
-                        if (key !== 'json_string_oid' && key !== 'oid') {
+                        if (key !== 'json_string_oid' || key !== 'oid') {
                             extractIds = value.match(/#mdwTheme:*[^*?"'`´,;:<>#/{}ß\[\]\s]*/g);
                         } else {
                             // oid can include json string which can includes theme attributes
