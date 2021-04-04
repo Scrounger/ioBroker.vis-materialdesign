@@ -653,7 +653,7 @@ vis.binds.materialdesign.helper = {
                     let id = value.replace('#mdwTheme:', '');
                     oidsNeedSubscribe = needsSubscribe(id, oidsNeedSubscribe);
                 } else {
-                    if (value.toString().includes('#mdwTheme:') || key === 'json_string_oid') {
+                    if (value.toString().includes('#mdwTheme:') || key === 'json_string_oid' || key !== 'oid') {
                         let extractIds;
 
                         if (key !== 'json_string_oid' || key !== 'oid') {
