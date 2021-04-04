@@ -656,11 +656,13 @@ vis.binds.materialdesign.helper = {
                     if (value.toString().includes('#mdwTheme:') || key === 'json_string_oid' || key === 'oid') {
                         let extractIds;
 
-                        if (key !== 'json_string_oid' || key !== 'oid') {
+                        console.warn(value);
+                        if (key !== 'json_string_oid' && key !== 'oid') {
                             extractIds = value.match(/#mdwTheme:*[^*?"'`´,;:<>#/{}ß\[\]\s]*/g);
                         } else {
                             // oid can include json string which can includes theme attributes
                             let val = vis.states.attr(value + '.val');
+                            console.warn(val);
                             if (val && val !== null) {
                                 extractIds = val.match(/#mdwTheme:*[^*?"'`´,;:<>#/{}ß\[\]\s]*/g);
                             }
