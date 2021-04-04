@@ -642,59 +642,62 @@ vis.binds.materialdesign.helper = {
         return result;
     },
     subscribeThemesAtRuntime(data, widgetName) {
-        let oidsNeedSubscribe = false;
+        try {
+            let oidsNeedSubscribe = false;
 
-        oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.lastchange', data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
-        oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.colors.darkTheme', data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+            oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.lastchange', data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+            oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.colors.darkTheme', data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
 
-        for (const [key, value] of Object.entries(data)) {
-            if (value) {
-                if (value.toString().startsWith('#mdwTheme:')) {
-                    let id = value.replace('#mdwTheme:', '');
-                    oidsNeedSubscribe = needsSubscribe(id, oidsNeedSubscribe);
-                } else {
-                    if (value.toString().includes('#mdwTheme:') || key === 'json_string_oid' || key === 'oid') {
-                        let extractIds;
+            for (const [key, value] of Object.entries(data)) {
+                if (value) {
+                    if (value.toString().startsWith('#mdwTheme:')) {
+                        let id = value.replace('#mdwTheme:', '');
+                        oidsNeedSubscribe = needsSubscribe(id, oidsNeedSubscribe);
+                    } else {
+                        if (value.toString().includes('#mdwTheme:') || key === 'json_string_oid' || key === 'oid') {
+                            let extractIds;
 
-                        console.warn(value);
-                        if (key !== 'json_string_oid' && key !== 'oid') {
-                            extractIds = value.match(/#mdwTheme:*[^*?"'`´,;:<>#/{}ß\[\]\s]*/g);
-                        } else {
-                            // oid can include json string which can includes theme attributes
-                            let val = vis.states.attr(value + '.val');
-                            console.warn(val);
-                            if (val && val !== null) {
-                                extractIds = val.match(/#mdwTheme:*[^*?"'`´,;:<>#/{}ß\[\]\s]*/g);
+                            if (key !== 'json_string_oid' && key !== 'oid') {
+                                extractIds = value.match(/#mdwTheme:*[^*?"'`´,;:<>#\/{}\\ß\[\]\s]*/g);
+                            } else {
+                                // oid can include json string which can includes theme attributes
+                                let val = vis.states.attr(value + '.val');
+                                if (val && val !== null && val.toString().includes('#mdwTheme:')) {
+                                    extractIds = val.match(/#mdwTheme:*[^*?"'`´,;:<>#\/{}\\ß\[\]\s]*/g);
+                                }
                             }
-                        }
 
-                        if (extractIds && extractIds !== null && extractIds.length > 0) {
-                            for (const str of extractIds) {
-                                let id = str.replace('#mdwTheme:', '');
-                                oidsNeedSubscribe = needsSubscribe(id, oidsNeedSubscribe);
+                            if (extractIds && extractIds !== null && extractIds.length > 0) {
+                                for (const str of extractIds) {
+                                    let id = str.replace('#mdwTheme:', '');
+                                    oidsNeedSubscribe = needsSubscribe(id, oidsNeedSubscribe);
+                                }
                             }
                         }
                     }
                 }
             }
-        }
 
-        if (oidsNeedSubscribe) {
-            myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, undefined, data.debug);
-        }
-
-        function needsSubscribe(id, oidsNeedSubscribe) {
-            if (id.includes('vis-materialdesign.0.colors.')) {
-                let idLight = id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.light.');
-                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(idLight, data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
-
-                let idDark = id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.dark.');
-                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(idDark, data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
-            } else {
-                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id, data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+            if (oidsNeedSubscribe) {
+                myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, undefined, data.debug);
             }
 
-            return oidsNeedSubscribe;
+            function needsSubscribe(id, oidsNeedSubscribe) {
+                if (id.includes('vis-materialdesign.0.colors.')) {
+                    let idLight = id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.light.');
+                    oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(idLight, data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+
+                    let idDark = id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.dark.');
+                    oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(idDark, data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+                } else {
+                    oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(id, data.wid, widgetName, oidsNeedSubscribe, false, data.debug);
+                }
+
+                return oidsNeedSubscribe;
+            }
+        } catch (ex) {
+            console.error(`[${widgetName} - ${data.wid}] subscribeThemesAtRuntime: error: ${ex.message}, stack: ${ex.stack}`);
+            return false;
         }
     },
     subscribeStatesAtRuntime(wid, widgetName, callback, debug = false) {
@@ -771,7 +774,7 @@ vis.binds.materialdesign.helper = {
                 }
 
                 if (data[key].includes('#mdwTheme:')) {
-                    let extractIds = data[key].match(/#mdwTheme:*[^*?"'`´,;:<>#/{}ß\[\]\s]*/g);
+                    let extractIds = data[key].match(/#mdwTheme:*[^*?"'`´,;:<>#\/{}\\ß\[\]\s]*/g);
 
                     if (extractIds && extractIds !== null && extractIds.length > 0) {
                         for (const str of extractIds) {
