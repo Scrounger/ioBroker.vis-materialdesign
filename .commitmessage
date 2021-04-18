@@ -1,3 +1,27 @@
-chore: release v0.4.2
+chore: release v0.5.4
 
-vis-google-fonts dependency removed
+* HTML Widgets added - use Material Design Widgets in any html element
+* Table: Control Elements removed, using new HTML Widgets -> breaking changes !!!
+* list: using object id for json string added -> breaking changes !!!
+* new Value Widget added
+* Card layout bug fixes for HTML Card, IconList, List and Table Widget
+* icon list: option for status bar text added
+* icon list: status bar position bug fix
+* icon list: read only option for buttons added
+* dialog: option to set height in percent added
+* json chart: option to override tooltip for every dataset added
+* json chart: tooltip mode x / y added
+* json chart: option to override data label added
+* charts: legend distance to bottom option added
+* button state: active background color option added
+* buttons: vibrate on mobil devices bug fix
+* progress: rotate option added
+* list: background color option added
+* progress circular: auto size option added
+* VIS editor: html previews bug fixes
+* input, autocomplete, select: autofocus option added
+* Documentation revised
+* materialdesignicons library updated to v5.9.55
+* bug fixes
+
+<!-- omit in toc -->
