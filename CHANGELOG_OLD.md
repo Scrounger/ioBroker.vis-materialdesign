@@ -1,5 +1,44 @@
 <!-- omit in toc -->
-### 0.3.14 (2020-06-01)
+## 0.3.19 (2020-07-18)
+* (Scrounger): Icon Button Widget: background color option for lock icon added
+* (Scrounger): possibility to deactivate sentry implemented -> see documentation
+* (Scrounger): Fixed some bugs reported via Sentry
+* (Scrounger): prevent set value in vis editor
+* (Scrounger): Grid & Mansonry Widget: visibilty by resoltuin bug fix
+* (Scrounger): IconList Widget: Card Background for whole icon list added
+* (Scrounger): Table Wigdet: button link widget added
+* (Scrounger): Table Wigdet: material design icon widget added
+* (Scrounger): Table Wigdet: alignment option for controls added
+* (Scrounger): materialdesignicons library updated to v5.3.45
+* (Scrounger): Round Slider lib updated to v0.5.0
+* (Scrounger): Round Slider Widget: readonly option added
+* (Scrounger): Table Widget: background color hover option added
+* (Scrounger): bug fixes
+
+
+# License
+
+MIT License
+
+Copyright (c) 2021 Scrounger <scrounger@gmx.net>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.### 0.3.14 (2020-06-01)
 * (Scrounger): Table Widget: bug fixes
 
 <!-- omit in toc -->

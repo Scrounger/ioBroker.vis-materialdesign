@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.5.4",
+        "version": "0.5.5",
         "news": {
+            "0.5.5": {
+                "en": "* adapter settings bug fixes\n* icon buttons: color bug fixes\n\n<!-- omit in toc -->",
+                "de": "* Fehlerbehebungen bei den Adaptereinstellungen\n* Symbolschaltflächen: Farbfehlerbehebungen\n\n<! - in toc weglassen ->",
+                "ru": "* исправления ошибок в настройках адаптера\n* иконки кнопок: исправлены ошибки цвета\n\n<! - опустить в toc ->",
+                "pt": "* correção de bugs nas configurações do adaptador\n* botões de ícone: correção de bug de cor\n\n<! - omitir em toc ->",
+                "nl": "* bugfixes voor adapterinstellingen\n* pictogramknoppen: bugfixes in kleur\n\n<! - weglaten in toc ->",
+                "fr": "* corrections de bogues des paramètres de l'adaptateur\n* boutons d'icônes: correction de bogues de couleur\n\n<! - omettre dans toc ->",
+                "it": "* Correzioni di bug nelle impostazioni dell'adattatore\n* pulsanti icona: correzioni di bug di colore\n\n<! - ometti in toc ->",
+                "es": "* Corrección de errores en la configuración del adaptador\n* botones de icono: corrección de errores de color\n\n<! - omitir en índice ->",
+                "pl": "* poprawki błędów ustawień adaptera\n* przyciski ikon: poprawki błędów kolorów\n\n<! - pomiń w toc ->",
+                "zh-cn": "*适配器设置错误修复\n*图标按钮：修复了多个颜色错误\n\n<！-在目录中省略->"
+            },
             "0.5.4": {
                 "en": "* HTML Widgets added - use Material Design Widgets in any html element\n* Table: Control Elements removed, using new HTML Widgets -> breaking changes !!!\n* list: using object id for json string added -> breaking changes !!!\n* new Value Widget added\n* Card layout bug fixes for HTML Card, IconList, List and Table Widget\n* icon list: option for status bar text added\n* icon list: status bar position bug fix\n* icon list: read only option for buttons added\n* dialog: option to set height in percent added\n* json chart: option to override tooltip for every dataset added\n* json chart: tooltip mode x / y added\n* json chart: option to override data label added\n* charts: legend distance to bottom option added\n* button state: active background color option added\n* buttons: vibrate on mobil devices bug fix\n* progress: rotate option added\n* list: background color option added\n* progress circular: auto size option added\n* VIS editor: html previews bug fixes\n* input, autocomplete, select: autofocus option added\n* Documentation revised\n* materialdesignicons library updated to v5.9.55\n* bug fixes\n\n<!-- omit in toc -->",
                 "de": "* HTML-Widgets hinzugefügt - Verwenden Sie Material Design Widgets in jedem HTML-Element\n* Tabelle: Steuerelemente entfernt, mit neuen HTML-Widgets -> Änderungen brechen !!!\n* Liste: Verwenden der Objekt-ID für die JSON-Zeichenfolge hinzugefügt -> Änderungen brechen !!!\n* Neues Value Widget hinzugefügt\n* Fehlerbehebungen beim Kartenlayout für HTML-Karten, IconList, Listen- und Tabellen-Widget\n* Symbolliste: Option für Statusleisten-Text hinzugefügt\n* Symbolliste: Fehlerbehebung bei der Position der Statusleiste\n* Symbolliste: Nur-Lese-Option für hinzugefügte Schaltflächen\n* Dialogfeld: Option zum Festlegen der Höhe in Prozent hinzugefügt\n* json chart: Option zum Überschreiben des Tooltips für jeden hinzugefügten Datensatz\n* JSON-Diagramm: Tooltip-Modus x / y hinzugefügt\n* JSON-Diagramm: Option zum Überschreiben der hinzugefügten Datenbezeichnung\n* Diagramme: Option \"Legende Abstand zum Boden\" hinzugefügt\n* Schaltflächenstatus: Option für aktive Hintergrundfarbe hinzugefügt\n* Tasten: Vibrieren auf Mobilgeräten Fehlerbehebung\n* Fortschritt: Drehoption hinzugefügt\n* Liste: Hintergrundfarboption hinzugefügt\n* Fortschrittsrundschreiben: Option für automatische Größe hinzugefügt\n* VIS-Editor: HTML zeigt eine Vorschau der Fehlerkorrekturen an\n* Eingabe, automatische Vervollständigung, Auswahl: Autofokus-Option hinzugefügt\n* Dokumentation überarbeitet\n* materialdesignicons Bibliothek auf v5.9.55 aktualisiert\n* Fehlerbehebung\n\n<! - in toc weglassen ->",
@@ -220,18 +232,6 @@
                 "zh-cn": "看到变更日志"
             },
             "0.2.30": {
-                "en": "see changelog",
-                "de": "siehe Changelog",
-                "ru": "см. список изменений",
-                "pt": "veja changelog",
-                "nl": "zie changelog",
-                "fr": "voir changelog",
-                "it": "vedi il log delle modifiche",
-                "es": "ver registro de cambios",
-                "pl": "patrz dziennik zmian",
-                "zh-cn": "看到变更日志"
-            },
-            "0.2.22": {
                 "en": "see changelog",
                 "de": "siehe Changelog",
                 "ru": "см. список изменений",
