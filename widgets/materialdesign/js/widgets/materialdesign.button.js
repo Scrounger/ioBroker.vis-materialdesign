@@ -361,7 +361,7 @@ vis.binds.materialdesign.button = {
             }
 
             let bgColor = myMdwHelper.getValueFromData(data.colorBgFalse, '');
-            let bgColorTrue = myMdwHelper.getValueFromData(data.colorBgTrue, bgColor);
+            let bgColorTrue = myMdwHelper.getValueFromData(data.colorBgTrue, bgColor);            
 
             let labelBgColor = myMdwHelper.getValueFromData(data.labelColorBgFalse, '');
             let labelBgColorTrue = myMdwHelper.getValueFromData(data.labelColorBgTrue, labelBgColor);
@@ -526,8 +526,17 @@ vis.binds.materialdesign.button = {
             if (!type.includes('icon')) {
                 btn.style.setProperty("--materialdesign-color-button-pressed", myMdwHelper.getValueFromData(data.mdwButtonColorPress, ''));
             } else {
+                // icon Buttons
                 $this.css('background', myMdwHelper.getValueFromData(data.colorBgFalse, ''));
-                $this.find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.imageColor, '#44739e'));
+
+                if ($this.attr('toggled') && ($this.attr('toggled') === true || $this.attr('toggled') === 'true')) {                    
+                    $this.css('background', myMdwHelper.getValueFromData(data.colorBgTrue, myMdwHelper.getValueFromData(data.colorBgFalse, '')));
+                    $this.find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.imageTrueColor, myMdwHelper.getValueFromData(data.imageColor, '')));
+                } else {
+                    $this.find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.imageColor, '#44739e'));
+                    $this.css('background', myMdwHelper.getValueFromData(data.colorBgFalse, ''));
+                }
+
                 $this.find('.materialdesign-lock-icon').css('background', myMdwHelper.getValueFromData(data.lockIconBackground, '')).css('color', myMdwHelper.getValueFromData(data.lockIconColor, '#B22222'));
 
                 btn.style.setProperty("--materialdesign-color-icon-button-hover", myMdwHelper.getValueFromData(data.colorPress, ''));

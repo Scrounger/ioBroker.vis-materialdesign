@@ -12834,6 +12834,7 @@ The adapter uses the following libraries:
 
 ### __WORK IN PROGRESS__
 * (Scrounger) adapter settings bug fixes
+* (Scrounger) icon buttons: color bug fixes
 
 <!-- omit in toc -->
 ### 0.5.4 (2021-04-18)
