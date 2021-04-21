@@ -4,12 +4,16 @@ var myNamespace;
 
 let $progress;
 
+let adapterSettingsIsLoading = false;
+let errorMsgCollector;
+
 // This will be called by the admin adapter when the settings page loads
 async function load(settings, onChange) {
     // example: select elements with id=key and class=value and insert value
     if (!settings) return;
 
     myNamespace = `${adapter}.${instance}`;
+    adapterSettingsIsLoading = true;
 
     addVersionToAdapterTitle();
 
@@ -33,6 +37,16 @@ async function load(settings, onChange) {
 
     $progress = $('.progressContainer');
 
+
+    $(document).on("loadingFinished", function (e) {
+        $progress.hide();
+
+        adapterSettingsIsLoading = false;
+        if (errorMsgCollector) {
+            reportError(errorMsgCollector);
+        }
+    });
+
     createDatapoints(onChange);
     generateJavascriptInstancesDropDown(settings);
 
@@ -40,12 +54,11 @@ async function load(settings, onChange) {
 
     for (const themeType of themeTypesList) {
         await createTab(themeType, settings[themeType], [], settings, onChange);
-        $progress.hide();
     }
 
+    $(document).trigger("loadingFinished");
+
     eventsHandler(onChange);
-
-
 
     // reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
     if (M) M.updateTextFields();
@@ -333,24 +346,27 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
             });
 
             btn.on('click', function () {
-                // apply default value to row
-                let rowNum = $(this).data('index');
-                let btnNum = $(this).data('command');
+                try {
+                    // apply default value to row
+                    let rowNum = $(this).data('index');
+                    let btnNum = $(this).data('command');
 
-                let inpuEl = $(`#${themeType}Table input[data-index=${rowNum}][data-name="value"]`);
+                    let inpuEl = $(`#${themeType}Table input[data-index=${rowNum}][data-name="value"]`);
 
+                    if (themeType.includes('colors')) {
+                        // We have to recreate the color picker
+                        let pickrEl = $(`#${themeType}Table tr[data-index=${rowNum}] .pickr`);
+                        pickrEl.empty();
+                        createColorPicker(pickrEl.get(0), themeDefaults[btnNum], themeDefaults, inpuEl, onChange);
+                    }
 
-                if (themeType.includes('colors')) {
-                    // We have to recreate the color picker
-                    let pickrEl = $(`#${themeType}Table tr[data-index=${rowNum}] .pickr`);
-                    pickrEl.empty();
-                    createColorPicker(pickrEl.get(0), themeDefaults[btnNum], themeDefaults, inpuEl, onChange);
+                    inpuEl.val(themeDefaults[btnNum]);
+                    setTableSelectedDefault(themeType, rowNum, btnNum);
+
+                    onChange();
+                } catch (err) {
+                    reportError(`[createTable - btn click] type: ${themeType} error: ${err.message}, stack: ${err.stack}`);
                 }
-
-                inpuEl.val(themeDefaults[btnNum]);
-                setTableSelectedDefault(themeType, rowNum, btnNum);
-
-                onChange();
             });
         }
 
@@ -358,36 +374,43 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
         let btnBindingLink = $(`#${themeType}Table [data-command="B"]`);
         btnBindingLink.find('.material-icons').removeClass('material-icons').text('').addClass('mdi mdi-iobroker').css('font-size', '26px').css('font-weight', '100');
         btnBindingLink.on('click', function () {
-            let rowNum = $(this).data('index');
+            try {
+                let rowNum = $(this).data('index');
 
-            let inputId = $(`#${themeType}Table input[data-index=${rowNum}][data-name="id"]`);
+                let inputId = $(`#${themeType}Table input[data-index=${rowNum}][data-name="id"]`);
 
-            if (themeType.includes('colors')) {
-                clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.${inputId.val().replace('dark.', 'light.')};dark:${myNamespace}.colors.${inputId.val().replace('light.', 'dark.')}; mode === "true" ? dark : light}`);
+                if (themeType.includes('colors')) {
+                    clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.${inputId.val().replace('dark.', 'light.')};dark:${myNamespace}.colors.${inputId.val().replace('light.', 'dark.')}; mode === "true" ? dark : light}`);
 
-                // Für Entwicklung Binding aufbereitet um in *.html zu verwenden
-                // clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.${inputId.val().replace('dark.', 'light.')};dark:${myNamespace}.colors.${inputId.val().replace('light.', 'dark.')}; mode === "true" ? dark : light}`.replace(/;/g, '§').replace(/\"/g, '^'));                
-            } else {
-                clipboard.writeText(`{${myNamespace}.${themeType}.${inputId.val()}}`);
+                    // Für Entwicklung Binding aufbereitet um in *.html zu verwenden
+                    // clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.${inputId.val().replace('dark.', 'light.')};dark:${myNamespace}.colors.${inputId.val().replace('light.', 'dark.')}; mode === "true" ? dark : light}`.replace(/;/g, '§').replace(/\"/g, '^'));                
+                } else {
+                    clipboard.writeText(`{${myNamespace}.${themeType}.${inputId.val()}}`);
+                }
+
+                M.Toast.dismissAll();
+                M.toast({ html: _('Binding copied to clipboard'), displayLength: 1000, inDuration: 0, outDuration: 0, classes: 'rounded' });
+            } catch (err) {
+                reportError(`[createTable - btnBindingLink click] type: ${themeType} error: ${err.message}, stack: ${err.stack}`);
             }
-
-            M.Toast.dismissAll();
-            M.toast({ html: _('Binding copied to clipboard'), displayLength: 1000, inDuration: 0, outDuration: 0, classes: 'rounded' });
         });
 
         let btnMdwLink = $(`#${themeType}Table [data-command="M"]`);
         btnMdwLink.find('.material-icons').removeClass('material-icons').text('').addClass('mdi mdi-material-design').css('font-size', '26px').css('font-weight', '100');
         btnMdwLink.on('click', function () {
-            let rowNum = $(this).data('index');
+            try {
+                let rowNum = $(this).data('index');
 
-            let inputId = $(`#${themeType}Table input[data-index=${rowNum}][data-name="id"]`);
+                let inputId = $(`#${themeType}Table input[data-index=${rowNum}][data-name="id"]`);
 
-            clipboard.writeText(`#mdwTheme:${myNamespace}.${themeType}.${inputId.val().replace('light.', '').replace('dark.', '')}`);
+                clipboard.writeText(`#mdwTheme:${myNamespace}.${themeType}.${inputId.val().replace('light.', '').replace('dark.', '')}`);
 
-            M.Toast.dismissAll();
-            M.toast({ html: _('Material Design Widget datapoint binding copied to clipboard'), displayLength: 1000, inDuration: 0, outDuration: 0, classes: 'rounded' });
+                M.Toast.dismissAll();
+                M.toast({ html: _('Material Design Widget datapoint binding copied to clipboard'), displayLength: 1000, inDuration: 0, outDuration: 0, classes: 'rounded' });
+            } catch (err) {
+                reportError(`[createTable - btnMdwLink click] type: ${themeType} error: ${err.message}, stack: ${err.stack}`);
+            }
         });
-
 
         $(`#${themeType}Table input[data-name=value]`).change(function () {
             // fires only on key enter or lost focus -> change colorPicker            
@@ -548,7 +571,7 @@ async function checkAllObjectsExistInSettings(themeType, themeObject, themeDefau
                 }
 
             } catch (err) {
-                reportError(`[checkAllObjectsExistInSettings] themeType: ${themeType}, objNr.: ${i}, error: ${err.message}, stack: ${err.stack}`);
+                reportError(`[checkAllObjectsExistInSettings] themeType: ${themeType}, objNr.: ${i}, object: ${JSON.stringify(jsonList[i])} error: ${err.message}, stack: ${err.stack}`);
             }
         }
 
@@ -821,7 +844,7 @@ function save(callback) {
         });
     }
 
-    for(var i = 0; i <= 3; i++){
+    for (var i = 0; i <= 3; i++) {
         setTimeout(function () {
             setStateAsync(`${myNamespace}.lastchange`, new Date().getTime(), true);
         }, 500 * i);
@@ -987,12 +1010,21 @@ async function addVersionToAdapterTitle() {
     }
 }
 
+
 function reportError(msg) {
     console.error(msg);
-    showMessage(`
-    <div style="display: flex; align-items: center; flex-direction: row;">
-        <i class="medium material-icons" style="color: FireBrick;">error_outline</i>
-        <div style="margin-left: 12px; font-weight: 700; font-size: 16px;">An error has occurred.<br>Please report this to the developer</div>
-    </div>
-    <textarea class="materialdesign-settings-error-msg" readonly="readonly" style="background: #e9e9e9; margin-top: 20px; height: calc(100% - 160px);">${msg.replace(', error:', ',\nerror:').replace(', stack:', ',\nstack:')}</textarea>`, 'Error', undefined);
+
+    if (!adapterSettingsIsLoading) {
+        showMessage(`<div style="display: flex; align-items: center; flex-direction: row;">
+                        <i class="medium material-icons" style="color: FireBrick;">error_outline</i>
+                        <div style="margin-left: 12px; font-weight: 700; font-size: 16px;">An error has occurred.<br>Please report this to the developer</div>
+                    </div>
+                    <textarea class="materialdesign-settings-error-msg" readonly="readonly" style="background: #e9e9e9; margin-top: 20px; height: calc(100% - 160px);">${msg.replace(', error:', ',\nerror:').replace(', stack:', ',\nstack:')}</textarea>`, 'Error', undefined);
+    } else {
+        if (!errorMsgCollector) {
+            errorMsgCollector = msg;
+        } else {
+            errorMsgCollector = errorMsgCollector + '\n' + msg;
+        }
+    }
 }

@@ -167,6 +167,7 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 		- [Examples](#examples)
 - [used libraries](#used-libraries)
 - [Changelog](#changelog)
+		- [__WORK IN PROGRESS__](#work-in-progress)
 - [License](#license)
 
 # General
@@ -12830,6 +12831,9 @@ The adapter uses the following libraries:
     Placeholder for the next version (at the beginning of the line):    
 	### __WORK IN PROGRESS__
 -->
+
+### __WORK IN PROGRESS__
+* (Scrounger) adapter settings bug fixes
 
 <!-- omit in toc -->
 ### 0.5.4 (2021-04-18)
