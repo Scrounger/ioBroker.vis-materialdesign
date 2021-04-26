@@ -204,7 +204,7 @@ vis.binds.materialdesign.iconlist =
 
                         let imageElement = '';
                         if (listItemObj.listType === 'text') {
-                            imageElement = myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor)
+                            imageElement = myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor, '', 'iconlist-icon')
                         } else {
                             // Buttons
                             if (data.buttonLayout === 'round') {
@@ -212,7 +212,7 @@ vis.binds.materialdesign.iconlist =
                                 imageElement = `<div style="width: 100%; text-align: center;">
                                                 <div class="materialdesign-icon-button materialdesign-iconList-button" index="${i}" style="background: ${listItemObj.buttonBackgroundColor}; position: relative; width: ${buttonHeight}px; height: ${buttonHeight}px;">
                                                     <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
-                                                        ${myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor)}
+                                                        ${myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor, '', 'iconlist-icon')}
                                                     </div>
                                                 </div>
                                             </div>`
@@ -221,7 +221,7 @@ vis.binds.materialdesign.iconlist =
                                 imageElement = `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
                                                 <div class="materialdesign-button materialdesign-iconList-button" index="${i}" style="background: ${listItemObj.buttonBackgroundColor}; position: relative; width: 100%; height: ${buttonHeight};">
                                                     <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
-                                                        ${myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor)}
+                                                        ${myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor, '', 'iconlist-icon')}
                                                     </div>
                                                 </div>
                                             </div>`
@@ -247,7 +247,7 @@ vis.binds.materialdesign.iconlist =
                                                 
                                                     ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text materialdesign-icon-list-item-text-vertical" style="${listItemObj.readOnly === false ? 'cursor: pointer;' : ''}">${listItemObj.text}</label>` : ''}
                                                     <div class="materialdesign-icon-list-item-layout-vertical-image-container">
-                                                        ${myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor)}
+                                                        ${myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor, '', 'iconlist-icon')}
                                                         ${lockElement}
                                                     </div>
                                                     ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value materialdesign-icon-list-item-text-vertical" style="${listItemObj.readOnly === false ? 'cursor: pointer;' : ''}">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
@@ -282,7 +282,7 @@ vis.binds.materialdesign.iconlist =
                                                 <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">                            
 
                                                     <div class="materialdesign-icon-list-item-layout-horizontal-image-container">
-                                                        ${myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor)}
+                                                        ${myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor, '', 'iconlist-icon')}
                                                         ${lockElement}
                                                     </div>
                                                     <div class="materialdesign-icon-list-item-layout-horizontal-text-container" style="${listItemObj.readOnly === false ? 'cursor: pointer;' : ''}">
@@ -612,10 +612,10 @@ vis.binds.materialdesign.iconlist =
 
                     if (val === true || val === 'true') {
                         $item.find('.materialdesign-iconList-button').css('background', listItemObj.buttonBackgroundActiveColor);
-                        myMdwHelper.changeIconElement($item, listItemObj.imageActive, 'auto', iconHeight + 'px', listItemObj.imageActiveColor);
+                        myMdwHelper.changeIconElement($item, listItemObj.imageActive, 'auto', iconHeight + 'px', listItemObj.imageActiveColor, '', 'iconlist-icon');
                     } else {
                         $item.find('.materialdesign-iconList-button').css('background', listItemObj.buttonBackgroundColor);
-                        myMdwHelper.changeIconElement($item, listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor);
+                        myMdwHelper.changeIconElement($item, listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor, '', 'iconlist-icon');
                     }
 
                     if ($item.attr('isLocked') === 'true') {
