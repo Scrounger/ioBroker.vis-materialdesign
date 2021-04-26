@@ -246,10 +246,10 @@ vis.binds.materialdesign.iconlist =
                                                 <div class="materialdesign-button-body" style="display:flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; height: 100%;">                            
                                                 
                                                     ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text materialdesign-icon-list-item-text-vertical" style="${listItemObj.readOnly === false ? 'cursor: pointer;' : ''}">${listItemObj.text}</label>` : ''}
-                                                    <div class="materialdesign-icon-list-item-layout-vertical-image-container">
+                                                    ${imageElement ? `<div class="materialdesign-icon-list-item-layout-vertical-image-container">
                                                         ${myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor, '', 'iconlist-icon')}
                                                         ${lockElement}
-                                                    </div>
+                                                    </div>` : ''}
                                                     ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value materialdesign-icon-list-item-text-vertical" style="${listItemObj.readOnly === false ? 'cursor: pointer;' : ''}">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
                                                     ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText materialdesign-icon-list-item-text-vertical" style="${listItemObj.readOnly === false ? 'cursor: pointer;' : ''}">${listItemObj.subText}</label>` : ''}                                                
                                                 </div>
@@ -262,16 +262,15 @@ vis.binds.materialdesign.iconlist =
                                 element = `
                                 <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''}" >
                                     ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text materialdesign-icon-list-item-text-vertical">${listItemObj.text}</label>` : ''}
-                                    <div class="materialdesign-icon-list-item-layout-vertical-image-container">
+                                    ${imageElement ? `<div class="materialdesign-icon-list-item-layout-vertical-image-container">
                                         ${imageElement}
                                         ${lockElement}
-                                    </div>
+                                    </div>` : ''}
                                     ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value materialdesign-icon-list-item-text-vertical">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
                                     ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText materialdesign-icon-list-item-text-vertical">${listItemObj.subText}</label>` : ''}
                                     ${listItemObj.statusBarColor || listItemObj.statusBarText ? `<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>` : ''}
                                 </div>`;
                             }
-
                         } else {
                             if (data.buttonLayout === 'full' && listItemObj.listType !== 'text') {
                                 element = `
@@ -281,10 +280,10 @@ vis.binds.materialdesign.iconlist =
                                             <div class="materialdesign-button materialdesign-iconList-button" index="${i}" style="background: ${listItemObj.buttonBackgroundColor}; position: relative; width: 100%; height: 100%; padding: 0; border-radius: 0;">
                                                 <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;">                            
 
-                                                    <div class="materialdesign-icon-list-item-layout-horizontal-image-container">
+                                                    ${imageElement ? `<div class="materialdesign-icon-list-item-layout-horizontal-image-container">
                                                         ${myMdwHelper.getIconElement(listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor, '', 'iconlist-icon')}
                                                         ${lockElement}
-                                                    </div>
+                                                    </div>` : ''}
                                                     <div class="materialdesign-icon-list-item-layout-horizontal-text-container" style="${listItemObj.readOnly === false ? 'cursor: pointer;' : ''}">
                                                         ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text" style="${listItemObj.readOnly === false ? 'cursor: pointer;' : ''}">${listItemObj.text}</label>` : ''}
                                                         ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText" style="${listItemObj.readOnly === false ? 'cursor: pointer;' : ''}">${listItemObj.subText}</label>` : ''}
@@ -301,10 +300,10 @@ vis.binds.materialdesign.iconlist =
                                 <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''}" >
                                 <div style="flex: 1; height: 100%; display: flex; flex-direction: column;">    
                                     <div style="flex: 1; display: flex;">
-                                        <div class="materialdesign-icon-list-item-layout-horizontal-image-container">
+                                        ${imageElement ? `<div class="materialdesign-icon-list-item-layout-horizontal-image-container">
                                             ${imageElement}
                                             ${lockElement}
-                                        </div>
+                                        </div>` : ''}
                                         <div class="materialdesign-icon-list-item-layout-horizontal-text-container">
                                             ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text">${listItemObj.text}</label>` : ''}
                                             ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText">${listItemObj.subText}</label>` : ''}
