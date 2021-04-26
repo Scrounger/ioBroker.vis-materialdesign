@@ -173,8 +173,8 @@ vis.binds.materialdesign.helper = {
                         }
                     }
 
-                    let darkTheme = vis.states.attr('vis-materialdesign.0.colors.darkTheme.val') || false;
                     if (dataValue.toString().startsWith('#mdwTheme:')) {
+                        let darkTheme = vis.states.attr('vis-materialdesign.0.colors.darkTheme.val') || false;
                         let id = dataValue.replace('#mdwTheme:', '');
 
                         if (id.includes('vis-materialdesign.0.colors.')) {
@@ -195,36 +195,6 @@ vis.binds.materialdesign.helper = {
                             }
                         } else {
                             return prepand + vis.states.attr(id + '.val') + append;
-                        }
-                    } else if (dataValue.includes('#mdwTheme:')) {
-                        // Theme could be nested
-                        let extractIds = dataValue.match(/#mdwTheme:*[^*?"'`´,;:<>#\/{}\\ß\[\]\s]*/g);
-
-                        if (extractIds && extractIds !== null && extractIds.length > 0) {
-                            for (const str of extractIds) {
-                                let id = str.replace('#mdwTheme:', '');
-
-                                if (id.includes('vis-materialdesign.0.colors.')) {
-                                    if (!darkTheme) {
-                                        let val = vis.states.attr(id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.light.') + '.val');
-                                        if (val && val !== null && val !== 'null') {
-                                            dataValue = dataValue.replace(str, val);
-                                        }
-                                    } else {
-                                        let val = vis.states.attr(id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.dark.') + '.val');
-                                        if (val && val !== null && val !== 'null') {
-                                            dataValue = dataValue.replace(str, val);
-                                        }
-                                    }
-                                } else {
-                                    dataValue = dataValue.replace(str, vis.states.attr(id + '.val'));
-                                }
-                            }
-                        }
-                        if (dataValue === undefined || dataValue === 'undefined' || dataValue === null || dataValue === 'null' || dataValue === '') {
-                            return nullValue;
-                        } else {
-                            return prepand + dataValue + append;
                         }
                     } else {
                         return prepand + dataValue + append;
@@ -901,49 +871,44 @@ vis.binds.materialdesign.helper = {
         return parentId;
     },
     extractHtmlWidgetData(el, widgetData, parentId, widgetName, logPrefix, callback) {
-        try {
-            for (const key of Object.keys(widgetData)) {
-                if (key !== 'wid') {
-                    if (el.attr(`mdw-${key}`)) {
-                        // widgetData[key] = el.attr(`mdw-${key}`).replace(/\\"/g, '"').replace(/&x22;/g, '"');
-                        widgetData[key] = el.attr(`mdw-${key}`);
-                    } else if (el.attr(`mdw-${key.toLowerCase()}`)) {
-                        // widgetData[key] = el.attr(`mdw-${key.toLowerCase()}`).replace(/\\"/g, '"').replace(/&x22;/g, '"');
-                        widgetData[key] = el.attr(`mdw-${key.toLowerCase()}`);
-                    } else {
-                        delete widgetData[key];
-                    }
+        for (const key of Object.keys(widgetData)) {
+            if (key !== 'wid') {
+                if (el.attr(`mdw-${key}`)) {
+                    // widgetData[key] = el.attr(`mdw-${key}`).replace(/\\"/g, '"').replace(/&x22;/g, '"');
+                    widgetData[key] = el.attr(`mdw-${key}`);
+                } else if (el.attr(`mdw-${key.toLowerCase()}`)) {
+                    // widgetData[key] = el.attr(`mdw-${key.toLowerCase()}`).replace(/\\"/g, '"').replace(/&x22;/g, '"');
+                    widgetData[key] = el.attr(`mdw-${key.toLowerCase()}`);
+                } else {
+                    delete widgetData[key];
                 }
             }
+        }
 
-            widgetData.debug = widgetData.debug === true || widgetData.debug === 'true' ? true : false;
+        widgetData.debug = widgetData.debug === true || widgetData.debug === 'true' ? true : false;
 
-            if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] widgetData: ${JSON.stringify(widgetData)} `);
+        if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] widgetData: ${JSON.stringify(widgetData)} `);
 
-            if (widgetData.oid) {
+        if (widgetData.oid) {
 
-                let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, widgetData.debug);
+            let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData.oid, parentId, widgetName, false, false, widgetData.debug);
 
-                if (widgetData["oid-working"]) {
-                    oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData["oid-working"], parentId, widgetName, false, false, widgetData.debug);
-                }
+            if (widgetData["oid-working"]) {
+                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(widgetData["oid-working"], parentId, widgetName, false, false, widgetData.debug);
+            }
 
-                if (oidsNeedSubscribe) {
-                    myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
-                        if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] oid subscribed -> fire callback()`);
+            if (oidsNeedSubscribe) {
+                myMdwHelper.subscribeStatesAtRuntime(parentId, widgetName, function () {
+                    if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] oid subscribed -> fire callback()`);
 
-                        if (callback) callback(widgetData);
-                    }, widgetData.debug);
-                } else {
-                    if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] nothing to subscribed -> fire callback()`);
                     if (callback) callback(widgetData);
-                }
+                }, widgetData.debug);
             } else {
-                if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] no oid exist, nothing to subscribed -> fire callback()`);
+                if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] nothing to subscribed -> fire callback()`);
                 if (callback) callback(widgetData);
             }
-        } catch (ex) {
-            console.error(`[${widgetName} - ${widgetData.wid}] extractHtmlWidgetData: error: ${ex.message}, stack: ${ex.stack}`);
+        } else {
+            if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] no oid exist, nothing to subscribed -> fire callback()`);
             if (callback) callback(widgetData);
         }
     },
