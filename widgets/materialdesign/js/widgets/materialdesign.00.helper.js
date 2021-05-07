@@ -804,11 +804,11 @@ vis.binds.materialdesign.helper = {
     formatNumber(value, minDigits = undefined, maxDigits = undefined) {
         if (!isNaN(parseFloat(value))) {
             value = parseFloat(value);
-            if ((minDigits !== undefined && minDigits !== '') && (maxDigits !== undefined && maxDigits !== '')) {
+            if ((minDigits !== undefined && minDigits !== '' && !isNaN(parseFloat(minDigits))) && (maxDigits !== undefined && maxDigits !== '' && !isNaN(parseFloat(maxDigits)))) {
                 return value.toLocaleString(undefined, { minimumFractionDigits: minDigits, maximumFractionDigits: maxDigits });
-            } else if (minDigits !== undefined && minDigits !== '') {
+            } else if (minDigits !== undefined && minDigits !== '' && !isNaN(parseFloat(minDigits))) {
                 return value.toLocaleString(undefined, { minimumFractionDigits: minDigits });
-            } else if (maxDigits !== undefined && maxDigits !== '') {
+            } else if (maxDigits !== undefined && maxDigits !== '' && !isNaN(parseFloat(maxDigits))) {
                 return value.toLocaleString(undefined, { maximumFractionDigits: maxDigits });
             }
 

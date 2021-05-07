@@ -12843,6 +12843,7 @@ The adapter uses the following libraries:
 ### 0.5.5 (2021-04-21)
 * (Scrounger) adapter settings bug fixes
 * (Scrounger) icon buttons: color bug fixes
+* (Scrounger) Fixing bugs found by sentry
 
 <!-- omit in toc -->
 ### 0.5.4 (2021-04-18)
