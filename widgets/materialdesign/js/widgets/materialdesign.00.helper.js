@@ -850,6 +850,12 @@ vis.binds.materialdesign.helper = {
                     value = value.replace(/^\"/, "").replace(/\"$/, "").replace(/\\n/g, ' ').replace(/\\t/g, '');
                 }
 
+                if (value.toString().includes("'")) {
+                    console.warn('nested elements found, replace \' with \"');
+                    console.warn(`${key}: ${value}`);
+                    value = value.replace(/\'/g, '"');
+                }
+
                 if (mdwData === '') {
                     mdwData += `mdw-${key}='${value}'` + '\n';
                 } else {
