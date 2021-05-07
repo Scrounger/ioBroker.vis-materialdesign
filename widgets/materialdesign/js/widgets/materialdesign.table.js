@@ -327,7 +327,7 @@ vis.binds.materialdesign.table = {
 
                     let element = `${prefix}${objValue}${suffix}`
 
-                    if (typeof (objValue) === 'object') {
+                    if (objValue && typeof (objValue) === 'object') {
                         if (objValue.type === 'buttonToggle' || objValue.type === 'buttonToggle_vertical') {
                             let type = objValue.type === 'buttonToggle' ? vis.binds.materialdesign.button.types.toggle.default : vis.binds.materialdesign.button.types.toggle.vertical;
                             let elementData = vis.binds.materialdesign.button.getDataFromJson(objValue, data.wid, type);
