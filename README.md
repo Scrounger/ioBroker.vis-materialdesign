@@ -165,9 +165,10 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 		- [Editor Settings](#editor-settings-35)
 	- [HTML Widgets](#html-widgets)
 		- [Examples](#examples)
-- [used libraries](#used-libraries)
-- [Changelog](#changelog)
-		- [0.5.5 (2021-04-21)](#055-2021-04-21)
+- [Informations](#informations)
+	- [used libraries](#used-libraries)
+	- [Changelog](#changelog)
+	- [License](#license)
 
 # General
 
@@ -12815,7 +12816,9 @@ View to import via VIS Editor:
 
 </details>
 
-# used libraries
+# Informations
+
+## used libraries
 The adapter uses the following libraries:
 * [Google material components for the web](https://github.com/material-components/material-components-web)
 * [Vuetify](https://github.com/vuetifyjs/vuetify)
@@ -12824,13 +12827,14 @@ The adapter uses the following libraries:
 * [Material Design Icons](https://materialdesignicons.com/)
 
 
-# Changelog
+## Changelog
 
 <!--
     Placeholder for the next version (at the beginning of the line):    
 	### __WORK IN PROGRESS__
 -->
 
+<!-- omit in toc -->
 ### 0.5.5 (2021-04-21)
 * (Scrounger) adapter settings bug fixes
 * (Scrounger) icon buttons: color bug fixes
@@ -12916,4 +12920,25 @@ The adapter uses the following libraries:
 * (Scrounger): dependencies updated
 * (Scrounger): bug fixes
 
-<!-- omit in toc -->
+## License
+MIT License
+
+Copyright (c) 2021 Scrounger <scrounger@gmx.net>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
