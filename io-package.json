@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.5.5",
+        "version": "0.5.6",
         "news": {
+            "0.5.6": {
+                "en": "* Html Widgets: escaping bug fix\n* iconList: layout bug fix\n\n<!-- omit in toc -->",
+                "de": "* HTML-Widgets: Fehlerbehebung entgehen\n* iconList: Layout-Fehlerbehebung\n\n<! - in toc weglassen ->",
+                "ru": "* Виджеты Html: исправление ошибки при экранировании\n* iconList: исправление ошибки макета\n\n<! - опустить в toc ->",
+                "pt": "* Widgets Html: correção de bug de escape\n* iconList: correção de bug de layout\n\n<! - omitir em toc ->",
+                "nl": "* Html Widgets: ontsnappende bugfix\n* iconList: bugfix voor lay-out\n\n<! - weglaten in toc ->",
+                "fr": "* Widgets Html: correction de bogue pour échapper\n* iconList: correction de bogue de mise en page\n\n<! - omettre dans toc ->",
+                "it": "* Widget Html: correzione dei bug di fuga\n* iconList: correzione di bug di layout\n\n<! - ometti in toc ->",
+                "es": "* Widgets Html: corrección de errores de escape\n* iconList: corrección de errores de diseño\n\n<! - omitir en índice ->",
+                "pl": "* Widżety HTML: poprawka ucieczki\n* iconList: poprawka układu\n\n<! - pomiń w toc ->",
+                "zh-cn": "* HTML小部件：转义错误修复\n* iconList：布局错误修复\n\n<！-在目录中省略->"
+            },
             "0.5.5": {
                 "en": "* adapter settings bug fixes\n* icon buttons: color bug fixes\n\n<!-- omit in toc -->",
                 "de": "* Fehlerbehebungen bei den Adaptereinstellungen\n* Symbolschaltflächen: Farbfehlerbehebungen\n\n<! - in toc weglassen ->",
@@ -220,18 +232,6 @@
                 "zh-cn": "看到变更日志"
             },
             "0.2.32": {
-                "en": "see changelog",
-                "de": "siehe Changelog",
-                "ru": "см. список изменений",
-                "pt": "veja changelog",
-                "nl": "zie changelog",
-                "fr": "voir changelog",
-                "it": "vedi il log delle modifiche",
-                "es": "ver registro de cambios",
-                "pl": "patrz dziennik zmian",
-                "zh-cn": "看到变更日志"
-            },
-            "0.2.30": {
                 "en": "see changelog",
                 "de": "siehe Changelog",
                 "ru": "см. список изменений",

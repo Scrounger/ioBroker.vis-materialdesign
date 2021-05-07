@@ -1,6 +1,6 @@
-chore: release v0.5.5
+chore: release v0.5.6
 
-* adapter settings bug fixes
-* icon buttons: color bug fixes
+* Html Widgets: escaping bug fix
+* iconList: layout bug fix
 
 <!-- omit in toc -->

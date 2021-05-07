@@ -1,4 +1,43 @@
 <!-- omit in toc -->
+## 0.4.0-beta (2020-12-09)
+* (Scrounger): Line History Chart Widget: Breaking Changes !!! aggregate (display) method for every dataset configurable, [see documentation for detailed infos](#line-history-chart)!
+* (Scrounger): TopAppBar Widget: Breaking Changes !!! Submenus must now be created using JSON string, [see documentation for detailed infos](#since-version-040)!
+* (Scrounger): Adapter settings wiht theme editor added
+* (Scrounger): bug fix for compatibility issues with other widget adapters
+* (Scrounger): Chechbox Widget: option for border and hover color added
+* (Scrounger): Chechbox Widget: ripple effect bug fix
+* (Scrounger): Buttons Vertical: text alignment option added
+* (Scrounger): added URL support as source for symbols / images
+* (Scrounger): HTML Card Widget: option to hide title, subtitle and text added
+* (Scrounger): HTML Card Widget: background image refresh options by datapoint added
+* (Scrounger): Fixed some errors reported via Sentry
+* (Scrounger): Select & Autocomplete Widget: overriding icon color bug fix
+* (Scrounger): Select & Autocomplete Widget: overriding icon bug fix
+* (Scrounger): Select & Autocomplete Widget: colors bug fixes
+* (Scrounger): Select & Autocomplete Widget: option to override the icon color of textfield for selected menu icon
+* (Scrounger): Select & Autocomplete Widget: text alignment option added
+* (Scrounger): Input Widget: text alignment option added
+* (Scrounger): JSON Chart Widget: option to force x-axis time unit added
+* (Scrounger): JSON Chart Widget: gradient colors for multipe dataset bug fixes
+* (Scrounger): JSON Chart: default tooltip title added
+* (Scrounger): JSON Chart: option to use Today / Yesterday for x-axis labeling added
+* (Scrounger): JSON Chart: option to use Today / Yesterday for tooltip added
+* (Scrounger): JSON Chart: option to change x-axis label distance added
+* (Scrounger): Line History Chart: option for point color added
+* (Scrounger): Line History Chart: option to use Today / Yesterday for x-axis labeling added
+* (Scrounger): Line History Chart: option to use Today / Yesterday for tooltip added
+* (Scrounger): Line History Chart: tooption change x-axis label distance added
+* (Scrounger): Charts Widget: x-Axis time axis bug fixes
+* (Scrounger): Calendar Widget: option to show calendar week numbers in month view added
+* (Scrounger): Calendar Widget: option for custom date format added
+* (Scrounger): IconList Widget: bug fix for performance issue
+* (Scrounger): TopAppBar Widget: options for user groups added
+* (Scrounger): Table Widget: html element added
+* (Scrounger): Masonry & Grid View Widget: default width for handy portrait and landscape view changed
+* (Scrounger): Progress Widget: option for indeterminate style added
+* (Scrounger): dependencies updated
+* (Scrounger): bug fixes
+
 ## 0.3.19 (2020-07-18)
 * (Scrounger): Icon Button Widget: background color option for lock icon added
 * (Scrounger): possibility to deactivate sentry implemented -> see documentation
