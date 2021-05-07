@@ -172,7 +172,7 @@ vis.binds.materialdesign.chart.helper = {
                 boxWidth: myMdwHelper.getNumberFromData(data.legendBoxWidth, 10),
                 usePointStyle: data.legendPointStyle,
                 padding: myMdwHelper.getNumberFromData(data.legendPadding, 10),
-                
+
                 filter: function (item, chart) {
                     // Logic to remove a particular legend item goes here
                     if (item && item.text) {
@@ -361,61 +361,65 @@ vis.binds.materialdesign.chart.helper = {
 
         const regenerateGradient = (chart, pluginOpts) => {
             try {
-                if (chart.chartArea.bottom && !isNaN(chart.chartArea.bottom) && chart.chartArea.top && !isNaN(chart.chartArea.top)) {
+                if (chart && chart.chartArea) {
+                    if (chart.chartArea.bottom && !isNaN(chart.chartArea.bottom) && chart.chartArea.top && !isNaN(chart.chartArea.top)) {
 
-                    for (var i = 0; i <= chart.data.datasets.length - 1; i++) {
-                        let graph = chart.data.datasets[i];
+                        for (var i = 0; i <= chart.data.datasets.length - 1; i++) {
+                            let graph = chart.data.datasets[i];
 
-                        // Line / Bar Color
-                        if (graph[pluginId] && graph[pluginId].useGradientColor) {
-                            if (graph[pluginId].gradientColors && graph[pluginId].gradientColors.length > 0) {
-                                let gradientLine = getGradient(chart, graph, graph[pluginId].gradientColors);
+                            // Line / Bar Color
+                            if (graph[pluginId] && graph[pluginId].useGradientColor) {
+                                if (graph[pluginId].gradientColors && graph[pluginId].gradientColors.length > 0) {
+                                    let gradientLine = getGradient(chart, graph, graph[pluginId].gradientColors);
 
-                                if (graph.type === 'line') {
-                                    graph.borderColor = gradientLine;
-                                } else if (graph.type === 'bar') {
-                                    graph.backgroundColor = gradientLine;
-                                }
-                            }
-                        } else {
-                            // zurück auf graph color
-                            graph.borderColor = graph[pluginId].gradientColors;
-                        }
-
-                        // FillColor for Line
-                        if (graph.type === 'line') {
-                            if (graph[pluginId] && graph[pluginId].useGradientFillColor) {
-                                if (graph[pluginId].gradientFillColors && graph[pluginId].gradientFillColors.length > 0) {
-                                    let gradientFill = getGradient(chart, graph, graph[pluginId].gradientFillColors);
-
-                                    graph.backgroundColor = gradientFill;
-                                }
-                            } else {
-                                graph.backgroundColor = graph[pluginId].gradientFillColors;
-                            }
-                        }
-
-                        function getGradient(chart, graph, gradientColors) {
-                            const scale = chart.scales[graph.yAxisID];
-                            let gradient = chart.ctx.createLinearGradient(0, chart.chartArea.bottom, 0, chart.chartArea.top);
-
-                            if (gradientColors && Array.isArray(gradientColors) && gradientColors.length > 0) {
-                                gradientColors.forEach(item => {
-                                    const pixel = scale.getPixelForValue(item.value);
-                                    const stop = Math.max(scale.getDecimalForPixel(pixel), 0);
-
-                                    if (stop <= 1) {
-                                        // This if can fail if the levels are outside the scale bounds.
-                                        gradient.addColorStop(stop, chroma(item.color).css());
+                                    if (graph.type === 'line') {
+                                        graph.borderColor = gradientLine;
+                                    } else if (graph.type === 'bar') {
+                                        graph.backgroundColor = gradientLine;
                                     }
-                                });
+                                }
                             } else {
-                                console.warn(`[regenerateGradient - ${data.wid}] gradient color definition is not correct -> check documentation!`);
+                                // zurück auf graph color
+                                graph.borderColor = graph[pluginId].gradientColors;
                             }
 
-                            return gradient
+                            // FillColor for Line
+                            if (graph.type === 'line') {
+                                if (graph[pluginId] && graph[pluginId].useGradientFillColor) {
+                                    if (graph[pluginId].gradientFillColors && graph[pluginId].gradientFillColors.length > 0) {
+                                        let gradientFill = getGradient(chart, graph, graph[pluginId].gradientFillColors);
+
+                                        graph.backgroundColor = gradientFill;
+                                    }
+                                } else {
+                                    graph.backgroundColor = graph[pluginId].gradientFillColors;
+                                }
+                            }
+
+                            function getGradient(chart, graph, gradientColors) {
+                                const scale = chart.scales[graph.yAxisID];
+                                let gradient = chart.ctx.createLinearGradient(0, chart.chartArea.bottom, 0, chart.chartArea.top);
+
+                                if (gradientColors && Array.isArray(gradientColors) && gradientColors.length > 0) {
+                                    gradientColors.forEach(item => {
+                                        const pixel = scale.getPixelForValue(item.value);
+                                        const stop = Math.max(scale.getDecimalForPixel(pixel), 0);
+
+                                        if (stop <= 1) {
+                                            // This if can fail if the levels are outside the scale bounds.
+                                            gradient.addColorStop(stop, chroma(item.color).css());
+                                        }
+                                    });
+                                } else {
+                                    console.warn(`[regenerateGradient - ${data.wid}] gradient color definition is not correct -> check documentation!`);
+                                }
+
+                                return gradient
+                            }
                         }
                     }
+                } else {
+                    console.warn(`[regenerateGradient - ${data.wid}] chartarea is not defined!`);
                 }
             } catch (ex) {
                 console.error(`[regenerateGradient - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
