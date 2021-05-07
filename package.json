@@ -37,11 +37,11 @@
     "material-components-web": "^4.0.0",
     "mathjs": "^9.1.0",
     "mocha": "^8.1.3",
-    "underscore": "^1.9.2",
+    "moment-duration-format": "^2.3.2",
+    "underscore": "^1.13.1",
     "vue": "^2.6.12",
     "vue-the-mask": "0.11.1",
-    "vuetify": "^2.3.10",
-    "moment-duration-format": "^2.3.2"
+    "vuetify": "^2.3.10"
   },
   "main": "widgets/materialdesign.html",
   "scripts": {
