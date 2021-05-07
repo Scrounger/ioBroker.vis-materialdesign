@@ -168,7 +168,6 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 - [Informations](#informations)
 	- [used libraries](#used-libraries)
 	- [Changelog](#changelog)
-		- [__WORK IN PROGRESS__](#work-in-progress)
 	- [License](#license)
 
 # General
@@ -12831,10 +12830,11 @@ The adapter uses the following libraries:
 ## Changelog
 
 <!--
-    Placeholder for the next version (at the beginning of the line):    
+    Placeholder for the next version (at the beginning of the line):	   
 	### __WORK IN PROGRESS__
 -->
 
+<!-- omit in toc -->
 ### 0.5.6 (2021-05-07)
 * (Scrounger) Html Widgets: escaping bug fix
 * (Scrounger) iconList: layout bug fix
@@ -12886,7 +12886,6 @@ The adapter uses the following libraries:
 * (Scrougner): icon list: scrollbar bug fix
 * (Scrounger): bug fixes
 
-<!-- omit in toc -->
 ## License
 MIT License
 
