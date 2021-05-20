@@ -4055,8 +4055,8 @@ svg.materialdesign-widget .materialdesign-button__icon {
   position: relative;
   align-items: center;
   display: flex;
-  max-width: 100%;
-  width: 100%;
+  max-width: calc(100% - 20px);
+  width: calc(100% - 20px);
   padding: 0 10px;
 }
 

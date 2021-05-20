@@ -12839,6 +12839,7 @@ The adapter uses the following libraries:
 * (Scrounger) Top App Bar Widget: color option for menu icon added
 * (Scrounger) iconList Widget: bug fix for active state at diffrent types
 * (Scrounger) list Widget: bug fix for theme properties
+* (Scrounger) select Widget: bug fix for long text
 
 <!-- omit in toc -->
 ### 0.5.6 (2021-05-07)
