@@ -587,25 +587,26 @@ vis.binds.materialdesign.iconlist =
                         }
                     }
 
-                    if (listItemObj.listType === 'buttonState') {
-                        // buttonState -> show as active if value is state value
-
-                        if (val === listItemObj.buttonStateValue || parseFloat(val) === parseFloat(listItemObj.buttonStateValue)) {
-                            val = true;
-                        } else {
-                            val = false;
-                        }
-                    } else if (listItemObj.listType === 'buttonToggleValueTrue') {
-                        if (val === listItemObj.buttonToggleValueTrue || parseFloat(val) === parseFloat(listItemObj.buttonToggleValueTrue)) {
-                            val = true;
-                        } else {
-                            val = false;
-                        }
-                    } else if (listItemObj.listType === 'buttonToggleValueFalse') {
-                        if (val === listItemObj.buttonToggleValueFalse || parseFloat(val) === parseFloat(listItemObj.buttonToggleValueFalse)) {
-                            val = false;
-                        } else {
-                            val = true;
+                    if (val !== undefined && val !== 'undefined' && val !== null && val !== 'null' && val !== '') {
+                        if (listItemObj.listType === 'buttonState') {
+                            // buttonState -> show as active if value is state value
+                            if (val.toString() === listItemObj.buttonStateValue.toString()) {
+                                val = true;
+                            } else {
+                                val = false;
+                            }
+                        } else if (listItemObj.listType === 'buttonToggleValueTrue') {
+                            if (val.toString() === listItemObj.buttonToggleValueTrue.toString()) {
+                                val = true;
+                            } else {
+                                val = false;
+                            }
+                        } else if (listItemObj.listType === 'buttonToggleValueFalse') {
+                            if (val.toString() === listItemObj.buttonToggleValueFalse.toString()) {
+                                val = false;
+                            } else {
+                                val = true;
+                            }
                         }
                     }
 
