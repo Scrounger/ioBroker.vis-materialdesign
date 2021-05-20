@@ -362,6 +362,7 @@ vis.binds.materialdesign.topappbarnav = {
                     $mdcTopAppBar.get(0).style.setProperty("--materialdesign-font-top-app-bar-title", myMdwHelper.getValueFromData(data.titleFont, ''));
                     $mdcTopAppBar.get(0).style.setProperty("--materialdesign-font-size-top-app-bar-title", myMdwHelper.getNumberFromData(data.titleFontSize, 20) + 'px');
                     $mdcTopAppBar.get(0).style.setProperty("--materialdesign-color-top-app-bar-title", myMdwHelper.getValueFromData(data.colorTopAppBarTitle, ''));
+                    $mdcTopAppBar.get(0).style.setProperty("--materialdesign-top-app-bar-color-burger-icon", myMdwHelper.getValueFromData(data.topAppBarIconColor, ''));
 
 
                     $this.find(`.mdc-list-item`).not(".mdc-list-item.isSubItem").each(function (itemIndex) {

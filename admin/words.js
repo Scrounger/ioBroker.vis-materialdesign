@@ -11525,5 +11525,17 @@ systemDictionary = {
         "es": "color del icono del submenú",
         "pl": "kolor ikony podmenu",
         "zh-cn": "子菜单图标颜色"
+    },
+    "topAppBarIconColor": {
+        "en": "icon color",
+        "de": "Symbolfarbe",
+        "ru": "цвет значка",
+        "pt": "cor do ícone",
+        "nl": "pictogram kleur",
+        "fr": "couleur de l'icône",
+        "it": "colore dell'icona",
+        "es": "color del icono",
+        "pl": "kolor ikony",
+        "zh-cn": "图标颜色"
     }
 };

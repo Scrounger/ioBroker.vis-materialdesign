@@ -376,7 +376,7 @@
         "desc": "imageColor",
         "defaultValue": 5,
         "widget": "Dialog, Dialog iFrame"
-    },    
+    },
     {
         "id": "light.dialog.background",
         "desc": "backgroundColor",
@@ -412,7 +412,7 @@
         "desc": "pressColor",
         "defaultValue": 2,
         "widget": "Dialog, Dialog iFrame"
-    },    
+    },
     {
         "id": "light.dialog.close_button_icon",
         "desc": "fullscreenCloseIconColor",
@@ -936,6 +936,12 @@
         "widget": "Top App Bar"
     },
     {
+        "id": "light.top_app_bar.icon",
+        "desc": "topAppBarIconColor",
+        "value": "#FFFFFF",
+        "widget": "Top App Bar"
+    },
+    {
         "id": "light.top_app_bar.title",
         "desc": "colorTopAppBarTitle",
         "defaultValue": 5,
@@ -994,7 +1000,7 @@
         "desc": "subIconDrawerColor",
         "defaultValue": 0,
         "widget": "Top App Bar"
-    },    
+    },
     {
         "id": "light.top_app_bar.item_text_selected",
         "desc": "colorListItemTextSelected",
@@ -1192,7 +1198,7 @@
         "desc": "icon upgradeable",
         "value": "#ec0909",
         "widget": "AdapterStatus [Script]"
-    },    
+    },
     {
         "id": "light.scripts.adapterStatus.icons.logParser.warn",
         "desc": "logParser warn icon",

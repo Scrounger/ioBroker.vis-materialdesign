@@ -936,6 +936,12 @@
         "widget": "Top App Bar"
     },
     {
+        "id": "dark.top_app_bar.icon",
+        "desc": "topAppBarIconColor",
+        "value": "#FFFFFF",
+        "widget": "Top App Bar"
+    },
+    {
         "id": "dark.top_app_bar.title",
         "desc": "colorTopAppBarTitle",
         "defaultValue": 5,

@@ -19,6 +19,7 @@
   --materialdesign-font-top-app-bar-sub-item: inherit;
   --materialdesign-font-top-app-bar-sub-item-disabled: inherit;
   --materialdesign-color-top-app-bar-header-background: #44739e;
+  --materialdesign-top-app-bar-color-burger-icon: #fff;
 
   --materialdesign-color-checkbox: #44739e;
   --materialdesign-color-checkbox-border: rgba(0, 0, 0, 0.54);
@@ -1400,6 +1401,10 @@ svg.materialdesign-widget .materialdesign-button__icon {
 /* App Top Bar Short */
 .materialdesign-widget .mdc-top-app-bar--short-fixed-adjust {
   padding-top: 0px;
+}
+
+.materialdesign-widget .mdc-icon-button.material-icons.mdc-top-app-bar__navigation-icon{
+  color: var(--materialdesign-top-app-bar-color-burger-icon);
 }
 
 .materialdesign-widget .materialdesign-list-item-backdrop-container {
