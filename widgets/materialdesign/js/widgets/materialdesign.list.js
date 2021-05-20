@@ -299,6 +299,12 @@ vis.binds.materialdesign.list =
                             list.style.setProperty("--materialdesign-color-switch-off", myMdwHelper.getValueFromData(data.colorSwitchThumb, ''));
                             list.style.setProperty("--materialdesign-color-switch-track", myMdwHelper.getValueFromData(data.colorSwitchTrack, ''));
                             list.style.setProperty("--materialdesign-color-switch-off-hover", myMdwHelper.getValueFromData(data.colorSwitchHover, ''));
+
+                            let itemCount = (data.listType === 'switch' || data.listType === 'switch_readonly') ? $this.find('.mdc-switch').length : mdcList.listElements.length;
+                            for (var i = 0; i <= itemCount - 1; i++) {
+                                let listItemObj = getListItemObj(i, data, jsonData);
+                                setItemStyle(i, data, listItemObj);
+                            }
                         }
 
                         if (mdcListAdapter) {
@@ -340,68 +346,72 @@ vis.binds.materialdesign.list =
                             }
 
                             let itemCount = (data.listType === 'switch' || data.listType === 'switch_readonly') ? $this.find('.mdc-switch').length : mdcList.listElements.length;
-
                             for (var i = 0; i <= itemCount - 1; i++) {
-                                let listItemObj = getListItemObj(i, data, jsonData);
+                                setItemStyle(i, data, jsonData);
+                            }                            
+                        }
 
-                                if (data.listType === 'checkbox' || data.listType === 'checkbox_readonly' || data.listType === 'switch' || data.listType === 'switch_readonly') {
-                                    if (data.listType === 'switch' || data.listType === 'switch_readonly') new mdc.switchControl.MDCSwitch($this.find('.mdc-switch').get(i));
-                                    if (data.listType === 'checkbox' || data.listType === 'checkbox_readonly') {
-                                        let mdcCheckBox = new mdc.checkbox.MDCCheckbox($this.find('.mdc-checkbox').get(i));
+                        function setItemStyle(i, data, jsonData) {
+                            let listItemObj = getListItemObj(i, data, jsonData);
 
-                                        $this.find('.mdc-checkbox').get(i).style.setProperty("--mdc-theme-secondary", myMdwHelper.getValueFromData(data.colorCheckBox, ''));
+                            if (data.listType === 'checkbox' || data.listType === 'checkbox_readonly' || data.listType === 'switch' || data.listType === 'switch_readonly') {
+                                if (data.listType === 'switch' || data.listType === 'switch_readonly') new mdc.switchControl.MDCSwitch($this.find('.mdc-switch').get(i));
+                                if (data.listType === 'checkbox' || data.listType === 'checkbox_readonly') {
+                                    let mdcCheckBox = new mdc.checkbox.MDCCheckbox($this.find('.mdc-checkbox').get(i));
 
-                                        if (data.listType === 'checkbox_readonly') {
-                                            mdcCheckBox.disabled = true;
-                                        }
+                                    $this.find('.mdc-checkbox').get(i).style.setProperty("--mdc-theme-secondary", myMdwHelper.getValueFromData(data.colorCheckBox, ''));
+
+                                    if (data.listType === 'checkbox_readonly') {
+                                        mdcCheckBox.disabled = true;
                                     }
-
-                                    let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
-                                    mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(i, valOnLoading);
-                                    setLayout(i, valOnLoading, listItemObj);
-
-                                    vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
-                                        // i wird nicht gespeichert -> umweg über oid gehen
-                                        let input = $this.find('input[data-oid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
-
-                                        input.each(function (d) {
-                                            // kann mit mehreren oid verknüpft sein
-                                            let index = input.eq(d).attr('itemindex');
-                                            listItemObj = getListItemObj(index, data, jsonData);
-                                            mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(index, newVal);
-                                            setLayout(index, newVal, listItemObj);
-                                        });
-                                    });
-
-                                } else if (data.listType === 'buttonToggle' || data.listType === 'buttonToggle_readonly') {
-                                    let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
-                                    setLayout(i, valOnLoading, listItemObj);
-
-                                    vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
-                                        // i wird nicht gespeichert -> umweg über oid gehen
-                                        let input = $this.parent().find('div[data-oid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
-
-                                        input.each(function (d) {
-                                            // kann mit mehreren oid verknüpft sein
-                                            let index = parseInt(input.eq(d).attr('id').replace('listItem_', ''));
-                                            listItemObj = getListItemObj(index, data, jsonData);
-                                            setLayout(index, newVal, listItemObj);
-                                        });
-                                    });
                                 }
+
+                                let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
+                                mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(i, valOnLoading);
+                                setLayout(i, valOnLoading, listItemObj);
+
+                                vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
+                                    // i wird nicht gespeichert -> umweg über oid gehen
+                                    let input = $this.find('input[data-oid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
+
+                                    input.each(function (d) {
+                                        // kann mit mehreren oid verknüpft sein
+                                        let index = input.eq(d).attr('itemindex');
+                                        listItemObj = getListItemObj(index, data, jsonData);
+                                        mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(index, newVal);
+                                        setLayout(index, newVal, listItemObj);
+                                    });
+                                });
+
+                            } else if (data.listType === 'buttonToggle' || data.listType === 'buttonToggle_readonly') {
+                                let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
+                                setLayout(i, valOnLoading, listItemObj);
+
+                                vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
+                                    // i wird nicht gespeichert -> umweg über oid gehen
+                                    let input = $this.parent().find('div[data-oid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
+
+                                    input.each(function (d) {
+                                        // kann mit mehreren oid verknüpft sein
+                                        let index = parseInt(input.eq(d).attr('id').replace('listItem_', ''));
+                                        listItemObj = getListItemObj(index, data, jsonData);
+                                        setLayout(index, newVal, listItemObj);
+                                    });
+                                });
+                            } else {
+                                setLayout(i, false, listItemObj);
                             }
+                        }
 
-                            function setLayout(index, val, listItemObj) {
-                                let curListItem = $this.find(`div[id="listItem_${index}"]`);
+                        function setLayout(index, val, listItemObj) {
+                            let curListItem = $this.find(`div[id="listItem_${index}"]`);
 
-                                if (val === true) {
-                                    curListItem.css('background', myMdwHelper.getValueFromData(data.listItemBackgroundActive, ''));
-                                    myMdwHelper.changeListIconElement(curListItem, listItemObj.imageActive, 'auto', myMdwHelper.getValueFromData(data.listImageHeight, '', '', 'px !important;'), listItemObj.imageActiveColor, spaceBetweenImageAndLabel);
-
-                                } else {
-                                    curListItem.css('background', myMdwHelper.getValueFromData(data.listItemBackground, ''));
-                                    myMdwHelper.changeListIconElement(curListItem, listItemObj.image, 'auto', myMdwHelper.getValueFromData(data.listImageHeight, '', '', 'px !important;'), listItemObj.imageColor, spaceBetweenImageAndLabel);
-                                }
+                            if (val === true) {
+                                curListItem.css('background', myMdwHelper.getValueFromData(data.listItemBackgroundActive, ''));
+                                myMdwHelper.changeListIconElement(curListItem, listItemObj.imageActive, 'auto', myMdwHelper.getValueFromData(data.listImageHeight, '', '', 'px !important;'), listItemObj.imageActiveColor, spaceBetweenImageAndLabel);
+                            } else {
+                                curListItem.css('background', myMdwHelper.getValueFromData(data.listItemBackground, ''));
+                                myMdwHelper.changeListIconElement(curListItem, listItemObj.image, 'auto', myMdwHelper.getValueFromData(data.listImageHeight, '', '', 'px !important;'), listItemObj.imageColor, spaceBetweenImageAndLabel);
                             }
                         }
                     }
