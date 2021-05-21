@@ -10194,6 +10194,18 @@ systemDictionary = {
         "pl": "wartość rezerwowa, jeśli nie jest w grupie użytkowników",
         "zh-cn": "后备值（如果不在用户组中）"
     },
+    "navDisableDefaultValue": {
+        "en": "disable fallback value",
+        "de": "Fallback-Wert deaktivieren",
+        "ru": "отключить резервное значение",
+        "pt": "desabilitar valor substituto",
+        "nl": "terugvalwaarde uitschakelen",
+        "fr": "désactiver la valeur de repli",
+        "it": "disabilitare il valore di fallback",
+        "es": "deshabilitar el valor de respaldo",
+        "pl": "wyłącz wartość rezerwową",
+        "zh-cn": "禁用后备值"
+    },
     "progressIndeterminate": {
         "en": "indeterminate - continuously animates",
         "de": "unbestimmt - kontinuierlich animiert",

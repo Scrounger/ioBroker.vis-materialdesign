@@ -566,29 +566,32 @@ vis.binds.materialdesign.topappbarnav = {
                 }
 
                 function navListSelect(val) {
-                    let item = $mdcList.find(`.mdc-list-item[id="listItem_${val}"]`);
 
-                    if (item.length === 0) {
-                        // Element is hidden
-                        myMdwHelper.setValue(data.oid, myMdwHelper.getNumberFromData(data.navDefaultValue, 0));
-                    } else {
-                        if (item.hasClass('mdc-list-item--disabled')) {
-                            // element is disabled
-                            // if (item.hasClass('isSubItem')) {
-                            //     let parentListItem = item.parent().prev('.hasSubItems');
+                    if (!data.navDisableDefaultValue) {
+                        let item = $mdcList.find(`.mdc-list-item[id="listItem_${val}"]`);
 
-                            //     if (parentListItem.hasClass('mdc-list-item--disabled')) {
-                            //         parentListItem.removeClass("toggled");
-
-                            //         parentListItem.find('.toggleIcon').removeClass("mdi-menu-up");
-                            //         parentListItem.find('.toggleIcon').addClass("mdi-menu-down");
-                            //     }
-                            // }
+                        if (item.length === 0) {
+                            // Element is hidden
                             myMdwHelper.setValue(data.oid, myMdwHelper.getNumberFromData(data.navDefaultValue, 0));
                         } else {
-                            navList.selectedIndex = parseInt(item.eq(0).attr('index'));
-                            toggleSubItemByIndex(val);
-                            // setTopAppBarWithDrawerLayout(val);
+                            if (item.hasClass('mdc-list-item--disabled')) {
+                                // element is disabled
+                                // if (item.hasClass('isSubItem')) {
+                                //     let parentListItem = item.parent().prev('.hasSubItems');
+
+                                //     if (parentListItem.hasClass('mdc-list-item--disabled')) {
+                                //         parentListItem.removeClass("toggled");
+
+                                //         parentListItem.find('.toggleIcon').removeClass("mdi-menu-up");
+                                //         parentListItem.find('.toggleIcon').addClass("mdi-menu-down");
+                                //     }
+                                // }
+                                myMdwHelper.setValue(data.oid, myMdwHelper.getNumberFromData(data.navDefaultValue, 0));
+                            } else {
+                                navList.selectedIndex = parseInt(item.eq(0).attr('index'));
+                                toggleSubItemByIndex(val);
+                                // setTopAppBarWithDrawerLayout(val);
+                            }
                         }
                     }
                 }
