@@ -269,7 +269,6 @@ vis.binds.materialdesign.list =
                                 list.style.setProperty("--materialdesign-color-list-background", myMdwHelper.getValueFromData(data.listBackground, ''));
                             }
 
-
                             list.style.setProperty("--materialdesign-color-list-item-background", myMdwHelper.getValueFromData(data.listItemBackground, ''));
                             list.style.setProperty("--materialdesign-color-list-item-hover", myMdwHelper.getValueFromData(data.colorListItemHover, ''));
                             list.style.setProperty("--materialdesign-color-list-item-selected", myMdwHelper.getValueFromData(data.colorListItemSelected, ''));
@@ -405,6 +404,12 @@ vis.binds.materialdesign.list =
 
                         function setLayout(index, val, listItemObj) {
                             let curListItem = $this.find(`div[id="listItem_${index}"]`);
+
+                            $this.find(`.mdc-list-group__subheader`).css('font-size',myMdwHelper.getStringFromNumberData(data.listItemHeaderTextSize, 'inherit', '', 'px'));
+                            $this.find(`.mdc-list-item__primary-text`).css('font-size',myMdwHelper.getStringFromNumberData(data.listItemTextSize, 'inherit', '', 'px'));
+                            $this.find(`.mdc-list-item__secondary-text`).css('font-size',myMdwHelper.getStringFromNumberData(data.listItemSubTextSize, 'inherit', '', 'px'));
+                            $this.find(`.mdc-list-item__primary-text.materialdesign-list-item-text-right`).css('font-size',myMdwHelper.getStringFromNumberData(data.listItemTextRightSize, 'inherit', '', 'px'));
+                            $this.find(`.mdc-list-item__secondary-text.materialdesign-list-item-text-right`).css('font-size',myMdwHelper.getStringFromNumberData(data.listItemSubTextRightSize, 'inherit', '', 'px'));
 
                             if (val === true) {
                                 curListItem.css('background', myMdwHelper.getValueFromData(data.listItemBackgroundActive, ''));
