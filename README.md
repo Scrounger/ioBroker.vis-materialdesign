@@ -12836,11 +12836,11 @@ The adapter uses the following libraries:
 
 <!-- omit in toc -->
 ### __WORK IN PROGRESS__
-* (Scrounger) Top App Bar Widget: color option for menu icon added
-* (Scrounger) Top App Bar Widget: Permission group - option to deactivate default value added
-* (Scrounger) iconList Widget: bug fix for active state at diffrent types
+* (Scrounger) Top App Bar Widget: color option for menu icon added ([#171][i33])
+* (Scrounger) Top App Bar Widget: Permission group - option to deactivate default value added (#173)
+* (Scrounger) iconList Widget: bug fix for active state at diffrent types (#168)
 * (Scrounger) list Widget: bug fix for theme properties
-* (Scrounger) select Widget: bug fix for long text
+* (Scrounger) select Widget: bug fix for long text (#169)
 
 <!-- omit in toc -->
 ### 0.5.6 (2021-05-07)
