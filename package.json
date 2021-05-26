@@ -28,7 +28,7 @@
     "@types/gulp": "^4.0.6",
     "axios": "^0.21.1",
     "chai": "^4.2.0",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "chartjs-plugin-datalabels": "^0.7.0",
     "chroma-js": "^2.1.0",
     "clipboard-polyfill": "^3.0.1",
