@@ -12842,6 +12842,7 @@ The adapter uses the following libraries:
 * (Scrounger) iconList Widget: layout bug fix for radius of buttons ([#174](https://github.com/Scrounger/ioBroker.vis-materialdesign/issues/174))
 * (Scrounger) list Widget: bug fix for theme properties
 * (Scrounger) select Widget: bug fix for long text ([#169](https://github.com/Scrounger/ioBroker.vis-materialdesign/issues/169))
+* (Scrounger) fixed bugs found by sentry
 
 <!-- omit in toc -->
 ### 0.5.6 (2021-05-07)

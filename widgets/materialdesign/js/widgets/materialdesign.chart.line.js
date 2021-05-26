@@ -184,7 +184,10 @@ vis.binds.materialdesign.chart.lineHistory = function (el, data) {
                                             rotation: myMdwHelper.getNumberFromData(data.attr('valuesRotation' + i), undefined),
                                             formatter: function (value, context) {
                                                 if ((value.y || value.y === 0) && context.dataIndex % myMdwHelper.getNumberFromData(data.attr('valuesSteps' + context.datasetIndex), 1) === 0) {
-                                                    return `${myMdwHelper.formatNumber(value.y, data.attr('valuesMinDecimals' + context.datasetIndex), data.attr('valuesMaxDecimals' + context.datasetIndex))}${myMdwHelper.getValueFromData(data.attr('valuesAppendText' + context.datasetIndex), '')}`
+                                                    let minDigits = data.attr('valuesMinDecimals' + context.datasetIndex) >= 0 ? data.attr('valuesMinDecimals' + context.datasetIndex) : 0;
+                                                    let maxDigits = data.attr('valuesMaxDecimals' + context.datasetIndex) >= 0 ? data.attr('valuesMaxDecimals' + context.datasetIndex) : 0;
+
+                                                    return `${myMdwHelper.formatNumber(value.y, minDigits, maxDigits)}${myMdwHelper.getValueFromData(data.attr('valuesAppendText' + context.datasetIndex), '')}`
                                                         .split('\\n');
                                                 }
                                                 return null;
@@ -227,7 +230,10 @@ vis.binds.materialdesign.chart.lineHistory = function (el, data) {
                                             callback: function (value, index, values) {
                                                 try {
                                                     let axisId = this.id.replace('yAxis_id_', '');
-                                                    return `${myMdwHelper.formatNumber(value, data.attr('yAxisValueMinDigits' + axisId), data.attr('yAxisValueMaxDigits' + axisId))}${myMdwHelper.getValueFromData(data.attr('yAxisValueAppendText' + axisId), '')}`.split('\\n');
+                                                    let minDigits = data.attr('yAxisValueMinDigits' + axisId) >= 0 ? data.attr('yAxisValueMinDigits' + axisId) : 0;
+                                                    let maxDigits = data.attr('yAxisValueMaxDigits' + axisId) >= 0 ? data.attr('yAxisValueMaxDigits' + axisId) : 0;
+
+                                                    return `${myMdwHelper.formatNumber(value, minDigits, maxDigits)}${myMdwHelper.getValueFromData(data.attr('yAxisValueAppendText' + axisId), '')}`.split('\\n');
                                                 } catch (ex) {
                                                     console.error(`[${widgetName} - ${data.wid}] [ticks callback] error: ${ex.message}, stack: ${ex.stack}`);
                                                 }
