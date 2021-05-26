@@ -590,19 +590,19 @@ vis.binds.materialdesign.iconlist =
                     if (val !== undefined && val !== 'undefined' && val !== null && val !== 'null' && val !== '') {
                         if (listItemObj.listType === 'buttonState') {
                             // buttonState -> show as active if value is state value
-                            if (val.toString() === listItemObj.buttonStateValue.toString()) {
+                            if (val && val.toString() === listItemObj.buttonStateValue.toString()) {
                                 val = true;
                             } else {
                                 val = false;
                             }
                         } else if (listItemObj.listType === 'buttonToggleValueTrue') {
-                            if (val.toString() === listItemObj.buttonToggleValueTrue.toString()) {
+                            if (val && val.toString() === listItemObj.buttonToggleValueTrue.toString()) {
                                 val = true;
                             } else {
                                 val = false;
                             }
                         } else if (listItemObj.listType === 'buttonToggleValueFalse') {
-                            if (val.toString() === listItemObj.buttonToggleValueFalse.toString()) {
+                            if (val && val.toString() === listItemObj.buttonToggleValueFalse.toString()) {
                                 val = false;
                             } else {
                                 val = true;
