@@ -301,8 +301,7 @@ vis.binds.materialdesign.list =
 
                             let itemCount = (data.listType === 'switch' || data.listType === 'switch_readonly') ? $this.find('.mdc-switch').length : mdcList.listElements.length;
                             for (var i = 0; i <= itemCount - 1; i++) {
-                                let listItemObj = getListItemObj(i, data, jsonData);
-                                setItemStyle(i, data, listItemObj);
+                                setItemStyle(i, data, jsonData);
                             }
                         }
 
@@ -347,69 +346,75 @@ vis.binds.materialdesign.list =
                             let itemCount = (data.listType === 'switch' || data.listType === 'switch_readonly') ? $this.find('.mdc-switch').length : mdcList.listElements.length;
                             for (var i = 0; i <= itemCount - 1; i++) {
                                 setItemStyle(i, data, jsonData);
-                            }                            
+                            }
                         }
 
                         function setItemStyle(i, data, jsonData) {
-                            let listItemObj = getListItemObj(i, data, jsonData);
+                            try {
+                                let listItemObj = getListItemObj(i, data, jsonData);
 
-                            if (data.listType === 'checkbox' || data.listType === 'checkbox_readonly' || data.listType === 'switch' || data.listType === 'switch_readonly') {
-                                if (data.listType === 'switch' || data.listType === 'switch_readonly') new mdc.switchControl.MDCSwitch($this.find('.mdc-switch').get(i));
-                                if (data.listType === 'checkbox' || data.listType === 'checkbox_readonly') {
-                                    let mdcCheckBox = new mdc.checkbox.MDCCheckbox($this.find('.mdc-checkbox').get(i));
+                                if (data.listType === 'checkbox' || data.listType === 'checkbox_readonly' || data.listType === 'switch' || data.listType === 'switch_readonly') {
+                                    if (data.listType === 'switch' || data.listType === 'switch_readonly') new mdc.switchControl.MDCSwitch($this.find('.mdc-switch').get(i));
+                                    if (data.listType === 'checkbox' || data.listType === 'checkbox_readonly') {
+                                        let mdcCheckBox = new mdc.checkbox.MDCCheckbox($this.find('.mdc-checkbox').get(i));
 
-                                    $this.find('.mdc-checkbox').get(i).style.setProperty("--mdc-theme-secondary", myMdwHelper.getValueFromData(data.colorCheckBox, ''));
+                                        $this.find('.mdc-checkbox').get(i).style.setProperty("--mdc-theme-secondary", myMdwHelper.getValueFromData(data.colorCheckBox, ''));
 
-                                    if (data.listType === 'checkbox_readonly') {
-                                        mdcCheckBox.disabled = true;
+                                        if (data.listType === 'checkbox_readonly') {
+                                            mdcCheckBox.disabled = true;
+                                        }
                                     }
+
+                                    let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
+                                    mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(i, valOnLoading);
+                                    setLayout(i, valOnLoading, listItemObj);
+
+                                    vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
+                                        // i wird nicht gespeichert -> umweg über oid gehen
+                                        let input = $this.find('input[data-oid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
+
+                                        input.each(function (d) {
+                                            // kann mit mehreren oid verknüpft sein
+                                            let index = input.eq(d).attr('itemindex');
+                                            listItemObj = getListItemObj(index, data, jsonData);
+                                            mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(index, newVal);
+                                            setLayout(index, newVal, listItemObj);
+                                        });
+                                    });
+
+                                } else if (data.listType === 'buttonToggle' || data.listType === 'buttonToggle_readonly') {
+                                    let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
+                                    setLayout(i, valOnLoading, listItemObj);
+
+                                    vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
+                                        // i wird nicht gespeichert -> umweg über oid gehen
+                                        let input = $this.parent().find('div[data-oid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
+
+                                        input.each(function (d) {
+                                            // kann mit mehreren oid verknüpft sein
+                                            let index = parseInt(input.eq(d).attr('id').replace('listItem_', ''));
+                                            listItemObj = getListItemObj(index, data, jsonData);
+                                            setLayout(index, newVal, listItemObj);
+                                        });
+                                    });
+                                } else {
+                                    setLayout(i, false, listItemObj);
                                 }
-
-                                let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
-                                mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(i, valOnLoading);
-                                setLayout(i, valOnLoading, listItemObj);
-
-                                vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
-                                    // i wird nicht gespeichert -> umweg über oid gehen
-                                    let input = $this.find('input[data-oid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
-
-                                    input.each(function (d) {
-                                        // kann mit mehreren oid verknüpft sein
-                                        let index = input.eq(d).attr('itemindex');
-                                        listItemObj = getListItemObj(index, data, jsonData);
-                                        mdcListAdapter.setCheckedCheckboxOrRadioAtIndex(index, newVal);
-                                        setLayout(index, newVal, listItemObj);
-                                    });
-                                });
-
-                            } else if (data.listType === 'buttonToggle' || data.listType === 'buttonToggle_readonly') {
-                                let valOnLoading = vis.states.attr(listItemObj.objectId + '.val');
-                                setLayout(i, valOnLoading, listItemObj);
-
-                                vis.states.bind(listItemObj.objectId + '.val', function (e, newVal, oldVal) {
-                                    // i wird nicht gespeichert -> umweg über oid gehen
-                                    let input = $this.parent().find('div[data-oid="' + e.type.substr(0, e.type.lastIndexOf(".")) + '"]');
-
-                                    input.each(function (d) {
-                                        // kann mit mehreren oid verknüpft sein
-                                        let index = parseInt(input.eq(d).attr('id').replace('listItem_', ''));
-                                        listItemObj = getListItemObj(index, data, jsonData);
-                                        setLayout(index, newVal, listItemObj);
-                                    });
-                                });
-                            } else {
-                                setLayout(i, false, listItemObj);
+                            } catch (ex) {
+                                console.error(`[${widgetName} - ${data.wid}] setItemStyle - item ${i}, error: ${ex.message}, stack: ${ex.stack}`);
                             }
                         }
 
                         function setLayout(index, val, listItemObj) {
+                            console.warn(i);
                             let curListItem = $this.find(`div[id="listItem_${index}"]`);
 
-                            $this.find(`.mdc-list-group__subheader`).css('font-size',myMdwHelper.getStringFromNumberData(data.listItemHeaderTextSize, 'inherit', '', 'px'));
-                            $this.find(`.mdc-list-item__primary-text`).css('font-size',myMdwHelper.getStringFromNumberData(data.listItemTextSize, 'inherit', '', 'px'));
-                            $this.find(`.mdc-list-item__secondary-text`).css('font-size',myMdwHelper.getStringFromNumberData(data.listItemSubTextSize, 'inherit', '', 'px'));
-                            $this.find(`.mdc-list-item__primary-text.materialdesign-list-item-text-right`).css('font-size',myMdwHelper.getStringFromNumberData(data.listItemTextRightSize, 'inherit', '', 'px'));
-                            $this.find(`.mdc-list-item__secondary-text.materialdesign-list-item-text-right`).css('font-size',myMdwHelper.getStringFromNumberData(data.listItemSubTextRightSize, 'inherit', '', 'px'));
+                            $this.find(`.mdc-list-group__subheader`).css('font-size', myMdwHelper.getStringFromNumberData(data.listItemHeaderTextSize, 'inherit', '', 'px'));
+                            $this.find(`.mdc-list-item__text`).css('font-size', myMdwHelper.getStringFromNumberData(data.listItemTextSize, 'inherit', '', 'px'));
+                            $this.find(`.mdc-list-item__primary-text`).css('font-size', myMdwHelper.getStringFromNumberData(data.listItemTextSize, 'inherit', '', 'px'));
+                            $this.find(`.mdc-list-item__secondary-text`).css('font-size', myMdwHelper.getStringFromNumberData(data.listItemSubTextSize, 'inherit', '', 'px'));
+                            $this.find(`.mdc-list-item__primary-text.materialdesign-list-item-text-right`).css('font-size', myMdwHelper.getStringFromNumberData(data.listItemTextRightSize, 'inherit', '', 'px'));
+                            $this.find(`.mdc-list-item__secondary-text.materialdesign-list-item-text-right`).css('font-size', myMdwHelper.getStringFromNumberData(data.listItemSubTextRightSize, 'inherit', '', 'px'));
 
                             if (val === true) {
                                 curListItem.css('background', myMdwHelper.getValueFromData(data.listItemBackgroundActive, ''));
