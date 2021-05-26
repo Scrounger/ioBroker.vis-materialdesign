@@ -57,7 +57,7 @@ vis.binds.materialdesign.progress = {
 
                             if (!myMdwHelper.getBooleanFromData(data.progressIndeterminate, false)) {
                                 let val = myMdwHelper.getNumberFromData(vis.states.attr(data.oid + '.val'), 0);
-                                dataObj.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label');
+                                dataObj.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label', widgetName);
                             }
 
                             if (myMdwHelper.getValueFromData(data.progressRotate, 'noRotate') === 'noRotate') {
@@ -71,7 +71,7 @@ vis.binds.materialdesign.progress = {
                     });
 
                     vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                        vueProgress.value = vis.binds.materialdesign.progress.getProgressState($this, data, newVal, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label');
+                        vueProgress.value = vis.binds.materialdesign.progress.getProgressState($this, data, newVal, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label', widgetName);
                     });
 
                     $(document).on("mdwSubscribe", function (e, oids) {
@@ -104,7 +104,7 @@ vis.binds.materialdesign.progress = {
                         $this.get(0).style.setProperty("--vue-progress-progress-striped-width3", myMdwHelper.getNumberFromData(data.stipWidth3, 75) + '%');
 
                         let val = myMdwHelper.getNumberFromData(vis.states.attr(data.oid + '.val'), 0);
-                        vueProgress.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label');
+                        vueProgress.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label', widgetName);
 
                         if (myMdwHelper.getValueFromData(data.progressRotate, 'noRotate') !== 'noRotate') {
                             $this.find(`.${containerClass}`).css('transform', 'rotate(90deg)');
@@ -202,7 +202,7 @@ vis.binds.materialdesign.progress = {
             console.error(`[${widgetName} - ${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    getProgressState: function ($this, data, val, colorProperty, labelClass) {
+    getProgressState: function ($this, data, val, colorProperty, labelClass, widgetName) {
         try {
             let min = myMdwHelper.getNumberFromData(data.min, 0);
             let max = myMdwHelper.getNumberFromData(data.max, 100);
@@ -261,7 +261,7 @@ vis.binds.materialdesign.progress = {
             }
 
         } catch (ex) {
-            console.error(`[getProgressState - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`[${widgetName} - ${data.wid}] getProgressState: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     getDataFromJson(obj, widgetId, type) {
