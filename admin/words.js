@@ -11549,5 +11549,17 @@ systemDictionary = {
         "es": "color del icono",
         "pl": "kolor ikony",
         "zh-cn": "图标颜色"
+    },
+    "setValueOnMenuToggleClick": {
+        "en": "set value on click at item that toggle submenu",
+        "de": "Wert auch schreiben, wenn Eintrag zum Untermenü umschalten gedrückt wird",
+        "ru": "установить значение при щелчке по элементу, который переключает подменю",
+        "pt": "defina o valor ao clicar no item que alterna o submenu",
+        "nl": "waarde instellen bij klikken op item dat submenu schakelt",
+        "fr": "définir la valeur en cliquant sur l'élément qui bascule le sous-menu",
+        "it": "imposta il valore al clic sull'elemento che attiva/disattiva il sottomenu",
+        "es": "establecer valor al hacer clic en el elemento que alterna el submenú",
+        "pl": "ustaw wartość po kliknięciu elementu, który przełącza podmenu",
+        "zh-cn": "单击切换子菜单的项目时设置值"
     }
 };

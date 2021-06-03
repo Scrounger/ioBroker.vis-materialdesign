@@ -141,7 +141,7 @@ vis.binds.materialdesign.topappbarnav = {
                     navItemList.push(header);
 
                     // generate Item -> mdc-list-item
-                    let listItem = myMdwHelper.getListItem(data.drawerItemLayout, itemIndex, itemImage, hasSubItems, false, drawerIconHeight, '', '', '', itemIsDisabled, selectIndex);
+                    let listItem = myMdwHelper.getListItem(data.drawerItemLayout, itemIndex, itemImage, hasSubItems, false, drawerIconHeight, '', '', '', itemIsDisabled, selectIndex, undefined, myMdwHelper.getBooleanFromData(data.attr('setValueOnMenuToggleClick' + i), false));
 
                     // generate Item Image for Layout Standard
                     let listItemImage = ''
@@ -457,7 +457,7 @@ vis.binds.materialdesign.topappbarnav = {
 
                 $mdcList.find('.mdc-list-item').on('click', function () {
                     let $selectedItem = $(this).eq(0);
-                    let selctedIndex = parseInt($selectedItem.attr('id').replace('listItem_', ''));
+                    let selectIndex = parseInt($selectedItem.attr('id').replace('listItem_', ''));
 
                     let itemIsDisabled = $selectedItem.hasClass('mdc-list-item--disabled');
 
@@ -479,15 +479,20 @@ vis.binds.materialdesign.topappbarnav = {
 
                             $(this).next("nav.mdc-sub-list").toggle();
 
-                            navList.selectedIndex = parseInt($mdcList.find(`.mdc-list-item[id="listItem_${selctedIndex}"]`).eq(0).attr('index'));
+                            navList.selectedIndex = parseInt($mdcList.find(`.mdc-list-item[id="listItem_${selectIndex}"]`).eq(0).attr('index'));
+
+                            let setValueOnToggle = $selectedItem.attr('set-value-on-menu-toggle')
+                            if (setValueOnToggle && setValueOnToggle === 'true') {
+                                myMdwHelper.setValue(data.oid, selectIndex);
+                            }
                         } else {
                             // listItem
                             val = vis.states.attr(data.oid + '.val');
 
-                            if (val != selctedIndex) {
-                                myMdwHelper.setValue(data.oid, selctedIndex);
+                            if (val != selectIndex) {
+                                myMdwHelper.setValue(data.oid, selectIndex);
 
-                                // setTopAppBarWithDrawerLayout(selctedIndex);
+                                // setTopAppBarWithDrawerLayout(selectIndex);
 
                                 setTimeout(function () {
                                     window.scrollTo({ top: 0, left: 0, });

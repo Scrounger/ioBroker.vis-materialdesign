@@ -341,7 +341,7 @@ vis.binds.materialdesign.helper = {
         return '';
     },
 
-    getListItem: function (layout, itemIndex, backdropImage, hasSubItems, isSubItem = false, style = '', dataOid = '', role = '', dataValue = '', isDisabled = false, index = undefined, parentIndex = undefined) {
+    getListItem: function (layout, itemIndex, backdropImage, hasSubItems, isSubItem = false, style = '', dataOid = '', role = '', dataValue = '', isDisabled = false, index = undefined, parentIndex = undefined, setValueOnMenuToggleClick = false) {
         if (layout === 'standard') {
             // Layout: Standard
             return `<div 
@@ -354,6 +354,7 @@ vis.binds.materialdesign.helper = {
                         data-value="${dataValue}" 
                         ${dataOid} 
                         ${role}
+                        ${hasSubItems ? `set-value-on-menu-toggle="${setValueOnMenuToggleClick}"`: ''}
                     >`
         } else {
             // Layout: Backdrop
@@ -362,7 +363,12 @@ vis.binds.materialdesign.helper = {
                         tabindex="${(itemIndex === 0) ? '0' : '-1'}"
                         id="listItem_${itemIndex}"
                         ${index || index === 0 ? `index="${index}"` : ''}
+                        ${parentIndex || parentIndex === 0 ? `parentIndex="${parentIndex}"` : ''}
                         style="background-image: url(${backdropImage}); align-items: flex-end; padding: 0px;${style}"
+                        data-value="${dataValue}" 
+                        ${dataOid} 
+                        ${role}
+                        ${hasSubItems ? `set-value-on-menu-toggle="${setValueOnMenuToggleClick}"`: ''}
                     >`
         }
     },
