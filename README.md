@@ -12843,6 +12843,7 @@ The adapter uses the following libraries:
 ### __WORK IN PROGRESS__
 * (Scrounger) Top App Bar Widget: option added to set value on click at item that toggle submenu
 * (Scrounger) IconList Widget: option added to show single element over whole row
+* (Scrounger) IconList Widget: bug fix for applying active color ([#176](https://github.com/Scrounger/ioBroker.vis-materialdesign/issues/176))
 
 <!-- omit in toc -->
 ### 0.5.7 (2021-05-26)
