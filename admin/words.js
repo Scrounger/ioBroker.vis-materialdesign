@@ -11585,5 +11585,17 @@ systemDictionary = {
         "es": "ID de objeto para el nombre del elemento de menú seleccionado",
         "pl": "Identyfikator obiektu dla wybranej nazwy pozycji menu",
         "zh-cn": "所选菜单项名称的对象 ID"
+    },
+    "permanentIfResolutionHigherThan": {
+        "en": "layout 'auto': layout auto change on resoltuion higher than",
+        "de": "Layout 'auto': automatische Änderung des Layouts bei Auflösung größer",
+        "ru": "макет 'auto': автоматическое изменение макета при разрешении выше, чем",
+        "pt": "layout 'auto': mudança automática de layout em resolução maior que",
+        "nl": "layout 'auto': layout automatisch wijzigen bij resolutie hoger dan",
+        "fr": "layout 'auto': layout auto change sur résolution supérieure à",
+        "it": "layout 'auto': modifica automatica del layout alla risoluzione maggiore di",
+        "es": "layout 'auto': cambio automático de diseño en una resolución superior a",
+        "pl": "układ 'auto': automatyczna zmiana układu przy rozdzielczości wyższej niż",
+        "zh-cn": "布局“自动”：分辨率高于分辨率时布局自动更改"
     }
 };
