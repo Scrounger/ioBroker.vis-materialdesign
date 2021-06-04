@@ -11561,5 +11561,17 @@ systemDictionary = {
         "es": "establecer valor al hacer clic en el elemento que alterna el submenú",
         "pl": "ustaw wartość po kliknięciu elementu, który przełącza podmenu",
         "zh-cn": "单击切换子菜单的项目时设置值"
+    },
+    "fullRow": {
+        "en": "display element over whole row",
+        "de": "über ganze Zeile anzeigen",
+        "ru": "отображать элемент по всей строке",
+        "pt": "elemento de exibição em toda a linha",
+        "nl": "weergave-element over hele rij",
+        "fr": "élément d'affichage sur toute la ligne",
+        "it": "visualizza l'elemento su tutta la riga",
+        "es": "elemento de visualización en toda la fila",
+        "pl": "wyświetlaj element w całym rzędzie",
+        "zh-cn": "整行显示元素"
     }
 };

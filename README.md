@@ -5261,6 +5261,12 @@ JSON string must be an array of objects with the following properties:
 			<td/>
 		</tr>
 		<tr>
+			<td>fullRow</td>
+			<td>display element over whole row</td>
+			<td>boolean</td>
+			<td>false | true</td>
+		</tr>		
+		<tr>
 			<td>buttonStateValue</td>
 			<td>value for button state</td>
 			<td>string</td>
@@ -12836,6 +12842,7 @@ The adapter uses the following libraries:
 
 ### __WORK IN PROGRESS__
 * (Scrounger) Top App Bar Widget: option added to set value on click at item that toggle submenu
+* (Scrounger) IconList Widget: option added to show single element over whole row
 
 <!-- omit in toc -->
 ### 0.5.7 (2021-05-26)
