@@ -589,7 +589,6 @@ vis.binds.materialdesign.iconlist =
 
                     if (val !== undefined && val !== 'undefined' && val !== null && val !== 'null' && val !== '') {
                         if (listItemObj.listType === 'buttonState') {
-                            console.warn('hier');
                             // buttonState -> show as active if value is state value
                             if ((val || val === 0) && val.toString() === listItemObj.buttonStateValue.toString()) {
                                 val = true;

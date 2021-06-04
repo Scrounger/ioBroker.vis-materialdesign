@@ -11573,5 +11573,17 @@ systemDictionary = {
         "es": "elemento de visualización en toda la fila",
         "pl": "wyświetlaj element w całym rzędzie",
         "zh-cn": "整行显示元素"
+    },
+    "selectedItemName_oid": {
+        "en": "Object Id for selected menu item name",
+        "de": "Objekt-ID für den ausgewählten Menüpunktnamen",
+        "ru": "Идентификатор объекта для выбранного имени пункта меню",
+        "pt": "Id do objeto para o nome do item de menu selecionado",
+        "nl": "Object-ID voor de naam van het geselecteerde menu-item",
+        "fr": "Id d'objet pour le nom de l'élément de menu sélectionné",
+        "it": "ID oggetto per il nome della voce di menu selezionata",
+        "es": "ID de objeto para el nombre del elemento de menú seleccionado",
+        "pl": "Identyfikator obiektu dla wybranej nazwy pozycji menu",
+        "zh-cn": "所选菜单项名称的对象 ID"
     }
 };

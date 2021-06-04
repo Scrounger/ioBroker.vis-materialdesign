@@ -1387,7 +1387,8 @@ svg.materialdesign-widget .materialdesign-button__icon {
   height: 100%;
   font-family: var(--materialdesign-font-top-app-bar-title);
   font-size:  var(--materialdesign-font-size-top-app-bar-title);
-  color: var(--materialdesign-color-top-app-bar-title)  
+  color: var(--materialdesign-color-top-app-bar-title);
+  margin-right: 12px;
 }
 
 .materialdesign-widget .mdc-drawer__content .mdc-list-item__text {
