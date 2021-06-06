@@ -484,82 +484,13 @@ vis.binds.materialdesign.helper = {
         return ['.gif', '.png', '.bmp', '.jpg', '.jpeg', '.tif', '.svg', 'http://', 'https://'];
     },
     getVisibility: function (val, visibilityOid, visibilityCond, visibilityVal) {
-        var oid = visibilityOid;
-        var condition = visibilityCond;
-        if (oid) {
-            if (val === undefined || val === null) {
-                val = vis.states.attr(oid + '.val');
-            }
-            if (val === undefined || val === null) {
-                return (condition === 'not exist');
-            }
-
-            var value = visibilityVal;
-
-            if (!condition || value === undefined || value === null) {
-                return (condition === 'not exist');
-            }
-
-            if (val === 'null' && condition !== 'exist' && condition !== 'not exist') {
-                return false;
-            }
-
-            var t = typeof val;
-            if (t === 'boolean' || val === 'false' || val === 'true') {
-                value = value === 'true' || value === true || value === 1 || value === '1';
-            } else
-                if (t === 'number') {
-                    value = parseFloat(value);
-                } else
-                    if (t === 'object') {
-                        val = JSON.stringify(val);
-                    }
-
-            // Take care: return true if widget is hidden!
-            switch (condition) {
-                case '==':
-                    value = value.toString();
-                    val = val.toString();
-                    if (val === '1') val = 'true';
-                    if (value === '1') value = 'true';
-                    if (val === '0') val = 'false';
-                    if (value === '0') value = 'false';
-                    return value !== val;
-                case '!=':
-                    value = value.toString();
-                    val = val.toString();
-                    if (val === '1') val = 'true';
-                    if (value === '1') value = 'true';
-                    if (val === '0') val = 'false';
-                    if (value === '0') value = 'false';
-                    return value === val;
-                case '>=':
-                    return val < value;
-                case '<=':
-                    return val > value;
-                case '>':
-                    return val <= value;
-                case '<':
-                    return val >= value;
-                case 'consist':
-                    value = value.toString();
-                    val = val.toString();
-                    return (val.toString().indexOf(value) === -1);
-                case 'not consist':
-                    value = value.toString();
-                    val = val.toString();
-                    return (val.toString().indexOf(value) !== -1);
-                case 'exist':
-                    return val === 'null';
-                case 'not exist':
-                    return val !== 'null';
-                default:
-                    console.log('Unknown visibility condition: ' + condition);
-                    return false;
-            }
-        } else {
-            return (condition === 'not exist');
+        let widgetData = {
+            "visibility-oid": visibilityOid,
+            "visibility-cond": visibilityCond,
+            "visibility-val": visibilityVal
         }
+
+        return vis.isWidgetHidden(undefined, undefined, val, widgetData);
     },
     getViewOfWidget(wid) {
         for (var view in vis.views) {
