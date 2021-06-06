@@ -5261,11 +5261,11 @@ JSON string must be an array of objects with the following properties:
 			<td/>
 		</tr>
 		<tr>
-			<td>fullRow</td>
-			<td>display element over whole row</td>
-			<td>boolean</td>
-			<td>false | true</td>
-		</tr>		
+			<td>usePercentOfRow</td>
+			<td>item use x percent of row.</td>
+			<td>number</td>
+			<td>0 = auto</td>
+		</tr>
 		<tr>
 			<td>buttonStateValue</td>
 			<td>value for button state</td>
@@ -12883,7 +12883,7 @@ The adapter uses the following libraries:
 ### __WORK IN PROGRESS__
 * (Scrounger) Top App Bar Widget: new layout 'auto' added - change between modal and permanent layout depending on screen resolution. [Details see documentation!](#layout-auto)
 * (Scrounger) Top App Bar Widget: option added to set value on click at item that toggle submenu
-* (Scrounger) IconList Widget: option added to show single element over whole row
+* (Scrounger) IconList Widget: option added to set used space per row
 * (Scrounger) IconList Widget: bug fix for applying active color ([#176](https://github.com/Scrounger/ioBroker.vis-materialdesign/issues/176))
 
 <!-- omit in toc -->

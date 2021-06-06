@@ -11562,17 +11562,17 @@ systemDictionary = {
         "pl": "ustaw wartość po kliknięciu elementu, który przełącza podmenu",
         "zh-cn": "单击切换子菜单的项目时设置值"
     },
-    "fullRow": {
-        "en": "display element over whole row",
-        "de": "über ganze Zeile anzeigen",
-        "ru": "отображать элемент по всей строке",
-        "pt": "elemento de exibição em toda a linha",
-        "nl": "weergave-element over hele rij",
-        "fr": "élément d'affichage sur toute la ligne",
-        "it": "visualizza l'elemento su tutta la riga",
-        "es": "elemento de visualización en toda la fila",
-        "pl": "wyświetlaj element w całym rzędzie",
-        "zh-cn": "整行显示元素"
+    "usePercentOfRow": {
+        "en": "use x percent of row",
+        "de": "x Prozent der Zeile verwenden",
+        "ru": "использовать x процентов строки",
+        "pt": "use x por cento da linha",
+        "nl": "gebruik x procent van rij",
+        "fr": "utiliser x pour cent de la ligne",
+        "it": "usa x percento di riga",
+        "es": "usar x por ciento de la fila",
+        "pl": "użyj x procent wiersza",
+        "zh-cn": "使用 x 行的百分比"
     },
     "selectedItemName_oid": {
         "en": "Object Id for selected menu item name",
