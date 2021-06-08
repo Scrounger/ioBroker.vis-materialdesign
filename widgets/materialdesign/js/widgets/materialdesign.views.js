@@ -112,11 +112,11 @@ vis.binds.materialdesign.views = {
 
                         myMdwHelper.calcChecker(getComputedStyle($this.context).width, data.wid, 'Masonry');
 
-                        $(window).resize(function () {
+                        $(window).on('resize', function () {
                             // resize event
                             var widgetWidth = $this.width();
 
-                            if (currentWidgetWidth !== widgetWidth) {
+                            if (currentWidgetWidth !== widgetWidth && widgetWidth > 100) {
                                 currentWidgetWidth = widgetWidth;
                                 setColumns();
                                 setViewVisibilityByCondition(currentWidgetWidth);
@@ -333,11 +333,11 @@ vis.binds.materialdesign.views = {
 
                         myMdwHelper.calcChecker(getComputedStyle($this.context).width, data.wid, 'Grid');
 
-                        $(window).resize(function () {
+                        $(window).on('resize', function () {
                             // resize event
                             var widgetWidth = $this.width();
 
-                            if (currentWidgetWidth !== widgetWidth) {
+                            if (currentWidgetWidth !== widgetWidth && currentWidgetWidth && widgetWidth > 100) {
                                 currentWidgetWidth = widgetWidth;
                                 setColumns();
                                 setViewVisibilityByCondition(currentWidgetWidth);
