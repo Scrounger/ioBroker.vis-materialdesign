@@ -5386,6 +5386,24 @@ JSON string must be an array of objects with the following properties:
 			<td>boolean</td>
 			<td>false | true</td>
 		</tr>
+		<tr>
+			<td>visibilityOid</td>
+			<td>Object Id for visibility</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>visibilityCondition</td>
+			<td>visibility condition</td>
+			<td>string</td>
+			<td>== | != | <= | >= | < | > | consist | not consist | exist | not exist</td>
+		</tr>
+		<tr>
+			<td>visibilityConditionValue</td>
+			<td>value for visibility condition</td>
+			<td>string</td>
+			<td/>
+		</tr>				
 	</tbody>
 </table>
 
@@ -12884,6 +12902,7 @@ The adapter uses the following libraries:
 * (Scrounger) Top App Bar Widget: new layout 'auto' added - change between modal and permanent layout depending on screen resolution. [Details see documentation!](#layout-auto)
 * (Scrounger) Top App Bar Widget: option added to set value on click at item that toggle submenu
 * (Scrounger) IconList Widget: option added to set used space per row
+* (Scrounger) IconList Widget: option added to set visibility condition for items ([#118](https://github.com/Scrounger/ioBroker.vis-materialdesign/issues/118))
 * (Scrounger) IconList Widget: bug fix for applying active color ([#176](https://github.com/Scrounger/ioBroker.vis-materialdesign/issues/176))
 
 <!-- omit in toc -->

@@ -245,7 +245,7 @@ vis.binds.materialdesign.iconlist =
                         if (data.itemLayout === 'vertical') {
                             if (data.buttonLayout === 'full' && listItemObj.listType !== 'text') {
                                 element = `
-                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none;' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''}" >
+                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none;' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''}" >
                                     <div style="flex: 1; height: 100%; display: flex; flex-direction: column;">    
                                         <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
                                             <div class="materialdesign-button materialdesign-iconList-button" index="${i}" style="background: ${listItemObj.buttonBackgroundColor}; position: relative; width: 100%; height: 100%; padding: 0; ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;' : ''}">
@@ -266,7 +266,7 @@ vis.binds.materialdesign.iconlist =
                                 </div>`;
                             } else {
                                 element = `
-                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''}" >
+                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''}" >
                                     ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text materialdesign-icon-list-item-text-vertical">${listItemObj.text}</label>` : ''}
                                     ${imageElement ? `<div class="materialdesign-icon-list-item-layout-vertical-image-container">
                                         ${imageElement}
@@ -280,7 +280,7 @@ vis.binds.materialdesign.iconlist =
                         } else {
                             if (data.buttonLayout === 'full' && listItemObj.listType !== 'text') {
                                 element = `
-                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''}" >
+                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''}" >
                                     <div style="flex: 1; height: 100%; display: flex; flex-direction: column;">
                                         <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">                                
                                             <div class="materialdesign-button materialdesign-iconList-button" index="${i}" style="background: ${listItemObj.buttonBackgroundColor}; position: relative; width: 100%; height: 100%; padding: 0; ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;' : ''}">
@@ -303,7 +303,7 @@ vis.binds.materialdesign.iconlist =
                                 </div>`;
                             } else {
                                 element = `
-                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''}" >
+                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''}" >
                                 <div style="flex: 1; height: 100%; display: flex; flex-direction: column;">    
                                     <div style="flex: 1; display: flex;">
                                         ${imageElement ? `<div class="materialdesign-icon-list-item-layout-horizontal-image-container">
@@ -470,6 +470,18 @@ vis.binds.materialdesign.iconlist =
                                 $(iconButtons[i]).css('cursor', 'default');
                             }
 
+                            if (listItemObj.visibilityOid) {
+                                vis.states.bind(listItemObj.visibilityOid + '.val', function (e, newVal, oldVal) {
+                                    let itemWithVisibilityOid = $this.find('.materialdesign-icon-list-item[visibilityOid="' + listItemObj.visibilityOid + '"]');
+
+                                    itemWithVisibilityOid.each(function (d) {
+                                        let $item = $(this);
+                                        let itemIndex = $item.attr('id').replace('icon-list-item', '');
+                                        setViewVisibilityByCondition(itemIndex, $item);
+                                    });
+                                });
+                            }
+
                             if (iconButtons && iconButtons.get(i)) {
                                 if (listItemObj.readOnly === false) {
                                     iconButtons.get(i).style.setProperty("--materialdesign-color-icon-button-hover", myMdwHelper.getValueFromData(data.buttonColorPress, ''));
@@ -632,8 +644,7 @@ vis.binds.materialdesign.iconlist =
                         }
                     }
 
-                    $item.show();
-                    $item.css('display', 'flex');
+                    setViewVisibilityByCondition(index, $item);
                 }
 
                 function unlockButton($item) {
@@ -658,6 +669,21 @@ vis.binds.materialdesign.iconlist =
                         }
 
                     }, myMdwHelper.getNumberFromData(data.autoLockAfter, 10) * 1000);
+                }
+
+                function setViewVisibilityByCondition(itemIndex, $item) {
+                    let itemObj = getListItemObj(itemIndex, data, jsonData);
+
+                    let visibility = myMdwHelper.getVisibility(vis.states.attr(itemObj.visibilityOid + '.val'), itemObj.visibilityOid, itemObj.visibilityCondition, itemObj.visibilityConditionValue);
+
+                    if (data.debug) console.log(`[setViewVisibilityByCondition]: change item '${itemIndex}' visibility to ${!visibility}`);
+
+                    if (visibility) {
+                        $item.hide();
+                    } else {
+                        $item.show();
+                        $item.css('display', 'flex');
+                    }
                 }
 
                 function getListItemObj(i, data, jsonData) {
@@ -686,7 +712,10 @@ vis.binds.materialdesign.iconlist =
                             buttonBackgroundActiveColor: myMdwHelper.getValueFromData(data.attr('buttonBgColorActive' + i), myMdwHelper.getValueFromData(data.attr('buttonBgColor' + i), '')),
                             statusBarColor: myMdwHelper.getValueFromData(data.attr('statusBarColor' + i), undefined),
                             statusBarText: myMdwHelper.getValueFromData(data.attr('statusBarText' + i), ''),
-                            lockEnabled: myMdwHelper.getBooleanFromData(data.attr('lockEnabled' + i), false)
+                            lockEnabled: myMdwHelper.getBooleanFromData(data.attr('lockEnabled' + i), false),
+                            visibilityOid: myMdwHelper.getValueFromData(data.attr('visibilityOid' + i), ''),
+                            visibilityCondition: myMdwHelper.getValueFromData(data.attr('visibilityCondition' + i), ''),
+                            visibilityConditionValue: myMdwHelper.getValueFromData(data.attr('visibilityConditionValue' + i), ''),
                         };
                     } else {
                         // Data from json
@@ -714,7 +743,10 @@ vis.binds.materialdesign.iconlist =
                                 buttonBackgroundActiveColor: myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundActiveColor, myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundColor, '')),
                                 statusBarColor: myMdwHelper.getValueFromData(jsonData[i].statusBarColor, undefined),
                                 statusBarText: myMdwHelper.getValueFromData(jsonData[i].statusBarText, ''),
-                                lockEnabled: myMdwHelper.getBooleanFromData(jsonData[i].lockEnabled, false)
+                                lockEnabled: myMdwHelper.getBooleanFromData(jsonData[i].lockEnabled, false),
+                                visibilityOid: myMdwHelper.getValueFromData(jsonData[i].visibilityOid, ''),
+                                visibilityCondition: myMdwHelper.getValueFromData(jsonData[i].visibilityCondition, ''),
+                                visibilityConditionValue: myMdwHelper.getValueFromData(jsonData[i].visibilityConditionValue, ''),
                             };
                         } else {
                             return undefined
