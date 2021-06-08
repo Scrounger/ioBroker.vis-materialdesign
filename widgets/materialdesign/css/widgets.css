@@ -2151,6 +2151,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   text-overflow: ellipsis;
   overflow: hidden;
   padding: 4px 4px 0 4px;
+  white-space: normal;
 }
 
 .materialdesign-icon-list-item-subText{
@@ -2162,6 +2163,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   text-overflow: ellipsis;
   overflow: hidden;
   padding: 2px 4px 0 4px;
+  white-space: normal;
 }
 
 .materialdesign-icon-list-item-value{
