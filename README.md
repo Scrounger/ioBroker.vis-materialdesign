@@ -5250,7 +5250,12 @@ JSON string must be an array of objects with the following properties:
 	<tbody>
 		<tr>
 			<td>listType</td>
-			<td>type of list</td>
+			<td>type of list
+				<ul>
+					<li>buttonToggleValueTrue: is only on if the value equals the condition 'on'</li>
+					<li>buttonToggleValueFalse: is only off if the value equals the condition 'off'</li>
+				</ul>
+			</td>
 			<td>string</td>
 			<td>text | buttonState | buttonToggle | buttonToggleValueTrue | buttonToggleValueFalse | buttonNav | buttonLink</td>
 		</tr>
