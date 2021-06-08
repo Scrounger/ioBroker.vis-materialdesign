@@ -211,7 +211,7 @@ vis.binds.materialdesign.views = {
                     let greaterThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionGreaterThan' + i), 0);
 
                     let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
-                    let visibility = myMdwHelper.getVisibility(val, 'visibilityOid' + i, data.attr('visibilityCondition' + i), data.attr('visibilityConditionValue' + i));
+                    let visibility = myMdwHelper.getVisibility(val, data.attr('visibilityOid' + i), data.attr('visibilityCondition' + i), data.attr('visibilityConditionValue' + i));
 
                     if (currentWidgetWidth < greaterThan) {
                         $this.find(`#masonry_item_${i}`).hide();
@@ -475,7 +475,7 @@ vis.binds.materialdesign.views = {
                     let greaterThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionGreaterThan' + i), 0);
 
                     let val = vis.states.attr(data.attr('visibilityOid' + i) + '.val');
-                    let visibility = myMdwHelper.getVisibility(val, 'visibilityOid' + i, data.attr('visibilityCondition' + i), data.attr('visibilityConditionValue' + i));
+                    let visibility = myMdwHelper.getVisibility(val, data.attr('visibilityOid' + i), data.attr('visibilityCondition' + i), data.attr('visibilityConditionValue' + i));
 
                     if (currentWidgetWidth < greaterThan) {
                         $this.find(`#grid-item${i}`).hide();
