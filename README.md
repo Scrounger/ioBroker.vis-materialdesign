@@ -12901,9 +12901,11 @@ The adapter uses the following libraries:
 ### __WORK IN PROGRESS__
 * (Scrounger) Top App Bar Widget: new layout 'auto' added - change between modal and permanent layout depending on screen resolution. [Details see documentation!](#layout-auto)
 * (Scrounger) Top App Bar Widget: option added to set value on click at item that toggle submenu
-* (Scrounger) IconList Widget: option added to set used space per row
-* (Scrounger) IconList Widget: option added to set visibility condition for items ([#118](https://github.com/Scrounger/ioBroker.vis-materialdesign/issues/118))
+* (Scrounger) IconList Widget: option added to set used space per row for every items
+* (Scrounger) IconList Widget: option added to set visibility condition for every items ([#118](https://github.com/Scrounger/ioBroker.vis-materialdesign/issues/118))
 * (Scrounger) IconList Widget: bug fix for applying active color ([#176](https://github.com/Scrounger/ioBroker.vis-materialdesign/issues/176))
+* (Scrounger) Grid Widget: bug fix for visibility condition
+* (Scrounger) Masonry Widget: bug fix for visibility condition
 
 <!-- omit in toc -->
 ### 0.5.7 (2021-05-26)
