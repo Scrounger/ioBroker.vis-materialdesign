@@ -12903,7 +12903,7 @@ The adapter uses the following libraries:
 -->
 
 <!-- omit in toc -->
-### __WORK IN PROGRESS__
+### 0.5.8 (2021-06-09)
 * (Scrounger) Top App Bar Widget: new layout 'auto' added - change between modal and permanent layout depending on screen resolution. [Details see documentation!](#layout-auto)
 * (Scrounger) Top App Bar Widget: option added to set value on click at item that toggle submenu
 * (Scrounger) IconList Widget: option added to set used space per row for every items
@@ -12958,10 +12958,6 @@ The adapter uses the following libraries:
 * (Scrounger) Documentation revised
 * (Scrounger) materialdesignicons library updated to v5.9.55
 * (Scrounger) bug fixes
-
-<!-- omit in toc -->
-### 0.4.2 (2020-12-29)
-* (Scrounger) vis-google-fonts dependency removed
 
 <!-- omit in toc -->
 ## License

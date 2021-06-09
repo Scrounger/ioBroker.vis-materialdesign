@@ -1,4 +1,8 @@
 <!-- omit in toc -->
+## 0.4.2 (2020-12-29)
+* (Scrounger) vis-google-fonts dependency removed
+
+<!-- omit in toc -->
 ## 0.4.1 (2020-12-27)
 * (Scrounger): Adapter settings: theme editor implementation completed
 * (Scrounger): Progress Widget: condition binding bug fix
