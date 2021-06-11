@@ -336,9 +336,20 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
 
                     if (parentIndex) {
                         let parentName = $mdcList.find(`span[id="listItem_${parentIndex}"]`).text();
-                        myMdwHelper.setValue(data.selectedItemName_oid, `${parentName.replace(`[${parentIndex}] `, '').trim()}.${selectedName.replace(`[${index}] `, '').trim()}`);
+                        let parentItem = $mdcList.find(`div[id="listItem_${parentIndex}"]`);
+
+                        let parentMenuId = parentItem.attr('menuId');
+                        let selectedMenuId = $selectedItem.attr('menuId');
+
+                        myMdwHelper.setValue(data.selectedItemName_oid, `${parentMenuId ? parentMenuId : parentName.replace(`[${parentIndex}] `, '').trim()}.${selectedMenuId ? selectedMenuId : selectedName.replace(`[${index}] `, '').trim()}`);
                     } else {
-                        myMdwHelper.setValue(data.selectedItemName_oid, selectedName.replace(`[${index}] `, '').trim());
+                        let selectedMenuId = $selectedItem.attr('menuId');
+
+                        if (selectedMenuId) {
+                            myMdwHelper.setValue(data.selectedItemName_oid, selectedMenuId.trim());
+                        } else {
+                            myMdwHelper.setValue(data.selectedItemName_oid, selectedName.replace(`[${index}] `, '').trim());
+                        }
                     }
                 }
 
@@ -570,7 +581,7 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
                         navItemList.push(header);
 
                         // generate Item -> mdc-list-item
-                        let listItem = myMdwHelper.getListItem(data.drawerItemLayout, itemIndex, itemImage, hasSubItems, false, drawerIconHeight, '', '', '', itemIsDisabled, selectIndex, undefined, myMdwHelper.getBooleanFromData(data.attr('setValueOnMenuToggleClick' + i), false));
+                        let listItem = myMdwHelper.getListItem(data.drawerItemLayout, itemIndex, itemImage, hasSubItems, false, drawerIconHeight, '', '', '', itemIsDisabled, selectIndex, undefined, myMdwHelper.getBooleanFromData(data.attr('setValueOnMenuToggleClick' + i), false), myMdwHelper.getValueFromData(data.attr('menuId' + i), undefined));
 
                         // generate Item Image for Layout Standard
                         let listItemImage = ''
@@ -630,7 +641,7 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
                                 }
 
                                 // generate SubItem -> mdc-list-item
-                                let listSubItem = myMdwHelper.getListItem(data.drawerSubItemLayout, itemIndex, subItemImage, false, true, drawerSubItemIconHeight, '', '', '', itemIsDisabled || subItemIsDisabled, selectIndex, parentIndex);
+                                let listSubItem = myMdwHelper.getListItem(data.drawerSubItemLayout, itemIndex, subItemImage, false, true, drawerSubItemIconHeight, '', '', '', itemIsDisabled || subItemIsDisabled, selectIndex, parentIndex, false, subObj.menuId);
 
                                 // generate Item Image for Layout Standard
                                 let listSubItemImage = ''

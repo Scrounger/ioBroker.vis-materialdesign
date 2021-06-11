@@ -11575,16 +11575,16 @@ systemDictionary = {
         "zh-cn": "使用 x 行的百分比"
     },
     "selectedItemName_oid": {
-        "en": "Object Id for selected menu item name",
-        "de": "Objekt-ID für den ausgewählten Menüpunktnamen",
-        "ru": "Идентификатор объекта для выбранного имени пункта меню",
-        "pt": "Id do objeto para o nome do item de menu selecionado",
-        "nl": "Object-ID voor de naam van het geselecteerde menu-item",
-        "fr": "Id d'objet pour le nom de l'élément de menu sélectionné",
-        "it": "ID oggetto per il nome della voce di menu selezionata",
-        "es": "ID de objeto para el nombre del elemento de menú seleccionado",
-        "pl": "Identyfikator obiektu dla wybranej nazwy pozycji menu",
-        "zh-cn": "所选菜单项名称的对象 ID"
+        "en": "Object Id for selected menu item id or name",
+        "de": "Objekt-ID für ausgewählte Menüelement-ID oder Name",
+        "ru": "Идентификатор объекта для идентификатора или имени выбранного пункта меню",
+        "pt": "Id do objeto para o id ou nome do item de menu selecionado",
+        "nl": "Object-ID voor geselecteerde menu-item-ID of naam",
+        "fr": "Id d'objet pour l'ID ou le nom de l'élément de menu sélectionné",
+        "it": "ID oggetto per l'ID o il nome della voce di menu selezionata",
+        "es": "ID de objeto para el nombre o la identificación del elemento de menú seleccionado",
+        "pl": "Identyfikator obiektu dla identyfikatora lub nazwy wybranego elementu menu",
+        "zh-cn": "所选菜单项 ID 或名称的对象 ID"
     },
     "permanentIfResolutionHigherThan": {
         "en": "layout 'auto': layout auto change on resoltuion higher than",
@@ -11597,5 +11597,17 @@ systemDictionary = {
         "es": "layout 'auto': cambio automático de diseño en una resolución superior a",
         "pl": "układ 'auto': automatyczna zmiana układu przy rozdzielczości wyższej niż",
         "zh-cn": "布局“自动”：分辨率高于分辨率时布局自动更改"
+    },
+    "menuId": {
+        "en": "menu item id",
+        "de": "Menüpunkt-ID",
+        "ru": "id пункта меню",
+        "pt": "id do item do menu",
+        "nl": "menu-item-ID",
+        "fr": "identifiant de l'élément de menu",
+        "it": "ID voce di menu",
+        "es": "ID de elemento de menú",
+        "pl": "identyfikator pozycji menu",
+        "zh-cn": "菜单项 ID"
     }
 };

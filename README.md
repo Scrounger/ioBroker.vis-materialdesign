@@ -8832,6 +8832,12 @@ submenus must be defined by a JSON string:
     </thead>
     <tbody>
         <tr>
+            <td>menuId</td>
+            <td>define a custom id for menu item, will be written to the "Object Id for selected menu item id or name" if selected</td>
+            <td>string</td>
+            <td></td>
+        </tr>
+        <tr>
             <td>text</td>
             <td>text of entry</td>
             <td>string</td>
@@ -12901,6 +12907,10 @@ The adapter uses the following libraries:
     Placeholder for the next version (at the beginning of the line):	   
 	### __WORK IN PROGRESS__
 -->
+
+<!-- omit in toc -->
+### __WORK IN PROGRESS__
+* (Scrounger) Top App Bar Widget: option added to define an id per item
 
 <!-- omit in toc -->
 ### 0.5.8 (2021-06-09)
