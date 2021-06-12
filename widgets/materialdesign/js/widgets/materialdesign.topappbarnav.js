@@ -11,6 +11,7 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
 
     try {
         let $this = $(el);
+        let jsonData = null;
 
         myMdwHelper.subscribeThemesAtRuntime(data, widgetName);
 
@@ -141,16 +142,18 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
 
 
                 $this.find(`.mdc-list-item`).not(".mdc-list-item.isSubItem").each(function (itemIndex) {
-                    $(this).find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.attr('iconDrawerColor' + itemIndex), '#44739e'));
+                    let listItemObj = getListItemObj(itemIndex, data, jsonData);
+
+                    $(this).find('.materialdesign-icon-image').css('color', listItemObj.iconColor);
                     $(this).find('.toggleIcon').css('color', myMdwHelper.getValueFromData(data.colorSubItemToggleIcon, '#44739e'));
 
                     let realIndex = parseInt($(this).attr('index'));
                     if ($(this).hasClass('hasSubItems')) {
-                        let subMenuObjects = JSON.parse(data.attr('submenus' + itemIndex));
+                        let subMenuObjects = listItemObj.subMenus;
 
                         for (var subIndex = 0; subIndex <= subMenuObjects.length - 1; subIndex++) {
                             $this.find(`.isSubItem[index="${realIndex + 1 + subIndex}"] .materialdesign-icon-image`)
-                                .css('color', myMdwHelper.getValueFromData(subMenuObjects[subIndex].iconColor, myMdwHelper.getValueFromData(data.attr('subIconDrawerColor' + itemIndex), '#44739e')));
+                                .css('color', myMdwHelper.getValueFromData(subMenuObjects[subIndex].iconColor, listItemObj.subMenuIconColor));
                         }
                     }
                 });
@@ -517,7 +520,7 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
                 }
 
                 function initHeader() {
-                    if (data.attr('showHeader') === true || data.attr('showHeader') === 'true') {
+                    if (data.showHeader === true || data.showHeader === 'true') {
                         drawerHeader = `<div class="mdc-drawer__header">
                                                 ${data.headerLabel}
                                             </div>`;
@@ -538,34 +541,35 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
                     let backdropLabelBackgroundHeight = myMdwHelper.getValueFromData(data.backdropLabelBackgroundHeight, 'height: auto;', 'height: ', '%;');
                     let backdropSubLabelBackgroundHeight = myMdwHelper.getValueFromData(data.backdropSubLabelBackgroundHeight, backdropLabelBackgroundHeight, 'height: ', '%;');
 
+                    let countOfItems = data.navItemCount;
+                    if (data.drawerItemsDataMethod === 'jsonStringObject') {
+                        try {
+                            jsonData = JSON.parse(data.drawerItemsJsonString);
+                        } catch (err) {
+                            jsonData = [{
+                                text: _("Error in JSON string"),
+                                icon: 'alert',
+                                iconColor: 'red'
+                            }]
+                            console.error(`[${widgetName} - ${data.wid}] cannot parse json string! value: '${data.drawerItemsJsonString}' Error: ${err.message}`);
+                        }
+                        countOfItems = jsonData.length - 1;
+                    }
+
                     let itemIndex = 0;
                     let selectIndex = 0;
-                    for (var i = 0; i <= data.navItemCount; i++) {
+                    for (var i = 0; i <= countOfItems; i++) {
+                        let listItemObj = getListItemObj(i, data, jsonData);
 
-                        let itemHeaderText = myMdwHelper.getValueFromData(data.attr('headers' + i), null);
-                        let itemLabelText = myMdwHelper.getValueFromData(data.attr('labels' + i), 'Menu Item');
-                        let itemImage = myMdwHelper.getValueFromData(data.attr('iconDrawer' + i), '');
-
-
-                        let subMenuObjects = undefined;
-                        let subItemsCount = 0;
-                        let hasSubItems = false;
-                        if (myMdwHelper.getValueFromData(data.attr('submenus' + i), undefined)) {
-                            try {
-                                subMenuObjects = JSON.parse(data.attr('submenus' + i));
-                                subItemsCount = subMenuObjects.length;
-                                hasSubItems = true;
-                            } catch (e) {
-                                itemLabelText = _('Error in submenu JSON');
-                            }
-                        }
+                        let subItemsCount = listItemObj.subMenus ? listItemObj.subMenus.length : 0;
+                        let hasSubItems = listItemObj.subMenus && listItemObj.subMenus.length > 0;
 
                         // Permission group
                         let itemIsDisabled = false;
-                        let userGroups = data['permissionGroupSelector' + i];
+                        let userGroups = listItemObj.userGroups;
                         if (userGroups) {
                             if (!vis.isUserMemberOf(vis.conn.getUser(), userGroups)) {
-                                if (data['permissionVisibility' + i] === 'hide') {
+                                if (listItemObj.behaviorNotInUserGroup === 'hide') {
                                     // not in group and hide option selected
                                     itemIndex = itemIndex + subItemsCount + 1;
                                     continue;
@@ -577,19 +581,20 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
                         }
 
                         // generate Header
-                        let header = myMdwHelper.getListItemHeader(itemHeaderText, headerFontSize);
+                        let header = myMdwHelper.getListItemHeader(listItemObj.header, headerFontSize);
                         navItemList.push(header);
 
                         // generate Item -> mdc-list-item
-                        let listItem = myMdwHelper.getListItem(data.drawerItemLayout, itemIndex, itemImage, hasSubItems, false, drawerIconHeight, '', '', '', itemIsDisabled, selectIndex, undefined, myMdwHelper.getBooleanFromData(data.attr('setValueOnMenuToggleClick' + i), false), myMdwHelper.getValueFromData(data.attr('menuId' + i), undefined));
+                        let listItem = myMdwHelper.getListItem(data.drawerItemLayout, itemIndex, listItemObj.icon, hasSubItems, false, drawerIconHeight, '', '', '', itemIsDisabled, selectIndex, undefined, listItemObj.setValueOnMenuToggleClick, listItemObj.menuId);
 
                         // generate Item Image for Layout Standard
                         let listItemImage = ''
                         if (data.drawerItemLayout === 'standard') {
-                            listItemImage = myMdwHelper.getListIcon(itemImage, 'auto', myMdwHelper.getValueFromData(data.drawerIconHeight, '', '', 'px !important;'), myMdwHelper.getValueFromData(data.attr('iconDrawerColor' + i), '#44739e'));
+                            listItemImage = myMdwHelper.getListIcon(listItemObj.icon, 'auto', myMdwHelper.getValueFromData(data.drawerIconHeight, '', '', 'px !important;'), listItemObj.iconColor);
                         }
 
                         // add itemIndex to label if enabled
+                        let itemLabelText = listItemObj.text;
                         if (data.showIndexNum) {
                             itemLabelText = `[${itemIndex}] ${itemLabelText}`;
                         }
@@ -606,7 +611,7 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
                             let parentIndex = itemIndex;
 
                             for (var d = 0; d <= subItemsCount - 1; d++) {
-                                let subObj = subMenuObjects[d];
+                                let subObj = listItemObj.subMenus[d];
 
                                 itemIndex++;
 
@@ -646,7 +651,7 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
                                 // generate Item Image for Layout Standard
                                 let listSubItemImage = ''
                                 if (data.drawerSubItemLayout === 'standard') {
-                                    listSubItemImage = myMdwHelper.getListIcon(subItemImage, 'auto', myMdwHelper.getValueFromData(data.drawerSubItemIconHeight, myMdwHelper.getValueFromData(data.drawerIconHeight, ''), '', 'px !important;'), myMdwHelper.getValueFromData(subObj.iconColor, myMdwHelper.getValueFromData(data.attr('subIconDrawerColor' + i), '#44739e')));
+                                    listSubItemImage = myMdwHelper.getListIcon(subItemImage, 'auto', myMdwHelper.getValueFromData(data.drawerSubItemIconHeight, myMdwHelper.getValueFromData(data.drawerIconHeight, ''), '', 'px !important;'), myMdwHelper.getValueFromData(subObj.iconColor, listItemObj.subMenuIconColor));
                                 }
 
                                 // generate Item Label
@@ -663,7 +668,7 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
                         }
 
                         // generate Divider
-                        navItemList.push(myMdwHelper.getListItemDivider(data.attr('dividers' + i), data.listItemDividerStyle));
+                        navItemList.push(myMdwHelper.getListItemDivider(listItemObj.divider, data.listItemDividerStyle));
 
                         itemIndex++;
                         selectIndex++;
@@ -673,6 +678,60 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
                 console.error(`[${widgetName} - ${data.wid}] generateDrawer: error: ${ex.message}, stack: ${ex.stack}`);
             }
         }
+
+        function getListItemObj(i, data, jsonData) {
+            if (data.drawerItemsDataMethod === 'inputPerEditor') {
+                // Data from Editor
+                let obj = {
+                    menuId: myMdwHelper.getValueFromData(data.attr('menuId' + i), undefined),
+                    text: myMdwHelper.getValueFromData(data.attr('labels' + i), 'Menu Item'),
+                    header: myMdwHelper.getValueFromData(data.attr('headers' + i), null),
+                    divider: myMdwHelper.getBooleanFromData(data.attr('dividers' + i), false),
+                    icon: myMdwHelper.getValueFromData(data.attr('iconDrawer' + i), ''),
+                    iconColor: myMdwHelper.getValueFromData(data.attr('iconDrawerColor' + i), '#44739e'),
+                    subMenuIconColor: myMdwHelper.getValueFromData(data.attr('subIconDrawerColor' + i), '#44739e'),
+                    setValueOnMenuToggleClick: myMdwHelper.getBooleanFromData(data.attr('setValueOnMenuToggleClick' + i), false),
+                    userGroups: myMdwHelper.getValueFromData(data.attr('permissionGroupSelector' + i), undefined),
+                    behaviorNotInUserGroup: myMdwHelper.getValueFromData(data.attr('permissionVisibility' + i), undefined)
+                }
+
+                if (myMdwHelper.getValueFromData(data.attr('submenus' + i), undefined)) {
+                    try {
+                        obj.subMenus = JSON.parse(data.attr('submenus' + i));
+                    } catch (err) {
+                        obj.subMenus = [{
+                            text: _("Error in JSON string"),
+                            icon: 'alert',
+                            iconColor: 'red'
+                        }]
+                        console.error(`[${widgetName} - ${data.wid}] cannot parse subMenu json string! value: '${data.attr('submenus' + i)}' Error: ${err.message}`);
+                    }
+                }
+
+                return obj;
+
+            } else {
+                // Data from json
+                if (jsonData[i]) {
+                    return {
+                        menuId: myMdwHelper.getValueFromData(jsonData[i].menuId, undefined),
+                        text: myMdwHelper.getValueFromData(jsonData[i].text, 'Menu Item'),
+                        header: myMdwHelper.getValueFromData(jsonData[i].header, null),
+                        divider: myMdwHelper.getBooleanFromData(jsonData[i].divider, false),
+                        icon: myMdwHelper.getValueFromData(jsonData[i].icon, ''),
+                        iconColor: myMdwHelper.getValueFromData(jsonData[i].iconColor, '#44739e'),
+                        subMenuIconColor: myMdwHelper.getValueFromData(jsonData[i].subMenuIconColor, '#44739e'),
+                        setValueOnMenuToggleClick: myMdwHelper.getBooleanFromData(jsonData[i].setValueOnMenuToggleClick, false),
+                        userGroups: myMdwHelper.getValueFromData(jsonData[i].permissionGroup, undefined),
+                        behaviorNotInUserGroup: myMdwHelper.getValueFromData(jsonData[i].permissionVisibility, undefined),
+                        subMenus: jsonData[i].subMenus
+                    }
+                } else {
+                    return undefined
+                }
+            }
+        }
+
     } catch (ex) {
         console.error(`[${widgetName} - ${data.wid}] handle: error: ${ex.message}, stack: ${ex.stack}`);
     }

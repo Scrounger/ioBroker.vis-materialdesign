@@ -806,6 +806,18 @@ systemDictionary = {
         "pl": "ikony paska nawigacji",
         "zh-cn": "导航栏图标"
     },
+    "group_drawerItemsData": {
+        "en": "data of navigation bar",
+        "de": "Navigationsleiste: Daten",
+        "ru": "данные панели навигации",
+        "pt": "dados da barra de navegação",
+        "nl": "gegevens van navigatiebalk",
+        "fr": "données de la barre de navigation",
+        "it": "dati della barra di navigazione",
+        "es": "datos de la barra de navegación",
+        "pl": "dane paska nawigacyjnego",
+        "zh-cn": "导航栏数据"
+    },
     "group_drawerItems": {
         "en": "item of navigation bar",
         "de": "Navigationsleiste: Element",
@@ -11562,6 +11574,18 @@ systemDictionary = {
         "pl": "ustaw wartość po kliknięciu elementu, który przełącza podmenu",
         "zh-cn": "单击切换子菜单的项目时设置值"
     },
+    "drawerItemsDataMethod": {
+        "en": "input method for the navigation items",
+        "de": "Eingabemethode für die Navigationselemente",
+        "ru": "метод ввода для элементов навигации",
+        "pt": "método de entrada para os itens de navegação",
+        "nl": "invoermethode voor de navigatie-items",
+        "fr": "méthode de saisie pour les éléments de navigation",
+        "it": "metodo di input per gli elementi di navigazione",
+        "es": "método de entrada para los elementos de navegación",
+        "pl": "metoda wprowadzania elementów nawigacyjnych",
+        "zh-cn": "导航项的输入法"
+    },
     "usePercentOfRow": {
         "en": "use x percent of row",
         "de": "x Prozent der Zeile verwenden",
@@ -11609,5 +11633,17 @@ systemDictionary = {
         "es": "ID de elemento de menú",
         "pl": "identyfikator pozycji menu",
         "zh-cn": "菜单项 ID"
+    },
+    "drawerItemsJsonString": {
+        "en": "JSON Sting for navigation items",
+        "de": "JSON-Sting für Navigationselemente",
+        "ru": "JSON Sting для элементов навигации",
+        "pt": "JSON Sting para itens de navegação",
+        "nl": "JSON Sting voor navigatie-items",
+        "fr": "JSON Sting pour les éléments de navigation",
+        "it": "JSON Sting per gli elementi di navigazione",
+        "es": "JSON Sting para elementos de navegación",
+        "pl": "JSON Sting dla elementów nawigacyjnych",
+        "zh-cn": "用于导航项目的 JSON Sting"
     }
 };
