@@ -1,4 +1,30 @@
 <!-- omit in toc -->
+## 0.5.4 (2021-04-18)
+* (Scrounger) HTML Widgets added - use Material Design Widgets in any html element
+* (Scrounger) Table: Control Elements removed, using new HTML Widgets -> breaking changes !!!
+* (Scrounger) list: using object id for json string added -> breaking changes !!!
+* (Scrounger) new Value Widget added
+* (Scrounger) Card layout bug fixes for HTML Card, IconList, List and Table Widget
+* (Scrounger) icon list: option for status bar text added
+* (Scrounger) icon list: status bar position bug fix
+* (Scrounger) icon list: read only option for buttons added
+* (Scrounger) dialog: option to set height in percent added
+* (Scrounger) json chart: option to override tooltip for every dataset added
+* (Scrounger) json chart: tooltip mode x / y added
+* (Scrounger) json chart: option to override data label added
+* (Scrounger) charts: legend distance to bottom option added
+* (Scrounger) button state: active background color option added
+* (Scrounger) buttons: vibrate on mobil devices bug fix
+* (Scrounger) progress: rotate option added
+* (Scrounger) list: background color option added
+* (Scrounger) progress circular: auto size option added
+* (Scrounger) VIS editor: html previews bug fixes
+* (Scrounger) input, autocomplete, select: autofocus option added
+* (Scrounger) Documentation revised
+* (Scrounger) materialdesignicons library updated to v5.9.55
+* (Scrounger) bug fixes
+
+<!-- omit in toc -->
 ## 0.4.2 (2020-12-29)
 * (Scrounger) vis-google-fonts dependency removed
 

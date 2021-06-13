@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.5.8",
+        "version": "0.5.9",
         "news": {
+            "0.5.9": {
+                "en": "* Top App Bar Widget: option added to define navigation items per JSON String [Details see documentation!](https://github.com/Scrounger/ioBroker.vis-materialdesign#top-app-bar)\n* Top App Bar Widget: option added to define an id per item\n* fixed bugs found by sentry\n\n<!-- omit in toc -->",
+                "de": "* Top App Bar Widget: Option hinzugefügt, um Navigationselemente pro JSON-String zu definieren [Details siehe Dokumentation!](https://github.com/Scrounger/ioBroker.vis-materialdesign#top-app-bar)\n* Top App Bar Widget: Option hinzugefügt, um eine ID pro Element zu definieren\n* Fehler behoben, die von Wache gefunden wurden\n\n<!-- im Inhaltsverzeichnis weglassen -->",
+                "ru": "* Виджет верхней панели приложения: добавлена опция для определения элементов навигации в строке JSON [Подробности см. В документации!] (Https://github.com/Scrounger/ioBroker.vis-materialdesign#top-app-bar)\n* Виджет верхней панели приложений: добавлена опция для определения идентификатора для каждого элемента\n* исправлены ошибки, обнаруженные часовым\n\n<! - опустить в toc ->",
+                "pt": "* Top App Bar Widget: opção adicionada para definir itens de navegação por JSON String [Detalhes, consulte a documentação!] (Https://github.com/Scrounger/ioBroker.vis-materialdesign#top-app-bar)\n* Top App Bar Widget: opção adicionada para definir um id por item\n* corrigidos bugs encontrados pelo sentinela\n\n<! - omitir em toc ->",
+                "nl": "* Top App Bar Widget: optie toegevoegd om navigatie-items per JSON String te definiëren [Details zie documentatie!](https://github.com/Scrounger/ioBroker.vis-materialdesign#top-app-bar)\n* Top App Bar Widget: optie toegevoegd om een id per item te definiëren\n* opgeloste bugs gevonden door schildwacht\n\n<!-- weglaten in toc -->",
+                "fr": "* Top App Bar Widget : option ajoutée pour définir les éléments de navigation par chaîne JSON [Détails, voir la documentation !](https://github.com/Scrounger/ioBroker.vis-materialdesign#top-app-bar)\n* Top App Bar Widget : option ajoutée pour définir un identifiant par élément\n* correction de bugs trouvés par sentinelle\n\n<!-- omettre dans la table des matières -->",
+                "it": "* Widget Top App Bar: aggiunta opzione per definire gli elementi di navigazione per stringa JSON [Dettagli vedere la documentazione!](https://github.com/Scrounger/ioBroker.vis-materialdesign#top-app-bar)\n* Widget della barra delle app in alto: opzione aggiunta per definire un ID per elemento\n* bug corretti trovati da sentinella\n\n<!-- ometti in toc -->",
+                "es": "* Widget de barra de aplicaciones superior: opción agregada para definir elementos de navegación por cadena JSON [¡Para detalles ver documentación!] (Https://github.com/Scrounger/ioBroker.vis-materialdesign#top-app-bar)\n* Widget de la barra de aplicaciones superior: opción agregada para definir una identificación por artículo\n* errores arreglados encontrados por centinela\n\n<! - omitir en índice ->",
+                "pl": "* Top App Bar Widget: dodano opcję definiowania elementów nawigacyjnych według ciągu JSON [szczegóły w dokumentacji!] (https://github.com/Scrounger/ioBroker.vis-materialdesign#top-app-bar)\n* Top App Bar Widget: dodano opcję definiowania identyfikatora na element\n* naprawiono błędy znalezione przez wartownika\n\n<!-- pomiń w spisie -->",
+                "zh-cn": "* Top App Bar Widget：添加选项以定义每个 JSON 字符串的导航项 [详细信息请参阅文档！](https://github.com/Scrounger/ioBroker.vis-materialdesign#top-app-bar)\n* Top App Bar Widget：添加选项以定义每个项目的 id\n* 修复了哨兵发现的错误\n\n<!-- 在目录中省略 -->"
+            },
             "0.5.8": {
                 "en": "* Top App Bar Widget: new layout 'auto' added - change between modal and permanent layout depending on screen resolution. [Details see documentation!](#layout-auto)\n* Top App Bar Widget: option added to set value on click at item that toggle submenu\n* IconList Widget: option added to set used space per row for every items\n* IconList Widget: option added to set visibility condition for every items ([#118](https://github.com/Scrounger/ioBroker.vis-materialdesign/issues/118))\n* IconList Widget: bug fix for applying active color ([#176](https://github.com/Scrounger/ioBroker.vis-materialdesign/issues/176))\n* Grid Widget: bug fix for visibility condition\n* Masonry Widget: bug fix for visibility condition\n\n<!-- omit in toc -->",
                 "de": "* Top App Bar Widget: neues Layout 'auto' hinzugefügt - Wechsel zwischen modalem und permanentem Layout je nach Bildschirmauflösung. [Details siehe Dokumentation!](#layout-auto)\n* Top App Bar Widget: Option hinzugefügt, um den Wert beim Klicken auf ein Element festzulegen, das das Untermenü umschaltet\n* IconList Widget: Option hinzugefügt, um den belegten Platz pro Zeile für alle Elemente festzulegen\n* IconList Widget: Option hinzugefügt, um die Sichtbarkeitsbedingung für alle Elemente festzulegen ([#118](https://github.com/Scrounger/ioBroker.vis-materialdesign/issues/118))\n* IconList Widget: Fehlerkorrektur beim Anwenden aktiver Farbe ([#176](https://github.com/Scrounger/ioBroker.vis-materialdesign/issues/176))\n* Grid Widget: Fehlerbehebung für Sichtbarkeitsbedingung\n* Masonry Widget: Bugfix für Sichtbarkeitsbedingung\n\n<!-- im Inhaltsverzeichnis weglassen -->",
@@ -220,18 +232,6 @@
                 "zh-cn": "看到变更日志"
             },
             "0.2.66": {
-                "en": "see changelog",
-                "de": "siehe Changelog",
-                "ru": "см. список изменений",
-                "pt": "veja changelog",
-                "nl": "zie changelog",
-                "fr": "voir changelog",
-                "it": "vedi il log delle modifiche",
-                "es": "ver registro de cambios",
-                "pl": "patrz dziennik zmian",
-                "zh-cn": "看到变更日志"
-            },
-            "0.2.59": {
                 "en": "see changelog",
                 "de": "siehe Changelog",
                 "ru": "см. список изменений",

@@ -1,11 +1,7 @@
-chore: release v0.5.8
+chore: release v0.5.9
 
-* Top App Bar Widget: new layout 'auto' added - change between modal and permanent layout depending on screen resolution. [Details see documentation!](#layout-auto)
-* Top App Bar Widget: option added to set value on click at item that toggle submenu
-* IconList Widget: option added to set used space per row for every items
-* IconList Widget: option added to set visibility condition for every items ([#118](https://github.com/Scrounger/ioBroker.vis-materialdesign/issues/118))
-* IconList Widget: bug fix for applying active color ([#176](https://github.com/Scrounger/ioBroker.vis-materialdesign/issues/176))
-* Grid Widget: bug fix for visibility condition
-* Masonry Widget: bug fix for visibility condition
+* Top App Bar Widget: option added to define navigation items per JSON String [Details see documentation!](https://github.com/Scrounger/ioBroker.vis-materialdesign#top-app-bar)
+* Top App Bar Widget: option added to define an id per item
+* fixed bugs found by sentry
 
 <!-- omit in toc -->
