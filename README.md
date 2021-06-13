@@ -13094,6 +13094,7 @@ The adapter uses the following libraries:
 ### __WORK IN PROGRESS__
 * (Scrounger) Top App Bar Widget: option added to define navigation items per JSON String [Details see documentation!](#top-app-bar)
 * (Scrounger) Top App Bar Widget: option added to define an id per item
+* (Scrounger) fixed bugs found by sentry
 
 <!-- omit in toc -->
 ### 0.5.8 (2021-06-09)

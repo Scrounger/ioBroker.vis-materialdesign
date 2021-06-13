@@ -151,9 +151,11 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
                     if ($(this).hasClass('hasSubItems')) {
                         let subMenuObjects = listItemObj.subMenus;
 
-                        for (var subIndex = 0; subIndex <= subMenuObjects.length - 1; subIndex++) {
-                            $this.find(`.isSubItem[index="${realIndex + 1 + subIndex}"] .materialdesign-icon-image`)
-                                .css('color', myMdwHelper.getValueFromData(subMenuObjects[subIndex].iconColor, listItemObj.subMenuIconColor));
+                        if (subMenuObjects) {
+                            for (var subIndex = 0; subIndex <= subMenuObjects.length - 1; subIndex++) {
+                                $this.find(`.isSubItem[index="${realIndex + 1 + subIndex}"] .materialdesign-icon-image`)
+                                    .css('color', myMdwHelper.getValueFromData(subMenuObjects[subIndex].iconColor, listItemObj.subMenuIconColor));
+                            }
                         }
                     }
                 });
@@ -561,117 +563,119 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
                     for (var i = 0; i <= countOfItems; i++) {
                         let listItemObj = getListItemObj(i, data, jsonData);
 
-                        let subItemsCount = listItemObj.subMenus ? listItemObj.subMenus.length : 0;
-                        let hasSubItems = listItemObj.subMenus && listItemObj.subMenus.length > 0;
+                        if (listItemObj) {
+                            let subItemsCount = listItemObj.subMenus ? listItemObj.subMenus.length : 0;
+                            let hasSubItems = listItemObj.subMenus && listItemObj.subMenus.length > 0;
 
-                        // Permission group
-                        let itemIsDisabled = false;
-                        let userGroups = listItemObj.userGroups;
-                        if (userGroups) {
-                            if (!vis.isUserMemberOf(vis.conn.getUser(), userGroups)) {
-                                if (listItemObj.behaviorNotInUserGroup === 'hide') {
-                                    // not in group and hide option selected
-                                    itemIndex = itemIndex + subItemsCount + 1;
-                                    continue;
-                                } else {
-                                    // not in group and disabled option selected
-                                    itemIsDisabled = true;
-                                }
-                            }
-                        }
-
-                        // generate Header
-                        let header = myMdwHelper.getListItemHeader(listItemObj.header, headerFontSize);
-                        navItemList.push(header);
-
-                        // generate Item -> mdc-list-item
-                        let listItem = myMdwHelper.getListItem(data.drawerItemLayout, itemIndex, listItemObj.icon, hasSubItems, false, drawerIconHeight, '', '', '', itemIsDisabled, selectIndex, undefined, listItemObj.setValueOnMenuToggleClick, listItemObj.menuId);
-
-                        // generate Item Image for Layout Standard
-                        let listItemImage = ''
-                        if (data.drawerItemLayout === 'standard') {
-                            listItemImage = myMdwHelper.getListIcon(listItemObj.icon, 'auto', myMdwHelper.getValueFromData(data.drawerIconHeight, '', '', 'px !important;'), listItemObj.iconColor);
-                        }
-
-                        // add itemIndex to label if enabled
-                        let itemLabelText = listItemObj.text;
-                        if (data.showIndexNum) {
-                            itemLabelText = `[${itemIndex}] ${itemLabelText}`;
-                        }
-
-                        // generate Item Label
-                        let listItemLabel = myMdwHelper.getListItemLabel(data.drawerItemLayout, itemIndex, itemLabelText, hasSubItems, dawerLabelFontSize, dawerLabelShow, data.colorSubItemToggleIcon, backdropLabelBackgroundHeight, false, data.listItemAlignment);
-
-                        // generate Item
-                        navItemList.push(`${listItem}${listItemImage}${listItemLabel}</div>`);
-
-                        // generate SubItems
-                        if (hasSubItems) {
-                            navItemList.push(`<nav class="mdc-list mdc-sub-list">`);
-                            let parentIndex = itemIndex;
-
-                            for (var d = 0; d <= subItemsCount - 1; d++) {
-                                let subObj = listItemObj.subMenus[d];
-
-                                itemIndex++;
-
-                                // Permission group
-                                let subItemIsDisabled = false;
-                                let userGroups = subObj.userGroups;
-                                if (userGroups) {
-                                    if (!vis.isUserMemberOf(vis.conn.getUser(), userGroups)) {
-                                        if (subObj.behaviorNotInUserGroup === 'hide') {
-                                            // not in group and hide option selected
-                                            continue;
-                                        } else {
-                                            // not in group and disabled option selected
-                                            subItemIsDisabled = true;
-                                        }
+                            // Permission group
+                            let itemIsDisabled = false;
+                            let userGroups = listItemObj.userGroups;
+                            if (userGroups) {
+                                if (!vis.isUserMemberOf(vis.conn.getUser(), userGroups)) {
+                                    if (listItemObj.behaviorNotInUserGroup === 'hide') {
+                                        // not in group and hide option selected
+                                        itemIndex = itemIndex + subItemsCount + 1;
+                                        continue;
+                                    } else {
+                                        // not in group and disabled option selected
+                                        itemIsDisabled = true;
                                     }
                                 }
-
-                                selectIndex++;
-
-                                let subItemImage = myMdwHelper.getValueFromData(subObj.icon, '');
-
-                                let subItemText = '';
-                                if (subObj && subObj.text) {
-                                    subItemText = myMdwHelper.getValueFromData(subObj.text, 'Menu SubItem');
-                                } else {
-                                    subItemText = 'Menu SubItem';
-                                }
-
-                                if (data.showIndexNum) {
-                                    subItemText = `[${itemIndex}] ${subItemText}`;
-                                }
-
-                                // generate SubItem -> mdc-list-item
-                                let listSubItem = myMdwHelper.getListItem(data.drawerSubItemLayout, itemIndex, subItemImage, false, true, drawerSubItemIconHeight, '', '', '', itemIsDisabled || subItemIsDisabled, selectIndex, parentIndex, false, subObj.menuId);
-
-                                // generate Item Image for Layout Standard
-                                let listSubItemImage = ''
-                                if (data.drawerSubItemLayout === 'standard') {
-                                    listSubItemImage = myMdwHelper.getListIcon(subItemImage, 'auto', myMdwHelper.getValueFromData(data.drawerSubItemIconHeight, myMdwHelper.getValueFromData(data.drawerIconHeight, ''), '', 'px !important;'), myMdwHelper.getValueFromData(subObj.iconColor, listItemObj.subMenuIconColor));
-                                }
-
-                                // generate Item Label
-                                let listSubItemLabel = myMdwHelper.getListItemLabel(data.drawerSubItemLayout, itemIndex, subItemText, false, dawerSubItemLabelFontSize, dawerSubItemsLabelShow, '', backdropSubLabelBackgroundHeight, true, data.listSubItemAlignment);
-
-                                // generate SubItem
-                                navItemList.push(`${listSubItem}${listSubItemImage}${listSubItemLabel}</div>`);
-
-                                if (subObj.divider) {
-                                    navItemList.push(myMdwHelper.getListItemDivider(true, data.listSubItemDividerStyle, true));
-                                }
                             }
-                            navItemList.push(`</nav>`);
+
+                            // generate Header
+                            let header = myMdwHelper.getListItemHeader(listItemObj.header, headerFontSize);
+                            navItemList.push(header);
+
+                            // generate Item -> mdc-list-item
+                            let listItem = myMdwHelper.getListItem(data.drawerItemLayout, itemIndex, listItemObj.icon, hasSubItems, false, drawerIconHeight, '', '', '', itemIsDisabled, selectIndex, undefined, listItemObj.setValueOnMenuToggleClick, listItemObj.menuId);
+
+                            // generate Item Image for Layout Standard
+                            let listItemImage = ''
+                            if (data.drawerItemLayout === 'standard') {
+                                listItemImage = myMdwHelper.getListIcon(listItemObj.icon, 'auto', myMdwHelper.getValueFromData(data.drawerIconHeight, '', '', 'px !important;'), listItemObj.iconColor);
+                            }
+
+                            // add itemIndex to label if enabled
+                            let itemLabelText = listItemObj.text;
+                            if (data.showIndexNum) {
+                                itemLabelText = `[${itemIndex}] ${itemLabelText}`;
+                            }
+
+                            // generate Item Label
+                            let listItemLabel = myMdwHelper.getListItemLabel(data.drawerItemLayout, itemIndex, itemLabelText, hasSubItems, dawerLabelFontSize, dawerLabelShow, data.colorSubItemToggleIcon, backdropLabelBackgroundHeight, false, data.listItemAlignment);
+
+                            // generate Item
+                            navItemList.push(`${listItem}${listItemImage}${listItemLabel}</div>`);
+
+                            // generate SubItems
+                            if (hasSubItems) {
+                                navItemList.push(`<nav class="mdc-list mdc-sub-list">`);
+                                let parentIndex = itemIndex;
+
+                                for (var d = 0; d <= subItemsCount - 1; d++) {
+                                    let subObj = listItemObj.subMenus[d];
+
+                                    itemIndex++;
+
+                                    // Permission group
+                                    let subItemIsDisabled = false;
+                                    let userGroups = subObj.userGroups;
+                                    if (userGroups) {
+                                        if (!vis.isUserMemberOf(vis.conn.getUser(), userGroups)) {
+                                            if (subObj.behaviorNotInUserGroup === 'hide') {
+                                                // not in group and hide option selected
+                                                continue;
+                                            } else {
+                                                // not in group and disabled option selected
+                                                subItemIsDisabled = true;
+                                            }
+                                        }
+                                    }
+
+                                    selectIndex++;
+
+                                    let subItemImage = myMdwHelper.getValueFromData(subObj.icon, '');
+
+                                    let subItemText = '';
+                                    if (subObj && subObj.text) {
+                                        subItemText = myMdwHelper.getValueFromData(subObj.text, 'Menu SubItem');
+                                    } else {
+                                        subItemText = 'Menu SubItem';
+                                    }
+
+                                    if (data.showIndexNum) {
+                                        subItemText = `[${itemIndex}] ${subItemText}`;
+                                    }
+
+                                    // generate SubItem -> mdc-list-item
+                                    let listSubItem = myMdwHelper.getListItem(data.drawerSubItemLayout, itemIndex, subItemImage, false, true, drawerSubItemIconHeight, '', '', '', itemIsDisabled || subItemIsDisabled, selectIndex, parentIndex, false, subObj.menuId);
+
+                                    // generate Item Image for Layout Standard
+                                    let listSubItemImage = ''
+                                    if (data.drawerSubItemLayout === 'standard') {
+                                        listSubItemImage = myMdwHelper.getListIcon(subItemImage, 'auto', myMdwHelper.getValueFromData(data.drawerSubItemIconHeight, myMdwHelper.getValueFromData(data.drawerIconHeight, ''), '', 'px !important;'), myMdwHelper.getValueFromData(subObj.iconColor, listItemObj.subMenuIconColor));
+                                    }
+
+                                    // generate Item Label
+                                    let listSubItemLabel = myMdwHelper.getListItemLabel(data.drawerSubItemLayout, itemIndex, subItemText, false, dawerSubItemLabelFontSize, dawerSubItemsLabelShow, '', backdropSubLabelBackgroundHeight, true, data.listSubItemAlignment);
+
+                                    // generate SubItem
+                                    navItemList.push(`${listSubItem}${listSubItemImage}${listSubItemLabel}</div>`);
+
+                                    if (subObj.divider) {
+                                        navItemList.push(myMdwHelper.getListItemDivider(true, data.listSubItemDividerStyle, true));
+                                    }
+                                }
+                                navItemList.push(`</nav>`);
+                            }
+
+                            // generate Divider
+                            navItemList.push(myMdwHelper.getListItemDivider(listItemObj.divider, data.listItemDividerStyle));
+
+                            itemIndex++;
+                            selectIndex++;
                         }
-
-                        // generate Divider
-                        navItemList.push(myMdwHelper.getListItemDivider(listItemObj.divider, data.listItemDividerStyle));
-
-                        itemIndex++;
-                        selectIndex++;
                     }
                 }
             } catch (ex) {
