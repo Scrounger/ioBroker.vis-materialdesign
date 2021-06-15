@@ -13091,6 +13091,10 @@ The adapter uses the following libraries:
 -->
 
 <!-- omit in toc -->
+### __WORK IN PROGRESS__
+* (Scrounger) Button Toggle Widgets: bug fix for state on runtime load
+
+<!-- omit in toc -->
 ### 0.5.9 (2021-06-13)
 * (Scrounger) Top App Bar Widget: option added to define navigation items per JSON String [Details see documentation!](https://github.com/Scrounger/ioBroker.vis-materialdesign#top-app-bar)
 * (Scrounger) Top App Bar Widget: option added to define an id per item

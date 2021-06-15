@@ -56,11 +56,11 @@ vis.binds.materialdesign.button = {
             $this.addClass(data.buttonStyle !== 'text' ? 'materialdesign-button--' + data.buttonStyle : '');
 
             if (type.includes('vertical')) {
-                $this.append(vis.binds.materialdesign.button.initializeVerticalButton($this, data));
+                $this.append(vis.binds.materialdesign.button.initializeVerticalButton($this, data, type));
             } else if (type.includes('default')) {
-                $this.append(vis.binds.materialdesign.button.initializeButton($this, data));
+                $this.append(vis.binds.materialdesign.button.initializeButton($this, data, type));
             } else if (type.includes('icon')) {
-                $this.append(vis.binds.materialdesign.button.initializeButton($this, data, true));
+                $this.append(vis.binds.materialdesign.button.initializeButton($this, data, type, true));
             }
 
             myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, widgetName, function () {
@@ -83,14 +83,9 @@ vis.binds.materialdesign.button = {
             console.error(`[${widgetName} ${type} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    initializeButton: function ($this, data, isIconButton = false) {
+    initializeButton: function ($this, data, type, isIconButton = false) {
         try {
             let buttonElementsList = [];
-
-            let labelWidth = '';
-            if (myMdwHelper.getValueFromData(data.labelWidth, 0) > 0) {
-                labelWidth = `style="width: ${data.labelWidth}%;"`
-            }
 
             $this.attr('isLocked', myMdwHelper.getBooleanFromData(data.lockEnabled, false));
 
@@ -119,9 +114,25 @@ vis.binds.materialdesign.button = {
             let labelElement = '';
             if (myMdwHelper.getValueFromData(data.buttontext, null) != null && !isIconButton) {
                 labelElement = `<span 
-                                    class="materialdesign-button__label" ${labelWidth}>
+                                    class="materialdesign-button__label" style="${myMdwHelper.getValueFromData(data.labelWidth, 0) > 0 ? `width: ${data.labelWidth}%;` : ''} color: ${myMdwHelper.getValueFromData(data.labelColorFalse, '')};">
                                     ${data.buttontext}
                                 </span>`;
+            }
+
+            if (type.includes('toggle')) {
+                var val = vis.states.attr(data.oid + '.val');
+
+                if (vis.binds.materialdesign.button.getToggleState(val, data)) {
+                    imageElement = myMdwHelper.getIconElement(data.imageTrue, 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.imageTrueColor, myMdwHelper.getValueFromData(data.imageColor, '')));
+                    $this.css('background', myMdwHelper.getValueFromData(data.colorBgTrue, myMdwHelper.getValueFromData(data.colorBgFalse, '')));
+
+                    if (myMdwHelper.getValueFromData(data.buttontext, null) != null && !isIconButton) {
+                        labelElement = `<span 
+                                            class="materialdesign-button__label" style="${myMdwHelper.getValueFromData(data.labelWidth, 0) > 0 ? `width: ${data.labelWidth}%;` : ''} color: ${myMdwHelper.getValueFromData(data.labelColorTrue, myMdwHelper.getValueFromData(data.labelColorFalse, ''))};">
+                                            ${data.buttontext}
+                                        </span>`;
+                    }
+                }
             }
 
             if (data.iconPosition === 'left') {
@@ -135,7 +146,7 @@ vis.binds.materialdesign.button = {
             console.error(`[Button - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    initializeVerticalButton: function ($this, data) {
+    initializeVerticalButton: function ($this, data, type) {
         try {
             let buttonElementsList = [];
 
@@ -156,9 +167,22 @@ vis.binds.materialdesign.button = {
             let labelElement = '';
             if (myMdwHelper.getValueFromData(data.buttontext, null) != null) {
                 labelElement = `<span 
-                                    class="materialdesign-button__label" style="text-align: center;">
+                                    class="materialdesign-button__label" style="text-align: center; color: ${myMdwHelper.getValueFromData(data.labelColorFalse, '')};">
                                     ${data.buttontext}
                                 </span>`;
+            }
+
+            if (type.includes('toggle')) {
+                var val = vis.states.attr(data.oid + '.val');
+
+                if (vis.binds.materialdesign.button.getToggleState(val, data)) {
+                    imageElement = myMdwHelper.getIconElement(data.imageTrue, 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.imageTrueColor, myMdwHelper.getValueFromData(data.imageColor, '')));
+                    $this.css('background', myMdwHelper.getValueFromData(data.colorBgTrue, myMdwHelper.getValueFromData(data.colorBgFalse, '')));
+                    labelElement = `<span 
+                                        class="materialdesign-button__label" style="text-align: center; color: ${myMdwHelper.getValueFromData(data.labelColorTrue, myMdwHelper.getValueFromData(data.labelColorFalse, ''))};">
+                                        ${data.buttontext}
+                                    </span>`;
+                }
             }
 
             if (data.iconPosition === 'top') {
@@ -361,10 +385,7 @@ vis.binds.materialdesign.button = {
             }
 
             let bgColor = myMdwHelper.getValueFromData(data.colorBgFalse, '');
-            let bgColorTrue = myMdwHelper.getValueFromData(data.colorBgTrue, bgColor);            
-
-            let labelBgColor = myMdwHelper.getValueFromData(data.labelColorBgFalse, '');
-            let labelBgColorTrue = myMdwHelper.getValueFromData(data.labelColorBgTrue, labelBgColor);
+            let bgColorTrue = myMdwHelper.getValueFromData(data.colorBgTrue, bgColor);
 
             let textFalse = myMdwHelper.getValueFromData(data.buttontext, '');
             let textTrue = myMdwHelper.getValueFromData(data.labelTrue, textFalse);
@@ -434,23 +455,7 @@ vis.binds.materialdesign.button = {
             function setButtonState() {
                 var val = vis.states.attr(data.oid + '.val');
 
-                let buttonState = false;
-
-                if (data.toggleType === 'boolean') {
-                    buttonState = val;
-                } else {
-                    if (!isNaN(val) && !isNaN(data.valueOn)) {
-                        if (parseFloat(val) === parseFloat(data.valueOn)) {
-                            buttonState = true;
-                        } else if (parseFloat(val) !== parseFloat(data.valueOn) && parseFloat(val) !== parseFloat(data.valueOff) && data.stateIfNotTrueValue === 'on') {
-                            buttonState = true;
-                        }
-                    } else if (val === parseInt(data.valueOn) || val === data.valueOn) {
-                        buttonState = true;
-                    } else if (val !== parseInt(data.valueOn) && val !== data.valueOn && val !== parseInt(data.valueOff) && val !== data.valueOff && data.stateIfNotTrueValue === 'on') {
-                        buttonState = true;
-                    }
-                }
+                let buttonState = vis.binds.materialdesign.button.getToggleState(val, data);
 
                 if (buttonState) {
                     $this.attr('toggled', true);
@@ -464,7 +469,6 @@ vis.binds.materialdesign.button = {
                     myMdwHelper.changeIconElement($this, myMdwHelper.getValueFromData(data.imageTrue, myMdwHelper.getValueFromData(data.image, '')), 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.imageTrueColor, myMdwHelper.getValueFromData(data.imageColor, '')));
 
                     $this.find('.materialdesign-button__label').html(textTrue).css('color', textColorTrue);
-                    $this.find('.labelRowContainer').css('background', labelBgColorTrue);
                 } else {
                     $this.attr('toggled', false);
 
@@ -477,7 +481,6 @@ vis.binds.materialdesign.button = {
                     myMdwHelper.changeIconElement($this, data.image, 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.imageColor, ''));
 
                     $this.find('.materialdesign-button__label').html(textFalse).css('color', textColorFalse);
-                    $this.find('.labelRowContainer').css('background', labelBgColor);
                 }
             }
 
@@ -495,6 +498,27 @@ vis.binds.materialdesign.button = {
         } catch (ex) {
             console.error(`[Button - ${data.wid}] handleToggle: error:: ${ex.message}, stack: ${ex.stack}`);
         }
+    },
+    getToggleState(val, data) {
+        let buttonState = false;
+
+        if (data.toggleType === 'boolean') {
+            buttonState = val;
+        } else {
+            if (!isNaN(val) && !isNaN(data.valueOn)) {
+                if (parseFloat(val) === parseFloat(data.valueOn)) {
+                    buttonState = true;
+                } else if (parseFloat(val) !== parseFloat(data.valueOn) && parseFloat(val) !== parseFloat(data.valueOff) && data.stateIfNotTrueValue === 'on') {
+                    buttonState = true;
+                }
+            } else if (val === parseInt(data.valueOn) || val === data.valueOn) {
+                buttonState = true;
+            } else if (val !== parseInt(data.valueOn) && val !== data.valueOn && val !== parseInt(data.valueOff) && val !== data.valueOff && data.stateIfNotTrueValue === 'on') {
+                buttonState = true;
+            }
+        }
+
+        return buttonState;
     },
     useTheme: function (el, data, type, widgetName) {
         var $this = $(el);
@@ -529,7 +553,7 @@ vis.binds.materialdesign.button = {
                 // icon Buttons
                 $this.css('background', myMdwHelper.getValueFromData(data.colorBgFalse, ''));
 
-                if ($this.attr('toggled') && ($this.attr('toggled') === true || $this.attr('toggled') === 'true')) {                    
+                if ($this.attr('toggled') && ($this.attr('toggled') === true || $this.attr('toggled') === 'true')) {
                     $this.css('background', myMdwHelper.getValueFromData(data.colorBgTrue, myMdwHelper.getValueFromData(data.colorBgFalse, '')));
                     $this.find('.materialdesign-icon-image').css('color', myMdwHelper.getValueFromData(data.imageTrueColor, myMdwHelper.getValueFromData(data.imageColor, '')));
                 } else {
