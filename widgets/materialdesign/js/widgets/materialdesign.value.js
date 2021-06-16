@@ -113,7 +113,12 @@ vis.binds.materialdesign.value = {
 
                                 let unit = myMdwHelper.getValueFromData(data.valueLabelUnit, '');
 
-                                result = `${myMdwHelper.formatNumber(valTmp, data.minDecimals, data.maxDecimals)} ${unit}`;
+                                // apply unit only if we have really a number
+                                if (isNaN(valTmp)) {
+                                    result = `${valTmp}`;
+                                } else {
+                                    result = `${myMdwHelper.formatNumber(valTmp, data.minDecimals, data.maxDecimals)} ${unit}`;
+                                }
                             }
                         } catch (ex) {
                             console.error(`[${widgetName} - ${data.wid}] initialize - number: value: ${valTmp}, error: ${ex.message}, stack: ${ex.stack}`);
