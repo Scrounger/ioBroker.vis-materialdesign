@@ -859,21 +859,25 @@ vis.binds.materialdesign.helper = {
     },
     setValue(id, value) {
         if (!vis.editMode) {
-            vis.binds.materialdesign.helper.getObject(id, function (obj) {
-                if (obj && obj.common && obj.common['type'] && value !== null) {
-                    if (obj.common['type'] === 'string') {
-                        vis.setValue(id, value.toString());
-                    } else if (obj.common['type'] === 'number') {
-                        vis.setValue(id, parseFloat(value));
-                    } else if (obj.common['type'] === 'boolean') {
-                        vis.setValue(id, !(/^(false|0)$/i).test(value.toString().toLowerCase()) && !!value);
+            if ((/dev[0-9]/).test(id)) {
+                vis.setValue(id, parseInt(value));
+            } else {
+                vis.binds.materialdesign.helper.getObject(id, function (obj) {
+                    if (obj && obj.common && obj.common['type'] && value !== null) {
+                        if (obj.common['type'] === 'string') {
+                            vis.setValue(id, value.toString());
+                        } else if (obj.common['type'] === 'number') {
+                            vis.setValue(id, parseFloat(value));
+                        } else if (obj.common['type'] === 'boolean') {
+                            vis.setValue(id, !(/^(false|0)$/i).test(value.toString().toLowerCase()) && !!value);
+                        } else {
+                            vis.setValue(id, value);
+                        }
                     } else {
                         vis.setValue(id, value);
                     }
-                } else {
-                    vis.setValue(id, value);
-                }
-            })
+                });
+            }
         }
     },
     generateUuidv4() {
