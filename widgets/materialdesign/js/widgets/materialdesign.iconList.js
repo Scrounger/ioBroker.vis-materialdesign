@@ -241,11 +241,12 @@ vis.binds.materialdesign.iconlist =
                         // let cssPercentOfRow = usePercentOfRow > 0 ? `calc(${usePercentOfRow}% - (100% - 100% / var(--materialdesign-icon-list-items-per-row)) / var(--materialdesign-icon-list-items-per-row))` : 0;
                         let cssPercentOfRow = usePercentOfRow > 0 ? `calc(${usePercentOfRow}% - (var(--materialdesign-icon-list-items-gaps) + 6px) - (var(--materialdesign-icon-list-items-per-row) - 1) * var(--materialdesign-icon-list-items-gaps))` : '';
 
+                        let minItemWidth = listItemObj.minWidth;
 
                         if (data.itemLayout === 'vertical') {
                             if (data.buttonLayout === 'full' && listItemObj.listType !== 'text') {
                                 element = `
-                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none;' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''}" >
+                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none;' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''} ${minItemWidth? `min-width: ${minItemWidth} !important;`:''}">
                                     <div style="flex: 1; height: 100%; display: flex; flex-direction: column;">    
                                         <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
                                             <div class="materialdesign-button materialdesign-iconList-button" index="${i}" style="background: ${listItemObj.buttonBackgroundColor}; position: relative; width: 100%; height: 100%; padding: 0; ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;' : ''}">
@@ -266,7 +267,7 @@ vis.binds.materialdesign.iconlist =
                                 </div>`;
                             } else {
                                 element = `
-                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''}" >
+                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''} ${minItemWidth? `min-width: ${minItemWidth} !important;`:''}">
                                     ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text materialdesign-icon-list-item-text-vertical">${listItemObj.text}</label>` : ''}
                                     ${imageElement ? `<div class="materialdesign-icon-list-item-layout-vertical-image-container">
                                         ${imageElement}
@@ -280,7 +281,7 @@ vis.binds.materialdesign.iconlist =
                         } else {
                             if (data.buttonLayout === 'full' && listItemObj.listType !== 'text') {
                                 element = `
-                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''}" >
+                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''} ${minItemWidth? `min-width: ${minItemWidth} !important;`:''}">
                                     <div style="flex: 1; height: 100%; display: flex; flex-direction: column;">
                                         <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">                                
                                             <div class="materialdesign-button materialdesign-iconList-button" index="${i}" style="background: ${listItemObj.buttonBackgroundColor}; position: relative; width: 100%; height: 100%; padding: 0; ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;' : ''}">
@@ -303,7 +304,7 @@ vis.binds.materialdesign.iconlist =
                                 </div>`;
                             } else {
                                 element = `
-                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''}" >
+                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''} ${minItemWidth? `min-width: ${minItemWidth} !important;`:''}">
                                 <div style="flex: 1; height: 100%; display: flex; flex-direction: column;">    
                                     <div style="flex: 1; display: flex;">
                                         ${imageElement ? `<div class="materialdesign-icon-list-item-layout-horizontal-image-container">
@@ -692,6 +693,7 @@ vis.binds.materialdesign.iconlist =
                         return {
                             listType: myMdwHelper.getValueFromData(data.attr('listType' + i), 'text'),
                             objectId: data.attr('oid' + i),
+                            minWidth: myMdwHelper.getValueFromData(data.attr('minWidth' + i), undefined),
                             usePercentOfRow: data.attr('usePercentOfRow' + i),
                             buttonStateValue: data.attr('listTypeButtonStateValue' + i),
                             buttonNavView: data.attr('listTypeButtonNav' + i),
@@ -723,6 +725,7 @@ vis.binds.materialdesign.iconlist =
                             return {
                                 listType: myMdwHelper.getValueFromData(jsonData[i].listType, 'text'),
                                 objectId: jsonData[i].objectId,
+                                minWidth: jsonData[i].minWidth,
                                 usePercentOfRow: jsonData[i].usePercentOfRow,
                                 buttonStateValue: jsonData[i].buttonStateValue,
                                 buttonNavView: jsonData[i].buttonNavView,
