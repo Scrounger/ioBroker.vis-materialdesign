@@ -924,6 +924,7 @@ vis.binds.materialdesign.helper = {
                     // only send to sentry, if error is at runtime and fired by MDW
 
                     if (!event.message.includes('cannot parse json string') &&                                                  // ignore json parse errors
+                    !event.message.includes('cannot parse subMenu json string') &&                                              // ignore json parse errors
                         !/\b(Cannot access)\b .* \b(before initialization)\b/g.test(event.message) &&                           // ignore lib init errors
                         !/\b(can't access lexical declaration)\b .* \b(before initialization)\b/g.test(event.message) &&        // ignore lib init errors                        
                         !event.message.includes('out of memory') &&
