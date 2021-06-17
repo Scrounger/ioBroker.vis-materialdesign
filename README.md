@@ -13102,6 +13102,7 @@ The adapter uses the following libraries:
 * (Scrounger) Value Widget: bug fix for show unit only if result is of type number
 * (Scrounger) IconList Widget: option to set minimal width for single item added
 * (Scrounger) bug fix for VIS Editor dev values
+* (Scrounger) fixed bugs found by sentry
 
 <!-- omit in toc -->
 ### 0.5.9 (2021-06-13)

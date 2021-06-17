@@ -144,17 +144,19 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
                 $this.find(`.mdc-list-item`).not(".mdc-list-item.isSubItem").each(function (itemIndex) {
                     let listItemObj = getListItemObj(itemIndex, data, jsonData);
 
-                    $(this).find('.materialdesign-icon-image').css('color', listItemObj.iconColor);
-                    $(this).find('.toggleIcon').css('color', myMdwHelper.getValueFromData(data.colorSubItemToggleIcon, '#44739e'));
+                    if (listItemObj) {
+                        $(this).find('.materialdesign-icon-image').css('color', listItemObj.iconColor);
+                        $(this).find('.toggleIcon').css('color', myMdwHelper.getValueFromData(data.colorSubItemToggleIcon, '#44739e'));
 
-                    let realIndex = parseInt($(this).attr('index'));
-                    if ($(this).hasClass('hasSubItems')) {
-                        let subMenuObjects = listItemObj.subMenus;
+                        let realIndex = parseInt($(this).attr('index'));
+                        if ($(this).hasClass('hasSubItems')) {
+                            let subMenuObjects = listItemObj.subMenus;
 
-                        if (subMenuObjects) {
-                            for (var subIndex = 0; subIndex <= subMenuObjects.length - 1; subIndex++) {
-                                $this.find(`.isSubItem[index="${realIndex + 1 + subIndex}"] .materialdesign-icon-image`)
-                                    .css('color', myMdwHelper.getValueFromData(subMenuObjects[subIndex].iconColor, listItemObj.subMenuIconColor));
+                            if (subMenuObjects) {
+                                for (var subIndex = 0; subIndex <= subMenuObjects.length - 1; subIndex++) {
+                                    $this.find(`.isSubItem[index="${realIndex + 1 + subIndex}"] .materialdesign-icon-image`)
+                                        .css('color', myMdwHelper.getValueFromData(subMenuObjects[subIndex].iconColor, listItemObj.subMenuIconColor));
+                                }
                             }
                         }
                     }
