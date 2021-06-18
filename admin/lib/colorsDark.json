@@ -480,6 +480,18 @@
         "widget": "Icon Button State, Icon Button State Multi, Icon Button Toggle"
     },
     {
+        "id": "dark.icon_list.header",
+        "desc": "headerTextColor",
+        "defaultValue": 2,
+        "widget": "Icon List"
+    },
+    {
+        "id": "dark.icon_list.header_icon",
+        "desc": "headerImageColor",
+        "defaultValue": 2,
+        "widget": "Icon List"
+    },    
+    {
         "id": "dark.icon_list.background",
         "desc": "containerBackgroundColor",
         "defaultValue": 7,

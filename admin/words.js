@@ -2513,6 +2513,78 @@ systemDictionary = {
         "pl": "wyściełanie w prawo",
         "zh-cn": "向右填充"
     },
+    "padding_top": {
+        "en": "padding top",
+        "de": "Abstand oben",
+        "ru": "мягкий верх",
+        "pt": "top de enchimento",
+        "nl": "vulling top",
+        "fr": "haut de rembourrage",
+        "it": "imbottitura superiore",
+        "es": "acolchado superior",
+        "pl": "wyściełany top",
+        "zh-cn": "垫顶"
+    },
+    "padding_bottom": {
+        "en": "padding bottom",
+        "de": "Abstand unten",
+        "ru": "обивка дна",
+        "pt": "fundo de enchimento",
+        "nl": "opvulling onderkant",
+        "fr": "bas de rembourrage",
+        "it": "fondo imbottito",
+        "es": "fondo acolchado",
+        "pl": "wyściółka na dole",
+        "zh-cn": "填充底部"
+    },
+    "header_padding_left": {
+        "en": "padding left",
+        "de": "Abstand links",
+        "ru": "отступ слева",
+        "pt": "preenchimento esquerdo",
+        "nl": "opvulling links",
+        "fr": "rembourrage à gauche",
+        "it": "imbottitura sinistra",
+        "es": "relleno a la izquierda",
+        "pl": "padding left",
+        "zh-cn": "向左填充"
+    },
+    "header_padding_right": {
+        "en": "padding right",
+        "de": "Abstand rechts",
+        "ru": "отступ справа",
+        "pt": "estofamento direito",
+        "nl": "opvulling rechts",
+        "fr": "rembourrage droit",
+        "it": "imbottitura destra",
+        "es": "relleno derecho",
+        "pl": "wyściełanie w prawo",
+        "zh-cn": "向右填充"
+    },
+    "header_padding_top": {
+        "en": "padding top",
+        "de": "Abstand oben",
+        "ru": "мягкий верх",
+        "pt": "top de enchimento",
+        "nl": "vulling top",
+        "fr": "haut de rembourrage",
+        "it": "imbottitura superiore",
+        "es": "acolchado superior",
+        "pl": "wyściełany top",
+        "zh-cn": "垫顶"
+    },
+    "header_padding_bottom": {
+        "en": "padding bottom",
+        "de": "Abstand unten",
+        "ru": "обивка дна",
+        "pt": "fundo de enchimento",
+        "nl": "opvulling onderkant",
+        "fr": "bas de rembourrage",
+        "it": "fondo imbottito",
+        "es": "fondo acolchado",
+        "pl": "wyściółka na dole",
+        "zh-cn": "填充底部"
+    },
     "fontFamily": {
         "en": "font family",
         "de": "Schriftart",
@@ -11645,5 +11717,65 @@ systemDictionary = {
         "es": "JSON Sting para elementos de navegación",
         "pl": "JSON Sting dla elementów nawigacyjnych",
         "zh-cn": "用于导航项目的 JSON Sting"
+    },
+    "headerTextColor": {
+        "en": "text color of header",
+        "de": "Textfarbe der Überschrift",
+        "ru": "цвет текста заголовка",
+        "pt": "cor do texto do cabeçalho",
+        "nl": "tekstkleur van kop",
+        "fr": "couleur du texte de l'en-tête",
+        "it": "colore del testo dell'intestazione",
+        "es": "color del texto del encabezado",
+        "pl": "kolor tekstu nagłówka",
+        "zh-cn": "标题的文字颜色"
+    },
+    "group_iconListHeader": {
+        "en": "headline",
+        "de": "Überschrift",
+        "ru": "Заголовок",
+        "pt": "Título",
+        "nl": "kop",
+        "fr": "Gros titre",
+        "it": "Titolo",
+        "es": "Titular",
+        "pl": "Nagłówek",
+        "zh-cn": "标题"
+    },
+    "headerImage": {
+        "en": "image of headline",
+        "de": "Bild der Überschrift",
+        "ru": "изображение заголовка",
+        "pt": "imagem do título",
+        "nl": "afbeelding van kop",
+        "fr": "image du titre",
+        "it": "immagine del titolo",
+        "es": "imagen del titular",
+        "pl": "obraz nagłówka",
+        "zh-cn": "标题图片"
+    },
+    "headerImageColor": {
+        "en": "image color of headline",
+        "de": "Bildfarbe der Überschrift",
+        "ru": "цвет изображения заголовка",
+        "pt": "cor da imagem do título",
+        "nl": "afbeeldingskleur van kop",
+        "fr": "couleur de l'image du titre",
+        "it": "colore dell'immagine del titolo",
+        "es": "color de la imagen del título",
+        "pl": "kolor obrazu nagłówka",
+        "zh-cn": "标题的图像颜色"
+    },
+    "headerImageHeight": {
+        "en": "image size of headline",
+        "de": "Bildgröße der Überschrift",
+        "ru": "размер изображения заголовка",
+        "pt": "tamanho da imagem do título",
+        "nl": "afbeeldingsgrootte van kop",
+        "fr": "taille de l'image du titre",
+        "it": "dimensione dell'immagine del titolo",
+        "es": "tamaño de la imagen del título",
+        "pl": "rozmiar obrazu nagłówka",
+        "zh-cn": "标题的图像大小"
     }
 };

@@ -80,6 +80,10 @@ vis.binds.materialdesign.iconlist =
 
                 setLayout();
                 function setLayout(changed = false) {
+                    $this.context.style.setProperty("--materialdesign-icon-list-header-font-color", myMdwHelper.getValueFromData(data.headerTextColor, ''));
+                    $this.context.style.setProperty("--materialdesign-icon-list-header-font-size", myMdwHelper.getNumberFromData(data.headerTextSize, 24) + 'px');
+                    $this.context.style.setProperty("--materialdesign-icon-list-header-font-family", myMdwHelper.getValueFromData(data.headerFontFamily, 'inherit'));
+
                     $this.context.style.setProperty("--materialdesign-icon-list-background", myMdwHelper.getValueFromData(data.containerBackgroundColor, ''));
 
                     $this.context.style.setProperty("--materialdesign-icon-list-items-per-row", myMdwHelper.getNumberFromData(data.maxItemsperRow, 1));
@@ -246,7 +250,7 @@ vis.binds.materialdesign.iconlist =
                         if (data.itemLayout === 'vertical') {
                             if (data.buttonLayout === 'full' && listItemObj.listType !== 'text') {
                                 element = `
-                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none;' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''} ${minItemWidth? `min-width: ${minItemWidth} !important;`:''}">
+                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none;' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''} ${minItemWidth ? `min-width: ${minItemWidth} !important;` : ''}">
                                     <div style="flex: 1; height: 100%; display: flex; flex-direction: column;">    
                                         <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
                                             <div class="materialdesign-button materialdesign-iconList-button" index="${i}" style="background: ${listItemObj.buttonBackgroundColor}; position: relative; width: 100%; height: 100%; padding: 0; ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;' : ''}">
@@ -267,7 +271,7 @@ vis.binds.materialdesign.iconlist =
                                 </div>`;
                             } else {
                                 element = `
-                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''} ${minItemWidth? `min-width: ${minItemWidth} !important;`:''}">
+                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''} ${minItemWidth ? `min-width: ${minItemWidth} !important;` : ''}">
                                     ${(listItemObj.text !== '') ? `<label class="materialdesign-icon-list-item-text materialdesign-icon-list-item-text-vertical">${listItemObj.text}</label>` : ''}
                                     ${imageElement ? `<div class="materialdesign-icon-list-item-layout-vertical-image-container">
                                         ${imageElement}
@@ -281,7 +285,7 @@ vis.binds.materialdesign.iconlist =
                         } else {
                             if (data.buttonLayout === 'full' && listItemObj.listType !== 'text') {
                                 element = `
-                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''} ${minItemWidth? `min-width: ${minItemWidth} !important;`:''}">
+                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''} ${minItemWidth ? `min-width: ${minItemWidth} !important;` : ''}">
                                     <div style="flex: 1; height: 100%; display: flex; flex-direction: column;">
                                         <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">                                
                                             <div class="materialdesign-button materialdesign-iconList-button" index="${i}" style="background: ${listItemObj.buttonBackgroundColor}; position: relative; width: 100%; height: 100%; padding: 0; ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;' : ''}">
@@ -304,7 +308,7 @@ vis.binds.materialdesign.iconlist =
                                 </div>`;
                             } else {
                                 element = `
-                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''} ${minItemWidth? `min-width: ${minItemWidth} !important;`:''}">
+                                <div class="materialdesign-icon-list-item ${listLayout}" id="icon-list-item${i}" data-oid="${listItemObj.objectId}" visibilityOid="${listItemObj.visibilityOid}" isLocked="${listItemObj.lockEnabled}" style="${(listItemObj.background !== '') ? `background: ${listItemObj.background};` : ''} ${(listItemObj.listType !== 'text' && val === 'null') ? 'display: none' : ''} ${usePercentOfRow > 0 ? `flex-basis: ${cssPercentOfRow};` : ''} ${minItemWidth ? `min-width: ${minItemWidth} !important;` : ''}">
                                 <div style="flex: 1; height: 100%; display: flex; flex-direction: column;">    
                                     <div style="flex: 1; display: flex;">
                                         ${imageElement ? `<div class="materialdesign-icon-list-item-layout-horizontal-image-container">
@@ -339,6 +343,15 @@ vis.binds.materialdesign.iconlist =
                     if (!replace) {
                         let widgetElement = itemList.join("");
 
+                        let iconListHeader = myMdwHelper.getValueFromData(data.headers, undefined) ?
+                            `<div class="materialdesign-icon-list-header"
+                                style="padding: ${myMdwHelper.getNumberFromData(data.header_padding_top, 0)}px ${myMdwHelper.getNumberFromData(data.header_padding_right, 0)}px ${myMdwHelper.getNumberFromData(data.header_padding_bottom, 0)}px ${myMdwHelper.getNumberFromData(data.header_padding_left, 0)}px;
+                                        text-align: ${myMdwHelper.getValueFromData(data.alignment, "flex-start").replace('flex-', '')};">
+                                        ${myMdwHelper.getIconElement(data.headerImage, 'auto', myMdwHelper.getValueFromData(data.headerImageHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.headerImageColor, ''))}
+                                        ${data.headers}
+                            </div>`
+                            : undefined;
+
                         if (bindingTokenList.length > 0) {
                             for (var b = 0; b <= bindingTokenList.length - 1; b++) {
                                 widgetElement = widgetElement.replace(bindingTokenList[b], vis.formatBinding(bindingTokenList[b]))
@@ -347,6 +360,7 @@ vis.binds.materialdesign.iconlist =
 
                         if (!myMdwHelper.getBooleanFromData(data.cardUse, false)) {
                             $this.append(`
+                            ${iconListHeader ? iconListHeader : ''}
                             <div class="${containerClass}" ${(myMdwHelper.getBooleanFromData(data.wrapItems, true)) ? 'style="height: auto; flex-wrap: wrap;"' : ''}>
                                 ${widgetElement}
                             </div>
@@ -359,7 +373,9 @@ vis.binds.materialdesign.iconlist =
                             }
 
                             // $this.css('padding', '2px');
-                            $this.append(`<div class="materialdesign-html-card mdc-card" style="margin-top: 3px; margin-left: 3px; margin-bottom: 3px; width: calc(100% - 6px); height: calc(100% - 6px);">
+                            $this.append(`
+                                    ${iconListHeader ? iconListHeader : ''}
+                                    <div class="materialdesign-html-card mdc-card" style="margin-top: 3px; margin-left: 3px; margin-bottom: 3px; width: calc(100% - 6px); height: calc(100% - 6px);">
                                         <div class="materialdesign-html-card card-title-section" style="${showTitleSection}">
                                             <div class="materialdesign-html-card card-title ${titleFontSize.class}" style="${titleFontSize.style}">${data.title}</div>
                                         </div>

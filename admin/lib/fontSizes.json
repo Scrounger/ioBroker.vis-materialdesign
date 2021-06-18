@@ -150,6 +150,12 @@
         "widget": "Dialog, Dialog iFrame"
     },
     {
+        "id": "icon_list.header",
+        "desc": "headerTextSize",
+        "defaultValue": 6,
+        "widget": "Icon List"
+    },
+    {
         "id": "icon_list.text",
         "desc": "labelFontSize",
         "defaultValue": 3,

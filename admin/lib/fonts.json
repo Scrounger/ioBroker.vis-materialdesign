@@ -150,6 +150,12 @@
         "widget": "Dialog, Dialog iFrame"
     },
     {
+        "id": "icon_list.header",
+        "desc": "headerFontFamily",
+        "defaultValue": 9,
+        "widget": "Icon List"
+    },
+    {
         "id": "icon_list.text",
         "desc": "labelFontFamily",
         "defaultValue": 0,
@@ -347,9 +353,6 @@
         "defaultValue": 0,
         "widget": "Value"
     },
-
-
-
     {
         "id": "scripts.adapterStatus.title",
         "desc": "title text font",
@@ -373,5 +376,5 @@
         "desc": "value text font",
         "defaultValue": 2,
         "widget": "AdapterStatus [Script]"
-    }         
+    }
 ]

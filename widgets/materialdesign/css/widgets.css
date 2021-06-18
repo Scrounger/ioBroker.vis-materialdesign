@@ -105,6 +105,10 @@
 
   --materialdesign-icon-list-background: transparent;
 
+  --materialdesign-icon-list-header-font-size: 24px;
+  --materialdesign-icon-list-header-font-family: inherit;
+  --materialdesign-icon-list-header-font-color: #44739e;
+
   --materialdesign-icon-list-items-per-row: 3;
   --materialdesign-icon-list-items-min-width: 50px;
   --materialdesign-icon-list-items-min-height: 0px;
@@ -2085,6 +2089,12 @@ svg.materialdesign-widget .materialdesign-button__icon {
 }
 
 /* iconList */
+.materialdesign-icon-list-header {
+  font-size: var(--materialdesign-icon-list-header-font-size);
+  font-family: var(--materialdesign-icon-list-header-font-family);
+  color: var(--materialdesign-icon-list-header-font-color);
+}
+
 .materialdesign-icon-list-container {
   display: flex;
   /* justify-content: center; */
