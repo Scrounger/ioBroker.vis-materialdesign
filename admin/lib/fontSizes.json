@@ -152,7 +152,7 @@
     {
         "id": "icon_list.header",
         "desc": "headerTextSize",
-        "defaultValue": 6,
+        "defaultValue": 4,
         "widget": "Icon List"
     },
     {

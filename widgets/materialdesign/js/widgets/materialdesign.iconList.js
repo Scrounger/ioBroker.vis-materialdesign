@@ -342,13 +342,17 @@ vis.binds.materialdesign.iconlist =
                 function appendContent(replace = false, scrollTop = 0, scrollLeft = 0) {
                     if (!replace) {
                         let widgetElement = itemList.join("");
+                        let headerHeight = myMdwHelper.getNumberFromData(data.header_height, 60);
 
                         let iconListHeader = myMdwHelper.getValueFromData(data.headers, undefined) ?
-                            `<div class="materialdesign-icon-list-header"
-                                style="padding: ${myMdwHelper.getNumberFromData(data.header_padding_top, 0)}px ${myMdwHelper.getNumberFromData(data.header_padding_right, 0)}px ${myMdwHelper.getNumberFromData(data.header_padding_bottom, 0)}px ${myMdwHelper.getNumberFromData(data.header_padding_left, 0)}px;
-                                        text-align: ${myMdwHelper.getValueFromData(data.alignment, "flex-start").replace('flex-', '')};">
-                                        ${myMdwHelper.getIconElement(data.headerImage, 'auto', myMdwHelper.getValueFromData(data.headerImageHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.headerImageColor, ''))}
-                                        ${data.headers}
+                            `<div class="materialdesign-widget materialdesign-html-card" style="height: ${headerHeight}px; position: relative; overflow: hidden; margin-bottom: -5px;">
+                                <div class="materialdesign-html-card-container mdc-card" 
+                                    style="margin: 8px 3px 3px 3px; width: calc(100% - 6px); height: ${headerHeight + 5}px; display: flex; flex-direction: row; align-items: center;
+                                            padding: ${myMdwHelper.getNumberFromData(data.header_padding_top, 0)}px ${myMdwHelper.getNumberFromData(data.header_padding_right, 0)}px ${myMdwHelper.getNumberFromData(data.header_padding_bottom, 0)}px ${myMdwHelper.getNumberFromData(data.header_padding_left, 0)}px;
+                                            text-align: ${myMdwHelper.getValueFromData(data.alignment, "flex-start").replace('flex-', '')};">
+                                            ${myMdwHelper.getIconElement(data.headerImage, 'auto', myMdwHelper.getValueFromData(data.headerImageHeight, '24px', '', 'px'), myMdwHelper.getValueFromData(data.headerImageColor, ''))}
+                                            <div class="materialdesign-icon-list-header">${data.headers}</div>
+                                </div>
                             </div>`
                             : undefined;
 
