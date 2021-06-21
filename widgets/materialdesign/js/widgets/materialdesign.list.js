@@ -208,11 +208,26 @@ vis.binds.materialdesign.list =
                         }
                     }
 
+                    let headerHeight = myMdwHelper.getNumberFromData(data.header_height, 60);
+                    let listHeader = myMdwHelper.getValueFromData(data.headers, undefined) ?
+                    `<div class="materialdesign-widget materialdesign-html-card materialdesign-list-header-container" style="height: ${headerHeight}px; position: relative; overflow: hidden; margin-bottom: -5px;">
+                        <div class="materialdesign-html-card-container mdc-card" 
+                            style="margin: 8px 3px 3px 3px; width: calc(100% - 6px); height: ${headerHeight + 5}px; display: flex; flex-direction: row; align-items: center;
+                                    padding: ${myMdwHelper.getNumberFromData(data.header_padding_top, 0)}px ${myMdwHelper.getNumberFromData(data.header_padding_right, 0)}px ${myMdwHelper.getNumberFromData(data.header_padding_bottom, 0)}px ${myMdwHelper.getNumberFromData(data.header_padding_left, 0)}px;
+                                    text-align: ${myMdwHelper.getValueFromData(data.alignment, "flex-start").replace('flex-', '')};
+                                    background: transparent;">
+                                    ${myMdwHelper.getIconElement(data.headerImage, 'auto', myMdwHelper.getValueFromData(data.headerImageHeight, '24px', '', 'px'), myMdwHelper.getValueFromData(data.headerImageColor, ''))}
+                                    <div class="materialdesign-list-header">${data.headers}</div>
+                        </div>
+                    </div>`
+                    : undefined;
+
                     if (!replace) {
                         if (data.listLayout === 'card' || data.listLayout === 'cardOutlined') {
                             let listLayout = data.listLayout === 'card' ? 'materialdesign-list-card' : 'materialdesign-list-card materialdesign-list-card--outlined';
 
                             $this.append(`
+                            ${listHeader ? listHeader : ''}
                             <div class="${listLayout}">
                                 <ul class="mdc-list ${nonInteractive} ${containerClass}" ${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'style="overflow-y: auto; overflow-x: hidden;"' : ''}>   
                                     ${widgetElement}
@@ -268,6 +283,12 @@ vis.binds.materialdesign.list =
                             } else {
                                 list.style.setProperty("--materialdesign-color-list-background", myMdwHelper.getValueFromData(data.listBackground, ''));
                             }
+
+                            $this.context.style.setProperty("--materialdesign-list-header-font-color", myMdwHelper.getValueFromData(data.headerTextColor, ''));
+                            $this.context.style.setProperty("--materialdesign-list-header-font-size", myMdwHelper.getNumberFromData(data.headerTextSize, 24) + 'px');
+                            $this.context.style.setProperty("--materialdesign-list-header-font-family", myMdwHelper.getValueFromData(data.headerFontFamily, 'inherit'));
+
+                            $this.find('.materialdesign-list-header-container .materialdesign-icon-image').css('color',  myMdwHelper.getValueFromData(data.headerImageColor, ''));
 
                             list.style.setProperty("--materialdesign-color-list-item-background", myMdwHelper.getValueFromData(data.listItemBackground, ''));
                             list.style.setProperty("--materialdesign-color-list-item-hover", myMdwHelper.getValueFromData(data.colorListItemHover, ''));

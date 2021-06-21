@@ -376,7 +376,7 @@
         "desc": "imageColor",
         "defaultValue": 5,
         "widget": "Dialog, Dialog iFrame"
-    },    
+    },
     {
         "id": "dark.dialog.background",
         "desc": "backgroundColor",
@@ -412,7 +412,7 @@
         "desc": "pressColor",
         "defaultValue": 2,
         "widget": "Dialog, Dialog iFrame"
-    },    
+    },
     {
         "id": "dark.dialog.close_button_icon",
         "desc": "fullscreenCloseIconColor",
@@ -490,7 +490,7 @@
         "desc": "headerImageColor",
         "defaultValue": 2,
         "widget": "Icon List"
-    },    
+    },
     {
         "id": "dark.icon_list.background",
         "desc": "containerBackgroundColor",
@@ -671,6 +671,18 @@
         "defaultValue": 5,
         "widget": "List"
     },
+    {
+        "id": "dark.list.header_main",
+        "desc": "headerTextColor",
+        "defaultValue": 2,
+        "widget": "List"
+    },
+    {
+        "id": "dark.list.header_icon",
+        "desc": "headerImageColor",
+        "defaultValue": 2,
+        "widget": "List"
+    },     
     {
         "id": "dark.list.background_off",
         "desc": "listItemBackground",
@@ -1012,7 +1024,7 @@
         "desc": "subIconDrawerColor",
         "defaultValue": 0,
         "widget": "Top App Bar"
-    },    
+    },
     {
         "id": "dark.top_app_bar.item_text_selected",
         "desc": "colorListItemTextSelected",

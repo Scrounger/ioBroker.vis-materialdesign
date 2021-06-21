@@ -349,7 +349,8 @@ vis.binds.materialdesign.iconlist =
                                 <div class="materialdesign-html-card-container mdc-card" 
                                     style="margin: 8px 3px 3px 3px; width: calc(100% - 6px); height: ${headerHeight + 5}px; display: flex; flex-direction: row; align-items: center;
                                             padding: ${myMdwHelper.getNumberFromData(data.header_padding_top, 0)}px ${myMdwHelper.getNumberFromData(data.header_padding_right, 0)}px ${myMdwHelper.getNumberFromData(data.header_padding_bottom, 0)}px ${myMdwHelper.getNumberFromData(data.header_padding_left, 0)}px;
-                                            text-align: ${myMdwHelper.getValueFromData(data.alignment, "flex-start").replace('flex-', '')};">
+                                            text-align: ${myMdwHelper.getValueFromData(data.alignment, "flex-start").replace('flex-', '')};
+                                            background: transparent;">
                                             ${myMdwHelper.getIconElement(data.headerImage, 'auto', myMdwHelper.getValueFromData(data.headerImageHeight, '24px', '', 'px'), myMdwHelper.getValueFromData(data.headerImageColor, ''))}
                                             <div class="materialdesign-icon-list-header">${data.headers}</div>
                                 </div>

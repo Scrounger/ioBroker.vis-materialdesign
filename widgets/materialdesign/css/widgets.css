@@ -34,6 +34,11 @@
 
   --material-progress-circular-color: #44739e;
 
+
+  --materialdesign-list-header-font-size: 24px;
+  --materialdesign-list-header-font-family: inherit;
+  --materialdesign-list-header-font-color: #44739e;
+
   --materialdesign-color-drawer-background: #fff;
   --materialdesign-color-drawer-sub-background: #fff;
   --materialdesign-color-list-item-background: #fff;
@@ -1393,6 +1398,12 @@ svg.materialdesign-widget .materialdesign-button__icon {
   font-size:  var(--materialdesign-font-size-top-app-bar-title);
   color: var(--materialdesign-color-top-app-bar-title);
   margin-right: 12px;
+}
+
+.materialdesign-list-header {
+  font-size: var(--materialdesign-list-header-font-size);
+  font-family: var(--materialdesign-list-header-font-family);
+  color: var(--materialdesign-list-header-font-color);
 }
 
 .materialdesign-widget .mdc-drawer__content .mdc-list-item__text {

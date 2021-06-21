@@ -490,7 +490,7 @@
         "desc": "headerImageColor",
         "defaultValue": 2,
         "widget": "Icon List"
-    },    
+    },
     {
         "id": "light.icon_list.background",
         "desc": "containerBackgroundColor",
@@ -671,6 +671,18 @@
         "defaultValue": 5,
         "widget": "List"
     },
+    {
+        "id": "light.list.header_main",
+        "desc": "headerTextColor",
+        "defaultValue": 2,
+        "widget": "List"
+    },
+    {
+        "id": "light.list.header_icon",
+        "desc": "headerImageColor",
+        "defaultValue": 2,
+        "widget": "List"
+    },    
     {
         "id": "light.list.background_off",
         "desc": "listItemBackground",

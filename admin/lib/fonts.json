@@ -222,6 +222,12 @@
         "widget": "Select, Autocomplete"
     },
     {
+        "id": "list.header_main",
+        "desc": "headerFontFamily",
+        "defaultValue": 9,
+        "widget": "List"
+    },
+    {
         "id": "list.header",
         "desc": "headerFontFamily",
         "defaultValue": 0,
