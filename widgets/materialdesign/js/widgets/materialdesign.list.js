@@ -406,7 +406,6 @@ vis.binds.materialdesign.list =
                         }
 
                         function setLayout(index, val, listItemObj) {
-                            console.warn(i);
                             let curListItem = $this.find(`div[id="listItem_${index}"]`);
 
                             $this.find(`.mdc-list-group__subheader`).css('font-size', myMdwHelper.getStringFromNumberData(data.listItemHeaderTextSize, 'inherit', '', 'px'));
