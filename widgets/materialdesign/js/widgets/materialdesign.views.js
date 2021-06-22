@@ -256,7 +256,7 @@ vis.binds.materialdesign.views = {
                 let viewHeight = myMdwHelper.getNumberFromData(data.attr('viewsHeight' + i), 0);
 
                 viewsList.push(`
-                <div class="col col-${colSpan}" id="grid-item${i}" itemindex="${i}" sortOrder="${myMdwHelper.getNumberFromData(data.attr('viewSortOrder' + i), i)}" visibilityOid="${data.attr('visibilityOid' + i)}" style="display: none;">
+                <div class="col col-${colSpan}" id="${data.wid}-grid-item${i}" itemindex="${i}" sortOrder="${myMdwHelper.getNumberFromData(data.attr('viewSortOrder' + i), i)}" visibilityOid="${data.attr('visibilityOid' + i)}" style="display: none;">
                     ${(vis.editMode && !view) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; position: relative; ${view ? viewHeight > 0 ? `height: ${viewHeight}px;` : '' : 'height: 100px;'}"></div>` : ''}
                     <div data-vis-contains="${view}" class="vis-widget-body vis-view-container" style="position: relative; ${view ? viewHeight > 0 ? `height: ${viewHeight}px;` : '' : 'height: 100px;'}">
                     </div>
@@ -327,7 +327,7 @@ vis.binds.materialdesign.views = {
             }
 
             function handleWidget() {
-                myMdwHelper.waitForElement($this, `#grid-item${0}`, data.wid, 'Grid ', function () {
+                myMdwHelper.waitForElement($this, `#${data.wid}-grid-item${0}`, data.wid, 'Grid ', function () {
                     myMdwHelper.waitForRealWidth($this.context, data.wid, 'Grid', function () {
                         var currentWidgetWidth = $this.width();
 
@@ -382,7 +382,7 @@ vis.binds.materialdesign.views = {
                                         colSpan = 12;
                                     }
 
-                                    $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
+                                    $this.find(`#${data.wid}-grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
                                 }
 
                             } else if (currentWidgetWidth > handyPortraitWidth && currentWidgetWidth <= handyLandscapeWidth) {
@@ -401,7 +401,7 @@ vis.binds.materialdesign.views = {
                                         colSpan = 12;
                                     }
 
-                                    $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
+                                    $this.find(`#${data.wid}-grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
                                 }
 
                             } else if (currentWidgetWidth > handyLandscapeWidth && currentWidgetWidth <= tabletPortraitWidth) {
@@ -420,7 +420,7 @@ vis.binds.materialdesign.views = {
                                         colSpan = 12;
                                     }
 
-                                    $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
+                                    $this.find(`#${data.wid}-grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
                                 }
 
                             } else if (currentWidgetWidth > tabletPortraitWidth && currentWidgetWidth <= tabletLandscapeWidth) {
@@ -439,7 +439,7 @@ vis.binds.materialdesign.views = {
                                         colSpan = 12;
                                     }
 
-                                    $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
+                                    $this.find(`#${data.wid}-grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
                                 }
 
                             } else if (currentWidgetWidth > tabletLandscapeWidth) {
@@ -458,7 +458,7 @@ vis.binds.materialdesign.views = {
                                         colSpan = 12;
                                     }
 
-                                    $this.find(`#grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
+                                    $this.find(`#${data.wid}-grid-item${i}`).removeClass().addClass(`col col-${colSpan}`);
                                 }
                             }
                         }
@@ -478,20 +478,20 @@ vis.binds.materialdesign.views = {
                     let visibility = myMdwHelper.getVisibility(val, data.attr('visibilityOid' + i), data.attr('visibilityCondition' + i), data.attr('visibilityConditionValue' + i));
 
                     if (currentWidgetWidth < greaterThan) {
-                        $this.find(`#grid-item${i}`).hide();
+                        $this.find(`#${data.wid}-grid-item${i}`).hide();
                     } else if (currentWidgetWidth >= greaterThan && currentWidgetWidth <= lessThan) {
                         if (visibility) {
-                            $this.find(`#grid-item${i}`).hide();
+                            $this.find(`#${data.wid}-grid-item${i}`).hide();
                         } else {
-                            $this.find(`#grid-item${i}`).show();
+                            $this.find(`#${data.wid}-grid-item${i}`).show();
                         }
                     } else if (currentWidgetWidth > lessThan) {
-                        $this.find(`#grid-item${i}`).hide();
+                        $this.find(`#${data.wid}-grid-item${i}`).hide();
                     } else {
                         if (visibility) {
-                            $this.find(`#grid-item${i}`).hide();
+                            $this.find(`#${data.wid}-grid-item${i}`).hide();
                         } else {
-                            $this.find(`#grid-item${i}`).show();
+                            $this.find(`#${data.wid}-grid-item${i}`).show();
                         }
                     }
                 }

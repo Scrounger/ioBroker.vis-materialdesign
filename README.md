@@ -13114,6 +13114,7 @@ The adapter uses the following libraries:
 * (Scrounger) IconList Widget: header added
 * (Scrounger) List Widget: main header added
 * (Scrounger) Top App Bar Widget: fixed bugs found by sentry
+* (Scrounger) Grid View Widget: Bug fix for nested grid views
 * (Scrounger) bug fix for VIS Editor dev values
 
 <!-- omit in toc -->
