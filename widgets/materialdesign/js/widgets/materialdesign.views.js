@@ -35,7 +35,7 @@ vis.binds.materialdesign.views = {
 
                 viewsList.push(`
                     <div 
-                        class="materialdesign-masonry-item" id="masonry_item_${i}" itemindex="${i}" sortOrder="${myMdwHelper.getNumberFromData(data.attr('viewSortOrder' + i), i)}" visibilityOid="${data.attr('visibilityOid' + i)}" style="${viewWidth}; display: none; ${myMdwHelper.getValueFromData(data.attr('View' + i), undefined) ? viewHeight > 0 ? `height: ${viewHeight}px;` : '' : 'height: 100px;'}">
+                        class="materialdesign-masonry-item" id="${data.wid}-masonry_item_${i}" itemindex="${i}" sortOrder="${myMdwHelper.getNumberFromData(data.attr('viewSortOrder' + i), i)}" visibilityOid="${data.attr('visibilityOid' + i)}" style="${viewWidth}; display: none; ${myMdwHelper.getValueFromData(data.attr('View' + i), undefined) ? viewHeight > 0 ? `height: ${viewHeight}px;` : '' : 'height: 100px;'}">
                             ${(vis.editMode) ? `<div class="editmode-helper" style="border-style: dashed; border-width: 2px; border-color: #44739e; ${myMdwHelper.getValueFromData(data.attr('View' + i), undefined) ? viewHeight > 0 ? `height: ${viewHeight}px;` : '' : 'height: 100px;'}"></div>` : ''}
                             <div data-vis-contains="${data.attr('View' + i)}" class="vis-widget-body vis-view-container">
                             </div>
@@ -106,7 +106,7 @@ vis.binds.materialdesign.views = {
             }
 
             function handleWidget() {
-                myMdwHelper.waitForElement($this, `#masonry_item_${0}`, data.wid, 'Masonry', function () {
+                myMdwHelper.waitForElement($this, `#${data.wid}-masonry_item_${0}`, data.wid, 'Masonry', function () {
                     myMdwHelper.waitForRealWidth($this.context, data.wid, 'Masonry', function () {
                         var currentWidgetWidth = $this.width();
 
@@ -214,20 +214,20 @@ vis.binds.materialdesign.views = {
                     let visibility = myMdwHelper.getVisibility(val, data.attr('visibilityOid' + i), data.attr('visibilityCondition' + i), data.attr('visibilityConditionValue' + i));
 
                     if (currentWidgetWidth < greaterThan) {
-                        $this.find(`#masonry_item_${i}`).hide();
+                        $this.find(`#${data.wid}-masonry_item_${i}`).hide();
                     } else if (currentWidgetWidth >= greaterThan && currentWidgetWidth <= lessThan) {
                         if (visibility) {
-                            $this.find(`#masonry_item_${i}`).hide();
+                            $this.find(`#${data.wid}-masonry_item_${i}`).hide();
                         } else {
-                            $this.find(`#masonry_item_${i}`).show();
+                            $this.find(`#${data.wid}-masonry_item_${i}`).show();
                         }
                     } else if (currentWidgetWidth > lessThan) {
-                        $this.find(`#masonry_item_${i}`).hide();
+                        $this.find(`#${data.wid}-masonry_item_${i}`).hide();
                     } else {
                         if (visibility) {
-                            $this.find(`#masonry_item_${i}`).hide();
+                            $this.find(`#${data.wid}-masonry_item_${i}`).hide();
                         } else {
-                            $this.find(`#masonry_item_${i}`).show();
+                            $this.find(`#${data.wid}-masonry_item_${i}`).show();
                         }
                     }
                 }
