@@ -179,7 +179,12 @@ vis.binds.materialdesign.value = {
                 }
 
                 function changeValue() {
-                    if (result) {
+                    if (result || myMdwHelper.getValueFromData(data.overrideText, undefined)) {
+
+                        if (result === undefined) {
+                            result = '';
+                        }
+
                         if (myMdwHelper.getValueFromData(data.overrideText, undefined)) {
                             if (result.toString().includes('|')) {
                                 result = result.split('|');

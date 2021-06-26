@@ -13110,6 +13110,7 @@ The adapter uses the following libraries:
 ### __WORK IN PROGRESS__
 * (Scrounger) Button Toggle Widgets: bug fix for state on runtime load
 * (Scrounger) Value Widget: bug fix for show unit only if result is of type number
+* (Scrounger) Value Widget: bug fix for data ovveride
 * (Scrounger) IconList Widget: option to set minimal width for single item added
 * (Scrounger) IconList Widget: header added
 * (Scrounger) List Widget: main header added
