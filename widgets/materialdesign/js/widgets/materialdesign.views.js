@@ -499,5 +499,44 @@ vis.binds.materialdesign.views = {
         } catch (ex) {
             console.error(`[Grid Views - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
+    },
+    advancedViewInWidget: function (el, data) {
+        try {
+            let $this = $(el);
+            let val = vis.states.attr(data.oid + '.val');
+            let containerClass = 'vis-view-container';
+
+
+            $this.append(`<div class="vis-widget-body ${containerClass}" data-vis-contains="${val}"><div>`);
+
+            bindView(val);
+
+            vis.states.bind(data.oid+ '.val', function (e, newVal, oldVal) {
+                bindView(newVal);
+            });
+
+            if (vis.editMode) {
+                $this.append(`<div class="editmode-helper"></div>`);
+            }
+
+            function bindView(view) {
+                let $container = $this.find(`.${containerClass}`);
+
+                $container.empty();
+                $container.attr('data-vis-contains', view)
+
+                if (vis.views[view]) {
+                    vis.renderView(view, view, true, function (_view) {
+                        $('#visview_' + _view).appendTo($container).show().data('persistent', true);
+                    });
+                } else {
+                    $container.html('<span style="color: red" class="container-error">' + _('error: view not found.') + '</span>');
+                    console.warn(`[Advanced View in Widget - ${data.wid}] '${view}' not existis!`);
+                }
+            }
+
+        } catch (ex) {
+            console.error(`[Advanced View in Widget - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
+        }
     }
 };

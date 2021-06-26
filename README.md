@@ -13117,6 +13117,7 @@ The adapter uses the following libraries:
 * (Scrounger) Top App Bar Widget: fixed bugs found by sentry
 * (Scrounger) Grid Views Widget: Bug fix for nested grid views widgets
 * (Scrounger) Masonry Views Widget: Bug fix for nested masonry views widgets
+* (Scrounger) Advanced View in Widget widget added
 * (Scrounger) bug fix for VIS Editor dev values
 
 
