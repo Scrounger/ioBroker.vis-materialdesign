@@ -37,34 +37,35 @@ vis.binds.materialdesign.roundslider = {
                 labelWitdh = data.valueLabelWidth;
             }
 
-            $this.append(`<round-slider class="${containerClass}"
-                            value=${valueOnLoading} 
-                            max="${max}" 
-                            min="${min}"
-                            step="${myMdwHelper.getNumberFromData(data.step, 1)}"
-                            startAngle="${myMdwHelper.getNumberFromData(data.startAngle, 135)}"
-                            arcLength="${myMdwHelper.getNumberFromData(data.arcLength, 270)}"
-                            handleSize="${myMdwHelper.getNumberFromData(data.handleSize, 6)}"
-                            handleZoom="${myMdwHelper.getNumberFromData(data.handleZoom, 1.5)}"
-                            ${(data.rtl === true) ? 'rtl = "true"' : ''} 
-                            ${myMdwHelper.getBooleanFromData(data.readOnly, false) === true ? 'readonly' : ''}                           
-                            >
-                            </round-slider>
-                            
-                            ${(data.showValueLabel) ?
+            $this.append(`
+            ${(data.showValueLabel) ?
                     `<label class="labelValue" 
-                                    style="position: absolute; 
-                                    width: 100%;
-                                    text-align: center;
-                                    display: flex;
-                                    justify-content: center;
-                                    pointer-events: none;
-                                    top: ${myMdwHelper.getNumberFromData(data.valueLabelVerticalPosition, 45)}%; 
-                                    color: ${myMdwHelper.getValueFromData(data.valueLabelColor, '#44739e')};
-                                    font-family: ${myMdwHelper.getValueFromData(data.valueFontFamily, '')};
-                                    font-size: ${myMdwHelper.getStringFromNumberData(data.valueFontSize, 'inherit', '', 'px')};">
-                                        ${valueOnLoading} ${unit}
-                                </label>`: ''}
+                                style="position: absolute; 
+                                width: 100%;
+                                text-align: center;
+                                display: flex;
+                                justify-content: center;
+                                pointer-events: none;
+                                top: ${myMdwHelper.getNumberFromData(data.valueLabelVerticalPosition, 45)}%; 
+                                color: ${myMdwHelper.getValueFromData(data.valueLabelColor, '#44739e')};
+                                font-family: ${myMdwHelper.getValueFromData(data.valueFontFamily, '')};
+                                font-size: ${myMdwHelper.getStringFromNumberData(data.valueFontSize, 'inherit', '', 'px')};">
+                                    ${valueOnLoading} ${unit}
+                            </label>`: ''}
+            
+                            <round-slider class="${containerClass}"
+                                value=${valueOnLoading} 
+                                max="${max}" 
+                                min="${min}"
+                                step="${myMdwHelper.getNumberFromData(data.step, 1)}"
+                                startAngle="${myMdwHelper.getNumberFromData(data.startAngle, 135)}"
+                                arcLength="${myMdwHelper.getNumberFromData(data.arcLength, 270)}"
+                                handleSize="${myMdwHelper.getNumberFromData(data.handleSize, 6)}"
+                                handleZoom="${myMdwHelper.getNumberFromData(data.handleZoom, 1.5)}"
+                                ${(data.rtl === true) ? 'rtl = "true"' : ''} 
+                                ${myMdwHelper.getBooleanFromData(data.readOnly, false) === true ? 'readonly' : ''}                           
+                                >
+                            </round-slider>
                             `)
 
             let slider = $this.find(`.${containerClass}`);

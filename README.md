@@ -13117,6 +13117,7 @@ The adapter uses the following libraries:
 * (darkiop) documentation updated ([#PR179](https://github.com/Scrounger/ioBroker.vis-materialdesign/pull/179))
 * (Scrounger) Top App Bar Widget: fixed bugs found by sentry
 * (Scrounger) Top App Bar Widget: icon color bug fix if using json string
+* (Scrounger) Round Slider Widget: control bug fix
 * (Scrounger) Grid Views Widget: Bug fix for nested grid views widgets
 * (Scrounger) Masonry Views Widget: Bug fix for nested masonry views widgets
 * (Scrounger) Advanced View in Widget widget added
