@@ -20,6 +20,8 @@
   --materialdesign-font-top-app-bar-sub-item-disabled: inherit;
   --materialdesign-color-top-app-bar-header-background: #44739e;
   --materialdesign-top-app-bar-color-burger-icon: #fff;
+  --materialdesign-color-item-icon-selected: #44739e;
+  --materialdesign-color-sub-item-icon-selected: #44739e;
 
   --materialdesign-color-checkbox: #44739e;
   --materialdesign-color-checkbox-border: rgba(0, 0, 0, 0.54);
@@ -1412,6 +1414,14 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 .materialdesign-widget .mdc-drawer__content .mdc-sub-list-item .mdc-list-item__text {
   font-family: var(--materialdesign-font-top-app-bar-sub-item);
+}
+
+.materialdesign-widget .mdc-drawer__content .mdc-list-item--activated .materialdesign-icon-image {
+  color: var(--materialdesign-color-item-icon-selected) !important;
+}
+
+.materialdesign-widget .mdc-drawer__content .isSubItem.mdc-list-item--activated .materialdesign-icon-image {
+  color: var(--materialdesign-color-sub-item-icon-selected) !important;
 }
 
 /* App Top Bar Short */

@@ -145,7 +145,7 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
                     let listItemObj = getListItemObj(itemIndex, data, jsonData);
 
                     if (listItemObj) {
-                        $(this).find('.materialdesign-icon-image').css('color', listItemObj.iconColor);
+                        $(this).find('.materialdesign-icon-image').css('color', listItemObj.iconColor).get(0).style.setProperty("--materialdesign-color-item-icon-selected", myMdwHelper.getValueFromData(data.iconDrawerColorSelected, listItemObj.iconColor));
                         $(this).find('.toggleIcon').css('color', myMdwHelper.getValueFromData(data.colorSubItemToggleIcon, '#44739e'));
 
                         let realIndex = parseInt($(this).attr('index'));
@@ -155,7 +155,8 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
                             if (subMenuObjects) {
                                 for (var subIndex = 0; subIndex <= subMenuObjects.length - 1; subIndex++) {
                                     $this.find(`.isSubItem[index="${realIndex + 1 + subIndex}"] .materialdesign-icon-image`)
-                                        .css('color', myMdwHelper.getValueFromData(subMenuObjects[subIndex].iconColor, listItemObj.subMenuIconColor));
+                                        .css('color', myMdwHelper.getValueFromData(subMenuObjects[subIndex].iconColor, listItemObj.subMenuIconColor))
+                                        .get(0).style.setProperty("--materialdesign-color-sub-item-icon-selected", myMdwHelper.getValueFromData(data.subIconDrawerColorSelected, myMdwHelper.getValueFromData(data.iconDrawerColorSelected, myMdwHelper.getValueFromData(subMenuObjects[subIndex].iconColor, listItemObj.subMenuIconColor))));
                                 }
                             }
                         }

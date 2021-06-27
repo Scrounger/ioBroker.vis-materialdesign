@@ -11610,6 +11610,18 @@ systemDictionary = {
         "pl": "kolor ikony",
         "zh-cn": "图标颜色"
     },
+    "iconDrawerColorSelected": {
+        "en": "icon color activ",
+        "de": "Symbolfarbe aktiv",
+        "ru": "цвет значка activ",
+        "pt": "ícone cor ativ",
+        "nl": "pictogram kleur actief",
+        "fr": "couleur de l'icône activée",
+        "it": "icona colore attivazione",
+        "es": "icono de color activ",
+        "pl": "kolor ikony aktywny",
+        "zh-cn": "图标颜色激活"
+    },
     "subIconDrawerColor": {
         "en": "sub menu icon color",
         "de": "Farbe des Untermenüsymbols",
@@ -11621,6 +11633,18 @@ systemDictionary = {
         "es": "color del icono del submenú",
         "pl": "kolor ikony podmenu",
         "zh-cn": "子菜单图标颜色"
+    },
+    "subIconDrawerColorSelected": {
+        "en": "sub menu icon color activ",
+        "de": "Farbe des aktiven Untermenüsymbols",
+        "ru": "цвет значка подменю актив",
+        "pt": "submenu ícone cor ativ",
+        "nl": "submenu pictogram kleur actief",
+        "fr": "couleur de l'icône du sous-menu activé",
+        "it": "attivazione del colore dell'icona del sottomenu",
+        "es": "submenú icono color activ",
+        "pl": "kolor ikony podmenu aktywny",
+        "zh-cn": "子菜单图标颜色激活"
     },
     "topAppBarIconColor": {
         "en": "icon color",

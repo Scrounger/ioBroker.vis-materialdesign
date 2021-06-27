@@ -682,7 +682,7 @@
         "desc": "headerImageColor",
         "defaultValue": 2,
         "widget": "List"
-    },    
+    },
     {
         "id": "light.list.background_off",
         "desc": "listItemBackground",
@@ -1020,8 +1020,20 @@
         "widget": "Top App Bar"
     },
     {
+        "id": "light.top_app_bar.item_icon_selected",
+        "desc": "iconDrawerColorSelected",
+        "defaultValue": 0,
+        "widget": "Top App Bar"
+    },
+    {
         "id": "light.top_app_bar.subItem_icon",
         "desc": "subIconDrawerColor",
+        "defaultValue": 0,
+        "widget": "Top App Bar"
+    },
+    {
+        "id": "light.top_app_bar.subItem_icon_selected",
+        "desc": "subIconDrawerColorSelected",
         "defaultValue": 0,
         "widget": "Top App Bar"
     },
