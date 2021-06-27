@@ -223,9 +223,9 @@ vis.binds.materialdesign.dialog = {
                                         }
 
                                         $dialog.css('background', myMdwHelper.getValueFromData(data.backgroundColor, ''));
+                                        $dialog.find('.v-card__text.v-dialog-view-container').css('background', myMdwHelper.getValueFromData(data.backgroundColor, ''));
 
                                         $dialog.find('.v-card').css('background', myMdwHelper.getValueFromData(data.backgroundColor, ''));
-
 
                                         $dialog.get(0).style.setProperty("--dialog-footer-button-text-color", myMdwHelper.getValueFromData(data.buttonFontColor, ''));
                                         $dialog.get(0).style.setProperty("--dialog-footer-button-text-font", myMdwHelper.getValueFromData(data.buttonFont, 'inherit'));

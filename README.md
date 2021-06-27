@@ -13130,6 +13130,7 @@ The adapter uses the following libraries:
 * (Scrounger) Masonry Views Widget: Bug fix for nested masonry views widgets
 * (Scrounger) Progress Widget: striped distance option added
 * (Scrounger) Advanced View in Widget widget added
+* (Scrounger) Dialog Widget: background color bug fix on close animation
 * (Scrounger) bug fix for VIS Editor dev values
 
 
