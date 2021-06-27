@@ -103,6 +103,9 @@ vis.binds.materialdesign.progress = {
                         $this.get(0).style.setProperty("--vue-progress-progress-striped-width2", myMdwHelper.getNumberFromData(data.stipWidth2, 50) + '%');
                         $this.get(0).style.setProperty("--vue-progress-progress-striped-width3", myMdwHelper.getNumberFromData(data.stipWidth3, 75) + '%');
 
+                        let stripDistance = myMdwHelper.getNumberFromData(data.stripDistance, 40)
+                        $this.get(0).style.setProperty("--vue-progress-progress-striped-distance", `${stripDistance}px ${stripDistance}px`);
+
                         let val = myMdwHelper.getNumberFromData(vis.states.attr(data.oid + '.val'), 0);
                         vueProgress.value = vis.binds.materialdesign.progress.getProgressState($this, data, val, "--vue-progress-progress-color", '.materialdesign-vuetify-progress-value-label', widgetName);
 
@@ -289,6 +292,7 @@ vis.binds.materialdesign.progress = {
                 stipWidth1: obj.stipWidth1,
                 stipWidth2: obj.stipWidth2,
                 stipWidth3: obj.stipWidth3,
+                stripDistance: obj.stripDistance,
 
                 // colors
                 colorProgressBackground: obj.colorProgressBackground,

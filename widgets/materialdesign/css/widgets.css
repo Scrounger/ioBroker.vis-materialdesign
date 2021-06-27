@@ -327,6 +327,7 @@
   --vue-progress-progress-striped-width1: 25%;
   --vue-progress-progress-striped-width2: 50%; 
   --vue-progress-progress-striped-width3: 75%;
+  --vue-progress-progress-striped-distance: 20px 20px;
 
   --vue-progress-circular-progress-color: #44739e;
   --vue-progress-circular-progress-color-background: #e6e6e6;
@@ -6890,7 +6891,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 .v-progress-linear--striped .v-progress-linear__determinate {
   background-image: linear-gradient(var(--vue-progress-progress-striped-angle), var(--vue-progress-progress-color-striped) var(--vue-progress-progress-striped-width1), transparent 0, transparent var(--vue-progress-progress-striped-width2), var(--vue-progress-progress-color-striped) 0, var(--vue-progress-progress-color-striped) var(--vue-progress-progress-striped-width3), transparent 0, transparent);
-  background-size: 40px 40px;
+  background-size: var(--vue-progress-progress-striped-distance);
   background-repeat: repeat;
 }
 
