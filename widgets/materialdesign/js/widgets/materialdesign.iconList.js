@@ -266,7 +266,7 @@ vis.binds.materialdesign.iconlist =
                                                 </div>
                                             </div>
                                         </div>
-                                        ${listItemObj.statusBarColor || listItemObj.statusBarText ? `<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>` : ''}
+                                        ${`<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor}; visibility: ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'visible' : 'collapse'};">${listItemObj.statusBarText}</div>`}
                                     </div>
                                 </div>`;
                             } else {
@@ -279,7 +279,7 @@ vis.binds.materialdesign.iconlist =
                                     </div>` : ''}
                                     ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value materialdesign-icon-list-item-text-vertical">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
                                     ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText materialdesign-icon-list-item-text-vertical">${listItemObj.subText}</label>` : ''}
-                                    ${listItemObj.statusBarColor || listItemObj.statusBarText ? `<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>` : ''}
+                                    ${`<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor}; visibility: ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'visible' : 'collapse'};">${listItemObj.statusBarText}</div>`}
                                 </div>`;
                             }
                         } else {
@@ -303,7 +303,7 @@ vis.binds.materialdesign.iconlist =
                                                 </div>                                        
                                             </div>                                    
                                         </div>
-                                        ${listItemObj.statusBarColor || listItemObj.statusBarText ? `<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-horizontal-status-line-card' : 'materialdesign-icon-list-item-layout-horizontal-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>` : ''}
+                                        ${`<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-horizontal-status-line-card' : 'materialdesign-icon-list-item-layout-horizontal-status-line'}" style="background: ${listItemObj.statusBarColor}; visibility: ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'visible' : 'collapse'};">${listItemObj.statusBarText}</div>`}
                                     </div>
                                 </div>`;
                             } else {
@@ -321,7 +321,7 @@ vis.binds.materialdesign.iconlist =
                                             ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
                                         </div>                                        
                                     </div>
-                                    ${listItemObj.statusBarColor || listItemObj.statusBarText ? `<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-horizontal-status-line-card' : 'materialdesign-icon-list-item-layout-horizontal-status-line'}" style="background: ${listItemObj.statusBarColor};">${listItemObj.statusBarText}</div>` : ''}
+                                    ${`<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-horizontal-status-line-card' : 'materialdesign-icon-list-item-layout-horizontal-status-line'}" style="background: ${listItemObj.statusBarColor}; visibility: ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'visible' : 'collapse'};">${listItemObj.statusBarText}</div>`}
                                 </div>
                                 </div>`;
                             }
@@ -653,11 +653,32 @@ vis.binds.materialdesign.iconlist =
                     if (val === true || val === 'true') {
                         $item.find('.materialdesign-iconList-button').css('background', listItemObj.buttonBackgroundActiveColor);
                         myMdwHelper.changeIconElement($item, listItemObj.imageActive, 'auto', iconHeight + 'px', listItemObj.imageActiveColor, '', 'iconlist-icon');
+
+                        $item.find('.materialdesign-icon-list-item-text').css('color', myMdwHelper.getValueFromData(data.labelFontColorSelected, myMdwHelper.getValueFromData(data.labelFontColor, '')));
+
+                        if (listItemObj.statusBarColorActive) {
+                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColorActive);
+                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColorActive);
+                        } else {
+                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('visibility', 'collapse');
+                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('visibility', 'collapse');
+                        }
+
                     } else {
                         $item.find('.materialdesign-iconList-button').css('background', listItemObj.buttonBackgroundColor);
                         myMdwHelper.changeIconElement($item, listItemObj.image, 'auto', iconHeight + 'px', listItemObj.imageColor, '', 'iconlist-icon');
-                    }
 
+                        $item.find('.materialdesign-icon-list-item-text').css('color', myMdwHelper.getValueFromData(data.labelFontColor, ''));
+
+                        if (listItemObj.statusBarColor) {
+                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColor);
+                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColor);
+                        } else {
+                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('visibility', 'collapse');
+                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('visibility', 'collapse');
+                        }
+                    }
+                    
                     if ($item.attr('isLocked') === 'true') {
                         if (myMdwHelper.getBooleanFromData(data.lockApplyOnlyOnImage, false) === true) {
                             $item.find('.materialdesign-iconList-button').css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
@@ -734,6 +755,7 @@ vis.binds.materialdesign.iconlist =
                             buttonBackgroundColor: myMdwHelper.getValueFromData(data.attr('buttonBgColor' + i), ''),
                             buttonBackgroundActiveColor: myMdwHelper.getValueFromData(data.attr('buttonBgColorActive' + i), myMdwHelper.getValueFromData(data.attr('buttonBgColor' + i), '')),
                             statusBarColor: myMdwHelper.getValueFromData(data.attr('statusBarColor' + i), undefined),
+                            statusBarColorActive: myMdwHelper.getValueFromData(data.attr('statusBarColorActive' + i), undefined),
                             statusBarText: myMdwHelper.getValueFromData(data.attr('statusBarText' + i), ''),
                             lockEnabled: myMdwHelper.getBooleanFromData(data.attr('lockEnabled' + i), false),
                             visibilityOid: myMdwHelper.getValueFromData(data.attr('visibilityOid' + i), ''),
@@ -766,6 +788,7 @@ vis.binds.materialdesign.iconlist =
                                 buttonBackgroundColor: myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundColor, ''),
                                 buttonBackgroundActiveColor: myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundActiveColor, myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundColor, '')),
                                 statusBarColor: myMdwHelper.getValueFromData(jsonData[i].statusBarColor, undefined),
+                                statusBarColorActive: myMdwHelper.getValueFromData(jsonData[i].statusBarColorActive, undefined),
                                 statusBarText: myMdwHelper.getValueFromData(jsonData[i].statusBarText, ''),
                                 lockEnabled: myMdwHelper.getBooleanFromData(jsonData[i].lockEnabled, false),
                                 visibilityOid: myMdwHelper.getValueFromData(jsonData[i].visibilityOid, ''),

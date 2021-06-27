@@ -13113,6 +13113,7 @@ The adapter uses the following libraries:
 * (Scrounger) Value Widget: bug fix for data ovveride
 * (Scrounger) IconList Widget: option to set minimal width for single item added
 * (Scrounger) IconList Widget: header added
+* (Scrounger) IconList Widget: color options added
 * (Scrounger) List Widget: main header added
 * (darkiop) documentation updated ([#PR179](https://github.com/Scrounger/ioBroker.vis-materialdesign/pull/179))
 * (Scrounger) Top App Bar Widget: fixed bugs found by sentry

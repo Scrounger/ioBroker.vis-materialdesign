@@ -8441,6 +8441,18 @@ systemDictionary = {
         "pl": "kolor tekstu",
         "zh-cn": "文字颜色"
     },
+    "labelFontColorSelected": {
+        "en": "text color active",
+        "de": "Textfarbe aktiv",
+        "ru": "цвет текста активен",
+        "pt": "cor do texto ativa",
+        "nl": "tekstkleur actief",
+        "fr": "couleur du texte active",
+        "it": "colore del testo attivo",
+        "es": "color de texto activo",
+        "pl": "kolor tekstu aktywny",
+        "zh-cn": "文本颜色激活"
+    },
     "subLabelFontSize": {
         "en": "sub text size",
         "de": "Untertextgröße",
