@@ -821,9 +821,13 @@ vis.binds.materialdesign.helper = {
                 if (el.attr(`mdw-${key}`)) {
                     // widgetData[key] = el.attr(`mdw-${key}`).replace(/\\"/g, '"').replace(/&x22;/g, '"');
                     widgetData[key] = el.attr(`mdw-${key}`);
+                    widgetData[key] = formatTypeOfValue(widgetData[key]);
+
                 } else if (el.attr(`mdw-${key.toLowerCase()}`)) {
                     // widgetData[key] = el.attr(`mdw-${key.toLowerCase()}`).replace(/\\"/g, '"').replace(/&x22;/g, '"');
                     widgetData[key] = el.attr(`mdw-${key.toLowerCase()}`);
+                    widgetData[key] = formatTypeOfValue(widgetData[key]);
+
                 } else {
                     delete widgetData[key];
                 }
@@ -855,6 +859,14 @@ vis.binds.materialdesign.helper = {
         } else {
             if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] no oid exist, nothing to subscribed -> fire callback()`);
             if (callback) callback(widgetData);
+        }
+
+        function formatTypeOfValue(value) {
+            if (value.toLowerCase() === 'true' || value.toLowerCase() === 'false') {
+                return (value.toLowerCase() === 'true');
+            }
+
+            return value;
         }
     },
     setValue(id, value) {
@@ -924,7 +936,7 @@ vis.binds.materialdesign.helper = {
                     // only send to sentry, if error is at runtime and fired by MDW
 
                     if (!event.message.includes('cannot parse json string') &&                                                  // ignore json parse errors
-                    !event.message.includes('cannot parse subMenu json string') &&                                              // ignore json parse errors
+                        !event.message.includes('cannot parse subMenu json string') &&                                              // ignore json parse errors
                         !/\b(Cannot access)\b .* \b(before initialization)\b/g.test(event.message) &&                           // ignore lib init errors
                         !/\b(can't access lexical declaration)\b .* \b(before initialization)\b/g.test(event.message) &&        // ignore lib init errors                        
                         !event.message.includes('out of memory') &&
