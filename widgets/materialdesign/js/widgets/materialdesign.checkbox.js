@@ -148,7 +148,7 @@ vis.binds.materialdesign.checkbox = {
                 let label = $this.find('label[id="label"]');
                 if (buttonState) {
                     label.css('color', myMdwHelper.getValueFromData(data.labelColorTrue, '#44739e'));
-                    label.html(myMdwHelper.getValueFromData(data.labelTrue, ''));
+                    label.html(myMdwHelper.getValueFromData(data.labelTrue, myMdwHelper.getValueFromData(data.labelFalse, '')));
                 } else {
                     label.css('color', myMdwHelper.getValueFromData(data.labelColorFalse, '#44739e'));
                     label.html(myMdwHelper.getValueFromData(data.labelFalse, ''));
