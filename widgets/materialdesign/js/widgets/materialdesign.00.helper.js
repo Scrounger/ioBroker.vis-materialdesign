@@ -483,7 +483,7 @@ vis.binds.materialdesign.helper = {
         myMdwHelper.changeIconElement(parentElement, iconData, width, height, iconColor, `padding-top: 8px; padding-bottom: 8px;${style}`, 'mdc-list-item__graphic');
     },
     getAllowedImageFileExtensions: function () {
-        return ['.gif', '.png', '.bmp', '.jpg', '.jpeg', '.tif', '.svg', 'http://', 'https://'];
+        return ['.gif', '.png', '.bmp', '.jpg', '.jpeg', '.tif', '.svg', 'http://', 'https://', 'data:image/png;base64,'];
     },
     getVisibility: function (val, visibilityOid, visibilityCond, visibilityVal) {
         let widgetData = {
