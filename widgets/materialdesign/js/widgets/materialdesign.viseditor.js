@@ -354,10 +354,16 @@ vis.binds.materialdesign.viseditor = {
                         var wdata = $(this).data('wdata');
                         var defPath = ('/' + (that.conn.namespace ? that.conn.namespace + '/' : '') + that.projectPrefix + 'img/');
 
+                        var allowedFileExtensions = ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'];
+
                         var current = that.widgets[wdata.widgets[0]].data[wdata.attr];
                         //workaround, that some widgets calling direct the img/picure.png without /vis/
-                        if (current && current.substring(0, 4) === 'img/') {
-                            current = '/vis/' + current;
+                        if (allowedFileExtensions.some(function (v) { return current.indexOf(`.${v}`) >= 0; })) {
+                            if (current && current.substring(0, 4) === 'img/') {
+                                current = '/vis/' + current;
+                            }
+                        } else {
+                            current = defPath;
                         }
 
                         $.fm({
@@ -365,7 +371,7 @@ vis.binds.materialdesign.viseditor = {
                             defaultPath: defPath,
                             path: current || defPath,
                             uploadDir: '/' + (that.conn.namespace ? that.conn.namespace + '/' : ''),
-                            fileFilter: ['gif', 'png', 'bmp', 'jpg', 'jpeg', 'tif', 'svg'],
+                            fileFilter: allowedFileExtensions,
                             folderFilter: false,
                             mode: 'open',
                             view: 'prev',
