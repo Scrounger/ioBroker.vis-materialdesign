@@ -123,7 +123,7 @@ vis.binds.materialdesign.button = {
                 var val = vis.states.attr(data.oid + '.val');
 
                 if (vis.binds.materialdesign.button.getToggleState(val, data)) {
-                    imageElement = myMdwHelper.getIconElement(data.imageTrue, 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.imageTrueColor, myMdwHelper.getValueFromData(data.imageColor, '')));
+                    imageElement = myMdwHelper.getIconElement(myMdwHelper.getValueFromData(data.imageTrue, myMdwHelper.getValueFromData(data.image, '')), 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.imageTrueColor, myMdwHelper.getValueFromData(data.imageColor, '')));
                     $this.css('background', myMdwHelper.getValueFromData(data.colorBgTrue, myMdwHelper.getValueFromData(data.colorBgFalse, '')));
 
                     if (myMdwHelper.getValueFromData(data.buttontext, null) != null && !isIconButton) {
@@ -176,7 +176,7 @@ vis.binds.materialdesign.button = {
                 var val = vis.states.attr(data.oid + '.val');
 
                 if (vis.binds.materialdesign.button.getToggleState(val, data)) {
-                    imageElement = myMdwHelper.getIconElement(data.imageTrue, 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.imageTrueColor, myMdwHelper.getValueFromData(data.imageColor, '')));
+                    imageElement = myMdwHelper.getIconElement(myMdwHelper.getValueFromData(data.imageTrue, myMdwHelper.getValueFromData(data.image, '')), 'auto', myMdwHelper.getValueFromData(data.iconHeight, 'auto', '', 'px'), myMdwHelper.getValueFromData(data.imageTrueColor, myMdwHelper.getValueFromData(data.imageColor, '')));
                     $this.css('background', myMdwHelper.getValueFromData(data.colorBgTrue, myMdwHelper.getValueFromData(data.colorBgFalse, '')));
                     labelElement = `<span 
                                         class="materialdesign-button__label" style="text-align: center; color: ${myMdwHelper.getValueFromData(data.labelColorTrue, myMdwHelper.getValueFromData(data.labelColorFalse, ''))};">
