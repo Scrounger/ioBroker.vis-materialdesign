@@ -71,7 +71,9 @@ vis.binds.materialdesign.value = {
 
                 $this.find('.materialdesign-value-icon').html(myMdwHelper.getIconElement(getValueWithCondition(data.image, val), 'auto', myMdwHelper.getValueFromData(data.iconHeight, '24px', '', 'px'), myMdwHelper.getValueFromData(getValueWithCondition(data.imageColor, val), '#44739e')))
 
-                setValue(val, oldVal);
+                myMdwHelper.waitForElement($this, `.materialdesign-value`, data.wid, widgetName, function () {
+                    setValue(val, oldVal);
+                });
             }
 
             function setValue(value, oldVal = undefined) {
@@ -152,6 +154,32 @@ vis.binds.materialdesign.value = {
                     }
                 } else {
                     if (data.debug) console.warn(`${logPrefix} value is '${value}' oid: ${data.oid}`);
+                }
+
+                if (result.toString().includes('#mdwTheme:')) {
+                    // check if theme states used in calcualtion
+                    let themeIds = result.toString().match(/#mdwTheme:*[^*?"'`´,;:<>#\/{}\\ß\[\]\s]*/g);
+
+                    if (themeIds && themeIds !== null && themeIds.length > 0) {
+                        let darkTheme = vis.states.attr('vis-materialdesign.0.colors.darkTheme.val') || false;
+
+                        for (const str of themeIds) {
+                            let id = str.replace('#mdwTheme:', '');
+                            // myMdwHelper.needsSubscribe(id, true);
+
+                            if (!darkTheme) {
+                                let val = vis.states.attr(id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.light.') + '.val');
+                                if (val && val !== null && val !== 'null') {
+                                    result = result.replace(str, val);
+                                }
+                            } else {
+                                let val = vis.states.attr(id.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.dark.') + '.val');
+                                if (val && val !== null && val !== 'null') {
+                                    result = result.replace(str, val);
+                                }
+                            }
+                        }
+                    }
                 }
 
                 if (myMdwHelper.getBooleanFromData(data.changeEffectEnabled, false)) {
