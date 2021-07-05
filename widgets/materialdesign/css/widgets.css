@@ -1485,6 +1485,11 @@ svg.materialdesign-widget .materialdesign-button__icon {
   background-color: var(--materialdesign-color-list-item-background);
 }
 
+.materialdesign-widget .materialdesign-list-card .mdc-list.materialdesign-list-container {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
 .materialdesign-widget .mdc-sub-list-item {
   background-color: var(--materialdesign-color-sub-list-item-background);
 }
