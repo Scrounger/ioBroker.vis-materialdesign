@@ -506,33 +506,34 @@ vis.binds.materialdesign.views = {
             let val = vis.states.attr(data.oid + '.val');
             let containerClass = 'vis-view-container';
 
-
             $this.append(`<div class="vis-widget-body ${containerClass}" data-vis-contains="${val}"><div>`);
 
             bindView(val);
 
-            vis.states.bind(data.oid+ '.val', function (e, newVal, oldVal) {
+            vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 bindView(newVal);
             });
 
             if (vis.editMode) {
-                $this.append(`<div class="editmode-helper"></div>`);
+                $this.append(`<div class="editmode-helper" style="top: 0px;"></div>`);
             }
 
             function bindView(view) {
                 let $container = $this.find(`.${containerClass}`);
 
-                $container.empty();
-                $container.attr('data-vis-contains', view)
+                $container.children(":first").fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
+                    $container.empty();
+                    $container.attr('data-vis-contains', view)
 
-                if (vis.views[view]) {
-                    vis.renderView(view, view, true, function (_view) {
-                        $('#visview_' + _view).appendTo($container).show().data('persistent', true);
-                    });
-                } else {
-                    $container.html('<span style="color: red" class="container-error">' + _('error: view not found.') + '</span>');
-                    console.warn(`[Advanced View in Widget - ${data.wid}] '${view}' not existis!`);
-                }
+                    if (vis.views[view]) {
+                        vis.renderView(view, view, true, function (_view) {
+                            $('#visview_' + _view).appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
+                        });
+                    } else {
+                        $container.html('<span style="color: red" class="container-error">' + _('error: view not found.') + '</span>');
+                        console.warn(`[Advanced View in Widget - ${data.wid}] '${view}' not existis!`);
+                    }
+                });
             }
 
         } catch (ex) {
