@@ -255,7 +255,7 @@ vis.binds.materialdesign.list =
 
                     let spaceBetweenImageAndLabel = myMdwHelper.getValueFromData(data.distanceBetweenTextAndImage, '', 'margin-right: ', 'px;');
 
-                    const mdcList = new mdc.list.MDCList(list);
+                    const mdcList = new mdc.list.MDCList($this.find(`.${containerClass}`).get(0));
                     if (mdcList) {
                         const mdcListAdapter = mdcList.getDefaultFoundation().adapter_;
                         const listItemRipples = mdcList.listElements.map((listItemEl) => new mdc.ripple.MDCRipple(listItemEl));
