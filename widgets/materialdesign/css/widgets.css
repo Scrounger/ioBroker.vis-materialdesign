@@ -788,7 +788,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 .materialdesign-widget .materialdesign-button::before, 
 .materialdesign-widget.materialdesign-button::after,
 .materialdesign-widget .materialdesign-button::after {
-  background-color: var(--materialdesign-color-button-pressed, var(--materialdesign-color-primary));
+  background-color: var(--materialdesign-color-button-pressed, var(--materialdesign-color-primary)) !important;
 }
 
 .materialdesign-widget .materialdesign-icon-list-container .materialdesign-iconList-button::before, 
@@ -802,7 +802,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
   .materialdesign-widget.materialdesign-button::after,
   .materialdesign-widget .materialdesign-button::after {
     /* @alternate */
-    background-color: var(--materialdesign-color-button-pressed, var(--materialdesign-color-primary));
+    background-color: var(--materialdesign-color-button-pressed, var(--materialdesign-color-primary)) !important;
   }
 
   .materialdesign-widget .materialdesign-icon-list-container .materialdesign-iconList-button::before, 
@@ -856,7 +856,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 .materialdesign-widget .materialdesign-button--unelevated .materialdesign-button-body::after {
     /* @alternate */
     /* background-color: var(--mdc-theme-on-primary, #fff); */
-    background-color: var(--materialdesign-color-button-pressed, var(--materialdesign-color-secondary));
+    background-color: var(--materialdesign-color-button-pressed, var(--materialdesign-color-secondary)) !important;
   }
 }
 .materialdesign-widget.materialdesign-button--raised:hover::before,
