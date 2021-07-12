@@ -2137,7 +2137,8 @@ svg.materialdesign-widget .materialdesign-button__icon {
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: var(--materialdesign-icon-list-items-gaps);  
+  margin: var(--materialdesign-icon-list-items-gaps);
+  position: relative;
 }
 
 .materialdesign-icon-list-item-standard {
@@ -2220,7 +2221,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 .materialdesign-icon-list-item-layout-vertical-status-line {
   background: transparent;
-  min-height: 4px; 
+  /* min-height: 4px;  */
   width: 100%; 
   /* margin-left: -4px;
   margin-right: -4px;
@@ -2230,7 +2231,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 .materialdesign-icon-list-item-layout-vertical-status-line-card {
   background: transparent;
-  min-height: 4px; 
+  /* min-height: 4px;  */
   width: 100%; 
   border-radius: 0 0 4px 4px;
   /* margin-left: -4px;
@@ -2260,7 +2261,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 .materialdesign-icon-list-item-layout-horizontal-status-line {
   background: transparent;
-  min-height: 4px; 
+  /* min-height: 4px;  */
   width: 100%; 
   /* margin-left: -4px;
   margin-right: -4px;
@@ -2270,7 +2271,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 .materialdesign-icon-list-item-layout-horizontal-status-line-card {
   background: transparent;
-  min-height: 4px; 
+  /* min-height: 4px;  */
   width: 100%; 
   border-radius: 0 0 4px 4px;
   /* margin-left: -4px;

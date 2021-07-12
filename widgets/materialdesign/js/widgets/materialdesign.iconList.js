@@ -656,12 +656,26 @@ vis.binds.materialdesign.iconlist =
 
                         $item.find('.materialdesign-icon-list-item-text').css('color', myMdwHelper.getValueFromData(data.labelFontColorSelected, myMdwHelper.getValueFromData(data.labelFontColor, '')));
 
-                        if (listItemObj.statusBarColorActive) {
+                        if (listItemObj.statusBarColorActive || listItemObj.statusBarText) {
                             $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColorActive);
+                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('visibility', 'visible').css('background', listItemObj.statusBarColorActive);
+
                             $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColorActive);
+                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('visibility', 'visible').css('background', listItemObj.statusBarColorActive);
+
+                            if (listItemObj.statusBarColorActive) {
+                                $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('min-height', "4px");
+                                $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('min-height', "4px");
+
+                                $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('min-height', "4px");
+                                $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('min-height', "4px");
+                            }
                         } else {
                             $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('visibility', 'collapse');
+                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('visibility', 'collapse');
+
                             $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('visibility', 'collapse');
+                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('visibility', 'collapse');
                         }
 
                     } else {
@@ -670,15 +684,29 @@ vis.binds.materialdesign.iconlist =
 
                         $item.find('.materialdesign-icon-list-item-text').css('color', myMdwHelper.getValueFromData(data.labelFontColor, ''));
 
-                        if (listItemObj.statusBarColor) {
+                        if (listItemObj.statusBarColor || listItemObj.statusBarText) {
                             $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColor);
+                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('visibility', 'visible').css('background', listItemObj.statusBarColor);
+
                             $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColor);
+                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('visibility', 'visible').css('background', listItemObj.statusBarColor);
+
+                            if (listItemObj.statusBarColor) {
+                                $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('min-height', "4px");
+                                $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('min-height', "4px");
+
+                                $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('min-height', "4px");
+                                $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('min-height', "4px");
+                            }
                         } else {
                             $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('visibility', 'collapse');
+                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('visibility', 'collapse');
+
                             $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('visibility', 'collapse');
+                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('visibility', 'collapse');
                         }
                     }
-                    
+
                     if ($item.attr('isLocked') === 'true') {
                         if (myMdwHelper.getBooleanFromData(data.lockApplyOnlyOnImage, false) === true) {
                             $item.find('.materialdesign-iconList-button').css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
