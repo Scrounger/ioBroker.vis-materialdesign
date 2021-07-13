@@ -8525,6 +8525,18 @@ systemDictionary = {
         "pl": "kolor paska stanu",
         "zh-cn": "状态栏颜色"
     },
+    "statusBarColorActive": {
+        "en": "status bar color if active",
+        "de": "Farbe der Statusleiste, wenn aktiv",
+        "ru": "цвет строки состояния, если активен",
+        "pt": "cor da barra de status se ativa",
+        "nl": "statusbalkkleur indien actief",
+        "fr": "couleur de la barre d'état si active",
+        "it": "colore della barra di stato se attivo",
+        "es": "color de la barra de estado si está activo",
+        "pl": "kolor paska stanu, jeśli jest aktywny",
+        "zh-cn": "状态栏颜色（如果活动）"
+    },
     "statusBarText": {
         "en": "text of status bar",
         "de": "Text der Statusleiste",
@@ -8536,6 +8548,18 @@ systemDictionary = {
         "es": "texto de la barra de estado",
         "pl": "tekst paska stanu",
         "zh-cn": "状态栏文字"
+    },
+    "statusBarTextActive": {
+        "en": "text of status bar if active",
+        "de": "Text der Statusleiste wenn aktiv",
+        "ru": "текст строки состояния, если активен",
+        "pt": "texto da barra de status se ativo",
+        "nl": "tekst van statusbalk indien actief",
+        "fr": "texte de la barre d'état si actif",
+        "it": "testo della barra di stato se attivo",
+        "es": "texto de la barra de estado si está activo",
+        "pl": "tekst paska stanu, jeśli jest aktywny",
+        "zh-cn": "状态栏的文本（如果处于活动状态）"
     },
     "valueAppendix": {
         "en": "text to append to value",

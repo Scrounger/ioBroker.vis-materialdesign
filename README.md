@@ -5395,10 +5395,22 @@ JSON string must be an array of objects with the following properties:
 			<td>color of status bar</td>
 			<td>string</td>
 			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
+		</tr>
+		<tr>
+			<td>statusBarColorActive</td>
+			<td>color of status bar if active</td>
+			<td>string</td>
+			<td>hex(#44739e), rgb(20, 50, 200), rgba(20, 50, 200, 0.5)</td>
 		</tr>		
 		<tr>
 			<td>statusBarText</td>
 			<td>text of status bar</td>
+			<td>string</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>statusBarTextActive</td>
+			<td>text of status bar if active</td>
 			<td>string</td>
 			<td/>
 		</tr>		

@@ -656,12 +656,18 @@ vis.binds.materialdesign.iconlist =
 
                         $item.find('.materialdesign-icon-list-item-text').css('color', myMdwHelper.getValueFromData(data.labelFontColorSelected, myMdwHelper.getValueFromData(data.labelFontColor, '')));
 
-                        if (listItemObj.statusBarColorActive || listItemObj.statusBarText) {
-                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColorActive);
-                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('visibility', 'visible').css('background', listItemObj.statusBarColorActive);
+                        if (listItemObj.statusBarColorActive || listItemObj.statusBarTextActive) {
+                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColorActive)
+                                .html(listItemObj.statusBarTextActive);
 
-                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColorActive);
-                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('visibility', 'visible').css('background', listItemObj.statusBarColorActive);
+                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('visibility', 'visible').css('background', listItemObj.statusBarColorActive)
+                                .html(listItemObj.statusBarTextActive);
+
+                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColorActive)
+                                .html(listItemObj.statusBarTextActive);
+
+                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('visibility', 'visible').css('background', listItemObj.statusBarColorActive)
+                                .html(listItemObj.statusBarTextActive);
 
                             if (listItemObj.statusBarColorActive) {
                                 $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('min-height', "4px");
@@ -691,11 +697,17 @@ vis.binds.materialdesign.iconlist =
                         $item.find('.materialdesign-icon-list-item-text').css('color', myMdwHelper.getValueFromData(data.labelFontColor, ''));
 
                         if (listItemObj.statusBarColor || listItemObj.statusBarText) {
-                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColor);
-                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('visibility', 'visible').css('background', listItemObj.statusBarColor);
+                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColor)
+                                .html(listItemObj.statusBarText);
 
-                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColor);
-                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('visibility', 'visible').css('background', listItemObj.statusBarColor);
+                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('visibility', 'visible').css('background', listItemObj.statusBarColor)
+                                .html(listItemObj.statusBarText);
+
+                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColor)
+                                .html(listItemObj.statusBarText);
+
+                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('visibility', 'visible').css('background', listItemObj.statusBarColor)
+                                .html(listItemObj.statusBarText);
 
                             if (listItemObj.statusBarColor) {
                                 $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('min-height', "4px");
@@ -796,7 +808,8 @@ vis.binds.materialdesign.iconlist =
                             buttonBackgroundActiveColor: myMdwHelper.getValueFromData(data.attr('buttonBgColorActive' + i), myMdwHelper.getValueFromData(data.attr('buttonBgColor' + i), '')),
                             statusBarColor: myMdwHelper.getValueFromData(data.attr('statusBarColor' + i), undefined),
                             statusBarColorActive: myMdwHelper.getValueFromData(data.attr('statusBarColorActive' + i), undefined),
-                            statusBarText: myMdwHelper.getValueFromData(data.attr('statusBarText' + i), ''),
+                            statusBarText: myMdwHelper.getValueFromData(data.attr('statusBarText' + i), undefined),
+                            statusBarTextActive: myMdwHelper.getValueFromData(data.attr('statusBarTextActive' + i), undefined),
                             lockEnabled: myMdwHelper.getBooleanFromData(data.attr('lockEnabled' + i), false),
                             visibilityOid: myMdwHelper.getValueFromData(data.attr('visibilityOid' + i), ''),
                             visibilityCondition: myMdwHelper.getValueFromData(data.attr('visibilityCondition' + i), ''),
@@ -829,7 +842,8 @@ vis.binds.materialdesign.iconlist =
                                 buttonBackgroundActiveColor: myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundActiveColor, myMdwHelper.getValueFromData(jsonData[i].buttonBackgroundColor, '')),
                                 statusBarColor: myMdwHelper.getValueFromData(jsonData[i].statusBarColor, undefined),
                                 statusBarColorActive: myMdwHelper.getValueFromData(jsonData[i].statusBarColorActive, undefined),
-                                statusBarText: myMdwHelper.getValueFromData(jsonData[i].statusBarText, ''),
+                                statusBarText: myMdwHelper.getValueFromData(jsonData[i].statusBarText, undefined),
+                                statusBarTextActive: myMdwHelper.getValueFromData(jsonData[i].statusBarTextActive, undefined),
                                 lockEnabled: myMdwHelper.getBooleanFromData(jsonData[i].lockEnabled, false),
                                 visibilityOid: myMdwHelper.getValueFromData(jsonData[i].visibilityOid, ''),
                                 visibilityCondition: myMdwHelper.getValueFromData(jsonData[i].visibilityCondition, ''),
