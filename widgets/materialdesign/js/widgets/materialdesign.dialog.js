@@ -74,7 +74,11 @@ vis.binds.materialdesign.dialog = {
                             <v-card id="dialog_card_${dialogClassName}" height="auto" style="background: ${myMdwHelper.getValueFromData(data.backgroundColor, '')}">
 
                                 <v-toolbar flat v-show="showToolbar" height="${myMdwHelper.getNumberFromData(data.headerHeight, 64)}">
-                                    <v-toolbar-title class="v-dialog-toolbar-my-title-layout" v-html="title"></v-toolbar-title>    
+                                    <v-toolbar-title class="v-dialog-toolbar-my-title-layout" v-html="title"></v-toolbar-title>
+                                    ${myMdwHelper.getBooleanFromData(data.dlgShowSaveButton, false) ?
+                                        `<v-btn class="v-dialog-toolbar-my-btn-layout" icon @click="saveButton" style="text-indent: 0;">
+                                            <v-icon class="dialog-fullscreen-close-icon">mdi-${myMdwHelper.getValueFromData(data.dlgSaveButtonIcon, 'content-save')}</v-icon>
+                                        </v-btn>` : ''}
                                     <v-btn class="v-dialog-toolbar-my-btn-layout" icon @click="closeButton" style="text-indent: 0;">
                                         <v-icon class="dialog-fullscreen-close-icon">mdi-${myMdwHelper.getValueFromData(data.fullscreenCloseIcon, 'close')}</v-icon>
                                     </v-btn>
@@ -89,6 +93,14 @@ vis.binds.materialdesign.dialog = {
                                 <div class="v-dialog-footer" v-show="!showToolbar" style="height: ${myMdwHelper.getNumberFromData(data.footerHeight, myMdwHelper.getBooleanFromData(data.showTitle, false) ? 61 : 56)}px">
                                     ${myMdwHelper.getBooleanFromData(data.showDivider, false) ? `<div class="dialog-footer-divider" style="width: 100%; height: 1px; background: ${myMdwHelper.getValueFromData(data.dividerColor, 'lightgray')}; margin-top: 4px;"></div>` : ''}
                                     <v-card-actions class="v-dialog-my-card-actions" style="justify-content: ${data.buttonPosition};">
+                                        ${myMdwHelper.getBooleanFromData(data.dlgShowSaveButton, false) ?
+                                        `<v-btn color="primary" class="materialdesign-dialog-footer-button"
+                                            text
+                                            ${(data.buttonSize !== 'medium') ? data.buttonSize : ''}
+                                            ${(myMdwHelper.getBooleanFromData(data.buttonFullWidth, false)) ? 'block ' : ''}
+                                            @click="saveButton"
+                                            v-html="saveText"
+                                        ></v-btn>` : ''}                                        
                                         <v-btn color="primary" class="materialdesign-dialog-footer-button"
                                             text
                                             ${(data.buttonSize !== 'medium') ? data.buttonSize : ''}
@@ -117,6 +129,7 @@ vis.binds.materialdesign.dialog = {
                                         showDialog: false,
                                         title: myMdwHelper.getValueFromData(data.title, myMdwHelper.getValueFromData(data.contains_view, '')),
                                         closeText: myMdwHelper.getValueFromData(data.buttonText, _('close')),
+                                        saveText: myMdwHelper.getValueFromData(data.dlgSaveButtonText, _('save')),
                                         showToolbar: fullscreen,
                                         fullscreen: fullscreen,
                                         transition: (fullscreen) ? 'dialog-bottom-transition' : 'dialog-transition',
@@ -128,6 +141,14 @@ vis.binds.materialdesign.dialog = {
                                 },
                                 methods: {
                                     closeButton(value) {
+                                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                                        this.showDialog = false;
+                                    },
+                                    saveButton(value) {
+                                        if (myMdwHelper.getValueFromData(data.dlgSaveButtonOid, undefined)) {
+                                            myMdwHelper.setValue(data.dlgSaveButtonOid, myMdwHelper.getValueFromData(data.dlgSaveButtonValue, 'error'));
+                                        }
+
                                         vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
                                         this.showDialog = false;
                                     }

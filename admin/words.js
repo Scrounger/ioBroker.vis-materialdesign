@@ -9606,16 +9606,16 @@ systemDictionary = {
         "zh-cn": "如果分辨率低于则显示全屏对话框"
     },
     "group_layoutdialogCloseButton": {
-        "en": "Layout of dialog close button",
-        "de": "Layout der Schaltfläche zum Schließen des Dialogs",
-        "ru": "Расположение кнопки закрытия диалога",
-        "pt": "Layout do botão Fechar da caixa de diálogo",
-        "nl": "Lay-out van de knop Sluiten",
-        "fr": "Disposition du bouton de fermeture de la boîte de dialogue",
-        "it": "Layout del pulsante di chiusura della finestra di dialogo",
-        "es": "Diseño del botón de cerrar diálogo",
-        "pl": "Układ przycisku zamknięcia okna dialogowego",
-        "zh-cn": "对话框关闭按钮的布局"
+        "en": "layout of dialog footer buttons",
+        "de": "Layout der Schaltflächen in der Dialogfußzeile",
+        "ru": "макет кнопок нижнего колонтитула диалогового окна",
+        "pt": "layout dos botões de rodapé da caixa de diálogo",
+        "nl": "lay-out van dialoogvoettekstknoppen",
+        "fr": "disposition des boutons de pied de page de la boîte de dialogue",
+        "it": "layout dei pulsanti del piè di pagina della finestra di dialogo",
+        "es": "diseño de los botones de pie de página de diálogo",
+        "pl": "układ przycisków stopki okna dialogowego",
+        "zh-cn": "对话框页脚按钮的布局"
     },
     "buttonPosition": {
         "en": "button position",
@@ -9726,16 +9726,16 @@ systemDictionary = {
         "zh-cn": "全角按钮"
     },
     "buttonText": {
-        "en": "text",
-        "de": "Text",
-        "ru": "текст",
-        "pt": "texto",
-        "nl": "tekst",
-        "fr": "texte",
-        "it": "testo",
-        "es": "texto",
-        "pl": "tekst",
-        "zh-cn": "文本"
+        "en": "text of close button",
+        "de": "Text des Schließen-Buttons",
+        "ru": "текст кнопки закрытия",
+        "pt": "texto do botão fechar",
+        "nl": "tekst van knop sluiten",
+        "fr": "texte du bouton de fermeture",
+        "it": "testo del pulsante di chiusura",
+        "es": "texto del botón cerrar",
+        "pl": "tekst przycisku zamykania",
+        "zh-cn": "关闭按钮的文字"
     },
     "buttonFontSize": {
         "en": "font size",
@@ -9820,6 +9820,66 @@ systemDictionary = {
         "es": "color de prensa",
         "pl": "naciśnij kolor",
         "zh-cn": "按颜色"
+    },
+    "dlgShowSaveButton": {
+        "en": "show save button",
+        "de": "Speichern-Button anzeigen",
+        "ru": "показать кнопку сохранения",
+        "pt": "mostrar botão salvar",
+        "nl": "toon opslaan knop",
+        "fr": "afficher le bouton d'enregistrement",
+        "it": "mostra il pulsante di salvataggio",
+        "es": "mostrar el botón guardar",
+        "pl": "pokaż przycisk zapisu",
+        "zh-cn": "显示保存按钮"
+    },
+    "dlgSaveButtonText": {
+        "en": "text of save button",
+        "de": "Text des Speichern-Buttons",
+        "ru": "текст кнопки сохранения",
+        "pt": "texto do botão salvar",
+        "nl": "tekst van knop opslaan save",
+        "fr": "texte du bouton de sauvegarde",
+        "it": "testo del pulsante di salvataggio",
+        "es": "texto del botón guardar",
+        "pl": "tekst przycisku zapisu",
+        "zh-cn": "保存按钮的文本"
+    },
+    "dlgSaveButtonIcon": {
+        "en": "fullscreen save icon",
+        "de": "Vollbild-Speichersymbol",
+        "ru": "полноэкранный значок сохранения",
+        "pt": "ícone de salvar em tela cheia",
+        "nl": "pictogram voor opslaan op volledig scherm",
+        "fr": "icône de sauvegarde en plein écran",
+        "it": "icona di salvataggio a schermo intero",
+        "es": "icono de guardar en pantalla completa",
+        "pl": "ikona zapisywania na pełnym ekranie",
+        "zh-cn": "全屏保存图标"
+    },
+    "dlgSaveButtonOid": {
+        "en": "object id for save action",
+        "de": "Objekt-ID für Aktion speichern",
+        "ru": "идентификатор объекта для действия сохранения",
+        "pt": "id do objeto para salvar ação",
+        "nl": "object-ID voor opslagactie",
+        "fr": "ID d'objet pour l'action d'enregistrement",
+        "it": "ID oggetto per l'azione di salvataggio",
+        "es": "ID de objeto para guardar la acción",
+        "pl": "identyfikator obiektu dla akcji zapisu",
+        "zh-cn": "保存操作的对象 ID"
+    },
+    "dlgSaveButtonValue": {
+        "en": "value that should write on save action",
+        "de": "Wert, der bei der Speicheraktion geschrieben werden soll",
+        "ru": "значение, которое следует записать при сохранении действия",
+        "pt": "valor que deve ser escrito na ação de salvar",
+        "nl": "waarde die zou moeten schrijven op de actie opslaan",
+        "fr": "valeur qui devrait écrire sur l'action de sauvegarde",
+        "it": "valore che dovrebbe scrivere sull'azione di salvataggio",
+        "es": "valor que debe escribir en la acción de guardar",
+        "pl": "wartość, którą należy zapisać przy akcji zapisu",
+        "zh-cn": "应该写入保存操作的值"
     },
     "aggregate": {
         "en": "display methode",
