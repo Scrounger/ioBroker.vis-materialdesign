@@ -420,7 +420,7 @@
         "widget": "Dialog, Dialog iFrame"
     },
     {
-        "id": "light.dialog.close_button_fullscreen_press",
+        "id": "dark.dialog.close_button_fullscreen_press",
         "desc": "fullscreenCloseIconPressColor",
         "defaultValue": 5,
         "widget": "Dialog, Dialog iFrame"

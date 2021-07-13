@@ -73,7 +73,7 @@ vis.binds.materialdesign.dialog = {
 
                             <v-card id="dialog_card_${dialogClassName}" height="auto" style="background: ${myMdwHelper.getValueFromData(data.backgroundColor, '')}">
 
-                                <v-toolbar flat v-show="showToolbar" height="${myMdwHelper.getNumberFromData(data.headerHeight, 64)}">
+                                <v-toolbar flat v-show="showToolbar">
                                     <v-toolbar-title class="v-dialog-toolbar-my-title-layout" v-html="title"></v-toolbar-title>
                                     ${myMdwHelper.getBooleanFromData(data.dlgShowSaveButton, false) ?
                                         `<v-btn class="v-dialog-toolbar-my-btn-layout" icon @click="saveButton" style="text-indent: 0;">
