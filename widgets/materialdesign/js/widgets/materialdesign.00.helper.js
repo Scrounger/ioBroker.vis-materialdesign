@@ -585,7 +585,7 @@ vis.binds.materialdesign.helper = {
                 let view = vis.binds.materialdesign.helper.getViewOfWidget(wid);
 
                 if (vis.bindings.hasOwnProperty(bindings[b].systemOid) === false) {
-                    result.oidNeedSubscribe = vis.binds.materialdesign.helper.oidNeedSubscribe(bindings[b].systemOid, wid, widgetName, oidNeedSubscribe, true);
+                    result.oidNeedSubscribe = vis.binds.materialdesign.helper.oidNeedSubscribe(bindings[b].systemOid, wid, widgetName, result.oidNeedSubscribe, true);
 
                     vis.bindings[[bindings[b].systemOid]] = [{
                         visOid: bindings[b].visOid,
@@ -606,7 +606,7 @@ vis.binds.materialdesign.helper = {
                         if (bindings[b].operations[o].arg) {
                             for (var a = 0; a <= bindings[b].operations[o].arg.length - 1; a++) {
                                 if (bindings[b].operations[o].arg[a].systemOid) {
-                                    result.oidNeedSubscribe = vis.binds.materialdesign.helper.oidNeedSubscribe(bindings[b].operations[o].arg[a].systemOid, wid, widgetName, oidNeedSubscribe, true);
+                                    result.oidNeedSubscribe = vis.binds.materialdesign.helper.oidNeedSubscribe(bindings[b].operations[o].arg[a].systemOid, wid, widgetName, result.oidNeedSubscribe, true);
                                 }
                             }
                         }
