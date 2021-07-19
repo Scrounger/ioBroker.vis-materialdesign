@@ -657,17 +657,18 @@ vis.binds.materialdesign.iconlist =
                         $item.find('.materialdesign-icon-list-item-text').css('color', myMdwHelper.getValueFromData(data.labelFontColorSelected, myMdwHelper.getValueFromData(data.labelFontColor, '')));
 
                         if (listItemObj.statusBarColorActive || listItemObj.statusBarTextActive) {
+
                             $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColorActive)
-                                .html(listItemObj.statusBarTextActive);
+                                .html(listItemObj.statusBarTextActive ? listItemObj.statusBarTextActive : "");
 
                             $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('visibility', 'visible').css('background', listItemObj.statusBarColorActive)
-                                .html(listItemObj.statusBarTextActive);
+                                .html(listItemObj.statusBarTextActive ? listItemObj.statusBarTextActive : "");
 
                             $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColorActive)
-                                .html(listItemObj.statusBarTextActive);
+                                .html(listItemObj.statusBarTextActive ? listItemObj.statusBarTextActive : "");
 
                             $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('visibility', 'visible').css('background', listItemObj.statusBarColorActive)
-                                .html(listItemObj.statusBarTextActive);
+                                .html(listItemObj.statusBarTextActive ? listItemObj.statusBarTextActive : "");
 
                             if (listItemObj.statusBarColorActive) {
                                 $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('min-height', "4px");
@@ -698,16 +699,16 @@ vis.binds.materialdesign.iconlist =
 
                         if (listItemObj.statusBarColor || listItemObj.statusBarText) {
                             $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColor)
-                                .html(listItemObj.statusBarText);
+                                .html(listItemObj.statusBarText ? listItemObj.statusBarText : "");
 
                             $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('visibility', 'visible').css('background', listItemObj.statusBarColor)
-                                .html(listItemObj.statusBarText);
+                                .html(listItemObj.statusBarText ? listItemObj.statusBarText : "");
 
                             $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('visibility', 'visible').css('background', listItemObj.statusBarColor)
-                                .html(listItemObj.statusBarText);
+                                .html(listItemObj.statusBarText ? listItemObj.statusBarText : "");
 
                             $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('visibility', 'visible').css('background', listItemObj.statusBarColor)
-                                .html(listItemObj.statusBarText);
+                                .html(listItemObj.statusBarText ? listItemObj.statusBarText : "");
 
                             if (listItemObj.statusBarColor) {
                                 $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('min-height', "4px");

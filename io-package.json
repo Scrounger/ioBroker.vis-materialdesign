@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "vis-materialdesign",
-        "version": "0.5.12",
+        "version": "0.5.13",
         "news": {
             "0.5.9": {
                 "en": "* Top App Bar Widget: option added to define navigation items per JSON String [Details see documentation!](https://github.com/Scrounger/ioBroker.vis-materialdesign#top-app-bar)\n* Top App Bar Widget: option added to define an id per item\n* fixed bugs found by sentry\n\n<!-- omit in toc -->",
