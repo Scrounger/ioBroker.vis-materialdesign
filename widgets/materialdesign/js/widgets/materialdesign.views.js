@@ -541,5 +541,95 @@ vis.binds.materialdesign.views = {
         } catch (ex) {
             console.error(`[Advanced View in Widget - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
+    },
+    advancedViewInWidget8: function (el, data) {
+        let widgetName = 'Advanced View in Widget 8';
+
+        try {
+            var $this = $(el);
+            let val = vis.states.attr(data.oid + '.val');
+            let containerClass = 'vis-view-container';
+
+            var timer = null;
+
+            var viewArr = [];
+            var i = 0;
+            while (data.attr('contains_view_' + i) !== undefined) {
+                viewArr.push(data.attr('contains_view_' + i));
+                i++;
+            }
+
+            $this.append(`${vis.editMode ? '<div class="editmode-helper" />' : ''}
+                    <div class="vis-widget-body">
+                        <div class="${containerClass}" data-oid="${data.oid}" data-vis-contains="${viewArr[val]}" />
+                    </div>`);
+
+            let $container = $this.find(`.${containerClass}`);
+
+            function draw(val) {
+                timer = null;
+                var view = viewArr[val];
+                if (!data.persistent) {
+                    $container.parent().find('div.vis-view').fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
+                        $container.parent().find('div.vis-view').remove();
+
+                        if (vis.views[view]) {
+                            vis.renderView(view, view, true, function (_view) {
+                                var $view = $('#visview_' + _view);
+                                $view.data('persistent', data.persistent).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));;
+                                if (!$container.find('#visview_' + _view).length) {
+                                    $view.appendTo($container).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));;
+                                }
+                            });
+                        }
+                        vis.destroyUnusedViews();
+                    });
+                } else {
+                    $container.parent().find('div.vis-view').fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
+                        $container.parent().find('div.vis-view').hide().appendTo($('#vis_container'));
+
+                        if (vis.views[view]) {
+                            vis.renderView(view, view, true, function (_view) {
+                                var $view = $('#visview_' + _view);
+                                $view.data('persistent', data.persistent).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));;
+                                if (!$container.find('#visview_' + _view).length) {
+                                    $view.appendTo($container).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));;
+                                }
+                            });
+                        }
+                        vis.destroyUnusedViews();
+                    });
+                }
+            }
+
+            function onChange(e, newVal, oldVal) {
+                if (newVal === 'true' || newVal === true) newVal = 1;
+                if (newVal === 'false' || newVal === false) newVal = 0;
+                if (data.notIfInvisible && !$container.is(':visible')) {
+                    return;
+                }
+
+                if (timer) {
+                    clearTimeout(timer)
+                }
+                timer = setTimeout(function () {
+                    if (newVal !== oldVal && viewArr[newVal] !== viewArr[oldVal]) {
+                        draw(newVal);
+                    }
+                }, 50);
+            }
+
+            if (data.oid) {
+                vis.states.bind(data.oid + '.val', onChange);
+
+                // remember all ids, that bound
+                $container.parent().parent()
+                    .data('bound', [data.oid + '.val'])
+                    // remember bind handler
+                    .data('bindHandler', onChange);
+            }
+        } catch (ex) {
+            console.error(`[${widgetName} - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
+        }
     }
 };
