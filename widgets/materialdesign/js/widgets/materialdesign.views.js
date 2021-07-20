@@ -520,19 +520,22 @@ vis.binds.materialdesign.views = {
             }
 
             function bindView(view) {
+                
+
                 myMdwHelper.waitForOid(data.oid, data.wid, widgetName, function () {
                     let $container = $this.find(`.${containerClass}`);
 
-                    if ($container.find(".vis-view").length > 0) {
+                    
+                    if ($container.find(".vis-view,.container-error").length > 0) {
                         draw(view);
                     } else {
-                        myMdwHelper.waitForElement($container, ".vis-view", data.wid, widgetName, function () {
-                            draw(view);
-                        });
+                        $this.empty();
+                        $this.append(`<div class="vis-widget-body ${containerClass}" data-vis-contains="${view}"><div>`);
+                        draw(view);
                     }
 
                     function draw() {
-                        $container.find(".vis-view").fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
+                        $container.find(".vis-view,.container-error").fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
                             $container.empty();
                             $container.attr('data-vis-contains', view);
 
