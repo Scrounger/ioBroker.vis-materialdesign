@@ -505,6 +505,7 @@ vis.binds.materialdesign.views = {
             let $this = $(el);
             let val = vis.states.attr(data.oid + '.val');
             let containerClass = 'vis-view-container';
+            let widgetName = 'Advanced View in Widget';
 
             $this.append(`<div class="vis-widget-body ${containerClass}" data-vis-contains="${val}"><div>`);
 
@@ -519,23 +520,24 @@ vis.binds.materialdesign.views = {
             }
 
             function bindView(view) {
-                let $container = $this.find(`.${containerClass}`);
+                myMdwHelper.waitForOid(data.oid, data.wid, widgetName, function () {
+                    let $container = $this.find(`.${containerClass}`);
 
-                $container.children(":first").fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
-                    $container.empty();
-                    $container.attr('data-vis-contains', view)
+                    $container.children(":first").fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
+                        $container.empty();
+                        $container.attr('data-vis-contains', view)
 
-                    if (vis.views[view]) {
-                        vis.renderView(view, view, true, function (_view) {
-                            $('#visview_' + _view).appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
-                        });
-                    } else {
-                        $container.html('<span style="color: red" class="container-error">' + _('error: view not found.') + '</span>');
-                        console.warn(`[Advanced View in Widget - ${data.wid}] '${view}' not existis!`);
-                    }
+                        if (vis.views[view]) {
+                            vis.renderView(view, view, true, function (_view) {
+                                $('#visview_' + _view).appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
+                            });
+                        } else {
+                            $container.html('<span style="color: red" class="container-error">' + _('error: view not found.') + '</span>');
+                            console.warn(`[Advanced View in Widget - ${data.wid}] '${view}' not existis!`);
+                        }
+                    });
                 });
             }
-
         } catch (ex) {
             console.error(`[Advanced View in Widget - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
         }
