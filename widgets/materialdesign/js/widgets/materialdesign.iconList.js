@@ -684,11 +684,11 @@ vis.binds.materialdesign.iconlist =
                                 $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('min-height', "0px");
                             }
                         } else {
-                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('visibility', 'collapse');
-                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('visibility', 'collapse');
+                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('visibility', 'collapse').css('min-height', "0px");
+                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('visibility', 'collapse').css('min-height', "0px");
 
-                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('visibility', 'collapse');
-                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('visibility', 'collapse');
+                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('visibility', 'collapse').css('min-height', "0px");
+                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('visibility', 'collapse').css('min-height', "0px");
                         }
 
                     } else {
@@ -724,11 +724,11 @@ vis.binds.materialdesign.iconlist =
                                 $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('min-height', "0px");
                             }
                         } else {
-                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('visibility', 'collapse');
-                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('visibility', 'collapse');
+                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('visibility', 'collapse').css('min-height', "0px");
+                            $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('visibility', 'collapse').css('min-height', "0px");
 
-                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('visibility', 'collapse');
-                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('visibility', 'collapse');
+                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('visibility', 'collapse').css('min-height', "0px");
+                            $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('visibility', 'collapse').css('min-height', "0px");
                         }
                     }
 
