@@ -793,7 +793,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
 .materialdesign-widget .materialdesign-icon-list-container .materialdesign-iconList-button::before, 
 .materialdesign-widget .materialdesign-icon-list-container .materialdesign-iconList-button::after {
-  background-color: var(--materialdesign-color-icon-button-hover);
+  background-color: var(--materialdesign-color-icon-button-hover) !important;
 }
 
 @supports not (-ms-ime-align: auto) {
@@ -807,7 +807,7 @@ svg.materialdesign-widget .materialdesign-button__icon {
 
   .materialdesign-widget .materialdesign-icon-list-container .materialdesign-iconList-button::before, 
   .materialdesign-widget .materialdesign-icon-list-container .materialdesign-iconList-button::after {
-    background-color: var(--materialdesign-color-icon-button-hover);
+    background-color: var(--materialdesign-color-icon-button-hover) !important;
   }
 }
 .materialdesign-widget.materialdesign-button:hover::before,
