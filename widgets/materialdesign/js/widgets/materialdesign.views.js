@@ -521,16 +521,14 @@ vis.binds.materialdesign.views = {
 
             function bindView(view) {
                 
-
                 myMdwHelper.waitForOid(data.oid, data.wid, widgetName, function () {
                     let $container = $this.find(`.${containerClass}`);
 
-                    
                     if ($container.find(".vis-view,.container-error").length > 0) {
                         draw(view);
                     } else {
-                        $this.empty();
-                        $this.append(`<div class="vis-widget-body ${containerClass}" data-vis-contains="${view}"><div>`);
+                        // $this.empty();
+                        // $this.append(`<div class="vis-widget-body ${containerClass}" data-vis-contains="${view}"><div>`);
                         draw(view);
                     }
 
