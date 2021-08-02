@@ -207,6 +207,9 @@ vis.binds.materialdesign.views = {
 
             function setViewVisibilityByCondition(currentWidgetWidth) {
                 for (var i = 0; i <= data.countViews; i++) {
+                    var $view = $('#visview_' + data.attr('View' + i));
+                    $view.data('persistent', true);
+
                     let lessThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionLessThan' + i), 50000);
                     let greaterThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionGreaterThan' + i), 0);
 
@@ -471,6 +474,9 @@ vis.binds.materialdesign.views = {
 
             function setViewVisibilityByCondition(currentWidgetWidth) {
                 for (var i = 0; i <= data.countViews; i++) {
+                    var $view = $('#visview_' + data.attr('View' + i));
+                    $view.data('persistent', true);
+
                     let lessThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionLessThan' + i), 50000);
                     let greaterThan = myMdwHelper.getNumberFromData(data.attr('visibleResolutionGreaterThan' + i), 0);
 
@@ -520,7 +526,7 @@ vis.binds.materialdesign.views = {
             }
 
             function bindView(view) {
-                
+
                 myMdwHelper.waitForOid(data.oid, data.wid, widgetName, function () {
                     let $container = $this.find(`.${containerClass}`);
 
@@ -587,9 +593,9 @@ vis.binds.materialdesign.views = {
                         if (vis.views[view]) {
                             vis.renderView(view, view, true, function (_view) {
                                 var $view = $('#visview_' + _view);
-                                $view.data('persistent', data.persistent).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));;
+                                $view.data('persistent', data.persistent).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
                                 if (!$container.find('#visview_' + _view).length) {
-                                    $view.appendTo($container).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));;
+                                    $view.appendTo($container).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
                                 }
                             });
                         }
@@ -602,9 +608,9 @@ vis.binds.materialdesign.views = {
                         if (vis.views[view]) {
                             vis.renderView(view, view, true, function (_view) {
                                 var $view = $('#visview_' + _view);
-                                $view.data('persistent', data.persistent).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));;
+                                $view.data('persistent', data.persistent).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
                                 if (!$container.find('#visview_' + _view).length) {
-                                    $view.appendTo($container).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));;
+                                    $view.appendTo($container).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
                                 }
                             });
                         }
@@ -620,14 +626,20 @@ vis.binds.materialdesign.views = {
                     return;
                 }
 
-                if (timer) {
-                    clearTimeout(timer)
-                }
-                timer = setTimeout(function () {
-                    if (newVal !== oldVal && viewArr[newVal] !== viewArr[oldVal]) {
-                        draw(newVal);
+                if (newVal !== oldVal && viewArr[newVal] !== viewArr[oldVal]) {
+                    if (timer) {
+                        clearTimeout(timer)
                     }
-                }, 50);
+                    timer = setTimeout(function () {
+
+                        draw(newVal);
+
+                    }, 50);
+                } else {
+                    if (newVal !== oldVal) {
+                        $container.parent().find('div.vis-view').fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50)).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50))
+                    }
+                }
             }
 
             if (data.oid) {
