@@ -636,9 +636,10 @@ vis.binds.materialdesign.views = {
 
                     }, 50);
                 } else {
-                    if (newVal !== oldVal) {
-                        $container.parent().find('div.vis-view').fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50)).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50))
-                    }
+                    // if (newVal !== oldVal) {
+                    //     console.warn('hier 2');
+                    //     $container.parent().find('div.vis-view').fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50)).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50))
+                    // }
                 }
             }
 
