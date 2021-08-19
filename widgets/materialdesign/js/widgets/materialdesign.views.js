@@ -549,7 +549,7 @@ vis.binds.materialdesign.views = {
                                 });
                             } else {
                                 $container.html('<span style="color: red" class="container-error">' + _('error: view not found.') + '</span>');
-                                console.warn(`[Advanced View in Widget - ${data.wid}] '${view}' not existis!`);
+                                if(data.debug) console.warn(`[Advanced View in Widget - ${data.wid}] '${view}' not existis!`);
                             }
                         });
                     }

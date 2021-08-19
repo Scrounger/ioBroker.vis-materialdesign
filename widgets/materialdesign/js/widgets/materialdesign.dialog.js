@@ -269,13 +269,12 @@ vis.binds.materialdesign.dialog = {
                                         if (!isIFrame) {
                                             if (vis.views[view]) {
                                                 vis.renderView(view, view, true, function (_view) {
-                                                    $('#visview_' + _view).css('position', 'relative').css('height', wishHeight + 'px').appendTo($dialog.find(`#viewContainer_${dialogClassName}`)).show().data('persistent', true);
+                                                    $('#visview_' + _view).css('position', 'relative').css('max-height', wishHeight + 'px').css('overflow', 'auto').appendTo($dialog.find(`#viewContainer_${dialogClassName}`)).show().data('persistent', true);
                                                 });
                                             }
                                         } else {
                                             vis.binds.basic.iframeRefresh($dialog, data, view)
                                         }
-
                                     }
                                 });
                             }
@@ -326,7 +325,7 @@ vis.binds.materialdesign.dialog = {
                                 }
 
                                 if (!isIFrame) {
-                                    $dialog.find('#visview_' + data.contains_view).css('height', wishHeight + 'px');
+                                    $dialog.find('#visview_' + data.contains_view).css('max-height', wishHeight + 'px');
                                 } else {
                                     $dialog.find('.iFrame_container').css('height', (wishHeight - 2) + 'px');
                                 }
