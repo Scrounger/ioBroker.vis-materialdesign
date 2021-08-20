@@ -269,7 +269,7 @@ vis.binds.materialdesign.dialog = {
                                         if (!isIFrame) {
                                             if (vis.views[view]) {
                                                 vis.renderView(view, view, true, function (_view) {
-                                                    $('#visview_' + _view).css('position', 'relative').css('max-height', wishHeight + 'px').css('overflow', 'auto').appendTo($dialog.find(`#viewContainer_${dialogClassName}`)).show().data('persistent', true);
+                                                    $('#visview_' + _view).css('position', 'relative').css('max-height', wishHeight + 'px').css('overflow', 'hidden auto').appendTo($dialog.find(`#viewContainer_${dialogClassName}`)).show().data('persistent', true);
                                                 });
                                             }
                                         } else {
