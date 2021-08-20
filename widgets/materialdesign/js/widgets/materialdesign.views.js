@@ -518,6 +518,7 @@ vis.binds.materialdesign.views = {
             bindView(val);
 
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                if (data.debug) console.log(`[Advanced View in Widget - ${data.wid}] change view to '${newVal}' from '${oldVal}`);
                 bindView(newVal);
             });
 
@@ -539,19 +540,27 @@ vis.binds.materialdesign.views = {
                     }
 
                     function draw() {
-                        $container.find(".vis-view,.container-error").fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
-                            $container.empty();
-                            $container.attr('data-vis-contains', view);
+                        setTimeout(function () {
+                            if (data.debug) console.log(`[Advanced View in Widget - starting to draw view '${view}'`);
 
-                            if (vis.views[view]) {
-                                vis.renderView(view, view, true, function (_view) {
-                                    $('#visview_' + _view).appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
-                                });
-                            } else {
-                                $container.html('<span style="color: red" class="container-error">' + _('error: view not found.') + '</span>');
-                                if(data.debug) console.warn(`[Advanced View in Widget - ${data.wid}] '${view}' not existis!`);
-                            }
-                        });
+                            $container.find(".vis-view,.container-error").fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
+                                $container.empty();
+                                $container.attr('data-vis-contains', view);
+                                if (data.debug) console.log(`[Advanced View in Widget - old view cleared`);
+
+                                if (vis.views[view]) {
+                                    vis.renderView(view, view, true, function (_view) {
+                                        $('#visview_' + _view).appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
+                                        if (data.debug) console.log(`[Advanced View in Widget - new view rendered`);
+                                    });
+                                } else {
+                                    if (data.debug) {
+                                        $container.html('<span style="color: red" class="container-error">' + _('error: view not found.') + '</span>');
+                                        console.warn(`[Advanced View in Widget - ${data.wid}] '${view}' not existis!`);
+                                    }
+                                }
+                            });
+                        }, 1);
                     }
                 });
             }
