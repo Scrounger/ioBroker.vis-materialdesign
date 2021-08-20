@@ -540,8 +540,9 @@ vis.binds.materialdesign.views = {
                     }
 
                     function draw() {
-                        setTimeout(function () {
-                            if (data.debug) console.log(`[Advanced View in Widget - starting to draw view '${view}'`);
+                        if (data.debug) console.log(`[Advanced View in Widget - starting to draw view '${view}'`);
+
+                        myMdwHelper.waitForElement($container, "div.vis-view,.container-error", data.wid, widgetName, function () {
 
                             $container.find(".vis-view,.container-error").fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
                                 $container.empty();
@@ -561,10 +562,9 @@ vis.binds.materialdesign.views = {
                                         $container.html('<span class="container-error"></span>');
                                     }
                                 }
-
-                                vis.destroyUnusedViews();
                             });
-                        }, 50);
+                            
+                        }, 0, data.debug);
                     }
                 });
             }
