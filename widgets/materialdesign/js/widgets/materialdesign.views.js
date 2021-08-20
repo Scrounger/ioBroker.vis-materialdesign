@@ -518,7 +518,7 @@ vis.binds.materialdesign.views = {
             bindView(val);
 
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                if (data.debug) console.log(`[Advanced View in Widget - ${data.wid}] change view to '${newVal}' from '${oldVal}`);
+                if (data.debug) console.log(`[Advanced View in Widget - ${data.wid}] change view to '${newVal}' from '${oldVal}'`);
                 bindView(newVal);
             });
 
@@ -557,10 +557,14 @@ vis.binds.materialdesign.views = {
                                     if (data.debug) {
                                         $container.html('<span style="color: red" class="container-error">' + _('error: view not found.') + '</span>');
                                         console.warn(`[Advanced View in Widget - ${data.wid}] '${view}' not existis!`);
+                                    } else {
+                                        $container.html('<span class="container-error"></span>');
                                     }
                                 }
+
+                                vis.destroyUnusedViews();
                             });
-                        }, 1);
+                        }, 50);
                     }
                 });
             }
