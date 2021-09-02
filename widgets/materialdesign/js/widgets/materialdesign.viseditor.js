@@ -888,6 +888,7 @@ vis.binds.materialdesign.viseditor = {
     useTheme: function (widAttr, data) {
         try {
             var that = vis;
+            let theme = data[1] ? data[1] : undefined;
 
             // options = {min: ?,max: ?,step: ?}
             // Select
@@ -924,26 +925,38 @@ vis.binds.materialdesign.viseditor = {
                                                         let inspect = $(`#inspect_${obj.desc}`);
 
                                                         if (inspect && inspect.length > 0) {
-                                                            let mdwThemeOid = generateMdwThemeOid(themeType, obj.id);
+                                                            await setElementValue(inspect, themeType, obj.id, theme);
+                                                            // let mdwThemeOid = generateMdwThemeOid(themeType, obj.id);
 
-                                                            if (inspect.val() !== mdwThemeOid) {
-                                                                inspect.val(mdwThemeOid).trigger('change');
-                                                            }
+                                                            // console.warn(obj.desc);
+                                                            // console.warn(await getStateValue(themeType, obj.id, 'light'));
+
+
+                                                            // if (inspect.val() !== mdwThemeOid) {
+                                                            //     inspect.val(mdwThemeOid).trigger('change');
+                                                            // }
                                                         } else {
                                                             // wir haben ein Element mit count
                                                             inspect = $(`input[id^='inspect_${obj.desc}']`);
 
                                                             if (inspect && inspect.length > 0) {
-                                                                inspect.each(function (i, el) {
+                                                                inspect.each(async function (i, el) {
 
                                                                     // Prüfen ob am Ende der id wirklich nur eine number ist
                                                                     if (!isNaN(parseFloat(el.id.replace(`inspect_${obj.desc}`, '')))) {
                                                                         let $el = $(el);
-                                                                        let mdwThemeOid = generateMdwThemeOid(themeType, obj.id);
+                                                                        await setElementValue($el, themeType, obj.id, theme);
 
-                                                                        if ($el.val() !== mdwThemeOid) {
-                                                                            $el.val(mdwThemeOid).trigger('change');
-                                                                        }
+
+                                                                        // let mdwThemeOid = generateMdwThemeOid(themeType, obj.id);
+
+                                                                        // console.warn(obj.desc);
+                                                                        // console.warn(await getStateValue(themeType, obj.id, 'light'));
+
+
+                                                                        // if ($el.val() !== mdwThemeOid) {
+                                                                        //     $el.val(mdwThemeOid).trigger('change');
+                                                                        // }
                                                                     }
                                                                 });
                                                             }
@@ -977,6 +990,39 @@ vis.binds.materialdesign.viseditor = {
                                     return `#mdwTheme:vis-materialdesign.0.${themeType}.${id.replace('light.', '')}`;
                                 } else {
                                     return `#mdwTheme:vis-materialdesign.0.${themeType}.${id}`;
+                                }
+                            }
+
+                            async function getStateValue(themeType, id, theme) {
+                                let stateId = `vis-materialdesign.0.${themeType}.${id}`;
+
+                                if (theme === 'dark') {
+                                    stateId = `vis-materialdesign.0.${themeType}.${id.replace('light.', 'dark.')}`;
+                                }
+
+                                let state = await myMdwHelper.getStateAsync(stateId);
+
+                                if (state) {
+                                    return state.val;
+                                } else {
+                                    console.warn(`useTheme: state '${stateId}' is undefined!`);
+                                    return '';
+                                }
+                            }
+
+                            async function setElementValue(element, themeType, id, theme) {
+                                if (!theme) {
+                                    let mdwThemeOid = generateMdwThemeOid(themeType, id);
+
+                                    if (element.val() !== mdwThemeOid) {
+                                        element.val(mdwThemeOid).trigger('change');
+                                    }
+                                } else {
+                                    let val = await getStateValue(themeType, id, theme);
+
+                                    if (element.val() !== val) {
+                                        element.val(val).trigger('change');
+                                    }
                                 }
                             }
                         } else {

@@ -11154,6 +11154,30 @@ systemDictionary = {
         "pl": "użyj motywu",
         "zh-cn": "使用主题"
     },
+    "useLightTheme": {
+        "en": "light theme values",
+        "de": "helle Thema Werte",
+        "ru": "яркие значения темы",
+        "pt": "valores de tema brilhante",
+        "nl": "heldere themawaarden",
+        "fr": "valeurs de thème lumineux",
+        "it": "valori del tema luminoso",
+        "es": "valores de tema brillante",
+        "pl": "jasne wartości tematyczne",
+        "zh-cn": "明亮的主题值"
+    },
+    "useDarkTheme": {
+        "en": "dark theme values",
+        "de": "dunkle Thema Werte",
+        "ru": "значения темной темы",
+        "pt": "valores de tema escuro",
+        "nl": "donkere themawaarden",
+        "fr": "valeurs du thème sombre",
+        "it": "valori del tema scuro",
+        "es": "valores de tema oscuro",
+        "pl": "ciemne wartości motywu",
+        "zh-cn": "黑暗主题值"
+    },
     "SelectJavascriptInstance": {
         "en": "Javascript Instance",
         "de": "Javascript Instanz",
