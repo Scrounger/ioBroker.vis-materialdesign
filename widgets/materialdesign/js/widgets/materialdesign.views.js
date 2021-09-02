@@ -542,29 +542,35 @@ vis.binds.materialdesign.views = {
                     function draw() {
                         if (data.debug) console.log(`[Advanced View in Widget - starting to draw view '${view}'`);
 
-                        myMdwHelper.waitForElement($container, "div.vis-view,.container-error", data.wid, widgetName, function () {
-
-                            $container.find(".vis-view,.container-error").fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
-                                $container.empty();
-                                $container.attr('data-vis-contains', view);
+                        let $visView = $container.find(".vis-view,.container-error");
+                        
+                        if ($visView.length > 0) {
+                            $visView.fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
                                 if (data.debug) console.log(`[Advanced View in Widget - old view cleared`);
-
-                                if (vis.views[view]) {
-                                    vis.renderView(view, view, true, function (_view) {
-                                        $('#visview_' + _view).appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
-                                        if (data.debug) console.log(`[Advanced View in Widget - new view rendered`);
-                                    });
-                                } else {
-                                    if (data.debug) {
-                                        $container.html('<span style="color: red" class="container-error">' + _('error: view not found.') + '</span>');
-                                        console.warn(`[Advanced View in Widget - ${data.wid}] '${view}' not existis!`);
-                                    } else {
-                                        $container.html('<span class="container-error"></span>');
-                                    }
-                                }
+                                renderView();
                             });
-                            
-                        }, 0, data.debug);
+                        } else {
+                            renderView();
+                        }
+                    }
+
+                    function renderView() {
+                        $container.empty();
+                        $container.attr('data-vis-contains', view);
+
+                        if (vis.views[view]) {
+                            vis.renderView(view, view, true, function (_view) {
+                                $('#visview_' + _view).appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
+                                if (data.debug) console.log(`[Advanced View in Widget - new view rendered`);
+                            });
+                        } else {
+                            if (data.debug) {
+                                $container.html('<span style="color: red" class="container-error">' + _('error: view not found.') + '</span>');
+                                console.warn(`[Advanced View in Widget - ${data.wid}] '${view}' not existis!`);
+                            } else {
+                                $container.html('<span class="container-error"></span>');
+                            }
+                        }
                     }
                 });
             }
