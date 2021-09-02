@@ -519,40 +519,41 @@ vis.binds.materialdesign.views = {
 
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 if (data.debug) console.log(`[Advanced View in Widget - ${data.wid}] change view to '${newVal}' from '${oldVal}'`);
-                bindView(newVal);
+                bindView();
             });
 
             if (vis.editMode) {
                 $this.append(`<div class="editmode-helper" style="top: 0px;"></div>`);
             }
 
-            function bindView(view) {
+            function bindView() {
 
-                myMdwHelper.waitForOid(data.oid, data.wid, widgetName, function () {
+                myMdwHelper.waitForOid(data.oid, data.wid, widgetName, function (view) {
                     let $container = $this.find(`.${containerClass}`);
 
-                    if (data.debug) console.log(`[Advanced View in Widget - starting to draw view '${view}'`);
+                    if (data.debug) console.log(`[Advanced View in Widget - ${data.wid}] starting to draw view '${view}'`);
 
-                    let $visView = $container.find(".vis-view,.container-error");
-                    if ($visView.length > 0) {
-                        renderView($visView);
+                    if ($container.find(".vis-view,.container-error").length > 0) {
+                        renderView();
                     } else {
                         myMdwHelper.waitForElement($container, "div.vis-view,.container-error", data.wid, widgetName, function () {
-                            renderView($visView);
+                            renderView();
                         }, 0, data.debug);
                     }
 
-                    function renderView($visView) {
+                    function renderView() {
+                        let $visView = $container.find(".vis-view,.container-error");
+
                         $visView.fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
                             $container.empty();
                             $container.attr('data-vis-contains', view);
 
-                            if (data.debug) console.log(`[Advanced View in Widget - old view cleared`);
+                            if (data.debug) console.log(`[Advanced View in Widget - ${data.wid}] old view cleared`);
 
                             if (vis.views[view]) {
                                 vis.renderView(view, view, true, function (_view) {
                                     $('#visview_' + _view).appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
-                                    if (data.debug) console.log(`[Advanced View in Widget - new view rendered`);
+                                    if (data.debug) console.log(`[Advanced View in Widget - ${data.wid}] new view rendered`);
                                 });
                             } else {
                                 if (data.debug) {
