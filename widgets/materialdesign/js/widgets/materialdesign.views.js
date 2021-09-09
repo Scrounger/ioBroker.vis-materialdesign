@@ -536,15 +536,29 @@ vis.binds.materialdesign.views = {
                     if ($container.find(".vis-view,.container-error").length > 0) {
                         renderView();
                     } else {
-                        myMdwHelper.waitForElement($container, "div.vis-view,.container-error", data.wid, widgetName, function () {
+                        if (data.slowConnection) {
+                            if (data.debug) console.log(`[Advanced View in Widget - ${data.wid}] slow connection option is activated`);
+                            myMdwHelper.waitForElement($container, "div.vis-view,.container-error", data.wid, widgetName, function () {
+                                renderView();
+                            }, 0, data.debug);
+                        } else {
                             renderView();
-                        }, 0, data.debug);
+                        }
                     }
 
                     function renderView() {
                         let $visView = $container.find(".vis-view,.container-error");
 
-                        $visView.fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
+                        if (myMdwHelper.getNumberFromData(data.fadeOutDuration, 50) > 0) {
+                            $visView.fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
+                                showView();
+                            });
+                        } else {
+                            $visView.hide();
+                            showView();
+                        }
+
+                        function showView() {
                             $container.empty();
                             $container.attr('data-vis-contains', view);
 
@@ -552,7 +566,13 @@ vis.binds.materialdesign.views = {
 
                             if (vis.views[view]) {
                                 vis.renderView(view, view, true, function (_view) {
-                                    $('#visview_' + _view).appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
+
+                                    if (myMdwHelper.getNumberFromData(data.fadeInDuration, 50) > 0) {
+                                        $('#visview_' + _view).appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
+                                    } else {
+                                        $('#visview_' + _view).appendTo($container).data('persistent', true).show();
+                                    }
+
                                     if (data.debug) console.log(`[Advanced View in Widget - ${data.wid}] new view rendered`);
                                 });
                             } else {
@@ -563,7 +583,7 @@ vis.binds.materialdesign.views = {
                                     $container.html('<span class="container-error"></span>');
                                 }
                             }
-                        });
+                        }
                     }
                 });
             }
