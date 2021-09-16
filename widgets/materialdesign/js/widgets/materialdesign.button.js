@@ -529,10 +529,20 @@ vis.binds.materialdesign.button = {
                 // calculate thickness
                 let sliderwith = Math.round(divMax + myMdwHelper.getNumberFromData(data.sliderWidth, 20)) + '';
                 let optThickness = 1 - (divMax / sliderwith);
+
+                if (data.showInFront) {
+                    sliderwith = Math.round(divMax - myMdwHelper.getNumberFromData(data.sliderWidth, 0)) + '';
+                    optThickness = 0.15;
+
+                    if (sliderwith <= 0) {
+                        sliderwith = 1;
+                    }
+                }
+
                 let thickness = myMdwHelper.getNumberFromData(data.sliderThikness, undefined) ? data.sliderThikness : optThickness;
 
                 let sliderElement = `
-                <div class="slider-container" style="position: absolute; left: calc(50% - ${sliderwith}px / 2); top: calc(50% - ${sliderwith}px / 2);">
+                <div class="materialdesign-icon-button-slider-container" style="position: absolute; left: calc(50% - ${sliderwith}px / 2); top: calc(50% - ${sliderwith}px / 2);">
                     <input type="text" class="scalaInput" value="66" data-width="${sliderwith}" data-height="${sliderwith}" data-thickness="${thickness}" 
                         style="width: 0px;
                         height: 0px;
@@ -551,51 +561,96 @@ vis.binds.materialdesign.button = {
 
                 $knobDiv = $scalaInput.knob({
                     displayInput: false,
-                    min: 0,
-                    max: 100,
+                    min: myMdwHelper.getNumberFromData(data.valueOff, 0),
+                    max: myMdwHelper.getNumberFromData(data.valueOn, 100),
                     step: 1,
                     fgColor: "red",
                     relative: true,
+                    change: function (value) {
+                        if (vis.editMode) {
+                            return false;
+                        }
+
+                        if (!($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined)) {
+                            return false;
+                        }
+                    }
                 });
+
+                sliderHide();
             }
 
             function sliderEvents() {
-                let click = false;
-                let mousedown = false;
+                if (!vis.editMode) {
+                    let click = false;
+                    let mousedown = false;
 
-                $this.on('tap', function (e) {
-                    click = true;
-                    mousedown = false;
-                });
+                    $this.on('mouseenter', function () {
+                        sliderShow();
+                    });
 
-                $this.on('tapstart', function (e) {
-                    mousedown = true;
-                });
+                    $this.on('mouseleave', function () {
+                        if (!mousedown) {
+                            sliderHide();
+                        }
+                    });
 
-                $('body').on('tapend', function (e) {
-                    if (click) {
-                        if ($this.attr('toggled') === true || $this.attr('toggled') === 'true') {
-                            myMdwHelper.setValue(data.oid, data.valueOff);
-                            sliderSetValue(data.valueOff);
+                    $this.on('tap', function (e) {
+                        click = true;
+                        mousedown = false;
+                    });
+
+                    $this.on('tapstart', function (e) {
+                        mousedown = true;
+                        sliderShow();
+                    });
+
+                    $('body').on('tapend', function (e) {
+                        if (click) {
+                            if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined) {
+                                if ($this.attr('toggled') === true || $this.attr('toggled') === 'true') {
+                                    myMdwHelper.setValue(data.oid, data.valueOff);
+                                    sliderSetValue(data.valueOff);
+                                } else {
+                                    myMdwHelper.setValue(data.oid, data.valueOn);
+                                    sliderSetValue(data.valueOn);
+                                }
+                            } else {
+                                unlockButton();
+                            }
                         } else {
-                            myMdwHelper.setValue(data.oid, data.valueOn);
-                            sliderSetValue(data.valueOn);
+                            if (mousedown) {
+                                if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined) {
+                                    myMdwHelper.setValue(data.oid, $scalaInput.val());
+                                    sliderHide();
+                                }
+                            }
                         }
-                    } else {
-                        if (mousedown) {
-                            myMdwHelper.setValue(data.oid, $scalaInput.val());
-                        }
-                    }
 
-                    click = false;
-                    mousedown = false;
-                });
+                        click = false;
+                        mousedown = false;
+                    });
+                }
             }
 
             function sliderSetValue(val, setByUser = true) {
                 if (val || val === 0) {
                     $scalaInput.data('setByUser', setByUser);
                     $scalaInput.val(val).trigger('change');
+                }
+            }
+
+            function sliderShow() {
+                if (!data.showAlways) {
+                    $knobDiv.show();
+                }
+            }
+
+            function sliderHide() {
+                if (!data.showAlways) {
+                    setTimeout(function () {
+                        $knobDiv.hide();
+                    }, 150);
                 }
             }
 
