@@ -36,6 +36,9 @@ vis.binds.materialdesign.button = {
             default: 'toggle_default',
             vertical: 'toggle_vertical',
             icon: 'toggle_icon'
+        },
+        slider: {
+            icon: 'slider_icon'
         }
     },
     initialize: function (el, data, type) {
@@ -76,6 +79,8 @@ vis.binds.materialdesign.button = {
                     vis.binds.materialdesign.button.handleAddition(el, data, type.includes('icon'));
                 } else if (type.includes('toggle')) {
                     vis.binds.materialdesign.button.handleToggle(el, data, type.includes('icon'));
+                } else if (type.includes('slider')) {
+                    vis.binds.materialdesign.button.handleToggle(el, data, type.includes('icon'), true);
                 }
             });
 
@@ -376,9 +381,12 @@ vis.binds.materialdesign.button = {
             console.error(`[Button - ${data.wid}] handleState: error:: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    handleToggle: function (el, data, isIconButton = false) {
+    handleToggle: function (el, data, isIconButton = false, hasSlider = false) {
         try {
             var $this = $(el);
+
+            let $scalaInput;
+            let $knobDiv;
 
             if ($this.attr('isLocked') === 'true') {
                 $this.find('.materialdesign-button-body').css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
@@ -393,6 +401,10 @@ vis.binds.materialdesign.button = {
             let textColorFalse = myMdwHelper.getValueFromData(data.labelColorFalse, '');
             let textColorTrue = myMdwHelper.getValueFromData(data.labelColorTrue, textColorFalse);
 
+            if (hasSlider) {
+                intializeSlider();
+            }
+
             setButtonState();
 
             if (data.readOnly && !vis.editMode) {
@@ -405,25 +417,30 @@ vis.binds.materialdesign.button = {
 
             if (!vis.editMode) {
                 if (myMdwHelper.getBooleanFromData(data.pushButton, false) === false) {
-                    $this.on('click', function (e) {
-                        // Protect against two events
-                        event.preventDefault();
-                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
 
-                        if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined) {
-                            if (myMdwHelper.getValueFromData(data.toggleType, 'boolean') === 'boolean') {
-                                myMdwHelper.setValue(data.oid, !vis.states.attr(data.oid + '.val'));
-                            } else {
-                                if ($this.attr('toggled') === true || $this.attr('toggled') === 'true') {
-                                    myMdwHelper.setValue(data.oid, data.valueOff);
+                    if (!hasSlider) {
+                        $this.on('click', function (e) {
+                            // Protect against two events
+                            event.preventDefault();
+                            vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+
+                            if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined) {
+                                if (myMdwHelper.getValueFromData(data.toggleType, 'boolean') === 'boolean') {
+                                    myMdwHelper.setValue(data.oid, !vis.states.attr(data.oid + '.val'));
                                 } else {
-                                    myMdwHelper.setValue(data.oid, data.valueOn);
+                                    if ($this.attr('toggled') === true || $this.attr('toggled') === 'true') {
+                                        myMdwHelper.setValue(data.oid, data.valueOff);
+                                    } else {
+                                        myMdwHelper.setValue(data.oid, data.valueOn);
+                                    }
                                 }
+                            } else {
+                                unlockButton();
                             }
-                        } else {
-                            unlockButton();
-                        }
-                    });
+                        });
+                    } else {
+                        sliderEvents();
+                    }
                 } else {
                     // Button from type push (Taster)                   
                     $this.on('mousedown touchstart', function (e) {
@@ -482,6 +499,10 @@ vis.binds.materialdesign.button = {
 
                     $this.find('.materialdesign-button__label').html(textFalse).css('color', textColorFalse);
                 }
+
+                if (hasSlider) {
+                    sliderSetValue(val, false);
+                }
             }
 
             function unlockButton() {
@@ -495,6 +516,89 @@ vis.binds.materialdesign.button = {
                     $this.find('.materialdesign-button-body').css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
                 }, myMdwHelper.getNumberFromData(data.autoLockAfter, 10) * 1000);
             }
+
+            function intializeSlider() {
+                $this.css('overflow', 'visible');
+                $this.css('padding', 0);
+                $this.find('.materialdesign-button-body').css('position', 'relative');
+
+                var divW = parseInt(window.getComputedStyle($this.get(0), null).width.replace('px', ''));
+                var divH = parseInt(window.getComputedStyle($this.get(0), null).height.replace('px', ''));
+                var divMax = ((divW > divH) ? divW : divH);
+
+                // calculate thickness
+                let sliderwith = Math.round(divMax + myMdwHelper.getNumberFromData(data.sliderWidth, 20)) + '';
+                let optThickness = 1 - (divMax / sliderwith);
+                let thickness = myMdwHelper.getNumberFromData(data.sliderThikness, undefined) ? data.sliderThikness : optThickness;
+
+                let sliderElement = `
+                <div class="slider-container" style="position: absolute; left: calc(50% - ${sliderwith}px / 2); top: calc(50% - ${sliderwith}px / 2);">
+                    <input type="text" class="scalaInput" value="66" data-width="${sliderwith}" data-height="${sliderwith}" data-thickness="${thickness}" 
+                        style="width: 0px;
+                        height: 0px;
+                        display: hidden;
+                        background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;">
+                </div>`
+
+                if (!data.showInFront) {
+                    $this.prepend(sliderElement);
+                    $this.find('.materialdesign-button-body').css('pointer-events', 'none');
+                } else {
+                    $this.find('.materialdesign-button-body').append(sliderElement);
+                }
+
+                $scalaInput = $this.find('.scalaInput');
+
+                $knobDiv = $scalaInput.knob({
+                    displayInput: false,
+                    min: 0,
+                    max: 100,
+                    step: 1,
+                    fgColor: "red",
+                    relative: true,
+                });
+            }
+
+            function sliderEvents() {
+                let click = false;
+                let mousedown = false;
+
+                $this.on('tap', function (e) {
+                    click = true;
+                    mousedown = false;
+                });
+
+                $this.on('tapstart', function (e) {
+                    mousedown = true;
+                });
+
+                $('body').on('tapend', function (e) {
+                    if (click) {
+                        if ($this.attr('toggled') === true || $this.attr('toggled') === 'true') {
+                            myMdwHelper.setValue(data.oid, data.valueOff);
+                            sliderSetValue(data.valueOff);
+                        } else {
+                            myMdwHelper.setValue(data.oid, data.valueOn);
+                            sliderSetValue(data.valueOn);
+                        }
+                    } else {
+                        if (mousedown) {
+                            myMdwHelper.setValue(data.oid, $scalaInput.val());
+                        }
+                    }
+
+                    click = false;
+                    mousedown = false;
+                });
+            }
+
+            function sliderSetValue(val, setByUser = true) {
+                if (val || val === 0) {
+                    $scalaInput.data('setByUser', setByUser);
+                    $scalaInput.val(val).trigger('change');
+                }
+            }
+
         } catch (ex) {
             console.error(`[Button - ${data.wid}] handleToggle: error:: ${ex.message}, stack: ${ex.stack}`);
         }

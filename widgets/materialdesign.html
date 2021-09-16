@@ -455,6 +455,24 @@
         </div>
 </script>
 
+<script id="tplVis-materialdesign-Icon-Button-Slider"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev='<div id="prev_tplVis-materialdesign-Icon-Button-Toggle" style="position: relative; text-align: initial; padding: 0px !important; display: flex; justify-content:center;"><div class="vis-widget_prev materialdesign-widget materialdesign-icon-button mdc-ripple-upgraded--unbounded vis-tpl-materialdesign-Icon Button Toggle mdc-ripple-upgraded" style="width: 48px; height: 48px; background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%; --materialdesign-font-size-button: inherit; --materialdesign-font-button-vertical-text-distance-image:2px; --materialdesign-color-icon-button-hover:#44739e; left: 493px; top: 598px; position: absolute; z-index: 4; --mdc-ripple-fg-size:28px; --mdc-ripple-fg-scale:1.7142857142857142; --mdc-ripple-left:10px; --mdc-ripple-top:10px;" islocked="false" aria-pressed="false" toggled="false" data-zmodified="true"> <div class="materialdesign-button-body" style="display:flex; justify-content: center; align-items: center; width: 100%; height: 100%;"> <span class="mdi mdi-checkbox-marked materialdesign-icon-image" style="width: auto; height: auto; font-size: auto; color: #44739e; ;"></span></div>  <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div></div>'
+        data-vis-set="materialdesign"
+        data-vis-type="ctrl,state,val,bool"
+        data-vis-name="Icon Button Slider"
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,toggle_icon;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;useTheme/custom,materialdesign.viseditor.useTheme;useLightTheme/custom,materialdesign.viseditor.useTheme,light;useDarkTheme/custom,materialdesign.viseditor.useTheme,dark;oid;readOnly/checkbox;toggleType[boolean]/select,boolean,value;pushButton/checkbox;valueOff;valueOn;stateIfNotTrueValue[on]/select,on,off;vibrateOnMobilDevices[50]/number;generateHtmlControl/custom,materialdesign.viseditor.generateHtmlControl,button,toggle_icon;debug/checkbox;"
+        data-vis-attrs0="group.icon;image[checkbox-marked]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor[#mdwTheme:vis-materialdesign.0.colors.button.icon.icon_off]/color;imageTrue/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageTrueColor[#mdwTheme:vis-materialdesign.0.colors.button.icon.icon_on]/color;iconHeight/slider,0,200,1;"
+        data-vis-attrs1="group.color;colorBgFalse[#mdwTheme:vis-materialdesign.0.colors.button.icon.background_off]/color;colorBgTrue[#mdwTheme:vis-materialdesign.0.colors.button.icon.background_on]/color;colorPress[#mdwTheme:vis-materialdesign.0.colors.button.icon.pressed]/color;"
+        data-vis-attrs2="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materialdesign.viseditor.materialDesignIcons;lockIconTop[45]/slider,0,100,1;lockIconLeft[55]/slider,0,100,1;lockIconSize[20]/number;lockIconColor[#mdwTheme:vis-materialdesign.0.colors.button.icon.lock_icon]/color;lockIconBackground[#mdwTheme:vis-materialdesign.0.colors.button.icon.lock_icon_background]/color;lockBackgroundSizeFactor[1]/number,1,10,0.1;lockFilterGrayscale[30]/slider,0,100,1;"
+        data-vis-attrs3="group.slider;sliderWidth/slider,0,300,1;sliderThikness/slider,0,1,0.1;showAlways/checkbox;showInFront/checkbox;">
+
+        <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'slider_icon'); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
+
+        </div>
+</script>
+
 <script id="tplVis-materialdesign-Input"
         type="text/ejs"
         class="vis-tpl"
