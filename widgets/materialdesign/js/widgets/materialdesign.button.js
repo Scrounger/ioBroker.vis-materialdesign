@@ -402,6 +402,7 @@ vis.binds.materialdesign.button = {
             let textColorTrue = myMdwHelper.getValueFromData(data.labelColorTrue, textColorFalse);
 
             if (hasSlider) {
+                data.toggleType = "value";
                 intializeSlider();
             }
 
@@ -554,7 +555,7 @@ vis.binds.materialdesign.button = {
 
                 if (!data.showInFront) {
                     $this.prepend(sliderElement);
-                    $this.find('.materialdesign-button-body').css('pointer-events', 'none');
+                    $this.find('.materialdesign-button-body').css('pointer-events', 'none !important');
                 } else {
                     $this.find('.materialdesign-button-body').append(sliderElement);
                 }
@@ -566,8 +567,11 @@ vis.binds.materialdesign.button = {
                     min: myMdwHelper.getNumberFromData(data.valueOff, 0),
                     max: myMdwHelper.getNumberFromData(data.valueOn, 100),
                     step: 1,
-                    fgColor: "red",
+                    fgColor: myMdwHelper.getValueFromData(data.foregroundColor, "#44739e"),
+                    bgColor: myMdwHelper.getValueFromData(data.backgroundColor, "#eeeeee"),
                     relative: true,
+                    angleOffset: myMdwHelper.getNumberFromData(data.angleOffset, 180),
+                    angleArc: myMdwHelper.getNumberFromData(data.angleArc, 360),
                     change: function (value) {
                         if (vis.editMode) {
                             return false;
@@ -767,6 +771,16 @@ vis.binds.materialdesign.button = {
                 $this.find('.materialdesign-lock-icon').css('background', myMdwHelper.getValueFromData(data.lockIconBackground, '')).css('color', myMdwHelper.getValueFromData(data.lockIconColor, '#B22222'));
 
                 btn.style.setProperty("--materialdesign-color-icon-button-hover", myMdwHelper.getValueFromData(data.colorPress, ''));
+
+                if (type.includes('slider')) {
+                    $this.find('.scalaInput').trigger(
+                        'configure',
+                        {
+                            fgColor: myMdwHelper.getValueFromData(data.foregroundColor, "#44739e"),
+                            bgColor: myMdwHelper.getValueFromData(data.backgroundColor, "#eeeeee"),
+                        }
+                    );
+                }
             }
         }
     },
