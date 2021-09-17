@@ -587,47 +587,66 @@ vis.binds.materialdesign.button = {
                     let click = false;
                     let mousedown = false;
 
-                    $this.on('mouseenter', function () {
-                        sliderShow();
+                    $this.on('mouseenter', function (e) {
+                        e.preventDefault();
+
+                        if (!mousedown) {
+                            sliderShow();
+                        }
                     });
 
-                    $this.on('mouseleave', function () {
+                    $this.on('mouseleave', function (e) {
+                        e.preventDefault();
+
                         if (!mousedown) {
                             sliderHide();
                         }
                     });
 
                     $this.on('tap', function (e) {
+                        e.preventDefault();
+
                         click = true;
                         mousedown = false;
                     });
 
                     $this.on('tapstart', function (e) {
+                        e.preventDefault();
+
+                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+
                         mousedown = true;
+                        click = false;
                         sliderShow();
                     });
 
                     $this.on('touchstart', function (e) {
-                        if (e.simulated) {
-                            e.preventDefault();
-                            return;
-                        }
+                        if (mousedown) {
+                            if (e.simulated) {
+                                e.preventDefault();
+                                return;
+                            }
 
-                        e.simulated = true;
-                        $knobDiv.find('canvas').trigger(e);
-                        e.preventDefault();
+                            e.simulated = true;
+                            $knobDiv.find('canvas').trigger(e);
+                            e.preventDefault();
+                        }
                     }).on('mousedown', function (e) {
-                        if (e.simulated) {
-                            e.preventDefault();
-                            return;
-                        }
+                        if (mousedown) {
+                            if (e.simulated) {
+                                e.preventDefault();
+                                return;
+                            }
 
-                        e.simulated = true;
-                        $knobDiv.find('canvas').trigger(e);
-                        e.preventDefault();
+                            e.simulated = true;
+                            $knobDiv.find('canvas').trigger(e);
+                            e.preventDefault();
+                        }
                     });
 
                     $('body').on('tapend', function (e) {
+                        e.preventDefault();
+
                         if (click) {
                             if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined) {
                                 if ($this.attr('toggled') === true || $this.attr('toggled') === 'true') {
@@ -640,12 +659,15 @@ vis.binds.materialdesign.button = {
                             } else {
                                 unlockButton();
                             }
+                            sliderHide();
                         } else {
                             if (mousedown) {
+                                vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+
                                 if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined) {
                                     myMdwHelper.setValue(data.oid, $scalaInput.val());
-                                    sliderHide();
                                 }
+                                sliderHide();
                             }
                         }
 
