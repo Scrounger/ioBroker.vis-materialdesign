@@ -84,7 +84,7 @@ vis.binds.materialdesign = {
 
                                 function setCssDefaultColorVars() {
                                     for (var i = 0; i <= countDefaultColors - 1; i++) {
-                                        document.documentElement.style.setProperty(`--materialdesign-default-color-${i}`, myMdwHelper.getValueFromData(`#mdwTheme:vis-materialdesign.0.colors.default_${i}`, null));
+                                        document.documentElement.style.setProperty(`--materialdesign-widget-default-color-${i}`, myMdwHelper.getValueFromData(`#mdwTheme:vis-materialdesign.0.colors.default_${i}`, null));
                                     }
 
                                     console.log(`vis-materialdesign: root css default color variables registerd`);
