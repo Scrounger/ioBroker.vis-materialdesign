@@ -572,7 +572,7 @@ vis.binds.materialdesign.button = {
                     fgColor: myMdwHelper.getValueFromData(data.foregroundColor, "#44739e"),
                     bgColor: myMdwHelper.getValueFromData(data.backgroundColor, "#eeeeee"),
                     relative: true,
-                    angleOffset: myMdwHelper.getNumberFromData(data.angleOffset, 180),
+                    angleOffset: myMdwHelper.getNumberFromData(data.angleOffset, 0),
                     angleArc: myMdwHelper.getNumberFromData(data.angleArc, 360),
                     change: function (value) {
                         if (vis.editMode) {
@@ -591,20 +591,18 @@ vis.binds.materialdesign.button = {
                     }
                 }
 
-                $knobDiv = $scalaInput.knobHQ(knobObj);
-
-                sliderHide();
+                $knobDiv = $scalaInput.knobHQ(knobObj);                
             }
 
             function sliderEvents() {
                 if (!vis.editMode) {
-                    let click = false;
-                    let mousedown = false;
+                    $knobDiv._click = false;
+                    $knobDiv._mousedown = false;
 
                     $this.on('mouseenter', function (e) {
                         e.preventDefault();
 
-                        if (!mousedown) {
+                        if (!$knobDiv._mousedown) {
                             sliderShow();
                         }
                     });
@@ -612,7 +610,7 @@ vis.binds.materialdesign.button = {
                     $this.on('mouseleave', function (e) {
                         e.preventDefault();
 
-                        if (!mousedown) {
+                        if (!$knobDiv._mousedown) {
                             sliderHide();
                         }
                     });
@@ -620,8 +618,8 @@ vis.binds.materialdesign.button = {
                     $this.on('tap', function (e) {
                         e.preventDefault();
 
-                        click = true;
-                        mousedown = false;
+                        $knobDiv._click = true;
+                        $knobDiv._mousedown = false;
                     });
 
                     $this.on('tapstart', function (e) {
@@ -629,13 +627,13 @@ vis.binds.materialdesign.button = {
 
                         vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
 
-                        mousedown = true;
-                        click = false;
+                        $knobDiv._mousedown = true;
+                        $knobDiv._click = false;
                         sliderShow();
                     });
 
                     $this.on('touchstart', function (e) {
-                        if (mousedown) {
+                        if ($knobDiv._mousedown) {
                             if (e.simulated) {
                                 e.preventDefault();
                                 return;
@@ -646,7 +644,7 @@ vis.binds.materialdesign.button = {
                             e.preventDefault();
                         }
                     }).on('mousedown', function (e) {
-                        if (mousedown) {
+                        if ($knobDiv._mousedown) {
                             if (e.simulated) {
                                 e.preventDefault();
                                 return;
@@ -659,7 +657,7 @@ vis.binds.materialdesign.button = {
                     });
 
                     $('body').on('tapend', function (e) {
-                        if (click) {
+                        if ($knobDiv._click) {
                             if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined) {
                                 if ($this.attr('toggled') === true || $this.attr('toggled') === 'true') {
                                     let dataVal = myMdwHelper.getNumberFromData(data.valueOff, 100);
@@ -675,7 +673,7 @@ vis.binds.materialdesign.button = {
                             }
                             sliderHide();
                         } else {
-                            if (mousedown) {
+                            if ($knobDiv._mousedown) {
                                 vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
 
                                 if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined) {
@@ -685,9 +683,78 @@ vis.binds.materialdesign.button = {
                             }
                         }
 
-                        click = false;
-                        mousedown = false;
+                        $knobDiv._click = false;
+                        $knobDiv._mousedown = false;
                     });
+
+                    sliderHide();
+
+                    // $knobDiv._timer = null;
+                    // $knobDiv._mousehold = false;
+                    // $knobDiv._click = false;
+
+                    // $this.on('mouseenter', function (e) {
+                    //     e.preventDefault();
+
+                    //     if (!$knobDiv._mousehold) {
+                    //         sliderShow();
+                    //     }
+                    // });
+
+                    // $this.on('mouseleave', function (e) {
+                    //     e.preventDefault();
+
+                    //     if (!$knobDiv._mousehold) {
+                    //         sliderHide();
+                    //     }
+                    // });
+
+
+                    // $this.on('mousedown touchstart', function () {
+                    //     $knobDiv._timer = setTimeout(function () {
+                    //         $knobDiv._mousehold = true;
+                    //         $knobDiv._click = false;
+                    //     }, 300);
+
+                    //     $knobDiv._click = true;
+                    //     $knobDiv._mousehold = false;
+                    // });
+
+                    // $('body').on('mouseup touchend', function (e) {
+                    //     // let $element = $(e.target).closest('.materialdesign-widget.materialdesign-icon-button.Slider');
+
+                    //     // if ($element.length === 0) {
+                    //     //     $element = $(e.target.lastElementChild).closest('.materialdesign-widget.materialdesign-icon-button.Slider');
+                    //     // }
+                    //     console.warn($(this));
+                        
+                    //     // if ($element.attr('id') === data.wid) {
+
+                    //         if ($knobDiv._click) {
+                    //             console.warn(`[${data.wid}] click event`);
+                    //             $knobDiv._mousehold = false;
+                    //             $knobDiv._click = false;
+    
+                    //             sliderHide();
+    
+                    //             return true;
+
+                    //         } else if ($knobDiv._mousehold) {
+                    //             console.warn(`[${data.wid}] slide event`);
+                    //             $knobDiv._mousehold = false;
+                    //             $knobDiv._click = false;
+    
+                    //             sliderHide();
+    
+                    //             return true;
+
+                    //         } else {
+                    //             // console.error(`[${data.wid}] no event`);
+                    //             // console.warn(e.target);
+                    //         }
+
+                    //     // }
+                    // });
                 }
             }
 
