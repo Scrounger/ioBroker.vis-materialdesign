@@ -412,7 +412,7 @@ vis.binds.materialdesign.button = {
             }
 
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                setButtonState();
+                setButtonState(newVal);
             });
 
             if (!vis.editMode) {
@@ -421,7 +421,7 @@ vis.binds.materialdesign.button = {
                     if (!hasSlider) {
                         $this.on('click', function (e) {
                             // Protect against two events
-                            event.preventDefault();
+                            e.preventDefault();
                             vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
 
                             if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined) {
@@ -469,8 +469,10 @@ vis.binds.materialdesign.button = {
                 }
             }
 
-            function setButtonState() {
-                var val = vis.states.attr(data.oid + '.val');
+            function setButtonState(val) {
+                if (!val || val === null) {
+                    val = vis.states.attr(data.oid + '.val');
+                }
 
                 let buttonState = vis.binds.materialdesign.button.getToggleState(val, data);
 
@@ -603,6 +605,26 @@ vis.binds.materialdesign.button = {
                     $this.on('tapstart', function (e) {
                         mousedown = true;
                         sliderShow();
+                    });
+
+                    $this.on('touchstart', function (e) {
+                        if (e.simulated) {
+                            e.preventDefault();
+                            return;
+                        }
+
+                        e.simulated = true;
+                        $knobDiv.find('canvas').trigger(e);
+                        e.preventDefault();
+                    }).on('mousedown', function (e) {
+                        if (e.simulated) {
+                            e.preventDefault();
+                            return;
+                        }
+
+                        e.simulated = true;
+                        $knobDiv.find('canvas').trigger(e);
+                        e.preventDefault();
                     });
 
                     $('body').on('tapend', function (e) {
