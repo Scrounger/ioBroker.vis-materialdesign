@@ -522,7 +522,7 @@ vis.binds.materialdesign.button = {
 
             function intializeSlider() {
                 $this.css('overflow', 'visible');
-                $this.css('padding', 0);
+                // $this.css('padding', 0);
                 $this.find('.materialdesign-button-body').css('position', 'relative');
 
                 var divW = parseInt(window.getComputedStyle($this.get(0), null).width.replace('px', ''));
@@ -561,11 +561,13 @@ vis.binds.materialdesign.button = {
                 }
 
                 $scalaInput = $this.find('.scalaInput');
+                let dataMax = myMdwHelper.getNumberFromData(data.valueOn, 100);
+                let dataMin = myMdwHelper.getNumberFromData(data.valueOff, 0);
 
-                $knobDiv = $scalaInput.knob({
+                let knobObj = {
                     displayInput: false,
-                    min: myMdwHelper.getNumberFromData(data.valueOff, 0),
-                    max: myMdwHelper.getNumberFromData(data.valueOn, 100),
+                    min: dataMin,
+                    max: dataMax,
                     step: 1,
                     fgColor: myMdwHelper.getValueFromData(data.foregroundColor, "#44739e"),
                     bgColor: myMdwHelper.getValueFromData(data.backgroundColor, "#eeeeee"),
@@ -581,7 +583,15 @@ vis.binds.materialdesign.button = {
                             return false;
                         }
                     }
-                });
+                }
+
+                if (data.colorize) {
+                    knobObj.colorize = function (color, value) {
+                        return h2rgba(color, (value - dataMin) / (dataMax - dataMin) + myMdwHelper.getNumberFromData(data.colorizeFactor, 0.5));
+                    }
+                }
+
+                $knobDiv = $scalaInput.knobHQ(knobObj);
 
                 sliderHide();
             }
@@ -700,6 +710,18 @@ vis.binds.materialdesign.button = {
                         $knobDiv.hide();
                     }, 150);
                 }
+            }
+
+            function h2rgba(h, a) {
+                var rgb;
+                h = h.substring(1, 7);
+                rgb = [
+                    parseInt(h.substring(0, 2), 16),
+                    parseInt(h.substring(2, 4), 16),
+                    parseInt(h.substring(4, 6), 16)
+                ];
+
+                return 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + a + ')';
             }
 
         } catch (ex) {

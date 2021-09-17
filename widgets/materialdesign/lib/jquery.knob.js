@@ -2,15 +2,17 @@
 /**
  * Downward compatible, touchable dial
  *
- * Version: 1.2.12
+ * Version: 1.2.11
  * Requires: jQuery v1.7+
  *
  * Copyright (c) 2012 Anthony Terrien
  * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
  *
+ * small modifications by bluefox in this version
+ *
  * Thanks to vor, eskimoblood, spiffistan, FabrizioC
  */
-(function (factory) {
+ (function (factory) {
     if (typeof exports === 'object') {
         // CommonJS
         module.exports = factory(require('jquery'));
@@ -133,6 +135,9 @@
                     },
                     parse: function (v) {
                         return parseFloat(v);
+                    },
+                    colorize: function (color, v) {
+                        return color;
                     }
                 }, this.o
             );
@@ -158,8 +163,13 @@
                         'change blur',
                         function () {
                             var val = {};
+                            var setByUser = false;
                             val[k] = $this.val();
-                            s.val(s._validate(val));
+                            if ($this.data('setByUser')) {
+                                $this.data('setByUser', false);
+                                setByUser = true;
+                            }
+                            s.val(s._validate(val), undefined, setByUser);
                         }
                     );
                 });
@@ -173,7 +183,12 @@
                 this.$.bind(
                     'change blur',
                     function () {
-                        s.val(s._validate(s.o.parse(s.$.val())));
+                        var setByUser = false;
+                        if (s.$.data('setByUser')) {
+                            s.$.data('setByUser', false);
+                            setByUser = true;
+                        }
+                        s.val(s._validate(s.o.parse(s.$.val())), undefined, setByUser);
                     }
                 );
 
@@ -297,7 +312,7 @@
             }
 
             return this;
-        };
+        }
 
         this._draw = function () {
 
@@ -313,7 +328,7 @@
             d !== false && s.draw();
         };
 
-        this._touch = function (e) {
+        this._touch = function (e, x, y) {
             var touchMove = function (e) {
                 var v = s.xy2val(
                             e.originalEvent.touches[s.t].pageX,
@@ -341,7 +356,7 @@
                     "touchend.k",
                     function () {
                         k.c.d.unbind('touchmove.k touchend.k');
-                        s.val(s.cv);
+                        s.val(s.cv, undefined, true);
                     }
                 );
 
@@ -384,7 +399,7 @@
                     "mouseup.k",
                     function (e) {
                         k.c.d.unbind('mousemove.k mouseup.k keyup.k');
-                        s.val(s.cv);
+                        s.val(s.cv, undefined, true);
                     }
                 );
 
@@ -441,7 +456,7 @@
             if (this.o.release) this.rH = this.o.release;
 
             if (this.o.displayPrevious) {
-                this.pColor = this.h2rgba(this.o.fgColor, "0.4");
+                this.pColor  = this.h2rgba(this.o.fgColor, "0.4");
                 this.fgColor = this.h2rgba(this.o.fgColor, "0.6");
             } else {
                 this.fgColor = this.o.fgColor;
@@ -472,7 +487,7 @@
         // Utils
         this.h2rgba = function (h, a) {
             var rgb;
-            h = h.substring(1,7);
+            h = h.substring(1,7)
             rgb = [
                 parseInt(h.substring(0,2), 16),
                 parseInt(h.substring(2,4), 16),
@@ -513,7 +528,7 @@
             }, this.o);
         };
 
-        this.val = function (v, triggerRelease) {
+        this.val = function (v, triggerRelease, setByUser) {
             if (null != v) {
 
                 // reverse format
@@ -522,7 +537,7 @@
                 if (triggerRelease !== false
                     && v != this.v
                     && this.rH
-                    && this.rH(v) === false) { return; }
+                    && this.rH(v, setByUser) === false) { return; }
 
                 this.cv = this.o.stopper ? max(min(v, this.o.max), this.o.min) : v;
                 this.v = this.cv;
@@ -586,7 +601,7 @@
                         // Handle mousewheel stop
                         clearTimeout(mwTimerStop);
                         mwTimerStop = setTimeout(function () {
-                            s.rH(v);
+                            s.rH(v, true);
                             mwTimerStop = null;
                         }, 100);
 
@@ -594,7 +609,7 @@
                         if (!mwTimerRelease) {
                             mwTimerRelease = setTimeout(function () {
                                 if (mwTimerStop)
-                                    s.rH(v);
+                                    s.rH(v, true);
                                 mwTimerRelease = null;
                             }, 200);
                         }
@@ -658,7 +673,7 @@
                                 window.clearTimeout(to);
                                 to = null;
                                 m = 1;
-                                s.val(s.$.val());
+                                s.val(s.$.val(), undefined, true);
                             }
                         } else {
                             // kval postcond
@@ -669,14 +684,14 @@
                 );
 
             this.$c.bind("mousewheel DOMMouseScroll", mw);
-            this.$.bind("mousewheel DOMMouseScroll", mw);
+            this.$.bind("mousewheel DOMMouseScroll", mw)
         };
 
         this.init = function () {
             if (this.v < this.o.min
                 || this.v > this.o.max) { this.v = this.o.min; }
 
-            this.$.val(this.v);
+            this.$.val(this.o.format(this.v));
             this.w2 = this.w / 2;
             this.cursorExt = this.o.cursor / 100;
             this.xy = this.w2 * this.scale;
@@ -774,14 +789,14 @@
             if (this.o.displayPrevious) {
                 pa = this.arc(this.v);
                 c.beginPath();
-                c.strokeStyle = this.pColor;
+                c.strokeStyle = this.o.colorize(this.pColor, this.v, true);
                 c.arc(this.xy, this.xy, this.radius, pa.s, pa.e, pa.d);
                 c.stroke();
                 r = this.cv == this.v;
             }
 
             c.beginPath();
-            c.strokeStyle = r ? this.o.fgColor : this.fgColor ;
+            c.strokeStyle = r ?  this.o.colorize(this.o.fgColor, this.cv, true) : this.o.colorize(this.o.fgColor, this.cv, false);
             c.arc(this.xy, this.xy, this.radius, a.s, a.e, a.d);
             c.stroke();
         };
@@ -791,7 +806,7 @@
         };
     };
 
-    $.fn.dial = $.fn.knob = function (o) {
+    $.fn.dial = $.fn.knobHQ = function (o) {
         return this.each(
             function () {
                 var d = new k.Dial();

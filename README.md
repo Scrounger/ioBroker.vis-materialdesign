@@ -13126,6 +13126,7 @@ The adapter uses the following libraries:
 
 <!-- omit in toc -->
 ### __WORK IN PROGRESS__
+* (Scrounger) Icon Button Slider Widget added
 * (Scrounger) Button Toggle Widgets: bug fix for state on runtime load
 * (Scrounger) Value Widget: bug fix for show unit only if result is of type number
 * (Scrounger) Value Widget: bug fix for data ovveride
