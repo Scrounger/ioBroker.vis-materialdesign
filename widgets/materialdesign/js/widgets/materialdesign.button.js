@@ -659,16 +659,16 @@ vis.binds.materialdesign.button = {
                     });
 
                     $('body').on('tapend', function (e) {
-                        e.preventDefault();
-
                         if (click) {
                             if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined) {
                                 if ($this.attr('toggled') === true || $this.attr('toggled') === 'true') {
-                                    myMdwHelper.setValue(data.oid, data.valueOff);
-                                    sliderSetValue(data.valueOff);
+                                    let dataVal = myMdwHelper.getNumberFromData(data.valueOff, 100);
+                                    myMdwHelper.setValue(data.oid, dataVal);
+                                    sliderSetValue(dataVal);
                                 } else {
-                                    myMdwHelper.setValue(data.oid, data.valueOn);
-                                    sliderSetValue(data.valueOn);
+                                    let dataVal = myMdwHelper.getNumberFromData(data.valueOn, 100);
+                                    myMdwHelper.setValue(data.oid, dataVal);
+                                    sliderSetValue(dataVal);
                                 }
                             } else {
                                 unlockButton();
