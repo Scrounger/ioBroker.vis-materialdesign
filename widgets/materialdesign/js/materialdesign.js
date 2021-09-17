@@ -62,7 +62,7 @@ vis.binds.materialdesign = {
 
                             let countDefaultColors = 15;
 
-                            for (var i = 0; i <= countDefaultColors - 1; i++) {
+                            for (var i = 0; i <= countDefaultColors; i++) {
                                 let colorId = `vis-materialdesign.0.colors.default_${i}`
                                 oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(colorId.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.light.'), dummyWid, 'MDW Theme', oidsNeedSubscribe, false, false);
                                 oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(colorId.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.dark.'), dummyWid, 'MDW Theme', oidsNeedSubscribe, false, false);
@@ -83,7 +83,7 @@ vis.binds.materialdesign = {
                                 setCssDefaultColorVars();
 
                                 function setCssDefaultColorVars() {
-                                    for (var i = 0; i <= countDefaultColors - 1; i++) {
+                                    for (var i = 0; i <= countDefaultColors; i++) {
                                         document.documentElement.style.setProperty(`--materialdesign-widget-default-color-${i}`, myMdwHelper.getValueFromData(`#mdwTheme:vis-materialdesign.0.colors.default_${i}`, null));
                                     }
 
