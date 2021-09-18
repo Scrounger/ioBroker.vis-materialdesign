@@ -958,6 +958,60 @@ vis.binds.materialdesign.helper = {
 
         console.log('sentry initialized for vis-materialdesign');
     },
+    bindCssColorsAsync: async function () {
+        try {
+            let debug = false;
+            myMdwHelper.waitForWidgets(async function () {
+                // subscribe Theme states that needs as listener
+                if (vis.widgets && Object.keys(vis.widgets).length > 0) {
+                    let dummyWid = Object.keys(vis.widgets)[0];
+                    let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.lastchange', dummyWid, 'vis-materialdesign:', false, false, debug);
+                    oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.colors.darkTheme', dummyWid, 'vis-materialdesign:', oidsNeedSubscribe, false, debug);
+
+                    let colorDefaultJson = await myMdwHelper.getJsonObjectsAsync('../vis-materialdesign.admin/lib/defaultcolors.json');
+                    let countDefaultColors = colorDefaultJson.length;
+
+                    for (var i = 0; i <= countDefaultColors - 1; i++) {
+                        let colorId = `vis-materialdesign.0.colors.default_${i}`
+                        oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(colorId.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.light.'), dummyWid, 'vis-materialdesign:', oidsNeedSubscribe, false, debug);
+                        oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(colorId.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.dark.'), dummyWid, 'vis-materialdesign:', oidsNeedSubscribe, false, debug);
+                    }
+
+                    myMdwHelper.subscribeStatesAtRuntime(dummyWid, 'vis-materialdesign:', function () {
+
+                        vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
+                            console.log(`vis-materialdesign: ${newVal ? 'dark theme activated' : 'light theme activated'}`);
+                            setCssDefaultColorVars();
+                        });
+
+                        vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
+                            console.log(`vis-materialdesign: theme changes detected`);
+                            setCssDefaultColorVars();
+                        });
+
+                        setCssDefaultColorVars();
+
+                        function setCssDefaultColorVars() {
+                            for (var i = 0; i <= countDefaultColors - 1; i++) {
+                                let val = myMdwHelper.getValueFromData(`#mdwTheme:vis-materialdesign.0.colors.default_${i}`, undefined);
+
+                                if (val) {
+                                    document.documentElement.style.setProperty(`--materialdesign-widget-default-color-${i}`, val);
+                                    if (debug) console.log(`vis-materialdesign: 'vis-materialdesign.0.colors.default_${i}' bind to css variable '--materialdesign-widget-default-color-${i}'`);
+                                } else {
+                                    console.warn(`vis-materialdesign: 'vis-materialdesign.0.colors.default_${i}' is 'undefined'`);
+                                }
+                            }
+
+                            console.log(`vis-materialdesign: theme default colors successfully bound to css variables`);
+                        }
+                    }, debug);
+                }
+            });
+        } catch (ex) {
+            console.error(`[subscribeCssColors] error: ${ex.message}, stack: ${ex.stack}`);
+        }
+    },
     async getStateAsync(id) {
         return new Promise((resolve, reject) => {
             vis.conn._socket.emit('getState', id, function (err, res) {
@@ -974,6 +1028,17 @@ vis.binds.materialdesign.helper = {
             vis.conn._socket.emit('getObject', id, function (err, res) {
                 if (!err && res) {
                     resolve(res);
+                } else {
+                    resolve(null);
+                }
+            });
+        });
+    },
+    async getJsonObjectsAsync(file) {
+        return new Promise((resolve, reject) => {
+            $.getJSON(file, function (json) {
+                if (json) {
+                    resolve(json);
                 } else {
                     resolve(null);
                 }

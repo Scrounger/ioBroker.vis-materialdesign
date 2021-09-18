@@ -33,8 +33,7 @@ vis.binds.materialdesign = {
                 console.log('Version vis-materialdesign: ' + version);
 
                 myMdwHelper.initializeSentry(version);
-
-                vis.binds.materialdesign.subscribeCssColors();
+                myMdwHelper.bindCssColorsAsync();
             });
         });
     },
@@ -47,56 +46,6 @@ vis.binds.materialdesign = {
             mdc.ripple.MDCRipple.attachTo(btn);
         } else {
             const mdcIconButton = new mdc.iconButton.MDCIconButtonToggle(btn);
-        }
-    },
-    subscribeCssColors: async function () {
-        try {
-            myMdwHelper.waitForVisConnected(async function () {
-                myMdwHelper.waitForViews(async function () {
-                    myMdwHelper.waitForWidgets(async function () {
-                        // subscribe Theme states that needs as listener
-                        if (vis.widgets && Object.keys(vis.widgets).length > 0) {
-                            let dummyWid = Object.keys(vis.widgets)[0];
-                            let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.lastchange', dummyWid, 'MDW Theme', false, false, false);
-                            oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.colors.darkTheme', dummyWid, 'MDW Theme', oidsNeedSubscribe, false, false);
-
-                            let countDefaultColors = 15;
-
-                            for (var i = 0; i <= countDefaultColors; i++) {
-                                let colorId = `vis-materialdesign.0.colors.default_${i}`
-                                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(colorId.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.light.'), dummyWid, 'MDW Theme', oidsNeedSubscribe, false, false);
-                                oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(colorId.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.dark.'), dummyWid, 'MDW Theme', oidsNeedSubscribe, false, false);
-                            }
-
-                            myMdwHelper.subscribeStatesAtRuntime(dummyWid, 'MDW Theme', function () {
-
-                                vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
-                                    console.log(`vis-materialdesign: ${newVal ? 'dark theme activated' : 'light theme activated'}`);
-                                    setCssDefaultColorVars();
-                                });
-
-                                vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
-                                    console.log(`vis-materialdesign: theme changes detected`);
-                                    setCssDefaultColorVars();
-                                });
-
-                                setCssDefaultColorVars();
-
-                                function setCssDefaultColorVars() {
-                                    for (var i = 0; i <= countDefaultColors; i++) {
-                                        document.documentElement.style.setProperty(`--materialdesign-widget-default-color-${i}`, myMdwHelper.getValueFromData(`#mdwTheme:vis-materialdesign.0.colors.default_${i}`, null));
-                                    }
-
-                                    console.log(`vis-materialdesign: root css default color variables registerd`);
-                                }
-                            });
-                        }
-                    });
-                });
-            });
-
-        } catch (ex) {
-            console.error(`[subscribeCssColors] error: ${ex.message}, stack: ${ex.stack}`);
         }
     }
 };
