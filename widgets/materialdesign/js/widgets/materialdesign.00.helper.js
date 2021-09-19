@@ -91,15 +91,16 @@ vis.binds.materialdesign.helper = {
     waitForElement: function (parent, elementPath, wid, widgetName, callBack, counter = 0, debug = false) {
         if (counter < 500) {
 
-            setTimeout(function () {
-                if (parent.find(elementPath).length) {
-                    callBack();
-                } else {
+            if (parent.find(elementPath).length > 0) {
+                if (debug) console.log(`[${widgetName} ${wid}] it took ${counter} to wait for the element`);
+                callBack();
+            } else {
+                setTimeout(function () {
                     if (debug) console.log(`[${widgetName} ${wid}] wait for elements`);
                     counter++
                     vis.binds.materialdesign.helper.waitForElement(parent, elementPath, wid, widgetName, callBack, counter, debug);
-                }
-            }, 1)
+                }, 1);
+            }
         } else {
             console.warn(`[${widgetName} ${wid}] stop waiting after ${counter} retries`);
             callBack();
