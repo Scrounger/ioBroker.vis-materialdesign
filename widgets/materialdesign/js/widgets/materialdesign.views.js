@@ -569,25 +569,51 @@ vis.binds.materialdesign.views = {
                             $container.empty();
 
                             if (data.debug) console.log(`${logPrefix} old view '${oldView}' cleared`);
+                        } else {
+                            if (!oldView) {
+                                // wird nur beim init ausgeführt
+                                if (data.debug) console.warn(`${logPrefix} renderAlways is '${data.renderAlways}', '${view}' show`);
+                                $container.find(`#visview_${view}`).show();
+                            }
                         }
 
-                        if ($container.attr('data-vis-contains') !== view) {
+                        if ($container.attr('data-vis-contains') !== view || $container.is(':empty')) {
                             if (vis.views[view]) {
 
                                 let $hidedView = $container.find(`#visview_${view}`);
                                 if ($hidedView.length === 0) {
-                                    $container.attr('data-vis-contains', view);
 
-                                    vis.renderView(view, view, true, function (_view) {
-                                        if (myMdwHelper.getNumberFromData(data.fadeInDuration, 50) > 0) {
-                                            $('#visview_' + _view).appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
-                                        } else {
-                                            $('#visview_' + _view).appendTo($container).data('persistent', true).show();
-                                        }
+                                    let $visContainerView = $('#vis_container').children(`#visview_${view}`);
+                                    
+                                    if ($visContainerView.length === 0 || $container.is(':empty')) {
+                                        $container.attr('data-vis-contains', view);
 
-                                        if (data.debug) console.log(`${logPrefix} new view '${view}' rendered`);
-                                    });
+                                        vis.renderView(view, view, true, function (_view) {
+                                            if (myMdwHelper.getNumberFromData(data.fadeInDuration, 50) > 0) {
+                                                $('#visview_' + _view).appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
+                                            } else {
+                                                $('#visview_' + _view).appendTo($container).data('persistent', true).show();
+                                            }
+
+                                            if (data.debug) console.log(`${logPrefix} new view '${view}' rendered`);
+                                        });
+                                    } else {
+                                        // View ist unter #vis-container verfügbar z.B. wenn in View in Widget 8
+                                        $container.attr('data-vis-contains', view);
+
+                                        setTimeout(function () {
+                                            // ToDo evtl. detach notwendig?
+                                            if (myMdwHelper.getNumberFromData(data.fadeInDuration, 50) > 0) {
+                                                $visContainerView.appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
+                                            } else {
+                                                $visContainerView.appendTo($container).data('persistent', true).show();
+                                            }
+                                        }, 1);
+
+                                        if (data.debug) console.log(`${logPrefix} show still rendered view '${view}' - found in parent view (renderAlways: ${data.renderAlways})`);
+                                    }
                                 } else {
+                                    // View existiert view in widget div
                                     $container.attr('data-vis-contains', view);
 
                                     setTimeout(function () {
