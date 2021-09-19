@@ -511,6 +511,7 @@ vis.binds.materialdesign.views = {
 
         try {
             let $this = $(el);
+
             let val = vis.states.attr(data.oid + '.val');
             let containerClass = 'vis-view-container';
             let widgetName = 'Advanced View in Widget';
@@ -532,25 +533,24 @@ vis.binds.materialdesign.views = {
                 // myMdwHelper.waitForOid(data.oid, data.wid, widgetName, function (view) {
                 let $container = $this.find(`.${containerClass}`);
 
-                if ($container.attr('data-vis-contains') !== view) {
 
-                    if (oldView) {
-                        if (data.debug) console.log(`${logPrefix} change view to '${view}' from '${oldView}'`);
-                    } else {
-                        if (data.debug) console.log(`${logPrefix} starting to draw view '${view}'`);
-                    }
 
-                    if ($container.find(".vis-view,.container-error").length > 0) {
-                        renderView();
-                    } else {
-                        if (data.slowConnection) {
-                            if (data.debug) console.log(`${logPrefix} slow connection option is activated`);
-                            myMdwHelper.waitForElement($container, "div.vis-view,.container-error", data.wid, widgetName, function () {
-                                renderView();
-                            }, 0, data.debug);
-                        } else {
+                if (oldView) {
+                    if (data.debug) console.log(`${logPrefix} change view to '${view}' from '${oldView}'`);
+                } else {
+                    if (data.debug) console.log(`${logPrefix} starting to draw view '${view}'`);
+                }
+
+                if ($container.find(".vis-view,.container-error").length > 0) {
+                    renderView();
+                } else {
+                    if (data.slowConnection) {
+                        if (data.debug) console.log(`${logPrefix} slow connection option is activated`);
+                        myMdwHelper.waitForElement($container, "div.vis-view,.container-error", data.wid, widgetName, function () {
                             renderView();
-                        }
+                        }, 0, data.debug);
+                    } else {
+                        renderView();
                     }
                 }
 
@@ -558,39 +558,59 @@ vis.binds.materialdesign.views = {
                     let $visView = $container.find(".vis-view,.container-error");
 
                     if (myMdwHelper.getNumberFromData(data.fadeOutDuration, 50) > 0) {
-                        $visView.fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
+                        $visView.data('persistent', true).fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
                             showView();
                         });
                     } else {
-                        $visView.hide();
+                        $visView.data('persistent', true).hide();
                         showView();
                     }
 
                     function showView() {
+                        if (!data.renderAlways) {
+                            $container.empty();
 
-                        $container.empty();
-                        $container.attr('data-vis-contains', view);
+                            if (data.debug) console.log(`${logPrefix} old view '${oldView}' cleared`);
+                        }
 
-                        if (data.debug) console.log(`${logPrefix} old view '${oldView}' cleared`);
+                        if ($container.attr('data-vis-contains') !== view) {
+                            if (vis.views[view]) {
 
-                        if (vis.views[view]) {
-                            vis.renderView(view, view, true, function (_view) {
-                                if (myMdwHelper.getNumberFromData(data.fadeInDuration, 50) > 0) {
-                                    $('#visview_' + _view).appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
+                                let $hidedView = $container.find(`#visview_${view}`);
+                                if ($hidedView.length === 0) {
+                                    $container.attr('data-vis-contains', view);
+
+                                    vis.renderView(view, view, true, function (_view) {
+                                        if (myMdwHelper.getNumberFromData(data.fadeInDuration, 50) > 0) {
+                                            $('#visview_' + _view).appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
+                                        } else {
+                                            $('#visview_' + _view).appendTo($container).data('persistent', true).show();
+                                        }
+
+                                        if (data.debug) console.log(`${logPrefix} new view '${view}' rendered`);
+                                    });
                                 } else {
-                                    $('#visview_' + _view).appendTo($container).data('persistent', true).show();
+                                    $container.attr('data-vis-contains', view);
+
+                                    myMdwHelper.waitForElement($this, `.${containerClass}[data-vis-contains=${view}]`, data.wid, widgetName, function () {
+                                        if (myMdwHelper.getNumberFromData(data.fadeInDuration, 50) > 0) {
+                                            $hidedView.data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
+                                        } else {
+                                            $hidedView.data('persistent', true).show();
+                                        }
+
+                                        if (data.debug) console.log(`${logPrefix} show still rendered view '${view}' (renderAlways: ${data.renderAlways})`);
+                                    }, 0, data.debug);
+                                }
+                            } else {
+                                if (data.debug) {
+                                    $container.html('<span style="color: red" class="container-error">' + _('error: view not found.') + '</span>');
+                                    console.warn(`${logPrefix} view '${view}' not existis!`);
+                                } else {
+                                    $container.html('<span class="container-error"></span>');
                                 }
 
-                                $container.attr('data-vis-contains', view);
-
-                                if (data.debug) console.log(`${logPrefix} new view '${view}' rendered`);
-                            });
-                        } else {
-                            if (data.debug) {
-                                $container.html('<span style="color: red" class="container-error">' + _('error: view not found.') + '</span>');
-                                console.warn(`${logPrefix} view '${view}' not existis!`);
-                            } else {
-                                $container.html('<span class="container-error"></span>');
+                                $container.attr('data-vis-contains', 'Error');
                             }
                         }
                     }
