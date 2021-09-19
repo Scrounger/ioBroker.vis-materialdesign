@@ -527,13 +527,11 @@ vis.binds.materialdesign.views = {
             }
 
             bindView(val);
+            renderOtherViewsOnInit(val);
 
             function bindView(view, oldView) {
 
-                // myMdwHelper.waitForOid(data.oid, data.wid, widgetName, function (view) {
                 let $container = $this.find(`.${containerClass}`);
-
-
 
                 if (oldView) {
                     if (data.debug) console.log(`${logPrefix} change view to '${view}' from '${oldView}'`);
@@ -592,7 +590,7 @@ vis.binds.materialdesign.views = {
                                 } else {
                                     $container.attr('data-vis-contains', view);
 
-                                    myMdwHelper.waitForElement($this, `.${containerClass}[data-vis-contains=${view}]`, data.wid, widgetName, function () {
+                                    setTimeout(function () {
                                         if (myMdwHelper.getNumberFromData(data.fadeInDuration, 50) > 0) {
                                             $hidedView.data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
                                         } else {
@@ -600,7 +598,7 @@ vis.binds.materialdesign.views = {
                                         }
 
                                         if (data.debug) console.log(`${logPrefix} show still rendered view '${view}' (renderAlways: ${data.renderAlways})`);
-                                    }, 0, data.debug);
+                                    }, 1);
                                 }
                             } else {
                                 if (data.debug) {
@@ -615,7 +613,44 @@ vis.binds.materialdesign.views = {
                         }
                     }
                 }
-                // });
+            }
+
+            async function renderOtherViewsOnInit(viewOnInit) {
+                if (data.renderAlways) {
+                    if (myMdwHelper.getNumberFromData(data.countRenderViewsOnLoad, undefined)) {
+
+                        myMdwHelper.waitForElement($this, `#visview_${viewOnInit}`, data.wid, widgetName, function () {
+                            let $container = $this.find(`.${containerClass}`);
+
+                            for (var i = 0; i <= data.countRenderViewsOnLoad; i++) {
+                                let view = data.attr('View' + i);
+
+                                if (view) {
+                                    if (vis.views[view]) {
+
+                                        let $hidedView = $container.find(`#visview_${view}`);
+                                        if ($hidedView.length === 0) {
+
+                                            vis.renderView(view, view, true, function (_view) {
+                                                $('#visview_' + _view).appendTo($container).data('persistent', true);
+
+                                                if (data.debug) console.log(`${logPrefix} renderOtherViewsOnInit: View[${i}] '${view}' rendered`);
+                                            });
+                                        } else {
+                                            if (data.debug) console.debug(`${logPrefix} renderOtherViewsOnInit: View[${i}] '${view}' still rendered`);
+                                        }
+                                    } else {
+                                        console.warn(`${logPrefix} renderOtherViewsOnInit: View[${i}] not exists in VIS project!`);
+                                    }
+                                } else {
+                                    console.warn(`${logPrefix} renderOtherViewsOnInit: View[${i}] has no value!`);
+                                }
+                            }
+                        }, 0, data.debug);
+                    } else {
+                        console.warn(`${logPrefix} renderOtherViewsOnInit: renderAlways is '${data.renderAlways}' but no view counter is set!`);
+                    }
+                }
             }
         } catch (ex) {
             console.error(`${logPrefix} error: ${ex.message}, stack: ${ex.stack}`);
