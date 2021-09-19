@@ -572,7 +572,7 @@ vis.binds.materialdesign.views = {
                         } else {
                             if (!oldView) {
                                 // wird nur beim init ausgeführt
-                                if (data.debug) console.warn(`${logPrefix} renderAlways is '${data.renderAlways}', '${view}' show`);
+                                if (data.debug) console.log(`${logPrefix} renderAlways is '${data.renderAlways}', '${view}' show`);
                                 $container.find(`#visview_${view}`).show();
                             }
                         }
@@ -584,7 +584,7 @@ vis.binds.materialdesign.views = {
                                 if ($hidedView.length === 0) {
 
                                     let $visContainerView = $('#vis_container').children(`#visview_${view}`);
-                                    
+
                                     if ($visContainerView.length === 0 || $container.is(':empty')) {
                                         $container.attr('data-vis-contains', view);
 
@@ -627,11 +627,21 @@ vis.binds.materialdesign.views = {
                                     }, 1);
                                 }
                             } else {
+                                let $errorInfo = $container.find('.container-error');
                                 if (data.debug) {
-                                    $container.html('<span style="color: red" class="container-error">' + _('error: view not found.') + '</span>');
+                                    if ($container.find('.container-error').length === 0) {
+                                        $('<span style="color: red" class="container-error">' + _('error: view not found.') + '</span>').appendTo($container).show();
+                                    } else {
+                                        $errorInfo.show();
+                                    }
+
                                     console.warn(`${logPrefix} view '${view}' not existis!`);
                                 } else {
-                                    $container.html('<span class="container-error"></span>');
+                                    if ($container.find('.container-error').length === 0) {
+                                        $('<span class="container-error"></span>').appendTo($container).show();
+                                    } else {
+                                        $errorInfo.show();
+                                    }
                                 }
 
                                 $container.attr('data-vis-contains', 'Error');
@@ -649,28 +659,32 @@ vis.binds.materialdesign.views = {
                             let $container = $this.find(`.${containerClass}`);
 
                             for (var i = 0; i <= data.countRenderViewsOnLoad; i++) {
-                                let view = data.attr('View' + i);
+                                let index = i;
 
-                                if (view) {
-                                    if (vis.views[view]) {
+                                setTimeout(function () {
+                                    let view = data.attr('View' + index);
 
-                                        let $hidedView = $container.find(`#visview_${view}`);
-                                        if ($hidedView.length === 0) {
+                                    if (view) {
+                                        if (vis.views[view]) {
 
-                                            vis.renderView(view, view, true, function (_view) {
-                                                $('#visview_' + _view).appendTo($container).data('persistent', true);
+                                            let $hidedView = $container.find(`#visview_${view}`);
+                                            if ($hidedView.length === 0) {
 
-                                                if (data.debug) console.log(`${logPrefix} renderOtherViewsOnInit: View[${i}] '${view}' rendered`);
-                                            });
+                                                vis.renderView(view, view, true, function (_view) {
+                                                    $('#visview_' + _view).appendTo($container).data('persistent', true);
+
+                                                    if (data.debug) console.log(`${logPrefix} renderOtherViewsOnInit: View[${index}] '${view}' rendered`);
+                                                });
+                                            } else {
+                                                if (data.debug) console.debug(`${logPrefix} renderOtherViewsOnInit: View[${index}] '${view}' still rendered`);
+                                            }
                                         } else {
-                                            if (data.debug) console.debug(`${logPrefix} renderOtherViewsOnInit: View[${i}] '${view}' still rendered`);
+                                            console.warn(`${logPrefix} renderOtherViewsOnInit: View[${index}] not exists in VIS project!`);
                                         }
                                     } else {
-                                        console.warn(`${logPrefix} renderOtherViewsOnInit: View[${i}] not exists in VIS project!`);
+                                        console.warn(`${logPrefix} renderOtherViewsOnInit: View[${index}] has no value!`);
                                     }
-                                } else {
-                                    console.warn(`${logPrefix} renderOtherViewsOnInit: View[${i}] has no value!`);
-                                }
+                                }, (i + 1) * 200);
                             }
                         }, 0, data.debug);
                     } else {
