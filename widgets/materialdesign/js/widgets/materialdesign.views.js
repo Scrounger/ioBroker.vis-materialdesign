@@ -507,6 +507,8 @@ vis.binds.materialdesign.views = {
         }
     },
     advancedViewInWidget: function (el, data) {
+        let logPrefix = `[Advanced View in Widget - ${data.wid}]`
+
         try {
             let $this = $(el);
             let val = vis.states.attr(data.oid + '.val');
@@ -515,80 +517,86 @@ vis.binds.materialdesign.views = {
 
             $this.append(`<div class="vis-widget-body ${containerClass}" data-vis-contains="${val}"><div>`);
 
-            bindView(val);
-
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                if (data.debug) console.log(`[Advanced View in Widget - ${data.wid}] change view to '${newVal}' from '${oldVal}'`);
-                bindView();
+                bindView(newVal, oldVal);
             });
 
             if (vis.editMode) {
                 $this.append(`<div class="editmode-helper" style="top: 0px;"></div>`);
             }
 
-            function bindView() {
+            bindView(val);
 
-                myMdwHelper.waitForOid(data.oid, data.wid, widgetName, function (view) {
-                    let $container = $this.find(`.${containerClass}`);
+            function bindView(view, oldView) {
 
-                    if (data.debug) console.log(`[Advanced View in Widget - ${data.wid}] starting to draw view '${view}'`);
+                // myMdwHelper.waitForOid(data.oid, data.wid, widgetName, function (view) {
+                let $container = $this.find(`.${containerClass}`);
 
-                    if ($container.find(".vis-view,.container-error").length > 0) {
-                        renderView();
-                    } else {
-                        if (data.slowConnection) {
-                            if (data.debug) console.log(`[Advanced View in Widget - ${data.wid}] slow connection option is activated`);
-                            myMdwHelper.waitForElement($container, "div.vis-view,.container-error", data.wid, widgetName, function () {
-                                renderView();
-                            }, 0, data.debug);
-                        } else {
+                if (oldView) {
+                    if (data.debug) console.log(`${logPrefix} change view to '${view}' from '${oldView}'`);
+                } else {
+                    if (data.debug) console.log(`${logPrefix} starting to draw view '${view}'`);
+                }
+
+                if ($container.find(".vis-view,.container-error").length > 0) {
+                    renderView();
+                } else {
+                    if (data.slowConnection) {
+                        if (data.debug) console.log(`${logPrefix} slow connection option is activated`);
+                        myMdwHelper.waitForElement($container, "div.vis-view,.container-error", data.wid, widgetName, function () {
                             renderView();
-                        }
+                        }, 0, data.debug);
+                    } else {
+                        renderView();
+                    }
+                }
+
+                function renderView() {
+                    let $visView = $container.find(".vis-view,.container-error");
+
+                    if (myMdwHelper.getNumberFromData(data.fadeOutDuration, 50) > 0) {
+                        $visView.fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
+                            showView();
+                        });
+                    } else {
+                        $visView.hide();
+                        showView();
                     }
 
-                    function renderView() {
-                        let $visView = $container.find(".vis-view,.container-error");
-
-                        if (myMdwHelper.getNumberFromData(data.fadeOutDuration, 50) > 0) {
-                            $visView.fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
-                                showView();
-                            });
-                        } else {
-                            $visView.hide();
-                            showView();
-                        }
-
-                        function showView() {
+                    function showView() {
+                        if ($container.attr('data-vis-contains') !== view) {
                             $container.empty();
                             $container.attr('data-vis-contains', view);
 
-                            if (data.debug) console.log(`[Advanced View in Widget - ${data.wid}] old view cleared`);
+                            if (data.debug) console.log(`${logPrefix} old view '${oldView}' cleared`);
 
                             if (vis.views[view]) {
                                 vis.renderView(view, view, true, function (_view) {
-
                                     if (myMdwHelper.getNumberFromData(data.fadeInDuration, 50) > 0) {
                                         $('#visview_' + _view).appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
                                     } else {
                                         $('#visview_' + _view).appendTo($container).data('persistent', true).show();
                                     }
 
-                                    if (data.debug) console.log(`[Advanced View in Widget - ${data.wid}] new view rendered`);
+                                    $container.attr('data-vis-contains', view);
+
+                                    if (data.debug) console.log(`${logPrefix} new view '${view}' rendered`);
                                 });
                             } else {
                                 if (data.debug) {
                                     $container.html('<span style="color: red" class="container-error">' + _('error: view not found.') + '</span>');
-                                    console.warn(`[Advanced View in Widget - ${data.wid}] '${view}' not existis!`);
+                                    console.warn(`${logPrefix} view '${view}' not existis!`);
                                 } else {
                                     $container.html('<span class="container-error"></span>');
                                 }
                             }
                         }
                     }
-                });
+                }
+                // });
             }
         } catch (ex) {
-            console.error(`[Advanced View in Widget - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
+            console.error(`${logPrefix} error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
     advancedViewInWidget8: function (el, data) {
