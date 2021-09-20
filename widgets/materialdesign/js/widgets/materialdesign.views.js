@@ -553,14 +553,22 @@ vis.binds.materialdesign.views = {
                 }
 
                 function renderView() {
-                    let $visView = $container.find(".vis-view,.container-error");
+                    let $oldView = $container.find(`#visview_${oldView ? oldView : view},.container-error`);
 
                     if (myMdwHelper.getNumberFromData(data.fadeOutDuration, 50) > 0) {
-                        $visView.data('persistent', true).fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
+                        if ($oldView.css('display') !== 'none') {
+                            if (data.debug) console.log(`${logPrefix} old view '${oldView ? oldView : view}' is visible -> hide using fading`);
+                            $oldView.data('persistent', true).fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
+                                showView();
+                            });
+                        } else {
                             showView();
-                        });
+                        }
                     } else {
-                        $visView.data('persistent', true).hide();
+                        if ($oldView.css('display') !== 'none') {
+                            if (data.debug) console.log(`${logPrefix} old view '${oldView ? oldView : view}' is visible -> hide`);
+                            $oldView.data('persistent', true).hide();
+                        }
                         showView();
                     }
 
@@ -618,9 +626,13 @@ vis.binds.materialdesign.views = {
 
                                     setTimeout(function () {
                                         if (myMdwHelper.getNumberFromData(data.fadeInDuration, 50) > 0) {
-                                            $hidedView.data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
+                                            if ($hidedView.css('display') === 'none') {
+                                                $hidedView.data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
+                                            }
                                         } else {
-                                            $hidedView.data('persistent', true).show();
+                                            if ($hidedView.css('display') === 'none') {
+                                                $hidedView.data('persistent', true).show();
+                                            }
                                         }
 
                                         if (data.debug) console.log(`${logPrefix} show still rendered view '${view}' (renderAlways: ${data.renderAlways})`);
