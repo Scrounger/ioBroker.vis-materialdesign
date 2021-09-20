@@ -526,10 +526,10 @@ vis.binds.materialdesign.views = {
                 $this.append(`<div class="editmode-helper" style="top: 0px;"></div>`);
             }
 
-            bindView(val);
+            bindView(val, undefined, true);
             renderOtherViewsOnInit(val);
 
-            function bindView(view, oldView) {
+            function bindView(view, oldView, isInit = false) {
 
                 let $container = $this.find(`.${containerClass}`);
 
@@ -570,9 +570,9 @@ vis.binds.materialdesign.views = {
 
                             if (data.debug) console.log(`${logPrefix} old view '${oldView}' cleared`);
                         } else {
-                            if (!oldView) {
+                            if (isInit) {
                                 // wird nur beim init ausgeführt
-                                if (data.debug) console.log(`${logPrefix} renderAlways is '${data.renderAlways}', '${view}' show`);
+                                if (data.debug) console.log(`${logPrefix} renderAlways is '${data.renderAlways}', '${view}' show on widget init`);
                                 $container.find(`#visview_${view}`).show();
                             }
                         }
@@ -653,7 +653,7 @@ vis.binds.materialdesign.views = {
 
             async function renderOtherViewsOnInit(viewOnInit) {
                 if (data.renderAlways) {
-                    if (myMdwHelper.getNumberFromData(data.countRenderViewsOnLoad, undefined)) {
+                    if (myMdwHelper.getNumberFromData(data.countRenderViewsOnLoad, undefined) || myMdwHelper.getNumberFromData(data.countRenderViewsOnLoad, undefined) === 0) {
 
                         myMdwHelper.waitForElement($this, `#visview_${viewOnInit}`, data.wid, widgetName, function () {
                             let $container = $this.find(`.${containerClass}`);
