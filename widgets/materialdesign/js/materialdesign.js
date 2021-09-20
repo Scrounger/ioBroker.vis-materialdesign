@@ -33,7 +33,7 @@ vis.binds.materialdesign = {
                 console.log('Version vis-materialdesign: ' + version);
 
                 myMdwHelper.initializeSentry(version);
-                myMdwHelper.bindCssColorsAsync();
+                myMdwHelper.bindCssThemeVariables();
             });
         });
     },

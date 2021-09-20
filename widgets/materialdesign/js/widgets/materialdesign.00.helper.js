@@ -959,54 +959,120 @@ vis.binds.materialdesign.helper = {
 
         console.log('sentry initialized for vis-materialdesign');
     },
-    bindCssColorsAsync: async function () {
+    bindCssThemeVariables: async function () {
         try {
-            let debug = false;
+            let debug = true;
             myMdwHelper.waitForWidgets(async function () {
                 // subscribe Theme states that needs as listener
                 if (vis.widgets && Object.keys(vis.widgets).length > 0) {
                     let dummyWid = Object.keys(vis.widgets)[0];
+
+
                     let oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.lastchange', dummyWid, 'vis-materialdesign:', false, false, debug);
                     oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe('vis-materialdesign.0.colors.darkTheme', dummyWid, 'vis-materialdesign:', oidsNeedSubscribe, false, debug);
 
-                    let colorDefaultJson = await myMdwHelper.getJsonObjectsAsync('../vis-materialdesign.admin/lib/defaultcolors.json');
-                    let countDefaultColors = colorDefaultJson.length;
-
-                    for (var i = 0; i <= countDefaultColors - 1; i++) {
-                        let colorId = `vis-materialdesign.0.colors.default_${i}`
-                        oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(colorId.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.light.'), dummyWid, 'vis-materialdesign:', oidsNeedSubscribe, false, debug);
-                        oidsNeedSubscribe = myMdwHelper.oidNeedSubscribe(colorId.replace('vis-materialdesign.0.colors.', 'vis-materialdesign.0.colors.dark.'), dummyWid, 'vis-materialdesign:', oidsNeedSubscribe, false, debug);
-                    }
-
-                    myMdwHelper.subscribeStatesAtRuntime(dummyWid, 'vis-materialdesign:', function () {
+                    myMdwHelper.subscribeStatesAtRuntime(dummyWid, 'vis-materialdesign:', async function () {
 
                         vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
                             console.log(`vis-materialdesign: ${newVal ? 'dark theme activated' : 'light theme activated'}`);
-                            setCssDefaultColorVars();
+                            setCssVariables(true);
                         });
 
                         vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
-                            console.log(`vis-materialdesign: theme changes detected`);
-                            setCssDefaultColorVars();
+                            if (oldVal !== undefined) {
+                                console.log(`vis-materialdesign: theme changes detected`);
+                                setCssVariables();
+                            }
                         });
 
-                        setCssDefaultColorVars();
+                        setCssVariables();
 
-                        function setCssDefaultColorVars() {
-                            for (var i = 0; i <= countDefaultColors - 1; i++) {
-                                let val = myMdwHelper.getValueFromData(`#mdwTheme:vis-materialdesign.0.colors.default_${i}`, undefined);
+                        async function setCssVariables(onlyColors = false) {
+                            let obj = await myMdwHelper.getObjectAsync('system.adapter.vis-materialdesign.0');
+                            let darkTheme = vis.states.attr('vis-materialdesign.0.colors.darkTheme.val');
 
-                                if (val) {
-                                    document.documentElement.style.setProperty(`--materialdesign-widget-default-color-${i}`, val);
-                                    if (debug) console.log(`vis-materialdesign: 'vis-materialdesign.0.colors.default_${i}' bind to css variable '--materialdesign-widget-default-color-${i}'`);
+                            if (obj && obj.native) {
+                                if (obj.native.defaultcolorsDark) {
+                                    let defaultcolors = [];
+
+                                    if (!darkTheme) {
+                                        defaultcolors = obj.native.defaultcolors
+                                    } else {
+                                        defaultcolors = obj.native.defaultcolorsDark
+                                    }
+
+                                    await setCssDefaultColorVars(darkTheme, defaultcolors);
                                 } else {
-                                    console.warn(`vis-materialdesign: 'vis-materialdesign.0.colors.default_${i}' is 'undefined'`);
+                                    console.error(`vis-materialdesign: no default colors in Adapter settings found!`);
+                                }
+
+                                if (!onlyColors) {
+                                    if (obj.native.defaultfonts) {
+                                        await setCssDefaultFonts(obj.native.defaultfonts);
+                                    } else {
+                                        console.error(`vis-materialdesign: no default fonts in Adapter settings found!`);
+                                    }
+
+                                    if (obj.native.defaultfontSizes) {
+                                        await setCssDefaultFontSizes(obj.native.defaultfontSizes);
+                                    } else {
+                                        console.error(`vis-materialdesign: no default font-sizes in Adapter settings found!`);
+                                    }
                                 }
                             }
-
-                            console.log(`vis-materialdesign: theme default colors successfully bound to css variables`);
                         }
                     }, debug);
+                }
+
+                async function setCssDefaultColorVars(darkTheme, defaultcolors) {
+                    let colorId = "";
+
+                    for (var i = 0; i <= defaultcolors.length - 1; i++) {
+                        if (!darkTheme) {
+                            colorId = `vis-materialdesign.0.colors.default_${i}`.replace('.colors.', '.colors.light.');
+                        } else {
+                            colorId = `vis-materialdesign.0.colors.default_${i}`.replace('.colors.', '.colors.dark.');
+                        }
+                        if (defaultcolors[i]) {
+                            let ccsVarName = `--materialdesign-widget-theme-color-default-${i}`
+                            document.documentElement.style.setProperty(ccsVarName, defaultcolors[i]);
+
+                            if (debug) console.debug(`vis-materialdesign: ${!darkTheme ? 'light' : 'dark'} default color '${i}' bind to css variable '${ccsVarName}'`);
+                        } else {
+                            console.warn(`vis-materialdesign: 'default color ${i}' is 'undefined'`);
+                        }
+                    }
+                    console.log(`vis-materialdesign: theme default colors (${!darkTheme ? 'light' : 'dark'}) successfully bound to css variables`);
+                }
+
+                async function setCssDefaultFonts(defaultFonts) {
+                    for (var i = 0; i <= defaultFonts.length - 1; i++) {
+                        if (defaultFonts[i]) {
+                            let ccsVarName = `--materialdesign-widget-theme-font-default-${i}`
+                            document.documentElement.style.setProperty(ccsVarName, defaultFonts[i]);
+
+                            if (debug) console.debug(`vis-materialdesign: default font '${i}' bind to css variable '${ccsVarName}'`);
+                        } else {
+                            console.warn(`vis-materialdesign: 'default font ${i}' is 'undefined'`);
+                        }
+                    }
+
+                    console.log(`vis-materialdesign: theme default fonts successfully bound to css variables`);
+                }
+
+                async function setCssDefaultFontSizes(defaultfontSizes) {
+                    for (var i = 0; i <= defaultfontSizes.length - 1; i++) {
+                        if (defaultfontSizes[i]) {
+                            let ccsVarName = `--materialdesign-widget-theme-font-size-default-${i}`
+                            document.documentElement.style.setProperty(ccsVarName, defaultfontSizes[i] + 'px');
+
+                            if (debug) console.debug(`vis-materialdesign: default font-size '${i}' bind to css variable '${ccsVarName}'`);
+                        } else {
+                            console.warn(`vis-materialdesign: 'default font-size ${i}' is 'undefined'`);
+                        }
+                    }
+
+                    console.log(`vis-materialdesign: theme default font-sizes successfully bound to css variables`);
                 }
             });
         } catch (ex) {
