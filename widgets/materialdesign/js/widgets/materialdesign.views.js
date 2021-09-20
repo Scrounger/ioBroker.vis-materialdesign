@@ -558,7 +558,7 @@ vis.binds.materialdesign.views = {
                     if (myMdwHelper.getNumberFromData(data.fadeOutDuration, 50) > 0) {
                         if ($oldView.css('display') !== 'none') {
                             if (data.debug) console.log(`${logPrefix} old view '${oldView ? oldView : view}' is visible -> hide using fading`);
-                            $oldView.data('persistent', true).fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), function () {
+                            $oldView.data('persistent', true).fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), myMdwHelper.getValueFromData(data.fadeEffect, 'swing'), function () {
                                 showView();
                             });
                         } else {
@@ -598,7 +598,7 @@ vis.binds.materialdesign.views = {
 
                                         vis.renderView(view, view, true, function (_view) {
                                             if (myMdwHelper.getNumberFromData(data.fadeInDuration, 50) > 0) {
-                                                $('#visview_' + _view).appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
+                                                $('#visview_' + _view).appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50), myMdwHelper.getValueFromData(data.fadeEffect, 'swing'));
                                             } else {
                                                 $('#visview_' + _view).appendTo($container).data('persistent', true).show();
                                             }
@@ -612,7 +612,7 @@ vis.binds.materialdesign.views = {
                                         setTimeout(function () {
                                             // ToDo evtl. detach notwendig?
                                             if (myMdwHelper.getNumberFromData(data.fadeInDuration, 50) > 0) {
-                                                $visContainerView.appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
+                                                $visContainerView.appendTo($container).data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50), myMdwHelper.getValueFromData(data.fadeEffect, 'swing'));
                                             } else {
                                                 $visContainerView.appendTo($container).data('persistent', true).show();
                                             }
@@ -627,7 +627,7 @@ vis.binds.materialdesign.views = {
                                     setTimeout(function () {
                                         if (myMdwHelper.getNumberFromData(data.fadeInDuration, 50) > 0) {
                                             if ($hidedView.css('display') === 'none') {
-                                                $hidedView.data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50));
+                                                $hidedView.data('persistent', true).fadeIn(myMdwHelper.getNumberFromData(data.fadeInDuration, 50), myMdwHelper.getValueFromData(data.fadeEffect, 'swing'));
                                             }
                                         } else {
                                             if ($hidedView.css('display') === 'none') {
