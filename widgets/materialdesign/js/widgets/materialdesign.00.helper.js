@@ -995,14 +995,18 @@ vis.binds.materialdesign.helper = {
                             if (obj && obj.native) {
                                 if (obj.native.defaultcolorsDark) {
                                     let defaultcolors = [];
+                                    let colorList = [];
 
                                     if (!darkTheme) {
-                                        defaultcolors = obj.native.defaultcolors
+                                        defaultcolors = obj.native.defaultcolors;
+                                        colorList = obj.native.colors;
                                     } else {
-                                        defaultcolors = obj.native.defaultcolorsDark
+                                        defaultcolors = obj.native.defaultcolorsDark;
+                                        colorList = obj.native.colorsDark;
                                     }
 
-                                    await setCssDefaultColorVars(darkTheme, defaultcolors);
+                                    await setCssColorVars(darkTheme, defaultcolors, true);
+                                    await setCssColorVars(darkTheme, colorList);
                                 } else {
                                     console.error(`vis-materialdesign: no default colors in Adapter settings found!`);
                                 }
@@ -1025,20 +1029,28 @@ vis.binds.materialdesign.helper = {
                     }, debug);
                 }
 
-                async function setCssDefaultColorVars(darkTheme, defaultcolors) {
+                async function setCssColorVars(darkTheme, colorList, isDefault = false) {
                     let colorId = "";
 
-                    for (var i = 0; i <= defaultcolors.length - 1; i++) {
+                    for (var i = 0; i <= colorList.length - 1; i++) {
                         if (!darkTheme) {
                             colorId = `vis-materialdesign.0.colors.default_${i}`.replace('.colors.', '.colors.light.');
                         } else {
                             colorId = `vis-materialdesign.0.colors.default_${i}`.replace('.colors.', '.colors.dark.');
                         }
-                        if (defaultcolors[i]) {
-                            let ccsVarName = `--materialdesign-widget-theme-color-default-${i}`
-                            document.documentElement.style.setProperty(ccsVarName, defaultcolors[i]);
 
-                            if (debug) console.debug(`vis-materialdesign: ${!darkTheme ? 'light' : 'dark'} default color '${i}' bind to css variable '${ccsVarName}'`);
+                        if (colorList[i]) {
+                            if (isDefault) {
+                                let ccsVarName = `--materialdesign-widget-theme-color-default-${i}`;
+                                document.documentElement.style.setProperty(ccsVarName, colorList[i]);
+
+                                if (debug) console.debug(`vis-materialdesign: ${!darkTheme ? 'light' : 'dark'} default color '${i}' bind to css variable '${ccsVarName}' (val: ${colorList[i]})`);
+                            } else {
+                                let ccsVarName = `--materialdesign-widget-theme-color-${colorList[i].id.replace('light.','').replace('dark.', '').replace(/\./g,'-').replace(/_/g, '-')}`;
+                                document.documentElement.style.setProperty(ccsVarName, colorList[i].value);
+    
+                                if (debug) console.debug(`vis-materialdesign: color '${colorList[i].id}' bind to css variable '${ccsVarName}' (val: ${colorList[i].value})`);
+                            }
                         } else {
                             console.warn(`vis-materialdesign: 'default color ${i}' is 'undefined'`);
                         }
