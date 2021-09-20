@@ -925,11 +925,12 @@ vis.binds.materialdesign.helper = {
             dsn: 'https://888b0efc877b4b12a8a83e3c1fb7fe1a@sentry.iobroker.net/77',
             debug: false,
             release: version,
+            autoSessionTracking: false,
             integrations: [
                 new Sentry.Integrations.Dedupe(),
                 new Sentry.Integrations.CaptureConsole({
                     levels: ['error']
-                })
+                }),
             ],
             beforeSend(event) {
                 // Modify the event here
