@@ -8,6 +8,27 @@
 let myMdwMaterialDesignIconsList = [];
 
 vis.binds.materialdesign.viseditor = {
+    themeChangeHandler: async function () {
+        let oldDarkTheme = await myMdwHelper.getStateAsync('vis-materialdesign.0.colors.darkTheme');
+        let oldLastChange = await myMdwHelper.getStateAsync('vis-materialdesign.0.lastchange');
+        let lastTap = new Date().getTime();
+
+        // $('#panel_body').on('tapstart', async function () {
+            $('body').on('mouseenter', async function() {
+            if (new Date().getTime() - lastTap > 5000) {
+                let darkTheme = await myMdwHelper.getStateAsync('vis-materialdesign.0.colors.darkTheme');
+                let lastChange = await myMdwHelper.getStateAsync('vis-materialdesign.0.lastchange');
+
+                if (oldDarkTheme.val !== darkTheme.val || oldLastChange.lc !== lastChange.lc) {
+                    myMdwHelper.bindCssThemeVariables();
+                    oldDarkTheme = darkTheme;
+                    oldLastChange = lastChange;
+                }
+
+                lastTap = new Date().getTime();
+            }
+        });
+    },
     manualLink: function (widAttr, data) {
         try {
             let url = 'https://github.com/Scrounger/ioBroker.vis-materialdesign#iobrokervis-materialdesign';

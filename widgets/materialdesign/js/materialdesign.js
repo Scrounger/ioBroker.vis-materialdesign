@@ -34,6 +34,10 @@ vis.binds.materialdesign = {
 
                 myMdwHelper.initializeSentry(version);
                 myMdwHelper.bindCssThemeVariables();
+
+                if (vis.editMode) {
+                    vis.binds.materialdesign.viseditor.themeChangeHandler();
+                }
             });
         });
     },
