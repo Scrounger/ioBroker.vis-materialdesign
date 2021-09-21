@@ -962,7 +962,7 @@ vis.binds.materialdesign.helper = {
     },
     bindCssThemeVariables: async function () {
         try {
-            let debug = true;
+            let debug = false;
             myMdwHelper.waitForWidgets(async function () {
                 // subscribe Theme states that needs as listener
                 if (vis.widgets && Object.keys(vis.widgets).length > 0) {
@@ -1013,13 +1013,15 @@ vis.binds.materialdesign.helper = {
 
                                 if (!onlyColors) {
                                     if (obj.native.defaultfonts) {
-                                        await setCssDefaultFonts(obj.native.defaultfonts);
+                                        await setCssFonts(obj.native.defaultfonts, true);
+                                        await setCssFonts(obj.native.fonts);
                                     } else {
                                         console.error(`vis-materialdesign: no default fonts in Adapter settings found!`);
                                     }
 
                                     if (obj.native.defaultfontSizes) {
-                                        await setCssDefaultFontSizes(obj.native.defaultfontSizes);
+                                        await setCssFontSizes(obj.native.defaultfontSizes, true);
+                                        await setCssFontSizes(obj.native.fontSizes);
                                     } else {
                                         console.error(`vis-materialdesign: no default font-sizes in Adapter settings found!`);
                                     }
@@ -1046,46 +1048,60 @@ vis.binds.materialdesign.helper = {
 
                                 if (debug) console.debug(`vis-materialdesign: ${!darkTheme ? 'light' : 'dark'} default color '${i}' bind to css variable '${ccsVarName}' (val: ${colorList[i]})`);
                             } else {
-                                let ccsVarName = `--materialdesign-widget-theme-color-${colorList[i].id.replace('light.','').replace('dark.', '').replace(/\./g,'-').replace(/_/g, '-')}`;
+                                let ccsVarName = `--materialdesign-widget-theme-color-${colorList[i].id.replace('light.', '').replace('dark.', '').replace(/\./g, '-').replace(/_/g, '-')}`;
                                 document.documentElement.style.setProperty(ccsVarName, colorList[i].value);
-    
+
                                 if (debug) console.debug(`vis-materialdesign: color '${colorList[i].id}' bind to css variable '${ccsVarName}' (val: ${colorList[i].value})`);
                             }
                         } else {
                             console.warn(`vis-materialdesign: 'default color ${i}' is 'undefined'`);
                         }
                     }
-                    console.log(`vis-materialdesign: theme default colors (${!darkTheme ? 'light' : 'dark'}) successfully bound to css variables`);
+                    console.log(`vis-materialdesign: theme ${isDefault ? 'default ' : ''}'colors' (${!darkTheme ? 'light' : 'dark'}) successfully bound to css variables`);
                 }
 
-                async function setCssDefaultFonts(defaultFonts) {
-                    for (var i = 0; i <= defaultFonts.length - 1; i++) {
-                        if (defaultFonts[i]) {
-                            let ccsVarName = `--materialdesign-widget-theme-font-default-${i}`
-                            document.documentElement.style.setProperty(ccsVarName, defaultFonts[i]);
+                async function setCssFonts(fontList, isDefault = false) {
+                    for (var i = 0; i <= fontList.length - 1; i++) {
+                        if (fontList[i]) {
+                            if (isDefault) {
+                                let ccsVarName = `--materialdesign-widget-theme-font-default-${i}`
+                                document.documentElement.style.setProperty(ccsVarName, fontList[i]);
 
-                            if (debug) console.debug(`vis-materialdesign: default font '${i}' bind to css variable '${ccsVarName}'`);
+                                if (debug) console.debug(`vis-materialdesign: default font '${i}' bind to css variable '${ccsVarName}' (val: ${fontList[i]})`);
+                            } else {
+                                let ccsVarName = `--materialdesign-widget-theme-font-${fontList[i].id.replace(/\./g, '-').replace(/_/g, '-')}`
+                                document.documentElement.style.setProperty(ccsVarName, fontList[i].value);
+
+                                if (debug) console.debug(`vis-materialdesign: font '${fontList[i].id}' bind to css variable '${ccsVarName}' (val: ${fontList[i].value})`);
+                            }
                         } else {
                             console.warn(`vis-materialdesign: 'default font ${i}' is 'undefined'`);
                         }
                     }
 
-                    console.log(`vis-materialdesign: theme default fonts successfully bound to css variables`);
+                    console.log(`vis-materialdesign: theme ${isDefault ? 'default ' : ''}'fonts' successfully bound to css variables`);
                 }
 
-                async function setCssDefaultFontSizes(defaultfontSizes) {
-                    for (var i = 0; i <= defaultfontSizes.length - 1; i++) {
-                        if (defaultfontSizes[i]) {
-                            let ccsVarName = `--materialdesign-widget-theme-font-size-default-${i}`
-                            document.documentElement.style.setProperty(ccsVarName, defaultfontSizes[i] + 'px');
+                async function setCssFontSizes(fontSizeList, isDefault = false) {
+                    for (var i = 0; i <= fontSizeList.length - 1; i++) {
+                        if (fontSizeList[i]) {
+                            if (isDefault) {
+                                let ccsVarName = `--materialdesign-widget-theme-font-size-default-${i}`
+                                document.documentElement.style.setProperty(ccsVarName, fontSizeList[i] + 'px');
 
-                            if (debug) console.debug(`vis-materialdesign: default font-size '${i}' bind to css variable '${ccsVarName}'`);
+                                if (debug) console.debug(`vis-materialdesign: default font-size '${i}' bind to css variable '${ccsVarName}' (val: ${fontSizeList[i]}px)`);
+                            } else {
+                                let ccsVarName = `--materialdesign-widget-theme-font-size-${fontSizeList[i].id.replace(/\./g, '-').replace(/_/g, '-')}`
+                                document.documentElement.style.setProperty(ccsVarName, fontSizeList[i].value + 'px');
+
+                                if (debug) console.debug(`vis-materialdesign: font '${fontSizeList[i].id}' bind to css variable '${ccsVarName}' (val: ${fontSizeList[i].value}px)`);
+                            }
                         } else {
                             console.warn(`vis-materialdesign: 'default font-size ${i}' is 'undefined'`);
                         }
                     }
 
-                    console.log(`vis-materialdesign: theme default font-sizes successfully bound to css variables`);
+                    console.log(`vis-materialdesign: theme ${isDefault ? 'default ' : ''}'font-sizes' successfully bound to css variables`);
                 }
             });
         } catch (ex) {
