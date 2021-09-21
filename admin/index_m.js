@@ -842,12 +842,12 @@ function save(callback) {
                 setStateString(`${myNamespace}.${themeType}.default_${i}`, `${_(`${themeType}Default`)} ${i}`, themeDefault);
             }
         });
-    }
 
-    for (var i = 0; i <= 3; i++) {
-        setTimeout(function () {
-            setStateAsync(`${myNamespace}.lastchange`, new Date().getTime(), true);
-        }, 500 * i);
+        if (themeType === 'fontSizes') {
+            setTimeout(function () {
+                setStateAsync(`${myNamespace}.lastchange`, new Date().getTime(), true);
+            }, 1000);
+        }
     }
 
     callback(obj);
