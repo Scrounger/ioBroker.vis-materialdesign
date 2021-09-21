@@ -290,13 +290,13 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
                         <table class="table-values" id="${themeType}Table">
                             <thead>
                                 <tr>
+                                    <th style="width: 50px; text-align: center;" class="header" data-buttons="M"></th>
                                     <th data-name="widget" style="width: 10%;" class="translate" data-type="text">${_("Widget")}</th>                                    
                                     <th data-name="desc" style="width: auto;" class="translate" data-type="text">${_("description")}</th>
                                     ${themeType.includes('colors') ? '<th data-name="pickr" style="width: 30px;" data-style="text-align: center;" class="translate" data-type="text"></th>' : ''}
-                                    <th data-name="value" style="width: ${themeType === 'fontSizes' ? '65px' : '180px'};" data-style="text-align: ${themeType === 'fontSizes' ? 'center' : 'left'};" class="translate" data-type="${themeType === 'fontSizes' ? 'number' : 'text'}">${_(`${themeType}_table`)}</th>
+                                    <th data-name="value" style="width: ${themeType === 'fontSizes' ? '65px' : '220px'};" data-style="text-align: ${themeType === 'fontSizes' ? 'center' : 'left'};" class="translate" data-type="${themeType === 'fontSizes' ? 'number' : 'text'}">${_(`${themeType}_table`)}</th>
                                     <th style="width: 150px; text-align: center;" class="header" data-buttons="${defaultButtons.trim()}">${_(`${themeType}Default`)}</th>
-                                    <th data-name="id" style="width: 15%;" class="translate" data-type="text">${_("datapoint")}</th>
-                                    <th style="width: 50px; text-align: center;" class="header" data-buttons="M"></th>
+                                    <th data-name="id" style="display: none;" class="translate" data-type="text">${_("datapoint")}</th>                                    
                                     <th data-name="defaultValue" style="display: none;" class="translate" data-type="text">${_(`${themeType}Default`)}</th>
                                 </tr>
                             </thead>
@@ -315,6 +315,7 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
 
         // defaultValue ausblenden
         $(`#${themeType}Table [data-name=defaultValue]`).closest('td').css('display', 'none');
+        $(`#${themeType}Table [data-name=id]`).closest('td').css('display', 'none');
 
 
         // check if filter is set
@@ -395,7 +396,7 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
                 clipboard.writeText(cssVar);
 
                 M.Toast.dismissAll();
-                M.toast({ html: _(`Material Design Widget css variable <b><i>${cssVar}</i></b> copied to clipboard`), displayLength: 2000, inDuration: 0, outDuration: 0, classes: 'rounded' });
+                M.toast({ html: _('Material Design Widget css variable {0} copied to clipboard').replace('{0}', `<br><b><i>${cssVar}</i></b><br>`), displayLength: 2000, inDuration: 0, outDuration: 0, classes: 'rounded' });
             } catch (err) {
                 reportError(`[createTable - btnMdwLink click] type: ${themeType} error: ${err.message}, stack: ${err.stack}`);
             }
@@ -602,7 +603,7 @@ function createDefaultElement(themeType, themeDefaults, index) {
             clipboard.writeText(cssVar);
 
             M.Toast.dismissAll();
-            M.toast({ html: _(`Material Design Widget css variable <b><i>${cssVar}</i></b> copied to clipboard`), displayLength: 2000, inDuration: 0, outDuration: 0, classes: 'rounded' });
+            M.toast({ html: _('Material Design Widget css variable {0} copied to clipboard').replace('{0}', `<br><b><i>${cssVar}</i></b><br>`), displayLength: 2000, inDuration: 0, outDuration: 0, classes: 'rounded' });
         });
 
     } catch (err) {

@@ -11310,17 +11310,17 @@ systemDictionary = {
         "pl": "Typ widżetu",
         "zh-cn": "小部件类型"
     },
-    "Material Design Widget datapoint binding copied to clipboard": {
-        "en": "Material Design Widget datapoint binding copied to clipboard",
-        "de": "Material Design Widget Datenpunkt-Binding in die Zwischenablage kopiert",
-        "ru": "Привязка точек данных виджета Material Design скопирована в буфер обмена",
-        "pt": "Vinculação do ponto de dados do widget do Material Design copiada para a área de transferência",
-        "nl": "Material Design Widget datapunt binding gekopieerd naar klembord",
-        "fr": "Liaison de point de données du widget Material Design copiée dans le presse-papiers",
-        "it": "Binding del punto dati del widget di Material Design copiato negli appunti",
-        "es": "Enlace de punto de datos del widget de diseño de materiales copiado al portapapeles",
-        "pl": "Powiązanie punktu danych widgetu Material Design skopiowane do schowka",
-        "zh-cn": "物料设计小部件数据点绑定已复制到剪贴板"
+    "Material Design Widget css variable {0} copied to clipboard": {
+        "en": "Material Design Widget css variable {0} copied to clipboard",
+        "de": "Material Design Widget CSS-Variable {0} in Zwischenablage kopiert",
+        "ru": "Переменная css {0} виджета материального дизайна скопирована в буфер обмена",
+        "pt": "Variável css do widget Material Design {0} copiada para a área de transferência",
+        "nl": "Material Design Widget css-variabele {0} gekopieerd naar klembord",
+        "fr": "Variable CSS du widget Material Design {0} copiée dans le presse-papiers",
+        "it": "Variabile CSS di Material Design Widget {0} copiata negli appunti",
+        "es": "La variable CSS del widget de diseño de materiales {0} se copió en el portapapeles",
+        "pl": "Zmienna css Material Design Widget {0} skopiowana do schowka",
+        "zh-cn": "Material Design Widget css 变量 {0} 已复制到剪贴板"
     },
     "dialogUsingDatapoint": {
         "en": "dialog use datapoint to show",
