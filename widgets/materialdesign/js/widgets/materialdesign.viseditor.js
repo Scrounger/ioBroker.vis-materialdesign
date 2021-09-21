@@ -993,6 +993,16 @@ vis.binds.materialdesign.viseditor = {
                                 }
                             }
 
+                            function generateCssThemeVar(themeType, id) {
+                                if (themeType === 'colors') {
+                                    return `var(--materialdesign-widget-theme-color-${id.replace('light.', '').replace('dark.', '').replace(/\./g, '-').replace(/_/g, '-')})`;
+                                } else if (themeType === 'fonts') {
+                                    return `var(--materialdesign-widget-theme-font-${id.replace(/\./g, '-').replace(/_/g, '-')})`;
+                                } else {
+                                    return `var(--materialdesign-widget-theme-font-size-${id.replace(/\./g, '-').replace(/_/g, '-')})`;
+                                }
+                            }
+
                             async function getStateValue(themeType, id, theme) {
                                 let stateId = `vis-materialdesign.0.${themeType}.${id}`;
 
@@ -1012,7 +1022,7 @@ vis.binds.materialdesign.viseditor = {
 
                             async function setElementValue(element, themeType, id, theme) {
                                 if (!theme) {
-                                    let mdwThemeOid = generateMdwThemeOid(themeType, id);
+                                    let mdwThemeOid = generateCssThemeVar(themeType, id);
 
                                     if (element.val() !== mdwThemeOid) {
                                         element.val(mdwThemeOid).trigger('change');
