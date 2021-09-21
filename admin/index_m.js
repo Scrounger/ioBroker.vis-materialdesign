@@ -296,7 +296,7 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
                                     <th data-name="value" style="width: ${themeType === 'fontSizes' ? '65px' : '180px'};" data-style="text-align: ${themeType === 'fontSizes' ? 'center' : 'left'};" class="translate" data-type="${themeType === 'fontSizes' ? 'number' : 'text'}">${_(`${themeType}_table`)}</th>
                                     <th style="width: 150px; text-align: center;" class="header" data-buttons="${defaultButtons.trim()}">${_(`${themeType}Default`)}</th>
                                     <th data-name="id" style="width: 15%;" class="translate" data-type="text">${_("datapoint")}</th>
-                                    <th style="width: 50px; text-align: center;" class="header" data-buttons="M B"></th>
+                                    <th style="width: 50px; text-align: center;" class="header" data-buttons="M"></th>
                                     <th data-name="defaultValue" style="display: none;" class="translate" data-type="text">${_(`${themeType}Default`)}</th>
                                 </tr>
                             </thead>
@@ -370,43 +370,32 @@ async function createTable(themeType, themeObject, themeDefaults, defaultButtons
             });
         }
 
-        // link copy buttons
-        let btnBindingLink = $(`#${themeType}Table [data-command="B"]`);
-        btnBindingLink.find('.material-icons').removeClass('material-icons').text('').addClass('mdi mdi-iobroker').css('font-size', '26px').css('font-weight', '100');
-        btnBindingLink.on('click', function () {
-            try {
-                let rowNum = $(this).data('index');
-
-                let inputId = $(`#${themeType}Table input[data-index=${rowNum}][data-name="id"]`);
-
-                if (themeType.includes('colors')) {
-                    clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.${inputId.val().replace('dark.', 'light.')};dark:${myNamespace}.colors.${inputId.val().replace('light.', 'dark.')}; mode === "true" ? dark : light}`);
-
-                    // Für Entwicklung Binding aufbereitet um in *.html zu verwenden
-                    // clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.${inputId.val().replace('dark.', 'light.')};dark:${myNamespace}.colors.${inputId.val().replace('light.', 'dark.')}; mode === "true" ? dark : light}`.replace(/;/g, '§').replace(/\"/g, '^'));                
-                } else {
-                    clipboard.writeText(`{${myNamespace}.${themeType}.${inputId.val()}}`);
-                }
-
-                M.Toast.dismissAll();
-                M.toast({ html: _('Binding copied to clipboard'), displayLength: 1000, inDuration: 0, outDuration: 0, classes: 'rounded' });
-            } catch (err) {
-                reportError(`[createTable - btnBindingLink click] type: ${themeType} error: ${err.message}, stack: ${err.stack}`);
-            }
-        });
-
         let btnMdwLink = $(`#${themeType}Table [data-command="M"]`);
         btnMdwLink.find('.material-icons').removeClass('material-icons').text('').addClass('mdi mdi-material-design').css('font-size', '26px').css('font-weight', '100');
         btnMdwLink.on('click', function () {
             try {
+                // let rowNum = $(this).data('index');
+
+                // let inputId = $(`#${themeType}Table input[data-index=${rowNum}][data-name="id"]`);
+
+                // clipboard.writeText(`#mdwTheme:${myNamespace}.${themeType}.${inputId.val().replace('light.', '').replace('dark.', '')}`);
+
+                let cssVar = "";
                 let rowNum = $(this).data('index');
+                let inputId = $(`#${themeType}Table input[data-index=${rowNum}][data-name="id"]`).val().replace('light.', '').replace('dark.', '').replace(/\./g, '-').replace(/_/g, '-');
 
-                let inputId = $(`#${themeType}Table input[data-index=${rowNum}][data-name="id"]`);
+                if (themeType.includes('color')) {
+                    cssVar = `var(--materialdesign-widget-theme-color-${inputId})`;
+                } else if (themeType === 'fonts') {
+                    cssVar = `var(--materialdesign-widget-theme-font-${inputId})`;
+                } else {
+                    cssVar = `var(--materialdesign-widget-theme-font-size-${inputId})`;
+                }
 
-                clipboard.writeText(`#mdwTheme:${myNamespace}.${themeType}.${inputId.val().replace('light.', '').replace('dark.', '')}`);
+                clipboard.writeText(cssVar);
 
                 M.Toast.dismissAll();
-                M.toast({ html: _('Material Design Widget datapoint binding copied to clipboard'), displayLength: 1000, inDuration: 0, outDuration: 0, classes: 'rounded' });
+                M.toast({ html: _(`Material Design Widget css variable <b><i>${cssVar}</i></b> copied to clipboard`), displayLength: 2000, inDuration: 0, outDuration: 0, classes: 'rounded' });
             } catch (err) {
                 reportError(`[createTable - btnMdwLink click] type: ${themeType} error: ${err.message}, stack: ${err.stack}`);
             }
@@ -594,28 +583,26 @@ function createDefaultElement(themeType, themeDefaults, index) {
                     <input type="${themeType === 'fontSizes' ? 'number' : 'text'}" class="value ${themeType}PickerInput" id="${themeType}${index}" value="${themeDefaults[index]}" ${themeType === 'fontSizes' ? 'style="width: 80px; text-align: center;"' : ''} />                
                     <div style="margin-left: 4px; margin-right: 4px; display: flex;">
                         <a class="btn-floating btn-small waves-effect waves-light" id="btn-mdw-${themeType}-${index}" style="width: 32px; height: 32px;"><i class="mdi mdi-material-design" style="font-size: 26px; font-weight: 100;"></i></a>
-                        <a class="btn-floating btn-small waves-effect waves-light" id="btn-binding-${themeType}-${index}" style="width: 32px; height: 32px; margin-left: 2px;"><i class="mdi mdi-iobroker" style="font-size: 26px; font-weight: 100;"></i></a>
                     </div>
                 </div>
             </div>`);
 
         $(`#btn-mdw-${themeType}-${index}`).on('click', function () {
 
-            clipboard.writeText(`#mdwTheme:${myNamespace}.${themeType}.default_${index}`);
+            let cssVar = '';
 
-            M.Toast.dismissAll();
-            M.toast({ html: _('Material Design Widget datapoint binding copied to clipboard'), displayLength: 700, inDuration: 0, outDuration: 0, classes: 'rounded' });
-        });
-
-        $(`#btn-binding-${themeType}-${index}`).on('click', function () {
-            if (themeType.includes('colors')) {
-                clipboard.writeText(`{mode:${myNamespace}.colors.darkTheme;light:${myNamespace}.colors.light.default_${index};dark:${myNamespace}.colors.dark.default_${index}; mode === "true" ? dark : light}`);
+            if (themeType.includes('color')) {
+                cssVar = `var(--materialdesign-widget-theme-color-default-${index})`;
+            } else if (themeType === 'fonts') {
+                cssVar = `var(--materialdesign-widget-theme-font-default-${index})`;
             } else {
-                clipboard.writeText(`{${myNamespace}.${themeType}.default_${index}}`);
+                cssVar = `var(--materialdesign-widget-theme-font-size-default-${index})`;
             }
 
+            clipboard.writeText(cssVar);
+
             M.Toast.dismissAll();
-            M.toast({ html: _('Binding copied to clipboard'), displayLength: 700, inDuration: 0, outDuration: 0, classes: 'rounded' });
+            M.toast({ html: _(`Material Design Widget css variable <b><i>${cssVar}</i></b> copied to clipboard`), displayLength: 2000, inDuration: 0, outDuration: 0, classes: 'rounded' });
         });
 
     } catch (err) {
