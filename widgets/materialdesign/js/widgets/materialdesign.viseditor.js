@@ -14,8 +14,8 @@ vis.binds.materialdesign.viseditor = {
         let lastTap = new Date().getTime();
 
         // $('#panel_body').on('tapstart', async function () {
-            $('body').on('mouseenter', async function() {
-            if (new Date().getTime() - lastTap > 500) {
+            $('#vis_container, .tab_attr.ui-widget-content').on('mouseenter', async function() {
+            if (new Date().getTime() - lastTap > 2000) {
                 let darkTheme = await myMdwHelper.getStateAsync('vis-materialdesign.0.colors.darkTheme');
                 let lastChange = await myMdwHelper.getStateAsync('vis-materialdesign.0.lastchange');
 
