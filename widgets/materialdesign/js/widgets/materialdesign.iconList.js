@@ -94,8 +94,6 @@ vis.binds.materialdesign.iconlist =
 
                     $this.context.style.setProperty("--materialdesign-icon-list-items-text-font-size", myMdwHelper.getStringFromNumberData(data.labelFontSize, 14, '', 'px'));
 
-                    console.warn(myMdwHelper.getStringFromNumberData(data.labelFontSize, 14, '', 'px'));
-
                     $this.context.style.setProperty("--materialdesign-icon-list-items-text-font-family", myMdwHelper.getValueFromData(data.labelFontFamily, 'inherit'));
                     $this.context.style.setProperty("--materialdesign-icon-list-items-text-font-color", myMdwHelper.getValueFromData(data.labelFontColor, ''));
 
