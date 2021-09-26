@@ -226,7 +226,7 @@ vis.binds.materialdesign.helper = {
         try {
             if (dataValue === undefined || dataValue === null || dataValue === '' || isNaN(dataValue)) {
                 if (dataValue && dataValue !== null && dataValue.toString().startsWith('var(')) {
-                    return dataValue;
+                    return dataValue.replace('px', '');
                 } else if (dataValue && dataValue !== null && dataValue.toString().startsWith('#mdwTheme:')) {
                     let id = dataValue.replace('#mdwTheme:', '');
                     let val = vis.states.attr(id + '.val');
@@ -253,7 +253,7 @@ vis.binds.materialdesign.helper = {
                 return nullValue
             } else {
                 if (dataValue && dataValue !== null && dataValue.toString().startsWith('var(')) {
-                    return dataValue;
+                    return dataValue.replace('px', '');
                 } else if (dataValue && dataValue !== null && dataValue.toString().startsWith('#mdwTheme:')) {
                     let id = dataValue.replace('#mdwTheme:', '');
                     let val = vis.states.attr(id + '.val');
