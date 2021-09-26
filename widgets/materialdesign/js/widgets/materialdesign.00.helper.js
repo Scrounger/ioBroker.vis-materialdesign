@@ -305,9 +305,9 @@ vis.binds.materialdesign.helper = {
                 return { class: `mdc-typography--${fontSize}`, style: '' };
             } else if (!isNaN(fontSize)) {
                 // number only
-                return { class: ``, style: `font-size: ${getStringFromNumberData(fontSize, 'inherit', '', 'px')};` };
+                return { class: ``, style: `font-size: ${myMdwHelper.getStringFromNumberData(fontSize, 'inherit', '', 'px')};` };
             } else {
-                return { class: ``, style: `font-size: ${getStringFromNumberData(fontSize, 'inherit', '', 'px')};` };
+                return { class: ``, style: `font-size: ${myMdwHelper.getStringFromNumberData(fontSize, 'inherit', '', 'px')};` };
             }
         } else {
             return { class: '', style: '' };
