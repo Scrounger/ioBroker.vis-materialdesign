@@ -174,7 +174,7 @@ vis.binds.materialdesign.slider = {
 
                         $this.context.style.setProperty("--vue-slider-thumb-label-font-color", myMdwHelper.getValueFromData(data.thumbFontColor, ''));
                         $this.context.style.setProperty("--vue-slider-thumb-label-font-family", myMdwHelper.getValueFromData(data.thumbFontFamily, ''));
-                        $this.context.style.setProperty("--vue-slider-thumb-label-font-size", myMdwHelper.getNumberFromData(data.thumbFontSize, 12) + 'px');
+                        $this.context.style.setProperty("--vue-slider-thumb-label-font-size", myMdwHelper.getStringFromNumberData(data.thumbFontSize, 12, '', 'px'));
                         $this.find('.v-slider__thumb-label').css('background-color', myMdwHelper.getValueFromData(data.thumbBackgroundColor, myMdwHelper.getValueFromData(data.colorThumb, defaultColor)));
 
                         $this.context.style.setProperty("--vue-slider-tick-before-color", myMdwHelper.getValueFromData(data.tickColorBefore, ''));
@@ -187,7 +187,7 @@ vis.binds.materialdesign.slider = {
                         $this.context.style.setProperty("--vue-text-field-label-before-color", myMdwHelper.getValueFromData(data.prepandTextColor, ''));
                         $this.context.style.setProperty("--vue-text-field-label-font-family", myMdwHelper.getValueFromData(data.prepandTextFontFamily, 'inherit'));
 
-                        $this.context.style.setProperty("--vue-text-field-label-font-size", myMdwHelper.getNumberFromData(data.prepandTextFontSize, 16) + 'px');
+                        $this.context.style.setProperty("--vue-text-field-label-font-size", myMdwHelper.getStringFromNumberData(data.prepandTextFontSize, 16, '', 'px'));
 
                         $this.context.style.setProperty("--vue-text-field-label-width", myMdwHelper.getStringFromNumberData(data.prepandTextWidth, 'inherit', '', 'px'));
 

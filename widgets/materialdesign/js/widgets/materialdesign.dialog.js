@@ -76,7 +76,7 @@ vis.binds.materialdesign.dialog = {
                                 <v-toolbar flat v-show="showToolbar">
                                     <v-toolbar-title class="v-dialog-toolbar-my-title-layout" v-html="title"></v-toolbar-title>
                                     ${myMdwHelper.getBooleanFromData(data.dlgShowSaveButton, false) ?
-                                        `<v-btn class="v-dialog-toolbar-my-btn-layout" icon @click="saveButton" style="text-indent: 0;">
+                        `<v-btn class="v-dialog-toolbar-my-btn-layout" icon @click="saveButton" style="text-indent: 0;">
                                             <v-icon class="dialog-fullscreen-close-icon">mdi-${myMdwHelper.getValueFromData(data.dlgSaveButtonIcon, 'content-save')}</v-icon>
                                         </v-btn>` : ''}
                                     <v-btn class="v-dialog-toolbar-my-btn-layout" icon @click="closeButton" style="text-indent: 0;">
@@ -94,7 +94,7 @@ vis.binds.materialdesign.dialog = {
                                     ${myMdwHelper.getBooleanFromData(data.showDivider, false) ? `<div class="dialog-footer-divider" style="width: 100%; height: 1px; background: ${myMdwHelper.getValueFromData(data.dividerColor, 'lightgray')}; margin-top: 4px;"></div>` : ''}
                                     <v-card-actions class="v-dialog-my-card-actions" style="justify-content: ${data.buttonPosition};">
                                         ${myMdwHelper.getBooleanFromData(data.dlgShowSaveButton, false) ?
-                                        `<v-btn color="primary" class="materialdesign-dialog-footer-button"
+                        `<v-btn color="primary" class="materialdesign-dialog-footer-button"
                                             text
                                             ${(data.buttonSize !== 'medium') ? data.buttonSize : ''}
                                             ${(myMdwHelper.getBooleanFromData(data.buttonFullWidth, false)) ? 'block ' : ''}
@@ -228,7 +228,7 @@ vis.binds.materialdesign.dialog = {
                                     function setStyle() {
                                         $dialog.get(0).style.setProperty("--vue-dialog-view-container-distance-to-border", myMdwHelper.getNumberFromData(data.viewDistanceToBorder, 24) + 'px');
 
-                                        $dialog.get(0).style.setProperty("--vue-dialog-title-font-size", myMdwHelper.getNumberFromData(data.titleFontSize, 20) + 'px');
+                                        $dialog.get(0).style.setProperty("--vue-dialog-title-font-size", myMdwHelper.getStringFromNumberData(data.titleFontSize, 20, '', 'px'));
                                         $dialog.get(0).style.setProperty("--vue-dialog-title-font-color", myMdwHelper.getValueFromData(data.titleColor, ''));
                                         $dialog.get(0).style.setProperty("--vue-dialog-title-font-family", myMdwHelper.getValueFromData(data.titleFont, 'inherit'));
 
@@ -250,7 +250,7 @@ vis.binds.materialdesign.dialog = {
 
                                         $dialog.get(0).style.setProperty("--dialog-footer-button-text-color", myMdwHelper.getValueFromData(data.buttonFontColor, ''));
                                         $dialog.get(0).style.setProperty("--dialog-footer-button-text-font", myMdwHelper.getValueFromData(data.buttonFont, 'inherit'));
-                                        $dialog.get(0).style.setProperty("--dialog-footer-button-text-font-size", myMdwHelper.getNumberFromData(data.buttonFontSize, 20) + 'px');
+                                        $dialog.get(0).style.setProperty("--dialog-footer-button-text-font-size", myMdwHelper.getStringFromNumberData(data.buttonFontSize, 20, '', 'px'));
 
                                         $dialog.find('.dialog-footer-divider').css('background', myMdwHelper.getValueFromData(data.dividerColor, 'lightgray'));
 

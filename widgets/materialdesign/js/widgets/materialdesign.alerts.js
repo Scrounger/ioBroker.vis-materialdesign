@@ -125,7 +125,7 @@ vis.binds.materialdesign.alerts =
                 $this.context.style.setProperty("--materialdesign-color-icon-button-hover", myMdwHelper.getValueFromData(data.closeIconPressColor, ''));
 
                 $this.context.style.setProperty("--vue-alerts-text-font-family", myMdwHelper.getValueFromData(data.alertFontFamily, 'inherit'));
-                $this.context.style.setProperty("--vue-alerts-text-size", myMdwHelper.getNumberFromData(data.alertFontSize, '16') + 'px');
+                $this.context.style.setProperty("--vue-alerts-text-size", myMdwHelper.getStringFromNumberData(data.alertFontSize, '16', '', 'px'));
 
                 $this.context.style.setProperty("--vue-alerts-icon-size", myMdwHelper.getNumberFromData(data.alertIconSize, '24') + 'px');
 

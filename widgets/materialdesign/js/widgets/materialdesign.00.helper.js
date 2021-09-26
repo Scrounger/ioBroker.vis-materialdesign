@@ -226,7 +226,7 @@ vis.binds.materialdesign.helper = {
         try {
             if (dataValue === undefined || dataValue === null || dataValue === '' || isNaN(dataValue)) {
                 if (dataValue && dataValue !== null && dataValue.toString().startsWith('var(')) {
-                    return dataValue.replace('px', '');
+                    return dataValue;
                 } else if (dataValue && dataValue !== null && dataValue.toString().startsWith('#mdwTheme:')) {
                     let id = dataValue.replace('#mdwTheme:', '');
                     let val = vis.states.attr(id + '.val');
@@ -253,7 +253,7 @@ vis.binds.materialdesign.helper = {
                 return nullValue
             } else {
                 if (dataValue && dataValue !== null && dataValue.toString().startsWith('var(')) {
-                    return dataValue.replace('px', '');
+                    return dataValue;
                 } else if (dataValue && dataValue !== null && dataValue.toString().startsWith('#mdwTheme:')) {
                     let id = dataValue.replace('#mdwTheme:', '');
                     let val = vis.states.attr(id + '.val');
@@ -305,9 +305,9 @@ vis.binds.materialdesign.helper = {
                 return { class: `mdc-typography--${fontSize}`, style: '' };
             } else if (!isNaN(fontSize)) {
                 // number only
-                return { class: ``, style: `font-size: ${fontSize}px;` };
+                return { class: ``, style: `font-size: ${getStringFromNumberData(fontSize, 'inherit', '', 'px')};` };
             } else {
-                return { class: ``, style: `font-size: ${fontSize};` };
+                return { class: ``, style: `font-size: ${getStringFromNumberData(fontSize, 'inherit', '', 'px')};` };
             }
         } else {
             return { class: '', style: '' };

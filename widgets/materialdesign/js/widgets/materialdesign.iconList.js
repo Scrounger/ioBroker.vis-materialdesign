@@ -81,7 +81,7 @@ vis.binds.materialdesign.iconlist =
                 setLayout();
                 function setLayout(changed = false) {
                     $this.context.style.setProperty("--materialdesign-icon-list-header-font-color", myMdwHelper.getValueFromData(data.headerTextColor, ''));
-                    $this.context.style.setProperty("--materialdesign-icon-list-header-font-size", myMdwHelper.getNumberFromData(data.headerTextSize, 24) + 'px');
+                    $this.context.style.setProperty("--materialdesign-icon-list-header-font-size", myMdwHelper.getStringFromNumberData(data.headerTextSize, 24, '', 'px'));
                     $this.context.style.setProperty("--materialdesign-icon-list-header-font-family", myMdwHelper.getValueFromData(data.headerFontFamily, 'inherit'));
 
                     $this.context.style.setProperty("--materialdesign-icon-list-background", myMdwHelper.getValueFromData(data.containerBackgroundColor, ''));
@@ -92,15 +92,18 @@ vis.binds.materialdesign.iconlist =
                     $this.context.style.setProperty("--materialdesign-icon-list-items-min-height", myMdwHelper.getNumberFromData(data.iconItemMinHeight, 0) + 'px');
                     $this.context.style.setProperty("--materialdesign-icon-list-items-gaps", myMdwHelper.getNumberFromData(data.itemGaps, 4) + 'px');
 
-                    $this.context.style.setProperty("--materialdesign-icon-list-items-text-font-size", myMdwHelper.getNumberFromData(data.labelFontSize, 14) + 'px');
+                    $this.context.style.setProperty("--materialdesign-icon-list-items-text-font-size", myMdwHelper.getStringFromNumberData(data.labelFontSize, 14, '', 'px'));
+
+                    console.warn(myMdwHelper.getStringFromNumberData(data.labelFontSize, 14, '', 'px'));
+
                     $this.context.style.setProperty("--materialdesign-icon-list-items-text-font-family", myMdwHelper.getValueFromData(data.labelFontFamily, 'inherit'));
                     $this.context.style.setProperty("--materialdesign-icon-list-items-text-font-color", myMdwHelper.getValueFromData(data.labelFontColor, ''));
 
-                    $this.context.style.setProperty("--materialdesign-icon-list-items-subText-font-size", myMdwHelper.getNumberFromData(data.subLabelFontSize, 12) + 'px');
+                    $this.context.style.setProperty("--materialdesign-icon-list-items-subText-font-size", myMdwHelper.getStringFromNumberData(data.subLabelFontSize, 12, '', 'px'));
                     $this.context.style.setProperty("--materialdesign-icon-list-items-subText-font-family", myMdwHelper.getValueFromData(data.subLabelFontFamily, 'inherit'));
                     $this.context.style.setProperty("--materialdesign-icon-list-items-subText-font-color", myMdwHelper.getValueFromData(data.subLabelFontColor, ''));
 
-                    $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-size", myMdwHelper.getNumberFromData(data.valueFontSize, 12) + 'px');
+                    $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-size", myMdwHelper.getStringFromNumberData(data.valueFontSize, 12, '', 'px'));
                     $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-family", myMdwHelper.getValueFromData(data.valueFontFamily, 'inherit'));
                     $this.context.style.setProperty("--materialdesign-icon-list-items-value-font-color", myMdwHelper.getValueFromData(data.valueFontColor, ''));
 
