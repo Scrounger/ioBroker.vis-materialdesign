@@ -6,10 +6,15 @@
 "use strict";
 
 vis.binds.materialdesign.helper = {
-    vibrate: function (duration) {
+    hapticFeedback: function (data) {
         try {
             if ("vibrate" in navigator) {
-                window.navigator.vibrate(duration);
+                window.navigator.vibrate(data.vibrateOnMobilDevices);
+            }
+
+            if (soundObj !== null && data.clickSoundPlay) {
+                soundObj.volume = myMdwHelper.getNumberFromData(data.clickSoundVolume, 0.5);
+                soundObj.play();
             }
         } catch (ex) {
             console.error(`vibrate [${data.wid}]: error: ${ex.message}, stack: ${ex.stack}`);
@@ -311,6 +316,7 @@ vis.binds.materialdesign.helper = {
             }
         } else {
             return { class: '', style: '' };
+
         }
     },
     getListItemHeader: function (text, fontSize) {
@@ -902,6 +908,22 @@ vis.binds.materialdesign.helper = {
             (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
         );
     },
+    initializeClickAudio() {
+        let audioFile = "/vis.0/materialdesign-widgets-click-sound.mp3";
+
+        vis.conn.readFile(audioFile, function (err, data) {
+            if (err) {
+                console.warn(`vis-materialdesign: click audio file '${audioFile}' not exists!`);
+            } else {
+                soundObj = document.createElement("audio")
+                soundObj.src = audioFile;
+                soundObj.volume = 1;
+                soundObj.autoPlay = false;
+                soundObj.preLoad = true;
+                soundObj.controls = true;
+            }
+        });
+    },
     async initializeSentry(version) {
         let id = 'vis-materialdesign.0.sentry';
         let sentryState = await this.getStateAsync(id);
@@ -1149,6 +1171,7 @@ vis.binds.materialdesign.helper = {
 
 let myMdwHelper = vis.binds.materialdesign.helper;
 vis.binds.materialdesign.showVersion();
+let soundObj = null;
 
 // myMdwHelper.waitForVisConnected(async function () {
 //     myMdwHelper.waitForViews(async function () {

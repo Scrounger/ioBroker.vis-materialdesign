@@ -166,7 +166,7 @@ vis.binds.materialdesign.calendar =
                                 return event.colorText
                             },
                             viewDay({ date }) {
-                                vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                                vis.binds.materialdesign.helper.hapticFeedback(data);
 
                                 this.focus = date
 
@@ -237,32 +237,32 @@ vis.binds.materialdesign.calendar =
                     }
 
                     $this.find('#control-prev').on('click', function () {
-                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                        vis.binds.materialdesign.helper.hapticFeedback(data);
                         vueCalendar.$refs.calendar.prev();
                     });
 
                     $this.find('#control-today').on('click', function () {
-                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                        vis.binds.materialdesign.helper.hapticFeedback(data);
                         vueCalendar.focus = vueCalendar.now;
                     });
 
                     $this.find('#control-month').on('click', function () {
-                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                        vis.binds.materialdesign.helper.hapticFeedback(data);
                         vueCalendar.type = 'month';
                     });
 
                     $this.find('#control-week').on('click', function () {
-                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                        vis.binds.materialdesign.helper.hapticFeedback(data);
                         vueCalendar.type = 'week';
                     });
 
                     $this.find('#control-day').on('click', function () {
-                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                        vis.binds.materialdesign.helper.hapticFeedback(data);
                         vueCalendar.type = 'day';
                     });
 
                     $this.find('#control-next').on('click', function () {
-                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                        vis.binds.materialdesign.helper.hapticFeedback(data);
                         vueCalendar.$refs.calendar.next();
                     });
 

@@ -69,7 +69,7 @@ vis.binds.materialdesign.checkbox = {
 
             if (!vis.editMode) {
                 $this.find('.mdc-checkbox').on('click', function () {
-                    vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                    vis.binds.materialdesign.helper.hapticFeedback(data);
 
                     if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === undefined) {
                         if (data.toggleType === 'boolean') {

@@ -517,7 +517,7 @@ vis.binds.materialdesign.iconlist =
                                         listItemObj = getListItemObj(index, data, jsonData);
 
                                         if (listItemObj.listType !== 'text') {
-                                            vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                                            vis.binds.materialdesign.helper.hapticFeedback(data);
                                         }
 
                                         if (listItemObj.listType === 'buttonToggle') {

@@ -210,7 +210,7 @@ vis.binds.materialdesign.button = {
             $this.on('click', function (e) {
                 // Protect against two events
                 event.preventDefault();
-                vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                vis.binds.materialdesign.helper.hapticFeedback(data);
 
                 if (!vis.editMode && data.href) {
                     if (data.openNewWindow) {
@@ -233,7 +233,7 @@ vis.binds.materialdesign.button = {
                 $this.on('click', function (e) {
                     // Protect against two events
                     event.preventDefault();
-                    vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                    vis.binds.materialdesign.helper.hapticFeedback(data);
 
                     if (moved) return;
                     vis.changeView(data.nav_view, data.nav_view);
@@ -256,7 +256,7 @@ vis.binds.materialdesign.button = {
             $this.on('click', function (e) {
                 // Protect against two events
                 event.preventDefault();
-                vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                vis.binds.materialdesign.helper.hapticFeedback(data);
 
                 let val = vis.states.attr(data.oid + '.val');
                 if (!data.minmax || val != data.minmax) {
@@ -297,7 +297,7 @@ vis.binds.materialdesign.button = {
                 $this.on('click', function (e) {
                     // Protect against two events
                     event.preventDefault();
-                    vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                    vis.binds.materialdesign.helper.hapticFeedback(data);
 
                     if (moved) return;
 
@@ -423,7 +423,7 @@ vis.binds.materialdesign.button = {
                         $this.on('click', function (e) {
                             // Protect against two events
                             e.preventDefault();
-                            vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                            vis.binds.materialdesign.helper.hapticFeedback(data);
 
                             if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined) {
                                 if (myMdwHelper.getValueFromData(data.toggleType, 'boolean') === 'boolean') {
@@ -625,7 +625,7 @@ vis.binds.materialdesign.button = {
                     $this.on('tapstart', function (e) {
                         e.preventDefault();
 
-                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                        vis.binds.materialdesign.helper.hapticFeedback(data);
 
                         $knobDiv._mousedown = true;
                         $knobDiv._click = false;
@@ -674,7 +674,7 @@ vis.binds.materialdesign.button = {
                             sliderHide();
                         } else {
                             if ($knobDiv._mousedown) {
-                                vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                                vis.binds.materialdesign.helper.hapticFeedback(data);
 
                                 if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined) {
                                     myMdwHelper.setValue(data.oid, $scalaInput.val());

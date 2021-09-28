@@ -141,7 +141,7 @@ vis.binds.materialdesign.dialog = {
                                 },
                                 methods: {
                                     closeButton(value) {
-                                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                                        vis.binds.materialdesign.helper.hapticFeedback(data);
                                         this.showDialog = false;
                                     },
                                     saveButton(value) {
@@ -149,7 +149,7 @@ vis.binds.materialdesign.dialog = {
                                             myMdwHelper.setValue(data.dlgSaveButtonOid, myMdwHelper.getValueFromData(data.dlgSaveButtonValue, 'error'));
                                         }
 
-                                        vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                                        vis.binds.materialdesign.helper.hapticFeedback(data);
                                         this.showDialog = false;
                                     }
                                 },
@@ -181,7 +181,7 @@ vis.binds.materialdesign.dialog = {
                                 }
 
                                 button.click(function () {
-                                    vis.binds.materialdesign.helper.vibrate(data.vibrateOnMobilDevices);
+                                    vis.binds.materialdesign.helper.hapticFeedback(data);
 
                                     if (!vueDialog.showDialog) {
                                         showDialog(true);
