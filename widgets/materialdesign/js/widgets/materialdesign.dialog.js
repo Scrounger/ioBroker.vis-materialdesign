@@ -141,7 +141,7 @@ vis.binds.materialdesign.dialog = {
                                 },
                                 methods: {
                                     closeButton(value) {
-                                        vis.binds.materialdesign.helper.hapticFeedback(data);
+                                        myMdwHelper.hapticFeedback(data);
                                         this.showDialog = false;
                                     },
                                     saveButton(value) {
@@ -149,7 +149,7 @@ vis.binds.materialdesign.dialog = {
                                             myMdwHelper.setValue(data.dlgSaveButtonOid, myMdwHelper.getValueFromData(data.dlgSaveButtonValue, 'error'));
                                         }
 
-                                        vis.binds.materialdesign.helper.hapticFeedback(data);
+                                        myMdwHelper.hapticFeedback(data);
                                         this.showDialog = false;
                                     }
                                 },
@@ -180,12 +180,12 @@ vis.binds.materialdesign.dialog = {
                                     mdc.ripple.MDCRipple.attachTo(button.get(0));
                                 }
 
-                                button.click(function () {
-                                    vis.binds.materialdesign.helper.hapticFeedback(data);
-
+                                button.on('click', function () {
                                     if (!vueDialog.showDialog) {
                                         showDialog(true);
                                     }
+                                }).on('tapstart', function (e) {
+                                    myMdwHelper.hapticFeedback(data);
                                 });
                             } else {
                                 vis.states.bind(data.showDialogOid + '.ts', function (e, newVal, oldVal) {

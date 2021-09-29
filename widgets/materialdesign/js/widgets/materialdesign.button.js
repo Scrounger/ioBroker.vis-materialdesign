@@ -210,7 +210,6 @@ vis.binds.materialdesign.button = {
             $this.on('click', function (e) {
                 // Protect against two events
                 event.preventDefault();
-                vis.binds.materialdesign.helper.hapticFeedback(data);
 
                 if (!vis.editMode && data.href) {
                     if (data.openNewWindow) {
@@ -219,6 +218,10 @@ vis.binds.materialdesign.button = {
                         window.location.href = data.href;
                     }
                 }
+            });
+
+            $this.on('tapstart', function (e) {
+                myMdwHelper.hapticFeedback(data);
             });
         } catch (ex) {
             console.error(`[Button - ${data.wid}] handleLink: error: ${ex.message}, stack: ${ex.stack}`);
@@ -233,7 +236,6 @@ vis.binds.materialdesign.button = {
                 $this.on('click', function (e) {
                     // Protect against two events
                     event.preventDefault();
-                    vis.binds.materialdesign.helper.hapticFeedback(data);
 
                     if (moved) return;
                     vis.changeView(data.nav_view, data.nav_view);
@@ -243,6 +245,10 @@ vis.binds.materialdesign.button = {
                     moved = true;
                 }).on('touchstart', function (e) {
                     moved = false;
+                });
+
+                $this.on('tapstart', function (e) {
+                    myMdwHelper.hapticFeedback(data);
                 });
             }
         } catch (ex) {
@@ -256,12 +262,15 @@ vis.binds.materialdesign.button = {
             $this.on('click', function (e) {
                 // Protect against two events
                 event.preventDefault();
-                vis.binds.materialdesign.helper.hapticFeedback(data);
 
                 let val = vis.states.attr(data.oid + '.val');
                 if (!data.minmax || val != data.minmax) {
                     myMdwHelper.setValue(data.oid, parseFloat(val) + parseFloat(data.value));
                 }
+            });
+
+            $this.on('tapstart', function (e) {
+                myMdwHelper.hapticFeedback(data);
             });
         } catch (ex) {
             console.error(`[Button - ${data.wid}] handleAddition: error:: ${ex.message}, stack: ${ex.stack}`);
@@ -297,7 +306,6 @@ vis.binds.materialdesign.button = {
                 $this.on('click', function (e) {
                     // Protect against two events
                     event.preventDefault();
-                    vis.binds.materialdesign.helper.hapticFeedback(data);
 
                     if (moved) return;
 
@@ -322,6 +330,10 @@ vis.binds.materialdesign.button = {
                     moved = true;
                 }).on('touchstart', function (e) {
                     moved = false;
+                });
+
+                $this.on('tapstart', function (e) {
+                    myMdwHelper.hapticFeedback(data);
                 });
 
                 function unlockButton() {
@@ -423,7 +435,6 @@ vis.binds.materialdesign.button = {
                         $this.on('click', function (e) {
                             // Protect against two events
                             e.preventDefault();
-                            vis.binds.materialdesign.helper.hapticFeedback(data);
 
                             if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined) {
                                 if (myMdwHelper.getValueFromData(data.toggleType, 'boolean') === 'boolean') {
@@ -439,12 +450,18 @@ vis.binds.materialdesign.button = {
                                 unlockButton();
                             }
                         });
+
+                        $this.on('tapstart', function (e) {
+                            myMdwHelper.hapticFeedback(data);
+                        });
                     } else {
                         sliderEvents();
                     }
                 } else {
                     // Button from type push (Taster)                   
                     $this.on('mousedown touchstart', function (e) {
+                        myMdwHelper.hapticFeedback(data);
+
                         if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined) {
                             if (data.toggleType === 'boolean') {
                                 myMdwHelper.setValue(data.oid, true);
@@ -591,7 +608,7 @@ vis.binds.materialdesign.button = {
                     }
                 }
 
-                $knobDiv = $scalaInput.knobHQ(knobObj);                
+                $knobDiv = $scalaInput.knobHQ(knobObj);
             }
 
             function sliderEvents() {
@@ -625,7 +642,7 @@ vis.binds.materialdesign.button = {
                     $this.on('tapstart', function (e) {
                         e.preventDefault();
 
-                        vis.binds.materialdesign.helper.hapticFeedback(data);
+                        myMdwHelper.hapticFeedback(data);
 
                         $knobDiv._mousedown = true;
                         $knobDiv._click = false;
@@ -674,7 +691,7 @@ vis.binds.materialdesign.button = {
                             sliderHide();
                         } else {
                             if ($knobDiv._mousedown) {
-                                vis.binds.materialdesign.helper.hapticFeedback(data);
+                                myMdwHelper.hapticFeedback(data);
 
                                 if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined) {
                                     myMdwHelper.setValue(data.oid, $scalaInput.val());
@@ -727,25 +744,25 @@ vis.binds.materialdesign.button = {
                     //     //     $element = $(e.target.lastElementChild).closest('.materialdesign-widget.materialdesign-icon-button.Slider');
                     //     // }
                     //     console.warn($(this));
-                        
+
                     //     // if ($element.attr('id') === data.wid) {
 
                     //         if ($knobDiv._click) {
                     //             console.warn(`[${data.wid}] click event`);
                     //             $knobDiv._mousehold = false;
                     //             $knobDiv._click = false;
-    
+
                     //             sliderHide();
-    
+
                     //             return true;
 
                     //         } else if ($knobDiv._mousehold) {
                     //             console.warn(`[${data.wid}] slide event`);
                     //             $knobDiv._mousehold = false;
                     //             $knobDiv._click = false;
-    
+
                     //             sliderHide();
-    
+
                     //             return true;
 
                     //         } else {

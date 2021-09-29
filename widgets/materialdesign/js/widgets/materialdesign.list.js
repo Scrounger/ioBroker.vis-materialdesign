@@ -332,10 +332,6 @@ vis.binds.materialdesign.list =
                                     let index = item.detail.index;
                                     let listItemObj = getListItemObj(index, data, jsonData);
 
-                                    if (data.listType !== 'text') {
-                                        myMdwHelper.vibrate(data.vibrateOnMobilDevices);
-                                    }
-
                                     if (data.listType === 'checkbox' || data.listType === 'switch') {
                                         let selectedValue = mdcListAdapter.isCheckboxCheckedAtIndex(index);
 
@@ -363,6 +359,12 @@ vis.binds.materialdesign.list =
                                     }
                                 });
                             }
+
+                            $this.find('.mdc-list-item').on('tapstart', function (e) {
+                                if (data.listType !== 'text') {
+                                    myMdwHelper.hapticFeedback(data);
+                                }
+                            });
 
                             let itemCount = (data.listType === 'switch' || data.listType === 'switch_readonly') ? $this.find('.mdc-switch').length : mdcList.listElements.length;
                             for (var i = 0; i <= itemCount - 1; i++) {

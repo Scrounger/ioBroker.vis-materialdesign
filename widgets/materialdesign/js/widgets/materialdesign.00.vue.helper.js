@@ -199,6 +199,7 @@ vis.binds.materialdesign.vueHelper = {
                 @click:clear="clearEvent"
                 @click="click"
                 @input="menuClick"
+                @mousedown="mousedown"
                 :open-on-clear="openOnClear"
             `
         },
@@ -494,10 +495,11 @@ vis.binds.materialdesign.vueHelper = {
         getMethods: function (data, $el, itemsList, $vuetifyContainer, inputMode = '') {
             return {
                 click(item) {
-                    myMdwHelper.vibrate(data.vibrateOnMobilDevices);
+                    
                 },
-                menuClick(item) {
-                    myMdwHelper.vibrate(data.vibrateOnMobilDevices);
+                menuClick(item) {        
+                    myMdwHelper.hapticFeedback(data);
+                                
                     if (item || item === 0) {
                         if (item.value || item.value === 0) {
                             myMdwHelper.setValue(data.oid, item.value);
@@ -513,6 +515,9 @@ vis.binds.materialdesign.vueHelper = {
                         this.imageColor = obj.imageColor;
                     }
                 },
+                mousedown(){
+                    myMdwHelper.hapticFeedback(data);
+                },                
                 changeEvent(item) {
                     // if (item) {
                     //     if (item.value) {
@@ -534,7 +539,7 @@ vis.binds.materialdesign.vueHelper = {
                     vis.binds.materialdesign.vueHelper.select.setMenuStyles($el, data, itemsList, $vuetifyContainer);
                 },
                 clearEvent(value) {
-                    myMdwHelper.vibrate(data.vibrateOnMobilDevices);
+                    myMdwHelper.hapticFeedback(data);
 
                     vis.conn._socket.emit('getObject', data.oid, function (error, obj) {
                         if (obj && obj.common && obj.common.type) {

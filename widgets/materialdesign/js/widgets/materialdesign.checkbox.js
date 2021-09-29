@@ -10,7 +10,7 @@ vis.binds.materialdesign.checkbox = {
         try {
 
             let labelClickActive = '';
-            if (data.labelClickActive === 'false' || data.labelClickActive === false) {
+            if (myMdwHelper.getBooleanFromData(data.labelClickActive, false) === false) {
                 labelClickActive = 'pointer-events:none;'
             }
 
@@ -69,7 +69,6 @@ vis.binds.materialdesign.checkbox = {
 
             if (!vis.editMode) {
                 $this.find('.mdc-checkbox').on('click', function () {
-                    vis.binds.materialdesign.helper.hapticFeedback(data);
 
                     if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === undefined) {
                         if (data.toggleType === 'boolean') {
@@ -87,7 +86,15 @@ vis.binds.materialdesign.checkbox = {
                     }
 
                     setCheckboxState();
+                }).on('tapstart', function (e) {
+                    myMdwHelper.hapticFeedback(data);
                 });
+
+                if (myMdwHelper.getBooleanFromData(data.labelClickActive, false) === true) {
+                    $this.find('#label').on('tapstart', function (e) {
+                        myMdwHelper.hapticFeedback(data);
+                    });
+                }
             }
 
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {

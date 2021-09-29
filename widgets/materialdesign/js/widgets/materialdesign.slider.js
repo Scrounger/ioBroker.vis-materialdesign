@@ -115,10 +115,10 @@ vis.binds.materialdesign.slider = {
                         }
                     })
 
-                    $this.find(`.${containerClass}`).on('touchstart mousedown', function () {
-                        myMdwHelper.vibrate(data.vibrateOnMobilDevices);
+                    $this.find(`.${containerClass}`).on('tapstart', function () {
+                        myMdwHelper.hapticFeedback(data);
                     });
-
+                    
                     // calculate width / height of Element
                     if (myMdwHelper.getValueFromData(data.orientation, 'horizontal') === 'vertical') {
                         let height = window.getComputedStyle($this.context, null).height.replace('px', '');

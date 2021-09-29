@@ -516,10 +516,6 @@ vis.binds.materialdesign.iconlist =
 
                                         listItemObj = getListItemObj(index, data, jsonData);
 
-                                        if (listItemObj.listType !== 'text') {
-                                            vis.binds.materialdesign.helper.hapticFeedback(data);
-                                        }
-
                                         if (listItemObj.listType === 'buttonToggle') {
                                             if ($item.attr('isLocked') === 'false' || $item.attr('isLocked') === undefined) {
                                                 let selectedValue = vis.states.attr(listItemObj.objectId + '.val');
@@ -571,6 +567,10 @@ vis.binds.materialdesign.iconlist =
                                             vis.changeView(listItemObj.buttonNavView);
                                         } else if (listItemObj.listType === 'buttonLink') {
                                             window.open(listItemObj.buttonLink);
+                                        }
+                                    }).on('tapstart', function (e) {
+                                        if (listItemObj.listType !== 'text') {
+                                            myMdwHelper.hapticFeedback(data);
                                         }
                                     });
                                 } else {

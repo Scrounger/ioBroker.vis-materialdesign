@@ -106,8 +106,8 @@ vis.binds.materialdesign.roundslider = {
                     }
                 });
 
-                $this.find(`.${containerClass}`).on('touchstart mousedown', function (e) {
-                    myHelper.vibrate(data.vibrateOnMobilDevices);
+                $this.find(`.${containerClass}`).on('tapstart', function (e) {
+                    myMdwHelper.hapticFeedback(data);
                 });
 
                 setLayout();
