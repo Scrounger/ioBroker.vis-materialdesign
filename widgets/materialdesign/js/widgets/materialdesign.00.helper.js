@@ -8,7 +8,7 @@
 vis.binds.materialdesign.helper = {
     hapticFeedback: function (data) {
         try {
-            if ("vibrate" in navigator) {
+            if (vibrateActive) {
                 window.navigator.vibrate(data.vibrateOnMobilDevices);
             }
 
@@ -908,7 +908,7 @@ vis.binds.materialdesign.helper = {
             (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
         );
     },
-    initializeClickAudio() {
+    initializeHapticFeedback() {
         let audioFile = "/vis.0/materialdesign-widgets-click-sound.mp3";
 
         vis.conn.readFile(audioFile, function (err, data) {
@@ -923,6 +923,9 @@ vis.binds.materialdesign.helper = {
                 soundObj.controls = true;
             }
         });
+
+        vibrateActive = 'vibrate' in navigator || 'webkitVibrate' in navigator || 'mozVibrate' in navigator || 'msVibrate' in navigator;
+        console.log(`vis-materialdesign: vibration supported by device: '${vibrateActive}'`);
     },
     async initializeSentry(version) {
         let id = 'vis-materialdesign.0.sentry';
@@ -1172,6 +1175,7 @@ vis.binds.materialdesign.helper = {
 let myMdwHelper = vis.binds.materialdesign.helper;
 vis.binds.materialdesign.showVersion();
 let soundObj = null;
+let vibrateActive = false;
 
 // myMdwHelper.waitForVisConnected(async function () {
 //     myMdwHelper.waitForViews(async function () {

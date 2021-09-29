@@ -34,7 +34,7 @@ vis.binds.materialdesign = {
 
                 myMdwHelper.initializeSentry(version);
                 myMdwHelper.bindCssThemeVariables();
-                myMdwHelper.initializeClickAudio();
+                myMdwHelper.initializeHapticFeedback();
 
                 if (vis.editMode) {
                     vis.binds.materialdesign.viseditor.themeChangeHandler();
