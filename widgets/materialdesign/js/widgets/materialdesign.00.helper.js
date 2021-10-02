@@ -31,6 +31,7 @@ vis.binds.materialdesign.helper = {
             setTimeout(function () {
                 let val = vis.states.attr(oid + '.val');
                 if (val !== undefined && val !== 'undefined' && val !== null && val !== 'null') {
+                    if (debug) console.log(`[${widgetName} ${wid}] [waitForOid] it took ${counter}ms to wait for the value '${val}' of oid '${oid}'`);
                     callBack(val);
                 } else {
                     if (debug) console.warn(`[${widgetName} ${wid}] [waitForOid] wait for value of oid '${oid}'`);
@@ -98,16 +99,16 @@ vis.binds.materialdesign.helper = {
 
             setTimeout(function () {
                 if (parent.find(elementPath).length > 0) {
-                    if (debug) console.log(`[${widgetName} ${wid}] it took ${counter}ms to wait for the element '${elementPath}'`);
+                    if (debug) console.log(`[${widgetName} ${wid}] [waitForElement] it took ${counter}ms to wait for the element '${elementPath}'`);
                     callBack();
                 } else {
-                    if (debug) console.log(`[${widgetName} ${wid}] wait for element '${elementPath}'`);
+                    if (debug) console.log(`[${widgetName} ${wid}] [waitForElement] wait for element '${elementPath}'`);
                     counter++
                     vis.binds.materialdesign.helper.waitForElement(parent, elementPath, wid, widgetName, callBack, counter, debug);
                 }
             }, 1);
         } else {
-            console.warn(`[${widgetName} ${wid}] stop waiting after ${counter} retries`);
+            console.warn(`[${widgetName} ${wid}] [waitForElement] stop waiting after ${counter} retries`);
             callBack();
         }
     },

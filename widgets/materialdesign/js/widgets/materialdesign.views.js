@@ -526,8 +526,12 @@ vis.binds.materialdesign.views = {
                 $this.append(`<div class="editmode-helper" style="top: 0px;"></div>`);
             }
 
-            bindView(val, undefined, true);
-            renderOtherViewsOnInit(val);
+            myMdwHelper.waitForOid(data.oid, data.wid, widgetName, function () {
+                val = vis.states.attr(data.oid + '.val');
+
+                bindView(val, undefined, true);
+                renderOtherViewsOnInit(val);
+            });
 
             function bindView(view, oldView, isInit = false) {
 
@@ -556,19 +560,19 @@ vis.binds.materialdesign.views = {
                     let $oldView = $container.find(`#visview_${oldView ? oldView : view},.container-error`);
 
                     if (myMdwHelper.getNumberFromData(data.fadeOutDuration, 50) > 0) {
-                        if ($oldView.css('display') !== 'none') {
+                        // if ($oldView.css('display') !== 'none') {
                             if (data.debug) console.log(`${logPrefix} old view '${oldView ? oldView : view}' is visible -> hide using fading`);
                             $oldView.data('persistent', true).fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), myMdwHelper.getValueFromData(data.fadeEffect, 'swing'), function () {
                                 showView();
                             });
-                        } else {
-                            showView();
-                        }
+                        // } else {
+                        //     showView();
+                        // }
                     } else {
-                        if ($oldView.css('display') !== 'none') {
+                        // if ($oldView.css('display') !== 'none') {
                             if (data.debug) console.log(`${logPrefix} old view '${oldView ? oldView : view}' is visible -> hide`);
                             $oldView.data('persistent', true).hide();
-                        }
+                        // }
                         showView();
                     }
 
