@@ -530,7 +530,10 @@ vis.binds.materialdesign.views = {
                 val = vis.states.attr(data.oid + '.val');
 
                 bindView(val, undefined, true);
-                renderOtherViewsOnInit(val);
+
+                if (!vis.editMode) {
+                    renderOtherViewsOnInit(val);
+                }
             });
 
             function bindView(view, oldView, isInit = false) {
@@ -561,17 +564,17 @@ vis.binds.materialdesign.views = {
 
                     if (myMdwHelper.getNumberFromData(data.fadeOutDuration, 50) > 0) {
                         // if ($oldView.css('display') !== 'none') {
-                            if (data.debug) console.log(`${logPrefix} old view '${oldView ? oldView : view}' is visible -> hide using fading`);
-                            $oldView.data('persistent', true).fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), myMdwHelper.getValueFromData(data.fadeEffect, 'swing'), function () {
-                                showView();
-                            });
+                        if (data.debug) console.log(`${logPrefix} old view '${oldView ? oldView : view}' is visible -> hide using fading`);
+                        $oldView.data('persistent', true).fadeOut(myMdwHelper.getNumberFromData(data.fadeOutDuration, 50), myMdwHelper.getValueFromData(data.fadeEffect, 'swing'), function () {
+                            showView();
+                        });
                         // } else {
                         //     showView();
                         // }
                     } else {
                         // if ($oldView.css('display') !== 'none') {
-                            if (data.debug) console.log(`${logPrefix} old view '${oldView ? oldView : view}' is visible -> hide`);
-                            $oldView.data('persistent', true).hide();
+                        if (data.debug) console.log(`${logPrefix} old view '${oldView ? oldView : view}' is visible -> hide`);
+                        $oldView.data('persistent', true).hide();
                         // }
                         showView();
                     }
@@ -695,7 +698,7 @@ vis.binds.materialdesign.views = {
                                                 if (data.debug) console.debug(`${logPrefix} renderOtherViewsOnInit: View[${index}] '${view}' still rendered`);
                                             }
                                         } else {
-                                            console.warn(`${logPrefix} renderOtherViewsOnInit: View[${index}] not exists in VIS project!`);
+                                            console.warn(`${logPrefix} renderOtherViewsOnInit: View[${index}] '${view}' not exists in VIS project!`);
                                         }
                                     } else {
                                         console.warn(`${logPrefix} renderOtherViewsOnInit: View[${index}] has no value!`);

@@ -399,6 +399,7 @@ vis.binds.materialdesign.button = {
 
             let $scalaInput;
             let $knobDiv;
+            let $linkedValueWidget;
 
             if ($this.attr('isLocked') === 'true') {
                 $this.find('.materialdesign-button-body').css('filter', `grayscale(${myMdwHelper.getNumberFromData(data.lockFilterGrayscale, 0)}%)`);
@@ -522,6 +523,7 @@ vis.binds.materialdesign.button = {
 
                 if (hasSlider) {
                     sliderSetValue(val, false);
+                    setLinkedValueWidgetState(val);
                 }
             }
 
@@ -599,6 +601,8 @@ vis.binds.materialdesign.button = {
                         if (!($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined)) {
                             return false;
                         }
+
+                        setLinkedValueWidgetState(value);
                     }
                 }
 
@@ -609,6 +613,12 @@ vis.binds.materialdesign.button = {
                 }
 
                 $knobDiv = $scalaInput.knobHQ(knobObj);
+
+                if (myMdwHelper.getBooleanFromData(data.enable, false) && myMdwHelper.getValueFromData(data.widgetId)) {
+                    myMdwHelper.waitForElement($('#vis_container'), `#${data.widgetId}`, data.widgetId, 'Value - Linked', function (element) {
+                        $linkedValueWidget = element;
+                    }, 0, data.debug);
+                }
             }
 
             function sliderEvents() {
@@ -646,7 +656,9 @@ vis.binds.materialdesign.button = {
 
                         $knobDiv._mousedown = true;
                         $knobDiv._click = false;
+
                         sliderShow();
+                        linkedValueWidgetShow();
                     });
 
                     $this.on('touchstart', function (e) {
@@ -689,6 +701,7 @@ vis.binds.materialdesign.button = {
                                 unlockButton();
                             }
                             sliderHide();
+                            linkedValueWidgetHide();
                         } else {
                             if ($knobDiv._mousedown) {
                                 myMdwHelper.hapticFeedback(data);
@@ -697,6 +710,7 @@ vis.binds.materialdesign.button = {
                                     myMdwHelper.setValue(data.oid, $scalaInput.val());
                                 }
                                 sliderHide();
+                                linkedValueWidgetHide();
                             }
                         }
 
@@ -793,6 +807,45 @@ vis.binds.materialdesign.button = {
                     setTimeout(function () {
                         $knobDiv.hide();
                     }, 150);
+                }
+            }
+
+            let timer = null;
+
+            function linkedValueWidgetShow() {
+                if ($linkedValueWidget && $linkedValueWidget.length === 1) {
+
+                    if (myMdwHelper.getValueFromData(data.prepandText, undefined)) {
+                        $linkedValueWidget.find('.prepand-text').html(data.prepandText);
+                    }
+
+                    if (myMdwHelper.getValueFromData(data.appendText, undefined)) {
+                        $linkedValueWidget.find('.append-text').html(data.appendText);
+                    }
+
+                    if (myMdwHelper.getValueFromData(data.imageValueWidgetLink, undefined)) {
+                        $linkedValueWidget.find('.materialdesign-value-icon .mdi').attr('class', function (i, c) {
+                            return c.replace(/(^|\s)mdi-\S+/, ` mdi-${data.imageValueWidgetLink}`);
+                        });
+                    }
+
+                    $linkedValueWidget.show();
+                }
+
+            }
+
+            function linkedValueWidgetHide() {
+                if ($linkedValueWidget && $linkedValueWidget.length === 1) {
+                    timer = setTimeout(function () {
+                        $linkedValueWidget.hide();
+                    }, 300);
+                }
+            }
+
+            function setLinkedValueWidgetState(val) {
+                if ($linkedValueWidget && $linkedValueWidget.length === 1) {
+                    let formatedValue = myMdwHelper.formatNumber(val, 0, 0);
+                    $linkedValueWidget.find('.value-text').html(`${formatedValue}${myMdwHelper.getValueFromData(data.unit, '')}`);
                 }
             }
 

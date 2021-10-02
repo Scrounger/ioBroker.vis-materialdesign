@@ -98,9 +98,10 @@ vis.binds.materialdesign.helper = {
         if (counter < 500) {
 
             setTimeout(function () {
-                if (parent.find(elementPath).length > 0) {
+                let element = parent.find(elementPath);
+                if (element.length > 0) {
                     if (debug) console.log(`[${widgetName} ${wid}] [waitForElement] it took ${counter}ms to wait for the element '${elementPath}'`);
-                    callBack();
+                    callBack(element);
                 } else {
                     if (debug) console.log(`[${widgetName} ${wid}] [waitForElement] wait for element '${elementPath}'`);
                     counter++
