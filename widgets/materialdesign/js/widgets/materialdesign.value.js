@@ -17,7 +17,8 @@ vis.binds.materialdesign.value = {
 
             let val = vis.states.attr(data.oid + '.val');
             let imageElement = myMdwHelper.getIconElement(getValueWithCondition(data.image, val), 'auto', myMdwHelper.getValueFromData(data.iconHeight, '24px', '', 'px'), myMdwHelper.getValueFromData(getValueWithCondition(data.imageColor, val), '#44739e'));
-            let valueLabelWidth = myMdwHelper.getNumberFromData(data.valueLabelWidth, 4)
+            let valueLabelWidth = myMdwHelper.getNumberFromData(data.valueLabelWidth, 4);
+            let targetType = myMdwHelper.getValueFromData(data.targetType, 'auto');
 
             $this.html(`
                     ${data.iconPosition === 'left' ? `<div class="materialdesign-value-icon">${imageElement}</div>` : ''}
@@ -31,11 +32,13 @@ vis.binds.materialdesign.value = {
             let $valueText = $this.find('.value-text');
             let $appendText = $this.find('.append-text');
 
-            let targetType = myMdwHelper.getValueFromData(data.targetType, 'auto');
-
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 setLayout(newVal, oldVal);
             });
+
+            if (!vis.editMode && data.isHiddenOnLoad) {
+                $this.hide();
+            }
 
             $(document).on("mdwSubscribe", function (e, oids) {
                 if (myMdwHelper.isLayoutRefreshNeeded(widgetName, data, oids, data.debug)) {
