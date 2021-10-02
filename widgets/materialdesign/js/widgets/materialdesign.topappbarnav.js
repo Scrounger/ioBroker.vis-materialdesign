@@ -174,7 +174,7 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
 
             topAppBar.listen('MDCTopAppBar:nav', () => {
 
-                vis.binds.materialdesign.helper.vibrate(data.vibrateTopAppBarOnMobilDevices);
+                myMdwHelper.hapticFeedback(data);
 
                 if (data.drawerMode === 'dismissible') {
                     if (drawer.open) {
@@ -260,7 +260,7 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
 
                 let itemIsDisabled = $selectedItem.hasClass('mdc-list-item--disabled');
 
-                vis.binds.materialdesign.helper.vibrate(data.vibrateDrawerOnMobilDevices);
+                myMdwHelper.hapticFeedback(data);
 
                 if (!itemIsDisabled) {
                     if ($(this).hasClass('hasSubItems')) {
