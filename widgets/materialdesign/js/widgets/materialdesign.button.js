@@ -687,21 +687,23 @@ vis.binds.materialdesign.button = {
 
                     $('body').on('tapend', function (e) {
                         if ($knobDiv._click) {
-                            if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined) {
-                                if ($this.attr('toggled') === true || $this.attr('toggled') === 'true') {
-                                    let dataVal = myMdwHelper.getNumberFromData(data.valueOff, 100);
-                                    myMdwHelper.setValue(data.oid, dataVal);
-                                    sliderSetValue(dataVal);
+                            if (!data.sliderOnly) {
+                                if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined) {
+                                    if ($this.attr('toggled') === true || $this.attr('toggled') === 'true') {
+                                        let dataVal = myMdwHelper.getNumberFromData(data.valueOff, 100);
+                                        myMdwHelper.setValue(data.oid, dataVal);
+                                        sliderSetValue(dataVal);
+                                    } else {
+                                        let dataVal = myMdwHelper.getNumberFromData(data.valueOn, 100);
+                                        myMdwHelper.setValue(data.oid, dataVal);
+                                        sliderSetValue(dataVal);
+                                    }
                                 } else {
-                                    let dataVal = myMdwHelper.getNumberFromData(data.valueOn, 100);
-                                    myMdwHelper.setValue(data.oid, dataVal);
-                                    sliderSetValue(dataVal);
+                                    unlockButton();
                                 }
-                            } else {
-                                unlockButton();
+                                sliderHide();
+                                linkedValueWidgetHide();
                             }
-                            sliderHide();
-                            linkedValueWidgetHide();
                         } else {
                             if ($knobDiv._mousedown) {
                                 myMdwHelper.hapticFeedback(data);
@@ -719,73 +721,6 @@ vis.binds.materialdesign.button = {
                     });
 
                     sliderHide();
-
-                    // $knobDiv._timer = null;
-                    // $knobDiv._mousehold = false;
-                    // $knobDiv._click = false;
-
-                    // $this.on('mouseenter', function (e) {
-                    //     e.preventDefault();
-
-                    //     if (!$knobDiv._mousehold) {
-                    //         sliderShow();
-                    //     }
-                    // });
-
-                    // $this.on('mouseleave', function (e) {
-                    //     e.preventDefault();
-
-                    //     if (!$knobDiv._mousehold) {
-                    //         sliderHide();
-                    //     }
-                    // });
-
-
-                    // $this.on('mousedown touchstart', function () {
-                    //     $knobDiv._timer = setTimeout(function () {
-                    //         $knobDiv._mousehold = true;
-                    //         $knobDiv._click = false;
-                    //     }, 300);
-
-                    //     $knobDiv._click = true;
-                    //     $knobDiv._mousehold = false;
-                    // });
-
-                    // $('body').on('mouseup touchend', function (e) {
-                    //     // let $element = $(e.target).closest('.materialdesign-widget.materialdesign-icon-button.Slider');
-
-                    //     // if ($element.length === 0) {
-                    //     //     $element = $(e.target.lastElementChild).closest('.materialdesign-widget.materialdesign-icon-button.Slider');
-                    //     // }
-                    //     console.warn($(this));
-
-                    //     // if ($element.attr('id') === data.wid) {
-
-                    //         if ($knobDiv._click) {
-                    //             console.warn(`[${data.wid}] click event`);
-                    //             $knobDiv._mousehold = false;
-                    //             $knobDiv._click = false;
-
-                    //             sliderHide();
-
-                    //             return true;
-
-                    //         } else if ($knobDiv._mousehold) {
-                    //             console.warn(`[${data.wid}] slide event`);
-                    //             $knobDiv._mousehold = false;
-                    //             $knobDiv._click = false;
-
-                    //             sliderHide();
-
-                    //             return true;
-
-                    //         } else {
-                    //             // console.error(`[${data.wid}] no event`);
-                    //             // console.warn(e.target);
-                    //         }
-
-                    //     // }
-                    // });
                 }
             }
 
@@ -810,8 +745,6 @@ vis.binds.materialdesign.button = {
                 }
             }
 
-            let timer = null;
-
             function linkedValueWidgetShow() {
                 if ($linkedValueWidget && $linkedValueWidget.length === 1) {
 
@@ -831,12 +764,11 @@ vis.binds.materialdesign.button = {
 
                     $linkedValueWidget.show();
                 }
-
             }
 
             function linkedValueWidgetHide() {
                 if ($linkedValueWidget && $linkedValueWidget.length === 1) {
-                    timer = setTimeout(function () {
+                    setTimeout(function () {
                         $linkedValueWidget.hide();
                     }, 300);
                 }
@@ -845,7 +777,16 @@ vis.binds.materialdesign.button = {
             function setLinkedValueWidgetState(val) {
                 if ($linkedValueWidget && $linkedValueWidget.length === 1) {
                     let formatedValue = myMdwHelper.formatNumber(val, 0, 0);
-                    $linkedValueWidget.find('.value-text').html(`${formatedValue}${myMdwHelper.getValueFromData(data.unit, '')}`);
+                    let dataMax = myMdwHelper.getNumberFromData(data.valueOn, 100);
+                    let dataMin = myMdwHelper.getNumberFromData(data.valueOff, 0);
+
+                    if (formatedValue <= dataMin && myMdwHelper.getValueFromData(data.valueLabelMin, undefined)) {
+                        $linkedValueWidget.find('.value-text').html(data.valueLabelMin);
+                    } else if (formatedValue >= dataMax && myMdwHelper.getValueFromData(data.valueLabelMax, undefined)) {
+                        $linkedValueWidget.find('.value-text').html(data.valueLabelMax);
+                    } else {
+                        $linkedValueWidget.find('.value-text').html(`${formatedValue}${myMdwHelper.getValueFromData(data.unit, '')}`);
+                    }
                 }
             }
 
@@ -860,7 +801,6 @@ vis.binds.materialdesign.button = {
 
                 return 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + a + ')';
             }
-
         } catch (ex) {
             console.error(`[Button - ${data.wid}] handleToggle: error:: ${ex.message}, stack: ${ex.stack}`);
         }
