@@ -757,9 +757,15 @@ vis.binds.materialdesign.button = {
                     }
 
                     if (myMdwHelper.getValueFromData(data.imageValueWidgetLink, undefined)) {
-                        $linkedValueWidget.find('.materialdesign-value-icon .mdi').attr('class', function (i, c) {
+                        let iconElement = $linkedValueWidget.find('.materialdesign-value-icon .mdi')
+
+                        iconElement.attr('class', function (i, c) {
                             return c.replace(/(^|\s)mdi-\S+/, ` mdi-${data.imageValueWidgetLink}`);
                         });
+
+                        if (myMdwHelper.getValueFromData(data.imageColorValueWidgetLink, undefined)) {
+                            iconElement.css('color', data.imageColorValueWidgetLink);
+                        }
                     }
 
                     $linkedValueWidget.show();

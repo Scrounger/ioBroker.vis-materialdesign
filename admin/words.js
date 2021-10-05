@@ -339,28 +339,28 @@ systemDictionary = {
         "zh-cn": "显示标记"
     },
     "valueLabelMin": {
-        "en": "text for value less than min",
-        "de": "Text für Wert kleiner als min",
-        "ru": "текст на значение меньше мин",
-        "pt": "texto para valor menor que min",
-        "nl": "tekst voor waarde minder dan min",
-        "fr": "texte pour valeur inférieure à min",
-        "it": "testo per valore inferiore a min",
-        "es": "texto para un valor inferior a min",
-        "pl": "tekst o wartości mniejszej niż min",
-        "zh-cn": "值小于min的文字"
+        "en": "text for value less or equal than minimum",
+        "de": "Text für Wert kleiner oder gleich Minimum",
+        "ru": "текст для значения, меньшего или равного минимальному",
+        "pt": "texto para valor menor ou igual ao mínimo",
+        "nl": "tekst voor waarde kleiner of gelijk aan minimum",
+        "fr": "texte pour une valeur inférieure ou égale au minimum",
+        "it": "testo per valore minore o uguale al minimo",
+        "es": "texto para valor menor o igual que mínimo",
+        "pl": "tekst dla wartości mniejszej lub równej minimum",
+        "zh-cn": "小于或等于最小值的文本"
     },
     "valueLabelMax": {
-        "en": "text for value greater than min",
-        "de": "Text für einen Wert größer als min",
-        "ru": "текст на значение больше мин",
-        "pt": "texto para valor maior que min",
-        "nl": "tekst voor waarde groter dan min",
-        "fr": "texte de valeur supérieure à min",
-        "it": "testo per valore maggiore di min",
-        "es": "texto para un valor mayor que min",
-        "pl": "tekst dla wartości większej niż min",
-        "zh-cn": "值大于min的文字"
+        "en": "text for value less or equal than maximum",
+        "de": "Text für Wert kleiner oder gleich Maximum",
+        "ru": "текст для значения, меньшего или равного максимальному",
+        "pt": "texto para valor menor ou igual ao máximo",
+        "nl": "tekst voor waarde kleiner of gelijk aan maximum",
+        "fr": "texte pour une valeur inférieure ou égale au maximum",
+        "it": "testo per valore minore o uguale al massimo",
+        "es": "texto para un valor menor o igual que el máximo",
+        "pl": "tekst dla wartości mniejszej lub równej maksimum",
+        "zh-cn": "小于或等于最大值的文本"
     },
     "labelClickActive": {
         "en": "activate label click",
