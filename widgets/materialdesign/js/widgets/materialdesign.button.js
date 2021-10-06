@@ -606,9 +606,9 @@ vis.binds.materialdesign.button = {
                     }
                 }
 
-                if (data.colorize || data.tempColorize) {
+                if (data.colorize) {
                     knobObj.colorize = function (color, value) {
-                        return h2rgba(color, value, dataMin, dataMax, myMdwHelper.getNumberFromData(data.colorizeFactor, 0.5));
+                        return getColors(color, value, dataMin, dataMax, myMdwHelper.getNumberFromData(data.colorizeFactor, 0.5));
                     }
                 }
 
@@ -796,23 +796,18 @@ vis.binds.materialdesign.button = {
                 }
             }
 
-            function h2rgba(h, value, min, max, alpha) {
+            function getColors(color, value, min, max, alpha) {
+                let myColors;
+                let ratio = (value - min) / (max - min);
+                alpha = ratio + alpha;
 
-                if (!data.tempColorize) {
-                    let rgb;
-                    let a = (value - min) / (max - min) + alpha;
-                    h = h.substring(1, 7);
-                    rgb = [
-                        parseInt(h.substring(0, 2), 16),
-                        parseInt(h.substring(2, 4), 16),
-                        parseInt(h.substring(4, 6), 16)
-                    ];
-
-                    return 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + a + ')';
+                if (color.includes(';')) {
+                    myColors = chroma.scale(color.split(';'))
+                    
+                    return myColors(ratio).alpha(alpha).css();
                 } else {
-                    var ratio = (value - min) / (max - min);
-                    let a = (value - min) / (max - min) + alpha;
-                    return 'hsla(' + (180 + Math.round(180 * ratio)) + ', 70%, 50%, ' + a + ')';
+                    myColors = chroma(color);
+                    return myColors.alpha(alpha).css();
                 }
             }
         } catch (ex) {
