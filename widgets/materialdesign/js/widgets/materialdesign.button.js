@@ -606,9 +606,9 @@ vis.binds.materialdesign.button = {
                     }
                 }
 
-                if (data.colorize) {
+                if (data.colorize || data.tempColorize) {
                     knobObj.colorize = function (color, value) {
-                        return h2rgba(color, (value - dataMin) / (dataMax - dataMin) + myMdwHelper.getNumberFromData(data.colorizeFactor, 0.5));
+                        return h2rgba(color, value, dataMin, dataMax, myMdwHelper.getNumberFromData(data.colorizeFactor, 0.5));
                     }
                 }
 
@@ -796,16 +796,24 @@ vis.binds.materialdesign.button = {
                 }
             }
 
-            function h2rgba(h, a) {
-                var rgb;
-                h = h.substring(1, 7);
-                rgb = [
-                    parseInt(h.substring(0, 2), 16),
-                    parseInt(h.substring(2, 4), 16),
-                    parseInt(h.substring(4, 6), 16)
-                ];
+            function h2rgba(h, value, min, max, alpha) {
 
-                return 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + a + ')';
+                if (!data.tempColorize) {
+                    let rgb;
+                    let a = (value - min) / (max - min) + alpha;
+                    h = h.substring(1, 7);
+                    rgb = [
+                        parseInt(h.substring(0, 2), 16),
+                        parseInt(h.substring(2, 4), 16),
+                        parseInt(h.substring(4, 6), 16)
+                    ];
+
+                    return 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + a + ')';
+                } else {
+                    var ratio = (value - min) / (max - min);
+                    let a = (value - min) / (max - min) + alpha;
+                    return 'hsla(' + (180 + Math.round(180 * ratio)) + ', 70%, 50%, ' + a + ')';
+                }
             }
         } catch (ex) {
             console.error(`[Button - ${data.wid}] handleToggle: error:: ${ex.message}, stack: ${ex.stack}`);
