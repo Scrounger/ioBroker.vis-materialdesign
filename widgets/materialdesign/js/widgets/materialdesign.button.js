@@ -803,7 +803,7 @@ vis.binds.materialdesign.button = {
 
                 if (color.includes(';')) {
                     myColors = chroma.scale(color.split(';'))
-                    
+
                     return myColors(ratio).alpha(alpha).css();
                 } else {
                     myColors = chroma(color);
@@ -908,6 +908,8 @@ vis.binds.materialdesign.button = {
                 valueOn: obj.valueOn,
                 stateIfNotTrueValue: obj.stateIfNotTrueValue,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                clickSoundPlay: obj.clickSoundPlay,
+                clickSoundVolume: obj.clickSoundVolume,
 
                 // labeling
                 buttontext: obj.buttontext,
@@ -956,6 +958,8 @@ vis.binds.materialdesign.button = {
                 valueOn: obj.valueOn,
                 stateIfNotTrueValue: obj.stateIfNotTrueValue,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                clickSoundPlay: obj.clickSoundPlay,
+                clickSoundVolume: obj.clickSoundVolume,
 
                 // labeling
                 buttontext: obj.buttontext,
@@ -1005,6 +1009,8 @@ vis.binds.materialdesign.button = {
                 valueOn: obj.valueOn,
                 stateIfNotTrueValue: obj.stateIfNotTrueValue,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                clickSoundPlay: obj.clickSoundPlay,
+                clickSoundVolume: obj.clickSoundVolume,
 
                 // icon
                 image: obj.image,
@@ -1039,6 +1045,8 @@ vis.binds.materialdesign.button = {
                 buttonStyle: obj.buttonStyle,
                 value: obj.value,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                clickSoundPlay: obj.clickSoundPlay,
+                clickSoundVolume: obj.clickSoundVolume,
                 debug: obj.debug,
 
                 // labeling
@@ -1077,6 +1085,8 @@ vis.binds.materialdesign.button = {
                 buttonStyle: obj.buttonStyle,
                 value: obj.value,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                clickSoundPlay: obj.clickSoundPlay,
+                clickSoundVolume: obj.clickSoundVolume,
                 debug: obj.debug,
 
                 // labeling
@@ -1117,6 +1127,8 @@ vis.binds.materialdesign.button = {
                 oid: obj.oid,
                 value: obj.value,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                clickSoundPlay: obj.clickSoundPlay,
+                clickSoundVolume: obj.clickSoundVolume,
 
                 // icon
                 image: obj.image,
@@ -1149,6 +1161,8 @@ vis.binds.materialdesign.button = {
                 href: obj.href,
                 openNewWindow: obj.openNewWindow,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                clickSoundPlay: obj.clickSoundPlay,
+                clickSoundVolume: obj.clickSoundVolume,
                 generateHtmlControl: obj.generateHtmlControl,
 
                 // labeling
@@ -1178,6 +1192,8 @@ vis.binds.materialdesign.button = {
                 href: obj.href,
                 openNewWindow: obj.openNewWindow,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                clickSoundPlay: obj.clickSoundPlay,
+                clickSoundVolume: obj.clickSoundVolume,
 
                 // labeling
                 buttontext: obj.buttontext,
@@ -1206,6 +1222,8 @@ vis.binds.materialdesign.button = {
                 href: obj.href,
                 openNewWindow: obj.openNewWindow,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                clickSoundPlay: obj.clickSoundPlay,
+                clickSoundVolume: obj.clickSoundVolume,
 
                 // icon
                 image: obj.image,
@@ -1224,6 +1242,8 @@ vis.binds.materialdesign.button = {
                 buttonStyle: obj.buttonStyle,
                 nav_view: obj.nav_view,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                clickSoundPlay: obj.clickSoundPlay,
+                clickSoundVolume: obj.clickSoundVolume,
                 debug: obj.debug,
 
                 // labeling
@@ -1252,6 +1272,8 @@ vis.binds.materialdesign.button = {
                 buttonStyle: obj.buttonStyle,
                 nav_view: obj.nav_view,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                clickSoundPlay: obj.clickSoundPlay,
+                clickSoundVolume: obj.clickSoundVolume,
                 debug: obj.debug,
 
                 // labeling
@@ -1278,6 +1300,8 @@ vis.binds.materialdesign.button = {
                 // Common
                 nav_view: obj.nav_view,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                clickSoundPlay: obj.clickSoundPlay,
+                clickSoundVolume: obj.clickSoundVolume,
                 debug: obj.debug,
 
                 // icon
@@ -1297,6 +1321,8 @@ vis.binds.materialdesign.button = {
                 countOids: obj.countOids,
                 buttonStyle: obj.buttonStyle,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                clickSoundPlay: obj.clickSoundPlay,
+                clickSoundVolume: obj.clickSoundVolume,
                 debug: obj.debug,
 
                 // labeling
@@ -1344,6 +1370,8 @@ vis.binds.materialdesign.button = {
                 countOids: obj.countOids,
                 buttonStyle: obj.buttonStyle,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                clickSoundPlay: obj.clickSoundPlay,
+                clickSoundVolume: obj.clickSoundVolume,
                 debug: obj.debug,
 
                 // labeling
@@ -1387,6 +1415,8 @@ vis.binds.materialdesign.button = {
                 // Common
                 countOids: obj.countOids,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                clickSoundPlay: obj.clickSoundPlay,
+                clickSoundVolume: obj.clickSoundVolume,
                 debug: obj.debug,
 
                 // icon
@@ -1429,6 +1459,8 @@ vis.binds.materialdesign.button = {
                 value: obj.value,
                 minmax: obj.minmax,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                clickSoundPlay: obj.clickSoundPlay,
+                clickSoundVolume: obj.clickSoundVolume,
                 debug: obj.debug,
 
                 // labeling
@@ -1460,6 +1492,8 @@ vis.binds.materialdesign.button = {
                 value: obj.value,
                 minmax: obj.minmax,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                clickSoundPlay: obj.clickSoundPlay,
+                clickSoundVolume: obj.clickSoundVolume,
                 debug: obj.debug,
 
                 // labeling
@@ -1488,6 +1522,8 @@ vis.binds.materialdesign.button = {
                 value: obj.value,
                 minmax: obj.minmax,
                 vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+                clickSoundPlay: obj.clickSoundPlay,
+                clickSoundVolume: obj.clickSoundVolume,
                 debug: obj.debug,
 
                 // icon

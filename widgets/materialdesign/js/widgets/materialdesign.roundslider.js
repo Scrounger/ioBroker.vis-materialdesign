@@ -185,6 +185,8 @@ vis.binds.materialdesign.roundslider = {
             handleZoom: obj.handleZoom,
             rtl: obj.rtl,
             vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+            clickSoundPlay: obj.clickSoundPlay,
+            clickSoundVolume: obj.clickSoundVolume,
             generateHtmlControl: obj.generateHtmlControl,
             debug: obj.debug,
 

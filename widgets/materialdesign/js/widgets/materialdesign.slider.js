@@ -118,7 +118,7 @@ vis.binds.materialdesign.slider = {
                     $this.find(`.${containerClass}`).on('tapstart', function () {
                         myMdwHelper.hapticFeedback(data);
                     });
-                    
+
                     // calculate width / height of Element
                     if (myMdwHelper.getValueFromData(data.orientation, 'horizontal') === 'vertical') {
                         let height = window.getComputedStyle($this.context, null).height.replace('px', '');
@@ -258,6 +258,8 @@ vis.binds.materialdesign.slider = {
             max: obj.max,
             step: obj.step,
             vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+            clickSoundPlay: obj.clickSoundPlay,
+            clickSoundVolume: obj.clickSoundVolume,
             generateHtmlControl: obj.generateHtmlControl,
             debug: obj.debug,
 

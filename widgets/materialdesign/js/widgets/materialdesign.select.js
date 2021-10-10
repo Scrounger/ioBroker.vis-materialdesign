@@ -76,6 +76,8 @@ vis.binds.materialdesign.select = {
             oid: obj.oid,
             inputType: obj.inputType,
             vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+            clickSoundPlay: obj.clickSoundPlay,
+            clickSoundVolume: obj.clickSoundVolume,
             generateHtmlControl: obj.generateHtmlControl,
 
             // layout input 

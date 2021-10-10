@@ -189,6 +189,8 @@ vis.binds.materialdesign.checkbox = {
             valueOn: obj.valueOn,
             stateIfNotTrueValue: obj.stateIfNotTrueValue,
             vibrateOnMobilDevices: obj.vibrateOnMobilDevices,
+            clickSoundPlay: obj.clickSoundPlay,
+            clickSoundVolume: obj.clickSoundVolume,
             generateHtmlControl: obj.generateHtmlControl,
             debug: obj.debug,
 
