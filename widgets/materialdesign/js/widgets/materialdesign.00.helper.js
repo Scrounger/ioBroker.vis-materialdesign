@@ -447,7 +447,7 @@ vis.binds.materialdesign.helper = {
                 return `<img 
                         class="${className}"
                         src="${icon}" 
-                        style="width: ${width}; height: ${height}; ${style};" />`;
+                        style="width: ${width}; height: ${height}; ${style};" ${icon.endsWith('.svg') ? `onload="SVGInject(this)" fill="${color}"` : ''} />`;
             } else {
                 // is material-icons
 
@@ -478,12 +478,16 @@ vis.binds.materialdesign.helper = {
                 // is image
                 if (element.is('img')) {
                     element.attr('src', icon);
+
+                    if (icon.endsWith('.svg')) {
+                        element.attr('fill', color).attr('onload', 'SVGInject(this)');
+                    }
                 } else {
                     // previous image is material-icon
                     element.replaceWith(`<img 
                                             class="${className}"
                                             src="${icon}" 
-                                            style="width: ${width}; height: ${height}; ${style};" />`);
+                                            style="width: ${width}; height: ${height}; ${style};" ${icon.endsWith('.svg') ? `onload="SVGInject(this)" fill="${color}"` : ''} />`);
                 }
             } else {
                 // is material-icons
