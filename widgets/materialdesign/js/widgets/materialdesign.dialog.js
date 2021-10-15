@@ -271,13 +271,18 @@ vis.binds.materialdesign.dialog = {
                                                 vis.renderView(view, view, true, function (_view) {
                                                     $('#visview_' + _view).css('position', 'relative').css('max-height', wishHeight + 'px').css('overflow', 'hidden auto').appendTo($dialog.find(`#viewContainer_${dialogClassName}`)).show().data('persistent', true);
 
-                                                    $('#visview_' + _view).scrollTop(0);
-                                                    $('#visview_' + _view).scrollLeft(0);
+                                                    myMdwHelper.waitForElement($dialog, '#visview_' + view, data.wid, widgetName, function () {
+                                                        $dialog.find('#visview_' + view).scrollTop(0);
+                                                        $dialog.find('#visview_' + view).scrollLeft(0);
+                                                    }, 0, data.debug)
                                                 });
                                             }
                                         } else {
                                             vis.binds.basic.iframeRefresh($dialog, data, view)
                                         }
+                                    } else {
+                                        $dialog.find('#visview_' + view).scrollTop(0);
+                                        $dialog.find('#visview_' + view).scrollLeft(0);
                                     }
                                 });
                             }
