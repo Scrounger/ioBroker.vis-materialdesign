@@ -27,7 +27,7 @@ vis.binds.materialdesign.helper = {
             return;
         }
 
-        if (counter < 500) {
+        if (counter < 2000) {
             setTimeout(function () {
                 let val = vis.states.attr(oid + '.val');
                 if (val !== undefined && val !== 'undefined' && val !== null && val !== 'null') {
