@@ -40,6 +40,12 @@ vis.binds.materialdesign.list =
                     // json Object changed
                     let scrollTop = $this.scrollTop();
                     let scrollLeft = $this.scrollLeft();
+
+                    if (myMdwHelper.getBooleanFromData(data.scrollToTopOnChanges, false)) {
+                        scrollTop = 0;
+                        scrollLeft = 0;
+                    }
+
                     generateContent();
 
                     if (oidsNeedSubscribe) {
