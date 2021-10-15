@@ -141,7 +141,6 @@ vis.binds.materialdesign.dialog = {
                                 },
                                 methods: {
                                     closeButton(value) {
-                                        myMdwHelper.hapticFeedback(data);
                                         this.showDialog = false;
                                     },
                                     saveButton(value) {
@@ -149,7 +148,6 @@ vis.binds.materialdesign.dialog = {
                                             myMdwHelper.setValue(data.dlgSaveButtonOid, myMdwHelper.getValueFromData(data.dlgSaveButtonValue, 'error'));
                                         }
 
-                                        myMdwHelper.hapticFeedback(data);
                                         this.showDialog = false;
                                     }
                                 },
@@ -224,6 +222,10 @@ vis.binds.materialdesign.dialog = {
                                         setStyle();
                                     });
 
+                                    $dialog.find('.materialdesign-dialog-footer-button').on('tapstart', function () {
+                                        myMdwHelper.hapticFeedback(data);
+                                    });
+
                                     setStyle();
                                     function setStyle() {
                                         $dialog.get(0).style.setProperty("--vue-dialog-view-container-distance-to-border", myMdwHelper.getNumberFromData(data.viewDistanceToBorder, 24) + 'px');
@@ -278,7 +280,10 @@ vis.binds.materialdesign.dialog = {
                                                 });
                                             }
                                         } else {
-                                            vis.binds.basic.iframeRefresh($dialog, data, view)
+                                            vis.binds.basic.iframeRefresh($dialog, data, view);
+
+                                            $dialog.find('#visview_' + view).scrollTop(0);
+                                            $dialog.find('#visview_' + view).scrollLeft(0);
                                         }
                                     } else {
                                         $dialog.find('#visview_' + view).scrollTop(0);
