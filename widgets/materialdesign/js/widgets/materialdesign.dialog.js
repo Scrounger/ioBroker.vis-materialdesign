@@ -273,7 +273,6 @@ vis.binds.materialdesign.dialog = {
 
                                                     $('#visview_' + _view).scrollTop(0);
                                                     $('#visview_' + _view).scrollLeft(0);
-                                                    $('#visview_' + _view).offset({ top: 0, left: 0});
                                                 });
                                             }
                                         } else {
