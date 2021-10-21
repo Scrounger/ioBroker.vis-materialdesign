@@ -273,7 +273,7 @@ vis.binds.materialdesign.iconlist =
                                                 </div>
                                             </div>
                                         </div>
-                                        ${`<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor}; visibility: ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'visible' : 'collapse'};">${listItemObj.statusBarText ? listItemObj.statusBarText : ""}</div>`}
+                                        ${`<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor}; visibility: ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'visible' : 'collapse'}; ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'min-height: 4px;' : ''}">${listItemObj.statusBarText ? listItemObj.statusBarText : ""}</div>`}
                                     </div>
                                 </div>`;
                             } else {
@@ -286,7 +286,7 @@ vis.binds.materialdesign.iconlist =
                                     </div>` : ''}
                                     ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value materialdesign-icon-list-item-text-vertical">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
                                     ${(listItemObj.subText !== '') ? `<label class="materialdesign-icon-list-item-subText materialdesign-icon-list-item-text-vertical">${listItemObj.subText}</label>` : ''}
-                                    ${`<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor}; visibility: ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'visible' : 'collapse'};">${listItemObj.statusBarText ? listItemObj.statusBarText : ""}</div>`}
+                                    ${`<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-vertical-status-line-card' : 'materialdesign-icon-list-item-layout-vertical-status-line'}" style="background: ${listItemObj.statusBarColor}; visibility: ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'visible' : 'collapse'}; ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'min-height: 4px;' : ''}">${listItemObj.statusBarText ? listItemObj.statusBarText : ""}</div>`}
                                 </div>`;
                             }
                         } else {
@@ -310,7 +310,7 @@ vis.binds.materialdesign.iconlist =
                                                 </div>                                        
                                             </div>                                    
                                         </div>
-                                        ${`<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-horizontal-status-line-card' : 'materialdesign-icon-list-item-layout-horizontal-status-line'}" style="background: ${listItemObj.statusBarColor}; visibility: ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'visible' : 'collapse'};">${listItemObj.statusBarText ? listItemObj.statusBarText : ""}</div>`}
+                                        ${`<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-horizontal-status-line-card' : 'materialdesign-icon-list-item-layout-horizontal-status-line'}" style="background: ${listItemObj.statusBarColor}; visibility: ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'visible' : 'collapse'}; ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'min-height: 4px;' : ''}">${listItemObj.statusBarText ? listItemObj.statusBarText : ""}</div>`}
                                     </div>
                                 </div>`;
                             } else {
@@ -328,7 +328,7 @@ vis.binds.materialdesign.iconlist =
                                             ${((listItemObj.showValueLabel === true || listItemObj.showValueLabel === 'true') && (listItemObj.listType.includes('buttonToggle') || listItemObj.listType === 'buttonState')) ? `<label class="materialdesign-icon-list-item-value">${(val !== 'null') ? `${val}${listItemObj.valueAppendix}` : ''}</label>` : ''}
                                         </div>                                        
                                     </div>
-                                    ${`<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-horizontal-status-line-card' : 'materialdesign-icon-list-item-layout-horizontal-status-line'}" style="background: ${listItemObj.statusBarColor}; visibility: ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'visible' : 'collapse'};">${listItemObj.statusBarText ? listItemObj.statusBarText : ""}</div>`}
+                                    ${`<div class="${(data.listLayout.includes('card')) ? 'materialdesign-icon-list-item-layout-horizontal-status-line-card' : 'materialdesign-icon-list-item-layout-horizontal-status-line'}" style="background: ${listItemObj.statusBarColor}; visibility: ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'visible' : 'collapse'}; ${listItemObj.statusBarColor || listItemObj.statusBarText ? 'min-height: 4px;' : ''}">${listItemObj.statusBarText ? listItemObj.statusBarText : ""}</div>`}
                                 </div>
                                 </div>`;
                             }
@@ -718,14 +718,12 @@ vis.binds.materialdesign.iconlist =
                                 .html(listItemObj.statusBarText ? listItemObj.statusBarText : "");
 
                             if (listItemObj.statusBarColor) {
-                                console.warn('hier1');
                                 $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('min-height', "4px");
                                 $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('min-height', "4px");
 
                                 $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('min-height', "4px");
                                 $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('min-height', "4px");
                             } else {
-                                console.warn('hier2');
                                 $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('min-height', "0px");
                                 $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('min-height', "0px");
 
