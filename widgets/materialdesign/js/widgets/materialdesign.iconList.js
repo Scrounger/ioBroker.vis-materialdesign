@@ -59,13 +59,13 @@ vis.binds.materialdesign.iconlist =
                         myMdwHelper.subscribeStatesAtRuntime(data.wid, widgetName, function () {
                             appendContent(true, scrollTop, scrollLeft);
                             eventListener();
-                            setLayout();
+                            setLayout(true);
                         });
                     } else {
                         // json: hat keine objectIds / bindings bzw. bereits subscribed
                         appendContent(true, scrollTop, scrollLeft);
                         eventListener();
-                        setLayout();
+                        setLayout(true);
                     }
                 });
 
@@ -718,12 +718,14 @@ vis.binds.materialdesign.iconlist =
                                 .html(listItemObj.statusBarText ? listItemObj.statusBarText : "");
 
                             if (listItemObj.statusBarColor) {
+                                console.warn('hier1');
                                 $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('min-height', "4px");
                                 $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('min-height', "4px");
 
                                 $item.find('.materialdesign-icon-list-item-layout-vertical-status-line-card').css('min-height', "4px");
                                 $item.find('.materialdesign-icon-list-item-layout-vertical-status-line').css('min-height', "4px");
                             } else {
+                                console.warn('hier2');
                                 $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line-card').css('min-height', "0px");
                                 $item.find('.materialdesign-icon-list-item-layout-horizontal-status-line').css('min-height', "0px");
 
