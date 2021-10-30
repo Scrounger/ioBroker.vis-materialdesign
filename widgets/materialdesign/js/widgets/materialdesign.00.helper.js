@@ -480,7 +480,7 @@ vis.binds.materialdesign.helper = {
                     element.attr('src', icon);
 
                     if (icon.endsWith('.svg')) {
-                        element.attr('fill', color).attr('onload', 'SVGInject(this)');
+                        element.attr('fill', color).attr('onload', 'SVGInject(this)').css('fill', color);
                     }
                 } else {
                     // previous image is material-icon
