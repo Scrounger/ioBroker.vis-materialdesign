@@ -441,13 +441,16 @@ vis.binds.materialdesign.helper = {
         let icon = myMdwHelper.getValueFromData(iconData, null);
         let color = myMdwHelper.getValueFromData(iconColor, '');
 
+        
+
         if (icon !== null) {
             if (myMdwHelper.getAllowedImageFileExtensions().some(el => icon.includes(el))) {
                 // is image
+
                 return `<img 
                         class="${className}"
                         src="${icon}" 
-                        style="width: ${width}; height: ${height}; ${style};" ${icon.endsWith('.svg') ? `onload="SVGInject(this)" fill="${color}"` : ''} />`;
+                        style="width: ${width}; height: ${height}; ${style}; ${icon.endsWith('.svg') ? `fill:${color};` : ''}" ${icon.endsWith('.svg') ? `onload="SVGInject(this)"` : ''} />`;
             } else {
                 // is material-icons
 
@@ -480,14 +483,14 @@ vis.binds.materialdesign.helper = {
                     element.attr('src', icon);
 
                     if (icon.endsWith('.svg')) {
-                        element.attr('fill', color).attr('onload', 'SVGInject(this)').css('fill', color);
+                        element.attr('onload', 'SVGInject(this)').css('fill', color);
                     }
                 } else {
                     // previous image is material-icon
                     element.replaceWith(`<img 
                                             class="${className}"
                                             src="${icon}" 
-                                            style="width: ${width}; height: ${height}; ${style};" ${icon.endsWith('.svg') ? `onload="SVGInject(this)" fill="${color}"` : ''} />`);
+                                            style="width: ${width}; height: ${height}; ${style}; ${icon.endsWith('.svg') ? `fill:${color};` : ''}" ${icon.endsWith('.svg') ? `onload="SVGInject(this)"` : ''} />`);
                 }
             } else {
                 // is material-icons
