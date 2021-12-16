@@ -14,7 +14,6 @@ vis.binds.materialdesign.helper = {
 
             if (soundObj !== null && data.clickSoundPlay) {
                 soundObj.volume = myMdwHelper.getNumberFromData(data.clickSoundVolume, 0.5);
-                soundObj.muted = false;
                 soundObj.play();
             }
         } catch (ex) {
@@ -928,7 +927,7 @@ vis.binds.materialdesign.helper = {
                 soundObj = document.createElement("audio")
                 soundObj.src = audioFile;
                 soundObj.volume = 1;
-                soundObj.autoPlay = true;
+                soundObj.autoPlay = false;
                 soundObj.preLoad = true;
                 soundObj.controls = true;
             }
