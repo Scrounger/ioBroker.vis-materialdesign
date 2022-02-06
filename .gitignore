@@ -18,3 +18,10 @@ widgets/materialdesign/img/preview_3.jpg
 widgets/materialdesign/js/charts/*
 widgets/materialdesign/js/google-charts-api.js
 package-lock.json
+
+
+# ioBroker dev-server
+.dev-server/
+
+# minify
+

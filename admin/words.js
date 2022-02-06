@@ -3197,6 +3197,18 @@ systemDictionary = {
         "pl": "układ linii",
         "zh-cn": "线布局"
     },
+    "group_barLayout": {
+        "en": "bar layout",
+        "de": "Bar-Layout",
+        "ru": "макет бара",
+        "pt": "layout da barra",
+        "nl": "bar lay-out",
+        "fr": "disposition des barres",
+        "it": "disposizione della barra",
+        "es": "diseño de barra",
+        "pl": "układ paska",
+        "zh-cn": "吧台布局"
+      },
     "pointStyle": {
         "en": "point style",
         "de": "Punkt Stil",
@@ -9593,6 +9605,30 @@ systemDictionary = {
         "pl": "włącz tło karty",
         "zh-cn": "启用卡背景"
     },
+    "stacked": {
+        "en": "stacked",
+        "de": "gestapelt",
+        "ru": "сложенный",
+        "pt": "empilhado",
+        "nl": "gestapeld",
+        "fr": "empilé",
+        "it": "accatastato",
+        "es": "apilado",
+        "pl": "ułożone w stos",
+        "zh-cn": "堆叠的"
+      },
+    "categoryPercentage":  {
+        "en": "bar percentage",
+        "de": "Barbreite in Prozent",
+        "ru": "барпроцент",
+        "pt": "porcentagem de bar",
+        "nl": "barpercentage",
+        "fr": "barpourcentage",
+        "it": "percentuale di barretta",
+        "es": "barporcentaje",
+        "pl": "bar procent",
+        "zh-cn": "百分比"
+      },
     "chartTimeout": {
         "en": "chart timeout",
         "de": "Diagramm-Timeout",
