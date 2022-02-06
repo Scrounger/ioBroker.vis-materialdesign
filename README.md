@@ -13125,7 +13125,7 @@ The adapter uses the following libraries:
 -->
 
 <!-- omit in toc -->
-### __WORK IN PROGRESS__
+### 0.5.77 (2022-02-06)
 * (Scrounger) css default color variables added
 * (Scrounger) Icon Button Slider Widget added
 * (Scrounger) Button Toggle Widgets: bug fix for state on runtime load
@@ -13183,12 +13183,6 @@ The adapter uses the following libraries:
 ### 0.5.6 (2021-05-07)
 * (Scrounger) Html Widgets: escaping bug fix
 * (Scrounger) iconList: layout bug fix
-
-<!-- omit in toc -->
-### 0.5.5 (2021-04-21)
-* (Scrounger) adapter settings bug fixes
-* (Scrounger) icon buttons: color bug fixes
-* (Scrounger) Fixing bugs found by sentry
 
 <!-- omit in toc -->
 ## License
