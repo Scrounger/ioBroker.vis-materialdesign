@@ -17,9 +17,8 @@
     "type": "git",
     "url": "https://github.com/Scrounger/ioBroker.vis-materialdesign.git"
   },
-  "dependencies": {},
   "devDependencies": {
-    "@alcalzone/release-script": "^1.8.3",
+    "@alcalzone/release-script": "^1.10.1",
     "@iobroker/testing": "^2.3.0",
     "@mdi/font": "^5.9.55",
     "@sentry/browser": "^6.2.2",
