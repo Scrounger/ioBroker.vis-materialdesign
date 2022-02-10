@@ -163,8 +163,8 @@ vis.binds.materialdesign.chart.barHistory = function (el, data) {
                                         type:'bar',
                                         order: i,
                                         stack: 'stack 1',
-                                        barPercentage: myMdwHelper.getNumberFromData(data.barPercentage, 80) / 100,
-                                        categoryPercentage: myMdwHelper.getNumberFromData(data.barPercentage, 80) / 100,
+                                        //barPercentage: myMdwHelper.getNumberFromData(data.barPercentage, 80) / 100,
+                                        //categoryPercentage: myMdwHelper.getNumberFromData(data.barPercentage, 80) / 100,
                                         label: myMdwHelper.getValueFromData(data.attr('legendText' + i), ''),
                                         borderColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor),     // Line Color
                                         pointBackgroundColor: myMdwHelper.getValueFromData(data.attr('pointColor' + i), myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor)),
@@ -323,7 +323,6 @@ vis.binds.materialdesign.chart.barHistory = function (el, data) {
                                             }
                                         },
                                         stacked: myMdwHelper.getBooleanFromData(data.stacked, false),
-                                        //categoryPercentage: myMdwHelper.getValueFromData(data.categoryPercentage, 80)/100,
                                         type: 'time',
                                         bounds: (myMdwHelper.getValueFromData(data.xAxisBounds, '') === 'axisTicks') ? 'ticks' : 'data',
                                         time:
