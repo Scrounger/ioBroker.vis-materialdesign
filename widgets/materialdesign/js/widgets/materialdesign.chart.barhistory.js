@@ -160,8 +160,9 @@ vis.binds.materialdesign.chart.barHistory = function (el, data) {
                                     {
                                         data: dataArray,
                                         borderWidth: myMdwHelper.getNumberFromData(data.attr('lineThikness' + i), 2),
-                                        //type:'bar',
+                                        type:'bar',
                                         order: i,
+                                        stack: 'stack 1',
                                         barPercentage: myMdwHelper.getNumberFromData(data.barPercentage, 80) / 100,
                                         categoryPercentage: myMdwHelper.getNumberFromData(data.barPercentage, 80) / 100,
                                         label: myMdwHelper.getValueFromData(data.attr('legendText' + i), ''),

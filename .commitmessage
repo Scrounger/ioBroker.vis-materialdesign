@@ -1,7 +1,0 @@
-chore: release v0.5.9
-
-* Top App Bar Widget: option added to define navigation items per JSON String [Details see documentation!](https://github.com/Scrounger/ioBroker.vis-materialdesign#top-app-bar)
-* Top App Bar Widget: option added to define an id per item
-* fixed bugs found by sentry
-
-<!-- omit in toc -->
