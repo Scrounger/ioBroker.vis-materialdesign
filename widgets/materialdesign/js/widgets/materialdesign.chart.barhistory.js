@@ -12,7 +12,7 @@ vis.binds.materialdesign.chart.barHistory = function (el, data) {
         let debug = myMdwHelper.getBooleanFromData(data.debug, false);
         if (debug) console.log(`[${widgetName} ${data.wid}] widget setting: ${JSON.stringify(data)}`);
 
-        let $this = $(el);
+        let $this = $(el);  
 
         myMdwHelper.subscribeThemesAtRuntime(data, widgetName);
 
@@ -127,7 +127,7 @@ vis.binds.materialdesign.chart.barHistory = function (el, data) {
                         let operations = [];
                         for (var i = 0; i <= data.dataCount; i++) {
                             if (myMdwHelper.getValueFromData(data.attr('oid' + i), null) !== null) {
-                                operations.push(myChartHelper.getTaskForHistoryData(i, data, dataRangeStartTime, debug))
+                                operations.push(myChartHelper.getTaskForHistoryData(i, data, dataRangeStartTime, debug,'bar'));
 
                                 if (data.refreshMethod === 'realtime') {
                                     vis.states.bind(data.attr('oid' + i) + '.val', onChange);
@@ -160,11 +160,11 @@ vis.binds.materialdesign.chart.barHistory = function (el, data) {
                                     {
                                         data: dataArray,
                                         borderWidth: myMdwHelper.getNumberFromData(data.attr('lineThikness' + i), 2),
-                                        type:'bar',
-                                        order: i,
-                                        stack: 'stack 1', 
-                                        //  barPercentage: myMdwHelper.getNumberFromData(data.barPercentage, 80) / 100,
-                                        //  categoryPercentage: myMdwHelper.getNumberFromData(data.barPercentage, 80) / 100,
+                                        //type:'bar',
+                                        order: i, 
+                                        stack: myMdwHelper.getValueFromData(data.attr('stackGroup' + i), 's1'), 
+                                        barPercentage: myMdwHelper.getNumberFromData(data.barPercentage, 80) / 100,
+                                        categoryPercentage: myMdwHelper.getNumberFromData(data.barPercentage, 80)/ 100,
                                         label: myMdwHelper.getValueFromData(data.attr('legendText' + i), ''),
                                         borderColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor),     // Line Color
                                         pointBackgroundColor: myMdwHelper.getValueFromData(data.attr('pointColor' + i), myMdwHelper.getValueFromData(data.attr('dataColor' + i), (colorScheme) ? myMdwHelper.getValueFromData(colorScheme[i], globalColor) : globalColor)),
@@ -211,7 +211,8 @@ vis.binds.materialdesign.chart.barHistory = function (el, data) {
                                 myYAxis.push(
                                     {
                                         id: 'yAxis_id_' + i,
-                                        stacked: myMdwHelper.getBooleanFromData(data.stacked, false),
+                                        //stacked: myMdwHelper.getBooleanFromData(data.stacked, false),
+                                        stacked: true, 
                                         position: data.attr('yAxisPosition' + i),
                                         display: (myMdwHelper.getNumberFromData(data.attr('commonYAxis' + i), i) === i) ? data.attr('showYAxis' + i) : false,
                                         scaleLabel: {       // y-Axis title
@@ -322,8 +323,9 @@ vis.binds.materialdesign.chart.barHistory = function (el, data) {
                                                 }
                                             }
                                         },
-                                        stacked: myMdwHelper.getBooleanFromData(data.stacked, false),
-                                        type: 'time',
+                                     //stacked: myMdwHelper.getBooleanFromData(data.stacked, false),
+                                     stacked: true,
+                                     type: 'time',
                                         bounds: (myMdwHelper.getValueFromData(data.xAxisBounds, '') === 'axisTicks') ? 'ticks' : 'data',
                                         time:
                                         {
@@ -508,7 +510,7 @@ vis.binds.materialdesign.chart.barHistory = function (el, data) {
                             let operations = [];
                             for (var i = 0; i <= data.dataCount; i++) {
                                 if (myMdwHelper.getValueFromData(data.attr('oid' + i), null) !== null) {
-                                    operations.push(myChartHelper.getTaskForHistoryData(i, data, dataRangeStartTime, debug))
+                                    operations.push(myChartHelper.getTaskForHistoryData(i, data, dataRangeStartTime, debug,'bar'));
                                 }
                             }
 

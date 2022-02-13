@@ -291,13 +291,19 @@ vis.binds.materialdesign.chart.helper = {
             }
             `);
     },
-    getTaskForHistoryData: function (index, data, dataRangeStartTime, debug = false) {
+    getTaskForHistoryData: function (index, data, dataRangeStartTime, debug = false, chartType = 'line') {
         return new Promise((resolve, reject) => {
             try {
                 let id = data.attr('oid' + index);
+                let dataCount;
+                if (chartType === 'line') {
+                    dataCount = parseInt(myMdwHelper.getNumberFromData(data.attr('maxDataPoints' + index), (data.attr('aggregate' + index) === 'minmax') ? 50 : 100));
+                } else {
+                    dataCount = parseInt(myMdwHelper.getNumberFromData(data.attr('maxBarDataPoints'), 100));
+                }
                 let historyOptions = {
                     instance: data.historyAdapterInstance,
-                    count: parseInt(myMdwHelper.getNumberFromData(data.attr('maxDataPoints' + index), (data.attr('aggregate' + index) === 'minmax') ? 50 : 100)),
+                    count: dataCount,
                     step: (myMdwHelper.getNumberFromData(data.attr('minTimeInterval' + index), undefined)) ? parseInt(data.attr('minTimeInterval' + index)) * 1000 : undefined,
                     aggregate: data.attr('aggregate' + index) || 'minmax',
                     start: dataRangeStartTime,
