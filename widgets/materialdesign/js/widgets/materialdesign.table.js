@@ -192,9 +192,11 @@ vis.binds.materialdesign.table = {
         if (jsonData === null) {
             jsonData = vis.binds.materialdesign.table.getJsonData(input, data);
 
-            if (sortByKey) jsonData = vis.binds.materialdesign.table.sortByKey(jsonData, sortByKey, sortASC);
+            if (jsonData && jsonData !== null) {
+                if (sortByKey) jsonData = vis.binds.materialdesign.table.sortByKey(jsonData, sortByKey, sortASC);
 
-            rowsCount = jsonData.length - 1;
+                rowsCount = jsonData.length - 1;
+            }
         } else {
             rowsCount = jsonData.length - 1;
         }
@@ -202,10 +204,13 @@ vis.binds.materialdesign.table = {
         if (oldVal !== null) {
             oldJsonData = vis.binds.materialdesign.table.getJsonData(oldVal, data);
 
-            if (sortByKey) oldJsonData = vis.binds.materialdesign.table.sortByKey(oldJsonData, sortByKey, sortASC);
+            if (oldJsonData && oldJsonData !== null) {
 
-            if (rowsCount < oldJsonData.length - 1) {
-                rowsCount = oldJsonData.length - 1;
+                if (sortByKey) oldJsonData = vis.binds.materialdesign.table.sortByKey(oldJsonData, sortByKey, sortASC);
+
+                if (rowsCount < oldJsonData.length - 1) {
+                    rowsCount = oldJsonData.length - 1;
+                }
             }
         }
 
