@@ -201,8 +201,8 @@ vis.binds.materialdesign.views = {
                                 }
                             }
                         }
-                    });
-                });
+                    }, 0, data.debug);
+                }, 0, data.debug);
             }
 
             function setViewVisibilityByCondition(currentWidgetWidth) {
@@ -468,8 +468,8 @@ vis.binds.materialdesign.views = {
 
 
 
-                    });
-                });
+                    }, 0, data.debug);
+                }, 0, data.debug);
             }
 
             function setViewVisibilityByCondition(currentWidgetWidth) {
@@ -513,10 +513,10 @@ vis.binds.materialdesign.views = {
             let $this = $(el);
 
             let val = vis.states.attr(data.oid + '.val');
-            let containerClass = 'vis-view-container';
+            let containerClass = `${data.wid}-adv-view-in-widget`;
             let widgetName = 'Advanced View in Widget';
 
-            $this.append(`<div class="vis-widget-body ${containerClass}" data-vis-contains="${val}"><div>`);
+            $this.append(`<div class="vis-widget-body vis-view-container ${containerClass}" data-vis-contains="${val}"><div>`);
 
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 bindView(newVal, oldVal);
@@ -539,6 +539,7 @@ vis.binds.materialdesign.views = {
             function bindView(view, oldView, isInit = false) {
 
                 let $container = $this.find(`.${containerClass}`);
+
 
                 if (oldView) {
                     if (data.debug) console.log(`${logPrefix} change view to '${view}' from '${oldView}'`);
@@ -721,7 +722,7 @@ vis.binds.materialdesign.views = {
         try {
             var $this = $(el);
             let val = vis.states.attr(data.oid + '.val');
-            let containerClass = 'vis-view-container';
+            let containerClass = `${data.wid}-adv-view-in-widget-8`;
 
             var timer = null;
 
@@ -734,7 +735,7 @@ vis.binds.materialdesign.views = {
 
             $this.append(`${vis.editMode ? '<div class="editmode-helper" />' : ''}
                     <div class="vis-widget-body">
-                        <div class="${containerClass}" data-oid="${data.oid}" data-vis-contains="${viewArr[val]}" />
+                        <div class="vis-view-container ${containerClass}" data-oid="${data.oid}" data-vis-contains="${viewArr[val]}" />
                     </div>`);
 
             let $container = $this.find(`.${containerClass}`);
