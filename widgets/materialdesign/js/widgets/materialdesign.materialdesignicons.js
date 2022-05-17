@@ -1308,6 +1308,8 @@ vis.binds.materialdesign.materialdesignicons = {
             "calendar-end",
             "calendar-expand-horizontal",
             "calendar-export",
+            "calendar-filter",
+            "calendar-filter-outline",
             "calendar-heart",
             "calendar-import",
             "calendar-lock",
@@ -1339,8 +1341,6 @@ vis.binds.materialdesign.materialdesignicons = {
             "calendar-week",
             "calendar-week-begin",
             "calendar-week-begin-outline",
-            "calendar-week-end",
-            "calendar-week-end-outline",
             "calendar-week-outline",
             "calendar-weekend",
             "calendar-weekend-outline",
@@ -2335,6 +2335,8 @@ vis.binds.materialdesign.materialdesignicons = {
             "delta",
             "desk",
             "desk-lamp",
+            "desk-lamp-off",
+            "desk-lamp-on",
             "deskphone",
             "desktop-classic",
             "desktop-mac",
@@ -2963,6 +2965,8 @@ vis.binds.materialdesign.materialdesignicons = {
             "flash-off",
             "flash-outline",
             "flash-red-eye",
+            "flash-triangle",
+            "flash-triangle-outline",
             "flashlight",
             "flashlight-off",
             "flask",
@@ -6255,6 +6259,8 @@ vis.binds.materialdesign.materialdesignicons = {
             "television-pause",
             "television-play",
             "television-shimmer",
+            "television-speaker",
+            "television-speaker-off",
             "television-stop",
             "temperature-celsius",
             "temperature-fahrenheit",
@@ -7015,7 +7021,7 @@ vis.binds.materialdesign.materialdesignicons = {
             "zodiac-scorpio",
             "zodiac-taurus",
             "zodiac-virgo"
-        ]
+          ]
     }
 }
 
