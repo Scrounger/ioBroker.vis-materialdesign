@@ -94,6 +94,23 @@ vis.binds.materialdesign.helper = {
             callBack();
         }
     },
+    waitForCssVariable: function (callBack, counter = 0, debug = false) {
+        if (counter < 1000) {
+            setTimeout(function () {
+                let test = getComputedStyle(document.documentElement).getPropertyValue('--materialdesign-widget-theme-css-variables-loaded');
+                if (test) {
+                    callBack();
+                } else {
+                    if (debug) console.log(`[waitForCssVariable] wait for css variables`);
+                    counter++
+                    vis.binds.materialdesign.helper.waitForCssVariable(callBack, counter, debug);
+                }
+            }, 1)
+        } else {
+            console.warn(`[waitForCssVariable] stop waiting for vis widgets after ${counter} retries`);
+            callBack();
+        }
+    },
     waitForElement: function (parent, elementPath, wid, widgetName, callBack, counter = 0, debug = false) {
         if (counter < 500) {
 
@@ -1065,6 +1082,8 @@ vis.binds.materialdesign.helper = {
                                     }
                                 }
                             }
+
+                            document.documentElement.style.setProperty('--materialdesign-widget-theme-css-variables-loaded', 'true');
                         }
                     }, debug);
                 }

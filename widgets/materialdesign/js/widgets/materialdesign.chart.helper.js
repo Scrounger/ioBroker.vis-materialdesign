@@ -16,49 +16,49 @@ vis.binds.materialdesign.chart.helper = {
         return {
             position: yAxisPosition,
             scaleLabel: {       // y-Axis title
-                display: (myMdwHelper.getValueFromData(yAxisTitle, null) !== null),
-                labelString: myMdwHelper.getValueFromData(yAxisTitle, ''),
-                fontColor: myMdwHelper.getValueFromData(yAxisTitleColor, undefined),
-                fontFamily: myMdwHelper.getValueFromData(yAxisTitleFontFamily, undefined),
-                fontSize: myMdwHelper.getNumberFromData(yAxisTitleFontSize, undefined)
+                display: (vis.binds.materialdesign.chart.helper.getValueFromData(yAxisTitle, null) !== null),
+                labelString: vis.binds.materialdesign.chart.helper.getValueFromData(yAxisTitle, ''),
+                fontColor: vis.binds.materialdesign.chart.helper.getValueFromData(yAxisTitleColor, undefined),
+                fontFamily: vis.binds.materialdesign.chart.helper.getValueFromData(yAxisTitleFontFamily, undefined),
+                fontSize: vis.binds.materialdesign.chart.helper.getNumberFromData(yAxisTitleFontSize, undefined)
             },
             ticks: {        // y-Axis values
                 display: yAxisShowAxisLabels,
-                min: myMdwHelper.getNumberFromData(axisValueMin, undefined),                       // only for chartType: vertical
-                max: myMdwHelper.getNumberFromData(axisValueMax, undefined),                       // only for chartType: vertical
-                stepSize: myMdwHelper.getNumberFromData(axisValueStepSize, undefined),             // only for chartType: vertical
-                autoSkip: (chartType === 'horizontal' && (myMdwHelper.getNumberFromData(axisMaxLabel, undefined) > 0) || myMdwHelper.getBooleanFromData(axisLabelAutoSkip, false)),
-                maxTicksLimit: (chartType === 'horizontal') ? myMdwHelper.getNumberFromData(axisMaxLabel, undefined) : undefined,
+                min: vis.binds.materialdesign.chart.helper.getNumberFromData(axisValueMin, undefined),                       // only for chartType: vertical
+                max: vis.binds.materialdesign.chart.helper.getNumberFromData(axisValueMax, undefined),                       // only for chartType: vertical
+                stepSize: vis.binds.materialdesign.chart.helper.getNumberFromData(axisValueStepSize, undefined),             // only for chartType: vertical
+                autoSkip: (chartType === 'horizontal' && (vis.binds.materialdesign.chart.helper.getNumberFromData(axisMaxLabel, undefined) > 0) || vis.binds.materialdesign.chart.helper.getBooleanFromData(axisLabelAutoSkip, false)),
+                maxTicksLimit: (chartType === 'horizontal') ? vis.binds.materialdesign.chart.helper.getNumberFromData(axisMaxLabel, undefined) : undefined,
                 callback: function (value, index, values) {
                     try {
                         if (isNaN(value)) {
-                            return `${value}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');;
+                            return `${value}${vis.binds.materialdesign.chart.helper.getValueFromData(axisValueAppendText, '')}`.split('\\n');;
                         } else {
                             if (axisValueMinDigits || axisValueMaxDigits) {
-                                return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                                return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${vis.binds.materialdesign.chart.helper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
                             } else {
-                                return `${value}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                                return `${value}${vis.binds.materialdesign.chart.helper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
                             }
                         }
                     } catch (ex) {
                         console.error(`[chart helper] [ticks callback] error: ${ex.message}, stack: ${ex.stack}`);
                     }
                 },
-                fontColor: myMdwHelper.getValueFromData(yAxisValueLabelColor, undefined),
-                fontFamily: myMdwHelper.getValueFromData(yAxisValueFontFamily, undefined),
-                fontSize: myMdwHelper.getNumberFromData(yAxisValueFontSize, undefined),
-                padding: myMdwHelper.getNumberFromData(yAxisValueDistanceToAxis, 0),
+                fontColor: vis.binds.materialdesign.chart.helper.getValueFromData(yAxisValueLabelColor, undefined),
+                fontFamily: vis.binds.materialdesign.chart.helper.getValueFromData(yAxisValueFontFamily, undefined),
+                fontSize: vis.binds.materialdesign.chart.helper.getNumberFromData(yAxisValueFontSize, undefined),
+                padding: vis.binds.materialdesign.chart.helper.getNumberFromData(yAxisValueDistanceToAxis, 0),
             },
             gridLines: {
                 display: true,
-                color: myMdwHelper.getValueFromData(yAxisGridLinesColor, 'black'),
-                lineWidth: myMdwHelper.getNumberFromData(yAxisGridLinesWitdh, 0.1),
+                color: vis.binds.materialdesign.chart.helper.getValueFromData(yAxisGridLinesColor, 'black'),
+                lineWidth: vis.binds.materialdesign.chart.helper.getNumberFromData(yAxisGridLinesWitdh, 0.1),
                 drawBorder: yAxisShowAxis,
                 drawOnChartArea: yAxisShowGridLines,
                 drawTicks: yAxisShowTicks,
-                tickMarkLength: myMdwHelper.getNumberFromData(yAxisTickLength, 5),
-                zeroLineWidth: myMdwHelper.getNumberFromData(yAxisZeroLineWidth, 1),
-                zeroLineColor: myMdwHelper.getValueFromData(yAxisZeroLineColor, 'rgba(0, 0, 0, 0.25)'),
+                tickMarkLength: vis.binds.materialdesign.chart.helper.getNumberFromData(yAxisTickLength, 5),
+                zeroLineWidth: vis.binds.materialdesign.chart.helper.getNumberFromData(yAxisZeroLineWidth, 1),
+                zeroLineColor: vis.binds.materialdesign.chart.helper.getValueFromData(yAxisZeroLineColor, 'rgba(0, 0, 0, 0.25)'),
             }
         }
     },
@@ -90,54 +90,54 @@ vis.binds.materialdesign.chart.helper = {
             },
             position: xAxisPosition,
             scaleLabel: {       // x-Axis title
-                display: (myMdwHelper.getValueFromData(xAxisTitle, null) !== null),
-                labelString: myMdwHelper.getValueFromData(xAxisTitle, ''),
-                fontColor: myMdwHelper.getValueFromData(xAxisTitleColor, undefined),
-                fontFamily: myMdwHelper.getValueFromData(xAxisTitleFontFamily, undefined),
-                fontSize: myMdwHelper.getNumberFromData(xAxisTitleFontSize, undefined)
+                display: (vis.binds.materialdesign.chart.helper.getValueFromData(xAxisTitle, null) !== null),
+                labelString: vis.binds.materialdesign.chart.helper.getValueFromData(xAxisTitle, ''),
+                fontColor: vis.binds.materialdesign.chart.helper.getValueFromData(xAxisTitleColor, undefined),
+                fontFamily: vis.binds.materialdesign.chart.helper.getValueFromData(xAxisTitleFontFamily, undefined),
+                fontSize: vis.binds.materialdesign.chart.helper.getNumberFromData(xAxisTitleFontSize, undefined)
             },
             ticks: {        // x-Axis values
                 display: xAxisShowAxisLabels,
-                min: myMdwHelper.getNumberFromData(axisValueMin, undefined),                       // only for chartType: horizontal
-                max: myMdwHelper.getNumberFromData(axisValueMax, undefined),                       // only for chartType: horizontal
-                stepSize: myMdwHelper.getNumberFromData(axisValueStepSize, undefined),             // only for chartType: vertical
-                autoSkip: (chartType === 'vertical' && (myMdwHelper.getNumberFromData(axisMaxLabel, undefined) > 0) || myMdwHelper.getBooleanFromData(axisLabelAutoSkip, false)),
-                autoSkipPadding: myMdwHelper.getNumberFromData(autoSkipPadding, 10),
-                minRotation: parseInt(myMdwHelper.getNumberFromData(minRotation, 0)),
-                maxRotation: parseInt(myMdwHelper.getNumberFromData(maxRotation, 0)),
-                maxTicksLimit: (chartType === 'vertical') ? myMdwHelper.getNumberFromData(axisMaxLabel, undefined) : undefined || myMdwHelper.getNumberFromData(axisMaxLabel, undefined),
+                min: vis.binds.materialdesign.chart.helper.getNumberFromData(axisValueMin, undefined),                       // only for chartType: horizontal
+                max: vis.binds.materialdesign.chart.helper.getNumberFromData(axisValueMax, undefined),                       // only for chartType: horizontal
+                stepSize: vis.binds.materialdesign.chart.helper.getNumberFromData(axisValueStepSize, undefined),             // only for chartType: vertical
+                autoSkip: (chartType === 'vertical' && (vis.binds.materialdesign.chart.helper.getNumberFromData(axisMaxLabel, undefined) > 0) || vis.binds.materialdesign.chart.helper.getBooleanFromData(axisLabelAutoSkip, false)),
+                autoSkipPadding: vis.binds.materialdesign.chart.helper.getNumberFromData(autoSkipPadding, 10),
+                minRotation: parseInt(vis.binds.materialdesign.chart.helper.getNumberFromData(minRotation, 0)),
+                maxRotation: parseInt(vis.binds.materialdesign.chart.helper.getNumberFromData(maxRotation, 0)),
+                maxTicksLimit: (chartType === 'vertical') ? vis.binds.materialdesign.chart.helper.getNumberFromData(axisMaxLabel, undefined) : undefined || vis.binds.materialdesign.chart.helper.getNumberFromData(axisMaxLabel, undefined),
                 callback: function (value, index, values) {
                     if (isTimeAxis) {
                         return value.split('\\n');
                     } else {
                         if (isNaN(value)) {
-                            return `${value}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');;
+                            return `${value}${vis.binds.materialdesign.chart.helper.getValueFromData(axisValueAppendText, '')}`.split('\\n');;
                         } else {
                             if (axisValueMinDigits || axisValueMaxDigits) {
-                                return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                                return `${myMdwHelper.formatNumber(value, axisValueMinDigits, axisValueMaxDigits)}${vis.binds.materialdesign.chart.helper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
                             } else {
-                                return `${value}${myMdwHelper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
+                                return `${value}${vis.binds.materialdesign.chart.helper.getValueFromData(axisValueAppendText, '')}`.split('\\n');
                             }
                         }
                     }
                 },
-                fontColor: myMdwHelper.getValueFromData(xAxisValueLabelColor, undefined),
-                fontFamily: myMdwHelper.getValueFromData(xAxisValueFontFamily, undefined),
-                fontSize: myMdwHelper.getNumberFromData(xAxisValueFontSize, undefined),
-                padding: myMdwHelper.getNumberFromData(xAxisValueDistanceToAxis, 0),
-                source: myMdwHelper.getValueFromData(xAxisTicksSource, 'auto')
+                fontColor: vis.binds.materialdesign.chart.helper.getValueFromData(xAxisValueLabelColor, undefined),
+                fontFamily: vis.binds.materialdesign.chart.helper.getValueFromData(xAxisValueFontFamily, undefined),
+                fontSize: vis.binds.materialdesign.chart.helper.getNumberFromData(xAxisValueFontSize, undefined),
+                padding: vis.binds.materialdesign.chart.helper.getNumberFromData(xAxisValueDistanceToAxis, 0),
+                source: vis.binds.materialdesign.chart.helper.getValueFromData(xAxisTicksSource, 'auto')
             },
             gridLines: {
                 display: true,
-                color: myMdwHelper.getValueFromData(xAxisGridLinesColor, 'black'),
-                lineWidth: myMdwHelper.getNumberFromData(xAxisGridLinesWitdh, 0.1),
+                color: vis.binds.materialdesign.chart.helper.getValueFromData(xAxisGridLinesColor, 'black'),
+                lineWidth: vis.binds.materialdesign.chart.helper.getNumberFromData(xAxisGridLinesWitdh, 0.1),
                 drawBorder: xAxisShowAxis,
                 drawOnChartArea: xAxisShowGridLines,
                 drawTicks: xAxisShowTicks,
-                tickMarkLength: myMdwHelper.getNumberFromData(xAxisTickLength, 5),
-                zeroLineWidth: myMdwHelper.getNumberFromData(xAxisZeroLineWidth, 0.1),
-                zeroLineColor: myMdwHelper.getValueFromData(xAxisZeroLineColor, 'black'),
-                offsetGridLines: myMdwHelper.getBooleanFromData(xAxisOffsetGridLines, false),
+                tickMarkLength: vis.binds.materialdesign.chart.helper.getNumberFromData(xAxisTickLength, 5),
+                zeroLineWidth: vis.binds.materialdesign.chart.helper.getNumberFromData(xAxisZeroLineWidth, 0.1),
+                zeroLineColor: vis.binds.materialdesign.chart.helper.getValueFromData(xAxisZeroLineColor, 'black'),
+                offsetGridLines: vis.binds.materialdesign.chart.helper.getBooleanFromData(xAxisOffsetGridLines, false),
             }
         }
 
@@ -154,11 +154,11 @@ vis.binds.materialdesign.chart.helper = {
             backgroundColor: dataColorArray,
             hoverBackgroundColor: hoverDataColorArray,
 
-            borderColor: myMdwHelper.getValueFromData(borderColor, 'white'),
-            hoverBorderColor: myMdwHelper.getValueFromData(hoverBorderColor, undefined),
+            borderColor: vis.binds.materialdesign.chart.helper.getValueFromData(borderColor, 'white'),
+            hoverBorderColor: vis.binds.materialdesign.chart.helper.getValueFromData(hoverBorderColor, undefined),
 
-            borderWidth: myMdwHelper.getNumberFromData(borderWidth, undefined),
-            hoverBorderWidth: myMdwHelper.getNumberFromData(hoverBorderWidth, undefined),
+            borderWidth: vis.binds.materialdesign.chart.helper.getNumberFromData(borderWidth, undefined),
+            hoverBorderWidth: vis.binds.materialdesign.chart.helper.getNumberFromData(hoverBorderWidth, undefined),
         }
     },
     getLegend: function (data) {
@@ -166,12 +166,12 @@ vis.binds.materialdesign.chart.helper = {
             display: data.showLegend,
             position: data.legendPosition,
             labels: {
-                fontColor: myMdwHelper.getValueFromData(data.legendFontColor, undefined),
-                fontFamily: myMdwHelper.getValueFromData(data.legendFontFamily, undefined),
-                fontSize: myMdwHelper.getNumberFromData(data.legendFontSize, undefined),
-                boxWidth: myMdwHelper.getNumberFromData(data.legendBoxWidth, 10),
+                fontColor: vis.binds.materialdesign.chart.helper.getValueFromData(data.legendFontColor, undefined),
+                fontFamily: vis.binds.materialdesign.chart.helper.getValueFromData(data.legendFontFamily, undefined),
+                fontSize: vis.binds.materialdesign.chart.helper.getNumberFromData(data.legendFontSize, undefined),
+                boxWidth: vis.binds.materialdesign.chart.helper.getNumberFromData(data.legendBoxWidth, 10),
                 usePointStyle: data.legendPointStyle,
-                padding: myMdwHelper.getNumberFromData(data.legendPadding, 10),
+                padding: vis.binds.materialdesign.chart.helper.getNumberFromData(data.legendPadding, 10),
 
                 filter: function (item, chart) {
                     // Logic to remove a particular legend item goes here
@@ -227,10 +227,10 @@ vis.binds.materialdesign.chart.helper = {
     getLayout: function (data) {
         return {
             padding: {
-                top: myMdwHelper.getValueFromData(data.chartPaddingTop, 0),
-                left: myMdwHelper.getValueFromData(data.chartPaddingLeft, 0),
-                right: myMdwHelper.getValueFromData(data.chartPaddingRight, 0),
-                bottom: myMdwHelper.getValueFromData(data.chartPaddingBottom, 0)
+                top: vis.binds.materialdesign.chart.helper.getValueFromData(data.chartPaddingTop, 0),
+                left: vis.binds.materialdesign.chart.helper.getValueFromData(data.chartPaddingLeft, 0),
+                right: vis.binds.materialdesign.chart.helper.getValueFromData(data.chartPaddingRight, 0),
+                bottom: vis.binds.materialdesign.chart.helper.getValueFromData(data.chartPaddingBottom, 0)
             }
         }
     },
@@ -297,12 +297,12 @@ vis.binds.materialdesign.chart.helper = {
                 let id = data.attr('oid' + index);
                 let historyOptions = {
                     instance: data.historyAdapterInstance,
-                    count: parseInt(myMdwHelper.getNumberFromData(data.attr('maxDataPoints' + index), (data.attr('aggregate' + index) === 'minmax') ? 50 : 100)),
-                    step: (myMdwHelper.getNumberFromData(data.attr('minTimeInterval' + index), undefined)) ? parseInt(data.attr('minTimeInterval' + index)) * 1000 : undefined,
+                    count: parseInt(vis.binds.materialdesign.chart.helper.getNumberFromData(data.attr('maxDataPoints' + index), (data.attr('aggregate' + index) === 'minmax') ? 50 : 100)),
+                    step: (vis.binds.materialdesign.chart.helper.getNumberFromData(data.attr('minTimeInterval' + index), undefined)) ? parseInt(data.attr('minTimeInterval' + index)) * 1000 : undefined,
                     aggregate: data.attr('aggregate' + index) || 'minmax',
                     start: dataRangeStartTime,
                     end: new Date().getTime(),
-                    timeout: parseInt(myMdwHelper.getNumberFromData(data.chartTimeout, 2)) * 1000
+                    timeout: parseInt(vis.binds.materialdesign.chart.helper.getNumberFromData(data.chartTimeout, 2)) * 1000
                 }
 
                 if (debug) console.log(`[getTaskForHistoryData ${data.wid}] history options for '${id}': ${JSON.stringify(historyOptions)}`);
@@ -330,7 +330,7 @@ vis.binds.materialdesign.chart.helper = {
                 if (debug) console.log(`[getPreparedData ${data.wid}] prepare data for '${result.id}' length: ${result.data.length}`);
                 dataArray = result.data.map(elm => ({
                     t: (elm.ts !== null && elm.ts !== undefined) ? elm.ts : null,
-                    y: (elm.val !== null && elm.val !== undefined) ? elm.val * myMdwHelper.getNumberFromData(data.attr('multiply' + index), 1) : null
+                    y: (elm.val !== null && elm.val !== undefined) ? elm.val * vis.binds.materialdesign.chart.helper.getNumberFromData(data.attr('multiply' + index), 1) : null
                 }));
             }
         } catch (ex) {
@@ -439,15 +439,15 @@ vis.binds.materialdesign.chart.helper = {
             id: 'myDistanceLegendPlugin',
             beforeInit: function (chart, options) {
                 chart.legend.afterFit = function () {
-                    this.height = this.height + myMdwHelper.getNumberFromData(data.legendDistanceToChart, 0);
+                    this.height = this.height + vis.binds.materialdesign.chart.helper.getNumberFromData(data.legendDistanceToChart, 0);
                 };
             }
         }
     },
     getCardBackground(data) {
-        let titleFontSize = myMdwHelper.getFontSize(data.titleLayout);
+        let titleFontSize = vis.binds.materialdesign.chart.helper.getFontSize(data.titleLayout);
         let showTitleSection = 'display: none;';
-        if (myMdwHelper.getValueFromData(data.title, null) != null) {
+        if (vis.binds.materialdesign.chart.helper.getValueFromData(data.title, null) != null) {
             showTitleSection = '';
         }
 
@@ -455,11 +455,37 @@ vis.binds.materialdesign.chart.helper = {
                     <div class="materialdesign-html-card card-title-section" style="${showTitleSection}">
                         <div class="materialdesign-html-card card-title ${titleFontSize.class}" style="${titleFontSize.style}">${data.title}</div>
                     </div>
-                    <div class="materialdesign-html-card card-text-section iconlist" style="height: 100%; ${myMdwHelper.getBooleanFromData(data.showScrollbar, true) ? 'overflow-y: auto; overflow-x: hidden;' : ''} margin: ${myMdwHelper.getNumberFromData(data.borderDistance, 10)}px;">
+                    <div class="materialdesign-html-card card-text-section iconlist" style="height: 100%; ${vis.binds.materialdesign.chart.helper.getBooleanFromData(data.showScrollbar, true) ? 'overflow-y: auto; overflow-x: hidden;' : ''} margin: ${vis.binds.materialdesign.chart.helper.getNumberFromData(data.borderDistance, 10)}px;">
                         <div class="materialdesign-html-card" style="height: 100%">
                             <canvas class="materialdesign-chart-container"></canvas>
                         </div>
                     </div>
                 </div>`
+    },
+    getCssVariableValue(dataValue) {
+        if (dataValue && dataValue.toString().startsWith('var(--')) {
+            return getComputedStyle(document.documentElement).getPropertyValue(dataValue.replace('var(', '').replace(')', ''));
+        }
+        return undefined
+    },
+    getValueFromData: function (dataValue, nullValue, prepand = '', append = '') {
+        let cssVar = this.getCssVariableValue(dataValue);
+        return myMdwHelper.getValueFromData(cssVar ? cssVar : dataValue, nullValue, prepand, append);
+    },
+    getFontSize: function (fontSizeValue) {
+        let cssVar = this.getCssVariableValue(fontSizeValue);
+        return myMdwHelper.getFontSize(cssVar ? cssVar : fontSizeValue)
+    },
+    getNumberFromData: function (dataValue, nullValue) {
+        let cssVar = this.getCssVariableValue(dataValue);
+        return myMdwHelper.getNumberFromData(cssVar ? cssVar : dataValue, nullValue)
+    },
+    getBooleanFromData: function (dataValue, nullValue) {
+        let cssVar = this.getCssVariableValue(dataValue);
+        return myMdwHelper.getBooleanFromData(cssVar ? cssVar : dataValue, nullValue)
+    },
+    getStringFromNumberData: function (dataValue, nullValue, prepand = '', append = '') {
+        let cssVar = this.getCssVariableValue(dataValue);
+        return myMdwHelper.getStringFromNumberData(cssVar ? cssVar : dataValue, nullValue, prepand, append);
     }
 }
