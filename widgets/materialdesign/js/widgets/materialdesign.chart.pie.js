@@ -18,7 +18,7 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
             let myChartHelper = vis.binds.materialdesign.chart.helper;
             myChartHelper.registerChartAreaPlugin();
 
-            if (myMdwHelper.getBooleanFromData(data.cardUse, false)) {
+            if (myChartHelper.getBooleanFromData(data.cardUse, false)) {
                 // Card Layout
                 $this.html(myChartHelper.getCardBackground(data));
             } else {
@@ -41,16 +41,16 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
 
             setLayout();
             function setLayout(changed = false) {
-                $this.context.style.setProperty("--materialdesign-font-card-title", myMdwHelper.getValueFromData(data.titleFontFamily, ''));
+                $this.context.style.setProperty("--materialdesign-font-card-title", myChartHelper.getValueFromData(data.titleFontFamily, ''));
 
-                $this.context.style.setProperty("--materialdesign-color-card-background", myMdwHelper.getValueFromData(data.colorBackground, ''));
-                $this.context.style.setProperty("--materialdesign-color-card-title-section-background", myMdwHelper.getValueFromData(data.colorTitleSectionBackground, ''));
-                $this.context.style.setProperty("--materialdesign-color-card-text-section-background", myMdwHelper.getValueFromData(data.colorTextSectionBackground, ''));
-                $this.context.style.setProperty("--materialdesign-color-card-title", myMdwHelper.getValueFromData(data.colorTitle, ''));
+                $this.context.style.setProperty("--materialdesign-color-card-background", myChartHelper.getValueFromData(data.colorBackground, ''));
+                $this.context.style.setProperty("--materialdesign-color-card-title-section-background", myChartHelper.getValueFromData(data.colorTitleSectionBackground, ''));
+                $this.context.style.setProperty("--materialdesign-color-card-text-section-background", myChartHelper.getValueFromData(data.colorTextSectionBackground, ''));
+                $this.context.style.setProperty("--materialdesign-color-card-title", myChartHelper.getValueFromData(data.colorTitle, ''));
 
-                let titleFontSize = myMdwHelper.getFontSize(data.titleLayout);
+                let titleFontSize = myChartHelper.getFontSize(data.titleLayout);
                 if (titleFontSize && titleFontSize.style) {
-                    $this.find('.card-title').css('font-size', myMdwHelper.getStringFromNumberData(data.titleLayout, 'inherit', '', 'px'));
+                    $this.find('.card-title').css('font-size', myChartHelper.getStringFromNumberData(data.titleLayout, 'inherit', '', 'px'));
                 }
 
                 if (changed) {
@@ -63,10 +63,10 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
             function createChart() {
                 var chartContainer = $(el).find('.materialdesign-chart-container').get(0);
 
-                $(el).find('.materialdesign-chart-container').css('background-color', myMdwHelper.getValueFromData(data.backgroundColor, ''));
-                let globalColor = myMdwHelper.getValueFromData(data.globalColor, '#44739e');
+                $(el).find('.materialdesign-chart-container').css('background-color', myChartHelper.getValueFromData(data.backgroundColor, ''));
+                let globalColor = myChartHelper.getValueFromData(data.globalColor, '#44739e');
 
-                let colorScheme = myMdwHelper.getValueFromData(data.colorScheme, null);
+                let colorScheme = myChartHelper.getValueFromData(data.colorScheme, null);
                 if (colorScheme !== null) {
                     colorScheme = vis.binds.materialdesign.colorScheme.get(data.colorScheme, data.dataCount);
                 }
@@ -77,7 +77,7 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
                     // Global Options:
                     Chart.defaults.global.defaultFontColor = '#44739e';
                     Chart.defaults.global.defaultFontSize = 15;
-                    Chart.defaults.global.animation.duration = myMdwHelper.getNumberFromData(data.animationDuration, 1000);
+                    Chart.defaults.global.animation.duration = myChartHelper.getNumberFromData(data.animationDuration, 1000);
 
                     Chart.plugins.unregister(ChartDataLabels);
 
@@ -92,7 +92,7 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
                     let labelArray = [];
                     let dataColorArray = [];
                     let hoverDataColorArray = [];
-                    let globalValueTextColor = myMdwHelper.getValueFromData(data.valuesFontColor, 'black')
+                    let globalValueTextColor = myChartHelper.getValueFromData(data.valuesFontColor, 'black')
                     let valueTextColorArray = [];
                     let countOfItems = 0;
                     let jsonData = null;
@@ -130,7 +130,7 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
 
                         dataColorArray.push(pieItem.dataColor);
 
-                        if (myMdwHelper.getValueFromData(data.hoverColor, null) === null) {
+                        if (myChartHelper.getValueFromData(data.hoverColor, null) === null) {
                             hoverDataColorArray.push(myChartHelper.addOpacityToColor(pieItem.dataColor, 80))
                         } else {
                             hoverDataColorArray.push(data.hoverColor)
@@ -174,26 +174,26 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
                                 }
                             }
                         },
-                        cutoutPercentage: (data.chartType === 'doughnut') ? myMdwHelper.getNumberFromData(data.doughnutCutOut, 50) : 0,
+                        cutoutPercentage: (data.chartType === 'doughnut') ? myChartHelper.getNumberFromData(data.doughnutCutOut, 50) : 0,
                         chartArea: {
-                            backgroundColor: myMdwHelper.getValueFromData(data.chartAreaBackgroundColor, ''),
+                            backgroundColor: myChartHelper.getValueFromData(data.chartAreaBackgroundColor, ''),
                         },
                         tooltips: {
                             enabled: data.showTooltip,
-                            backgroundColor: myMdwHelper.getValueFromData(data.tooltipBackgroundColor, 'black'),
-                            caretSize: myMdwHelper.getNumberFromData(data.tooltipArrowSize, 5),
-                            caretPadding: myMdwHelper.getNumberFromData(data.tooltipDistanceToBar, 2),
-                            cornerRadius: myMdwHelper.getNumberFromData(data.tooltipBoxRadius, 4),
+                            backgroundColor: myChartHelper.getValueFromData(data.tooltipBackgroundColor, 'black'),
+                            caretSize: myChartHelper.getNumberFromData(data.tooltipArrowSize, 5),
+                            caretPadding: myChartHelper.getNumberFromData(data.tooltipDistanceToBar, 2),
+                            cornerRadius: myChartHelper.getNumberFromData(data.tooltipBoxRadius, 4),
                             displayColors: data.tooltipShowColorBox,
-                            xPadding: myMdwHelper.getNumberFromData(data.tooltipXpadding, 10),
-                            yPadding: myMdwHelper.getNumberFromData(data.tooltipYpadding, 10),
-                            titleFontColor: myMdwHelper.getValueFromData(data.tooltipTitleFontColor, 'white'),
-                            titleFontFamily: myMdwHelper.getValueFromData(data.tooltipTitleFontFamily, undefined),
-                            titleFontSize: myMdwHelper.getNumberFromData(data.tooltipTitleFontSize, undefined),
-                            titleMarginBottom: myMdwHelper.getNumberFromData(data.tooltipTitleMarginBottom, 6),
-                            bodyFontColor: myMdwHelper.getValueFromData(data.tooltipBodyFontColor, 'white'),
-                            bodyFontFamily: myMdwHelper.getValueFromData(data.tooltipBodyFontFamily, undefined),
-                            bodyFontSize: myMdwHelper.getNumberFromData(data.tooltipBodyFontSize, undefined),
+                            xPadding: myChartHelper.getNumberFromData(data.tooltipXpadding, 10),
+                            yPadding: myChartHelper.getNumberFromData(data.tooltipYpadding, 10),
+                            titleFontColor: myChartHelper.getValueFromData(data.tooltipTitleFontColor, 'white'),
+                            titleFontFamily: myChartHelper.getValueFromData(data.tooltipTitleFontFamily, undefined),
+                            titleFontSize: myChartHelper.getNumberFromData(data.tooltipTitleFontSize, undefined),
+                            titleMarginBottom: myChartHelper.getNumberFromData(data.tooltipTitleMarginBottom, 6),
+                            bodyFontColor: myChartHelper.getValueFromData(data.tooltipBodyFontColor, 'white'),
+                            bodyFontFamily: myChartHelper.getValueFromData(data.tooltipBodyFontFamily, undefined),
+                            bodyFontSize: myChartHelper.getNumberFromData(data.tooltipBodyFontSize, undefined),
                             callbacks: {
                                 title: function (tooltipItem, chart) {
                                     let pieItem = getPieItemObj(tooltipItem[0].index, data, jsonData, globalColor, globalValueTextColor);
@@ -210,7 +210,7 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
                                     if (pieItem && pieItem.tooltipText) {
                                         return pieItem.tooltipText.split('\\n');
                                     } else if (tooltipItem) {
-                                        return `${labelArray[tooltipItem.index]}: ${myMdwHelper.formatNumber(chart.datasets[0].data[tooltipItem.index], data.tooltipValueMinDecimals, data.tooltipValueMaxDecimals)}${myMdwHelper.getValueFromData(data.tooltipBodyAppend, '')}`
+                                        return `${labelArray[tooltipItem.index]}: ${myMdwHelper.formatNumber(chart.datasets[0].data[tooltipItem.index], data.tooltipValueMinDecimals, data.tooltipValueMaxDecimals)}${myChartHelper.getValueFromData(data.tooltipBodyAppend, '')}`
                                             .split('\\n');
                                     }
                                     return null;
@@ -219,14 +219,14 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
                         },
                         plugins: {
                             datalabels: {
-                                display: myMdwHelper.getValueFromData(data.showValues, 'showValuesOn') === 'showValuesOn' ? true : data.showValues === 'showValuesOff' ? false : 'auto',
+                                display: myChartHelper.getValueFromData(data.showValues, 'showValuesOn') === 'showValuesOn' ? true : data.showValues === 'showValuesOff' ? false : 'auto',
                                 anchor: data.valuesPositionAnchor,
                                 align: data.valuesPositionAlign,
                                 clamp: true,
-                                offset: myMdwHelper.getNumberFromData(data.valuesPositionOffset, 0),
-                                rotation: myMdwHelper.getNumberFromData(data.valuesRotation, undefined),
+                                offset: myChartHelper.getNumberFromData(data.valuesPositionOffset, 0),
+                                rotation: myChartHelper.getNumberFromData(data.valuesRotation, undefined),
                                 formatter: function (value, context) {
-                                    if ((value || value === 0) && context.dataIndex % myMdwHelper.getNumberFromData(data.valuesSteps, 1) === 0) {
+                                    if ((value || value === 0) && context.dataIndex % myChartHelper.getNumberFromData(data.valuesSteps, 1) === 0) {
                                         let pieItem = getPieItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor, value);
 
                                         return `${pieItem.valueText}${pieItem.valueAppendix}`.split('\\n');
@@ -234,8 +234,8 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
                                     return null;
                                 },
                                 font: {
-                                    family: myMdwHelper.getValueFromData(data.valuesFontFamily, undefined),
-                                    size: myMdwHelper.getNumberFromData(data.valuesFontSize, undefined),
+                                    family: myChartHelper.getValueFromData(data.valuesFontFamily, undefined),
+                                    size: myChartHelper.getNumberFromData(data.valuesFontSize, undefined),
                                 },
                                 color: valueTextColorArray,
                                 textAlign: data.valuesTextAlign
@@ -304,7 +304,7 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
                                             myPieChart.data.datasets[0].backgroundColor[d] = pieItem.dataColor;
                                             myPieChart.data.labels[d] = pieItem.label;
 
-                                            if (myMdwHelper.getValueFromData(data.hoverColor, null) === null) {
+                                            if (myChartHelper.getValueFromData(data.hoverColor, null) === null) {
                                                 myPieChart.data.datasets[0].hoverBackgroundColor[d] = myChartHelper.addOpacityToColor(pieItem.dataColor, 80);
                                             } else {
                                                 myPieChart.data.datasets[0].hoverBackgroundColor[d] = data.hoverColor;
@@ -341,26 +341,26 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
                     function getPieItemObj(i, data, jsonData, globalColor, globalValueTextColor, value = 0) {
                         if (data.chartDataMethod === 'inputPerEditor') {
                             return {
-                                label: myMdwHelper.getValueFromData(data.attr('label' + i), ''),
+                                label: myChartHelper.getValueFromData(data.attr('label' + i), ''),
                                 value: vis.states.attr(data.attr('oid' + i) + '.val'),
-                                dataColor: myMdwHelper.getValueFromData(data.attr('dataColor' + i), globalColor),
-                                valueText: myMdwHelper.getValueFromData(data.attr('valueText' + i), `${myMdwHelper.formatNumber(parseFloat(value), data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
-                                valueColor: myMdwHelper.getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor),
-                                valueAppendix: myMdwHelper.getValueFromData(data.attr('labelValueAppend' + i), ''),
-                                tooltipTitle: myMdwHelper.getValueFromData(data.attr('tooltipTitle' + i), undefined),
-                                tooltipText: myMdwHelper.getValueFromData(data.attr('tooltipText' + i), undefined),
+                                dataColor: myChartHelper.getValueFromData(data.attr('dataColor' + i), globalColor),
+                                valueText: myChartHelper.getValueFromData(data.attr('valueText' + i), `${myMdwHelper.formatNumber(parseFloat(value), data.valuesMinDecimals, data.valuesMaxDecimals)}${myChartHelper.getValueFromData(data.valuesAppendText, '')}`),
+                                valueColor: myChartHelper.getValueFromData(data.attr('valueTextColor' + i), globalValueTextColor),
+                                valueAppendix: myChartHelper.getValueFromData(data.attr('labelValueAppend' + i), ''),
+                                tooltipTitle: myChartHelper.getValueFromData(data.attr('tooltipTitle' + i), undefined),
+                                tooltipText: myChartHelper.getValueFromData(data.attr('tooltipText' + i), undefined),
                             }
                         } else {
                             if (jsonData && jsonData[i]) {
                                 return {
-                                    label: myMdwHelper.getValueFromData(jsonData[i].label, ''),
+                                    label: myChartHelper.getValueFromData(jsonData[i].label, ''),
                                     value: jsonData[i].value,
-                                    dataColor: myMdwHelper.getValueFromData(jsonData[i].dataColor, globalColor),
-                                    valueText: myMdwHelper.getValueFromData(jsonData[i].valueText, `${myMdwHelper.formatNumber(parseFloat(value), data.valuesMinDecimals, data.valuesMaxDecimals)}${myMdwHelper.getValueFromData(data.valuesAppendText, '')}`),
-                                    valueColor: myMdwHelper.getValueFromData(jsonData[i].valueColor, globalValueTextColor),
-                                    valueAppendix: myMdwHelper.getValueFromData(jsonData[i].valueAppendix, ''),
-                                    tooltipTitle: myMdwHelper.getValueFromData(jsonData[i].tooltipTitle, undefined),
-                                    tooltipText: myMdwHelper.getValueFromData(jsonData[i].tooltipText, undefined),
+                                    dataColor: myChartHelper.getValueFromData(jsonData[i].dataColor, globalColor),
+                                    valueText: myChartHelper.getValueFromData(jsonData[i].valueText, `${myMdwHelper.formatNumber(parseFloat(value), data.valuesMinDecimals, data.valuesMaxDecimals)}${myChartHelper.getValueFromData(data.valuesAppendText, '')}`),
+                                    valueColor: myChartHelper.getValueFromData(jsonData[i].valueColor, globalValueTextColor),
+                                    valueAppendix: myChartHelper.getValueFromData(jsonData[i].valueAppendix, ''),
+                                    tooltipTitle: myChartHelper.getValueFromData(jsonData[i].tooltipTitle, undefined),
+                                    tooltipText: myChartHelper.getValueFromData(jsonData[i].tooltipText, undefined),
                                 }
                             } else {
                                 return undefined;

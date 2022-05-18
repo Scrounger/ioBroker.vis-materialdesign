@@ -263,8 +263,6 @@ vis.binds.materialdesign.chart = {
 
                         myBarChart.update();
 
-                        console.warn(JSON.stringify(options));
-
                         function onChange(e, newVal, oldVal) {
                             // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
                             try {
