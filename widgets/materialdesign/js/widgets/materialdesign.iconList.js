@@ -662,8 +662,6 @@ vis.binds.materialdesign.iconlist =
                         myMdwHelper.changeIconElement($item, listItemObj.imageActive, 'auto', iconHeight + 'px', listItemObj.imageActiveColor, '', 'iconlist-icon');
 
                         $item.find('.materialdesign-icon-list-item-text').css('color', myMdwHelper.getValueFromData(data.labelFontColorSelected, myMdwHelper.getValueFromData(data.labelFontColor, '')));
-                        
-                        console.warn($item.find('.materialdesign-icon-list-item-subText'));
                         $item.find('.materialdesign-icon-list-item-subText').css('color', myMdwHelper.getValueFromData(data.subLabelFontColorSelected, myMdwHelper.getValueFromData(data.subLabelFontColor, '')));
 
                         if (listItemObj.statusBarColorActive || listItemObj.statusBarTextActive) {

@@ -478,6 +478,9 @@ vis.binds.materialdesign.chart.helper = {
     },
     getNumberFromData: function (dataValue, nullValue) {
         let cssVar = this.getCssVariableValue(dataValue);
+
+        if (cssVar && cssVar.endsWith('px')) cssVar = cssVar.replace('px', '');
+
         return myMdwHelper.getNumberFromData(cssVar ? cssVar : dataValue, nullValue)
     },
     getBooleanFromData: function (dataValue, nullValue) {
