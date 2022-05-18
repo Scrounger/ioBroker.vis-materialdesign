@@ -8489,6 +8489,18 @@ systemDictionary = {
         "pl": "kolor podtekstu",
         "zh-cn": "子文字颜色"
     },
+    "subLabelFontColorSelected": {
+        "en": "sub text color active",
+        "de": "Untertextfarbe aktiv",
+        "ru": "цвет подтекста активен",
+        "pt": "cor do subtexto ativa",
+        "nl": "kleur subtekst actief",
+        "fr": "couleur de sous-texte active",
+        "it": "colore del sottotesto attivo",
+        "es": "color de subtexto activo",
+        "pl": "kolor podtekstu aktywny",
+        "zh-cn": "子文本颜色激活"
+    },
     "valueFontSize": {
         "en": "value font size",
         "de": "Wert Schriftgröße",

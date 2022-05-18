@@ -522,6 +522,12 @@
         "widget": "Icon List"
     },
     {
+        "id": "light.icon_list.subText_selected",
+        "desc": "subLabelFontColorSelected",
+        "defaultValue": 1,
+        "widget": "Icon List"
+    },
+    {
         "id": "dark.icon_list.value_text",
         "desc": "valueFontColor",
         "defaultValue": 1,
