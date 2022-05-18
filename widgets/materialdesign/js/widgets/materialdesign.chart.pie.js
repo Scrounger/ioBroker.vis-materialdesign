@@ -13,7 +13,7 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
 
         myMdwHelper.subscribeThemesAtRuntime(data, widgetName)
 
-        setTimeout(function () {
+        myMdwHelper.waitForCssVariable(function () {
             let myPieChart;
             let myChartHelper = vis.binds.materialdesign.chart.helper;
             myChartHelper.registerChartAreaPlugin();
@@ -41,21 +41,23 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
 
             setLayout();
             function setLayout(changed = false) {
-                $this.context.style.setProperty("--materialdesign-font-card-title", myChartHelper.getValueFromData(data.titleFontFamily, ''));
+                myMdwHelper.waitForCssVariable(function () {
+                    $this.context.style.setProperty("--materialdesign-font-card-title", myChartHelper.getValueFromData(data.titleFontFamily, ''));
 
-                $this.context.style.setProperty("--materialdesign-color-card-background", myChartHelper.getValueFromData(data.colorBackground, ''));
-                $this.context.style.setProperty("--materialdesign-color-card-title-section-background", myChartHelper.getValueFromData(data.colorTitleSectionBackground, ''));
-                $this.context.style.setProperty("--materialdesign-color-card-text-section-background", myChartHelper.getValueFromData(data.colorTextSectionBackground, ''));
-                $this.context.style.setProperty("--materialdesign-color-card-title", myChartHelper.getValueFromData(data.colorTitle, ''));
+                    $this.context.style.setProperty("--materialdesign-color-card-background", myChartHelper.getValueFromData(data.colorBackground, ''));
+                    $this.context.style.setProperty("--materialdesign-color-card-title-section-background", myChartHelper.getValueFromData(data.colorTitleSectionBackground, ''));
+                    $this.context.style.setProperty("--materialdesign-color-card-text-section-background", myChartHelper.getValueFromData(data.colorTextSectionBackground, ''));
+                    $this.context.style.setProperty("--materialdesign-color-card-title", myChartHelper.getValueFromData(data.colorTitle, ''));
 
-                let titleFontSize = myChartHelper.getFontSize(data.titleLayout);
-                if (titleFontSize && titleFontSize.style) {
-                    $this.find('.card-title').css('font-size', myChartHelper.getStringFromNumberData(data.titleLayout, 'inherit', '', 'px'));
-                }
+                    let titleFontSize = myChartHelper.getFontSize(data.titleLayout);
+                    if (titleFontSize && titleFontSize.style) {
+                        $this.find('.card-title').css('font-size', myChartHelper.getStringFromNumberData(data.titleLayout, 'inherit', '', 'px'));
+                    }
 
-                if (changed) {
-                    createChart();
-                }
+                    if (changed) {
+                        createChart();
+                    }
+                }, 0, data.debug);
             }
 
             createChart();
@@ -254,78 +256,80 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
                         plugins: [ChartDataLabels, myChartHelper.myDistanceLegendPlugin(data)]
                     });
 
-                    myPieChart.update();
+                    myPieChart.update(options);
 
                     function onChange(e, newVal, oldVal) {
                         // i wird nicht gespeichert -> umweg über oid gehen, um index zu erhalten
                         try {
-                            if (data.chartDataMethod === 'inputPerEditor') {
-                                let oidId = e.type.substr(0, e.type.lastIndexOf("."));
+                            myMdwHelper.waitForCssVariable(function () {
+                                if (data.chartDataMethod === 'inputPerEditor') {
+                                    let oidId = e.type.substr(0, e.type.lastIndexOf("."));
 
-                                for (var d = 0; d <= data.dataCount; d++) {
-                                    if (oidId === data.attr('oid' + d)) {
-                                        let index = d;
-                                        myPieChart.data.datasets[0].data[index] = newVal;
+                                    for (var d = 0; d <= data.dataCount; d++) {
+                                        if (oidId === data.attr('oid' + d)) {
+                                            let index = d;
+                                            myPieChart.data.datasets[0].data[index] = newVal;
+                                            myPieChart.update();
+                                        }
+                                    }
+                                } else {
+                                    let jsonData = undefined;
+
+                                    try {
+                                        jsonData = JSON.parse(newVal);
+                                    } catch (errJson) {
+                                        myPieChart.options.title = {
+                                            display: true,
+                                            text: `${_("Error in JSON string")}<br>${errJson.message}`.split('<br>'),
+                                            fontColor: 'red'
+                                        };
+                                        myPieChart.update();
+
+                                        console.error(`[Pie Chart - ${data.wid}] onChange: cannot parse json string! Error: ${errJson.message}`);
+                                    }
+
+                                    if (jsonData && jsonData.length > 0) {
+                                        myPieChart.data.datasets[0].data = [];
+                                        myPieChart.data.datasets[0].backgroundColor = [];
+                                        myPieChart.data.labels = [];
+                                        myPieChart.data.datasets[0].hoverBackgroundColor = [];
+                                        myPieChart.options.plugins.datalabels.color = [];
+
+                                        for (var d = 0; d <= jsonData.length - 1; d++) {
+                                            if (colorScheme !== null) {
+                                                globalColor = colorScheme[d];
+                                            }
+
+                                            let pieItem = getPieItemObj(d, data, jsonData, globalColor, globalValueTextColor);
+
+                                            if (pieItem) {
+                                                myPieChart.data.datasets[0].data[d] = pieItem.value;
+                                                myPieChart.data.datasets[0].backgroundColor[d] = pieItem.dataColor;
+                                                myPieChart.data.labels[d] = pieItem.label;
+
+                                                if (myChartHelper.getValueFromData(data.hoverColor, null) === null) {
+                                                    myPieChart.data.datasets[0].hoverBackgroundColor[d] = myChartHelper.addOpacityToColor(pieItem.dataColor, 80);
+                                                } else {
+                                                    myPieChart.data.datasets[0].hoverBackgroundColor[d] = data.hoverColor;
+                                                }
+
+                                                myPieChart.options.plugins.datalabels.color[d] = pieItem.valueColor;
+
+                                                myPieChart.options.plugins.datalabels.formatter = function (value, context) {
+                                                    if (value) {
+                                                        let pieItem = getPieItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor, value);
+                                                        if (pieItem) {
+                                                            return `${pieItem.valueText}${pieItem.valueAppendix}`.split('\\n');
+                                                        }
+                                                    }
+                                                    return '';
+                                                }
+                                            }
+                                        }
                                         myPieChart.update();
                                     }
                                 }
-                            } else {
-                                let jsonData = undefined;
-
-                                try {
-                                    jsonData = JSON.parse(newVal);
-                                } catch (errJson) {
-                                    myPieChart.options.title = {
-                                        display: true,
-                                        text: `${_("Error in JSON string")}<br>${errJson.message}`.split('<br>'),
-                                        fontColor: 'red'
-                                    };
-                                    myPieChart.update();
-
-                                    console.error(`[Pie Chart - ${data.wid}] onChange: cannot parse json string! Error: ${errJson.message}`);
-                                }
-
-                                if (jsonData && jsonData.length > 0) {
-                                    myPieChart.data.datasets[0].data = [];
-                                    myPieChart.data.datasets[0].backgroundColor = [];
-                                    myPieChart.data.labels = [];
-                                    myPieChart.data.datasets[0].hoverBackgroundColor = [];
-                                    myPieChart.options.plugins.datalabels.color = [];
-
-                                    for (var d = 0; d <= jsonData.length - 1; d++) {
-                                        if (colorScheme !== null) {
-                                            globalColor = colorScheme[d];
-                                        }
-
-                                        let pieItem = getPieItemObj(d, data, jsonData, globalColor, globalValueTextColor);
-
-                                        if (pieItem) {
-                                            myPieChart.data.datasets[0].data[d] = pieItem.value;
-                                            myPieChart.data.datasets[0].backgroundColor[d] = pieItem.dataColor;
-                                            myPieChart.data.labels[d] = pieItem.label;
-
-                                            if (myChartHelper.getValueFromData(data.hoverColor, null) === null) {
-                                                myPieChart.data.datasets[0].hoverBackgroundColor[d] = myChartHelper.addOpacityToColor(pieItem.dataColor, 80);
-                                            } else {
-                                                myPieChart.data.datasets[0].hoverBackgroundColor[d] = data.hoverColor;
-                                            }
-
-                                            myPieChart.options.plugins.datalabels.color[d] = pieItem.valueColor;
-
-                                            myPieChart.options.plugins.datalabels.formatter = function (value, context) {
-                                                if (value) {
-                                                    let pieItem = getPieItemObj(context.dataIndex, data, jsonData, globalColor, globalValueTextColor, value);
-                                                    if (pieItem) {
-                                                        return `${pieItem.valueText}${pieItem.valueAppendix}`.split('\\n');
-                                                    }
-                                                }
-                                                return '';
-                                            }
-                                        }
-                                    }
-                                    myPieChart.update();
-                                }
-                            }
+                            }, 0, data.debug);
                         } catch (err) {
                             myPieChart.options.title = {
                                 display: true,
@@ -369,7 +373,7 @@ vis.binds.materialdesign.chart.pie = function (el, data) {
                     }
                 }
             }
-        }, 1)
+        }, 0, data.debug);
     } catch (ex) {
         console.error(`[${widgetName} - ${data.wid}] error: ${ex.message}, stack: ${ex.stack}`);
     }

@@ -98,7 +98,7 @@ vis.binds.materialdesign.helper = {
         if (counter < 1000) {
             setTimeout(function () {
                 let test = getComputedStyle(document.documentElement).getPropertyValue('--materialdesign-widget-theme-css-variables-loaded');
-                if (test) {
+                if (test && (test === true || test === 'true')) {
                     callBack();
                 } else {
                     if (debug) console.log(`[waitForCssVariable] wait for css variables`);
@@ -458,7 +458,7 @@ vis.binds.materialdesign.helper = {
         let icon = myMdwHelper.getValueFromData(iconData, null);
         let color = myMdwHelper.getValueFromData(iconColor, '');
 
-        
+
 
         if (icon !== null) {
             if (myMdwHelper.getAllowedImageFileExtensions().some(el => icon.includes(el))) {
@@ -1031,12 +1031,14 @@ vis.binds.materialdesign.helper = {
 
                         vis.states.bind('vis-materialdesign.0.colors.darkTheme.val', function (e, newVal, oldVal) {
                             console.log(`vis-materialdesign: ${newVal ? 'dark theme activated' : 'light theme activated'}`);
+                            document.documentElement.style.setProperty('--materialdesign-widget-theme-css-variables-loaded', 'false');
                             setCssVariables(true);
                         });
 
                         vis.states.bind('vis-materialdesign.0.lastchange.val', function (e, newVal, oldVal) {
                             if (oldVal !== undefined) {
                                 console.log(`vis-materialdesign: theme changes detected`);
+                                document.documentElement.style.setProperty('--materialdesign-widget-theme-css-variables-loaded', 'false');
                                 setCssVariables();
                             }
                         });
