@@ -382,7 +382,8 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
 
             function navListSelect(val) {
 
-                if (!data.navDisableDefaultValue) {
+                // if (!data.navDisableDefaultValue) {
+                if (val) {
                     let item = $mdcList.find(`.mdc-list-item[id="listItem_${val}"]`);
 
                     if (item.length === 0) {
@@ -409,6 +410,7 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
                         }
                     }
                 }
+                // }
             }
         }
 
