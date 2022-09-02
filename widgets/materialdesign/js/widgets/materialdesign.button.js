@@ -211,6 +211,8 @@ vis.binds.materialdesign.button = {
                 // Protect against two events
                 event.preventDefault();
 
+                myMdwHelper.hapticFeedback(data, true, false);
+
                 if (!vis.editMode && data.href) {
                     if (data.openNewWindow) {
                         window.open(data.href);
@@ -221,7 +223,7 @@ vis.binds.materialdesign.button = {
             });
 
             $this.on('tapstart', function (e) {
-                myMdwHelper.hapticFeedback(data);
+                myMdwHelper.hapticFeedback(data, false, true);
             });
         } catch (ex) {
             console.error(`[Button - ${data.wid}] handleLink: error: ${ex.message}, stack: ${ex.stack}`);
@@ -237,6 +239,8 @@ vis.binds.materialdesign.button = {
                     // Protect against two events
                     event.preventDefault();
 
+                    myMdwHelper.hapticFeedback(data, true, false);
+
                     if (moved) return;
                     vis.changeView(data.nav_view, data.nav_view);
                     //e.preventDefault();
@@ -248,7 +252,7 @@ vis.binds.materialdesign.button = {
                 });
 
                 $this.on('tapstart', function (e) {
-                    myMdwHelper.hapticFeedback(data);
+                    myMdwHelper.hapticFeedback(data, false, true);
                 });
             }
         } catch (ex) {
@@ -263,6 +267,8 @@ vis.binds.materialdesign.button = {
                 // Protect against two events
                 event.preventDefault();
 
+                myMdwHelper.hapticFeedback(data, true, false);
+
                 let val = vis.states.attr(data.oid + '.val');
                 if (!data.minmax || val != data.minmax) {
                     myMdwHelper.setValue(data.oid, parseFloat(val) + parseFloat(data.value));
@@ -270,7 +276,7 @@ vis.binds.materialdesign.button = {
             });
 
             $this.on('tapstart', function (e) {
-                myMdwHelper.hapticFeedback(data);
+                myMdwHelper.hapticFeedback(data, false, true);
             });
         } catch (ex) {
             console.error(`[Button - ${data.wid}] handleAddition: error:: ${ex.message}, stack: ${ex.stack}`);
@@ -307,6 +313,8 @@ vis.binds.materialdesign.button = {
                     // Protect against two events
                     event.preventDefault();
 
+                    myMdwHelper.hapticFeedback(data, true, false);
+
                     if (moved) return;
 
                     if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === undefined) {
@@ -333,7 +341,7 @@ vis.binds.materialdesign.button = {
                 });
 
                 $this.on('tapstart', function (e) {
-                    myMdwHelper.hapticFeedback(data);
+                    myMdwHelper.hapticFeedback(data, false, true);
                 });
 
                 function unlockButton() {
@@ -437,6 +445,8 @@ vis.binds.materialdesign.button = {
                             // Protect against two events
                             e.preventDefault();
 
+                            myMdwHelper.hapticFeedback(data, true, false);
+
                             if ($this.attr('isLocked') === 'false' || $this.attr('isLocked') === false || $this.attr('isLocked') === undefined) {
                                 if (myMdwHelper.getValueFromData(data.toggleType, 'boolean') === 'boolean') {
                                     myMdwHelper.setValue(data.oid, !vis.states.attr(data.oid + '.val'));
@@ -453,7 +463,7 @@ vis.binds.materialdesign.button = {
                         });
 
                         $this.on('tapstart', function (e) {
-                            myMdwHelper.hapticFeedback(data);
+                            myMdwHelper.hapticFeedback(data, false, true);
                         });
                     } else {
                         sliderEvents();
