@@ -260,7 +260,7 @@ vis.binds.materialdesign.topappbarnav = function (el, data) {
 
                 let itemIsDisabled = $selectedItem.hasClass('mdc-list-item--disabled');
 
-                myMdwHelper.hapticFeedback(data);
+                myMdwHelper.hapticFeedback(data, true, false);
 
                 if (!itemIsDisabled) {
                     if ($(this).hasClass('hasSubItems')) {

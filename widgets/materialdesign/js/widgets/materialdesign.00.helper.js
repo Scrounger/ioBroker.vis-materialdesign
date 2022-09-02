@@ -6,13 +6,13 @@
 "use strict";
 
 vis.binds.materialdesign.helper = {
-    hapticFeedback: function (data) {
+    hapticFeedback: function (data, vibrate = true, sound = true) {
         try {
-            if (vibrateActive) {
+            if (vibrateActive && vibrate) {
                 window.navigator.vibrate(data.vibrateOnMobilDevices);
             }
 
-            if (soundObj !== null && data.clickSoundPlay) {
+            if (soundObj !== null && data.clickSoundPlay && sound) {
                 soundObj.volume = myMdwHelper.getNumberFromData(data.clickSoundVolume, 0.5);
                 soundObj.play();
             }

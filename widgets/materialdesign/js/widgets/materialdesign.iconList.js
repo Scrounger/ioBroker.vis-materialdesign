@@ -516,6 +516,8 @@ vis.binds.materialdesign.iconlist =
                                     iconButtons.get(i).style.setProperty("--materialdesign-color-icon-button-hover", myMdwHelper.getValueFromData(data.buttonColorPress, ''));
 
                                     iconButtons.eq(i).on('click', function () {
+                                        myMdwHelper.hapticFeedback(data, true, false);
+
                                         // icon button click event
                                         let index = $(this).attr('index');
                                         let $item = $this.find(`#icon-list-item${index}`);
@@ -576,7 +578,7 @@ vis.binds.materialdesign.iconlist =
                                         }
                                     }).on('tapstart', function (e) {
                                         if (listItemObj.listType !== 'text') {
-                                            myMdwHelper.hapticFeedback(data);
+                                            myMdwHelper.hapticFeedback(data, false, true);
                                         }
                                     });
                                 } else {
