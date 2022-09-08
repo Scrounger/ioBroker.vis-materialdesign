@@ -518,6 +518,12 @@ vis.binds.materialdesign.views = {
 
             $this.append(`<div class="vis-widget-body vis-view-container ${containerClass}" data-vis-contains="${val}"><div>`);
 
+            if (data.hideErrorMessage && !vis.editMode) {
+                myMdwHelper.waitForElement($this.find(`.${containerClass}`), ".container-error", data.wid, widgetName, function () {
+                    $this.find(`.${containerClass}`).find('.container-error').hide();
+                }, 0, data.debug);
+            }
+
             vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 bindView(newVal, oldVal);
             });
@@ -539,6 +545,7 @@ vis.binds.materialdesign.views = {
             function bindView(view, oldView, isInit = false) {
 
                 let $container = $this.find(`.${containerClass}`);
+
 
 
                 if (oldView) {
@@ -649,18 +656,22 @@ vis.binds.materialdesign.views = {
                             } else {
                                 let $errorInfo = $container.find('.container-error');
                                 if (data.debug) {
-                                    if ($container.find('.container-error').length === 0) {
-                                        $('<span style="color: red" class="container-error">' + _('error: view not found.') + '</span>').appendTo($container).show();
-                                    } else {
-                                        $errorInfo.show();
+                                    if (!data.hideErrorMessage || vis.editMode) {
+                                        if ($container.find('.container-error').length === 0) {
+                                            $('<span style="color: red" class="container-error">' + _('error: view not found.') + '</span>').appendTo($container).show();
+                                        } else {
+                                            $errorInfo.show();
+                                        }
                                     }
 
                                     console.warn(`${logPrefix} view '${view}' not existis!`);
                                 } else {
-                                    if ($container.find('.container-error').length === 0) {
-                                        $('<span class="container-error"></span>').appendTo($container).show();
-                                    } else {
-                                        $errorInfo.show();
+                                    if (!data.hideErrorMessage || vis.editMode) {
+                                        if ($container.find('.container-error').length === 0) {
+                                            $('<span class="container-error"></span>').appendTo($container).show();
+                                        } else {
+                                            $errorInfo.show();
+                                        }
                                     }
                                 }
 
