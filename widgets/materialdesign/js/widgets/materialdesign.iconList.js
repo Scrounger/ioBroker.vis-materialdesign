@@ -515,7 +515,7 @@ vis.binds.materialdesign.iconlist =
                                 if (listItemObj.readOnly === false) {
                                     iconButtons.get(i).style.setProperty("--materialdesign-color-icon-button-hover", myMdwHelper.getValueFromData(data.buttonColorPress, ''));
 
-                                    iconButtons.eq(i).on('click', function () {
+                                    iconButtons.eq(i).off('click').on('click', function () {
                                         myMdwHelper.hapticFeedback(data, true, false);
 
                                         // icon button click event
@@ -576,7 +576,7 @@ vis.binds.materialdesign.iconlist =
                                         } else if (listItemObj.listType === 'buttonLink') {
                                             window.open(listItemObj.buttonLink);
                                         }
-                                    }).on('tapstart', function (e) {
+                                    }).off('tapstart').on('tapstart', function (e) {
                                         if (listItemObj.listType !== 'text') {
                                             myMdwHelper.hapticFeedback(data, false, true);
                                         }
