@@ -912,10 +912,10 @@ vis.binds.materialdesign.helper = {
                 vis.setValue(id, parseInt(value));
             } else {
                 vis.binds.materialdesign.helper.getObject(id, function (obj) {
-                    if(debug) console.log(`[myMdwHelper.setValue] type: ${obj.common['type']}, val: ${value}`);
-
                     if (obj && obj.common && obj.common['type'] && value !== null) {
-                        if (obj.common['type'] === 'string') {                            
+                        if (debug) console.log(`[myMdwHelper.setValue] type: ${obj.common['type']}, val: ${value}, id: ${id}`);
+
+                        if (obj.common['type'] === 'string') {
                             vis.setValue(id, value.toString());
                         } else if (obj.common['type'] === 'number') {
                             vis.setValue(id, parseFloat(value));
@@ -925,6 +925,8 @@ vis.binds.materialdesign.helper = {
                             vis.setValue(id, value);
                         }
                     } else {
+                        if (debug) console.log(`[myMdwHelper.setValue] type: obj is undefined, val: ${value}, id: ${id}`);
+
                         vis.setValue(id, value);
                     }
                 });
