@@ -906,14 +906,16 @@ vis.binds.materialdesign.helper = {
             return value;
         }
     },
-    setValue(id, value) {
+    setValue(id, value, debug = false) {
         if (!vis.editMode) {
             if ((/dev[0-9]/).test(id)) {
                 vis.setValue(id, parseInt(value));
             } else {
                 vis.binds.materialdesign.helper.getObject(id, function (obj) {
+                    if(debug) console.log(`[myMdwHelper.setValue] type: ${obj.common['type']}, val: ${value}`);
+
                     if (obj && obj.common && obj.common['type'] && value !== null) {
-                        if (obj.common['type'] === 'string') {
+                        if (obj.common['type'] === 'string') {                            
                             vis.setValue(id, value.toString());
                         } else if (obj.common['type'] === 'number') {
                             vis.setValue(id, parseFloat(value));
