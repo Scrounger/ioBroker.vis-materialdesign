@@ -39,7 +39,11 @@ vis.binds.materialdesign.dialog = {
                 } else {
                     dialogClassName = data.showDialogOid.replace(/\./g, '_')
                     if (vis.editMode) {
-                        $this.append(_('dialogUsingDatapoint'));
+                        if (data.name) {
+                            $this.append(`${data.name}${data.comment ? `<br>(<i>${data.comment}</i>)` : ''}`);
+                        } else {
+                            $this.append(_('dialogUsingDatapoint'));
+                        }
                     } else {
                         $this.hide();
                     }
