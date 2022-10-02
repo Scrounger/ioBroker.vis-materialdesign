@@ -11346,6 +11346,18 @@ systemDictionary = {
         "pl": "w oknie dialogowym użyj punktu danych do wyświetlenia",
         "zh-cn": "对话框使用数据点显示"
     },
+    "dlgShowSaveButtonOid": {
+        "en": "visibility of save button (boolean)",
+        "de": "Sichtbarkeit der Speichertaste (boolean)",
+        "ru": "видимость кнопки сохранения (болеан)",
+        "pt": "visibilidade do botão salvar (boolean)",
+        "nl": "ziekte van reddingsknop (boolean)",
+        "fr": "visibilité du bouton de sauvegarde (booléen)",
+        "it": "visibilità del pulsante di salvataggio (booleano)",
+        "es": "visibilidad del botón guardar (boolean)",
+        "pl": "świetność przycisku (boolean)",
+        "zh-cn": "储蓄顿(博里昂)的可见度"
+    },
     "showDialogMethod": {
         "en": "method to show dialog",
         "de": "Methode zum Anzeigen des Dialogs",

@@ -80,7 +80,7 @@ vis.binds.materialdesign.dialog = {
                                 <v-toolbar flat v-show="showToolbar">
                                     <v-toolbar-title class="v-dialog-toolbar-my-title-layout" v-html="title"></v-toolbar-title>
                                     ${myMdwHelper.getBooleanFromData(data.dlgShowSaveButton, false) ?
-                        `<v-btn class="v-dialog-toolbar-my-btn-layout" icon @click="saveButton" style="text-indent: 0;">
+                        `<v-btn class="v-dialog-toolbar-my-btn-layout materialdesign-dialog-save-button" icon @click="saveButton" style="text-indent: 0;">
                                             <v-icon class="dialog-fullscreen-close-icon">mdi-${myMdwHelper.getValueFromData(data.dlgSaveButtonIcon, 'content-save')}</v-icon>
                                         </v-btn>` : ''}
                                     <v-btn class="v-dialog-toolbar-my-btn-layout" icon @click="closeButton" style="text-indent: 0;">
@@ -98,7 +98,7 @@ vis.binds.materialdesign.dialog = {
                                     ${myMdwHelper.getBooleanFromData(data.showDivider, false) ? `<div class="dialog-footer-divider" style="width: 100%; height: 1px; background: ${myMdwHelper.getValueFromData(data.dividerColor, 'lightgray')}; margin-top: 4px;"></div>` : ''}
                                     <v-card-actions class="v-dialog-my-card-actions" style="justify-content: ${data.buttonPosition};">
                                         ${myMdwHelper.getBooleanFromData(data.dlgShowSaveButton, false) ?
-                        `<v-btn color="primary" class="materialdesign-dialog-footer-button"
+                        `<v-btn color="primary" class="materialdesign-dialog-footer-button materialdesign-dialog-save-button"
                                             text
                                             ${(data.buttonSize !== 'medium') ? data.buttonSize : ''}
                                             ${(myMdwHelper.getBooleanFromData(data.buttonFullWidth, false)) ? 'block ' : ''}
@@ -119,6 +119,10 @@ vis.binds.materialdesign.dialog = {
                 `);
 
                 myMdwHelper.oidNeedSubscribe(data.showDialogOid, data.wid, 'Dialog', true);
+
+                if (data.dlgShowSaveButton && data.dlgShowSaveButtonOid) {
+                    myMdwHelper.oidNeedSubscribe(data.dlgShowSaveButtonOid, data.wid, 'Dialog', true);
+                }
 
                 myMdwHelper.subscribeStatesAtRuntime(data.wid, 'Dialog', function () {
                     myMdwHelper.waitForElement($this, `.${containerClass}`, data.wid, 'Dialog', function () {
@@ -199,6 +203,18 @@ vis.binds.materialdesign.dialog = {
                                         showDialog(false)
                                     }
                                 });
+
+                                if (data.dlgShowSaveButton && data.dlgShowSaveButtonOid) {
+                                    vis.states.bind(data.dlgShowSaveButtonOid + '.val', function (e, newVal, oldVal) {
+                                        let val = vis.states.attr(data.dlgShowSaveButtonOid + '.val');
+
+                                        if (val === true || val === 'true') {
+                                            $(`.dialog_${dialogClassName}`).find('.materialdesign-dialog-save-button').show();
+                                        } else if (val === false || val === 'false') {
+                                            $(`.dialog_${dialogClassName}`).find('.materialdesign-dialog-save-button').hide();
+                                        }
+                                    });
+                                }
                             }
 
                             $(window).resize(function () {
@@ -229,6 +245,16 @@ vis.binds.materialdesign.dialog = {
                                     $dialog.find('.materialdesign-dialog-footer-button').on('tapstart', function () {
                                         myMdwHelper.hapticFeedback(data);
                                     });
+
+                                    if (data.dlgShowSaveButton && data.dlgShowSaveButtonOid) {
+                                        let val = vis.states.attr(data.dlgShowSaveButtonOid + '.val');
+
+                                        if (val === true || val === 'true') {
+                                            $(`.dialog_${dialogClassName}`).find('.materialdesign-dialog-save-button').show();
+                                        } else if (val === false || val === 'false') {
+                                            $(`.dialog_${dialogClassName}`).find('.materialdesign-dialog-save-button').hide();
+                                        }
+                                    }
 
                                     setStyle();
                                     function setStyle() {
