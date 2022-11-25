@@ -1,2 +1,2 @@
-# Material Desing Widget Documentation
+# Material Design Widget Documentation
 

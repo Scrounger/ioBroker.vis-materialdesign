@@ -13121,11 +13121,11 @@ The adapter uses the following libraries:
 
 <!--
     Placeholder for the next version (at the beginning of the line):	   
-	### __WORK IN PROGRESS__
+	### **WORK IN PROGRESS**
 -->
 
 <!-- omit in toc -->
-### __WORK IN PROGRESS__
+### **WORK IN PROGRESS**
 * (Scrounger) JSON Chart Widget: method to use css color variables added
 * (Scrounger) Pie Chart Widget: method to use css color variables added
 * (Scrounger) Bar Chart Widget: method to use css color variables added
@@ -13157,6 +13157,7 @@ The adapter uses the following libraries:
 * (Scrounger) support for base64 images added
 * (Scrounger) Material Design Icons updated to v6.6.96
 * (Scrounger) bug fix for VIS Editor dev values
+* (bluefox) Made it work with vis-2
 
 <!-- omit in toc -->
 ### 0.5.9 (2021-06-13)
@@ -13199,7 +13200,7 @@ The adapter uses the following libraries:
 ## License
 MIT License
 
-Copyright (c) 2021 Scrounger <scrounger@gmx.net>
+Copyright (c) 2021-2022 Scrounger <scrounger@gmx.net>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

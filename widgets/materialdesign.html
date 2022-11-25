@@ -1,6 +1,6 @@
 <!--
     ioBroker.vis vis-materialdesign Widget-Set
-    
+
     Copyright 2019 Scrounger scrounger@gmx.net
 -->
 
@@ -22,9 +22,9 @@
 <script type="text/javascript" src="widgets/materialdesign/lib.min.js"></script>
 
 <!-- Sentry integration -->
-<script src="widgets/materialdesign/lib/raw/sentry/bundle.min.js" integrity="sha384-SEu4bJkpht31dkOz4nRcKDxnisSU+Jc8WRSOnBSZJ2yVMlbk4sAKQSrBw6qBVzKR" crossorigin="anonymous"></script>
-<script src="widgets/materialdesign/lib/raw/sentry/captureconsole.min.js" integrity="sha384-89dz/GJSE9/L79qAtPaRQRjnwsc1X2XTmYK4Ju8MoXVwvcLsF4Yntc4i5y2GZ572" crossorigin="anonymous"></script>
-<script src="widgets/materialdesign/lib/raw/sentry/dedupe.min.js" integrity="sha384-991Pgp/m4NC5gP7q/xzXphPFKPZI3iGG04gFtnoHlyH13gSiR/cQJVh+/5vjnULG" crossorigin="anonymous"></script>
+<script src="widgets/materialdesign/lib/raw/sentry/bundle.min.js" integrity="sha384-S9ussaVrGYHtod/SiHF797c08MZHpGkpAdHM1VtFSxMr3YSA2w82OMfAJOg+knm/" crossorigin="anonymous"></script>
+<script src="widgets/materialdesign/lib/raw/sentry/captureconsole.min.js" integrity="sha384-IfGX8t2U4aiavIy1fQgLHGphQaq89NdgvkcXEMNcZm98Lnv5lekCJ+WN0L09UtKQ" crossorigin="anonymous"></script>
+<script src="widgets/materialdesign/lib/raw/sentry/dedupe.min.js" integrity="sha384-pRgMc4SKKH3KSOYBnUGQOOKhC59R1wHROKmBefO/3a+a/XWcQJiNBDkt3cW5nTJS" crossorigin="anonymous"></script>
 
 
 <!-- JS: Material Design -->
@@ -152,7 +152,7 @@
         data-vis-attrs0="group.label;buttontext[Navigation]/html;textFontFamily[#mdwTheme:vis-materialdesign.0.fonts.button.vertical.text]/fontname;textFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.button.vertical.text]/number;alignment[center]/select,flex-start,center,flex-end;distanceBetweenTextAndImage/slider,0,100,1;"
         data-vis-attrs1="group.color;mdwButtonPrimaryColor[var(--materialdesign-widget-theme-color-button-vertical-primary)]/color;mdwButtonSecondaryColor[var(--materialdesign-widget-theme-color-button-vertical-secondary)]/color;mdwButtonColorPress/color;"
         data-vis-attrs2="group.icon;image[navigation]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[top]/select,top,bottom;iconHeight[26]/slider,0,200,1;">
-        
+
         <div class="vis-widget materialdesign-widget materialdesign-button <%== this.data.attr('class') %>" style="width: 100px; height: 60px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'navigation_vertical'); vis.binds.materialdesign.addRippleEffect(el, data) %>>
 
         </div>
@@ -206,7 +206,7 @@
         data-vis-attrs2="group.color;mdwButtonPrimaryColor[var(--materialdesign-widget-theme-color-button-vertical-primary)]/color;mdwButtonSecondaryColor[var(--materialdesign-widget-theme-color-button-vertical-secondary)]/color;mdwButtonColorPress/color;"
         data-vis-attrs3="group.icon;image[pencil-box-multiple]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[top]/select,top,bottom;iconHeight[26]/slider,0,200,1;"
         data-vis-attrs4="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materialdesign.viseditor.materialDesignIcons;lockIconTop[5]/slider,0,100,1;lockIconLeft[5]/slider,0,100,1;lockIconSize/number;lockIconColor[var(--materialdesign-widget-theme-color-button-lock-icon)]/color;lockFilterGrayscale[30]/slider,0,100,1;">
-        
+
         <div class="vis-widget materialdesign-widget materialdesign-button <%== this.data.attr('class') %>" style="width: 100px; height: 60px; padding: 0px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'multiState_vertical'); vis.binds.materialdesign.addRippleEffect(el, data) %>>
 
         </div>
@@ -223,7 +223,7 @@
         data-vis-attrs0="group.label;buttontext[Addition]/html;textFontFamily[#mdwTheme:vis-materialdesign.0.fonts.button.vertical.text]/fontname;textFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.button.vertical.text]/number;alignment[center]/select,flex-start,center,flex-end;distanceBetweenTextAndImage/slider,0,100,1;"
         data-vis-attrs1="group.color;mdwButtonPrimaryColor[var(--materialdesign-widget-theme-color-button-vertical-primary)]/color;mdwButtonSecondaryColor[var(--materialdesign-widget-theme-color-button-vertical-secondary)]/color;mdwButtonColorPress/color;"
         data-vis-attrs2="group.icon;image[plus]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[top]/select,top,bottom;iconHeight[26]/slider,0,200,1;">
-        
+
         <div class="vis-widget materialdesign-widget materialdesign-button <%== this.data.attr('class') %>" style="width: 100px; height: 60px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" data-val="<%= this.data.attr('value') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'addition_vertical'); vis.binds.materialdesign.addRippleEffect(el, data) %>>
 
         </div>
@@ -241,7 +241,7 @@
         data-vis-attrs1="group.color;mdwButtonPrimaryColor[var(--materialdesign-widget-theme-color-button-vertical-primary)]/color;mdwButtonSecondaryColor[var(--materialdesign-widget-theme-color-button-vertical-secondary)]/color;colorBgFalse/color;colorBgTrue/color;"
         data-vis-attrs2="group.icon;image[checkbox-marked]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;imageTrue/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageTrueColor/color;iconPosition[top]/select,top,bottom;iconHeight[26]/slider,0,200,1;"
         data-vis-attrs3="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materialdesign.viseditor.materialDesignIcons;lockIconTop[5]/slider,0,100,1;lockIconLeft[5]/slider,0,100,1;lockIconSize/number;lockIconColor[var(--materialdesign-widget-theme-color-button-lock-icon)]/color;lockFilterGrayscale[30]/slider,0,100,1;">
-        
+
         <div class="vis-widget materialdesign-widget materialdesign-button <%== this.data.attr('class') %>" style="width: 100px; height: 60px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'toggle_vertical'); vis.binds.materialdesign.addRippleEffect(el, data) %>>
 
         </div>
@@ -259,7 +259,7 @@
         data-vis-attrs0="group.label;buttontext[&nbsp;Navigation]/html;textFontFamily[#mdwTheme:vis-materialdesign.0.fonts.button.default.text]/fontname;textFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.button.default.text]/number;labelWidth/slider,0,100,1;"
         data-vis-attrs1="group.color;mdwButtonPrimaryColor[var(--materialdesign-widget-theme-color-button-default-primary)]/color;mdwButtonSecondaryColor[var(--materialdesign-widget-theme-color-button-default-secondary)]/color;mdwButtonColorPress/color;"
         data-vis-attrs2="group.icon;image[navigation]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;">
-        
+
         <div class="vis-widget materialdesign-widget materialdesign-button <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'navigation_default'); vis.binds.materialdesign.addRippleEffect(el, data) %>>
 
         </div>
@@ -295,7 +295,7 @@
         data-vis-attrs1="group.color;mdwButtonPrimaryColor[var(--materialdesign-widget-theme-color-button-default-primary)]/color;mdwButtonSecondaryColor[var(--materialdesign-widget-theme-color-button-default-secondary)]/color;mdwButtonColorPress/color;colorBgTrue/color;"
         data-vis-attrs2="group.icon;image[pencil]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;"
         data-vis-attrs3="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materialdesign.viseditor.materialDesignIcons;lockIconSize/number;lockIconColor[var(--materialdesign-widget-theme-color-button-lock-icon)]/color;lockFilterGrayscale[30]/slider,0,100,1;">
-        
+
         <div class="vis-widget materialdesign-widget materialdesign-button <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'state_default'); vis.binds.materialdesign.addRippleEffect(el, data) %>>
 
         </div>
@@ -314,7 +314,7 @@
         data-vis-attrs2="group.color;mdwButtonPrimaryColor[var(--materialdesign-widget-theme-color-button-default-primary)]/color;mdwButtonSecondaryColor[var(--materialdesign-widget-theme-color-button-default-secondary)]/color;mdwButtonColorPress/color;"
         data-vis-attrs3="group.icon;image[pencil-box-multiple]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;"
         data-vis-attrs4="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materialdesign.viseditor.materialDesignIcons;lockIconSize/number;lockIconColor[var(--materialdesign-widget-theme-color-button-lock-icon)]/color;lockFilterGrayscale[30]/slider,0,100,1;">
-        
+
         <div class="vis-widget materialdesign-widget materialdesign-button <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'multiState_default'); vis.binds.materialdesign.addRippleEffect(el, data) %>>
 
         </div>
@@ -347,9 +347,9 @@
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,toggle_default;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,buttons;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;useTheme/custom,materialdesign.viseditor.useTheme;oid;buttonStyle[raised]/select,text,raised,unelevated,outlined;readOnly/checkbox;toggleType[boolean]/select,boolean,value;pushButton/checkbox;valueOff;valueOn;stateIfNotTrueValue[on]/select,on,off;vibrateOnMobilDevices[50]/number;clickSoundPlay/checkbox;clickSoundVolume[0.5]/slider,0,1,0.1;generateHtmlControl/custom,materialdesign.viseditor.generateHtmlControl,button,toggle_default;debug/checkbox;"
         data-vis-attrs0="group.label;buttontext[&nbsp;Toggle]/html;labelTrue/html;labelColorFalse/color;labelColorTrue/color;textFontFamily[#mdwTheme:vis-materialdesign.0.fonts.button.default.text]/fontname;textFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.button.default.text]/number;labelWidth/slider,0,100,1;"
         data-vis-attrs1="group.color;mdwButtonPrimaryColor[var(--materialdesign-widget-theme-color-button-default-primary)]/color;mdwButtonSecondaryColor[var(--materialdesign-widget-theme-color-button-default-secondary)]/color;mdwButtonColorPress/color;colorBgFalse/color;colorBgTrue/color;"
-        data-vis-attrs2="group.icon;image[checkbox-marked]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;imageTrue/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageTrueColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;"        
+        data-vis-attrs2="group.icon;image[checkbox-marked]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageColor/color;imageTrue/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;imageTrueColor/color;iconPosition[left]/select,left,right;iconHeight/slider,0,200,1;"
         data-vis-attrs3="group.lock;lockEnabled/checkbox;autoLockAfter[10]/number;lockIcon/custom,materialdesign.viseditor.materialDesignIcons;lockIconSize/number;lockIconColor[var(--materialdesign-widget-theme-color-button-lock-icon)]/color;lockFilterGrayscale[30]/slider,0,100,1;">
-       
+
         <div class="vis-widget materialdesign-widget materialdesign-button <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" data-oid="<%= this.data.attr('oid') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'toggle_default'); vis.binds.materialdesign.addRippleEffect(el, data) %>>
 
         </div>
@@ -402,7 +402,7 @@
 
         <div class="vis-widget materialdesign-widget materialdesign-icon-button <%== this.data.attr('class') %>" style="width: 48px; height: 48px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.button.initialize(el, data, 'state_icon'); vis.binds.materialdesign.addRippleEffect(el, data, true) %>>
 
-        </div>        
+        </div>
 </script>
 
 <script id="tplVis-materialdesign-Icon-Button-State-Multi"
@@ -490,9 +490,9 @@
         data-vis-attrs3="group.inputSubText;showInputMessageAlways[true]/checkbox;inputMessage;inputMessageFontFamily[#mdwTheme:vis-materialdesign.0.fonts.input.message]/fontname;inputMessageFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.input.message]/number;inputMessageColor[#mdwTheme:vis-materialdesign.0.colors.input.message]/color;"
         data-vis-attrs4="group.counter;showInputCounter[true]/checkbox;inputCounterColor[#mdwTheme:vis-materialdesign.0.colors.input.counter]/color;inputCounterFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.input.counter]/number;inputCounterFontFamily[#mdwTheme:vis-materialdesign.0.fonts.input.counter]/fontname;"
         data-vis-attrs5="group.icons;clearIconShow[true]/checkbox;clearIcon/custom,materialdesign.viseditor.materialDesignIcons;clearIconSize/number;clearIconColor[#mdwTheme:vis-materialdesign.0.colors.input.icon_clear]/color;prepandIcon/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;prepandIconSize/number;prepandIconColor/color;prepandInnerIcon/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;prepandInnerIconSize/number;prepandInnerIconColor/color;appendIcon/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;appendIconSize/number;appendIconColor/color;appendOuterIcon/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;appendOuterIconSize/number;appendOuterIconColor/color;">
-        
-        <div class="vis-widget materialdesign-widget materialdesign-input <%== this.data.attr('class') %>" style="width: 150px; height: 38px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.textfield.initialize(el, data) %>> 
-        
+
+        <div class="vis-widget materialdesign-widget materialdesign-input <%== this.data.attr('class') %>" style="width: 150px; height: 38px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.textfield.initialize(el, data) %>>
+
         </div>
 </script>
 
@@ -514,9 +514,9 @@
         data-vis-attrs6="group.listData;listDataMethod[inputPerEditor]/select,inputPerEditor,jsonStringObject,multistatesObject,valueList;countSelectItems[1]/number;jsonStringObject/html;valueList/html;valueListLabels/html;valueListIcons/html;"
         data-vis-attrs7="group.autoCompleteListLayout;listPosition[auto]/select,auto,top,bottom;listPositionOffset[true]/checkbox;openOnClear/checkbox;listItemHeight/number;listItemBackgroundColor[#mdwTheme:vis-materialdesign.0.colors.input.menu.background]/color;listItemBackgroundHoverColor[#mdwTheme:vis-materialdesign.0.colors.input.menu.hover]/color;listItemBackgroundSelectedColor[#mdwTheme:vis-materialdesign.0.colors.input.menu.selected]/color;listItemRippleEffectColor[#mdwTheme:vis-materialdesign.0.colors.input.menu.effect]/color;showSelectedIcon[prepend-inner]/select,no,prepend,prepend-inner,append-outer;listIconSize/number;listIconColor[#mdwTheme:vis-materialdesign.0.colors.input.menu.icon]/color;listIconHoverColor/color;listIconSelectedColor/color;listItemFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.input.dropdown.text]/number;listItemFont[#mdwTheme:vis-materialdesign.0.fonts.input.dropdown.text]/fontname;listItemFontColor[#mdwTheme:vis-materialdesign.0.colors.input.menu.text]/color;listItemFontHoverColor/color;listItemFontSelectedColor/color;listItemSubFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.input.dropdown.subText]/number;listItemSubFont[#mdwTheme:vis-materialdesign.0.fonts.input.dropdown.subText]/fontname;listItemSubFontColor[#mdwTheme:vis-materialdesign.0.colors.input.menu.subText]/color;listItemSubFontHoverColor/color;listItemSubFontSelectedColor/color;showValue[true]/checkbox;listItemValueFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.input.dropdown.value]/number;listItemValueFont[#mdwTheme:vis-materialdesign.0.fonts.input.dropdown.value]/fontname;listItemValueFontColor[#mdwTheme:vis-materialdesign.0.colors.input.menu.value]/color;listItemValueFontHoverColor/color;listItemValueFontSelectedColor/color;"
         data-vis-attrs8="group.menuItems/byindex;value(0-countSelectItems);label(0-countSelectItems);subLabel(0-countSelectItems);listIcon(0-countSelectItems)/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;listIconColor(0-countSelectItems)/color;imageColorSelectedTextField(0-countSelectItems)/color;">
-        
-        <div class="vis-widget materialdesign-widget materialdesign-autocomplete <%== this.data.attr('class') %>" style="width: 150px; height: 38px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.autocomplete.initialize(el, data) %>> 
-        
+
+        <div class="vis-widget materialdesign-widget materialdesign-autocomplete <%== this.data.attr('class') %>" style="width: 150px; height: 38px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.autocomplete.initialize(el, data) %>>
+
         </div>
 </script>
 
@@ -538,9 +538,9 @@
         data-vis-attrs6="group.listData;listDataMethod[inputPerEditor]/select,inputPerEditor,jsonStringObject,multistatesObject,valueList;countSelectItems[1]/number;jsonStringObject/html;valueList/html;valueListLabels/html;valueListIcons/html;"
         data-vis-attrs7="group.selectListLayout;listPosition[auto]/select,auto,top,bottom;listPositionOffset/checkbox;openOnClear/checkbox;listItemHeight/number;listItemBackgroundColor[#mdwTheme:vis-materialdesign.0.colors.input.menu.background]/color;listItemBackgroundHoverColor[#mdwTheme:vis-materialdesign.0.colors.input.menu.hover]/color;listItemBackgroundSelectedColor[#mdwTheme:vis-materialdesign.0.colors.input.menu.selected]/color;listItemRippleEffectColor[#mdwTheme:vis-materialdesign.0.colors.input.menu.effect]/color;showSelectedIcon[prepend-inner]/select,no,prepend,prepend-inner,append-outer;listIconSize/number;listIconColor[#mdwTheme:vis-materialdesign.0.colors.input.menu.icon]/color;listIconHoverColor/color;listIconSelectedColor/color;listItemFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.input.dropdown.text]/number;listItemFont[#mdwTheme:vis-materialdesign.0.fonts.input.dropdown.text]/fontname;listItemFontColor[#mdwTheme:vis-materialdesign.0.colors.input.menu.text]/color;listItemFontHoverColor/color;listItemFontSelectedColor/color;listItemSubFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.input.dropdown.subText]/number;listItemSubFont[#mdwTheme:vis-materialdesign.0.fonts.input.dropdown.subText]/fontname;listItemSubFontColor[#mdwTheme:vis-materialdesign.0.colors.input.menu.subText]/color;listItemSubFontHoverColor/color;listItemSubFontSelectedColor/color;showValue[true]/checkbox;listItemValueFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.input.dropdown.value]/number;listItemValueFont[#mdwTheme:vis-materialdesign.0.fonts.input.dropdown.value]/fontname;listItemValueFontColor[#mdwTheme:vis-materialdesign.0.colors.input.menu.value]/color;listItemValueFontHoverColor/color;listItemValueFontSelectedColor/color;"
         data-vis-attrs8="group.menuItems/byindex;value(0-countSelectItems);label(0-countSelectItems);subLabel(0-countSelectItems);listIcon(0-countSelectItems)/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;listIconColor(0-countSelectItems)/color;imageColorSelectedTextField(0-countSelectItems)/color;">
-        
-        <div class="vis-widget materialdesign-widget materialdesign-select <%== this.data.attr('class') %>" style="width: 150px; height: 38px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.select.initialize(el, data) %>> 
-        
+
+        <div class="vis-widget materialdesign-widget materialdesign-select <%== this.data.attr('class') %>" style="width: 150px; height: 38px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.select.initialize(el, data) %>>
+
         </div>
 </script>
 
@@ -616,7 +616,7 @@
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,sliderRound;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,slider;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;useTheme/custom,materialdesign.viseditor.useTheme;oid;oid-working;min;max;step[1];readOnly/checkbox;startAngle[135]/slider,0,360,1;arcLength[270]/slider,0,360,1;sliderWidth/number;handleSize/number;handleZoom[1.5]/slider,0,10,0.1;rtl/checkbox;vibrateOnMobilDevices[50]/number;clickSoundPlay/checkbox;clickSoundVolume[0.5]/slider,0,1,0.1;generateHtmlControl/custom,materialdesign.viseditor.generateHtmlControl,roundslider;debug/checkbox;"
         data-vis-attrs0="group.color;colorSliderBg[#mdwTheme:vis-materialdesign.0.colors.slider.background]/color;colorBeforeThumb[#mdwTheme:vis-materialdesign.0.colors.slider.control_before]/color;colorThumb[#mdwTheme:vis-materialdesign.0.colors.slider.control]/color;colorAfterThumb[#mdwTheme:vis-materialdesign.0.colors.slider.control_behind]/color;valueLabelColor[#mdwTheme:vis-materialdesign.0.colors.slider.text]/color;"
         data-vis-attrs1="group.label;showValueLabel[true]/checkbox;valueLabelVerticalPosition/slider,0,100,1;valueLabelStyle[sliderValue]/select,sliderPercent,sliderValue;valueLabelUnit;valueFontFamily[#mdwTheme:vis-materialdesign.0.fonts.slider.value]/fontname;valueFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.slider.value]/number;valueLabelMin/html;valueLabelMax/html;valueLessThan/number;textForValueLessThan/html;valueGreaterThan/number;textForValueGreaterThan/html;">
-        
+
         <div class="vis-widget materialdesign-widget materialdesign-slider-round <%== this.data.attr('class') %>" style="width: 100px; height: 100px;" id="<%= this.data.attr('wid') %>" data-oid-working="<%= this.data.attr('oid-working') %>" <%= (el) -> vis.binds.materialdesign.roundslider.initialize(el, data) %>>
 
         </div>
@@ -670,13 +670,13 @@
         data-vis-attrs0="group.image;image/image;refreshOnWakeUp/checkbox;refreshOnViewChange/checkbox;refresh_oid/id;refresh_oid_delay[100]/slider,0,180000,100;refresh_animation_duration[150]/slider,0,180000,100;"
         data-vis-attrs1="group.color;colorBackground[#mdwTheme:vis-materialdesign.0.colors.card.background]/color;colorTitleSectionBackground[#mdwTheme:vis-materialdesign.0.colors.card.background_title]/color;colorTextSectionBackground[#mdwTheme:vis-materialdesign.0.colors.card.background_body]/color;colorTitle[#mdwTheme:vis-materialdesign.0.colors.card.title]/color;colorSubtitle[#mdwTheme:vis-materialdesign.0.colors.card.subTitle]/color;colorBody[#mdwTheme:vis-materialdesign.0.colors.card.text]/color;"
         data-vis-attrs2="group.controlCard;clickType[none]/select,none,card,image,text;controlType[link]/select,link,state;href/url;state_oid/id;state_value;">
-        
+
         <%
             let initCard = vis.binds.materialdesign.card.initialize(data);
         %>
 
         <div class="vis-widget materialdesign-widget materialdesign-html-card <%== this.data.attr('class') %>" style="width: 200px; height: 130px;" id="<%= this.data.attr('wid') %>">
-            <div class="materialdesign-html-card-container mdc-card <%= initCard.style %>" style="margin: 3px; width: calc(100% - 6px); height: calc(100% - 6px);" <%= (el) -> vis.binds.materialdesign.card.handler(el, data) %>>          
+            <div class="materialdesign-html-card-container mdc-card <%= initCard.style %>" style="margin: 3px; width: calc(100% - 6px); height: calc(100% - 6px);" <%= (el) -> vis.binds.materialdesign.card.handler(el, data) %>>
                 <%== initCard.card %>
             </div>
         </div>
@@ -698,7 +698,7 @@
         data-vis-attrs4="group.drawerSubItemsColors;colorDrawerSubBackground[#mdwTheme:vis-materialdesign.0.colors.top_app_bar.subItem_background_all]/color;colorDrawerSubItemBackground[#mdwTheme:vis-materialdesign.0.colors.top_app_bar.subItem_background]/color;colorListSubItemHover[#mdwTheme:vis-materialdesign.0.colors.top_app_bar.subItem_hover]/color;colorListSubItemSelected[#mdwTheme:vis-materialdesign.0.colors.top_app_bar.subItem_selected]/color;colorListSubItemText[#mdwTheme:vis-materialdesign.0.colors.top_app_bar.subItem_text]/color;colorListSubItemTextSelected[#mdwTheme:vis-materialdesign.0.colors.top_app_bar.subItem_text_selected]/color;colorDrawerbackdropSubLabelBackground[#mdwTheme:vis-materialdesign.0.colors.top_app_bar.subItem_backdrop_background_text_off]/color;colorDrawerbackdropSubLabelBackgroundActive[#mdwTheme:vis-materialdesign.0.colors.top_app_bar.subItem_backdrop_background_text_on]/color;"
         data-vis-attrs5="group.drawerItemsData;drawerItemsDataMethod[inputPerEditor]/select,inputPerEditor,jsonStringObject;drawerItemsJsonString/html;"
         data-vis-attrs6="group.drawerItems/byindex;menuId(0-navItemCount);labels(0-navItemCount)/html;headers(0-navItemCount)/html;dividers(0-navItemCount)/checkbox;iconDrawer(0-navItemCount)[/vis/widgets/materialdesign/img/IoBroker_Logo.png]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;iconDrawerColor(0-navItemCount)[#mdwTheme:vis-materialdesign.0.colors.top_app_bar.item_icon]/color;subIconDrawerColor(0-navItemCount)[#mdwTheme:vis-materialdesign.0.colors.top_app_bar.subItem_icon]/color;setValueOnMenuToggleClick(0-navItemCount)/checkbox;submenus(0-navItemCount)/html;permissionGroupSelector(0-navItemCount)/custom,materialdesign.viseditor.permissionGroupSelector;permissionVisibility(0-navItemCount)[hide]/select,hide,disabled;">
-        
+
         <div class="vis-widget materialdesign-widget materialdesign-topAppBar-with-Drawer" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.topappbarnav(el, data) %>>
 
         </div>
@@ -716,12 +716,12 @@
         data-vis-attrs0="group.listLayout;listType[text]/select,text,buttonState,buttonToggle,buttonToggle_readonly,buttonNav,buttonLink,switch,switch_readonly,checkbox,checkbox_readonly;listItemDividerStyle[standard]/select,standard,padded,inset;listLayout[standard]/select,standard,card,cardOutlined;showScrollbar[true]/checkbox;scrollToTopOnChanges/checkbox;vibrateOnMobilDevices[50]/number;clickSoundPlay/checkbox;clickSoundVolume[0.5]/slider,0,1,0.1;"
         data-vis-attrs1="group.listHeader;headers/html;alignment[flex-start]/select,flex-start,center,flex-end;header_height[60]/number;header_padding_left[16]/number;header_padding_right[16]/number;header_padding_top[6]/number;header_padding_bottom[20]/number;headerTextColor[#mdwTheme:vis-materialdesign.0.colors.list.header_main]/color;headerTextSize[#mdwTheme:vis-materialdesign.0.fontSizes.list.header_main]/number;headerFontFamily[#mdwTheme:vis-materialdesign.0.fonts.list.header_main]/fontname;headerImage[head]/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;headerImageColor[#mdwTheme:vis-materialdesign.0.colors.list.header_icon]/color;headerImageHeight/slider,0,200,1;"
         data-vis-attrs2="group.listItemData;listItemDataMethod[inputPerEditor]/select,inputPerEditor,jsonStringObject;countListItems[1]/number;json_string_oid/id;"
-        data-vis-attrs3="group.listItemLayout;listItemHeight/number;listImageHeight/number;listItemAlignment[left]/select,left,center,right;distanceBetweenTextAndImage/number;rightTextWidth/number;"        
+        data-vis-attrs3="group.listItemLayout;listItemHeight/number;listImageHeight/number;listItemAlignment[left]/select,left,center,right;distanceBetweenTextAndImage/number;rightTextWidth/number;"
         data-vis-attrs4="group.color;listBackground[#mdwTheme:vis-materialdesign.0.colors.list.background]/color;listItemBackground[#mdwTheme:vis-materialdesign.0.colors.list.background_off]/color;listItemBackgroundActive[#mdwTheme:vis-materialdesign.0.colors.list.background_on]/color;colorSwitchThumb[#mdwTheme:vis-materialdesign.0.colors.switch.off]/color;colorSwitchTrack[#mdwTheme:vis-materialdesign.0.colors.switch.track]/color;colorSwitchTrue[#mdwTheme:vis-materialdesign.0.colors.switch.on]/color;colorSwitchHover[#mdwTheme:vis-materialdesign.0.colors.switch.off_hover]/color;colorCheckBox[#mdwTheme:vis-materialdesign.0.colors.checkbox.on]/color;colorListItemHover[#mdwTheme:vis-materialdesign.0.colors.list.hover]/color;colorListItemSelected[#mdwTheme:vis-materialdesign.0.colors.list.selected]/color;colorListItemText[#mdwTheme:vis-materialdesign.0.colors.list.text]/color;colorListItemTextSecondary[#mdwTheme:vis-materialdesign.0.colors.list.subText]/color;colorListItemTextRight[#mdwTheme:vis-materialdesign.0.colors.list.text_right]/color;colorListItemTextSecondaryRight[{mode:vis-materialdesign.0.colors.darkTheme§light:vis-materialdesign.0.colors.light.list.subText_right§dark:vis-materialdesign.0.colors.dark.list.subText_right§ mode === ^true^ ? dark : light}]/color;colorListItemHeaders[#mdwTheme:vis-materialdesign.0.colors.list.header]/color;colorListItemDivider[#mdwTheme:vis-materialdesign.0.colors.list.divider]/color;"
         data-vis-attrs5="group.font;headerFontFamily[#mdwTheme:vis-materialdesign.0.fonts.list.header]/fontname;listItemFont[#mdwTheme:vis-materialdesign.0.fonts.list.text]/fontname;listItemSubFont[#mdwTheme:vis-materialdesign.0.fonts.list.subText]/fontname;listItemRightFont[#mdwTheme:vis-materialdesign.0.fonts.list.text_right]/fontname;listItemSubRightFont[#mdwTheme:vis-materialdesign.0.fonts.list.subText_right]/fontname;"
         data-vis-attrs6="group.fontSize;listItemTextSize[#mdwTheme:vis-materialdesign.0.fontSizes.list.text]/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;listItemSubTextSize[#mdwTheme:vis-materialdesign.0.fontSizes.list.subText]/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;listItemTextRightSize[#mdwTheme:vis-materialdesign.0.fontSizes.list.text_right]/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;listItemSubTextRightSize[#mdwTheme:vis-materialdesign.0.fontSizes.list.subText_right]/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;listItemHeaderTextSize[#mdwTheme:vis-materialdesign.0.fontSizes.list.header]/auto,headline1,headline2,headline3,headline4,headline5,headline6,subtitle1,subtitle2,body1,body2,caption,button,overline,xx-small,x-small,small,medium,large,x-large,xx-large,smaller,larger;"
         data-vis-attrs7="group.rows/byindex;oid(0-countListItems);groupHeader(0-countListItems)/html;listImage(0-countListItems)/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;listImageColor(0-countListItems)[#mdwTheme:vis-materialdesign.0.colors.list.icon_off]/color;listImageActive(0-countListItems)/custom,materialdesign.viseditor.imagesAndMaterialDesignIcons;listImageActiveColor(0-countListItems)[#mdwTheme:vis-materialdesign.0.colors.list.icon_on]/color;label(0-countListItems)/html;subLabel(0-countListItems)/html;rightLabel(0-countListItems)/html;rightSubLabel(0-countListItems)/html;dividers(0-countListItems)/checkbox;listTypeButtonStateValue(0-countListItems);listTypeButtonNav(0-countListItems)/views;listTypeButtonLink(0-countListItems)/url;listOverflow(0-countListItems)/checkbox;">
-       
+
         <div class="vis-widget materialdesign-widget materialdesign-list" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.list(el, data) %>>
 
         </div>
@@ -766,10 +766,10 @@
         data-vis-attrs6="group.yAxisLayout;yAxisPosition[left]/select,left,right;yAxisTitle;yAxisTitleColor[#mdwTheme:vis-materialdesign.0.colors.charts.y_axis_title]/color;yAxisTitleFontFamily[#mdwTheme:vis-materialdesign.0.fonts.charts.y_axis_title]/fontname;yAxisTitleFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.charts.y_axis_title]/number;yAxisValueLabelColor[#mdwTheme:vis-materialdesign.0.colors.charts.y_axis_values]/color;yAxisValueFontFamily[#mdwTheme:vis-materialdesign.0.fonts.charts.y_axis_values]/fontname;yAxisValueFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.charts.y_axis_values]/number;yAxisValueDistanceToAxis[10]/slider,0,100,1;yAxisShowAxis[true]/checkbox;yAxisShowAxisLabels[true]/checkbox;yAxisShowGridLines[true]/checkbox;yAxisGridLinesColor[#mdwTheme:vis-materialdesign.0.colors.charts.y_axis_gridlines]/color;yAxisGridLinesWitdh;yAxisShowTicks[true]/checkbox;yAxisTickLength/slider,0,100,1;yAxisZeroLineWidth/number,0,100,0.1;yAxisZeroLineColor[#mdwTheme:vis-materialdesign.0.colors.charts.y_axis_zeroline]/color;"
         data-vis-attrs7="group.xAxisLayout;xAxisPosition[bottom]/select,top,bottom;xAxisTicksSource[auto]/select,auto,data,labels;xAxisOffset/checkbox;xAxisTitle;xAxisTitleColor[#mdwTheme:vis-materialdesign.0.colors.charts.x_axis_title]/color;xAxisTitleFontFamily[#mdwTheme:vis-materialdesign.0.fonts.charts.x_axis_title]/fontname;xAxisTitleFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.charts.x_axis_title]/number;xAxisValueLabelColor[#mdwTheme:vis-materialdesign.0.colors.charts.x_axis_values]/color;xAxisValueFontFamily[#mdwTheme:vis-materialdesign.0.fonts.charts.x_axis_values]/fontname;xAxisValueFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.charts.x_axis_values]/number;xAxisValueDistanceToAxis[0]/slider,0,100,1;xAxisShowAxis[true]/checkbox;xAxisShowAxisLabels[true]/checkbox;xAxisShowGridLines[true]/checkbox;xAxisGridLinesColor[#mdwTheme:vis-materialdesign.0.colors.charts.x_axis_gridlines]/color;xAxisGridLinesWitdh;xAxisOffsetGridLines/checkbox;xAxisShowTicks[true]/checkbox;xAxisTickLength/slider,0,100,1;xAxisZeroLineWidth/number,0,100,0.1;xAxisZeroLineColor[#mdwTheme:vis-materialdesign.0.colors.charts.x_axis_zeroline]/color;xAxisMinRotation[0]/slider,0,360,1;xAxisMaxRotation[0]/slider,0,360,1;"
         data-vis-attrs8="group.legendLayout;showLegend/checkbox;legendPosition[right]/select,top,left,bottom,right;legendFontColor[#mdwTheme:vis-materialdesign.0.colors.charts.legend]/color;legendFontFamily[#mdwTheme:vis-materialdesign.0.fonts.charts.legend]/fontname;legendFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.charts.legend]/number;legendBoxWidth/slider,0,100,1;legendPointStyle[true]/checkbox;legendDistanceToChart/number;legendPadding/number;"
-        data-vis-attrs9="group.tooltipLayout;showTooltip[true]/checkbox;tooltipBackgroundColor[#mdwTheme:vis-materialdesign.0.colors.charts.tooltip_background]/color;tooltipArrowSize/number;tooltipDistanceToBar/number;tooltipBoxRadius/number;tooltipShowColorBox[true]/checkbox;tooltipXpadding/number;tooltipYpadding/number;tooltipTitleFontColor[#mdwTheme:vis-materialdesign.0.colors.charts.tooltip_title]/color;tooltipTitleFontFamily[#mdwTheme:vis-materialdesign.0.fonts.charts.tooltip_title]/fontname;tooltipTitleFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.charts.tooltip_title]/number;tooltipTitleMarginBottom/number;tooltipBodyFontColor[#mdwTheme:vis-materialdesign.0.colors.charts.tooltip_text]/color;tooltipBodyFontFamily[#mdwTheme:vis-materialdesign.0.fonts.charts.tooltip_text]/fontname;tooltipBodyFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.charts.tooltip_text]/number;tooltipBodyAppend;tooltipValueMinDecimals/number;tooltipValueMaxDecimals/number;">        
+        data-vis-attrs9="group.tooltipLayout;showTooltip[true]/checkbox;tooltipBackgroundColor[#mdwTheme:vis-materialdesign.0.colors.charts.tooltip_background]/color;tooltipArrowSize/number;tooltipDistanceToBar/number;tooltipBoxRadius/number;tooltipShowColorBox[true]/checkbox;tooltipXpadding/number;tooltipYpadding/number;tooltipTitleFontColor[#mdwTheme:vis-materialdesign.0.colors.charts.tooltip_title]/color;tooltipTitleFontFamily[#mdwTheme:vis-materialdesign.0.fonts.charts.tooltip_title]/fontname;tooltipTitleFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.charts.tooltip_title]/number;tooltipTitleMarginBottom/number;tooltipBodyFontColor[#mdwTheme:vis-materialdesign.0.colors.charts.tooltip_text]/color;tooltipBodyFontFamily[#mdwTheme:vis-materialdesign.0.fonts.charts.tooltip_text]/fontname;tooltipBodyFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.charts.tooltip_text]/number;tooltipBodyAppend;tooltipValueMinDecimals/number;tooltipValueMaxDecimals/number;">
 
         <div class="vis-widget materialdesign-widget materialdesign-chart <%== this.data.attr('class') %>" style="width:400px; height: 270px; background-color: <%= this.data.attr('backgroundColor')%>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.chart.bar(el, data) %>>
-            
+
         </div>
 </script>
 
@@ -862,11 +862,11 @@
 
         <div class="vis-widget materialdesign-widget materialdesign-colorscheme mdc-card <%== this.data.attr('class') %>" style="width: 620px; height: 300px; left: 333px; top: 497px; padding: 16px; overflow-y: auto; background: white" id="<%= this.data.attr('wid') %>">
             <span class="mdc-typography--headline6" style="color: #44739e; margin-bottom: 16px;">Material Design Widgets Color Schemes Preview</span>
-            <div>   
+            <div>
                 <%== preview %>
             </div>
         </div>
-</script> 
+</script>
 
 <script id="tplVis-materialdesign-Vuetify-Dialog-View"
         type="text/ejs"
@@ -881,7 +881,7 @@
         data-vis-attrs1="group.layoutDialog;dialogMaxWidth/dimension;viewHeight/dimension;z_index/number;closingClickOutside[true]/checkbox;viewDistanceToBorder/number;backgroundColor[#mdwTheme:vis-materialdesign.0.colors.dialog.background]/color;headerHeight/number;headerBackgroundColor[#mdwTheme:vis-materialdesign.0.colors.dialog.header_background]/color;footerHeight/number;footerBackgroundColor[#mdwTheme:vis-materialdesign.0.colors.dialog.footer_background]/color;showDivider/checkbox;dividerColor[#mdwTheme:vis-materialdesign.0.colors.dialog.divider]/color;overlayColor[#mdwTheme:vis-materialdesign.0.colors.dialog.overlay]/color;overlayOpacity/slider,0,1,0.1;"
         data-vis-attrs2="group.layoutTitle;showTitle[true]/checkbox;title/html;titleFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.dialog.title]/number;titleFont[#mdwTheme:vis-materialdesign.0.fonts.dialog.title]/fontname;titleColor[#mdwTheme:vis-materialdesign.0.colors.dialog.header_text]/color;"
         data-vis-attrs3="group.layoutdialogCloseButton;buttonPosition[flex-end]/select,flex-start,center,flex-end;buttonSize[medium]/select,small,medium,large;buttonFullWidth/checkbox;buttonText;buttonFontSize/number;buttonFont[#mdwTheme:vis-materialdesign.0.fonts.dialog.button]/fontname;buttonFontColor[#mdwTheme:vis-materialdesign.0.colors.dialog.close_button_text]/color;pressColor[#mdwTheme:vis-materialdesign.0.colors.dialog.close_button_press]/color;fullscreenCloseIcon/custom,materialdesign.viseditor.materialDesignIcons;fullscreenCloseIconColor[#mdwTheme:vis-materialdesign.0.colors.dialog.close_button_icon]/color;fullscreenCloseIconPressColor[#mdwTheme:vis-materialdesign.0.colors.dialog.close_button_fullscreen_press]/color;dlgShowSaveButton/checkbox;dlgShowSaveButtonOid/id;dlgSaveButtonText;dlgSaveButtonIcon/custom,materialdesign.viseditor.materialDesignIcons;dlgSaveButtonOid/id;dlgSaveButtonValue;">
-        
+
         <div class="vis-widget materialdesign-widget materialdesign-vuetify-dialog <%== this.data.attr('class') %>" style="width: 100px; height: 30px; padding: 0px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.dialog.vue(el, data) %>>
             <div class="vis-widget materialdesign-widget materialdesign-button" style="width: 100%; height: 100%;"></div>
         </div>
@@ -938,7 +938,7 @@
         data-vis-attrs1="group.tabletSettings;tabletPortraitWidth/number;tabletPortraitCols/number;tabletPortraitGaps/number;tabletLandscapeWidth/number;tabletLandscapeCols/number;tabletLandscapeGaps/number;"
         data-vis-attrs2="group.View/byindex;View(0-countViews)/views;viewsHeight(0-countViews)/number;viewsWidth(0-countViews);viewSortOrder(0-countViews)/number;visibleResolutionGreaterThan(0-countViews)/number;visibleResolutionLessThan(0-countViews)/number;visibilityOid(0-countViews)/id;visibilityCondition(0-countViews)[==]/custom,materialdesign.viseditor.visibilityCondition;visibilityConditionValue(0-countViews);">
 
-        <div class="vis-widget materialdesign-widget materialdesign-masonry-views <%== this.data.attr('class') %>" style="width: 100%; height: 100%;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.views.masonry(el, data) %>> 
+        <div class="vis-widget materialdesign-widget materialdesign-masonry-views <%== this.data.attr('class') %>" style="width: 100%; height: 100%;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.views.masonry(el, data) %>>
 
         </div>
 </script>
@@ -956,7 +956,7 @@
         data-vis-attrs1="group.tabletSettings;tabletGridPortraitColSpan/number,1,12,1;tabletPortraitWidth/number;tabletPortraitGaps/number;tabletGridLandscapeColSpan/number,1,12,1;tabletLandscapeWidth/number;tabletLandscapeGaps/number;"
         data-vis-attrs2="group.View/byindex;View(0-countViews)/views;viewsHeight(0-countViews)/number;viewSortOrder(0-countViews)/number;viewColSpan(0-countViews)/number,1,12,1;handyGridPortraitColSpan(0-countViews)/number,1,12,1;handyGridLandscapeColSpan(0-countViews)/number,1,12,1;tabletGridPortraitColSpan(0-countViews)/number,1,12,1;tabletGridLandscapeColSpan(0-countViews)/number,1,12,1;visibleResolutionGreaterThan(0-countViews)/number;visibleResolutionLessThan(0-countViews)/number;visibilityOid(0-countViews)/id;visibilityCondition(0-countViews)[==]/custom,materialdesign.viseditor.visibilityCondition;visibilityConditionValue(0-countViews);">
 
-        <div class="vis-widget materialdesign-widget materialdesign-grid-views <%== this.data.attr('class') %>" style="width: 100%; height: 100%;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.views.grid(el, data) %>> 
+        <div class="vis-widget materialdesign-widget materialdesign-grid-views <%== this.data.attr('class') %>" style="width: 100%; height: 100%;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.views.grid(el, data) %>>
 
         </div>
 </script>
@@ -975,12 +975,12 @@
         </div>
 </script>
 
-<script id="tplVis-materialdesign-view-in-widget8" 
-        type="text/ejs" 
-        class="vis-tpl" 
+<script id="tplVis-materialdesign-view-in-widget8"
+        type="text/ejs"
+        class="vis-tpl"
         data-vis-set="materialdesign"
         data-vis-prev='<img src="widgets/basic/img/Prev_StatefulContainerView8.png"></img>'
-        data-vis-type="stateful,container" 
+        data-vis-type="stateful,container"
         data-vis-name="Advanced View in Widget 8"
         data-vis-attrs="oid;persistent/checkbox;notIfInvisible/checkbox;fadeInDuration[50]/number;fadeOutDuration[50]/number;debug/checkbox;count[1]/number;group.views;contains_view_(0-count)/views">
         <div class="vis-widget materialdesign-widget <%== this.data.attr('class') %>" style="width:400px; height: 270px;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.views.advancedViewInWidget8(el, data) %>>
@@ -999,9 +999,9 @@
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,alerts;questionsAndAnswers/custom,materialdesign.viseditor.questionsAndAnswers,alerts;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;useTheme/custom,materialdesign.viseditor.useTheme;oid;showMaxAlerts[3]/number;minScreenResolution/number;debug/checkbox;"
         data-vis-attrs0="group.alertLayout;alertLayouts[normal]/select,normal,outlined,tile;alertDense[true]/checkbox;alertElevation[1]/slider,0,24,1;alertMarginBottom[16]/number;alertBorderLayout[none]/select,none,top,right,left,bottom;alertFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.alerts.text]/number;alertFontFamily[#mdwTheme:vis-materialdesign.0.fonts.alerts.text]/fontname;alertIconSize/number;closeIcon[close-circle-outline]/custom,materialdesign.viseditor.materialDesignIcons;closeIconColor[#mdwTheme:vis-materialdesign.0.colors.alerts.close_icon]/color;closeIconPressColor[#mdwTheme:vis-materialdesign.0.colors.alerts.close_icon_hover]/color;">
 
-        <div class="vis-widget materialdesign-widget materialdesign-alerts <%== this.data.attr('class') %>" style="width: 150px; height: 38px; overflow: visible; pointer-events:none;" id="<%= this.data.attr('wid') %>"> 
+        <div class="vis-widget materialdesign-widget materialdesign-alerts <%== this.data.attr('class') %>" style="width: 150px; height: 38px; overflow: visible; pointer-events:none;" id="<%= this.data.attr('wid') %>">
             <div class="materialdesign-vuetify-alerts" style="width: 100%; pointer-events: auto;" <%= (el) -> vis.binds.materialdesign.alerts(el, data) %>>
-            
+
             </div>
         </div>
 </script>
@@ -1023,9 +1023,9 @@
         data-vis-attrs5="group.calendarTimeAxisLayout;calendarTimeAxisStartTime/number,0,24,1;calendarTimeAxisEndTime/number,1,24,1;calendarTimeAxisIntervalMinutes/number;calendarTimeAxisBackgroundColor[#mdwTheme:vis-materialdesign.0.colors.calendar.time_axis_background]/color;calendarTimeAxisWidth/number;calendarTimeAxisHeight/number;calendarTimeAxisShortIntervals[true]/checkbox;calendarTimeAxisHeaderBackgroundColor[#mdwTheme:vis-materialdesign.0.colors.calendar.time_axis_background_header]/color;calendarTimeAxisFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.calendar.time_axis]/number;calendarTimeAxisFont[#mdwTheme:vis-materialdesign.0.fonts.calendar.time_axis]/fontname;calendarTimeAxisFontColor[#mdwTheme:vis-materialdesign.0.colors.calendar.time_axis_text]/color;"
         data-vis-attrs6="group.calendarEventLayout;calendarEventOverlapMode[column]/select,column,stack;calendarEventHeight/number;calendarEventFontSize[#mdwTheme:vis-materialdesign.0.fontSizes.calendar.event]/number;calendarEventFont[#mdwTheme:vis-materialdesign.0.fonts.calendar.event]/fontname;"
         data-vis-attrs7="group.calendarCustomFormats;calendarMonthViewHeaderFormat;calendarMonthViewDayFormat;calendarWeekViewHeaderFormat;calendarWeekViewDayFormat;calendarDayViewHeaderFormat;calendarDayViewDayFormat;">
-        
-        <div class="vis-widget materialdesign-widget materialdesign-calendar <%== this.data.attr('class') %>" style="width: 500px; height: 300px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.calendar(el, data) %> > 
-            
+
+        <div class="vis-widget materialdesign-widget materialdesign-calendar <%== this.data.attr('class') %>" style="width: 500px; height: 300px; overflow: visible;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.calendar(el, data) %> >
+
         </div>
 </script>
 
@@ -1038,8 +1038,8 @@
         data-vis-name="Material Design Icon"
         data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,materialdesignicon;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;useTheme/custom,materialdesign.viseditor.useTheme;mdwIcon/custom,materialdesign.viseditor.materialDesignIcons;mdwIconSize/number;mdwIconColor[#mdwTheme:vis-materialdesign.0.colors.material_design_icon.color]/color;generateHtmlControl/custom,materialdesign.viseditor.generateHtmlControl,materialdesignicons;debug/checkbox;">
 
-        <div class="vis-widget materialdesign-widget materialdesign-icon <%== this.data.attr('class') %>" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.materialdesignicons.initialize(el, data) %> > 
-            
+        <div class="vis-widget materialdesign-widget materialdesign-icon <%== this.data.attr('class') %>" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.materialdesignicons.initialize(el, data) %> >
+
         </div>
 </script>
 
@@ -1049,15 +1049,15 @@
         class="vis-tpl"
         data-vis-prev='<div id="prev_tplVis-materialdesign-Installed-Version" style="position: relative; text-align: initial; padding: 4px "><div class="vis-widget_prev materialdesign-installed-version vis-tpl-materialdesign-Installed Version " style="width: 120px; height: 22px; text-align: center; left: calc(50% - 170px); top: calc(50% + 55px); font-family: Tahoma, Geneva, sans-serif; position: absolute; z-index: 4;" data-tmodified="true" data-zmodified="true"> <div class="materialdesign-version-container"> <div class="materialdesign-version-content" style="background: #5a5a5a; border-radius: 4px 0 0 4px;">installed</div> <div id="versionNumber" class="materialdesign-version-content" style="background: #45b31b; border-radius: 0 4px 4px 0;">x.x.x</div> </div> <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div></div>'
         data-vis-set="materialdesign"
-        data-vis-type="tools"        
+        data-vis-type="tools"
         data-vis-name="Installed Version"
         data-vis-update-style="true"
-        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,columnViews;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;useTheme/custom,materialdesign.viseditor.useTheme;debug/checkbox;">    
+        data-vis-attrs="manual/custom,materialdesign.viseditor.manualLink,columnViews;donate/custom,materialdesign.viseditor.bmc;onlineExampleProject/custom,materialdesign.viseditor.onlineExample;useTheme/custom,materialdesign.viseditor.useTheme;debug/checkbox;">
 
-        <div class="vis-widget materialdesign-widget materialdesign-installed-version <%== this.data.attr('class') %>" style="width: 120px; height: 20px; text-align: center;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.helper.installedVersion(el, data) %>> 
+        <div class="vis-widget materialdesign-widget materialdesign-installed-version <%== this.data.attr('class') %>" style="width: 120px; height: 20px; text-align: center;" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.materialdesign.helper.installedVersion(el, data) %>>
             <div class="materialdesign-version-container">
                 <div class="materialdesign-version-content" style="background: #5a5a5a; border-radius: 4px 0 0 4px;">installed</div>
-                <div id="versionNumber" class="materialdesign-version-content" style="background: #45b31b; border-radius: 0 4px 4px 0;">0.2.39</div>  
+                <div id="versionNumber" class="materialdesign-version-content" style="background: #45b31b; border-radius: 0 4px 4px 0;">0.2.39</div>
             </div>
         </div>
 </script>

@@ -1,6 +1,6 @@
 /*
     ioBroker.vis vis-materialdesign Widget-Set
-    
+
     Copyright 2019 Scrounger scrounger@gmx.net
 */
 "use strict";
@@ -477,7 +477,6 @@ vis.binds.materialdesign.viseditor = {
                         if (that.config['dialog-edit-text']) {
                             data = JSON.parse(that.config['dialog-edit-text']);
                         }
-                        var editor = ace.edit('dialog-edit-text-textarea');
                         var changed = false;
 
                         var view = that.activeView;
@@ -566,57 +565,62 @@ vis.binds.materialdesign.viseditor = {
                             dialogText = JSON.stringify(widgetData, null, "\t");
                         }
 
-                        $('#dialog-edit-text').dialog({
-                            autoOpen: true,
-                            width: data.width || 800,
-                            height: data.height || 600,
-                            modal: true,
-                            resize: function () {
-                                editor.resize();
-                            },
-                            open: function (event) {
-                                $(event.target).parent().find('.ui-dialog-titlebar-close .ui-button-text').html('');
-                                $(this).parent().css({ 'z-index': 1000 });
-                                if (data.top !== undefined) {
-                                    if (data.top >= 0) {
-                                        $(this).parent().css({ top: data.top });
-                                    } else {
-                                        $(this).parent().css({ top: 0 });
+                        if (typeof vis.showCode === 'function') {
+                            vis.showCode(dialogText);
+                        } else {
+                            var editor = ace.edit('dialog-edit-text-textarea');
+                            $('#dialog-edit-text').dialog({
+                                autoOpen: true,
+                                width: data.width || 800,
+                                height: data.height || 600,
+                                modal: true,
+                                resize: function () {
+                                    editor.resize();
+                                },
+                                open: function (event) {
+                                    $(event.target).parent().find('.ui-dialog-titlebar-close .ui-button-text').html('');
+                                    $(this).parent().css({ 'z-index': 1000 });
+                                    if (data.top !== undefined) {
+                                        if (data.top >= 0) {
+                                            $(this).parent().css({ top: data.top });
+                                        } else {
+                                            $(this).parent().css({ top: 0 });
+                                        }
                                     }
-                                }
-                                if (data.left !== undefined) {
-                                    if (data.left >= 0) {
-                                        $(this).parent().css({ left: data.left });
-                                    } else {
-                                        $(this).parent().css({ left: 0 });
+                                    if (data.left !== undefined) {
+                                        if (data.left >= 0) {
+                                            $(this).parent().css({ left: data.left });
+                                        } else {
+                                            $(this).parent().css({ left: 0 });
+                                        }
                                     }
-                                }
-                                editor.getSession().setMode('ace/mode/html');
-                                editor.setOptions({
-                                    enableBasicAutocompletion: true,
-                                    enableLiveAutocompletion: true
-                                });
-                                editor.$blockScrolling = Infinity;
-                                editor.getSession().setUseWrapMode(true);
-                                editor.setValue(dialogText);
-                                editor.navigateFileEnd();
-                                editor.focus();
-                                editor.getSession().on('change', function () {
-                                    changed = false;
-                                });
-                            },
-                            beforeClose: function () {
-                                // dummy
-                            },
-                            buttons: [
-                                {
-                                    text: _('Close'),
-                                    click: function () {
-                                        $(this).dialog('close');
+                                    editor.getSession().setMode('ace/mode/html');
+                                    editor.setOptions({
+                                        enableBasicAutocompletion: true,
+                                        enableLiveAutocompletion: true
+                                    });
+                                    editor.$blockScrolling = Infinity;
+                                    editor.getSession().setUseWrapMode(true);
+                                    editor.setValue(dialogText);
+                                    editor.navigateFileEnd();
+                                    editor.focus();
+                                    editor.getSession().on('change', function () {
+                                        changed = false;
+                                    });
+                                },
+                                beforeClose: function () {
+                                    // dummy
+                                },
+                                buttons: [
+                                    {
+                                        text: _('Close'),
+                                        click: function () {
+                                            $(this).dialog('close');
+                                        }
                                     }
-                                }
-                            ]
-                        }).show();
+                                ]
+                            }).show();
+                        }
                     });
                 }
             };
@@ -640,12 +644,10 @@ vis.binds.materialdesign.viseditor = {
                     $(this).button().click(function () {
                         $(this).val(true).trigger('change');
 
-                        var wdata = $(this).data('wdata');
                         var data = {};
                         if (that.config['dialog-edit-text']) {
                             data = JSON.parse(that.config['dialog-edit-text']);
                         }
-                        var editor = ace.edit('dialog-edit-text-textarea');
                         var changed = false;
 
                         var view = that.activeView;
@@ -787,57 +789,62 @@ vis.binds.materialdesign.viseditor = {
 
                             // dialogText = dialogText +  JSON.stringify(widgetData, null, "\t");
 
-                            $('#dialog-edit-text').dialog({
-                                autoOpen: true,
-                                width: data.width || 800,
-                                height: data.height || 600,
-                                modal: true,
-                                resize: function () {
-                                    editor.resize();
-                                },
-                                open: function (event) {
-                                    $(event.target).parent().find('.ui-dialog-titlebar-close .ui-button-text').html('');
-                                    $(this).parent().css({ 'z-index': 1000 });
-                                    if (data.top !== undefined) {
-                                        if (data.top >= 0) {
-                                            $(this).parent().css({ top: data.top });
-                                        } else {
-                                            $(this).parent().css({ top: 0 });
+                            if (typeof vis.showCode === 'function') {
+                                vis.showCode(dialogText);
+                            } else {
+                                var editor = ace.edit('dialog-edit-text-textarea');
+                                $('#dialog-edit-text').dialog({
+                                    autoOpen: true,
+                                    width: data.width || 800,
+                                    height: data.height || 600,
+                                    modal: true,
+                                    resize: function () {
+                                        editor.resize();
+                                    },
+                                    open: function (event) {
+                                        $(event.target).parent().find('.ui-dialog-titlebar-close .ui-button-text').html('');
+                                        $(this).parent().css({ 'z-index': 1000 });
+                                        if (data.top !== undefined) {
+                                            if (data.top >= 0) {
+                                                $(this).parent().css({ top: data.top });
+                                            } else {
+                                                $(this).parent().css({ top: 0 });
+                                            }
                                         }
-                                    }
-                                    if (data.left !== undefined) {
-                                        if (data.left >= 0) {
-                                            $(this).parent().css({ left: data.left });
-                                        } else {
-                                            $(this).parent().css({ left: 0 });
+                                        if (data.left !== undefined) {
+                                            if (data.left >= 0) {
+                                                $(this).parent().css({ left: data.left });
+                                            } else {
+                                                $(this).parent().css({ left: 0 });
+                                            }
                                         }
-                                    }
-                                    editor.getSession().setMode('ace/mode/html');
-                                    editor.setOptions({
-                                        enableBasicAutocompletion: true,
-                                        enableLiveAutocompletion: true
-                                    });
-                                    editor.$blockScrolling = Infinity;
-                                    editor.getSession().setUseWrapMode(true);
-                                    editor.setValue(dialogText);
-                                    editor.navigateFileEnd();
-                                    editor.focus();
-                                    editor.getSession().on('change', function () {
-                                        changed = false;
-                                    });
-                                },
-                                beforeClose: function () {
-                                    // dummy
-                                },
-                                buttons: [
-                                    {
-                                        text: _('Close'),
-                                        click: function () {
-                                            $(this).dialog('close');
+                                        editor.getSession().setMode('ace/mode/html');
+                                        editor.setOptions({
+                                            enableBasicAutocompletion: true,
+                                            enableLiveAutocompletion: true
+                                        });
+                                        editor.$blockScrolling = Infinity;
+                                        editor.getSession().setUseWrapMode(true);
+                                        editor.setValue(dialogText);
+                                        editor.navigateFileEnd();
+                                        editor.focus();
+                                        editor.getSession().on('change', function () {
+                                            changed = false;
+                                        });
+                                    },
+                                    beforeClose: function () {
+                                        // dummy
+                                    },
+                                    buttons: [
+                                        {
+                                            text: _('Close'),
+                                            click: function () {
+                                                $(this).dialog('close');
+                                            }
                                         }
-                                    }
-                                ]
-                            }).show();
+                                    ]
+                                }).show();
+                            }
 
                         } else {
                             that.confirmMessage(_('Please select only one Widget!'), _('attention'), null, 400, function (result) {
