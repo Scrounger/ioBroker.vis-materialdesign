@@ -584,10 +584,20 @@ vis.binds.materialdesign.helper = {
 
                 let view = vis.binds.materialdesign.helper.getViewOfWidget(wid);
 
-                if (vis.bindings.hasOwnProperty(bindings[b].systemOid) === false) {
-                    result.oidNeedSubscribe = vis.binds.materialdesign.helper.oidNeedSubscribe(bindings[b].systemOid, wid, widgetName, oidNeedSubscribe, true);
+                let needsSubscribe = true;
+                if (vis.bindings.hasOwnProperty(bindings[b].systemOid) === true) {
+                    for (var i = 0; i < vis.bindings[bindings[b].systemOid].length; i++) {
+                        if (vis.bindings[bindings[b].systemOid][i].widget == wid) {
+                            needsSubscribe = false;
+                            break;
+                        }
+                    }
+                }
+                if (needsSubscribe === true) {
+                    result.oidNeedSubscribe = vis.binds.materialdesign.helper.oidNeedSubscribe(bindings[b].systemOid, wid, widgetName, result.oidNeedSubscribe, true);
 
-                    vis.bindings[[bindings[b].systemOid]] = [{
+                    vis.bindings[bindings[b].systemOid] = vis.bindings[bindings[b].systemOid] || []
+                    vis.bindings[bindings[b].systemOid].push({
                         visOid: bindings[b].visOid,
                         systemOid: bindings[b].systemOid,
                         token: bindings[b].token,
@@ -598,7 +608,7 @@ vis.binds.materialdesign.helper = {
                         view: view,
                         widget: wid,
                         attr: 'none'
-                    }]
+                    })
                 }
 
                 if (bindings[b].operations) {
@@ -606,7 +616,7 @@ vis.binds.materialdesign.helper = {
                         if (bindings[b].operations[o].arg) {
                             for (var a = 0; a <= bindings[b].operations[o].arg.length - 1; a++) {
                                 if (bindings[b].operations[o].arg[a].systemOid) {
-                                    result.oidNeedSubscribe = vis.binds.materialdesign.helper.oidNeedSubscribe(bindings[b].operations[o].arg[a].systemOid, wid, widgetName, oidNeedSubscribe, true);
+                                    result.oidNeedSubscribe = vis.binds.materialdesign.helper.oidNeedSubscribe(bindings[b].operations[o].arg[a].systemOid, wid, widgetName, result.oidNeedSubscribe, true);
                                 }
                             }
                         }
