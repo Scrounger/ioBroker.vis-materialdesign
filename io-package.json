@@ -279,7 +279,6 @@
         ],
         "license": "MIT",
         "platform": "Javascript/Node.js",
-        "main": "main.js",
         "icon": "vis-materialdesign.png",
         "enabled": true,
         "extIcon": "https://raw.githubusercontent.com/Scrounger/ioBroker.vis-materialdesign/master/admin/vis-materialdesign.png",
