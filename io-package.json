@@ -285,6 +285,7 @@
         "extIcon": "https://raw.githubusercontent.com/Scrounger/ioBroker.vis-materialdesign/master/admin/vis-materialdesign.png",
         "readme": "https://github.com/Scrounger/ioBroker.vis-materialdesign/blob/master/README.md",
         "loglevel": "info",
+        "tier": 3,
         "restartAdapters": [
             "vis",
             "web"
