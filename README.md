@@ -174,10 +174,10 @@ ioBroker Material Design Widgets are based on [Google's material design guidelin
 # General
 
 ## Online Example Project
-provided by [iobroker.click](https://iobroker.click/index.html), thanks to bluefox and iobroker.
+provided by [www.iobroker.click](https://www.iobroker.click/index.html), thanks to bluefox and iobroker.
 
-* <a href="https://iobroker.click/vis/index.html?Material%20Design%20Widgets" target="_blank">VIS Runtime</a> (<a href="http://iobroker.click:8082/vis/index.html?Material%20Design%20Widgets" target="_blank">alternativ</a>)
-* <a href="https://iobroker.click/vis/edit.html?Material%20Design%20Widgets" target="_blank">VIS Editor</a> (<a href="http://iobroker.click:8082/vis/edit.html?Material%20Design%20Widgets" target="_blank">alternativ</a>)
+* <a href="https://www.iobroker.click/vis/index.html?Material%20Design%20Widgets" target="_blank">VIS Runtime</a> (<a href="http://www.iobroker.click:8082/vis/index.html?Material%20Design%20Widgets" target="_blank">alternativ</a>)
+* <a href="https://www.iobroker.click/vis/edit.html?Material%20Design%20Widgets" target="_blank">VIS Editor</a> (<a href="http://www.iobroker.click:8082/vis/edit.html?Material%20Design%20Widgets" target="_blank">alternativ</a>)
 
 ## Practical examples
 * [Weather View](https://forum.iobroker.net/topic/32232/material-design-widgets-wetter-view)
