@@ -18,3 +18,6 @@ widgets/materialdesign/img/preview_3.jpg
 widgets/materialdesign/js/charts/*
 widgets/materialdesign/js/google-charts-api.js
 package-lock.json
+
+#ignore .commitinfo created by ioBroker release script
+.commitinfo
