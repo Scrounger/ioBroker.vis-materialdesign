@@ -9,6 +9,7 @@
   "homepage": "https://github.com/Scrounger/ioBroker.vis-materialdesign",
   "license": "MIT",
   "keywords": [
+    "ioBroker",
     "vis",
     "material",
     "GUI"
